@@ -173,13 +173,14 @@ a.item.sidebar-menu-text:focus .svg-eth {
 }
 
 .games-dashboard-content {
-  width: calc(100% - 111px);
+  padding-right: 30px;
   position: absolute;
   top: 0;
   margin-top: 20px;
   margin-left: 81px;
   background-color: #0a0e11;
   padding-left: 30px;
+  padding-bottom: 30px;
 }
 
 @media (max-width: 768px) {
