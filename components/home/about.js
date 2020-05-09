@@ -79,12 +79,13 @@ class About extends React.Component {
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
             <h3 className="account-other-h3 games"> About Us </h3>
-            <p className="account-other-p games" style={{ paddingTop: '9px' }}> Decentral Games develops realtime 3D multiplayer games, built on Matic Network's Plasma-based sidechain and deployed to the Decentraland metaverse. Our games are playable for free and with MANA. ETH and DAI coming soon. </p>
+            <p className="account-other-p games" style={{ paddingTop: '7px' }}> Decentral Games develops realtime 3D multiplayer games, built on Matic Network's Plasma-based sidechain and deployed to the Decentraland metaverse. </p>
           </Fade>
 
           <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
               <h3 className="account-other-h3 games"> Our Games </h3>
+              <p className="account-other-p games" style={{ paddingTop: '7px' }}>Playable for free and with MANA. ETH and DAI coming soon. </p>
               <Grid>
                 <Grid.Row>
                   <Grid.Column computer={4} tablet={8} mobile={16}>
