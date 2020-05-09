@@ -3,8 +3,8 @@
 /* ----------------------------------------- */
 
 .ui.segment {
-	box-shadow: none;
-	border: white;
+  box-shadow: none;
+  border: white;
 }
 
 h4 {
@@ -196,7 +196,7 @@ div.blog-footer-container {
 }
 
 #a-footer-small {
-  color: #4183c4;
+  color: #2185f2;
 }
 
 @media (max-width: 767px) {
