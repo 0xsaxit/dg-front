@@ -84,8 +84,10 @@ class About extends React.Component {
 
           <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
-              <h3 className="account-other-h3 games"> Our Games </h3>
-              <p className="account-other-p games" style={{ paddingTop: '7px' }}>Playable for free and with MANA. ETH and DAI coming soon. </p>
+              <div>
+                <h3 className="account-other-h3 games"> Our Games </h3>
+                <p className="account-other-p games" style={{ paddingTop: '6px', paddingBottom: '30px' }}>Playable for free and with MANA. ETH and DAI coming soon. </p>
+              </div>
               <Grid>
                 <Grid.Row>
                   <Grid.Column computer={4} tablet={8} mobile={16}>
