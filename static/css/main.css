@@ -34,6 +34,10 @@ body {
   background-color: #0a0e11;
 }
 
+body .blog-page {
+  background-color: white;
+}
+
 
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
