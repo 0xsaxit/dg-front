@@ -30,6 +30,10 @@ p {
   line-height: 1.4;
 }
 
+body {
+  background-color: #0a0e11;
+}
+
 
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
