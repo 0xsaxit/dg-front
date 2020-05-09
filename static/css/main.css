@@ -40,7 +40,7 @@ p {
 }
 
 .menu-container {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(0, 0, 0, 1) !important;
   display: inline-block;
   width: 81px !important;
   height: 100vh;
