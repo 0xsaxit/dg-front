@@ -1,0 +1,13 @@
+version: '3'
+services:
+
+  website:
+    container_name: website
+    image: decentralgames-website:latest
+    build: .
+    restart: always
+    user: root
+    env_file:
+      - .env.website
+    ports:
+      - "3000:3000"
