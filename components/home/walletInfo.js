@@ -277,23 +277,11 @@ class WalletInfo extends React.Component {
                       src={eth}
                     />
                     <span>{this.state.ethBalance} ETH</span>
-                    <span style={{ float: 'right' }} id="wallet-row4">
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit"
-                        style={{ color: 'grey' }}
-                      >
-                        Deposit
-                      </Button>
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit2"
-                        style={{ color: 'grey' }}
-                      >
-                        Withdraw
-                      </Button>
+                    <span style={{ float: 'right' }}>
+                      <div className="wallet-info-button-container">
+                        <p className="wallet-info-deposit">Deposit</p>
+                        <p className="wallet-info-withdraw">Withdraw</p>
+                      </div>
                     </span>
                   </span>
                 </Table.Row>
@@ -309,23 +297,11 @@ class WalletInfo extends React.Component {
                       src={dai}
                     />
                     <span>{this.state.ethBalance} DAI</span>
-                    <span style={{ float: 'right' }} id="wallet-row4">
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit"
-                        style={{ color: 'grey' }}
-                      >
-                        Deposit
-                      </Button>
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit2"
-                        style={{ color: 'grey' }}
-                      >
-                        Withdraw
-                      </Button>
+                    <span style={{ float: 'right' }}>
+                      <div className="wallet-info-button-container">
+                        <p className="wallet-info-deposit">Deposit</p>
+                        <p className="wallet-info-withdraw">Withdraw</p>
+                      </div>
                     </span>
                   </span>
                 </Table.Row>
