@@ -30,7 +30,7 @@ class WalletInfo extends React.Component {
     }
     Global = require('../constant').default;
     this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
     );
 
     let object = this;
@@ -82,15 +82,22 @@ class WalletInfo extends React.Component {
 
   getTokenBalance = async (isMatic) => {
     try {
-      const amount = await Global.balanceOfToken(
-        Global.MATIC_TOKEN,
-        this.maticWeb3
-      );
+      var amount;
+
+      // if (isMatic)
+      //   amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
+      // else
+      //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
+      amount = await Global.balanceOfToken(Global.MATIC_TOKEN, this.maticWeb3);
+      // if you're reading this: I'm sorry.
+      // it works though lol (adds commas every three numbers, removes decimals.)
+      // I'm sure there's a better way - feel free to update
       this.setState({
         tokenBalance: window.web3
           .fromWei(amount, 'ether')
-          .toFixed(0)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+          .replace(/\.[^.]*?$/, ''),
       });
     } catch (err) {
       console.log(err);
@@ -194,7 +201,7 @@ class WalletInfo extends React.Component {
           </span>
         </div>
         <div style={{ padding: '20px 0' }}>
-          <div style={{ padding: '0 20px' }}>
+          <div style={{ padding: '0 15px 0px 21px' }}>
             <h3 className="wallet-info-h3">
               Matic Balances
               <Modal
@@ -231,9 +238,7 @@ class WalletInfo extends React.Component {
               </Modal>
             </h3>
             <p className="wallet-top-text3">
-              Default games are free, deposit to play with crypto. Decentral
-              Games is in beta, crypto gameplay is on Matic testnet using
-              Ropsten MANA.
+              Default games are free, deposit to Matic Network to play with crypto. Decentral Games is currently in beta.
             </p>
           </div>
           <div id="balance-box" style={{ marginTop: '24px' }}>
@@ -277,23 +282,11 @@ class WalletInfo extends React.Component {
                       src={eth}
                     />
                     <span>{this.state.ethBalance} ETH</span>
-                    <span style={{ float: 'right' }} id="wallet-row4">
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit"
-                        style={{ color: 'grey' }}
-                      >
-                        Deposit
-                      </Button>
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit2"
-                        style={{ color: 'grey' }}
-                      >
-                        Withdraw
-                      </Button>
+                    <span style={{ float: 'right' }}>
+                      <div className="wallet-info-button-container">
+                        <p className="wallet-info-deposit">Deposit</p>
+                        <p className="wallet-info-withdraw">Withdraw</p>
+                      </div>
                     </span>
                   </span>
                 </Table.Row>
@@ -309,23 +302,11 @@ class WalletInfo extends React.Component {
                       src={dai}
                     />
                     <span>{this.state.ethBalance} DAI</span>
-                    <span style={{ float: 'right' }} id="wallet-row4">
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit"
-                        style={{ color: 'grey' }}
-                      >
-                        Deposit
-                      </Button>
-                      <Button
-                        id="depositButton"
-                        color="blue"
-                        className="wallet-deposit2"
-                        style={{ color: 'grey' }}
-                      >
-                        Withdraw
-                      </Button>
+                    <span style={{ float: 'right' }}>
+                      <div className="wallet-info-button-container">
+                        <p className="wallet-info-deposit">Deposit</p>
+                        <p className="wallet-info-withdraw">Withdraw</p>
+                      </div>
                     </span>
                   </span>
                 </Table.Row>
@@ -334,7 +315,7 @@ class WalletInfo extends React.Component {
           </div>
           <p className="wallet-bottom-text">
             By depositing you agree to our{' '}
-            <a href="https://docs.decentral.games/disclaimer" style={{ color: 'rgba(1, 133, 244, 1)' }}>
+            <a href="/disclaimer" style={{ color: 'rgba(1, 133, 244, 1)' }}>
               {' '}
               disclaimer.
             </a>
