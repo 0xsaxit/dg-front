@@ -81,13 +81,13 @@ class Dashboard extends React.Component {
   getContent = () => {
     return (
       <div>
-      <div className="mobile-menu">
+      {/*<div className="mobile-menu">
         <img className="mobile-menu-image" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"/>
       </div>
       <div className="mobile-menu-words">
         <a className="mobile-menu-item-1" href="/blog"> BLOG </a>
         <a className="mobile-menu-item-2" href="https://docs.decentral.games/disclaimer"> DOCS </a>
-      </div>
+      </div>*/}
       <LogoSpinner show={this.state.isRunningTransaction}/>
       <div className="home-dashboard-content">
         <div>
@@ -140,7 +140,7 @@ class Dashboard extends React.Component {
             </Fade>
           </div>
         </div>
-        <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
+      {/*<p className="mobile-footer">Use a Chrome desktop browser to play.</p>*/}
       </div></div>
     );
   };
