@@ -194,7 +194,7 @@ class WalletInfo extends React.Component {
           </span>
         </div>
         <div style={{ padding: '20px 0' }}>
-          <div style={{ padding: '0 20px' }}>
+          <div style={{ padding: '0 15px 0px 21px' }}>
             <h3 className="wallet-info-h3">
               Matic Balances
               <Modal
@@ -231,9 +231,8 @@ class WalletInfo extends React.Component {
               </Modal>
             </h3>
             <p className="wallet-top-text3">
-              Default games are free, deposit to play with crypto. Decentral
-              Games is in beta, crypto gameplay is on Matic testnet using
-              Ropsten MANA.
+              Default games are free, deposit to Matic Network to play with
+              crypto. Decentral Games is currently in beta.
             </p>
           </div>
           <div id="balance-box" style={{ marginTop: '24px' }}>
