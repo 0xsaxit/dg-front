@@ -1496,7 +1496,7 @@ a.ui.blue.button.play-shimmer:hover,
 /*                MOBILE CSS                 */
 /* ----------------------------------------- */
 
-@media (max-width: 599px) {
+@media (max-width: 499px) {
   .menu-container,
   .wallet_board,
   .wallet_board_overlay,
@@ -1554,11 +1554,11 @@ a.ui.blue.button.play-shimmer:hover,
     background-color: transparent;
     background-size: cover !important;
     overflow: auto !important;
-    min-height: 100vh;
+    min-height: 87vh;
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 500px) {
   .mobile-menu-image,
   .mobile-menu-words,
   .mobile-footer {
