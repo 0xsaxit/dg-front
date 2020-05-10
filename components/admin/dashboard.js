@@ -37,13 +37,20 @@ class Dashboard extends React.Component {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     }
 
-    this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
-    );
+    // this.maticWeb3 = new window.Web3(
+    //   new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
+    // );
   }
 
   async componentDidMount() {
     Global = require('../constant').default;
+
+    if (window.web3) {
+      this.maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+    }
+
     let object = this;
     window.ethereum.on('accountsChanged', async function (accounts) {
       await object.getUserData();

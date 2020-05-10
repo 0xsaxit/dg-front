@@ -1,7 +1,8 @@
 import ABIRootChain from './ABI/ABIRootChain';
 import ABIFAKEMana from './ABI/ABIFAKEMana';
 import ABIParent from './ABI/ABIParent';
-import MANASlots from './ABI/ABISlotsMANA';
+import RootChain from './ABI/RootChain';
+import MANASlots from './ABI/ABISlotsMANA'; // ***
 import StandardToken from './ABI/StandardToken';
 import DepositManager from './ABI/DepositManager';
 import WithdrawManager from './ABI/WithdrawManager';
@@ -85,8 +86,9 @@ const MAX_AMOUNT = process.env.MAX_AMOUNT;
 const GAS_LIMIT = process.env.GAS_LIMIT;
 const MATIC_NETWORK_ID = process.env.MATIC_NETWORK_ID; //test
 
-// const MATIC_URL = 'https://testnet2.matic.network';
-const MATIC_URL = 'https://testnetv3.matic.network';
+const MATIC_URL = 'https://testnet2.matic.network';
+// const MATIC_URL = 'https://testnetv3.matic.network';
+const MATIC_EXPLORER = ''; // 'https://explorer.testnet2.matic.network';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -248,8 +250,8 @@ async function approveToken(
         amount,
         {
           from: userAddress,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
+          gasLimit: web3.toHex(GAS_LIMIT),
+          gasPrice: web3.toHex('20000000000'),
         },
         async function (err, hash) {
           if (err) {
@@ -287,9 +289,14 @@ async function depositTokenToMatic(
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start');
 
+    console.log(tokenAddress);
+    console.log(amount);
+    console.log(userAddress);
+    console.log(web3);
+
     try {
       const ROOTCHAIN_CONTRACT = web3.eth
-        .contract(ABIRootChain)
+        .contract(RootChain.abi)
         .at(ROOTCHAIN_ADDRESS);
 
       ROOTCHAIN_CONTRACT.deposit(
@@ -298,8 +305,8 @@ async function depositTokenToMatic(
         amount,
         {
           from: userAddress,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
+          gasLimit: web3.toHex(GAS_LIMIT),
+          gasPrice: web3.toHex('20000000000'),
         },
         async function (err, hash) {
           if (err) {
@@ -721,6 +728,7 @@ export default {
   DEPOSITMANAGER_ADDRESS,
   MATIC_NETWORK_ID,
   MATIC_URL,
+  MATIC_EXPLORER,
   SYNCER_URL,
   WATCHER_URL,
   MAX_AMOUNT,

@@ -238,7 +238,8 @@ class WalletInfo extends React.Component {
               </Modal>
             </h3>
             <p className="wallet-top-text3">
-              Default games are free, deposit to Matic Network to play with crypto. Decentral Games is currently in beta.
+              Default games are free, deposit to Matic Network to play with
+              crypto. Decentral Games is currently in beta.
             </p>
           </div>
           <div id="balance-box" style={{ marginTop: '24px' }}>

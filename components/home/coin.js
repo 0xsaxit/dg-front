@@ -3,7 +3,7 @@ import Fade from 'react-reveal/Fade';
 import { Image, Button, Grid, Divider, Icon } from 'semantic-ui-react';
 import ABITominoya from '../ABI/ABITominoya';
 import Menu from './menu';
-import Spinner from '../Spinner'
+import Spinner from '../Spinner';
 
 let Global;
 
@@ -33,7 +33,7 @@ class Coin extends React.Component {
     }
     await this.getUserData();
     this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
+      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
     this.verifyNetwork();
     this.getEthBalance();
@@ -45,31 +45,31 @@ class Coin extends React.Component {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         address: USER_ADDRESS,
-      })
-    })
-  }
+      }),
+    });
+  };
   getUserData = async () => {
     try {
       let response = await this.getUserVerify();
       let json = await response.json();
       if (json.status === 'ok') {
         if (json.result === 'false') {
-          location.href ="/";
+          location.href = '/';
           return;
         }
         let stepValue = parseInt(json.result);
         if (stepValue > 3) {
-          this.setState({isDashboard: true});
+          this.setState({ isDashboard: true });
         } else {
-          location.href = "/";
+          location.href = '/';
           return;
         }
-        this.setState({isLoading: false});
+        this.setState({ isLoading: false });
         return;
       }
     } catch (error) {
@@ -179,258 +179,328 @@ class Coin extends React.Component {
     });
   };
   myNFTs = () => {
-    this.setState({NFTstate: 0});
+    this.setState({ NFTstate: 0 });
   };
   buyNFTs = () => {
-    this.setState({NFTstate: 1});
+    this.setState({ NFTstate: 1 });
   };
 
-
   render() {
-    if ( this.state.isLoading === true) {
+    if (this.state.isLoading === true) {
       return (
         <div>
-          <Spinner show={this.state.isLoading}/>
+          <Spinner show={this.state.isLoading} />
         </div>
-      )
+      );
     }
     return (
       <div>
-        <Menu dashboard={this.state.isDashboard}/>
+        <Menu dashboard={this.state.isDashboard} />
         <div className="contentContainer" style={{ height: '100vh' }}>
           <div className="account-other-inner-container">
             <Fade bottom distance="20px" duration="600">
               <h3 className="account-other-h3"> NFTs </h3>
             </Fade>
             <Fade bottom distance="20px" duration="600">
-              { this.state.NFTstate == 0 ?
-              <p className="account-other-p">
-                <b className="account-hover">My NFTs</b> | <abbr className="account-hover" onClick= {() => this.buyNFTs()}>Buy NFTs{' '}</abbr>
-              </p> :
-              <p className="account-other-p">
-                <abbr className="account-hover" onClick= {() => this.myNFTs()}>My NFTs</abbr> | <b className="account-hover">Buy NFTs{' '}</b>
-              </p> }
+              {this.state.NFTstate == 0 ? (
+                <p className="account-other-p">
+                  <b className="account-hover">My NFTs</b> |{' '}
+                  <abbr
+                    className="account-hover"
+                    onClick={() => this.buyNFTs()}
+                  >
+                    Buy NFTs{' '}
+                  </abbr>
+                </p>
+              ) : (
+                <p className="account-other-p">
+                  <abbr className="account-hover" onClick={() => this.myNFTs()}>
+                    My NFTs
+                  </abbr>{' '}
+                  | <b className="account-hover">Buy NFTs </b>
+                </p>
+              )}
             </Fade>
 
             <Fade bottom distance="20px" duration="600" delay="200">
-              { this.state.NFTstate == 0 ?
-              <div id="my-nft-box">
-                <div style={{ padding: '10px' }}>
-                  <Grid
-                    style={{
-                      justifyContent: 'space-between',
-                      alignContent: 'stretch',
-                    }}
-                  >
-                    <Grid.Row>
-                      <Grid.Column
-                        className="nft-grid"
-                        computer={5}
-                        tablet={8}
-                        mobile={16}
-                      >
-                        <Image
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058164/tominoya_ama8c9_vps2ad.jpg"
-                          className="flamingos-nft-pic"
-                          style={{ borderRadius: '4px' }}
-                        />
-                        <h3
-                          className="account-other-h3"
-                          style={{ textAlign: 'left', marginTop: '0px' }}
+              {this.state.NFTstate == 0 ? (
+                <div id="my-nft-box">
+                  <div style={{ padding: '10px' }}>
+                    <Grid
+                      style={{
+                        justifyContent: 'space-between',
+                        alignContent: 'stretch',
+                      }}
+                    >
+                      <Grid.Row>
+                        <Grid.Column
+                          className="nft-grid"
+                          computer={5}
+                          tablet={8}
+                          mobile={16}
                         >
-                          {' '}
-                          Tominoya{' '}
-                        </h3>
-                        <Grid>
-                          <Grid.Row>
-                            <Grid.Column
-                              className="nft-grid"
-                              computer={8}
-                              tablet={8}
-                              mobile={16}
-                            >
-                              <p className="account-other-p" style={{fontSize: '15px'}}>
-                                {' '}
-                                <p className="nft-bold-content">TOKEN NUMBER</p>{' '} <br/>
-                                <a href="" className="nft-number-content">
-                                  {/* figure out what we want displayed here, result is very long
+                          <Image
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058164/tominoya_ama8c9_vps2ad.jpg"
+                            className="flamingos-nft-pic"
+                            style={{ borderRadius: '4px' }}
+                          />
+                          <h3
+                            className="account-other-h3"
+                            style={{ textAlign: 'left', marginTop: '0px' }}
+                          >
+                            {' '}
+                            Tominoya{' '}
+                          </h3>
+                          <Grid>
+                            <Grid.Row>
+                              <Grid.Column
+                                className="nft-grid"
+                                computer={8}
+                                tablet={8}
+                                mobile={16}
+                              >
+                                <p
+                                  className="account-other-p"
+                                  style={{ fontSize: '15px' }}
+                                >
+                                  {' '}
+                                  <p className="nft-bold-content">
+                                    TOKEN NUMBER
+                                  </p>{' '}
+                                  <br />
+                                  <a href="" className="nft-number-content">
+                                    {/* figure out what we want displayed here, result is very long
                                   maybe a ... in the middle?
                                   {this.state.result} */}
-                                  1234
-                                </a>
-                              </p>
-                            </Grid.Column>
-                            <Grid.Column
-                              className="nft-grid"
-                              computer={8}
-                              tablet={8}
-                              mobile={16}
-                            >
-                              <p className="account-other-p" style={{fontSize: '15px'}}>
-                                {' '}
-                                <p className="nft-bold-content">ADDRESS</p>{' '} <br/>
-                                <a href="" style={{color: 'rgba(1, 133, 244, 1)'}} className="nft-number-content">
-                                  0x1mn2...j2hd931
-                                  <Icon name="caret right" style={{ color: '#2085F4' }}/>
-                                </a>
-                              </p>
-                            </Grid.Column>
-                            <Grid.Column
-                              className="nft-grid"
-                              computer={8}
-                              tablet={8}
-                              mobile={16}
-                              style={{marginTop: '10px'}}
-                            >
-                              <p className="account-other-p" style={{fontSize: '15px'}}>
-                                {' '}
-                                <p className="nft-bold-content">VOLUME</p>{' '} <br/>
-                                <a href="">
-                                  <Image 
-                                    src="../../static/images/mana.png"
-                                    style={{width: '18px', marginTop: '5px', float: 'left', verticalAlign: 'middle' }}
-                                  ></Image><abbr style={{float: 'left', marginTop:'5px', marginLeft: '5px'}} className="nft-number-content">29,109 MANA</abbr>
-                                </a>
-                              </p>
-                            </Grid.Column>
-                            <Grid.Column
-                              className="nft-grid"
-                              computer={8}
-                              tablet={8}
-                              mobile={16}
-                              style={{marginTop: '10px'}}
-                            >
-                              <p className="account-other-p" style={{fontSize: '15px'}}>
-                                {' '}
-                                <p className="nft-bold-content">PROFIT</p>{' '} <br/>
-                                <a href="">
-                                  <Image 
-                                    src="../../static/images/mana.png"
-                                    style={{width: '18px', marginTop: '5px', float: 'left', verticalAlign: 'middle' }}
-                                  ></Image><abbr style={{float: 'left', marginTop:'5px', marginLeft: '5px'}} className="nft-number-content">2,120 MANA</abbr>
-                                </a>
-                              </p>
-                            </Grid.Column>
-                          </Grid.Row>
-                            
-                        </Grid>
-                        <br/>
-                        <p className="account-other-p">
-                          {' '}
-                          <b>Location:</b> -120, 135{' '}
-                        </p>
-                        <Button
-                          color="blue"
-                          className="nft-button"
-                          href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-gold"
-                        >
-                          Teleport in
-                        </Button>
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Grid>
+                                    1234
+                                  </a>
+                                </p>
+                              </Grid.Column>
+                              <Grid.Column
+                                className="nft-grid"
+                                computer={8}
+                                tablet={8}
+                                mobile={16}
+                              >
+                                <p
+                                  className="account-other-p"
+                                  style={{ fontSize: '15px' }}
+                                >
+                                  {' '}
+                                  <p className="nft-bold-content">
+                                    ADDRESS
+                                  </p>{' '}
+                                  <br />
+                                  <a
+                                    href=""
+                                    style={{ color: 'rgba(1, 133, 244, 1)' }}
+                                    className="nft-number-content"
+                                  >
+                                    0x1mn2...j2hd931
+                                    <Icon
+                                      name="caret right"
+                                      style={{ color: '#2085F4' }}
+                                    />
+                                  </a>
+                                </p>
+                              </Grid.Column>
+                              <Grid.Column
+                                className="nft-grid"
+                                computer={8}
+                                tablet={8}
+                                mobile={16}
+                                style={{ marginTop: '10px' }}
+                              >
+                                <p
+                                  className="account-other-p"
+                                  style={{ fontSize: '15px' }}
+                                >
+                                  {' '}
+                                  <p className="nft-bold-content">
+                                    VOLUME
+                                  </p>{' '}
+                                  <br />
+                                  <a href="">
+                                    <Image
+                                      src="../../static/images/mana.png"
+                                      style={{
+                                        width: '18px',
+                                        marginTop: '5px',
+                                        float: 'left',
+                                        verticalAlign: 'middle',
+                                      }}
+                                    ></Image>
+                                    <abbr
+                                      style={{
+                                        float: 'left',
+                                        marginTop: '5px',
+                                        marginLeft: '5px',
+                                      }}
+                                      className="nft-number-content"
+                                    >
+                                      29,109 MANA
+                                    </abbr>
+                                  </a>
+                                </p>
+                              </Grid.Column>
+                              <Grid.Column
+                                className="nft-grid"
+                                computer={8}
+                                tablet={8}
+                                mobile={16}
+                                style={{ marginTop: '10px' }}
+                              >
+                                <p
+                                  className="account-other-p"
+                                  style={{ fontSize: '15px' }}
+                                >
+                                  {' '}
+                                  <p className="nft-bold-content">
+                                    PROFIT
+                                  </p>{' '}
+                                  <br />
+                                  <a href="">
+                                    <Image
+                                      src="../../static/images/mana.png"
+                                      style={{
+                                        width: '18px',
+                                        marginTop: '5px',
+                                        float: 'left',
+                                        verticalAlign: 'middle',
+                                      }}
+                                    ></Image>
+                                    <abbr
+                                      style={{
+                                        float: 'left',
+                                        marginTop: '5px',
+                                        marginLeft: '5px',
+                                      }}
+                                      className="nft-number-content"
+                                    >
+                                      2,120 MANA
+                                    </abbr>
+                                  </a>
+                                </p>
+                              </Grid.Column>
+                            </Grid.Row>
+                          </Grid>
+                          <br />
+                          <p className="account-other-p">
+                            {' '}
+                            <b>Location:</b> -120, 135{' '}
+                          </p>
+                          <Button
+                            color="blue"
+                            className="nft-button"
+                            href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-gold"
+                          >
+                            Teleport in
+                          </Button>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                  </div>
                 </div>
-              </div>
-
-              : <div id="nft-box">
-                <div style={{ padding: '10px' }}>
-                  <Grid
-                    style={{
-                      justifyContent: 'space-between',
-                      alignContent: 'stretch',
-                    }}
-                  >
-                    <Grid.Row>
-                      <Grid.Column
-                        className="nft-grid"
-                        computer={5}
-                        tablet={8}
-                        mobile={16}
-                      >
-                        <Image
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058171/flamingos_ipxh3j_asfmet.jpg"
-                          className="flamingos-nft-pic"
-                          style={{ borderRadius: '4px' }}
-                        />
-                        <h3
-                          className="account-other-h3"
-                          style={{ textAlign: 'left', marginTop: '0px' }}
+              ) : (
+                <div id="nft-box">
+                  <div style={{ padding: '10px' }}>
+                    <Grid
+                      style={{
+                        justifyContent: 'space-between',
+                        alignContent: 'stretch',
+                      }}
+                    >
+                      <Grid.Row>
+                        <Grid.Column
+                          className="nft-grid"
+                          computer={5}
+                          tablet={8}
+                          mobile={16}
                         >
-                          {' '}
-                          Flamingos Casino{' '}
-                        </h3>
-                        <p className="account-other-p">
-                          {' '}
-                          The Flamingos casino is a joint venture with Vegas City.
-                          The casino is located on an 88 parcel estate broken up
-                          into 68 separate NFTs - ground floor (15 ETH), second
-                          floor (10 ETH), and third floor (7 ETH). The casino
-                          houses Decentral Games slots and roulette, and token
-                          holders make a percentage revenue from the games on
-                          their specific parcel.{' '}
-                        </p>
-                        <p className="account-other-p">
-                          {' '}
-                          <b>Location:</b> -126, 118{' '}
-                        </p>
-                        <Button
-                          color="blue"
-                          className="nft-button"
-                          href="https://opensea.io/assets/vegas-city-land-lease?query=flamingos"
+                          <Image
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058171/flamingos_ipxh3j_asfmet.jpg"
+                            className="flamingos-nft-pic"
+                            style={{ borderRadius: '4px' }}
+                          />
+                          <h3
+                            className="account-other-h3"
+                            style={{ textAlign: 'left', marginTop: '0px' }}
+                          >
+                            {' '}
+                            Flamingos Casino{' '}
+                          </h3>
+                          <p className="account-other-p">
+                            {' '}
+                            The Flamingos casino is a joint venture with Vegas
+                            City. The casino is located on an 88 parcel estate
+                            broken up into 68 separate NFTs - ground floor (15
+                            ETH), second floor (10 ETH), and third floor (7
+                            ETH). The casino houses Decentral Games slots and
+                            roulette, and token holders make a percentage
+                            revenue from the games on their specific parcel.{' '}
+                          </p>
+                          <p className="account-other-p">
+                            {' '}
+                            <b>Location:</b> -126, 118{' '}
+                          </p>
+                          <Button
+                            color="blue"
+                            className="nft-button"
+                            href="https://opensea.io/assets/vegas-city-land-lease?query=flamingos"
+                          >
+                            BUY ON OPENSEA
+                          </Button>
+                        </Grid.Column>
+                        <Grid.Column
+                          className="nft-grid"
+                          computer={5}
+                          tablet={8}
+                          mobile={16}
                         >
-                          BUY ON OPENSEA
-                        </Button>
-                      </Grid.Column>
-                      <Grid.Column
-                        className="nft-grid"
-                        computer={5}
-                        tablet={8}
-                        mobile={16}
-                      >
-                        <Image
-                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058164/tominoya_ama8c9_vps2ad.jpg"
-                          className="flamingos-nft-pic"
-                          style={{ borderRadius: '4px' }}
-                        />
-                        <h3
-                          className="account-other-h3"
-                          style={{ textAlign: 'left', marginTop: '0px' }}
-                        >
-                          {' '}
-                          Tominoya{' '}
-                        </h3>
-                        <p className="account-other-p">
-                          {' '}
-                          Tominoya is a joint venture with Vegas City on a 52
-                          parcel estate. The casino is broken up into 40 separate
-                          NFTs - 20 ground floor and 20 mezzanine. The casino
-                          houses Decentral Games slots and roulette, and token
-                          holders make a percentage revenue from the games on
-                          their specific parcel.{' '}
-                        </p>
-                        <p className="account-other-p">
-                          {' '}
-                          <b>Location:</b> To be announced{' '}
-                        </p>
-                        <Button
-                          color="blue"
-                          className="nft-button"
-                          href="https://opensea.io/assets?query=tominoya"
-                        >
-                          BUY ON OPENSEA
-                        </Button>
-                      </Grid.Column>
-                      <Grid.Column
-                        className="nft-grid"
-                        computer={5}
-                        tablet={8}
-                        mobile={16}
-                      ></Grid.Column>
-                    </Grid.Row>
-                  </Grid>
+                          <Image
+                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058164/tominoya_ama8c9_vps2ad.jpg"
+                            className="flamingos-nft-pic"
+                            style={{ borderRadius: '4px' }}
+                          />
+                          <h3
+                            className="account-other-h3"
+                            style={{ textAlign: 'left', marginTop: '0px' }}
+                          >
+                            {' '}
+                            Tominoya{' '}
+                          </h3>
+                          <p className="account-other-p">
+                            {' '}
+                            Tominoya is a joint venture with Vegas City on a 52
+                            parcel estate. The casino is broken up into 40
+                            separate NFTs - 20 ground floor and 20 mezzanine.
+                            The casino houses Decentral Games slots and
+                            roulette, and token holders make a percentage
+                            revenue from the games on their specific parcel.{' '}
+                          </p>
+                          <p className="account-other-p">
+                            {' '}
+                            <b>Location:</b> To be announced{' '}
+                          </p>
+                          <Button
+                            color="blue"
+                            className="nft-button"
+                            href="https://opensea.io/assets?query=tominoya"
+                          >
+                            BUY ON OPENSEA
+                          </Button>
+                        </Grid.Column>
+                        <Grid.Column
+                          className="nft-grid"
+                          computer={5}
+                          tablet={8}
+                          mobile={16}
+                        ></Grid.Column>
+                      </Grid.Row>
+                    </Grid>
+                  </div>
                 </div>
-              </div>
-              }
+              )}
             </Fade>
           </div>
         </div>

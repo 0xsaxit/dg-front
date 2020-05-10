@@ -19,13 +19,22 @@ class ContractData extends React.Component {
       tokensRoulette: 0,
     };
 
-    this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
-    );
+    // this.maticWeb3 = new window.Web3(
+    //   new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
+    // );
   }
 
   componentDidMount() {
     Global = require('../constant').default;
+
+    if (window.web3) {
+      this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
+      this.isBrowserMetamsk = 1;
+      this.maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+    }
+
     this.setState({ maticID: Global.MATIC_NETWORK_ID });
 
     this.getInitialBalances();

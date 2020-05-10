@@ -19,7 +19,6 @@ const INITIAL_STATE = {
 };
 
 class WalletOverlay extends React.Component {
-  
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -27,22 +26,23 @@ class WalletOverlay extends React.Component {
 
   dashboard = () => {
     this.props.walletInfo();
-  }
+  };
 
   async componentDidMount() {
+    Global = require('../constant').default;
+    await this.getUserData();
+
     if (window.web3) {
       console.log(window);
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       this.maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
       let object = this;
       window.ethereum.on('accountsChanged', async function (accounts) {
         await object.getUserData();
       });
     }
-    Global = require('../constant').default;
-    await this.getUserData();
   }
 
   async getUserData() {
@@ -216,15 +216,16 @@ class WalletOverlay extends React.Component {
                 <Modal.Content className="modal-content">
                   <p className="modal-font">
                     Matic Network is a Plasma sidechain that allows for instant
-                    Ethereum token transactions while maintaining the
-                    security of the Ethereum mainchain. To use Matic, deposit
-                    your Ethereum tokens with a deposit transaction. The tokens
-                    will then be instantly usable in all our games.
+                    Ethereum token transactions while maintaining the security
+                    of the Ethereum mainchain. To use Matic, deposit your
+                    Ethereum tokens with a deposit transaction. The tokens will
+                    then be instantly usable in all our games.
                   </p>
                   <p className="modal-font">
                     When you wish to withdraw from Matic and retrieve your
-                    tokens on the mainchain, initiate a withdrawal
-                    transaction. Withdrawals may take up to 1 week, but we are working to speed this up.
+                    tokens on the mainchain, initiate a withdrawal transaction.
+                    Withdrawals may take up to 1 week, but we are working to
+                    speed this up.
                   </p>
                 </Modal.Content>
               </Modal>
@@ -234,8 +235,8 @@ class WalletOverlay extends React.Component {
               Games is in beta, crypto gameplay is on Matic testnet using
               Ropsten MANA.
             </p>
-            
-            <ModalVerify dashboard={this.dashboard}/>
+
+            <ModalVerify dashboard={this.dashboard} />
             {/* <Button color='blue' className="metamask-button"
               href="https://google.com"
               >

@@ -40,7 +40,26 @@ class Deposit extends React.Component {
       );
     }
     await this.getTokenBalance();
-    await this.checkUserVerifyStep();
+
+    const ret = await this.checkUserVerifyStep();
+    // if (ret) {
+    //   if (
+    //     parseInt(localStorage.getItem('modalDeposit')) ==
+    //     (parseInt(localStorage.getItem('selectedMenu')) || 0) + 1
+    //   ) {
+    //     if (parseInt(localStorage.getItem('modalDeposit')) == 1)
+    //       this.setState({ modalOpen: true });
+    //     else if (
+    //       parseInt(localStorage.getItem('authvalue')) == this.props.authvalue
+    //     )
+    //       this.setState({
+    //         modalOpen: true,
+    //         isValidDeposit: 2,
+    //         userStepValue: 5,
+    //       });
+    //   }
+    //   return;
+    // }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +78,13 @@ class Deposit extends React.Component {
   handleClose = () => {
     this.setState({ modalOpen: false });
   };
+
+  // onAuthorize = async () => {
+  //   localStorage.setItem('authvalue', this.props.authvalue || 0);
+  //   this.setState({ isValidDeposit: 2, userStepValue: 5 });
+
+  //   this.handleOpen();
+  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -98,17 +124,21 @@ class Deposit extends React.Component {
           // indicate deposit success and set userStepValue to result
           this.setState({ isValidDeposit: 2, userStepValue: stepValue });
         }
-        this.setState({
-          modalOpen: true,
-        });
-        this.props.hideSpinner();
+
+        // this.setState({
+        //   modalOpen: true,
+        // });
+
+        // this.props.hideSpinner(); // *************************
+
+        // return true;
       }
     } catch (error) {
       console.log(error);
     }
 
     this.props.hideSpinner();
-    return false;
+    // return false;
   };
 
   getUserVerify = () => {
@@ -153,10 +183,10 @@ class Deposit extends React.Component {
   depositManaToMatic = async () => {
     try {
       this.props.showSpinner();
-      const amountWei = (this.state.amount * Global.FACTO).toString();
+      const amountWei = (this.state.amount * Global.FACTOR).toString();
 
       // check the amount of tokens that user has allowed Matic Root contract to spend
-      const allowedAmount = await Global.getAllowedToken(
+      let allowedAmount = await Global.getAllowedToken(
         Global.ROPSTEN_TOKEN,
         Global.ROOTCHAIN_ADDRESS,
         this.USER_ADDRESS
@@ -200,7 +230,7 @@ class Deposit extends React.Component {
       if (txHash != false) {
         console.log('tx hash: ' + txHash);
 
-        const ret = await this.updateHistory(
+        let ret = await this.updateHistory(
           this.state.amount,
           'Deposit',
           'In Progress',
@@ -245,10 +275,14 @@ class Deposit extends React.Component {
         }
 
         if (this.state.userStepValue < 6) {
-          await this.postUserVerify(5); // update database
+          console.log('updating step value to 5');
+
+          await this.postUserVerify(5); // update database to 'authorize'
         } else if (this.state.userStepValue == 6) {
+          console.log('step value is 6');
+
           this.handleClose();
-          setTimeout(this.props.update, 5000); // get user token balance from MetaMask
+          setTimeout(this.props.update, 5000); // set user token balance from MetaMask
         }
 
         this.setState({ isValidDeposit: 2 }); // valid deposit
@@ -277,8 +311,8 @@ class Deposit extends React.Component {
       var allowedAmount = await Global.getAllowedToken(
         Global.MATIC_TOKEN,
         contractAddress,
-        this.USER_ADDRESS,
-        this.maticWeb3
+        this.USER_ADDRESS
+        // this.maticWeb3
       );
       allowedAmount = allowedAmount / Global.FACTOR;
 
@@ -287,33 +321,33 @@ class Deposit extends React.Component {
           Global.MATIC_TOKEN,
           Global.MAX_AMOUNT,
           contractAddress,
-          this.USER_ADDRESS,
-          this.maticWeb3
+          this.USER_ADDRESS
+          // this.maticWeb3
         );
       else if (allowedAmount < this.state.amount || this.state.amount == 0) {
         await Global.approveToken(
           Global.MATIC_TOKEN,
           0,
           contractAddress,
-          this.USER_ADDRESS,
-          this.maticWeb3
+          this.USER_ADDRESS
+          // this.maticWeb3
         );
         await Global.approveToken(
           Global.MATIC_TOKEN,
           Global.MAX_AMOUNT,
           contractAddress,
-          this.USER_ADDRESS,
-          this.maticWeb3
+          this.USER_ADDRESS
+          // this.maticWeb3
         );
       }
 
-      await this.postUserVerify(6); // update database
+      await this.postUserVerify(6); // update database to 'deposit'
       await this.postUserAuthState(this.props.authvalue); // update database
       this.setState({ isValidAuthorize: 2 }); // indicate authorization success
 
       this.props.hideSpinner();
       this.handleClose();
-      setTimeout(this.props.update, 5000); // get user token balance from MetaMask
+      setTimeout(this.props.update, 5000); // set user token balance from MetaMask
     } catch (err) {
       this.setState({ isValidAuthorize: 1 }); // indicate authorization failure
       this.props.hideSpinner();
@@ -508,7 +542,9 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 5) {
+    } else if (
+      this.state.userStepValue == 5 // || this.state.isValidDeposit == 2
+    ) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
