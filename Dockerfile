@@ -1,4 +1,4 @@
-FROM node:13.13.0-alpine3.11 as build
+FROM node:14.2.0-alpine3.11 as build
 
 ARG CI=true
 
@@ -10,13 +10,17 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm audit
-RUN npm install --production
+
+RUN npm install --production --no-fund
+
+# web3 1.2.8 affected https://www.npmjs.com/advisories/877/versions , so we use 1.2.8-rc.0
+RUN npm outdated || true
 
 COPY . .
 RUN npm run build
 #RUN npm test
 
-FROM node:13.13.0-alpine3.11
+FROM node:14.2.0-alpine3.11
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 WORKDIR /app
