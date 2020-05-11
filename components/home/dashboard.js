@@ -86,7 +86,7 @@ class Dashboard extends React.Component {
       </div>
       <div className="mobile-menu-words">
         <a className="mobile-menu-item-1" href="/blog"> BLOG </a>
-        <a className="mobile-menu-item-2" href="https://docs.decentral.games/disclaimer"> DOCS </a>
+        <a className="mobile-menu-item-2" href="https://docs.decentral.games"> DOCS </a>
       </div>
       <LogoSpinner show={this.state.isRunningTransaction}/>
       <div className="home-dashboard-content">
