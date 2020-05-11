@@ -1,7 +1,8 @@
 import ABIRootChain from './ABI/ABIRootChain';
 import ABIFAKEMana from './ABI/ABIFAKEMana';
+import ABIDepositManager from './ABI/ABIDepositManager';
 import ABIParent from './ABI/ABIParent';
-import RootChain from './ABI/RootChain';
+// import RootChain from './ABI/RootChain';
 import MANASlots from './ABI/ABISlotsMANA'; // ***
 import StandardToken from './ABI/StandardToken';
 import DepositManager from './ABI/DepositManager';
@@ -295,11 +296,17 @@ async function depositTokenToMatic(
     console.log(web3);
 
     try {
-      const ROOTCHAIN_CONTRACT = web3.eth
-        .contract(RootChain.abi)
-        .at(ROOTCHAIN_ADDRESS);
+      // const ROOTCHAIN_CONTRACT = web3.eth
+      //   .contract(RootChain.abi)
+      //   .at(ROOTCHAIN_ADDRESS);
 
-      ROOTCHAIN_CONTRACT.deposit(
+      const DEPOSITMANAGER_CONTRACT = web3.eth
+        .contract(ABIDepositManager)
+        .at(DEPOSITMANAGER_ADDRESS);
+
+      // ROOTCHAIN_CONTRACT.deposit(
+
+      DEPOSITMANAGER_CONTRACT.depositERC20ForUser(
         tokenAddress,
         userAddress,
         amount,

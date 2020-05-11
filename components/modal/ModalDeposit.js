@@ -188,7 +188,7 @@ class Deposit extends React.Component {
       // check the amount of tokens that user has allowed Matic Root contract to spend
       let allowedAmount = await Global.getAllowedToken(
         Global.ROPSTEN_TOKEN,
-        Global.ROOTCHAIN_ADDRESS,
+        Global.DEPOSITMANAGER_ADDRESS, // ROOTCHAIN_ADDRESS
         this.USER_ADDRESS
       );
       allowedAmount = allowedAmount / Global.FACTOR;
@@ -200,20 +200,20 @@ class Deposit extends React.Component {
         await Global.approveToken(
           Global.ROPSTEN_TOKEN,
           Global.MAX_AMOUNT,
-          Global.ROOTCHAIN_ADDRESS,
+          Global.DEPOSITMANAGER_ADDRESS, // ROOTCHAIN_ADDRESS
           this.USER_ADDRESS
         );
       else if (allowedAmount < this.state.amount) {
         await Global.approveToken(
           Global.ROPSTEN_TOKEN,
           0,
-          Global.ROOTCHAIN_ADDRESS,
+          Global.DEPOSITMANAGER_ADDRESS, // ROOTCHAIN_ADDRESS
           this.USER_ADDRESS
         );
         await Global.approveToken(
           Global.ROPSTEN_TOKEN,
           Global.MAX_AMOUNT,
-          Global.ROOTCHAIN_ADDRESS,
+          Global.DEPOSITMANAGER_ADDRESS, // ROOTCHAIN_ADDRESS
           this.USER_ADDRESS
         );
       }
@@ -484,7 +484,7 @@ class Deposit extends React.Component {
   render() {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
-    // pre-render checks: verify user is on main net, loaded == 2, and using MetaMask
+    // pre-render checks: verify user is on correct network, step value == 2, and using MetaMask
     this.verifyNetwork();
     let content = '';
 
