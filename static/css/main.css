@@ -1555,11 +1555,7 @@ a.ui.blue.button.play-shimmer:hover,
     background-position: center !important;
     background-color: transparent;
     background-size: cover !important;
-    overflow: auto !important;
-    min-height: 100vh;
-  }
-  body {
-    overflow: hidden !important;
+    height: 86.8vh !important;
   }
 }
 
