@@ -45,7 +45,7 @@ class SideMenu extends React.Component {
           <span> <Svgeth  style={{ paddingBottom: '9px' }}/></span><br />
           NFTs
         </Menu.Item> : <p></p> }
-        { this.props.dashboard === true ? <Menu.Item href="/" exact="true" className='sidebar-menu-text'>
+        { this.props.dashboard === true ? <Menu.Item href="/exchange" exact="true" className='sidebar-menu-text'>
           <span> <MdAutorenew style={{ fontSize: '30px', paddingBottom: '6px' }}/></span><br />
           Exchange
         </Menu.Item> : <p></p> }
