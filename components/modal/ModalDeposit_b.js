@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
-import metaTX from './metaTX';
 
 let Global;
 
@@ -579,7 +578,7 @@ class Deposit extends React.Component {
                   <DepositContent
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
-                    authorizeMana={metaTX.metaTransfer}
+                    authorizeMana={this.authorizeMana}
                   />
                 </Grid.Column>
               </Grid>

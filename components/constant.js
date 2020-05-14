@@ -1,5 +1,6 @@
+// import sigUtil from 'eth-sig-util';
 import ABIRootChain from './ABI/ABIRootChain';
-import ABIFAKEMana from './ABI/ABIFAKEMana';
+// import ABIFAKEMana from './ABI/ABIFAKEMana';
 import ABIDepositManager from './ABI/ABIDepositManager';
 import ABIParent from './ABI/ABIParent';
 // import RootChain from './ABI/RootChain';
@@ -163,14 +164,14 @@ async function getHeaderProof(blockNumber, header) {
 // get user token balance from MetaMask
 function balanceOfToken(
   tokenAddress,
-  web3 = window.web3,
+  web3Default = window.web3,
   userAddress = window.web3.currentProvider.selectedAddress
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('getting balance of Token');
 
     try {
-      const TOKEN_CONTRACT = web3.eth
+      const TOKEN_CONTRACT = web3Default.eth
         .contract(StandardToken.abi)
         .at(tokenAddress);
 
@@ -200,13 +201,13 @@ function getAllowedToken(
   tokenAddress,
   contractAddress,
   userAddress,
-  web3 = window.web3
+  web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('get allowed tokens');
 
     try {
-      const TOKEN_CONTRACT = web3.eth
+      const TOKEN_CONTRACT = web3Default.eth
         .contract(StandardToken.abi)
         .at(tokenAddress);
 
@@ -236,27 +237,36 @@ async function approveToken(
   amount,
   contractAddress,
   userAddress,
-  web3 = window.web3
+  web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('Approving contract');
 
+    console.log('token address: ' + tokenAddress);
+    console.log('amount: ' + amount);
+    console.log('contract addres: ' + contractAddress);
+    console.log('user address: ' + userAddress);
+    console.log(web3Default);
+
     try {
-      const TOKEN_CONTRACT = web3.eth
+      const TOKEN_CONTRACT = web3Default.eth
         .contract(StandardToken.abi)
         .at(tokenAddress);
+
+      console.log(TOKEN_CONTRACT);
 
       TOKEN_CONTRACT.approve(
         contractAddress,
         amount,
         {
           from: userAddress,
-          gasLimit: web3.toHex(GAS_LIMIT),
-          gasPrice: web3.toHex('20000000000'),
+          gasLimit: web3Default.toHex(GAS_LIMIT),
+          gasPrice: web3Default.toHex('20000000000'),
         },
         async function (err, hash) {
           if (err) {
-            console.log('Approving failed', err);
+            console.log('Approving failed 1: ', err);
+
             reject(false);
           }
 
@@ -272,7 +282,7 @@ async function approveToken(
         }
       );
     } catch (error) {
-      console.log('Approving failed', error);
+      console.log('Approving failed 2: ', error);
       reject(false);
     }
   });
@@ -285,7 +295,7 @@ async function depositTokenToMatic(
   tokenAddress,
   amount,
   userAddress,
-  web3 = window.web3
+  web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start');
@@ -302,7 +312,7 @@ async function depositTokenToMatic(
       //   .contract(RootChain.abi)
       //   .at(ROOTCHAIN_ADDRESS);
 
-      const DEPOSITMANAGER_CONTRACT = web3.eth
+      const DEPOSITMANAGER_CONTRACT = web3Default.eth
         .contract(ABIDepositManager)
         .at(DEPOSITMANAGER_ADDRESS);
 
@@ -314,8 +324,8 @@ async function depositTokenToMatic(
         amount,
         {
           from: userAddress,
-          gasLimit: web3.toHex(GAS_LIMIT * 20),
-          gasPrice: web3.toHex('80000000000'),
+          gasLimit: web3Default.toHex(GAS_LIMIT * 20),
+          gasPrice: web3Default.toHex('80000000000'),
         },
         async function (err, hash) {
           if (err) {
@@ -334,15 +344,35 @@ async function depositTokenToMatic(
   });
 }
 
+const getSignatureParameters = (signature, web3Default = window.web3) => {
+  if (!web3Default.utils.isHexStrict(signature)) {
+    throw new Error(
+      'Given value "'.concat(signature, '" is not a valid hex string.')
+    );
+  }
+
+  var r = signature.slice(0, 66);
+  var s = '0x'.concat(signature.slice(66, 130));
+  var v = '0x'.concat(signature.slice(130, 132));
+
+  v = web3Default.utils.hexToNumber(v);
+  if (![27, 28].includes(v)) v += 27;
+  return {
+    r: r,
+    s: s,
+    v: v,
+  };
+};
+
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get balance from parent contract and allocated tokens from slots and roulette games
-function getBalanceParent(tokenName, web3 = window.web3) {
+function getBalanceParent(tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
     console.log('get balance start');
 
     try {
-      const PARENT_CONTRACT = web3.eth
+      const PARENT_CONTRACT = web3Default.eth
         .contract(ABIParent)
         .at(MASTER_CONTRACT_ADDRESS);
 
@@ -364,12 +394,12 @@ function getBalanceParent(tokenName, web3 = window.web3) {
   });
 }
 
-function getTokensGame(gameType, tokenName, web3 = window.web3) {
+function getTokensGame(gameType, tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
     console.log('get tokens per game start');
 
     try {
-      const PARENT_CONTRACT = web3.eth
+      const PARENT_CONTRACT = web3Default.eth
         .contract(ABIParent)
         .at(MASTER_CONTRACT_ADDRESS);
 
