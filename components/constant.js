@@ -67,9 +67,10 @@ const ADMINS = [
   '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
   '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
 ];
-const Buffer = window.ethereumjs.Buffer.Buffer;
-const Util = window.ethereumjs.Util;
-const RLP = window.ethereumjs.RLP;
+
+// const Buffer = window.ethereumjs.Buffer.Buffer;
+// const Util = window.ethereumjs.Util;
+// const RLP = window.ethereumjs.RLP;
 
 const FACTOR = 1000000000000000000; // ETH/WEI multiplication factor
 
@@ -344,25 +345,25 @@ async function depositTokenToMatic(
   });
 }
 
-const getSignatureParameters = (signature, web3Default = window.web3) => {
-  if (!web3Default.utils.isHexStrict(signature)) {
-    throw new Error(
-      'Given value "'.concat(signature, '" is not a valid hex string.')
-    );
-  }
+// const getSignatureParameters = (signature, web3Default = window.web3) => {
+//   if (!web3Default.utils.isHexStrict(signature)) {
+//     throw new Error(
+//       'Given value "'.concat(signature, '" is not a valid hex string.')
+//     );
+//   }
 
-  var r = signature.slice(0, 66);
-  var s = '0x'.concat(signature.slice(66, 130));
-  var v = '0x'.concat(signature.slice(130, 132));
+//   var r = signature.slice(0, 66);
+//   var s = '0x'.concat(signature.slice(66, 130));
+//   var v = '0x'.concat(signature.slice(130, 132));
 
-  v = web3Default.utils.hexToNumber(v);
-  if (![27, 28].includes(v)) v += 27;
-  return {
-    r: r,
-    s: s,
-    v: v,
-  };
-};
+//   v = web3Default.utils.hexToNumber(v);
+//   if (![27, 28].includes(v)) v += 27;
+//   return {
+//     r: r,
+//     s: s,
+//     v: v,
+//   };
+// };
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -598,80 +599,80 @@ function startWithdrawTokenFromMatic(token, amount, user_address) {
   });
 }
 
-function withdrawTokenFromMatic(txId, user_address) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Withdrawing');
-    try {
-      // fetch trancation & receipt proof
-      const [txProof, receiptProof] = await Promise.all([
-        getTxProof(txId),
-        getReceiptProof(txId),
-      ]);
+// function withdrawTokenFromMatic(txId, user_address) {
+//   return new Promise(async (resolve, reject) => {
+//     console.log('Withdrawing');
+//     try {
+//       // fetch trancation & receipt proof
+//       const [txProof, receiptProof] = await Promise.all([
+//         getTxProof(txId),
+//         getReceiptProof(txId),
+//       ]);
 
-      // fetch header object & header proof
-      let header = null;
-      try {
-        header = await getHeaderObject(txProof.blockNumber);
-      } catch (e) {
-        // ignore error
-      }
+//       // fetch header object & header proof
+//       let header = null;
+//       try {
+//         header = await getHeaderObject(txProof.blockNumber);
+//       } catch (e) {
+//         // ignore error
+//       }
 
-      // check if header block found
-      if (!header) {
-        throw new Error(
-          `No corresponding checkpoint/header block found for ${txId}.`
-        );
-      }
+//       // check if header block found
+//       if (!header) {
+//         throw new Error(
+//           `No corresponding checkpoint/header block found for ${txId}.`
+//         );
+//       }
 
-      const headerProof = await getHeaderProof(txProof.blockNumber, header);
-      const WITHDRAWMANAGER_CONTRACT = window.web3.eth
-        .contract(WithdrawManager.abi)
-        .at(WITHDRAWMANAGER_ADDRESS);
-      console.log(headerProof);
-      console.log(txProof);
-      console.log(receiptProof);
-      WITHDRAWMANAGER_CONTRACT.withdrawBurntTokens(
-        header.number,
-        Util.bufferToHex(
-          Buffer.concat(headerProof.proof.map((p) => Util.toBuffer(p)))
-        ), // header proof
-        txProof.blockNumber, // block number
-        txProof.blockTimestamp, // block timestamp
-        txProof.root, // tx root
-        receiptProof.root, // receipt root
-        Util.bufferToHex(RLP.encode(receiptProof.path)), // key for trie (both tx and receipt)
-        txProof.value, // tx bytes
-        txProof.parentNodes, // tx proof nodes
-        receiptProof.value, // receipt bytes
-        receiptProof.parentNodes,
-        {
-          // reciept proof nodes
-          from: user_address,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Withdrawing failed', err);
-            reject(false);
-          }
+//       const headerProof = await getHeaderProof(txProof.blockNumber, header);
+//       const WITHDRAWMANAGER_CONTRACT = window.web3.eth
+//         .contract(WithdrawManager.abi)
+//         .at(WITHDRAWMANAGER_ADDRESS);
+//       console.log(headerProof);
+//       console.log(txProof);
+//       console.log(receiptProof);
+//       WITHDRAWMANAGER_CONTRACT.withdrawBurntTokens(
+//         header.number,
+//         Util.bufferToHex(
+//           Buffer.concat(headerProof.proof.map((p) => Util.toBuffer(p)))
+//         ), // header proof
+//         txProof.blockNumber, // block number
+//         txProof.blockTimestamp, // block timestamp
+//         txProof.root, // tx root
+//         receiptProof.root, // receipt root
+//         Util.bufferToHex(RLP.encode(receiptProof.path)), // key for trie (both tx and receipt)
+//         txProof.value, // tx bytes
+//         txProof.parentNodes, // tx proof nodes
+//         receiptProof.value, // receipt bytes
+//         receiptProof.parentNodes,
+//         {
+//           // reciept proof nodes
+//           from: user_address,
+//           gasLimit: window.web3.toHex(GAS_LIMIT),
+//           gasPrice: window.web3.toHex('20000000000'),
+//         },
+//         async function (err, hash) {
+//           if (err) {
+//             console.log('Withdrawing failed', err);
+//             reject(false);
+//           }
 
-          var ret = await getConfirmedTx(hash);
-          if (ret.status == '0x0') {
-            console.log('Withdrawing transaction failed');
-            resolve(false);
-          } else {
-            console.log('Withdrawing done');
-            resolve(hash);
-          }
-        }
-      );
-    } catch (error) {
-      console.log('Withdrawing failed', error);
-      reject(false);
-    }
-  });
-}
+//           var ret = await getConfirmedTx(hash);
+//           if (ret.status == '0x0') {
+//             console.log('Withdrawing transaction failed');
+//             resolve(false);
+//           } else {
+//             console.log('Withdrawing done');
+//             resolve(hash);
+//           }
+//         }
+//       );
+//     } catch (error) {
+//       console.log('Withdrawing failed', error);
+//       reject(false);
+//     }
+//   });
+// }
 
 async function processExits(rootTokenAddress, user_address) {
   return new Promise(async (resolve, reject) => {
@@ -786,6 +787,6 @@ export default {
   withdrawTokenFromMANASlots,
   getMappedToken,
   startWithdrawTokenFromMatic,
-  withdrawTokenFromMatic,
+  // withdrawTokenFromMatic,
   processExits,
 };

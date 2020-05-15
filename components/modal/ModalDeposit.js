@@ -2,9 +2,69 @@ import React from 'react';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
-import metaTX from './metaTX';
+import Biconomy from '@biconomy/mexa';
+// import { sigUtil } from 'eth-sig-util';
+import ABIFAKEMana from '../ABI/ABIFAKEMana';
+import Global from '../constant';
+// const Global = require('../constant').default;
 
-let Global;
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// Initialize constants
+
+// const Web3 = require('web3'); // ******************************************************
+
+// const sigUtil = require('eth-sig-util');
+
+let Web3 = {};
+let sigUtil = {};
+let biconomyAPIKey = ''; // add your api  key from the dashboard
+let parentChainId = ''; // chain id of the network tx is signed on
+let maticProvider = {};
+let tokenAddress = ''; // was contractAddress
+let recipient = '';
+let amount = '';
+let contract = {};
+let web3 = {};
+let biconomy = {};
+
+// define EIP712 domain params
+const domainType = [
+  { name: 'name', type: 'string' },
+  { name: 'version', type: 'string' },
+  { name: 'chainId', type: 'uint256' },
+  { name: 'verifyingContract', type: 'address' },
+];
+
+const metaTransactionType = [
+  { name: 'nonce', type: 'uint256' },
+  { name: 'from', type: 'address' },
+  { name: 'functionSignature', type: 'bytes' },
+];
+
+let domainData = {
+  name: 'MetaToken',
+  version: '1',
+  chainId: parentChainId,
+  verifyingContract: tokenAddress,
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877'; // add your api  key from the dashboard
+// parentChainId = Global.MATIC_NETWORK_ID; // chain id of the network tx is signed on
+// maticProvider = Global.MATIC_URL;
+// tokenAddress = Global.MATIC_TOKEN; // was contractAddress
+// recipient = Global.MASTER_CONTRACT_ADDRESS();
+
+// console.log('recipient address: ' + recipient);
+
+// amount = '1000000000000000000';
+// contract = {};
+// web3 = {};
+// biconomy = {};
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 
 class Deposit extends React.Component {
   constructor(props) {
@@ -25,10 +85,33 @@ class Deposit extends React.Component {
     this.USER_ADDRESS = '';
     this.isBrowserMetamsk = 0;
     this.maticWeb3 = {};
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    Web3 = require('web3');
+
+    sigUtil = require('eth-sig-util');
+    biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877'; // add your api  key from the dashboard
+    parentChainId = Global.MATIC_NETWORK_ID; // chain id of the network tx is signed on
+    maticProvider = Global.MATIC_URL;
+    tokenAddress = Global.MATIC_TOKEN; // was contractAddress
+    recipient = Global.MASTER_CONTRACT_ADDRESS();
+
+    // console.log('recipient address: ' + recipient);
+
+    amount = '1000000000000000000';
+    contract = {};
+    web3 = {};
+    biconomy = {};
+
+    // console.log('sigUtil 999');
+    // console.log(sigUtil);
   }
 
   async componentDidMount() {
-    Global = require('./../constant').default;
+    // console.log('sigUtil 0');
+    // console.log(sigUtil);
 
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -41,26 +124,29 @@ class Deposit extends React.Component {
       );
     }
     await this.getTokenBalance();
+    await this.checkUserVerifyStep();
 
-    const ret = await this.checkUserVerifyStep();
-    // if (ret) {
-    //   if (
-    //     parseInt(localStorage.getItem('modalDeposit')) ==
-    //     (parseInt(localStorage.getItem('selectedMenu')) || 0) + 1
-    //   ) {
-    //     if (parseInt(localStorage.getItem('modalDeposit')) == 1)
-    //       this.setState({ modalOpen: true });
-    //     else if (
-    //       parseInt(localStorage.getItem('authvalue')) == this.props.authvalue
-    //     )
-    //       this.setState({
-    //         modalOpen: true,
-    //         isValidDeposit: 2,
-    //         userStepValue: 5,
-    //       });
-    //   }
-    //   return;
-    // }
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // window.ethereum.enable().catch((error) => {
+    //   console.log(error);
+    // });
+
+    web3 = new Web3(window.ethereum);
+    biconomy = new Biconomy(new Web3.providers.HttpProvider(maticProvider), {
+      apiKey: biconomyAPIKey,
+      debug: true,
+    });
+    const getWeb3 = new Web3(biconomy);
+    contract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddress);
+
+    biconomy
+      .onEvent(biconomy.READY, () => {
+        console.log('Mexa is Ready'); // Initialize your dapp here like getting user accounts etc
+      })
+      .onEvent(biconomy.ERROR, (error, message) => {
+        console.error(error); // Handle error while initializing mexa
+      });
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -304,70 +390,173 @@ class Deposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // returns the amount of MANA our contract is approved to spend on behalf of the user
   // then allows our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
-  authorizeMana = async () => {
-    try {
-      this.props.showSpinner();
-      const contractAddress = Global.MASTER_CONTRACT_ADDRESS();
+  // authorizeMana = async () => {
+  //   try {
+  //     this.props.showSpinner();
+  //     const contractAddress = Global.MASTER_CONTRACT_ADDRESS();
 
-      // check the amount of tokens that user has allowed our Treasury contract to spend
-      let allowedAmount = await Global.getAllowedToken(
-        Global.MATIC_TOKEN,
-        contractAddress,
-        this.USER_ADDRESS
-        // this.maticWeb3
-      );
-      allowedAmount = allowedAmount / Global.FACTOR;
+  //     // check the amount of tokens that user has allowed our Treasury contract to spend
+  //     let allowedAmount = await Global.getAllowedToken(
+  //       Global.MATIC_TOKEN,
+  //       contractAddress,
+  //       this.USER_ADDRESS
+  //       // this.maticWeb3
+  //     );
+  //     allowedAmount = allowedAmount / Global.FACTOR;
 
-      console.log('allowed amount 1: ' + allowedAmount);
+  //     console.log('allowed amount 1: ' + allowedAmount);
 
-      if (allowedAmount == 0)
-        await Global.approveToken(
-          Global.MATIC_TOKEN,
-          Global.MAX_AMOUNT,
-          contractAddress,
-          this.USER_ADDRESS
-          // this.maticWeb3
-        );
-      else if (allowedAmount < this.state.amount || this.state.amount == 0) {
-        await Global.approveToken(
-          Global.MATIC_TOKEN,
-          0,
-          contractAddress,
-          this.USER_ADDRESS
-          // this.maticWeb3
-        );
-        await Global.approveToken(
-          Global.MATIC_TOKEN,
-          Global.MAX_AMOUNT,
-          contractAddress,
-          this.USER_ADDRESS
-          // this.maticWeb3
-        );
+  //     if (allowedAmount == 0)
+  //       await Global.approveToken(
+  //         Global.MATIC_TOKEN,
+  //         Global.MAX_AMOUNT,
+  //         contractAddress,
+  //         this.USER_ADDRESS
+  //         // this.maticWeb3
+  //       );
+  //     else if (allowedAmount < this.state.amount || this.state.amount == 0) {
+  //       await Global.approveToken(
+  //         Global.MATIC_TOKEN,
+  //         0,
+  //         contractAddress,
+  //         this.USER_ADDRESS
+  //         // this.maticWeb3
+  //       );
+  //       await Global.approveToken(
+  //         Global.MATIC_TOKEN,
+  //         Global.MAX_AMOUNT,
+  //         contractAddress,
+  //         this.USER_ADDRESS
+  //         // this.maticWeb3
+  //       );
+  //     }
+
+  //     console.log('token approved');
+
+  //     let allowedAmount2 = await Global.getAllowedToken(
+  //       Global.MATIC_TOKEN,
+  //       contractAddress,
+  //       this.USER_ADDRESS
+  //       // this.maticWeb3
+  //     );
+  //     allowedAmount2 = allowedAmount2 / Global.FACTOR;
+
+  //     console.log('allowed amount 2: ' + allowedAmount);
+
+  //     await this.postUserVerify(6); // update database to 'deposit'
+  //     await this.postUserAuthState(this.props.authvalue); // update database
+  //     this.setState({ isValidAuthorize: 2 }); // indicate authorization success
+
+  //     this.props.hideSpinner();
+  //     this.handleClose();
+  //     setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+  //   } catch (err) {
+  //     this.setState({ isValidAuthorize: 1 }); // indicate authorization failure
+  //     this.props.hideSpinner();
+  //   }
+  // };
+
+  metaTransfer = async () => {
+    console.log('here we go...');
+
+    let functionSignature = contract.methods
+      .transfer(recipient, amount)
+      .encodeABI();
+
+    this.executeMetaTransaction(functionSignature);
+  };
+
+  executeMetaTransaction = async (functionSignature) => {
+    // console.log('sigUtil 1');
+    // console.log(sigUtil);
+
+    const accounts = await web3.eth.getAccounts();
+    let userAddress = accounts[0];
+    let nonce = await contract.methods.getNonce(userAddress).call();
+
+    let message = {};
+    message.nonce = parseInt(nonce);
+    message.from = userAddress;
+    message.functionSignature = functionSignature;
+
+    const dataToSign = JSON.stringify({
+      types: {
+        EIP712Domain: domainType,
+        MetaTransaction: metaTransactionType,
+      },
+      domain: domainData,
+      primaryType: 'MetaTransaction',
+      message: message,
+    });
+    console.log(domainData);
+    console.log(userAddress);
+    web3.eth.currentProvider.send(
+      {
+        jsonrpc: '2.0',
+        id: 999999999999,
+        method: 'eth_signTypedData_v4',
+        params: [userAddress, dataToSign],
+      },
+
+      (error, response) => {
+        console.info(`User signature is ${response.result}`);
+
+        let { r, s, v } = this.getSignatureParameters(response.result);
+
+        // logging output
+        console.log(userAddress);
+        console.log(JSON.stringify(message));
+        console.log(message);
+        console.log(this.getSignatureParameters(response.result));
+
+        // console.log('sigUtil 2');
+        // console.log(sigUtil);
+
+        const recovered = sigUtil.recoverTypedSignature_v4({
+          data: JSON.parse(dataToSign),
+          sig: response.result,
+        });
+        console.log(`Recovered ${recovered}`);
+        let tx = contract.methods
+          .executeMetaTransaction(userAddress, functionSignature, r, s, v)
+          .send({
+            from: userAddress,
+          });
+        console.log(tx);
       }
+    );
+  };
 
-      console.log('token approved');
+  writeMessage = (message) => {
+    console.log('message: ' + message);
+  };
 
-      let allowedAmount2 = await Global.getAllowedToken(
-        Global.MATIC_TOKEN,
-        contractAddress,
-        this.USER_ADDRESS
-        // this.maticWeb3
+  getSignatureParameters = (signature) => {
+    console.log('here 1');
+
+    if (!web3.utils.isHexStrict(signature)) {
+      throw new Error(
+        'Given value "'.concat(signature, '" is not a valid hex string.')
       );
-      allowedAmount2 = allowedAmount2 / Global.FACTOR;
-
-      console.log('allowed amount 2: ' + allowedAmount);
-
-      await this.postUserVerify(6); // update database to 'deposit'
-      await this.postUserAuthState(this.props.authvalue); // update database
-      this.setState({ isValidAuthorize: 2 }); // indicate authorization success
-
-      this.props.hideSpinner();
-      this.handleClose();
-      setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-    } catch (err) {
-      this.setState({ isValidAuthorize: 1 }); // indicate authorization failure
-      this.props.hideSpinner();
     }
+
+    console.log('here 2');
+
+    var r = signature.slice(0, 66);
+    var s = '0x'.concat(signature.slice(66, 130));
+    var v = '0x'.concat(signature.slice(130, 132));
+    v = web3.utils.hexToNumber(v);
+
+    console.log('here 3');
+
+    if (![27, 28].includes(v)) v += 27;
+    return {
+      r: r,
+      s: s,
+      v: v,
+    };
+
+    console.log('here 4');
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -559,7 +748,7 @@ class Deposit extends React.Component {
         </Modal>
       );
     } else if (
-      this.state.userStepValue == 5 // || this.state.isValidDeposit == 2
+      this.state.userStepValue == 6 // 5
     ) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
@@ -579,7 +768,7 @@ class Deposit extends React.Component {
                   <DepositContent
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
-                    authorizeMana={metaTX.metaTransfer}
+                    authorizeMana={this.metaTransfer}
                   />
                 </Grid.Column>
               </Grid>
@@ -587,7 +776,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 6) {
+    } else if (this.state.userStepValue == 16) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // user has finished initial authorization/deposit process and wishes to deposit more MANA to Matic Network
