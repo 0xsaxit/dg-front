@@ -95,19 +95,15 @@ a.item.sidebar-menu-text:focus .svg-eth {
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
-.home-dashboard {
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.9)
-    ),
-  url("https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/image_noccib_s7x7xk_uvqwwz_djisxi.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-size: cover;
-  overflow-y: hidden;
+.home-dashboard-video {
   height: 100vh;
+  margin-bottom: -30px;
+}
+
+video.home-dashboard-video {
+  filter: brightness(70%);
+  position: absolute;
+  z-index: -1;
 }
 
 .home-dashboard-content {
