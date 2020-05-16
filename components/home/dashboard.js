@@ -108,6 +108,7 @@ class Dashboard extends React.Component {
               <div>
                 <Button color='blue' className="play-button"
                 href="https://play.decentral.games"
+                style={{ marginRight: '30px' }}
                 >
                   PLAY NOW
                 </Button>
