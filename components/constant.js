@@ -87,9 +87,9 @@ const SYNCER_URL = process.env.SYNCER_URL;
 const WATCHER_URL = process.env.WATCHER_URL;
 const MAX_AMOUNT = process.env.MAX_AMOUNT;
 const GAS_LIMIT = process.env.GAS_LIMIT;
-const MATIC_NETWORK_ID = process.env.MATIC_NETWORK_ID; //test
 
-// const MATIC_URL = 'https://testnet2.matic.network';
+const PARENT_NETWORK_ID = 3; // 1: main net, 3: Ropsten
+const MATIC_NETWORK_ID = process.env.MATIC_NETWORK_ID; //test
 const MATIC_URL = 'https://testnetv3.matic.network';
 const MATIC_EXPLORER = 'https://testnetv3-explorer.matic.network'; // 'https://explorer.testnet2.matic.network';
 
@@ -746,6 +746,7 @@ export default {
   TOKEN_DECIMALS,
   ROOTCHAIN_ADDRESS,
   DEPOSITMANAGER_ADDRESS,
+  PARENT_NETWORK_ID,
   MATIC_NETWORK_ID,
   MATIC_URL,
   MATIC_EXPLORER,

@@ -1,23 +1,23 @@
 import React from 'react';
+import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
-import Biconomy from '@biconomy/mexa';
 import ABIFAKEMana from '../ABI/ABIFAKEMana';
 import Global from '../constant';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// initialize constants and define parameters
+// initialize Biconomy API constants and define parameters
 const Web3 = require('web3');
 const sigUtil = require('eth-sig-util');
-const biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877'; // add your api  key from the dashboard
-const authorizeAmount = '1000000000000000000'; // example: '1000000000000000000'
+const biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877';
+const authorizeAmount = Global.MAX_AMOUNT;
+const parentChainId = Global.PARENT_NETWORK_ID;
+const maticProvider = Global.MATIC_URL;
 
-let parentChainId = 0; // chain id of the network tx is signed on
-let maticProvider = ''; //
-let tokenAddress = ''; // was contractAddress // please add your deployed contract address here
-let recipient = ''; // add your recipient address here
+let tokenAddress = '';
+let recipientAddress = '';
 let web3 = {};
 let tokenContract = {};
 
@@ -35,13 +35,11 @@ const metaTransactionType = [
   { name: 'functionSignature', type: 'bytes' },
 ];
 
-// parentChainId // this is causing problems ******************************************
-// we must set these values later
 let domainData = {
   name: 'MetaToken',
   version: '1',
-  chainId: '3',
-  verifyingContract: '0x2A3df21E612d30Ac0CD63C3F80E1eB583A4744cC', // tokenAddress,
+  chainId: parentChainId,
+  verifyingContract: '', // 0x2A3df21E612d30Ac0CD63C3F80E1eB583A4744cC
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -68,26 +66,43 @@ class Deposit extends React.Component {
   }
 
   async componentDidMount() {
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
+    // console.log('foo foo foo...');
+    // console.log(Global.ROPSTEN_TOKEN);
+    // console.log(Global.MATIC_TOKEN);
+    // console.log(this.maticWeb3);
+
     // get web3 values, set token balances, and set userStepValue
-    if (window.web3) {
-      this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-      this.isBrowserMetamsk = 1;
-      this.maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(maticProvider)
-      );
-    }
+    // if (window.web3) {
+    this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
+    this.isBrowserMetamsk = 1;
+    this.maticWeb3 = new window.Web3(
+      new window.Web3.providers.HttpProvider(maticProvider)
+    );
+    //  }
+
+    // console.log(this.maticWeb3);
+
     await this.getTokenBalance();
-    await this.checkUserVerifyStep();
+    const verifyStatus = await this.checkUserVerifyStep();
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // window.ethereum.enable().catch((error) => {
-    //   console.log(error);
-    // });
+    console.log('userStepValue status: ' + verifyStatus);
 
+    // if (verifyStatus) {
+    // this.setState({ modalOpen: true });
+
+    // console.log('user is verified');
+    // }
+
+    // set addresses with data returned by server REST API
+    tokenAddress = Global.MATIC_TOKEN;
+    recipientAddress = Global.MASTER_CONTRACT_ADDRESS();
+    domainData.verifyingContract = tokenAddress;
+
+    // console.log('matic token: ' + domainData.verifyingContract);
+
+    // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
+
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(maticProvider),
       {
@@ -96,20 +111,14 @@ class Deposit extends React.Component {
       }
     );
     const getWeb3 = new Web3(biconomy);
-
-    parentChainId = Global.MATIC_NETWORK_ID; // chain id of the network tx is signed on
-    maticProvider = Global.MATIC_URL;
-    tokenAddress = Global.MATIC_TOKEN; // was contractAddress // please add your deployed contract address here
-    recipient = Global.MASTER_CONTRACT_ADDRESS(); // add your recipient address here
-
     tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddress);
 
     biconomy
       .onEvent(biconomy.READY, () => {
-        console.log('Mexa is Ready'); // initialize your dapp here like getting user accounts etc
+        console.log('Mexa is Ready');
       })
       .onEvent(biconomy.ERROR, (error, message) => {
-        console.error(error); // handle error while initializing mexa
+        console.error(error);
       });
   }
 
@@ -137,6 +146,9 @@ class Deposit extends React.Component {
       const response = await this.getUserVerify(); // get user status
       const json = await response.json();
 
+      // console.log('verify step data');
+      // console.log(json);
+
       if (json.status === 'ok') {
         // if result == false set userStepValue = 1 and exit
         if (json.result === 'false') {
@@ -145,33 +157,53 @@ class Deposit extends React.Component {
         }
 
         let stepValue = parseInt(json.result);
+
+        // console.log('step value foo: ' + stepValue);
+
         if (stepValue > 3) {
+          // console.log('greater than 3');
+
           if (stepValue == 5) {
+            // console.log('here here 5');
+
             // indicate deposit success and set userStepValue to result
             this.setState({
               isValidDeposit: 2,
               userStepValue: stepValue,
             });
           } else if (stepValue == 6) {
+            // console.log('here here 6');
+
             // indicate authorization success and set userStepValue to result
             this.setState({
               isValidAuthorize: 2,
               userStepValue: stepValue,
             });
+
+            // console.log('foo foo');
           } else {
             // indicate deposit success and set userStepValue to result
             this.setState({ isValidDeposit: 2, userStepValue: stepValue });
           }
         } else {
+          // console.log('3 or less');
+
           // indicate deposit success and set userStepValue to result
           this.setState({ isValidDeposit: 2, userStepValue: stepValue });
         }
+
+        // this.props.hideSpinner();
+        return stepValue;
       }
+
+      // this.props.hideSpinner();
+      return false;
     } catch (error) {
-      console.log(error);
+      console.log('step value error: ' + error);
     }
 
-    this.props.hideSpinner();
+    // this.props.hideSpinner();
+    return false;
   };
 
   getUserVerify = () => {
@@ -213,7 +245,7 @@ class Deposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // check the amount of tokens that user has allowed Matic Root contract to spend
   // authorize transfers to Matic Network, then deposit MANA to Matic Network
-  depositManaToMatic = async () => {
+  depositToMatic = async () => {
     try {
       this.props.showSpinner();
       const amountWei = (this.state.amount * Global.FACTOR).toString();
@@ -310,7 +342,7 @@ class Deposit extends React.Component {
         if (this.state.userStepValue < 6) {
           console.log('updating step value to 5');
 
-          await this.postUserVerify(5); // update database to 'authorize'
+          await this.postUserVerify(5); // update verify to 'authorize'
         } else if (this.state.userStepValue == 6) {
           console.log('step value is 6');
 
@@ -334,18 +366,30 @@ class Deposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
+  // call to Biconomy API - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransfer = async () => {
     console.log('execute Biconomy meta-transaction');
 
-    console.log(recipient);
-    console.log(authorizeAmount);
+    try {
+      this.props.showSpinner();
 
-    let functionSignature = tokenContract.methods
-      .transfer(recipient, authorizeAmount)
-      .encodeABI();
+      let functionSignature = tokenContract.methods
+        .transfer(recipientAddress, authorizeAmount)
+        .encodeABI();
 
-    this.executeMetaTransaction(functionSignature);
+      this.executeMetaTransaction(functionSignature);
+
+      await this.postUserVerify(6); // update verify to 'deposit'
+      await this.postUserAuthState(this.props.authvalue); // update authorize to 4
+
+      this.setState({ isValidAuthorize: 2 }); // valid authorize
+      this.props.hideSpinner();
+
+      setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+    } catch (err) {
+      this.setState({ isValidAuthorize: 1 }); // invalid authorize
+      this.props.hideSpinner();
+    }
   };
 
   executeMetaTransaction = async (functionSignature) => {
@@ -366,10 +410,6 @@ class Deposit extends React.Component {
       message: message,
     });
 
-    console.log('domain data: ');
-    console.log(domainData);
-    console.log(this.USER_ADDRESS);
-
     web3.eth.currentProvider.send(
       {
         jsonrpc: '2.0',
@@ -381,14 +421,6 @@ class Deposit extends React.Component {
       (error, response) => {
         console.info(`user signature is ${response.result}`);
 
-        let { r, s, v } = this.getSignatureParameters(response.result);
-
-        // logging output
-        console.log(this.USER_ADDRESS);
-        console.log(JSON.stringify(message));
-        console.log(message);
-        console.log(this.getSignatureParameters(response.result));
-
         const recovered = sigUtil.recoverTypedSignature_v4({
           data: JSON.parse(dataToSign),
           sig: response.result,
@@ -396,40 +428,14 @@ class Deposit extends React.Component {
 
         console.log(`recovered ${recovered}`);
 
-        // .executeMetaTransaction(this.USER_ADDRESS, functionSignature, r, s, v)
-
         let tx = tokenContract.methods
-          .approve(recipient, authorizeAmount)
+          .approve(recipientAddress, authorizeAmount)
           .send({
             from: this.USER_ADDRESS,
           });
         console.log(tx);
       }
     );
-  };
-
-  writeMessage = (message) => {
-    console.log('message: ' + message);
-  };
-
-  getSignatureParameters = (signature) => {
-    if (!web3.utils.isHexStrict(signature)) {
-      throw new Error(
-        'Given value "'.concat(signature, '" is not a valid hex string.')
-      );
-    }
-
-    var r = signature.slice(0, 66);
-    var s = '0x'.concat(signature.slice(66, 130));
-    var v = '0x'.concat(signature.slice(130, 132));
-    v = web3.utils.hexToNumber(v);
-
-    if (![27, 28].includes(v)) v += 27;
-    return {
-      r: r,
-      s: s,
-      v: v,
-    };
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -503,11 +509,18 @@ class Deposit extends React.Component {
   // get balances on main net and Matic networks
   getTokenBalance = async () => {
     try {
-      const amount1 = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
+      const amount1 = await Global.balanceOfToken(
+        '0x2a8fd99c19271f4f04b1b7b9c4f7cf264b626edb'
+      );
+      // const amount1 = await Global.balanceOfToken(Global.ROPSTEN_TOKEN); // new Ropsten token??? *****************
+
       const amount2 = await Global.balanceOfToken(
         Global.MATIC_TOKEN,
         this.maticWeb3
       );
+
+      // console.log('amount 1: ' + amount1);
+      // console.log('amount 2: ' + amount2);
 
       this.setState({
         tokenBalanceL1: (amount1 / Global.FACTOR)
@@ -520,6 +533,8 @@ class Deposit extends React.Component {
           .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
       });
     } catch (err) {
+      // console.log('error getting balances...');
+
       console.log(err);
     }
   };
@@ -564,10 +579,9 @@ class Deposit extends React.Component {
     /////////////////////////////////////////////////////////////////////////////////////////
     // pre-render checks: verify user is on correct network, step value == 2, and using MetaMask
     this.verifyNetwork();
-    let content = '';
 
     if (this.state.networkID !== 3) {
-      content = this.prerenderCheck(
+      const content = this.prerenderCheck(
         "In MetaMask, open the Network dropdown menu and select 'Ropsten'",
         1
       );
@@ -575,17 +589,20 @@ class Deposit extends React.Component {
     }
 
     if (this.state.userStepValue === 0) {
-      content = this.prerenderCheck('', 0);
+      const content = this.prerenderCheck('', 0);
       return content;
     }
 
     if (this.state.userStepValue === 1) {
-      content = this.prerenderCheck('Please finish verification to Deposit', 0);
+      const content = this.prerenderCheck(
+        'Please finish verification to Deposit',
+        0
+      );
       return content;
     }
 
     if (!this.isBrowserMetamsk) {
-      content = this.prerenderCheck(
+      const content = this.prerenderCheck(
         'Please use Chrome Browser with Metamask enabled to proceed',
         0
       );
@@ -612,7 +629,7 @@ class Deposit extends React.Component {
                     content={'approve'} // content type
                     isValidDeposit={this.state.isValidDeposit}
                     amount={this.state.amount}
-                    depositManaToMatic={this.depositManaToMatic}
+                    depositToMatic={this.depositToMatic}
                   />
                 </Grid.Column>
               </Grid>
@@ -672,7 +689,7 @@ class Deposit extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
-                    depositManaToMatic={this.depositManaToMatic}
+                    depositToMatic={this.depositToMatic}
                   />
                 </Grid.Column>
               </Grid>

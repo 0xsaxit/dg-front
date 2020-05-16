@@ -60,7 +60,7 @@ const DepositContent = (props) => {
               id="depositButton2"
               color="blue"
               style={{ marginTop: '-10px', display: 'block' }}
-              onClick={props.depositManaToMatic}
+              onClick={props.depositToMatic}
             >
               Deposit
             </Button>
@@ -227,7 +227,7 @@ const DepositContent = (props) => {
               id="depositButton2"
               color="blue"
               style={{ marginTop: '-10px', display: 'block' }}
-              onClick={props.depositManaToMatic}
+              onClick={props.depositToMatic}
             >
               Deposit
             </Button>
