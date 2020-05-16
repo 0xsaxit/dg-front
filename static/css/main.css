@@ -1497,7 +1497,8 @@ a.ui.blue.button.play-shimmer:hover,
   .wallet_board,
   .wallet_board_overlay,
   .dashboard-image-container,
-  #mobile-casino-text {
+  #mobile-casino-text,
+  video.home-dashboard-video {
     display: none !important;
   }
   .home-dashboard-content {
@@ -1551,7 +1552,7 @@ a.ui.blue.button.play-shimmer:hover,
     background-position: center !important;
     background-color: transparent;
     background-size: cover !important;
-    height: 86.8vh !important;
+    height: 100vh !important;
   }
 }
 
