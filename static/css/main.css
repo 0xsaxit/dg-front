@@ -95,9 +95,29 @@ a.item.sidebar-menu-text:focus .svg-eth {
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
-.home-dashboard-video {
-  height: 100vh;
-  margin-bottom: -30px;
+.home-video-container {
+  position: absolute;
+  top: -1px;
+  bottom: 0;
+  width: 100%;
+  height: calc(100% + 1px); 
+  overflow: hidden;
+}
+
+.home-video-container video {
+  /* Make video to at least 100% wide and tall */
+  min-width: 100%; 
+  min-height: 100%; 
+
+  /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+  width: auto;
+  height: auto;
+
+  /* Center the video */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 video.home-dashboard-video {
