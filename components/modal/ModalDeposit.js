@@ -3,30 +3,23 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
 import Biconomy from '@biconomy/mexa';
-// import { sigUtil } from 'eth-sig-util';
 import ABIFAKEMana from '../ABI/ABIFAKEMana';
 import Global from '../constant';
-// const Global = require('../constant').default;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// Initialize constants
+// initialize constants and define parameters
+const Web3 = require('web3');
+const sigUtil = require('eth-sig-util');
+const biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877'; // add your api  key from the dashboard
+const authorizeAmount = '1000000000000000000'; // example: '1000000000000000000'
 
-// const Web3 = require('web3'); // ******************************************************
-
-// const sigUtil = require('eth-sig-util');
-
-let Web3 = {};
-let sigUtil = {};
-let biconomyAPIKey = ''; // add your api  key from the dashboard
-let parentChainId = ''; // chain id of the network tx is signed on
-let maticProvider = {};
-let tokenAddress = ''; // was contractAddress
-let recipient = '';
-let amount = '';
-let contract = {};
+let parentChainId = 0; // chain id of the network tx is signed on
+let maticProvider = ''; //
+let tokenAddress = ''; // was contractAddress // please add your deployed contract address here
+let recipient = ''; // add your recipient address here
 let web3 = {};
-let biconomy = {};
+let tokenContract = {};
 
 // define EIP712 domain params
 const domainType = [
@@ -42,30 +35,17 @@ const metaTransactionType = [
   { name: 'functionSignature', type: 'bytes' },
 ];
 
+// parentChainId // this is causing problems ******************************************
+// we must set these values later
 let domainData = {
   name: 'MetaToken',
   version: '1',
-  chainId: parentChainId,
-  verifyingContract: tokenAddress,
+  chainId: '3',
+  verifyingContract: '0x2A3df21E612d30Ac0CD63C3F80E1eB583A4744cC', // tokenAddress,
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877'; // add your api  key from the dashboard
-// parentChainId = Global.MATIC_NETWORK_ID; // chain id of the network tx is signed on
-// maticProvider = Global.MATIC_URL;
-// tokenAddress = Global.MATIC_TOKEN; // was contractAddress
-// recipient = Global.MASTER_CONTRACT_ADDRESS();
-
-// console.log('recipient address: ' + recipient);
-
-// amount = '1000000000000000000';
-// contract = {};
-// web3 = {};
-// biconomy = {};
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-
 class Deposit extends React.Component {
   constructor(props) {
     super(props);
@@ -85,34 +65,9 @@ class Deposit extends React.Component {
     this.USER_ADDRESS = '';
     this.isBrowserMetamsk = 0;
     this.maticWeb3 = {};
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    Web3 = require('web3');
-
-    sigUtil = require('eth-sig-util');
-    biconomyAPIKey = 'W-egI3EhK.4a1c6273-7df8-4862-a62a-2d563f13b877'; // add your api  key from the dashboard
-    parentChainId = Global.MATIC_NETWORK_ID; // chain id of the network tx is signed on
-    maticProvider = Global.MATIC_URL;
-    tokenAddress = Global.MATIC_TOKEN; // was contractAddress
-    recipient = Global.MASTER_CONTRACT_ADDRESS();
-
-    // console.log('recipient address: ' + recipient);
-
-    amount = '1000000000000000000';
-    contract = {};
-    web3 = {};
-    biconomy = {};
-
-    // console.log('sigUtil 999');
-    // console.log(sigUtil);
   }
 
   async componentDidMount() {
-    // console.log('sigUtil 0');
-    // console.log(sigUtil);
-
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
     // get web3 values, set token balances, and set userStepValue
@@ -120,7 +75,7 @@ class Deposit extends React.Component {
       this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       this.isBrowserMetamsk = 1;
       this.maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+        new window.Web3.providers.HttpProvider(maticProvider)
       );
     }
     await this.getTokenBalance();
@@ -133,19 +88,28 @@ class Deposit extends React.Component {
     // });
 
     web3 = new Web3(window.ethereum);
-    biconomy = new Biconomy(new Web3.providers.HttpProvider(maticProvider), {
-      apiKey: biconomyAPIKey,
-      debug: true,
-    });
+    const biconomy = new Biconomy(
+      new Web3.providers.HttpProvider(maticProvider),
+      {
+        apiKey: biconomyAPIKey,
+        debug: true,
+      }
+    );
     const getWeb3 = new Web3(biconomy);
-    contract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddress);
+
+    parentChainId = Global.MATIC_NETWORK_ID; // chain id of the network tx is signed on
+    maticProvider = Global.MATIC_URL;
+    tokenAddress = Global.MATIC_TOKEN; // was contractAddress // please add your deployed contract address here
+    recipient = Global.MASTER_CONTRACT_ADDRESS(); // add your recipient address here
+
+    tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddress);
 
     biconomy
       .onEvent(biconomy.READY, () => {
-        console.log('Mexa is Ready'); // Initialize your dapp here like getting user accounts etc
+        console.log('Mexa is Ready'); // initialize your dapp here like getting user accounts etc
       })
       .onEvent(biconomy.ERROR, (error, message) => {
-        console.error(error); // Handle error while initializing mexa
+        console.error(error); // handle error while initializing mexa
       });
   }
 
@@ -166,13 +130,6 @@ class Deposit extends React.Component {
     this.setState({ modalOpen: false });
   };
 
-  // onAuthorize = async () => {
-  //   localStorage.setItem('authvalue', this.props.authvalue || 0);
-  //   this.setState({ isValidDeposit: 2, userStepValue: 5 });
-
-  //   this.handleOpen();
-  // };
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   checkUserVerifyStep = async () => {
@@ -185,8 +142,6 @@ class Deposit extends React.Component {
         if (json.result === 'false') {
           this.setState({ userStepValue: 1 });
           this.props.hideSpinner();
-
-          return true;
         }
 
         let stepValue = parseInt(json.result);
@@ -211,21 +166,12 @@ class Deposit extends React.Component {
           // indicate deposit success and set userStepValue to result
           this.setState({ isValidDeposit: 2, userStepValue: stepValue });
         }
-
-        // this.setState({
-        //   modalOpen: true,
-        // });
-
-        // this.props.hideSpinner(); // *************************
-
-        // return true;
       }
     } catch (error) {
       console.log(error);
     }
 
     this.props.hideSpinner();
-    // return false;
   };
 
   getUserVerify = () => {
@@ -388,95 +334,26 @@ class Deposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // returns the amount of MANA our contract is approved to spend on behalf of the user
-  // then allows our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
-  // authorizeMana = async () => {
-  //   try {
-  //     this.props.showSpinner();
-  //     const contractAddress = Global.MASTER_CONTRACT_ADDRESS();
-
-  //     // check the amount of tokens that user has allowed our Treasury contract to spend
-  //     let allowedAmount = await Global.getAllowedToken(
-  //       Global.MATIC_TOKEN,
-  //       contractAddress,
-  //       this.USER_ADDRESS
-  //       // this.maticWeb3
-  //     );
-  //     allowedAmount = allowedAmount / Global.FACTOR;
-
-  //     console.log('allowed amount 1: ' + allowedAmount);
-
-  //     if (allowedAmount == 0)
-  //       await Global.approveToken(
-  //         Global.MATIC_TOKEN,
-  //         Global.MAX_AMOUNT,
-  //         contractAddress,
-  //         this.USER_ADDRESS
-  //         // this.maticWeb3
-  //       );
-  //     else if (allowedAmount < this.state.amount || this.state.amount == 0) {
-  //       await Global.approveToken(
-  //         Global.MATIC_TOKEN,
-  //         0,
-  //         contractAddress,
-  //         this.USER_ADDRESS
-  //         // this.maticWeb3
-  //       );
-  //       await Global.approveToken(
-  //         Global.MATIC_TOKEN,
-  //         Global.MAX_AMOUNT,
-  //         contractAddress,
-  //         this.USER_ADDRESS
-  //         // this.maticWeb3
-  //       );
-  //     }
-
-  //     console.log('token approved');
-
-  //     let allowedAmount2 = await Global.getAllowedToken(
-  //       Global.MATIC_TOKEN,
-  //       contractAddress,
-  //       this.USER_ADDRESS
-  //       // this.maticWeb3
-  //     );
-  //     allowedAmount2 = allowedAmount2 / Global.FACTOR;
-
-  //     console.log('allowed amount 2: ' + allowedAmount);
-
-  //     await this.postUserVerify(6); // update database to 'deposit'
-  //     await this.postUserAuthState(this.props.authvalue); // update database
-  //     this.setState({ isValidAuthorize: 2 }); // indicate authorization success
-
-  //     this.props.hideSpinner();
-  //     this.handleClose();
-  //     setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-  //   } catch (err) {
-  //     this.setState({ isValidAuthorize: 1 }); // indicate authorization failure
-  //     this.props.hideSpinner();
-  //   }
-  // };
-
+  // allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransfer = async () => {
-    console.log('here we go...');
+    console.log('execute Biconomy meta-transaction');
 
-    let functionSignature = contract.methods
-      .transfer(recipient, amount)
+    console.log(recipient);
+    console.log(authorizeAmount);
+
+    let functionSignature = tokenContract.methods
+      .transfer(recipient, authorizeAmount)
       .encodeABI();
 
     this.executeMetaTransaction(functionSignature);
   };
 
   executeMetaTransaction = async (functionSignature) => {
-    // console.log('sigUtil 1');
-    // console.log(sigUtil);
-
-    const accounts = await web3.eth.getAccounts();
-    let userAddress = accounts[0];
-    let nonce = await contract.methods.getNonce(userAddress).call();
+    let nonce = await tokenContract.methods.getNonce(this.USER_ADDRESS).call();
 
     let message = {};
     message.nonce = parseInt(nonce);
-    message.from = userAddress;
+    message.from = this.USER_ADDRESS;
     message.functionSignature = functionSignature;
 
     const dataToSign = JSON.stringify({
@@ -488,39 +365,43 @@ class Deposit extends React.Component {
       primaryType: 'MetaTransaction',
       message: message,
     });
+
+    console.log('domain data: ');
     console.log(domainData);
-    console.log(userAddress);
+    console.log(this.USER_ADDRESS);
+
     web3.eth.currentProvider.send(
       {
         jsonrpc: '2.0',
         id: 999999999999,
         method: 'eth_signTypedData_v4',
-        params: [userAddress, dataToSign],
+        params: [this.USER_ADDRESS, dataToSign],
       },
 
       (error, response) => {
-        console.info(`User signature is ${response.result}`);
+        console.info(`user signature is ${response.result}`);
 
         let { r, s, v } = this.getSignatureParameters(response.result);
 
         // logging output
-        console.log(userAddress);
+        console.log(this.USER_ADDRESS);
         console.log(JSON.stringify(message));
         console.log(message);
         console.log(this.getSignatureParameters(response.result));
-
-        // console.log('sigUtil 2');
-        // console.log(sigUtil);
 
         const recovered = sigUtil.recoverTypedSignature_v4({
           data: JSON.parse(dataToSign),
           sig: response.result,
         });
-        console.log(`Recovered ${recovered}`);
-        let tx = contract.methods
-          .executeMetaTransaction(userAddress, functionSignature, r, s, v)
+
+        console.log(`recovered ${recovered}`);
+
+        // .executeMetaTransaction(this.USER_ADDRESS, functionSignature, r, s, v)
+
+        let tx = tokenContract.methods
+          .approve(recipient, authorizeAmount)
           .send({
-            from: userAddress,
+            from: this.USER_ADDRESS,
           });
         console.log(tx);
       }
@@ -532,22 +413,16 @@ class Deposit extends React.Component {
   };
 
   getSignatureParameters = (signature) => {
-    console.log('here 1');
-
     if (!web3.utils.isHexStrict(signature)) {
       throw new Error(
         'Given value "'.concat(signature, '" is not a valid hex string.')
       );
     }
 
-    console.log('here 2');
-
     var r = signature.slice(0, 66);
     var s = '0x'.concat(signature.slice(66, 130));
     var v = '0x'.concat(signature.slice(130, 132));
     v = web3.utils.hexToNumber(v);
-
-    console.log('here 3');
 
     if (![27, 28].includes(v)) v += 27;
     return {
@@ -555,8 +430,6 @@ class Deposit extends React.Component {
       s: s,
       v: v,
     };
-
-    console.log('here 4');
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -747,9 +620,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (
-      this.state.userStepValue == 6 // 5
-    ) {
+    } else if (this.state.userStepValue == 5) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -776,7 +647,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 16) {
+    } else if (this.state.userStepValue == 6) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // user has finished initial authorization/deposit process and wishes to deposit more MANA to Matic Network
