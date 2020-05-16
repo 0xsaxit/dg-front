@@ -88,7 +88,9 @@ class Dashboard extends React.Component {
         <a className="mobile-menu-item-1" href="/blog"> BLOG </a>
         <a className="mobile-menu-item-2" href="https://docs.decentral.games"> DOCS </a>
       </div>
-      <LogoSpinner show={this.state.isRunningTransaction}/>
+      <LogoSpinner show={this.state.isRunningTransaction} />
+      <video src="https://res.cloudinary.com/dnzambf4m/video/upload/v1589652801/account_cp9td3.mp4" type="video/mp4" frameborder="0" autoplay="true" loop muted className="home-dashboard-video">
+      </video>
       <div className="home-dashboard-content">
         <div>
           <div className="home-dashboard-description">
