@@ -1507,7 +1507,6 @@ a.ui.blue.button.play-shimmer:hover,
   opacity: 1;
 }
 
-
 /* ----------------------------------------- */
 /*                MOBILE CSS                 */
 /* ----------------------------------------- */
@@ -1544,6 +1543,7 @@ a.ui.blue.button.play-shimmer:hover,
   .mobile-menu-item-2 {
     color: white;
     font-size: 20px;
+    z-index: 3;
   }
   .mobile-menu-item-1:hover,
   .mobile-menu-item-2:hover {
@@ -1572,7 +1572,7 @@ a.ui.blue.button.play-shimmer:hover,
     background-position: center !important;
     background-color: transparent;
     background-size: cover !important;
-    height: 100vh !important;
+    height: calc(100vh - 110px) !important;
   }
 }
 
@@ -1583,5 +1583,3 @@ a.ui.blue.button.play-shimmer:hover,
     display: none !important;
   }
 }
-
-
