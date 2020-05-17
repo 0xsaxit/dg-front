@@ -103,6 +103,7 @@ a.item.sidebar-menu-text:focus .svg-eth {
   width: 100%;
   height: calc(100% + 1px); 
   overflow: hidden;
+  z-index: -2;
 }
 
 .home-video-container video {
