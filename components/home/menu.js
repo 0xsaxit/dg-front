@@ -60,7 +60,7 @@ class SideMenu extends React.Component {
           <span> <MdInfoOutline style={{ fontSize: '30px', paddingBottom: '6px' }}/></span><br />
           About Us
         </Menu.Item>
-        <Menu.Item href="https://docs.decentral.games" className='sidebar-menu-text' >
+        <Menu.Item href="https://docs.decentral.games" target="_blank" className='sidebar-menu-text' >
           <span> <MdCode style={{ fontSize: '30px', paddingBottom: '6px' }}/></span><br />
           Docs
         </Menu.Item>
