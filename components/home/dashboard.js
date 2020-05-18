@@ -86,7 +86,7 @@ class Dashboard extends React.Component {
       </div>
       <div className="mobile-menu-words">
         <a className="mobile-menu-item-1" href="/blog"> BLOG </a>
-        <a className="mobile-menu-item-2" href="https://docs.decentral.games"> DOCS </a>
+        <a className="mobile-menu-item-2" href="https://docs.decentral.games" target="_blank"> DOCS </a>
       </div>
       <LogoSpinner show={this.state.isRunningTransaction} />
       <div className='home-video-container'>
@@ -108,11 +108,13 @@ class Dashboard extends React.Component {
               <div>
                 <Button color='blue' className="play-button"
                 href="https://play.decentral.games"
+                target="_blank"
                 style={{ marginRight: '30px' }}
                 >
                   PLAY NOW
                 </Button>
                 <Button color='blue' className="play-shimmer"
+                target="_blank"
                 href="https://how.decentral.games"
                 >
                   HOW TO PLAY
@@ -121,6 +123,7 @@ class Dashboard extends React.Component {
             :
               <Button color='blue' className="play-shimmer"
               href="https://how.decentral.games"
+              target="_blank"
               >
                 HOW TO PLAY
               </Button>
@@ -132,13 +135,13 @@ class Dashboard extends React.Component {
             </Fade>
             <Fade bottom distance="20px" duration="600" delay="300">
               <div className="dashboard-image-container">
-                <a href="https://play.decentraland.org/?position=-75%2C77&realm=fenrir-gold">
+                <a href="https://play.decentraland.org/?position=-75%2C77&realm=fenrir-gold" target="_blank">
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/chateau_account_preview_xezmyv_obtddn_v5r3gv.jpg" className="dashboard-image"/>
                 </a>
-                <a href="https://play.decentraland.org/?position=-55%2C143&realm=fenrir-gold">
+                <a href="https://play.decentraland.org/?position=-55%2C143&realm=fenrir-gold" target="_blank">
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/serenity_account_preview_b6v4sn_lq3udz_krd9f3.jpg" className="dashboard-image" />
                 </a>
-                <a href="https://play.decentraland.org/?position=-118%2C134&realm=fenrir-gold">
+                <a href="https://play.decentraland.org/?position=-118%2C134&realm=fenrir-gold" target="_blank">
                   <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058165/tominoya_account_preview_tshnux_c6rgvv_rqd6ct.jpg" className="dashboard-image" />
                 </a>
               </div>
