@@ -85,15 +85,13 @@ class Exchange extends React.Component {
             <div className="games-container">
               <iframe
                 src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
-                height="618px"
-                width="100vw"
+                height="600px"
                 style={{
                   border: '0',
-                  margin: '0 auto',
+                  margin: '0 0 0 0 ',
                   display: 'block',
                   borderRadius: '3px',
-                  minWidth: '100vw',
-                  paddingRight: '174px',
+                  width: '87.7vw'
                 }}
                 id="myId"
               />
