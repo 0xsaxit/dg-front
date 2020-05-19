@@ -79,7 +79,7 @@ class Exchange extends React.Component {
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
             <h3 className="account-other-h3 games"> Exchange </h3>
-            <p className="account-other-p games" style={{ paddingTop: '6px' }}>  </p>
+            <p className="account-other-p games" style={{ paddingTop: '6px' }}>  Swap mainchain assets before depositing to Matic. </p>
           </Fade>
           <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
