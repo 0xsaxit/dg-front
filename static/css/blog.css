@@ -7,6 +7,12 @@
 	border: white;
 }
 
+.blog-page,
+.blogdetail-page,
+.ui.vertical.segment:last-child {
+  background-color: white;
+}
+
 h4 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -182,7 +188,7 @@ div.blog-footer-container {
   padding-left: 19px;
   padding-right: 21px;
   padding-top: 0px;
-  margin-bottom: -30px;
+  margin-bottom: -24px;
 }
 
 @media (max-width: 597px) {

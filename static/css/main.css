@@ -30,6 +30,11 @@ p {
   line-height: 1.4;
 }
 
+body {
+  background-color: black;
+}
+
+
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
@@ -257,7 +262,7 @@ div.ui.card.games-card {
 /* ----------------------------------------- */
 
 .wallet_board {
-  width: 350px;
+  width: 357px;
   height: 390px;
   position: absolute;
   top: 30px;
@@ -1574,7 +1579,18 @@ a.ui.blue.button.play-shimmer:hover,
     background-position: center !important;
     background-color: transparent;
     background-size: cover !important;
-    height: calc(100vh - 110px) !important;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 399px) {
+  .home-dashboard-content {
+    margin-left: 18px !important;
+    margin-right: 30px;
+    margin-bottom: 30px;
   }
 }
 

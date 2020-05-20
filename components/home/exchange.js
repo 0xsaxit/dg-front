@@ -79,23 +79,20 @@ class Exchange extends React.Component {
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
             <h3 className="account-other-h3 games"> Exchange </h3>
-            <p className="account-other-p games" style={{ paddingTop: '6px' }}>  </p>
+            <p className="account-other-p games" style={{ paddingTop: '6px' }}>  Swap mainchain assets before depositing to Matic. </p>
           </Fade>
           <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
               <iframe
                 src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
-                height="618px"
-                width="100vw"
                 style={{
                   border: '0',
-                  margin: '0 auto',
+                  margin: '0 0 0 0 ',
                   display: 'block',
                   borderRadius: '3px',
-                  minWidth: '100vw',
-                  paddingRight: '174px',
+                  width: 'calc(100vw - 173px)',
+                  height: 'calc(100vh - 260px)'
                 }}
-                id="myId"
               />
             </div>
           </Fade>
