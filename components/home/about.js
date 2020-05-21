@@ -85,7 +85,7 @@ class About extends React.Component {
           <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
               <div>
-                <h3 className="account-other-h3 games"> Our Games </h3>
+                <h3 className="account-other-h4 games"> Our Games </h3>
                 <p className="account-other-p games" style={{ paddingTop: '6px', paddingBottom: '30px' }}>Playable for free and with MANA. ETH and DAI coming soon. </p>
               </div>
               <Grid>
@@ -163,25 +163,25 @@ class About extends React.Component {
               <Grid>
                 <Grid.Row>
                   <div>
-                    <h3 className="account-other-h3 games" style={{ paddingLeft: '13px' }}> Partners </h3>
+                    <h3 className="account-other-h4 games" style={{ paddingLeft: '13px' }}> Partners </h3>
                   </div>
                 </Grid.Row>
                 <Grid.Row>
                   <Grid.Column computer={4} tablet={4} mobile={4}>
                     <a href="https://decentraland.org" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087264/Dcl_thjhob.png" style={{ height: '90px' }} />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087264/Dcl_thjhob.png" style={{ height: '70px' }} />
                     </a>
                   </Grid.Column>
 
                   <Grid.Column computer={4} tablet={4} mobile={4}>
                     <a href="https://matic.network" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087266/Matic_z2ski2.png" style={{ height: '90px' }} />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087266/Matic_z2ski2.png" style={{ height: '70px' }} />
                     </a>
                   </Grid.Column>
 
                   <Grid.Column computer={4} tablet={4} mobile={4}>
                     <a href="https://makerdao.com" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087269/Maker_pohttw.png" style={{ height: '80px', marginLeft: '30px', marginTop: '5px' }} />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087269/Maker_pohttw.png" style={{ height: '60px', marginLeft: '30px', marginTop: '5px' }} />
                     </a>
                   </Grid.Column>
                 </Grid.Row>
