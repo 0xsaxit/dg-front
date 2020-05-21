@@ -223,6 +223,14 @@ video.home-dashboard-video {
   color: white;
 }
 
+.account-other-h4.games {
+  font-size: 20px;
+  font-weight: 800;
+  padding-top: 12px;
+  padding-bottom: 6px;
+  color: white;
+}
+
 .account-other-p.games {
   color: white;
 }
