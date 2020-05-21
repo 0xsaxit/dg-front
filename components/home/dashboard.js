@@ -97,10 +97,10 @@ class Dashboard extends React.Component {
         <div>
           <div className="home-dashboard-description">
             <Fade bottom distance="20px" duration="600">
-              <p className="featured-casino-text">FEATURED CASINO</p>
+              <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
               <h3 className="home-dashboard-h3">Tominoya</h3>
-              <p className="home-dashboard-p">Tominoya is Decentral Games' third casino, located at (-120, 135) in the Decentraland Metaverse. The structure sports an elegant Japenese inspired feng shui, situated in an ideal location in Vegas City.</p>
-              <p className="home-dashboard-p">Games: MANA Slots, MANA Roulette</p>
+              <p className="home-dashboard-p">Sporting a Japanese architecture and aesthetic, Tominoya is a virtual casino in Decentraland, a decentralized virtual world. Enjoy non-custodial, pseudo-anonymous, and provably fair crypto gameplay with your friends.</p>
+              <p className="home-dashboard-p">Games: Slots, Roulette</p>
             </Fade>
           </div>
           <Fade bottom distance="20px" duration="600">
