@@ -90,7 +90,7 @@ class Dashboard extends React.Component {
       </div>
       <LogoSpinner show={this.state.isRunningTransaction} />
       <div className='home-video-container'>
-        <video src="https://res.cloudinary.com/dnzambf4m/video/upload/v1589652801/account_cp9td3.mp4" type="video/mp4" frameborder="0" autoplay="true" loop muted className="home-dashboard-video">
+        <video src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590036731/dg_site_vid_tmnzst.mp4" type="video/mp4" frameborder="0" autoplay="true" loop muted className="home-dashboard-video">
         </video>
       </div>
       <div className="home-dashboard-content">
