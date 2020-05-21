@@ -1584,6 +1584,13 @@ a.ui.blue.button.play-shimmer:hover,
     position: fixed;
     overflow-y: hidden;
   }
+  .logospin {
+    position: fixed;
+    display: block;
+    width: 60px;
+    margin-left: calc((100vw - 60px) / 2);
+    margin-top: calc((100vh - 180px) / 2);
+  }
 }
 
 @media (max-width: 399px) {
