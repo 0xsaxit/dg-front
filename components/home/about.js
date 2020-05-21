@@ -79,15 +79,11 @@ class About extends React.Component {
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
             <h3 className="account-other-h3 games"> About Us </h3>
-            <p className="account-other-p games" style={{ paddingTop: '7px' }}> Decentral Games develops realtime 3D multiplayer games, built on Matic Network's Plasma-based sidechain and deployed to the Decentraland metaverse. </p>
+            <p className="account-other-p games" style={{ paddingTop: '7px' }}> Decentral Games develops realtime 3D multiplayer games, built on Matic Network's Plasma-based sidechain and deployed to the Decentraland metaverse. Our games are playable for free and with MANA. ETH and DAI coming soon. </p>
           </Fade>
 
-          <Fade bottom distance="20px" duration="600" delay="300">
+          <Fade bottom distance="20px" duration="600">
             <div className="games-container">
-              <div>
-                <h3 className="account-other-h4 games"> Our Games </h3>
-                <p className="account-other-p games" style={{ paddingTop: '6px', paddingBottom: '30px' }}>Playable for free and with MANA. ETH and DAI coming soon. </p>
-              </div>
               <Grid>
                 <Grid.Row>
                   <Grid.Column computer={4} tablet={8} mobile={16}>
@@ -158,35 +154,50 @@ class About extends React.Component {
             </div>
 
           </Fade>
+
           <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
               <Grid>
                 <Grid.Row>
-                  <div>
-                    <h3 className="account-other-h4 games" style={{ paddingLeft: '13px' }}> Partners </h3>
-                  </div>
+                  <h3 className="account-other-h3 games" style={{ paddingLeft: '14px' }}> Our Partners </h3>
                 </Grid.Row>
                 <Grid.Row>
-                  <Grid.Column computer={4} tablet={4} mobile={4}>
-                    <a href="https://decentraland.org" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087264/Dcl_thjhob.png" style={{ height: '70px' }} />
-                    </a>
+                  <Grid.Column computer={4} tablet={8} mobile={16}>
+                    <Card className='games-card'>
+                      <a href="https://decentraland.org" target="_blank">
+                        <Image className='partner-image' src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590094010/Group_62_jyzvs7.png" />
+                      </a>
+                      <Card.Content>
+                        <Card.Header className='games-card-header'>DECENTRALAND</Card.Header>
+                      </Card.Content>
+                    </Card>
                   </Grid.Column>
 
-                  <Grid.Column computer={4} tablet={4} mobile={4}>
-                    <a href="https://matic.network" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087266/Matic_z2ski2.png" style={{ height: '70px' }} />
-                    </a>
+                  <Grid.Column computer={4} tablet={8} mobile={16}>
+                    <Card className='games-card'>
+                      <a href="https://matic.network" target="_blank">
+                        <Image className='partner-image' src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590094008/Group_58_osm0ci.png" />
+                      </a>
+                      <Card.Content>
+                        <Card.Header className='games-card-header'>MATIC NETWORK</Card.Header>
+                      </Card.Content>
+                    </Card>
                   </Grid.Column>
 
-                  <Grid.Column computer={4} tablet={4} mobile={4}>
-                    <a href="https://makerdao.com" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087269/Maker_pohttw.png" style={{ height: '60px', marginLeft: '30px', marginTop: '5px' }} />
-                    </a>
+                  <Grid.Column computer={4} tablet={8} mobile={16}>
+                    <Card className='games-card'>
+                      <a href="https://makerdao.com" target="_blank">
+                        <Image className='partner-image' src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590094013/Group_61_dkxigb.png" />
+                      </a>
+                      <Card.Content>
+                        <Card.Header className='games-card-header'>MAKER DAO</Card.Header>
+                      </Card.Content>
+                    </Card>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
             </div>
+
           </Fade>
         </div>
       </div>
