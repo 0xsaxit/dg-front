@@ -156,7 +156,7 @@ class About extends React.Component {
           </Fade>
 
           <Fade bottom distance="20px" duration="600" delay="300">
-            <div className="games-container">
+            <div className="games-container" style={{ marginTop: '21px' }}>
               <Grid>
                 <Grid.Row>
                   <h3 className="account-other-h3 games" style={{ paddingLeft: '14px' }}> Our Partners </h3>
