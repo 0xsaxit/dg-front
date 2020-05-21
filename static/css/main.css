@@ -264,6 +264,10 @@ div.ui.card.games-card {
   border-radius: 0px !important;
 }
 
+img.ui.image.partner-image {
+  border-radius: 0px !important;
+}
+
 
 /* ----------------------------------------- */
 /*            WALLET OVERLAY CSS             */
