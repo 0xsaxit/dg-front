@@ -158,7 +158,7 @@ class About extends React.Component {
             </div>
 
           </Fade>
-<Fade bottom distance="20px" duration="600" delay="300">
+          <Fade bottom distance="20px" duration="600" delay="300">
             <div className="games-container">
               <Grid>
                 <Grid.Row>
@@ -169,19 +169,19 @@ class About extends React.Component {
                 <Grid.Row>
                   <Grid.Column computer={4} tablet={4} mobile={4}>
                     <a href="https://decentraland.org" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087264/Dcl_thjhob.png" className="partners-image-1" />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087264/Dcl_thjhob.png" style={{ height: '90px' }} />
                     </a>
                   </Grid.Column>
 
                   <Grid.Column computer={4} tablet={4} mobile={4}>
                     <a href="https://matic.network" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087266/Matic_z2ski2.png" className="partners-image-2" />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087266/Matic_z2ski2.png" style={{ height: '90px' }} />
                     </a>
                   </Grid.Column>
 
                   <Grid.Column computer={4} tablet={4} mobile={4}>
                     <a href="https://makerdao.com" target="_blank">
-                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087269/Maker_pohttw.png" className="partners-image-3" />
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087269/Maker_pohttw.png" style={{ height: '80px', marginLeft: '30px', marginTop: '5px' }} />
                     </a>
                   </Grid.Column>
                 </Grid.Row>
