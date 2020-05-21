@@ -7,7 +7,5 @@ services:
     build: .
     restart: always
     user: root
-    env_file:
-      - .env.website
     ports:
       - "3000:3000"
