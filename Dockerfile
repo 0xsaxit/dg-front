@@ -9,11 +9,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-#RUN npm audit
+RUN npm audit
 
 RUN npm install --production --no-fund
 
-# web3 1.2.8 affected https://www.npmjs.com/advisories/877/versions , so we use 1.2.8-rc.0
+# web3 1.2.8 affected https://www.npmjs.com/advisories/877/versions , so we use 1.2.8-rc.1
 RUN npm outdated || true
 
 COPY . .
