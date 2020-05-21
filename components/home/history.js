@@ -270,12 +270,8 @@ class History extends React.Component {
                                 .trim();
                               // if (row.betAmount) returns undefined??
                               if (row.betAmount) {
-                                amount =
-                                  Number(row.betAmount) /
-                                  10 ** Global.TOKEN_DECIMALS;
-                                result =
-                                  Number(row.amountWin) /
-                                  10 ** Global.TOKEN_DECIMALS;
+                                amount = Number(row.betAmount) / Global.FACTOR;
+                                result = Number(row.amountWin) / Global.FACTOR;
                                 if (row.gameType === 2)
                                   action = 'MANA Roulette';
                                 else action = 'MANA Slots';

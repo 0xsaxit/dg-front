@@ -99,18 +99,14 @@ class History extends React.Component {
                     {data.map((row) => {
                       var date = new Date(row.createdAt);
                       var timestamp = date.toLocaleString();
-                      // var amount = Number(row.betAmount) / (10 ** Global.TOKEN_DECIMALS);
-                      // var payout = Number(row.amountWin) / (10 ** Global.TOKEN_DECIMALS);
                       timestamp = timestamp
                         .replace(timestamp.substr(-2), '')
                         .trim();
                       var game;
 
                       if (row.betAmount) {
-                        var amount =
-                          Number(row.betAmount) / 10 ** Global.TOKEN_DECIMALS;
-                        var payout =
-                          Number(row.amountWin) / 10 ** Global.TOKEN_DECIMALS;
+                        var amount = Number(row.betAmount) / Global.FACTOR;
+                        var payout = Number(row.amountWin) / Global.FACTOR;
                         var machine_id = row.globalID.substr(
                           row.globalID.length - 3,
                           3

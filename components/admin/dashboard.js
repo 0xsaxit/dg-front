@@ -75,17 +75,13 @@ class Dashboard extends React.Component {
     json.result.map((row) => {
       var row_type = row.globalID.substr(row.globalID.length - 6, 3);
       if (row_type !== '002') {
-        slotVolume =
-          slotVolume + Number(row.totalBetAmount) / 10 ** Global.TOKEN_DECIMALS;
-        slotPayout =
-          slotPayout + Number(row.totalAmountWin) / 10 ** Global.TOKEN_DECIMALS;
+        slotVolume = slotVolume + Number(row.totalBetAmount) / Global.FACTOR;
+        slotPayout = slotPayout + Number(row.totalAmountWin) / Global.FACTOR;
       } else {
         rouletteVolume =
-          rouletteVolume +
-          Number(row.totalBetAmount) / 10 ** Global.TOKEN_DECIMALS;
+          rouletteVolume + Number(row.totalBetAmount) / Global.FACTOR;
         roulettePayout =
-          roulettePayout +
-          Number(row.totalAmountWin) / 10 ** Global.TOKEN_DECIMALS;
+          roulettePayout + Number(row.totalAmountWin) / Global.FACTOR;
       }
     });
     // }
@@ -120,12 +116,12 @@ class Dashboard extends React.Component {
       amountSlot = await Global.balanceOfToken(
         Global.MATIC_TOKEN,
         this.maticWeb3,
-        Global.SLOTS_CONTRACT_ADDRESS
+        Global.TREASURY_SLOTS_ADDRESS
       );
       amountRoulette = await Global.balanceOfToken(
         Global.MATIC_TOKEN,
         this.maticWeb3,
-        Global.ROULETTE_CONTRACT_ADDRESS
+        Global.TREASURY_ROULETTE_ADDRESS
       );
       this.setState({
         manaSlotBalance: window.web3.fromWei(amountSlot, 'ether').toFixed(0),

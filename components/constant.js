@@ -1,56 +1,82 @@
-// import sigUtil from 'eth-sig-util';
-import ABIRootChain from './ABI/ABIRootChain';
-// import ABIFAKEMana from './ABI/ABIFAKEMana';
 import ABIDepositManager from './ABI/ABIDepositManager';
 import ABIParent from './ABI/ABIParent';
-// import RootChain from './ABI/RootChain';
-import MANASlots from './ABI/ABISlotsMANA'; // ***
+import MANASlots from './ABI/ABISlotsMANA';
 import StandardToken from './ABI/StandardToken';
 import DepositManager from './ABI/DepositManager';
 import WithdrawManager from './ABI/WithdrawManager';
 import ChildERC20Token from './ABI/ChildERC20Token';
 
-require('dotenv').config({ path: '.env.website' });
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// set global constant values
+const API_BASE_URL = 'https://api.decentral.games';
+const BASE_URL = 'https://api.decentral.games';
+const SYNCER_URL = 'https://matic-syncer2.api.matic.network/api/v1';
+const WATCHER_URL = 'https://ropsten-watcher2.api.matic.network/api/v1';
+const MAX_AMOUNT =
+  '115792089237316195423570985008687907853269984665640564039457584007913129639935';
+const GAS_LIMIT = '900000';
+const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
+const PARENT_NETWORK_ID = 3; // 1: main net, 3: Ropsten
+const MATIC_NETWORK_ID = '15001';
+const MATIC_URL = 'https://testnetv3.matic.network';
+const MATIC_EXPLORER = 'https://testnetv3-explorer.matic.network';
+const ADMIN_ADDR = [
+  '0xa7C825BB8c2C4d18288af8efe38c8Bf75A1AAB51'.toLowerCase(),
+  '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
+  '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
+  '0x1FcdE174C13691ef0C13fcEE042e0951452C0f8A'.toLowerCase(),
+  '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
+];
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-//const API_BASE_URL = 'https://api.decentral.games';
-//const BASE_URL = 'https://decentralserver.herokuapp.com';
-// const BASE_URL = "http://localhost:5000";
-const API_BASE_URL = process.env.API_BASE_URL;
-const BASE_URL = process.env.BASE_URL;
-
-let WORKER_WALLET_ADDRESS;
-let PARENT_CONTRACT_ADDRESS;
-let ADMIN_ADDR;
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// fetch wallet and contract addresses from server REST API
 let RELAY_ADDR;
+let MAINNET_TOKEN_ADDRESS;
+let ROPSTEN_TOKEN;
+let MATIC_TOKEN;
 let MASTER_CONTRACT_ADDRESS;
-let SLOTS_CONTRACT_ADDRESS;
-let ROULETTE_CONTRACT_ADDRESS;
+let TREASURY_SLOTS_ADDRESS;
+let TREASURY_ROULETTE_ADDRESS;
+let TREASURY_BACKGAMMON;
+let TREASURY_BLACKJACK;
+let ROOTCHAIN_ADDRESS;
+let DEPOSITMANAGER_ADDRESS;
+let WITHDRAWMANAGER_ADDRESS;
 
 async function init() {
   const response = await getAddresses();
   let json = await response.json();
 
-  WORKER_WALLET_ADDRESS = await json.WORKER_WALLET_ADDRESS;
-  PARENT_CONTRACT_ADDRESS = await json.PARENT_CONTRACT_ADDRESS;
+  RELAY_ADDR = await json.WORKER_WALLET_ADDRESS; // *************
+  MAINNET_TOKEN_ADDRESS = await json.MAINNET_TOKEN_ADDRESS;
+  ROPSTEN_TOKEN = await json.ROPSTEN_TOKEN_ADDRESS; // ************
+  MATIC_TOKEN = await json.MATIC_TOKEN_ADDRESS; // *************
+  MASTER_CONTRACT_ADDRESS = await json.PARENT_CONTRACT_ADDRESS; // **************
+  TREASURY_SLOTS_ADDRESS = await json.TREASURY_SLOTS_ADDRESS;
+  TREASURY_ROULETTE_ADDRESS = await json.TREASURY_ROULETTE_ADDRESS;
+  TREASURY_BACKGAMMON = await json.TREASURY_BACKGAMMON;
+  TREASURY_BLACKJACK = await json.TREASURY_BLACKJACK;
+  ROOTCHAIN_ADDRESS = await json.ROOTCHAIN_ADDRESS;
+  DEPOSITMANAGER_ADDRESS = await json.DEPOSITMANAGER_ADDRESS;
+  WITHDRAWMANAGER_ADDRESS = await json.WITHDRAWMANAGER_ADDRESS;
 
-  console.log('WORKER_WALLET_ADDRESS: ' + WORKER_WALLET_ADDRESS);
-  console.log('PARENT_CONTRACT_ADDRESS: ' + PARENT_CONTRACT_ADDRESS);
-
-  ADMIN_ADDR = [
-    '0xa7C825BB8c2C4d18288af8efe38c8Bf75A1AAB51'.toLowerCase(),
-    '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
-    '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
-    // '0x1FcdE174C13691ef0C13fcEE042e0951452C0f8A'.toLowerCase(),
-    WORKER_WALLET_ADDRESS.toLowerCase(),
-    '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
-  ];
-  // RELAY_ADDR = '0x1FcdE174C13691ef0C13fcEE042e0951452C0f8A'.toLowerCase();
-  RELAY_ADDR = WORKER_WALLET_ADDRESS.toLowerCase();
-  MASTER_CONTRACT_ADDRESS = PARENT_CONTRACT_ADDRESS.toLowerCase(); // Matic address
-  SLOTS_CONTRACT_ADDRESS = MASTER_CONTRACT_ADDRESS; // Matic address
-  ROULETTE_CONTRACT_ADDRESS = MASTER_CONTRACT_ADDRESS; // Matic address
+  console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDR);
+  console.log('MAINNET_TOKEN_ADDRESS: ' + MAINNET_TOKEN_ADDRESS);
+  console.log('ROPSTEN_TOKEN_ADDRESS: ' + ROPSTEN_TOKEN);
+  console.log('MATIC_TOKEN_ADDRESS: ' + MATIC_TOKEN);
+  console.log('MASTER_CONTRACT_ADDRESS: ' + MASTER_CONTRACT_ADDRESS);
+  console.log('TREASURY_SLOTS_ADDRESS: ' + TREASURY_SLOTS_ADDRESS);
+  console.log('TREASURY_ROULETTE_ADDRESS: ' + TREASURY_ROULETTE_ADDRESS);
+  console.log('TREASURY_BACKGAMMON: ' + TREASURY_BACKGAMMON);
+  console.log('TREASURY_BLACKJACK: ' + TREASURY_BLACKJACK);
+  console.log('ROOTCHAIN_ADDRESS: ' + ROOTCHAIN_ADDRESS);
+  console.log('DEPOSITMANAGER_ADDRESS: ' + DEPOSITMANAGER_ADDRESS);
+  console.log('WITHDRAWMANAGER_ADDRESS: ' + WITHDRAWMANAGER_ADDRESS);
 }
-init(); // fetch the WORKER wallet and PARENT CONTRACT addresses from server
+init();
 
 function getAddresses() {
   return fetch(`${BASE_URL}/addresses`, {
@@ -62,39 +88,9 @@ function getAddresses() {
   });
 }
 
-const ADMINS = [
-  '0xa7C825BB8c2C4d18288af8efe38c8Bf75A1AAB51'.toLowerCase(),
-  '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
-  '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
-];
-
-// const Buffer = window.ethereumjs.Buffer.Buffer;
-// const Util = window.ethereumjs.Util;
-// const RLP = window.ethereumjs.RLP;
-
-const FACTOR = 1000000000000000000; // ETH/WEI multiplication factor
-
-const ROPSTEN_TOKEN = process.env.ROPSTEN_TOKEN; //Ropsten MANA Token
-const MATIC_TOKEN = process.env.MATIC_TOKEN; // Matic mapped MANA Token
-const TOKEN_DECIMALS = process.env.TOKEN_DECIMALS;
-const ROOTCHAIN_ADDRESS = process.env.ROOTCHAIN_ADDRESS; //test
-// const ROOTCHAIN_ADDRESS = '0xA4edab1eF6358c40D487a9D466D977e98F7AC218'.toLowerCase();  //main
-const DEPOSITMANAGER_ADDRESS = process.env.DEPOSITMANAGER_ADDRESS; //test
-// const DEPOSITMANAGER_ADDRESS = '0xe60eb6A559eec79f65f2207366D32A68fD171944'.toLowerCase();  //main
-const WITHDRAWMANAGER_ADDRESS = process.env.WITHDRAWMANAGER_ADDRESS; //test
-// const WITHDRAWMANAGER_ADDRESS = '0x4D67F2e7Be1807D76D5E55e21Af6300ad35c19e9'.toLowerCase();  //main
-const SYNCER_URL = process.env.SYNCER_URL;
-const WATCHER_URL = process.env.WATCHER_URL;
-const MAX_AMOUNT = process.env.MAX_AMOUNT;
-const GAS_LIMIT = process.env.GAS_LIMIT;
-
-const PARENT_NETWORK_ID = 3; // 1: main net, 3: Ropsten
-const MATIC_NETWORK_ID = process.env.MATIC_NETWORK_ID; //test
-const MATIC_URL = 'https://testnetv3.matic.network';
-const MATIC_EXPLORER = 'https://testnetv3-explorer.matic.network'; // 'https://explorer.testnet2.matic.network';
-
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// fetch syncer and watcher data
 function _apiCall(data = {}) {
   const headers = data.headers || {};
 
@@ -486,7 +482,7 @@ function depositTokenToMANASlots(amount, user_address) {
     try {
       const MANASLOTS_CONTRACT = window.web3.eth
         .contract(MANASlots.abi)
-        .at(SLOTS_CONTRACT_ADDRESS);
+        .at(TREASURY_SLOTS_ADDRESS);
       MANASLOTS_CONTRACT.addFunds(
         amount,
         {
@@ -517,7 +513,7 @@ function withdrawTokenFromMANASlots(amount, user_address) {
     try {
       const MANASLOTS_CONTRACT = window.web3.eth
         .contract(MANASlots.abi)
-        .at(SLOTS_CONTRACT_ADDRESS);
+        .at(TREASURY_SLOTS_ADDRESS);
       MANASLOTS_CONTRACT.withdrawFunds(
         amount,
         {
@@ -578,81 +574,6 @@ function startWithdrawTokenFromMatic(token, amount, user_address) {
     }
   });
 }
-
-// function withdrawTokenFromMatic(txId, user_address) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Withdrawing');
-//     try {
-//       // fetch trancation & receipt proof
-//       const [txProof, receiptProof] = await Promise.all([
-//         getTxProof(txId),
-//         getReceiptProof(txId),
-//       ]);
-
-//       // fetch header object & header proof
-//       let header = null;
-//       try {
-//         header = await getHeaderObject(txProof.blockNumber);
-//       } catch (e) {
-//         // ignore error
-//       }
-
-//       // check if header block found
-//       if (!header) {
-//         throw new Error(
-//           `No corresponding checkpoint/header block found for ${txId}.`
-//         );
-//       }
-
-//       const headerProof = await getHeaderProof(txProof.blockNumber, header);
-//       const WITHDRAWMANAGER_CONTRACT = window.web3.eth
-//         .contract(WithdrawManager.abi)
-//         .at(WITHDRAWMANAGER_ADDRESS);
-//       console.log(headerProof);
-//       console.log(txProof);
-//       console.log(receiptProof);
-//       WITHDRAWMANAGER_CONTRACT.withdrawBurntTokens(
-//         header.number,
-//         Util.bufferToHex(
-//           Buffer.concat(headerProof.proof.map((p) => Util.toBuffer(p)))
-//         ), // header proof
-//         txProof.blockNumber, // block number
-//         txProof.blockTimestamp, // block timestamp
-//         txProof.root, // tx root
-//         receiptProof.root, // receipt root
-//         Util.bufferToHex(RLP.encode(receiptProof.path)), // key for trie (both tx and receipt)
-//         txProof.value, // tx bytes
-//         txProof.parentNodes, // tx proof nodes
-//         receiptProof.value, // receipt bytes
-//         receiptProof.parentNodes,
-//         {
-//           // reciept proof nodes
-//           from: user_address,
-//           gasLimit: window.web3.toHex(GAS_LIMIT),
-//           gasPrice: window.web3.toHex('20000000000'),
-//         },
-//         async function (err, hash) {
-//           if (err) {
-//             console.log('Withdrawing failed', err);
-//             reject(false);
-//           }
-
-//           var ret = await getConfirmedTx(hash);
-//           if (ret.status == '0x0') {
-//             console.log('Withdrawing transaction failed');
-//             resolve(false);
-//           } else {
-//             console.log('Withdrawing done');
-//             resolve(hash);
-//           }
-//         }
-//       );
-//     } catch (error) {
-//       console.log('Withdrawing failed', error);
-//       reject(false);
-//     }
-//   });
-// }
 
 async function processExits(rootTokenAddress, user_address) {
   return new Promise(async (resolve, reject) => {
@@ -732,28 +653,26 @@ function getMappedToken(token) {
   });
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 export default {
-  ADMIN_ADDR: () => ADMIN_ADDR,
-  RELAY_ADDR: () => RELAY_ADDR,
+  ADMIN_ADDR,
+  RELAY_ADDR,
   API_BASE_URL,
   BASE_URL,
   FACTOR,
   ROPSTEN_TOKEN,
   MATIC_TOKEN,
-  SLOTS_CONTRACT_ADDRESS: () => SLOTS_CONTRACT_ADDRESS,
-  ROULETTE_CONTRACT_ADDRESS: () => ROULETTE_CONTRACT_ADDRESS,
-  MASTER_CONTRACT_ADDRESS: () => MASTER_CONTRACT_ADDRESS,
-  TOKEN_DECIMALS,
+  MASTER_CONTRACT_ADDRESS,
+  TREASURY_SLOTS_ADDRESS,
+  TREASURY_ROULETTE_ADDRESS,
   ROOTCHAIN_ADDRESS,
   DEPOSITMANAGER_ADDRESS,
   PARENT_NETWORK_ID,
   MATIC_NETWORK_ID,
   MATIC_URL,
   MATIC_EXPLORER,
-  SYNCER_URL,
-  WATCHER_URL,
   MAX_AMOUNT,
-  GAS_LIMIT,
   delay,
   getConfirmedTx,
   balanceOfToken,
@@ -768,6 +687,5 @@ export default {
   withdrawTokenFromMANASlots,
   getMappedToken,
   startWithdrawTokenFromMatic,
-  // withdrawTokenFromMatic,
   processExits,
 };

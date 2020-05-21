@@ -83,7 +83,7 @@ class Deposit extends React.Component {
     // set addresses with data returned by server REST API
     tokenAddress = '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN;
     domainData.verifyingContract = tokenAddress;
-    spenderAddress = Global.MASTER_CONTRACT_ADDRESS(); // '0x5C66D24105D1d5F0E712B47C75c8ed6b6a00c3C5'; Global.MASTER_CONTRACT_ADDRESS();
+    spenderAddress = Global.MASTER_CONTRACT_ADDRESS; // '0x5C66D24105D1d5F0E712B47C75c8ed6b6a00c3C5'; Global.MASTER_CONTRACT_ADDRESS();
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
