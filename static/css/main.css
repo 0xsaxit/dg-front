@@ -1610,7 +1610,20 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 90px;
+  }
+  .featured-casino-text {
+    font-size: 12px !important;
+  }
+  .home-dashboard-p {
+    font-size: 18px !important;
+  }
+  .home-dashboard-h3 {
+    font-size: 48px !important;
+  }
+  .mobile-menu-item-1,
+  .mobile-menu-item-2 {
+    font-size: 18px !important;
   }
 }
 
