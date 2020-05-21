@@ -158,6 +158,36 @@ class About extends React.Component {
             </div>
 
           </Fade>
+<Fade bottom distance="20px" duration="600" delay="300">
+            <div className="games-container">
+              <Grid>
+                <Grid.Row>
+                  <div>
+                    <h3 className="account-other-h3 games" style={{ paddingLeft: '13px' }}> Partners </h3>
+                  </div>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column computer={4} tablet={4} mobile={4}>
+                    <a href="https://decentraland.org" target="_blank">
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087264/Dcl_thjhob.png" className="partners-image-1" />
+                    </a>
+                  </Grid.Column>
+
+                  <Grid.Column computer={4} tablet={4} mobile={4}>
+                    <a href="https://matic.network" target="_blank">
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087266/Matic_z2ski2.png" className="partners-image-2" />
+                    </a>
+                  </Grid.Column>
+
+                  <Grid.Column computer={4} tablet={4} mobile={4}>
+                    <a href="https://makerdao.com" target="_blank">
+                      <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1590087269/Maker_pohttw.png" className="partners-image-3" />
+                    </a>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </div>
+          </Fade>
         </div>
       </div>
     )
