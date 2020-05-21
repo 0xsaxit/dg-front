@@ -1,18 +1,17 @@
-import ABIDepositManager from './ABI/ABIDepositManager';
 import ABIParent from './ABI/ABIParent';
-import MANASlots from './ABI/ABISlotsMANA';
+// import MANASlots from './ABI/ABISlotsMANA';
 import StandardToken from './ABI/StandardToken';
-import DepositManager from './ABI/DepositManager';
-import WithdrawManager from './ABI/WithdrawManager';
-import ChildERC20Token from './ABI/ChildERC20Token';
+// import DepositManager from './ABI/DepositManager';
+// import WithdrawManager from './ABI/WithdrawManager';
+// import ChildERC20Token from './ABI/ChildERC20Token';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // set global constant values
 const API_BASE_URL = 'https://api.decentral.games';
 const BASE_URL = 'https://api.decentral.games';
-const SYNCER_URL = 'https://matic-syncer2.api.matic.network/api/v1';
-const WATCHER_URL = 'https://ropsten-watcher2.api.matic.network/api/v1';
+// const SYNCER_URL = 'https://matic-syncer2.api.matic.network/api/v1';
+// const WATCHER_URL = 'https://ropsten-watcher2.api.matic.network/api/v1';
 const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 const GAS_LIMIT = '900000';
@@ -91,70 +90,70 @@ function getAddresses() {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // fetch syncer and watcher data
-function _apiCall(data = {}) {
-  const headers = data.headers || {};
+// function _apiCall(data = {}) {
+//   const headers = data.headers || {};
 
-  const queryParams =
-    data.query &&
-    Object.keys(data.query || {})
-      .map(function (k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(data.query[k]);
-      })
-      .join('&');
+//   const queryParams =
+//     data.query &&
+//     Object.keys(data.query || {})
+//       .map(function (k) {
+//         return encodeURIComponent(k) + '=' + encodeURIComponent(data.query[k]);
+//       })
+//       .join('&');
 
-  const url = `${data.url}?${queryParams || ''}`;
+//   const url = `${data.url}?${queryParams || ''}`;
 
-  return fetch(url, {
-    method: data.method || (data.body ? 'POST' : 'GET'),
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      ...headers,
-    },
-    body: data.body ? JSON.stringify(data.body) : null,
-  }).then((res) => {
-    if (!res.ok) {
-      const err = new Error(res.statusText || 'Unknown error occurred');
-      err.response = res;
-      throw err;
-    }
-    return res.json();
-  });
-}
+//   return fetch(url, {
+//     method: data.method || (data.body ? 'POST' : 'GET'),
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json',
+//       ...headers,
+//     },
+//     body: data.body ? JSON.stringify(data.body) : null,
+//   }).then((res) => {
+//     if (!res.ok) {
+//       const err = new Error(res.statusText || 'Unknown error occurred');
+//       err.response = res;
+//       throw err;
+//     }
+//     return res.json();
+//   });
+// }
 
-async function getTxProof(txId) {
-  const { proof: txProof } = await _apiCall({
-    url: `${SYNCER_URL}/tx/${txId}/proof`,
-  });
+// async function getTxProof(txId) {
+//   const { proof: txProof } = await _apiCall({
+//     url: `${SYNCER_URL}/tx/${txId}/proof`,
+//   });
 
-  return txProof;
-}
+//   return txProof;
+// }
 
-async function getReceiptProof(txId) {
-  const { proof: receiptProof } = await _apiCall({
-    url: `${SYNCER_URL}/tx/${txId}/receipt/proof`,
-  });
+// async function getReceiptProof(txId) {
+//   const { proof: receiptProof } = await _apiCall({
+//     url: `${SYNCER_URL}/tx/${txId}/receipt/proof`,
+//   });
 
-  return receiptProof;
-}
+//   return receiptProof;
+// }
 
-function getHeaderObject(blockNumber) {
-  return _apiCall({
-    url: `${WATCHER_URL}/header/included/${blockNumber}`,
-  });
-}
+// function getHeaderObject(blockNumber) {
+//   return _apiCall({
+//     url: `${WATCHER_URL}/header/included/${blockNumber}`,
+//   });
+// }
 
-async function getHeaderProof(blockNumber, header) {
-  const { proof: headerProof } = await _apiCall({
-    url: `${SYNCER_URL}/block/${blockNumber}/proof`,
-    query: {
-      start: +header.start,
-      end: +header.end,
-    },
-  });
+// async function getHeaderProof(blockNumber, header) {
+//   const { proof: headerProof } = await _apiCall({
+//     url: `${SYNCER_URL}/block/${blockNumber}/proof`,
+//     query: {
+//       start: +header.start,
+//       end: +header.end,
+//     },
+//   });
 
-  return headerProof;
-}
+//   return headerProof;
+// }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -171,10 +170,6 @@ function balanceOfToken(
       const TOKEN_CONTRACT = web3Default.eth
         .contract(StandardToken.abi)
         .at(tokenAddress);
-
-      // const TOKEN_CONTRACT = web3.eth
-      //   .contract(StandardToken.abi)
-      //   .at(tokenAddress);
 
       TOKEN_CONTRACT.balanceOf(userAddress, async function (err, amount) {
         if (err) {
@@ -287,62 +282,6 @@ async function approveToken(
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// deposit MANA from the Matic Root contract to Matic Network
-async function depositTokenToMatic(
-  tokenAddress,
-  amount,
-  userAddress,
-  web3Default = window.web3
-) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Deposit start');
-
-    console.log(tokenAddress);
-    console.log(amount);
-    console.log(userAddress);
-    // console.log(web3);
-
-    console.log(DEPOSITMANAGER_ADDRESS);
-
-    try {
-      // const ROOTCHAIN_CONTRACT = web3.eth
-      //   .contract(RootChain.abi)
-      //   .at(ROOTCHAIN_ADDRESS);
-
-      const DEPOSITMANAGER_CONTRACT = web3Default.eth
-        .contract(ABIDepositManager)
-        .at(DEPOSITMANAGER_ADDRESS);
-
-      // ROOTCHAIN_CONTRACT.deposit(
-
-      DEPOSITMANAGER_CONTRACT.depositERC20ForUser(
-        tokenAddress,
-        userAddress,
-        amount,
-        {
-          from: userAddress,
-          gasLimit: web3Default.toHex(GAS_LIMIT * 20),
-          gasPrice: web3Default.toHex('80000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Deposit failed', err);
-            reject(false);
-          }
-
-          console.log('Deposit done');
-          resolve(hash);
-        }
-      );
-    } catch (error) {
-      console.log('Deposit failed', error);
-      reject(false);
-    }
-  });
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // get balance from parent contract and allocated tokens from slots and roulette games
 function getBalanceParent(tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
@@ -371,6 +310,9 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
   });
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// get allocated tokens for specified game
 function getTokensGame(gameType, tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
     console.log('get tokens per game start');
@@ -438,6 +380,9 @@ function depositToParent(gameType, amount, tokenName) {
   });
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// withdraw funds from parent contract
 function withdrawFromParent(gameType, amount, tokenName) {
   return new Promise(async (resolve, reject) => {
     console.log('Withdraw start' + ': ' + amount);
@@ -476,145 +421,75 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-function depositTokenToMANASlots(amount, user_address) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Deposit start');
-    try {
-      const MANASLOTS_CONTRACT = window.web3.eth
-        .contract(MANASlots.abi)
-        .at(TREASURY_SLOTS_ADDRESS);
-      MANASLOTS_CONTRACT.addFunds(
-        amount,
-        {
-          from: user_address,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Deposit failed', err);
-            reject(false);
-          }
+// function depositTokenToMANASlots(amount, user_address) {
+//   return new Promise(async (resolve, reject) => {
+//     console.log('Deposit start');
+//     try {
+//       const MANASLOTS_CONTRACT = window.web3.eth
+//         .contract(MANASlots.abi)
+//         .at(TREASURY_SLOTS_ADDRESS);
+//       MANASLOTS_CONTRACT.addFunds(
+//         amount,
+//         {
+//           from: user_address,
+//           gasLimit: window.web3.toHex(GAS_LIMIT),
+//           gasPrice: window.web3.toHex('20000000000'),
+//         },
+//         async function (err, hash) {
+//           if (err) {
+//             console.log('Deposit failed', err);
+//             reject(false);
+//           }
 
-          console.log('Deposit done');
-          resolve(hash);
-        }
-      );
-    } catch (error) {
-      console.log('Deposit failed', error);
-      reject(false);
-    }
-  });
-}
+//           console.log('Deposit done');
+//           resolve(hash);
+//         }
+//       );
+//     } catch (error) {
+//       console.log('Deposit failed', error);
+//       reject(false);
+//     }
+//   });
+// }
 
-function withdrawTokenFromMANASlots(amount, user_address) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Withdraw start');
-    try {
-      const MANASLOTS_CONTRACT = window.web3.eth
-        .contract(MANASlots.abi)
-        .at(TREASURY_SLOTS_ADDRESS);
-      MANASLOTS_CONTRACT.withdrawFunds(
-        amount,
-        {
-          from: user_address,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Withdraw failed', err);
-            reject(false);
-          }
+// function withdrawTokenFromMANASlots(amount, user_address) {
+//   return new Promise(async (resolve, reject) => {
+//     console.log('Withdraw start');
+//     try {
+//       const MANASLOTS_CONTRACT = window.web3.eth
+//         .contract(MANASlots.abi)
+//         .at(TREASURY_SLOTS_ADDRESS);
+//       MANASLOTS_CONTRACT.withdrawFunds(
+//         amount,
+//         {
+//           from: user_address,
+//           gasLimit: window.web3.toHex(GAS_LIMIT),
+//           gasPrice: window.web3.toHex('20000000000'),
+//         },
+//         async function (err, hash) {
+//           if (err) {
+//             console.log('Withdraw failed', err);
+//             reject(false);
+//           }
 
-          console.log('Withdraw done');
-          resolve(hash);
-        }
-      );
-    } catch (error) {
-      console.log('Withdraw failed', error);
-      reject(false);
-    }
-  });
-}
+//           console.log('Withdraw done');
+//           resolve(hash);
+//         }
+//       );
+//     } catch (error) {
+//       console.log('Withdraw failed', error);
+//       reject(false);
+//     }
+//   });
+// }
 
-function startWithdrawTokenFromMatic(token, amount, user_address) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Withdraw starting');
-    try {
-      const TOKEN_CONTRACT = window.web3.eth
-        .contract(ChildERC20Token.abi)
-        .at(token);
-      TOKEN_CONTRACT.withdraw(
-        amount,
-        {
-          from: user_address,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Withdraw starting failed', err);
-            reject(false);
-          }
-
-          var ret = await getConfirmedTx(hash);
-          if (ret.status == '0x0') {
-            console.log('Withdraw starting transaction failed');
-            resolve(false);
-          } else {
-            console.log('Withdraw starting done');
-            resolve(hash);
-          }
-        }
-      );
-    } catch (error) {
-      console.log('Withdraw starting failed', error);
-      reject(false);
-    }
-  });
-}
-
-async function processExits(rootTokenAddress, user_address) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Withdrawing exit');
-    try {
-      const WITHDRAWMANAGER_CONTRACT = window.web3.eth
-        .contract(WithdrawManager.abi)
-        .at(WITHDRAWMANAGER_ADDRESS);
-      WITHDRAWMANAGER_CONTRACT.processExits(
-        rootTokenAddress,
-        {
-          from: user_address,
-          gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Withdraw exit failed', err);
-            reject(false);
-          }
-
-          var ret = await getConfirmedTx(hash);
-          if (ret.status == '0x0') {
-            console.log('Withdraw exit transaction failed');
-            resolve(false);
-          } else {
-            console.log('Withdraw exit done');
-            resolve(hash);
-          }
-        }
-      );
-    } catch (error) {
-      console.log('Withdrawing exit', error);
-      reject(false);
-    }
-  });
-}
-
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// return confirmation hash
 function getConfirmedTx(txHash) {
   return new Promise(async (resolve, reject) => {
     var finish = false;
+
     while (!finish) {
       window.web3.eth.getTransactionReceipt(txHash, (err, res) => {
         if (err) {
@@ -626,32 +501,33 @@ function getConfirmedTx(txHash) {
           resolve(res);
         }
       });
+
       await delay(2000);
     }
   });
 }
 
-function getMappedToken(token) {
-  return new Promise(async (resolve, reject) => {
-    console.log('getting Mapped Token');
-    try {
-      const DEPOSIT_CONTRACT = window.web3.eth
-        .contract(DepositManager.abi)
-        .at(DEPOSITMANAGER_ADDRESS);
-      DEPOSIT_CONTRACT.tokens(token, async function (err, address) {
-        if (err) {
-          console.log('getting failed', err);
-          reject(false);
-        }
+// function getMappedToken(token) {
+//   return new Promise(async (resolve, reject) => {
+//     console.log('getting Mapped Token');
+//     try {
+//       const DEPOSIT_CONTRACT = window.web3.eth
+//         .contract(DepositManager.abi)
+//         .at(DEPOSITMANAGER_ADDRESS);
+//       DEPOSIT_CONTRACT.tokens(token, async function (err, address) {
+//         if (err) {
+//           console.log('getting failed', err);
+//           reject(false);
+//         }
 
-        resolve(address);
-      });
-    } catch (error) {
-      console.log('getting failed', error);
-      reject(false);
-    }
-  });
-}
+//         resolve(address);
+//       });
+//     } catch (error) {
+//       console.log('getting failed', error);
+//       reject(false);
+//     }
+//   });
+// }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -678,14 +554,8 @@ export default {
   balanceOfToken,
   getAllowedToken,
   approveToken,
-  depositTokenToMatic,
   getBalanceParent,
   getTokensGame,
   depositToParent,
   withdrawFromParent,
-  depositTokenToMANASlots,
-  withdrawTokenFromMANASlots,
-  getMappedToken,
-  startWithdrawTokenFromMatic,
-  processExits,
 };

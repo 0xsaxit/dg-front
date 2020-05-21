@@ -81,10 +81,7 @@ class Withdraw extends React.Component {
       this.setState({ isRunningTransaction: true });
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       var amount_wei = ((this.state.amount / UNIT) * Global.FACTOR).toString();
-      var txHash = await Global.withdrawTokenFromMANASlots(
-        amount_wei,
-        USER_ADDRESS
-      );
+      var txHash = await Global.withdrawFromParent(amount_wei, USER_ADDRESS);
       if (txHash != false) {
         var ret = await Global.getConfirmedTx(txHash);
         if (!ret || ret.status == '0x0') {

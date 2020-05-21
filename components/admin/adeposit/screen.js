@@ -110,10 +110,7 @@ class Deposit extends React.Component {
         );
       }
 
-      var txHash = await Global.depositTokenToMANASlots(
-        amount_wei,
-        USER_ADDRESS
-      );
+      var txHash = await Global.depositToParent(amount_wei, USER_ADDRESS);
       if (txHash != false) {
         var ret = await Global.getConfirmedTx(txHash);
         if (!ret || ret.status == '0x0') {

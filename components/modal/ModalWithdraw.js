@@ -20,6 +20,8 @@ import {
 import dynamic from 'next/dynamic';
 let Global;
 
+import ModalFunctions from './ModalFunctions';
+
 var USER_ADDRESS = '';
 var UNIT = 1;
 // var UNIT = 1000;
@@ -316,7 +318,7 @@ class Withdraw extends React.Component {
       var amount_wei = ((amount / UNIT) * Global.FACTOR).toString();
 
       // init withdrawing
-      let txHash = await Global.startWithdrawTokenFromMatic(
+      let txHash = await ModalFunctions.startWithdrawTokenFromMatic(
         Global.MATIC_TOKEN,
         amount_wei,
         USER_ADDRESS
@@ -503,7 +505,7 @@ class Withdraw extends React.Component {
       }
 
       // exit withdrawing
-      let ret = await Global.processExits(
+      let ret = await ModalFunctions.processExits(
         Global.ROPSTEN_TOKEN,
         window.web3.currentProvider.selectedAddress
       );

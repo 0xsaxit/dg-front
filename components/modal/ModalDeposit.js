@@ -8,6 +8,7 @@ import ABIFAKEMana from '../ABI/NADummyToken.json';
 // import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
 
 import Global from '../constant';
+import ModalFunctions from './ModalFunctions';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -252,7 +253,7 @@ class Deposit extends React.Component {
       console.log('maximum amount: ' + Global.MAX_AMOUNT);
 
       // finally deposit MANA from the main net to Matic and update status in database
-      const txHash = await Global.depositTokenToMatic(
+      const txHash = await ModalFunctions.depositTokenToMatic(
         Global.ROPSTEN_TOKEN,
         amountWei,
         this.USER_ADDRESS
