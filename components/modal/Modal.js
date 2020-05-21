@@ -312,7 +312,7 @@ class ModalVerify extends Component {
     if (!this.isBrowserMetamsk) {
       return (
         <Modal
-          trigger={<Button content='Deposit' id='depositButton' onClick={this.handleOpen} />}
+          trigger={<Button content='CONNECT METAMASK'  color='blue' className="metamask-button" onClick={this.handleOpen} />}
           open={this.state.modalOpen}
           onClose={this.handleClose}
           closeIcon
