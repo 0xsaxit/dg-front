@@ -88,7 +88,7 @@ class WalletInfo extends React.Component {
       //   amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
       // else
       //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
-      amount = await Global.balanceOfToken(Global.MATIC_TOKEN, this.maticWeb3);
+      amount = await Global.balanceOfToken('matic', this.maticWeb3);
       // if you're reading this: I'm sorry.
       // it works though lol (adds commas every three numbers, removes decimals.)
       // I'm sure there's a better way - feel free to update

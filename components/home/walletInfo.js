@@ -8,7 +8,9 @@ import { Table, Modal, Icon } from 'semantic-ui-react';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
 
-let Global;
+import Global from '../constant';
+
+// let Global;
 var USER_ADDRESS;
 
 const INITIAL_STATE = {
@@ -28,7 +30,9 @@ class WalletInfo extends React.Component {
       console.log(window);
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     }
-    Global = require('../constant').default;
+
+    // Global = require('../constant').default;
+
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
@@ -42,7 +46,15 @@ class WalletInfo extends React.Component {
   }
 
   async getUserData() {
-    this.verifyNetwork();
+    // this.verifyNetwork();
+
+    // await Global.delay(5000);
+
+    // console.log('foo foo foo...');
+    // console.log('matic token: ' + Global.MATIC_TOKEN);
+
+    await this.getTokenBalance();
+
     await this.getUserName();
   }
 
@@ -80,12 +92,9 @@ class WalletInfo extends React.Component {
     }
   };
 
-  getTokenBalance = async (isMatic) => {
+  getTokenBalance = async () => {
     try {
-      const amount = await Global.balanceOfToken(
-        Global.MATIC_TOKEN,
-        this.maticWeb3
-      );
+      const amount = await Global.balanceOfToken('matic', this.maticWeb3);
       this.setState({
         tokenBalance: window.web3
           .fromWei(amount, 'ether')
@@ -117,17 +126,19 @@ class WalletInfo extends React.Component {
     }
   };
 
-  verifyNetwork = () => {
-    window.web3.version.getNetwork(async (err, network) => {
-      if (network === Global.MATIC_NETWORK_ID) {
-        this.isMatic = true;
-        await this.getTokenBalance(true);
-      } else {
-        this.isMatic = false;
-        await this.getTokenBalance(false);
-      }
-    });
-  };
+  // verifyNetwork = () => {
+  // window.web3.version.getNetwork(async (err, network) => {
+
+  // if (network === Global.MATIC_NETWORK_ID) {
+  // this.isMatic = true;
+  // await this.getTokenBalance();
+  // } else {
+  //   this.isMatic = false;
+  //   await this.getTokenBalance(false);
+  // }
+
+  // });
+  // };
 
   render() {
     const data = [
@@ -309,7 +320,10 @@ class WalletInfo extends React.Component {
           </div>
           <p className="wallet-bottom-text">
             By depositing you agree to our{' '}
-            <a href="https://docs.decentral.games/disclaimer" style={{ color: 'rgba(1, 133, 244, 1)' }}>
+            <a
+              href="https://docs.decentral.games/disclaimer"
+              style={{ color: 'rgba(1, 133, 244, 1)' }}
+            >
               {' '}
               disclaimer.
             </a>

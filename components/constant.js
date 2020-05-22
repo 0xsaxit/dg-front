@@ -32,18 +32,18 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // fetch wallet and contract addresses from server REST API
-let RELAY_ADDR;
-let MAINNET_TOKEN_ADDRESS;
-let ROPSTEN_TOKEN;
-let MATIC_TOKEN;
-let MASTER_CONTRACT_ADDRESS;
-let TREASURY_SLOTS_ADDRESS;
-let TREASURY_ROULETTE_ADDRESS;
-let TREASURY_BACKGAMMON;
-let TREASURY_BLACKJACK;
-let ROOTCHAIN_ADDRESS;
-let DEPOSITMANAGER_ADDRESS;
-let WITHDRAWMANAGER_ADDRESS;
+let RELAY_ADDR = '';
+let MAINNET_TOKEN_ADDRESS = '';
+let ROPSTEN_TOKEN = '';
+let MATIC_TOKEN = '';
+let MASTER_CONTRACT_ADDRESS = '';
+let TREASURY_SLOTS_ADDRESS = '';
+let TREASURY_ROULETTE_ADDRESS = '';
+let TREASURY_BACKGAMMON = '';
+let TREASURY_BLACKJACK = '';
+let ROOTCHAIN_ADDRESS = '';
+let DEPOSITMANAGER_ADDRESS = '';
+let WITHDRAWMANAGER_ADDRESS = '';
 
 async function init() {
   const response = await getAddresses();
@@ -159,10 +159,17 @@ function getAddresses() {
 /////////////////////////////////////////////////////////////////////////////////////////
 // get user token balance from MetaMask
 function balanceOfToken(
-  tokenAddress,
+  token,
   web3Default = window.web3,
   userAddress = window.web3.currentProvider.selectedAddress
 ) {
+  let tokenAddress;
+  if ((token = 'matic')) {
+    tokenAddress = MATIC_TOKEN;
+  } else {
+    tokenAddress = ROPSTEN_TOKEN;
+  }
+
   return new Promise(async (resolve, reject) => {
     console.log('getting balance of Token');
 

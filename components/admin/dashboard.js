@@ -114,12 +114,12 @@ class Dashboard extends React.Component {
       // else
       //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
       amountSlot = await Global.balanceOfToken(
-        Global.MATIC_TOKEN,
+        'matic',
         this.maticWeb3,
         Global.TREASURY_SLOTS_ADDRESS
       );
       amountRoulette = await Global.balanceOfToken(
-        Global.MATIC_TOKEN,
+        'matic',
         this.maticWeb3,
         Global.TREASURY_ROULETTE_ADDRESS
       );

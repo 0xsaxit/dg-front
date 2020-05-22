@@ -590,7 +590,7 @@ class Withdraw extends React.Component {
   getTokenBalance = async () => {
     try {
       var amount;
-      amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
+      amount = await Global.balanceOfToken('matic');
       return parseInt(window.web3.fromWei(amount, 'ether').toFixed(0));
     } catch (err) {
       console.log(err);

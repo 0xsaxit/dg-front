@@ -137,7 +137,7 @@ class Coin extends React.Component {
       //   amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
       // else
       //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
-      amount = await Global.balanceOfToken(Global.MATIC_TOKEN, this.maticWeb3);
+      amount = await Global.balanceOfToken('matic', this.maticWeb3);
       this.setState({
         tokenBalance: window.web3.fromWei(amount, 'ether').toFixed(0),
       });

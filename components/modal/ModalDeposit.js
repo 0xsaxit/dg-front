@@ -518,11 +518,8 @@ class Deposit extends React.Component {
   // get balances on main net and Matic networks
   getTokenBalance = async () => {
     try {
-      const amount1 = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
-      const amount2 = await Global.balanceOfToken(
-        Global.MATIC_TOKEN,
-        this.maticWeb3
-      );
+      const amount1 = await Global.balanceOfToken('ropsten');
+      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
 
       this.setState({
         tokenBalanceL1: (amount1 / Global.FACTOR)

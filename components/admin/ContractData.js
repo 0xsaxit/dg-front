@@ -55,10 +55,7 @@ class ContractData extends React.Component {
       this.setState({ networkID: networkID });
 
       // get user's balance on Matic Network
-      const userBalance = await Global.balanceOfToken(
-        Global.MATIC_TOKEN,
-        this.maticWeb3
-      );
+      const userBalance = await Global.balanceOfToken('matic', this.maticWeb3);
       this.setState({
         userBalance: window.web3
           .fromWei(userBalance, 'ether')
