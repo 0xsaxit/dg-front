@@ -17,6 +17,9 @@ RUN npm install --production --no-fund
 RUN npm outdated || true
 
 COPY . .
+
+COPY --from=decentralgames/website:latest /app/.next/cache /app/.next/cache
+
 RUN npm run build
 #RUN npm test
 

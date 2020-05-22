@@ -12,12 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Build the image
-      run: docker build -t decentralgames/website:latest .
-    - name: Push the image
+    - name: Login to repository
       run: |
         docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_PASSWORD }}"
-        docker tag decentralgames/website:latest decentralgames/website:${GITHUB_SHA}
+    - name: Pull latest image for getting Next.js cache
+      run: |
+        docker pull decentralgames/website:latest
+    - name: Build the image
+      run: |
+        docker build -t decentralgames/website:latest -t decentralgames/website:${GITHUB_SHA} .
+    - name: Push the image
+      run: |
         docker push decentralgames/website:latest
         docker push decentralgames/website:${GITHUB_SHA}
 

@@ -223,6 +223,14 @@ video.home-dashboard-video {
   color: white;
 }
 
+.account-other-h4.games {
+  font-size: 20px;
+  font-weight: 800;
+  padding-top: 12px;
+  padding-bottom: 6px;
+  color: white;
+}
+
 .account-other-p.games {
   color: white;
 }
@@ -253,6 +261,10 @@ div.ui.card.games-card {
 
 .ui.card > .content, .ui.cards > .card > .content {
   background-color: black !important;
+  border-radius: 0px !important;
+}
+
+img.ui.image.partner-image {
   border-radius: 0px !important;
 }
 
@@ -1073,6 +1085,7 @@ svg.spanbox.disable {
 .flamingos-container {
   width: 30%;
 }
+
 /* ----------------------------------------- */
 /*         WAITING ANIMATION CSS             */
 /* ----------------------------------------- */
@@ -1584,13 +1597,33 @@ a.ui.blue.button.play-shimmer:hover,
     position: fixed;
     overflow-y: hidden;
   }
+  .logospin {
+    position: fixed;
+    display: block;
+    width: 60px;
+    margin-left: calc((100vw - 60px) / 2);
+    margin-top: calc((100vh - 180px) / 2);
+  }
 }
 
 @media (max-width: 399px) {
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 90px;
+  }
+  .featured-casino-text {
+    font-size: 12px !important;
+  }
+  .home-dashboard-p {
+    font-size: 18px !important;
+  }
+  .home-dashboard-h3 {
+    font-size: 48px !important;
+  }
+  .mobile-menu-item-1,
+  .mobile-menu-item-2 {
+    font-size: 18px !important;
   }
 }
 
