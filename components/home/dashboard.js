@@ -115,14 +115,14 @@ class Dashboard extends React.Component {
                 </Button>
                 <Button color='blue' className="play-shimmer"
                 target="_blank"
-                href="https://how.decentral.games"
+                href="https://docs.decentral.games/getting-started"
                 >
                   HOW TO PLAY
                 </Button>
               </div>
             :
               <Button color='blue' className="play-shimmer"
-              href="https://how.decentral.games"
+              href="https://docs.decentral.games/getting-started"
               target="_blank"
               >
                 HOW TO PLAY
