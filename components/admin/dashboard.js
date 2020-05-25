@@ -60,7 +60,10 @@ class Dashboard extends React.Component {
 
   async getUserData() {
     this.setState({ isRunningTransaction: true });
-    this.verifyNetwork();
+
+    // this.verifyNetwork();
+    await this.getTokenBalance();
+
     this.getEthBalance();
 
     // Get Mana Slot Contract Data
@@ -105,14 +108,10 @@ class Dashboard extends React.Component {
     });
   };
 
-  getTokenBalance = async (isMatic) => {
+  getTokenBalance = async () => {
     try {
       var amountSlot, amountRoulette;
 
-      // if (isMatic)
-      //   amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
-      // else
-      //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
       amountSlot = await Global.balanceOfToken(
         'matic',
         this.maticWeb3,
@@ -159,17 +158,17 @@ class Dashboard extends React.Component {
     }
   };
 
-  verifyNetwork = () => {
-    window.web3.version.getNetwork(async (err, network) => {
-      if (network === Global.MATIC_NETWORK_ID) {
-        this.isMatic = true;
-        await this.getTokenBalance(true);
-      } else {
-        this.isMatic = false;
-        await this.getTokenBalance(false);
-      }
-    });
-  };
+  // verifyNetwork = () => {
+  //   window.web3.version.getNetwork(async (err, network) => {
+  //     if (network === Global.MATIC_NETWORK_ID) {
+  //       this.isMatic = true;
+  //       await this.getTokenBalance(true);
+  //     } else {
+  //       this.isMatic = false;
+  //       await this.getTokenBalance(false);
+  //     }
+  //   });
+  // };
 
   onDeposit = () => {
     this.props.history.push('/adeposit/');

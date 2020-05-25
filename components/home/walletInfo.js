@@ -46,15 +46,7 @@ class WalletInfo extends React.Component {
   }
 
   async getUserData() {
-    // this.verifyNetwork();
-
-    // await Global.delay(5000);
-
-    // console.log('foo foo foo...');
-    // console.log('matic token: ' + Global.MATIC_TOKEN);
-
     await this.getTokenBalance();
-
     await this.getUserName();
   }
 

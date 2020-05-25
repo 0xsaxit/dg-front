@@ -15,32 +15,33 @@ async function depositTokenToMatic(
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start');
 
-    console.log(tokenAddress);
-    console.log(amount);
-    console.log(userAddress);
-    // console.log(web3);
-
-    console.log(Global.DEPOSITMANAGER_ADDRESS);
+    console.log('token address: ' + tokenAddress);
+    console.log('amount: ' + amount);
+    console.log('user address: ' + userAddress);
+    console.log(
+      'rootchain manager address: ' + Global.ROOTCHAINMANAGER_ADDRESS
+    );
+    console.log('gass limit: ' + Global.GAS_LIMIT);
 
     try {
       // const ROOTCHAIN_CONTRACT = web3.eth
       //   .contract(RootChain.abi)
       //   .at(ROOTCHAIN_ADDRESS);
 
-      const DEPOSITMANAGER_CONTRACT = web3Default.eth
+      const ROOTCHAINMANAGER_CONTRACT = web3Default.eth
         .contract(ABIDepositManager)
-        .at(Global.DEPOSITMANAGER_ADDRESS);
+        .at(Global.ROOTCHAINMANAGER_ADDRESS);
 
       // ROOTCHAIN_CONTRACT.deposit(
 
-      DEPOSITMANAGER_CONTRACT.depositERC20ForUser(
+      ROOTCHAINMANAGER_CONTRACT.depositERC20ForUser(
         tokenAddress,
         userAddress,
         amount,
         {
           from: userAddress,
-          gasLimit: web3Default.toHex(GAS_LIMIT * 20),
-          gasPrice: web3Default.toHex('80000000000'),
+          gasLimit: web3Default.toHex(Global.GAS_LIMIT),
+          gasPrice: web3Default.toHex('20000000000'),
         },
         async function (err, hash) {
           if (err) {

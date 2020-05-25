@@ -46,7 +46,8 @@ class WalletOverlay extends React.Component {
   }
 
   async getUserData() {
-    this.verifyNetwork();
+    // this.verifyNetwork();
+    await this.getTokenBalance();
     await this.getUserName();
   }
 
@@ -84,14 +85,10 @@ class WalletOverlay extends React.Component {
     }
   };
 
-  getTokenBalance = async (isMatic) => {
+  getTokenBalance = async () => {
     try {
       var amount;
 
-      // if (isMatic)
-      //   amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
-      // else
-      //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
       amount = await Global.balanceOfToken('matic', this.maticWeb3);
       this.setState({
         tokenBalance: window.web3
@@ -125,19 +122,19 @@ class WalletOverlay extends React.Component {
     }
   };
 
-  verifyNetwork = () => {
-    if (window.web3) {
-      window.web3.version.getNetwork(async (err, network) => {
-        if (network === Global.MATIC_NETWORK_ID) {
-          this.isMatic = true;
-          await this.getTokenBalance(true);
-        } else {
-          this.isMatic = false;
-          await this.getTokenBalance(false);
-        }
-      });
-    }
-  };
+  // verifyNetwork = () => {
+  //   if (window.web3) {
+  //     window.web3.version.getNetwork(async (err, network) => {
+  //       if (network === Global.MATIC_NETWORK_ID) {
+  //         this.isMatic = true;
+  //         await this.getTokenBalance(true);
+  //       } else {
+  //         this.isMatic = false;
+  //         await this.getTokenBalance(false);
+  //       }
+  //     });
+  //   }
+  // };
 
   render() {
     const data = [

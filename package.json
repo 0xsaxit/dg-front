@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@biconomy/mexa": "^1.5.10",
+    "@maticnetwork/maticjs": "^2.0.0-beta.12",
     "abi-decoder": "^2.2.2",
     "babel-loader": "^8.0.5",
     "base-64": "^0.1.0",
@@ -35,6 +36,7 @@
     "next-images": "^1.4.0",
     "next-seo": "^4.5.0",
     "nextjs-redirect": "^2.0.1",
+    "npm": "^6.14.5",
     "react": "^16.8.1",
     "react-countup": "^4.3.3",
     "react-device-detect": "^1.7.5",

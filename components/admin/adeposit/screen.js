@@ -82,7 +82,7 @@ class Deposit extends React.Component {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       var amount_wei = ((this.state.amount / UNIT) * Global.FACTOR).toString();
       var allowed_amount = await Global.getAllowedToken(
-        Global.MATIC_TOKEN,
+        Global.MATIC_TOKEN_ADDRESS,
         Global.TREASURY_SLOTS_ADDRESS,
         USER_ADDRESS
       );
@@ -90,20 +90,20 @@ class Deposit extends React.Component {
       console.log(allowed_amount);
       if (allowed_amount == 0)
         await Global.approveToken(
-          Global.MATIC_TOKEN,
+          'matic',
           Global.MAX_AMOUNT,
           Global.TREASURY_SLOTS_ADDRESS,
           USER_ADDRESS
         );
       else if (allowed_amount < this.state.amount / UNIT) {
         await Global.approveToken(
-          Global.MATIC_TOKEN,
+          'matic',
           0,
           Global.TREASURY_SLOTS_ADDRESS,
           USER_ADDRESS
         );
         await Global.approveToken(
-          Global.MATIC_TOKEN,
+          'matic',
           Global.MAX_AMOUNT,
           Global.TREASURY_SLOTS_ADDRESS,
           USER_ADDRESS

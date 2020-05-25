@@ -319,7 +319,7 @@ class Withdraw extends React.Component {
 
       // init withdrawing
       let txHash = await ModalFunctions.startWithdrawTokenFromMatic(
-        Global.MATIC_TOKEN,
+        Global.MATIC_TOKEN_ADDRESS,
         amount_wei,
         USER_ADDRESS
       );
@@ -506,7 +506,7 @@ class Withdraw extends React.Component {
 
       // exit withdrawing
       let ret = await ModalFunctions.processExits(
-        Global.ROPSTEN_TOKEN,
+        Global.ROPSTEN_TOKEN_ADDRESS,
         window.web3.currentProvider.selectedAddress
       );
       if (ret == false) {

@@ -35,7 +35,10 @@ class Coin extends React.Component {
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
-    this.verifyNetwork();
+
+    // this.verifyNetwork();
+    await this.getTokenBalance();
+
     this.getEthBalance();
     await this.getUserName();
     this.getParcelID();
@@ -129,14 +132,10 @@ class Coin extends React.Component {
     }
   };
 
-  getTokenBalance = async (isMatic) => {
+  getTokenBalance = async () => {
     try {
       var amount;
 
-      // if (isMatic)
-      //   amount = await Global.balanceOfToken(Global.MATIC_TOKEN);
-      // else
-      //   amount = await Global.balanceOfToken(Global.ROPSTEN_TOKEN);
       amount = await Global.balanceOfToken('matic', this.maticWeb3);
       this.setState({
         tokenBalance: window.web3.fromWei(amount, 'ether').toFixed(0),
@@ -167,17 +166,18 @@ class Coin extends React.Component {
     }
   };
 
-  verifyNetwork = () => {
-    window.web3.version.getNetwork(async (err, network) => {
-      if (network === Global.MATIC_NETWORK_ID) {
-        this.isMatic = true;
-        await this.getTokenBalance(true);
-      } else {
-        this.isMatic = false;
-        await this.getTokenBalance(false);
-      }
-    });
-  };
+  // verifyNetwork = () => {
+  //   window.web3.version.getNetwork(async (err, network) => {
+  //     if (network === Global.MATIC_NETWORK_ID) {
+  //       this.isMatic = true;
+  //       await this.getTokenBalance(true);
+  //     } else {
+  //       this.isMatic = false;
+  //       await this.getTokenBalance(false);
+  //     }
+  //   });
+  // };
+
   myNFTs = () => {
     this.setState({ NFTstate: 0 });
   };
