@@ -97,7 +97,10 @@ class Deposit extends React.Component {
     // maticPOSClient.parentProvider = web3.currentProvider;
 
     // set addresses with data returned by server REST API
-    tokenAddress = Global.MATIC_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
+
+    // tokenAddress = Global.MATIC_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
+    tokenAddress = Global.ROPSTEN_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
+
     domainData.verifyingContract = tokenAddress;
     spenderAddress = Global.MASTER_CONTRACT_ADDRESS; // '0x5C66D24105D1d5F0E712B47C75c8ed6b6a00c3C5'; Global.MASTER_CONTRACT_ADDRESS();
 
@@ -645,7 +648,7 @@ class Deposit extends React.Component {
       return content;
     }
 
-    if (this.state.userStepValue == 4) {
+    if (this.state.userStepValue == 44) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // authorize transfers to Matic Network, then deposit MANA to Matic Network
@@ -673,7 +676,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 5) {
+    } else if (this.state.userStepValue == 55) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -700,7 +703,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 6) {
+    } else if (this.state.userStepValue == 4 || 5 || 6) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // user has finished initial authorization/deposit process and wishes to deposit more MANA to Matic Network
