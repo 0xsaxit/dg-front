@@ -1,16 +1,12 @@
 import ABIParent from './ABI/ABIParent';
-// import StandardToken from './ABI/StandardToken';
 import ABIFAKEMana from './ABI/ABIFAKEMana';
-
-const MaticPOSClient = require('@maticnetwork/maticjs').MaticPOSClient;
+import { MaticPOSClient } from '@maticnetwork/maticjs';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // set global constant values
 const API_BASE_URL = 'https://api.decentral.games';
 const BASE_URL = 'https://api.decentral.games';
-// const SYNCER_URL = 'https://matic-syncer2.api.matic.network/api/v1';
-// const WATCHER_URL = 'https://ropsten-watcher2.api.matic.network/api/v1';
 const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 const GAS_LIMIT = '900000';
@@ -41,10 +37,8 @@ let TREASURY_ROULETTE_ADDRESS = '';
 let TREASURY_BACKGAMMON = '';
 let TREASURY_BLACKJACK = '';
 let ROOTCHAIN_ADDRESS = '';
-//let DEPOSITMANAGER_ADDRESS = ''; // ***********
 let ROOTCHAINMANAGER_ADDRESS = '';
 let WITHDRAWMANAGER_ADDRESS = '';
-
 let maticPOSClient;
 
 async function init() {
@@ -53,21 +47,15 @@ async function init() {
 
   RELAY_ADDR = await json.WORKER_WALLET_ADDRESS; // *************
   MAINNET_TOKEN_ADDRESS = await json.MAINNET_TOKEN_ADDRESS;
-
-  // ROPSTEN_TOKEN_ADDRESS = '0x5217e41200508b5A208A8D8736602d637213F827'; // await json.ROPSTEN_TOKEN_ADDRESS;
-  ROPSTEN_TOKEN_ADDRESS = '0x3486DC2Bf6d45Da6E0bb96a9999a4744F9a6B421'; // await json.ROPSTEN_TOKEN_ADDRESS;
-
-  // MATIC_TOKEN_ADDRESS = await json.MATIC_TOKEN_ADDRESS;
-  MATIC_TOKEN_ADDRESS = '0xb6e5aaaE04acb59f2e7D951a9bC31855Ca2813aD';
-
+  ROPSTEN_TOKEN_ADDRESS = await json.ROPSTEN_TOKEN_ADDRESS; // '0x3486DC2Bf6d45Da6E0bb96a9999a4744F9a6B421'; //
+  MATIC_TOKEN_ADDRESS = await json.MATIC_TOKEN_ADDRESS; // '0xb6e5aaaE04acb59f2e7D951a9bC31855Ca2813aD'; //
   MASTER_CONTRACT_ADDRESS = await json.PARENT_CONTRACT_ADDRESS; // **************
   TREASURY_SLOTS_ADDRESS = await json.TREASURY_SLOTS_ADDRESS;
   TREASURY_ROULETTE_ADDRESS = await json.TREASURY_ROULETTE_ADDRESS;
   TREASURY_BACKGAMMON = await json.TREASURY_BACKGAMMON;
   TREASURY_BLACKJACK = await json.TREASURY_BLACKJACK;
   ROOTCHAIN_ADDRESS = await json.ROOTCHAIN_ADDRESS;
-  // DEPOSITMANAGER_ADDRESS = await json.DEPOSITMANAGER_ADDRESS; // ***********
-  ROOTCHAINMANAGER_ADDRESS = '0xC5C4a4086FE913b5D525915404C88d12b4031CC0';
+  ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS; // '0xC5C4a4086FE913b5D525915404C88d12b4031CC0';
   WITHDRAWMANAGER_ADDRESS = await json.WITHDRAWMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDR);
@@ -80,7 +68,6 @@ async function init() {
   console.log('TREASURY_BACKGAMMON: ' + TREASURY_BACKGAMMON);
   console.log('TREASURY_BLACKJACK: ' + TREASURY_BLACKJACK);
   console.log('ROOTCHAIN_ADDRESS: ' + ROOTCHAIN_ADDRESS);
-  // console.log('DEPOSITMANAGER_ADDRESS: ' + DEPOSITMANAGER_ADDRESS); // *******************
   console.log('ROOTCHAINMANAGER_ADDRESS: ' + ROOTCHAINMANAGER_ADDRESS);
   console.log('WITHDRAWMANAGER_ADDRESS: ' + WITHDRAWMANAGER_ADDRESS);
 
@@ -91,13 +78,8 @@ async function init() {
     maticProvider: MATIC_URL, // config.MATIC_PROVIDER,
     parentProvider: window.ethereum, // web3.currentProvider, // config.PARENT_PROVIDER,
     rootChain: ROOTCHAIN_ADDRESS,
-    posRootChainManager: '0xC5C4a4086FE913b5D525915404C88d12b4031CC0', // config.POS_ROOT_CHAIN_MANAGER_ADDRESS,
+    posRootChainManager: ROOTCHAINMANAGER_ADDRESS, // '0xC5C4a4086FE913b5D525915404C88d12b4031CC0'
   });
-
-  // maticProvider: config.MATIC_PROVIDER,
-  // parentProvider: window.ethereum,
-  // rootChain: PLASMA_ROOT_CHAIN_ADDRESS,
-  // posRootChainManager: ROOT_CHAIN_MANAGER_ADDRESS,
 }
 init();
 
@@ -110,74 +92,6 @@ function getAddresses() {
     },
   });
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-// fetch syncer and watcher data
-// function _apiCall(data = {}) {
-//   const headers = data.headers || {};
-
-//   const queryParams =
-//     data.query &&
-//     Object.keys(data.query || {})
-//       .map(function (k) {
-//         return encodeURIComponent(k) + '=' + encodeURIComponent(data.query[k]);
-//       })
-//       .join('&');
-
-//   const url = `${data.url}?${queryParams || ''}`;
-
-//   return fetch(url, {
-//     method: data.method || (data.body ? 'POST' : 'GET'),
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Accept: 'application/json',
-//       ...headers,
-//     },
-//     body: data.body ? JSON.stringify(data.body) : null,
-//   }).then((res) => {
-//     if (!res.ok) {
-//       const err = new Error(res.statusText || 'Unknown error occurred');
-//       err.response = res;
-//       throw err;
-//     }
-//     return res.json();
-//   });
-// }
-
-// async function getTxProof(txId) {
-//   const { proof: txProof } = await _apiCall({
-//     url: `${SYNCER_URL}/tx/${txId}/proof`,
-//   });
-
-//   return txProof;
-// }
-
-// async function getReceiptProof(txId) {
-//   const { proof: receiptProof } = await _apiCall({
-//     url: `${SYNCER_URL}/tx/${txId}/receipt/proof`,
-//   });
-
-//   return receiptProof;
-// }
-
-// function getHeaderObject(blockNumber) {
-//   return _apiCall({
-//     url: `${WATCHER_URL}/header/included/${blockNumber}`,
-//   });
-// }
-
-// async function getHeaderProof(blockNumber, header) {
-//   const { proof: headerProof } = await _apiCall({
-//     url: `${SYNCER_URL}/block/${blockNumber}/proof`,
-//     query: {
-//       start: +header.start,
-//       end: +header.end,
-//     },
-//   });
-
-//   return headerProof;
-// }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -273,10 +187,10 @@ async function approveToken(
 
   return new Promise(async (resolve, reject) => {
     console.log('Approving contract');
-
     console.log('token address: ' + tokenAddress);
     console.log('amount: ' + amount);
     console.log('user address: ' + userAddress);
+    console.log('rootchain manager address: ' + ROOTCHAINMANAGER_ADDRESS);
     console.log(web3Default);
 
     try {
@@ -331,11 +245,9 @@ async function depositTokenToMatic(
     }
 
     console.log('Deposit start');
-
     console.log('token address: ' + tokenAddress);
     console.log('amount: ' + amount);
     console.log('user address: ' + userAddress);
-    console.log('rootchain manager address: ' + ROOTCHAINMANAGER_ADDRESS);
     console.log('gass limit: ' + GAS_LIMIT);
 
     try {
@@ -509,6 +421,86 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
+function startWithdrawTokenFromMatic(token, amount, user_address) {
+  return new Promise(async (resolve, reject) => {
+    console.log('Withdraw starting');
+    try {
+      const TOKEN_CONTRACT = window.web3.eth
+        .contract(ChildERC20Token.abi)
+        .at(token);
+
+      TOKEN_CONTRACT.withdraw(
+        amount,
+        {
+          from: user_address,
+          gasLimit: window.web3.toHex(Global.GAS_LIMIT),
+          gasPrice: window.web3.toHex('20000000000'),
+        },
+        async function (err, hash) {
+          if (err) {
+            console.log('Withdraw starting failed', err);
+            reject(false);
+          }
+
+          var ret = await getConfirmedTx(hash);
+          if (ret.status == '0x0') {
+            console.log('Withdraw starting transaction failed');
+            resolve(false);
+          } else {
+            console.log('Withdraw starting done');
+            resolve(hash);
+          }
+        }
+      );
+    } catch (error) {
+      console.log('Withdraw starting failed', error);
+      reject(false);
+    }
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+async function processExits(rootTokenAddress, user_address) {
+  return new Promise(async (resolve, reject) => {
+    console.log('Withdrawing exit');
+    try {
+      const WITHDRAWMANAGER_CONTRACT = window.web3.eth
+        .contract(WithdrawManager.abi)
+        .at(WITHDRAWMANAGER_ADDRESS);
+
+      WITHDRAWMANAGER_CONTRACT.processExits(
+        rootTokenAddress,
+        {
+          from: user_address,
+          gasLimit: window.web3.toHex(Global.GAS_LIMIT),
+          gasPrice: window.web3.toHex('20000000000'),
+        },
+        async function (err, hash) {
+          if (err) {
+            console.log('Withdraw exit failed', err);
+            reject(false);
+          }
+
+          var ret = await getConfirmedTx(hash);
+          if (ret.status == '0x0') {
+            console.log('Withdraw exit transaction failed');
+            resolve(false);
+          } else {
+            console.log('Withdraw exit done');
+            resolve(hash);
+          }
+        }
+      );
+    } catch (error) {
+      console.log('Withdrawing exit', error);
+      reject(false);
+    }
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // return confirmation hash
 function getConfirmedTx(txHash) {
   return new Promise(async (resolve, reject) => {
@@ -531,28 +523,6 @@ function getConfirmedTx(txHash) {
   });
 }
 
-// function getMappedToken(token) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('getting Mapped Token');
-//     try {
-//       const DEPOSIT_CONTRACT = window.web3.eth
-//         .contract(DepositManager.abi)
-//         .at(DEPOSITMANAGER_ADDRESS);
-//       DEPOSIT_CONTRACT.tokens(token, async function (err, address) {
-//         if (err) {
-//           console.log('getting failed', err);
-//           reject(false);
-//         }
-
-//         resolve(address);
-//       });
-//     } catch (error) {
-//       console.log('getting failed', error);
-//       reject(false);
-//     }
-//   });
-// }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 export default {
@@ -567,7 +537,6 @@ export default {
   TREASURY_SLOTS_ADDRESS,
   TREASURY_ROULETTE_ADDRESS,
   ROOTCHAIN_ADDRESS,
-  // DEPOSITMANAGER_ADDRESS,
   PARENT_NETWORK_ID,
   MATIC_NETWORK_ID,
   MATIC_URL,
@@ -582,5 +551,7 @@ export default {
   getTokensGame,
   depositToParent,
   withdrawFromParent,
+  startWithdrawTokenFromMatic,
+  processExits,
   depositTokenToMatic,
 };

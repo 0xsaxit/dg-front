@@ -8,7 +8,19 @@ import DepositContent from './DepositContent';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
 
 import Global from '../constant';
-import ModalFunctions from './ModalFunctions';
+// import ModalFunctions from './ModalFunctions';
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// create MaticPOSClient object to deposit tokens from Main net to Matic Network
+// const MaticPOSClient = require('@maticnetwork/maticjs').MaticPOSClient;
+
+// const maticPOSClient = new MaticPOSClient({
+//   maticProvider: Global.MATIC_URL, // config.MATIC_PROVIDER,
+//   parentProvider: '', // config.PARENT_PROVIDER,
+//   rootChain: config.PLASMA_ROOTCHAIN_ADDRESS,
+//   posRootChainManager: '0xC5C4a4086FE913b5D525915404C88d12b4031CC0', // config.POS_ROOT_CHAIN_MANAGER_ADDRESS,
+// });
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -77,12 +89,18 @@ class Deposit extends React.Component {
       new window.Web3.providers.HttpProvider(maticProvider)
     );
     await this.getTokenBalance();
-    const verifyStatus = await this.checkUserVerifyStep();
+    const verifyStatus = await this.checkUserVerify();
 
     console.log('userStepValue status: ' + verifyStatus);
 
+    // set MaticPOSClient parentProvider (web3) for MaticPOSClient object
+    // maticPOSClient.parentProvider = web3.currentProvider;
+
     // set addresses with data returned by server REST API
-    tokenAddress = Global.MATIC_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
+
+    // tokenAddress = Global.MATIC_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
+    tokenAddress = Global.ROPSTEN_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
+
     domainData.verifyingContract = tokenAddress;
     spenderAddress = Global.MASTER_CONTRACT_ADDRESS; // '0x5C66D24105D1d5F0E712B47C75c8ed6b6a00c3C5'; Global.MASTER_CONTRACT_ADDRESS();
 
@@ -127,9 +145,9 @@ class Deposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  checkUserVerifyStep = async () => {
+  checkUserVerify = async () => {
     try {
-      const response = await this.getUserVerify(); // get user status
+      const response = await this.getUserStatus();
       const json = await response.json();
 
       if (json.status === 'ok') {
@@ -173,7 +191,7 @@ class Deposit extends React.Component {
     return false;
   };
 
-  getUserVerify = () => {
+  getUserStatus = () => {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
@@ -215,46 +233,70 @@ class Deposit extends React.Component {
   depositToMatic = async () => {
     try {
       this.props.showSpinner();
-      const amountWei = (this.state.amount * Global.FACTOR).toString();
+
+      // const amountWei = (this.state.amount * Global.FACTOR).toString();
+      const amountWei = web3.utils.toWei(this.state.amount + '');
 
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
-        Global.ROPSTEN_TOKEN,
-        Global.DEPOSITMANAGER_ADDRESS,
+        'ropsten',
         this.USER_ADDRESS
       );
       allowedAmount = allowedAmount / Global.FACTOR;
 
-      console.log('allowed amount: ' + allowedAmount);
+      console.log('allowed amount 1: ' + allowedAmount);
 
       // if not allowed, or lower than necessary amount, approve user funds for Matic contract to spend
+      // if (allowedAmount == 0)
+      //   await Global.approveToken(
+      //     Global.ROPSTEN_TOKEN_ADDRESS,
+      //     Global.MAX_AMOUNT,
+      //     Global.DEPOSITMANAGER_ADDRESS,
+      //     this.USER_ADDRESS
+      //   );
+      // else if (allowedAmount < this.state.amount) {
+      //   await Global.approveToken(
+      //     Global.ROPSTEN_TOKEN_ADDRESS,
+      //     0,
+      //     Global.DEPOSITMANAGER_ADDRESS,
+      //     this.USER_ADDRESS
+      //   );
+      //   await Global.approveToken(
+      //     Global.ROPSTEN_TOKEN_ADDRESS,
+      //     Global.MAX_AMOUNT,
+      //     Global.DEPOSITMANAGER_ADDRESS,
+      //     this.USER_ADDRESS
+      //   );
+      // }
+
       if (allowedAmount == 0)
         await Global.approveToken(
-          Global.ROPSTEN_TOKEN,
+          'ropsten',
           Global.MAX_AMOUNT,
-          Global.DEPOSITMANAGER_ADDRESS,
           this.USER_ADDRESS
         );
       else if (allowedAmount < this.state.amount) {
+        await Global.approveToken('ropsten', 0, this.USER_ADDRESS);
         await Global.approveToken(
-          Global.ROPSTEN_TOKEN,
-          0,
-          Global.DEPOSITMANAGER_ADDRESS,
-          this.USER_ADDRESS
-        );
-        await Global.approveToken(
-          Global.ROPSTEN_TOKEN,
+          'ropsten',
           Global.MAX_AMOUNT,
-          Global.DEPOSITMANAGER_ADDRESS,
           this.USER_ADDRESS
         );
       }
 
-      console.log('maximum amount: ' + Global.MAX_AMOUNT);
+      // console.log('maximum amount: ' + Global.MAX_AMOUNT);
+      // check the amount of tokens that user has allowed Matic contract to spend
+      let allowedAmount2 = await Global.getAllowedToken(
+        'ropsten',
+        this.USER_ADDRESS
+      );
+      allowedAmount2 = allowedAmount2 / Global.FACTOR;
+
+      console.log('allowed amount 2: ' + allowedAmount2);
 
       // finally deposit MANA from the main net to Matic and update status in database
-      const txHash = await ModalFunctions.depositTokenToMatic(
-        Global.ROPSTEN_TOKEN,
+      const txHash = await Global.depositTokenToMatic(
+        'ropsten',
         amountWei,
         this.USER_ADDRESS
       );
@@ -606,7 +648,7 @@ class Deposit extends React.Component {
       return content;
     }
 
-    if (this.state.userStepValue == 4) {
+    if (this.state.userStepValue == 44) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // authorize transfers to Matic Network, then deposit MANA to Matic Network
@@ -634,7 +676,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 5) {
+    } else if (this.state.userStepValue == 55) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -661,7 +703,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 6) {
+    } else if (this.state.userStepValue == 4 || 5 || 6) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // user has finished initial authorization/deposit process and wishes to deposit more MANA to Matic Network

@@ -16,11 +16,12 @@ import {
   Divider,
 } from 'semantic-ui-react';
 // ---------------------------------------------------------------------
-
 import dynamic from 'next/dynamic';
-let Global;
+import Global from '../constant';
 
-import ModalFunctions from './ModalFunctions';
+// let Global;
+
+// import ModalFunctions from './ModalFunctions';
 
 var USER_ADDRESS = '';
 var UNIT = 1;
@@ -106,7 +107,8 @@ class Withdraw extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constant').default;
+    // Global = require('../constant').default;
+
     try {
       if (!window.web3.currentProvider.selectedAddress) {
         window.web3 = new window.Web3(window.ethereum);
@@ -318,7 +320,7 @@ class Withdraw extends React.Component {
       var amount_wei = ((amount / UNIT) * Global.FACTOR).toString();
 
       // init withdrawing
-      let txHash = await ModalFunctions.startWithdrawTokenFromMatic(
+      let txHash = await Global.startWithdrawTokenFromMatic(
         Global.MATIC_TOKEN_ADDRESS,
         amount_wei,
         USER_ADDRESS
@@ -505,7 +507,7 @@ class Withdraw extends React.Component {
       }
 
       // exit withdrawing
-      let ret = await ModalFunctions.processExits(
+      let ret = await Global.processExits(
         Global.ROPSTEN_TOKEN_ADDRESS,
         window.web3.currentProvider.selectedAddress
       );

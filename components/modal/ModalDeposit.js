@@ -3,31 +3,15 @@ import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
-
-// import ABIFAKEMana from '../ABI/NADummyToken.json';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
-
 import Global from '../constant';
-// import ModalFunctions from './ModalFunctions';
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-// create MaticPOSClient object to deposit tokens from Main net to Matic Network
-// const MaticPOSClient = require('@maticnetwork/maticjs').MaticPOSClient;
-
-// const maticPOSClient = new MaticPOSClient({
-//   maticProvider: Global.MATIC_URL, // config.MATIC_PROVIDER,
-//   parentProvider: '', // config.PARENT_PROVIDER,
-//   rootChain: config.PLASMA_ROOTCHAIN_ADDRESS,
-//   posRootChainManager: '0xC5C4a4086FE913b5D525915404C88d12b4031CC0', // config.POS_ROOT_CHAIN_MANAGER_ADDRESS,
-// });
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // initialize Biconomy API constants and define parameters
 const Web3 = require('web3');
 const sigUtil = require('eth-sig-util');
-const biconomyAPIKey = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732'; // 'yhgD9_k2A.a88e1bb4-056c-4bb0-ac52-5d917ce8c7bc';
+const biconomyAPIKey = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
 const authorizeAmount = Global.MAX_AMOUNT;
 const parentChainId = Global.PARENT_NETWORK_ID;
 const maticProvider = Global.MATIC_URL;
@@ -54,7 +38,7 @@ const metaTransactionType = [
 let domainData = {
   name: 'MetaToken',
   version: '1',
-  chainId: '3',
+  chainId: parentChainId, // '3',
   verifyingContract: '',
 };
 
@@ -93,20 +77,13 @@ class Deposit extends React.Component {
 
     console.log('userStepValue status: ' + verifyStatus);
 
-    // set MaticPOSClient parentProvider (web3) for MaticPOSClient object
-    // maticPOSClient.parentProvider = web3.currentProvider;
-
     // set addresses with data returned by server REST API
-
-    // tokenAddress = Global.MATIC_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
-    tokenAddress = Global.ROPSTEN_TOKEN_ADDRESS; // '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4'; // Global.MATIC_TOKEN_ADDRESS;
-
+    tokenAddress = Global.ROPSTEN_TOKEN_ADDRESS; // Global.MATIC_TOKEN_ADDRESS; ***********************************************
     domainData.verifyingContract = tokenAddress;
-    spenderAddress = Global.MASTER_CONTRACT_ADDRESS; // '0x5C66D24105D1d5F0E712B47C75c8ed6b6a00c3C5'; Global.MASTER_CONTRACT_ADDRESS();
+    spenderAddress = Global.MASTER_CONTRACT_ADDRESS;
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
-
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(maticProvider),
       {
@@ -234,9 +211,6 @@ class Deposit extends React.Component {
     try {
       this.props.showSpinner();
 
-      // const amountWei = (this.state.amount * Global.FACTOR).toString();
-      const amountWei = web3.utils.toWei(this.state.amount + '');
-
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
         'ropsten',
@@ -245,29 +219,6 @@ class Deposit extends React.Component {
       allowedAmount = allowedAmount / Global.FACTOR;
 
       console.log('allowed amount 1: ' + allowedAmount);
-
-      // if not allowed, or lower than necessary amount, approve user funds for Matic contract to spend
-      // if (allowedAmount == 0)
-      //   await Global.approveToken(
-      //     Global.ROPSTEN_TOKEN_ADDRESS,
-      //     Global.MAX_AMOUNT,
-      //     Global.DEPOSITMANAGER_ADDRESS,
-      //     this.USER_ADDRESS
-      //   );
-      // else if (allowedAmount < this.state.amount) {
-      //   await Global.approveToken(
-      //     Global.ROPSTEN_TOKEN_ADDRESS,
-      //     0,
-      //     Global.DEPOSITMANAGER_ADDRESS,
-      //     this.USER_ADDRESS
-      //   );
-      //   await Global.approveToken(
-      //     Global.ROPSTEN_TOKEN_ADDRESS,
-      //     Global.MAX_AMOUNT,
-      //     Global.DEPOSITMANAGER_ADDRESS,
-      //     this.USER_ADDRESS
-      //   );
-      // }
 
       if (allowedAmount == 0)
         await Global.approveToken(
@@ -284,7 +235,6 @@ class Deposit extends React.Component {
         );
       }
 
-      // console.log('maximum amount: ' + Global.MAX_AMOUNT);
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount2 = await Global.getAllowedToken(
         'ropsten',
@@ -295,6 +245,7 @@ class Deposit extends React.Component {
       console.log('allowed amount 2: ' + allowedAmount2);
 
       // finally deposit MANA from the main net to Matic and update status in database
+      const amountWei = web3.utils.toWei(this.state.amount + '');
       const txHash = await Global.depositTokenToMatic(
         'ropsten',
         amountWei,
