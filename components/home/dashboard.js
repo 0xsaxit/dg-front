@@ -99,7 +99,7 @@ class Dashboard extends React.Component {
             <Fade bottom distance="20px" duration="600">
               <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
               <h3 className="home-dashboard-h3">Tominoya</h3>
-              <p className="home-dashboard-p">Sporting a Japanese architecture and aesthetic, Tominoya is a virtual casino in Decentraland, a decentralized virtual world. Enjoy non-custodial, pseudo-anonymous, and provably fair crypto gameplay with your friends.</p>
+              <p className="home-dashboard-p">Sporting a Japanese aesthetic, Tominoya is a virtual casino in Decentraland, a decentralized virtual world. Enjoy non-custodial, pseudo-anonymous, and provably fair crypto gameplay with your friends.</p>
               <p className="home-dashboard-p">Games: Slots, Roulette</p>
             </Fade>
           </div>
