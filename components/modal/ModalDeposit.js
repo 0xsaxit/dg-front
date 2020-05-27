@@ -236,29 +236,16 @@ class Deposit extends React.Component {
         );
       }
 
-      // check the amount of tokens that user has allowed Matic contract to spend
-      // let allowedAmount2 = await Global.getAllowedToken(
-      //   'ropsten',
-      //   this.USER_ADDRESS
-      // );
-      // allowedAmount2 = allowedAmount2 / Global.FACTOR;
-
-      // console.log('approved for: ' + Global.MAX_AMOUNT);
-
-      // finally deposit MANA from the main net to Matic and update status in database
-      // const amountWei = web3.utils.toWei(this.state.amount + '');
-
       const txHash = await Global.depositTokenToMatic(
         'ropsten',
         amountWei,
         this.USER_ADDRESS
       );
 
-      // console.log('transaction hash: ');
-      // console.log(txHash);
+      console.log('tx hash: ' + txHash);
 
       if (txHash != false) {
-        console.log('tx hash: ' + txHash);
+        // console.log('tx hash: ' + txHash);
 
         let ret = await this.updateHistory(
           this.state.amount,
@@ -267,16 +254,13 @@ class Deposit extends React.Component {
           txHash
         );
 
-        if (!ret) {
-          console.log('network error');
-          this.setState({ isValidDeposit: 1 }); // invalid deposit
-          this.props.hideSpinner();
-
-          console.log('invalid deposit');
-          return;
-        }
+        if (!ret) this.networkErrror(); // network error
 
         ret = await Global.getConfirmedTx(txHash); // return confirmation hash
+
+        console.log('confirmation: ');
+        console.log(ret);
+
         if (ret.status == '0x0') {
           ret = await this.updateHistory(
             this.state.amount,
@@ -295,14 +279,7 @@ class Deposit extends React.Component {
           console.log('updated database');
         }
 
-        if (!ret) {
-          console.log('network error');
-          this.setState({ isValidDeposit: 1 }); // invalid deposit
-          this.props.hideSpinner();
-
-          console.log('invalid deposit');
-          return;
-        }
+        if (!ret) this.networkError(); // network error
 
         if (this.state.userStepValue < 6) {
           console.log('updating step value to 5');
@@ -318,9 +295,9 @@ class Deposit extends React.Component {
         this.setState({ isValidDeposit: 2 }); // valid deposit
         this.props.hideSpinner();
 
-        console.log('valid deposit');
+        // console.log('valid deposit');
 
-        // return;
+        return; // *******************************
       }
     } catch (err) {
       console.log(err);
@@ -329,6 +306,15 @@ class Deposit extends React.Component {
 
     // this.setState({ isValidDeposit: 1 }); // invalid deposit
     this.props.hideSpinner();
+  };
+
+  networkError = () => {
+    console.log('network error');
+
+    this.setState({ isValidDeposit: 1 }); // invalid deposit
+    this.props.hideSpinner();
+
+    return;
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -510,6 +496,7 @@ class Deposit extends React.Component {
     } catch (error) {
       console.log(error);
     }
+
     return false;
   };
 

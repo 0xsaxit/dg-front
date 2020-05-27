@@ -122,8 +122,8 @@ function balanceOfToken(
           reject(false);
         }
 
-        resolve(amount);
         console.log('Getting done');
+        resolve(amount);
       });
     } catch (error) {
       console.log('Getting failed', error);
@@ -161,8 +161,8 @@ function getAllowedToken(network, userAddress, web3Default = window.web3) {
             reject(false);
           }
 
-          resolve(amount);
           console.log('Get allowed done');
+          resolve(amount);
         }
       );
     } catch (error) {
@@ -189,7 +189,7 @@ async function approveToken(
   }
 
   return new Promise(async (resolve, reject) => {
-    console.log('Approving contract');
+    console.log('Approve contract');
     // console.log('token address: ' + tokenAddress);
     // console.log('amount: ' + amount);
     // console.log('user address: ' + userAddress);
@@ -226,8 +226,8 @@ async function approveToken(
         // }
       );
 
-      resolve(true);
       console.log('Approve done');
+      resolve(true);
     } catch (error) {
       console.log('Approve failed: ', error);
       reject(false);
@@ -289,8 +289,9 @@ async function depositTokenToMatic(
       //   reject(false);
       // }
 
-      resolve(logs.transactionHash);
       console.log('Deposit done');
+      resolve(logs.transactionHash);
+
       // resolve(logs.transactionHash);
 
       // const id = transaction.events.PetCreated.returnValues[0];
@@ -307,7 +308,7 @@ async function depositTokenToMatic(
 // get balance from parent contract and allocated tokens from slots and roulette games
 function getBalanceParent(tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
-    console.log('get balance start');
+    console.log('Get balance start');
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -319,14 +320,15 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
         amount
       ) {
         if (err) {
-          console.log('getting balance failed', err);
+          console.log('Get balance failed', err);
           reject(false);
         }
 
+        console.log('Get balance done');
         resolve(amount);
       });
     } catch (error) {
-      console.log('getting balance failed', error);
+      console.log('Get balance failed', error);
       reject(false);
     }
   });
@@ -337,7 +339,7 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
 // get allocated tokens for specified game
 function getTokensGame(gameType, tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
-    console.log('get tokens per game start');
+    console.log('Get tokens per game start');
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -349,15 +351,16 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
         tokenName,
         async function (err, amount) {
           if (err) {
-            console.log('getting tokens per game failed', err);
+            console.log('Get tokens per game failed', err);
             reject(false);
           }
 
+          console.log('Get tokens per game done');
           resolve(amount);
         }
       );
     } catch (error) {
-      console.log('getting tokens per game failed', error);
+      console.log('Get tokens per game failed', error);
       reject(false);
     }
   });
@@ -526,7 +529,7 @@ async function processExits(rootTokenAddress, user_address) {
 // return confirmation hash
 function getConfirmedTx(txHash) {
   return new Promise(async (resolve, reject) => {
-    var finish = false;
+    let finish = false;
 
     while (!finish) {
       window.web3.eth.getTransactionReceipt(txHash, (err, res) => {
@@ -540,7 +543,7 @@ function getConfirmedTx(txHash) {
         }
       });
 
-      await delay(2000);
+      await delay(2000); // ****************************************
     }
   });
 }
