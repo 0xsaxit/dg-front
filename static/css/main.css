@@ -1634,3 +1634,16 @@ a.ui.blue.button.play-shimmer:hover,
     display: none !important;
   }
 }
+
+.transak_modal-overlay {
+  display: none !important;
+}
+
+.transak_close {
+  display: none !important;
+}
+
+#transakOnOffRampWidget {
+  height: calc(100vh - 230px) !important;
+  border-radius: 3px !important;
+}
