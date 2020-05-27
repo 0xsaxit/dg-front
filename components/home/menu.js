@@ -7,6 +7,7 @@ import { MdBookmarkBorder } from "react-icons/md";
 import { MdInfoOutline } from "react-icons/md";
 import { MdCode } from "react-icons/md";
 import { MdAutorenew } from "react-icons/md";
+import { MdCreditCard } from "react-icons/md";
 import Svgeth from '../../static/images/svg6';
 
 
@@ -46,8 +47,8 @@ class SideMenu extends React.Component {
           NFTs
         </Menu.Item> : <p></p> }
         { this.props.dashboard === true ? <Menu.Item href="/exchange" exact="true" className='sidebar-menu-text'>
-          <span> <MdAutorenew style={{ fontSize: '30px', paddingBottom: '6px' }}/></span><br />
-          Exchange
+          <span> <MdCreditCard style={{ fontSize: '32px', paddingBottom: '6px' }}/></span><br />
+          Buy Crypto
         </Menu.Item> : <p></p> }
 
         <Divider style={{ width: '71px' }}/>
