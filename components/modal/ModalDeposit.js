@@ -219,6 +219,7 @@ class Deposit extends React.Component {
       allowedAmount = allowedAmount / Global.FACTOR;
 
       console.log('allowed amount: ' + allowedAmount);
+      const amountWei = web3.utils.toWei(this.state.amount + '');
 
       if (allowedAmount == 0) {
         await Global.approveToken(
@@ -242,10 +243,11 @@ class Deposit extends React.Component {
       // );
       // allowedAmount2 = allowedAmount2 / Global.FACTOR;
 
-      console.log('approved for: ' + Global.MAX_AMOUNT);
+      // console.log('approved for: ' + Global.MAX_AMOUNT);
 
       // finally deposit MANA from the main net to Matic and update status in database
-      const amountWei = web3.utils.toWei(this.state.amount + '');
+      // const amountWei = web3.utils.toWei(this.state.amount + '');
+
       const txHash = await Global.depositTokenToMatic(
         'ropsten',
         amountWei,
@@ -604,7 +606,7 @@ class Deposit extends React.Component {
       return content;
     }
 
-    if (this.state.userStepValue == 44) {
+    if (this.state.userStepValue == 4) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // authorize transfers to Matic Network, then deposit MANA to Matic Network
@@ -632,7 +634,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 55) {
+    } else if (this.state.userStepValue == 5) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -659,7 +661,7 @@ class Deposit extends React.Component {
           </div>
         </Modal>
       );
-    } else if (this.state.userStepValue == 4 || 5 || 6) {
+    } else if (this.state.userStepValue == 6) {
       /////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////////////////////////////////////////////////////
       // user has finished initial authorization/deposit process and wishes to deposit more MANA to Matic Network

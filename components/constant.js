@@ -109,7 +109,7 @@ function balanceOfToken(
   }
 
   return new Promise(async (resolve, reject) => {
-    console.log('getting balance of Token');
+    console.log('Getting balance of Token');
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
@@ -118,14 +118,15 @@ function balanceOfToken(
 
       TOKEN_CONTRACT.balanceOf(userAddress, async function (err, amount) {
         if (err) {
-          console.log('getting failed', err);
+          console.log('Getting failed', err);
           reject(false);
         }
 
         resolve(amount);
+        console.log('Getting done');
       });
     } catch (error) {
-      console.log('getting failed', error);
+      console.log('Getting failed', error);
       reject(false);
     }
   });
@@ -134,16 +135,17 @@ function balanceOfToken(
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // returns the amount of MANA contractAddress is approved to spend on behalf of the user
-function getAllowedToken(tokenName, userAddress, web3Default = window.web3) {
+function getAllowedToken(network, userAddress, web3Default = window.web3) {
   let tokenAddress = '';
-  if (tokenName == 'ropsten') {
+  if (network == 'ropsten') {
     tokenAddress = ROPSTEN_TOKEN_ADDRESS;
-  } else if (tokenName == 'matic') {
+  } else if (network == 'matic') {
     tokenAddress = MATIC_TOKEN_ADDRESS;
   }
 
   return new Promise(async (resolve, reject) => {
-    console.log('get allowed tokens');
+    console.log('Get allowed tokens');
+    console.log(web3Default);
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
@@ -155,15 +157,16 @@ function getAllowedToken(tokenName, userAddress, web3Default = window.web3) {
         ROOTCHAINMANAGER_ADDRESS,
         async function (err, amount) {
           if (err) {
-            console.log('get allowed failed', err);
+            console.log('Get allowed failed', err);
             reject(false);
           }
 
           resolve(amount);
+          console.log('Get allowed done');
         }
       );
     } catch (error) {
-      console.log('get allowed failed', error);
+      console.log('Get allowed failed: ', error);
       reject(false);
     }
   });
@@ -194,34 +197,39 @@ async function approveToken(
     // console.log(web3Default);
 
     try {
-      maticPOSClient.approveERC20ForDeposit(
+      await maticPOSClient.approveERC20ForDeposit(
         tokenAddress,
         amount,
         {
           from: userAddress,
           gasLimit: web3Default.toHex(GAS_LIMIT),
           gasPrice: web3Default.toHex('20000000000'),
-        },
-        async function (err, hash) {
-          if (err) {
-            console.log('Approving failed 1: ', err);
-
-            reject(false);
-          }
-
-          const ret = await getConfirmedTx(hash);
-          if (ret.status == '0x0') {
-            console.log('Approving transaction failed');
-            reject(false);
-          } else {
-            console.log('Approving done');
-
-            resolve(true);
-          }
         }
+
+        // ,
+        // async function (err, hash) {
+        //   if (err) {
+        //     console.log('Approving failed 1: ', err);
+
+        //     reject(false);
+        //   }
+
+        //   const ret = await getConfirmedTx(hash);
+        //   if (ret.status == '0x0') {
+        //     console.log('Approving transaction failed');
+        //     reject(false);
+        //   } else {
+        //     console.log('Approving done');
+
+        //     resolve(true);
+        //   }
+        // }
       );
+
+      resolve(true);
+      console.log('Approve done');
     } catch (error) {
-      console.log('Approving failed 2: ', error);
+      console.log('Approve failed: ', error);
       reject(false);
     }
   });
@@ -248,7 +256,7 @@ async function depositTokenToMatic(
     console.log('token address: ' + tokenAddress);
     console.log('amount: ' + amount);
     console.log('user address: ' + userAddress);
-    console.log('gass limit: ' + GAS_LIMIT);
+    console.log('gas limit: ' + GAS_LIMIT);
 
     try {
       // console.log('amount..');
@@ -282,15 +290,13 @@ async function depositTokenToMatic(
       // }
 
       resolve(logs.transactionHash);
-      // return logs;
-
       console.log('Deposit done');
       // resolve(logs.transactionHash);
 
       // const id = transaction.events.PetCreated.returnValues[0];
       // const owner = transaction.events.PetCreated.returnValues.owner;
     } catch (error) {
-      console.log('Deposit failed', error);
+      console.log('Deposit failed: ', error);
       reject(false);
     }
   });
