@@ -80,7 +80,7 @@ class Deposit extends React.Component {
     // set addresses with data returned by server REST API
     tokenAddress = Global.ROPSTEN_TOKEN_ADDRESS; // Global.MATIC_TOKEN_ADDRESS; ***********************************************
     domainData.verifyingContract = tokenAddress;
-    spenderAddress = Global.MASTER_CONTRACT_ADDRESS;
+    spenderAddress = Global.PARENT_CONTRACT_ADDRESS;
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
@@ -218,15 +218,15 @@ class Deposit extends React.Component {
       );
       allowedAmount = allowedAmount / Global.FACTOR;
 
-      console.log('allowed amount 1: ' + allowedAmount);
+      console.log('allowed amount: ' + allowedAmount);
 
-      if (allowedAmount == 0)
+      if (allowedAmount == 0) {
         await Global.approveToken(
           'ropsten',
           Global.MAX_AMOUNT,
           this.USER_ADDRESS
         );
-      else if (allowedAmount < this.state.amount) {
+      } else if (allowedAmount < this.state.amount) {
         await Global.approveToken('ropsten', 0, this.USER_ADDRESS);
         await Global.approveToken(
           'ropsten',
@@ -236,13 +236,13 @@ class Deposit extends React.Component {
       }
 
       // check the amount of tokens that user has allowed Matic contract to spend
-      let allowedAmount2 = await Global.getAllowedToken(
-        'ropsten',
-        this.USER_ADDRESS
-      );
-      allowedAmount2 = allowedAmount2 / Global.FACTOR;
+      // let allowedAmount2 = await Global.getAllowedToken(
+      //   'ropsten',
+      //   this.USER_ADDRESS
+      // );
+      // allowedAmount2 = allowedAmount2 / Global.FACTOR;
 
-      console.log('allowed amount 2: ' + allowedAmount2);
+      console.log('approved for: ' + Global.MAX_AMOUNT);
 
       // finally deposit MANA from the main net to Matic and update status in database
       const amountWei = web3.utils.toWei(this.state.amount + '');
@@ -251,6 +251,9 @@ class Deposit extends React.Component {
         amountWei,
         this.USER_ADDRESS
       );
+
+      // console.log('transaction hash: ');
+      // console.log(txHash);
 
       if (txHash != false) {
         console.log('tx hash: ' + txHash);
@@ -314,13 +317,15 @@ class Deposit extends React.Component {
         this.props.hideSpinner();
 
         console.log('valid deposit');
-        return;
+
+        // return;
       }
     } catch (err) {
       console.log(err);
+      this.setState({ isValidDeposit: 1 }); // invalid deposit
     }
 
-    this.setState({ isValidDeposit: 1 }); // invalid deposit
+    // this.setState({ isValidDeposit: 1 }); // invalid deposit
     this.props.hideSpinner();
   };
 

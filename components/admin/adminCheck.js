@@ -24,7 +24,7 @@ const withAdmin = (Component) => {
         if (!window.web3.currentProvider.selectedAddress) {
           this.setState({ isAdmin: 0 });
         } else if (
-          Global.ADMIN_ADDR.includes(
+          Global.ADMIN_ADDRESSES.includes(
             window.web3.currentProvider.selectedAddress.toLowerCase()
           )
         ) {
@@ -34,7 +34,7 @@ const withAdmin = (Component) => {
         }
       } catch (e) {
         console.log(e);
-        console.log(Global.ADMIN_ADDR);
+        console.log(Global.ADMIN_ADDRESSES);
       }
     }
 
@@ -47,7 +47,7 @@ const withAdmin = (Component) => {
           // Request account access if needed
           await window.ethereum.enable();
           if (
-            Global.ADMIN_ADDR.includes(
+            Global.ADMIN_ADDRESSES.includes(
               window.web3.currentProvider.selectedAddress.toLowerCase()
             )
           ) {
