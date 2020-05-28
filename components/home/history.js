@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   data: [],
   currentPage: 1,
   dataType: 'History',
-  isRunningTransaction: false,
+  isRunningTransaction: true,
   nextAvail: true,
   beforeAvail: false,
   isLoadingData: false,
@@ -116,6 +116,7 @@ class History extends React.Component {
       this.setState({
         data: allData,
         isLoadingData: false,
+        isRunningTransaction: false,
         dataType: type,
         currentPage: page,
         nextAvail: nextAvail,
@@ -125,6 +126,7 @@ class History extends React.Component {
       this.setState({
         data: allData,
         isLoadingData: false,
+        isRunningTransaction: false,
         dataType: type,
         currentPage: page,
         nextAvail: nextAvail,
@@ -133,17 +135,20 @@ class History extends React.Component {
     else
       this.setState({
         isLoadingData: false,
+        isRunningTransaction: false,
         nextAvail: nextAvail,
         beforeAvail: this.state.currentPage == 1 ? false : true,
       });
   }
 
   handleHistory = () => {
+    this.showSpinner();
     this.setState({ historyState: 0 });
     if (this.state.dataType !== 'History') this.getUserData('History', 1);
   };
 
   handlePlay = () => {
+    this.showSpinner();
     this.setState({ historyState: 1 });
     if (this.state.dataType !== 'Play') this.getUserData('Play', 1);
   };
@@ -204,7 +209,7 @@ class History extends React.Component {
       <div>
         <Menu dashboard={this.state.isDashboard} />
         <div className="contentContainer">
-          <LogoSpinner
+          <Spinner
             show={this.state.isRunningTransaction}
             className="tx-history-spinner"
           />

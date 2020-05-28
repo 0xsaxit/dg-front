@@ -17,6 +17,7 @@
   "dependencies": {
     "@biconomy/mexa": "^1.5.10",
     "@maticnetwork/maticjs": "^2.0.0-beta.12",
+    "@transak/transak-sdk": "^1.0.17",
     "abi-decoder": "^2.2.2",
     "babel-loader": "^8.0.5",
     "base-64": "^0.1.0",
