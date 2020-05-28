@@ -3,7 +3,7 @@ import '../additional.css';
 import { Table } from 'semantic-ui-react';
 import Spinner from '../../Spinner';
 
-import Global from '../constant';
+import Global from '../constants';
 
 const INITIAL_STATE = {
   data: [],

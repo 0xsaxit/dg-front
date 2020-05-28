@@ -18,7 +18,7 @@ const withAdmin = (Component) => {
     }
 
     componentDidMount() {
-      Global = require('../constant').default;
+      Global = require('../constants').default;
 
       try {
         if (!window.web3.currentProvider.selectedAddress) {

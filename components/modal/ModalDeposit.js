@@ -5,7 +5,7 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
-import Global from '../constant';
+import Global from '../constants';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

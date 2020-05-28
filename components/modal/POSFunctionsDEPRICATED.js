@@ -12,7 +12,7 @@
 // } from '../constants';
 
 const MaticPOSClient = require('@maticnetwork/maticjs').MaticPOSClient;
-import Global from '../constant';
+import Global from '../constants';
 
 // const config = require('../constants/config');
 

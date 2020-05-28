@@ -16,7 +16,7 @@ class Deposit extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constant').default;
+    Global = require('../constants').default;
     let object = this;
     window.ethereum.on('accountsChanged', async function (accounts) {
       await object.getUserData();
