@@ -1,4 +1,5 @@
 import React from 'react';
+import { MaticPOSClient } from '@maticnetwork/maticjs';
 import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
@@ -8,16 +9,47 @@ import Global from '../constant';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
+// create MaticPOSClient object to deposit tokens from Main net to Matic Network
+let maticPOSClient;
+let tokenAddress = '';
+let spenderAddress = '';
+let ROPSTEN_TOKEN_ADDRESS = '';
+
+async function getAddresses() {
+  const addresses = await Global.API_ADDRESSES;
+
+  // console.log('Matic provider: ' + Global.MATIC_URL);
+  // console.log('Rootchain address: ' + addresses.ROOTCHAIN_ADDRESS);
+  // console.log(
+  //   'Rootchain Manager Address: ' + addresses.ROOTCHAINMANAGER_ADDRESS
+  // );
+  // console.log('token address: ' + addresses.ROPSTEN_TOKEN_ADDRESS);
+  // console.log('spender address: ' + addresses.PARENT_CONTRACT_ADDRESS);
+
+  maticPOSClient = new MaticPOSClient({
+    maticProvider: Global.MATIC_URL,
+    parentProvider: '',
+    rootChain: addresses.ROOTCHAIN_ADDRESS,
+    posRootChainManager: addresses.ROOTCHAINMANAGER_ADDRESS,
+  });
+
+  tokenAddress = addresses.ROPSTEN_TOKEN_ADDRESS; // Global.MATIC_TOKEN_ADDRESS; ***********************************************
+  spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
+
+  ROPSTEN_TOKEN_ADDRESS = addresses.ROPSTEN_TOKEN_ADDRESS;
+}
+getAddresses();
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // initialize Biconomy API constants and define parameters
 const Web3 = require('web3');
 const sigUtil = require('eth-sig-util');
 const biconomyAPIKey = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
-const authorizeAmount = Global.MAX_AMOUNT;
-const parentChainId = Global.PARENT_NETWORK_ID;
-const maticProvider = Global.MATIC_URL;
+let authorizeAmount = Global.MAX_AMOUNT;
+let parentChainId = Global.PARENT_NETWORK_ID;
+let maticProvider = Global.MATIC_URL;
 
-let tokenAddress = '';
-let spenderAddress = '';
 let web3 = {};
 let tokenContract = {};
 
@@ -38,8 +70,8 @@ const metaTransactionType = [
 let domainData = {
   name: 'MetaToken',
   version: '1',
-  chainId: parentChainId, // '3',
-  verifyingContract: '',
+  chainId: parentChainId,
+  verifyingContract: tokenAddress,
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -77,13 +109,10 @@ class Deposit extends React.Component {
 
     console.log('userStepValue status: ' + verifyStatus);
 
-    // set addresses with data returned by server REST API
-    tokenAddress = Global.ROPSTEN_TOKEN_ADDRESS; // Global.MATIC_TOKEN_ADDRESS; ***********************************************
-    domainData.verifyingContract = tokenAddress;
-    spenderAddress = Global.PARENT_CONTRACT_ADDRESS;
-
-    // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
+    // initialize Web3 providers (MetaMask provider for Matic POS client and web3 and Biconomy provider for getWeb3)
+    maticPOSClient.parentProvider = window.ethereum;
     web3 = new Web3(window.ethereum);
+
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(maticProvider),
       {
@@ -213,7 +242,7 @@ class Deposit extends React.Component {
 
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
-        'ropsten',
+        ROPSTEN_TOKEN_ADDRESS,
         this.USER_ADDRESS
       );
       allowedAmount = allowedAmount / Global.FACTOR;
@@ -223,21 +252,21 @@ class Deposit extends React.Component {
 
       if (allowedAmount == 0) {
         await Global.approveToken(
-          'ropsten',
+          ROPSTEN_TOKEN_ADDRESS,
           Global.MAX_AMOUNT,
           this.USER_ADDRESS
         );
       } else if (allowedAmount < this.state.amount) {
-        await Global.approveToken('ropsten', 0, this.USER_ADDRESS);
+        await Global.approveToken(ROPSTEN_TOKEN_ADDRESS, 0, this.USER_ADDRESS);
         await Global.approveToken(
-          'ropsten',
+          ROPSTEN_TOKEN_ADDRESS,
           Global.MAX_AMOUNT,
           this.USER_ADDRESS
         );
       }
 
       const txHash = await Global.depositTokenToMatic(
-        'ropsten',
+        ROPSTEN_TOKEN_ADDRESS,
         amountWei,
         this.USER_ADDRESS
       );
@@ -245,8 +274,6 @@ class Deposit extends React.Component {
       console.log('tx hash: ' + txHash);
 
       if (txHash != false) {
-        // console.log('tx hash: ' + txHash);
-
         let ret = await this.updateHistory(
           this.state.amount,
           'Deposit',
@@ -293,18 +320,15 @@ class Deposit extends React.Component {
         }
 
         this.setState({ isValidDeposit: 2 }); // valid deposit
-        this.props.hideSpinner();
+        // this.props.hideSpinner();
 
-        // console.log('valid deposit');
-
-        return; // *******************************
+        // return; // *******************************
       }
     } catch (err) {
       console.log(err);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
     }
 
-    // this.setState({ isValidDeposit: 1 }); // invalid deposit
     this.props.hideSpinner();
   };
 
@@ -613,6 +637,8 @@ class Deposit extends React.Component {
                     content={'approve'} // content type
                     isValidDeposit={this.state.isValidDeposit}
                     amount={this.state.amount}
+                    onChangeAmount={this.onChangeAmount}
+                    onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
                   />
                 </Grid.Column>
