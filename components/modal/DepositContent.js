@@ -73,6 +73,7 @@ const DepositContent = (props) => {
               Deposit
             </Button>
           </Grid.Row>
+          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidDeposit == 1 ? (
             <Grid.Row>
@@ -117,6 +118,7 @@ const DepositContent = (props) => {
               Authorize
             </Button>
           </Grid.Row>
+          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidAuthorize == 1 ? (
             <Grid.Row>
@@ -240,6 +242,7 @@ const DepositContent = (props) => {
               Deposit
             </Button>
           </Grid.Row>
+          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidDeposit == 1 ? (
             <Grid.Row>

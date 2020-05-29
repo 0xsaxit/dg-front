@@ -95,7 +95,7 @@ class Deposit extends React.Component {
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
-      refresh: false,
+      refresh: '',
     };
 
     this.USER_ADDRESS = '';
@@ -327,8 +327,7 @@ class Deposit extends React.Component {
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
         }
 
-        const nextRefresh = !this.state.refresh;
-        this.setState({ isValidDeposit: 2, refresh: nextRefresh }); // valid deposit
+        this.setState({ isValidDeposit: 2, refresh: 'Funds deposited' }); // valid deposit
       }
     } catch (err) {
       console.log(err);
@@ -442,8 +441,7 @@ class Deposit extends React.Component {
     await this.postUserVerify(6); // update verify to 'deposit'
     await this.postUserAuthState(this.props.authvalue); // update authorize to 4
 
-    const nextRefresh = !this.state.refresh;
-    this.setState({ isValidAuthorize: 2, refresh: nextRefresh }); // valid authorize
+    this.setState({ isValidAuthorize: 2, refresh: 'Matic Network authorized' }); // valid authorize
     this.props.hideSpinner();
 
     setTimeout(this.props.update, 5000); // set user token balance from MetaMask
@@ -719,6 +717,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
+                    refresh={this.state.refresh}
                   />
                 </Grid.Column>
               </Grid>
@@ -746,6 +745,7 @@ class Deposit extends React.Component {
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransfer}
+                    refresh={this.state.refresh}
                   />
                 </Grid.Column>
               </Grid>
@@ -779,6 +779,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
+                    refresh={this.state.refresh}
                   />
                 </Grid.Column>
               </Grid>
