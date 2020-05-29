@@ -4,7 +4,10 @@ import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
+
+// import ABIFAKEMana from '../ABI/NADummyToken.json';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
+
 import Global from '../constants';
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -15,6 +18,7 @@ let tokenAddressRopsten = '';
 let tokenAddressMatic = '';
 let spenderAddress = '';
 // let ROPSTEN_TOKEN_ADDRESS = '';
+// let tokenContract = {};
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
@@ -28,9 +32,15 @@ async function getAddresses() {
 
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
   tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
+
+  // tokenAddress = '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4';
+
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 
   // ROPSTEN_TOKEN_ADDRESS = addresses.ROPSTEN_TOKEN_ADDRESS;
+
+  // tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddressMatic);
+  domainData.verifyingContract = tokenAddressMatic;
 }
 getAddresses();
 
@@ -63,10 +73,10 @@ const metaTransactionType = [
 ];
 
 let domainData = {
-  name: 'MetaToken',
+  name: 'Decentraland',
   version: '1',
   chainId: parentChainId,
-  verifyingContract: tokenAddressRopsten,
+  verifyingContract: '',
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +95,7 @@ class Deposit extends React.Component {
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
+      refresh: false,
     };
 
     this.USER_ADDRESS = '';
@@ -118,7 +129,7 @@ class Deposit extends React.Component {
       }
     );
     getWeb3 = new Web3(biconomy);
-    tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddressRopsten);
+    tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddressMatic);
 
     biconomy
       .onEvent(biconomy.READY, () => {
@@ -316,10 +327,8 @@ class Deposit extends React.Component {
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
         }
 
-        this.setState({ isValidDeposit: 2 }); // valid deposit
-        // this.props.hideSpinner();
-
-        // return; // *******************************
+        const nextRefresh = !this.state.refresh;
+        this.setState({ isValidDeposit: 2, refresh: nextRefresh }); // valid deposit
       }
     } catch (err) {
       console.log(err);
@@ -342,27 +351,27 @@ class Deposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // call to Biconomy API - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
 
-  getContractDetails = async (pAddress) => {
-    let abi;
+  // getContractDetails = async (pAddress) => {
+  //   let abi;
 
-    // if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
-    // else abi = CHILD_DUMMY_TOKEN_ABI;
-    // const contract = new getWeb3.eth.Contract(abi, pAddress);
+  //   // if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
+  //   // else abi = CHILD_DUMMY_TOKEN_ABI;
+  //   // const contract = new getWeb3.eth.Contract(abi, pAddress);
 
-    const contract = new getWeb3.eth.Contract(ABIFAKEMana, pAddress);
+  //   const contract = new getWeb3.eth.Contract(ABIFAKEMana, pAddress);
 
-    const tokenName = await contract.methods.name().call();
-    console.log(tokenName);
+  //   const tokenName = await contract.methods.name().call();
+  //   console.log(tokenName);
 
-    let domainData = {
-      name: tokenName,
-      version: '1',
-      chainId: parentChainId,
-      verifyingContract: pAddress,
-    };
+  //   let domainData = {
+  //     name: tokenName,
+  //     version: '1',
+  //     chainId: parentChainId,
+  //     verifyingContract: pAddress,
+  //   };
 
-    return { contract, domainData };
-  };
+  //   return { contract, domainData };
+  // };
 
   // metaTransfer = async () => {
   //   console.log('execute Biconomy meta-transaction');
@@ -404,7 +413,7 @@ class Deposit extends React.Component {
 
   // metaTransfer = async (pAmount, spender, tokenAddress) => {
   metaTransfer = async () => {
-    console.log('execute Biconomy meta-transaction');
+    console.log('Execute Biconomy meta-transaction');
     console.log('Matic RPC: ' + maticProvider);
     console.log('user address: ' + this.USER_ADDRESS);
     console.log('chain ID: ' + domainData.chainId);
@@ -413,40 +422,37 @@ class Deposit extends React.Component {
     console.log('authorize amount: ' + authorizeAmount);
     console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
 
-    const detail = await this.getContractDetails(tokenAddressMatic);
+    // const detail = await this.getContractDetails(tokenAddressMatic);
 
     // const amount = web3.utils.toWei(pAmount + '');
 
     // let userAddress = await getDefaultAccount(); // ***
 
-    let functionSignature = detail.contract.methods
+    let functionSignature = tokenContract.methods
       .approve(spenderAddress, authorizeAmount)
       .encodeABI();
     console.log(functionSignature);
 
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
-    this.executeMetaTransaction(
-      functionSignature,
-      detail.contract,
-      detail.domainData
-    );
+    this.executeMetaTransaction(functionSignature);
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
     await this.postUserVerify(6); // update verify to 'deposit'
     await this.postUserAuthState(this.props.authvalue); // update authorize to 4
 
-    this.setState({ isValidAuthorize: 2 }); // valid authorize
+    const nextRefresh = !this.state.refresh;
+    this.setState({ isValidAuthorize: 2, refresh: nextRefresh }); // valid authorize
     this.props.hideSpinner();
 
     setTimeout(this.props.update, 5000); // set user token balance from MetaMask
   };
 
-  executeMetaTransaction = async (functionSignature, contract, domainData) => {
+  executeMetaTransaction = async (functionSignature) => {
     // let userAddress = await getDefaultAccount();
 
-    let nonce = await contract.methods.getNonce(this.USER_ADDRESS).call();
+    let nonce = await tokenContract.methods.getNonce(this.USER_ADDRESS).call();
 
     let message = {};
     message.nonce = parseInt(nonce);
@@ -464,8 +470,9 @@ class Deposit extends React.Component {
       message: message,
     });
 
+    console.log('domain data: ');
     console.log(domainData);
-    console.log(this.USER_ADDRESS);
+    // console.log(this.USER_ADDRESS);
 
     web3.eth.currentProvider.send(
       {
@@ -474,16 +481,20 @@ class Deposit extends React.Component {
         method: 'eth_signTypedData_v4',
         params: [this.USER_ADDRESS, dataToSign],
       },
-      async function (error, response) {
-        console.info(`User signature is ${response.result}`);
+
+      async (error, response) => {
+        console.log('user signature: ');
+        console.log(response.result);
 
         let { r, s, v } = this.getSignatureParameters(response.result);
 
         // logging output
-        console.log(this.USER_ADDRESS);
+        // console.log(this.USER_ADDRESS);
+        console.log('message: ');
         console.log(JSON.stringify(message));
         console.log(message);
-        console.log(getSignatureParameters(response.result));
+        console.log('get signature parameters: ');
+        console.log(this.getSignatureParameters(response.result));
 
         const recovered = sigUtil.recoverTypedSignature_v4({
           data: JSON.parse(dataToSign),
@@ -492,7 +503,7 @@ class Deposit extends React.Component {
 
         console.log(`Recovered ${recovered}`);
 
-        let tx = await contract.methods
+        let tx = await tokenContract.methods
           .executeMetaTransaction(this.USER_ADDRESS, functionSignature, r, s, v)
           .send({
             from: this.USER_ADDRESS,
@@ -500,7 +511,7 @@ class Deposit extends React.Component {
 
         console.log(
           tx,
-          await contract.methods.balanceOf(this.USER_ADDRESS).call()
+          await tokenContract.methods.balanceOf(this.USER_ADDRESS).call()
         );
       }
     );
@@ -702,6 +713,7 @@ class Deposit extends React.Component {
                   <ModalSidebar checked={1} />
                   <DepositContent
                     content={'approve'} // content type
+                    isCustomAmount={this.state.isCustomAmount}
                     isValidDeposit={this.state.isValidDeposit}
                     amount={this.state.amount}
                     onChangeAmount={this.onChangeAmount}

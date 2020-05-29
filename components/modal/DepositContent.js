@@ -47,13 +47,21 @@ const DepositContent = (props) => {
             </p>
           </Grid.Row>
           <Grid.Row>
-            <Dropdown
-              selection
-              options={amount}
-              value={props.amount}
-              style={{ width: '300px', marginTop: '0px' }}
-              onChange={props.onChangeAmount}
-            />
+            {props.isCustomAmount == 0 ? (
+              <Dropdown
+                selection
+                options={amount}
+                value={props.amount}
+                style={{ width: '300px', marginTop: '0px' }}
+                onChange={props.onChangeAmount}
+              />
+            ) : (
+              <Input
+                style={{ width: '300px', marginTop: '0px' }}
+                value={props.amount}
+                onChange={props.onChangeCustomAmount}
+              />
+            )}
           </Grid.Row>
           <Grid.Row>
             <Button
