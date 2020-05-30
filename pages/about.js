@@ -1,10 +1,10 @@
 import About from "../components/home/about";
 import { NextSeo } from 'next-seo';
 import Head from 'next/head';
-
+import Layout from '../components/layout.js';
 
 export default () => (
-    <>
+    <Layout>
         <html lang="en">
           <Head>
             <title> Decentral Games </title>
@@ -27,5 +27,5 @@ export default () => (
             }}
         />
         <About />
-    </>
+    </Layout>
 )
