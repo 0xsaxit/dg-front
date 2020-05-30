@@ -1,45 +1,23 @@
 import React from 'react';
-// import { MaticPOSClient } from '@maticnetwork/maticjs';
 import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import DepositContent from './DepositContent';
-
-// import ABIFAKEMana from '../ABI/NADummyToken.json';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
-
 import Global from '../constants';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-
-// let maticPOSClient;
 let tokenAddressRopsten = '';
 let tokenAddressMatic = '';
 let spenderAddress = '';
-// let ROPSTEN_TOKEN_ADDRESS = '';
-// let tokenContract = {};
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
-  // maticPOSClient = new MaticPOSClient({
-  //   maticProvider: Global.MATIC_URL,
-  //   parentProvider: '',
-  //   rootChain: addresses.ROOTCHAIN_ADDRESS,
-  //   posRootChainManager: addresses.ROOTCHAINMANAGER_ADDRESS,
-  // });
-
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
   tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
-
-  // tokenAddress = '0xe835767Ce965fc8A7D128F2fAc3CdD381587BBe4';
-
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
-
-  // ROPSTEN_TOKEN_ADDRESS = addresses.ROPSTEN_TOKEN_ADDRESS;
-
-  // tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddressMatic);
   domainData.verifyingContract = tokenAddressMatic;
 }
 getAddresses();
@@ -104,7 +82,7 @@ class Deposit extends React.Component {
   }
 
   async componentDidMount() {
-    // get web3 values, set token balances, and set userStepValue
+    // set maticWeb3 provider, get token balances, and set userStepValue
     this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     this.isBrowserMetamsk = 1;
     this.maticWeb3 = new window.Web3(
@@ -116,11 +94,7 @@ class Deposit extends React.Component {
     console.log('userStepValue status: ' + verifyStatus);
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
-
-    // maticPOSClient.parentProvider = window.ethereum;
-
     web3 = new Web3(window.ethereum);
-
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(maticProvider),
       {
@@ -279,7 +253,7 @@ class Deposit extends React.Component {
         this.USER_ADDRESS
       );
 
-      console.log('tx hash: ' + txHash);
+      // console.log('tx hash: ' + txHash);
 
       if (txHash != false) {
         let ret = await this.updateHistory(
@@ -323,11 +297,21 @@ class Deposit extends React.Component {
         } else if (this.state.userStepValue == 6) {
           console.log('step value is 6');
 
-          this.handleClose();
+          // this.handleClose();
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
         }
 
-        this.setState({ isValidDeposit: 2, refresh: 'Funds deposited' }); // valid deposit
+        // valid deposit
+        this.setState({
+          isValidDeposit: 2,
+          refresh: 'Funds deposted: ' + amountWei / Global.FACTOR + ' MANA',
+        });
+
+        const balanceMatic = await tokenContract.methods
+          .balanceOf(this.USER_ADDRESS)
+          .call();
+        console.log('Matic balance: ' + balanceMatic / Global.FACTOR);
+        console.log('tx hash: ' + txHash);
       }
     } catch (err) {
       console.log(err);
@@ -348,69 +332,7 @@ class Deposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // call to Biconomy API - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
-
-  // getContractDetails = async (pAddress) => {
-  //   let abi;
-
-  //   // if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
-  //   // else abi = CHILD_DUMMY_TOKEN_ABI;
-  //   // const contract = new getWeb3.eth.Contract(abi, pAddress);
-
-  //   const contract = new getWeb3.eth.Contract(ABIFAKEMana, pAddress);
-
-  //   const tokenName = await contract.methods.name().call();
-  //   console.log(tokenName);
-
-  //   let domainData = {
-  //     name: tokenName,
-  //     version: '1',
-  //     chainId: parentChainId,
-  //     verifyingContract: pAddress,
-  //   };
-
-  //   return { contract, domainData };
-  // };
-
-  // metaTransfer = async () => {
-  //   console.log('execute Biconomy meta-transaction');
-  //   console.log('Matic RPC: ' + maticProvider);
-  //   console.log('user address: ' + this.USER_ADDRESS);
-  //   console.log('chain ID: ' + domainData.chainId);
-  //   console.log('spender (treasury) address: ' + spenderAddress);
-  //   console.log('authorize amount: ' + authorizeAmount);
-  //   console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
-
-  //   try {
-  //     this.props.showSpinner();
-
-  //     // console.log(
-  //     //   'Matic Network balance: ' +
-  //     //     (await tokenContract.methods.balanceOf(this.USER_ADDRESS).call())
-  //     // );
-
-  //     // encode function signature from our token contract (send treasury contract address and amount)
-  //     let functionSignature = tokenContract.methods
-  //       .approve(spenderAddress, authorizeAmount)
-  //       .encodeABI();
-
-  //     this.executeMetaTransaction(functionSignature);
-
-  //     await this.postUserVerify(6); // update verify to 'deposit'
-  //     await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-
-  //     this.setState({ isValidAuthorize: 2 }); // valid authorize
-  //     this.props.hideSpinner();
-
-  //     setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-  //   } catch (err) {
-  //     this.setState({ isValidAuthorize: 1 }); // invalid authorize
-
-  //     this.props.hideSpinner();
-  //   }
-  // };
-
-  // metaTransfer = async (pAmount, spender, tokenAddress) => {
+  // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransfer = async () => {
     console.log('Execute Biconomy meta-transaction');
     console.log('Matic RPC: ' + maticProvider);
@@ -420,12 +342,6 @@ class Deposit extends React.Component {
     console.log('spender (treasury) address: ' + spenderAddress);
     console.log('authorize amount: ' + authorizeAmount);
     console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
-
-    // const detail = await this.getContractDetails(tokenAddressMatic);
-
-    // const amount = web3.utils.toWei(pAmount + '');
-
-    // let userAddress = await getDefaultAccount(); // ***
 
     let functionSignature = tokenContract.methods
       .approve(spenderAddress, authorizeAmount)
@@ -448,7 +364,7 @@ class Deposit extends React.Component {
   };
 
   executeMetaTransaction = async (functionSignature) => {
-    // let userAddress = await getDefaultAccount();
+    console.log('functional signature: ' + functionSignature);
 
     let nonce = await tokenContract.methods.getNonce(this.USER_ADDRESS).call();
 
@@ -456,7 +372,7 @@ class Deposit extends React.Component {
     message.nonce = parseInt(nonce);
     message.from = this.USER_ADDRESS;
     message.functionSignature = functionSignature;
-    message.network = 'Interact with Matic Network';
+    // message.network = 'Interact with Matic Network';
 
     const dataToSign = JSON.stringify({
       types: {
@@ -470,7 +386,6 @@ class Deposit extends React.Component {
 
     console.log('domain data: ');
     console.log(domainData);
-    // console.log(this.USER_ADDRESS);
 
     web3.eth.currentProvider.send(
       {
@@ -481,18 +396,19 @@ class Deposit extends React.Component {
       },
 
       async (error, response) => {
-        console.log('user signature: ');
-        console.log(response.result);
-
         let { r, s, v } = this.getSignatureParameters(response.result);
 
-        // logging output
-        // console.log(this.USER_ADDRESS);
-        console.log('message: ');
-        console.log(JSON.stringify(message));
-        console.log(message);
-        console.log('get signature parameters: ');
-        console.log(this.getSignatureParameters(response.result));
+        // console.log('message: ');
+        // console.log(JSON.stringify(message));
+        // console.log(message);
+        // console.log('get signature parameters: ');
+        // console.log(this.getSignatureParameters(response.result));
+
+        console.log('user signature: ' + response.result);
+        console.log('recovered address: ' + recovered);
+        console.log('r: ' + r);
+        console.log('s: ' + s);
+        console.log('v: ' + v);
 
         const recovered = sigUtil.recoverTypedSignature_v4({
           data: JSON.parse(dataToSign),
@@ -501,16 +417,23 @@ class Deposit extends React.Component {
 
         console.log(`Recovered ${recovered}`);
 
-        let tx = await tokenContract.methods
+        let txHash = await tokenContract.methods
           .executeMetaTransaction(this.USER_ADDRESS, functionSignature, r, s, v)
           .send({
             from: this.USER_ADDRESS,
           });
 
-        console.log(
-          tx,
-          await tokenContract.methods.balanceOf(this.USER_ADDRESS).call()
-        );
+        // console.log(
+        //   tx,
+        //   await tokenContract.methods.balanceOf(this.USER_ADDRESS).call()
+        // );
+
+        // const balanceMatic = await tokenContract.methods
+        //   .balanceOf(this.USER_ADDRESS)
+        //   .call();
+        // console.log('Matic balance: ' + balanceMatic);
+
+        console.log('tx hash: ' + txHash);
       }
     );
   };
@@ -521,10 +444,12 @@ class Deposit extends React.Component {
         'Given value "'.concat(signature, '" is not a valid hex string.')
       );
     }
-    var r = signature.slice(0, 66);
-    var s = '0x'.concat(signature.slice(66, 130));
-    var v = '0x'.concat(signature.slice(130, 132));
+
+    const r = signature.slice(0, 66);
+    const s = '0x'.concat(signature.slice(66, 130));
+    let v = '0x'.concat(signature.slice(130, 132));
     v = web3.utils.hexToNumber(v);
+
     if (![27, 28].includes(v)) v += 27;
     return {
       r: r,
