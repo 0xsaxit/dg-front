@@ -294,22 +294,17 @@ class Deposit extends React.Component {
           console.log('updating step value to 5');
 
           await this.postUserVerify(5); // update verify to 'authorize'
-          this.setState({ userStepValue: 5 }); // advance to auth step
         } else if (this.state.userStepValue == 6) {
-          // console.log('step value is 6');
+          console.log('step value is 6');
 
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
         }
 
         // valid deposit
-        // this.setState({
-        //   isValidDeposit: 2,
-        //   refresh: 'Funds deposted: ' + amountWei / Global.FACTOR + ' MANA',
-        // });
-
-        this.setState({ isValidDeposit: 2, refresh: '' }); // valid deposit
-
-        // this.nextStep(6); // go to auth step
+        this.setState({
+          isValidDeposit: 2,
+          refresh: 'Funds deposted: ' + amountWei / Global.FACTOR + ' MANA',
+        });
 
         const balanceMatic = await tokenContract.methods
           .balanceOf(this.USER_ADDRESS)
@@ -317,14 +312,12 @@ class Deposit extends React.Component {
         console.log('Matic balance: ' + balanceMatic / Global.FACTOR);
         console.log('tx hash: ' + txHash);
       }
-
-      this.props.hideSpinner();
     } catch (err) {
       console.log(err);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
     }
 
-    // this.props.hideSpinner();
+    this.props.hideSpinner();
   };
 
   networkError = () => {
@@ -360,110 +353,88 @@ class Deposit extends React.Component {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    // await this.postUserVerify(6); // update verify to 'deposit'
-    // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-    // this.setState({ isValidAuthorize: 2, refresh: 'Matic Network authorized' }); // valid authorize
-    // this.props.hideSpinner();
-    // setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+    await this.postUserVerify(6); // update verify to 'deposit'
+    await this.postUserAuthState(this.props.authvalue); // update authorize to 4
+
+    this.setState({ isValidAuthorize: 2, refresh: 'Matic Network authorized' }); // valid authorize
+    this.props.hideSpinner();
+
+    setTimeout(this.props.update, 5000); // set user token balance from MetaMask
   };
 
   executeMetaTransaction = async (functionSignature) => {
     console.log('functional signature: ' + functionSignature);
 
-    try {
-      this.props.showSpinner();
+    let nonce = await tokenContract.methods.getNonce(this.USER_ADDRESS).call();
 
-      let nonce = await tokenContract.methods
-        .getNonce(this.USER_ADDRESS)
-        .call();
+    let message = {};
+    message.nonce = parseInt(nonce);
+    message.from = this.USER_ADDRESS;
+    message.functionSignature = functionSignature;
+    // message.network = 'Interact with Matic Network';
 
-      let message = {};
-      message.nonce = parseInt(nonce);
-      message.from = this.USER_ADDRESS;
-      message.functionSignature = functionSignature;
-      // message.network = 'Interact with Matic Network';
+    const dataToSign = JSON.stringify({
+      types: {
+        EIP712Domain: domainType,
+        MetaTransaction: metaTransactionType,
+      },
+      domain: domainData,
+      primaryType: 'MetaTransaction',
+      message: message,
+    });
 
-      const dataToSign = JSON.stringify({
-        types: {
-          EIP712Domain: domainType,
-          MetaTransaction: metaTransactionType,
-        },
-        domain: domainData,
-        primaryType: 'MetaTransaction',
-        message: message,
-      });
+    console.log('domain data: ');
+    console.log(domainData);
 
-      console.log('domain data: ');
-      console.log(domainData);
+    web3.eth.currentProvider.send(
+      {
+        jsonrpc: '2.0',
+        id: 999999999999,
+        method: 'eth_signTypedData_v4',
+        params: [this.USER_ADDRESS, dataToSign],
+      },
 
-      web3.eth.currentProvider.send(
-        {
-          jsonrpc: '2.0',
-          id: 999999999999,
-          method: 'eth_signTypedData_v4',
-          params: [this.USER_ADDRESS, dataToSign],
-        },
+      async (error, response) => {
+        let { r, s, v } = this.getSignatureParameters(response.result);
 
-        async (error, response) => {
-          let { r, s, v } = this.getSignatureParameters(response.result);
+        // console.log('message: ');
+        // console.log(JSON.stringify(message));
+        // console.log(message);
+        // console.log('get signature parameters: ');
+        // console.log(this.getSignatureParameters(response.result));
 
-          // console.log('message: ');
-          // console.log(JSON.stringify(message));
-          // console.log(message);
-          // console.log('get signature parameters: ');
-          // console.log(this.getSignatureParameters(response.result));
+        console.log('user signature: ' + response.result);
+        console.log('recovered address: ' + recovered);
+        console.log('r: ' + r);
+        console.log('s: ' + s);
+        console.log('v: ' + v);
 
-          console.log('user signature: ' + response.result);
-          console.log('recovered address: ' + recovered);
-          console.log('r: ' + r);
-          console.log('s: ' + s);
-          console.log('v: ' + v);
+        const recovered = sigUtil.recoverTypedSignature_v4({
+          data: JSON.parse(dataToSign),
+          sig: response.result,
+        });
 
-          const recovered = sigUtil.recoverTypedSignature_v4({
-            data: JSON.parse(dataToSign),
-            sig: response.result,
+        console.log(`Recovered ${recovered}`);
+
+        let txHash = await tokenContract.methods
+          .executeMetaTransaction(this.USER_ADDRESS, functionSignature, r, s, v)
+          .send({
+            from: this.USER_ADDRESS,
           });
 
-          console.log(`Recovered ${recovered}`);
+        // console.log(
+        //   tx,
+        //   await tokenContract.methods.balanceOf(this.USER_ADDRESS).call()
+        // );
 
-          await tokenContract.methods
-            .executeMetaTransaction(
-              this.USER_ADDRESS,
-              functionSignature,
-              r,
-              s,
-              v
-            )
-            .send({
-              from: this.USER_ADDRESS,
-            });
+        // const balanceMatic = await tokenContract.methods
+        //   .balanceOf(this.USER_ADDRESS)
+        //   .call();
+        // console.log('Matic balance: ' + balanceMatic);
 
-          // console.log(
-          //   tx,
-          //   await tokenContract.methods.balanceOf(this.USER_ADDRESS).call()
-          // );
-
-          // const balanceMatic = await tokenContract.methods
-          //   .balanceOf(this.USER_ADDRESS)
-          //   .call();
-          // console.log('Matic balance: ' + balanceMatic);
-
-          // console.log(result);
-
-          await this.postUserVerify(6); // update verify to 'deposit'
-          await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-          this.setState({
-            isValidAuthorize: 2,
-            refresh: 'Matic Network authorized',
-          }); // valid authorize
-
-          setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-          this.props.hideSpinner();
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
+        console.log('tx hash: ' + txHash);
+      }
+    );
   };
 
   getSignatureParameters = (signature) => {
@@ -611,19 +582,6 @@ class Deposit extends React.Component {
     });
   };
 
-  // nextStep = () => {
-  //   let value = 0;
-  //   if (this.state.userStepValue == 4) {
-  //     value = 5;
-  //   } else if (this.state.userStepValue == 5) {
-  //     value = 6;
-  //   } else if (this.state.userStepValue == 6) {
-  //     value = 4;
-  //   }
-
-  //   this.setState({ userStepValue: value });
-  // };
-
   render() {
     /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -659,20 +617,20 @@ class Deposit extends React.Component {
       return content;
     }
 
-    return (
-      <Modal
-        trigger={this.getTrigger()}
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
-        closeIcon
-      >
-        <div id="deposit">
-          <div className="ui depositContainer">
-            <Grid verticalAlign="middle" textAlign="center">
-              {this.state.userStepValue == 4 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // authorize transfers to Matic Network, then deposit MANA to Matic Network
+    if (this.state.userStepValue == 4) {
+      /////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////
+      // authorize transfers to Matic Network, then deposit MANA to Matic Network
+      return (
+        <Modal
+          trigger={this.getTrigger()}
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          closeIcon
+        >
+          <div id="deposit">
+            <div className="ui depositContainer">
+              <Grid verticalAlign="middle" textAlign="center">
                 <Grid.Column>
                   <ModalSidebar checked={1} />
                   <DepositContent
@@ -684,13 +642,27 @@ class Deposit extends React.Component {
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
                     refresh={this.state.refresh}
-                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+              </Grid>
+            </div>
+          </div>
+        </Modal>
+      );
+    } else if (this.state.userStepValue == 5) {
+      /////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////
+      // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+      return (
+        <Modal
+          trigger={this.getTrigger()}
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          closeIcon
+        >
+          <div id="deposit">
+            <div className="ui depositContainer">
+              <Grid verticalAlign="middle" textAlign="center">
                 <Grid.Column>
                   <ModalSidebar checked={2} />
                   <DepositContent
@@ -698,13 +670,27 @@ class Deposit extends React.Component {
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransfer}
                     refresh={this.state.refresh}
-                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 6 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // user has finished onboard process and wishes to deposit more MANA to Matic Network
+              </Grid>
+            </div>
+          </div>
+        </Modal>
+      );
+    } else if (this.state.userStepValue == 6) {
+      /////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////
+      // user has finished initial authorization/deposit process and wishes to deposit more MANA to Matic Network
+      return (
+        <Modal
+          trigger={this.getTrigger()}
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          closeIcon
+        >
+          <div id="deposit">
+            <div className="ui depositContainer">
+              <Grid verticalAlign="middle" textAlign="center">
                 <Grid.Column>
                   <ModalSidebar checked={3} />
                   <DepositContent
@@ -718,15 +704,14 @@ class Deposit extends React.Component {
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
                     refresh={this.state.refresh}
-                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : null}
-            </Grid>
+              </Grid>
+            </div>
           </div>
-        </div>
-      </Modal>
-    );
+        </Modal>
+      );
+    }
   }
 }
 

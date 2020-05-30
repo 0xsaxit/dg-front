@@ -94,6 +94,8 @@ const DepositContent = (props) => {
             </p>
           </Grid.Row>
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -126,6 +128,8 @@ const DepositContent = (props) => {
             </Grid.Row>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -250,6 +254,8 @@ const DepositContent = (props) => {
             </Grid.Row>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
