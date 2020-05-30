@@ -1,7 +1,7 @@
-import React from 'react'
-import { Image, Button } from 'semantic-ui-react'
+import React from 'react';
+import { Image, Button } from 'semantic-ui-react';
 import LogoSpinner from '../LogoSpinner';
-import Spinner from '../Spinner'
+import Spinner from '../Spinner';
 import Menu from './menu';
 import Wallet from './walletOverlay';
 import WalletInfo from './walletInfo';
@@ -23,8 +23,8 @@ const INITIAL_STATE = {
 };
 
 class Dashboard extends React.Component {
-  showSpinner = () => this.setState({isRunningTransaction: true})
-  hideSpinner = () => this.setState({isRunningTransaction: false})
+  showSpinner = () => this.setState({ isRunningTransaction: true });
+  hideSpinner = () => this.setState({ isRunningTransaction: false });
 
   constructor(props) {
     super(props);
@@ -32,26 +32,26 @@ class Dashboard extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constant').default;
+    Global = require('../constants').default;
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       this.isBrowserMetamsk = 1;
     }
     await this.getUserData();
-    this.setState({isLoading: false});
+    this.setState({ isLoading: false });
   }
   getUserVerify = () => {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         address: USER_ADDRESS,
-      })
-    })
-  }
+      }),
+    });
+  };
   getUserData = async () => {
     try {
       let response = await this.getUserVerify();
@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
         }
         let stepValue = parseInt(json.result);
         if (stepValue > 3) {
-          this.setState({isDashboard: true});
+          this.setState({ isDashboard: true });
         }
         return;
       }
@@ -71,8 +71,8 @@ class Dashboard extends React.Component {
     }
   };
   walletInfo = () => {
-    this.setState({isDashboard: true});
-  }
+    this.setState({ isDashboard: true });
+  };
 
   selectedMenu = async (index) => {
     this.setState({ selectedMenu: index });
@@ -81,99 +81,163 @@ class Dashboard extends React.Component {
   getContent = () => {
     return (
       <div>
-      <div className="mobile-menu">
-        <img className="mobile-menu-image" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"/>
-      </div>
-      <div className="mobile-menu-words">
-        <a className="mobile-menu-item-1" href="/blog"> BLOG </a>
-        <a className="mobile-menu-item-2" href="https://docs.decentral.games" target="_blank"> DOCS </a>
-      </div>
-      <LogoSpinner show={this.state.isRunningTransaction} />
-      <div className='home-video-container'>
-        <video src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4" type="video/mp4" frameborder="0" autoplay="true" loop muted className="home-dashboard-video">
-        </video>
-      </div>
-      <div className="home-dashboard-content">
-        <div>
-          <div className="home-dashboard-description">
+        <div className="mobile-menu">
+          <img
+            className="mobile-menu-image"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+          />
+        </div>
+        <div className="mobile-menu-words">
+          <a className="mobile-menu-item-1" href="/blog">
+            {' '}
+            BLOG{' '}
+          </a>
+          <a
+            className="mobile-menu-item-2"
+            href="https://docs.decentral.games"
+            target="_blank"
+          >
+            {' '}
+            DOCS{' '}
+          </a>
+        </div>
+        <LogoSpinner show={this.state.isRunningTransaction} />
+        <div className="home-video-container">
+          <video
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
+            type="video/mp4"
+            frameborder="0"
+            autoplay="true"
+            loop
+            muted
+            className="home-dashboard-video"
+          ></video>
+        </div>
+        <div className="home-dashboard-content">
+          <div>
+            <div className="home-dashboard-description">
+              <Fade bottom distance="20px" duration="600">
+                <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
+                <h3 className="home-dashboard-h3">Tominoya</h3>
+                <p className="home-dashboard-p">
+                  Sporting a Japanese aesthetic, Tominoya is a virtual casino in
+                  Decentraland, a decentralized virtual world. Enjoy
+                  non-custodial, pseudo-anonymous, and provably fair crypto
+                  gameplay with your friends.
+                </p>
+                <p className="home-dashboard-p">Games: Slots, Roulette</p>
+              </Fade>
+            </div>
             <Fade bottom distance="20px" duration="600">
-              <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-              <h3 className="home-dashboard-h3">Tominoya</h3>
-              <p className="home-dashboard-p">Sporting a Japanese aesthetic, Tominoya is a virtual casino in Decentraland, a decentralized virtual world. Enjoy non-custodial, pseudo-anonymous, and provably fair crypto gameplay with your friends.</p>
-              <p className="home-dashboard-p">Games: Slots, Roulette</p>
-            </Fade>
-          </div>
-          <Fade bottom distance="20px" duration="600">
-            { this.state.isDashboard === true ?
-              <div>
-                <Button color='blue' className="play-button"
-                href="https://play.decentral.games"
-                target="_blank"
-                style={{ marginRight: '30px' }}
-                >
-                  PLAY NOW
-                </Button>
-                <Button color='blue' className="play-shimmer"
-                target="_blank"
-                href="https://docs.decentral.games/getting-started"
+              {this.state.isDashboard === true ? (
+                <div>
+                  <Button
+                    color="blue"
+                    className="play-button"
+                    href="https://play.decentral.games"
+                    target="_blank"
+                    style={{ marginRight: '30px' }}
+                  >
+                    PLAY NOW
+                  </Button>
+                  <Button
+                    color="blue"
+                    className="play-shimmer"
+                    target="_blank"
+                    href="https://docs.decentral.games/getting-started"
+                  >
+                    HOW TO PLAY
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  color="blue"
+                  className="play-shimmer"
+                  href="https://docs.decentral.games/getting-started"
+                  target="_blank"
                 >
                   HOW TO PLAY
                 </Button>
-              </div>
-            :
-              <Button color='blue' className="play-shimmer"
-              href="https://docs.decentral.games/getting-started"
-              target="_blank"
-              >
-                HOW TO PLAY
-              </Button>
-            }
-          </Fade>
-          <div className="teleport">
-            <Fade bottom distance="20px" duration="600" delay="300">
-              <p className="featured-casino-text" id="mobile-casino-text" style={{ paddingTop: '60px' }}>ALL CASINOS</p>
+              )}
             </Fade>
-            <Fade bottom distance="20px" duration="600" delay="300">
-              <div className="dashboard-image-container">
-                <a href="https://play.decentraland.org/?position=-75%2C77&realm=fenrir-gold" target="_blank">
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/chateau_account_preview_xezmyv_obtddn_v5r3gv.jpg" className="dashboard-image"/>
-                </a>
-                <a href="https://play.decentraland.org/?position=-55%2C143&realm=fenrir-gold" target="_blank">
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/serenity_account_preview_b6v4sn_lq3udz_krd9f3.jpg" className="dashboard-image" />
-                </a>
-                <a href="https://play.decentraland.org/?position=-118%2C134&realm=fenrir-gold" target="_blank">
-                  <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058165/tominoya_account_preview_tshnux_c6rgvv_rqd6ct.jpg" className="dashboard-image" />
-                </a>
-              </div>
-            </Fade>
+            <div className="teleport">
+              <Fade bottom distance="20px" duration="600" delay="300">
+                <p
+                  className="featured-casino-text"
+                  id="mobile-casino-text"
+                  style={{ paddingTop: '60px' }}
+                >
+                  ALL CASINOS
+                </p>
+              </Fade>
+              <Fade bottom distance="20px" duration="600" delay="300">
+                <div className="dashboard-image-container">
+                  <a
+                    href="https://play.decentraland.org/?position=-75%2C77&realm=fenrir-gold"
+                    target="_blank"
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/chateau_account_preview_xezmyv_obtddn_v5r3gv.jpg"
+                      className="dashboard-image"
+                    />
+                  </a>
+                  <a
+                    href="https://play.decentraland.org/?position=-55%2C143&realm=fenrir-gold"
+                    target="_blank"
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/serenity_account_preview_b6v4sn_lq3udz_krd9f3.jpg"
+                      className="dashboard-image"
+                    />
+                  </a>
+                  <a
+                    href="https://play.decentraland.org/?position=-118%2C134&realm=fenrir-gold"
+                    target="_blank"
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058165/tominoya_account_preview_tshnux_c6rgvv_rqd6ct.jpg"
+                      className="dashboard-image"
+                    />
+                  </a>
+                </div>
+              </Fade>
+            </div>
           </div>
+          <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
         </div>
-      <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
-      </div></div>
+      </div>
     );
   };
   render() {
-    if ( this.state.isLoading === true) {
+    if (this.state.isLoading === true) {
       return (
         <div>
-          <Spinner show={this.state.isLoading}/>
+          <Spinner show={this.state.isLoading} />
         </div>
-      )
+      );
     }
     return (
       <div>
         <Fade bottom distance="20px" duration="600" delay="300">
-          { this.state.isDashboard === true ?  
-            <WalletInfo showSpinner={this.showSpinner} hideSpinner={this.hideSpinner}/>
-          : 
-            <Wallet showSpinner={this.showSpinner} hideSpinner={this.hideSpinner} walletInfo={this.walletInfo} />}
-        </Fade> 
+          {this.state.isDashboard === true ? (
+            <WalletInfo
+              showSpinner={this.showSpinner}
+              hideSpinner={this.hideSpinner}
+            />
+          ) : (
+            <Wallet
+              showSpinner={this.showSpinner}
+              hideSpinner={this.hideSpinner}
+              walletInfo={this.walletInfo}
+            />
+          )}
+        </Fade>
         <div className="home-dashboard">
-          <Menu dashboard={this.state.isDashboard}/>
+          <Menu dashboard={this.state.isDashboard} />
           {this.getContent()}
-          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
 

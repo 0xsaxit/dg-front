@@ -29,7 +29,7 @@ class WalletOverlay extends React.Component {
   };
 
   async componentDidMount() {
-    Global = require('../constant').default;
+    Global = require('../constants').default;
     await this.getUserData();
 
     if (window.web3) {

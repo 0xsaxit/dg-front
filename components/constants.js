@@ -47,15 +47,15 @@ const API_ADDRESSES = (async () => {
 
   RELAY_ADDRESS = await json.WORKER_WALLET_ADDRESS;
   MAINNET_TOKEN_ADDRESS = await json.MAINNET_TOKEN_ADDRESS;
-  ROPSTEN_TOKEN_ADDRESS = await json.ROPSTEN_TOKEN_ADDRESS; // '0x3486DC2Bf6d45Da6E0bb96a9999a4744F9a6B421'; //
-  MATIC_TOKEN_ADDRESS = await json.MATIC_TOKEN_ADDRESS; // '0xb6e5aaaE04acb59f2e7D951a9bC31855Ca2813aD'; //
+  ROPSTEN_TOKEN_ADDRESS = await json.ROPSTEN_TOKEN_ADDRESS;
+  MATIC_TOKEN_ADDRESS = await json.MATIC_TOKEN_ADDRESS;
   PARENT_CONTRACT_ADDRESS = await json.PARENT_CONTRACT_ADDRESS;
   TREASURY_SLOTS_ADDRESS = await json.TREASURY_SLOTS_ADDRESS;
   TREASURY_ROULETTE_ADDRESS = await json.TREASURY_ROULETTE_ADDRESS;
   TREASURY_BACKGAMMON_ADDRESS = await json.TREASURY_BACKGAMMON_ADDRESS;
   TREASURY_BLACKJACK_ADDRESS = await json.TREASURY_BLACKJACK_ADDRESS;
   ROOTCHAIN_ADDRESS = await json.ROOTCHAIN_ADDRESS;
-  ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS; // '0xC5C4a4086FE913b5D525915404C88d12b4031CC0';
+  ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
   WITHDRAWMANAGER_ADDRESS = await json.WITHDRAWMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDRESS);
@@ -123,7 +123,7 @@ function balanceOfToken(
   }
 
   return new Promise(async (resolve, reject) => {
-    console.log('Get balance of Token');
+    console.log('Get balance of token');
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
@@ -150,17 +150,9 @@ function balanceOfToken(
 /////////////////////////////////////////////////////////////////////////////////////////
 // returns the amount of MANA contractAddress is approved to spend on behalf of the user
 function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
-  // let tokenAddress = '';
-  // if (network == 'ropsten') {
-  //   tokenAddress = ROPSTEN_TOKEN_ADDRESS;
-  // } else if (network == 'matic') {
-  //   tokenAddress = MATIC_TOKEN_ADDRESS;
-  // }
-
   return new Promise(async (resolve, reject) => {
     console.log('Get allowed tokens');
     console.log('token address: ' + tokenAddress);
-    // console.log(web3Default);
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
@@ -196,51 +188,16 @@ async function approveToken(
   userAddress,
   web3Default = window.web3
 ) {
-  // let tokenAddress = '';
-  // if (tokenName == 'ropsten') {
-  //   tokenAddress = ROPSTEN_TOKEN_ADDRESS;
-  // } else if (tokenName == 'matic') {
-  //   tokenAddress = MATIC_TOKEN_ADDRESS;
-  // }
-
   return new Promise(async (resolve, reject) => {
     console.log('Approve contract');
     console.log('token address: ' + tokenAddress);
-    // console.log('token address: ' + tokenAddress);
-    // console.log('amount: ' + amount);
-    // console.log('user address: ' + userAddress);
-    // console.log('rootchain manager address: ' + ROOTCHAINMANAGER_ADDRESS);
-    // console.log(web3Default);
 
     try {
-      await maticPOSClient.approveERC20ForDeposit(
-        tokenAddress,
-        amount,
-        {
-          from: userAddress,
-          gasLimit: web3Default.toHex(GAS_LIMIT),
-          gasPrice: web3Default.toHex('20000000000'),
-        }
-
-        // ,
-        // async function (err, hash) {
-        //   if (err) {
-        //     console.log('Approving failed 1: ', err);
-
-        //     reject(false);
-        //   }
-
-        //   const ret = await getConfirmedTx(hash);
-        //   if (ret.status == '0x0') {
-        //     console.log('Approving transaction failed');
-        //     reject(false);
-        //   } else {
-        //     console.log('Approving done');
-
-        //     resolve(true);
-        //   }
-        // }
-      );
+      await maticPOSClient.approveERC20ForDeposit(tokenAddress, amount, {
+        from: userAddress,
+        gasLimit: web3Default.toHex(GAS_LIMIT),
+        gasPrice: web3Default.toHex('20000000000'),
+      });
 
       console.log('Approve done');
       resolve(true);
@@ -261,13 +218,6 @@ async function depositTokenToMatic(
   web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
-    // let tokenAddress = '';
-    // if (network == 'ropsten') {
-    //   tokenAddress = ROPSTEN_TOKEN_ADDRESS;
-    // } else if (network == 'matic') {
-    //   tokenAddress = MATIC_TOKEN_ADDRESS;
-    // }
-
     console.log('Deposit start');
     console.log('token address: ' + tokenAddress);
     console.log('amount: ' + amount);
@@ -275,9 +225,6 @@ async function depositTokenToMatic(
     console.log('gas limit: ' + GAS_LIMIT);
 
     try {
-      // console.log('amount..');
-      // console.log(amount);
-
       const logs = await maticPOSClient.depositERC20ForUser(
         tokenAddress,
         userAddress,
@@ -287,31 +234,10 @@ async function depositTokenToMatic(
           gasLimit: web3Default.toHex(GAS_LIMIT),
           gasPrice: web3Default.toHex('20000000000'),
         }
-
-        // async function (err, hash) {
-        //   if (err) {
-        //     console.log('Deposit failed', err);
-        //     reject(false);
-        //   }
-
-        //   console.log('Deposit done');
-        //   resolve(hash);
-        // }
       );
-      // .then((logs) => resolve(logs.transactionHash));
-
-      // if (err) {
-      //   console.log('Deposit failed', err);
-      //   reject(false);
-      // }
 
       console.log('Deposit done');
       resolve(logs.transactionHash);
-
-      // resolve(logs.transactionHash);
-
-      // const id = transaction.events.PetCreated.returnValues[0];
-      // const owner = transaction.events.PetCreated.returnValues.owner;
     } catch (error) {
       console.log('Deposit failed: ', error);
       reject(false);
@@ -324,7 +250,7 @@ async function depositTokenToMatic(
 // get balance from parent contract and allocated tokens from slots and roulette games
 function getBalanceParent(tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
-    console.log('Get balance start');
+    console.log('Get balance of parent contract');
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -355,7 +281,7 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
 // get allocated tokens for specified game
 function getTokensGame(gameType, tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
-    console.log('Get tokens per game start');
+    console.log('Get tokens per game');
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -387,7 +313,7 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
 // deposit funds to parent contract
 function depositToParent(gameType, amount, tokenName) {
   return new Promise(async (resolve, reject) => {
-    console.log('Deposit start' + amount);
+    console.log('Deposit start:' + amount);
     const userAddress = window.web3.currentProvider.selectedAddress;
 
     try {
@@ -426,7 +352,7 @@ function depositToParent(gameType, amount, tokenName) {
 // withdraw funds from parent contract
 function withdrawFromParent(gameType, amount, tokenName) {
   return new Promise(async (resolve, reject) => {
-    console.log('Withdraw start' + ': ' + amount);
+    console.log('Withdraw start: ' + amount);
     const userAddress = window.web3.currentProvider.selectedAddress;
 
     try {
@@ -464,7 +390,8 @@ function withdrawFromParent(gameType, amount, tokenName) {
 /////////////////////////////////////////////////////////////////////////////////////////
 function startWithdrawTokenFromMatic(tokenAddress, amount, userAddress) {
   return new Promise(async (resolve, reject) => {
-    console.log('Withdraw starting');
+    console.log('Withdraw start');
+
     try {
       const TOKEN_CONTRACT = window.web3.eth
         .contract(ChildERC20Token.abi)
@@ -479,22 +406,22 @@ function startWithdrawTokenFromMatic(tokenAddress, amount, userAddress) {
         },
         async function (err, hash) {
           if (err) {
-            console.log('Withdraw starting failed', err);
+            console.log('Withdraw start failed', err);
             reject(false);
           }
 
           var ret = await getConfirmedTx(hash);
           if (ret.status == '0x0') {
-            console.log('Withdraw starting transaction failed');
+            console.log('Withdraw start transaction failed');
             resolve(false);
           } else {
-            console.log('Withdraw starting done');
+            console.log('Withdraw start done');
             resolve(hash);
           }
         }
       );
     } catch (error) {
-      console.log('Withdraw starting failed', error);
+      console.log('Withdraw start failed', error);
       reject(false);
     }
   });
@@ -569,17 +496,13 @@ function getConfirmedTx(txHash) {
 export default {
   API_ADDRESSES,
   ADMIN_ADDRESSES,
-  RELAY_ADDRESS,
+  // RELAY_ADDRESS,
   API_BASE_URL,
   BASE_URL,
   FACTOR,
-  ROPSTEN_TOKEN_ADDRESS,
-  MATIC_TOKEN_ADDRESS,
-  PARENT_CONTRACT_ADDRESS,
-  TREASURY_SLOTS_ADDRESS,
-  TREASURY_ROULETTE_ADDRESS,
-  ROOTCHAIN_ADDRESS,
-  ROOTCHAINMANAGER_ADDRESS,
+  // MATIC_TOKEN_ADDRESS,
+  // TREASURY_SLOTS_ADDRESS,
+  // TREASURY_ROULETTE_ADDRESS,
   PARENT_NETWORK_ID,
   MATIC_NETWORK_ID,
   MATIC_URL,

@@ -8,7 +8,7 @@ import { Table, Modal, Icon } from 'semantic-ui-react';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
 
-import Global from '../constant';
+import Global from '../constants';
 
 // let Global;
 var USER_ADDRESS;
@@ -31,7 +31,7 @@ class WalletInfo extends React.Component {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     }
 
-    // Global = require('../constant').default;
+    // Global = require('../constants').default;
 
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)

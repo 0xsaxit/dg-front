@@ -17,7 +17,7 @@ import {
 } from 'semantic-ui-react';
 // ---------------------------------------------------------------------
 import dynamic from 'next/dynamic';
-import Global from '../constant';
+import Global from '../constants';
 
 // let Global;
 
@@ -107,7 +107,7 @@ class Withdraw extends React.Component {
   }
 
   async componentDidMount() {
-    // Global = require('../constant').default;
+    // Global = require('../constants').default;
 
     try {
       if (!window.web3.currentProvider.selectedAddress) {

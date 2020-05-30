@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { isMobile } from "react-device-detect";
-import { Header } from 'semantic-ui-react'
-import { Container, Grid, Image } from 'semantic-ui-react'
-import Menu from './menu'
-import Machine from './machine'
-import History from './history'
-import Dashboard from './dashboard'
-import Spinner from '../Spinner'
-import AdminCheck from './adminCheck'
+import { isMobile } from 'react-device-detect';
+import { Header } from 'semantic-ui-react';
+import { Container, Grid, Image } from 'semantic-ui-react';
+import Menu from './menu';
+import Machine from './machine';
+import History from './history';
+import Dashboard from './dashboard';
+import Spinner from '../Spinner';
+import AdminCheck from './adminCheck';
 
 let Global;
 
@@ -27,11 +27,11 @@ class Admin extends React.Component {
 
   async componentDidMount() {
     let object = this;
-    Global = require('../constant').default;
+    Global = require('../constants').default;
     window.ethereum.on('accountsChanged', async function (accounts) {
       await object.getUserState();
-    })
-    
+    });
+
     if (window.web3) {
       this.isBrowserMetamsk = 1;
     }
@@ -43,34 +43,29 @@ class Admin extends React.Component {
       }
 
       let ret = await this.getUserState();
-      if (ret)
-        return;
-
-    } catch(e) {
+      if (ret) return;
+    } catch (e) {
       console.log(e);
     }
-    
-    this.setState({isValid : 0});  
+
+    this.setState({ isValid: 0 });
   }
 
   selectedMenu = async (index) => {
-    this.setState({selectedMenu: index});
-  }
+    this.setState({ selectedMenu: index });
+  };
 
   getContent = () => {
-    if (this.state.selectedMenu == 0)
-      return (<Dashboard />);
-    if (this.state.selectedMenu == 1)
-      return (<Machine />);
-    if (this.state.selectedMenu == 2)
-      return (<History />);
-  }
+    if (this.state.selectedMenu == 0) return <Dashboard />;
+    if (this.state.selectedMenu == 1) return <Machine />;
+    if (this.state.selectedMenu == 2) return <History />;
+  };
 
   ifMobileRedirect = () => {
     if (isMobile) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
 
   render() {
     if (!this.isBrowserMetamsk) {
@@ -82,23 +77,23 @@ class Admin extends React.Component {
             </Grid>
           </Container>*/}
         </div>
-      )
+      );
     }
 
     return (
       <div id="admin">
         {this.ifMobileRedirect()}
-        <Spinner show={this.state.isRunningTransaction}/>
+        <Spinner show={this.state.isRunningTransaction} />
         <div className="ui accountContainer">
-          <Grid verticalAlign='middle'>
+          <Grid verticalAlign="middle">
             <Grid.Column>
-              <Menu onMenuSelected={this.selectedMenu}/>
+              <Menu onMenuSelected={this.selectedMenu} />
               {this.getContent()}
             </Grid.Column>
           </Grid>
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -1,16 +1,33 @@
-import React, { Component, useContext, useState, useEffect } from "react";
-import { NavLink, Link, Redirect, withRouter } from "react-router-dom"
-import { Icon, Image, Menu, Search, Container, Segment, Modal, Header, Grid, Input, Dropdown, Breadcrumb, Divider, Message, Popup, Button } from "semantic-ui-react";
-import { isMobile } from "react-device-detect";
-import Spinner from '../Spinner'
+import React, { Component, useContext, useState, useEffect } from 'react';
+import { NavLink, Link, Redirect, withRouter } from 'react-router-dom';
+import {
+  Icon,
+  Image,
+  Menu,
+  Search,
+  Container,
+  Segment,
+  Modal,
+  Header,
+  Grid,
+  Input,
+  Dropdown,
+  Breadcrumb,
+  Divider,
+  Message,
+  Popup,
+  Button,
+} from 'semantic-ui-react';
+import { isMobile } from 'react-device-detect';
+import Spinner from '../Spinner';
 
 let Global;
-import logo2 from '../../static/images/logo.png'
+import logo2 from '../../static/images/logo.png';
 // import logo2 from '../../static/images/logoDG35.png'
-import box from '../../static/images/box.png'
-import check from '../../static/images/check.png'
-import metamask from '../../static/images/metamask.png'
-import ledger from '../../static/images/ledger.png'
+import box from '../../static/images/box.png';
+import check from '../../static/images/check.png';
+import metamask from '../../static/images/metamask.png';
+import ledger from '../../static/images/ledger.png';
 
 var USER_ADDRESS;
 
@@ -33,15 +50,14 @@ const INITIAL_STATE = {
 };
 
 class ModalVerify extends Component {
-
-  state = { modalOpen: false }
+  state = { modalOpen: false };
   handleOpen = () => {
     this.setState({ modalOpen: true });
     if (this.state.isLoaded === 0) {
       this.prepareVerify();
     }
-  }
-  handleClose = () => this.setState({ modalOpen: false })
+  };
+  handleClose = () => this.setState({ modalOpen: false });
 
   constructor(props) {
     super(props);
@@ -51,8 +67,8 @@ class ModalVerify extends Component {
   }
 
   async componentDidMount() {
-    Global = require('../constant').default;
-    
+    Global = require('../constants').default;
+
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       this.isBrowserMetamsk = 1;
@@ -75,13 +91,12 @@ class ModalVerify extends Component {
         }
 
         let ret = await this.checkUserVerifyStep();
-        if (ret)
-          return;
+        if (ret) return;
 
         await Global.delay(2000);
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
 
     this.setState({ isLoaded: 1 });
@@ -103,11 +118,25 @@ class ModalVerify extends Component {
           this.gotoDashboard();
           // window.location.href = "/";
         } else if (stepValue == 3)
-          this.setState({ isValidBirth: 2, isLoaded: 2, userStepValue: 3, existAccount: 0 });
+          this.setState({
+            isValidBirth: 2,
+            isLoaded: 2,
+            userStepValue: 3,
+            existAccount: 0,
+          });
         else if (stepValue == 2)
-          this.setState({ isValidMetamask: 2, isLoaded: 2, userStepValue: 2, existAccount: 0 });
+          this.setState({
+            isValidMetamask: 2,
+            isLoaded: 2,
+            userStepValue: 2,
+            existAccount: 0,
+          });
         else
-          this.setState({ isLoaded: 2, userStepValue: stepValue, existAccount: 0 });
+          this.setState({
+            isLoaded: 2,
+            userStepValue: stepValue,
+            existAccount: 0,
+          });
 
         return true;
       }
@@ -116,30 +145,30 @@ class ModalVerify extends Component {
     }
 
     return false;
-  }
+  };
 
   gotoDashboard = () => {
     this.setState({ modalOpen: false });
     this.props.dashboard();
-  }
+  };
   getUserVerify = () => {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         address: USER_ADDRESS,
-      })
-    })
-  }
+      }),
+    });
+  };
 
   ifMobileRedirect = () => {
     if (isMobile) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
   onChangeMonth = (e, d) => {
     this.setState({ month: d.value });
   };
@@ -158,11 +187,11 @@ class ModalVerify extends Component {
 
   onEmail = async (e) => {
     this.setState({ email: e.target.value });
-  }
+  };
 
   onName = async (e) => {
     this.setState({ name: e.target.value });
-  }
+  };
 
   verifyLocation = async (e, d) => {
     // this.setState({isValidLocation: 0 });
@@ -172,7 +201,7 @@ class ModalVerify extends Component {
     //     if (ip.country === 'United States') {
     await this.postUserVerify(4);
     this.setState({ isValidLocation: 2 });
-    window.location.href = "/";
+    window.location.href = '/';
     //    this.props.history.push('/account');
     //     }
     //     else
@@ -191,32 +220,30 @@ class ModalVerify extends Component {
         fetch(`${Global.BASE_URL}/order/addAddress`, {
           method: 'POST',
           headers: {
-            'Accept': 'application/json',
+            Accept: 'application/json',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             address: USER_ADDRESS,
             manaLock: 0,
             ethLock: 0,
-          })
+          }),
         })
-          .catch(e => {
+          .catch((e) => {
             console.log(e);
             this.setState({ isValidMetamask: 1 });
           })
-          .then(res => {
-            if (res)
-              return res.json();
+          .then((res) => {
+            if (res) return res.json();
             this.setState({ isValidMetamask: 1 });
           })
-          .then(async data => {
-            if (!data)
-              this.setState({ isValidMetamask: 1 });
+          .then(async (data) => {
+            if (!data) this.setState({ isValidMetamask: 1 });
             else {
               if (data.status === 'ok' && data.result === 'true') {
                 // window.location.href = 'http://localhost:8000';
                 await this.postUserVerify(3);
-                this.setState({isValidBirth: 2, isValidMetamask: 3 });
+                this.setState({ isValidBirth: 2, isValidMetamask: 3 });
               } else {
                 this.setState({ isValidMetamask: 1 });
               }
@@ -233,15 +260,15 @@ class ModalVerify extends Component {
     return fetch(`${Global.BASE_URL}/order/updateUserVerify`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         address: USER_ADDRESS,
         verifyStep: step,
-      })
-    })
-  }
+      }),
+    });
+  };
 
   render() {
     const month = [
@@ -257,7 +284,7 @@ class ModalVerify extends Component {
       { key: 10, text: 'Oct', value: 10 },
       { key: 11, text: 'Nov', value: 11 },
       { key: 12, text: 'Dec', value: 12 },
-    ]
+    ];
 
     const amount = [
       { key: 1, text: '1000 MANA', value: 1000 },
@@ -265,27 +292,31 @@ class ModalVerify extends Component {
       { key: 3, text: '3000 MANA', value: 3000 },
       { key: 4, text: '4000 MANA', value: 4000 },
       { key: 5, text: '5000 MANA', value: 5000 },
-    ]
+    ];
 
     var dayLimit;
-    if ((this.state.month == 1) || (this.state.month == 3) || (this.state.month == 5) || (this.state.month == 7) ||
-      (this.state.month == 8) || (this.state.month == 10) || (this.state.month == 12))
+    if (
+      this.state.month == 1 ||
+      this.state.month == 3 ||
+      this.state.month == 5 ||
+      this.state.month == 7 ||
+      this.state.month == 8 ||
+      this.state.month == 10 ||
+      this.state.month == 12
+    )
       dayLimit = 31;
-    else if (this.state.month == 2)
-      dayLimit = 29;
-    else
-      dayLimit = 30
+    else if (this.state.month == 2) dayLimit = 29;
+    else dayLimit = 30;
 
     var day = [];
     for (var i = 1; i <= dayLimit; i++) {
-      if ((i == 1) || (i == 21) || (i == 31))
+      if (i == 1 || i == 21 || i == 31)
         day[day.length] = { key: i, text: i + 'st', value: i };
-      else if ((i == 2) || (i == 22))
+      else if (i == 2 || i == 22)
         day[day.length] = { key: i, text: i + 'nd', value: i };
-      else if ((i == 3) || (i == 23))
+      else if (i == 3 || i == 23)
         day[day.length] = { key: i, text: i + 'rd', value: i };
-      else
-        day[day.length] = { key: i, text: i + 'th', value: i };
+      else day[day.length] = { key: i, text: i + 'th', value: i };
     }
 
     var year = [];
@@ -296,48 +327,81 @@ class ModalVerify extends Component {
     if (this.state.isLoaded === 0) {
       return (
         <Modal
-          trigger={<Button content='CONNECT METAMASK'  color='blue' className="metamask-button" onClick={this.handleOpen} />}
+          trigger={
+            <Button
+              content="CONNECT METAMASK"
+              color="blue"
+              className="metamask-button"
+              onClick={this.handleOpen}
+            />
+          }
           open={this.state.modalOpen}
           onClose={this.handleClose}
           closeIcon
         >
           <div id="verify">
-            <Container style={{ height: '35em' }}>
-            </Container>
+            <Container style={{ height: '35em' }}></Container>
           </div>
         </Modal>
-      )
+      );
     }
 
     if (!this.isBrowserMetamsk) {
       return (
         <Modal
-          trigger={<Button content='CONNECT METAMASK'  color='blue' className="metamask-button" onClick={this.handleOpen} />}
+          trigger={
+            <Button
+              content="CONNECT METAMASK"
+              color="blue"
+              className="metamask-button"
+              onClick={this.handleOpen}
+            />
+          }
           open={this.state.modalOpen}
           onClose={this.handleClose}
           closeIcon
         >
           <div id="deposit">
             <Container style={{ height: '35em' }}>
-              <Grid style={{ marginTop: '17em' }} verticalAlign='middle' textAlign='center'>
-                <Header> Please use Chrome Browser with Metamask enabled to proceed. </Header>
+              <Grid
+                style={{ marginTop: '17em' }}
+                verticalAlign="middle"
+                textAlign="center"
+              >
+                <Header>
+                  {' '}
+                  Please use Chrome Browser with Metamask enabled to proceed.{' '}
+                </Header>
               </Grid>
             </Container>
           </div>
         </Modal>
-      )
+      );
     }
 
     if (this.state.existAccount == 1) {
       return (
-        <Button content='CONNECT METAMASK'  color='blue' className="metamask-button" as={NavLink} to='/' />
-      )
+        <Button
+          content="CONNECT METAMASK"
+          color="blue"
+          className="metamask-button"
+          as={NavLink}
+          to="/"
+        />
+      );
     }
 
     if (this.state.isValidBirth == 2) {
       return (
         <Modal
-          trigger={<Button content='CONNECT METAMASK'  color='blue' className="metamask-button" onClick={this.handleOpen} />}
+          trigger={
+            <Button
+              content="CONNECT METAMASK"
+              color="blue"
+              className="metamask-button"
+              onClick={this.handleOpen}
+            />
+          }
           open={this.state.modalOpen}
           onClose={this.handleClose}
           closeIcon
@@ -346,16 +410,29 @@ class ModalVerify extends Component {
             {this.ifMobileRedirect()}
 
             <div className="ui verifyContainer">
-              <Grid verticalAlign='middle' textAlign='center'>
+              <Grid verticalAlign="middle" textAlign="center">
                 <Grid.Column>
-
                   <div className="progressbar">
                     <img className="modal-logo" src={logo2} />
-                    <Grid.Row >
+                    <Grid.Row>
                       <Divider className="modal-divider" />
-                      <img style={{ opacity: '0.5' }} className="progressbar-image-box" src={box} />
-                      <img style={{ opacity: '0.5' }} className="progressbar-image-check" src={check} />
-                      <p style={{ opacity: '0.5', paddingLeft: '0px' }} className="progressbar p-text"> Connect Wallet </p>
+                      <img
+                        style={{ opacity: '0.5' }}
+                        className="progressbar-image-box"
+                        src={box}
+                      />
+                      <img
+                        style={{ opacity: '0.5' }}
+                        className="progressbar-image-check"
+                        src={check}
+                      />
+                      <p
+                        style={{ opacity: '0.5', paddingLeft: '0px' }}
+                        className="progressbar p-text"
+                      >
+                        {' '}
+                        Connect Wallet{' '}
+                      </p>
                     </Grid.Row>
                     <Grid.Row style={{ marginTop: '15px' }}>
                       <img className="progressbar-image-box" src={box} />
@@ -369,35 +446,50 @@ class ModalVerify extends Component {
                         <h3 className="modal-h3"> Create Account </h3>
                       </Grid.Row>
                       <Grid.Row>
-                        <p className="modal-p">2. Verify your location. Due to international online gaming legislation, we unfortunately do not allow accounts from US IP addresses.
-                      </p>
+                        <p className="modal-p">
+                          2. Verify your location. Due to international online
+                          gaming legislation, we unfortunately do not allow
+                          accounts from US IP addresses.
+                        </p>
                       </Grid.Row>
 
                       <Grid.Row>
-                        <Button className="play-button" color='blue'
-                          onClick={this.verifyLocation} >
+                        <Button
+                          className="play-button"
+                          color="blue"
+                          onClick={this.verifyLocation}
+                        >
                           Verify
-                      </Button>
+                        </Button>
                       </Grid.Row>
                     </Grid>
 
-                    {this.state.isValidLocation == 1 ?
+                    {this.state.isValidLocation == 1 ? (
                       <p className="modal-p-error">
                         You are within the United States.
-                  </p> : <p />}
-
+                      </p>
+                    ) : (
+                      <p />
+                    )}
                   </div>
                 </Grid.Column>
               </Grid>
             </div>
           </div>
         </Modal>
-      )
+      );
     }
 
     return (
       <Modal
-        trigger={<Button color='blue' className="metamask-button" content='CONNECT METAMASK' onClick={this.handleOpen} />}
+        trigger={
+          <Button
+            color="blue"
+            className="metamask-button"
+            content="CONNECT METAMASK"
+            onClick={this.handleOpen}
+          />
+        }
         open={this.state.modalOpen}
         onClose={this.handleClose}
         closeIcon
@@ -406,19 +498,28 @@ class ModalVerify extends Component {
           {this.ifMobileRedirect()}
 
           <div className="ui verifyContainer">
-            <Grid verticalAlign='middle' textAlign='center'>
+            <Grid verticalAlign="middle" textAlign="center">
               <Grid.Column>
-
                 <div className="progressbar">
                   <img className="modal-logo" src={logo2} />
-                  <Grid.Row >
+                  <Grid.Row>
                     <Divider className="modal-divider" />
                     <img className="progressbar-image-box" src={box} />
                     <p className="progressbar p-text"> Connect Wallet </p>
                   </Grid.Row>
                   <Grid.Row style={{ marginTop: '15px' }}>
-                    <img style={{ opacity: '0.5' }} className="progressbar-image-box" src={box} />
-                    <p style={{ opacity: '0.5' }} className="progressbar p-text"> Verify Location </p>
+                    <img
+                      style={{ opacity: '0.5' }}
+                      className="progressbar-image-box"
+                      src={box}
+                    />
+                    <p
+                      style={{ opacity: '0.5' }}
+                      className="progressbar p-text"
+                    >
+                      {' '}
+                      Verify Location{' '}
+                    </p>
                   </Grid.Row>
                 </div>
 
@@ -428,19 +529,36 @@ class ModalVerify extends Component {
                       <h3 className="modal-h3"> Create Account </h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <p className="modal-p">1. Connect your Metamask wallet.</p>
+                      <p className="modal-p">
+                        1. Connect your Metamask wallet.
+                      </p>
                     </Grid.Row>
                     <Grid.Row>
-                      <Container style={{ textAlign: 'left', marginLeft: '50px', marginTop: '10px', width: '800px' }}>
-                        <a href='#' onClick={this.onMetamask}>
-                          <Image src={metamask} inline rounded bordered style={{ width: '110px' }} />
+                      <Container
+                        style={{
+                          textAlign: 'left',
+                          marginLeft: '50px',
+                          marginTop: '10px',
+                          width: '800px',
+                        }}
+                      >
+                        <a href="#" onClick={this.onMetamask}>
+                          <Image
+                            src={metamask}
+                            inline
+                            rounded
+                            bordered
+                            style={{ width: '110px' }}
+                          />
                         </a>
 
-                        {this.state.isValidMetamask == 1 ?
+                        {this.state.isValidMetamask == 1 ? (
                           <p className="modal-p-error">
                             Failed to add address.
-                          </p> : <p />
-                        }
+                          </p>
+                        ) : (
+                          <p />
+                        )}
                       </Container>
                     </Grid.Row>
                   </Grid>
@@ -450,8 +568,8 @@ class ModalVerify extends Component {
           </div>
         </div>
       </Modal>
-    )
+    );
   }
 }
 
-export default ModalVerify
+export default ModalVerify;

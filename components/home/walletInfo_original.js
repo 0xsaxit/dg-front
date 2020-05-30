@@ -28,7 +28,7 @@ class WalletInfo extends React.Component {
       console.log(window);
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     }
-    Global = require('../constant').default;
+    Global = require('../constants').default;
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider('https://testnet2.matic.network')
     );

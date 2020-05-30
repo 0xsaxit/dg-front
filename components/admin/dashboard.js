@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constant').default;
+    Global = require('../constants').default;
 
     if (window.web3) {
       this.maticWeb3 = new window.Web3(

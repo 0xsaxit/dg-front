@@ -47,13 +47,21 @@ const DepositContent = (props) => {
             </p>
           </Grid.Row>
           <Grid.Row>
-            <Dropdown
-              selection
-              options={amount}
-              value={props.amount}
-              style={{ width: '300px', marginTop: '0px' }}
-              onChange={props.onChangeAmount}
-            />
+            {props.isCustomAmount == 0 ? (
+              <Dropdown
+                selection
+                options={amount}
+                value={props.amount}
+                style={{ width: '300px', marginTop: '0px' }}
+                onChange={props.onChangeAmount}
+              />
+            ) : (
+              <Input
+                style={{ width: '300px', marginTop: '0px' }}
+                value={props.amount}
+                onChange={props.onChangeCustomAmount}
+              />
+            )}
           </Grid.Row>
           <Grid.Row>
             <Button
@@ -65,6 +73,7 @@ const DepositContent = (props) => {
               Deposit
             </Button>
           </Grid.Row>
+          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidDeposit == 1 ? (
             <Grid.Row>
@@ -85,6 +94,8 @@ const DepositContent = (props) => {
             </p>
           </Grid.Row>
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -109,6 +120,7 @@ const DepositContent = (props) => {
               Authorize
             </Button>
           </Grid.Row>
+          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidAuthorize == 1 ? (
             <Grid.Row>
@@ -116,6 +128,8 @@ const DepositContent = (props) => {
             </Grid.Row>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -232,6 +246,7 @@ const DepositContent = (props) => {
               Deposit
             </Button>
           </Grid.Row>
+          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidDeposit == 1 ? (
             <Grid.Row>
@@ -239,6 +254,8 @@ const DepositContent = (props) => {
             </Grid.Row>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
