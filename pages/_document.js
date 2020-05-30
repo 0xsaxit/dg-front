@@ -10,13 +10,6 @@ export default class MyDocument extends Document {
         return (
             <html lang="en">
             <Head>
-                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146057069-1"></script>
-                <script>
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'UA-146057069-1');
-                </script>
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
                 <link rel="shortcut icon" href="static/images/favicon.ico" />
