@@ -73,7 +73,6 @@ const DepositContent = (props) => {
               Deposit
             </Button>
           </Grid.Row>
-          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidDeposit == 1 ? (
             <Grid.Row>
@@ -120,7 +119,6 @@ const DepositContent = (props) => {
               Authorize
             </Button>
           </Grid.Row>
-          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidAuthorize == 1 ? (
             <Grid.Row>
@@ -128,6 +126,32 @@ const DepositContent = (props) => {
             </Grid.Row>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+      </div>
+    );
+  }
+
+  function contentConfirm() {
+    return (
+      <div className="modal-content-container">
+        <Grid>
+          <Grid.Row>
+            <h3 className="modal-h3">Matic Network Confirmations</h3>
+          </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">Number of confirmations: ...</p>
+          </Grid.Row>
+        </Grid>
+
+        <Grid.Row>
+          <p className="modal-p-note">
+            <span style={{ fontStyle: 'italic' }}>
+              *Matic Network requires a total of 12 confirmations for
+              transaction to complete
+            </span>
+          </p>
+        </Grid.Row>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
@@ -246,7 +270,6 @@ const DepositContent = (props) => {
               Deposit
             </Button>
           </Grid.Row>
-          <Grid.Row>{props.refresh}</Grid.Row>
 
           {props.isValidDeposit == 1 ? (
             <Grid.Row>
@@ -266,6 +289,8 @@ const DepositContent = (props) => {
     return contentApprove();
   } else if (props.content == 'authorize') {
     return contentAuthorize();
+  } else if (props.content == 'confirmations') {
+    return contentConfirm();
   } else if (props.content == 'deposit') {
     return contentDeposit();
   }

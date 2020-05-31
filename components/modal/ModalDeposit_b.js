@@ -73,6 +73,7 @@ class Deposit extends React.Component {
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
+      refresh: '',
     };
 
     this.USER_ADDRESS = '';
@@ -246,12 +247,14 @@ class Deposit extends React.Component {
         );
       }
 
-      // now deposit tokens from Main net to Matic Network
       const txHash = await Global.depositTokenToMatic(
         tokenAddressRopsten,
         amountWei,
         this.USER_ADDRESS
       );
+
+      // console.log('tx hash: ' + txHash);
+
       if (txHash != false) {
         let ret = await this.updateHistory(
           this.state.amount,
@@ -259,10 +262,13 @@ class Deposit extends React.Component {
           'In Progress',
           txHash
         );
+
         if (!ret) this.networkErrror(); // network error
 
         ret = await Global.getConfirmedTx(txHash); // return confirmation hash
-        console.log('confirmation: ' + ret);
+
+        console.log('confirmation: ');
+        console.log(ret);
 
         if (ret.status == '0x0') {
           ret = await this.updateHistory(
@@ -290,10 +296,25 @@ class Deposit extends React.Component {
           await this.postUserVerify(5); // update verify to 'authorize'
           this.setState({ userStepValue: 5 }); // advance to auth step
         } else if (this.state.userStepValue == 6) {
+          // console.log('step value is 6');
+
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
         }
 
-        this.setState({ isValidDeposit: 2 }); // valid deposit
+        // valid deposit
+        // this.setState({
+        //   isValidDeposit: 2,
+        //   refresh: 'Funds deposted: ' + amountWei / Global.FACTOR + ' MANA',
+        // });
+
+        this.setState({ isValidDeposit: 2, refresh: '' }); // valid deposit
+
+        // this.nextStep(6); // go to auth step
+
+        const balanceMatic = await tokenContract.methods
+          .balanceOf(this.USER_ADDRESS)
+          .call();
+        console.log('Matic balance: ' + balanceMatic / Global.FACTOR);
         console.log('tx hash: ' + txHash);
       }
 
@@ -302,6 +323,8 @@ class Deposit extends React.Component {
       console.log(err);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
     }
+
+    // this.props.hideSpinner();
   };
 
   networkError = () => {
@@ -326,18 +349,30 @@ class Deposit extends React.Component {
     console.log('authorize amount: ' + authorizeAmount);
     console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
 
-    this.props.showSpinner();
-
     let functionSignature = tokenContract.methods
       .approve(spenderAddress, authorizeAmount)
       .encodeABI();
+    console.log(functionSignature);
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
     this.executeMetaTransaction(functionSignature);
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    // await this.postUserVerify(6); // update verify to 'deposit'
+    // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
+    // this.setState({ isValidAuthorize: 2, refresh: 'Matic Network authorized' }); // valid authorize
+    // this.props.hideSpinner();
+    // setTimeout(this.props.update, 5000); // set user token balance from MetaMask
   };
 
   executeMetaTransaction = async (functionSignature) => {
     console.log('functional signature: ' + functionSignature);
 
     try {
+      this.props.showSpinner();
+
       let nonce = await tokenContract.methods
         .getNonce(this.USER_ADDRESS)
         .call();
@@ -346,6 +381,7 @@ class Deposit extends React.Component {
       message.nonce = parseInt(nonce);
       message.from = this.USER_ADDRESS;
       message.functionSignature = functionSignature;
+      // message.network = 'Interact with Matic Network';
 
       const dataToSign = JSON.stringify({
         types: {
@@ -370,6 +406,12 @@ class Deposit extends React.Component {
 
         async (error, response) => {
           let { r, s, v } = this.getSignatureParameters(response.result);
+
+          // console.log('message: ');
+          // console.log(JSON.stringify(message));
+          // console.log(message);
+          // console.log('get signature parameters: ');
+          // console.log(this.getSignatureParameters(response.result));
 
           console.log('user signature: ' + response.result);
           console.log('recovered address: ' + recovered);
@@ -396,14 +438,27 @@ class Deposit extends React.Component {
               from: this.USER_ADDRESS,
             });
 
+          // console.log(
+          //   tx,
+          //   await tokenContract.methods.balanceOf(this.USER_ADDRESS).call()
+          // );
+
+          // const balanceMatic = await tokenContract.methods
+          //   .balanceOf(this.USER_ADDRESS)
+          //   .call();
+          // console.log('Matic balance: ' + balanceMatic);
+
+          // console.log(result);
+
           await this.postUserVerify(6); // update verify to 'deposit'
           await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-          this.setState({ isValidAuthorize: 2 }); // valid authorize
+          this.setState({
+            isValidAuthorize: 2,
+            refresh: 'Matic Network authorized',
+          }); // valid authorize
 
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-
           this.props.hideSpinner();
-          this.setState({ userStepValue: 5.5 }); // advance to confirmations step
         }
       );
     } catch (err) {
@@ -561,8 +616,6 @@ class Deposit extends React.Component {
   //   if (this.state.userStepValue == 4) {
   //     value = 5;
   //   } else if (this.state.userStepValue == 5) {
-  //     value = 5.5;
-  //   } else if (this.state.userStepValue == 5.5) {
   //     value = 6;
   //   } else if (this.state.userStepValue == 6) {
   //     value = 4;
@@ -630,6 +683,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
+                    refresh={this.state.refresh}
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
@@ -643,17 +697,7 @@ class Deposit extends React.Component {
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransfer}
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 5.5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // get number of confirmations from Matic Network and display to user
-                <Grid.Column>
-                  <ModalSidebar checked={3} />
-                  <DepositContent
-                    content={'confirmations'} // content type
+                    refresh={this.state.refresh}
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
@@ -673,6 +717,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
+                    refresh={this.state.refresh}
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
