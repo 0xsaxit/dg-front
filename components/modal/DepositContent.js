@@ -262,7 +262,7 @@ const DepositContent = (props) => {
           </Grid.Row>
           <Grid.Row>
             <Button
-              id="depositButton2"
+              className="modal-buttons"
               color="blue"
               style={{ marginTop: '-10px', display: 'block' }}
               onClick={props.depositToMatic}
