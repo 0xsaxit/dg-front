@@ -2,12 +2,13 @@ import React from 'react';
 import { NextSeo } from 'next-seo';
 import Home from '../components/home/dashboard'
 import Head from 'next/head';
+import Layout from '../components/layout.js';
 
 
 export default class Index extends React.Component {
     render() {
         return (
-          <>
+          <Layout>
             <html lang="en">
               <Head>
                 <title> Decentral Games </title>
@@ -31,7 +32,7 @@ export default class Index extends React.Component {
                     }}
                 />
                 <Home />
-            </>
+            </Layout>
         )
     }
 }
