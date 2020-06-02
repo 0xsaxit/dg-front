@@ -2,7 +2,7 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
-import DepositContent from './DepositContent';
+import ContentDeposit from './ContentDeposit';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
 import Global from '../constants';
 
@@ -76,21 +76,22 @@ class Deposit extends React.Component {
     };
 
     this.USER_ADDRESS = '';
-    this.isBrowserMetamsk = 0;
+    this.isBrowserMetaMask = 0;
     this.maticWeb3 = {};
   }
 
   async componentDidMount() {
-    // set maticWeb3 provider, get token balances, and set userStepValue
     this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-    this.isBrowserMetamsk = 1;
+    if (window.web3) this.isBrowserMetaMask = 1;
+
+    // set maticWeb3 provider, get token balances, and set userStepValue
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(maticProvider)
     );
     await this.getTokenBalance();
-    const verifyStatus = await this.checkUserVerify();
+    const userStatus = await this.checkUserVerify();
 
-    console.log('userStepValue status: ' + verifyStatus);
+    console.log('userStepValue status: ' + userStatus);
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
@@ -138,13 +139,12 @@ class Deposit extends React.Component {
       const json = await response.json();
 
       if (json.status === 'ok') {
-        // if result == false set userStepValue = 1 and exit
         if (json.result === 'false') {
           this.setState({ userStepValue: 1 });
-          this.props.hideSpinner();
+          return true;
         }
-        let stepValue = parseInt(json.result);
 
+        let stepValue = parseInt(json.result);
         if (stepValue > 3) {
           if (stepValue == 5) {
             // indicate deposit success and set userStepValue to result
@@ -246,7 +246,7 @@ class Deposit extends React.Component {
         );
       }
 
-      // now deposit tokens from Main net to Matic Network
+      // now deposit tokens from Mainnet to Matic Network
       const txHash = await Global.depositTokenToMatic(
         tokenAddressRopsten,
         amountWei,
@@ -397,13 +397,13 @@ class Deposit extends React.Component {
             });
 
           await this.postUserVerify(6); // update verify to 'deposit'
+          this.setState({ userStepValue: 5.5 }); // advance to confirmations step
           await this.postUserAuthState(this.props.authvalue); // update authorize to 4
           this.setState({ isValidAuthorize: 2 }); // valid authorize
 
           setTimeout(this.props.update, 5000); // set user token balance from MetaMask
 
           this.props.hideSpinner();
-          this.setState({ userStepValue: 5.5 }); // advance to confirmations step
         }
       );
     } catch (err) {
@@ -537,8 +537,8 @@ class Deposit extends React.Component {
             <Grid verticalAlign="middle" textAlign="center">
               <Grid.Column>
                 <ModalSidebar checked={0} />
-                <DepositContent
-                  content={'changeRPC'}
+                <ContentDeposit
+                  content={'prerenderCheck'}
                   text={text}
                   image={image}
                 />
@@ -577,6 +577,14 @@ class Deposit extends React.Component {
     // pre-render checks: verify user is on correct network, step value == 2, and using MetaMask
     this.verifyNetwork();
 
+    // if (!this.isBrowserMetaMask) {
+    //   const content = this.prerenderCheck(
+    //     'Please use Chrome Browser with MetaMask enabled to proceed',
+    //     0
+    //   );
+    //   return content;
+    // }
+
     if (this.state.networkID !== 3) {
       const content = this.prerenderCheck(
         "In MetaMask, open the Network dropdown menu and select 'Ropsten'",
@@ -585,26 +593,18 @@ class Deposit extends React.Component {
       return content;
     }
 
-    if (this.state.userStepValue === 0) {
-      const content = this.prerenderCheck('', 0);
-      return content;
-    }
+    // if (this.state.userStepValue === 0) {
+    //   const content = this.prerenderCheck('', 0);
+    //   return content;
+    // }
 
-    if (this.state.userStepValue === 1) {
-      const content = this.prerenderCheck(
-        'Please finish verification to Deposit',
-        0
-      );
-      return content;
-    }
-
-    if (!this.isBrowserMetamsk) {
-      const content = this.prerenderCheck(
-        'Please use Chrome Browser with Metamask enabled to proceed',
-        0
-      );
-      return content;
-    }
+    // if (this.state.userStepValue === 1) {
+    //   const content = this.prerenderCheck(
+    //     'Please finish verification to Deposit',
+    //     0
+    //   );
+    //   return content;
+    // }
 
     return (
       <Modal
@@ -622,7 +622,7 @@ class Deposit extends React.Component {
                 // authorize transfers to Matic Network, then deposit MANA to Matic Network
                 <Grid.Column>
                   <ModalSidebar checked={1} />
-                  <DepositContent
+                  <ContentDeposit
                     content={'approve'} // content type
                     isCustomAmount={this.state.isCustomAmount}
                     isValidDeposit={this.state.isValidDeposit}
@@ -639,7 +639,7 @@ class Deposit extends React.Component {
                 // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
                 <Grid.Column>
                   <ModalSidebar checked={2} />
-                  <DepositContent
+                  <ContentDeposit
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransfer}
@@ -652,7 +652,7 @@ class Deposit extends React.Component {
                 // get number of confirmations from Matic Network and display to user
                 <Grid.Column>
                   <ModalSidebar checked={3} />
-                  <DepositContent
+                  <ContentDeposit
                     content={'confirmations'} // content type
                     // nextStep={this.nextStep}
                   />
@@ -663,7 +663,7 @@ class Deposit extends React.Component {
                 // user has finished onboard process and wishes to deposit more MANA to Matic Network
                 <Grid.Column>
                   <ModalSidebar checked={3} />
-                  <DepositContent
+                  <ContentDeposit
                     content={'deposit'} // content type
                     isCustomAmount={this.state.isCustomAmount}
                     isValidDeposit={this.state.isValidDeposit}

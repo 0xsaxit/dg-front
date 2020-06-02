@@ -3,7 +3,7 @@ import { Grid, Table, Input, Dropdown, Button } from 'semantic-ui-react';
 import mana from '../../static/images/mana.png';
 import verify1 from '../../static/images/switch_ropsten.png';
 
-const DepositContent = (props) => {
+const ContentDeposit = (props) => {
   // drop-down menu MANA values
   const amount = [
     { key: 1, text: '1000 MANA', value: 1000 },
@@ -14,7 +14,7 @@ const DepositContent = (props) => {
     { key: 6, text: 'Custom', value: -1 },
   ];
 
-  function changeRPC() {
+  function prerenderCheck() {
     return (
       <div className="modal-content-container">
         <Grid>
@@ -283,8 +283,8 @@ const DepositContent = (props) => {
     );
   }
 
-  if (props.content == 'changeRPC') {
-    return changeRPC();
+  if (props.content == 'prerenderCheck') {
+    return prerenderCheck();
   } else if (props.content == 'approve') {
     return contentApprove();
   } else if (props.content == 'authorize') {
@@ -296,4 +296,4 @@ const DepositContent = (props) => {
   }
 };
 
-export default DepositContent;
+export default ContentDeposit;
