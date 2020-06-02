@@ -193,7 +193,7 @@ class WalletBalances extends React.Component {
                           height="20px"
                           src={dai}
                         />
-                        1234560789 DAI
+                        0 DAI
                       </span>
                     </div>
                     <div style = {{ minWidth: '50%', float: 'left'}}>
