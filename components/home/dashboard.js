@@ -100,7 +100,7 @@ class Dashboard extends React.Component {
             {' '}
             DOCS{' '}
           </a>
-          Modal trigger={
+          <Modal trigger={
             <a className="mobile-menu-item-2">
               {' '}
               DEMO{' '}
