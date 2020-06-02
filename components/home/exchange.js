@@ -6,6 +6,7 @@ import Spinner from '../Spinner';
 import Fade from 'react-reveal/Fade';
 import Menu from './menu';
 import transakSDK from '@transak/transak-sdk';
+import WalletBalances from './walletBalances';
 
 let Global;
 let transak = new transakSDK({
@@ -117,8 +118,6 @@ class Exchange extends React.Component {
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
             <h3 className="account-other-h3 games"> Buy Crypto </h3>
-          </Fade>
-          <Fade bottom distance="20px" duration="600">
             {this.state.exchangeState == 0 ? (
               <p className="account-other-p">
                 <b className="account-hover" style={{ color: 'white' }}>
@@ -152,24 +151,40 @@ class Exchange extends React.Component {
           </Fade>
 
           {this.state.exchangeState == 0 ? (
-            <div></div>
+            <div className="exchangeWallet">
+              <Fade bottom distance="20px" duration="600" delay="300">
+                <WalletBalances
+                  showSpinner={this.showSpinner}
+                  hideSpinner={this.hideSpinner}
+                />
+              </Fade>
+            </div>
           ) : (
-            <div
-              className="games-container"
-              style={{ marginLeft: 'calc(50vw - 350px)' }}
-            >
-              <iframe
-                src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
-                style={{
-                  border: '0',
-                  margin: '0 0 0 0 ',
-                  display: 'block',
-                  borderRadius: '3px',
-                  width: '450px',
-                  height: 'calc(100vh - 230px)',
-                  marginTop: '15px',
-                }}
-              />
+            <div>
+              <div className="exchangeWallet">
+                <Fade bottom distance="20px" duration="600" delay="300">
+                  <WalletBalances
+                    showSpinner={this.showSpinner}
+                    hideSpinner={this.hideSpinner}
+                  />
+                </Fade>
+              </div>
+              <div
+                className="games-container"
+              >
+                <iframe
+                  src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
+                  style={{
+                    border: '0',
+                    margin: '0 0 0 0 ',
+                    display: 'block',
+                    borderRadius: '3px',
+                    width: '450px',
+                    height: 'calc(100vh - 230px)',
+                    marginTop: '-10px'
+                  }}
+                />
+              </div>
             </div>
           )}
         </div>

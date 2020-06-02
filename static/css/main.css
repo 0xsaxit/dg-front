@@ -29,7 +29,6 @@ p {
   letter-spacing: 0.5;
   line-height: 1.4;
 }
-
 body {
   background-color: black;
 }
@@ -439,7 +438,6 @@ div.progressbar {
   text-align: left;
   color: red;
   margin-top: 20px;
-  margin-left: -13px;
 }
 
 .progressbar-image-box {
@@ -682,7 +680,6 @@ div.wallet_board table button#depositButton2:hover {
   color: black;
   text-align: left;
   padding-right: 48px;
-  margin-left: -10px;
   padding-top: 30px;
 }
 
@@ -690,7 +687,14 @@ div.wallet_board table button#depositButton2:hover {
   color: black;
   text-align: left;
   padding-right: 48px;
-  margin-left: -10px;
+}
+
+.ui.dropdown > .dropdown.icon {
+  color: #2085f4;
+}
+
+.ui.selection.dropdown {
+  border-radius: 3px;
 }
 
 div.progressbar2 {
@@ -710,6 +714,37 @@ div.progressbar2 {
 /* ----------------------------------------- */
 /*         ACCOUNT PAGE SECTIONS CSS         */
 /* ----------------------------------------- */
+
+.transak_modal-overlay {
+  display: none !important;
+}
+
+.transak_close {
+  display: none !important;
+}
+
+#transakOnOffRampWidget {
+  height: calc(100vh - 230px) !important;
+  border-radius: 3px !important;
+}
+
+.transak_modal {
+  margin-top: 30px !important;
+  top: 15% !important;
+  left: 55% !important;
+  transform: translate(0%, 0%) !important;
+}
+.exchangeWallet {
+  position: fixed;
+  width: 50vw;
+  height: 100vh !important;
+  top: 15%;
+  right: 55%;
+}
+.games-container {
+  position: fixed !important;
+  left: 55% !important;
+}
 
 .menuContainer {
   position: absolute;
@@ -785,6 +820,21 @@ a {
   padding-right: 27px;
   margin-top: -3px;
   padding-bottom: 2px;
+}
+
+#wallet-balance-row {
+  position: fixed;
+  margin-left: 30px;
+}
+
+#wallet-balance-row2 {
+  position: fixed;
+  margin-left: 30px;
+}
+
+#wallet-balance-row3 {
+  position: fixed;
+  margin-left: 30px;
 }
 
 .contentContainer table th:nth-child(1) {
@@ -1385,9 +1435,23 @@ a.ui.blue.button.play-shimmer {
 a.ui.blue.button.play-button,
 .ui.blue.button.play-button {
   background-color: #2085f4 !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 14px #165daa;
   color: white;
   width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
+button.ui.blue.button.modal-buttons {
+  background-color: #2085f4 !important;
+  box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+  color: white;
+  width: 150px;
   font-size: 14px;
   font-weight: 600;
   margin-top: 20px;
@@ -1633,17 +1697,4 @@ a.ui.blue.button.play-shimmer:hover,
   .mobile-footer {
     display: none !important;
   }
-}
-
-.transak_modal-overlay {
-  display: none !important;
-}
-
-.transak_close {
-  display: none !important;
-}
-
-#transakOnOffRampWidget {
-  height: calc(100vh - 230px) !important;
-  border-radius: 3px !important;
 }
