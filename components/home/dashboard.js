@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button } from 'semantic-ui-react';
+import { Image, Button, Icon, Modal } from 'semantic-ui-react';
 import LogoSpinner from '../LogoSpinner';
 import Spinner from '../Spinner';
 import Menu from './menu';
@@ -100,6 +100,18 @@ class Dashboard extends React.Component {
             {' '}
             DOCS{' '}
           </a>
+          <Modal trigger={
+            <a className="mobile-menu-item-2">
+              {' '}
+              DEMO{' '}
+            </a>
+            } 
+            closeIcon
+            basic size='small'>
+            <Modal.Content>
+              <iframe className="mobile-demo-video" src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1" frameborder="0" allowfullscreen></iframe>
+            </Modal.Content>
+          </Modal>
         </div>
         <LogoSpinner show={this.state.isRunningTransaction} />
         <div className="home-video-container">

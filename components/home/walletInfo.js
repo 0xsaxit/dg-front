@@ -276,9 +276,9 @@ class WalletInfo extends React.Component {
                       className="image inline"
                       width="20px"
                       height="20px"
-                      src={eth}
+                      src={dai}
                     />
-                    <span>{this.state.ethBalance} ETH</span>
+                    <span>{this.state.ethBalance} DAI</span>
                     <span style={{ float: 'right' }}>
                       <div className="wallet-info-button-container">
                         <p className="wallet-info-deposit">Deposit</p>
@@ -296,9 +296,9 @@ class WalletInfo extends React.Component {
                       className="image inline"
                       width="20px"
                       height="20px"
-                      src={dai}
+                      src={eth}
                     />
-                    <span>{this.state.ethBalance} DAI</span>
+                    <span>{this.state.ethBalance} ETH</span>
                     <span style={{ float: 'right' }}>
                       <div className="wallet-info-button-container">
                         <p className="wallet-info-deposit">Deposit</p>
@@ -307,6 +307,7 @@ class WalletInfo extends React.Component {
                     </span>
                   </span>
                 </Table.Row>
+
               </Table.Body>
             </Table>
           </div>
