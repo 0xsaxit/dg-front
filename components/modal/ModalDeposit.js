@@ -2,7 +2,8 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
-import ContentDeposit from './ContentDeposit';
+import ContentDeposit from './contentDeposit';
+import SwitchRPC from './switchRPC';
 import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
 import Global from '../constants';
 
@@ -68,8 +69,8 @@ class Deposit extends React.Component {
       amount: 1000,
       userStepValue: 0,
       networkID: 0,
-      isValidDeposit: 0,
-      isValidAuthorize: 0,
+      isValidDeposit: 0, // ******************************
+      isValidAuthorize: 0, // *****************************
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
@@ -523,8 +524,13 @@ class Deposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // prerender check modal content
-  prerenderCheck = (text, image) => {
+  verifyNetwork = async () => {
+    window.web3.version.getNetwork((err, network) => {
+      this.setState({ networkID: parseInt(network) }); // set network ID
+    });
+  };
+
+  switchRPC = () => {
     return (
       <Modal
         trigger={this.getTrigger()}
@@ -532,79 +538,19 @@ class Deposit extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
-        <div id="deposit">
-          <div className="ui depositContainer">
-            <Grid verticalAlign="middle" textAlign="center">
-              <Grid.Column>
-                <ModalSidebar checked={0} />
-                <ContentDeposit
-                  content={'prerenderCheck'}
-                  text={text}
-                  image={image}
-                />
-              </Grid.Column>
-            </Grid>
-          </div>
-        </div>
+        <SwitchRPC />
       </Modal>
     );
   };
 
-  verifyNetwork = () => {
-    window.web3.version.getNetwork((err, network) => {
-      this.setState({ networkID: parseInt(network) }); // set network ID
-    });
+  nextStep = () => {
+    let value = this.state.userStepValue + 1;
+    this.setState({ userStepValue: value });
   };
 
-  // nextStep = () => {
-  //   let value = 0;
-  //   if (this.state.userStepValue == 4) {
-  //     value = 5;
-  //   } else if (this.state.userStepValue == 5) {
-  //     value = 5.5;
-  //   } else if (this.state.userStepValue == 5.5) {
-  //     value = 6;
-  //   } else if (this.state.userStepValue == 6) {
-  //     value = 4;
-  //   }
-
-  //   this.setState({ userStepValue: value });
-  // };
-
   render() {
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // pre-render checks: verify user is on correct network, step value == 2, and using MetaMask
-    this.verifyNetwork();
-
-    // if (!this.isBrowserMetaMask) {
-    //   const content = this.prerenderCheck(
-    //     'Please use Chrome Browser with MetaMask enabled to proceed',
-    //     0
-    //   );
-    //   return content;
-    // }
-
-    if (this.state.networkID !== 3) {
-      const content = this.prerenderCheck(
-        "In MetaMask, open the Network dropdown menu and select 'Ropsten'",
-        1
-      );
-      return content;
-    }
-
-    // if (this.state.userStepValue === 0) {
-    //   const content = this.prerenderCheck('', 0);
-    //   return content;
-    // }
-
-    // if (this.state.userStepValue === 1) {
-    //   const content = this.prerenderCheck(
-    //     'Please finish verification to Deposit',
-    //     0
-    //   );
-    //   return content;
-    // }
+    this.verifyNetwork(); // verify user is on correct network
+    if (this.state.networkID !== 3) return this.switchRPC();
 
     return (
       <Modal
