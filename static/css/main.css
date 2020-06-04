@@ -33,7 +33,6 @@ body {
   background-color: black;
 }
 
-
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
@@ -64,7 +63,6 @@ body {
 }
 a.item.sidebar-menu-text {
   stroke: grey !important;
-
 }
 a.item.sidebar-menu-text:focus {
   color: white !important;
@@ -95,7 +93,6 @@ a.item.sidebar-menu-text:focus .svg-eth {
   color: white !important;
 }
 
-
 /* ----------------------------------------- */
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
@@ -105,15 +102,15 @@ a.item.sidebar-menu-text:focus .svg-eth {
   top: -1px;
   bottom: 0;
   width: 100%;
-  height: calc(100% + 1px); 
+  height: calc(100% + 1px);
   overflow: hidden;
   z-index: -2;
 }
 
 .home-video-container video {
   /* Make video to at least 100% wide and tall */
-  min-width: 100%; 
-  min-height: 100%; 
+  min-width: 100%;
+  min-height: 100%;
 
   /* Setting width & height to auto prevents the browser from stretching or squishing the video */
   width: auto;
@@ -123,7 +120,7 @@ a.item.sidebar-menu-text:focus .svg-eth {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 video.home-dashboard-video {
@@ -181,7 +178,6 @@ video.home-dashboard-video {
   font-weight: 400;
   text-shadow: 1px 1px 5px black;
 }
-
 
 /* ----------------------------------------- */
 /*              GAMES PAGE CSS               */
@@ -258,7 +254,8 @@ div.ui.card.games-card {
   margin-top: -6px !important;
 }
 
-.ui.card > .content, .ui.cards > .card > .content {
+.ui.card > .content,
+.ui.cards > .card > .content {
   background-color: black !important;
   border-radius: 0px !important;
 }
@@ -266,7 +263,6 @@ div.ui.card.games-card {
 img.ui.image.partner-image {
   border-radius: 0px !important;
 }
-
 
 /* ----------------------------------------- */
 /*            WALLET OVERLAY CSS             */
@@ -347,8 +343,6 @@ img.ui.image.partner-image {
 .ui.dimmer {
   background-color: rgba(0, 0, 0, 0.75);
 }
-
-
 
 /* ----------------------------------------- */
 /*         CREATE ACCOUNT MODAL CSS          */
@@ -1413,7 +1407,6 @@ a.item.account-p:focus .svg-eth {
   }
 }
 
-
 /* ----------------------------------------- */
 /*                BUTTONS CSS                */
 /* ----------------------------------------- */
@@ -1494,7 +1487,6 @@ a.ui.blue.button.play-shimmer:hover,
   transform: translateY(-1px);
 }
 
-
 /* ----------------------------------------- */
 /*           DISCORD BUTTON CSS              */
 /* ----------------------------------------- */
@@ -1507,8 +1499,8 @@ a.ui.blue.button.play-shimmer:hover,
   overflow: hidden;
   width: 3rem;
   height: 3rem;
-  -webkit-transition: width 0s .25s;
-  transition: width 0s .25s;
+  -webkit-transition: width 0s 0.25s;
+  transition: width 0s 0.25s;
 }
 
 .Discord-icon {
@@ -1519,12 +1511,12 @@ a.ui.blue.button.play-shimmer:hover,
   display: block;
   width: 3rem;
   height: 3rem;
-  background: #7289DA;
+  background: #7289da;
   border-radius: 2rem 2rem;
-  -webkit-transition: opacity .25s,-webkit-transform .25s;
-  transition: opacity .25s,-webkit-transform .25s;
-  transition: transform .25s,opacity .25s;
-  transition: transform .25s,opacity .25s,-webkit-transform .25s;
+  -webkit-transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.25s, opacity 0.25s, -webkit-transform 0.25s;
 }
 
 .Discord-icon--message {
@@ -1546,51 +1538,50 @@ a.ui.blue.button.play-shimmer:hover,
 
 .Discord-text {
   position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    align-items: center;
-    text-align: center;
-    width: 12rem;
-    height: 3rem;
-    color: #fff;
-    background: #7289DA;
-    border-radius: 3rem 3rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1;
-    opacity: 0;
-    transition: opacity .25s;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  align-items: center;
+  text-align: center;
+  width: 12rem;
+  height: 3rem;
+  color: #fff;
+  background: #7289da;
+  border-radius: 3rem 3rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
 .Discord-text span {
   position: relative;
-    top: 7px;
-    left: 7px;
+  top: 7px;
+  left: 7px;
 }
 
 .Discord:hover {
-    width: 14rem;
-    -webkit-transition: width 0s 0s;
-    transition: width 0s 0s;
-    right: 1.1rem;
+  width: 14rem;
+  -webkit-transition: width 0s 0s;
+  transition: width 0s 0s;
+  right: 1.1rem;
 }
 
 .Discord:hover .Discord-icon--message {
   opacity: 0;
-  -webkit-transform: translate3d(-10.8rem,0,0) scale(0);
-  transform: translate3d(-10.8rem,0,0) scale(0);
+  -webkit-transform: translate3d(-10.8rem, 0, 0) scale(0);
+  transform: translate3d(-10.8rem, 0, 0) scale(0);
 }
 
 .Discord:hover .Discord-icon--plane {
   opacity: 1;
-  transform: translate3d(-10.8rem,-0.4rem,0) scale(1);
+  transform: translate3d(-10.8rem, -0.4rem, 0) scale(1);
 }
 
 .Discord:hover .Discord-text {
   opacity: 1;
 }
-
 
 /* ----------------------------------------- */
 /*                MOBILE CSS                 */
@@ -1653,7 +1644,7 @@ a.ui.blue.button.play-shimmer:hover,
         rgba(0, 0, 0, 0.2),
         rgba(0, 0, 0, 0.9)
       ),
-    url("https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/image_noccib_s7x7xk_uvqwwz_djisxi.jpg");
+      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/image_noccib_s7x7xk_uvqwwz_djisxi.jpg');
     background-position: center !important;
     background-color: transparent;
     background-size: cover !important;

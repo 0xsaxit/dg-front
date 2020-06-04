@@ -2,6 +2,10 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
+
+// import ABIFAKEMana from '../ABI/ABIFAKEMana';
+// import ABIChildToken from '../ABI/ABIChildToken';
+
 import ModalSidebar from './ModalSidebar';
 import ContentDeposit from './contentDeposit';
 import SwitchRPC from './switchRPC';
@@ -9,12 +13,14 @@ import Global from '../constants';
 
 let web3 = {};
 let tokenAddressRopsten = '';
+// let tokenAddressMatic = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
+  // tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 }
 getAddresses();
@@ -60,7 +66,12 @@ class Deposit extends React.Component {
       }
     );
     const getWeb3 = new Web3(biconomy);
-    this.tokenContract = Global.getTokenContract(getWeb3);
+
+    this.tokenContract = Global.getTokenContract(getWeb3, 'child');
+    // this.tokenContract = new getWeb3.eth.Contract(
+    //   ABIChildToken,
+    //   tokenAddressMatic
+    // );
 
     biconomy
       .onEvent(biconomy.READY, () => {
@@ -81,8 +92,8 @@ class Deposit extends React.Component {
 
       this.setState({ tokenBalanceL1: amount1 });
       this.setState({ tokenBalanceL2: amount2 });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -260,9 +271,11 @@ class Deposit extends React.Component {
       }
 
       this.props.hideSpinner();
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
+
+      this.props.hideSpinner();
     }
   };
 
@@ -279,36 +292,40 @@ class Deposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransfer = async () => {
-    console.log('Execute Biconomy meta-transaction');
-    console.log('Matic RPC: ' + Global.MATIC_URL);
-    console.log('user address: ' + this.userAddress);
-    console.log('spender (treasury) address: ' + spenderAddress);
-    console.log('authorize amount: ' + Global.MAX_AMOUNT);
-    console.log('token contract: ');
-    console.log(this.tokenContract);
+    try {
+      this.props.showSpinner();
 
-    this.props.showSpinner();
+      console.log('Matic RPC: ' + Global.MATIC_URL);
+      console.log('user address: ' + this.userAddress);
+      console.log('spender (treasury) address: ' + spenderAddress);
+      console.log('authorize amount: ' + Global.MAX_AMOUNT);
 
-    // get function signagure and send Biconomy API meta-transaction
-    let functionSignature = this.tokenContract.methods
-      .approve(spenderAddress, Global.MAX_AMOUNT)
-      .encodeABI();
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = this.tokenContract.methods
+        .approve(spenderAddress, Global.MAX_AMOUNT)
+        .encodeABI();
 
-    await Global.executeMetaTransaction(
-      functionSignature,
-      this.tokenContract,
-      this.userAddress,
-      web3
-    );
+      await Global.executeMetaTransaction(
+        functionSignature,
+        this.tokenContract,
+        this.userAddress,
+        web3
+      );
 
-    await this.postUserVerify(6); // update verify to 'deposit'
-    this.setState({ userStepValue: 5.5 }); // advance to confirmations step
+      await this.postUserVerify(6); // update verify to 'deposit'
+      this.setState({ userStepValue: 5.5 }); // advance to confirmations step
 
-    await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-    this.setState({ isValidAuthorize: 2 }); // valid authorize
+      await this.postUserAuthState(this.props.authvalue); // update authorize to 4
+      this.setState({ isValidAuthorize: 2 }); // valid authorize
 
-    setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-    this.props.hideSpinner();
+      setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+      this.props.hideSpinner();
+    } catch (error) {
+      console.log(error);
+      this.setState({ isValidAuthorize: 1 }); // invalid authorize
+
+      this.props.hideSpinner();
+    }
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -438,7 +455,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5 ? (
@@ -451,7 +468,7 @@ class Deposit extends React.Component {
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransfer}
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5.5 ? (
@@ -462,7 +479,7 @@ class Deposit extends React.Component {
                   <ModalSidebar checked={3} />
                   <ContentDeposit
                     content={'confirmations'} // content type
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6 ? (
@@ -481,7 +498,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}

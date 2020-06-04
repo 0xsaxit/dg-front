@@ -2,6 +2,9 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
+
+// import ABIChildToken from '../ABI/ABIChildToken';
+
 import ModalSidebar from './ModalSidebar';
 import ContentWithdraw from './contentWithdraw';
 import SwitchRPC from './switchRPC';
@@ -9,12 +12,14 @@ import Global from '../constants';
 
 let web3 = {};
 let tokenAddressRopsten = '';
+// let tokenAddressMatic = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
+  // tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 }
 getAddresses();
@@ -59,7 +64,12 @@ class Withdraw extends React.Component {
       }
     );
     const getWeb3 = new Web3(biconomy);
-    this.tokenContract = Global.getTokenContract(getWeb3);
+
+    this.tokenContract = Global.getTokenContract(getWeb3, 'child');
+    // this.tokenContract = new getWeb3.eth.Contract(
+    //   ABIChildToken,
+    //   tokenAddressMatic
+    // );
 
     biconomy
       .onEvent(biconomy.READY, () => {
@@ -143,59 +153,45 @@ class Withdraw extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // burnOnMatic = () => {
-  //   networkAgnosticBurn(maticAmount, childTokenAddress);
-  // };
-
-  // getContractDetails = async (pAddress) => {
-  //   let abi;
-  //   if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
-  //   else abi = CHILD_TOKEN_ABI;
-  //   const contract = new getWeb3.eth.Contract(abi, pAddress);
-  //   const tokenName = await contract.methods.name().call();
-  //   console.log(tokenName);
-  //   let domainData = {
-  //     name: tokenName,
-  //     version: '1',
-  //     chainId: parentChainId,
-  //     verifyingContract: pAddress,
-  //   };
-  //   return { contract, domainData };
-  // };
-
+  // burn tokens on Matic Network
   burnOnMatic = async () => {
-    // networkAgnosticBurn = async (pAmount, address) => {
-    // const detail = await getContractDetails(address);
+    try {
+      this.props.showSpinner();
 
-    // const amount = web3.utils.toWei(pAmount + '');
-    // let functionSignature = detail.contract.methods
-    //   .withdraw(amount)
-    //   .encodeABI();
-    // console.log(functionSignature);
+      console.log('burn amount: ' + this.state.amount);
+      console.log('token contract: ');
+      console.log(this.tokenContract);
 
-    console.log('burn amount: ' + this.state.amount);
-    const amountWei = web3.utils.toWei(this.state.amount + '');
+      const amountWei = web3.utils.toWei(this.state.amount + '');
 
-    // get function signagure and send Biconomy API meta-transaction
-    let functionSignature = this.tokenContract.methods
-      .withdraw(amountWei)
-      .encodeABI();
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = this.tokenContract.methods
+        .withdraw(amountWei)
+        .encodeABI();
 
-    await Global.executeMetaTransaction(
-      functionSignature,
-      this.tokenContract,
-      this.userAddress,
-      web3
-    );
+      await Global.executeMetaTransaction(
+        functionSignature,
+        this.tokenContract,
+        this.userAddress,
+        web3
+      );
 
-    // await this.postUserVerify(6); // update verify to 'deposit'
-    this.setState({ userStepValue: 6 }); // advance to exit step
+      // await this.postUserVerify(6); // update verify to 'deposit'
+      this.setState({ userStepValue: 6 }); // advance to exit step
 
-    // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-    // this.setState({ isValidAuthorize: 2 }); // valid authorize
+      // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
+      this.setState({ isValidBurn: 2 }); // valid burn
 
-    setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-    this.props.hideSpinner();
+      // setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+      this.props.hideSpinner();
+
+      console.log('burn foo foo foo...');
+    } catch (error) {
+      console.log(error);
+      this.setState({ isValidBurn: 1 }); // invalid burn
+
+      this.props.hideSpinner();
+    }
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////

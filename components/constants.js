@@ -1,9 +1,10 @@
 import ABIParent from './ABI/ABIParent';
-import ABIFAKEMana from './ABI/ABIFAKEMana';
-import { MaticPOSClient } from '@maticnetwork/maticjs';
 
-// import { sigUtil } from 'eth-sig-util';
-const sigUtil = require('eth-sig-util');
+// import ABIDummyToken from './ABI/ABIDummyToken';
+
+import ABIParentToken from './ABI/ABIDummyToken';
+import ABIChildToken from './ABI/ABIChildToken';
+import { MaticPOSClient } from '@maticnetwork/maticjs';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +33,9 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// define EIP712 domain params
+// define EIP712 domain params for Biconomy API
+const sigUtil = require('eth-sig-util');
+
 const domainType = [
   { name: 'name', type: 'string' },
   { name: 'version', type: 'string' },
@@ -141,11 +144,20 @@ function getAddresses() {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // return token contract for Biconomy API meta-transaction calls and set verifyingContract
-function getTokenContract(getWeb3) {
-  const TOKEN_CONTRACT = new getWeb3.eth.Contract(
-    ABIFAKEMana,
-    MATIC_TOKEN_ADDRESS
-  );
+function getTokenContract(getWeb3, network) {
+  let TOKEN_CONTRACT;
+
+  if (network == 'root') {
+    TOKEN_CONTRACT = new getWeb3.eth.Contract(
+      ABIParentToken,
+      ROPSTEN_TOKEN_ADDRESS
+    );
+  } else if (network == 'child') {
+    TOKEN_CONTRACT = new getWeb3.eth.Contract(
+      ABIChildToken,
+      MATIC_TOKEN_ADDRESS
+    );
+  }
 
   return TOKEN_CONTRACT;
 }
@@ -159,19 +171,21 @@ function balanceOfToken(
   userAddress = window.web3.currentProvider.selectedAddress
 ) {
   let tokenAddress = '';
+  let ABI = '';
+
   if (tokenName == 'ropsten') {
     tokenAddress = ROPSTEN_TOKEN_ADDRESS;
+    ABI = ABIParentToken;
   } else if (tokenName == 'matic') {
     tokenAddress = MATIC_TOKEN_ADDRESS;
+    ABI = ABIChildToken;
   }
 
   return new Promise(async (resolve, reject) => {
     console.log('Get balance of token');
 
     try {
-      const TOKEN_CONTRACT = web3Default.eth
-        .contract(ABIFAKEMana)
-        .at(tokenAddress);
+      const TOKEN_CONTRACT = web3Default.eth.contract(ABI).at(tokenAddress);
 
       TOKEN_CONTRACT.balanceOf(userAddress, async function (err, amount) {
         if (err) {
@@ -202,7 +216,7 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
-        .contract(ABIFAKEMana)
+        .contract(ABIChildToken)
         .at(tokenAddress);
 
       TOKEN_CONTRACT.allowance(
@@ -494,14 +508,19 @@ async function executeMetaTransaction(
           console.log('s: ' + s);
           console.log('v: ' + v);
 
-          await tokenContract.methods
-            .executeMetaTransaction(userAddress, functionSignature, r, s, v)
-            .send({
-              from: userAddress,
-            });
+          try {
+            await tokenContract.methods
+              .executeMetaTransaction(userAddress, functionSignature, r, s, v)
+              .send({
+                from: userAddress,
+              });
 
-          console.log('Execute Meta-Transactions done');
-          resolve(true);
+            console.log('Execute Meta-Transactions done');
+            resolve(true);
+          } catch (error) {
+            console.log('Execute Meta-Transactions failed: ', error);
+            reject(false);
+          }
         }
       );
     } catch (error) {
@@ -571,15 +590,15 @@ export default {
   MATIC_EXPLORER,
   BICONOMY_API_KEY,
   delay,
-  getConfirmedTx,
   getTokenContract,
   balanceOfToken,
   getAllowedToken,
   approveToken,
+  depositTokenToMatic,
   getBalanceParent,
   getTokensGame,
   depositToParent,
   withdrawFromParent,
   executeMetaTransaction,
-  depositTokenToMatic,
+  getConfirmedTx,
 };
