@@ -87,12 +87,7 @@ class WalletInfo extends React.Component {
   getTokenBalance = async () => {
     try {
       const amount = await Global.balanceOfToken('matic', this.maticWeb3);
-      this.setState({
-        tokenBalance: window.web3
-          .fromWei(amount, 'ether')
-          .toFixed(0)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
+      this.setState({ tokenBalance: amount });
     } catch (err) {
       console.log(err);
     }
@@ -307,7 +302,6 @@ class WalletInfo extends React.Component {
                     </span>
                   </span>
                 </Table.Row>
-
               </Table.Body>
             </Table>
           </div>

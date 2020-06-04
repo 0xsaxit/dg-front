@@ -1,75 +1,31 @@
 import React from 'react';
 import Biconomy from '@biconomy/mexa';
+import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import ContentDeposit from './contentDeposit';
 import SwitchRPC from './switchRPC';
-import ABIFAKEMana from '../ABI/ABIFAKEMana.json';
 import Global from '../constants';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
+let web3 = {};
 let tokenAddressRopsten = '';
-let tokenAddressMatic = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
-  tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
-
-  // domainData.verifyingContract = tokenAddressMatic;
 }
 getAddresses();
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-// initialize Biconomy API constants and define parameters
-const Web3 = require('web3');
-// const sigUtil = require('eth-sig-util');
-
-const biconomyAPIKey = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
-const authorizeAmount = Global.MAX_AMOUNT;
-
-// let parentChainId = Global.PARENT_NETWORK_ID;
-// // let maticProvider = Global.MATIC_URL;
-
-let web3 = {};
-// let getWeb3 = {};
-let tokenContract = {};
-
-// // define EIP712 domain params
-// const domainType = [
-//   { name: 'name', type: 'string' },
-//   { name: 'version', type: 'string' },
-//   { name: 'chainId', type: 'uint256' },
-//   { name: 'verifyingContract', type: 'address' },
-// ];
-
-// const metaTransactionType = [
-//   { name: 'nonce', type: 'uint256' },
-//   { name: 'from', type: 'address' },
-//   { name: 'functionSignature', type: 'bytes' },
-// ];
-
-// let domainData = {
-//   name: 'Decentraland',
-//   version: '1',
-//   chainId: parentChainId,
-//   verifyingContract: '',
-// };
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 class Deposit extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isCustomAmount: 0,
       amount: Global.DEFAULT_AMOUNT,
+      isCustomAmount: 0,
       userStepValue: 0,
       networkID: 0,
       isValidDeposit: 0,
@@ -79,39 +35,36 @@ class Deposit extends React.Component {
       modalOpen: false,
     };
 
-    this.USER_ADDRESS = '';
-    this.isBrowserMetaMask = 0;
+    this.userAddress = '';
     this.maticWeb3 = {};
+    this.tokenContract = {};
   }
 
   async componentDidMount() {
-    this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-    if (window.web3) this.isBrowserMetaMask = 1;
+    this.userAddress = window.web3.currentProvider.selectedAddress;
 
     // set maticWeb3 provider, get token balances, and set userStepValue
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
     await this.getTokenBalance();
-    const userStatus = await this.checkUserVerify();
-
-    console.log('userStepValue status: ' + userStatus);
+    await this.checkUserVerify();
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(Global.MATIC_URL),
       {
-        apiKey: biconomyAPIKey,
+        apiKey: Global.BICONOMY_API_KEY,
         debug: true,
       }
     );
     const getWeb3 = new Web3(biconomy);
-    tokenContract = new getWeb3.eth.Contract(ABIFAKEMana, tokenAddressMatic);
+    this.tokenContract = Global.getTokenContract(getWeb3);
 
     biconomy
       .onEvent(biconomy.READY, () => {
-        console.log('Mexa is Ready');
+        console.log('Mexa is Ready: deposit');
       })
       .onEvent(biconomy.ERROR, (error, message) => {
         console.error(error);
@@ -126,16 +79,8 @@ class Deposit extends React.Component {
       const amount1 = await Global.balanceOfToken('ropsten');
       const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
 
-      this.setState({
-        tokenBalanceL1: (amount1 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
-      this.setState({
-        tokenBalanceL2: (amount2 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
+      this.setState({ tokenBalanceL1: amount1 });
+      this.setState({ tokenBalanceL2: amount2 });
     } catch (err) {
       console.log(err);
     }
@@ -187,49 +132,34 @@ class Deposit extends React.Component {
       if (json.status === 'ok') {
         if (json.result === 'false') {
           this.setState({ userStepValue: 1 });
-          return true;
         }
 
         let stepValue = parseInt(json.result);
+        console.log('userStepValue status: ' + stepValue);
+
         if (stepValue > 3) {
           if (stepValue == 5) {
-            // indicate deposit success and set userStepValue to result *******************
+            // indicate deposit success and set userStepValue to result
             this.setState({
-              // isValidDeposit: 2,
-
               userStepValue: stepValue,
             });
           } else if (stepValue == 6) {
             // indicate authorization success and set userStepValue to result
             this.setState({
-              // isValidAuthorize: 2,
-
               userStepValue: stepValue,
             });
           } else {
             // indicate deposit success and set userStepValue to result
-
-            // this.setState({ isValidDeposit: 2, userStepValue: stepValue });
-
             this.setState({ userStepValue: stepValue });
           }
         } else {
           // indicate deposit success and set userStepValue to result
-
-          // this.setState({ isValidDeposit: 2, userStepValue: stepValue });
-
           this.setState({ userStepValue: stepValue });
         }
-
-        return stepValue;
       }
-
-      return false;
     } catch (error) {
       console.log('step value error: ' + error);
     }
-
-    return false;
   };
 
   getUserStatus = () => {
@@ -240,7 +170,7 @@ class Deposit extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: this.USER_ADDRESS,
+        address: this.userAddress,
       }),
     });
   };
@@ -256,7 +186,7 @@ class Deposit extends React.Component {
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
         tokenAddressRopsten,
-        this.USER_ADDRESS
+        this.userAddress
       );
       allowedAmount = allowedAmount / Global.FACTOR;
 
@@ -267,14 +197,14 @@ class Deposit extends React.Component {
         await Global.approveToken(
           tokenAddressRopsten,
           Global.MAX_AMOUNT,
-          this.USER_ADDRESS
+          this.userAddress
         );
       } else if (allowedAmount < this.state.amount) {
-        await Global.approveToken(tokenAddressRopsten, 0, this.USER_ADDRESS);
+        await Global.approveToken(tokenAddressRopsten, 0, this.userAddress);
         await Global.approveToken(
           tokenAddressRopsten,
           Global.MAX_AMOUNT,
-          this.USER_ADDRESS
+          this.userAddress
         );
       }
 
@@ -282,7 +212,7 @@ class Deposit extends React.Component {
       const txHash = await Global.depositTokenToMatic(
         tokenAddressRopsten,
         amountWei,
-        this.USER_ADDRESS
+        this.userAddress
       );
       if (txHash != false) {
         let ret = await this.updateHistory(
@@ -350,30 +280,26 @@ class Deposit extends React.Component {
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransfer = async () => {
     console.log('Execute Biconomy meta-transaction');
-
     console.log('Matic RPC: ' + Global.MATIC_URL);
-    console.log('user address: ' + this.USER_ADDRESS);
-    // console.log('chain ID: ' + domainData.chainId);
-    console.log('token address Matic: ' + tokenAddressMatic);
+    console.log('user address: ' + this.userAddress);
     console.log('spender (treasury) address: ' + spenderAddress);
-    console.log('authorize amount: ' + authorizeAmount);
-    // console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
+    console.log('authorize amount: ' + Global.MAX_AMOUNT);
+    console.log('token contract: ');
+    console.log(this.tokenContract);
 
     this.props.showSpinner();
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    let functionSignature = tokenContract.methods
-      .approve(spenderAddress, authorizeAmount)
+    // get function signagure and send Biconomy API meta-transaction
+    let functionSignature = this.tokenContract.methods
+      .approve(spenderAddress, Global.MAX_AMOUNT)
       .encodeABI();
+
     await Global.executeMetaTransaction(
       functionSignature,
-      tokenContract,
-      this.USER_ADDRESS,
+      this.tokenContract,
+      this.userAddress,
       web3
     );
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
 
     await this.postUserVerify(6); // update verify to 'deposit'
     this.setState({ userStepValue: 5.5 }); // advance to confirmations step
@@ -382,109 +308,8 @@ class Deposit extends React.Component {
     this.setState({ isValidAuthorize: 2 }); // valid authorize
 
     setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-
     this.props.hideSpinner();
   };
-
-  // executeMetaTransaction = async (functionSignature) => {
-  //   console.log('functional signature: ' + functionSignature);
-
-  //   try {
-  //     this.props.showSpinner();
-
-  //     let nonce = await tokenContract.methods
-  //       .getNonce(this.USER_ADDRESS)
-  //       .call();
-
-  //     let message = {};
-  //     message.nonce = parseInt(nonce);
-  //     message.from = this.USER_ADDRESS;
-  //     message.functionSignature = functionSignature;
-
-  //     const dataToSign = JSON.stringify({
-  //       types: {
-  //         EIP712Domain: domainType,
-  //         MetaTransaction: metaTransactionType,
-  //       },
-  //       domain: domainData,
-  //       primaryType: 'MetaTransaction',
-  //       message: message,
-  //     });
-
-  //     console.log('domain data: ');
-  //     console.log(domainData);
-
-  //     web3.eth.currentProvider.send(
-  //       {
-  //         jsonrpc: '2.0',
-  //         id: 999999999999,
-  //         method: 'eth_signTypedData_v4',
-  //         params: [this.USER_ADDRESS, dataToSign],
-  //       },
-
-  //       async (error, response) => {
-  //         let { r, s, v } = this.getSignatureParameters(response.result);
-
-  //         console.log('user signature: ' + response.result);
-  //         console.log('recovered address: ' + recovered);
-  //         console.log('r: ' + r);
-  //         console.log('s: ' + s);
-  //         console.log('v: ' + v);
-
-  //         const recovered = sigUtil.recoverTypedSignature_v4({
-  //           data: JSON.parse(dataToSign),
-  //           sig: response.result,
-  //         });
-
-  //         console.log(`Recovered ${recovered}`);
-
-  //         await tokenContract.methods
-  //           .executeMetaTransaction(
-  //             this.USER_ADDRESS,
-  //             functionSignature,
-  //             r,
-  //             s,
-  //             v
-  //           )
-  //           .send({
-  //             from: this.USER_ADDRESS,
-  //           });
-
-  //         await this.postUserVerify(6); // update verify to 'deposit'
-  //         this.setState({ userStepValue: 5.5 }); // advance to confirmations step
-
-  //         await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-  //         this.setState({ isValidAuthorize: 2 }); // valid authorize
-
-  //         setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-  //       }
-  //     );
-
-  //     this.props.hideSpinner();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // getSignatureParameters = (signature) => {
-  //   if (!web3.utils.isHexStrict(signature)) {
-  //     throw new Error(
-  //       'Given value "'.concat(signature, '" is not a valid hex string.')
-  //     );
-  //   }
-
-  //   const r = signature.slice(0, 66);
-  //   const s = '0x'.concat(signature.slice(66, 130));
-  //   let v = '0x'.concat(signature.slice(130, 132));
-  //   v = web3.utils.hexToNumber(v);
-
-  //   if (![27, 28].includes(v)) v += 27;
-  //   return {
-  //     r: r,
-  //     s: s,
-  //     v: v,
-  //   };
-  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -575,7 +400,13 @@ class Deposit extends React.Component {
   };
 
   nextStep = () => {
-    let value = this.state.userStepValue + 1;
+    let value;
+    if (this.state.userStepValue < 6) {
+      value = this.state.userStepValue + 1;
+    } else {
+      value = 4;
+    }
+
     this.setState({ userStepValue: value });
   };
 
@@ -607,7 +438,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5 ? (
@@ -620,7 +451,7 @@ class Deposit extends React.Component {
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransfer}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5.5 ? (
@@ -631,7 +462,7 @@ class Deposit extends React.Component {
                   <ModalSidebar checked={3} />
                   <ContentDeposit
                     content={'confirmations'} // content type
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6 ? (
@@ -650,7 +481,7 @@ class Deposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}

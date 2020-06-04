@@ -90,13 +90,7 @@ class WalletOverlay extends React.Component {
       var amount;
 
       amount = await Global.balanceOfToken('matic', this.maticWeb3);
-      this.setState({
-        tokenBalance: window.web3
-          .fromWei(amount, 'ether')
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-          .replace(/\.[^.]*?$/, ''),
-      });
+      this.setState({ tokenBalance: amount });
     } catch (err) {
       console.log(err);
     }

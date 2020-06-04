@@ -47,7 +47,7 @@ const ContentWithdraw = (props) => {
               className="modal-buttons"
               color="blue"
               style={{ marginTop: '-10px' }}
-              onClick={props.authorizeMana}
+              onClick={props.burnOnMatic}
             >
               Burn
             </Button>

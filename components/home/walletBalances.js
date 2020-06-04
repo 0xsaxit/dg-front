@@ -93,24 +93,14 @@ class WalletBalances extends React.Component {
       const amount1 = await Global.balanceOfToken('ropsten');
       const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
 
-      this.setState({
-        manaTokenBalanceL1: (amount1 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
-      this.setState({
-        manaTokenBalanceL2: (amount2 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
+      this.setState({ manaTokenBalanceL1: amount1 });
+      this.setState({ manaTokenBalanceL2: amount2 });
     } catch (err) {
       console.log(err);
     }
   };
 
-
   render() {
-
     return (
       <div className="wallet_board" style={{ height: '420px' }}>
         <div className="account">
@@ -124,25 +114,21 @@ class WalletBalances extends React.Component {
         </div>
         <div style={{ padding: '20px 0' }}>
           <div style={{ padding: '0 15px 0px 21px' }}>
-            <h3 className="wallet-info-h3">
-              Balances
-            </h3>
+            <h3 className="wallet-info-h3">Balances</h3>
             <p className="wallet-top-text3">
               Default games are free, deposit to Matic Network to play with
               crypto. Decentral Games is currently in beta.
             </p>
           </div>
           <div id="balance-box" style={{ marginTop: '24px' }}>
-            <div style = {{ position: 'relative', paddingBottom: '15px' }}>
-              <div style = {{ minWidth: '50%', float: 'left', paddingLeft: '21px' }}>
-                <span>
-                  MAINCHAIN
-                </span>
+            <div style={{ position: 'relative', paddingBottom: '15px' }}>
+              <div
+                style={{ minWidth: '50%', float: 'left', paddingLeft: '21px' }}
+              >
+                <span>MAINCHAIN</span>
               </div>
-              <div style = {{ minWidth: '50%', float: 'left'}}>
-                <span>
-                  MATIC NETWORK
-                </span>
+              <div style={{ minWidth: '50%', float: 'left' }}>
+                <span>MATIC NETWORK</span>
               </div>
             </div>
             <Table
@@ -154,11 +140,14 @@ class WalletBalances extends React.Component {
             >
               <Table.Body>
                 <Table.Row>
-                  <div style = {{ position: 'relative', width: '100%'}}>
-                    <div style = {{ minWidth: '50%', float: 'left'}}>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
                       <span id="wallet-row">
                         <img
-                          style={{ verticalAlign: 'middle', marginRight: '6px' }}
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
                           className="image inline"
                           width="20px"
                           height="20px"
@@ -167,10 +156,16 @@ class WalletBalances extends React.Component {
                         {this.state.manaTokenBalanceL1} MANA
                       </span>
                     </div>
-                    <div style = {{ minWidth: '50%', float: 'left'}}>
-                      <span style={{ float: 'right', marginLeft: '0px' }} id="wallet-balance-row">
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span
+                        style={{ float: 'right', marginLeft: '0px' }}
+                        id="wallet-balance-row"
+                      >
                         <img
-                          style={{ verticalAlign: 'middle', marginRight: '6px' }}
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
                           className="image inline"
                           width="20px"
                           height="20px"
@@ -183,11 +178,14 @@ class WalletBalances extends React.Component {
                 </Table.Row>
 
                 <Table.Row>
-                  <div style = {{ position: 'relative', width: '100%'}}>
-                    <div style = {{ minWidth: '50%', float: 'left'}}>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
                       <span id="wallet-row">
                         <img
-                          style={{ verticalAlign: 'middle', marginRight: '6px' }}
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
                           className="image inline"
                           width="20px"
                           height="20px"
@@ -196,27 +194,36 @@ class WalletBalances extends React.Component {
                         0 DAI
                       </span>
                     </div>
-                    <div style = {{ minWidth: '50%', float: 'left'}}>
-                      <span style={{ float: 'right', marginLeft: '0px' }} id="wallet-balance-row3">
-                      <img
-                        style={{ verticalAlign: 'middle', marginRight: '6px' }}
-                        className="image inline"
-                        width="20px"
-                        height="20px"
-                        src={dai}
-                      />
-                      0 DAI
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span
+                        style={{ float: 'right', marginLeft: '0px' }}
+                        id="wallet-balance-row3"
+                      >
+                        <img
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
+                          className="image inline"
+                          width="20px"
+                          height="20px"
+                          src={dai}
+                        />
+                        0 DAI
                       </span>
                     </div>
                   </div>
                 </Table.Row>
 
                 <Table.Row>
-                  <div style = {{ position: 'relative', width: '100%'}}>
-                    <div style = {{ minWidth: '50%', float: 'left'}}>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
                       <span id="wallet-row">
                         <img
-                          style={{ verticalAlign: 'middle', marginRight: '6px' }}
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
                           className="image inline"
                           width="20px"
                           height="20px"
@@ -225,10 +232,16 @@ class WalletBalances extends React.Component {
                         0 ETH
                       </span>
                     </div>
-                    <div style = {{ minWidth: '50%', float: 'left'}}>
-                      <span style={{ float: 'right', marginLeft: '0px' }} id="wallet-balance-row2">
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span
+                        style={{ float: 'right', marginLeft: '0px' }}
+                        id="wallet-balance-row2"
+                      >
                         <img
-                          style={{ verticalAlign: 'middle', marginRight: '6px' }}
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
                           className="image inline"
                           width="20px"
                           height="20px"
@@ -239,7 +252,6 @@ class WalletBalances extends React.Component {
                     </div>
                   </div>
                 </Table.Row>
-
               </Table.Body>
             </Table>
           </div>

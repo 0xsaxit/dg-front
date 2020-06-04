@@ -2,6 +2,7 @@ import ABIParent from './ABI/ABIParent';
 import ABIFAKEMana from './ABI/ABIFAKEMana';
 import { MaticPOSClient } from '@maticnetwork/maticjs';
 
+// import { sigUtil } from 'eth-sig-util';
 const sigUtil = require('eth-sig-util');
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -14,10 +15,12 @@ const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 const GAS_LIMIT = '900000';
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
+const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 3; // 1: main net, 3: Ropsten
 const MATIC_NETWORK_ID = '15001';
 const MATIC_URL = 'https://testnetv3.matic.network';
 const MATIC_EXPLORER = 'https://testnetv3-explorer.matic.network';
+const BICONOMY_API_KEY = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
 const ADMIN_ADDRESSES = [
   '0xa7C825BB8c2C4d18288af8efe38c8Bf75A1AAB51'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
@@ -107,7 +110,7 @@ const API_ADDRESSES = (async () => {
     posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
   });
 
-  domainData.verifyingContract = MATIC_TOKEN_ADDRESS; // set the verifying contract for the Biconomy meta-transaction
+  domainData.verifyingContract = MATIC_TOKEN_ADDRESS; // set verifying contract
 
   return {
     RELAY_ADDRESS,
@@ -133,6 +136,18 @@ function getAddresses() {
       Accept: 'application/json',
     },
   });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// return token contract for Biconomy API meta-transaction calls and set verifyingContract
+function getTokenContract(getWeb3) {
+  const TOKEN_CONTRACT = new getWeb3.eth.Contract(
+    ABIFAKEMana,
+    MATIC_TOKEN_ADDRESS
+  );
+
+  return TOKEN_CONTRACT;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -165,7 +180,10 @@ function balanceOfToken(
         }
 
         console.log('Get balance done');
-        resolve(amount);
+        const amountAdjusted = (amount / FACTOR)
+          .toFixed(DECIMAL_PLACES)
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        resolve(amountAdjusted);
       });
     } catch (error) {
       console.log('Get balance failed', error);
@@ -425,11 +443,10 @@ async function executeMetaTransaction(
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('Execute Meta-Transactions start');
-    console.log('functional signature: ' + functionSignature);
+    console.log('function signature: ' + functionSignature);
     console.log('user address: ' + userAddress);
-
     console.log('chain ID: ' + domainData.chainId);
-    console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
+    console.log('verify contract: ' + domainData.verifyingContract);
 
     try {
       let nonce = await tokenContract.methods.getNonce(userAddress).call();
@@ -477,33 +494,16 @@ async function executeMetaTransaction(
           console.log('s: ' + s);
           console.log('v: ' + v);
 
-          // console.log('recovered: ');
-          // console.log(recovered);
-
-          // console.log('token contract: ');
-          // console.log(tokenContract);
-
           await tokenContract.methods
             .executeMetaTransaction(userAddress, functionSignature, r, s, v)
             .send({
               from: userAddress,
             });
 
-          // console.log('Execute Meta-Transactions done');
-          // resolve(true);
-
-          // await this.postUserVerify(6); // update verify to 'deposit'
-          // this.setState({ userStepValue: 5.5 }); // advance to confirmations step
-
-          // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-          // this.setState({ isValidAuthorize: 2 }); // valid authorize
-
-          // setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+          console.log('Execute Meta-Transactions done');
+          resolve(true);
         }
       );
-
-      console.log('Execute Meta-Transactions done');
-      resolve(true);
     } catch (error) {
       console.log('Execute Meta-Transactions failed: ', error);
       reject(false);
@@ -560,21 +560,19 @@ function getConfirmedTx(txHash) {
 export default {
   API_ADDRESSES,
   ADMIN_ADDRESSES,
-  // RELAY_ADDRESS,
   API_BASE_URL,
   BASE_URL,
   DEFAULT_AMOUNT,
+  MAX_AMOUNT,
   FACTOR,
-  // MATIC_TOKEN_ADDRESS,
-  // TREASURY_SLOTS_ADDRESS,
-  // TREASURY_ROULETTE_ADDRESS,
   PARENT_NETWORK_ID,
   MATIC_NETWORK_ID,
   MATIC_URL,
   MATIC_EXPLORER,
-  MAX_AMOUNT,
+  BICONOMY_API_KEY,
   delay,
   getConfirmedTx,
+  getTokenContract,
   balanceOfToken,
   getAllowedToken,
   approveToken,

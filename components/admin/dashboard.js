@@ -123,10 +123,8 @@ class Dashboard extends React.Component {
         Global.TREASURY_ROULETTE_ADDRESS
       );
       this.setState({
-        manaSlotBalance: window.web3.fromWei(amountSlot, 'ether').toFixed(0),
-        manaRouletteBalance: window.web3
-          .fromWei(amountRoulette, 'ether')
-          .toFixed(0),
+        manaSlotBalance: amountSlot,
+        manaRouletteBalance: amountRoulette,
       });
     } catch (err) {
       console.log(err);

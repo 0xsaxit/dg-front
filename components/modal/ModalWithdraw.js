@@ -1,9 +1,23 @@
 import React from 'react';
+import Biconomy from '@biconomy/mexa';
+import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ModalSidebar from './ModalSidebar';
 import ContentWithdraw from './contentWithdraw';
 import SwitchRPC from './switchRPC';
 import Global from '../constants';
+
+let web3 = {};
+let tokenAddressRopsten = '';
+let spenderAddress = '';
+
+async function getAddresses() {
+  const addresses = await Global.API_ADDRESSES;
+
+  tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
+  spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
+}
+getAddresses();
 
 class Withdraw extends React.Component {
   constructor(props) {
@@ -20,23 +34,40 @@ class Withdraw extends React.Component {
       modalOpen: false,
     };
 
-    this.USER_ADDRESS = '';
-    this.isBrowserMetaMask = 0;
+    this.userAddress = '';
     this.maticWeb3 = {};
+    this.tokenContract = {};
   }
 
   async componentDidMount() {
-    this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-    if (window.web3) this.isBrowserMetaMask = 1;
+    this.userAddress = window.web3.currentProvider.selectedAddress;
 
     // set maticWeb3 provider, get token balances, and set userStepValue
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
     await this.getTokenBalance();
-    const userStatus = await this.checkUserVerify();
+    await this.checkUserVerify();
 
-    console.log('userStepValue status: ' + userStatus);
+    // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
+    web3 = new Web3(window.ethereum);
+    const biconomy = new Biconomy(
+      new Web3.providers.HttpProvider(Global.MATIC_URL),
+      {
+        apiKey: Global.BICONOMY_API_KEY,
+        debug: true,
+      }
+    );
+    const getWeb3 = new Web3(biconomy);
+    this.tokenContract = Global.getTokenContract(getWeb3);
+
+    biconomy
+      .onEvent(biconomy.READY, () => {
+        console.log('Mexa is Ready: withdraw');
+      })
+      .onEvent(biconomy.ERROR, (error, message) => {
+        console.error(error);
+      });
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -47,16 +78,8 @@ class Withdraw extends React.Component {
       const amount1 = await Global.balanceOfToken('ropsten');
       const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
 
-      this.setState({
-        tokenBalanceL1: (amount1 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
-      this.setState({
-        tokenBalanceL2: (amount2 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
+      this.setState({ tokenBalanceL1: amount1 });
+      this.setState({ tokenBalanceL2: amount2 });
     } catch (err) {
       console.log(err);
     }
@@ -93,20 +116,16 @@ class Withdraw extends React.Component {
       if (json.status === 'ok') {
         if (json.result === 'false') {
           this.setState({ userStepValue: 1 });
-          return true;
         }
 
         let stepValue = parseInt(json.result);
-        this.setState({ userStepValue: stepValue });
+        console.log('userStepValue status: ' + stepValue);
 
-        return true;
+        this.setState({ userStepValue: stepValue });
       }
     } catch (error) {
-      console.log(error);
+      console.log('step value error: ' + error);
     }
-
-    this.props.hideSpinner();
-    return false;
   };
 
   getUserStatus = () => {
@@ -117,45 +136,66 @@ class Withdraw extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: this.USER_ADDRESS,
+        address: this.userAddress,
       }),
     });
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  burnOnMatic = () => {
-    networkAgnosticBurn(maticAmount, childTokenAddress);
-  };
+  // burnOnMatic = () => {
+  //   networkAgnosticBurn(maticAmount, childTokenAddress);
+  // };
 
-  getContractDetails = async (pAddress) => {
-    let abi;
-    if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
-    else abi = CHILD_TOKEN_ABI;
-    const contract = new getWeb3.eth.Contract(abi, pAddress);
-    const tokenName = await contract.methods.name().call();
-    console.log(tokenName);
-    let domainData = {
-      name: tokenName,
-      version: '1',
-      chainId: parentChainId,
-      verifyingContract: pAddress,
-    };
-    return { contract, domainData };
-  };
+  // getContractDetails = async (pAddress) => {
+  //   let abi;
+  //   if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
+  //   else abi = CHILD_TOKEN_ABI;
+  //   const contract = new getWeb3.eth.Contract(abi, pAddress);
+  //   const tokenName = await contract.methods.name().call();
+  //   console.log(tokenName);
+  //   let domainData = {
+  //     name: tokenName,
+  //     version: '1',
+  //     chainId: parentChainId,
+  //     verifyingContract: pAddress,
+  //   };
+  //   return { contract, domainData };
+  // };
 
-  networkAgnosticBurn = async (pAmount, address) => {
-    const detail = await getContractDetails(address);
-    const amount = web3.utils.toWei(pAmount + '');
-    let functionSignature = detail.contract.methods
-      .withdraw(amount)
+  burnOnMatic = async () => {
+    // networkAgnosticBurn = async (pAmount, address) => {
+    // const detail = await getContractDetails(address);
+
+    // const amount = web3.utils.toWei(pAmount + '');
+    // let functionSignature = detail.contract.methods
+    //   .withdraw(amount)
+    //   .encodeABI();
+    // console.log(functionSignature);
+
+    console.log('burn amount: ' + this.state.amount);
+    const amountWei = web3.utils.toWei(this.state.amount + '');
+
+    // get function signagure and send Biconomy API meta-transaction
+    let functionSignature = this.tokenContract.methods
+      .withdraw(amountWei)
       .encodeABI();
-    console.log(functionSignature);
-    executeMetaTransaction(
+
+    await Global.executeMetaTransaction(
       functionSignature,
-      detail.contract,
-      detail.domainData
+      this.tokenContract,
+      this.userAddress,
+      web3
     );
+
+    // await this.postUserVerify(6); // update verify to 'deposit'
+    this.setState({ userStepValue: 6 }); // advance to exit step
+
+    // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
+    // this.setState({ isValidAuthorize: 2 }); // valid authorize
+
+    setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+    this.props.hideSpinner();
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -180,7 +220,13 @@ class Withdraw extends React.Component {
   };
 
   nextStep = () => {
-    let value = this.state.userStepValue + 1;
+    let value;
+    if (this.state.userStepValue < 6) {
+      value = this.state.userStepValue + 1;
+    } else {
+      value = 5;
+    }
+
     this.setState({ userStepValue: value });
   };
 

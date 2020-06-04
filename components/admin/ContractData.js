@@ -56,12 +56,7 @@ class ContractData extends React.Component {
 
       // get user's balance on Matic Network
       const userBalance = await Global.balanceOfToken('matic', this.maticWeb3);
-      this.setState({
-        userBalance: window.web3
-          .fromWei(userBalance, 'ether')
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
+      this.setState({ userBalance: userBalance });
 
       // get total funds in parent contract
       const contractFunds = await Global.getBalanceParent(
