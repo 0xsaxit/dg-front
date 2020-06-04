@@ -2,8 +2,6 @@ import ABIParent from './ABI/ABIParent';
 import ABIFAKEMana from './ABI/ABIFAKEMana';
 import { MaticPOSClient } from '@maticnetwork/maticjs';
 
-const sigUtil = require('eth-sig-util');
-
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // set global constant values
@@ -26,29 +24,6 @@ const ADMIN_ADDRESSES = [
   '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
 ];
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-// define EIP712 domain params
-const domainType = [
-  { name: 'name', type: 'string' },
-  { name: 'version', type: 'string' },
-  { name: 'chainId', type: 'uint256' },
-  { name: 'verifyingContract', type: 'address' },
-];
-
-const metaTransactionType = [
-  { name: 'nonce', type: 'uint256' },
-  { name: 'from', type: 'address' },
-  { name: 'functionSignature', type: 'bytes' },
-];
-
-let domainData = {
-  name: 'Decentraland',
-  version: '1',
-  chainId: PARENT_NETWORK_ID,
-  verifyingContract: '',
-};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -106,8 +81,6 @@ const API_ADDRESSES = (async () => {
     rootChain: ROOTCHAIN_ADDRESS,
     posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
   });
-
-  domainData.verifyingContract = MATIC_TOKEN_ADDRESS; // set the verifying contract for the Biconomy meta-transaction
 
   return {
     RELAY_ADDRESS,
@@ -250,7 +223,7 @@ async function depositTokenToMatic(
     console.log('token address: ' + tokenAddress);
     console.log('amount: ' + amount);
     console.log('user address: ' + userAddress);
-    // console.log('gas limit: ' + GAS_LIMIT);
+    console.log('gas limit: ' + GAS_LIMIT);
 
     try {
       const logs = await maticPOSClient.depositERC20ForUser(
@@ -416,119 +389,83 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// withdraw funds from parent contract using Biconomy PoS meta-transactions API
-async function executeMetaTransaction(
-  functionSignature,
-  tokenContract,
-  userAddress,
-  web3Default = window.web3
-) {
+function startWithdrawTokenFromMatic(tokenAddress, amount, userAddress) {
   return new Promise(async (resolve, reject) => {
-    console.log('Execute Meta-Transactions start');
-    console.log('functional signature: ' + functionSignature);
-    console.log('user address: ' + userAddress);
-
-    console.log('chain ID: ' + domainData.chainId);
-    console.log('verify contract (FAKEMana): ' + domainData.verifyingContract);
+    console.log('Withdraw start');
 
     try {
-      let nonce = await tokenContract.methods.getNonce(userAddress).call();
+      const TOKEN_CONTRACT = window.web3.eth
+        .contract(ChildERC20Token.abi)
+        .at(tokenAddress);
 
-      let message = {};
-      message.nonce = parseInt(nonce);
-      message.from = userAddress;
-      message.functionSignature = functionSignature;
-
-      const dataToSign = JSON.stringify({
-        types: {
-          EIP712Domain: domainType,
-          MetaTransaction: metaTransactionType,
-        },
-        domain: domainData,
-        primaryType: 'MetaTransaction',
-        message: message,
-      });
-
-      console.log('domain data: ');
-      console.log(domainData);
-
-      await web3Default.eth.currentProvider.send(
+      TOKEN_CONTRACT.withdraw(
+        amount,
         {
-          jsonrpc: '2.0',
-          id: 999999999999,
-          method: 'eth_signTypedData_v4',
-          params: [userAddress, dataToSign],
+          from: userAddress,
+          gasLimit: window.web3.toHex(Global.GAS_LIMIT),
+          gasPrice: window.web3.toHex('20000000000'),
         },
+        async function (err, hash) {
+          if (err) {
+            console.log('Withdraw start failed', err);
+            reject(false);
+          }
 
-        async (error, response) => {
-          let { r, s, v } = getSignatureParameters(
-            response.result,
-            web3Default
-          );
-
-          const recovered = sigUtil.recoverTypedSignature_v4({
-            data: JSON.parse(dataToSign),
-            sig: response.result,
-          });
-
-          console.log('user signature: ' + response.result);
-          console.log('recovered address: ' + recovered);
-          console.log('r: ' + r);
-          console.log('s: ' + s);
-          console.log('v: ' + v);
-
-          // console.log('recovered: ');
-          // console.log(recovered);
-
-          // console.log('token contract: ');
-          // console.log(tokenContract);
-
-          await tokenContract.methods
-            .executeMetaTransaction(userAddress, functionSignature, r, s, v)
-            .send({
-              from: userAddress,
-            });
-
-          // console.log('Execute Meta-Transactions done');
-          // resolve(true);
-
-          // await this.postUserVerify(6); // update verify to 'deposit'
-          // this.setState({ userStepValue: 5.5 }); // advance to confirmations step
-
-          // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-          // this.setState({ isValidAuthorize: 2 }); // valid authorize
-
-          // setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+          var ret = await getConfirmedTx(hash);
+          if (ret.status == '0x0') {
+            console.log('Withdraw start transaction failed');
+            resolve(false);
+          } else {
+            console.log('Withdraw start done');
+            resolve(hash);
+          }
         }
       );
-
-      console.log('Execute Meta-Transactions done');
-      resolve(true);
     } catch (error) {
-      console.log('Execute Meta-Transactions failed: ', error);
+      console.log('Withdraw start failed', error);
       reject(false);
     }
   });
 }
 
-function getSignatureParameters(signature, web3Default = window.web3) {
-  if (!web3Default.utils.isHexStrict(signature)) {
-    throw new Error(
-      'Given value "'.concat(signature, '" is not a valid hex string.')
-    );
-  }
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+async function processExits(tokenAddress, userAddress) {
+  return new Promise(async (resolve, reject) => {
+    console.log('Withdrawing exit');
+    try {
+      const WITHDRAWMANAGER_CONTRACT = window.web3.eth
+        .contract(WithdrawManager.abi)
+        .at(WITHDRAWMANAGER_ADDRESS);
 
-  const r = signature.slice(0, 66);
-  const s = '0x'.concat(signature.slice(66, 130));
-  let v = '0x'.concat(signature.slice(130, 132));
-  v = web3Default.utils.hexToNumber(v);
+      WITHDRAWMANAGER_CONTRACT.processExits(
+        tokenAddress,
+        {
+          from: userAddress,
+          gasLimit: window.web3.toHex(Global.GAS_LIMIT),
+          gasPrice: window.web3.toHex('20000000000'),
+        },
+        async function (err, hash) {
+          if (err) {
+            console.log('Withdraw exit failed', err);
+            reject(false);
+          }
 
-  if (![27, 28].includes(v)) v += 27;
-  return {
-    r: r,
-    s: s,
-    v: v,
-  };
+          var ret = await getConfirmedTx(hash);
+          if (ret.status == '0x0') {
+            console.log('Withdraw exit transaction failed');
+            resolve(false);
+          } else {
+            console.log('Withdraw exit done');
+            resolve(hash);
+          }
+        }
+      );
+    } catch (error) {
+      console.log('Withdrawing exit', error);
+      reject(false);
+    }
+  });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -582,6 +519,7 @@ export default {
   getTokensGame,
   depositToParent,
   withdrawFromParent,
-  executeMetaTransaction,
+  startWithdrawTokenFromMatic,
+  processExits,
   depositTokenToMatic,
 };

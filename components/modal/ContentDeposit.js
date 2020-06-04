@@ -1,7 +1,6 @@
 import React from 'react';
-import { Grid, Table, Input, Dropdown, Button } from 'semantic-ui-react';
-import mana from '../../static/images/mana.png';
-// import verify1 from '../../static/images/switch_ropsten.png';
+import { Grid, Input, Dropdown, Button } from 'semantic-ui-react';
+import TokenBalances from './tokenBalances';
 
 const ContentDeposit = (props) => {
   // drop-down menu MANA values
@@ -13,26 +12,6 @@ const ContentDeposit = (props) => {
     { key: 5, text: '5000 MANA', value: 5000 },
     { key: 6, text: 'Custom', value: -1 },
   ];
-
-  // function prerenderCheck() {
-  //   return (
-  //     <div className="modal-content-container">
-  //       <Grid>
-  //         <Grid.Row>
-  //           <h3 className="modal-h3">Switch to Ropsten RPC</h3>
-  //         </Grid.Row>
-  //         <Grid.Row>
-  //           <p className="modal-p">{props.text}</p>
-  //         </Grid.Row>
-  //         {props.image == 1 ? (
-  //           <Grid.Row>
-  //             <img style={{ width: '240px' }} src={verify1} />
-  //           </Grid.Row>
-  //         ) : null}
-  //       </Grid>
-  //     </div>
-  //   );
-  // }
 
   function contentApprove() {
     return (
@@ -57,8 +36,8 @@ const ContentDeposit = (props) => {
               />
             ) : (
               <Input
-                style={{ width: '300px', marginTop: '0px' }}
                 value={props.amount}
+                style={{ width: '300px', marginTop: '0px' }}
                 onChange={props.onChangeCustomAmount}
               />
             )}
@@ -171,77 +150,10 @@ const ContentDeposit = (props) => {
             </p>
           </Grid.Row>
 
-          <div id="modal-balance">
-            <Table
-              id="header"
-              singleLine
-              fixed
-              style={{ marginBottom: 0, border: '0px' }}
-            >
-              <div style={{ paddingTop: '6px', paddingBottom: '17px' }}>
-                <Table.Row>
-                  <span
-                    style={{
-                      color: 'black',
-                      textAlign: 'left',
-                      lineHeight: '25px',
-                      verticalAlign: 'middle',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    ROPSTEN BALANCE:
-                  </span>
-                  <img
-                    style={{ verticalAlign: 'middle', marginLeft: '40px' }}
-                    width="20px"
-                    height="20px"
-                    src={mana}
-                  />
-                  <span
-                    style={{
-                      color: 'black',
-                      textAlign: 'left',
-                      marginLeft: '10px',
-                      lineHeight: '25px',
-                      verticalAlign: 'middle',
-                    }}
-                  >
-                    {props.tokenBalanceL1} MANA
-                  </span>
-                </Table.Row>
-                <Table.Row>
-                  <span
-                    style={{
-                      color: 'black',
-                      textAlign: 'left',
-                      lineHeight: '25px',
-                      verticalAlign: 'middle',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    MATIC BALANCE:
-                  </span>
-                  <img
-                    style={{ verticalAlign: 'middle', marginLeft: '63px' }}
-                    width="20px"
-                    height="20px"
-                    src={mana}
-                  />
-                  <span
-                    style={{
-                      color: 'black',
-                      textAlign: 'left',
-                      marginLeft: '10px',
-                      lineHeight: '25px',
-                      verticalAlign: 'middle',
-                    }}
-                  >
-                    {props.tokenBalanceL2} MANA
-                  </span>
-                </Table.Row>
-              </div>
-            </Table>
-          </div>
+          <TokenBalances
+            tokenBalanceL1={props.tokenBalanceL1}
+            tokenBalanceL2={props.tokenBalanceL2}
+          />
 
           <Grid.Row>
             {props.isCustomAmount == 0 ? (
@@ -254,8 +166,8 @@ const ContentDeposit = (props) => {
               />
             ) : (
               <Input
-                style={{ width: '300px', marginTop: '0px' }}
                 value={props.amount}
+                style={{ width: '300px', marginTop: '0px' }}
                 onChange={props.onChangeCustomAmount}
               />
             )}
@@ -283,8 +195,6 @@ const ContentDeposit = (props) => {
     );
   }
 
-  // if (props.content == 'prerenderCheck') {
-  //   return prerenderCheck();
   if (props.content == 'approve') {
     return contentApprove();
   } else if (props.content == 'authorize') {

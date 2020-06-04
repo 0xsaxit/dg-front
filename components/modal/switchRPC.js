@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 import verify1 from '../../static/images/switch_ropsten.png';
 
-const modalPrerender = (props) => {
+const switchRPC = (props) => {
   return (
     <div className="modal-content-container">
       <Grid>
@@ -24,4 +24,4 @@ const modalPrerender = (props) => {
   );
 };
 
-export default modalPrerender;
+export default switchRPC;

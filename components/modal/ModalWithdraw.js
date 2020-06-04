@@ -10,24 +10,61 @@ class Withdraw extends React.Component {
     super(props);
 
     this.state = {
+      amount: Global.DEFAULT_AMOUNT,
       userStepValue: 0,
       networkID: 0,
+      isValidBurn: 0,
+      isValidExit: 0,
+      tokenBalanceL1: 0,
+      tokenBalanceL2: 0,
       modalOpen: false,
     };
 
     this.USER_ADDRESS = '';
     this.isBrowserMetaMask = 0;
+    this.maticWeb3 = {};
   }
 
   async componentDidMount() {
     this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     if (window.web3) this.isBrowserMetaMask = 1;
 
-    // set userStepValue
+    // set maticWeb3 provider, get token balances, and set userStepValue
+    this.maticWeb3 = new window.Web3(
+      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+    );
+    await this.getTokenBalance();
     const userStatus = await this.checkUserVerify();
 
     console.log('userStepValue status: ' + userStatus);
   }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get balances on main net and Matic networks, and drop-down list function
+  getTokenBalance = async () => {
+    try {
+      const amount1 = await Global.balanceOfToken('ropsten');
+      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
+
+      this.setState({
+        tokenBalanceL1: (amount1 / Global.FACTOR)
+          .toFixed(2)
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+      });
+      this.setState({
+        tokenBalanceL2: (amount2 / Global.FACTOR)
+          .toFixed(2)
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  onChangeAmount = (e, d) => {
+    this.setState({ amount: d.value });
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -87,47 +124,38 @@ class Withdraw extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // drop-down list and input amount functions
-  onChangeAmount = (e, d) => {
-    if (d.value == -1) {
-      this.setState({ amount: 0, isCustomAmount: 1 });
-      return;
-    }
-
-    this.setState({ amount: d.value });
+  burnOnMatic = () => {
+    networkAgnosticBurn(maticAmount, childTokenAddress);
   };
 
-  onChangeCustomAmount = async (e) => {
-    let value = parseInt(e.target.value);
-
-    if (String(value) != 'NaN') {
-      this.setState({ amount: parseInt(e.target.value) });
-    } else {
-      this.setState({ amount: 0 });
-    }
+  getContractDetails = async (pAddress) => {
+    let abi;
+    if (pAddress === CHILD_ETH_TOKEN_ADDRESS) abi = CHILD_ETH_TOKEN_ABI;
+    else abi = CHILD_TOKEN_ABI;
+    const contract = new getWeb3.eth.Contract(abi, pAddress);
+    const tokenName = await contract.methods.name().call();
+    console.log(tokenName);
+    let domainData = {
+      name: tokenName,
+      version: '1',
+      chainId: parentChainId,
+      verifyingContract: pAddress,
+    };
+    return { contract, domainData };
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on main net and Matic networks
-  getTokenBalance = async () => {
-    try {
-      const amount1 = await Global.balanceOfToken('ropsten');
-      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
-
-      this.setState({
-        tokenBalanceL1: (amount1 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
-      this.setState({
-        tokenBalanceL2: (amount2 / Global.FACTOR)
-          .toFixed(2)
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  networkAgnosticBurn = async (pAmount, address) => {
+    const detail = await getContractDetails(address);
+    const amount = web3.utils.toWei(pAmount + '');
+    let functionSignature = detail.contract.methods
+      .withdraw(amount)
+      .encodeABI();
+    console.log(functionSignature);
+    executeMetaTransaction(
+      functionSignature,
+      detail.contract,
+      detail.domainData
+    );
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -178,6 +206,13 @@ class Withdraw extends React.Component {
                   <ModalSidebar checked={1} />
                   <ContentWithdraw
                     content={'burn'} // content type
+                    isValidBurn={this.state.isValidBurn}
+                    amount={this.state.amount}
+                    tokenBalanceL1={this.state.tokenBalanceL1}
+                    tokenBalanceL2={this.state.tokenBalanceL2}
+                    onChangeAmount={this.onChangeAmount}
+                    burnOnMatic={this.burnOnMatic}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : (
@@ -186,9 +221,12 @@ class Withdraw extends React.Component {
                 // call exit function on RootChainManager conract to submit proof of burn transaction
                 // this call made after checkpoint is submitted for the block containing burn transaction
                 <Grid.Column>
-                  <ModalSidebar checked={1} />
+                  <ModalSidebar checked={2} />
                   <ContentWithdraw
                     content={'exit'} // content type
+                    isValidExit={this.state.isValidExit}
+                    exitToMainnet={this.exitToMainnet}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               )}
