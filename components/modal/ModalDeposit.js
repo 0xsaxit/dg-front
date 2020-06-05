@@ -6,7 +6,6 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 // import ABIFAKEMana from '../ABI/ABIFAKEMana';
 // import ABIChildToken from '../ABI/ABIChildToken';
 
-import ModalSidebar from './ModalSidebar';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './switchRPC';
 import Global from '../constants';
@@ -446,7 +445,6 @@ class Deposit extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // authorize transfers to Matic Network, then deposit MANA to Matic Network
                 <Grid.Column>
-                  <ModalSidebar checked={1} />
                   <ContentDeposit
                     content={'approve'} // content type
                     isValidDeposit={this.state.isValidDeposit}
@@ -463,7 +461,6 @@ class Deposit extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
                 <Grid.Column>
-                  <ModalSidebar checked={2} />
                   <ContentDeposit
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
@@ -476,7 +473,6 @@ class Deposit extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // get number of confirmations from Matic Network and display to user
                 <Grid.Column>
-                  <ModalSidebar checked={3} />
                   <ContentDeposit
                     content={'confirmations'} // content type
                     // nextStep={this.nextStep}
@@ -487,7 +483,6 @@ class Deposit extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // user has finished onboard process and wishes to deposit more MANA to Matic Network
                 <Grid.Column>
-                  <ModalSidebar checked={3} />
                   <ContentDeposit
                     content={'deposit'} // content type
                     isValidDeposit={this.state.isValidDeposit}
