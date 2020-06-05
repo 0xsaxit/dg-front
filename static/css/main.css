@@ -623,7 +623,7 @@ div.wallet_board table button#depositButton2:hover {
 
 div.progressbar2 {
   position: fixed;
-  display: inline-block;
+  display: none !important;
   width: 300px;
   height: 630px;
   background-color: #f9fbfd;
