@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 import mana from '../../static/images/mana.png';
 
-const tokenBalances = (props) => {
+const TokenBalances = (props) => {
   return (
     <div id="modal-balance">
       <Table
@@ -84,4 +84,4 @@ const tokenBalances = (props) => {
   );
 };
 
-export default tokenBalances;
+export default TokenBalances;

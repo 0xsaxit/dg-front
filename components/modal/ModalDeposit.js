@@ -2,25 +2,19 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
-
-// import ABIFAKEMana from '../ABI/ABIFAKEMana';
-// import ABIChildToken from '../ABI/ABIChildToken';
-
 import ModalSidebar from './ModalSidebar';
 import ContentDeposit from './ContentDeposit';
-import SwitchRPC from './switchRPC';
+import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
 
 let web3 = {};
 let tokenAddressRopsten = '';
-// let tokenAddressMatic = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
-  // tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 }
 getAddresses();
@@ -66,12 +60,7 @@ class Deposit extends React.Component {
       }
     );
     const getWeb3 = new Web3(biconomy);
-
     this.tokenContract = Global.getTokenContract(getWeb3, 'child');
-    // this.tokenContract = new getWeb3.eth.Contract(
-    //   ABIChildToken,
-    //   tokenAddressMatic
-    // );
 
     biconomy
       .onEvent(biconomy.READY, () => {

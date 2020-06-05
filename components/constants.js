@@ -239,7 +239,7 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // allows contractAddress to spend given amount of tokens on user's behalf
-async function approveToken(
+function approveToken(
   tokenAddress,
   amount,
   userAddress,
@@ -268,7 +268,7 @@ async function approveToken(
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // deposit MANA from the Matic Root contract to Matic Network
-async function depositTokenToMatic(
+function depositTokenToMatic(
   tokenAddress,
   amount,
   userAddress,
@@ -445,7 +445,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // execute functions on Matic Network from Mainnet using Biconomy PoS meta-transactions API
-async function executeMetaTransaction(
+function executeMetaTransaction(
   functionSignature,
   tokenContract,
   userAddress,

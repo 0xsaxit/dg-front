@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Input, Dropdown, Button } from 'semantic-ui-react';
-import TokenBalances from './tokenBalances';
+import TokenBalances from './TokenBalances';
 
 const ContentDeposit = (props) => {
   // drop-down menu MANA values

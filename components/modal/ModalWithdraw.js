@@ -2,24 +2,19 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
-
-// import ABIChildToken from '../ABI/ABIChildToken';
-
 import ModalSidebar from './ModalSidebar';
 import ContentWithdraw from './ContentWithdraw';
-import SwitchRPC from './switchRPC';
+import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
 
 let web3 = {};
 let tokenAddressRopsten = '';
-// let tokenAddressMatic = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
   tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
-  // tokenAddressMatic = addresses.MATIC_TOKEN_ADDRESS;
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 }
 getAddresses();
@@ -33,6 +28,7 @@ class Withdraw extends React.Component {
       userStepValue: 0,
       networkID: 0,
       isValidBurn: 0,
+      isExistWithdraw: 0,
       isValidExit: 0,
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
@@ -52,7 +48,16 @@ class Withdraw extends React.Component {
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
     await this.getTokenBalance();
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
+    await this.checkExistWithdraw();
+
+    // await this.checkWithdrawTransaction();
+
     await this.checkUserVerify();
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
@@ -64,12 +69,7 @@ class Withdraw extends React.Component {
       }
     );
     const getWeb3 = new Web3(biconomy);
-
     this.tokenContract = Global.getTokenContract(getWeb3, 'child');
-    // this.tokenContract = new getWeb3.eth.Contract(
-    //   ABIChildToken,
-    //   tokenAddressMatic
-    // );
 
     biconomy
       .onEvent(biconomy.READY, () => {
@@ -118,6 +118,71 @@ class Withdraw extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // REST API functions: get/update user authorization and deposit status in database
+  checkExistWithdraw = async () => {
+    const response = await this.getWithdrawExist();
+    const json = await response.json();
+
+    if (json.status === 'ok') {
+      if (json.result === 'true') {
+        this.setState({ isExistWithdraw: 1 }); // withdraw is in progress
+      }
+    }
+
+    console.log('get withdraw results: ');
+    console.log(json);
+  };
+
+  getWithdrawExist = () => {
+    return fetch(`${Global.BASE_URL}/order/existWithdraw`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: this.userAddress,
+      }),
+    });
+  };
+
+  // checkWithdrawTransaction = async () => {
+  //   const response = await this.getWithdrawTransaction(txid);
+  //   const json = await response.json();
+
+  //   if (json.status === 'ok') {
+  //     if (json.result === 'false') {
+  //       return true;
+  //     }
+
+  //     let step = parseInt(json.result.step);
+  //     let amount = parseInt(json.result.amount);
+
+  //     if (step == 1) this.setState({ isValidStep1: 2, amount });
+  //     else if (step == 2) this.setState({ isConfirmStep1: 2, amount });
+  //     else if (step == 3) this.setState({ isValidStep2: 2, amount });
+  //     else if (step == 4) this.setState({ isConfirmStep2: 2, amount });
+  //     else if (step == 5) this.setState({ isConfirmStep3: 2, amount });
+  //     else this.setState({ amount });
+  //   }
+
+  //   console.log('check withdraw transaction: ');
+  //   console.log(json);
+  // };
+
+  // getWithdrawTransaction = (txid) => {
+  //   return fetch(`${Global.BASE_URL}/order/checkHistory`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       txHash: txid,
+  //     }),
+  //   });
+  // };
+
   checkUserVerify = async () => {
     try {
       const response = await this.getUserStatus();
@@ -129,9 +194,8 @@ class Withdraw extends React.Component {
         }
 
         let stepValue = parseInt(json.result);
-        console.log('userStepValue status: ' + stepValue);
-
         this.setState({ userStepValue: stepValue });
+        console.log('userStepValue status: ' + stepValue);
       }
     } catch (error) {
       console.log('step value error: ' + error);
@@ -147,6 +211,61 @@ class Withdraw extends React.Component {
       },
       body: JSON.stringify({
         address: this.userAddress,
+      }),
+    });
+  };
+
+  checkConfirm = (txid, step) => {
+    return fetch(`${Global.BASE_URL}/order/confirmHistory`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        txHash: txid,
+        step: step,
+      }),
+    });
+  };
+
+  updateHistory = async (amount, type, state, txHash, step) => {
+    try {
+      const response = await this.postHistory(
+        amount,
+        type,
+        state,
+        txHash,
+        step
+      );
+      const json = await response.json();
+      if (json.status === 'ok') {
+        if (json.result === 'false') {
+          return false;
+        }
+
+        return true;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return false;
+  };
+
+  postHistory = async (amount, type, state, txHash, step) => {
+    return fetch(`${Global.BASE_URL}/order/updateHistory`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: window.web3.currentProvider.selectedAddress,
+        amount,
+        type,
+        state,
+        txHash,
+        step,
       }),
     });
   };

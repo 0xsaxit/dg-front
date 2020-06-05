@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 import verify1 from '../../static/images/switch_ropsten.png';
 
-const switchRPC = (props) => {
+const SwitchRPC = (props) => {
   return (
     <div className="modal-content-container">
       <Grid>
@@ -24,4 +24,4 @@ const switchRPC = (props) => {
   );
 };
 
-export default switchRPC;
+export default SwitchRPC;
