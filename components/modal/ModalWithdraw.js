@@ -5,7 +5,6 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 
 // import ABIChildToken from '../ABI/ABIChildToken';
 
-import ModalSidebar from './ModalSidebar';
 import ContentWithdraw from './ContentWithdraw';
 import SwitchRPC from './switchRPC';
 import Global from '../constants';
@@ -245,7 +244,6 @@ class Withdraw extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // burn tokens on matic chain and store transaction hash for use while generating burn proof
                 <Grid.Column>
-                  <ModalSidebar checked={1} />
                   <ContentWithdraw
                     content={'burn'} // content type
                     isValidBurn={this.state.isValidBurn}
@@ -263,7 +261,6 @@ class Withdraw extends React.Component {
                 // call exit function on RootChainManager conract to submit proof of burn transaction
                 // this call made after checkpoint is submitted for the block containing burn transaction
                 <Grid.Column>
-                  <ModalSidebar checked={2} />
                   <ContentWithdraw
                     content={'exit'} // content type
                     isValidExit={this.state.isValidExit}
