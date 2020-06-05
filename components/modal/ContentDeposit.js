@@ -22,7 +22,7 @@ const ContentDeposit = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Authorize MANA transfers and deposit to Matic Network
+               Authorize MANA transfers and deposit to Matic Network (two transactions). If you don't have MANA, you can buy some <a style={{ color: '#2085f4' }} href="/exchange"> here </a>
             </p>
           </Grid.Row>
           <Grid.Row>
