@@ -14,7 +14,7 @@ const tokenBalances = (props) => {
         <Table.Body>
           {/* <div style={{ paddingTop: '6px', paddingBottom: '17px' }}> */}
           <Table.Row>
-            <Table.Cell>
+            <Table.Cell className="ropsten-balances-row">
               <span
                 style={{
                   color: 'black',
@@ -46,7 +46,7 @@ const tokenBalances = (props) => {
             </Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>
+            <Table.Cell className="matic-balances-row">
               <span
                 style={{
                   color: 'black',
