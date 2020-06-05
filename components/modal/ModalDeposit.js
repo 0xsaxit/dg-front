@@ -7,7 +7,7 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 // import ABIChildToken from '../ABI/ABIChildToken';
 
 import ModalSidebar from './ModalSidebar';
-import ContentDeposit from './contentDeposit';
+import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './switchRPC';
 import Global from '../constants';
 
