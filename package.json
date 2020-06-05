@@ -2,7 +2,7 @@
   "name": "decentral-games-next-client",
   "version": "1.0.0",
   "engines": {
-    "node": "14.2.0",
+    "node": "12.18.0",
     "npm": "6.14.4"
   },
   "private": true,
@@ -15,14 +15,14 @@
     "heroku-postbuild": "next build"
   },
   "dependencies": {
-    "@biconomy/mexa": "^1.5.10",
+    "@biconomy/mexa": "^1.5.11",
     "@maticnetwork/maticjs": "^2.0.0-beta.12",
-    "@transak/transak-sdk": "^1.0.17",
+    "@transak/transak-sdk": "^1.0.19",
     "abi-decoder": "^2.2.2",
     "babel-loader": "^8.0.5",
     "base-64": "^0.1.0",
     "buttercms": "1.2.2",
-    "decentraland-ui": "^2.20.4",
+    "decentraland-ui": "^2.22.0",
     "dotenv": "^8.2.0",
     "eslint-loader": "^4.0.0",
     "eth-sig-util": "^2.5.3",
@@ -31,9 +31,9 @@
     "ethjs": "^0.4.0",
     "express": "^4.17.1",
     "hls.js": "^0.13.1",
-    "html-to-react": "^1.4.1",
+    "html-to-react": "^1.4.3",
     "imgurify": "^2.0.1",
-    "next": "^9.4.2",
+    "next": "^9.4.4",
     "next-images": "^1.4.0",
     "next-seo": "^4.5.0",
     "nextjs-redirect": "^2.0.1",
@@ -54,8 +54,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
-    "solc": "^0.6.8",
-    "web3": "^1.2.8-rc.1",
+    "solc": "^0.6.9",
+    "web3": "^1.2.9-rc.0",
     "webpack": "^4.28.3"
   },
   "browserslist": [
