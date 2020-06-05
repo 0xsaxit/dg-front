@@ -2,14 +2,6 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
-<<<<<<< HEAD
-import ModalSidebar from './ModalSidebar';
-=======
-
-// import ABIFAKEMana from '../ABI/ABIFAKEMana';
-// import ABIChildToken from '../ABI/ABIChildToken';
-
->>>>>>> a0750a2b5621c4e87c6fb7cf9434075311f549e5
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
 import Global from '../constants';

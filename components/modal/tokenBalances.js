@@ -12,7 +12,6 @@ const TokenBalances = (props) => {
         style={{ marginBottom: 0, border: 0 }}
       >
         <Table.Body>
-          {/* <div style={{ paddingTop: '6px', paddingBottom: '17px' }}> */}
           <Table.Row>
             <Table.Cell>
               <span
@@ -77,7 +76,6 @@ const TokenBalances = (props) => {
               </span>
             </Table.Cell>
           </Table.Row>
-          {/* </div> */}
         </Table.Body>
       </Table>
     </div>

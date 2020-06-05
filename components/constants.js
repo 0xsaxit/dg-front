@@ -14,7 +14,7 @@ const MAX_AMOUNT =
 const GAS_LIMIT = '900000';
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
-const PARENT_NETWORK_ID = 3; // 1: main net, 3: Ropsten
+const PARENT_NETWORK_ID = 3; // 1: Mainnet, 3: Ropsten
 const MATIC_NETWORK_ID = '15001';
 const MATIC_URL = 'https://testnetv3.matic.network';
 const MATIC_EXPLORER = 'https://testnetv3-explorer.matic.network';
@@ -102,7 +102,7 @@ const API_ADDRESSES = (async () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // create MaticPOSClient object to deposit tokens from Main net to Matic Network
+  // create MaticPOSClient object to deposit tokens from Mainnet to Matic Network
   maticPOSClient = new MaticPOSClient({
     maticProvider: MATIC_URL,
     parentProvider: window.ethereum,
@@ -565,7 +565,7 @@ function getConfirmedTx(txHash) {
         }
       });
 
-      await delay(2000);
+      // await delay(2000); // *************************************************************
     }
   });
 }
