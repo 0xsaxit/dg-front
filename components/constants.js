@@ -1,7 +1,4 @@
-import ABIParent from './ABI/ABIParent';
-
-// import ABIDummyToken from './ABI/ABIDummyToken';
-
+import ABIParentContract from './ABI/ABIParent';
 import ABIParentToken from './ABI/ABIDummyToken';
 import ABIChildToken from './ABI/ABIChildToken';
 import { MaticPOSClient } from '@maticnetwork/maticjs';
@@ -113,7 +110,7 @@ const API_ADDRESSES = (async () => {
     posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
   });
 
-  domainData.verifyingContract = MATIC_TOKEN_ADDRESS; // set verifying contract
+  domainData.verifyingContract = MATIC_TOKEN_ADDRESS; // set verifying contract for Biconomy API
 
   return {
     RELAY_ADDRESS,
@@ -143,7 +140,7 @@ function getAddresses() {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// return token contract for Biconomy API meta-transaction calls and set verifyingContract
+// return token contract for Biconomy API meta-transaction calls
 function getTokenContract(getWeb3, network) {
   let TOKEN_CONTRACT;
 
@@ -282,7 +279,6 @@ async function depositTokenToMatic(
     console.log('token address: ' + tokenAddress);
     console.log('amount: ' + amount);
     console.log('user address: ' + userAddress);
-    // console.log('gas limit: ' + GAS_LIMIT);
 
     try {
       const logs = await maticPOSClient.depositERC20ForUser(
@@ -314,7 +310,7 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
 
     try {
       const PARENT_CONTRACT = web3Default.eth
-        .contract(ABIParent)
+        .contract(ABIParentContract)
         .at(PARENT_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
@@ -345,7 +341,7 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
 
     try {
       const PARENT_CONTRACT = web3Default.eth
-        .contract(ABIParent)
+        .contract(ABIParentContract)
         .at(PARENT_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.checkAllocatedTokensPerGame(
@@ -378,7 +374,7 @@ function depositToParent(gameType, amount, tokenName) {
 
     try {
       const PARENT_CONTRACT = window.web3.eth
-        .contract(ABIParent)
+        .contract(ABIParentContract)
         .at(PARENT_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.addFunds(
@@ -417,7 +413,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
     try {
       const PARENT_CONTRACT = window.web3.eth
-        .contract(ABIParent)
+        .contract(ABIParentContract)
         .at(PARENT_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.withdrawCollateral(
@@ -448,7 +444,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// withdraw funds from parent contract using Biconomy PoS meta-transactions API
+// execute functions on Matic Network from Mainnet using Biconomy PoS meta-transactions API
 async function executeMetaTransaction(
   functionSignature,
   tokenContract,
