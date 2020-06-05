@@ -2,7 +2,13 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
+<<<<<<< HEAD
 import ModalSidebar from './ModalSidebar';
+=======
+
+// import ABIChildToken from '../ABI/ABIChildToken';
+
+>>>>>>> a0750a2b5621c4e87c6fb7cf9434075311f549e5
 import ContentWithdraw from './ContentWithdraw';
 import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
@@ -364,7 +370,6 @@ class Withdraw extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // burn tokens on matic chain and store transaction hash for use while generating burn proof
                 <Grid.Column>
-                  <ModalSidebar checked={1} />
                   <ContentWithdraw
                     content={'burn'} // content type
                     isValidBurn={this.state.isValidBurn}
@@ -382,7 +387,6 @@ class Withdraw extends React.Component {
                 // call exit function on RootChainManager conract to submit proof of burn transaction
                 // this call made after checkpoint is submitted for the block containing burn transaction
                 <Grid.Column>
-                  <ModalSidebar checked={2} />
                   <ContentWithdraw
                     content={'exit'} // content type
                     isValidExit={this.state.isValidExit}
