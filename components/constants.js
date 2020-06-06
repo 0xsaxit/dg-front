@@ -12,6 +12,7 @@ const DEFAULT_AMOUNT = 1000;
 const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 const GAS_LIMIT = '900000';
+const GAS_AMOUNT = '80000000000'; // was '20000000000'; *************************************
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 3; // 1: Mainnet, 3: Ropsten
@@ -253,7 +254,7 @@ function approveToken(
       await maticPOSClient.approveERC20ForDeposit(tokenAddress, amount, {
         from: userAddress,
         gasLimit: web3Default.toHex(GAS_LIMIT),
-        gasPrice: web3Default.toHex('20000000000'),
+        gasPrice: web3Default.toHex(GAS_AMOUNT),
       });
 
       console.log('Approve done');
@@ -288,7 +289,7 @@ function depositTokenToMatic(
         {
           from: userAddress,
           gasLimit: web3Default.toHex(GAS_LIMIT),
-          gasPrice: web3Default.toHex('20000000000'),
+          gasPrice: web3Default.toHex(GAS_AMOUNT),
         }
       );
 
@@ -384,7 +385,7 @@ function depositToParent(gameType, amount, tokenName) {
         {
           from: userAddress,
           gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
+          gasPrice: window.web3.toHex(GAS_AMOUNT),
         },
         async function (err, hash) {
           if (err) {
@@ -423,7 +424,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
         {
           from: userAddress,
           gasLimit: window.web3.toHex(GAS_LIMIT),
-          gasPrice: window.web3.toHex('20000000000'),
+          gasPrice: window.web3.toHex(GAS_AMOUNT),
         },
         async function (err, hash) {
           if (err) {
@@ -505,14 +506,14 @@ function executeMetaTransaction(
           console.log('v: ' + v);
 
           try {
-            await tokenContract.methods
+            const ret = await tokenContract.methods
               .executeMetaTransaction(userAddress, functionSignature, r, s, v)
               .send({
                 from: userAddress,
               });
 
             console.log('Execute Meta-Transactions done');
-            resolve(true);
+            resolve(ret.transactionHash);
           } catch (error) {
             console.log('Execute Meta-Transactions failed: ', error);
             reject(false);
@@ -565,7 +566,7 @@ function getConfirmedTx(txHash) {
         }
       });
 
-      // await delay(2000); // *************************************************************
+      await delay(2000); // must delay 2 seconds
     }
   });
 }

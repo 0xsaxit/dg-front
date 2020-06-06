@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Dropdown, Button } from 'semantic-ui-react';
+import { Grid, Input, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
 
 const ContentWithdraw = (props) => {
@@ -75,10 +75,63 @@ const ContentWithdraw = (props) => {
     );
   }
 
+  function contentExit() {
+    return (
+      <div className="modal-content-container">
+        <Grid>
+          <Grid.Row>
+            <h3 className="modal-h3">Withdraw tokens to Mainnet</h3>
+          </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">
+              Please enter your transaction hash and click Send
+            </p>
+          </Grid.Row>
+          <TokenBalances
+            tokenBalanceL1={props.tokenBalanceL1}
+            tokenBalanceL2={props.tokenBalanceL2}
+          />
+          <Grid.Row>
+            <Input
+              value={props.transactionHash}
+              style={{ width: '300px', marginTop: '0px' }}
+            />
+          </Grid.Row>
+          <Grid.Row>
+            <Button
+              className="modal-buttons"
+              color="blue"
+              style={{ marginTop: '-10px' }}
+              onClick={props.burnOnMatic}
+            >
+              Send
+            </Button>
+          </Grid.Row>
+
+          {props.isValidBurn == 1 ? (
+            <Grid.Row>
+              <p className="modal-p-error">Exit failed</p>
+            </Grid.Row>
+          ) : null}
+
+          <Grid.Row>
+            <p className="modal-p-note">
+              <span style={{ fontStyle: 'italic' }}>
+                *Transaction Hash: {props.transactionHash}
+              </span>
+            </p>
+          </Grid.Row>
+        </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+      </div>
+    );
+  }
+
   if (props.content == 'burn') {
     return contentBurn();
-  } else if (props.content == 'withdraw') {
-    return contentWithdraw();
+  } else if (props.content == 'exit') {
+    return contentExit();
   }
 };
 

@@ -18,12 +18,12 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Deposit MANA</h3>
+            <h3 className="modal-h3">Deposit MANA to Matic Network</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
               Authorize MANA transfers and deposit to Matic Network (two
-              transactions). If you don't have MANA, you can buy some
+              transactions). If you don't have MANA, you can buy some{' '}
               <a style={{ color: '#2085f4' }} href="/exchange">
                 here
               </a>
@@ -108,6 +108,15 @@ const ContentDeposit = (props) => {
               <p className="modal-p-error">Authorization failed</p>
             </Grid.Row>
           ) : null}
+
+          <Grid.Row>
+            <p className="modal-p-note">
+              <span style={{ fontStyle: 'italic' }}>
+                *Authorize our game contract to access your Matic wallet for
+                in-game transactions
+              </span>
+            </p>
+          </Grid.Row>
         </Grid>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
@@ -146,7 +155,7 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Deposit MANA</h3>
+            <h3 className="modal-h3">Deposit MANA to Matic Network</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">

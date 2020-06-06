@@ -18,7 +18,7 @@ async function getAddresses() {
 }
 getAddresses();
 
-class Deposit extends React.Component {
+class ModalDeposit extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +42,7 @@ class Deposit extends React.Component {
   async componentDidMount() {
     this.userAddress = window.web3.currentProvider.selectedAddress;
 
-    // set maticWeb3 provider, get token balances, and set userStepValue
+    // set maticWeb3 provider, get token balances, and verify user/set userStepValue
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
@@ -119,59 +119,6 @@ class Deposit extends React.Component {
 
   handleClose = () => {
     this.setState({ modalOpen: false });
-  };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  checkUserVerify = async () => {
-    try {
-      const response = await this.getUserStatus();
-      const json = await response.json();
-
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          this.setState({ userStepValue: 1 });
-        }
-
-        let stepValue = parseInt(json.result);
-        console.log('userStepValue status: ' + stepValue);
-
-        if (stepValue > 3) {
-          if (stepValue == 5) {
-            // indicate deposit success and set userStepValue to result
-            this.setState({
-              userStepValue: stepValue,
-            });
-          } else if (stepValue == 6) {
-            // indicate authorization success and set userStepValue to result
-            this.setState({
-              userStepValue: stepValue,
-            });
-          } else {
-            // indicate deposit success and set userStepValue to result
-            this.setState({ userStepValue: stepValue });
-          }
-        } else {
-          // indicate deposit success and set userStepValue to result
-          this.setState({ userStepValue: stepValue });
-        }
-      }
-    } catch (error) {
-      console.log('step value error: ' + error);
-    }
-  };
-
-  getUserStatus = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-      }),
-    });
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -303,15 +250,16 @@ class Deposit extends React.Component {
       await this.postUserVerify(6); // update verify to 'deposit'
       this.setState({ userStepValue: 5.5 }); // advance to confirmations step
 
-      await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-      this.setState({ isValidAuthorize: 2 }); // valid authorize
+      // await this.postUserAuthState(this.props.authvalue); // update authorize to 4 ??? ***********************
 
-      setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+      // setTimeout(this.props.update, 5000); // set user token balance from MetaMask ??? *********************
+
+      this.setState({ isValidAuthorize: 2 }); // valid authorize
       this.props.hideSpinner();
     } catch (error) {
       console.log(error);
-      this.setState({ isValidAuthorize: 1 }); // invalid authorize
 
+      this.setState({ isValidAuthorize: 1 }); // invalid authorize
       this.props.hideSpinner();
     }
   };
@@ -319,6 +267,58 @@ class Deposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and deposit status in database
+  checkUserVerify = async () => {
+    try {
+      const response = await this.getUserStatus();
+      const json = await response.json();
+
+      if (json.status === 'ok') {
+        if (json.result === 'false') {
+          this.setState({ userStepValue: 1 });
+          return;
+        }
+
+        let stepValue = parseInt(json.result);
+        console.log('userStepValue status: ' + stepValue);
+
+        if (stepValue > 3) {
+          if (stepValue == 5) {
+            // indicate deposit success and set userStepValue to result
+            this.setState({
+              userStepValue: stepValue,
+            });
+          } else if (stepValue == 6) {
+            // indicate authorization success and set userStepValue to result
+            this.setState({
+              userStepValue: stepValue,
+            });
+          } else {
+            // indicate deposit success and set userStepValue to result
+            this.setState({ userStepValue: stepValue });
+          }
+        } else {
+          // indicate deposit success and set userStepValue to result
+          this.setState({ userStepValue: stepValue });
+        }
+      }
+    } catch (error) {
+      console.log('step value error deposit: ' + error);
+    }
+  };
+
+  getUserStatus = () => {
+    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: this.userAddress,
+      }),
+    });
+  };
+
   postUserVerify = (step) => {
     return fetch(`${Global.BASE_URL}/order/updateUserVerify`, {
       method: 'POST',
@@ -347,23 +347,6 @@ class Deposit extends React.Component {
     });
   };
 
-  postHistory = async (amount, type, state, txHash) => {
-    return fetch(`${Global.BASE_URL}/order/updateHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: window.web3.currentProvider.selectedAddress,
-        amount,
-        type,
-        state,
-        txHash,
-      }),
-    });
-  };
-
   updateHistory = async (amount, type, state, txHash = '') => {
     try {
       const response = await this.postHistory(amount, type, state, txHash);
@@ -381,6 +364,23 @@ class Deposit extends React.Component {
     }
 
     return false;
+  };
+
+  postHistory = async (amount, type, state, txHash) => {
+    return fetch(`${Global.BASE_URL}/order/updateHistory`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: window.web3.currentProvider.selectedAddress,
+        amount,
+        type,
+        state,
+        txHash,
+      }),
+    });
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -494,4 +494,4 @@ class Deposit extends React.Component {
   }
 }
 
-export default Deposit;
+export default ModalDeposit;

@@ -7,24 +7,24 @@ import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
 
 let web3 = {};
-let tokenAddressRopsten = '';
-let spenderAddress = '';
+// let tokenAddressRopsten = '';
+// let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
-  tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
-  spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
+  // tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
+  // spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 }
 getAddresses();
 
-class Withdraw extends React.Component {
+class ModalWithdraw extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       amount: Global.DEFAULT_AMOUNT,
-      userStepValue: 0,
+      transactionHash: '',
       networkID: 0,
       isValidBurn: 0,
       isExistWithdraw: 0,
@@ -42,21 +42,12 @@ class Withdraw extends React.Component {
   async componentDidMount() {
     this.userAddress = window.web3.currentProvider.selectedAddress;
 
-    // set maticWeb3 provider, get token balances, and set userStepValue
+    // set maticWeb3 provider, get token balances, and verify user/set transactionHash
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
     await this.getTokenBalance();
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
-    await this.checkExistWithdraw();
-
-    // await this.checkWithdrawTransaction();
-
     await this.checkUserVerify();
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
@@ -117,71 +108,72 @@ class Withdraw extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get/update user authorization and deposit status in database
-  checkExistWithdraw = async () => {
-    const response = await this.getWithdrawExist();
-    const json = await response.json();
+  // burn tokens on Matic Network
+  burnOnMatic = async () => {
+    try {
+      this.props.showSpinner();
 
-    if (json.status === 'ok') {
-      if (json.result === 'true') {
-        this.setState({ isExistWithdraw: 1 }); // withdraw is in progress
+      console.log('burn amount: ' + this.state.amount);
+      console.log('token contract: ');
+      console.log(this.tokenContract);
+
+      const amountWei = web3.utils.toWei(this.state.amount + '');
+
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = this.tokenContract.methods
+        .withdraw(amountWei)
+        .encodeABI();
+
+      let txHash = await Global.executeMetaTransaction(
+        functionSignature,
+        this.tokenContract,
+        this.userAddress,
+        web3
+      );
+
+      console.log('returned transaction hash: ' + txHash);
+
+      if (txHash == false) {
+        console.log('burn failed');
+
+        this.setState({ isValidBurn: 1 }); // valid burn
+        this.props.hideSpinner();
+
+        return;
+      } else {
+        let ret = await this.updateHistory(
+          this.state.amount,
+          'Withdraw',
+          'In Progress',
+          txHash,
+          1
+        );
+
+        if (!ret) {
+          console.log('network error');
+
+          this.setState({ isValidBurn: 1 });
+          this.props.hideSpinner();
+
+          return;
+        }
       }
+
+      this.setState({ transactionHash: txHash }); // set transaction hash and advance to next step
+      this.setState({ isValidBurn: 2 }); // valid burn
+
+      this.props.hideSpinner();
+    } catch (error) {
+      console.log(error);
+
+      this.setState({ isValidBurn: 1 }); // invalid burn
+      this.props.hideSpinner();
     }
-
-    console.log('get withdraw results: ');
-    console.log(json);
   };
 
-  getWithdrawExist = () => {
-    return fetch(`${Global.BASE_URL}/order/existWithdraw`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-      }),
-    });
-  };
-
-  // checkWithdrawTransaction = async () => {
-  //   const response = await this.getWithdrawTransaction(txid);
-  //   const json = await response.json();
-
-  //   if (json.status === 'ok') {
-  //     if (json.result === 'false') {
-  //       return true;
-  //     }
-
-  //     let step = parseInt(json.result.step);
-  //     let amount = parseInt(json.result.amount);
-
-  //     if (step == 1) this.setState({ isValidStep1: 2, amount });
-  //     else if (step == 2) this.setState({ isConfirmStep1: 2, amount });
-  //     else if (step == 3) this.setState({ isValidStep2: 2, amount });
-  //     else if (step == 4) this.setState({ isConfirmStep2: 2, amount });
-  //     else if (step == 5) this.setState({ isConfirmStep3: 2, amount });
-  //     else this.setState({ amount });
-  //   }
-
-  //   console.log('check withdraw transaction: ');
-  //   console.log(json);
-  // };
-
-  // getWithdrawTransaction = (txid) => {
-  //   return fetch(`${Global.BASE_URL}/order/checkHistory`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       txHash: txid,
-  //     }),
-  //   });
-  // };
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // REST API functions: get/update user authorization and deposit status in database
   checkUserVerify = async () => {
     try {
       const response = await this.getUserStatus();
@@ -189,15 +181,19 @@ class Withdraw extends React.Component {
 
       if (json.status === 'ok') {
         if (json.result === 'false') {
-          this.setState({ userStepValue: 1 });
+          return;
         }
 
-        let stepValue = parseInt(json.result);
-        this.setState({ userStepValue: stepValue });
-        console.log('userStepValue status: ' + stepValue);
+        // const response = await this.getWithdrawExist();
+        // const json = await response.json();
+        // if (json.status === 'ok') {
+        // set the transaction in the database
+        // this.setState({ transactionHash: json.result });
+
+        this.setState({ transactionHash: '' }); // 0x309fda93e82a6ec80b065608507b7e7ee96658fc9a06199751100256b6ac56c1
       }
     } catch (error) {
-      console.log('step value error: ' + error);
+      console.log('step value error withdraw: ' + error);
     }
   };
 
@@ -214,8 +210,8 @@ class Withdraw extends React.Component {
     });
   };
 
-  checkConfirm = (txid, step) => {
-    return fetch(`${Global.BASE_URL}/order/confirmHistory`, {
+  getWithdrawTransaction = (txid) => {
+    return fetch(`${Global.BASE_URL}/order/checkHistory`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -223,7 +219,19 @@ class Withdraw extends React.Component {
       },
       body: JSON.stringify({
         txHash: txid,
-        step: step,
+      }),
+    });
+  };
+
+  getWithdrawExist = () => {
+    return fetch(`${Global.BASE_URL}/order/existWithdraw`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: this.userAddress,
       }),
     });
   };
@@ -246,8 +254,9 @@ class Withdraw extends React.Component {
         return true;
       }
     } catch (error) {
-      console.log(error);
+      console.log('update history error: ' + error);
     }
+
     return false;
   };
 
@@ -267,49 +276,6 @@ class Withdraw extends React.Component {
         step,
       }),
     });
-  };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // burn tokens on Matic Network
-  burnOnMatic = async () => {
-    try {
-      this.props.showSpinner();
-
-      console.log('burn amount: ' + this.state.amount);
-      console.log('token contract: ');
-      console.log(this.tokenContract);
-
-      const amountWei = web3.utils.toWei(this.state.amount + '');
-
-      // get function signature and send Biconomy API meta-transaction
-      let functionSignature = this.tokenContract.methods
-        .withdraw(amountWei)
-        .encodeABI();
-
-      await Global.executeMetaTransaction(
-        functionSignature,
-        this.tokenContract,
-        this.userAddress,
-        web3
-      );
-
-      // await this.postUserVerify(6); // update verify to 'deposit'
-      this.setState({ userStepValue: 6 }); // advance to exit step
-
-      // await this.postUserAuthState(this.props.authvalue); // update authorize to 4
-      this.setState({ isValidBurn: 2 }); // valid burn
-
-      // setTimeout(this.props.update, 5000); // set user token balance from MetaMask
-      this.props.hideSpinner();
-
-      console.log('burn foo foo foo...');
-    } catch (error) {
-      console.log(error);
-      this.setState({ isValidBurn: 1 }); // invalid burn
-
-      this.props.hideSpinner();
-    }
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -335,13 +301,13 @@ class Withdraw extends React.Component {
 
   nextStep = () => {
     let value;
-    if (this.state.userStepValue < 6) {
-      value = this.state.userStepValue + 1;
+    if (this.state.transactionHash == '') {
+      value = 'foo';
     } else {
-      value = 5;
+      value = '';
     }
 
-    this.setState({ userStepValue: value });
+    this.setState({ transactionHash: value });
   };
 
   render() {
@@ -358,7 +324,7 @@ class Withdraw extends React.Component {
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
-              {this.state.userStepValue <= 6 ? (
+              {this.state.transactionHash == '' ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // burn tokens on matic chain and store transaction hash for use while generating burn proof
@@ -383,6 +349,7 @@ class Withdraw extends React.Component {
                   <ContentWithdraw
                     content={'exit'} // content type
                     isValidExit={this.state.isValidExit}
+                    transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
                     // nextStep={this.nextStep}
                   />
@@ -396,4 +363,4 @@ class Withdraw extends React.Component {
   }
 }
 
-export default Withdraw;
+export default ModalWithdraw;
