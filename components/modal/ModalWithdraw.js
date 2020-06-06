@@ -136,7 +136,7 @@ class ModalWithdraw extends React.Component {
       if (txHash == false) {
         console.log('burn failed');
 
-        this.setState({ isValidBurn: 1 }); // valid burn
+        this.setState({ isValidBurn: 1 }); // invalid burn
         this.props.hideSpinner();
 
         return;
@@ -152,7 +152,7 @@ class ModalWithdraw extends React.Component {
         if (!ret) {
           console.log('network error');
 
-          this.setState({ isValidBurn: 1 });
+          this.setState({ isValidBurn: 1 }); // invalid burn
           this.props.hideSpinner();
 
           return;
@@ -167,6 +167,75 @@ class ModalWithdraw extends React.Component {
       console.log(error);
 
       this.setState({ isValidBurn: 1 }); // invalid burn
+      this.props.hideSpinner();
+    }
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // exit = async (burnTxHash) => {
+  //   const from = await getDefaultAccount();
+  //   await maticPOSClient.exitERC20(burnTxHash, { from }).then(async (logs) => {
+  //     console.log("Exit: " + logs.transactionHash);
+  //   });
+  // };
+
+  exitToMainnet = async () => {
+    try {
+      this.props.showSpinner();
+
+      // let ret = await maticPOSClient
+      //   .exitERC20(this.transactionHash, this.userAddress)
+      //   .then(async (logs) => {
+      //     console.log('Exit: ' + logs.transactionHash);
+      //   });
+
+      let txHash = await Global.exitToMainnet(
+        this.state.transactionHash,
+        this.userAddress
+      );
+
+      // console.log('ret value: ');
+      // console.log(ret);
+
+      // const txHash = ret.transactionHash;
+
+      console.log('returned transaction hash: ' + txHash);
+
+      if (txHash == false) {
+        console.log('exit failed');
+
+        this.setState({ isValidExit: 1 }); // invalid exit
+        this.props.hideSpinner();
+
+        return;
+      } else {
+        let ret = await this.updateHistory(
+          this.state.amount,
+          'Withdraw',
+          'In Progress',
+          txHash,
+          1
+        );
+
+        if (!ret) {
+          console.log('network error');
+
+          this.setState({ isValidExit: 1 }); // invalid exit
+          this.props.hideSpinner();
+
+          return;
+        }
+      }
+
+      this.setState({ transactionHash: txHash }); // set transaction hash for confimation
+      this.setState({ isValidExit: 2 }); // valid exit
+
+      this.props.hideSpinner();
+    } catch (error) {
+      console.log(error);
+
+      this.setState({ isValidExit: 1 }); // invalid burn
       this.props.hideSpinner();
     }
   };
@@ -190,7 +259,7 @@ class ModalWithdraw extends React.Component {
         // set the transaction in the database
         // this.setState({ transactionHash: json.result });
 
-        this.setState({ transactionHash: '' }); // 0x309fda93e82a6ec80b065608507b7e7ee96658fc9a06199751100256b6ac56c1
+        this.setState({ transactionHash: '' });
       }
     } catch (error) {
       console.log('step value error withdraw: ' + error);
@@ -302,7 +371,8 @@ class ModalWithdraw extends React.Component {
   nextStep = () => {
     let value;
     if (this.state.transactionHash == '') {
-      value = 'foo';
+      value =
+        '0x309fda93e82a6ec80b065608507b7e7ee96658fc9a06199751100256b6ac56c1';
     } else {
       value = '';
     }
@@ -349,6 +419,8 @@ class ModalWithdraw extends React.Component {
                   <ContentWithdraw
                     content={'exit'} // content type
                     isValidExit={this.state.isValidExit}
+                    tokenBalanceL1={this.state.tokenBalanceL1}
+                    tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
                     // nextStep={this.nextStep}

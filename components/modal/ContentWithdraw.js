@@ -22,11 +22,11 @@ const ContentWithdraw = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Burn tokens on Matic Network</h3>
+            <h3 className="modal-h3">Burn MANA on Matic Network</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Please select the amount of Matic tokens you wold like to burn
+              Please select the amount of Matic tokens you would like to burn
             </p>
           </Grid.Row>
           <TokenBalances
@@ -62,9 +62,8 @@ const ContentWithdraw = (props) => {
           <Grid.Row>
             <p className="modal-p-note">
               <span style={{ fontStyle: 'italic' }}>
-                *Once the checkpoint has been submitted for the block containing
-                the burn transaction, you may submit proof of burn. Upon
-                submitting valid proof your tokens will be transfered to you
+                *After sending Burn transaction you will receive a transaction
+                hash as proof of burn
               </span>
             </p>
           </Grid.Row>
@@ -80,11 +79,11 @@ const ContentWithdraw = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Withdraw tokens to Mainnet</h3>
+            <h3 className="modal-h3">Withdraw MANA to Mainnet</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Please enter your transaction hash and click Send
+              Click Exit to submit your transaction hash as proof of burn
             </p>
           </Grid.Row>
           <TokenBalances
@@ -92,23 +91,27 @@ const ContentWithdraw = (props) => {
             tokenBalanceL2={props.tokenBalanceL2}
           />
           <Grid.Row>
-            <Input
+            {/* <Input
               value={props.transactionHash}
-              style={{ width: '300px', marginTop: '0px' }}
-            />
+              style={{ width: '700px', marginTop: '0px' }}
+            /> */}
+            <span style={{ fontWeight: 'bold', marginRight: '5px' }}>
+              Tx Hash:
+            </span>
+            {props.transactionHash}
           </Grid.Row>
           <Grid.Row>
             <Button
               className="modal-buttons"
               color="blue"
               style={{ marginTop: '-10px' }}
-              onClick={props.burnOnMatic}
+              onClick={props.exitToMainnet}
             >
-              Send
+              Exit
             </Button>
           </Grid.Row>
 
-          {props.isValidBurn == 1 ? (
+          {props.isValidExit == 1 ? (
             <Grid.Row>
               <p className="modal-p-error">Exit failed</p>
             </Grid.Row>
@@ -117,7 +120,8 @@ const ContentWithdraw = (props) => {
           <Grid.Row>
             <p className="modal-p-note">
               <span style={{ fontStyle: 'italic' }}>
-                *Transaction Hash: {props.transactionHash}
+                *Upon submitting valid proof your tokens will be transfered to
+                your Mainnet account
               </span>
             </p>
           </Grid.Row>

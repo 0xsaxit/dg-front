@@ -23,10 +23,11 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <p className="modal-p">
               Authorize MANA transfers and deposit to Matic Network (two
-              transactions). If you don't have MANA, you can buy some{' '}
+              transactions)
+              {/* If you don't have MANA, you can buy some{' '}
               <a style={{ color: '#2085f4' }} href="/exchange">
                 here
-              </a>
+              </a> */}
             </p>
           </Grid.Row>
           <Grid.Row>
@@ -72,7 +73,11 @@ const ContentDeposit = (props) => {
             </p>
             <p className="modal-p-note2">
               <span style={{ fontWeight: 'bold' }}>NOTE: </span>
-              Matic Network deposits are instantly usable in all our games
+              {/* Matic Network deposits are instantly usable in all our games */}
+              If you don't have MANA, you can buy some{' '}
+              <a style={{ color: '#2085f4' }} href="/exchange">
+                here
+              </a>
             </p>
           </Grid.Row>
         </Grid>

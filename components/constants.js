@@ -304,6 +304,31 @@ function depositTokenToMatic(
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
+// withdraw tokens from Matic Network to Mainnet
+function exitToMainnet(transactionHash, userAddress) {
+  return new Promise(async (resolve, reject) => {
+    console.log('Exit to Mainnet start');
+    console.log('transaction hash: ' + transactionHash);
+    console.log('user address: ' + userAddress);
+
+    try {
+      let ret = await maticPOSClient
+        .exitERC20(transactionHash, { from: userAddress })
+        .then(async (logs) => {
+          console.log('Exit: ' + logs.transactionHash);
+        });
+
+      console.log('Exit to Mainnet done');
+      resolve(ret.transactionHash);
+    } catch (error) {
+      console.log('Exit to Mainnet failed: ', error);
+      reject(false);
+    }
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // get balance from parent contract and allocated tokens from slots and roulette games
 function getBalanceParent(tokenName, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
@@ -592,6 +617,7 @@ export default {
   getAllowedToken,
   approveToken,
   depositTokenToMatic,
+  exitToMainnet,
   getBalanceParent,
   getTokensGame,
   depositToParent,
