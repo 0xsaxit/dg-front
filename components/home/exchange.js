@@ -170,20 +170,22 @@ class Exchange extends React.Component {
                 </Fade>
               </div>
               <div
-                className="games-container"
+                className="uniswap-container"
               >
-                <iframe
-                  src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
-                  style={{
-                    border: '0',
-                    margin: '0 0 0 0 ',
-                    display: 'block',
-                    borderRadius: '3px',
-                    width: '450px',
-                    height: 'calc(100vh - 230px)',
-                    marginTop: '-10px'
-                  }}
-                />
+                <Fade bottom distance="20px" duration="600" delay="300">
+                  <iframe
+                    src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
+                    style={{
+                      border: '0',
+                      margin: '0 0 0 0 ',
+                      display: 'block',
+                      borderRadius: '3px',
+                      width: '450px',
+                      height: 'calc(100vh - 230px)',
+                      marginTop: '-10px'
+                    }}
+                  />
+                </Fade>
               </div>
             </div>
           )}
