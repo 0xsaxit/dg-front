@@ -646,6 +646,7 @@ div.progressbar2 {
   border-bottom-left-radius: 4px;
 }
 
+
 /* ----------------------------------------- */
 /*         ACCOUNT PAGE SECTIONS CSS         */
 /* ----------------------------------------- */
@@ -669,6 +670,7 @@ div.progressbar2 {
   left: 55% !important;
   transform: translate(0%, 0%) !important;
 }
+
 .exchangeWallet {
   position: fixed;
   width: 50vw;
@@ -676,7 +678,9 @@ div.progressbar2 {
   top: 15%;
   right: 55%;
 }
-.games-container {
+
+.uniswap-container {
+  margin-top: 39px;
   position: fixed !important;
   left: 55% !important;
 }
