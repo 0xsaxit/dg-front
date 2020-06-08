@@ -172,7 +172,8 @@ class Dashboard extends React.Component {
                 </Button>
               )}
             </Fade>
-            <div className="teleport">
+
+            {*/<div className="teleport">
               <Fade bottom distance="20px" duration="600" delay="300">
                 <p
                   className="featured-casino-text"
@@ -213,7 +214,8 @@ class Dashboard extends React.Component {
                   </a>
                 </div>
               </Fade>
-            </div>
+            </div>*/}
+            
           </div>
           <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
         </div>
