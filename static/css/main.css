@@ -134,7 +134,7 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: fixed;
-  bottom: 30px;
+  bottom: 90px;
   margin-left: 120px;
 }
 
@@ -171,7 +171,8 @@ video.home-dashboard-video {
   color: white;
   letter-spacing: 0.15px;
   text-shadow: 1px 1px 5px black;
-  width: 600px;
+  max-width: 630px;
+  padding-right: 30px;
 }
 
 .featured-casino-text {
@@ -342,6 +343,7 @@ img.ui.image.partner-image {
 
 .ui.modal {
   border-radius: 3px;
+  max-width: 630px;
 }
 
 .ui.dimmer {
@@ -553,6 +555,22 @@ div.wallet_board table#header tr td {
   letter-spacing: 0.025rem !important;
 }
 
+@media only screen and (max-width: 767px) {
+  .ui.table:not(.unstackable) tr {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: table-row !important;
+    width: 357px !important;
+  }
+  .ui.table:not(.unstackable) tbody  {
+    display: table-row-group !important;
+    width: 357px !important;
+  }
+  .ui.modal>.content {
+    padding: 0 !important;
+  }
+}
+
 div.wallet_board table button#depositButton2 {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -616,6 +634,7 @@ div.wallet_board table button#depositButton2:hover {
   color: black;
   text-align: left;
   padding-right: 60px;
+  padding-top: 45px;
 }
 
 .modal-p-note2 {
@@ -630,6 +649,8 @@ div.wallet_board table button#depositButton2:hover {
 
 .ui.selection.dropdown {
   border-radius: 3px;
+  width: 100% !important;
+  margin-right: 45px;
 }
 
 div.progressbar2 {
@@ -1392,6 +1413,8 @@ button.ui.blue.button.modal-buttons {
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
+  position: absolute;
+  right: 45px;
 }
 
 .ui.blue.button.metamask-button {
@@ -1541,7 +1564,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 120px;
+    margin-bottom: 15px;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1587,7 +1610,7 @@ a.ui.blue.button.play-shimmer:hover,
         rgba(0, 0, 0, 0.9)
       ),
     url("https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/image_noccib_s7x7xk_uvqwwz_djisxi.jpg");
-    background-position: center !important;
+    background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
     height: 100vh;
@@ -1608,7 +1631,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 90px;
+    margin-bottom: 0px;
   }
   .featured-casino-text {
     font-size: 12px !important;
