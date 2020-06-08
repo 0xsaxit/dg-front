@@ -562,12 +562,12 @@ div.wallet_board table#header tr td {
     display: table-row !important;
     width: 357px !important;
   }
-}
-
-@media only screen and (max-width: 767px) {
   .ui.table:not(.unstackable) tbody  {
     display: table-row-group !important;
     width: 357px !important;
+  }
+  .ui.modal>.content {
+    padding: 0 !important;
   }
 }
 
