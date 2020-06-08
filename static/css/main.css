@@ -343,6 +343,7 @@ img.ui.image.partner-image {
 
 .ui.modal {
   border-radius: 3px;
+  max-width: 630px;
 }
 
 .ui.dimmer {
@@ -633,6 +634,7 @@ div.wallet_board table button#depositButton2:hover {
   color: black;
   text-align: left;
   padding-right: 60px;
+  padding-top: 45px;
 }
 
 .modal-p-note2 {
@@ -647,6 +649,8 @@ div.wallet_board table button#depositButton2:hover {
 
 .ui.selection.dropdown {
   border-radius: 3px;
+  width: 100% !important;
+  margin-right: 45px;
 }
 
 div.progressbar2 {
@@ -1409,6 +1413,8 @@ button.ui.blue.button.modal-buttons {
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
+  position: absolute;
+  right: 45px;
 }
 
 .ui.blue.button.metamask-button {
