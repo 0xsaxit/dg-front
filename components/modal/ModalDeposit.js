@@ -160,7 +160,7 @@ class ModalDeposit extends React.Component {
         amountWei,
         this.userAddress
       );
-      if (txHash != false) {
+      if (txHash !== false) {
         let ret = await this.updateHistory(
           this.state.amount,
           'Deposit',
@@ -179,6 +179,8 @@ class ModalDeposit extends React.Component {
             'Failed',
             txHash
           );
+
+          if (!ret) this.networkError(); // network error
         } else {
           ret = await this.updateHistory(
             this.state.amount,
@@ -187,10 +189,12 @@ class ModalDeposit extends React.Component {
             txHash
           );
 
-          console.log('updated database');
+          if (!ret) this.networkError(); // network error
+
+          // console.log('updated database');
         }
 
-        if (!ret) this.networkError(); // network error
+        // if (!ret) this.networkError(); // network error
 
         if (this.state.userStepValue < 6) {
           console.log('updating step value to 5');
@@ -214,15 +218,6 @@ class ModalDeposit extends React.Component {
     }
   };
 
-  networkError = () => {
-    console.log('network error');
-
-    this.setState({ isValidDeposit: 1 }); // invalid deposit
-    this.props.hideSpinner();
-
-    return;
-  };
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
@@ -240,21 +235,34 @@ class ModalDeposit extends React.Component {
         .approve(spenderAddress, Global.MAX_AMOUNT)
         .encodeABI();
 
-      await Global.executeMetaTransaction(
+      txHash = await Global.executeMetaTransaction(
         functionSignature,
         this.tokenContract,
         this.userAddress,
         web3
       );
+      if (txHash == false) {
+        console.log('authorization failed');
 
-      await this.postUserVerify(6); // update verify to 'deposit'
-      this.setState({ userStepValue: 5.5 }); // advance to confirmations step
+        this.setState({ isValidAuthorize: 1 }); // invalid authorize
+        this.props.hideSpinner();
 
-      // await this.postUserAuthState(this.props.authvalue); // update authorize to 4 ??? ***********************
+        return;
+      } else {
+        let ret = await this.updateHistory(
+          this.state.amount,
+          'Authorization',
+          'Confirmed',
+          txHash
+        );
+        if (!ret) this.networkErrror(); // network error
 
-      // setTimeout(this.props.update, 5000); // set user token balance from MetaMask ??? *********************
+        await this.postUserVerify(6); // update verify to 'deposit'
+        this.setState({ userStepValue: 5.5 }); // advance to deposit confirmations step
 
-      this.setState({ isValidAuthorize: 2 }); // valid authorize
+        this.setState({ isValidAuthorize: 2 }); // valid authorize
+      }
+
       this.props.hideSpinner();
     } catch (error) {
       console.log(error);
@@ -262,6 +270,14 @@ class ModalDeposit extends React.Component {
       this.setState({ isValidAuthorize: 1 }); // invalid authorize
       this.props.hideSpinner();
     }
+  };
+
+  networkError = () => {
+    console.log('network error');
+
+    // this.setState({ isValidDeposit: 1 }); // invalid deposit
+    this.props.hideSpinner();
+    return;
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -279,27 +295,31 @@ class ModalDeposit extends React.Component {
         }
 
         let stepValue = parseInt(json.result);
+        this.setState({ userStepValue: stepValue });
+
         console.log('userStepValue status: ' + stepValue);
 
-        if (stepValue > 3) {
-          if (stepValue == 5) {
-            // indicate deposit success and set userStepValue to result
-            this.setState({
-              userStepValue: stepValue,
-            });
-          } else if (stepValue == 6) {
-            // indicate authorization success and set userStepValue to result
-            this.setState({
-              userStepValue: stepValue,
-            });
-          } else {
-            // indicate deposit success and set userStepValue to result
-            this.setState({ userStepValue: stepValue });
-          }
-        } else {
-          // indicate deposit success and set userStepValue to result
-          this.setState({ userStepValue: stepValue });
-        }
+        // if (stepValue > 3) {
+
+        //   if (stepValue == 5) {
+        //     // indicate deposit success and set userStepValue to result
+        //     this.setState({
+        //       userStepValue: stepValue,
+        //     });
+        //   } else if (stepValue == 6) {
+        //     // indicate authorization success and set userStepValue to result
+        //     this.setState({
+        //       userStepValue: stepValue,
+        //     });
+        //   } else {
+        //     // indicate deposit success and set userStepValue to result
+        //     this.setState({ userStepValue: stepValue });
+        //   }
+
+        // } else {
+        //   // indicate deposit success and set userStepValue to result
+        //   this.setState({ userStepValue: stepValue });
+        // }
       }
     } catch (error) {
       console.log('step value error deposit: ' + error);

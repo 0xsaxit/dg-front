@@ -25,4 +25,3 @@ const SwitchRPC = (props) => {
 };
 
 export default SwitchRPC;
- 

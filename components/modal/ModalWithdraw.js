@@ -27,7 +27,7 @@ class ModalWithdraw extends React.Component {
       transactionHash: '',
       networkID: 0,
       isValidBurn: 0,
-      isExistWithdraw: 0,
+      userStepValue: 0,
       isValidExit: 0,
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
@@ -42,7 +42,7 @@ class ModalWithdraw extends React.Component {
   async componentDidMount() {
     this.userAddress = window.web3.currentProvider.selectedAddress;
 
-    // set maticWeb3 provider, get token balances, and verify user/set transactionHash
+    // set maticWeb3 provider, get token balances, and verify user/set userStepValue
     this.maticWeb3 = new window.Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     );
@@ -143,24 +143,18 @@ class ModalWithdraw extends React.Component {
       } else {
         let ret = await this.updateHistory(
           this.state.amount,
-          'Withdraw',
-          'In Progress',
+          'Burn',
+          'Confirmed',
           txHash,
           1
         );
+        if (!ret) this.networkErrror(); // network error
 
-        if (!ret) {
-          console.log('network error');
+        this.setState({ transactionHash: txHash }); // set transaction hash and advance to next step
+        this.setState({ userStepValue: 6.5 }); // advance to hash step
 
-          this.setState({ isValidBurn: 1 }); // invalid burn
-          this.props.hideSpinner();
-
-          return;
-        }
+        this.setState({ isValidBurn: 2 }); // valid burn
       }
-
-      this.setState({ transactionHash: txHash }); // set transaction hash and advance to next step
-      this.setState({ isValidBurn: 2 }); // valid burn
 
       this.props.hideSpinner();
     } catch (error) {
@@ -173,32 +167,14 @@ class ModalWithdraw extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // exit = async (burnTxHash) => {
-  //   const from = await getDefaultAccount();
-  //   await maticPOSClient.exitERC20(burnTxHash, { from }).then(async (logs) => {
-  //     console.log("Exit: " + logs.transactionHash);
-  //   });
-  // };
-
   exitToMainnet = async () => {
     try {
       this.props.showSpinner();
-
-      // let ret = await maticPOSClient
-      //   .exitERC20(this.transactionHash, this.userAddress)
-      //   .then(async (logs) => {
-      //     console.log('Exit: ' + logs.transactionHash);
-      //   });
 
       let txHash = await Global.exitToMainnet(
         this.state.transactionHash,
         this.userAddress
       );
-
-      // console.log('ret value: ');
-      // console.log(ret);
-
-      // const txHash = ret.transactionHash;
 
       console.log('returned transaction hash: ' + txHash);
 
@@ -212,32 +188,33 @@ class ModalWithdraw extends React.Component {
       } else {
         let ret = await this.updateHistory(
           this.state.amount,
-          'Withdraw',
+          'Exit',
           'In Progress',
           txHash,
           1
         );
+        if (!ret) this.networkErrror(); // network error
 
-        if (!ret) {
-          console.log('network error');
+        this.setState({ transactionHash: txHash }); // set transaction hash for confimation
 
-          this.setState({ isValidExit: 1 }); // invalid exit
-          this.props.hideSpinner();
-
-          return;
-        }
+        this.setState({ userStepValue: 7 }); // advance to submite proof of burn step
+        this.setState({ isValidExit: 2 }); // valid exit
       }
-
-      this.setState({ transactionHash: txHash }); // set transaction hash for confimation
-      this.setState({ isValidExit: 2 }); // valid exit
 
       this.props.hideSpinner();
     } catch (error) {
       console.log(error);
 
-      this.setState({ isValidExit: 1 }); // invalid burn
+      this.setState({ isValidExit: 1 }); // invalid exit
       this.props.hideSpinner();
     }
+  };
+
+  networkError = () => {
+    console.log('network error');
+
+    this.props.hideSpinner();
+    return;
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -250,6 +227,7 @@ class ModalWithdraw extends React.Component {
 
       if (json.status === 'ok') {
         if (json.result === 'false') {
+          this.setState({ userStepValue: 1 });
           return;
         }
 
@@ -259,7 +237,12 @@ class ModalWithdraw extends React.Component {
         // set the transaction in the database
         // this.setState({ transactionHash: json.result });
 
-        this.setState({ transactionHash: '' });
+        let stepValue = parseInt(json.result);
+        this.setState({ userStepValue: stepValue });
+
+        console.log('userStepValue status: ' + stepValue);
+
+        // this.setState({ transactionHash: '' });
       }
     } catch (error) {
       console.log('step value error withdraw: ' + error);
@@ -394,7 +377,7 @@ class ModalWithdraw extends React.Component {
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
-              {this.state.transactionHash == '' ? (
+              {this.state.userStepValue == 6 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // burn tokens on matic chain and store transaction hash for use while generating burn proof
@@ -410,10 +393,25 @@ class ModalWithdraw extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : (
+              ) : this.state.userStepValue == 6.5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
-                // call exit function on RootChainManager conract to submit proof of burn transaction
+                // tell user to check transaction history page after about 5 minutes
+                <Grid.Column>
+                  <ContentWithdraw
+                    content={'hash'} // content type
+                    isValidExit={this.state.isValidExit}
+                    tokenBalanceL1={this.state.tokenBalanceL1}
+                    tokenBalanceL2={this.state.tokenBalanceL2}
+                    transactionHash={this.state.transactionHash}
+                    exitToMainnet={this.exitToMainnet}
+                    // nextStep={this.nextStep}
+                  />
+                </Grid.Column>
+              ) : this.state.userStepValue == 7 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // call exit function on RootChainManager contract to submit proof of burn transaction
                 // this call made after checkpoint is submitted for the block containing burn transaction
                 <Grid.Column>
                   <ContentWithdraw
@@ -426,7 +424,7 @@ class ModalWithdraw extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              )}
+              ) : null}
             </Grid>
           </div>
         </div>
