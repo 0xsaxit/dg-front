@@ -70,7 +70,7 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
         </Grid>
 
-        <Button content="Next step" onClick={props.nextStep} />
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -104,7 +104,7 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
         </Grid>
 
-        <Button content="Next step" onClick={props.nextStep} />
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -158,7 +158,7 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
         </Grid>
 
-        <Button content="Next step" onClick={props.nextStep} />
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }

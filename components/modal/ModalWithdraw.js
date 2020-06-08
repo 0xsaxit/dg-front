@@ -398,7 +398,7 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6.5 ? (
@@ -409,8 +409,7 @@ class ModalWithdraw extends React.Component {
                   <ContentWithdraw
                     content={'hash'} // content type
                     transactionHash={this.state.transactionHash}
-                    // goToTxHistory={this.goToTxHistory}
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 7 ? (
@@ -426,7 +425,7 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
-                    nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}
