@@ -134,7 +134,7 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: fixed;
-  bottom: 30px;
+  bottom: 90px;
   margin-left: 120px;
 }
 
@@ -171,7 +171,8 @@ video.home-dashboard-video {
   color: white;
   letter-spacing: 0.15px;
   text-shadow: 1px 1px 5px black;
-  width: 600px;
+  max-width: 630px;
+  padding-right: 30px;
 }
 
 .featured-casino-text {
@@ -551,6 +552,22 @@ div.wallet_board table#header tr td {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.025rem !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.table:not(.unstackable) tr {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: table-row !important;
+    width: 357px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.table:not(.unstackable) tbody  {
+    display: table-row-group !important;
+    width: 357px !important;
+  }
 }
 
 div.wallet_board table button#depositButton2 {
