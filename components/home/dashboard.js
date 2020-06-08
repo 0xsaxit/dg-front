@@ -173,7 +173,7 @@ class Dashboard extends React.Component {
               )}
             </Fade>
 
-            {*/<div className="teleport">
+            {/*<div className="teleport">
               <Fade bottom distance="20px" duration="600" delay="300">
                 <p
                   className="featured-casino-text"
