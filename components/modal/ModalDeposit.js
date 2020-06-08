@@ -235,7 +235,7 @@ class ModalDeposit extends React.Component {
         .approve(spenderAddress, Global.MAX_AMOUNT)
         .encodeABI();
 
-      txHash = await Global.executeMetaTransaction(
+      const txHash = await Global.executeMetaTransaction(
         functionSignature,
         this.tokenContract,
         this.userAddress,

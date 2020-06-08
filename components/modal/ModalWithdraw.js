@@ -219,6 +219,12 @@ class ModalWithdraw extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // goToTxHistory = () => {
+  //   console.log('go to transaction history page...');
+  // };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and deposit status in database
   checkUserVerify = async () => {
     try {
@@ -353,14 +359,16 @@ class ModalWithdraw extends React.Component {
 
   nextStep = () => {
     let value;
-    if (this.state.transactionHash == '') {
-      value =
-        '0x309fda93e82a6ec80b065608507b7e7ee96658fc9a06199751100256b6ac56c1';
-    } else {
-      value = '';
+
+    if (this.state.userStepValue <= 6) {
+      value = 6.5;
+    } else if (this.state.userStepValue == 6.5) {
+      value = 7;
+    } else if (this.state.userStepValue == 7) {
+      value = 6;
     }
 
-    this.setState({ transactionHash: value });
+    this.setState({ userStepValue: value });
   };
 
   render() {
@@ -377,7 +385,7 @@ class ModalWithdraw extends React.Component {
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
-              {this.state.userStepValue == 6 ? (
+              {this.state.userStepValue <= 6 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // burn tokens on matic chain and store transaction hash for use while generating burn proof
@@ -390,7 +398,7 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6.5 ? (
@@ -400,12 +408,9 @@ class ModalWithdraw extends React.Component {
                 <Grid.Column>
                   <ContentWithdraw
                     content={'hash'} // content type
-                    isValidExit={this.state.isValidExit}
-                    tokenBalanceL1={this.state.tokenBalanceL1}
-                    tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
-                    exitToMainnet={this.exitToMainnet}
-                    // nextStep={this.nextStep}
+                    // goToTxHistory={this.goToTxHistory}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 7 ? (
@@ -421,7 +426,7 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}

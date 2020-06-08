@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Input, Dropdown, Button } from 'semantic-ui-react';
+import Link from 'next/link';
+import { Grid, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
 
 const ContentWithdraw = (props) => {
@@ -12,7 +13,7 @@ const ContentWithdraw = (props) => {
     { key: 5, text: '5000 MANA', value: 5000 },
     {
       key: 6,
-      text: 'Maximum ' + '(' + props.tokenBalanceL2 + ' MANA)',
+      text: 'MAXIMUM ' + '(' + props.tokenBalanceL2 + ' MANA)',
       value: props.tokenBalanceL2,
     },
   ];
@@ -69,7 +70,41 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
         </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+        <Button content="Next step" onClick={props.nextStep} />
+      </div>
+    );
+  }
+
+  function contentHash() {
+    return (
+      <div className="modal-content-container">
+        <Grid>
+          <Grid.Row>
+            <h3 className="modal-h3">Exit MANA to Mainnet pending</h3>
+          </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">
+              Please check the Transaction History page in 5 to 10 minutes to
+              confirm withdrawal of MANA tokens to Mainnet
+            </p>
+          </Grid.Row>
+          <Grid.Row>(TX HASH: {props.transactionHash})</Grid.Row>
+
+          <Grid.Row>
+            <Link href="/txhistory">
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px' }}
+                onClick={props.goToTxHistory}
+              >
+                Tx History
+              </Button>
+            </Link>
+          </Grid.Row>
+        </Grid>
+
+        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -91,12 +126,8 @@ const ContentWithdraw = (props) => {
             tokenBalanceL2={props.tokenBalanceL2}
           />
           <Grid.Row>
-            {/* <Input
-              value={props.transactionHash}
-              style={{ width: '700px', marginTop: '0px' }}
-            /> */}
             <span style={{ fontWeight: 'bold', marginRight: '5px' }}>
-              Tx Hash:
+              TX HASH:
             </span>
             {props.transactionHash}
           </Grid.Row>
@@ -127,13 +158,15 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
         </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
 
   if (props.content == 'burn') {
     return contentBurn();
+  } else if (props.content == 'hash') {
+    return contentHash();
   } else if (props.content == 'exit') {
     return contentExit();
   }
