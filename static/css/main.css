@@ -1610,7 +1610,7 @@ a.ui.blue.button.play-shimmer:hover,
         rgba(0, 0, 0, 0.9)
       ),
     url("https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/image_noccib_s7x7xk_uvqwwz_djisxi.jpg");
-    background-position: center !important;
+    background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
     height: 100vh;
