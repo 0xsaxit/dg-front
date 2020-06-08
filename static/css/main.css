@@ -1564,7 +1564,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 120px;
+    margin-bottom: 15px;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1631,7 +1631,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 90px;
+    margin-bottom: 0px;
   }
   .featured-casino-text {
     font-size: 12px !important;
