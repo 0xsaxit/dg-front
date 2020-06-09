@@ -48,20 +48,20 @@ class Exchange extends React.Component {
     await this.getUserData();
     this.setState({ isLoading: false });
 
-    transak.init();
-    // To get all the events
-    transak.on(transak.ALL_EVENTS, (data) => {
-      console.log(data);
-    });
-    // This will trigger when the user closed the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak.close();
-    });
-    // This will trigger when the user marks payment is made.
-    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData);
-      transak.close();
-    });
+    // transak.init();
+    // // To get all the events
+    // transak.on(transak.ALL_EVENTS, (data) => {
+    //   console.log(data);
+    // });
+    // // This will trigger when the user closed the widget
+    // transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+    //   transak.close();
+    // });
+    // // This will trigger when the user marks payment is made.
+    // transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+    //   console.log(orderData);
+    //   transak.close();
+    // });
   }
 
   getUserVerify = () => {
@@ -169,9 +169,7 @@ class Exchange extends React.Component {
                   />
                 </Fade>
               </div>
-              <div
-                className="uniswap-container"
-              >
+              <div className="uniswap-container">
                 <Fade bottom distance="20px" duration="600" delay="300">
                   <iframe
                     src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
@@ -182,7 +180,7 @@ class Exchange extends React.Component {
                       borderRadius: '3px',
                       width: '450px',
                       height: 'calc(100vh - 230px)',
-                      marginTop: '-10px'
+                      marginTop: '-10px',
                     }}
                   />
                 </Fade>
