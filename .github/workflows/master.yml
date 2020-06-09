@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+env:
+  CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME_PROD }}
+  DOCKER_BUILDKIT: 1
+
 jobs:
 
   build:
@@ -15,16 +19,25 @@ jobs:
     - name: Login to repository
       run: |
         docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_PASSWORD }}"
-    - name: Pull latest image for getting Next.js cache
+    - name: Build base image
       run: |
-        docker pull decentralgames/website:latest
-    - name: Build the image
+        docker build \
+          --target base \
+          --cache-from $CONTAINER_IMAGE_NAME:base \
+          --build-arg BUILDKIT_INLINE_CACHE=1 \
+          --tag $CONTAINER_IMAGE_NAME:base .
+    - name: Build API image
       run: |
-        docker build -t decentralgames/website:latest -t decentralgames/website:${GITHUB_SHA} .
+        docker build \
+          --target runtime \
+          --cache-from $CONTAINER_IMAGE_NAME:base \
+          --build-arg BUILDKIT_INLINE_CACHE=1 \
+          --tag $CONTAINER_IMAGE_NAME:latest --tag $CONTAINER_IMAGE_NAME:${GITHUB_SHA} .
     - name: Push the image
       run: |
-        docker push decentralgames/website:latest
-        docker push decentralgames/website:${GITHUB_SHA}
+        docker push $CONTAINER_IMAGE_NAME:base
+        docker push $CONTAINER_IMAGE_NAME:latest
+        docker push $CONTAINER_IMAGE_NAME:${GITHUB_SHA}
 
   deploy:
     name: Deploy to PROD
@@ -34,7 +47,9 @@ jobs:
     - uses: actions/checkout@master
     - name: Set tag
       id: vars
-      run: echo "::set-output name=tag::${GITHUB_SHA}"
+      run: |
+        echo "::set-output name=image::${CONTAINER_IMAGE_NAME}"
+        echo "::set-output name=tag::${GITHUB_SHA}"
     - name: Run deploy script
       uses: appleboy/ssh-action@master
       with:
@@ -42,7 +57,7 @@ jobs:
         PORT: ${{ secrets.PORT }}
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSHKEY }}
-        script: deploy_dcl.games website ${{ steps.vars.outputs.tag }}
+        script: deploy_dcl.games ${{ steps.vars.outputs.image }} ${{ steps.vars.outputs.tag }}
 
   notify:
     if: always()
@@ -139,12 +154,16 @@ jobs:
                 })
             }
             var workflow_status = "w_cancelled"
+            var msg_status = "canceled"
             if (is_wf_success) {
               workflow_status = "w_success"
+              msg_status = "success"
             } else if (is_wf_failure) {
               workflow_status = "w_failure"
+              msg_status = "failed"
             }
             var slack_msg = {
+                text: "Website, Branch: master, " + msg_status ,
                 blocks: [
                     {
                         type: "section",

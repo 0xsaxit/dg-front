@@ -1,4 +1,4 @@
-FROM node:12.18.0-alpine3.11 as build
+FROM node:12.18.0-alpine3.11 as base
 
 ARG CI=true
 
@@ -23,7 +23,9 @@ COPY --from=decentralgames/website:latest /app/.next/cache /app/.next/cache
 RUN npm run build
 #RUN npm test
 
-FROM node:12.18.0-alpine3.11
+################################################################################
+
+FROM node:12.18.0-alpine3.11 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 WORKDIR /app
@@ -31,7 +33,7 @@ WORKDIR /app
 ENV NODE_ENV="production"
 ENV PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-COPY --from=build /app .
+COPY --from=base /app .
 
 USER node
 
