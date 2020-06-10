@@ -131,7 +131,7 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: fixed;
-  bottom: 90px;
+  bottom: 40px;
   margin-left: 120px;
 }
 
@@ -191,7 +191,7 @@ video.home-dashboard-video {
 }
 
 .games-dashboard-content {
-  padding-right: 45px;
+  padding-right: 30px;
   position: absolute;
   top: 0;
   margin-top: 20px;
@@ -217,6 +217,7 @@ video.home-dashboard-video {
   padding-top: 12px;
   padding-bottom: 6px;
   color: white;
+  width: calc(100vw - 445px);
 }
 
 .account-other-h4.games {
@@ -917,6 +918,7 @@ p.titleDescription {
 .account-other-p {
   color: black;
   text-align: left;
+  padding-top: 20px;
 }
 
 .account-other-inner-container {
@@ -924,6 +926,11 @@ p.titleDescription {
   margin-top: 20px;
   margin-left: 45px;
   margin-right: 45px;
+}
+
+.account-other-tabs {
+  display: flex;
+  justify-content: space-between;
 }
 
 .account-other-inner-p {
@@ -1564,7 +1571,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 55px;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1631,7 +1638,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
   }
   .featured-casino-text {
     font-size: 12px !important;

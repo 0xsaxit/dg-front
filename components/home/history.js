@@ -233,8 +233,39 @@ class History extends React.Component {
 
         <div className="contentContainer">
           <div className="account-other-inner-container">
+<<<<<<< HEAD
             {this.topLinks()}
 
+=======
+            <Fade bottom distance="20px" duration="600">
+              <div className="account-other-tabs">
+                <h3 className="account-other-h3"> Transaction History </h3>
+                <div style={{ marginLeft: '3px' }}>
+                  {this.state.historyState == 0 ? (
+                    <p className="account-other-p">
+                      <b className="account-hover">Deposits/Withdrawals</b> |{' '}
+                      <abbr
+                        className="account-hover"
+                        onClick={() => this.handlePlay()}
+                      >
+                        Gameplay{' '}
+                      </abbr>
+                    </p>
+                  ) : (
+                    <p className="account-other-p">
+                      <abbr
+                        className="account-hover"
+                        onClick={() => this.handleHistory()}
+                      >
+                        Deposits/Withdrawals
+                      </abbr>{' '}
+                      | <b className="account-hover">Gameplay </b>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </Fade>
+>>>>>>> 02b9cf5abda158431ecfe78e99a8f4d8b8e0d619
             <Fade bottom distance="20px" duration="600" delay="200">
               <div id="tx-box-history-2">
                 {this.labels()}

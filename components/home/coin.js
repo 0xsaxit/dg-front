@@ -197,27 +197,27 @@ class Coin extends React.Component {
         <div className="contentContainer" style={{ height: '100vh' }}>
           <div className="account-other-inner-container">
             <Fade bottom distance="20px" duration="600">
-              <h3 className="account-other-h3"> NFTs </h3>
-            </Fade>
-            <Fade bottom distance="20px" duration="600">
-              {this.state.NFTstate == 0 ? (
-                <p className="account-other-p">
-                  <b className="account-hover">My NFTs</b> |{' '}
-                  <abbr
-                    className="account-hover"
-                    onClick={() => this.buyNFTs()}
-                  >
-                    Buy NFTs{' '}
-                  </abbr>
-                </p>
-              ) : (
-                <p className="account-other-p">
-                  <abbr className="account-hover" onClick={() => this.myNFTs()}>
-                    My NFTs
-                  </abbr>{' '}
-                  | <b className="account-hover">Buy NFTs </b>
-                </p>
-              )}
+              <div className="account-other-tabs">
+                <h3 className="account-other-h3"> NFTs </h3>
+                {this.state.NFTstate == 0 ? (
+                  <p className="account-other-p">
+                    <b className="account-hover">My NFTs</b> |{' '}
+                    <abbr
+                      className="account-hover"
+                      onClick={() => this.buyNFTs()}
+                    >
+                      Buy NFTs{' '}
+                    </abbr>
+                  </p>
+                ) : (
+                  <p className="account-other-p">
+                    <abbr className="account-hover" onClick={() => this.myNFTs()}>
+                      My NFTs
+                    </abbr>{' '}
+                    | <b className="account-hover">Buy NFTs </b>
+                  </p>
+                )}
+              </div>
             </Fade>
 
             <Fade bottom distance="20px" duration="600" delay="200">
