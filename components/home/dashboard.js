@@ -133,8 +133,38 @@ class Dashboard extends React.Component {
             <div className="home-dashboard-description">
               <Fade bottom distance="20px" duration="600">
                 <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-                <h3 className="home-dashboard-h3">Tominoya</h3>
-                <p className="home-dashboard-p">
+                <h3 className="home-dashboard-h3" style={{ marginBottom: '-12px' }}>Tominoya</h3>
+                {this.state.isDashboard === true ? (
+                  <div>
+                    <Button
+                      color="blue"
+                      className="play-button"
+                      href="https://play.decentral.games"
+                      target="_blank"
+                      style={{ marginRight: '30px' }}
+                    >
+                      PLAY NOW
+                    </Button>
+                    <Button
+                      color="blue"
+                      className="play-shimmer"
+                      target="_blank"
+                      href="https://docs.decentral.games/getting-started"
+                    >
+                      HOW TO PLAY
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    color="blue"
+                    className="play-shimmer"
+                    href="https://docs.decentral.games/getting-started"
+                    target="_blank"
+                  >
+                    HOW TO PLAY
+                  </Button>
+                )}
+                <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
                   Sporting a Japanese aesthetic, Tominoya is a virtual casino in
                   Decentraland, a decentralized virtual world. Enjoy
                   non-custodial, pseudo-anonymous, and provably fair crypto
@@ -143,38 +173,6 @@ class Dashboard extends React.Component {
                 <p className="home-dashboard-p">Games: Slots, Roulette</p>
               </Fade>
             </div>
-            <Fade bottom distance="20px" duration="600">
-              {this.state.isDashboard === true ? (
-                <div>
-                  <Button
-                    color="blue"
-                    className="play-button"
-                    href="https://play.decentral.games"
-                    target="_blank"
-                    style={{ marginRight: '30px' }}
-                  >
-                    PLAY NOW
-                  </Button>
-                  <Button
-                    color="blue"
-                    className="play-shimmer"
-                    target="_blank"
-                    href="https://docs.decentral.games/getting-started"
-                  >
-                    HOW TO PLAY
-                  </Button>
-                </div>
-              ) : (
-                <Button
-                  color="blue"
-                  className="play-shimmer"
-                  href="https://docs.decentral.games/getting-started"
-                  target="_blank"
-                >
-                  HOW TO PLAY
-                </Button>
-              )}
-            </Fade>
 
             {/*<div className="teleport">
               <Fade bottom distance="20px" duration="600" delay="300">
