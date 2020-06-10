@@ -187,7 +187,7 @@ class Exchange extends React.Component {
                       borderRadius: '3px',
                       width: '450px',
                       height: 'calc(100vh - 230px)',
-                      marginTop: '-10px',
+                      marginTop: '36px',
                     }}
                   />
                 </Fade>
