@@ -213,17 +213,10 @@ class WalletInfo extends React.Component {
                 <h3 className="wallet-info-modal-h3">What is Matic Network?</h3>
                 <Modal.Content className="modal-content">
                   <p className="modal-font">
-                    Matic Network is a Plasma sidechain that allows for instant
-                    transactions for Ethereum tokens while maintaining the
-                    security of the Ethereum mainchain. To use Matic, deposit
-                    your Ethereum tokens with a deposit transaction. The tokens
-                    will then be instantly usable in all our games.
+                    Matic Network is a Plasma sidechain that allows for instant transactions for Ethereum tokens. To play our games, you must deposit Ethereum tokens to Matic. After 12 confirmations, the tokens will appear in your Matic balance and are usable in our games.
                   </p>
                   <p className="modal-font">
-                    When you wish to withdraw from Matic and retrieve your
-                    tokens on the mainchain, initiate another withdrawal
-                    transaction. Withdrawals may take up to 1 week, but will be
-                    much quicker soon.
+                    To withdraw from Matic and retrieve your tokens on the Ethereum mainchain, you must initiate a withdrawal transaction. Withdrawals take 5-10 minutes to complete.
                   </p>
                 </Modal.Content>
               </Modal>
