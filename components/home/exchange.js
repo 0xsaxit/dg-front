@@ -117,37 +117,39 @@ class Exchange extends React.Component {
         <Menu dashboard={this.state.isDashboard} />
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
-            <h3 className="account-other-h3 games"> Buy Crypto </h3>
-            {this.state.exchangeState == 0 ? (
-              <p className="account-other-p">
-                <b className="account-hover" style={{ color: 'white' }}>
-                  Buy with Fiat
-                </b>{' '}
-                <span style={{ color: 'white' }}>|</span>{' '}
-                <abbr
-                  className="account-hover"
-                  style={{ color: 'white' }}
-                  onClick={() => this.exchange()}
-                >
-                  Buy with Crypto{' '}
-                </abbr>
-              </p>
-            ) : (
-              <p className="account-other-p">
-                <abbr
-                  className="account-hover"
-                  onClick={() => this.buy()}
-                  style={{ color: 'white' }}
-                >
-                  Buy with Fiat
-                </abbr>{' '}
-                <span style={{ color: 'white' }}>|</span>
-                <b className="account-hover" style={{ color: 'white' }}>
-                  {' '}
-                  Buy with Crypto
-                </b>
-              </p>
-            )}
+            <div className="account-other-tabs">
+              <h3 className="account-other-h3 games"> Buy Crypto </h3>
+              {this.state.exchangeState == 0 ? (
+                <p className="account-other-p">
+                  <b className="account-hover" style={{ color: 'white' }}>
+                    Buy with Fiat
+                  </b>{' '}
+                  <span style={{ color: 'white' }}>|</span>{' '}
+                  <abbr
+                    className="account-hover"
+                    style={{ color: 'white' }}
+                    onClick={() => this.exchange()}
+                  >
+                    Buy with Crypto{' '}
+                  </abbr>
+                </p>
+              ) : (
+                <p className="account-other-p">
+                  <abbr
+                    className="account-hover"
+                    onClick={() => this.buy()}
+                    style={{ color: 'white' }}
+                  >
+                    Buy with Fiat
+                  </abbr>{' '}
+                  <span style={{ color: 'white' }}>|</span>
+                  <b className="account-hover" style={{ color: 'white' }}>
+                    {' '}
+                    Buy with Crypto
+                  </b>
+                </p>
+              )}
+            </div>
           </Fade>
 
           {this.state.exchangeState == 0 ? (
