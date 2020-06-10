@@ -10,13 +10,13 @@ let web3 = {};
 // let tokenAddressRopsten = '';
 // let spenderAddress = '';
 
-async function getAddresses() {
-  const addresses = await Global.API_ADDRESSES;
+// async function getAddresses() {
+// const addresses = await Global.API_ADDRESSES;
 
-  // tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
-  // spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
-}
-getAddresses();
+// tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
+// spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
+// }
+// getAddresses();
 
 class ModalWithdraw extends React.Component {
   constructor(props) {
@@ -398,7 +398,7 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
-                    // nextStep={this.nextStep}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6.5 ? (
@@ -409,7 +409,7 @@ class ModalWithdraw extends React.Component {
                   <ContentWithdraw
                     content={'hash'} // content type
                     transactionHash={this.state.transactionHash}
-                    // nextStep={this.nextStep}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 7 ? (
@@ -425,7 +425,7 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
-                    // nextStep={this.nextStep}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}

@@ -190,11 +190,7 @@ class ModalDeposit extends React.Component {
           );
 
           if (!ret) this.networkError(); // network error
-
-          // console.log('updated database');
         }
-
-        // if (!ret) this.networkError(); // network error
 
         if (this.state.userStepValue < 6) {
           console.log('updating step value to 5');
@@ -221,7 +217,7 @@ class ModalDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
-  metaTransfer = async () => {
+  metaTransaction = async () => {
     try {
       this.props.showSpinner();
 
@@ -275,14 +271,13 @@ class ModalDeposit extends React.Component {
   networkError = () => {
     console.log('network error');
 
-    // this.setState({ isValidDeposit: 1 }); // invalid deposit
     this.props.hideSpinner();
     return;
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get/update user authorization and deposit status in database
+  // REST API functions: get/update user authorization and onboard status in database
   checkUserVerify = async () => {
     try {
       const response = await this.getUserStatus();
@@ -298,28 +293,6 @@ class ModalDeposit extends React.Component {
         this.setState({ userStepValue: stepValue });
 
         console.log('userStepValue status: ' + stepValue);
-
-        // if (stepValue > 3) {
-
-        //   if (stepValue == 5) {
-        //     // indicate deposit success and set userStepValue to result
-        //     this.setState({
-        //       userStepValue: stepValue,
-        //     });
-        //   } else if (stepValue == 6) {
-        //     // indicate authorization success and set userStepValue to result
-        //     this.setState({
-        //       userStepValue: stepValue,
-        //     });
-        //   } else {
-        //     // indicate deposit success and set userStepValue to result
-        //     this.setState({ userStepValue: stepValue });
-        //   }
-
-        // } else {
-        //   // indicate deposit success and set userStepValue to result
-        //   this.setState({ userStepValue: stepValue });
-        // }
       }
     } catch (error) {
       console.log('step value error deposit: ' + error);
@@ -462,7 +435,7 @@ class ModalDeposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5 ? (
@@ -473,8 +446,8 @@ class ModalDeposit extends React.Component {
                   <ContentDeposit
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
-                    authorizeMana={this.metaTransfer}
-                    // nextStep={this.nextStep}
+                    authorizeMana={this.metaTransaction}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5.5 ? (
@@ -484,7 +457,7 @@ class ModalDeposit extends React.Component {
                 <Grid.Column>
                   <ContentDeposit
                     content={'confirmations'} // content type
-                    // nextStep={this.nextStep}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6 ? (
@@ -502,7 +475,7 @@ class ModalDeposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
+                  // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}

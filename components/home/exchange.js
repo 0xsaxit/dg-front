@@ -48,20 +48,25 @@ class Exchange extends React.Component {
     await this.getUserData();
     this.setState({ isLoading: false });
 
-    // transak.init();
-    // // To get all the events
-    // transak.on(transak.ALL_EVENTS, (data) => {
-    //   console.log(data);
-    // });
-    // // This will trigger when the user closed the widget
-    // transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-    //   transak.close();
-    // });
-    // // This will trigger when the user marks payment is made.
-    // transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-    //   console.log(orderData);
-    //   transak.close();
-    // });
+    transak.init();
+    // To get all the events
+    transak.on(transak.ALL_EVENTS, (data) => {
+      console.log(data);
+    });
+    // This will trigger when the user closed the widget
+    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak.close();
+    });
+    // This will trigger when the user marks payment is made.
+    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+      console.log(orderData);
+      transak.close();
+    });
+  }
+
+  componentWillUnmount() {
+    console.log('transak close...');
+    transak.close();
   }
 
   getUserVerify = () => {

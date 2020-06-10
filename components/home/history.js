@@ -1,54 +1,84 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
-import ModalWithdraw from '../modal/ModalWithdraw';
-import LogoSpinner from '../LogoSpinner';
+import { Table, Icon } from 'semantic-ui-react';
+import Fade from 'react-reveal/Fade';
+// import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Spinner from '../Spinner';
 import mana from '../../static/images/mana.png';
-import { Icon } from 'semantic-ui-react';
-import Fade from 'react-reveal/Fade';
 import Menu from './menu';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-
-let Global;
-const PAGE_COUNT = 20;
-var USER_ADDRESS;
-const INITIAL_STATE = {
-  data: [],
-  currentPage: 1,
-  dataType: 'History',
-  isRunningTransaction: true,
-  nextAvail: true,
-  beforeAvail: false,
-  isLoadingData: false,
-  historyState: 0,
-  isLoading: true,
-  isDashboard: false,
-};
+import Global from '../constants';
 
 class History extends React.Component {
-  showSpinner = () => this.setState({ isRunningTransaction: true });
-  hideSpinner = () => this.setState({ isRunningTransaction: false });
-
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE };
+    this.state = {
+      data: [],
+      currentPage: 1,
+      dataType: 'History',
+      processing: true,
+      isDashboard: false,
+    };
+
+    this.userAddress = '';
+    this.pageCount = 0;
   }
 
   async componentDidMount() {
-    let object = this;
-    Global = require('../constants').default;
-    if (window.web3) {
-      USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-    }
-    window.ethereum.on('accountsChanged', async function (accounts) {
-      await object.getUserData();
-    });
+    // dynamically size transaction window
+    const frameHeight = window.innerHeight;
+    this.pageCount = Math.floor(frameHeight * 0.0195);
 
+    this.userAddress = window.web3.currentProvider.selectedAddress;
     await this.getUserData(this.state.dataType, this.state.currentPage);
   }
 
-  getUserVerify = () => {
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // REST API functions: get/update user authorization and onboard status in database
+  getUserData = async (type, page) => {
+    // console.log('get user data...');
+    // console.log(type);
+
+    this.showSpinner(1);
+
+    let response = await this.getUserStatus();
+    let json = await response.json();
+
+    if (json.status === 'ok') {
+      if (json.result === 'false') {
+        console.log('no data returned'); // *****
+        return;
+      }
+
+      let stepValue = parseInt(json.result);
+
+      if (stepValue > 3) {
+        this.setState({ isDashboard: true });
+      } else {
+        console.log('step value less than 4'); // *****
+      }
+
+      this.showSpinner(0);
+    }
+
+    // get either user's gameplay data or their transaction data
+    if (type == 'Play') {
+      response = await this.getPlayData(page);
+    } else {
+      response = await this.getHistoryData(page);
+    }
+    json = await response.json();
+
+    const allData = json.result;
+    this.setState({
+      data: allData,
+      processing: false,
+      dataType: type,
+      currentPage: page,
+    });
+  };
+
+  getUserStatus = () => {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
@@ -56,111 +86,9 @@ class History extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: USER_ADDRESS,
+        address: this.userAddress,
       }),
     });
-  };
-  async getUserData(type, page) {
-    this.setState({ isLoadingData: true });
-    var response;
-    response = await this.getUserVerify();
-    let json = await response.json();
-    if (json.status === 'ok') {
-      if (json.result === 'false') {
-        location.href = '/';
-        return;
-      }
-      let stepValue = parseInt(json.result);
-      if (stepValue > 3) {
-        this.setState({ isDashboard: true });
-      } else {
-        location.href = '/';
-      }
-      this.setState({ isLoading: false });
-    }
-    if (type == 'Play') response = await this.getPlayData(page);
-    else response = await this.getHistoryData(page);
-
-    json = await response.json();
-    var allData = [];
-    var nextAvail = this.state.nextAvail;
-
-    if (json.result !== 'false') {
-      allData = json.result;
-
-      for (var i = 0; i < 3; i++) {
-        if (json.result.length > 0) {
-          var el = document.querySelector('.dataTable');
-          if (!el) {
-            await Global.delay(1000);
-            continue;
-          }
-
-          el.addEventListener('scroll', function (e) {
-            (function (el) {
-              el.classNameList.add('scrollTable');
-              setTimeout(function () {
-                el.classNameList.remove('scrollTable');
-              }, 1000);
-            })(el);
-          });
-        }
-      }
-    }
-
-    if (json.result === 'false' || !json.result.length) {
-      if (page > 1) nextAvail = false;
-    } else nextAvail = true;
-
-    if (allData.length > 0)
-      this.setState({
-        data: allData,
-        isLoadingData: false,
-        isRunningTransaction: false,
-        dataType: type,
-        currentPage: page,
-        nextAvail: nextAvail,
-        beforeAvail: page == 1 ? false : true,
-      });
-    else if (this.state.dataType !== type)
-      this.setState({
-        data: allData,
-        isLoadingData: false,
-        isRunningTransaction: false,
-        dataType: type,
-        currentPage: page,
-        nextAvail: nextAvail,
-        beforeAvail: page == 1 ? false : true,
-      });
-    else
-      this.setState({
-        isLoadingData: false,
-        isRunningTransaction: false,
-        nextAvail: nextAvail,
-        beforeAvail: this.state.currentPage == 1 ? false : true,
-      });
-  }
-
-  handleHistory = () => {
-    this.showSpinner();
-    this.setState({ historyState: 0 });
-    if (this.state.dataType !== 'History') this.getUserData('History', 1);
-  };
-
-  handlePlay = () => {
-    this.showSpinner();
-    this.setState({ historyState: 1 });
-    if (this.state.dataType !== 'Play') this.getUserData('Play', 1);
-  };
-
-  nextPage = () => {
-    if (this.state.nextAvail)
-      this.getUserData(this.state.dataType, this.state.currentPage + 1);
-  };
-
-  previewPage = () => {
-    if (this.state.beforeAvail)
-      this.getUserData(this.state.dataType, this.state.currentPage - 1);
   };
 
   getPlayData = (page) => {
@@ -173,7 +101,7 @@ class History extends React.Component {
       body: JSON.stringify({
         // address: '0x5aae39aed818b07235dc8bedbf5698bb4f299ef3'.toLowerCase(),
         address: window.web3.currentProvider.selectedAddress,
-        limit: PAGE_COUNT,
+        limit: this.pageCount,
         page: page,
       }),
     });
@@ -187,326 +115,211 @@ class History extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // address: '0x5aae39aed818b07235dc8bedbf5698bb4f299ef3'.toLowerCase(),
-        address: window.web3.currentProvider.selectedAddress,
-        limit: PAGE_COUNT,
+        address: this.userAddress,
+        limit: this.pageCount,
         page: page,
       }),
     });
   };
 
-  render() {
-    const data = this.state.data;
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  handleHistory = () => {
+    this.setState({ processing: true });
+    this.getUserData('History', 1);
+  };
 
-    if (this.state.isLoading === true) {
-      return (
-        <div>
-          <Spinner show={this.state.isLoading} />
-        </div>
-      );
-    }
+  handlePlay = () => {
+    this.setState({ processing: true });
+    this.getUserData('Play', 1);
+  };
+
+  showSpinner = (status) => {
     return (
       <div>
+        <Spinner show={status} />
+      </div>
+    );
+  };
+
+  topLinks = () => {
+    // console.log('foo foo foo..');
+    // console.log(this.state.dataType);
+
+    return (
+      <Fade bottom distance="20px" duration="600">
+        <h3 className="account-other-h3"> Transaction History </h3>
+
+        {this.state.dataType == 'History' ? (
+          <div>
+            <b className="account-hover">DEPOSITS/WITHDRAWALS</b> |
+            <abbr className="account-hover" onClick={() => this.handlePlay()}>
+              GAMEPLAY
+            </abbr>
+          </div>
+        ) : (
+          <div>
+            <abbr
+              className="account-hover"
+              onClick={() => this.handleHistory()}
+            >
+              DEPOSITS/WITHDRAWALS
+            </abbr>
+            | <b className="account-hover">GAMEPLAY</b>
+          </div>
+        )}
+      </Fade>
+    );
+  };
+
+  labels = () => {
+    return (
+      <Table id="header" singleLine fixed style={{ marginBottom: 0 }}>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell style={{ paddingLeft: '20px' }}>
+              ACTION
+            </Table.HeaderCell>
+            <Table.HeaderCell>AMOUNT</Table.HeaderCell>
+            <Table.HeaderCell>RESULT</Table.HeaderCell>
+            <Table.HeaderCell>DATE</Table.HeaderCell>
+            <Table.HeaderCell>TX HASH</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+      </Table>
+    );
+  };
+
+  pagination = () => {
+    const previousPage = 1; // this.state.currentPage - 1;
+    const nextPate = 1; // this.state.currentPage + 1;
+
+    return (
+      <div
+        className="pagination"
+        style={{ paddingTop: '12px', marginLeft: '-18px' }}
+      >
+        {/* <MdKeyboardArrowLeft
+          size="2.825em"
+          style={{ paddingTop: '24px' }}
+          className={'spanbox mouseCursor'}
+          onClick={this.getUserData(this.state.dataType, previousPage)}
+        /> */}
+        <Icon name="caret left" style={{ color: '#2085F4' }} />
+
+        <span
+          className="spanbox"
+          style={{ padding: '6px 15px', display: 'inline-block' }}
+        >
+          Page {this.state.currentPage}
+        </span>
+
+        {/* <MdKeyboardArrowRight
+          style={{ paddingTop: '21px' }}
+          size="2em"
+          className={'spanbox mouseCursor'}
+          onClick={this.getUserData(this.state.dataType, nextPate)}
+        /> */}
+        <Icon name="caret right" style={{ color: '#2085F4' }} />
+      </div>
+    );
+  };
+
+  render() {
+    return (
+      <div>
+        {this.showSpinner(this.state.processing)}
         <Menu dashboard={this.state.isDashboard} />
+
         <div className="contentContainer">
-          <Spinner
-            show={this.state.isRunningTransaction}
-            className="tx-history-spinner"
-          />
           <div className="account-other-inner-container">
-            <Fade bottom distance="20px" duration="600">
-              <h3 className="account-other-h3"> Transaction History </h3>
-              <div style={{ marginLeft: '3px' }}>
-                {this.state.historyState == 0 ? (
-                  <p className="account-other-p">
-                    <b className="account-hover">Deposits/Withdrawals</b> |{' '}
-                    <abbr
-                      className="account-hover"
-                      onClick={() => this.handlePlay()}
-                    >
-                      Gameplay{' '}
-                    </abbr>
-                  </p>
-                ) : (
-                  <p className="account-other-p">
-                    <abbr
-                      className="account-hover"
-                      onClick={() => this.handleHistory()}
-                    >
-                      Deposits/Withdrawals
-                    </abbr>{' '}
-                    | <b className="account-hover">Gameplay </b>
-                  </p>
-                )}
-              </div>
-            </Fade>
+            {this.topLinks()}
+
             <Fade bottom distance="20px" duration="600" delay="200">
-              <div id="tx-box-history">
-                <Table id="header" singleLine fixed style={{ marginBottom: 0 }}>
-                  <Table.Header>
-                    <Table.Row>
-                      <Table.HeaderCell style={{ paddingLeft: '20px' }}>
-                        ACTION
-                      </Table.HeaderCell>
-                      <Table.HeaderCell>AMOUNT</Table.HeaderCell>
-                      <Table.HeaderCell>RESULT</Table.HeaderCell>
-                      <Table.HeaderCell>DATE</Table.HeaderCell>
-                      <Table.HeaderCell>TX HASH</Table.HeaderCell>
-                    </Table.Row>
-                  </Table.Header>
-                </Table>
-                {data.length != 0 && this.state.isLoadingData == false ? (
-                  <div>
-                    <div
-                      className="dataTable"
-                      style={{ height: 'calc(100vh - 280px)', padding: 0 }}
-                    >
-                      <Table singleLine fixed style={{ margin: 0, padding: 0 }}>
-                        <Table.Header></Table.Header>
-                        <Table.Body>
-                          {data.map((row) => {
-                            if (row != undefined) {
-                              var action, amount, result;
-                              var date = new Date(row.createdAt);
-                              var timestamp = date.toLocaleString();
+              <div id="tx-box-history-2">
+                {this.labels()}
 
-                              timestamp = timestamp
-                                .replace(timestamp.substr(-2), '')
-                                .trim();
-                              // if (row.betAmount) returns undefined??
-                              if (row.betAmount) {
-                                amount = Number(row.betAmount) / Global.FACTOR;
-                                result = Number(row.amountWin) / Global.FACTOR;
-                                if (row.gameType === 2)
-                                  action = 'MANA Roulette';
-                                else action = 'MANA Slots';
+                {console.log('data...')}
+                {console.log(this.state.data)}
 
-                                return (
-                                  <Table.Row>
-                                    <Table.Cell style={{ paddingLeft: '20px' }}>
-                                      <img
-                                        src={mana}
-                                        style={{
-                                          width: '18px',
-                                          paddingRight: '3px',
-                                          verticalAlign: 'middle',
-                                          marginTop: '-3px',
-                                        }}
-                                      />
-                                      {action}
-                                    </Table.Cell>
-                                    <Table.Cell>-{amount} MANA</Table.Cell>
-                                    <Table.Cell>+{result} MANA</Table.Cell>
-                                    <Table.Cell id="gameplay-timestamp">
-                                      {timestamp}
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                      <a
-                                        style={{
-                                          color: '#2085F4',
-                                          maxWidth: '120px',
-                                          display: 'inline-block',
-                                          textOverflow: 'ellipsis',
-                                          overflow: 'hidden',
-                                          verticalAlign: 'middle',
-                                        }}
-                                        target="_blank"
-                                        href={
-                                          Global.MATIC_EXPLORER +
-                                          `/tx/${row.txid}`
-                                        }
-                                      >
-                                        {row.txid}
-                                      </a>
-                                      <Icon
-                                        name="caret right"
-                                        style={{ color: '#2085F4' }}
-                                      />
-                                    </Table.Cell>
-                                  </Table.Row>
-                                );
-                              } else {
-                                if (row.type === 'Deposit')
-                                  amount = `+${row.amount}`;
-                                else amount = `-${row.amount}`;
+                {this.state.data !== 'false' ? (
+                  <Table>
+                    <Table.Header></Table.Header>
+                    <Table.Body>
+                      {this.state.data.map((row) => {
+                        // if (row !== undefined) {
+                        const date = new Date(row.createdAt);
+                        const timestamp = date.toLocaleString();
+                        const amount = row.amount;
 
-                                if (row.status === 'Failed')
-                                  return (
-                                    <Table.Row
-                                      style={{ background: '#fb9ca7' }}
-                                    >
-                                      <Table.Cell
-                                        style={{ paddingLeft: '20px' }}
-                                      >
-                                        <img
-                                          src={mana}
-                                          style={{
-                                            width: '18px',
-                                            paddingRight: '3px',
-                                            verticalAlign: 'middle',
-                                            marginTop: '-3px',
-                                          }}
-                                        />
-                                        {row.type}
-                                      </Table.Cell>
-                                      <Table.Cell style={{ color: 'white' }}>
-                                        {amount} MANA
-                                      </Table.Cell>
-                                      <Table.Cell style={{ color: 'white' }}>
-                                        {row.status}
-                                      </Table.Cell>
-                                      <Table.Cell
-                                        style={{ color: 'white' }}
-                                        id="ready-timestamp"
-                                      >
-                                        {timestamp}
-                                      </Table.Cell>
-                                      <Table.Cell>
-                                        <ModalWithdraw
-                                          isLink={1}
-                                          tx={row.txid}
-                                          showSpinner={this.showSpinner}
-                                          hideSpinner={this.hideSpinner}
-                                        />
-                                      </Table.Cell>
-                                    </Table.Row>
-                                  );
+                        let sign = '+';
+                        if (row.type !== 'Deposit') sign = '-';
 
-                                if (row.status === 'Ready')
-                                  return (
-                                    <Table.Row
-                                      style={{ background: '#8fe08f' }}
-                                    >
-                                      <Table.Cell
-                                        style={{ paddingLeft: '20px' }}
-                                      >
-                                        <img
-                                          src={mana}
-                                          style={{
-                                            width: '18px',
-                                            paddingRight: '3px',
-                                            verticalAlign: 'middle',
-                                            marginTop: '-3px',
-                                          }}
-                                        />
-                                        {row.type}
-                                      </Table.Cell>
-                                      <Table.Cell style={{ color: 'white' }}>
-                                        {amount} MANA
-                                      </Table.Cell>
-                                      <Table.Cell
-                                        style={{
-                                          color: 'white',
-                                          paddingLeft: '0px',
-                                        }}
-                                      >
-                                        {row.status}
-                                      </Table.Cell>
-                                      <Table.Cell
-                                        style={{ color: 'white' }}
-                                        id="ready-timestamp"
-                                      >
-                                        {timestamp}
-                                      </Table.Cell>
-                                      <Table.Cell>
-                                        <ModalWithdraw
-                                          isLink={1}
-                                          tx={row.txid}
-                                          showSpinner={this.showSpinner}
-                                          hideSpinner={this.hideSpinner}
-                                        />
-                                      </Table.Cell>
-                                    </Table.Row>
-                                  );
+                        return (
+                          <Table.Row>
+                            <Table.Cell style={{ paddingLeft: '20px' }}>
+                              <img
+                                src={mana}
+                                style={{
+                                  width: '18px',
+                                  paddingRight: '3px',
+                                  verticalAlign: 'middle',
+                                  marginTop: '-3px',
+                                }}
+                              />
+                              {row.type}
+                            </Table.Cell>
 
-                                return (
-                                  <Table.Row>
-                                    <Table.Cell style={{ paddingLeft: '20px' }}>
-                                      <img
-                                        src={mana}
-                                        style={{
-                                          width: '18px',
-                                          paddingRight: '3px',
-                                          verticalAlign: 'middle',
-                                          marginTop: '-3px',
-                                        }}
-                                      />
-                                      {row.type}
-                                    </Table.Cell>
-                                    <Table.Cell>{amount} MANA</Table.Cell>
-                                    <Table.Cell className="table-status">
-                                      {row.status}
-                                    </Table.Cell>
-                                    <Table.Cell className="table-status2">
-                                      {timestamp}
-                                    </Table.Cell>
-                                    <Table.Cell className="table-status3">
-                                      <a
-                                        style={{
-                                          color: '#2085F4',
-                                          maxWidth: '120px',
-                                          display: 'inline-block',
-                                          textOverflow: 'ellipsis',
-                                          overflow: 'hidden',
-                                          verticalAlign: 'middle',
-                                        }}
-                                        target="_blank"
-                                        href={
-                                          Global.MATIC_EXPLORER +
-                                          `/tx/${row.txid}`
-                                        }
-                                      >
-                                        {row.txid}
-                                      </a>
-                                      <Icon
-                                        name="caret right"
-                                        style={{ color: '#2085F4' }}
-                                      />
-                                    </Table.Cell>
-                                  </Table.Row>
-                                );
-                              }
-                            }
-                          })}
-                        </Table.Body>
-                      </Table>
-                    </div>
-                  </div>
-                ) : this.state.isLoadingData == false ? (
-                  <p className="account-other-inner-p">
-                    {' '}
-                    There is no transaction history for this account.{' '}
-                  </p>
+                            <Table.Cell>
+                              {sign}
+                              {amount} MANA
+                            </Table.Cell>
+
+                            <Table.Cell className="table-status">
+                              {row.status}
+                            </Table.Cell>
+
+                            <Table.Cell className="table-status2">
+                              {timestamp}
+                            </Table.Cell>
+
+                            <Table.Cell className="table-status3">
+                              <a
+                                style={{
+                                  color: '#2085F4',
+                                  maxWidth: '120px',
+                                  display: 'inline-block',
+                                  textOverflow: 'ellipsis',
+                                  overflow: 'hidden',
+                                  verticalAlign: 'middle',
+                                }}
+                                target="_blank"
+                                href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
+                              >
+                                {row.txid}
+                              </a>
+                              <Icon
+                                name="caret right"
+                                style={{ color: '#2085F4' }}
+                              />
+                            </Table.Cell>
+
+                            <Table.Cell className="table-status2">
+                              button...
+                            </Table.Cell>
+                          </Table.Row>
+                        );
+                        // }
+                      })}
+                    </Table.Body>
+                  </Table>
                 ) : (
-                  <p style={{ height: 'calc(100vh - 310px)', margin: 0 }}></p>
+                  <div className="account-other-inner-p">
+                    There is no transaction history for this account
+                  </div>
                 )}
-                <div
-                  className="pagination"
-                  style={{ paddingTop: '12px', marginLeft: '-18px' }}
-                >
-                  <MdKeyboardArrowLeft
-                    size="2.825em"
-                    style={{ paddingTop: '24px' }}
-                    className={`spanbox ${
-                      this.state.beforeAvail ? 'mouseCursor' : 'disable'
-                    }`}
-                    onClick={this.previewPage}
-                  />
-                  <span
-                    className="spanbox"
-                    style={{ padding: '6px 15px', display: 'inline-block' }}
-                  >
-                    Page {this.state.currentPage}
-                  </span>
-                  <MdKeyboardArrowRight
-                    style={{ paddingTop: '21px' }}
-                    size="2em"
-                    className={`spanbox ${
-                      this.state.nextAvail ? 'mouseCursor' : 'disable'
-                    }`}
-                    onClick={this.nextPage}
-                  />
-                </div>
+
+                {this.pagination()}
               </div>
             </Fade>
           </div>
