@@ -134,7 +134,7 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: fixed;
-  bottom: 90px;
+  bottom: 40px;
   margin-left: 120px;
 }
 
@@ -926,6 +926,7 @@ p.titleDescription {
 .account-other-p {
   color: black;
   text-align: left;
+  padding-top: 20px;
 }
 
 .account-other-inner-container {
@@ -1570,7 +1571,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 55px;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1637,7 +1638,7 @@ a.ui.blue.button.play-shimmer:hover,
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
   }
   .featured-casino-text {
     font-size: 12px !important;
