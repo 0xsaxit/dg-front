@@ -195,7 +195,7 @@ video.home-dashboard-video {
 }
 
 .games-dashboard-content {
-  padding-right: 45px;
+  padding-right: 30px;
   position: absolute;
   top: 0;
   margin-top: 20px;
@@ -221,6 +221,7 @@ video.home-dashboard-video {
   padding-top: 12px;
   padding-bottom: 6px;
   color: white;
+  width: calc(100vw - 445px);
 }
 
 .account-other-h4.games {
@@ -932,6 +933,11 @@ p.titleDescription {
   margin-top: 20px;
   margin-left: 45px;
   margin-right: 45px;
+}
+
+.account-other-tabs {
+  display: flex;
+  justify-content: space-between;
 }
 
 .account-other-inner-p {
