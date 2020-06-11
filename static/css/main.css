@@ -356,7 +356,7 @@ img.ui.image.partner-image {
   flex-direction: column;
   background-color: white;
   padding-left: 45px;
-  padding-bottom: 45px;
+  padding-bottom: 60px;
   border-radius: 3px;
 }
 
@@ -382,7 +382,7 @@ img.ui.image.partner-image {
 }
 
 .modal-p-error {
-  text-align: left;
+  text-align: right;
   color: red;
   margin-top: 20px;
 }
