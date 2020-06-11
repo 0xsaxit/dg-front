@@ -78,11 +78,10 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Authorize MANA</h3>
+            <h3 className="modal-h3">Authorize MANA on Matic</h3>
           </Grid.Row>
           <Grid.Row>
-            <p className="modal-p">Authorize MANA transfers on Matic Network. Authorize our game contract to access your Matic wallet for
-                in-game transactions. </p>
+            <p className="modal-p">Authorize MANA transfers on Matic Network to play games. </p>
           </Grid.Row>
           <Grid.Row>
             <Button
