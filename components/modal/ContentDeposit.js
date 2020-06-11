@@ -134,11 +134,11 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Deposit MANA to Matic Network</h3>
+            <h3 className="modal-h3">Deposit MANA to Matic</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Select amount of MANA to deposit to Matic Network
+              Select amount of MANA to deposit to Matic Network.
             </p>
           </Grid.Row>
 
