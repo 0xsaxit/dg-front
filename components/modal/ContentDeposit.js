@@ -23,12 +23,33 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <p className="modal-p">
               Authorize MANA transfers and deposit to Matic Network (two
-              transactions)
-              {/* If you don't have MANA, you can buy some{' '}
-              <a style={{ color: '#2085f4' }} href="/exchange">
-                here
-              </a> */}
+              transactions). Matic Network is a second layer sidechain that allows our games
+              to have much faster in-game transactions.
             </p>
+            <p className="modal-p-note2">
+              <span style={{ fontWeight: 'bold' }}>NOTE: </span>
+              If you don't have MANA, you can buy some{' '}
+              <a style={{ color: '#2085f4' }} href="/exchange">
+                here.
+              </a>
+            </p>
+          </Grid.Row>
+          <Grid.Row>
+            {props.isCustomAmount == 0 ? (
+              <Dropdown
+                selection
+                options={amount}
+                value={props.amount}
+                style={{ width: '300px', marginTop: '0px' }}
+                onChange={props.onChangeAmount}
+              />
+            ) : (
+              <Input
+                value={props.amount}
+                style={{ width: '300px', marginTop: '0px' }}
+                onChange={props.onChangeCustomAmount}
+              />
+            )}
           </Grid.Row>
           <Grid.Row>
             {props.isCustomAmount == 0 ? (
@@ -62,24 +83,7 @@ const ContentDeposit = (props) => {
             <Grid.Row>
               <p className="modal-p-error">Deposit failed</p>
             </Grid.Row>
-          ) : null}
-
-          <Grid.Row>
-            <p className="modal-p-note">
-              <span style={{ fontStyle: 'italic' }}>
-                *Matic Network is a second layer sidechain that allows our games
-                to have much faster in-game transactions
-              </span>
-            </p>
-            <p className="modal-p-note2">
-              <span style={{ fontWeight: 'bold' }}>NOTE: </span>
-              {/* Matic Network deposits are instantly usable in all our games */}
-              If you don't have MANA, you can buy some{' '}
-              <a style={{ color: '#2085f4' }} href="/exchange">
-                here
-              </a>
-            </p>
-          </Grid.Row>
+          ) : null
         </Grid>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
