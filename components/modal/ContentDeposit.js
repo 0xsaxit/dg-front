@@ -99,7 +99,8 @@ const ContentDeposit = (props) => {
             <h3 className="modal-h3">Authorize MANA</h3>
           </Grid.Row>
           <Grid.Row>
-            <p className="modal-p">Authorize MANA transfers on Matic Network</p>
+            <p className="modal-p">Authorize MANA transfers on Matic Network. Authorize our game contract to access your Matic wallet for
+                in-game transactions. </p>
           </Grid.Row>
           <Grid.Row>
             <Button
@@ -117,15 +118,6 @@ const ContentDeposit = (props) => {
               <p className="modal-p-error">Authorization failed</p>
             </Grid.Row>
           ) : null}
-
-          <Grid.Row>
-            <p className="modal-p-note">
-              <span style={{ fontStyle: 'italic' }}>
-                *Authorize our game contract to access your Matic wallet for
-                in-game transactions
-              </span>
-            </p>
-          </Grid.Row>
         </Grid>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
@@ -140,19 +132,16 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <h3 className="modal-h3">Matic Network Confirmations</h3>
           </Grid.Row>
+        <Grid.Row>
+          <p className="modal-p">
+            Matic Network requires a total of 12 confirmations for
+            transaction to complete.
+          </p>
+        </Grid.Row>
           <Grid.Row>
             <p className="modal-p">Number of confirmations: ...</p>
           </Grid.Row>
         </Grid>
-
-        <Grid.Row>
-          <p className="modal-p-note">
-            <span style={{ fontStyle: 'italic' }}>
-              *Matic Network requires a total of 12 confirmations for
-              transaction to complete
-            </span>
-          </p>
-        </Grid.Row>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
