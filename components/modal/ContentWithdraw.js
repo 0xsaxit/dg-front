@@ -23,7 +23,7 @@ const ContentWithdraw = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">MANA Withdraw from Matic</h3>
+            <h3 className="modal-h3">Withdraw MANA from Matic</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
