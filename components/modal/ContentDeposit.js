@@ -83,7 +83,7 @@ const ContentDeposit = (props) => {
             <Grid.Row>
               <p className="modal-p-error">Deposit failed</p>
             </Grid.Row>
-          ) : null
+          ) : null}
         </Grid>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
