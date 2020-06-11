@@ -18,13 +18,12 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Deposit MANA to Matic Network</h3>
+            <h3 className="modal-h3">Deposit MANA to Matic</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
               Authorize MANA transfers and deposit to Matic Network (two
-              transactions). Matic Network is a second layer sidechain that allows our games
-              to have much faster in-game transactions.
+              transactions). 
             </p>
             <p className="modal-p-note2">
               <span style={{ fontWeight: 'bold' }}>NOTE: </span>
