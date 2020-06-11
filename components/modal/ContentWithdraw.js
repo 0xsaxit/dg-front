@@ -23,11 +23,11 @@ const ContentWithdraw = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Burn MANA on Matic Network</h3>
+            <h3 className="modal-h3">MANA Withdraw from Matic</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Please select the amount of Matic tokens you would like to burn
+              Select the amount of Matic tokens to initiate a withdrawal from Matic.
             </p>
           </Grid.Row>
           <TokenBalances
@@ -50,7 +50,7 @@ const ContentWithdraw = (props) => {
               style={{ marginTop: '-10px' }}
               onClick={props.burnOnMatic}
             >
-              Burn
+              Withdraw
             </Button>
           </Grid.Row>
 
@@ -63,8 +63,7 @@ const ContentWithdraw = (props) => {
           <Grid.Row>
             <p className="modal-p-note">
               <span style={{ fontStyle: 'italic' }}>
-                *After sending Burn transaction you will receive a transaction
-                hash as proof of burn
+                *Following this transaction, you will receive a transaction hash as a proof of burn.
               </span>
             </p>
           </Grid.Row>
