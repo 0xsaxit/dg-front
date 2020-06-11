@@ -52,23 +52,6 @@ const ContentDeposit = (props) => {
             )}
           </Grid.Row>
           <Grid.Row>
-            {props.isCustomAmount == 0 ? (
-              <Dropdown
-                selection
-                options={amount}
-                value={props.amount}
-                style={{ width: '300px', marginTop: '0px' }}
-                onChange={props.onChangeAmount}
-              />
-            ) : (
-              <Input
-                value={props.amount}
-                style={{ width: '300px', marginTop: '0px' }}
-                onChange={props.onChangeCustomAmount}
-              />
-            )}
-          </Grid.Row>
-          <Grid.Row>
             <Button
               className="modal-buttons"
               color="blue"
