@@ -11,6 +11,7 @@ import { FaSearch } from 'react-icons/fa';
 import History from './history';
 import Coin from './coin';
 import About from './about';
+import defaultBackground from '../../static/images/default.png';
 
 let Global;
 var USER_ADDRESS;
@@ -20,6 +21,7 @@ const INITIAL_STATE = {
   isDashboard: false,
   selectedMenu: 0,
   isLoading: true,
+  isVideoLoading: true,
 };
 
 class Dashboard extends React.Component {
@@ -39,7 +41,14 @@ class Dashboard extends React.Component {
     }
     await this.getUserData();
     this.setState({ isLoading: false });
+    
+    var video = document.getElementById('myVideo');
+    video.onloadedmetadata = function() {
+      var bgImg = document.getElementById('bgImg');
+      bgImg.style.display = 'none';
+    }
   }
+
   getUserVerify = () => {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
       method: 'POST',
@@ -52,6 +61,7 @@ class Dashboard extends React.Component {
       }),
     });
   };
+
   getUserData = async () => {
     try {
       let response = await this.getUserVerify();
@@ -70,6 +80,7 @@ class Dashboard extends React.Component {
       console.log(error);
     }
   };
+
   walletInfo = () => {
     this.setState({ isDashboard: true });
   };
@@ -118,11 +129,15 @@ class Dashboard extends React.Component {
         </div>
         <LogoSpinner show={this.state.isRunningTransaction} />
         <div className="home-video-container">
+          { this.state.isVideoLoading === true ? (
+            <img id="bgImg" src={defaultBackground} style={{width: '100vw'}}></img>
+          ) : (<div></div>)}
           <video
+            id="myVideo"
             src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
             type="video/mp4"
             frameborder="0"
-            autoplay="true"
+            autoPlay={true}
             loop
             muted
             className="home-dashboard-video"

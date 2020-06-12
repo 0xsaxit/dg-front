@@ -140,7 +140,7 @@ const ContentDeposit = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Select amount of MANA to deposit to Matic Network.
+              Select the amount of MANA to deposit to Matic Network.
             </p>
           </Grid.Row>
 
