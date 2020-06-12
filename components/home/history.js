@@ -11,7 +11,8 @@ class History extends React.Component {
     super(props);
 
     this.state = {
-      data: [],
+      dataAll: [],
+      dataPage: [],
       currentPage: 1,
       dataType: 'History',
       processing: true,
@@ -20,6 +21,7 @@ class History extends React.Component {
 
     this.userAddress = '';
     this.maximumCount = 0;
+    this.dataPage = [];
   }
 
   async componentDidMount() {
@@ -55,16 +57,20 @@ class History extends React.Component {
 
     // get either user's gameplay data or their transaction data
     if (type == 'Play') {
-      response = await this.getPlayData(page);
+      response = await this.getPlayData(1); // page
     } else if (type == 'History') {
-      response = await this.getHistoryData(page);
+      response = await this.getHistoryData(1); // page
     }
     json = await response.json();
+
+    const indexStart = (page - 1) * this.maximumCount;
+    const indexEnd = indexStart + this.maximumCount;
 
     // set new data values and reset processing flag to false
     const allData = json.result;
     this.setState({
-      data: allData,
+      dataAll: allData,
+      dataPage: allData.slice(indexStart, indexEnd),
       processing: false,
       dataType: type,
       currentPage: page,
@@ -93,7 +99,7 @@ class History extends React.Component {
       },
       body: JSON.stringify({
         address: this.userAddress,
-        limit: this.maximumCount,
+        limit: 99999, // this.maximumCount,
         page: page,
       }),
     });
@@ -108,7 +114,7 @@ class History extends React.Component {
       },
       body: JSON.stringify({
         address: this.userAddress,
-        limit: this.maximumCount,
+        limit: 99999, // this.maximumCount,
         page: page,
       }),
     });
@@ -169,13 +175,26 @@ class History extends React.Component {
   };
 
   pagination = () => {
-    const numberOfRows = this.state.data.length;
-    const currentPage = this.state.currentPage;
-    const previousPage = currentPage - 1;
-    const nextPate = currentPage + 1;
+    const totalRows = this.state.dataAll.length;
 
+    // const indexStart = (this.state.currentPage - 1) * this.maximumCount;
+    // const indexEnd = indexStart + this.maximumCount;
+    // const dataPage = this.state.dataAll.slice(indexStart, indexEnd);
+
+    const currentRows = this.state.dataPage.length;
+
+    // this.setState({ dataPage: dataPage });
+    // this.dataPage = dataPage;
+
+    const currentPage = this.state.currentPage;
+
+    const previousPage = currentPage - 1;
+    const nextPage = currentPage + 1;
+
+    console.log('current page number: ' + this.state.currentPage);
     console.log('maximum rows per page: ' + this.maximumCount);
-    console.log('current number of rows: ' + numberOfRows);
+    console.log('total number of rows: ' + totalRows);
+    console.log('current number of rows: ' + currentRows);
 
     return (
       <div
@@ -199,11 +218,11 @@ class History extends React.Component {
           Page {currentPage}
         </span>
 
-        {numberOfRows > this.maximumCount * currentPage ? (
+        {totalRows > this.maximumCount * currentPage ? (
           <Icon
             name="caret right"
             style={{ cursor: 'pointer', color: '#2085F4' }}
-            onClick={() => this.getUserData(this.state.dataType, nextPate)}
+            onClick={() => this.getUserData(this.state.dataType, nextPage)}
           />
         ) : (
           <Icon name="caret right" style={{ color: '#aaaaaa' }} />
@@ -226,20 +245,20 @@ class History extends React.Component {
               <div id="tx-box-history-2">
                 <ContentTransactions content={'labels'} />
 
-                {this.state.data !== 'false' ? (
+                {this.state.dataAll !== 'false' ? (
                   this.state.dataType === 'History' ? (
                     /////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////
                     <ContentTransactions
                       content={'history'} // content type
-                      data={this.state.data}
+                      dataPage={this.state.dataPage}
                     />
                   ) : this.state.dataType === 'Play' ? (
                     /////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////
                     <ContentTransactions
                       content={'gameplay'} // content type
-                      data={this.state.data}
+                      dataPage={this.state.dataPage}
                     />
                   ) : null
                 ) : (

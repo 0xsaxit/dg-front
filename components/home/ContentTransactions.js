@@ -5,7 +5,7 @@ import Global from '../constants';
 const ContentTransactions = (props) => {
   function contentLabels() {
     return (
-      <Table id="header" singleLine fixed style={{ marginBottom: 0 }}>
+      <Table id="header" singleLine fixed>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>ACTION</Table.HeaderCell>
@@ -23,7 +23,7 @@ const ContentTransactions = (props) => {
     return (
       <Table singleLine fixed>
         <Table.Body>
-          {props.data.map((row) => {
+          {props.dataPage.map((row, i) => {
             const date = new Date(row.createdAt);
             const timestamp = date.toLocaleString();
             const amount = row.amount;
@@ -94,7 +94,7 @@ const ContentTransactions = (props) => {
     return (
       <Table singleLine fixed>
         <Table.Body>
-          {props.data.map((row) => {
+          {props.dataPage.map((row, i) => {
             const date = new Date(row.createdAt);
             const timestamp = date.toLocaleString();
             const amount = Number(row.betAmount) / Global.FACTOR;
