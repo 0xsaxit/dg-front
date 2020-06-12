@@ -1,9 +1,8 @@
 import React from 'react';
-import { Table, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import Fade from 'react-reveal/Fade';
-// import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import Spinner from '../Spinner';
-import mana from '../../static/images/mana.png';
+import ContentTransactions from './ContentTransactions';
 import Menu from './menu';
 import Global from '../constants';
 
@@ -20,14 +19,15 @@ class History extends React.Component {
     };
 
     this.userAddress = '';
-    this.pageCount = 0;
+    this.maximumCount = 0;
   }
 
   async componentDidMount() {
-    // dynamically size transaction window
+    // dynamically size transaction data container
     const frameHeight = window.innerHeight;
-    this.pageCount = Math.floor(frameHeight * 0.0195);
+    this.maximumCount = Math.floor(frameHeight * 0.0195);
 
+    // set user address and populate transaction data container with initial values
     this.userAddress = window.web3.currentProvider.selectedAddress;
     await this.getUserData(this.state.dataType, this.state.currentPage);
   }
@@ -36,39 +36,32 @@ class History extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and onboard status in database
   getUserData = async (type, page) => {
-    // console.log('get user data...');
-    // console.log(type);
-
-    this.showSpinner(1);
-
     let response = await this.getUserStatus();
     let json = await response.json();
 
+    // move this outside of each individual component *************************************************
     if (json.status === 'ok') {
       if (json.result === 'false') {
-        console.log('no data returned'); // *****
+        console.log('no data returned');
         return;
       }
 
       let stepValue = parseInt(json.result);
-
       if (stepValue > 3) {
         this.setState({ isDashboard: true });
-      } else {
-        console.log('step value less than 4'); // *****
       }
-
-      this.showSpinner(0);
     }
+    // ************************************************************************************************
 
     // get either user's gameplay data or their transaction data
     if (type == 'Play') {
       response = await this.getPlayData(page);
-    } else {
+    } else if (type == 'History') {
       response = await this.getHistoryData(page);
     }
     json = await response.json();
 
+    // set new data values and reset processing flag to false
     const allData = json.result;
     this.setState({
       data: allData,
@@ -99,9 +92,8 @@ class History extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // address: '0x5aae39aed818b07235dc8bedbf5698bb4f299ef3'.toLowerCase(),
-        address: window.web3.currentProvider.selectedAddress,
-        limit: this.pageCount,
+        address: this.userAddress,
+        limit: this.maximumCount,
         page: page,
       }),
     });
@@ -116,7 +108,7 @@ class History extends React.Component {
       },
       body: JSON.stringify({
         address: this.userAddress,
-        limit: this.pageCount,
+        limit: this.maximumCount,
         page: page,
       }),
     });
@@ -124,6 +116,7 @@ class History extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   handleHistory = () => {
     this.setState({ processing: true });
     this.getUserData('History', 1);
@@ -143,40 +136,7 @@ class History extends React.Component {
   };
 
   topLinks = () => {
-    // console.log('foo foo foo..');
-    // console.log(this.state.dataType);
-
     return (
-      // <Fade bottom distance="20px" duration="600">
-      //   <div className="account-other-tabs">
-      //     <h3 className="account-other-h3"> Transaction History </h3>
-
-      //     <div style={{ marginLeft: '3px' }}>
-      //       {this.state.dataType == 'History' ? (
-      //         <div>
-      //           <b className="account-hover">DEPOSITS/WITHDRAWALS</b> |
-      //           <abbr
-      //             className="account-hover"
-      //             onClick={() => this.handlePlay()}
-      //           >
-      //             GAMEPLAY
-      //           </abbr>
-      //         </div>
-      //       ) : (
-      //         <div>
-      //           <abbr
-      //             className="account-hover"
-      //             onClick={() => this.handleHistory()}
-      //           >
-      //             DEPOSITS/WITHDRAWALS
-      //           </abbr>
-      //           | <b className="account-hover">GAMEPLAY</b>
-      //         </div>
-      //       )}
-      //     </div>
-      //   </div>
-      // </Fade>
-
       <Fade bottom distance="20px" duration="600">
         <div className="account-other-tabs">
           <h3 className="account-other-h3"> Transaction History </h3>
@@ -208,55 +168,46 @@ class History extends React.Component {
     );
   };
 
-  labels = () => {
-    return (
-      <Table id="header" singleLine fixed style={{ marginBottom: 0 }}>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell style={{ paddingLeft: '20px' }}>
-              ACTION
-            </Table.HeaderCell>
-            <Table.HeaderCell>AMOUNT</Table.HeaderCell>
-            <Table.HeaderCell>RESULT</Table.HeaderCell>
-            <Table.HeaderCell>DATE</Table.HeaderCell>
-            <Table.HeaderCell>TX HASH</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-      </Table>
-    );
-  };
-
   pagination = () => {
-    const previousPage = 1; // this.state.currentPage - 1;
-    const nextPate = 1; // this.state.currentPage + 1;
+    const numberOfRows = this.state.data.length;
+    const currentPage = this.state.currentPage;
+    const previousPage = currentPage - 1;
+    const nextPate = currentPage + 1;
+
+    console.log('maximum rows per page: ' + this.maximumCount);
+    console.log('current number of rows: ' + numberOfRows);
 
     return (
       <div
         className="pagination"
         style={{ paddingTop: '12px', marginLeft: '-18px' }}
       >
-        {/* <MdKeyboardArrowLeft
-          size="2.825em"
-          style={{ paddingTop: '24px' }}
-          className={'spanbox mouseCursor'}
-          onClick={this.getUserData(this.state.dataType, previousPage)}
-        /> */}
-        <Icon name="caret left" style={{ color: '#2085F4' }} />
+        {currentPage > 1 ? (
+          <Icon
+            name="caret left"
+            style={{ cursor: 'pointer', color: '#2085F4' }}
+            onClick={() => this.getUserData(this.state.dataType, previousPage)}
+          />
+        ) : (
+          <Icon name="caret left" style={{ color: '#aaaaaa' }} />
+        )}
 
         <span
           className="spanbox"
           style={{ padding: '6px 15px', display: 'inline-block' }}
         >
-          Page {this.state.currentPage}
+          Page {currentPage}
         </span>
 
-        {/* <MdKeyboardArrowRight
-          style={{ paddingTop: '21px' }}
-          size="2em"
-          className={'spanbox mouseCursor'}
-          onClick={this.getUserData(this.state.dataType, nextPate)}
-        /> */}
-        <Icon name="caret right" style={{ color: '#2085F4' }} />
+        {numberOfRows > this.maximumCount * currentPage ? (
+          <Icon
+            name="caret right"
+            style={{ cursor: 'pointer', color: '#2085F4' }}
+            onClick={() => this.getUserData(this.state.dataType, nextPate)}
+          />
+        ) : (
+          <Icon name="caret right" style={{ color: '#aaaaaa' }} />
+        )}
       </div>
     );
   };
@@ -273,82 +224,24 @@ class History extends React.Component {
 
             <Fade bottom distance="20px" duration="600" delay="200">
               <div id="tx-box-history-2">
-                {this.labels()}
-
-                {console.log('data...')}
-                {console.log(this.state.data)}
+                <ContentTransactions content={'labels'} />
 
                 {this.state.data !== 'false' ? (
-                  <Table>
-                    <Table.Header></Table.Header>
-                    <Table.Body>
-                      {this.state.data.map((row) => {
-                        // if (row !== undefined) {
-                        const date = new Date(row.createdAt);
-                        const timestamp = date.toLocaleString();
-                        const amount = row.amount;
-
-                        let sign = '+';
-                        if (row.type !== 'Deposit') sign = '-';
-
-                        return (
-                          <Table.Row>
-                            <Table.Cell style={{ paddingLeft: '20px' }}>
-                              <img
-                                src={mana}
-                                style={{
-                                  width: '18px',
-                                  paddingRight: '3px',
-                                  verticalAlign: 'middle',
-                                  marginTop: '-3px',
-                                }}
-                              />
-                              {row.type}
-                            </Table.Cell>
-
-                            <Table.Cell>
-                              {sign}
-                              {amount} MANA
-                            </Table.Cell>
-
-                            <Table.Cell className="table-status">
-                              {row.status}
-                            </Table.Cell>
-
-                            <Table.Cell className="table-status2">
-                              {timestamp}
-                            </Table.Cell>
-
-                            <Table.Cell className="table-status3">
-                              <a
-                                style={{
-                                  color: '#2085F4',
-                                  maxWidth: '120px',
-                                  display: 'inline-block',
-                                  textOverflow: 'ellipsis',
-                                  overflow: 'hidden',
-                                  verticalAlign: 'middle',
-                                }}
-                                target="_blank"
-                                href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                              >
-                                {row.txid}
-                              </a>
-                              <Icon
-                                name="caret right"
-                                style={{ color: '#2085F4' }}
-                              />
-                            </Table.Cell>
-
-                            <Table.Cell className="table-status2">
-                              button...
-                            </Table.Cell>
-                          </Table.Row>
-                        );
-                        // }
-                      })}
-                    </Table.Body>
-                  </Table>
+                  this.state.dataType === 'History' ? (
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    <ContentTransactions
+                      content={'history'} // content type
+                      data={this.state.data}
+                    />
+                  ) : this.state.dataType === 'Play' ? (
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    <ContentTransactions
+                      content={'gameplay'} // content type
+                      data={this.state.data}
+                    />
+                  ) : null
                 ) : (
                   <div className="account-other-inner-p">
                     There is no transaction history for this account

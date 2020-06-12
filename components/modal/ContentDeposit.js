@@ -10,7 +10,7 @@ const ContentDeposit = (props) => {
     { key: 3, text: '3000 MANA', value: 3000 },
     { key: 4, text: '4000 MANA', value: 4000 },
     { key: 5, text: '5000 MANA', value: 5000 },
-    { key: 6, text: 'Custom', value: -1 },
+    { key: 6, text: 'CUSTOM', value: -1 },
   ];
 
   function contentApprove() {
@@ -23,7 +23,7 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <p className="modal-p">
               Authorize MANA transfers and deposit to Matic Network (two
-              transactions). 
+              transactions).
             </p>
             <p className="modal-p-note2">
               <span style={{ fontWeight: 'bold' }}>NOTE: </span>
@@ -81,7 +81,9 @@ const ContentDeposit = (props) => {
             <h3 className="modal-h3">Authorize MANA on Matic</h3>
           </Grid.Row>
           <Grid.Row>
-            <p className="modal-p">Authorize MANA transfers on Matic Network to play games. </p>
+            <p className="modal-p">
+              Authorize MANA transfers on Matic Network to play games.{' '}
+            </p>
           </Grid.Row>
           <Grid.Row>
             <Button
@@ -113,12 +115,12 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <h3 className="modal-h3">Matic Network Confirmations</h3>
           </Grid.Row>
-        <Grid.Row>
-          <p className="modal-p">
-            Matic Network requires a total of 12 confirmations for
-            transaction to complete.
-          </p>
-        </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">
+              Matic Network requires a total of 12 confirmations for transaction
+              to complete.
+            </p>
+          </Grid.Row>
           <Grid.Row>
             <p className="modal-p">Number of confirmations: ...</p>
           </Grid.Row>

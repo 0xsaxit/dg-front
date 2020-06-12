@@ -378,6 +378,7 @@ class ModalDeposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   verifyNetwork = async () => {
     window.web3.version.getNetwork((err, network) => {
       this.setState({ networkID: parseInt(network) }); // set network ID
@@ -435,7 +436,7 @@ class ModalDeposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                  // nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5 ? (
@@ -447,7 +448,7 @@ class ModalDeposit extends React.Component {
                     content={'authorize'} // content type
                     isValidAuthorize={this.state.isValidAuthorize}
                     authorizeMana={this.metaTransaction}
-                  // nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 5.5 ? (
@@ -457,7 +458,7 @@ class ModalDeposit extends React.Component {
                 <Grid.Column>
                   <ContentDeposit
                     content={'confirmations'} // content type
-                  // nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6 ? (
@@ -475,7 +476,7 @@ class ModalDeposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                  // nextStep={this.nextStep}
+                    // nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}
