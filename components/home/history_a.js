@@ -11,8 +11,7 @@ class History extends React.Component {
     super(props);
 
     this.state = {
-      dataHistory: [],
-      dataPlay: [],
+      dataAll: [],
       dataPage: [],
       currentPage: 1,
       dataType: 'History',
@@ -22,8 +21,7 @@ class History extends React.Component {
 
     this.userAddress = '';
     this.maximumCount = 0;
-
-    // this.dataPage = [];
+    this.dataPage = [];
   }
 
   async componentDidMount() {
@@ -31,23 +29,23 @@ class History extends React.Component {
     const frameHeight = window.innerHeight;
     this.maximumCount = Math.floor(frameHeight * 0.0195);
 
-    // set user address and populate transaction data with initial values (history)
+    // set user address and populate transaction data container with initial values
     this.userAddress = window.web3.currentProvider.selectedAddress;
-    this.getUserData();
+    await this.getUserData(this.state.dataType, this.state.currentPage);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and onboard status in database
-  getUserData = async () => {
-    // move this outside of each individual component *************************************************
+  getUserData = async (type, page) => {
     let response = await this.getUserStatus();
     let json = await response.json();
 
+    // move this outside of each individual component *************************************************
     if (json.status === 'ok') {
       if (json.result === 'false') {
         console.log('no data returned');
-        // return;
+        return;
       }
 
       let stepValue = parseInt(json.result);
@@ -58,43 +56,24 @@ class History extends React.Component {
     // ************************************************************************************************
 
     // get either user's gameplay data or their transaction data
-    // if (type == 'Play') {
+    if (type == 'Play') {
+      response = await this.getPlayData(1); // page
+    } else if (type == 'History') {
+      response = await this.getHistoryData(1); // page
+    }
+    json = await response.json();
 
-    // } else if (type == 'History') {
-    const responseHistory = await this.getHistoryData(); // page
-    // }
-    const jsonHistory = await responseHistory.json();
-    const dataHistory = jsonHistory.result;
+    const indexStart = (page - 1) * this.maximumCount;
+    const indexEnd = indexStart + this.maximumCount;
 
-    const responsePlay = await this.getPlayData(); // page
-    const jsonPlay = await responsePlay.json();
-
-    const dataPlay = jsonPlay.result;
-
-    // console.log('data history length...');
-    // console.log(dataHistory.length);
-    // console.log(dataHistory);
-    // console.log('foo 1');
-
-    // set history, play, and page data, and reset processing flag to false
-    // let dataPage = [];
-    // if (dataHistory.length > 0) {
-    const dataPage = dataHistory.slice(0, this.maximumCount);
-    // } else {
-    //   dataPage = dataPage;
-    // }
-
-    // console.log('foo 2');
-    // console.log('data page');
-    // console.log(dataPage);
-
+    // set new data values and reset processing flag to false
+    const allData = json.result;
     this.setState({
-      dataHistory: dataHistory,
-      dataPlay: dataPlay,
-      dataPage: dataPage,
+      dataAll: allData,
+      dataPage: allData.slice(indexStart, indexEnd),
       processing: false,
-      // dataType: type,
-      // currentPage: page,
+      dataType: type,
+      currentPage: page,
     });
   };
 
@@ -111,22 +90,7 @@ class History extends React.Component {
     });
   };
 
-  getHistoryData = () => {
-    return fetch(`${Global.BASE_URL}/order/getHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-        limit: 99999, // this.maximumCount,
-        page: 1, // page,
-      }),
-    });
-  };
-
-  getPlayData = () => {
+  getPlayData = (page) => {
     return fetch(`${Global.BASE_URL}/order/getPlayInfo`, {
       method: 'POST',
       headers: {
@@ -136,7 +100,22 @@ class History extends React.Component {
       body: JSON.stringify({
         address: this.userAddress,
         limit: 99999, // this.maximumCount,
-        page: 1, // page,
+        page: page,
+      }),
+    });
+  };
+
+  getHistoryData = (page) => {
+    return fetch(`${Global.BASE_URL}/order/getHistory`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: this.userAddress,
+        limit: 99999, // this.maximumCount,
+        page: page,
       }),
     });
   };
@@ -144,20 +123,15 @@ class History extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  setDataType = (type) => {
-    this.setState({ dataType: type });
-
-    // this.getUserData('History', 1);
-
-    this.setUserData(type, 1);
+  handleHistory = () => {
+    this.setState({ processing: true });
+    this.getUserData('History', 1);
   };
 
-  // handlePlay = () => {
-  //   this.setState({ dataType: 'Play' });
-  //   // this.getUserData('Play', 1);
-
-  //   this.setUserData('Play', 1);
-  // };
+  handlePlay = () => {
+    this.setState({ processing: true });
+    this.getUserData('Play', 1);
+  };
 
   showSpinner = (status) => {
     return (
@@ -171,15 +145,14 @@ class History extends React.Component {
     return (
       <Fade bottom distance="20px" duration="600">
         <div className="account-other-tabs">
-          <h3 className="account-other-h3">Transaction History</h3>
-
+          <h3 className="account-other-h3"> Transaction History </h3>
           <div style={{ marginLeft: '3px' }}>
             {this.state.dataType == 'History' ? (
               <p className="account-other-p">
                 <b className="account-hover">Deposits/Withdrawals</b> |{' '}
                 <abbr
                   className="account-hover"
-                  onClick={() => this.setDataType('Play')}
+                  onClick={() => this.handlePlay()}
                 >
                   Gameplay{' '}
                 </abbr>
@@ -188,7 +161,7 @@ class History extends React.Component {
               <p className="account-other-p">
                 <abbr
                   className="account-hover"
-                  onClick={() => this.setDataType('History')}
+                  onClick={() => this.handleHistory()}
                 >
                   Deposits/Withdrawals
                 </abbr>{' '}
@@ -202,32 +175,25 @@ class History extends React.Component {
   };
 
   pagination = () => {
+    const totalRows = this.state.dataAll.length;
+
     // const indexStart = (this.state.currentPage - 1) * this.maximumCount;
     // const indexEnd = indexStart + this.maximumCount;
     // const dataPage = this.state.dataAll.slice(indexStart, indexEnd);
+
+    const currentRows = this.state.dataPage.length;
 
     // this.setState({ dataPage: dataPage });
     // this.dataPage = dataPage;
 
     const currentPage = this.state.currentPage;
+
     const previousPage = currentPage - 1;
     const nextPage = currentPage + 1;
 
-    // const totalRowsHistory = this.state.dataHistory.length;
-    // const totalRowsPlay = this.state.dataPlay.length;
-    let totalRows = 0;
-    if (this.state.dataType === 'History') {
-      totalRows = this.state.dataHistory.length;
-    } else if (this.state.dataType === 'Play') {
-      totalRows = this.state.dataPlay.length;
-    }
-
-    const currentRows = this.state.dataPage.length;
-
-    console.log('current page number: ' + currentPage);
+    console.log('current page number: ' + this.state.currentPage);
     console.log('maximum rows per page: ' + this.maximumCount);
     console.log('total number of rows: ' + totalRows);
-    /// console.log('total number of rows (play): ' + totalRowsPlay);
     console.log('current number of rows: ' + currentRows);
 
     return (
@@ -239,7 +205,7 @@ class History extends React.Component {
           <Icon
             name="caret left"
             style={{ cursor: 'pointer', color: '#2085F4' }}
-            onClick={() => this.setUserData(this.state.dataType, previousPage)}
+            onClick={() => this.getUserData(this.state.dataType, previousPage)}
           />
         ) : (
           <Icon name="caret left" style={{ color: '#aaaaaa' }} />
@@ -256,7 +222,7 @@ class History extends React.Component {
           <Icon
             name="caret right"
             style={{ cursor: 'pointer', color: '#2085F4' }}
-            onClick={() => this.setUserData(this.state.dataType, nextPage)}
+            onClick={() => this.getUserData(this.state.dataType, nextPage)}
           />
         ) : (
           <Icon name="caret right" style={{ color: '#aaaaaa' }} />
@@ -265,23 +231,7 @@ class History extends React.Component {
     );
   };
 
-  setUserData = (type, page) => {
-    let dataPage = [];
-    const indexStart = (page - 1) * this.maximumCount;
-    const indexEnd = indexStart + this.maximumCount;
-
-    if (type === 'History') {
-      dataPage = this.state.dataHistory.slice(indexStart, indexEnd);
-    } else if (type === 'Play') {
-      dataPage = this.state.dataPlay.slice(indexStart, indexEnd);
-    }
-
-    this.setState({ dataPage: dataPage, currentPage: page });
-  };
-
   render() {
-    // console.log('processing: ' + this.state.processing);
-
     return (
       <div>
         {this.showSpinner(this.state.processing)}
@@ -295,34 +245,30 @@ class History extends React.Component {
               <div id="tx-box-history-2">
                 <ContentTransactions content={'labels'} />
 
-                {this.state.processing === false ? (
-                  this.state.dataPage !== 'false' ? (
-                    this.state.dataType === 'History' ? (
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      <ContentTransactions
-                        content={'history'} // content type
-                        dataPage={this.state.dataPage}
-                      />
-                    ) : this.state.dataType === 'Play' ? (
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      <ContentTransactions
-                        content={'gameplay'} // content type
-                        dataPage={this.state.dataPage}
-                      />
-                    ) : null
-                  ) : (
-                    <div className="account-other-inner-p">
-                      There is no transaction history for this account
-                    </div>
-                  )
+                {this.state.dataAll !== 'false' ? (
+                  this.state.dataType === 'History' ? (
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    <ContentTransactions
+                      content={'history'} // content type
+                      dataPage={this.state.dataPage}
+                    />
+                  ) : this.state.dataType === 'Play' ? (
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    <ContentTransactions
+                      content={'gameplay'} // content type
+                      dataPage={this.state.dataPage}
+                    />
+                  ) : null
                 ) : (
-                  <div className="account-other-inner-p">Loading data...</div>
+                  <div className="account-other-inner-p">
+                    There is no transaction history for this account
+                  </div>
                 )}
-              </div>
 
-              <div>{this.pagination()}</div>
+                {this.pagination()}
+              </div>
             </Fade>
           </div>
         </div>

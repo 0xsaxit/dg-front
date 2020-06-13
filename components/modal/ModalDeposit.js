@@ -246,7 +246,7 @@ class ModalDeposit extends React.Component {
         return;
       } else {
         let ret = await this.updateHistory(
-          this.state.amount,
+          Global.MAX_AMOUNT,
           'Authorization',
           'Confirmed',
           txHash

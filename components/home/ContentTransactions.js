@@ -31,7 +31,7 @@ const ContentTransactions = (props) => {
             if (row.type !== 'Deposit') sign = '-';
 
             return (
-              <Table.Row>
+              <Table.Row key={i}>
                 <Table.Cell>
                   <img
                     src={mana}
@@ -111,7 +111,7 @@ const ContentTransactions = (props) => {
             }
 
             return (
-              <Table.Row>
+              <Table.Row key={i}>
                 <Table.Cell>
                   <img
                     src={mana}
