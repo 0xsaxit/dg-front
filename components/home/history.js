@@ -22,8 +22,6 @@ class History extends React.Component {
 
     this.userAddress = '';
     this.maximumCount = 0;
-
-    // this.dataPage = [];
   }
 
   async componentDidMount() {
@@ -57,44 +55,21 @@ class History extends React.Component {
     }
     // ************************************************************************************************
 
-    // get either user's gameplay data or their transaction data
-    // if (type == 'Play') {
-
-    // } else if (type == 'History') {
-    const responseHistory = await this.getHistoryData(); // page
-    // }
+    // get user's transaction history data and gameplay data
+    const responseHistory = await this.getHistoryData();
     const jsonHistory = await responseHistory.json();
     const dataHistory = jsonHistory.result;
-
-    const responsePlay = await this.getPlayData(); // page
+    const responsePlay = await this.getPlayData();
     const jsonPlay = await responsePlay.json();
-
     const dataPlay = jsonPlay.result;
 
-    // console.log('data history length...');
-    // console.log(dataHistory.length);
-    // console.log(dataHistory);
-    // console.log('foo 1');
-
     // set history, play, and page data, and reset processing flag to false
-    // let dataPage = [];
-    // if (dataHistory.length > 0) {
     const dataPage = dataHistory.slice(0, this.maximumCount);
-    // } else {
-    //   dataPage = dataPage;
-    // }
-
-    // console.log('foo 2');
-    // console.log('data page');
-    // console.log(dataPage);
-
     this.setState({
       dataHistory: dataHistory,
       dataPlay: dataPlay,
       dataPage: dataPage,
       processing: false,
-      // dataType: type,
-      // currentPage: page,
     });
   };
 
@@ -120,8 +95,8 @@ class History extends React.Component {
       },
       body: JSON.stringify({
         address: this.userAddress,
-        limit: 99999, // this.maximumCount,
-        page: 1, // page,
+        limit: 99999, // just grab all of the data
+        page: 1,
       }),
     });
   };
@@ -135,8 +110,8 @@ class History extends React.Component {
       },
       body: JSON.stringify({
         address: this.userAddress,
-        limit: 99999, // this.maximumCount,
-        page: 1, // page,
+        limit: 99999, // just grab all of the data
+        page: 1,
       }),
     });
   };
@@ -146,18 +121,8 @@ class History extends React.Component {
   // helper functions
   setDataType = (type) => {
     this.setState({ dataType: type });
-
-    // this.getUserData('History', 1);
-
     this.setUserData(type, 1);
   };
-
-  // handlePlay = () => {
-  //   this.setState({ dataType: 'Play' });
-  //   // this.getUserData('Play', 1);
-
-  //   this.setUserData('Play', 1);
-  // };
 
   showSpinner = (status) => {
     return (
@@ -202,19 +167,11 @@ class History extends React.Component {
   };
 
   pagination = () => {
-    // const indexStart = (this.state.currentPage - 1) * this.maximumCount;
-    // const indexEnd = indexStart + this.maximumCount;
-    // const dataPage = this.state.dataAll.slice(indexStart, indexEnd);
-
-    // this.setState({ dataPage: dataPage });
-    // this.dataPage = dataPage;
-
     const currentPage = this.state.currentPage;
     const previousPage = currentPage - 1;
     const nextPage = currentPage + 1;
+    const currentRows = this.state.dataPage.length;
 
-    // const totalRowsHistory = this.state.dataHistory.length;
-    // const totalRowsPlay = this.state.dataPlay.length;
     let totalRows = 0;
     if (this.state.dataType === 'History') {
       totalRows = this.state.dataHistory.length;
@@ -222,12 +179,9 @@ class History extends React.Component {
       totalRows = this.state.dataPlay.length;
     }
 
-    const currentRows = this.state.dataPage.length;
-
     console.log('current page number: ' + currentPage);
     console.log('maximum rows per page: ' + this.maximumCount);
     console.log('total number of rows: ' + totalRows);
-    /// console.log('total number of rows (play): ' + totalRowsPlay);
     console.log('current number of rows: ' + currentRows);
 
     return (
@@ -280,8 +234,6 @@ class History extends React.Component {
   };
 
   render() {
-    // console.log('processing: ' + this.state.processing);
-
     return (
       <div>
         {this.showSpinner(this.state.processing)}
@@ -295,7 +247,7 @@ class History extends React.Component {
               <div id="tx-box-history-2">
                 <ContentTransactions content={'labels'} />
 
-                {this.state.processing === false ? (
+                {!this.state.processing ? (
                   this.state.dataPage !== 'false' ? (
                     this.state.dataType === 'History' ? (
                       /////////////////////////////////////////////////////////////////////////////////////////
@@ -318,7 +270,12 @@ class History extends React.Component {
                     </div>
                   )
                 ) : (
-                  <div className="account-other-inner-p">Loading data...</div>
+                  <div
+                    className="account-other-inner-p"
+                    style={{ paddingTop: '5vh', height: '15vh' }}
+                  >
+                    Loading...
+                  </div>
                 )}
               </div>
 
