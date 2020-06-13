@@ -30,6 +30,13 @@ const ContentTransactions = (props) => {
             let sign = '+';
             if (row.type !== 'Deposit') sign = '-';
 
+            const dateFirst = new Date(timestamp);
+            const dateSecond = new Date();
+            const timeDiff = Math.abs(
+              dateSecond.getTime() - dateFirst.getTime()
+            );
+            console.log('time difference: ' + timeDiff * 0.001);
+
             return (
               <Table.Row key={i}>
                 <Table.Cell>
@@ -71,7 +78,8 @@ const ContentTransactions = (props) => {
                   <Icon name="caret right" style={{ color: '#2085F4' }} />
 
                   {row.type === 'Burn' ? (
-                    1 === 0 ? (
+                    // set PENDING time to 600 seconds
+                    timeDiff * 0.001 < 600 ? (
                       <Button size="mini" color="red">
                         PENDING
                       </Button>

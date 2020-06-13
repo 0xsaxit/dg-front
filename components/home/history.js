@@ -36,16 +36,15 @@ class History extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get/update user authorization and onboard status in database
+  // REST API functions: get/update user's transaction history data and gameplay data
   getUserData = async () => {
-    // move this outside of each individual component *************************************************
+    // later move this outside of each individual component *************************************************
     let response = await this.getUserStatus();
     let json = await response.json();
 
     if (json.status === 'ok') {
       if (json.result === 'false') {
         console.log('no data returned');
-        // return;
       }
 
       let stepValue = parseInt(json.result);
@@ -55,7 +54,6 @@ class History extends React.Component {
     }
     // ************************************************************************************************
 
-    // get user's transaction history data and gameplay data
     const responseHistory = await this.getHistoryData();
     const jsonHistory = await responseHistory.json();
     const dataHistory = jsonHistory.result;
@@ -146,7 +144,7 @@ class History extends React.Component {
                   className="account-hover"
                   onClick={() => this.setDataType('Play')}
                 >
-                  Gameplay{' '}
+                  Gameplay
                 </abbr>
               </p>
             ) : (
@@ -157,7 +155,7 @@ class History extends React.Component {
                 >
                   Deposits/Withdrawals
                 </abbr>{' '}
-                | <b className="account-hover">Gameplay </b>
+                | <b className="account-hover">Gameplay</b>
               </p>
             )}
           </div>
