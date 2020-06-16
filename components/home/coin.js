@@ -476,7 +476,7 @@ class Coin extends React.Component {
                           </p>
                           <p className="account-other-p">
                             {' '}
-                            <b>Location:</b> To be announced{' '}
+                            <b>Location:</b> -119, 133{' '}
                           </p>
                           <Button
                             color="blue"
