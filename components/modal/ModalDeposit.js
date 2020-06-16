@@ -112,7 +112,7 @@ class ModalDeposit extends React.Component {
   // handle opening or closing this modal
   getTrigger = () => {
     return (
-      <Button content="Deposit" id="depositButton2" onClick={this.handleOpen} />
+      <a className="modal-deposit-button" onClick={this.handleOpen}> Deposit </a>
     );
   };
 
