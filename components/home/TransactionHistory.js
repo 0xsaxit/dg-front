@@ -122,9 +122,9 @@ class History extends React.Component {
     this.setUserData(type, 1);
   };
 
-  showSpinner = (status) => {
-    return <Spinner show={status} />;
-  };
+  // showSpinner = (status) => {
+  //   return <Spinner show={status} />;
+  // };
 
   topLinks = () => {
     return (
@@ -230,7 +230,8 @@ class History extends React.Component {
   render() {
     return (
       <div>
-        {this.showSpinner(this.state.processing)}
+        {this.state.processing ? <Spinner show={1} /> : null}
+
         <Menu dashboard={this.state.isDashboard} />
 
         <div className="contentContainer">
