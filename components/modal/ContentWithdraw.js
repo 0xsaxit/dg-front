@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Grid, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
+import Global from '../constants';
 
 const ContentWithdraw = (props) => {
   // drop-down menu MANA values
@@ -27,7 +28,8 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Select the amount of Matic tokens to initiate a withdrawal from Matic.
+              Select the amount of Matic tokens to initiate a withdrawal from
+              Matic
             </p>
           </Grid.Row>
           <TokenBalances
@@ -63,7 +65,8 @@ const ContentWithdraw = (props) => {
           <Grid.Row>
             <p className="modal-p-note">
               <span style={{ fontStyle: 'italic' }}>
-                *Following this transaction, you will receive a transaction hash as a proof of burn.
+                *Following this transaction, you will receive a transaction hash
+                as a proof of burn
               </span>
             </p>
           </Grid.Row>
@@ -74,7 +77,7 @@ const ContentWithdraw = (props) => {
     );
   }
 
-  function contentHash() {
+  function contentHistory() {
     return (
       <div className="modal-content-container">
         <Grid>
@@ -83,11 +86,19 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Please check the Transaction History page in 5 to 10 minutes to
-              confirm withdrawal of MANA tokens to Mainnet
+              Please check the Transaction History page in 10 minutes to confirm
+              withdrawal of MANA tokens to Mainnet
             </p>
           </Grid.Row>
-          <Grid.Row>(TX HASH: {props.transactionHash})</Grid.Row>
+          <Grid.Row>
+            <a
+              target="_blank"
+              href={Global.MATIC_EXPLORER + '/tx/' + props.transactionHash}
+              className="nft-number-content"
+            >
+              {props.transactionHash}
+            </a>
+          </Grid.Row>
 
           <Grid.Row>
             <Link href="/txhistory">
@@ -125,11 +136,15 @@ const ContentWithdraw = (props) => {
             tokenBalanceL2={props.tokenBalanceL2}
           />
           <Grid.Row>
-            <span style={{ fontWeight: 'bold', marginRight: '5px' }}>
-              TX HASH:
-            </span>
-            {props.transactionHash}
+            <a
+              target="_blank"
+              href={Global.MATIC_EXPLORER + '/tx/' + props.transactionHash}
+              className="nft-number-content"
+            >
+              {props.transactionHash}
+            </a>
           </Grid.Row>
+
           <Grid.Row>
             <Button
               className="modal-buttons"
@@ -162,12 +177,42 @@ const ContentWithdraw = (props) => {
     );
   }
 
+  function contentConfirm() {
+    return (
+      <div className="modal-content-container">
+        <Grid>
+          <Grid.Row>
+            <h3 className="modal-h3">Exit confirmation</h3>
+          </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">
+              Below is your Exit confirmation transaction hash
+            </p>
+          </Grid.Row>
+          <Grid.Row>
+            <a
+              target="_blank"
+              href={Global.MATIC_EXPLORER + '/tx/' + props.transactionHash}
+              className="nft-number-content"
+            >
+              {props.transactionHash}
+            </a>
+          </Grid.Row>
+        </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+      </div>
+    );
+  }
+
   if (props.content == 'burn') {
     return contentBurn();
-  } else if (props.content == 'hash') {
-    return contentHash();
+  } else if (props.content == 'history') {
+    return contentHistory();
   } else if (props.content == 'exit') {
     return contentExit();
+  } else if (props.content == 'confirmation') {
+    return contentConfirm();
   }
 };
 

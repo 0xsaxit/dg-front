@@ -5,7 +5,7 @@ import eth from '../../static/images/eth_circle.webp';
 import dg from '../../static/images/authorize_title.png';
 import { Button, Divider } from 'semantic-ui-react';
 import { Table, Modal, Icon } from 'semantic-ui-react';
-import ModalVerify from '../modal/Modal';
+import ModalVerify from '../modal/ModalVerify';
 // import ModalDeposit from '../ModalDeposit';
 // import ModalWithdraw from '../ModalWithdraw';
 

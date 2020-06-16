@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import LogoSpinner from '../LogoSpinner';
+// import LogoSpinner from '../LogoSpinner';
 import mana from '../../static/images/mana.png';
 
 let Global;
@@ -69,10 +69,10 @@ class Deposit extends React.Component {
 
     return (
       <div className="contentContainer" style={{ marginBottom: '-60px' }}>
-        <LogoSpinner
+        {/* <LogoSpinner
           show={this.state.isRunningTransaction}
           className="tx-history-spinner"
-        />
+        /> */}
         <div className="account-other-inner-container">
           <h3 className="account-other-h3"> Machines </h3>
           <div id="tx-box-history" style={{ marginTop: '42px' }}>

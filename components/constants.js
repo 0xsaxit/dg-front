@@ -312,11 +312,13 @@ function exitToMainnet(transactionHash, userAddress) {
     console.log('user address: ' + userAddress);
 
     try {
-      let ret = await maticPOSClient
-        .exitERC20(transactionHash, { from: userAddress })
-        .then(async (logs) => {
-          console.log('Exit: ' + logs.transactionHash);
-        });
+      let ret = await maticPOSClient.exitERC20(transactionHash, {
+        from: userAddress,
+      });
+
+      // .then(async (logs) => {
+      //   console.log('Exit: ' + logs.transactionHash);
+      // });
 
       console.log('Exit to Mainnet done');
       resolve(ret.transactionHash);

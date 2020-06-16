@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Button, Icon, Modal } from 'semantic-ui-react';
-import LogoSpinner from '../LogoSpinner';
+// import LogoSpinner from '../LogoSpinner';
 import Spinner from '../Spinner';
 import Menu from './menu';
 import Wallet from './walletOverlay';
@@ -8,7 +8,7 @@ import WalletInfo from './walletInfo';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
-import History from './history';
+// import History from './history';
 import Coin from './coin';
 import About from './about';
 import defaultBackground from '../../static/images/default.png';
@@ -17,7 +17,7 @@ let Global;
 var USER_ADDRESS;
 
 const INITIAL_STATE = {
-  isRunningTransaction: false,
+  // isRunningTransaction: false,
   isDashboard: false,
   selectedMenu: 0,
   isLoading: true,
@@ -25,8 +25,8 @@ const INITIAL_STATE = {
 };
 
 class Dashboard extends React.Component {
-  showSpinner = () => this.setState({ isRunningTransaction: true });
-  hideSpinner = () => this.setState({ isRunningTransaction: false });
+  // showSpinner = () => this.setState({ isRunningTransaction: true });
+  // hideSpinner = () => this.setState({ isRunningTransaction: false });
 
   constructor(props) {
     super(props);
@@ -41,12 +41,12 @@ class Dashboard extends React.Component {
     }
     await this.getUserData();
     this.setState({ isLoading: false });
-    
+
     var video = document.getElementById('myVideo');
-    video.onloadedmetadata = function() {
+    video.onloadedmetadata = function () {
       var bgImg = document.getElementById('bgImg');
       bgImg.style.display = 'none';
-    }
+    };
   }
 
   getUserVerify = () => {
@@ -127,11 +127,19 @@ class Dashboard extends React.Component {
             </Modal.Content>
           </Modal>
         </div>
-        <LogoSpinner show={this.state.isRunningTransaction} />
+
+        {/* <LogoSpinner show={this.state.isRunningTransaction} /> */}
+
         <div className="home-video-container">
-          { this.state.isVideoLoading === true ? (
-            <img id="bgImg" src={defaultBackground} style={{width: '100vw'}}></img>
-          ) : (<div></div>)}
+          {this.state.isVideoLoading === true ? (
+            <img
+              id="bgImg"
+              src={defaultBackground}
+              style={{ width: '100vw' }}
+            ></img>
+          ) : (
+            <div></div>
+          )}
           <video
             id="myVideo"
             src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
@@ -148,7 +156,12 @@ class Dashboard extends React.Component {
             <div className="home-dashboard-description">
               <Fade bottom distance="20px" duration="600">
                 <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-                <h3 className="home-dashboard-h3" style={{ marginBottom: '-12px' }}>Tominoya</h3>
+                <h3
+                  className="home-dashboard-h3"
+                  style={{ marginBottom: '-12px' }}
+                >
+                  Tominoya
+                </h3>
                 {this.state.isDashboard === true ? (
                   <div>
                     <Button
@@ -231,7 +244,6 @@ class Dashboard extends React.Component {
                 </div>
               </Fade>
             </div>*/}
-            
           </div>
           <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
         </div>
@@ -240,24 +252,20 @@ class Dashboard extends React.Component {
   };
   render() {
     if (this.state.isLoading === true) {
-      return (
-        <div>
-          <Spinner show={this.state.isLoading} />
-        </div>
-      );
+      return <Spinner show={this.state.isLoading} />;
     }
     return (
       <div>
         <Fade bottom distance="20px" duration="600" delay="300">
           {this.state.isDashboard === true ? (
             <WalletInfo
-              showSpinner={this.showSpinner}
-              hideSpinner={this.hideSpinner}
+            // showSpinner={this.showSpinner}
+            // hideSpinner={this.hideSpinner}
             />
           ) : (
             <Wallet
-              showSpinner={this.showSpinner}
-              hideSpinner={this.hideSpinner}
+              // showSpinner={this.showSpinner}
+              // hideSpinner={this.hideSpinner}
               walletInfo={this.walletInfo}
             />
           )}

@@ -161,8 +161,8 @@ class WalletInfo extends React.Component {
       button = (
         <span>
           <ModalDeposit
-            showSpinner={this.props.showSpinner}
-            hideSpinner={this.props.hideSpinner}
+            // showSpinner={this.props.showSpinner}
+            // hideSpinner={this.props.hideSpinner}
             update={this.update}
             authvalue={4}
           />
@@ -172,8 +172,8 @@ class WalletInfo extends React.Component {
     } else {
       button = (
         <ModalDeposit
-          showSpinner={this.props.showSpinner}
-          hideSpinner={this.props.hideSpinner}
+          // showSpinner={this.props.showSpinner}
+          // hideSpinner={this.props.hideSpinner}
           update={this.update}
           authvalue={4}
         />
@@ -213,10 +213,16 @@ class WalletInfo extends React.Component {
                 <h3 className="wallet-info-modal-h3">What is Matic Network?</h3>
                 <Modal.Content className="modal-content">
                   <p className="modal-font">
-                    Matic Network is a Plasma sidechain that allows for instant transactions for Ethereum tokens. To play our games, you must deposit Ethereum tokens to Matic. After 12 confirmations, the tokens will appear in your Matic balance and are usable in our games.
+                    Matic Network is a Plasma sidechain that allows for instant
+                    transactions for Ethereum tokens. To play our games, you
+                    must deposit Ethereum tokens to Matic. After 12
+                    confirmations, the tokens will appear in your Matic balance
+                    and are usable in our games.
                   </p>
                   <p className="modal-font">
-                    To withdraw from Matic and retrieve your tokens on the Ethereum mainchain, you must initiate a withdrawal transaction. Withdrawals take 5-10 minutes to complete.
+                    To withdraw from Matic and retrieve your tokens on the
+                    Ethereum mainchain, you must initiate a withdrawal
+                    transaction. Withdrawals take 5-10 minutes to complete.
                   </p>
                 </Modal.Content>
               </Modal>
@@ -249,8 +255,8 @@ class WalletInfo extends React.Component {
                       {button}
                       <ModalWithdraw
                         isLink={0}
-                        showSpinner={this.props.showSpinner}
-                        hideSpinner={this.props.hideSpinner}
+                        // showSpinner={this.props.showSpinner}
+                        // hideSpinner={this.props.hideSpinner}
                       />
                     </span>
                   </span>

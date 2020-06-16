@@ -123,11 +123,7 @@ class History extends React.Component {
   };
 
   showSpinner = (status) => {
-    return (
-      <div>
-        <Spinner show={status} />
-      </div>
-    );
+    return <Spinner show={status} />;
   };
 
   topLinks = () => {

@@ -1,4 +1,5 @@
 import { Table, Button, Icon } from 'semantic-ui-react';
+import ModalWithdraw from '../modal/ModalWithdraw';
 import mana from '../../static/images/mana.png';
 import Global from '../constants';
 
@@ -35,7 +36,6 @@ const ContentTransactions = (props) => {
             const timeDiff = Math.abs(
               dateSecond.getTime() - dateFirst.getTime()
             );
-            console.log('time difference: ' + timeDiff * 0.001);
 
             return (
               <Table.Row key={i}>
@@ -77,16 +77,14 @@ const ContentTransactions = (props) => {
                   </a>
                   <Icon name="caret right" style={{ color: '#2085F4' }} />
 
-                  {row.type === 'Burn' ? (
-                    // set PENDING time to 600 seconds
+                  {row.type === 'Exit' && row.status === 'In Progress' ? (
+                    // set PENDING time to 600 seconds (10 minutes)
                     timeDiff * 0.001 < 600 ? (
                       <Button size="mini" color="red">
                         PENDING
                       </Button>
                     ) : (
-                      <Button size="mini" color="blue">
-                        EXIT
-                      </Button>
+                      <ModalWithdraw isLink={1} transactionHash={row.txid} />
                     )
                   ) : null}
                 </Table.Cell>

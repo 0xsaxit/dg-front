@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import mana from '../../static/images/mana.png';
-import LogoSpinner from '../LogoSpinner';
-import spin from '../../static/images/spin.gif';
+// import LogoSpinner from '../LogoSpinner';
+// import spin from '../../static/images/spin.gif';
 import { Table, Dropdown } from 'semantic-ui-react';
 import ModalFunds from './ModalFunds';
 
@@ -20,13 +20,13 @@ const INITIAL_STATE = {
   ethRopstenGasBalance: 0,
   username: '',
   period: 7,
-  isRunningTransaction: false,
+  // isRunningTransaction: false,
   loading: true,
 };
 
 class Dashboard extends React.Component {
-  showSpinner = () => this.setState({ isRunningTransaction: true });
-  hideSpinner = () => this.setState({ isRunningTransaction: false });
+  // showSpinner = () => this.setState({ isRunningTransaction: true });
+  // hideSpinner = () => this.setState({ isRunningTransaction: false });
 
   constructor(props) {
     super(props);
@@ -311,14 +311,14 @@ class Dashboard extends React.Component {
                             <div>
                               <span className="tx-history-select">
                                 <ModalFunds
-                                  showSpinner={this.props.showSpinner}
-                                  hideSpinner={this.props.hideSpinner}
+                                  // showSpinner={this.props.showSpinner}
+                                  // hideSpinner={this.props.hideSpinner}
                                   modalType={'Deposit'}
                                   gameType={row.name}
                                 />
                                 <ModalFunds
-                                  showSpinner={this.props.showSpinner}
-                                  hideSpinner={this.props.hideSpinner}
+                                  // showSpinner={this.props.showSpinner}
+                                  // hideSpinner={this.props.hideSpinner}
                                   modalType={'Withdraw'}
                                   gameType={row.name}
                                 />
@@ -327,14 +327,14 @@ class Dashboard extends React.Component {
                           ) : (
                             <div>
                               <ModalFunds
-                                showSpinner={this.props.showSpinner}
-                                hideSpinner={this.props.hideSpinner}
+                                // showSpinner={this.props.showSpinner}
+                                // hideSpinner={this.props.hideSpinner}
                                 modalType={'Deposit'}
                                 gameType={row.name}
                               />
                               <ModalFunds
-                                showSpinner={this.props.showSpinner}
-                                hideSpinner={this.props.hideSpinner}
+                                // showSpinner={this.props.showSpinner}
+                                // hideSpinner={this.props.hideSpinner}
                                 modalType={'Withdraw'}
                                 gameType={row.name}
                               />

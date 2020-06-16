@@ -2,6 +2,7 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
+import Spinner from '../Spinner';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
@@ -32,6 +33,7 @@ class ModalDeposit extends React.Component {
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
+      spinner: false,
     };
 
     this.userAddress = '';
@@ -127,7 +129,8 @@ class ModalDeposit extends React.Component {
   // authorize transfers to Matic Network, then deposit MANA to Matic Network
   depositToMatic = async () => {
     try {
-      this.props.showSpinner();
+      // this.showSpinner(1);
+      this.setState({ spinner: true });
 
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
@@ -205,12 +208,14 @@ class ModalDeposit extends React.Component {
         console.log('tx hash: ' + txHash);
       }
 
-      this.props.hideSpinner();
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
 
-      this.props.hideSpinner();
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
     }
   };
 
@@ -219,7 +224,8 @@ class ModalDeposit extends React.Component {
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransaction = async () => {
     try {
-      this.props.showSpinner();
+      // this.showSpinner(1);
+      this.setState({ spinner: true });
 
       console.log('Matic RPC: ' + Global.MATIC_URL);
       console.log('user address: ' + this.userAddress);
@@ -241,7 +247,8 @@ class ModalDeposit extends React.Component {
         console.log('authorization failed');
 
         this.setState({ isValidAuthorize: 1 }); // invalid authorize
-        this.props.hideSpinner();
+        // this.showSpinner(0);
+        this.setState({ spinner: false });
 
         return;
       } else {
@@ -259,19 +266,22 @@ class ModalDeposit extends React.Component {
         this.setState({ isValidAuthorize: 2 }); // valid authorize
       }
 
-      this.props.hideSpinner();
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidAuthorize: 1 }); // invalid authorize
-      this.props.hideSpinner();
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
     }
   };
 
   networkError = () => {
     console.log('network error');
 
-    this.props.hideSpinner();
+    // this.showSpinner(0);
+    this.setState({ spinner: false });
     return;
   };
 
@@ -398,6 +408,10 @@ class ModalDeposit extends React.Component {
     );
   };
 
+  // showSpinner = (status) => {
+  //   return <Spinner show={status} />;
+  // };
+
   nextStep = () => {
     let value;
     if (this.state.userStepValue < 6) {
@@ -420,6 +434,8 @@ class ModalDeposit extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
+        {this.state.spinner ? <Spinner show={2} /> : null}
+
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">

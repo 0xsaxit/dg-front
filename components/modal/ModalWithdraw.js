@@ -2,21 +2,12 @@ import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
+import Spinner from '../Spinner';
 import ContentWithdraw from './ContentWithdraw';
 import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
 
 let web3 = {};
-// let tokenAddressRopsten = '';
-// let spenderAddress = '';
-
-// async function getAddresses() {
-// const addresses = await Global.API_ADDRESSES;
-
-// tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
-// spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
-// }
-// getAddresses();
 
 class ModalWithdraw extends React.Component {
   constructor(props) {
@@ -24,14 +15,16 @@ class ModalWithdraw extends React.Component {
 
     this.state = {
       amount: Global.DEFAULT_AMOUNT,
-      transactionHash: '',
+      transactionHash:
+        '0xae8a50e4bd9d34a7d71cec08317edc4018fed6ec680c46b3f2f2abb192a351bc',
       networkID: 0,
-      isValidBurn: 0,
       userStepValue: 0,
+      isValidBurn: 0,
       isValidExit: 0,
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
+      spinner: false,
     };
 
     this.userAddress = '';
@@ -93,9 +86,33 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // handle opening or closing this modal
   getTrigger = () => {
-    return (
-      <Button content="Withdraw" id="depositButton" onClick={this.handleOpen} />
-    );
+    if (this.props.isLink) {
+      return (
+        <Button
+          content="EXIT"
+          size="mini"
+          color="blue"
+          onClick={this.submitHash}
+        />
+      );
+    } else {
+      return (
+        <Button
+          content="Withdraw"
+          id="depositButton"
+          onClick={this.handleOpen}
+        />
+      );
+    }
+  };
+
+  // set transaction hash and advance to submit proof of burn step
+  submitHash = () => {
+    this.setState({
+      transactionHash: this.props.transactionHash,
+      userStepValue: 7,
+    });
+    this.handleOpen();
   };
 
   handleOpen = () => {
@@ -111,7 +128,8 @@ class ModalWithdraw extends React.Component {
   // burn tokens on Matic Network
   burnOnMatic = async () => {
     try {
-      this.props.showSpinner();
+      // this.showSpinner(1);
+      this.setState({ spinner: true });
 
       console.log('burn amount: ' + this.state.amount);
       console.log('token contract: ');
@@ -137,52 +155,8 @@ class ModalWithdraw extends React.Component {
         console.log('burn failed');
 
         this.setState({ isValidBurn: 1 }); // invalid burn
-        this.props.hideSpinner();
-
-        return;
-      } else {
-        let ret = await this.updateHistory(
-          this.state.amount,
-          'Burn',
-          'Confirmed',
-          txHash,
-          1
-        );
-        if (!ret) this.networkErrror(); // network error
-
-        this.setState({ transactionHash: txHash }); // set transaction hash and advance to next step
-        this.setState({ userStepValue: 6.5 }); // advance to hash step
-
-        this.setState({ isValidBurn: 2 }); // valid burn
-      }
-
-      this.props.hideSpinner();
-    } catch (error) {
-      console.log(error);
-
-      this.setState({ isValidBurn: 1 }); // invalid burn
-      this.props.hideSpinner();
-    }
-  };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  exitToMainnet = async () => {
-    try {
-      this.props.showSpinner();
-
-      let txHash = await Global.exitToMainnet(
-        this.state.transactionHash,
-        this.userAddress
-      );
-
-      console.log('returned transaction hash: ' + txHash);
-
-      if (txHash == false) {
-        console.log('exit failed');
-
-        this.setState({ isValidExit: 1 }); // invalid exit
-        this.props.hideSpinner();
+        // this.showSpinner(0);
+        this.setState({ spinner: false });
 
         return;
       } else {
@@ -195,33 +169,77 @@ class ModalWithdraw extends React.Component {
         );
         if (!ret) this.networkErrror(); // network error
 
-        this.setState({ transactionHash: txHash }); // set transaction hash for confimation
+        this.setState({ transactionHash: txHash }); // set transaction hash and advance to next step
+        this.setState({ userStepValue: 6.5 }); // advance to hash step
+        this.setState({ isValidBurn: 2 }); // valid burn
+      }
 
-        this.setState({ userStepValue: 7 }); // advance to submite proof of burn step
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
+    } catch (error) {
+      console.log(error);
+
+      this.setState({ isValidBurn: 1 }); // invalid burn
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
+    }
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  exitToMainnet = async () => {
+    try {
+      // this.showSpinner(1);
+      this.setState({ spinner: true });
+
+      let txHash = await Global.exitToMainnet(
+        this.state.transactionHash,
+        this.userAddress
+      );
+
+      console.log('returned transaction hash: ' + txHash);
+
+      if (txHash == false) {
+        console.log('exit failed');
+
+        this.setState({ isValidExit: 1 }); // invalid exit
+        // this.showSpinner(0);
+        this.setState({ spinner: false });
+
+        return;
+      } else {
+        let ret = await this.updateHistory(
+          this.state.amount,
+          'Exit',
+          'Confirmed',
+          txHash,
+          1
+        );
+        if (!ret) this.networkErrror(); // network error
+
+        this.setState({ transactionHash: txHash }); // set transaction hash for confimation
+        this.setState({ userStepValue: 7.5 }); // advance to exit confirmation step
         this.setState({ isValidExit: 2 }); // valid exit
       }
 
-      this.props.hideSpinner();
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidExit: 1 }); // invalid exit
-      this.props.hideSpinner();
+      // this.showSpinner(0);
+      this.setState({ spinner: false });
     }
   };
 
   networkError = () => {
     console.log('network error');
 
-    this.props.hideSpinner();
+    // this.showSpinner(0);
+    this.setState({ spinner: false });
     return;
   };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // goToTxHistory = () => {
-  //   console.log('go to transaction history page...');
-  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -237,18 +255,10 @@ class ModalWithdraw extends React.Component {
           return;
         }
 
-        // const response = await this.getWithdrawExist();
-        // const json = await response.json();
-        // if (json.status === 'ok') {
-        // set the transaction in the database
-        // this.setState({ transactionHash: json.result });
-
         let stepValue = parseInt(json.result);
         this.setState({ userStepValue: stepValue });
 
         console.log('userStepValue status: ' + stepValue);
-
-        // this.setState({ transactionHash: '' });
       }
     } catch (error) {
       console.log('step value error withdraw: ' + error);
@@ -257,32 +267,6 @@ class ModalWithdraw extends React.Component {
 
   getUserStatus = () => {
     return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-      }),
-    });
-  };
-
-  getWithdrawTransaction = (txid) => {
-    return fetch(`${Global.BASE_URL}/order/checkHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        txHash: txid,
-      }),
-    });
-  };
-
-  getWithdrawExist = () => {
-    return fetch(`${Global.BASE_URL}/order/existWithdraw`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -358,6 +342,10 @@ class ModalWithdraw extends React.Component {
     );
   };
 
+  // showSpinner = (status) => {
+  //   return <Spinner show={status} />;
+  // };
+
   nextStep = () => {
     let value;
 
@@ -366,6 +354,8 @@ class ModalWithdraw extends React.Component {
     } else if (this.state.userStepValue == 6.5) {
       value = 7;
     } else if (this.state.userStepValue == 7) {
+      value = 7.5;
+    } else if (this.state.userStepValue == 7.5) {
       value = 6;
     }
 
@@ -383,6 +373,8 @@ class ModalWithdraw extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
+        {this.state.spinner ? <Spinner show={2} /> : null}
+
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
@@ -399,18 +391,18 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 6.5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
-                // tell user to check transaction history page after about 5 minutes
+                // tell user to check transaction history page after 10 minutes
                 <Grid.Column>
                   <ContentWithdraw
-                    content={'hash'} // content type
+                    content={'history'} // content type
                     transactionHash={this.state.transactionHash}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : this.state.userStepValue == 7 ? (
@@ -426,7 +418,18 @@ class ModalWithdraw extends React.Component {
                     tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
-                    // nextStep={this.nextStep}
+                    nextStep={this.nextStep}
+                  />
+                </Grid.Column>
+              ) : this.state.userStepValue == 7.5 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // display exit confirmation hash
+                <Grid.Column>
+                  <ContentWithdraw
+                    content={'confirmation'} // content type
+                    transactionHash={this.state.transactionHash}
+                    nextStep={this.nextStep}
                   />
                 </Grid.Column>
               ) : null}

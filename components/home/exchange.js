@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Card, Reveal, Image } from 'semantic-ui-react';
 import mana from '../../static/images/mana.png';
-import LogoSpinner from '../LogoSpinner';
+// import LogoSpinner from '../LogoSpinner';
 import Spinner from '../Spinner';
 import Fade from 'react-reveal/Fade';
 import Menu from './menu';
@@ -25,15 +25,15 @@ let transak = new transakSDK({
 var USER_ADDRESS;
 
 const INITIAL_STATE = {
-  isRunningTransaction: false,
+  // isRunningTransaction: false,
   isDashboard: false,
   isLoading: true,
   exchangeState: 0,
 };
 
 class Exchange extends React.Component {
-  showSpinner = () => this.setState({ isRunningTransaction: true });
-  hideSpinner = () => this.setState({ isRunningTransaction: false });
+  // showSpinner = () => this.setState({ isRunningTransaction: true });
+  // hideSpinner = () => this.setState({ isRunningTransaction: false });
 
   constructor(props) {
     super(props);
@@ -161,8 +161,8 @@ class Exchange extends React.Component {
             <div className="exchangeWallet">
               <Fade bottom distance="20px" duration="600" delay="300">
                 <WalletBalances
-                  showSpinner={this.showSpinner}
-                  hideSpinner={this.hideSpinner}
+                // showSpinner={this.showSpinner}
+                //hideSpinner={this.hideSpinner}
                 />
               </Fade>
             </div>
@@ -171,8 +171,8 @@ class Exchange extends React.Component {
               <div className="exchangeWallet">
                 <Fade bottom distance="20px" duration="600" delay="300">
                   <WalletBalances
-                    showSpinner={this.showSpinner}
-                    hideSpinner={this.hideSpinner}
+                  // showSpinner={this.showSpinner}
+                  // hideSpinner={this.hideSpinner}
                   />
                 </Fade>
               </div>

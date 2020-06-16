@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Card, Reveal, Image } from 'semantic-ui-react';
 import mana from '../../static/images/mana.png';
-import LogoSpinner from '../LogoSpinner';
+// import LogoSpinner from '../LogoSpinner';
 import Spinner from '../Spinner';
 import Fade from 'react-reveal/Fade';
 import Menu from './menu';
@@ -10,14 +10,14 @@ let Global;
 var USER_ADDRESS;
 
 const INITIAL_STATE = {
-  isRunningTransaction: false,
+  // isRunningTransaction: false,
   isDashboard: false,
   isLoading: true,
 };
 
 class About extends React.Component {
-  showSpinner = () => this.setState({ isRunningTransaction: true });
-  hideSpinner = () => this.setState({ isRunningTransaction: false });
+  // showSpinner = () => this.setState({ isRunningTransaction: true });
+  // hideSpinner = () => this.setState({ isRunningTransaction: false });
 
   constructor(props) {
     super(props);
@@ -74,7 +74,7 @@ class About extends React.Component {
     return (
       <div className="games-dashboard">
         <Menu dashboard={this.state.isDashboard} />
-        <LogoSpinner show={this.state.isRunningTransaction} />
+        {/* <LogoSpinner show={this.state.isRunningTransaction} /> */}
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration="600">
             <h3 className="account-other-h3 games"> About Us </h3>
