@@ -808,7 +808,15 @@ a {
 }
 
 .contentContainer table td:last-child {
-  padding-left: 4% !important;
+  padding-left: calc(4% - 8px) !important;
+}
+
+.ui.table:last-child {
+  margin-bottom: -8px;
+}
+
+table#header.ui.fixed.single.line.table {
+  margin-bottom: -13px;
 }
 
 .contentContainer table td {
@@ -986,6 +994,7 @@ p.titleDescription {
   border-radius: 3px;
   margin-top: 42px;
   padding-bottom: 10px;
+  height: calc(100vh - 260px) !important;
 }
 
 .contentContainer table td.table-status {
