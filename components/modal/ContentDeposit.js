@@ -12,6 +12,37 @@ const ContentDeposit = (props) => {
     { key: 5, text: '5000 MANA', value: 5000 },
     { key: 6, text: 'CUSTOM', value: -1 },
   ];
+  
+  function locationVerify() {
+    return (
+      <div className="modal-content-container" style={{ paddingBottom: '90px' }}>
+        <Grid>
+          <Grid.Row>
+            <h3 className="modal-h3"> Verify your Location </h3>
+          </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">Due to international online gaming legislation, we do not allow accounts from US IP addresses.
+          </p>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Button className="modal-buttons" color='blue' style={{ marginTop: '20px' }}
+              onClick={props.verifyLocation} >
+              Verify
+          </Button>
+          </Grid.Row>
+      
+          {props.isValidLocation == 1 ? (
+            <Grid.Column floated='right' width={16}>
+              <p className="modal-p-error">You are in a blacklisted jurisdiction</p>
+            </Grid.Column>
+          ) : null}
+        </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+      </div>
+    );
+  }
 
   function contentApprove() {
     return (
@@ -62,9 +93,9 @@ const ContentDeposit = (props) => {
           </Grid.Row>
 
           {props.isValidDeposit == 1 ? (
-            <Grid.Row>
+            <Grid.Column floated='right' width={16}>
               <p className="modal-p-error">Deposit failed</p>
-            </Grid.Row>
+            </Grid.Column>
           ) : null}
         </Grid>
 
@@ -97,9 +128,9 @@ const ContentDeposit = (props) => {
           </Grid.Row>
 
           {props.isValidAuthorize == 1 ? (
-            <Grid.Row>
+            <Grid.Column floated='right' width={16}>
               <p className="modal-p-error">Authorization failed</p>
-            </Grid.Row>
+            </Grid.Column>
           ) : null}
         </Grid>
 
@@ -178,9 +209,9 @@ const ContentDeposit = (props) => {
           </Grid.Row>
 
           {props.isValidDeposit == 1 ? (
-            <Grid.Row>
+            <Grid.Column floated='right' width={16}>
               <p className="modal-p-error">Deposit failed</p>
-            </Grid.Row>
+            </Grid.Column>
           ) : null}
         </Grid>
 
@@ -189,7 +220,9 @@ const ContentDeposit = (props) => {
     );
   }
 
-  if (props.content == 'approve') {
+  if (props.content == 'location') {
+    return locationVerify();
+  } else if (props.content == 'approve') {
     return contentApprove();
   } else if (props.content == 'authorize') {
     return contentAuthorize();
