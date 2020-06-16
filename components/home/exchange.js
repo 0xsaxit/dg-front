@@ -70,7 +70,7 @@ class Exchange extends React.Component {
   }
 
   getUserVerify = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -116,7 +116,7 @@ class Exchange extends React.Component {
       <div className="games-dashboard">
         <Menu dashboard={this.state.isDashboard} />
         <div className="games-dashboard-content">
-          <Fade bottom distance="20px" duration="600">
+          <Fade bottom distance="20px" duration={600}>
             <div className="account-other-tabs">
               <h3 className="account-other-h3 games"> Buy Crypto </h3>
               {this.state.exchangeState == 0 ? (
@@ -154,7 +154,7 @@ class Exchange extends React.Component {
 
           {this.state.exchangeState == 0 ? (
             <div className="exchangeWallet">
-              <Fade bottom distance="20px" duration="600" delay="300">
+              <Fade bottom distance="20px" duration={600} delay={300}>
                 <WalletBalances
                 // showSpinner={this.showSpinner}
                 //hideSpinner={this.hideSpinner}
@@ -164,7 +164,7 @@ class Exchange extends React.Component {
           ) : (
             <div>
               <div className="exchangeWallet">
-                <Fade bottom distance="20px" duration="600" delay="300">
+                <Fade bottom distance="20px" duration={600} delay={300}>
                   <WalletBalances
                   // showSpinner={this.showSpinner}
                   // hideSpinner={this.hideSpinner}
@@ -172,7 +172,7 @@ class Exchange extends React.Component {
                 </Fade>
               </div>
               <div className="uniswap-container">
-                <Fade bottom distance="20px" duration="600" delay="300">
+                <Fade bottom distance="20px" duration={600} delay={300}>
                   <iframe
                     src="https://uniswap.exchange/swap?outputCurrency=0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
                     style={{

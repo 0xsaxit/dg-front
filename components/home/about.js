@@ -34,7 +34,7 @@ class About extends React.Component {
   }
 
   getUserVerify = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -72,7 +72,7 @@ class About extends React.Component {
         <Menu dashboard={this.state.isDashboard} />
         {/* <LogoSpinner show={this.state.isRunningTransaction} /> */}
         <div className="games-dashboard-content">
-          <Fade bottom distance="20px" duration="600">
+          <Fade bottom distance="20px" duration={600}>
             <h3 className="account-other-h3 games"> About Us </h3>
             <p className="account-other-p games" style={{ paddingTop: '7px' }}>
               {' '}
@@ -83,7 +83,7 @@ class About extends React.Component {
             </p>
           </Fade>
 
-          <Fade bottom distance="20px" duration="600">
+          <Fade bottom distance="20px" duration={600}>
             <div className="games-container">
               <Grid>
                 <Grid.Row>
@@ -187,7 +187,7 @@ class About extends React.Component {
             </div>
           </Fade>
 
-          <Fade bottom distance="20px" duration="600" delay="300">
+          <Fade bottom distance="20px" duration={600} delay={300}>
             <div className="games-container" style={{ marginTop: '21px' }}>
               <Grid>
                 <Grid.Row>

@@ -56,7 +56,7 @@ class Deposit extends React.Component {
   }
 
   getData = () => {
-    return fetch(`${Global.BASE_URL}/admin/getDeposit`, {
+    return fetch(`${Global.API_BASE_URL}/admin/getDeposit`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

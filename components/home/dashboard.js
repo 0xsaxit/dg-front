@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
   }
 
   getUserVerify = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -146,7 +146,7 @@ class Dashboard extends React.Component {
             id="myVideo"
             src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
             type="video/mp4"
-            frameborder="0"
+            frameBorder="0"
             autoPlay={true}
             loop
             muted
@@ -156,7 +156,7 @@ class Dashboard extends React.Component {
         <div className="home-dashboard-content">
           <div>
             <div className="home-dashboard-description">
-              <Fade bottom distance="20px" duration="600">
+              <Fade bottom distance="20px" duration={600}>
                 <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
                 <h3
                   className="home-dashboard-h3"
@@ -205,7 +205,7 @@ class Dashboard extends React.Component {
             </div>
 
             {/*<div className="teleport">
-              <Fade bottom distance="20px" duration="600" delay="300">
+              <Fade bottom distance="20px" duration={600} delay={300}>
                 <p
                   className="featured-casino-text"
                   id="mobile-casino-text"
@@ -214,7 +214,7 @@ class Dashboard extends React.Component {
                   ALL CASINOS
                 </p>
               </Fade>
-              <Fade bottom distance="20px" duration="600" delay="300">
+              <Fade bottom distance="20px" duration={600} delay={300}>
                 <div className="dashboard-image-container">
                   <a
                     href="https://play.decentraland.org/?position=-75%2C77&realm=fenrir-gold"
@@ -257,7 +257,7 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <Fade bottom distance="20px" duration="600" delay="300">
+        <Fade bottom distance="20px" duration={600} delay={300}>
           {this.state.isDashboard === true ? (
             <WalletInfo
             // showSpinner={this.showSpinner}

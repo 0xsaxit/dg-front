@@ -56,7 +56,7 @@ class WalletOverlay extends React.Component {
   };
 
   getUserInfo = () => {
-    return fetch(`${Global.BASE_URL}/order/getUser`, {
+    return fetch(`${Global.API_BASE_URL}/order/getUser`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -7,7 +7,7 @@ import { MaticPOSClient } from '@maticnetwork/maticjs';
 /////////////////////////////////////////////////////////////////////////////////////////
 // set global constant values
 const API_BASE_URL = 'https://api.decentral.games';
-const BASE_URL = 'https://api.decentral.games';
+const BASE_URL = 'https://decentral.games';
 const DEFAULT_AMOUNT = 1000;
 const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
@@ -27,6 +27,11 @@ const ADMIN_ADDRESSES = [
   '0x1FcdE174C13691ef0C13fcEE042e0951452C0f8A'.toLowerCase(),
   '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
 ];
+const TITLE = 'Decentral Games';
+const DESCRIPTION =
+  '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
+const BUTTER_CMS_URL = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
+const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +135,7 @@ const API_ADDRESSES = (async () => {
 })();
 
 function getAddresses() {
-  return fetch(`${BASE_URL}/addresses`, {
+  return fetch(`${API_BASE_URL}/addresses`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -598,7 +603,6 @@ function getConfirmedTx(txHash) {
 /////////////////////////////////////////////////////////////////////////////////////////
 export default {
   API_ADDRESSES,
-  ADMIN_ADDRESSES,
   API_BASE_URL,
   BASE_URL,
   DEFAULT_AMOUNT,
@@ -609,6 +613,11 @@ export default {
   MATIC_URL,
   MATIC_EXPLORER,
   BICONOMY_API_KEY,
+  ADMIN_ADDRESSES,
+  TITLE,
+  DESCRIPTION,
+  BUTTER_CMS_URL,
+  DISCORD_URL,
   delay,
   getTokenContract,
   balanceOfToken,

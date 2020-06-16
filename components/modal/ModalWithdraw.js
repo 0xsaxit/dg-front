@@ -265,7 +265,7 @@ class ModalWithdraw extends React.Component {
   };
 
   getUserStatus = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -302,7 +302,7 @@ class ModalWithdraw extends React.Component {
   };
 
   postHistory = async (amount, type, state, txHash, step) => {
-    return fetch(`${Global.BASE_URL}/order/updateHistory`, {
+    return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

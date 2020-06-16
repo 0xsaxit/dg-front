@@ -35,7 +35,7 @@ const INITIAL_STATE = {
   userStepValue: 0,
   isLoaded: 0,
   isValidMetamask: 0,
-  existAccount: 0
+  existAccount: 0,
 };
 
 class ModalVerify extends Component {
@@ -141,7 +141,7 @@ class ModalVerify extends Component {
   };
 
   getUserVerify = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -167,7 +167,7 @@ class ModalVerify extends Component {
         window.web3 = new window.Web3(window.ethereum);
         await window.ethereum.enable();
         USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-        fetch(`${Global.BASE_URL}/order/addAddress`, {
+        fetch(`${Global.API_BASE_URL}/order/addAddress`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -208,7 +208,7 @@ class ModalVerify extends Component {
   };
 
   postUserVerify = (step) => {
-    return fetch(`${Global.BASE_URL}/order/updateUserVerify`, {
+    return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -222,7 +222,6 @@ class ModalVerify extends Component {
   };
 
   render() {
-
     if (this.state.isLoaded === 0) {
       return (
         <Button

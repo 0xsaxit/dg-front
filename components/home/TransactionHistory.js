@@ -72,7 +72,7 @@ class History extends React.Component {
   };
 
   getUserStatus = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -85,7 +85,7 @@ class History extends React.Component {
   };
 
   getHistoryData = () => {
-    return fetch(`${Global.BASE_URL}/order/getHistory`, {
+    return fetch(`${Global.API_BASE_URL}/order/getHistory`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -100,7 +100,7 @@ class History extends React.Component {
   };
 
   getPlayData = () => {
-    return fetch(`${Global.BASE_URL}/order/getPlayInfo`, {
+    return fetch(`${Global.API_BASE_URL}/order/getPlayInfo`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -128,7 +128,7 @@ class History extends React.Component {
 
   topLinks = () => {
     return (
-      <Fade bottom distance="20px" duration="600">
+      <Fade bottom distance="20px" duration={600}>
         <div className="account-other-tabs">
           <h3 className="account-other-h3">Transaction History</h3>
 
@@ -238,7 +238,7 @@ class History extends React.Component {
           <div className="account-other-inner-container">
             {this.topLinks()}
 
-            <Fade bottom distance="20px" duration="600" delay="200">
+            <Fade bottom distance="20px" duration={600} delay={200}>
               <div id="tx-box-history-2">
                 <ContentTransactions content={'labels'} />
 

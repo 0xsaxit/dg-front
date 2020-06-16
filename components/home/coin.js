@@ -45,7 +45,7 @@ class Coin extends React.Component {
   }
 
   getUserVerify = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -80,7 +80,7 @@ class Coin extends React.Component {
     }
   };
   getUserInfo = () => {
-    return fetch(`${Global.BASE_URL}/order/getUser`, {
+    return fetch(`${Global.API_BASE_URL}/order/getUser`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -191,7 +191,7 @@ class Coin extends React.Component {
         <Menu dashboard={this.state.isDashboard} />
         <div className="contentContainer" style={{ height: '100vh' }}>
           <div className="account-other-inner-container">
-            <Fade bottom distance="20px" duration="600">
+            <Fade bottom distance="20px" duration={600}>
               <div className="account-other-tabs">
                 <h3 className="account-other-h3"> NFTs </h3>
                 {this.state.NFTstate == 0 ? (
@@ -218,7 +218,7 @@ class Coin extends React.Component {
               </div>
             </Fade>
 
-            <Fade bottom distance="20px" duration="600" delay="200">
+            <Fade bottom distance="20px" duration={600} delay={200}>
               {this.state.NFTstate == 0 ? (
                 <div id="my-nft-box">
                   <div style={{ padding: '10px' }}>

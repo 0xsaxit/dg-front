@@ -310,7 +310,7 @@ class ModalDeposit extends React.Component {
   };
 
   getUserStatus = () => {
-    return fetch(`${Global.BASE_URL}/order/verifyAddress`, {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -323,7 +323,7 @@ class ModalDeposit extends React.Component {
   };
 
   postUserVerify = (step) => {
-    return fetch(`${Global.BASE_URL}/order/updateUserVerify`, {
+    return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -337,7 +337,7 @@ class ModalDeposit extends React.Component {
   };
 
   postUserAuthState = (value) => {
-    return fetch(`${Global.BASE_URL}/order/updateUserAuthState`, {
+    return fetch(`${Global.API_BASE_URL}/order/updateUserAuthState`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -370,7 +370,7 @@ class ModalDeposit extends React.Component {
   };
 
   postHistory = async (amount, type, state, txHash) => {
-    return fetch(`${Global.BASE_URL}/order/updateHistory`, {
+    return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

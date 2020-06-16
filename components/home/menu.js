@@ -36,8 +36,8 @@ class SideMenu extends React.Component {
             style={{ width: '42px', paddingTop: '30px', paddingBottom: '35px' }}
           />
         </Link>
-        <Link href="/" exact="true" className="sidebar-menu-text">
-          <Menu.Item className="sidebar-menu-text">
+        <Link href="/">
+          <Menu.Item className="sidebar-menu-text" exact="true">
             <span>
               {' '}
               <MdPlayCircleOutline
@@ -49,8 +49,8 @@ class SideMenu extends React.Component {
           </Menu.Item>
         </Link>
         {this.props.dashboard === true ? (
-          <Link href="/txhistory" exact="true">
-            <Menu.Item className="sidebar-menu-text">
+          <Link href="/txhistory">
+            <Menu.Item className="sidebar-menu-text" exact="true">
               <span>
                 {' '}
                 <MdHistory style={{ fontSize: '30px', paddingBottom: '6px' }} />
@@ -63,8 +63,12 @@ class SideMenu extends React.Component {
           <p></p>
         )}
         {this.props.dashboard === true ? (
-          <Link href="/nfts" exact="true" style={{ color: 'grey' }}>
-            <Menu.Item className="sidebar-menu-text">
+          <Link href="/nfts">
+            <Menu.Item
+              className="sidebar-menu-text"
+              exact="true"
+              style={{ color: 'grey' }}
+            >
               <span>
                 {' '}
                 <Svgeth style={{ paddingBottom: '9px' }} />
@@ -77,8 +81,8 @@ class SideMenu extends React.Component {
           <p></p>
         )}
         {this.props.dashboard === true ? (
-          <Link href="/exchange" exact="true">
-            <Menu.Item className="sidebar-menu-text">
+          <Link href="/exchange">
+            <Menu.Item className="sidebar-menu-text" exact="true">
               <span>
                 {' '}
                 <MdCreditCard
