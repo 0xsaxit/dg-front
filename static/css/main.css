@@ -384,9 +384,9 @@ img.ui.image.partner-image {
 .modal-p-error {
   text-align: right;
   color: red;
-  padding-top: 21px;
+  padding-top: 30px;
   padding-right: 30px;
-  margin-bottom: -42px !important;
+  margin-bottom: -30px !important;
 }
 
 .modal-input {
