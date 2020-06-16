@@ -567,25 +567,25 @@ div.wallet_board table#header tr td {
   }
 }
 
-.modal-deposit-button {
-  padding-left: 18px;
-  color: rgba(1, 133, 244, 1);
-  font-size: 15px;
-  font-weight: bold;
+a.modal-deposit-button {
+  padding-left: 18px !important;
+  color: rgba(1, 133, 244, 1) !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
 }
 
-.modal-withdraw-button {
-  margin-left: 10px;
-  color: rgba(1, 133, 244, 1);
-  font-size: 15px;
-  font-weight: bold;
+a.modal-withdraw-button {
+  margin-left: 10px !important;
+  color: rgba(1, 133, 244, 1) !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
 }
 
-.modal-deposit-button:hover,
-.modal-withdraw-button:hover {
-  transform: translateY(0px);
-  cursor: pointer;
-  color: rgba(1, 133, 244, 1);
+a.modal-deposit-button:hover,
+a.modal-withdraw-button:hover {
+  transform: translateY(0px) !important;
+  cursor: pointer !important;
+  color: rgba(1, 133, 244, 1) !important;
 }
 
 .admin-button2 {
