@@ -15,10 +15,10 @@ const GAS_LIMIT = '900000';
 const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
-const PARENT_NETWORK_ID = 3; // 1: Mainnet, 3: Ropsten
-const MATIC_NETWORK_ID = '15001';
-const MATIC_URL = 'https://testnetv3.matic.network';
-const MATIC_EXPLORER = 'https://testnetv3-explorer.matic.network';
+const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: goerli
+const MATIC_NETWORK_ID = '80001';
+const MATIC_URL = 'https://rpc-mumbai.matic.today'; // 'https://testnetv3.matic.network';
+const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/'; // 'https://testnetv3-explorer.matic.network';
 const BICONOMY_API_KEY = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
 const ADMIN_ADDRESSES = [
   '0xa7C825BB8c2C4d18288af8efe38c8Bf75A1AAB51'.toLowerCase(),
@@ -48,7 +48,7 @@ const metaTransactionType = [
 ];
 
 let domainData = {
-  name: 'Decentraland',
+  name: 'DummyToken', // 'Decentraland',
   version: '1',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',
@@ -59,7 +59,7 @@ let domainData = {
 // fetch wallet and contract addresses from server REST API
 let RELAY_ADDRESS = '';
 let MAINNET_TOKEN_ADDRESS = '';
-let ROPSTEN_TOKEN_ADDRESS = '';
+let GOERLI_TOKEN_ADDRESS = '';
 let MATIC_TOKEN_ADDRESS = '';
 let PARENT_CONTRACT_ADDRESS = '';
 let TREASURY_SLOTS_ADDRESS = '';
@@ -68,7 +68,7 @@ let TREASURY_BACKGAMMON_ADDRESS = '';
 let TREASURY_BLACKJACK_ADDRESS = '';
 let ROOTCHAIN_ADDRESS = '';
 let ROOTCHAINMANAGER_ADDRESS = '';
-let WITHDRAWMANAGER_ADDRESS = '';
+// let WITHDRAWMANAGER_ADDRESS = '';
 let maticPOSClient;
 
 const API_ADDRESSES = (async () => {
@@ -77,7 +77,7 @@ const API_ADDRESSES = (async () => {
 
   RELAY_ADDRESS = json.WORKER_WALLET_ADDRESS;
   MAINNET_TOKEN_ADDRESS = json.MAINNET_TOKEN_ADDRESS;
-  ROPSTEN_TOKEN_ADDRESS = json.ROPSTEN_TOKEN_ADDRESS;
+  GOERLI_TOKEN_ADDRESS = json.GOERLI_TOKEN_ADDRESS;
   MATIC_TOKEN_ADDRESS = json.MATIC_TOKEN_ADDRESS;
   PARENT_CONTRACT_ADDRESS = json.PARENT_CONTRACT_ADDRESS;
   TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
@@ -86,11 +86,11 @@ const API_ADDRESSES = (async () => {
   TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
   ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
   ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
-  WITHDRAWMANAGER_ADDRESS = json.WITHDRAWMANAGER_ADDRESS;
+  // WITHDRAWMANAGER_ADDRESS = json.WITHDRAWMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDRESS);
   console.log('MAINNET_TOKEN_ADDRESS: ' + MAINNET_TOKEN_ADDRESS);
-  console.log('ROPSTEN_TOKEN_ADDRESS: ' + ROPSTEN_TOKEN_ADDRESS);
+  console.log('GOERLI_TOKEN_ADDRESS: ' + GOERLI_TOKEN_ADDRESS);
   console.log('MATIC_TOKEN_ADDRESS: ' + MATIC_TOKEN_ADDRESS);
   console.log('PARENT_CONTRACT_ADDRESS: ' + PARENT_CONTRACT_ADDRESS);
   console.log('TREASURY_SLOTS_ADDRESS: ' + TREASURY_SLOTS_ADDRESS);
@@ -99,7 +99,7 @@ const API_ADDRESSES = (async () => {
   console.log('TREASURY_BLACKJACK_ADDRESS: ' + TREASURY_BLACKJACK_ADDRESS);
   console.log('ROOTCHAIN_ADDRESS: ' + ROOTCHAIN_ADDRESS);
   console.log('ROOTCHAINMANAGER_ADDRESS: ' + ROOTCHAINMANAGER_ADDRESS);
-  console.log('WITHDRAWMANAGER_ADDRESS: ' + WITHDRAWMANAGER_ADDRESS);
+  // console.log('WITHDRAWMANAGER_ADDRESS: ' + WITHDRAWMANAGER_ADDRESS);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ const API_ADDRESSES = (async () => {
   return {
     RELAY_ADDRESS,
     MAINNET_TOKEN_ADDRESS,
-    ROPSTEN_TOKEN_ADDRESS,
+    GOERLI_TOKEN_ADDRESS,
     MATIC_TOKEN_ADDRESS,
     PARENT_CONTRACT_ADDRESS,
     TREASURY_SLOTS_ADDRESS,
@@ -125,7 +125,7 @@ const API_ADDRESSES = (async () => {
     TREASURY_BLACKJACK_ADDRESS,
     ROOTCHAIN_ADDRESS,
     ROOTCHAINMANAGER_ADDRESS,
-    WITHDRAWMANAGER_ADDRESS,
+    // WITHDRAWMANAGER_ADDRESS,
   };
 })();
 
@@ -148,7 +148,7 @@ function getTokenContract(getWeb3, network) {
   if (network == 'root') {
     TOKEN_CONTRACT = new getWeb3.eth.Contract(
       ABIParentToken,
-      ROPSTEN_TOKEN_ADDRESS
+      GOERLI_TOKEN_ADDRESS
     );
   } else if (network == 'child') {
     TOKEN_CONTRACT = new getWeb3.eth.Contract(
@@ -172,7 +172,7 @@ function balanceOfToken(
   let ABI = '';
 
   if (tokenName == 'ropsten') {
-    tokenAddress = ROPSTEN_TOKEN_ADDRESS;
+    tokenAddress = GOERLI_TOKEN_ADDRESS;
     ABI = ABIParentToken;
   } else if (tokenName == 'matic') {
     tokenAddress = MATIC_TOKEN_ADDRESS;
@@ -315,10 +315,6 @@ function exitToMainnet(transactionHash, userAddress) {
       let ret = await maticPOSClient.exitERC20(transactionHash, {
         from: userAddress,
       });
-
-      // .then(async (logs) => {
-      //   console.log('Exit: ' + logs.transactionHash);
-      // });
 
       console.log('Exit to Mainnet done');
       resolve(ret.transactionHash);

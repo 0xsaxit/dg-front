@@ -8,13 +8,13 @@ import SwitchRPC from './SwitchRPC';
 import Global from '../constants';
 
 let web3 = {};
-let tokenAddressRopsten = '';
+let tokenAddressGoerli = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
-  tokenAddressRopsten = addresses.ROPSTEN_TOKEN_ADDRESS;
+  tokenAddressGoerli = addresses.GOERLI_TOKEN_ADDRESS;
   spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
 }
 getAddresses();
@@ -134,7 +134,7 @@ class ModalDeposit extends React.Component {
 
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
-        tokenAddressRopsten,
+        tokenAddressGoerli,
         this.userAddress
       );
       allowedAmount = allowedAmount / Global.FACTOR;
@@ -144,14 +144,14 @@ class ModalDeposit extends React.Component {
 
       if (allowedAmount == 0) {
         await Global.approveToken(
-          tokenAddressRopsten,
+          tokenAddressGoerli,
           Global.MAX_AMOUNT,
           this.userAddress
         );
       } else if (allowedAmount < this.state.amount) {
-        await Global.approveToken(tokenAddressRopsten, 0, this.userAddress);
+        await Global.approveToken(tokenAddressGoerli, 0, this.userAddress);
         await Global.approveToken(
-          tokenAddressRopsten,
+          tokenAddressGoerli,
           Global.MAX_AMOUNT,
           this.userAddress
         );
@@ -159,7 +159,7 @@ class ModalDeposit extends React.Component {
 
       // now deposit tokens from Mainnet to Matic Network
       const txHash = await Global.depositTokenToMatic(
-        tokenAddressRopsten,
+        tokenAddressGoerli,
         amountWei,
         this.userAddress
       );
@@ -425,7 +425,8 @@ class ModalDeposit extends React.Component {
 
   render() {
     this.verifyNetwork(); // verify user is on correct network
-    if (this.state.networkID !== 3) return this.switchRPC();
+    if (this.state.networkID !== Global.PARENT_NETWORK_ID)
+      return this.switchRPC();
 
     return (
       <Modal
@@ -434,7 +435,7 @@ class ModalDeposit extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
-        {this.state.spinner ? <Spinner show={2} /> : null}
+        {this.state.spinner ? <Spinner snow={1} /> : null}
 
         <div id="deposit">
           <div className="ui depositContainer">

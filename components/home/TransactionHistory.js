@@ -230,7 +230,7 @@ class History extends React.Component {
   render() {
     return (
       <div>
-        {this.state.processing ? <Spinner show={1} /> : null}
+        {this.state.processing ? <Spinner snow={0} /> : null}
 
         <Menu dashboard={this.state.isDashboard} />
 

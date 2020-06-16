@@ -15,8 +15,7 @@ class ModalWithdraw extends React.Component {
 
     this.state = {
       amount: Global.DEFAULT_AMOUNT,
-      transactionHash:
-        '0xae8a50e4bd9d34a7d71cec08317edc4018fed6ec680c46b3f2f2abb192a351bc',
+      transactionHash: '',
       networkID: 0,
       userStepValue: 0,
       isValidBurn: 0,
@@ -364,7 +363,8 @@ class ModalWithdraw extends React.Component {
 
   render() {
     this.verifyNetwork(); // verify user is on correct network
-    if (this.state.networkID !== 3) return this.switchRPC();
+    if (this.state.networkID !== Global.PARENT_NETWORK_ID)
+      return this.switchRPC();
 
     return (
       <Modal
@@ -373,7 +373,7 @@ class ModalWithdraw extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
-        {this.state.spinner ? <Spinner show={2} /> : null}
+        {this.state.spinner ? <Spinner snow={1} /> : null}
 
         <div id="deposit">
           <div className="ui depositContainer">

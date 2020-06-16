@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
     Global = require('../constants').default;
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-      this.isBrowserMetamsk = 1;
+      // this.isBrowserMetamsk = 1;
     }
     await this.getUserData();
     this.setState({ isLoading: false });
@@ -63,6 +63,8 @@ class Dashboard extends React.Component {
   };
 
   getUserData = async () => {
+    console.log('USER_ADDRESS: ' + USER_ADDRESS);
+
     try {
       let response = await this.getUserVerify();
       let json = await response.json();
@@ -251,9 +253,8 @@ class Dashboard extends React.Component {
     );
   };
   render() {
-    if (this.state.isLoading === true) {
-      return <Spinner show={this.state.isLoading} />;
-    }
+    if (this.state.isLoading) return <Spinner snow={0} />;
+
     return (
       <div>
         <Fade bottom distance="20px" duration="600" delay="300">

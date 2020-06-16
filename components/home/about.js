@@ -63,14 +63,10 @@ class About extends React.Component {
       console.log(error);
     }
   };
+
   render() {
-    if (this.state.isLoading === true) {
-      return (
-        <div>
-          <Spinner show={this.state.isLoading} />
-        </div>
-      );
-    }
+    if (this.state.isLoading) return <Spinner snow={0} />;
+
     return (
       <div className="games-dashboard">
         <Menu dashboard={this.state.isDashboard} />

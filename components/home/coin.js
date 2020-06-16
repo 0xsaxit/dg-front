@@ -184,13 +184,8 @@ class Coin extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading === true) {
-      return (
-        <div>
-          <Spinner show={this.state.isLoading} />
-        </div>
-      );
-    }
+    if (this.state.isLoading) return <Spinner snow={0} />;
+
     return (
       <div>
         <Menu dashboard={this.state.isDashboard} />
@@ -211,7 +206,10 @@ class Coin extends React.Component {
                   </p>
                 ) : (
                   <p className="account-other-p">
-                    <abbr className="account-hover" onClick={() => this.myNFTs()}>
+                    <abbr
+                      className="account-hover"
+                      onClick={() => this.myNFTs()}
+                    >
                       My NFTs
                     </abbr>{' '}
                     | <b className="account-hover">Buy NFTs </b>
