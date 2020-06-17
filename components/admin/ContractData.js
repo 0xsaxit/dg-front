@@ -102,7 +102,7 @@ class ContractData extends React.Component {
         <div className="ui depositContainer">
           <Grid verticalAlign="middle" textAlign="center">
             <Grid.Row>
-              <h3 className="modal-h3">
+              <h3 className="admin-modal-h3">
                 {this.props.modalType}
                 {this.props.modalType == 'Deposit'
                   ? ' to ' + this.props.gameType + ' Contract'
@@ -110,27 +110,15 @@ class ContractData extends React.Component {
               </h3>
             </Grid.Row>
             <Grid.Row>
-              <p className="modal-p">
-                Your current MANA token balance: {this.state.userBalance}
+              <p className="admin-modal-p">
+                MANA token balance: {this.state.userBalance}
               </p>
             </Grid.Row>
             <Grid.Row>
-              <p className="modal-p">
-                Parent Contract MANA funds: {this.state.contractFunds}
+              <p className="admin-modal-p">
+                Treasury contract MANA funds: {this.state.contractFunds}
               </p>
             </Grid.Row>
-            <Grid.Row>
-              {this.props.gameType == 'MANA Slots' ? (
-                <p className="modal-p">
-                  Slots Contract MANA funds: {this.state.tokensSlots}
-                </p>
-              ) : (
-                <p className="modal-p">
-                  Roulette Contract MANA funds: {this.state.tokensRoulette}
-                </p>
-              )}
-            </Grid.Row>
-            <Divider className="modal-divider" />
             <Grid.Row>
               {this.props.modalType == 'Deposit' ? (
                 <DepositFunds gameType={this.props.gameType} />
@@ -140,7 +128,7 @@ class ContractData extends React.Component {
             </Grid.Row>
             <Grid.Row>
               {this.state.networkID != this.state.maticID ? (
-                <p className="modal-p-error">
+                <p className="admin-modal-p-error">
                   Please switch MetaMask to Matic Network
                 </p>
               ) : null}
