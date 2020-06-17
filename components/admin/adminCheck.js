@@ -64,7 +64,9 @@ const withAdmin = (Component) => {
 
     render() {
       if (this.state.isAdmin == 2) {
-        return <div id="admin" className="ui accountContainer"></div>;
+        return <div id="admin" className="ui accountContainer">
+          <Component {...this.props} />
+        </div>;
       } else if (this.state.isAdmin == 1) {
         return (
           <div id="admin" className="ui accountContainer">
@@ -84,7 +86,7 @@ const withAdmin = (Component) => {
                 textAlign="center"
                 style={{ marginTop: '39vh' }}
               >
-                <Header>
+                <Header style={{color: 'white'}}>
                   {' '}
                   You must be signed in to metamask with an Administrator
                   address to view this page{' '}
