@@ -1410,6 +1410,45 @@ a.item.account-p:focus .svg-eth {
   padding-bottom: 10px !important;
 }
 
+.admin-modal-h3 {
+  color: black;
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 21px;
+}
+
+.admin-modal-p {
+  color: black;
+  margin-top: -21px !important;
+}
+
+.admin-modal-p-error {
+  color: red;
+  padding-bottom: 21px;
+}
+
+.admin-modal-input {
+  margin-top: 9px;
+  height: 45px;
+}
+
+.ui.action.input>.button, 
+.ui.action.input>.buttons {
+  background-color: #2185f4 !important;
+  letter-spacing: 1.25px;
+  font-size: 14px;
+  padding-top: 12px;
+}
+
+.ui.action.input>.button:hover, 
+.ui.action.input>.buttons:hover {
+  transform: translateY(0px);
+}
+
+.ui.action.input:not([class*="left action"])>input:focus {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
 
 /* ----------------------------------------- */
 /*                BUTTONS CSS                */
