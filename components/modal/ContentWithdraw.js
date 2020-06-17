@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { Grid, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';

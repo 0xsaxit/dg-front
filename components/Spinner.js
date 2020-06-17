@@ -1,4 +1,3 @@
-import React from 'react';
 import spin from '../static/images/spin.gif';
 
 const Spinner = (props) => {

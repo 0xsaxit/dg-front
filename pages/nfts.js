@@ -1,33 +1,19 @@
 import Coin from '../components/home/coin';
-import { NextSeo } from 'next-seo';
-// import Head from 'next/head';
 import Layout from '../components/layout.js';
+import Header from '../components/Header';
 import Global from '../components/constants';
 
-export default () => (
-  <Layout>
-    {/* <html lang="en">
-      <Head>
-        <title> Decentral Games </title>
-      </Head>
-    </html> */}
+const NFTs = () => {
+  return (
+    <Layout>
+      <Header
+        title={Global.TITLE + ' | NFTs'}
+        description={Global.DESCRIPTION}
+      />
 
-    <NextSeo
-      openGraph={{
-        type: 'website',
-        url: Global.BASE_URL,
-        title: Global.TITLE,
-        description: Global.DESCRIPTION,
-        images: [
-          {
-            url: Global.BUTTER_CMS_URL,
-            width: 800,
-            height: 600,
-            alt: Global.TITLE,
-          },
-        ],
-      }}
-    />
-    <Coin />
-  </Layout>
-);
+      <Coin />
+    </Layout>
+  );
+};
+
+export default NFTs;
