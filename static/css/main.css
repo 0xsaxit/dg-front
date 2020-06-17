@@ -430,6 +430,7 @@ span.text {
   padding-top: 0px !important;
 }
 
+
 /* ----------------------------------------- */
 /*          WALLET INFO SECTION CSS          */
 /* ----------------------------------------- */
@@ -588,16 +589,6 @@ a.modal-withdraw-button:hover {
   color: rgba(1, 133, 244, 1) !important;
 }
 
-.admin-button2 {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: rgba(1, 133, 244, 1);
-  text-transform: capitalize;
-  font-size: 15px !important;
-  margin-right: 30px !important;
-  margin-left: -7px;
-}
-
 .wallet-info-button-container {
   display: flex;
   flex-direction: row;
@@ -657,6 +648,7 @@ div.progressbar2 {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
+
 
 /* ----------------------------------------- */
 /*         ACCOUNT PAGE SECTIONS CSS         */
@@ -1112,6 +1104,7 @@ svg.spanbox.disable {
   width: 30%;
 }
 
+
 /* ----------------------------------------- */
 /*         WAITING ANIMATION CSS             */
 /* ----------------------------------------- */
@@ -1334,6 +1327,7 @@ svg.spanbox.disable {
   }
 }
 
+
 /* ----------------------------------------- */
 /*                  MISC CSS                 */
 /* ----------------------------------------- */
@@ -1382,6 +1376,40 @@ a.item.account-p:focus .svg-eth {
   right: calc(50% - 70px) !important;
   top: 36px !important;
 }
+
+
+/* ----------------------------------------- */
+/*                 ADMIN CSS                 */
+/* ----------------------------------------- */
+
+.admin-button2 {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: rgba(1, 133, 244, 1);
+  text-transform: capitalize;
+  font-size: 18px !important;
+  margin-right: 30px !important;
+  margin-left: -18px;
+}
+
+.admin-treasury {
+  display: flex;
+}
+
+.admin-treasury-2 {
+  display: flex;
+  margin-top: -12px;
+}
+
+.contentContainer table td.admin-table-padding {
+  padding-left: 11px !important;
+}
+
+.contentContainer table th.admin-table-padding:nth-child(1) {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
 
 /* ----------------------------------------- */
 /*                BUTTONS CSS                */
@@ -1464,6 +1492,7 @@ a.ui.blue.button.play-shimmer:hover,
 .ui.blue.button.metamask-button:hover {
   transform: translateY(-1px);
 }
+
 
 /* ----------------------------------------- */
 /*           DISCORD BUTTON CSS              */
@@ -1560,6 +1589,7 @@ a.ui.blue.button.play-shimmer:hover,
 .Discord:hover .Discord-text {
   opacity: 1;
 }
+
 
 /* ----------------------------------------- */
 /*                MOBILE CSS                 */
