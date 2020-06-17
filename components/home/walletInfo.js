@@ -14,12 +14,16 @@ import Global from '../constants';
 var USER_ADDRESS;
 
 const INITIAL_STATE = {
-  tokenBalance: 0,
-  ethBalance: 0,
+  manaTokenBalanceL1: 0,
+  manaTokenBalanceL2: 0,
+  daiTokenBalanceL1: 0,
+  daiTokenBalanceL2: 0,
+  ethTokenBalanceL1: 0,
+  ethTokenBalanceL2: 0,
   username: '',
 };
 
-class WalletInfo extends React.Component {
+class WalletBalances extends React.Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -86,101 +90,18 @@ class WalletInfo extends React.Component {
 
   getTokenBalance = async () => {
     try {
-      const amount = await Global.balanceOfToken('matic', this.maticWeb3);
-      this.setState({ tokenBalance: amount });
+      const amount1 = await Global.balanceOfToken('ropsten');
+      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
+
+      this.setState({ manaTokenBalanceL1: amount1 });
+      this.setState({ manaTokenBalanceL2: amount2 });
     } catch (err) {
       console.log(err);
     }
   };
-
-  getEthBalance = () => {
-    try {
-      var Obj = this;
-      // window.web3.eth.getBalance(USER_ADDRESS, function(err, amount) {
-      //   if (err)
-      //     return;
-
-      //   Obj.setState({ethBalance: window.web3.fromWei(amount, 'ether').toFixed(8)});
-      // });
-      this.maticWeb3.eth.getBalance(USER_ADDRESS, function (err, amount) {
-        if (err) return;
-        Obj.setState({
-          ethBalance: window.web3.fromWei(amount, 'ether').toFixed(8),
-        });
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // verifyNetwork = () => {
-  // window.web3.version.getNetwork(async (err, network) => {
-
-  // if (network === Global.MATIC_NETWORK_ID) {
-  // this.isMatic = true;
-  // await this.getTokenBalance();
-  // } else {
-  //   this.isMatic = false;
-  //   await this.getTokenBalance(false);
-  // }
-
-  // });
-  // };
 
   render() {
-    const data = [
-      {
-        coin1: 'MANA',
-        image1: mana,
-        balance1: this.state.tokenBalance,
-        enabled: 1,
-      },
-      {
-        coin2: 'ETH',
-        image2: eth,
-        balance2: this.state.ethBalance,
-        enabled: 0,
-      },
-      {
-        coin: 'DAI',
-        image: dai,
-        balance: 0,
-        enabled: 0,
-      },
-      {
-        coin: 'DG',
-        image: dg,
-        balance: 0,
-        enabled: 0,
-      },
-    ];
-
-    let button;
-
-    if (this.state.tokenBalance == 0) {
-      button = (
-        <span>
-          <ModalDeposit
-            // showSpinner={this.props.showSpinner}
-            // hideSpinner={this.props.hideSpinner}
-            update={this.update}
-            authvalue={4}
-          />
-          <Icon name="exclamation-circle" style={{ color: 'red' }} />
-        </span>
-      );
-    } else {
-      button = (
-        <ModalDeposit
-          // showSpinner={this.props.showSpinner}
-          // hideSpinner={this.props.hideSpinner}
-          update={this.update}
-          authvalue={4}
-        />
-      );
-    }
-
-    return (
+        return (
       <div className="wallet_board">
         <div className="account">
           <span className="green-dot">&#8226;</span>
@@ -242,64 +163,88 @@ class WalletInfo extends React.Component {
             >
               <Table.Body>
                 <Table.Row>
-                  <span id="wallet-row">
-                    <img
-                      style={{ verticalAlign: 'middle', marginRight: '6px' }}
-                      className="image inline"
-                      width="20px"
-                      height="20px"
-                      src={mana}
-                    />
-                    {this.state.tokenBalance} MANA
-                    <span style={{ float: 'right' }} id="wallet-row3">
-                      {button}
-                      <ModalWithdraw
-                        isLink={0}
-                        // showSpinner={this.props.showSpinner}
-                        // hideSpinner={this.props.hideSpinner}
-                      />
-                    </span>
-                  </span>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span id="wallet-row">
+                        <img
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
+                          className="image inline"
+                          width="20px"
+                          height="20px"
+                          src={mana}
+                        />
+                        {this.state.manaTokenBalanceL2} MANA
+                      </span>
+                    </div>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span
+                        style={{ float: 'right', marginLeft: '0px' }}
+                        id="wallet-balance-row"
+                      >
+                        <ModalDeposit />
+                        <ModalWithdraw />
+                      </span>
+                    </div>
+                  </div>
                 </Table.Row>
 
                 <Table.Row>
-                  <span id="wallet-row">
-                    <img
-                      id="grey-img"
-                      style={{ verticalAlign: 'middle', marginRight: '6px' }}
-                      className="image inline"
-                      width="20px"
-                      height="20px"
-                      src={dai}
-                    />
-                    <span>{this.state.ethBalance} DAI</span>
-                    <span style={{ float: 'right' }}>
-                      <div className="wallet-info-button-container">
-                        <p className="wallet-info-deposit">Deposit</p>
-                        <p className="wallet-info-withdraw">Withdraw</p>
-                      </div>
-                    </span>
-                  </span>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span id="wallet-row">
+                        <img
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
+                          className="image inline"
+                          width="20px"
+                          height="20px"
+                          src={dai}
+                        />
+                        0 DAI
+                      </span>
+                    </div>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span style={{ float: 'right' }}>
+                        <div className="wallet-info-button-container">
+                          <p className="wallet-info-deposit">Deposit</p>
+                          <p className="wallet-info-withdraw">Withdraw</p>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
                 </Table.Row>
 
                 <Table.Row>
-                  <span id="wallet-row">
-                    <img
-                      id="grey-img"
-                      style={{ verticalAlign: 'middle', marginRight: '6px' }}
-                      className="image inline"
-                      width="20px"
-                      height="20px"
-                      src={eth}
-                    />
-                    <span>{this.state.ethBalance} ETH</span>
-                    <span style={{ float: 'right' }}>
-                      <div className="wallet-info-button-container">
-                        <p className="wallet-info-deposit">Deposit</p>
-                        <p className="wallet-info-withdraw">Withdraw</p>
-                      </div>
-                    </span>
-                  </span>
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span id="wallet-row">
+                        <img
+                          style={{
+                            verticalAlign: 'middle',
+                            marginRight: '6px',
+                          }}
+                          className="image inline"
+                          width="20px"
+                          height="20px"
+                          src={eth}
+                        />
+                        0 ETH
+                      </span>
+                    </div>
+                    <div style={{ minWidth: '50%', float: 'left' }}>
+                      <span style={{ float: 'right' }}>
+                        <div className="wallet-info-button-container">
+                          <p className="wallet-info-deposit">Deposit</p>
+                          <p className="wallet-info-withdraw">Withdraw</p>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
                 </Table.Row>
               </Table.Body>
             </Table>
@@ -320,4 +265,4 @@ class WalletInfo extends React.Component {
   }
 }
 
-export default WalletInfo;
+export default WalletBalances;

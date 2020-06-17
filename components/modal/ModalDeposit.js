@@ -30,6 +30,7 @@ class ModalDeposit extends React.Component {
       networkID: 0,
       isValidDeposit: 0,
       isValidAuthorize: 0,
+      isValidLocation: 0,
       tokenBalanceL1: 0,
       tokenBalanceL2: 0,
       modalOpen: false,
@@ -111,7 +112,7 @@ class ModalDeposit extends React.Component {
   // handle opening or closing this modal
   getTrigger = () => {
     return (
-      <Button content="Deposit" id="depositButton2" onClick={this.handleOpen} />
+      <a className="modal-deposit-button" onClick={this.handleOpen}> Deposit </a>
     );
   };
 
@@ -121,6 +122,24 @@ class ModalDeposit extends React.Component {
 
   handleClose = () => {
     this.setState({ modalOpen: false });
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // verify the users location is not in a blacklisted jurisdiction
+  verifyLocation = async () => {
+    // this.setState({isValidLocation: 0 });
+    // fetch("https://extreme-ip-lookup.com/json")           // Get the IP data
+    //   .then(res => res.json())
+    //   .then(async ip => {
+    //     if (ip.country === 'United States') {
+    // this.setState({ userStepValue: 6 });
+    // window.location.href = "/account";
+    //    this.props.history.push('/account');
+    //     }
+    //     else
+    //       this.setState({isValidLocation: 1 });
+    //   });
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -440,7 +459,29 @@ class ModalDeposit extends React.Component {
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
-              {this.state.userStepValue == 4 ? (
+              {this.state.userStepValue == 999 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // check the user is in a whitelisted jurisdiction
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'location'} // content type
+                    // nextStep={this.nextStep}
+                  />
+                </Grid.Column>
+              ) : this.state.userStepValue == 4 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'authorize'} // content type
+                    isValidAuthorize={this.state.isValidAuthorize}
+                    authorizeMana={this.metaTransaction}
+                    // nextStep={this.nextStep}
+                  />
+                </Grid.Column>
+              ) : this.state.userStepValue == 5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // authorize transfers to Matic Network, then deposit MANA to Matic Network
@@ -453,18 +494,6 @@ class ModalDeposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'authorize'} // content type
-                    isValidAuthorize={this.state.isValidAuthorize}
-                    authorizeMana={this.metaTransaction}
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>

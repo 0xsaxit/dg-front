@@ -384,7 +384,9 @@ img.ui.image.partner-image {
 .modal-p-error {
   text-align: right;
   color: red;
-  margin-top: 20px;
+  padding-top: 30px;
+  padding-right: 30px;
+  margin-bottom: -30px !important;
 }
 
 .modal-input {
@@ -565,14 +567,25 @@ div.wallet_board table#header tr td {
   }
 }
 
-div.wallet_board table button#depositButton2 {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: rgba(1, 133, 244, 1);
-  text-transform: capitalize;
+a.modal-deposit-button {
+  padding-left: 18px !important;
+  color: rgba(1, 133, 244, 1) !important;
   font-size: 15px !important;
-  margin-right: 41px !important;
-  padding-top: 15px;
+  font-weight: bold !important;
+}
+
+a.modal-withdraw-button {
+  margin-left: 10px !important;
+  color: rgba(1, 133, 244, 1) !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
+
+a.modal-deposit-button:hover,
+a.modal-withdraw-button:hover {
+  transform: translateY(0px) !important;
+  cursor: pointer !important;
+  color: rgba(1, 133, 244, 1) !important;
 }
 
 .admin-button2 {
@@ -583,22 +596,6 @@ div.wallet_board table button#depositButton2 {
   font-size: 15px !important;
   margin-right: 30px !important;
   margin-left: -7px;
-}
-
-div.wallet_board table button#depositButton {
-  position: absolute;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: rgba(1, 133, 244, 1);
-  text-transform: capitalize;
-  margin-left: -94px;
-  font-size: 15px !important;
-  padding-top: 15px;
-}
-
-div.wallet_board table button#depositButton:hover,
-div.wallet_board table button#depositButton2:hover {
-  transform: translateY(0px);
 }
 
 .wallet-info-button-container {
@@ -811,7 +808,15 @@ a {
 }
 
 .contentContainer table td:last-child {
-  padding-left: 4% !important;
+  padding-left: calc(4% - 8px) !important;
+}
+
+.ui.table:last-child {
+  margin-bottom: -8px;
+}
+
+table#header.ui.fixed.single.line.table {
+  margin-bottom: -13px;
 }
 
 .contentContainer table td {
@@ -989,6 +994,7 @@ p.titleDescription {
   border-radius: 3px;
   margin-top: 42px;
   padding-bottom: 10px;
+  height: calc(100vh - 260px) !important;
 }
 
 .contentContainer table td.table-status {
