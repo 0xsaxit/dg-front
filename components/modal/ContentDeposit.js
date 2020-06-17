@@ -105,7 +105,7 @@ const ContentDeposit = (props) => {
 
   function contentAuthorize() {
     return (
-      <div className="modal-content-container" style={{ paddingBottom: '90px' }}>
+      <div className="modal-content-container" style={{ paddingBottom: '75px' }}>
         <Grid>
           <Grid.Row>
             <h3 className="modal-h3">Authorize your Wallet on Matic</h3>
@@ -119,7 +119,7 @@ const ContentDeposit = (props) => {
             <Button
               className="modal-buttons"
               color="blue"
-              style={{ marginTop: '20px' }}
+              style={{ marginTop: '0px' }}
               onClick={props.authorizeMana}
             >
               Authorize
@@ -128,7 +128,7 @@ const ContentDeposit = (props) => {
 
           {props.isValidAuthorize == 1 ? (
             <Grid.Column floated='right' width={16}>
-              <p className="modal-p-error">Authorization failed</p>
+              <p className="modal-p-error" style={{ paddingTop: '30px' }}>Authorization failed</p>
             </Grid.Column>
           ) : null}
         </Grid>
