@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import mana from '../../static/images/mana.png';
-// import LogoSpinner from '../LogoSpinner';
-// import spin from '../../static/images/spin.gif';
 import { Table, Dropdown } from 'semantic-ui-react';
 import ModalFunds from './ModalFunds';
 
@@ -212,15 +210,15 @@ class Dashboard extends React.Component {
         payout: this.state.manaRoulettePayout,
         enabled: 1,
       },
-      // {
-      //   name: 'MANA Blackjack',
-      //   image: mana,
-      //   unit: 'MANA',
-      //   balance: 0,
-      //   volume: 0,
-      //   payout: 0,
-      //   enabled: 1
-      // },
+      {
+        name: 'MANA Blackjack',
+        image: mana,
+        unit: 'MANA',
+        balance: 0,
+        volume: 0,
+        payout: 0,
+        enabled: 1
+      }
     ];
 
     const period = [
@@ -235,16 +233,22 @@ class Dashboard extends React.Component {
       <div className="contentContainer" style={{ marginBottom: '-90px' }}>
         <div className="account-other-inner-container">
           <h3 className="account-other-h3"> Admin </h3>
-          <div style={{ marginLeft: '3px' }}>
-            <span className="tx-history-select">
-              <p className="mouseCursor">House Gas:</p>
-              <p className="mouseCursor" style={{ paddingLeft: '3px' }}>
+          <div>
+            <span className="admin-treasury">
+              <p style={{ fontSize: '18px', paddingRight: '27px' }}>Treasury: </p>
+              <p style={{ fontSize: '18px', paddingRight: '60px' }}> 0 MANA </p>
+              <ModalFunds modalType={'Deposit'} />
+              <ModalFunds modalType={'Withdraw'} />
+            </span>
+            <span className="admin-treasury-2">
+              <p style={{ fontSize: '18px', paddingRight: '12px' }}>House Gas: </p>
+              <p style={{ fontSize: '18px', paddingRight: '30px' }}>
                 {' '}
                 {this.state.ethMaticGasBalance} ETH{' '}
               </p>
             </span>
             <Dropdown
-              style={{ float: 'right', marginTop: '-42px' }}
+              style={{ float: 'right', marginTop: '-40px', fontSize: '16px' }}
               inline
               compact
               direction="left"
@@ -254,99 +258,70 @@ class Dashboard extends React.Component {
             />
           </div>
           <div id="tx-box-history" style={{ marginTop: '20px' }}>
-            <Table id="header" singleLine fixed style={{ marginBottom: 0 }}>
+            <Table style={{ marginBottom: '0px', marginTop: '-5px' }}>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Game</Table.HeaderCell>
-                  <Table.HeaderCell className="adminTablePadding">
-                    Volume
+                  <Table.HeaderCell className="admin-table-padding" style={{ fontSize: '13px' }}>
+                    GAME
                   </Table.HeaderCell>
-                  <Table.HeaderCell className="adminTablePadding">
-                    Payouts
+                  <Table.HeaderCell style={{ fontSize: '13px' }}>
+                    VOLUME
                   </Table.HeaderCell>
-                  <Table.HeaderCell className="adminTablePadding">
-                    Balance
+                  <Table.HeaderCell style={{ fontSize: '13px' }}>
+                    PAYOUTS
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '280px' }}>
-                    Manage
+                  <Table.HeaderCell style={{ fontSize: '13px' }}>
+                    BALANCE
+                  </Table.HeaderCell>
+                  <Table.HeaderCell style={{ fontSize: '13px' }}>
+                    CONTRACT
                   </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
-            </Table>
-            <div
-              className="dataTable"
-              style={{ height: 'calc(100vh - 400px)' }}
-            >
-              <Table singleLine fixed>
-                <Table.Header></Table.Header>
-                <Table.Body>
-                  {data.map((row) => {
-                    return (
-                      <Table.Row key={row.name}>
-                        <Table.Cell style={{ paddingLeft: '20px' }}>
-                          <img
-                            style={{ verticalAlign: 'middle' }}
-                            className="image inline"
-                            width="20px"
-                            height="20px"
-                            src={row.image}
+              <Table.Body>
+                {data.map((row) => {
+                  return (
+                    <Table.Row key={row.name}>
+                      <Table.Cell>
+                        <img
+                          style={{ verticalAlign: 'middle' }}
+                          className="image inline"
+                          width="20px"
+                          height="20px"
+                          src={row.image}
+                        />
+                        <span
+                          style={{ textAlign: 'left', marginLeft: '10px' }}
+                        >
+                          {row.name}
+                        </span>
+                      </Table.Cell>
+                      <Table.Cell className="admin-table-padding">
+                        {row.volume} {row.unit}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {row.payout} {row.unit}
+                      </Table.Cell>
+                      <Table.Cell>
+                        {row.balance} {row.unit}
+                      </Table.Cell>
+                      <Table.Cell>
+                        <a
+                          href=""
+                          style={{ color: 'rgba(1, 133, 244, 1)' }}
+                        >
+                          0x1mn2...j2hd931
+                          <Icon
+                            name="caret right"
+                            style={{ color: '#2085F4' }}
                           />
-                          <span
-                            style={{ textAlign: 'left', marginLeft: '10px' }}
-                          >
-                            {row.name}
-                          </span>
-                        </Table.Cell>
-                        <Table.Cell>
-                          {row.volume} {row.unit}
-                        </Table.Cell>
-                        <Table.Cell className="admin-dashboard-table-padding">
-                          {row.payout} {row.unit}
-                        </Table.Cell>
-                        <Table.Cell className="admin-dashboard-table-padding2">
-                          {row.balance} {row.unit}
-                        </Table.Cell>
-                        <Table.Cell style={{ width: '280px' }}>
-                          {row.enabled == 1 ? (
-                            <div>
-                              <span className="tx-history-select">
-                                <ModalFunds
-                                  // showSpinner={this.props.showSpinner}
-                                  // hideSpinner={this.props.hideSpinner}
-                                  modalType={'Deposit'}
-                                  gameType={row.name}
-                                />
-                                <ModalFunds
-                                  // showSpinner={this.props.showSpinner}
-                                  // hideSpinner={this.props.hideSpinner}
-                                  modalType={'Withdraw'}
-                                  gameType={row.name}
-                                />
-                              </span>
-                            </div>
-                          ) : (
-                            <div>
-                              <ModalFunds
-                                // showSpinner={this.props.showSpinner}
-                                // hideSpinner={this.props.hideSpinner}
-                                modalType={'Deposit'}
-                                gameType={row.name}
-                              />
-                              <ModalFunds
-                                // showSpinner={this.props.showSpinner}
-                                // hideSpinner={this.props.hideSpinner}
-                                modalType={'Withdraw'}
-                                gameType={row.name}
-                              />
-                            </div>
-                          )}
-                        </Table.Cell>
-                      </Table.Row>
-                    );
-                  })}
-                </Table.Body>
-              </Table>
-            </div>
+                        </a>
+                      </Table.Cell>
+                    </Table.Row>
+                  );
+                })}
+              </Table.Body>
+            </Table>
           </div>
         </div>
       </div>
