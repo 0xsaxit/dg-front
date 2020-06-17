@@ -9,7 +9,9 @@ const Spinner = (props) => {
         <img src={spin} className="spinner" />
       </div>
     );
-  }
+  } else  {
+  		return ( null );
+	}
 };
 
 export default Spinner;
