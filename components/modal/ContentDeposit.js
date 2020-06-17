@@ -52,7 +52,7 @@ const ContentDeposit = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Authorize MANA transfers and deposit to Matic Network (two
+              Approve MANA transfers and deposit to Matic Network (two
               transactions).
             </p>
             <p className="modal-p-note2">
@@ -105,21 +105,21 @@ const ContentDeposit = (props) => {
 
   function contentAuthorize() {
     return (
-      <div className="modal-content-container">
+      <div className="modal-content-container" style={{ paddingBottom: '90px' }}>
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Authorize MANA on Matic</h3>
+            <h3 className="modal-h3">Authorize your Wallet on Matic</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Authorize MANA transfers on Matic Network to play games.{' '}
+              Authorize your wallet on Matic Network to play games with MANA.{' '}
             </p>
           </Grid.Row>
           <Grid.Row>
             <Button
               className="modal-buttons"
               color="blue"
-              style={{ marginTop: '-10px' }}
+              style={{ marginTop: '20px' }}
               onClick={props.authorizeMana}
             >
               Authorize
