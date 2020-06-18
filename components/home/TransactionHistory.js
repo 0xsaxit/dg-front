@@ -1,9 +1,8 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
-import Fade from 'react-reveal/Fade';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
-import Menu from './menu';
+import Menu from './menu2';
 import Global from '../constants';
 
 class History extends React.Component {
@@ -15,7 +14,7 @@ class History extends React.Component {
       dataPlay: [],
       dataPage: [],
       currentPage: 1,
-      dataType: 'History',
+      dataType: 'Balances',
       processing: true,
       isDashboard: false,
     };
@@ -27,7 +26,7 @@ class History extends React.Component {
   async componentDidMount() {
     // dynamically size transaction data container
     const frameHeight = window.innerHeight;
-    this.maximumCount = Math.floor(frameHeight * 0.0195);
+    this.maximumCount = Math.floor(frameHeight * 0.0175);
 
     // set user address and populate transaction data with initial values (history)
     this.userAddress = window.web3.currentProvider.selectedAddress;
@@ -60,6 +59,7 @@ class History extends React.Component {
     const responsePlay = await this.getPlayData();
     const jsonPlay = await responsePlay.json();
     const dataPlay = jsonPlay.result;
+    const dataBalances = jsonPlay.result;
 
     // set history, play, and page data, and reset processing flag to false
     const dataPage = dataHistory.slice(0, this.maximumCount);
@@ -67,6 +67,7 @@ class History extends React.Component {
       dataHistory: dataHistory,
       dataPlay: dataPlay,
       dataPage: dataPage,
+      dataBalances: dataBalances,
       processing: false,
     });
   };
@@ -128,35 +129,61 @@ class History extends React.Component {
 
   topLinks = () => {
     return (
-      <Fade bottom distance="20px" duration={600}>
-        <div className="account-other-tabs">
-          <h3 className="account-other-h3">Transaction History</h3>
+      <div className="account-other-tabs">
+        <h3 className="account-other-h3">Account</h3>
 
-          <div style={{ marginLeft: '3px' }}>
-            {this.state.dataType == 'History' ? (
-              <p className="account-other-p">
-                <b className="account-hover">Deposits/Withdrawals</b> |{' '}
-                <abbr
-                  className="account-hover"
-                  onClick={() => this.setDataType('Play')}
-                >
-                  Gameplay
-                </abbr>
-              </p>
-            ) : (
-              <p className="account-other-p">
-                <abbr
-                  className="account-hover"
-                  onClick={() => this.setDataType('History')}
-                >
-                  Deposits/Withdrawals
-                </abbr>{' '}
-                | <b className="account-hover">Gameplay</b>
-              </p>
-            )}
-          </div>
+        <div style={{ marginLeft: '3px' }}>
+          {this.state.dataType == 'Balances' ? (
+            <p className="account-other-p">
+              <b className="account-hover">Balances</b> |{' '}
+              <abbr
+                className="account-hover"
+                onClick={() => this.setDataType('Play')}
+              >
+                Game History |{' '}
+              </abbr>
+              <abbr
+                className="account-hover"
+                onClick={() => this.setDataType('History')}
+              >
+                Deposits/Withdrawals
+              </abbr>
+            </p>
+          ) : this.state.dataType == 'Play' ? (
+            <p className="account-other-p">
+              <abbr
+                className="account-hover"
+                onClick={() => this.setDataType('Balances')}
+              >
+                Balances
+              </abbr>{' '}
+              | <b className="account-hover">Game History</b> |{' '}
+              <abbr
+                className="account-hover"
+                onClick={() => this.setDataType('History')}
+              >
+                Deposits/Withdrawals
+              </abbr>{' '}
+            </p>
+          ) : ( 
+            <p className="account-other-p">
+              <abbr
+                className="account-hover"
+                onClick={() => this.setDataType('Balances')}
+              >
+                Balances
+              </abbr>{' '}
+              |               <abbr
+                className="account-hover"
+                onClick={() => this.setDataType('Play')}
+              >
+                Game History |
+              </abbr>{' '}
+              <b className="account-hover">Deposits/Withdrawals</b>
+            </p>
+          )}
         </div>
-      </Fade>
+      </div>
     );
   };
 
@@ -181,7 +208,7 @@ class History extends React.Component {
     return (
       <div
         className="pagination"
-        style={{ paddingTop: '12px', marginLeft: '-18px' }}
+        style={{ paddingTop: '12px' }}
       >
         {currentPage > 1 ? (
           <Icon
@@ -218,7 +245,9 @@ class History extends React.Component {
     const indexStart = (page - 1) * this.maximumCount;
     const indexEnd = indexStart + this.maximumCount;
 
-    if (type === 'History') {
+    if (type === 'Balances') {
+      dataPage = this.state.dataBalances.slice(indexStart, indexEnd);
+    } else if (type === 'History') {
       dataPage = this.state.dataHistory.slice(indexStart, indexEnd);
     } else if (type === 'Play') {
       dataPage = this.state.dataPlay.slice(indexStart, indexEnd);
@@ -229,53 +258,56 @@ class History extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main-container">
         {this.state.processing ? <Spinner snow={0} /> : null}
 
         <Menu dashboard={this.state.isDashboard} />
 
-        <div className="contentContainer">
+        <div className="page-container">
           <div className="account-other-inner-container">
             {this.topLinks()}
 
-            <Fade bottom distance="20px" duration={600} delay={200}>
-              <div id="tx-box-history-2">
-                <ContentTransactions content={'labels'} />
+            <div id="tx-box-history-2">
+              <ContentTransactions content={'labels'} />
 
-                {!this.state.processing ? (
-                  this.state.dataPage !== 'false' ? (
-                    this.state.dataType === 'History' ? (
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      <ContentTransactions
-                        content={'history'} // content type
-                        dataPage={this.state.dataPage}
-                      />
-                    ) : this.state.dataType === 'Play' ? (
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      /////////////////////////////////////////////////////////////////////////////////////////
-                      <ContentTransactions
-                        content={'gameplay'} // content type
-                        dataPage={this.state.dataPage}
-                      />
-                    ) : null
-                  ) : (
-                    <div className="account-other-inner-p">
-                      There is no transaction history for this account
-                    </div>
-                  )
+              {!this.state.processing ? (
+                this.state.dataPage !== 'false' ? (
+                  this.state.dataType === 'Balances' ? (
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    <ContentTransactions
+                      content={'balances'} // content type
+                      dataPage={this.state.dataPage}
+                    />
+                  ) : this.state.dataType === 'Play' ? (
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    /////////////////////////////////////////////////////////////////////////////////////////
+                    <ContentTransactions
+                      content={'gameplay'} // content type
+                      dataPage={this.state.dataPage}
+                    />
+                  ) : this.state.dataType === 'History' ? (
+                    <ContentTransactions
+                      content={'history'} // content type
+                      dataPage={this.state.dataPage}
+                    />
+                  ) : null
                 ) : (
-                  <div
-                    className="account-other-inner-p"
-                    style={{ paddingTop: '5vh', height: '15vh' }}
-                  >
-                    Loading...
+                  <div className="account-other-inner-p">
+                    There is no transaction history for this account
                   </div>
-                )}
-              </div>
+                )
+              ) : (
+                <div
+                  className="account-other-inner-p"
+                  style={{ paddingTop: '5vh', height: '15vh' }}
+                >
+                  Loading...
+                </div>
+              )}
+            </div>
 
-              <div>{this.pagination()}</div>
-            </Fade>
+            <div>{this.pagination()}</div>
           </div>
         </div>
       </div>
