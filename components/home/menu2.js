@@ -128,11 +128,16 @@ class Menu_2 extends React.Component {
           </Menu.Item>
         </Link>
 
-        <Link href="/about">
-          <Menu.Item className="sidebar-menu-text">
+        <Menu.Item
+          href="https://docs.decentral.games/games/slots"
+          target="_blank"
+          className="sidebar-menu-text"
+        >
+          <div>
             ABOUT
-          </Menu.Item>
-        </Link>
+          </div>
+        </Menu.Item>
+      
         <Menu.Item
           href="https://docs.decentral.games"
           target="_blank"
