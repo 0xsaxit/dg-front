@@ -74,7 +74,7 @@ class SideMenu extends React.Component {
             <FaServer style={{ fontSize: '30px', paddingBottom: '6px' }} />
           </span>
           <br />
-          Machines
+          Games
         </Menu.Item>
         <Menu.Item
           onClick={() => this.onMenuClick(2)}
@@ -89,28 +89,6 @@ class SideMenu extends React.Component {
           </span>
           <br />
           TX History
-        </Menu.Item>
-        <Menu.Item className="account-p" href="/blog" style={{ color: 'grey' }}>
-          <span>
-            {' '}
-            <MdBookmarkBorder
-              style={{ fontSize: '30px', paddingBottom: '6px' }}
-            />
-          </span>
-          <br />
-          Blog
-        </Menu.Item>
-        <Menu.Item
-          className="account-p"
-          href="https://docs.decentral.games/disclaimer"
-          style={{ color: 'grey' }}
-        >
-          <span>
-            {' '}
-            <MdInfoOutline style={{ fontSize: '30px', paddingBottom: '6px' }} />
-          </span>
-          <br />
-          Disclaimer
         </Menu.Item>
       </Menu>
     );

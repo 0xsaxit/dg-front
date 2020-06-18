@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'semantic-ui-react';
+import { Modal, Icon } from 'semantic-ui-react';
 import ContractData from './ContractData';
 
 class ModalFunds extends React.Component {
@@ -15,6 +15,7 @@ class ModalFunds extends React.Component {
             <p className="admin-button2">{this.props.modalType}</p>
           </a>
         }
+        closeIcon
       >
         <Modal.Content>
           <ContractData

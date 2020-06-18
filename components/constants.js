@@ -21,11 +21,9 @@ const MATIC_URL = 'https://rpc-mumbai.matic.today'; // 'https://testnetv3.matic.
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/'; // 'https://testnetv3-explorer.matic.network';
 const BICONOMY_API_KEY = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
 const ADMIN_ADDRESSES = [
-  '0xa7C825BB8c2C4d18288af8efe38c8Bf75A1AAB51'.toLowerCase(),
+  '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
   '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
-  '0x1FcdE174C13691ef0C13fcEE042e0951452C0f8A'.toLowerCase(),
-  '0xfbA3346f93172C3d2d138dccc48873aCC2fea331'.toLowerCase(),
 ];
 const TITLE = 'Decentral Games';
 const DESCRIPTION =

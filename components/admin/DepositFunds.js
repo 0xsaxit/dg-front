@@ -35,6 +35,7 @@ class DepositFunds extends React.Component {
       <div>
         <Form.Field>
           <Input
+            className="admin-modal-input"
             placeholder={'ENTER AMOUNT'}
             action={{
               color: 'blue',

@@ -469,19 +469,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 4 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'authorize'} // content type
-                    isValidAuthorize={this.state.isValidAuthorize}
-                    authorizeMana={this.metaTransaction}
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 5 ? (
+               ) : this.state.userStepValue == 4 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // authorize transfers to Matic Network, then deposit MANA to Matic Network
@@ -494,6 +482,18 @@ class ModalDeposit extends React.Component {
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}
                     depositToMatic={this.depositToMatic}
+                    // nextStep={this.nextStep}
+                  />
+                </Grid.Column>
+              ) : this.state.userStepValue == 5 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'authorize'} // content type
+                    isValidAuthorize={this.state.isValidAuthorize}
+                    authorizeMana={this.metaTransaction}
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
