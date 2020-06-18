@@ -1,62 +1,116 @@
 import React from 'react';
 import Link from 'next/link';
 import { Menu, Divider } from 'semantic-ui-react';
-import { MdPlayCircleOutline } from 'react-icons/md';
-import { MdHistory } from 'react-icons/md';
-import { MdBookmarkBorder } from 'react-icons/md';
-import { MdInfoOutline } from 'react-icons/md';
-import { MdCode } from 'react-icons/md';
-import { MdAutorenew } from 'react-icons/md';
-import { MdCreditCard } from 'react-icons/md';
-import Svgeth from '../../static/images/svg6';
+import ModalVerify from '../modal/ModalVerify';
+import ModalDeposit from '../modal/ModalDeposit';
+import mana from '../../static/images/mana_circle.webp';
+import dai from '../../static/images/dai_circle.webp';
+import Global from '../constants';
 
-let Global;
+
+var USER_ADDRESS;
 
 const INITIAL_STATE = {
-  selectedMenu: 0,
+  manaTokenBalanceL1: 0,
+  manaTokenBalanceL2: 0,
+  daiTokenBalanceL1: 0,
+  daiTokenBalanceL2: 0,
+  ethTokenBalanceL1: 0,
+  ethTokenBalanceL2: 0,
+  username: '',
 };
 
-class SideMenu extends React.Component {
+class Menu_1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
 
   async componentDidMount() {
-    Global = require('../constants').default;
+    if (window.web3) {
+      console.log(window);
+      USER_ADDRESS = window.web3.currentProvider.selectedAddress;
+    }
+
+    // Global = require('../constants').default;
+
+    this.maticWeb3 = new window.Web3(
+      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+    );
+
+    let object = this;
+    window.ethereum.on('accountsChanged', async function (accounts) {
+      await object.getUserData();
+    });
+
+    await this.getUserData();
   }
+
+  async getUserData() {
+    await this.getTokenBalance();
+    await this.getUserName();
+  }
+
+  update = () => {
+    this.getTokenBalance();
+  };
+
+  getUserInfo = () => {
+    return fetch(`${Global.API_BASE_URL}/order/getUser`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: window.web3.currentProvider.selectedAddress,
+      }),
+    });
+  };
+
+  getUserName = async () => {
+    try {
+      let response = await this.getUserInfo();
+      let json = await response.json();
+      if (json.status === 'ok') {
+        if (json.result === 'false') {
+          return;
+        }
+
+        this.setState({ username: json.name });
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getTokenBalance = async () => {
+    try {
+      const amount1 = await Global.balanceOfToken('ropsten');
+      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
+
+      this.setState({ manaTokenBalanceL1: amount1 });
+      this.setState({ manaTokenBalanceL2: amount2 });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   render() {
     return (
-      <Menu className="menu-container" icon="labeled" vertical>
+      <Menu className="menu-container" icon="labeled">
         <Link href="/">
           <img
             className="image inline"
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
-            style={{ width: '42px', paddingTop: '30px', paddingBottom: '35px' }}
+            style={{ width: '42px', paddingTop: '15px', paddingBottom: '15px', marginRight: '12px' }}
           />
-        </Link>
-        <Link href="/">
-          <Menu.Item className="sidebar-menu-text" exact="true">
-            <span>
-              {' '}
-              <MdPlayCircleOutline
-                style={{ fontSize: '30px', paddingBottom: '6px' }}
-              />
-            </span>
-            <br />
-            Play Now
-          </Menu.Item>
         </Link>
         {this.props.dashboard === true ? (
           <Link href="/txhistory">
             <Menu.Item className="sidebar-menu-text" exact="true">
-              <span>
-                {' '}
-                <MdHistory style={{ fontSize: '30px', paddingBottom: '6px' }} />
-              </span>
-              <br />
-              TX History
+              ACCOUNT
             </Menu.Item>
           </Link>
         ) : (
@@ -64,64 +118,23 @@ class SideMenu extends React.Component {
         )}
         {this.props.dashboard === true ? (
           <Link href="/nfts">
-            <Menu.Item
-              className="sidebar-menu-text"
-              exact="true"
-              style={{ color: 'grey' }}
-            >
-              <span>
-                {' '}
-                <Svgeth style={{ paddingBottom: '9px' }} />
-              </span>
-              <br />
-              NFTs
+            <Menu.Item className="sidebar-menu-text">
+              NFTS
             </Menu.Item>
           </Link>
         ) : (
           <p></p>
         )}
-        {this.props.dashboard === true ? (
-          <Link href="/exchange">
-            <Menu.Item className="sidebar-menu-text" exact="true">
-              <span>
-                {' '}
-                <MdCreditCard
-                  style={{ fontSize: '32px', paddingBottom: '6px' }}
-                />
-              </span>
-              <br />
-              Buy Crypto
-            </Menu.Item>
-          </Link>
-        ) : (
-          <p></p>
-        )}
-
-        <Divider style={{ width: '71px' }} />
 
         <Link href="/blog">
           <Menu.Item className="sidebar-menu-text">
-            <span>
-              {' '}
-              <MdBookmarkBorder
-                style={{ fontSize: '30px', paddingBottom: '6px' }}
-              />
-            </span>
-            <br />
-            Blog
+            BLOG
           </Menu.Item>
         </Link>
 
         <Link href="/about">
           <Menu.Item className="sidebar-menu-text">
-            <span>
-              {' '}
-              <MdInfoOutline
-                style={{ fontSize: '30px', paddingBottom: '6px' }}
-              />
-            </span>
-            <br />
-            About Us
+            ABOUT
           </Menu.Item>
         </Link>
         <Menu.Item
@@ -130,22 +143,47 @@ class SideMenu extends React.Component {
           className="sidebar-menu-text"
         >
           <div>
-            <span>
-              {' '}
-              <MdCode style={{ fontSize: '30px', paddingBottom: '6px' }} />
-            </span>
-            <br />
-            Docs
+            DOCS
           </div>
         </Menu.Item>
-        {/*<Menu.Item className='sidebar-menu-text translate' >
-          <span> <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589054986/english_ljacid_f9z8h5.jp2" className="translate-image" /></span><br />
-           English 
-          <MdUnfoldMore style={{ fontSize: '15px', marginBottom: '-3px' }}/>
-        </Menu.Item>*/}
+
+        {this.props.dashboard === true ? (
+          <div>
+            <span className="sidebar-menu-text-2">
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                }}
+                className="image inline"
+                width="20px"
+                height="20px"
+                src={dai}
+              />
+              0 DAI
+            </span>
+            <span className="sidebar-menu-text-3">
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                }}
+                className="image inline"
+                width="20px"
+                height="20px"
+                src={mana}
+              />
+              {this.state.manaTokenBalanceL2} MANA
+            </span>
+            <ModalDeposit />
+          </div>
+        ) : (
+          <ModalVerify dashboard={this.dashboard} />
+        )}
+
       </Menu>
     );
   }
 }
 
-export default SideMenu;
+export default Menu_1;
