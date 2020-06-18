@@ -87,11 +87,11 @@ class ModalWithdraw extends React.Component {
   getTrigger = () => {
     if (this.props.isLink) {
       return (
-        <a className="modal-withdraw-button" onClick={this.submitHash}> Exit </a>
+        <a className="account-withdraw-button" onClick={this.submitHash}> Exit </a>
       );
     } else {
       return (
-        <a className="modal-withdraw-button" onClick={this.handleOpen}> Withdraw </a>
+        <a className="account-withdraw-button" onClick={this.handleOpen}> Withdraw </a>
       );
     }
   };

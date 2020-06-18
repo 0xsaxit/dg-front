@@ -1,7 +1,7 @@
 import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Grid, Modal } from 'semantic-ui-react';
+import { Button, Grid, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
@@ -19,7 +19,7 @@ async function getAddresses() {
 }
 getAddresses();
 
-class ModalDeposit extends React.Component {
+class ModalAccountDeposit extends React.Component {
   constructor(props) {
     super(props);
 
@@ -112,10 +112,7 @@ class ModalDeposit extends React.Component {
   // handle opening or closing this modal
   getTrigger = () => {
     return (
-      <Button className="modal-deposit-button" onClick={this.handleOpen}>
-        {' '}
-        ADD CRYPTO{' '}
-      </Button>
+      <a className="account-deposit-button" onClick={this.handleOpen}> Deposit </a>
     );
   };
 
@@ -151,6 +148,7 @@ class ModalDeposit extends React.Component {
   // authorize transfers to Matic Network, then deposit MANA to Matic Network
   depositToMatic = async () => {
     try {
+      // this.showSpinner(1);
       this.setState({ spinner: true });
 
       // check the amount of tokens that user has allowed Matic contract to spend
@@ -161,7 +159,7 @@ class ModalDeposit extends React.Component {
       allowedAmount = allowedAmount / Global.FACTOR;
 
       console.log('allowed amount: ' + allowedAmount);
-      const amountWei = '1'; // web3.utils.toWei(this.state.amount + ''); // *******************************
+      const amountWei = web3.utils.toWei(this.state.amount + '');
 
       if (allowedAmount == 0) {
         await Global.approveToken(
@@ -229,11 +227,13 @@ class ModalDeposit extends React.Component {
         console.log('tx hash: ' + txHash);
       }
 
+      // this.showSpinner(0);
       this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
 
+      // this.showSpinner(0);
       this.setState({ spinner: false });
     }
   };
@@ -243,6 +243,7 @@ class ModalDeposit extends React.Component {
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransaction = async () => {
     try {
+      // this.showSpinner(1);
       this.setState({ spinner: true });
 
       console.log('Matic RPC: ' + Global.MATIC_URL);
@@ -265,6 +266,7 @@ class ModalDeposit extends React.Component {
         console.log('authorization failed');
 
         this.setState({ isValidAuthorize: 1 }); // invalid authorize
+        // this.showSpinner(0);
         this.setState({ spinner: false });
 
         return;
@@ -283,11 +285,13 @@ class ModalDeposit extends React.Component {
         this.setState({ isValidAuthorize: 2 }); // valid authorize
       }
 
+      // this.showSpinner(0);
       this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidAuthorize: 1 }); // invalid authorize
+      // this.showSpinner(0);
       this.setState({ spinner: false });
     }
   };
@@ -295,6 +299,7 @@ class ModalDeposit extends React.Component {
   networkError = () => {
     console.log('network error');
 
+    // this.showSpinner(0);
     this.setState({ spinner: false });
     return;
   };
@@ -422,6 +427,10 @@ class ModalDeposit extends React.Component {
     );
   };
 
+  // showSpinner = (status) => {
+  //   return <Spinner show={status} />;
+  // };
+
   nextStep = () => {
     let value;
     if (this.state.userStepValue < 6) {
@@ -476,7 +485,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 50 ? (
+              ) : this.state.userStepValue == 5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -488,7 +497,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 50.5 ? (
+              ) : this.state.userStepValue == 5.5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // get number of confirmations from Matic Network and display to user
@@ -498,7 +507,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 5 ? ( // 6
+              ) : this.state.userStepValue == 6 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // user has finished onboard process and wishes to deposit more MANA to Matic Network
@@ -525,4 +534,4 @@ class ModalDeposit extends React.Component {
   }
 }
 
-export default ModalDeposit;
+export default ModalAccountDeposit;

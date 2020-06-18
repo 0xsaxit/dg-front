@@ -20,7 +20,7 @@ const INITIAL_STATE = {
   username: '',
 };
 
-class Menu_1 extends React.Component {
+class Menu_2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -99,7 +99,7 @@ class Menu_1 extends React.Component {
 
   render() {
     return (
-      <Menu className="menu-container" icon="labeled">
+      <Menu className="menu-container-dark" icon="labeled">
         <Link href="/">
           <img
             className="image inline"
@@ -107,32 +107,28 @@ class Menu_1 extends React.Component {
             style={{ width: '42px', paddingTop: '15px', paddingBottom: '15px', marginRight: '12px' }}
           />
         </Link>
-        {this.props.dashboard === true ? (
-          <Link href="/txhistory">
-            <Menu.Item className="sidebar-menu-text" exact="true">
-              ACCOUNT
-            </Menu.Item>
-          </Link>
-        ) : (
-          <p></p>
-        )}
-        {this.props.dashboard === true ? (
-          <Link href="/nfts">
-            <Menu.Item className="sidebar-menu-text">
-              NFTS
-            </Menu.Item>
-          </Link>
-        ) : (
-          <p></p>
-        )}
-
+        <Link href="/">
+          <Menu.Item className="sidebar-menu-text" exact="true">
+            HOME
+          </Menu.Item>
+        </Link>
+        <Link href="/txhistory">
+          <Menu.Item className="sidebar-menu-text" exact="true">
+            ACCOUNT
+          </Menu.Item>
+        </Link>
+        <Link href="/nfts">
+          <Menu.Item className="sidebar-menu-text">
+            NFTS
+          </Menu.Item>
+        </Link>
         <Link href="/blog">
           <Menu.Item className="sidebar-menu-text">
             BLOG
           </Menu.Item>
         </Link>
 
-        <Link href="https://docs.decentral.games/games/slots">
+        <Link href="/about">
           <Menu.Item className="sidebar-menu-text">
             ABOUT
           </Menu.Item>
@@ -147,43 +143,39 @@ class Menu_1 extends React.Component {
           </div>
         </Menu.Item>
 
-        {this.props.dashboard === true ? (
-          <div>
-            <span className="sidebar-menu-text-2">
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                }}
-                className="image inline"
-                width="20px"
-                height="20px"
-                src={dai}
-              />
-              0 DAI
-            </span>
-            <span className="sidebar-menu-text-3">
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                }}
-                className="image inline"
-                width="20px"
-                height="20px"
-                src={mana}
-              />
-              {this.state.manaTokenBalanceL2} MANA
-            </span>
-            <ModalDeposit />
-          </div>
-        ) : (
-          <ModalVerify dashboard={this.dashboard} />
-        )}
+        <div>
+          <span className="sidebar-menu-text-2">
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+              }}
+              className="image inline"
+              width="20px"
+              height="20px"
+              src={dai}
+            />
+            0 DAI
+          </span>
+          <span className="sidebar-menu-text-3">
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+              }}
+              className="image inline"
+              width="20px"
+              height="20px"
+              src={mana}
+            />
+            {this.state.manaTokenBalanceL2} MANA
+          </span>
+          <ModalDeposit />
+        </div>
 
       </Menu>
     );
   }
 }
 
-export default Menu_1;
+export default Menu_2;
