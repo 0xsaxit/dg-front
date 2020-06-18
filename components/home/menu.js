@@ -132,7 +132,7 @@ class Menu_1 extends React.Component {
           </Menu.Item>
         </Link>
 
-        <Link href="/about">
+        <Link href="https://docs.decentral.games/games/slots">
           <Menu.Item className="sidebar-menu-text">
             ABOUT
           </Menu.Item>
