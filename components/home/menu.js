@@ -108,7 +108,7 @@ class Menu_1 extends React.Component {
           />
         </Link>
         {this.props.dashboard === true ? (
-          <Link href="/txhistory">
+          <Link href="/account">
             <Menu.Item className="sidebar-menu-text" exact="true">
               ACCOUNT
             </Menu.Item>
@@ -126,12 +126,6 @@ class Menu_1 extends React.Component {
           <p></p>
         )}
 
-        <Link href="/blog">
-          <Menu.Item className="sidebar-menu-text">
-            BLOG
-          </Menu.Item>
-        </Link>
-
         <Menu.Item
           href="https://docs.decentral.games/games/slots"
           target="_blank"
@@ -141,6 +135,12 @@ class Menu_1 extends React.Component {
             GAMES
           </div>
         </Menu.Item>
+
+        <Link href="/blog">
+          <Menu.Item className="sidebar-menu-text">
+            BLOG
+          </Menu.Item>
+        </Link>
 
         <Menu.Item
           href="https://docs.decentral.games"
