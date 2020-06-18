@@ -134,7 +134,7 @@ class Menu_2 extends React.Component {
           className="sidebar-menu-text"
         >
           <div>
-            ABOUT
+            GAMES
           </div>
         </Menu.Item>
       
