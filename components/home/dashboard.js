@@ -8,7 +8,6 @@ import WalletInfo from './walletInfo';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
-// import History from './history';
 import Coin from './coin';
 import About from './about';
 import defaultBackground from '../../static/images/default.png';
@@ -204,73 +203,18 @@ class Dashboard extends React.Component {
               </Fade>
             </div>
 
-            {/*<div className="teleport">
-              <Fade bottom distance="20px" duration={600} delay={300}>
-                <p
-                  className="featured-casino-text"
-                  id="mobile-casino-text"
-                  style={{ paddingTop: '60px' }}
-                >
-                  ALL CASINOS
-                </p>
-              </Fade>
-              <Fade bottom distance="20px" duration={600} delay={300}>
-                <div className="dashboard-image-container">
-                  <a
-                    href="https://play.decentraland.org/?position=-75%2C77&realm=fenrir-gold"
-                    target="_blank"
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/chateau_account_preview_xezmyv_obtddn_v5r3gv.jpg"
-                      className="dashboard-image"
-                    />
-                  </a>
-                  <a
-                    href="https://play.decentraland.org/?position=-55%2C143&realm=fenrir-gold"
-                    target="_blank"
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/serenity_account_preview_b6v4sn_lq3udz_krd9f3.jpg"
-                      className="dashboard-image"
-                    />
-                  </a>
-                  <a
-                    href="https://play.decentraland.org/?position=-118%2C134&realm=fenrir-gold"
-                    target="_blank"
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058165/tominoya_account_preview_tshnux_c6rgvv_rqd6ct.jpg"
-                      className="dashboard-image"
-                    />
-                  </a>
-                </div>
-              </Fade>
-            </div>*/}
           </div>
           <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
         </div>
       </div>
     );
   };
+
   render() {
     if (this.state.isLoading) return <Spinner snow={0} />;
 
     return (
       <div>
-        <Fade bottom distance="20px" duration={600} delay={300}>
-          {this.state.isDashboard === true ? (
-            <WalletInfo
-            // showSpinner={this.showSpinner}
-            // hideSpinner={this.hideSpinner}
-            />
-          ) : (
-            <Wallet
-              // showSpinner={this.showSpinner}
-              // hideSpinner={this.hideSpinner}
-              walletInfo={this.walletInfo}
-            />
-          )}
-        </Fade>
         <div className="home-dashboard">
           <Menu dashboard={this.state.isDashboard} />
           {this.getContent()}
