@@ -6,6 +6,8 @@ import ContentTransactions from './ContentTransactions';
 import Menu from './menu';
 import Global from '../constants';
 
+import DepositEvent from '../DepositEvent';
+
 class History extends React.Component {
   constructor(props) {
     super(props);
@@ -237,6 +239,8 @@ class History extends React.Component {
         <div className="contentContainer">
           <div className="account-other-inner-container">
             {this.topLinks()}
+
+            <DepositEvent />
 
             <Fade bottom distance="20px" duration={600} delay={200}>
               <div id="tx-box-history-2">
