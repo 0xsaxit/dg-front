@@ -4,53 +4,58 @@ class DepositEvent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { messages: [] };
+    this.state = { messages: [], depositCount: 0 };
 
+    this.userAddress = '';
     this.connection = {};
   }
 
   componentDidMount() {
+    this.userAddress = window.web3.currentProvider.selectedAddress;
+    this.connection = new WebSocket('wss://ws-mumbai.matic.today/');
+
     const data = {
       id: 1,
       method: 'eth_subscribe',
-      params: ['newDeposits', {}],
+      params: ['newDeposits', { Did: 21 }],
     };
-    this.connection = new WebSocket('wss://ws-mumbai.matic.today/');
 
-    // this.connection.addEventListener(
-    //   { id: 1, method: 'eth_subscribe', params: ['newDeposits', { Did: 21 }] },
-    //   function (event) {
-    //     console.log('Message from server ', event.data);
-    //   }
-    // );
+    // params: ['newDeposits', { Contract: this.userAddress }],
+
+    console.log('data...');
+    console.log(data);
 
     this.connection.onopen = (event) => {
-      console.log('WebSocket is open now.');
+      console.log('WebSocket now open...');
 
-      this.connection.send(
-        '{"id": 1, "method": "eth_subscribe", "params": ["newDeposits", {}]}'
-      );
+      this.connection.send(JSON.stringify(data));
     };
 
     // listen to onmessage event
-    this.connection.onmessage = (evt) => {
+    this.connection.onmessage = (event) => {
+      console.log('incoming event...');
+      console.log(event);
+
+      console.log('event data...');
+      console.log(event.data);
+
       this.setState({
-        messages: this.state.messages.concat([evt.data]),
+        messages: this.state.messages.concat([event.data]),
       });
     };
-
-    // for testing purposes: sending to the echo service which will send it back back
-    // setInterval((_) => {
-    //   this.connection.send(Math.random());
-    // }, 2000);
   }
 
   render() {
+    console.log('render message...');
+    console.log(this.state.messages);
+
     // slice(-5) gives us the five most recent messages
     return (
       <ul>
-        {this.state.messages.slice(-5).map((msg, idx) => (
-          <li key={'msg-' + idx}>{msg}</li>
+        {this.state.messages.slice(-5).map((message, id) => (
+          <li key={id}>
+            message {id}: {message}
+          </li>
         ))}
       </ul>
     );
