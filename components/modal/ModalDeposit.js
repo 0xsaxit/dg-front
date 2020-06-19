@@ -1,7 +1,7 @@
 import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Grid, Modal } from 'semantic-ui-react';
+import { Button, Grid, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
@@ -130,20 +130,20 @@ class ModalDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // verify the users location is not in a blacklisted jurisdiction
-  verifyLocation = async () => {
-    // this.setState({isValidLocation: 0 });
-    // fetch("https://extreme-ip-lookup.com/json")           // Get the IP data
-    //   .then(res => res.json())
-    //   .then(async ip => {
-    //     if (ip.country === 'United States') {
-    // this.setState({ userStepValue: 6 });
-    // window.location.href = "/account";
-    //    this.props.history.push('/account');
-    //     }
-    //     else
-    //       this.setState({isValidLocation: 1 });
-    //   });
-  };
+  // verifyLocation = async () => {
+  // this.setState({isValidLocation: 0 });
+  // fetch("https://extreme-ip-lookup.com/json")           // Get the IP data
+  //   .then(res => res.json())
+  //   .then(async ip => {
+  //     if (ip.country === 'United States') {
+  // this.setState({ userStepValue: 6 });
+  // window.location.href = "/account";
+  //    this.props.history.push('/account');
+  //     }
+  //     else
+  //       this.setState({isValidLocation: 1 });
+  //   });
+  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,7 @@ class ModalDeposit extends React.Component {
       allowedAmount = allowedAmount / Global.FACTOR;
 
       console.log('allowed amount: ' + allowedAmount);
-      const amountWei = '1'; // web3.utils.toWei(this.state.amount + ''); // *******************************
+      const amountWei = web3.utils.toWei(this.state.amount + '');
 
       if (allowedAmount == 0) {
         await Global.approveToken(
@@ -476,7 +476,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 50 ? (
+              ) : this.state.userStepValue == 5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -488,7 +488,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 50.5 ? (
+              ) : this.state.userStepValue == 5.5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // get number of confirmations from Matic Network and display to user
@@ -498,7 +498,7 @@ class ModalDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 5 ? ( // 6
+              ) : this.state.userStepValue == 6 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // user has finished onboard process and wishes to deposit more MANA to Matic Network
