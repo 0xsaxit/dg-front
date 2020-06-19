@@ -111,32 +111,42 @@ class Menu_1 extends React.Component {
             }}
           />
         </Link>
-
         {this.props.dashboard === true ? (
           <Link href="/account">
             <Menu.Item className="sidebar-menu-text" exact="true">
               ACCOUNT
             </Menu.Item>
           </Link>
-        ) : null}
-
+        ) : (
+          <p></p>
+        )}
         {this.props.dashboard === true ? (
           <Link href="/nfts">
             <Menu.Item className="sidebar-menu-text">NFTS</Menu.Item>
           </Link>
-        ) : null}
+        ) : (
+          <p></p>
+        )}
 
-        <Link href="/games">
-          <Menu.Item className="sidebar-menu-text">GAMES</Menu.Item>
-        </Link>
+        <Menu.Item
+          href="https://docs.decentral.games/games/slots"
+          target="_blank"
+          className="sidebar-menu-text"
+        >
+          <div>GAMES</div>
+        </Menu.Item>
 
         <Link href="/blog">
           <Menu.Item className="sidebar-menu-text">BLOG</Menu.Item>
         </Link>
 
-        <Link href="/docs">
-          <Menu.Item className="sidebar-menu-text">DOCS</Menu.Item>
-        </Link>
+        <Menu.Item
+          href="https://docs.decentral.games"
+          target="_blank"
+          className="sidebar-menu-text"
+        >
+          <div>DOCS</div>
+        </Menu.Item>
 
         {this.props.dashboard === true ? (
           <div>

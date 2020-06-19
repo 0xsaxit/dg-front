@@ -4,7 +4,7 @@ import mana from '../../static/images/mana.png';
 // import LogoSpinner from '../LogoSpinner';
 import Spinner from '../Spinner';
 import Fade from 'react-reveal/Fade';
-import Menu from './menu';
+// import Menu from './menu';
 
 let Global;
 var USER_ADDRESS;
@@ -69,7 +69,7 @@ class About extends React.Component {
 
     return (
       <div className="games-dashboard">
-        <Menu dashboard={this.state.isDashboard} />
+        {/* <Menu dashboard={this.state.isDashboard} /> */}
         {/* <LogoSpinner show={this.state.isRunningTransaction} /> */}
         <div className="games-dashboard-content">
           <Fade bottom distance="20px" duration={600}>
@@ -88,7 +88,10 @@ class About extends React.Component {
               <Grid>
                 <Grid.Row>
                   <Grid.Column computer={4} tablet={8} mobile={16}>
-                    <a href="https://play.decentraland.org/?position=-119%2C133&realm=fenrir-gold" target="_blank">
+                    <a
+                      href="https://play.decentraland.org/?position=-119%2C133&realm=fenrir-gold"
+                      target="_blank"
+                    >
                       <Card className="games-card">
                         <Reveal animated="fade">
                           <Reveal.Content visible>
@@ -114,7 +117,10 @@ class About extends React.Component {
                   </Grid.Column>
 
                   <Grid.Column computer={4} tablet={8} mobile={16}>
-                    <a href="https://play.decentraland.org/?position=-119%2C133&realm=fenrir-gold" target="_blank">
+                    <a
+                      href="https://play.decentraland.org/?position=-119%2C133&realm=fenrir-gold"
+                      target="_blank"
+                    >
                       <Card className="games-card">
                         <Reveal animated="fade">
                           <Reveal.Content visible>
@@ -140,7 +146,10 @@ class About extends React.Component {
                   </Grid.Column>
 
                   <Grid.Column computer={4} tablet={8} mobile={16}>
-                    <a href="https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold" target="_blank">
+                    <a
+                      href="https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold"
+                      target="_blank"
+                    >
                       <Card className="games-card">
                         <Reveal animated="fade">
                           <Reveal.Content visible>
@@ -253,7 +262,6 @@ class About extends React.Component {
                       </Card>
                     </a>
                   </Grid.Column>
-
                 </Grid.Row>
               </Grid>
             </div>
@@ -265,4 +273,3 @@ class About extends React.Component {
 }
 
 export default About;
-

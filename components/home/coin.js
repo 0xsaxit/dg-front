@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Button, Grid, Divider, Icon } from 'semantic-ui-react';
 import ABITominoya from '../ABI/ABITominoya';
-import Menu from './menu2';
+// import Menu from './menu2';
 import Spinner from '../Spinner';
 
 let Global;
@@ -187,7 +187,7 @@ class Coin extends React.Component {
 
     return (
       <div className="main-container">
-        <Menu dashboard={this.state.isDashboard} />
+        {/* <Menu dashboard={this.state.isDashboard} /> */}
         <div className="page-container">
           <div className="account-other-inner-container">
             <div className="account-other-tabs">
@@ -204,10 +204,7 @@ class Coin extends React.Component {
                 </p>
               ) : (
                 <p className="account-other-p">
-                  <abbr
-                    className="account-hover"
-                    onClick={() => this.myNFTs()}
-                  >
+                  <abbr className="account-hover" onClick={() => this.myNFTs()}>
                     Buy NFTs
                   </abbr>{' '}
                   | <b className="account-hover">My NFTs </b>
@@ -217,6 +214,7 @@ class Coin extends React.Component {
 
             {this.state.NFTstate == 1 ? (
               <div> </div>
+            ) : (
               /*<div>
                 <div>
                   <Grid
@@ -394,7 +392,6 @@ class Coin extends React.Component {
                   </Grid>
                 </div>
               </div>*/
-            ) : (
               <div>
                 <div className="nft-container">
                   <div className="nft-image">
@@ -415,12 +412,12 @@ class Coin extends React.Component {
                       <b>Location:</b> -120, 135
                     </p>
                     <p className="nft-other-p" style={{ marginTop: '-12px' }}>
-                      Tominoya is a joint venture with Vegas City on a 52
-                      parcel estate. The casino is broken up into 40
-                      separate NFTs - 20 ground floor and 20 mezzanine.
-                      The casino houses Decentral Games slots and
-                      roulette, and token holders make a percentage
-                      revenue from the games on their specific parcel.
+                      Tominoya is a joint venture with Vegas City on a 52 parcel
+                      estate. The casino is broken up into 40 separate NFTs - 20
+                      ground floor and 20 mezzanine. The casino houses Decentral
+                      Games slots and roulette, and token holders make a
+                      percentage revenue from the games on their specific
+                      parcel.
                     </p>
                     <Button
                       color="blue"
@@ -451,7 +448,13 @@ class Coin extends React.Component {
                       <b>Location:</b> -126, 118
                     </p>
                     <p className="nft-other-p" style={{ marginTop: '-12px' }}>
-                      The Flamingos casino is a joint venture with Vegas City. The casino is located on an 88 parcel estate broken up into 68 separate NFTs - ground floor (15 ETH), second floor (10 ETH), and third floor (7 ETH). The casino houses Decentral Games slots and roulette, and token holders make a percentage revenue from the games on their specific parcel.
+                      The Flamingos casino is a joint venture with Vegas City.
+                      The casino is located on an 88 parcel estate broken up
+                      into 68 separate NFTs - ground floor (15 ETH), second
+                      floor (10 ETH), and third floor (7 ETH). The casino houses
+                      Decentral Games slots and roulette, and token holders make
+                      a percentage revenue from the games on their specific
+                      parcel.
                     </p>
                     <Button
                       color="blue"

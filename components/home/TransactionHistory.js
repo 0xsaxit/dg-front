@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
-import Menu from './menu2';
+// import Menu from './menu2';
 import Global from '../constants';
 
 import DepositEvent from '../DepositEvent';
@@ -261,7 +261,7 @@ class History extends React.Component {
       <div className="main-container">
         {this.state.processing ? <Spinner snow={0} /> : null}
 
-        <Menu dashboard={this.state.isDashboard} />
+        {/* <Menu dashboard={this.state.isDashboard} /> */}
 
         <div className="page-container">
           <div className="account-other-inner-container">

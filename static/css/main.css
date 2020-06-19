@@ -34,7 +34,6 @@ p {
   margin-left: 1em !important;
 }
 
-
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
@@ -114,7 +113,6 @@ p {
 .ui.menu .item:before {
   background: none !important;
 }
-
 
 /* ----------------------------------------- */
 /*               HOME PAGE CSS               */
@@ -254,7 +252,6 @@ video.home-dashboard-video {
   padding-bottom: 45px;
 }
 
-
 /* ----------------------------------------- */
 /*         CREATE ACCOUNT MODAL CSS          */
 /* ----------------------------------------- */
@@ -347,7 +344,6 @@ span.text {
   padding-top: 0px !important;
 }
 
-
 /* ----------------------------------------- */
 /*         MODAL DEPOSIT SECTION CSS         */
 /* ----------------------------------------- */
@@ -374,7 +370,6 @@ span.text {
   width: 100% !important;
   margin-right: 45px;
 }
-
 
 /* ----------------------------------------- */
 /*              DATA TABLE CSS               */
@@ -418,7 +413,7 @@ table#header.ui.fixed.single.line.table {
   border: 0px;
 }
 
-.ui.table thead tr:first-child>th:first-child {
+.ui.table thead tr:first-child > th:first-child {
   padding-left: 3px;
 }
 
@@ -455,7 +450,6 @@ table.ui.fixed.single.line.table {
 .account-purchase {
   color: grey;
 }
-
 
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
@@ -576,7 +570,6 @@ svg.spanbox.disable {
 .spanarrow {
   padding-top: 15px;
 }
-
 
 /* ----------------------------------------- */
 /*         WAITING ANIMATION CSS             */
@@ -807,7 +800,6 @@ svg.spanbox.disable {
   top: 36px !important;
 }
 
-
 /* ----------------------------------------- */
 /*                 ADMIN CSS                 */
 /* ----------------------------------------- */
@@ -853,23 +845,22 @@ svg.spanbox.disable {
   height: 45px;
 }
 
-.ui.action.input>.button, 
-.ui.action.input>.buttons {
+.ui.action.input > .button,
+.ui.action.input > .buttons {
   background-color: #2185f4 !important;
   letter-spacing: 1.25px;
   font-size: 14px;
   padding-top: 12px;
 }
 
-.ui.action.input>.button:hover, 
-.ui.action.input>.buttons:hover {
+.ui.action.input > .button:hover,
+.ui.action.input > .buttons:hover {
   transform: translateY(0px);
 }
 
-.ui.action.input:not([class*="left action"])>input:focus {
+.ui.action.input:not([class*='left action']) > input:focus {
   border-color: rgba(0, 0, 0, 0.25);
 }
-
 
 /* ----------------------------------------- */
 /*                BUTTONS CSS                */
@@ -989,7 +980,6 @@ a.account-withdraw-button:hover {
   cursor: pointer;
 }
 
-
 /* ----------------------------------------- */
 /*           DISCORD BUTTON CSS              */
 /* ----------------------------------------- */
@@ -1085,7 +1075,6 @@ a.account-withdraw-button:hover {
 .Discord:hover .Discord-text {
   opacity: 1;
 }
-
 
 /* ----------------------------------------- */
 /*                MOBILE CSS                 */
@@ -1208,4 +1197,3 @@ a.account-withdraw-button:hover {
     margin-left: -18px !important;
   }
 }
-

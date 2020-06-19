@@ -1,12 +1,11 @@
 import React from 'react';
 import { Image, Button, Icon, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
-import Menu from './menu';
+// import Menu from './menu';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
 import defaultBackground from '../../static/images/default.png';
-
 
 let Global;
 var USER_ADDRESS;
@@ -14,7 +13,7 @@ var USER_ADDRESS;
 const INITIAL_STATE = {
   // isRunningTransaction: false,
   isDashboard: false,
-  selectedMenu: 0,
+  // selectedMenu: 0,
   isLoading: true,
   isVideoLoading: true,
 };
@@ -82,9 +81,9 @@ class Dashboard extends React.Component {
     this.setState({ isDashboard: true });
   };
 
-  selectedMenu = async (index) => {
-    this.setState({ selectedMenu: index });
-  };
+  // selectedMenu = async (index) => {
+  //   this.setState({ selectedMenu: index });
+  // };
 
   getContent = () => {
     return (
@@ -198,7 +197,6 @@ class Dashboard extends React.Component {
                 <p className="home-dashboard-p">Games: Slots, Roulette</p>
               </Fade>
             </div>
-
           </div>
           <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
         </div>
@@ -212,7 +210,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <div className="home-dashboard">
-          <Menu dashboard={this.state.isDashboard} />
+          {/* <Menu dashboard={this.state.isDashboard} /> */}
           {this.getContent()}
         </div>
       </div>

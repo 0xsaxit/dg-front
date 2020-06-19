@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { initGA, logPageView } from './analytics.js';
+import Menu from './home/menu';
 
 export default class Layout extends Component {
   componentDidMount() {
@@ -11,6 +12,12 @@ export default class Layout extends Component {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return (
+      <div>
+        <Menu dashboard={true} />
+
+        {this.props.children}
+      </div>
+    );
   }
 }
