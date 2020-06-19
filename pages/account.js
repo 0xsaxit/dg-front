@@ -3,7 +3,7 @@ import Layout from '../components/layout.js';
 import Header from '../components/Header';
 import Global from '../components/constants';
 
-const TxHistory = () => {
+const Account = () => {
   return (
     <Layout>
       <Header
@@ -16,4 +16,4 @@ const TxHistory = () => {
   );
 };
 
-export default TxHistory;
+export default Account;

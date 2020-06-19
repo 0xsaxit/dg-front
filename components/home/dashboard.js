@@ -1,16 +1,12 @@
 import React from 'react';
 import { Image, Button, Icon, Modal } from 'semantic-ui-react';
-// import LogoSpinner from '../LogoSpinner';
 import Spinner from '../Spinner';
 import Menu from './menu';
-import Wallet from './walletOverlay';
-import WalletInfo from './walletInfo';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
-import Coin from './coin';
-import About from './about';
 import defaultBackground from '../../static/images/default.png';
+
 
 let Global;
 var USER_ADDRESS;

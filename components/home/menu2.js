@@ -112,31 +112,33 @@ class Menu_2 extends React.Component {
             HOME
           </Menu.Item>
         </Link>
-        <Link href="/txhistory">
+        <Link href="/account">
           <Menu.Item className="sidebar-menu-text" exact="true">
             ACCOUNT
           </Menu.Item>
         </Link>
+      
         <Link href="/nfts">
           <Menu.Item className="sidebar-menu-text">
             NFTS
           </Menu.Item>
         </Link>
-        <Link href="/blog">
-          <Menu.Item className="sidebar-menu-text">
-            BLOG
-          </Menu.Item>
-        </Link>
-
+      
         <Menu.Item
           href="https://docs.decentral.games/games/slots"
           target="_blank"
           className="sidebar-menu-text"
         >
           <div>
-            ABOUT
+            GAMES
           </div>
         </Menu.Item>
+      
+        <Link href="/blog">
+          <Menu.Item className="sidebar-menu-text">
+            BLOG
+          </Menu.Item>
+        </Link>
       
         <Menu.Item
           href="https://docs.decentral.games"
