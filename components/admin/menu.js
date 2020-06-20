@@ -23,7 +23,7 @@ class SideMenu extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
     var index = parseInt(localStorage.getItem('selectedMenu') || 0);
     this.setState({ selectedMenu: index });
     this.props.onMenuSelected(index);

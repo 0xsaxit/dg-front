@@ -1,7 +1,7 @@
 import Admin from '../components/admin/admin';
-import Layout from '../components/layout.js';
+import Layout from '../components/Layout.js';
 import Header from '../components/Header';
-import Global from '../components/constants';
+import Global from '../components/Constants';
 
 const Administration = () => {
   return (
@@ -9,6 +9,7 @@ const Administration = () => {
       <Header
         title={Global.TITLE + ' | Admin'}
         description={Global.DESCRIPTION}
+        image={''}
       />
 
       <Admin />

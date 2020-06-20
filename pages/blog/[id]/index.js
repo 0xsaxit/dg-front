@@ -1,19 +1,36 @@
 import BlogPages from './blogPages';
-import Layout from '../../../components/layout.js';
+import { butter } from '../../../store/api';
+import Layout from '../../../components/Layout.js';
 import Header from '../../../components/Header';
-import Global from '../../../components/constants';
 
-const Index = () => {
+const Index = ({ page_title, featured_image, page_summary }) => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | NFTs'}
-        description={Global.DESCRIPTION}
+        title={page_title}
+        description={page_summary}
+        image={featured_image}
       />
 
       <BlogPages />
     </Layout>
   );
+};
+
+Index.getInitialProps = async ({ query }) => {
+  const slug = query.id;
+  const { data } = await butter.post.list({ page_size: 25 });
+  const currentPage = data.data.find((page) => page.slug === slug);
+
+  let currentPage_title = currentPage.title;
+  currentPage_title = currentPage_title.replace(': ', ':');
+  currentPage_title = currentPage_title.replace(' - ', '-');
+
+  return {
+    page_title: currentPage_title,
+    featured_image: currentPage.featured_image,
+    page_summary: currentPage.summary,
+  };
 };
 
 export default Index;

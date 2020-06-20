@@ -30,6 +30,7 @@ const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
 const BUTTER_CMS_URL = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
+const SOCIAL_HANDLE = '@decentralgames';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -174,6 +175,9 @@ function balanceOfToken(
   let tokenAddress = '';
   let ABI = '';
 
+  // console.log('matic token address...');
+  // console.log(MATIC_TOKEN_ADDRESS);
+
   if (tokenName == 'ropsten') {
     tokenAddress = GOERLI_TOKEN_ADDRESS;
     ABI = ABIParentToken;
@@ -183,7 +187,7 @@ function balanceOfToken(
   }
 
   return new Promise(async (resolve, reject) => {
-    console.log('Get balance of token');
+    console.log('Get balance of token: ' + tokenName);
 
     try {
       const TOKEN_CONTRACT = web3Default.eth.contract(ABI).at(tokenAddress);
@@ -616,6 +620,7 @@ export default {
   DESCRIPTION,
   BUTTER_CMS_URL,
   DISCORD_URL,
+  SOCIAL_HANDLE,
   delay,
   getTokenContract,
   balanceOfToken,

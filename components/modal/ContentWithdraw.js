@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Grid, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
-import Global from '../constants';
+import Global from '../Constants';
 
 const ContentWithdraw = (props) => {
   // drop-down menu MANA values

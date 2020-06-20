@@ -1,5 +1,5 @@
 import React from 'react';
-import Global from '../components/constants';
+import Global from '../components/Constants';
 
 export default class extends React.Component {
   static async getInitialProps({ res }) {

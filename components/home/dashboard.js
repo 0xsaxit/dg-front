@@ -24,11 +24,12 @@ class Dashboard extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = { ...INITIAL_STATE };
   }
 
   async componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       // this.isBrowserMetamsk = 1;

@@ -3,15 +3,12 @@ import ModalWithdraw from '../modal/ModalWithdraw';
 import mana from '../../static/images/mana.png';
 import eth from '../../static/images/eth.png';
 import dai from '../../static/images/dai.png';
-import Global from '../constants';
+import Global from '../Constants';
 import ModalAccountDeposit from '../modal/ModalAccountDeposit';
-
 
 const ContentTransactions = (props) => {
   function contentLabels() {
-    return (
-      <div> </div>
-    );
+    return <div> </div>;
   }
 
   function contentHistory() {
@@ -19,11 +16,21 @@ const ContentTransactions = (props) => {
       <Table singleLine fixed>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell className="table-header-text">ACTION</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">AMOUNT</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">RESULT</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">DATE</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">TX HASH</Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              ACTION
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              AMOUNT
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              RESULT
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              DATE
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              TX HASH
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -104,10 +111,18 @@ const ContentTransactions = (props) => {
       <Table id="header" singleLine fixed>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell className="table-header-text">MAINCHAIN BALANCES</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">ACTION</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">MATIC BALANCES</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">ACTION</Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              MAINCHAIN BALANCES
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              ACTION
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              MATIC BALANCES
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              ACTION
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -122,7 +137,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 MANA            
+              0 MANA
             </Table.Cell>
             <Table.Cell className="account-purchase">Purchase</Table.Cell>
             <Table.Cell>
@@ -135,7 +150,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 MANA            
+              0 MANA
             </Table.Cell>
             <Table.Cell>
               <span className="balances-table-span">
@@ -155,7 +170,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 DAI            
+              0 DAI
             </Table.Cell>
             <Table.Cell className="account-purchase">Purchase</Table.Cell>
             <Table.Cell>
@@ -168,7 +183,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 DAI            
+              0 DAI
             </Table.Cell>
             <Table.Cell>
               <span className="balances-table-span">
@@ -188,7 +203,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 ETH            
+              0 ETH
             </Table.Cell>
             <Table.Cell className="account-purchase">Purchase</Table.Cell>
             <Table.Cell>
@@ -201,7 +216,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 ETH           
+              0 ETH
             </Table.Cell>
             <Table.Cell>
               <span className="balances-table-span">
@@ -220,11 +235,21 @@ const ContentTransactions = (props) => {
       <Table singleLine fixed>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell className="table-header-text">ACTION</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">AMOUNT</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">RESULT</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">DATE</Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">TX HASH</Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              ACTION
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              AMOUNT
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              RESULT
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              DATE
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              TX HASH
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -292,7 +317,7 @@ const ContentTransactions = (props) => {
     return contentLabels();
   } else if (props.content == 'balances') {
     return contentBalances();
-  } else if (props.content == 'history') {    
+  } else if (props.content == 'history') {
     return contentHistory();
   } else if (props.content == 'gameplay') {
     return contentGameplay();

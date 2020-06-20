@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
 
     if (window.web3) {
       this.maticWeb3 = new window.Web3(
@@ -217,8 +217,8 @@ class Dashboard extends React.Component {
         balance: 0,
         volume: 0,
         payout: 0,
-        enabled: 1
-      }
+        enabled: 1,
+      },
     ];
 
     const period = [
@@ -235,13 +235,17 @@ class Dashboard extends React.Component {
           <h3 className="account-other-h3"> Admin </h3>
           <div>
             <span className="admin-treasury">
-              <p style={{ fontSize: '18px', paddingRight: '27px' }}>Treasury: </p>
+              <p style={{ fontSize: '18px', paddingRight: '27px' }}>
+                Treasury:{' '}
+              </p>
               <p style={{ fontSize: '18px', paddingRight: '60px' }}> 0 MANA </p>
               <ModalFunds modalType={'Deposit'} />
               <ModalFunds modalType={'Withdraw'} />
             </span>
             <span className="admin-treasury-2">
-              <p style={{ fontSize: '18px', paddingRight: '12px' }}>House Gas: </p>
+              <p style={{ fontSize: '18px', paddingRight: '12px' }}>
+                House Gas:{' '}
+              </p>
               <p style={{ fontSize: '18px', paddingRight: '30px' }}>
                 {' '}
                 {this.state.ethMaticGasBalance} ETH{' '}
@@ -261,7 +265,10 @@ class Dashboard extends React.Component {
             <Table style={{ marginBottom: '0px', marginTop: '-5px' }}>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell className="admin-table-padding" style={{ fontSize: '13px' }}>
+                  <Table.HeaderCell
+                    className="admin-table-padding"
+                    style={{ fontSize: '13px' }}
+                  >
                     GAME
                   </Table.HeaderCell>
                   <Table.HeaderCell style={{ fontSize: '13px' }}>
@@ -290,9 +297,7 @@ class Dashboard extends React.Component {
                           height="20px"
                           src={row.image}
                         />
-                        <span
-                          style={{ textAlign: 'left', marginLeft: '10px' }}
-                        >
+                        <span style={{ textAlign: 'left', marginLeft: '10px' }}>
                           {row.name}
                         </span>
                       </Table.Cell>
@@ -306,10 +311,7 @@ class Dashboard extends React.Component {
                         {row.balance} {row.unit}
                       </Table.Cell>
                       <Table.Cell>
-                        <a
-                          href=""
-                          style={{ color: 'rgba(1, 133, 244, 1)' }}
-                        >
+                        <a href="" style={{ color: 'rgba(1, 133, 244, 1)' }}>
                           0x1mn2...j2hd931
                           <Icon
                             name="caret right"

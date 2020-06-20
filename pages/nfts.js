@@ -1,7 +1,7 @@
 import Coin from '../components/home/coin';
-import Layout from '../components/layout.js';
+import Layout from '../components/Layout.js';
 import Header from '../components/Header';
-import Global from '../components/constants';
+import Global from '../components/Constants';
 
 const NFTs = () => {
   return (
@@ -9,6 +9,7 @@ const NFTs = () => {
       <Header
         title={Global.TITLE + ' | NFTs'}
         description={Global.DESCRIPTION}
+        image={''}
       />
 
       <Coin />

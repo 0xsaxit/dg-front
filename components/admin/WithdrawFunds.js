@@ -18,7 +18,7 @@ class WithdrawFunds extends React.Component {
   }
 
   componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
   }
 
   inputChange = (e) => {

@@ -1,14 +1,15 @@
 import ContentDocs from '../components/home/ContentDocs';
-import Layout from '../components/layout.js';
+import Layout from '../components/Layout.js';
 import Header from '../components/Header';
-import Global from '../components/constants';
+import Global from '../components/Constants';
 
 const Docs = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | NFTs'}
+        title={Global.TITLE + ' | Docs'}
         description={Global.DESCRIPTION}
+        image={''}
       />
 
       <ContentDocs />

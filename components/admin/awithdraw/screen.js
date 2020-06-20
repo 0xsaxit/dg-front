@@ -45,7 +45,7 @@ class Withdraw extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../../constants').default;
+    Global = require('../../Constants').default;
   }
 
   ifMobileRedirect = () => {

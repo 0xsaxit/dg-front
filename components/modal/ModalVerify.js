@@ -56,7 +56,7 @@ class ModalVerify extends Component {
   }
 
   async componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
 
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
@@ -160,6 +160,8 @@ class ModalVerify extends Component {
   };
 
   onMetamask = async (e, d) => {
+    console.log('metamask...');
+
     this.setState({ isValidMetamask: 0 });
     if (window.ethereum) {
       try {

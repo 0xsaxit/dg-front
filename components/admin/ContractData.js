@@ -25,7 +25,7 @@ class ContractData extends React.Component {
   }
 
   componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
 
     if (window.web3) {
       this.USER_ADDRESS = window.web3.currentProvider.selectedAddress;

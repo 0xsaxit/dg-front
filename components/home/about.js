@@ -25,7 +25,7 @@ class About extends React.Component {
   }
 
   async componentDidMount() {
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     }

@@ -20,7 +20,7 @@ import $ from 'jquery';
 // import { NextSeo } from 'next-seo';
 // import Head from 'next/head';
 // import Header from '../../components/Header';
-// import Global from '../../components/constants';
+// import Global from '../../components/Constants';
 
 function blog() {
   const [state, dispatch] = useContext(GlobalContext);

@@ -1,14 +1,15 @@
 import TransactionHistory from '../components/home/TransactionHistory';
-import Layout from '../components/layout.js';
+import Layout from '../components/Layout.js';
 import Header from '../components/Header';
-import Global from '../components/constants';
+import Global from '../components/Constants';
 
 const Account = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Tx History'}
+        title={Global.TITLE + ' | Account'}
         description={Global.DESCRIPTION}
+        image={''}
       />
 
       <TransactionHistory />

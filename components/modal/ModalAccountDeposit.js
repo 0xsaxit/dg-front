@@ -5,7 +5,7 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
-import Global from '../constants';
+import Global from '../Constants';
 
 let web3 = {};
 let tokenAddressGoerli = '';
@@ -43,14 +43,20 @@ class ModalAccountDeposit extends React.Component {
   }
 
   async componentDidMount() {
-    this.userAddress = window.web3.currentProvider.selectedAddress;
+    if (window.web3) {
+      // set user address and network ID
+      this.userAddress = window.web3.currentProvider.selectedAddress;
+      window.web3.version.getNetwork((err, network) => {
+        this.setState({ networkID: parseInt(network) });
+      });
 
-    // set maticWeb3 provider, get token balances, and verify user/set userStepValue
-    this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-    );
-    await this.getTokenBalance();
-    await this.checkUserVerify();
+      // set maticWeb3 provider, get token balances, and verify user/set userStepValue
+      this.maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+      await this.getTokenBalance();
+      await this.checkUserVerify();
+    }
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
@@ -112,7 +118,10 @@ class ModalAccountDeposit extends React.Component {
   // handle opening or closing this modal
   getTrigger = () => {
     return (
-      <a className="account-deposit-button" onClick={this.handleOpen}> Deposit </a>
+      <a className="account-deposit-button" onClick={this.handleOpen}>
+        {' '}
+        Deposit{' '}
+      </a>
     );
   };
 
@@ -408,11 +417,11 @@ class ModalAccountDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  verifyNetwork = async () => {
-    window.web3.version.getNetwork((err, network) => {
-      this.setState({ networkID: parseInt(network) }); // set network ID
-    });
-  };
+  // verifyNetwork = async () => {
+  //   window.web3.version.getNetwork((err, network) => {
+  //     this.setState({ networkID: parseInt(network) }); // set network ID
+  //   });
+  // };
 
   switchRPC = () => {
     return (
@@ -443,7 +452,8 @@ class ModalAccountDeposit extends React.Component {
   };
 
   render() {
-    this.verifyNetwork(); // verify user is on correct network
+    // this.verifyNetwork(); // verify user is on correct network
+
     if (this.state.networkID !== Global.PARENT_NETWORK_ID)
       return this.switchRPC();
 

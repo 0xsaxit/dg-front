@@ -3,9 +3,8 @@ import { Icon } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
 // import Menu from './menu2';
-import Global from '../constants';
-
-import DepositEvent from '../DepositEvent';
+// import DepositEvent from '../modal/DepositEvent';
+import Global from '../Constants';
 
 class History extends React.Component {
   constructor(props) {
@@ -25,14 +24,16 @@ class History extends React.Component {
     this.maximumCount = 0;
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     // dynamically size transaction data container
     const frameHeight = window.innerHeight;
     this.maximumCount = Math.floor(frameHeight * 0.0175);
 
     // set user address and populate transaction data with initial values (history)
-    this.userAddress = window.web3.currentProvider.selectedAddress;
-    this.getUserData();
+    if (window.web3) {
+      this.userAddress = window.web3.currentProvider.selectedAddress;
+      this.getUserData();
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -40,19 +41,19 @@ class History extends React.Component {
   // REST API functions: get/update user's transaction history data and gameplay data
   getUserData = async () => {
     // later move this outside of each individual component *************************************************
-    let response = await this.getUserStatus();
-    let json = await response.json();
+    // let response = await this.getUserStatus();
+    // let json = await response.json();
 
-    if (json.status === 'ok') {
-      if (json.result === 'false') {
-        console.log('no data returned');
-      }
+    // if (json.status === 'ok') {
+    //   if (json.result === 'false') {
+    //     console.log('no data returned');
+    //   }
 
-      let stepValue = parseInt(json.result);
-      if (stepValue > 3) {
-        this.setState({ isDashboard: true });
-      }
-    }
+    //   let stepValue = parseInt(json.result);
+    //   if (stepValue > 3) {
+    //     this.setState({ isDashboard: true });
+    //   }
+    // }
     // ************************************************************************************************
 
     const responseHistory = await this.getHistoryData();
@@ -74,18 +75,18 @@ class History extends React.Component {
     });
   };
 
-  getUserStatus = () => {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-      }),
-    });
-  };
+  // getUserStatus = () => {
+  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: this.userAddress,
+  //     }),
+  //   });
+  // };
 
   getHistoryData = () => {
     return fetch(`${Global.API_BASE_URL}/order/getHistory`, {

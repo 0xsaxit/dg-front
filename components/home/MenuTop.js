@@ -1,98 +1,55 @@
 import React from 'react';
 import Link from 'next/link';
-import { Menu, Divider } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
 import mana from '../../static/images/mana_circle.webp';
 import dai from '../../static/images/dai_circle.webp';
-import Global from '../constants';
+import Global from '../Constants';
 
-var USER_ADDRESS;
-
-const INITIAL_STATE = {
-  manaTokenBalanceL1: 0,
-  manaTokenBalanceL2: 0,
-  daiTokenBalanceL1: 0,
-  daiTokenBalanceL2: 0,
-  ethTokenBalanceL1: 0,
-  ethTokenBalanceL2: 0,
-  username: '',
-};
-
-class Menu_1 extends React.Component {
+class MenuTop extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...INITIAL_STATE };
+
+    this.state = {
+      manaTokenBalance: 0,
+    };
+
+    this.maticWeb3 = {};
   }
 
   async componentDidMount() {
     if (window.web3) {
-      console.log(window);
-      USER_ADDRESS = window.web3.currentProvider.selectedAddress;
+      this.maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+
+      const object = this;
+      window.ethereum.on('accountsChanged', async () => {
+        await object.getTokenBalance();
+      });
+
+      await Global.delay(2000); // give a little time to fetch the addresses from server
+      await this.getTokenBalance();
     }
-
-    // Global = require('../constants').default;
-
-    this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-    );
-
-    let object = this;
-    window.ethereum.on('accountsChanged', async function (accounts) {
-      await object.getUserData();
-    });
-
-    await this.getUserData();
   }
 
-  async getUserData() {
-    await this.getTokenBalance();
-    await this.getUserName();
-  }
-
-  update = () => {
-    this.getTokenBalance();
-  };
-
-  getUserInfo = () => {
-    return fetch(`${Global.API_BASE_URL}/order/getUser`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: window.web3.currentProvider.selectedAddress,
-      }),
-    });
-  };
-
-  getUserName = async () => {
-    try {
-      let response = await this.getUserInfo();
-      let json = await response.json();
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return;
-        }
-
-        this.setState({ username: json.name });
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get balances on Matic Network
   getTokenBalance = async () => {
-    try {
-      const amount1 = await Global.balanceOfToken('ropsten');
-      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
+    console.log('web3 provider...');
+    console.log(this.maticWeb3);
 
-      this.setState({ manaTokenBalanceL1: amount1 });
-      this.setState({ manaTokenBalanceL2: amount2 });
+    try {
+      const amount = await Global.balanceOfToken('matic', this.maticWeb3);
+
+      this.setState({ manaTokenBalance: amount });
+
+      // console.log('balance...');
+      // console.log(amount);
     } catch (err) {
-      console.log(err);
+      console.log('token balance error foo: ' + err);
     }
   };
 
@@ -112,7 +69,7 @@ class Menu_1 extends React.Component {
           />
         </Link>
 
-        {this.props.dashboard === true ? (
+        {this.props.dashboard ? (
           <Link href="/account">
             <Menu.Item className="sidebar-menu-text" exact="true">
               ACCOUNT
@@ -120,7 +77,7 @@ class Menu_1 extends React.Component {
           </Link>
         ) : null}
 
-        {this.props.dashboard === true ? (
+        {this.props.dashboard ? (
           <Link href="/nfts">
             <Menu.Item className="sidebar-menu-text">NFTS</Menu.Item>
           </Link>
@@ -138,7 +95,7 @@ class Menu_1 extends React.Component {
           <Menu.Item className="sidebar-menu-text">DOCS</Menu.Item>
         </Link>
 
-        {this.props.dashboard === true ? (
+        {this.props.dashboard ? (
           <div>
             <span className="sidebar-menu-text-2">
               <img
@@ -153,6 +110,7 @@ class Menu_1 extends React.Component {
               />
               0 DAI
             </span>
+
             <span className="sidebar-menu-text-3">
               <img
                 style={{
@@ -164,16 +122,17 @@ class Menu_1 extends React.Component {
                 height="20px"
                 src={mana}
               />
-              {this.state.manaTokenBalanceL2} MANA
+              {this.state.manaTokenBalance} MANA
             </span>
+
             <ModalDeposit />
           </div>
         ) : (
-          <ModalVerify dashboard={this.dashboard} />
+          <ModalVerify />
         )}
       </Menu>
     );
   }
 }
 
-export default Menu_1;
+export default MenuTop;

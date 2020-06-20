@@ -5,7 +5,7 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentWithdraw from './ContentWithdraw';
 import SwitchRPC from './SwitchRPC';
-import Global from '../constants';
+import Global from '../Constants';
 
 let web3 = {};
 
@@ -32,14 +32,20 @@ class ModalWithdraw extends React.Component {
   }
 
   async componentDidMount() {
-    this.userAddress = window.web3.currentProvider.selectedAddress;
+    if (window.web3) {
+      // set user address and network ID
+      this.userAddress = window.web3.currentProvider.selectedAddress;
+      window.web3.version.getNetwork((err, network) => {
+        this.setState({ networkID: parseInt(network) });
+      });
 
-    // set maticWeb3 provider, get token balances, and verify user/set userStepValue
-    this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-    );
-    await this.getTokenBalance();
-    await this.checkUserVerify();
+      // set maticWeb3 provider, get token balances, and verify user/set userStepValue
+      this.maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+      await this.getTokenBalance();
+      await this.checkUserVerify();
+    }
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
     web3 = new Web3(window.ethereum);
@@ -55,7 +61,7 @@ class ModalWithdraw extends React.Component {
 
     biconomy
       .onEvent(biconomy.READY, () => {
-        console.log('Mexa is Ready: withdraw');
+        console.log('Mexa is Ready: deposit');
       })
       .onEvent(biconomy.ERROR, (error, message) => {
         console.error(error);
@@ -87,11 +93,17 @@ class ModalWithdraw extends React.Component {
   getTrigger = () => {
     if (this.props.isLink) {
       return (
-        <a className="account-withdraw-button" onClick={this.submitHash}> Exit </a>
+        <a className="account-withdraw-button" onClick={this.submitHash}>
+          {' '}
+          Exit{' '}
+        </a>
       );
     } else {
       return (
-        <a className="account-withdraw-button" onClick={this.handleOpen}> Withdraw </a>
+        <a className="account-withdraw-button" onClick={this.handleOpen}>
+          {' '}
+          Withdraw{' '}
+        </a>
       );
     }
   };
@@ -313,11 +325,11 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  verifyNetwork = async () => {
-    window.web3.version.getNetwork((err, network) => {
-      this.setState({ networkID: parseInt(network) }); // set network ID
-    });
-  };
+  // verifyNetwork = async () => {
+  //   window.web3.version.getNetwork((err, network) => {
+  //     this.setState({ networkID: parseInt(network) }); // set network ID
+  //   });
+  // };
 
   switchRPC = () => {
     return (
@@ -353,7 +365,8 @@ class ModalWithdraw extends React.Component {
   };
 
   render() {
-    this.verifyNetwork(); // verify user is on correct network
+    // this.verifyNetwork(); // verify user is on correct network
+
     if (this.state.networkID !== Global.PARENT_NETWORK_ID)
       return this.switchRPC();
 

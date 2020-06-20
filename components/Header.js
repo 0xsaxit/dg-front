@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import Global from './constants';
+import Global from './Constants';
 
 const Header = (props) => {
   return (
@@ -9,8 +9,9 @@ const Header = (props) => {
         <title>{props.title}</title>
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
+        <meta property="og:image" content={props.image} />
         <meta property="og:url" content={Global.BASE_URL} />
-        <meta name="twitter:site" content="@decentralgames" />
+        <meta name="twitter:site" content={Global.SOCIAL_HANDLE} />
       </Head>
 
       <NextSeo

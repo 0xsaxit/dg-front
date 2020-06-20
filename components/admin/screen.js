@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { Header } from 'semantic-ui-react';
 import { Container, Grid, Image } from 'semantic-ui-react';
-import Menu from './menu';
+import MenuTop from './MenuTop';
 import Machine from './machine';
 import History from './history';
 import Dashboard from './dashboard';
@@ -27,7 +27,7 @@ class Admin extends React.Component {
 
   async componentDidMount() {
     let object = this;
-    Global = require('../constants').default;
+    Global = require('../Constants').default;
     window.ethereum.on('accountsChanged', async function (accounts) {
       await object.getUserState();
     });
@@ -87,7 +87,7 @@ class Admin extends React.Component {
         <div className="ui accountContainer">
           <Grid verticalAlign="middle">
             <Grid.Column>
-              <Menu onMenuSelected={this.selectedMenu} />
+              <MenuTop onMenuSelected={this.selectedMenu} />
               {this.getContent()}
             </Grid.Column>
           </Grid>

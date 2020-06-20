@@ -1,7 +1,7 @@
 import Home from '../components/home/dashboard';
-import Layout from '../components/layout.js';
+import Layout from '../components/Layout.js';
 import Header from '../components/Header';
-import Global from '../components/constants';
+import Global from '../components/Constants';
 
 const Index = () => {
   return (
@@ -9,6 +9,7 @@ const Index = () => {
       <Header
         title={Global.TITLE + ' | Home'}
         description={Global.DESCRIPTION}
+        image={''}
       />
 
       <Home />
