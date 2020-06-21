@@ -9,7 +9,7 @@ const Company = () => {
       <Header
         title={Global.TITLE + ' | Company'}
         description={Global.DESCRIPTION}
-        image={''}
+        image={Global.SOCIAL_SHARE_IMAGE}
       />
 
       <About />

@@ -22,7 +22,7 @@ const Header = (props) => {
           description: props.description,
           images: [
             {
-              url: Global.BUTTER_CMS_URL,
+              url: props.image,
               width: 800,
               height: 600,
               alt: props.title,

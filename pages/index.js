@@ -9,7 +9,7 @@ const Index = () => {
       <Header
         title={Global.TITLE + ' | Home'}
         description={Global.DESCRIPTION}
-        image={''}
+        image={Global.SOCIAL_SHARE_IMAGE}
       />
 
       <Home />

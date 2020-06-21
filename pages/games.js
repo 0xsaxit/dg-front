@@ -9,7 +9,7 @@ const Games = () => {
       <Header
         title={Global.TITLE + ' | Games'}
         description={Global.DESCRIPTION}
-        image={''}
+        image={Global.SOCIAL_SHARE_IMAGE}
       />
 
       <ContentGames />

@@ -11,11 +11,21 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
+  console.log('reducer...');
+  console.log(state);
+  console.log(action);
+
   switch (action.type) {
     case 'update_pages':
       return {
         ...state,
         pages: action.data,
+      };
+
+    case 'update_status':
+      return {
+        ...state,
+        dashboard: action.data,
       };
 
     default:

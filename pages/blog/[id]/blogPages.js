@@ -57,7 +57,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
               }}
           /> */}
 
-      {/* <Header title={page_title} description={page_summary} image={''} /> */}
+      {/* <Header title={page_title} description={page_summary} image={featured_image} /> */}
 
       {currentPage && (
         <Screen

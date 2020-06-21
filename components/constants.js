@@ -28,7 +28,7 @@ const ADMIN_ADDRESSES = [
 const TITLE = 'Decentral Games';
 const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
-const BUTTER_CMS_URL = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
+const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -618,7 +618,7 @@ export default {
   ADMIN_ADDRESSES,
   TITLE,
   DESCRIPTION,
-  BUTTER_CMS_URL,
+  SOCIAL_SHARE_IMAGE,
   DISCORD_URL,
   SOCIAL_HANDLE,
   delay,

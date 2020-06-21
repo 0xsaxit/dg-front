@@ -9,7 +9,7 @@ const NFTs = () => {
       <Header
         title={Global.TITLE + ' | NFTs'}
         description={Global.DESCRIPTION}
-        image={''}
+        image={Global.SOCIAL_SHARE_IMAGE}
       />
 
       <Coin />

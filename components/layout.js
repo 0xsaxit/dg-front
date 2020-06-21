@@ -1,44 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import { initGA, logPageView } from './analytics.js';
 import MenuTop from './home/MenuTop';
 import Aux from './_Aux';
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
+const Layout = (props) => {
+  const [state, dispatch] = useContext(GlobalContext);
+  console.log('dashboard value: ' + state.dashboard);
 
-    this.state = {};
-
-    // console.log('isDashboard 2: ' + this.props.isDashboard);
-
-    // this.getContext();
-  }
-
-  getContext() {
-    const [state, dispatch] = useContext(GlobalContext);
-
-    console.log('context dashboard... ' + state.dashboard);
-    console.log(state.dashboard);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (!window.GA_INITIALIZED) {
       initGA();
       window.GA_INITIALIZED = true;
     }
     logPageView();
-  }
+  });
 
-  render() {
-    return (
-      <Aux>
-        <MenuTop dashboard={true} />
+  return (
+    <Aux>
+      <MenuTop dashboard={state.dashboard} />
 
-        {this.props.children}
-      </Aux>
-    );
-  }
-}
+      {props.children}
+    </Aux>
+  );
+};
 
 export default Layout;
