@@ -116,7 +116,7 @@ class Withdraw extends React.Component {
       return (
         <div id="withdraw">
           <Container style={{ marginTop: '25.5em', height: '35em' }}>
-            <Spinner show={1} />
+            <Spinner background={1} />
           </Container>
         </div>
       );
@@ -163,7 +163,7 @@ class Withdraw extends React.Component {
       return (
         <div id="withdraw">
           {this.ifMobileRedirect()}
-          <Spinner show={this.state.isRunningTransaction} />
+          <Spinner background={this.state.isRunningTransaction} />
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
               <Grid.Column>
@@ -307,7 +307,7 @@ class Withdraw extends React.Component {
     return (
       <div id="withdraw">
         {this.ifMobileRedirect()}
-        <Spinner show={this.state.isRunningTransaction} />
+        <Spinner background={this.state.isRunningTransaction} />
         <div className="ui depositContainer">
           <Grid verticalAlign="middle" textAlign="center">
             <Grid.Column>

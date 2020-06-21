@@ -11,7 +11,7 @@ var USER_ADDRESS;
 
 const INITIAL_STATE = {
   // isRunningTransaction: false,
-  isDashboard: false,
+  // isDashboard: false,
   isLoading: true,
 };
 
@@ -29,43 +29,44 @@ class About extends React.Component {
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
     }
-    await this.getUserData();
+    // await this.getUserData();
     this.setState({ isLoading: false });
   }
 
-  getUserVerify = () => {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: USER_ADDRESS,
-      }),
-    });
-  };
-  getUserData = async () => {
-    try {
-      let response = await this.getUserVerify();
-      let json = await response.json();
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return;
-        }
-        let stepValue = parseInt(json.result);
-        if (stepValue > 3) {
-          this.setState({ isDashboard: true });
-        }
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // getUserVerify = () => {
+  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: USER_ADDRESS,
+  //     }),
+  //   });
+  // };
+
+  // getUserData = async () => {
+  //   try {
+  //     let response = await this.getUserVerify();
+  //     let json = await response.json();
+  //     if (json.status === 'ok') {
+  //       if (json.result === 'false') {
+  //         return;
+  //       }
+  //       let stepValue = parseInt(json.result);
+  //       if (stepValue > 3) {
+  //         this.setState({ isDashboard: true });
+  //       }
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   render() {
-    if (this.state.isLoading) return <Spinner snow={0} />;
+    if (this.state.isLoading) return <Spinner background={0} />;
 
     return (
       <div className="games-dashboard">

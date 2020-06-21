@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   ethBalance: 0,
   username: '',
   NFTstate: 0,
-  isDashboard: false,
+  // isDashboard: false,
   isLoading: true,
 };
 
@@ -27,57 +27,64 @@ class Coin extends React.Component {
 
   async componentDidMount() {
     Global = require('../Constants').default;
+
     if (window.web3) {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
+
+      this.maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+
+      await this.getTokenBalance();
+
+      this.getEthBalance();
+      await this.getUserName();
+      this.getParcelID();
     }
-    await this.getUserData();
-    this.maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-    );
 
+    this.setState({ isLoading: false });
+
+    // await this.getUserData();
     // this.verifyNetwork();
-    await this.getTokenBalance();
-
-    this.getEthBalance();
-    await this.getUserName();
-    this.getParcelID();
   }
 
-  getUserVerify = () => {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: USER_ADDRESS,
-      }),
-    });
-  };
-  getUserData = async () => {
-    try {
-      let response = await this.getUserVerify();
-      let json = await response.json();
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          location.href = '/';
-          return;
-        }
-        let stepValue = parseInt(json.result);
-        if (stepValue > 3) {
-          this.setState({ isDashboard: true });
-        } else {
-          location.href = '/';
-          return;
-        }
-        this.setState({ isLoading: false });
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // getUserVerify = () => {
+  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: USER_ADDRESS,
+  //     }),
+  //   });
+  // };
+
+  // getUserData = async () => {
+  //   try {
+  //     let response = await this.getUserVerify();
+  //     let json = await response.json();
+  //     if (json.status === 'ok') {
+  //       if (json.result === 'false') {
+  //         location.href = '/';
+  //         return;
+  //       }
+  //       let stepValue = parseInt(json.result);
+  //       if (stepValue > 3) {
+  //         this.setState({ isDashboard: true });
+  //       } else {
+  //         location.href = '/';
+  //         return;
+  //       }
+  //       this.setState({ isLoading: false });
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   getUserInfo = () => {
     return fetch(`${Global.API_BASE_URL}/order/getUser`, {
       method: 'POST',
@@ -132,6 +139,9 @@ class Coin extends React.Component {
   };
 
   getTokenBalance = async () => {
+    console.log('matic web3 foo...');
+    console.log(this.maticWeb3);
+
     try {
       var amount;
 
@@ -183,7 +193,7 @@ class Coin extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading) return <Spinner snow={0} />;
+    if (this.state.isLoading) return <Spinner background={0} />;
 
     return (
       <div className="main-container">

@@ -1,4 +1,4 @@
-import About from '../components/home/about';
+import ContentDocs from '../components/home/ContentDocs';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
@@ -7,12 +7,12 @@ const Company = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Company'}
+        title={Global.TITLE + ' | Docs'}
         description={Global.DESCRIPTION}
         image={Global.SOCIAL_SHARE_IMAGE}
       />
 
-      <About />
+      <ContentDocs />
     </Layout>
   );
 };

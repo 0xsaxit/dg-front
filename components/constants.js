@@ -72,7 +72,6 @@ let TREASURY_BACKGAMMON_ADDRESS = '';
 let TREASURY_BLACKJACK_ADDRESS = '';
 let ROOTCHAIN_ADDRESS = '';
 let ROOTCHAINMANAGER_ADDRESS = '';
-// let WITHDRAWMANAGER_ADDRESS = '';
 let maticPOSClient;
 
 const API_ADDRESSES = (async () => {
@@ -90,7 +89,6 @@ const API_ADDRESSES = (async () => {
   TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
   ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
   ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
-  // WITHDRAWMANAGER_ADDRESS = json.WITHDRAWMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDRESS);
   console.log('MAINNET_TOKEN_ADDRESS: ' + MAINNET_TOKEN_ADDRESS);
@@ -103,7 +101,6 @@ const API_ADDRESSES = (async () => {
   console.log('TREASURY_BLACKJACK_ADDRESS: ' + TREASURY_BLACKJACK_ADDRESS);
   console.log('ROOTCHAIN_ADDRESS: ' + ROOTCHAIN_ADDRESS);
   console.log('ROOTCHAINMANAGER_ADDRESS: ' + ROOTCHAINMANAGER_ADDRESS);
-  // console.log('WITHDRAWMANAGER_ADDRESS: ' + WITHDRAWMANAGER_ADDRESS);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +126,6 @@ const API_ADDRESSES = (async () => {
     TREASURY_BLACKJACK_ADDRESS,
     ROOTCHAIN_ADDRESS,
     ROOTCHAINMANAGER_ADDRESS,
-    // WITHDRAWMANAGER_ADDRESS,
   };
 })();
 

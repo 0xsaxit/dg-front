@@ -145,7 +145,7 @@ class Deposit extends React.Component {
       return (
         <div id="deposit">
           <Container style={{ marginTop: '25.5em', height: '35em' }}>
-            <Spinner show={1} />
+            <Spinner background={1} />
           </Container>
         </div>
       );
@@ -192,7 +192,7 @@ class Deposit extends React.Component {
       return (
         <div id="deposit">
           {this.ifMobileRedirect()}
-          <Spinner show={this.state.isRunningTransaction} />
+          <Spinner background={this.state.isRunningTransaction} />
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
               <Grid.Column>
@@ -336,7 +336,7 @@ class Deposit extends React.Component {
     return (
       <div id="deposit">
         {this.ifMobileRedirect()}
-        <Spinner show={this.state.isRunningTransaction} />
+        <Spinner background={this.state.isRunningTransaction} />
         <div className="ui depositContainer">
           <Grid verticalAlign="middle" textAlign="center">
             <Grid.Column>

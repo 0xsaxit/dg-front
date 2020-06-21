@@ -1,4 +1,4 @@
-import Home from '../components/home/dashboard';
+import Home from '../components/home/Dashboard';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';

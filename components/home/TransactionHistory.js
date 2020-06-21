@@ -17,7 +17,7 @@ class History extends React.Component {
       currentPage: 1,
       dataType: 'Balances',
       processing: true,
-      isDashboard: false,
+      // isDashboard: false,
     };
 
     this.userAddress = '';
@@ -127,7 +127,7 @@ class History extends React.Component {
   };
 
   // showSpinner = (status) => {
-  //   return <Spinner show={status} />;
+  //   return <Spinner background={status} />;
   // };
 
   topLinks = () => {
@@ -260,7 +260,7 @@ class History extends React.Component {
   render() {
     return (
       <div className="main-container">
-        {this.state.processing ? <Spinner snow={0} /> : null}
+        {this.state.processing ? <Spinner background={0} /> : null}
 
         {/* <Menu dashboard={this.state.isDashboard} /> */}
 

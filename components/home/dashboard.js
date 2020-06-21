@@ -1,92 +1,21 @@
-import React from 'react';
-import { Image, Button, Icon, Modal } from 'semantic-ui-react';
+import React, { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
+import { Button, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
-// import Menu from './menu';
 import Fade from 'react-reveal/Fade';
-import Link from 'next/link';
-import { FaSearch } from 'react-icons/fa';
-import defaultBackground from '../../static/images/default.png';
+import Aux from '../_Aux';
 
-let Global;
-var USER_ADDRESS;
+const Dashboard = () => {
+  const [isDashboard, setDashboard] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+  const [state, dispatch] = useContext(GlobalContext);
 
-const INITIAL_STATE = {
-  // isRunningTransaction: false,
-  isDashboard: false,
-  // selectedMenu: 0,
-  isLoading: true,
-  isVideoLoading: true,
-};
+  useEffect(() => {
+    setDashboard(state.dashboard);
+    setLoading(false);
+  });
 
-class Dashboard extends React.Component {
-  // showSpinner = () => this.setState({ isRunningTransaction: true });
-  // hideSpinner = () => this.setState({ isRunningTransaction: false });
-
-  constructor(props) {
-    super(props);
-
-    this.state = { ...INITIAL_STATE };
-  }
-
-  async componentDidMount() {
-    Global = require('../Constants').default;
-    if (window.web3) {
-      USER_ADDRESS = window.web3.currentProvider.selectedAddress;
-      // this.isBrowserMetamsk = 1;
-    }
-    await this.getUserData();
-    this.setState({ isLoading: false });
-
-    var video = document.getElementById('myVideo');
-    video.onloadedmetadata = function () {
-      var bgImg = document.getElementById('bgImg');
-      bgImg.style.display = 'none';
-    };
-  }
-
-  getUserVerify = () => {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: USER_ADDRESS,
-      }),
-    });
-  };
-
-  getUserData = async () => {
-    console.log('USER_ADDRESS: ' + USER_ADDRESS);
-
-    try {
-      let response = await this.getUserVerify();
-      let json = await response.json();
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return;
-        }
-        let stepValue = parseInt(json.result);
-        if (stepValue > 3) {
-          this.setState({ isDashboard: true });
-        }
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  walletInfo = () => {
-    this.setState({ isDashboard: true });
-  };
-
-  // selectedMenu = async (index) => {
-  //   this.setState({ selectedMenu: index });
-  // };
-
-  getContent = () => {
+  function getContent() {
     return (
       <div>
         <div className="mobile-menu">
@@ -125,18 +54,7 @@ class Dashboard extends React.Component {
           </Modal>
         </div>
 
-        {/* <LogoSpinner show={this.state.isRunningTransaction} /> */}
-
         <div className="home-video-container">
-          {this.state.isVideoLoading === true ? (
-            <img
-              id="bgImg"
-              src={defaultBackground}
-              style={{ width: '100vw' }}
-            ></img>
-          ) : (
-            <div></div>
-          )}
           <video
             id="myVideo"
             src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
@@ -159,8 +77,8 @@ class Dashboard extends React.Component {
                 >
                   Tominoya
                 </h3>
-                {this.state.isDashboard === true ? (
-                  <div>
+                <div>
+                  {isDashboard ? (
                     <Button
                       color="blue"
                       className="play-button"
@@ -170,25 +88,16 @@ class Dashboard extends React.Component {
                     >
                       PLAY NOW
                     </Button>
-                    <Button
-                      color="blue"
-                      className="play-shimmer"
-                      target="_blank"
-                      href="https://docs.decentral.games/getting-started"
-                    >
-                      HOW TO PLAY
-                    </Button>
-                  </div>
-                ) : (
+                  ) : null}
                   <Button
                     color="blue"
                     className="play-shimmer"
-                    href="https://docs.decentral.games/getting-started"
                     target="_blank"
+                    href="https://docs.decentral.games/getting-started"
                   >
                     HOW TO PLAY
                   </Button>
-                )}
+                </div>
                 <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
                   Sporting a Japanese aesthetic, Tominoya is a virtual casino in
                   Decentraland, a decentralized virtual world. Enjoy
@@ -203,20 +112,14 @@ class Dashboard extends React.Component {
         </div>
       </div>
     );
-  };
-
-  render() {
-    if (this.state.isLoading) return <Spinner snow={0} />;
-
-    return (
-      <div>
-        <div className="home-dashboard">
-          {/* <Menu dashboard={this.state.isDashboard} /> */}
-          {this.getContent()}
-        </div>
-      </div>
-    );
   }
-}
+
+  return (
+    <Aux>
+      {isLoading ? <Spinner background={2} /> : null}
+      <div className="home-dashboard">{getContent()}</div>;
+    </Aux>
+  );
+};
 
 export default Dashboard;

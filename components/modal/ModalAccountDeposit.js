@@ -437,7 +437,7 @@ class ModalAccountDeposit extends React.Component {
   };
 
   // showSpinner = (status) => {
-  //   return <Spinner show={status} />;
+  //   return <Spinner background={status} />;
   // };
 
   nextStep = () => {
@@ -464,7 +464,7 @@ class ModalAccountDeposit extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
-        {this.state.spinner ? <Spinner snow={1} /> : null}
+        {this.state.spinner ? <Spinner background={1} /> : null}
 
         <div id="deposit">
           <div className="ui depositContainer">

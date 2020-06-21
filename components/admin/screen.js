@@ -6,7 +6,7 @@ import { Container, Grid, Image } from 'semantic-ui-react';
 import MenuTop from './MenuTop';
 import Machine from './machine';
 import History from './history';
-import Dashboard from './dashboard';
+import Dashboard from './Dashboard';
 import Spinner from '../Spinner';
 import AdminCheck from './adminCheck';
 
@@ -83,7 +83,7 @@ class Admin extends React.Component {
     return (
       <div id="admin">
         {this.ifMobileRedirect()}
-        <Spinner show={this.state.isRunningTransaction} />
+        <Spinner background={this.state.isRunningTransaction} />
         <div className="ui accountContainer">
           <Grid verticalAlign="middle">
             <Grid.Column>
