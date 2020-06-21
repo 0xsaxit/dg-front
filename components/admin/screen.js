@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { Header } from 'semantic-ui-react';
 import { Container, Grid, Image } from 'semantic-ui-react';
-import MenuTop from './MenuTop';
+import SideMenu from './menu';
 import Machine from './machine';
 import History from './history';
 import Dashboard from './dashboard';
@@ -87,7 +87,7 @@ class Admin extends React.Component {
         <div className="ui accountContainer">
           <Grid verticalAlign="middle">
             <Grid.Column>
-              <MenuTop onMenuSelected={this.selectedMenu} />
+              <SideMenu onMenuSelected={this.selectedMenu} />
               {this.getContent()}
             </Grid.Column>
           </Grid>
