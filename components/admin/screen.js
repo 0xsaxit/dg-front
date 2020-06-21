@@ -6,7 +6,7 @@ import { Container, Grid, Image } from 'semantic-ui-react';
 import MenuTop from './MenuTop';
 import Machine from './machine';
 import History from './history';
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 import Spinner from '../Spinner';
 import AdminCheck from './adminCheck';
 
