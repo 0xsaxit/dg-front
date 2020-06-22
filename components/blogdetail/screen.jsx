@@ -59,14 +59,6 @@ const Screen = ({ slug, featured_image, image, created, categories, title, summa
   return (
     <div className="blogdetail-page" style={{ backgroundColor: 'white' }}>
       <div className="coverimg">
-        <Container>
-          <Link href="/blog">
-          <a>
-            <Icon name="arrow left" style={{ color: 'white', paddingTop: '30px', fontSize: '18px' }} className="blogpost-arrow"/>
-          </a>
-          </Link>
-        </Container>
-
         <div className="image" style={{ marginTop: '-60px' }}>
           <img src={image || banner} alt="" />
         </div>
