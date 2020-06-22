@@ -7,7 +7,7 @@ const Company = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Docs'}
+        title={Global.TITLE + ' | About'}
         description={Global.DESCRIPTION}
         image={Global.SOCIAL_SHARE_IMAGE}
       />

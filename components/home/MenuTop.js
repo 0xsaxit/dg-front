@@ -94,9 +94,9 @@ const MenuTop = (props) => {
         <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
       </Link>
 
-      <Link href="/company">
-        <Menu.Item className={getLinkStyles('/company')}>COMPANY</Menu.Item>
-      </Link>
+      {/* <Link href="/about">
+        <Menu.Item className={getLinkStyles('/about')}>ABOUT</Menu.Item>
+      </Link> */}
 
       <Link href="/docs">
         <Menu.Item className={getLinkStyles('/docs')}>DOCS</Menu.Item>
