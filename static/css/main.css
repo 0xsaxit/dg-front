@@ -46,6 +46,7 @@ p {
   padding-left: 24px;
   overflow: hidden;
   z-index: 3;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba( 0, 0, 0, 0)) !important;
 }
 
 .menu-container-dark {
@@ -83,9 +84,9 @@ p {
   cursor: pointer;
 }
 
-.sidebar-menu-text.active,
 .sidebar-menu-text:hover {
-  color: #faae06 !important;
+  color: #2185f4 !important;
+  font-weight: 800 !important;
 }
 
 .sidebar-menu-text {
