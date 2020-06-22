@@ -74,6 +74,10 @@ const MenuTop = (props) => {
         />
       </Link>
 
+      <Link href="/">
+        <Menu.Item className={getLinkStyles('/')}>HOME</Menu.Item>
+      </Link>
+
       {props.dashboard ? (
         <Link href="/account">
           <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
@@ -86,21 +90,29 @@ const MenuTop = (props) => {
         </Link>
       ) : null}
 
-      <Link href="/games">
-        <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
-      </Link>
+      <Menu.Item
+        href="https://docs.decentral.games/games/slots"
+        target="_blank"
+        className="sidebar-menu-text"
+      >
+        <div>
+          GAMES
+        </div>
+      </Menu.Item>
 
       <Link href="/blog">
         <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
       </Link>
 
-      {/* <Link href="/about">
-        <Menu.Item className={getLinkStyles('/about')}>ABOUT</Menu.Item>
-      </Link> */}
-
-      <Link href="/docs">
-        <Menu.Item className={getLinkStyles('/docs')}>DOCS</Menu.Item>
-      </Link>
+      <Menu.Item
+        href="https://docs.decentral.games/"
+        target="_blank"
+        className="sidebar-menu-text"
+      >
+        <div>
+          DOCS
+        </div>
+      </Menu.Item>
 
       {props.dashboard ? (
         <div>
