@@ -4,7 +4,7 @@ const ContentGames = () => {
       src="https://docs.decentral.games/games/slots"
       style={{
         position: 'absolute',
-        paddingTop: '0px',
+        paddingTop: '75px',
         height: '100%',
         width: '100%',
         border: 'none',

@@ -81,7 +81,19 @@ p {
 
 .sidebar-menu-text {
   color: white !important;
-  margin-top: 15px;
+  border: none;
+  box-shadow: none;
+  letter-spacing: 1.25px;
+  font-size: 14px;
+  font-weight: bold !important;
+  padding-right: 12px !important;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+.sidebar-menu-text-home {
+  color: white !important;
+  top: 15px;
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
