@@ -7,7 +7,6 @@ import ModalDeposit from '../modal/ModalDeposit';
 import mana from '../../static/images/mana_circle.webp';
 import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
-import Aux from '../_Aux';
 
 const MenuTop = (props) => {
   const [manaTokenBalance, setTokenBalance] = useState(0);
@@ -53,11 +52,7 @@ const MenuTop = (props) => {
       }
     } else {
       if (path === router.pathname) {
-        if ('/' === router.pathname) {
-          return 'sidebar-menu-text-home' + ' active';
-        } else {
-          return 'sidebar-menu-text' + ' active';
-        }
+        return 'sidebar-menu-text' + ' active';
       } else {
         return 'sidebar-menu-text';
       }
@@ -87,9 +82,11 @@ const MenuTop = (props) => {
         <Link href="/account">
           <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
         </Link>
+      ) : null}
 
-        <Link href="/blog">
-          <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
+      {props.dashboard ? (
+        <Link href="/nfts">
+          <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
       ) : null}
 
@@ -98,9 +95,7 @@ const MenuTop = (props) => {
         target="_blank"
         className="sidebar-menu-text"
       >
-        <div>
-          GAMES
-        </div>
+        <div>GAMES</div>
       </Menu.Item>
 
       <Link href="/blog">
@@ -112,9 +107,7 @@ const MenuTop = (props) => {
         target="_blank"
         className="sidebar-menu-text"
       >
-        <div>
-          DOCS
-        </div>
+        <div>DOCS</div>
       </Menu.Item>
 
       {props.dashboard ? (
@@ -153,8 +146,6 @@ const MenuTop = (props) => {
         <ModalVerify />
       )}
     </Menu>
-  ) : (
-    <Menu className={getLinkStyles('menu')}>{getContent()};</Menu>
   );
 };
 
