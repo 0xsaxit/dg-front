@@ -64,88 +64,94 @@ const MenuTop = (props) => {
     }
   }
 
-  function getContent() {
-    return (
-      <Aux>
-        <Link href="/">
-          <img
-            className="image inline pointer"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
-            style={{
-              width: '42px',
-              paddingTop: '15px',
-              paddingBottom: '15px',
-              marginRight: '12px',
-            }}
-          />
-        </Link>
+  return (
+    <Menu className={getLinkStyles('menu')} icon="labeled">
+      <Link href="/">
+        <img
+          className="image inline pointer"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+          style={{
+            width: '42px',
+            paddingTop: '15px',
+            paddingBottom: '15px',
+            marginRight: '12px',
+          }}
+        />
+      </Link>
 
-        {props.dashboard ? (
-          <Link href="/account">
-            <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
-          </Link>
-        ) : null}
+      <Link href="/">
+        <Menu.Item className={getLinkStyles('/')}>HOME</Menu.Item>
+      </Link>
 
-        {props.dashboard ? (
-          <Link href="/nfts">
-            <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
-          </Link>
-        ) : null}
-
-        <Link href="/games">
-          <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
+      {props.dashboard ? (
+        <Link href="/account">
+          <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
         </Link>
 
         <Link href="/blog">
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
         </Link>
+      ) : null}
 
-        <Link href="/docs">
-          <Menu.Item className={getLinkStyles('/docs')}>DOCS</Menu.Item>
-        </Link>
+      <Menu.Item
+        href="https://docs.decentral.games/games/slots"
+        target="_blank"
+        className="sidebar-menu-text"
+      >
+        <div>
+          GAMES
+        </div>
+      </Menu.Item>
 
-        {props.dashboard ? (
-          <div>
-            <span className="sidebar-menu-text-2">
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                }}
-                className="image inline"
-                width="20px"
-                height="20px"
-                src={dai}
-              />
-              0 DAI
-            </span>
+      <Link href="/blog">
+        <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
+      </Link>
 
-            <span className="sidebar-menu-text-3">
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                }}
-                className="image inline"
-                width="20px"
-                height="20px"
-                src={mana}
-              />
-              {manaTokenBalance} MANA
-            </span>
+      <Menu.Item
+        href="https://docs.decentral.games/"
+        target="_blank"
+        className="sidebar-menu-text"
+      >
+        <div>
+          DOCS
+        </div>
+      </Menu.Item>
 
-            <ModalDeposit />
-          </div>
-        ) : (
-          <ModalVerify />
-        )}
-      </Aux>
-    );
-  }
+      {props.dashboard ? (
+        <div>
+          <span className="sidebar-menu-text-2">
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+              }}
+              className="image inline"
+              width="20px"
+              height="20px"
+              src={dai}
+            />
+            0 DAI
+          </span>
 
-  return '/' === router.pathname ? (
-    <Menu className={getLinkStyles('menu')} icon="labeled">
-      {getContent()};
+          <span className="sidebar-menu-text-3">
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+              }}
+              className="image inline"
+              width="20px"
+              height="20px"
+              src={mana}
+            />
+            {manaTokenBalance} MANA
+          </span>
+
+          <ModalDeposit />
+        </div>
+      ) : (
+        <ModalVerify />
+      )}
     </Menu>
   ) : (
     <Menu className={getLinkStyles('menu')}>{getContent()};</Menu>

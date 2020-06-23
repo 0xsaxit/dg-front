@@ -72,7 +72,7 @@ function blog() {
   }
 
   return (
-    <Segment vertical style={{ top: '75px' }}>
+    <Segment vertical style={{ top: '120px' }}>
       {/* <html lang="en">
           <Head>
             <title> Decentral Games </title>
@@ -104,45 +104,6 @@ function blog() {
 
       <div className="blog-page">
         <Container className="featured-blog-container">
-          <Container className="blog-nav-container">
-            <Menu
-              borderless
-              style={{ border: 'none', boxShadow: 'none' }}
-              className="blog-nav-menu"
-            >
-              <Link href="/">
-                <Menu.Item header style={{ marginLeft: '-21px' }}>
-                  <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/authorize_title_fx3yxd_ur1vnf_tcdnmx.jpg"
-                    style={{ width: '42px', marginTop: '1.5em' }}
-                  />
-                </Menu.Item>
-              </Link>
-              <Link href="/">
-                <Menu.Item
-                  position="right"
-                  header
-                  style={{ marginRight: '-15px' }}
-                >
-                  <Breadcrumb
-                    style={{
-                      borderRadius: '4px',
-                      color: 'rgb(97, 97, 97)',
-                      paddingTop: '20px',
-                      fontWeight: 'normal',
-                    }}
-                  >
-                    {' '}
-                    Go to Decentral Games{' '}
-                    <Icon
-                      style={{ fontSize: '10px', color: 'rgb(97, 97, 97)' }}
-                      name="arrow right"
-                    />{' '}
-                  </Breadcrumb>
-                </Menu.Item>
-              </Link>
-            </Menu>
-          </Container>
           <Container>
             <div className="blog-hero-text">
               <Fade bottom distance="20px">
