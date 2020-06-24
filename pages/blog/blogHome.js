@@ -1,17 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { butter } from '../../store/api';
-import {
-  Container,
-  Menu,
-  Segment,
-  Image,
-  Divider,
-  Grid,
-  Icon,
-  Breadcrumb,
-  Search,
-} from 'semantic-ui-react';
+import { Container, Menu, Segment, Image, Divider, Grid, Icon, Breadcrumb, Search, Modal } from 'semantic-ui-react';
 import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
