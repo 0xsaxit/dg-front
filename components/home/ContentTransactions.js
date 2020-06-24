@@ -1,8 +1,8 @@
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 import ModalWithdraw from '../modal/ModalWithdraw';
-import mana from '../../static/images/mana.png';
+import mana from '../../static/images/mana_circle.webp';
 import eth from '../../static/images/eth.png';
-import dai from '../../static/images/dai.png';
+import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
 import ModalAccountDeposit from '../modal/ModalAccountDeposit';
 
