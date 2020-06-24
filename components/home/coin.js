@@ -223,7 +223,9 @@ class Coin extends React.Component {
             </div>
 
             {this.state.NFTstate == 1 ? (
-              <div> </div>
+              <div  style={{ paddingTop: '20%' }} className="account-other-inner-p">
+                You currently don't own any Decentral Games NFTs.
+              </div>
             ) : (
               /*<div>
                 <div>
