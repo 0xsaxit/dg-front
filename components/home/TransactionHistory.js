@@ -299,12 +299,7 @@ class History extends React.Component {
                   </div>
                 )
               ) : (
-                <div
-                  className="account-other-inner-p"
-                  style={{ paddingTop: '20vh', height: '15vh' }}
-                >
-                  Loading...
-                </div>
+                <div />
               )}
             </div>
 
