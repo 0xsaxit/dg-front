@@ -1,4 +1,4 @@
-import { Table, Button, Icon } from 'semantic-ui-react';
+import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import mana from '../../static/images/mana.png';
 import eth from '../../static/images/eth.png';
@@ -139,7 +139,25 @@ const ContentTransactions = (props) => {
               />
               0 MANA
             </Table.Cell>
-            <Table.Cell className="account-purchase">Purchase</Table.Cell>
+            <Table.Cell>
+              <span className="balances-table-span">
+                <Modal trigger={<p className="balances-purchase">Purchase</p>} closeIcon>
+                  <Modal.Content className="purchase-modal">
+                    <p style={{ textAlign: 'center', paddingBottom: '12px' }}> Coming Soon </p>
+                  </Modal.Content>
+                </Modal>
+                <Modal trigger={<p className="balances-exchange">Exchange</p>} closeIcon>
+                  <Modal.Content className="uniswap-modal">
+                    <iframe
+                      src="https://v2.uniswap.exchange/swap?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
+                      height="660px"
+                      width="100%"
+                      className="uniswap-iframe"
+                    />
+                  </Modal.Content>
+                </Modal>
+              </span>
+            </Table.Cell>
             <Table.Cell>
               <img
                 src={mana}
@@ -172,7 +190,12 @@ const ContentTransactions = (props) => {
               />
               0 DAI
             </Table.Cell>
-            <Table.Cell className="account-purchase">Purchase</Table.Cell>
+            <Table.Cell>
+              <span className="balances-table-span">
+                <p className="balances-deposit">Purchase</p>
+                <p className="balances-withdraw">Exchange</p>
+              </span>
+            </Table.Cell>
             <Table.Cell>
               <img
                 src={dai}
@@ -205,7 +228,12 @@ const ContentTransactions = (props) => {
               />
               0 ETH
             </Table.Cell>
-            <Table.Cell className="account-purchase">Purchase</Table.Cell>
+            <Table.Cell>
+              <span className="balances-table-span">
+                <p className="balances-deposit">Purchase</p>
+                <p className="balances-withdraw">Exchange</p>
+              </span>
+            </Table.Cell>
             <Table.Cell>
               <img
                 src={eth}
