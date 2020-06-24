@@ -544,9 +544,13 @@ table.ui.fixed.single.line.table {
 }
 
 .pagination {
-  position: absolute;
-  bottom: 30px !important;
+  position: fixed;
+  bottom: 30px;
+  text-align: center;
+  width: 100vw !important;
+  max-width: 1400px;
   color: black;
+  margin-left: -28px;
 }
 
 .mouseCursor,
