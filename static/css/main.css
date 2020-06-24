@@ -1105,19 +1105,40 @@ a.account-withdraw-button:hover {
   .wallet_board_overlay,
   .dashboard-image-container,
   #mobile-casino-text,
-  video.home-dashboard-video {
+  video.home-dashboard-video,
+  .menu-container-dark {
     display: none !important;
   }
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 55px;
+    margin-bottom: -30px;
   }
   .home-dashboard-p {
     width: 100%;
   }
+  div.ui.vertical.segment {
+    top: 0px !important;
+  }
+  .mobile-menu-dark {
+    background-color: black;
+    padding-bottom: 13px;
+    margin-top: -24px;
+  }
+  .mobile-menu-dark-pages {
+    position: relative;
+    background-color: black;
+    margin-top: -24px;
+    padding-bottom: 13px;
+  }
+  .blogdetail-page .coverimg .image {
+    margin-top: 23px !important;
+  }
+  .featured-blog-container {
+    padding-top: 60px;
+  }
   .mobile-menu-image {
-    width: 42px;
+    width: 42px !important;
     margin-left: 12px;
     padding-top: 18px;
   }
@@ -1126,6 +1147,9 @@ a.account-withdraw-button:hover {
     float: right;
     margin-top: -36px;
     margin-right: 30px;
+  }
+  .mobile-menu-words.dark {
+    margin-top: -48px !important;
   }
   .mobile-menu-item-1,
   .mobile-menu-item-2 {
@@ -1178,7 +1202,7 @@ a.account-withdraw-button:hover {
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 40px;
+    margin-bottom: -45px;
   }
   .featured-casino-text {
     font-size: 12px !important;
