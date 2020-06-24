@@ -94,10 +94,12 @@ function blog() {
 
       <div className="blog-page">
         <div className="mobile-menu-dark">
-          <img
-            className="mobile-menu-image"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
-          />
+          <a href="/">
+            <img
+              className="mobile-menu-image"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+            />
+          </a>
         </div>
         <div className="mobile-menu-words dark">
           <a className="mobile-menu-item-1" href="/">
