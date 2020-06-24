@@ -139,13 +139,17 @@ class Coin extends React.Component {
   };
 
   getTokenBalance = async () => {
-    console.log('matic web3 foo...');
-    console.log(this.maticWeb3);
+    console.log('coin...');
+    console.log(USER_ADDRESS);
 
     try {
       var amount;
 
-      amount = await Global.balanceOfToken('matic', this.maticWeb3);
+      amount = await Global.balanceOfToken(
+        'child',
+        USER_ADDRESS,
+        this.maticWeb3
+      );
       this.setState({ tokenBalance: amount });
     } catch (err) {
       console.log(err);

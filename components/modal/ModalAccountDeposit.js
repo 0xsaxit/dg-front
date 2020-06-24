@@ -68,7 +68,7 @@ class ModalAccountDeposit extends React.Component {
       }
     );
     const getWeb3 = new Web3(biconomy);
-    this.tokenContract = Global.getTokenContract(getWeb3, 'child');
+    this.tokenContract = Global.getTokenContract('child', getWeb3);
 
     biconomy
       .onEvent(biconomy.READY, () => {
@@ -84,8 +84,12 @@ class ModalAccountDeposit extends React.Component {
   // get balances on mainnet and Matic networks, and drop-down list and input amount functions
   getTokenBalance = async () => {
     try {
-      const amount1 = await Global.balanceOfToken('ropsten');
-      const amount2 = await Global.balanceOfToken('matic', this.maticWeb3);
+      const amount1 = await Global.balanceOfToken('root', this.userAddress);
+      const amount2 = await Global.balanceOfToken(
+        'child',
+        this.userAddress,
+        this.maticWeb3
+      );
 
       this.setState({ tokenBalanceL1: amount1 });
       this.setState({ tokenBalanceL2: amount2 });

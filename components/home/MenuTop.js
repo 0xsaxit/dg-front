@@ -9,12 +9,27 @@ import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
 
 const MenuTop = (props) => {
+  const [userAddress, setUserAddress] = useState('');
   const [manaTokenBalance, setTokenBalance] = useState(0);
   let maticWeb3 = {};
   const router = useRouter();
 
   useEffect(() => {
     if (window.web3) {
+      // console.log('getting user address...');
+
+      setUserAddress(window.web3.currentProvider.selectedAddress);
+
+      // console.log('user address');
+      // console.log(userAddress);
+
+      // (async () => {
+      //   let response = await window.web3.currentProvider.selectedAddress;
+      //   await setUserAddress(response);
+
+      //   getTokenBalance();
+      // })();
+
       maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
@@ -23,7 +38,7 @@ const MenuTop = (props) => {
         getTokenBalance();
       });
 
-      Global.delay(2000); // give a little time to fetch the addresses from server
+      // Global.delay(2000); // give a little time to fetch the addresses from server
       getTokenBalance();
     }
   });
@@ -32,11 +47,20 @@ const MenuTop = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on Matic Network
   async function getTokenBalance() {
+    console.log('menu top...');
+    console.log(userAddress);
+    console.log('matic web3');
+    console.log(maticWeb3);
+
     try {
-      const amount = await Global.balanceOfToken('matic', maticWeb3);
+      const amount = await Global.balanceOfToken(
+        'child',
+        userAddress,
+        maticWeb3
+      );
       setTokenBalance(amount);
     } catch (err) {
-      console.log('token balance error foo: ' + err);
+      console.log('token balance error: ' + err);
     }
   }
 

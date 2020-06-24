@@ -142,16 +142,16 @@ function getAddresses() {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // return token contract for Biconomy API meta-transaction calls
-function getTokenContract(getWeb3, network) {
+function getTokenContract(network, web3Default = window.web3) {
   let TOKEN_CONTRACT;
 
   if (network == 'root') {
-    TOKEN_CONTRACT = new getWeb3.eth.Contract(
+    TOKEN_CONTRACT = new web3Default.eth.Contract(
       ABIParentToken,
       GOERLI_TOKEN_ADDRESS
     );
   } else if (network == 'child') {
-    TOKEN_CONTRACT = new getWeb3.eth.Contract(
+    TOKEN_CONTRACT = new web3Default.eth.Contract(
       ABIChildToken,
       MATIC_TOKEN_ADDRESS
     );
@@ -163,30 +163,21 @@ function getTokenContract(getWeb3, network) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get user or contract token balance from MetaMask
-function balanceOfToken(
-  tokenName,
-  web3Default = window.web3,
-  userAddress = window.web3.currentProvider.selectedAddress
-) {
-  let tokenAddress = '';
-  let ABI = '';
-
-  // console.log('matic token address...');
-  // console.log(MATIC_TOKEN_ADDRESS);
-
-  if (tokenName == 'ropsten') {
-    tokenAddress = GOERLI_TOKEN_ADDRESS;
-    ABI = ABIParentToken;
-  } else if (tokenName == 'matic') {
-    tokenAddress = MATIC_TOKEN_ADDRESS;
-    ABI = ABIChildToken;
-  }
-
+function balanceOfToken(network, userAddress, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
-    console.log('Get balance of token: ' + tokenName);
+    console.log('Get balance of token: ' + network);
 
     try {
-      const TOKEN_CONTRACT = web3Default.eth.contract(ABI).at(tokenAddress);
+      let TOKEN_CONTRACT;
+      if (network == 'root') {
+        TOKEN_CONTRACT = web3Default.eth
+          .contract(ABIParentToken)
+          .at(GOERLI_TOKEN_ADDRESS);
+      } else if (network == 'child') {
+        TOKEN_CONTRACT = web3Default.eth
+          .contract(ABIChildToken)
+          .at(MATIC_TOKEN_ADDRESS);
+      }
 
       TOKEN_CONTRACT.balanceOf(userAddress, async function (err, amount) {
         if (err) {
