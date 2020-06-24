@@ -447,6 +447,45 @@ table.ui.fixed.single.line.table {
   display: flex;
 }
 
+.balances-exchange {
+  margin-bottom: -2px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #2085f4 !important;
+  margin-left: 30px;
+}
+
+.balances-purchase {
+  margin-bottom: -2px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #2085f4 !important;
+}
+
+.balances-exchange:hover,
+.balances-purchase:hover {
+  cursor: pointer;
+}
+
+div.uniswap-modal.content {
+  border: 0px !important;
+  margin: -2px !important;
+  border-radius: 4px !important;
+}
+
+.ui.modal>.content {
+  padding: 0px !important;
+}
+
+.uniswap-iframe {
+  border: 0px !important;
+  margin: 0 auto !important;
+  display: block !important;
+  border-radius: 3px !important;
+  margin: 0px !important;
+  height: 720px !important;
+}
+
 .balances-deposit {
   margin-bottom: -2px;
   font-size: 15px;
