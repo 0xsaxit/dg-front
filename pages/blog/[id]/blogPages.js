@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import Screen from '../../../components/blogdetail/screen';
 import { GlobalContext } from '../../../store';
 import { butter } from '../../../store/api';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
 // import { NextSeo } from 'next-seo';
@@ -58,7 +58,41 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
           /> */}
 
       {/* <Header title={page_title} description={page_summary} image={featured_image} /> */}
-
+        <div className="mobile-menu-dark-pages">
+          <img
+            className="mobile-menu-image"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+          />
+        </div>
+        <div className="mobile-menu-words dark">
+          <a className="mobile-menu-item-1" href="/blog">
+            {' '}
+            BLOG{' '}
+          </a>
+          <a
+            className="mobile-menu-item-2"
+            href="https://docs.decentral.games"
+            target="_blank"
+          >
+            {' '}
+            DOCS{' '}
+          </a>
+          <Modal
+            trigger={<a className="mobile-menu-item-2"> DEMO </a>}
+            closeIcon
+            basic
+            size="small"
+          >
+            <Modal.Content>
+              <iframe
+                className="mobile-demo-video"
+                src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </Modal.Content>
+          </Modal>
+        </div>
       {currentPage && (
         <Screen
           slug={currentPage.slug}
