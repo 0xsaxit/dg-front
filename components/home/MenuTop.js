@@ -70,6 +70,7 @@ const MenuTop = (props) => {
             paddingTop: '15px',
             paddingBottom: '15px',
             marginRight: '12px',
+            height: '100%',
           }}
         />
       </Link>
