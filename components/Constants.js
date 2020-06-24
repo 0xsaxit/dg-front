@@ -19,7 +19,7 @@ const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: goerli
 const MATIC_NETWORK_ID = '80001';
 const MATIC_URL = 'https://rpc-mumbai.matic.today'; // 'https://testnetv3.matic.network';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/'; // 'https://testnetv3-explorer.matic.network';
-const BICONOMY_API_KEY = 'vG_JQDKVI.af6fc0a6-0caf-4756-a564-f9468fbf5732';
+const BICONOMY_API_KEY = '9voMvaNpt.df75ecbb-b72e-405e-bca6-69080ac100cf';
 const ADMIN_ADDRESSES = [
   '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
@@ -52,7 +52,7 @@ const metaTransactionType = [
 ];
 
 let domainData = {
-  name: 'DummyToken', // 'Decentraland',
+  name: 'Dummy Child Token', // 'Decentraland',
   version: '1',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',
