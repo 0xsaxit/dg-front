@@ -17,25 +17,58 @@ const ContentWithdraw = (props) => {
       value: props.tokenBalanceL2,
     },
   ];
+  
+  const currencies = [
+    {
+      key: '1',
+      text: 'MANA',
+      value: 'MANA',
+      image: { avatar: true, src: '../../static/images/mana_circle.webp' },
+    },
+    /*{
+      key: '2',
+      text: 'DAI',
+      value: 'DAI',
+      image: { avatar: true, src: '../../static/images/dai_circle.webp' },
+    },
+    {
+      key: '3',
+      text: 'ETH',
+      value: 'ETH',
+      image: { avatar: true, src: '../../static/images/eth.png' },
+    },*/
+  ];
 
   function contentBurn() {
     return (
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Withdraw MANA from Matic</h3>
+            <Grid.Column floated='left' width={8} style={{ marginLeft: '-36px' }}>
+              <h3 className="modal-h3">Withdraw from Matic</h3>
+            </Grid.Column>
+            <Grid.Column floated='right' width={6} style={{ marginRight: '9px' }}>
+              <Dropdown
+                selection
+                text="MANA"
+                className="currency-dropdown"
+                options={currencies}
+                style={{ marginTop: '30px' }}
+              />
+            </Grid.Column> 
           </Grid.Row>
           <Grid.Row>
-            <p className="modal-p">
+            <p className="modal-p" style={{ marginBottom: '6px' }}>
               Select the amount of Matic tokens to initiate a withdrawal from
-              Matic
+              Matic. Following this transaction, you will receive a transaction hash
+              as a proof of withdrawal.
             </p>
           </Grid.Row>
           <TokenBalances
             tokenBalanceL1={props.tokenBalanceL1}
             tokenBalanceL2={props.tokenBalanceL2}
           />
-          <Grid.Row>
+          <Grid.Row style={{ marginTop: '6px' }}>
             <Dropdown
               selection
               options={amount}
@@ -57,18 +90,9 @@ const ContentWithdraw = (props) => {
 
           {props.isValidBurn == 1 ? (
             <Grid.Row>
-              <p className="modal-p-error">Burn failed</p>
+              <p className="modal-p-error">Withdraw failed</p>
             </Grid.Row>
           ) : null}
-
-          <Grid.Row>
-            <p className="modal-p-note">
-              <span style={{ fontStyle: 'italic' }}>
-                *Following this transaction, you will receive a transaction hash
-                as a proof of burn
-              </span>
-            </p>
-          </Grid.Row>
         </Grid>
 
         {/* <Button content="Next step" onClick={props.nextStep} /> */}
