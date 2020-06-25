@@ -333,7 +333,6 @@ video.home-dashboard-video {
   padding-top: 0px;
   padding-bottom: 0px;
   background-color: white;
-  height: 180px;
 }
 
 span.text {
@@ -384,6 +383,18 @@ span.text {
   border-radius: 3px;
   width: 100% !important;
   margin-right: 45px;
+}
+
+div.ui.selection.dropdown.currency-dropdown {
+  min-width: 180px !important;
+  width: 180px !important;
+}
+
+.ui.avatar.image {
+  width: 18px !important;
+  height: 100% !important;
+  margin-top: 4px !important;
+  margin-right: 6px !important;
 }
 
 /* ----------------------------------------- */
