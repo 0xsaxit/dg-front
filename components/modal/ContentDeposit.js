@@ -86,6 +86,7 @@ const ContentDeposit = (props) => {
             <Grid.Column floated='right' width={6} style={{ marginRight: '-4px' }}>
               <Dropdown
                 selection
+                text="MANA"
                 className="currency-dropdown"
                 options={currencies}
                 style={{ marginTop: '30px' }}
