@@ -1037,8 +1037,7 @@ button.ui.blue.button.modal-buttons {
   height: 39px;
   letter-spacing: 1.25px;
   border-radius: 3px;
-  position: absolute;
-  right: 30px;
+  margin-right: 30px;
 }
 
 .ui.blue.button.nft-button {
