@@ -77,7 +77,7 @@ const MenuTop = (props) => {
         </Link>
 
         <Link href="/">
-          <Menu.Item className={getLinkStyles('/')}>HOME</Menu.Item>
+          <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
 
         {state.dashboard ? (
