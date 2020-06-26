@@ -41,10 +41,17 @@ p {
 .menu-container {
   display: flex !important;
   flex-direction: row !important;
-  width: 100vw !important;
   border: none;
   overflow: hidden;
   z-index: 3;
+  padding-bottom: 90px;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.dashboard-menu-container {
+  width: 100vw;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
@@ -179,15 +186,12 @@ video.home-dashboard-video {
 }
 
 .home-dashboard-content {
-  position: fixed;
-  bottom: 150px;
-  margin-left: 30px;
-}
-
-.home-dashboard-content-2 {
-  position: fixed;
-  bottom: 30px;
-  margin-left: 120px;
+  position: relative;
+  padding-top: calc(100vh - 700px);
+  padding-left: 30px;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .dashboard-image-container {
@@ -567,6 +571,19 @@ div.uniswap-modal.content {
   margin-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
+}
+
+@media (min-width: 1400px) {
+  .account-other-inner-container.nfts {
+    margin-left: 37px;
+  }
+}
+
+@media (max-width: 1399px) {
+  .account-other-inner-container.nfts {
+    width: calc(100% - 46px);
+    margin-right: 16px !important;
+  }
 }
 
 .account-other-tabs {
