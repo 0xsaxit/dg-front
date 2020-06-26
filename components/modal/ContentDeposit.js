@@ -16,6 +16,27 @@ const ContentDeposit = (props) => {
     { key: 5, text: '5000 MANA', value: 5000 },
     { key: 6, text: 'CUSTOM', value: -1 },
   ];
+  
+  const currencies = [
+    {
+      key: '1',
+      text: 'MANA',
+      value: 'MANA',
+      image: { avatar: true, src: '../../static/images/mana_circle.webp' },
+    },
+    /*{
+      key: '2',
+      text: 'DAI',
+      value: 'DAI',
+      image: { avatar: true, src: '../../static/images/dai_circle.webp' },
+    },
+    {
+      key: '3',
+      text: 'ETH',
+      value: 'ETH',
+      image: { avatar: true, src: '../../static/images/eth.png' },
+    },*/
+  ];
 
   function locationVerify() {
     return (
@@ -64,16 +85,26 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Deposit MANA to Matic</h3>
+            <Grid.Column floated='left' width={6} style={{ marginLeft: '-18px' }}>
+              <h3 className="modal-h3">Deposit to Matic</h3>
+            </Grid.Column>
+            <Grid.Column floated='right' width={6} style={{ marginRight: '-4px' }}>
+              <Dropdown
+                selection
+                text="MANA"
+                className="currency-dropdown"
+                options={currencies}
+                style={{ marginTop: '30px' }}
+              />
+            </Grid.Column>     
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Approve MANA transfers and deposit to Matic Network (two
+              Approve cryptocurrency transfers and deposit to Matic Network (two
               transactions).
             </p>
             <p className="modal-p-note2">
-              <span style={{ fontWeight: 'bold' }}>NOTE: </span>
-              If you don't have MANA, you can buy some{' '}
+              If you don't own any cryptocurrency, you can buy some{' '}
               <a style={{ color: '#2085f4' }} href="/exchange">
                 here.
               </a>

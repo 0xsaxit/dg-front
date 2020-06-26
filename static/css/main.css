@@ -336,7 +336,6 @@ video.home-dashboard-video {
   padding-top: 0px;
   padding-bottom: 0px;
   background-color: white;
-  height: 180px;
 }
 
 span.text {
@@ -351,6 +350,10 @@ span.text {
 .ui.dropdown > .text,
 .ui.fluid.dropdown > .dropdown.icon {
   color: black;
+}
+
+#modal-balance {
+  padding-left: 1px;
 }
 
 .ropsten-balances-row {
@@ -387,6 +390,18 @@ span.text {
   border-radius: 3px;
   width: 100% !important;
   margin-right: 45px;
+}
+
+div.ui.selection.dropdown.currency-dropdown {
+  min-width: 180px !important;
+  width: 180px !important;
+}
+
+.ui.avatar.image {
+  width: 18px !important;
+  height: 100% !important;
+  margin-top: 4px !important;
+  margin-right: 6px !important;
 }
 
 /* ----------------------------------------- */
@@ -448,6 +463,45 @@ table.ui.fixed.single.line.table {
 
 .balances-table-span {
   display: flex;
+}
+
+.balances-exchange {
+  margin-bottom: -2px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #2085f4 !important;
+  margin-left: 30px;
+}
+
+.balances-purchase {
+  margin-bottom: -2px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #2085f4 !important;
+}
+
+.balances-exchange:hover,
+.balances-purchase:hover {
+  cursor: pointer;
+}
+
+div.uniswap-modal.content {
+  border: 0px !important;
+  margin: -2px !important;
+  border-radius: 4px !important;
+}
+
+.ui.modal>.content {
+  padding: 0px !important;
+}
+
+.uniswap-iframe {
+  border: 0px !important;
+  margin: 0 auto !important;
+  display: block !important;
+  border-radius: 3px !important;
+  margin: 0px !important;
+  height: 720px !important;
 }
 
 .balances-deposit {
@@ -547,9 +601,13 @@ table.ui.fixed.single.line.table {
 }
 
 .pagination {
-  position: absolute;
-  bottom: 30px !important;
+  position: fixed;
+  bottom: 30px;
+  text-align: center;
+  width: 100vw !important;
+  max-width: 1400px;
   color: black;
+  margin-left: -28px;
 }
 
 .mouseCursor,
@@ -1104,19 +1162,40 @@ a.account-withdraw-button:hover {
   .wallet_board_overlay,
   .dashboard-image-container,
   #mobile-casino-text,
-  video.home-dashboard-video {
+  video.home-dashboard-video,
+  .menu-container-dark {
     display: none !important;
   }
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 55px;
+    margin-bottom: -30px;
   }
   .home-dashboard-p {
     width: 100%;
   }
+  div.ui.vertical.segment {
+    top: 0px !important;
+  }
+  .mobile-menu-dark {
+    background-color: black;
+    padding-bottom: 13px;
+    margin-top: -24px;
+  }
+  .mobile-menu-dark-pages {
+    position: relative;
+    background-color: black;
+    margin-top: -24px;
+    padding-bottom: 13px;
+  }
+  .blogdetail-page .coverimg .image {
+    margin-top: 23px !important;
+  }
+  .featured-blog-container {
+    padding-top: 60px;
+  }
   .mobile-menu-image {
-    width: 42px;
+    width: 42px !important;
     margin-left: 12px;
     padding-top: 18px;
   }
@@ -1125,6 +1204,9 @@ a.account-withdraw-button:hover {
     float: right;
     margin-top: -36px;
     margin-right: 30px;
+  }
+  .mobile-menu-words.dark {
+    margin-top: -48px !important;
   }
   .mobile-menu-item-1,
   .mobile-menu-item-2 {
@@ -1177,7 +1259,7 @@ a.account-withdraw-button:hover {
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: 40px;
+    margin-bottom: -45px;
   }
   .featured-casino-text {
     font-size: 12px !important;

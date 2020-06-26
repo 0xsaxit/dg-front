@@ -1,17 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { butter } from '../../store/api';
-import {
-  Container,
-  Menu,
-  Segment,
-  Image,
-  Divider,
-  Grid,
-  Icon,
-  Breadcrumb,
-  Search,
-} from 'semantic-ui-react';
+import { Container, Menu, Segment, Image, Divider, Grid, Icon, Breadcrumb, Search, Modal } from 'semantic-ui-react';
 import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
@@ -103,6 +93,43 @@ function blog() {
       /> */}
 
       <div className="blog-page">
+        <div className="mobile-menu-dark">
+          <a href="/">
+            <img
+              className="mobile-menu-image"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+            />
+          </a>
+        </div>
+        <div className="mobile-menu-words dark">
+          <a className="mobile-menu-item-1" href="/">
+            {' '}
+            HOME{' '}
+          </a>
+          <a
+            className="mobile-menu-item-2"
+            href="https://docs.decentral.games"
+            target="_blank"
+          >
+            {' '}
+            DOCS{' '}
+          </a>
+          <Modal
+            trigger={<a className="mobile-menu-item-2"> DEMO </a>}
+            closeIcon
+            basic
+            size="small"
+          >
+            <Modal.Content>
+              <iframe
+                className="mobile-demo-video"
+                src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </Modal.Content>
+          </Modal>
+        </div>
         <Container className="featured-blog-container">
           <Container>
             <div className="blog-hero-text">
