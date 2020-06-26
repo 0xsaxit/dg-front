@@ -27,7 +27,7 @@ class History extends React.Component {
   componentDidMount() {
     // dynamically size transaction data container
     const frameHeight = window.innerHeight;
-    this.maximumCount = Math.floor(frameHeight * 0.0175);
+    this.maximumCount = Math.floor(frameHeight * 0.01575);
 
     // set user address and populate transaction data with initial values (history)
     if (window.web3) {
@@ -135,57 +135,62 @@ class History extends React.Component {
       <div className="account-other-tabs">
         <h3 className="account-other-h3">Account</h3>
 
-        <div style={{ marginLeft: '3px' }}>
-          {this.state.dataType == 'Balances' ? (
-            <p className="account-other-p">
-              <b className="account-hover">Balances</b> |{' '}
-              <abbr
-                className="account-hover"
-                onClick={() => this.setDataType('Play')}
-              >
-                Game History |{' '}
-              </abbr>
-              <abbr
-                className="account-hover"
-                onClick={() => this.setDataType('History')}
-              >
-                Deposits/Withdrawals
-              </abbr>
-            </p>
-          ) : this.state.dataType == 'Play' ? (
-            <p className="account-other-p">
-              <abbr
-                className="account-hover"
-                onClick={() => this.setDataType('Balances')}
-              >
-                Balances
-              </abbr>{' '}
-              | <b className="account-hover">Game History</b> |{' '}
-              <abbr
-                className="account-hover"
-                onClick={() => this.setDataType('History')}
-              >
-                Deposits/Withdrawals
-              </abbr>{' '}
-            </p>
-          ) : (
-            <p className="account-other-p">
-              <abbr
-                className="account-hover"
-                onClick={() => this.setDataType('Balances')}
-              >
-                Balances
-              </abbr>{' '}
-              |{' '}
-              <abbr
-                className="account-hover"
-                onClick={() => this.setDataType('Play')}
-              >
-                Game History |
-              </abbr>{' '}
-              <b className="account-hover">Deposits/Withdrawals</b>
-            </p>
-          )}
+        <div style={{ marginLeft: '0px' }}>
+            {this.state.dataType == 'Balances' ? (
+              <p className="account-other-p">
+                <b className="account-hover active">BALANCES</b>{' '}
+                <abbr
+                  className="account-hover"
+                  onClick={() => this.setDataType('Play')}
+                >
+                  GAME HISTORY{' '}
+                </abbr>
+                <abbr
+                  className="account-hover"
+                  onClick={() => this.setDataType('History')}
+                >
+                  DEPOSITS/WITHDRAWALS
+                </abbr>
+              </p>
+            ) : this.state.dataType == 'Play' ? (
+              <p className="account-other-p">
+                <abbr
+                  className="account-hover"
+                  onClick={() => this.setDataType('Balances')}
+                >
+                  BALANCES
+                </abbr>{' '}
+                <b className="account-hover active">GAME HISTORY</b>{' '}
+                <abbr
+                  className="account-hover"
+                  onClick={() => this.setDataType('History')}
+                >
+                  DEPOSITS/WITHDRAWALS
+                </abbr>{' '}
+              </p>
+            ) : (
+              <p className="account-other-p">
+                <abbr
+                  className="account-hover"
+                  onClick={() => this.setDataType('Balances')}
+                >
+                  BALANCES
+                </abbr>{' '}
+                {' '}
+                <abbr
+                  className="account-hover"
+                  onClick={() => this.setDataType('Play')}
+                >
+                  GAME HISTORY
+                </abbr>{' '}
+                <b className="account-hover active">DEPOSITS/WITHDRAWALS</b>
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <Divider style={{ marginTop: '21px', paddingBottom: '12px' }} />
         </div>
       </div>
     );
