@@ -100,16 +100,16 @@ p {
 }
 
 .sidebar-menu-text:hover {
-  color: #2185f4 !important;
+  color: rgba(255, 255, 255, 1) !important;
   font-weight: 800 !important;
 }
 
 .sidebar-menu-text.active {
-  color: rgba(245, 245, 247, 0.7) !important;
+  color: rgba(150, 150, 150, 1) !important;
 }
 
 .sidebar-menu-text {
-  color: white !important;
+  color: rgba(200, 200, 200, 1) !important;
   margin-top: 15px;
   border: none;
   box-shadow: none;
@@ -126,7 +126,7 @@ p {
 }
 
 .sidebar-menu-text-2 {
-  color: white !important;
+  color: rgba(200, 200, 200, 1) !important;
   margin-top: 25px;
   border: none;
   box-shadow: none;
@@ -135,7 +135,7 @@ p {
 }
 
 .sidebar-menu-text-3 {
-  color: white !important;
+  color: rgba(200, 200, 200, 1) !important;
   margin-top: 25px;
   border: none;
   box-shadow: none;
@@ -1199,11 +1199,13 @@ a.account-withdraw-button:hover {
   .dashboard-image-container,
   #mobile-casino-text,
   video.home-dashboard-video,
-  .menu-container-dark {
+  .menu-container-dark,
+  .dashboard-menu-container,
+  .other-menu-container {
     display: none !important;
   }
   .home-dashboard-content {
-    margin-left: 18px !important;
+    margin-left: -12px !important;
     margin-right: 30px;
     margin-bottom: -30px;
   }
