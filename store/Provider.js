@@ -8,6 +8,7 @@ const initialState = {
     meta: {},
   },
   dashboard: false,
+  balances: [[], []],
 };
 
 const reducer = (state, action) => {
@@ -22,6 +23,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         dashboard: action.data,
+      };
+
+    case 'update_balances':
+      return {
+        ...state,
+        balances: action.data,
       };
 
     default:

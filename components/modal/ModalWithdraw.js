@@ -20,8 +20,8 @@ class ModalWithdraw extends React.Component {
       userStepValue: 0,
       isValidBurn: 0,
       isValidExit: 0,
-      tokenBalanceL1: 0,
-      tokenBalanceL2: 0,
+      // tokenBalanceL1: 0,
+      // tokenBalanceL2: 0,
       modalOpen: false,
       spinner: false,
     };
@@ -39,11 +39,11 @@ class ModalWithdraw extends React.Component {
         this.setState({ networkID: parseInt(network) });
       });
 
-      // set maticWeb3 provider, get token balances, and verify user/set userStepValue
+      // set maticWeb3 provider and verify user/set userStepValue
       this.maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
-      await this.getTokenBalance();
+      // await this.getTokenBalance();
       await this.checkUserVerify();
     }
 
@@ -71,21 +71,21 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on main net and Matic networks, and drop-down list function
-  getTokenBalance = async () => {
-    try {
-      const amount1 = await Global.balanceOfToken('root', this.userAddress);
-      const amount2 = await Global.balanceOfToken(
-        'child',
-        this.userAddress,
-        this.maticWeb3
-      );
+  // getTokenBalance = async () => {
+  //   try {
+  //     const amount1 = await Global.balanceOfToken('root', this.userAddress);
+  //     const amount2 = await Global.balanceOfToken(
+  //       'child',
+  //       this.userAddress,
+  //       this.maticWeb3
+  //     );
 
-      this.setState({ tokenBalanceL1: amount1 });
-      this.setState({ tokenBalanceL2: amount2 });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     this.setState({ tokenBalanceL1: amount1 });
+  //     this.setState({ tokenBalanceL2: amount2 });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   onChangeAmount = (e, d) => {
     this.setState({ amount: d.value });
@@ -395,8 +395,8 @@ class ModalWithdraw extends React.Component {
                     content={'burn'} // content type
                     isValidBurn={this.state.isValidBurn}
                     amount={this.state.amount}
-                    tokenBalanceL1={this.state.tokenBalanceL1}
-                    tokenBalanceL2={this.state.tokenBalanceL2}
+                    // tokenBalanceL1={this.state.tokenBalanceL1}
+                    // tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
                     nextStep={this.nextStep}
@@ -422,8 +422,8 @@ class ModalWithdraw extends React.Component {
                   <ContentWithdraw
                     content={'exit'} // content type
                     isValidExit={this.state.isValidExit}
-                    tokenBalanceL1={this.state.tokenBalanceL1}
-                    tokenBalanceL2={this.state.tokenBalanceL2}
+                    // tokenBalanceL1={this.state.tokenBalanceL1}
+                    // tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
                     nextStep={this.nextStep}

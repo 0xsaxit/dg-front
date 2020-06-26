@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../store';
+
+// import React, { useState, useEffect } from 'react';
+
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu } from 'semantic-ui-react';
@@ -6,67 +10,26 @@ import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
 import mana from '../../static/images/mana_circle.webp';
 import dai from '../../static/images/dai_circle.webp';
-import Global from '../Constants';
 
 const MenuTop = (props) => {
-  const [userAddress, setUserAddress] = useState('');
-  const [manaTokenBalance, setTokenBalance] = useState(0);
-  let maticWeb3 = {};
+  // get token balances from the ContextAPI store
+  const [state, dispatch] = useContext(GlobalContext);
+
+  // const [manaTokenBalance, setMANABalance] = useState([]);
+  // const [daiTokenBalance, setDaiBalance] = useState([]);
+
   const router = useRouter();
 
-  useEffect(() => {
-    if (window.web3) {
-      // console.log('getting user address...');
-
-      setUserAddress(window.web3.currentProvider.selectedAddress);
-
-      // console.log('user address');
-      // console.log(userAddress);
-
-      // (async () => {
-      //   let response = await window.web3.currentProvider.selectedAddress;
-      //   await setUserAddress(response);
-
-      //   getTokenBalance();
-      // })();
-
-      maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      );
-
-      window.ethereum.on('accountsChanged', async () => {
-        getTokenBalance();
-      });
-
-      // Global.delay(2000); // give a little time to fetch the addresses from server
-      getTokenBalance();
-    }
-  });
+  // useEffect(() => {
+  //   if (window.web3) {
+  //     setMANABalance(props.balances[0][1]);
+  //     setDaiBalance(props.balances[1][1]);
+  //   }
+  // });
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on Matic Network
-  async function getTokenBalance() {
-    console.log('menu top...');
-    console.log(userAddress);
-    console.log('matic web3');
-    console.log(maticWeb3);
-
-    try {
-      const amount = await Global.balanceOfToken(
-        'child',
-        userAddress,
-        maticWeb3
-      );
-      setTokenBalance(amount);
-    } catch (err) {
-      console.log('token balance error: ' + err);
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // getter function
+  // styles getter function
   function getLinkStyles(path) {
     if (path === 'menu') {
       if ('/' === router.pathname) {
@@ -102,13 +65,13 @@ const MenuTop = (props) => {
         <Menu.Item className={getLinkStyles('/')}>HOME</Menu.Item>
       </Link>
 
-      {props.dashboard ? (
+      {state.dashboard ? (
         <Link href="/account">
           <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
         </Link>
       ) : null}
 
-      {props.dashboard ? (
+      {state.dashboard ? (
         <Link href="/nfts">
           <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
@@ -134,7 +97,7 @@ const MenuTop = (props) => {
         <div>DOCS</div>
       </Menu.Item>
 
-      {props.dashboard ? (
+      {state.dashboard ? (
         <div>
           <span className="sidebar-menu-text-2">
             <img
@@ -147,7 +110,7 @@ const MenuTop = (props) => {
               height="20px"
               src={dai}
             />
-            0 DAI
+            {state.balances[1][1]} DAI
           </span>
 
           <span className="sidebar-menu-text-3">
@@ -161,7 +124,7 @@ const MenuTop = (props) => {
               height="20px"
               src={mana}
             />
-            {manaTokenBalance} MANA
+            {state.balances[0][1]} MANA
           </span>
 
           <ModalDeposit />

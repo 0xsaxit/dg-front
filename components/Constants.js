@@ -11,7 +11,7 @@ const BASE_URL = 'https://decentral.games';
 const DEFAULT_AMOUNT = 1000;
 const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
-const GAS_LIMIT = '900000';
+const GAS_LIMIT = '3000000'; // was '900000'
 const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
@@ -72,6 +72,8 @@ let TREASURY_BACKGAMMON_ADDRESS = '';
 let TREASURY_BLACKJACK_ADDRESS = '';
 let ROOTCHAIN_ADDRESS = '';
 let ROOTCHAINMANAGER_ADDRESS = '';
+let ABI_PARENT_TOKEN = ABIParentToken;
+let ABI_CHILD_TOKEN = ABIChildToken;
 let maticPOSClient;
 
 const API_ADDRESSES = (async () => {
@@ -147,12 +149,12 @@ function getTokenContract(network, web3Default = window.web3) {
 
   if (network == 'root') {
     TOKEN_CONTRACT = new web3Default.eth.Contract(
-      ABIParentToken,
+      ABI_PARENT_TOKEN,
       GOERLI_TOKEN_ADDRESS
     );
   } else if (network == 'child') {
     TOKEN_CONTRACT = new web3Default.eth.Contract(
-      ABIChildToken,
+      ABI_CHILD_TOKEN,
       MATIC_TOKEN_ADDRESS
     );
   }
@@ -163,22 +165,11 @@ function getTokenContract(network, web3Default = window.web3) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get user or contract token balance from MetaMask
-function balanceOfToken(network, userAddress, web3Default = window.web3) {
+function balanceOfToken(TOKEN_CONTRACT, userAddress) {
   return new Promise(async (resolve, reject) => {
-    console.log('Get balance of token: ' + network);
+    console.log('Get balance of token');
 
     try {
-      let TOKEN_CONTRACT;
-      if (network == 'root') {
-        TOKEN_CONTRACT = web3Default.eth
-          .contract(ABIParentToken)
-          .at(GOERLI_TOKEN_ADDRESS);
-      } else if (network == 'child') {
-        TOKEN_CONTRACT = web3Default.eth
-          .contract(ABIChildToken)
-          .at(MATIC_TOKEN_ADDRESS);
-      }
-
       TOKEN_CONTRACT.balanceOf(userAddress, async function (err, amount) {
         if (err) {
           console.log('Get balance failed', err);
@@ -208,7 +199,7 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
-        .contract(ABIChildToken)
+        .contract(ABI_CHILD_TOKEN)
         .at(tokenAddress);
 
       TOKEN_CONTRACT.allowance(
@@ -476,6 +467,9 @@ function executeMetaTransaction(
     console.log('chain ID: ' + domainData.chainId);
     console.log('verify contract: ' + domainData.verifyingContract);
 
+    console.log('web3: ');
+    console.log(web3Default);
+
     try {
       let nonce = await tokenContract.methods.getNonce(userAddress).call();
 
@@ -592,6 +586,8 @@ function getConfirmedTx(txHash) {
 /////////////////////////////////////////////////////////////////////////////////////////
 export default {
   API_ADDRESSES,
+  ABI_PARENT_TOKEN,
+  ABI_CHILD_TOKEN,
   API_BASE_URL,
   BASE_URL,
   DEFAULT_AMOUNT,

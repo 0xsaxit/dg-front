@@ -31,8 +31,8 @@ class ModalDeposit extends React.Component {
       isValidDeposit: 0,
       isValidAuthorize: 0,
       isValidLocation: 0,
-      tokenBalanceL1: 0,
-      tokenBalanceL2: 0,
+      // tokenBalanceL1: 0,
+      // tokenBalanceL2: 0,
       modalOpen: false,
       spinner: false,
     };
@@ -50,53 +50,53 @@ class ModalDeposit extends React.Component {
         this.setState({ networkID: parseInt(network) });
       });
 
-      // set maticWeb3 provider, get token balances, and verify user/set userStepValue
+      // set maticWeb3 provider and verify user/set userStepValue
       this.maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
-      await this.getTokenBalance();
+      // await this.getTokenBalance();
       await this.checkUserVerify();
+
+      // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
+      web3 = new Web3(window.ethereum);
+      const biconomy = new Biconomy(
+        new Web3.providers.HttpProvider(Global.MATIC_URL),
+        {
+          apiKey: Global.BICONOMY_API_KEY,
+          debug: true,
+        }
+      );
+      const getWeb3 = new Web3(biconomy);
+      this.tokenContract = Global.getTokenContract('child', getWeb3);
+
+      biconomy
+        .onEvent(biconomy.READY, () => {
+          console.log('Mexa is Ready: deposit');
+        })
+        .onEvent(biconomy.ERROR, (error, message) => {
+          console.error(error);
+        });
     }
-
-    // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
-    web3 = new Web3(window.ethereum);
-    const biconomy = new Biconomy(
-      new Web3.providers.HttpProvider(Global.MATIC_URL),
-      {
-        apiKey: Global.BICONOMY_API_KEY,
-        debug: true,
-      }
-    );
-    const getWeb3 = new Web3(biconomy);
-    this.tokenContract = Global.getTokenContract('child', getWeb3);
-
-    biconomy
-      .onEvent(biconomy.READY, () => {
-        console.log('Mexa is Ready: deposit');
-      })
-      .onEvent(biconomy.ERROR, (error, message) => {
-        console.error(error);
-      });
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on mainnet and Matic networks, and drop-down list and input amount functions
-  getTokenBalance = async () => {
-    try {
-      const amount1 = await Global.balanceOfToken('root', this.userAddress);
-      const amount2 = await Global.balanceOfToken(
-        'child',
-        this.userAddress,
-        this.maticWeb3
-      );
+  // getTokenBalance = async () => {
+  //   try {
+  //     const amount1 = await Global.balanceOfToken('root', this.userAddress);
+  //     const amount2 = await Global.balanceOfToken(
+  //       'child',
+  //       this.userAddress,
+  //       this.maticWeb3
+  //     );
 
-      this.setState({ tokenBalanceL1: amount1 });
-      this.setState({ tokenBalanceL2: amount2 });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     this.setState({ tokenBalanceL1: amount1 });
+  //     this.setState({ tokenBalanceL2: amount2 });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   onChangeAmount = (e, d) => {
     if (d.value == -1) {
@@ -255,7 +255,7 @@ class ModalDeposit extends React.Component {
     try {
       this.setState({ spinner: true });
 
-      console.log('Matic RPC: ' + Global.MATIC_URL);
+      console.log('Matic RPC xxx: ' + Global.MATIC_URL);
       console.log('user address: ' + this.userAddress);
       console.log('spender (treasury) address: ' + spenderAddress);
       console.log('authorize amount: ' + Global.MAX_AMOUNT);
@@ -518,8 +518,8 @@ class ModalDeposit extends React.Component {
                     content={'deposit'} // content type
                     isValidDeposit={this.state.isValidDeposit}
                     amount={this.state.amount}
-                    tokenBalanceL1={this.state.tokenBalanceL1}
-                    tokenBalanceL2={this.state.tokenBalanceL2}
+                    // tokenBalanceL1={this.state.tokenBalanceL1}
+                    // tokenBalanceL2={this.state.tokenBalanceL2}
                     isCustomAmount={this.state.isCustomAmount}
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}

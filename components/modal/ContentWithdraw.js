@@ -1,9 +1,14 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../../store';
 import Link from 'next/link';
 import { Grid, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
 import Global from '../Constants';
 
 const ContentWithdraw = (props) => {
+  // get token balances from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   // drop-down menu MANA values
   const amount = [
     { key: 1, text: '1000 MANA', value: 1000 },
@@ -13,8 +18,8 @@ const ContentWithdraw = (props) => {
     { key: 5, text: '5000 MANA', value: 5000 },
     {
       key: 6,
-      text: 'MAXIMUM ' + '(' + props.tokenBalanceL2 + ' MANA)',
-      value: props.tokenBalanceL2,
+      text: 'MAXIMUM ' + '(' + state.balances[0][1] + ' MANA)',
+      value: state.balances[0][1],
     },
   ];
 
@@ -32,8 +37,8 @@ const ContentWithdraw = (props) => {
             </p>
           </Grid.Row>
           <TokenBalances
-            tokenBalanceL1={props.tokenBalanceL1}
-            tokenBalanceL2={props.tokenBalanceL2}
+            tokenBalanceL1={state.balances[0][0]}
+            tokenBalanceL2={state.balances[0][1]}
           />
           <Grid.Row>
             <Dropdown
@@ -131,8 +136,8 @@ const ContentWithdraw = (props) => {
             </p>
           </Grid.Row>
           <TokenBalances
-            tokenBalanceL1={props.tokenBalanceL1}
-            tokenBalanceL2={props.tokenBalanceL2}
+            tokenBalanceL1={state.balances[0][0]}
+            tokenBalanceL2={state.balances[0][1]}
           />
           <Grid.Row>
             <a

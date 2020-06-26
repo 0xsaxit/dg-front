@@ -28,8 +28,6 @@ function Status() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get user's onboard status
   async function getUserStatus() {
-    console.log("getting user's onboard status...");
-
     const response = await fetchUserStatus();
     const json = await response.json();
 

@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../../store';
 import { Grid, Input, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
 
 const ContentDeposit = (props) => {
+  // get token balances from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   // drop-down menu MANA values
   const amount = [
     { key: 1, text: '1000 MANA', value: 1000 },
@@ -191,8 +196,8 @@ const ContentDeposit = (props) => {
           </Grid.Row>
 
           <TokenBalances
-            tokenBalanceL1={props.tokenBalanceL1}
-            tokenBalanceL2={props.tokenBalanceL2}
+            tokenBalanceL1={state.balances[0][0]}
+            tokenBalanceL2={state.balances[0][1]}
           />
 
           <Grid.Row>

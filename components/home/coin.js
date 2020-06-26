@@ -35,7 +35,7 @@ class Coin extends React.Component {
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
 
-      await this.getTokenBalance();
+      // await this.getTokenBalance();
 
       this.getEthBalance();
       await this.getUserName();
@@ -138,23 +138,23 @@ class Coin extends React.Component {
     }
   };
 
-  getTokenBalance = async () => {
-    console.log('coin...');
-    console.log(USER_ADDRESS);
+  // getTokenBalance = async () => {
+  //   console.log('coin...');
+  //   console.log(USER_ADDRESS);
 
-    try {
-      var amount;
+  //   try {
+  //     var amount;
 
-      amount = await Global.balanceOfToken(
-        'child',
-        USER_ADDRESS,
-        this.maticWeb3
-      );
-      this.setState({ tokenBalance: amount });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     amount = await Global.balanceOfToken(
+  //       'child',
+  //       USER_ADDRESS,
+  //       this.maticWeb3
+  //     );
+  //     this.setState({ tokenBalance: amount });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   getEthBalance = () => {
     try {
