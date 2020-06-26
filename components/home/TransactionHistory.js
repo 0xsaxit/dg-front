@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Divider } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
 // import Menu from './menu2';
