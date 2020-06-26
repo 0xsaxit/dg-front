@@ -132,8 +132,8 @@ class History extends React.Component {
 
   topLinks = () => {
     return (
-      <div className="account-other-tabs">
-
+      <div>
+        <div className="account-other-tabs">
           <div style={{ marginLeft: '0px' }}>
             {this.state.dataType == 'Balances' ? (
               <p className="account-other-p">
