@@ -145,7 +145,9 @@ const MenuTop = (props) => {
             <ModalDeposit />
           </span>
         ) : (
-          <ModalVerify />
+          <span className="right-menu-items">
+            <ModalVerify />
+          </span>
         )}
       </Menu>
     </div>
