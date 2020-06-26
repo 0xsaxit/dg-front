@@ -426,6 +426,11 @@ div.ui.selection.dropdown.currency-dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
+.ui.table thead tr:first-child>th:last-child,
+.ui.fixed.table td:last-child {
+  padding-left: 21px;
+}
+
 th.table-header-text {
   font-size: 14px !important;
   font-weight: bold !important;
