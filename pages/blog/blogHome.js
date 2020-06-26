@@ -62,7 +62,7 @@ function blog() {
   }
 
   return (
-    <Segment vertical style={{ top: '120px' }}>
+    <Segment vertical style={{ top: '60px' }}>
       {/* <html lang="en">
           <Head>
             <title> Decentral Games </title>
