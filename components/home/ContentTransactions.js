@@ -1,4 +1,6 @@
+import React, { useContext } from 'react';
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
+import { GlobalContext } from '../../store';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import mana from '../../static/images/mana_circle.webp';
 import eth from '../../static/images/eth.png';
@@ -7,6 +9,9 @@ import Global from '../Constants';
 import ModalAccountDeposit from '../modal/ModalAccountDeposit';
 
 const ContentTransactions = (props) => {
+  // get token balances from the ContextAPI store
+  const [state, dispatch] = useContext(GlobalContext);
+  
   function contentLabels() {
     return <div> </div>;
   }
@@ -168,7 +173,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 MANA
+              {state.balances[0][1]} MANA
             </Table.Cell>
             <Table.Cell>
               <span className="balances-table-span">
@@ -206,7 +211,7 @@ const ContentTransactions = (props) => {
                   marginTop: '-3px',
                 }}
               />
-              0 DAI
+              {state.balances[1][1]} DAI
             </Table.Cell>
             <Table.Cell>
               <span className="balances-table-span">
