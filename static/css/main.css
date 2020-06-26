@@ -43,7 +43,6 @@ p {
   flex-direction: row !important;
   width: 100vw !important;
   border: none;
-  padding-left: 24px;
   overflow: hidden;
   z-index: 3;
   background-image: linear-gradient(
