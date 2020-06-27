@@ -1,9 +1,8 @@
 import React from 'react';
-import { Icon, Divider } from 'semantic-ui-react';
+import { Table, Icon, Divider } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
 import Global from '../Constants';
-
 // import DepositEvent from '../modal/DepositEvent';
 
 class History extends React.Component {
@@ -45,7 +44,6 @@ class History extends React.Component {
     const responsePlay = await this.getPlayData();
     const jsonPlay = await responsePlay.json();
     const dataPlay = jsonPlay.result;
-    const dataBalances = jsonPlay.result;
 
     // set history, play, and page data, and reset processing flag to false
     const dataPage = dataHistory.slice(0, this.maximumCount);
@@ -53,7 +51,6 @@ class History extends React.Component {
       dataHistory: dataHistory,
       dataPlay: dataPlay,
       dataPage: dataPage,
-      dataBalances: dataBalances,
       processing: false,
     });
   };
@@ -141,7 +138,6 @@ class History extends React.Component {
                 >
                   BALANCES
                 </abbr>{' '}
-                {' '}
                 <abbr
                   className="account-hover"
                   onClick={() => this.setDataType('Play')}
@@ -217,7 +213,7 @@ class History extends React.Component {
     const indexEnd = indexStart + this.maximumCount;
 
     if (type === 'Balances') {
-      dataPage = this.state.dataBalances.slice(indexStart, indexEnd);
+      dataPage = true;
     } else if (type === 'History') {
       dataPage = this.state.dataHistory.slice(indexStart, indexEnd);
     } else if (type === 'Play') {
@@ -225,6 +221,20 @@ class History extends React.Component {
     }
 
     this.setState({ dataPage: dataPage, currentPage: page });
+  };
+
+  noTxHistory = () => {
+    return (
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell colSpan={5}>
+            <div className="account-other-inner-p">
+              There is no transaction history for this account
+            </div>
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    );
   };
 
   render() {
@@ -236,41 +246,23 @@ class History extends React.Component {
           <div className="account-other-inner-container">
             {this.topLinks()}
 
-            {/* <DepositEvent /> */}
-
             <div id="tx-box-history-2">
-              <ContentTransactions content={'labels'} />
-
-              {!this.state.processing ? (
-                this.state.dataPage !== 'false' ? (
-                  this.state.dataType === 'Balances' ? (
-                    /////////////////////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////////////////////
+              <Table id="header" singleLine fixed>
+                <ContentTransactions
+                  content={'Labels'}
+                  type={this.state.dataType}
+                />
+                {!this.state.processing ? (
+                  this.state.dataPage !== 'false' ? (
                     <ContentTransactions
-                      content={'balances'} // content type
+                      content={this.state.dataType}
                       dataPage={this.state.dataPage}
                     />
-                  ) : this.state.dataType === 'Play' ? (
-                    /////////////////////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////////////////////
-                    <ContentTransactions
-                      content={'gameplay'} // content type
-                      dataPage={this.state.dataPage}
-                    />
-                  ) : this.state.dataType === 'History' ? (
-                    <ContentTransactions
-                      content={'history'} // content type
-                      dataPage={this.state.dataPage}
-                    />
-                  ) : null
-                ) : (
-                  <div className="account-other-inner-p">
-                    There is no transaction history for this account
-                  </div>
-                )
-              ) : (
-                <div />
-              )}
+                  ) : (
+                    this.noTxHistory()
+                  )
+                ) : null}
+              </Table>
             </div>
 
             <div>{this.pagination()}</div>

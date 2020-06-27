@@ -426,7 +426,7 @@ div.ui.selection.dropdown.currency-dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-.ui.table thead tr:first-child>th:last-child,
+.ui.table thead tr:first-child > th:last-child,
 .ui.fixed.table td:last-child {
   padding-left: 21px;
 }
@@ -528,7 +528,7 @@ div.uniswap-modal.content {
   border-radius: 4px !important;
 }
 
-.ui.modal>.content {
+.ui.modal > .content {
   padding: 0px !important;
 }
 

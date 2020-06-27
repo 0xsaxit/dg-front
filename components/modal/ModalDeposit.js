@@ -31,8 +31,6 @@ class ModalDeposit extends React.Component {
       isValidDeposit: 0,
       isValidAuthorize: 0,
       isValidLocation: 0,
-      // tokenBalanceL1: 0,
-      // tokenBalanceL2: 0,
       modalOpen: false,
       spinner: false,
     };
@@ -50,11 +48,11 @@ class ModalDeposit extends React.Component {
         this.setState({ networkID: parseInt(network) });
       });
 
-      // set maticWeb3 provider and verify user/set userStepValue
+      // set maticWeb3 provider and verify user/set userStepValue // **************************
       this.maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
-      // await this.getTokenBalance();
+      // await this.getTokenBalance(); // *******************************************
       await this.checkUserVerify();
 
       // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
@@ -71,32 +69,13 @@ class ModalDeposit extends React.Component {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: deposit');
+          console.log('Mexa is Ready: Deposit');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
         });
     }
   }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on mainnet and Matic networks, and drop-down list and input amount functions
-  // getTokenBalance = async () => {
-  //   try {
-  //     const amount1 = await Global.balanceOfToken('root', this.userAddress);
-  //     const amount2 = await Global.balanceOfToken(
-  //       'child',
-  //       this.userAddress,
-  //       this.maticWeb3
-  //     );
-
-  //     this.setState({ tokenBalanceL1: amount1 });
-  //     this.setState({ tokenBalanceL2: amount2 });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   onChangeAmount = (e, d) => {
     if (d.value == -1) {
@@ -121,12 +100,19 @@ class ModalDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // handle opening or closing this modal
   getTrigger = () => {
-    return (
-      <Button className="modal-deposit-button" onClick={this.handleOpen}>
-        {' '}
-        ADD CRYPTO{' '}
-      </Button>
-    );
+    if (this.props.isLink) {
+      return (
+        <a className="account-deposit-button" onClick={this.handleOpen}>
+          Deposit
+        </a>
+      );
+    } else {
+      return (
+        <Button className="modal-deposit-button" onClick={this.handleOpen}>
+          ADD CRYPTO
+        </Button>
+      );
+    }
   };
 
   handleOpen = () => {
@@ -136,24 +122,6 @@ class ModalDeposit extends React.Component {
   handleClose = () => {
     this.setState({ modalOpen: false });
   };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // verify the users location is not in a blacklisted jurisdiction
-  // verifyLocation = async () => {
-  // this.setState({isValidLocation: 0 });
-  // fetch("https://extreme-ip-lookup.com/json")           // Get the IP data
-  //   .then(res => res.json())
-  //   .then(async ip => {
-  //     if (ip.country === 'United States') {
-  // this.setState({ userStepValue: 6 });
-  // window.location.href = "/account";
-  //    this.props.history.push('/account');
-  //     }
-  //     else
-  //       this.setState({isValidLocation: 1 });
-  //   });
-  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -326,7 +294,7 @@ class ModalDeposit extends React.Component {
         let stepValue = parseInt(json.result);
         this.setState({ userStepValue: stepValue });
 
-        // console.log('userStepValue status: ' + stepValue); // get data from Context API store
+        // console.log('userStepValue status: ' + stepValue); // get data from Context API store ***************
       }
     } catch (error) {
       console.log('step value error deposit: ' + error);
@@ -413,12 +381,6 @@ class ModalDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  // verifyNetwork = async () => {
-  //   window.web3.version.getNetwork((err, network) => {
-  //     this.setState({ networkID: parseInt(network) }); // set network ID
-  //   });
-  // };
-
   switchRPC = () => {
     return (
       <Modal
@@ -444,8 +406,6 @@ class ModalDeposit extends React.Component {
   };
 
   render() {
-    // this.verifyNetwork(); // verify user is on correct network
-
     if (this.state.networkID !== Global.PARENT_NETWORK_ID)
       return this.switchRPC();
 
@@ -518,8 +478,6 @@ class ModalDeposit extends React.Component {
                     content={'deposit'} // content type
                     isValidDeposit={this.state.isValidDeposit}
                     amount={this.state.amount}
-                    // tokenBalanceL1={this.state.tokenBalanceL1}
-                    // tokenBalanceL2={this.state.tokenBalanceL2}
                     isCustomAmount={this.state.isCustomAmount}
                     onChangeAmount={this.onChangeAmount}
                     onChangeCustomAmount={this.onChangeCustomAmount}

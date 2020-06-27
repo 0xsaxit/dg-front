@@ -29,9 +29,9 @@ const MenuTop = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  
+
   // styles getter function
-  
+
   function getContainerStyles(path) {
     if (path === 'container') {
       if ('/' === router.pathname) {
@@ -41,7 +41,7 @@ const MenuTop = (props) => {
       }
     }
   }
-  
+
   function getLinkStyles(path) {
     if (path === 'menu') {
       if ('/' === router.pathname) {
@@ -142,7 +142,7 @@ const MenuTop = (props) => {
               {state.balances[0][1]} MANA
             </span>
 
-            <ModalDeposit />
+            <ModalDeposit isLink={0} />
           </span>
         ) : (
           <span className="right-menu-items">

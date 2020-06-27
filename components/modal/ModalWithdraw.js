@@ -20,8 +20,6 @@ class ModalWithdraw extends React.Component {
       userStepValue: 0,
       isValidBurn: 0,
       isValidExit: 0,
-      // tokenBalanceL1: 0,
-      // tokenBalanceL2: 0,
       modalOpen: false,
       spinner: false,
     };
@@ -39,11 +37,11 @@ class ModalWithdraw extends React.Component {
         this.setState({ networkID: parseInt(network) });
       });
 
-      // set maticWeb3 provider and verify user/set userStepValue
+      // set maticWeb3 provider and verify user/set userStepValue // ******************************
       this.maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
-      // await this.getTokenBalance();
+      // await this.getTokenBalance(); // ************************************************
       await this.checkUserVerify();
     }
 
@@ -61,31 +59,12 @@ class ModalWithdraw extends React.Component {
 
     biconomy
       .onEvent(biconomy.READY, () => {
-        console.log('Mexa is Ready: deposit');
+        console.log('Mexa is Ready: Withdraw');
       })
       .onEvent(biconomy.ERROR, (error, message) => {
         console.error(error);
       });
   }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on main net and Matic networks, and drop-down list function
-  // getTokenBalance = async () => {
-  //   try {
-  //     const amount1 = await Global.balanceOfToken('root', this.userAddress);
-  //     const amount2 = await Global.balanceOfToken(
-  //       'child',
-  //       this.userAddress,
-  //       this.maticWeb3
-  //     );
-
-  //     this.setState({ tokenBalanceL1: amount1 });
-  //     this.setState({ tokenBalanceL2: amount2 });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   onChangeAmount = (e, d) => {
     this.setState({ amount: d.value });
@@ -95,18 +74,16 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // handle opening or closing this modal
   getTrigger = () => {
-    if (this.props.isLink) {
+    if (this.props.isExit) {
       return (
-        <a className="account-withdraw-button" onClick={this.submitHash}>
-          {' '}
-          Exit{' '}
-        </a>
+        <Button size="mini" color="blue" onClick={this.submitHash}>
+          EXIT
+        </Button>
       );
     } else {
       return (
         <a className="account-withdraw-button" onClick={this.handleOpen}>
-          {' '}
-          Withdraw{' '}
+          Withdraw
         </a>
       );
     }
@@ -134,7 +111,6 @@ class ModalWithdraw extends React.Component {
   // burn tokens on Matic Network
   burnOnMatic = async () => {
     try {
-      // this.showSpinner(1);
       this.setState({ spinner: true });
 
       console.log('burn amount: ' + this.state.amount);
@@ -161,7 +137,6 @@ class ModalWithdraw extends React.Component {
         console.log('burn failed');
 
         this.setState({ isValidBurn: 1 }); // invalid burn
-        // this.showSpinner(0);
         this.setState({ spinner: false });
 
         return;
@@ -180,13 +155,11 @@ class ModalWithdraw extends React.Component {
         this.setState({ isValidBurn: 2 }); // valid burn
       }
 
-      // this.showSpinner(0);
       this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidBurn: 1 }); // invalid burn
-      // this.showSpinner(0);
       this.setState({ spinner: false });
     }
   };
@@ -195,7 +168,6 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   exitToMainnet = async () => {
     try {
-      // this.showSpinner(1);
       this.setState({ spinner: true });
 
       let txHash = await Global.exitToMainnet(
@@ -209,7 +181,6 @@ class ModalWithdraw extends React.Component {
         console.log('exit failed');
 
         this.setState({ isValidExit: 1 }); // invalid exit
-        // this.showSpinner(0);
         this.setState({ spinner: false });
 
         return;
@@ -228,13 +199,11 @@ class ModalWithdraw extends React.Component {
         this.setState({ isValidExit: 2 }); // valid exit
       }
 
-      // this.showSpinner(0);
       this.setState({ spinner: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidExit: 1 }); // invalid exit
-      // this.showSpinner(0);
       this.setState({ spinner: false });
     }
   };
@@ -242,7 +211,6 @@ class ModalWithdraw extends React.Component {
   networkError = () => {
     console.log('network error');
 
-    // this.showSpinner(0);
     this.setState({ spinner: false });
     return;
   };
@@ -264,7 +232,7 @@ class ModalWithdraw extends React.Component {
         let stepValue = parseInt(json.result);
         this.setState({ userStepValue: stepValue });
 
-        // console.log('userStepValue status: ' + stepValue); // get data from Context API store
+        // console.log('userStepValue status: ' + stepValue); // get data from Context API store *******************
       }
     } catch (error) {
       console.log('step value error withdraw: ' + error);
@@ -329,12 +297,6 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  // verifyNetwork = async () => {
-  //   window.web3.version.getNetwork((err, network) => {
-  //     this.setState({ networkID: parseInt(network) }); // set network ID
-  //   });
-  // };
-
   switchRPC = () => {
     return (
       <Modal
@@ -347,10 +309,6 @@ class ModalWithdraw extends React.Component {
       </Modal>
     );
   };
-
-  // showSpinner = (status) => {
-  //   return <Spinner background={status} />;
-  // };
 
   nextStep = () => {
     let value;
@@ -369,8 +327,6 @@ class ModalWithdraw extends React.Component {
   };
 
   render() {
-    // this.verifyNetwork(); // verify user is on correct network
-
     if (this.state.networkID !== Global.PARENT_NETWORK_ID)
       return this.switchRPC();
 
@@ -395,8 +351,6 @@ class ModalWithdraw extends React.Component {
                     content={'burn'} // content type
                     isValidBurn={this.state.isValidBurn}
                     amount={this.state.amount}
-                    // tokenBalanceL1={this.state.tokenBalanceL1}
-                    // tokenBalanceL2={this.state.tokenBalanceL2}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
                     nextStep={this.nextStep}
@@ -422,8 +376,6 @@ class ModalWithdraw extends React.Component {
                   <ContentWithdraw
                     content={'exit'} // content type
                     isValidExit={this.state.isValidExit}
-                    // tokenBalanceL1={this.state.tokenBalanceL1}
-                    // tokenBalanceL2={this.state.tokenBalanceL2}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
                     nextStep={this.nextStep}
