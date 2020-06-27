@@ -34,7 +34,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   }, []);
 
   return (
-    <Segment vertical style={{ top: '75px' }}>
+    <Segment vertical style={{ top: '36px' }}>
       {/* <html lang="en">
           <Head>
             <title> Decentral Games </title>

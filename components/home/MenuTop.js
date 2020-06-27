@@ -29,7 +29,19 @@ const MenuTop = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  
   // styles getter function
+  
+  function getContainerStyles(path) {
+    if (path === 'container') {
+      if ('/' === router.pathname) {
+        return 'dashboard-menu-container';
+      } else {
+        return 'other-menu-container';
+      }
+    }
+  }
+  
   function getLinkStyles(path) {
     if (path === 'menu') {
       if ('/' === router.pathname) {
@@ -47,93 +59,98 @@ const MenuTop = (props) => {
   }
 
   return (
-    <Menu className={getLinkStyles('menu')} icon="labeled">
-      <Link href="/">
-        <img
-          className="image inline pointer"
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
-          style={{
-            width: '42px',
-            paddingTop: '15px',
-            paddingBottom: '15px',
-            marginRight: '12px',
-            height: '100%',
-          }}
-        />
-      </Link>
-
-      <Link href="/">
-        <Menu.Item className={getLinkStyles('/')}>HOME</Menu.Item>
-      </Link>
-
-      {state.dashboard ? (
-        <Link href="/account">
-          <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
+    <div className={getContainerStyles('container')}>
+      <Menu className={getLinkStyles('menu')} icon="labeled">
+        <Link href="/">
+          <img
+            className="image inline pointer"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+            style={{
+              width: '39px',
+              paddingTop: '15px',
+              paddingBottom: '15px',
+              marginRight: '12px',
+              marginLeft: '24px',
+              height: '100%',
+            }}
+          />
         </Link>
-      ) : null}
 
-      {state.dashboard ? (
-        <Link href="/nfts">
-          <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
+        <Link href="/">
+          <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
-      ) : null}
 
-      <Menu.Item
-        href="https://docs.decentral.games/games/slots"
-        target="_blank"
-        className="sidebar-menu-text"
-      >
-        <div>GAMES</div>
-      </Menu.Item>
+        {state.dashboard ? (
+          <Link href="/account">
+            <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
+          </Link>
+        ) : null}
 
-      <Link href="/blog">
-        <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
-      </Link>
+        {state.dashboard ? (
+          <Link href="/nfts">
+            <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
+          </Link>
+        ) : null}
 
-      <Menu.Item
-        href="https://docs.decentral.games/"
-        target="_blank"
-        className="sidebar-menu-text"
-      >
-        <div>DOCS</div>
-      </Menu.Item>
+        <Menu.Item
+          href="https://docs.decentral.games/games/slots"
+          target="_blank"
+          className="sidebar-menu-text"
+        >
+          <div>GAMES</div>
+        </Menu.Item>
 
-      {state.dashboard ? (
-        <div>
-          <span className="sidebar-menu-text-2">
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-              }}
-              className="image inline"
-              width="20px"
-              height="20px"
-              src={dai}
-            />
-            {state.balances[1][1]} DAI
+        <Link href="/blog">
+          <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
+        </Link>
+
+        <Menu.Item
+          href="https://docs.decentral.games/"
+          target="_blank"
+          className="sidebar-menu-text"
+        >
+          <div>DOCS</div>
+        </Menu.Item>
+
+        {state.dashboard ? (
+          <span className="right-menu-items">
+            <span className="sidebar-menu-text-2">
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                }}
+                className="image inline"
+                width="20px"
+                height="20px"
+                src={dai}
+              />
+              {state.balances[1][1]} DAI
+            </span>
+
+            <span className="sidebar-menu-text-3">
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                }}
+                className="image inline"
+                width="20px"
+                height="20px"
+                src={mana}
+              />
+              {state.balances[0][1]} MANA
+            </span>
+
+            <ModalDeposit />
           </span>
-
-          <span className="sidebar-menu-text-3">
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-              }}
-              className="image inline"
-              width="20px"
-              height="20px"
-              src={mana}
-            />
-            {state.balances[0][1]} MANA
+        ) : (
+          <span className="right-menu-items">
+            <ModalVerify />
           </span>
-
-          <ModalDeposit />
-        </div>
-      ) : (
-        <ModalVerify />
-      )}
-    </Menu>
+        )}
+      </Menu>
+    </div>
   );
 };
 

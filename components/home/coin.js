@@ -200,30 +200,33 @@ class Coin extends React.Component {
     if (this.state.isLoading) return <Spinner background={0} />;
 
     return (
-      <div className="main-container">
+      <div className="main-container" style={{ marginBottom: '60px' }}>
         {/* <Menu dashboard={this.state.isDashboard} /> */}
         <div className="page-container">
           <div className="account-other-inner-container">
             <div className="account-other-tabs">
-              <h3 className="account-other-h3"> NFTs </h3>
               {this.state.NFTstate == 0 ? (
                 <p className="account-other-p">
-                  <b className="account-hover">Buy NFTs</b> |{' '}
+                  <b className="account-hover active">BUY NFTS</b>{' '}
                   <abbr
                     className="account-hover"
                     onClick={() => this.buyNFTs()}
                   >
-                    My NFTs{' '}
+                    MY NFTS{' '}
                   </abbr>
                 </p>
               ) : (
                 <p className="account-other-p">
                   <abbr className="account-hover" onClick={() => this.myNFTs()}>
-                    Buy NFTs
+                    BUY NFTS
                   </abbr>{' '}
-                  | <b className="account-hover">My NFTs </b>
+                  <b className="account-hover active">MY NFTS</b>
                 </p>
               )}
+            </div>
+
+            <div>
+              <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
             </div>
 
             {this.state.NFTstate == 1 ? (
