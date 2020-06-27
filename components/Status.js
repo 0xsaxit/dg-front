@@ -33,12 +33,13 @@ function Status() {
 
     if (json.status === 'ok') {
       if (json.result === 'false') {
-        console.log('no data returned');
-
+        console.log('No user status data');
         return false;
       }
 
       const stepValue = parseInt(json.result);
+      console.log('User status: ' + stepValue);
+
       if (stepValue > 3) {
         return true;
       } else {

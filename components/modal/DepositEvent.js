@@ -17,7 +17,7 @@ class DepositEvent extends React.Component {
     const data = {
       id: 1,
       method: 'eth_subscribe',
-      params: ['newDeposits', { Did: 21 }],
+      params: ['newDeposits', {}],
     };
 
     // params: ['newDeposits', { Contract: this.userAddress }],
@@ -39,8 +39,12 @@ class DepositEvent extends React.Component {
       console.log('event data...');
       console.log(event.data);
 
+      // this.setState({
+      //   messages: this.state.messages.concat([event.data]),
+      // });
+
       this.setState({
-        messages: this.state.messages.concat([event.data]),
+        messages: this.state.messages.concat([event.returnValue]),
       });
     };
   }
@@ -59,6 +63,12 @@ class DepositEvent extends React.Component {
         ))}
       </ul>
     );
+
+    // return (
+    //   <ul>
+    //     <li>message {this.state.messages}</li>
+    //   </ul>
+    // );
   }
 }
 

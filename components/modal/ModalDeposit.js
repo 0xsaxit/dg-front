@@ -326,7 +326,7 @@ class ModalDeposit extends React.Component {
         let stepValue = parseInt(json.result);
         this.setState({ userStepValue: stepValue });
 
-        console.log('userStepValue status: ' + stepValue);
+        // console.log('userStepValue status: ' + stepValue); // get data from Context API store
       }
     } catch (error) {
       console.log('step value error deposit: ' + error);

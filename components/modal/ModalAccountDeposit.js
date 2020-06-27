@@ -334,7 +334,7 @@ class ModalAccountDeposit extends React.Component {
         let stepValue = parseInt(json.result);
         this.setState({ userStepValue: stepValue });
 
-        console.log('userStepValue status: ' + stepValue);
+        // console.log('userStepValue status: ' + stepValue); // get data from Context API store
       }
     } catch (error) {
       console.log('step value error deposit: ' + error);
@@ -483,7 +483,7 @@ class ModalAccountDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 4 ? (
+              ) : this.state.userStepValue == 44 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // authorize transfers to Matic Network, then deposit MANA to Matic Network
@@ -499,7 +499,7 @@ class ModalAccountDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 5 ? (
+              ) : this.state.userStepValue == 55 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -521,7 +521,7 @@ class ModalAccountDeposit extends React.Component {
                     // nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 6 ? (
+              ) : this.state.userStepValue == 5 ? ( // 6
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // user has finished onboard process and wishes to deposit more MANA to Matic Network

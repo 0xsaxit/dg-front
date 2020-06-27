@@ -2,9 +2,9 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
-// import Menu from './menu2';
-// import DepositEvent from '../modal/DepositEvent';
 import Global from '../Constants';
+
+// import DepositEvent from '../modal/DepositEvent';
 
 class History extends React.Component {
   constructor(props) {
@@ -17,7 +17,6 @@ class History extends React.Component {
       currentPage: 1,
       dataType: 'Balances',
       processing: true,
-      // isDashboard: false,
     };
 
     this.userAddress = '';
@@ -40,22 +39,6 @@ class History extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user's transaction history data and gameplay data
   getUserData = async () => {
-    // later move this outside of each individual component *************************************************
-    // let response = await this.getUserStatus();
-    // let json = await response.json();
-
-    // if (json.status === 'ok') {
-    //   if (json.result === 'false') {
-    //     console.log('no data returned');
-    //   }
-
-    //   let stepValue = parseInt(json.result);
-    //   if (stepValue > 3) {
-    //     this.setState({ isDashboard: true });
-    //   }
-    // }
-    // ************************************************************************************************
-
     const responseHistory = await this.getHistoryData();
     const jsonHistory = await responseHistory.json();
     const dataHistory = jsonHistory.result;
@@ -74,19 +57,6 @@ class History extends React.Component {
       processing: false,
     });
   };
-
-  // getUserStatus = () => {
-  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: this.userAddress,
-  //     }),
-  //   });
-  // };
 
   getHistoryData = () => {
     return fetch(`${Global.API_BASE_URL}/order/getHistory`, {
@@ -125,10 +95,6 @@ class History extends React.Component {
     this.setState({ dataType: type });
     this.setUserData(type, 1);
   };
-
-  // showSpinner = (status) => {
-  //   return <Spinner background={status} />;
-  // };
 
   topLinks = () => {
     return (
@@ -262,11 +228,11 @@ class History extends React.Component {
       <div className="main-container">
         {this.state.processing ? <Spinner background={0} /> : null}
 
-        {/* <Menu dashboard={this.state.isDashboard} /> */}
-
         <div className="page-container">
           <div className="account-other-inner-container">
             {this.topLinks()}
+
+            {/* <DepositEvent /> */}
 
             <div id="tx-box-history-2">
               <ContentTransactions content={'labels'} />
