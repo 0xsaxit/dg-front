@@ -4,6 +4,7 @@ import { Button, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import Fade from 'react-reveal/Fade';
 import Aux from '../_Aux';
+import Global from '../Constants';
 
 const Dashboard = () => {
   const [isDashboard, setDashboard] = useState(false);
@@ -19,10 +20,7 @@ const Dashboard = () => {
     return (
       <div>
         <div className="mobile-menu">
-          <img
-            className="mobile-menu-image"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
-          />
+          <img className="mobile-menu-image" src={Global.LOGO} />
         </div>
         <div className="mobile-menu-words">
           <a className="mobile-menu-item-1" href="/blog">

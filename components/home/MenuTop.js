@@ -1,8 +1,5 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { GlobalContext } from '../../store';
-
-// import React, { useState, useEffect } from 'react';
-
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu } from 'semantic-ui-react';
@@ -10,27 +7,16 @@ import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
 import mana from '../../static/images/mana_circle.webp';
 import dai from '../../static/images/dai_circle.webp';
+import Global from '../Constants';
 
 const MenuTop = (props) => {
-  // get token balances from the ContextAPI store
+  // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // const [manaTokenBalance, setMANABalance] = useState([]);
-  // const [daiTokenBalance, setDaiBalance] = useState([]);
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get path and render appropriate styles
   const router = useRouter();
-
-  // useEffect(() => {
-  //   if (window.web3) {
-  //     setMANABalance(props.balances[0][1]);
-  //     setDaiBalance(props.balances[1][1]);
-  //   }
-  // });
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-
-  // styles getter function
 
   function getContainerStyles(path) {
     if (path === 'container') {
@@ -64,7 +50,7 @@ const MenuTop = (props) => {
         <Link href="/">
           <img
             className="image inline pointer"
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
+            src={Global.LOGO}
             style={{
               width: '39px',
               paddingTop: '15px',

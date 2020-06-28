@@ -26,6 +26,8 @@ const ADMIN_ADDRESSES = [
   '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
 ];
 const TITLE = 'Decentral Games';
+const LOGO =
+  'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png';
 const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
 const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
@@ -600,6 +602,7 @@ export default {
   BICONOMY_API_KEY,
   ADMIN_ADDRESSES,
   TITLE,
+  LOGO,
   DESCRIPTION,
   SOCIAL_SHARE_IMAGE,
   DISCORD_URL,

@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { butter } from '../../store/api';
-import { Container, Menu, Segment, Image, Divider, Grid, Icon, Breadcrumb, Search, Modal } from 'semantic-ui-react';
+import {
+  Container,
+  Menu,
+  Segment,
+  Image,
+  Divider,
+  Grid,
+  Icon,
+  Breadcrumb,
+  Search,
+  Modal,
+} from 'semantic-ui-react';
 import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import $ from 'jquery';
+import Global from '../../components/Constants';
 
 // import { NextSeo } from 'next-seo';
 // import Head from 'next/head';
@@ -95,10 +107,7 @@ function blog() {
       <div className="blog-page">
         <div className="mobile-menu-dark">
           <a href="/">
-            <img
-              className="mobile-menu-image"
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png"
-            />
+            <img className="mobile-menu-image" src={Global.LOGO} />
           </a>
         </div>
         <div className="mobile-menu-words dark">

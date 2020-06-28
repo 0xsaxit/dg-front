@@ -1,4 +1,4 @@
-import Coin from '../components/home/coin';
+import Tokens from '../components/home/Tokens';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
@@ -12,7 +12,7 @@ const NFTs = () => {
         image={Global.SOCIAL_SHARE_IMAGE}
       />
 
-      <Coin />
+      <Tokens />
     </Layout>
   );
 };
