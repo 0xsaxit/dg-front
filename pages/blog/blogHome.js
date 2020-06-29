@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { butter } from '../../store/api';
+// import { butter } from '../../store/api';
 import {
   Container,
   Menu,
@@ -31,7 +31,7 @@ function blog() {
   // const [category, setCategory] = useState("All");
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await butter.post.list({ page_size: 25 });
+      const { data } = await Global.BUTTER.post.list({ page_size: 25 });
       dispatch({
         type: 'update_pages',
         data,

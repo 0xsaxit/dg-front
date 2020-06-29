@@ -9,6 +9,7 @@ const initialState = {
   },
   dashboard: false,
   balances: [[], []],
+  transactions: [[], []],
 };
 
 const reducer = (state, action) => {
@@ -29,6 +30,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         balances: action.data,
+      };
+
+    case 'update_history':
+      return {
+        ...state,
+        transactions: action.data,
       };
 
     default:

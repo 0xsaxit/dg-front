@@ -7,12 +7,15 @@ import Aux from '../_Aux';
 import Global from '../Constants';
 
 const Dashboard = () => {
-  const [isDashboard, setDashboard] = useState(false);
-  const [isLoading, setLoading] = useState(true);
+  // get user's onboard status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  // const [isDashboard, setDashboard] = useState(false);
+
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
-    setDashboard(state.dashboard);
+    // setDashboard(state.dashboard);
     setLoading(false);
   });
 
@@ -76,7 +79,7 @@ const Dashboard = () => {
                   Tominoya
                 </h3>
                 <div>
-                  {isDashboard ? (
+                  {state.dashboard ? (
                     <Button
                       color="blue"
                       className="play-button"

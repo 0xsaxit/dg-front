@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Screen from '../../../components/blogdetail/screen';
 import { GlobalContext } from '../../../store';
-import { butter } from '../../../store/api';
+// import { butter } from '../../../store/api';
 import { Segment, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import Global from '../../../components/Constants';
@@ -25,7 +25,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   );
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await butter.post.list({ page_size: 25 });
+      const { data } = await Global.BUTTER.post.list({ page_size: 25 });
       dispatch({
         type: 'update_pages',
         data,
@@ -112,7 +112,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 };
 BlogDetail.getInitialProps = async ({ query }) => {
   const slug = query.id;
-  const { data } = await butter.post.list({ page_size: 25 });
+  const { data } = await Global.BUTTER.post.list({ page_size: 25 });
   const currentPage = data.data.find((page) => page.slug === slug);
   var currentPage_title = currentPage.title;
   currentPage_title = currentPage_title.replace(': ', ':');

@@ -9,19 +9,19 @@ function Status() {
   let userAddress = '';
 
   useEffect(() => {
-    if (window.web3) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+    // if (window.web3) {
+    userAddress = window.web3.currentProvider.selectedAddress;
 
-      async function fetchData() {
-        let response = await getUserStatus();
+    async function fetchData() {
+      const response = await getUserStatus();
 
-        dispatch({
-          type: 'update_status',
-          data: response,
-        });
-      }
-      fetchData();
+      dispatch({
+        type: 'update_status',
+        data: response,
+      });
     }
+    fetchData();
+    // }
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////

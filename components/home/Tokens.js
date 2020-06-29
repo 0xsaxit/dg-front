@@ -36,9 +36,9 @@ class Tokens extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the NFT details objects
   buyNFTs = () => {
-    return Object.keys(detailsNFTs).map((item) => {
+    return Object.keys(detailsNFTs).map((item, i) => {
       return (
-        <div className="nft-container">
+        <div className="nft-container" key={i}>
           <div className="nft-image">
             <Image
               src={detailsNFTs[item][0]}

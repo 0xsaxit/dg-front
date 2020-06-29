@@ -11,28 +11,28 @@ function Balances() {
   let maticWeb3 = {};
 
   useEffect(() => {
-    if (window.web3) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-      web3 = new Web3(window.ethereum);
-      maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      );
+    // if (window.web3) {
+    userAddress = window.web3.currentProvider.selectedAddress;
+    web3 = new Web3(window.ethereum);
+    maticWeb3 = new window.Web3(
+      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+    );
 
-      async function fetchData() {
-        let response = await getTokenBalances();
+    async function fetchData() {
+      const response = await getTokenBalances();
 
-        dispatch({
-          type: 'update_balances',
-          data: response,
-        });
-      }
-      fetchData();
+      dispatch({
+        type: 'update_balances',
+        data: response,
+      });
     }
+    fetchData();
+    // }
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on mainnet and Matic networks, and drop-down list and input amount functions
+  // get balances on mainnet and Matic networks
   async function getTokenBalances() {
     const addresses = await Global.API_ADDRESSES;
 

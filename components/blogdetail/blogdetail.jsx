@@ -1,31 +1,42 @@
-import React, { useContext, useEffect } from "react";
-import Screen from "./screen";
-import { GlobalContext } from "../../store";
-import { butter } from "../../store/api";
-import { Segment } from "semantic-ui-react";
+import React, { useContext, useEffect } from 'react';
+import Screen from './screen';
+import { GlobalContext } from '../../store';
+// import { butter } from "../../store/api";
+import { Segment } from 'semantic-ui-react';
 import ScrollToTop from '../scroll.js';
-
+import Global from '../Constants';
 
 const BlogDetail = ({ match }) => {
   const [state, dispatch] = useContext(GlobalContext);
   const slug = match.path.split(/[/]/);
-  const currentPage = state.pages.data.find(page => page.slug === slug[slug.length - 1]);
+  const currentPage = state.pages.data.find(
+    (page) => page.slug === slug[slug.length - 1]
+  );
 
-  const index = state.pages.data.indexOf(currentPage)
-  const nextPage = state.pages.data[index + 1] ? state.pages.data[index + 1] : null;
-  const prevPage = state.pages.data[index - 1] ? state.pages.data[index - 1] : null;
+  const index = state.pages.data.indexOf(currentPage);
+  const nextPage = state.pages.data[index + 1]
+    ? state.pages.data[index + 1]
+    : null;
+  const prevPage = state.pages.data[index - 1]
+    ? state.pages.data[index - 1]
+    : null;
 
   const category = currentPage.categories[0].name;
-  const filteredPages = state.pages.data.filter(page => ((page.categories[0].name === category) && (page.slug !== currentPage.slug)));
-  const unfilteredPages = state.pages.data.filter(page => ((page.categories[0].name !== category)));
+  const filteredPages = state.pages.data.filter(
+    (page) =>
+      page.categories[0].name === category && page.slug !== currentPage.slug
+  );
+  const unfilteredPages = state.pages.data.filter(
+    (page) => page.categories[0].name !== category
+  );
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await butter.post.list({ page_size: 25 });
+      const { data } = await Global.BUTTER.post.list({ page_size: 25 });
 
       dispatch({
-        type: "update_pages",
-        data
+        type: 'update_pages',
+        data,
       });
     };
 
@@ -37,7 +48,7 @@ const BlogDetail = ({ match }) => {
       <Segment vertical>
         {currentPage && (
           <Screen
-            slug = {currentPage.slug}
+            slug={currentPage.slug}
             image={currentPage.featured_image}
             created={currentPage.created}
             category={currentPage.categories[0]}

@@ -9,6 +9,7 @@ import '../static/css/spinner.css';
 import Aux from '../components/_Aux';
 import Status from '../components/Status';
 import Balances from '../components/Balances';
+import Transactions from '../components/Transactions';
 
 class Application extends App {
   render() {
@@ -18,6 +19,7 @@ class Application extends App {
         <Provider store={store}>
           <Status />
           <Balances />
+          <Transactions />
 
           <Component {...pageProps} />
         </Provider>

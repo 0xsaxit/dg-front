@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { Table, Button, Icon, Modal } from 'semantic-ui-react';
+import { useContext } from 'react';
 import { GlobalContext } from '../../store';
+import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import mana from '../../static/images/mana_circle.webp';
