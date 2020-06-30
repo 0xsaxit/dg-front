@@ -10,22 +10,16 @@ const History = (props) => {
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
 
-  // let dataHistory;
-  // let dataPlay;
-
+  // define local variables
   const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataType, setDataType] = useState('Balances');
-
   const [processing, setProcessing] = useState(true);
 
   useEffect(() => {
     const frameHeight = window.innerHeight;
     setMaximumCount(Math.floor(frameHeight * 0.01575));
-
-    // dataHistory = state.transactions[0];
-    // dataPlay = state.transactions[1];
 
     setProcessing(false);
   });
@@ -43,61 +37,44 @@ const History = (props) => {
       <div>
         <div className="account-other-tabs">
           <div style={{ marginLeft: '0px' }}>
-            {dataType == 'Balances' ? (
-              <p className="account-other-p">
-                <b className="account-hover active">BALANCES</b>{' '}
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPageData('Play')}
-                >
-                  GAME HISTORY{' '}
-                </abbr>
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPageData('History')}
-                >
-                  DEPOSITS/WITHDRAWALS
-                </abbr>
-              </p>
-            ) : dataType == 'Play' ? (
-              <p className="account-other-p">
+            <p className="account-other-p">
+              {dataType == 'Balances' ? (
+                <b className="account-hover active">BALANCES</b>
+              ) : (
                 <abbr
                   className="account-hover"
                   onClick={() => setPageData('Balances')}
                 >
                   BALANCES
-                </abbr>{' '}
-                <b className="account-hover active">GAME HISTORY</b>{' '}
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPageData('History')}
-                >
-                  DEPOSITS/WITHDRAWALS
-                </abbr>{' '}
-              </p>
-            ) : (
-              <p className="account-other-p">
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPageData('Balances')}
-                >
-                  BALANCES
-                </abbr>{' '}
+                </abbr>
+              )}
+
+              {dataType == 'Play' ? (
+                <b className="account-hover active">GAME HISTORY</b>
+              ) : (
                 <abbr
                   className="account-hover"
                   onClick={() => setPageData('Play')}
                 >
                   GAME HISTORY
-                </abbr>{' '}
+                </abbr>
+              )}
+
+              {dataType == 'History' ? (
                 <b className="account-hover active">DEPOSITS/WITHDRAWALS</b>
-              </p>
-            )}
+              ) : (
+                <abbr
+                  className="account-hover"
+                  onClick={() => setPageData('History')}
+                >
+                  DEPOSITS/WITHDRAWALS
+                </abbr>
+              )}
+            </p>
           </div>
         </div>
 
-        <div>
-          <Divider style={{ marginTop: '21px', paddingBottom: '12px' }} />
-        </div>
+        <Divider style={{ marginTop: '21px', paddingBottom: '12px' }} />
       </div>
     );
   }
@@ -113,11 +90,6 @@ const History = (props) => {
     } else if (dataType === 'Play') {
       totalRows = dataPlay.length;
     }
-
-    console.log('current page number: ' + currentPage);
-    console.log('maximum rows per page: ' + maximumCount);
-    console.log('total number of rows: ' + totalRows);
-    console.log('current number of rows: ' + currentRows);
 
     return (
       <div className="pagination" style={{ paddingTop: '12px' }}>
@@ -203,6 +175,7 @@ const History = (props) => {
               ) : null}
             </Table>
           </div>
+
           <div>{pagination()}</div>
         </div>
       </div>

@@ -149,32 +149,32 @@ function getAddresses() {
 /////////////////////////////////////////////////////////////////////////////////////////
 // return token contract for Biconomy API meta-transaction calls
 function getTokenContract(network, web3Default = window.web3) {
-  let TOKEN_CONTRACT;
+  let tokenContract;
 
   if (network == 'root') {
-    TOKEN_CONTRACT = new web3Default.eth.Contract(
+    tokenContract = new web3Default.eth.Contract(
       ABI_PARENT_TOKEN,
       GOERLI_TOKEN_ADDRESS
     );
   } else if (network == 'child') {
-    TOKEN_CONTRACT = new web3Default.eth.Contract(
+    tokenContract = new web3Default.eth.Contract(
       ABI_CHILD_TOKEN,
       MATIC_TOKEN_ADDRESS
     );
   }
 
-  return TOKEN_CONTRACT;
+  return tokenContract;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get user or contract token balance from MetaMask
-function balanceOfToken(TOKEN_CONTRACT, userAddress) {
+function balanceOfToken(tokenContract, userAddress) {
   return new Promise(async (resolve, reject) => {
     console.log('Get balance of token');
 
     try {
-      TOKEN_CONTRACT.balanceOf(userAddress, async function (err, amount) {
+      tokenContract.balanceOf(userAddress, async function (err, amount) {
         if (err) {
           console.log('Get balance failed', err);
           reject(false);

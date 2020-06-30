@@ -1,4 +1,3 @@
-import React from 'react';
 import { Provider } from '../store';
 import App from 'next/app';
 import 'decentraland-ui/lib/styles.css';
@@ -14,6 +13,7 @@ import Transactions from '../components/Transactions';
 class Application extends App {
   render() {
     const { Component, pageProps, store } = this.props;
+
     return (
       <Aux>
         <Provider store={store}>
