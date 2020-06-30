@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Home'}
+        title={Global.TITLE + ' | Multiplayer Casino Games Playable with Crypto'}
         description={Global.DESCRIPTION}
         image={Global.SOCIAL_SHARE_IMAGE}
       />
