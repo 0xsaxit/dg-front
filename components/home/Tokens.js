@@ -8,7 +8,7 @@ const detailsNFTs = {
     'tominoya-pic',
     'Tominoya, Vegas City',
     '-120, 135',
-    'Tominoya is a joint venture with Vegas City on a 52 parcel estate. The casino is broken up into 40 separate NFTs - 20 ground floor and 20 mezzanine. The casino houses Decentral Games slots and roulette, and token holders make a percentage revenue from the games on their specific parcel.',
+    'Tominoya is a Japanese themed casino built by Decentral Games. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
     'https://opensea.io/assets?query=tominoya',
   ],
   flamingos: [
@@ -16,7 +16,7 @@ const detailsNFTs = {
     'flamingos-pic',
     'Flamingos, Vegas City',
     '-126, 118',
-    'The Flamingos casino is a joint venture with Vegas City. The casino is located on an 88 parcel estate broken up into 68 separate NFTs - ground floor (15 ETH), second floor (10 ETH), and third floor (7 ETH). The casino houses Decentral Games slots and roulette, and token holders make a percentage revenue from the games on their specific parcel.',
+    'Flamingos is a casino built by Vegas City. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
     'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
   ],
 };
