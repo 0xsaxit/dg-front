@@ -16,7 +16,7 @@ const ContentDeposit = (props) => {
     { key: 5, text: '5000 MANA', value: 5000 },
     { key: 6, text: 'CUSTOM', value: -1 },
   ];
-  
+
   const currencies = [
     {
       key: '1',
@@ -85,10 +85,18 @@ const ContentDeposit = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <Grid.Column floated='left' width={6} style={{ marginLeft: '-18px' }}>
+            <Grid.Column
+              floated="left"
+              width={6}
+              style={{ marginLeft: '-18px' }}
+            >
               <h3 className="modal-h3">Deposit to Matic</h3>
             </Grid.Column>
-            <Grid.Column floated='right' width={6} style={{ marginRight: '-4px' }}>
+            <Grid.Column
+              floated="right"
+              width={6}
+              style={{ marginRight: '-4px' }}
+            >
               <Dropdown
                 selection
                 text="MANA"
@@ -96,7 +104,7 @@ const ContentDeposit = (props) => {
                 options={currencies}
                 style={{ marginTop: '30px' }}
               />
-            </Grid.Column>     
+            </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
@@ -191,6 +199,8 @@ const ContentDeposit = (props) => {
   }
 
   function contentConfirm() {
+    let timer = 0;
+
     return (
       <div className="modal-content-container">
         <Grid>
@@ -202,6 +212,15 @@ const ContentDeposit = (props) => {
               Matic Network requires a total of 12 confirmations for transaction
               to complete.
             </p>
+
+            {/* {balanceNew === balanceStart ? (
+              // check balance every minute
+              timer > 60 ? (
+                <Balances />
+              ) : (
+                <ModalWithdraw isExit={1} transactionHash={row.txid} />
+              )
+            ) : null} */}
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">Number of confirmations: ...</p>

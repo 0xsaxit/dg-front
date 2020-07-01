@@ -25,7 +25,7 @@ class ModalWithdraw extends React.Component {
     };
 
     this.userAddress = '';
-    this.maticWeb3 = {};
+    // this.maticWeb3 = {};
     this.tokenContract = {};
   }
 
@@ -38,11 +38,11 @@ class ModalWithdraw extends React.Component {
       });
 
       // set maticWeb3 provider and verify user/set userStepValue // ******************************
-      this.maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      );
+      // this.maticWeb3 = new window.Web3(
+      //   new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      // );
       // await this.getTokenBalance(); // ************************************************
-      await this.checkUserVerify();
+      // await this.checkUserVerify();
     }
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
@@ -218,39 +218,39 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and deposit status in database
-  checkUserVerify = async () => {
-    try {
-      const response = await this.getUserStatus();
-      const json = await response.json();
+  // checkUserVerify = async () => {
+  //   try {
+  //     const response = await this.getUserStatus();
+  //     const json = await response.json();
 
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          this.setState({ userStepValue: 1 });
-          return;
-        }
+  //     if (json.status === 'ok') {
+  //       if (json.result === 'false') {
+  //         this.setState({ userStepValue: 1 });
+  //         return;
+  //       }
 
-        let stepValue = parseInt(json.result);
-        this.setState({ userStepValue: stepValue });
+  //       let stepValue = parseInt(json.result);
+  //       this.setState({ userStepValue: stepValue });
 
-        // console.log('userStepValue status: ' + stepValue); // get data from Context API store *******************
-      }
-    } catch (error) {
-      console.log('step value error withdraw: ' + error);
-    }
-  };
+  //       // console.log('userStepValue status: ' + stepValue); // get data from Context API store *******************
+  //     }
+  //   } catch (error) {
+  //     console.log('step value error withdraw: ' + error);
+  //   }
+  // };
 
-  getUserStatus = () => {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-      }),
-    });
-  };
+  // getUserStatus = () => {
+  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: this.userAddress,
+  //     }),
+  //   });
+  // };
 
   updateHistory = async (amount, type, state, txHash, step) => {
     try {

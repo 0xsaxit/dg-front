@@ -10,12 +10,10 @@ const Dashboard = () => {
   // get user's onboard status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // const [isDashboard, setDashboard] = useState(false);
-
+  // define local loading variable
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    // setDashboard(state.dashboard);
     setLoading(false);
   });
 

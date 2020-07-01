@@ -9,7 +9,6 @@ function Status() {
   let userAddress = '';
 
   useEffect(() => {
-    // if (window.web3) {
     userAddress = window.web3.currentProvider.selectedAddress;
 
     async function fetchData() {
@@ -21,7 +20,6 @@ function Status() {
       });
     }
     fetchData();
-    // }
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////

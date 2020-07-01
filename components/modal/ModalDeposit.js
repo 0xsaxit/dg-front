@@ -5,6 +5,7 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
+import Balances from '../Balances';
 import Global from '../Constants';
 
 let web3 = {};
@@ -36,7 +37,6 @@ class ModalDeposit extends React.Component {
     };
 
     this.userAddress = '';
-    this.maticWeb3 = {};
     this.tokenContract = {};
   }
 
@@ -48,12 +48,7 @@ class ModalDeposit extends React.Component {
         this.setState({ networkID: parseInt(network) });
       });
 
-      // set maticWeb3 provider and verify user/set userStepValue // **************************
-      this.maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      );
-      // await this.getTokenBalance(); // *******************************************
-      await this.checkUserVerify();
+      await this.checkUserVerify(); // get this value from Context API store ***********************************
 
       // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
       web3 = new Web3(window.ethereum);
@@ -200,7 +195,7 @@ class ModalDeposit extends React.Component {
           await this.postUserVerify(5); // update verify to 'authorize'
           this.setState({ userStepValue: 5 }); // advance to auth step
         } else if (this.state.userStepValue == 6) {
-          setTimeout(this.props.update, 5000); // set user token balance from MetaMask
+          this.setState({ userStepValue: 5.5 }); // advance to confirmation step
         }
 
         this.setState({ isValidDeposit: 2 }); // valid deposit
@@ -293,8 +288,6 @@ class ModalDeposit extends React.Component {
 
         let stepValue = parseInt(json.result);
         this.setState({ userStepValue: stepValue });
-
-        // console.log('userStepValue status: ' + stepValue); // get data from Context API store ***************
       }
     } catch (error) {
       console.log('step value error deposit: ' + error);
@@ -464,6 +457,8 @@ class ModalDeposit extends React.Component {
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // get number of confirmations from Matic Network and display to user
                 <Grid.Column>
+                  <Balances />
+
                   <ContentDeposit
                     content={'confirmations'} // content type
                     // nextStep={this.nextStep}

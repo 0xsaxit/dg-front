@@ -56,7 +56,7 @@ const metaTransactionType = [
 ];
 
 let domainData = {
-  name: 'Dummy Child Token', // 'Decentraland',
+  name: 'Dummy Child Token',
   version: '1',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',
