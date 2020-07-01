@@ -15,8 +15,8 @@ let spenderAddress = '';
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
-  tokenAddressGoerli = addresses.GOERLI_TOKEN_ADDRESS;
-  spenderAddress = addresses.PARENT_CONTRACT_ADDRESS;
+  tokenAddressGoerli = addresses.ROOT_TOKEN_ADDRESS_MANA;
+  spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 }
 getAddresses();
 

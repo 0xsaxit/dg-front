@@ -38,11 +38,11 @@ function Balances() {
 
     const TOKEN_CONTRACT_ROOT = window.web3.eth
       .contract(Global.ABI_PARENT_TOKEN)
-      .at(addresses.GOERLI_TOKEN_ADDRESS);
+      .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
 
     const TOKEN_CONTRACT_CHILD = maticWeb3.eth
       .contract(Global.ABI_CHILD_TOKEN)
-      .at(addresses.MATIC_TOKEN_ADDRESS);
+      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
 
     try {
       const amount1 = await Global.balanceOfToken(

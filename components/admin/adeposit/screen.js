@@ -82,7 +82,7 @@ class Deposit extends React.Component {
       USER_ADDRESS = window.web3.currentProvider.selectedAddress;
       var amount_wei = ((this.state.amount / UNIT) * Global.FACTOR).toString();
       var allowed_amount = await Global.getAllowedToken(
-        Global.MATIC_TOKEN_ADDRESS,
+        Global.CHILD_TOKEN_ADDRESS_MANA,
         Global.TREASURY_SLOTS_ADDRESS,
         USER_ADDRESS
       );

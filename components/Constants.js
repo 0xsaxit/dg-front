@@ -66,10 +66,11 @@ let domainData = {
 /////////////////////////////////////////////////////////////////////////////////////////
 // fetch wallet and contract addresses from server REST API
 let RELAY_ADDRESS = '';
-let MAINNET_TOKEN_ADDRESS = '';
-let GOERLI_TOKEN_ADDRESS = '';
-let MATIC_TOKEN_ADDRESS = '';
-let PARENT_CONTRACT_ADDRESS = '';
+let ROOT_TOKEN_ADDRESS_DAI = '';
+let ROOT_TOKEN_ADDRESS_MANA = '';
+let CHILD_TOKEN_ADDRESS_DAI = '';
+let CHILD_TOKEN_ADDRESS_MANA = '';
+let TREASURY_CONTRACT_ADDRESS = '';
 let TREASURY_SLOTS_ADDRESS = '';
 let TREASURY_ROULETTE_ADDRESS = '';
 let TREASURY_BACKGAMMON_ADDRESS = '';
@@ -85,10 +86,11 @@ const API_ADDRESSES = (async () => {
   let json = await response.json();
 
   RELAY_ADDRESS = json.WORKER_WALLET_ADDRESS;
-  MAINNET_TOKEN_ADDRESS = json.MAINNET_TOKEN_ADDRESS;
-  GOERLI_TOKEN_ADDRESS = json.GOERLI_TOKEN_ADDRESS;
-  MATIC_TOKEN_ADDRESS = json.MATIC_TOKEN_ADDRESS;
-  PARENT_CONTRACT_ADDRESS = json.PARENT_CONTRACT_ADDRESS;
+  ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
+  ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
+  CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
+  CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
+  TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
   TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
   TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
   TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
@@ -97,10 +99,11 @@ const API_ADDRESSES = (async () => {
   ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDRESS);
-  console.log('MAINNET_TOKEN_ADDRESS: ' + MAINNET_TOKEN_ADDRESS);
-  console.log('GOERLI_TOKEN_ADDRESS: ' + GOERLI_TOKEN_ADDRESS);
-  console.log('MATIC_TOKEN_ADDRESS: ' + MATIC_TOKEN_ADDRESS);
-  console.log('PARENT_CONTRACT_ADDRESS: ' + PARENT_CONTRACT_ADDRESS);
+  console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
+  console.log('ROOT_TOKEN_ADDRESS_MANA: ' + ROOT_TOKEN_ADDRESS_MANA);
+  console.log('CHILD_TOKEN_ADDRESS_DAI: ' + CHILD_TOKEN_ADDRESS_DAI);
+  console.log('CHILD_TOKEN_ADDRESS_MANA: ' + CHILD_TOKEN_ADDRESS_MANA);
+  console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);
   console.log('TREASURY_SLOTS_ADDRESS: ' + TREASURY_SLOTS_ADDRESS);
   console.log('TREASURY_ROULETTE_ADDRESS: ' + TREASURY_ROULETTE_ADDRESS);
   console.log('TREASURY_BACKGAMMON_ADDRESS: ' + TREASURY_BACKGAMMON_ADDRESS);
@@ -118,14 +121,14 @@ const API_ADDRESSES = (async () => {
     posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
   });
 
-  domainData.verifyingContract = MATIC_TOKEN_ADDRESS; // set verifying contract for Biconomy API
+  domainData.verifyingContract = CHILD_TOKEN_ADDRESS_MANA; // set verifying contract for Biconomy API
 
   return {
     RELAY_ADDRESS,
-    MAINNET_TOKEN_ADDRESS,
-    GOERLI_TOKEN_ADDRESS,
-    MATIC_TOKEN_ADDRESS,
-    PARENT_CONTRACT_ADDRESS,
+    ROOT_TOKEN_ADDRESS_DAI,
+    ROOT_TOKEN_ADDRESS_MANA,
+    CHILD_TOKEN_ADDRESS_MANA,
+    TREASURY_CONTRACT_ADDRESS,
     TREASURY_SLOTS_ADDRESS,
     TREASURY_ROULETTE_ADDRESS,
     TREASURY_BACKGAMMON_ADDRESS,
@@ -154,12 +157,12 @@ function getTokenContract(network, web3Default = window.web3) {
   if (network == 'root') {
     tokenContract = new web3Default.eth.Contract(
       ABI_PARENT_TOKEN,
-      GOERLI_TOKEN_ADDRESS
+      ROOT_TOKEN_ADDRESS_MANA
     );
   } else if (network == 'child') {
     tokenContract = new web3Default.eth.Contract(
       ABI_CHILD_TOKEN,
-      MATIC_TOKEN_ADDRESS
+      CHILD_TOKEN_ADDRESS_MANA
     );
   }
 
@@ -324,7 +327,7 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
     try {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABIParentContract)
-        .at(PARENT_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
         err,
@@ -355,7 +358,7 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
     try {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABIParentContract)
-        .at(PARENT_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.checkAllocatedTokensPerGame(
         gameType,
@@ -388,7 +391,7 @@ function depositToParent(gameType, amount, tokenName) {
     try {
       const PARENT_CONTRACT = window.web3.eth
         .contract(ABIParentContract)
-        .at(PARENT_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.addFunds(
         gameType,
@@ -427,7 +430,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
     try {
       const PARENT_CONTRACT = window.web3.eth
         .contract(ABIParentContract)
-        .at(PARENT_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.withdrawCollateral(
         gameType,
