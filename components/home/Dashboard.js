@@ -98,12 +98,9 @@ const Dashboard = () => {
                   </Button>
                 </div>
                 <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-                  Sporting a Japanese aesthetic, Tominoya is a virtual casino in
-                  Decentraland, a decentralized virtual world. Enjoy
-                  non-custodial, pseudo-anonymous, and provably fair crypto
-                  gameplay with your friends.
+                   Tominoya is a virtual casino built by Decentral Games in Decentraland. 
+                   Enjoy non-custodial slots, roulette, and blackjack playable with crypto.
                 </p>
-                <p className="home-dashboard-p">Games: Slots, Roulette</p>
               </Fade>
             </div>
           </div>
