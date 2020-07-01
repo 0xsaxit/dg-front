@@ -103,7 +103,6 @@ const Dashboard = () => {
                    Tominoya is a virtual casino built by Decentral Games in Decentraland. 
                    Enjoy non-custodial slots, roulette, and blackjack playable with crypto.
                 </p>
-                <p className="home-dashboard-p">Games: Slots, Roulette</p>
               </Fade>
             </div>
           </div>
