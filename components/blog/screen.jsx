@@ -13,7 +13,7 @@ import {
   Search,
 } from 'semantic-ui-react';
 import _ from 'lodash';
-import flamingos from '../../static/images/flamingos.png';
+// import flamingos from '../../static/images/flamingos.png';
 import Fade from 'react-reveal/Fade';
 import { GlobalContext } from '../../store';
 // import { Navbar } from 'semantic-ui-react';

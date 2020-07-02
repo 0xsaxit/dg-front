@@ -8,7 +8,7 @@ import { MdHistory } from 'react-icons/md';
 import { MdPlaylistAddCheck } from 'react-icons/md';
 import { MdBookmarkBorder } from 'react-icons/md';
 import { MdInfoOutline } from 'react-icons/md';
-import Svgeth from '../../static/images/svg6';
+// import Svgeth from '../../static/images/svg6';
 
 let Global;
 const INITIAL_STATE = {

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import box from '../../../static/images/box.png';
 import check from '../../../static/images/check.png';
-import verify from '../../../static/images/switch_matic.png';
+// import verify from '../../../static/images/switch_matic.png';
 import { Header, Button } from 'semantic-ui-react';
 import {
   Container,
@@ -409,11 +409,11 @@ class Deposit extends React.Component {
                   On your Metamask extension, open the Network dropdown menu and
                   select 'Matic' Testnet.
                 </p>
-                <img
+                {/* <img
                   style={{ width: '240px', marginLeft: '100px' }}
                   src={verify}
                   className="image small inline"
-                />
+                /> */}
 
                 {this.state.networkID != parseInt(Global.MATIC_NETWORK_ID) ? (
                   <p
