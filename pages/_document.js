@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/static/images/apple-touch-icon.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593694291/apple-touch-icon_tmocum.png"
           />
           <link
             rel="icon"
