@@ -114,9 +114,9 @@ jobs:
             var status_icon_func = function(s) {
                 switch (s) {
                 case "w_success":
-                    return ":white_check_mark:"
+                    return ":heavy_check_mark:"
                 case "w_failure":
-                    return ":no_entry:"
+                    return ":x:"
                 case "w_cancelled":
                     return ":warning:"
                 case "success":
@@ -172,14 +172,14 @@ jobs:
                         type: "section",
                         text: {
                             type: "mrkdwn",
-                            text: "<https://github.com/${{ github.repository }}|*${{ github.repository }}*>\nfrom *${{ github.ref }}@" + commit + "*"
+                            text: status_icon_func(workflow_status) + " *${{ github.workflow }}* " + pr + "\nWorkflow run <" + wf_run.data.html_url + "|#${{ github.run_number }}> completed in " + date_diff_func(new Date(wf_run.data.created_at), new Date(wf_run.data.updated_at))
                         }
-                    },
+                    },                
                     {
                         type: "section",
                         text: {
                             type: "mrkdwn",
-                            text: status_icon_func(workflow_status) + " *${{ github.workflow }}* " + pr + "\nWorkflow run <" + wf_run.data.html_url + "|#${{ github.run_number }}> completed in " + date_diff_func(new Date(wf_run.data.created_at), new Date(wf_run.data.updated_at))
+                            text: "<https://github.com/${{ github.repository }}|*${{ github.repository }}*>\nfrom *${{ github.ref }}@" + commit + "*"
                         }
                     },
                     {
