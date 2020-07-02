@@ -15,7 +15,7 @@ import {
 } from 'semantic-ui-react';
 import Spinner from '../../../Spinner';
 import AdminCheck from '../adminCheck';
-import logo from '../../../static/images/logo.png';
+// import logo from '../../../static/images/logo.png';
 // ---------------------------------------------------------------------
 let Global;
 var UNIT = 1;
@@ -200,7 +200,7 @@ class Deposit extends React.Component {
                   <a href="https://decentral.games">
                     <img
                       className="image inline"
-                      src={logo}
+                      src={Global.LOGO}
                       style={{
                         width: '230px',
                         paddingTop: '25px',
@@ -344,7 +344,7 @@ class Deposit extends React.Component {
                 <a href="https://decentral.games">
                   <img
                     className="image inline"
-                    src={logo}
+                    src={Global.LOGO}
                     style={{
                       width: '230px',
                       paddingTop: '25px',

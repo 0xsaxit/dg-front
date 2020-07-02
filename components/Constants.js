@@ -36,6 +36,8 @@ const BUTTER = Butter('d7d6d8425656d3cfe5f45d7a0a3a8470ef09d434'); // pass Butte
 const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
+const LOADING_SPINNER =
+  'https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-32x32_kuowrj.png';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -616,6 +618,7 @@ export default {
   SOCIAL_SHARE_IMAGE,
   DISCORD_URL,
   SOCIAL_HANDLE,
+  LOADING_SPINNER,
   delay,
   getTokenContract,
   balanceOfToken,

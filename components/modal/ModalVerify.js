@@ -22,12 +22,12 @@ import { isMobile } from 'react-device-detect';
 import Spinner from '../Spinner';
 
 let Global;
-import logo2 from '../../static/images/logo.png';
+// import logo2 from '../../static/images/logo.png';
 // import logo2 from '../../static/images/logoDG35.png'
 import box from '../../static/images/box.png';
 import check from '../../static/images/check.png';
-import metamask from '../../static/images/metamask.png';
-import ledger from '../../static/images/ledger.png';
+// import metamask from '../../static/images/metamask.png';
+// import ledger from '../../static/images/ledger.png';
 
 var USER_ADDRESS;
 

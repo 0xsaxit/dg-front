@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Grid, Image, Breadcrumb } from 'semantic-ui-react';
-import metamask from '../../static/images/metamask.png';
-import ledger from '../../static/images/ledger.png';
+// import metamask from '../../static/images/metamask.png';
+// import ledger from '../../static/images/ledger.png';
 import Spinner from '../Spinner';
 import { Header } from 'semantic-ui-react';
 

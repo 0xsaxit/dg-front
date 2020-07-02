@@ -1,6 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -13,7 +12,10 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-          <link rel="shortcut icon" href="static/images/favicon.ico" />
+          <link
+            rel="shortcut icon"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691630/favicon_ofugym.ico"
+          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -23,13 +25,13 @@ export default class MyDocument extends Document {
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/static/images/favicon-32x32.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-32x32_kuowrj.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/staticimages/favicon-16x16.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-16x16_btdy9a.png"
           />
           <link rel="manifest" href="/static/js/site.webmanifest" />
           <link
