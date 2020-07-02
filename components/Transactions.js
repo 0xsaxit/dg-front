@@ -9,24 +9,26 @@ function Transactions() {
   let userAddress = '';
 
   useEffect(() => {
-    userAddress = window.web3.currentProvider.selectedAddress;
+    if (window.web3) {
+      userAddress = window.web3.currentProvider.selectedAddress;
 
-    async function fetchData() {
-      const responseHistory = await getHistoryData();
-      const jsonHistory = await responseHistory.json();
-      const dataHistory = jsonHistory.result;
-      const responsePlay = await getPlayData();
-      const jsonPlay = await responsePlay.json();
-      const dataPlay = jsonPlay.result;
+      async function fetchData() {
+        const responseHistory = await getHistoryData();
+        const jsonHistory = await responseHistory.json();
+        const dataHistory = jsonHistory.result;
+        const responsePlay = await getPlayData();
+        const jsonPlay = await responsePlay.json();
+        const dataPlay = jsonPlay.result;
 
-      const response = [dataHistory, dataPlay];
+        const response = [dataHistory, dataPlay];
 
-      dispatch({
-        type: 'update_history',
-        data: response,
-      });
+        dispatch({
+          type: 'update_history',
+          data: response,
+        });
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////

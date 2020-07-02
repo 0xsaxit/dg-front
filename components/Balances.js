@@ -11,23 +11,25 @@ function Balances() {
   let maticWeb3 = {};
 
   useEffect(() => {
-    userAddress = window.web3.currentProvider.selectedAddress;
-    web3 = new Web3(window.ethereum);
-    maticWeb3 = new window.Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-    );
+    if (window.web3) {
+      userAddress = window.web3.currentProvider.selectedAddress;
+      web3 = new Web3(window.ethereum);
+      maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
 
-    async function fetchData() {
-      const response = await getTokenBalances();
+      async function fetchData() {
+        const response = await getTokenBalances();
 
-      console.log('dispatch updated balances...');
+        console.log('dispatch updated balances...');
 
-      dispatch({
-        type: 'update_balances',
-        data: response,
-      });
+        dispatch({
+          type: 'update_balances',
+          data: response,
+        });
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////

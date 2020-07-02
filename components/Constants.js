@@ -114,9 +114,11 @@ const API_ADDRESSES = (async () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // create MaticPOSClient object to deposit tokens from Mainnet to Matic Network
+  const ethereum = await window.ethereum;
+
   maticPOSClient = new MaticPOSClient({
     maticProvider: MATIC_URL,
-    parentProvider: window.ethereum,
+    parentProvider: ethereum,
     rootChain: ROOTCHAIN_ADDRESS,
     posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
   });
