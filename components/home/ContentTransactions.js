@@ -306,8 +306,8 @@ const ContentTransactions = (props) => {
                 {action}
               </Table.Cell>
 
-              <Table.Cell>-{amount} MANA</Table.Cell>
-              <Table.Cell>+{result} MANA</Table.Cell>
+              <Table.Cell>-{amount} {row.coinName}</Table.Cell>
+              <Table.Cell>+{result} {row.coinName}</Table.Cell>
               <Table.Cell>{timestamp}</Table.Cell>
 
               <Table.Cell>
