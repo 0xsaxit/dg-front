@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import logo from '../../static/images/authorize_title.png';
+// import logo from '../../static/images/authorize_title.png';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { FaServer } from 'react-icons/fa';
 import { MdHistory } from 'react-icons/md';
@@ -42,7 +42,7 @@ class SideMenu extends React.Component {
         <a href="/">
           <img
             className="image inline"
-            src={logo}
+            src={Global.LOGO}
             style={{ width: '42px', paddingTop: '30px', paddingBottom: '35px' }}
           />
         </a>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PostPreview from './PostPreview';
 import { Container, Menu } from 'semantic-ui-react';
-import logo from '../../static/images/authorize_title.png';
+// import logo from '../../static/images/authorize_title.png';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import {
