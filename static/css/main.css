@@ -295,6 +295,7 @@ video.home-dashboard-video {
 .ui.modal {
   border-radius: 3px;
   max-width: 630px;
+  margin-left: -18px;
 }
 
 .ui.dimmer {
@@ -410,16 +411,48 @@ span.text {
   margin-right: 45px;
 }
 
-div.ui.selection.dropdown.currency-dropdown {
-  min-width: 180px !important;
-  width: 180px !important;
+.modal-h3.deposit {
+  min-width: 180px;
 }
 
-.ui.avatar.image {
-  width: 18px !important;
-  height: 100% !important;
-  margin-top: 4px !important;
-  margin-right: 6px !important;
+.deposit-top-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right-aligned-crypto {
+  display: flex;
+  margin-left: 199px;
+}
+
+@media (max-width: 991px) {
+  .right-aligned-crypto {
+    margin-left: 30px;
+  }
+}
+
+.crypto-select-span {
+  display: flex;
+  flex-direction: row;
+  margin-top: 26px;
+}
+
+.crypto-select-span.mana {
+  background-color: #eaeaea;
+  width: 105px;
+  height: 32px;
+  border-radius: 3px;
+  padding-top: 1px;
+  margin-right: 16px;
+}
+
+.deposit-mana-image,
+.deposit-dai-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  margin-top: 4px;
+  margin-left: 9px;
 }
 
 /* ----------------------------------------- */
