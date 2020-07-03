@@ -187,7 +187,7 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: relative;
-  padding-top: calc(100vh - 700px);
+  padding-top: calc(100vh - 630px);
   padding-left: 30px;
   max-width: 1400px !important;
   margin-left: auto !important;
@@ -1227,7 +1227,7 @@ a.account-withdraw-button:hover {
   .home-dashboard-content {
     margin-left: -12px !important;
     margin-right: 30px;
-    margin-bottom: -30px;
+    margin-bottom: -100px;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1317,7 +1317,7 @@ a.account-withdraw-button:hover {
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: -45px;
+    margin-bottom: -115px;
   }
   .featured-casino-text {
     font-size: 12px !important;
