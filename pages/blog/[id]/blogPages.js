@@ -110,7 +110,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
     </Segment>
   );
 };
-BlogDetail.getInitialProps = async ({ query }) => {
+BlogDetail.getServerSideProps = async ({ query }) => {
   const slug = query.id;
   const { data } = await Global.BUTTER.post.list({ page_size: 25 });
   const currentPage = data.data.find((page) => page.slug === slug);

@@ -1,8 +1,8 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
+  static async getServerSideProps(ctx) {
+    const initialProps = await Document.getServerSideProps(ctx);
     return { ...initialProps };
   }
 

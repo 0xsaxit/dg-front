@@ -1,5 +1,4 @@
 import BlogPages from './blogPages';
-// import { butter } from '../../../store/api';
 import Layout from '../../../components/Layout.js';
 import Header from '../../../components/Header';
 import Global from '../../../components/Constants';
