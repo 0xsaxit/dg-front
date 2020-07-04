@@ -30,7 +30,7 @@ const ContentWithdraw = (props) => {
           <Grid.Row>
             <div className="deposit-top-row">
               <h3 className="modal-h3 deposit">Withdraw from Matic</h3>
-              <div className="right-aligned-crypto">
+              <div className="right-aligned-crypto withdraw">
                 <span className="crypto-select-span mana">
                   <img 
                     src="../../static/images/mana_circle.webp" 
