@@ -22,45 +22,31 @@ const ContentWithdraw = (props) => {
       value: state.balances[0][1],
     },
   ];
-  
-  const currencies = [
-    {
-      key: '1',
-      text: 'MANA',
-      value: 'MANA',
-      image: { avatar: true, src: '../../static/images/mana_circle.webp' },
-    },
-    /*{
-      key: '2',
-      text: 'DAI',
-      value: 'DAI',
-      image: { avatar: true, src: '../../static/images/dai_circle.webp' },
-    },
-    {
-      key: '3',
-      text: 'ETH',
-      value: 'ETH',
-      image: { avatar: true, src: '../../static/images/eth.png' },
-    },*/
-  ];
 
   function contentBurn() {
     return (
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <Grid.Column floated='left' width={8} style={{ marginLeft: '-36px' }}>
-              <h3 className="modal-h3">Withdraw from Matic</h3>
-            </Grid.Column>
-            <Grid.Column floated='right' width={6} style={{ marginRight: '9px' }}>
-              <Dropdown
-                selection
-                text="MANA"
-                className="currency-dropdown"
-                options={currencies}
-                style={{ marginTop: '30px' }}
-              />
-            </Grid.Column> 
+            <div className="deposit-top-row">
+              <h3 className="modal-h3 deposit">Withdraw from Matic</h3>
+              <div className="right-aligned-crypto">
+                <span className="crypto-select-span mana">
+                  <img 
+                    src="../../static/images/mana_circle.webp" 
+                    className="deposit-mana-image"
+                  />
+                  <p className="crypto-select-button"> MANA </p>
+                </span>
+                <span className="crypto-select-span">
+                  <img 
+                    src="../../static/images/dai_circle.webp" 
+                    className="deposit-dai-image"
+                  />
+                  <p className="crypto-select-button"> DAI </p>
+                </span>
+              </div>
+            </div>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p" style={{ marginBottom: '6px' }}>
