@@ -83,7 +83,7 @@ class ModalWithdraw extends React.Component {
     } else {
       return (
         <a className="account-withdraw-button" onClick={this.handleOpen}>
-          WITHDRAW
+          TEST
         </a>
       );
     }
