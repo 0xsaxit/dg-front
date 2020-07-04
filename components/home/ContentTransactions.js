@@ -76,7 +76,7 @@ const ContentTransactions = (props) => {
           <Table.Cell>
             <span className="balances-table-span">
               <Modal
-                trigger={<p className="balances-purchase">Purchase</p>}
+                trigger={<p className="balances-purchase">PURCHASE</p>}
                 closeIcon
               >
                 <Modal.Content className="purchase-modal">
@@ -87,7 +87,7 @@ const ContentTransactions = (props) => {
                 </Modal.Content>
               </Modal>
               <Modal
-                trigger={<p className="balances-exchange">Exchange</p>}
+                trigger={<p className="balances-exchange">TRADE</p>}
                 closeIcon
               >
                 <Modal.Content className="uniswap-modal">
@@ -135,8 +135,8 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <p className="balances-deposit">Purchase</p>
-              <p className="balances-withdraw">Exchange</p>
+              <p className="balances-deposit">PURCHASE</p>
+              <p className="balances-withdraw">TRADE</p>
             </span>
           </Table.Cell>
           <Table.Cell>
@@ -153,8 +153,8 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <p className="balances-deposit">Deposit</p>
-              <p className="balances-withdraw">Withdraw</p>
+              <p className="balances-deposit">DEPOSIT</p>
+              <p className="balances-withdraw">WITHDRAW</p>
             </span>
           </Table.Cell>
         </Table.Row>
@@ -173,8 +173,8 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <p className="balances-deposit">Purchase</p>
-              <p className="balances-withdraw">Exchange</p>
+              <p className="balances-deposit">PURCHASE</p>
+              <p className="balances-withdraw">TRADE</p>
             </span>
           </Table.Cell>
           <Table.Cell>
@@ -191,8 +191,8 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <p className="balances-deposit">Deposit</p>
-              <p className="balances-withdraw">Withdraw</p>
+              <p className="balances-deposit">DEPOSIT</p>
+              <p className="balances-withdraw">WITHDRAW</p>
             </span>
           </Table.Cell>
         </Table.Row>
