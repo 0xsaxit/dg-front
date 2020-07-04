@@ -98,7 +98,7 @@ class ModalDeposit extends React.Component {
     if (this.props.isLink) {
       return (
         <a className="account-deposit-button" onClick={this.handleOpen}>
-          Deposit
+          DEPOSIT
         </a>
       );
     } else {
