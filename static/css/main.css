@@ -459,6 +459,10 @@ span.text {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
+.ui.table tr:first-child td {
+  padding-top: 12px !important;
+}
+
 .ui.table thead tr:first-child > th:last-child,
 .ui.fixed.table td:last-child {
   padding-left: 21px;
@@ -533,21 +537,35 @@ table.ui.fixed.single.line.table {
   display: flex;
 }
 
-.balances-exchange {
-  margin-bottom: -2px;
-  font-size: 16px;
-  letter-spacing: 0.25px !important;
+.balances-purchase {
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
   line-height: 24px;
-  color: #2085f4 !important;
-  margin-left: 30px;
+  color: white !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #2085f4;
 }
 
-.balances-purchase {
-  margin-bottom: -2px;
-  letter-spacing: 0.25px !important;
-  font-size: 16px;
+.balances-exchange {
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
   line-height: 24px;
-  color: #2085f4 !important;
+  color: white !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #2085f4;
+  margin-left: 21px;
 }
 
 .balances-exchange:hover,
@@ -575,20 +593,34 @@ div.uniswap-modal.content {
 }
 
 .balances-deposit {
-  margin-bottom: -2px;
-  letter-spacing: 0.25px !important;
-  font-size: 16px;
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
   line-height: 24px;
-  color: grey;
+  color: white !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #c5c6c8;
 }
 
 .balances-withdraw {
-  margin-bottom: -2px;
-  letter-spacing: 0.25px !important;
-  font-size: 16px;
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
   line-height: 24px;
-  padding-left: 30px;
-  color: grey;
+  color: white !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #c5c6c8;
+  margin-left: 21px;
 }
 
 .account-purchase {
@@ -1121,7 +1153,18 @@ a.ui.blue.button.play-shimmer:hover,
 }
 
 a.account-deposit-button {
-  color: #2085f4 !important;
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
+  line-height: 24px;
+  color: white !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #2085f4;
 }
 
 a.account-deposit-button:hover {
@@ -1130,8 +1173,19 @@ a.account-deposit-button:hover {
 }
 
 a.account-withdraw-button {
-  color: #2085f4 !important;
-  margin-left: 30px;
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
+  line-height: 24px;
+  color: white !important;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #2085f4;
+  margin-left: 21px;
 }
 
 a.account-withdraw-button:hover {
