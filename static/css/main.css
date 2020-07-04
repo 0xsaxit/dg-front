@@ -420,9 +420,14 @@ span.text {
   flex-wrap: wrap;
 }
 
-.right-aligned-crypto {
+.right-aligned-crypto.deposit {
   display: flex;
-  margin-left: 199px;
+  margin-left: 189px;
+}
+
+.right-aligned-crypto.withdraw {
+  display: flex;
+  margin-left: 135px;
 }
 
 @media (max-width: 991px) {
