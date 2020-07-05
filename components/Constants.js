@@ -17,7 +17,7 @@ const GAS_LIMIT = '3000000'; // was '900000'
 const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
-const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: goerli
+const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
 const MATIC_NETWORK_ID = '80001';
 const MATIC_URL = 'https://rpc-mumbai.matic.today'; // 'https://testnetv3.matic.network';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/'; // 'https://testnetv3-explorer.matic.network';
@@ -37,7 +37,7 @@ const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
 const LOADING_SPINNER =
-  'https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-32x32_kuowrj.png';
+  'https://res.cloudinary.com/dnzambf4m/image/upload/v1593912197/120dgspin_okkzit.gif';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /////////////////////////////////////////////////////////////////////////////////////////
