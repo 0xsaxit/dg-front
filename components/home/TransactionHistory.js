@@ -82,7 +82,6 @@ const History = (props) => {
   function pagination() {
     const previousPage = currentPage - 1;
     const nextPage = currentPage + 1;
-    const currentRows = dataPage.length;
 
     let totalRows = 0;
     if (dataType === 'History') {
@@ -176,7 +175,7 @@ const History = (props) => {
             </Table>
           </div>
 
-          <div>{pagination()}</div>
+          {pagination()}
         </div>
       </div>
     </div>
