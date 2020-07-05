@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { Menu } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
-import mana from '../../static/images/mana_circle.webp';
-import dai from '../../static/images/dai_circle.webp';
+// import mana from '../../static/images/mana_circle.webp';
+// import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
 
 const MenuTop = (props) => {
@@ -50,7 +50,7 @@ const MenuTop = (props) => {
         <Link href="/">
           <img
             className="image inline pointer"
-            src={Global.LOGO}
+            src={Global.IMAGES.LOGO}
             style={{
               width: '39px',
               paddingTop: '15px',
@@ -109,7 +109,7 @@ const MenuTop = (props) => {
                 className="image inline"
                 width="20px"
                 height="20px"
-                src={dai}
+                src={Global.IMAGES.ICON_DAI}
               />
               {state.balances[1][1]} DAI
             </span>
@@ -123,7 +123,7 @@ const MenuTop = (props) => {
                 className="image inline"
                 width="20px"
                 height="20px"
-                src={mana}
+                src={Global.IMAGES.ICON_MANA}
               />
               {state.balances[0][1]} MANA
             </span>

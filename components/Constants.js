@@ -28,17 +28,50 @@ const ADMIN_ADDRESSES = [
   '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
 ];
 const TITLE = 'Decentral Games';
-const LOGO =
-  'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png';
 const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
 const BUTTER = Butter('d7d6d8425656d3cfe5f45d7a0a3a8470ef09d434'); // pass Butter CMS token
-const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
-const LOADING_SPINNER =
-  'https://res.cloudinary.com/dnzambf4m/image/upload/v1593912197/120dgspin_okkzit.gif';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// CDN image URLs
+const IMAGES = (() => {
+  const LOGO =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png';
+  const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
+  const LOADING_SPINNER =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593912197/120dgspin_okkzit.gif';
+  const ICON_DAI =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/dai_l8u5ig.png';
+  const ICON_MANA =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_hx4tyd.png';
+  const ICON_ETH =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/eth_ua2hza.png';
+  const BOX =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/box_mjulo4.png';
+  const CHECK =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png';
+  const MANA_CIRCLE =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_circle_oba61q.webp';
+  const DAI_CIRCLE =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/dai_circle_a9uwse.webp';
+
+  return {
+    LOGO,
+    SOCIAL_SHARE_IMAGE,
+    LOADING_SPINNER,
+    ICON_DAI,
+    ICON_MANA,
+    ICON_ETH,
+    BOX,
+    CHECK,
+    MANA_CIRCLE,
+    DAI_CIRCLE,
+  };
+})();
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -612,13 +645,11 @@ export default {
   BICONOMY_API_KEY,
   ADMIN_ADDRESSES,
   TITLE,
-  LOGO,
   DESCRIPTION,
   BUTTER,
-  SOCIAL_SHARE_IMAGE,
   DISCORD_URL,
   SOCIAL_HANDLE,
-  LOADING_SPINNER,
+  IMAGES,
   delay,
   getTokenContract,
   balanceOfToken,

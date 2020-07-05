@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import mana from '../../static/images/mana.png';
+// import mana from '../../static/images/mana.png';
 
 const TokenBalances = (props) => {
   return (
@@ -29,7 +29,7 @@ const TokenBalances = (props) => {
                 style={{ verticalAlign: 'middle', marginLeft: '40px' }}
                 width="20px"
                 height="20px"
-                src={mana}
+                src={global.IMAGES.ICON_MANA}
               />
               <span
                 style={{
@@ -61,7 +61,7 @@ const TokenBalances = (props) => {
                 style={{ verticalAlign: 'middle', marginLeft: '63px' }}
                 width="20px"
                 height="20px"
-                src={mana}
+                src={global.IMAGES.ICON_MANA}
               />
               <span
                 style={{

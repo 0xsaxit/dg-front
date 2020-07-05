@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
           <link rel="manifest" href="/static/js/site.webmanifest" />
           <link
             rel="mask-icon"
-            href="/static/images/safari-pinned-tab.svg"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593959829/safari-pinned-tab_brhtah.svg"
             color="#0086f4"
           />
           <meta name="msapplication-TileColor" content="#da532c" />
@@ -77,7 +77,7 @@ export default class MyDocument extends Document {
 
             <img
               className="Discord-icon Discord-icon--plane"
-              src="../../static/images/discord-brand.svg"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1593959829/discord-brand_swndx8.svg"
             ></img>
             <div className="Discord-text">
               <span>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
-import box from '../../../static/images/box.png';
-import check from '../../../static/images/check.png';
+// import box from '../../../static/images/box.png';
+// import check from '../../../static/images/check.png';
 // import verify from '../../../static/images/switch_matic.png';
 import { Header, Button } from 'semantic-ui-react';
 import {
@@ -200,7 +200,7 @@ class Deposit extends React.Component {
                   <a href="https://decentral.games">
                     <img
                       className="image inline"
-                      src={Global.LOGO}
+                      src={Global.IMAGES.LOGO}
                       style={{
                         width: '230px',
                         paddingTop: '25px',
@@ -217,7 +217,7 @@ class Deposit extends React.Component {
                     <img
                       style={{ opacity: '0.5' }}
                       className="progressbar image inline"
-                      src={box}
+                      src={Global.IMAGES.BOX}
                     />
                     <img
                       style={{ opacity: '0.5' }}
@@ -227,7 +227,7 @@ class Deposit extends React.Component {
                         marginBottom: '3px',
                       }}
                       className="progressbar image inline"
-                      src={check}
+                      src={Global.IMAGES.CHECK}
                     />
                     <p
                       style={{ opacity: '0.5', marginLeft: '2px' }}
@@ -238,7 +238,10 @@ class Deposit extends React.Component {
                     </p>
                   </Grid.Row>
                   <Grid.Row style={{ marginTop: '15px' }}>
-                    <img className="progressbar image inline" src={box} />
+                    <img
+                      className="progressbar image inline"
+                      src={Global.IMAGES.BOX}
+                    />
                     <p className="progressbar"> Select Amount </p>
                   </Grid.Row>
                 </div>
@@ -344,7 +347,7 @@ class Deposit extends React.Component {
                 <a href="https://decentral.games">
                   <img
                     className="image inline"
-                    src={Global.LOGO}
+                    src={Global.IMAGES.LOGO}
                     style={{
                       width: '230px',
                       paddingTop: '25px',
@@ -358,14 +361,17 @@ class Deposit extends React.Component {
                     borderTop: '1px solid lightgray',
                   }}
                 >
-                  <img className="progressbar image inline" src={box} />
+                  <img
+                    className="progressbar image inline"
+                    src={Global.IMAGES.BOX}
+                  />
                   <p className="progressbar"> Switch to Matic RPC </p>
                 </Grid.Row>
                 <Grid.Row style={{ marginTop: '15px' }}>
                   <img
                     style={{ opacity: '0.5' }}
                     className="progressbar image inline"
-                    src={box}
+                    src={Global.IMAGES.BOX}
                   />
                   <p style={{ opacity: '0.5' }} className="progressbar">
                     {' '}

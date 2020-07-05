@@ -61,7 +61,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
       {/* <Header title={page_title} description={page_summary} image={featured_image} /> */}
       <div className="mobile-menu-dark-pages">
         <a href="/">
-          <img className="mobile-menu-image" src={Global.LOGO} />
+          <img className="mobile-menu-image" src={Global.IMAGES.LOGO} />
         </a>
       </div>
       <div className="mobile-menu-words dark">

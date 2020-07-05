@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PostPreview from '../blog/PostPreview';
 // import banner from "../../static/images/banner.png";
 // import defaultProfile from '../../static/images/icon.png';
-import mana from '../../static/images/mana.png';
+// import mana from '../../static/images/mana.png';
 import { Divider, Icon } from 'semantic-ui-react';
 import { Container, Segment, Menu, Navbar } from 'semantic-ui-react';
 import HtmlParser from './HtmlParser';
@@ -73,7 +73,7 @@ const Screen = ({
     <div className="blogdetail-page" style={{ backgroundColor: 'white' }}>
       <div className="coverimg">
         <div className="image" style={{ marginTop: '-60px' }}>
-          <img src={image || Global.SOCIAL_SHARE_IMAGE} alt="" />
+          <img src={image || Global.IMAGES.SOCIAL_SHARE_IMAGE} alt="" />
         </div>
       </div>
 
@@ -97,7 +97,10 @@ const Screen = ({
                     <a>
                       <div className="author-info">
                         <div className="image">
-                          <img src={profile_image || mana} alt="" />
+                          <img
+                            src={profile_image || Global.IMAGES.ICON_MANA}
+                            alt=""
+                          />
                         </div>
                         <div className="name">
                           <span>{`${first_name || ''} ${

@@ -3,9 +3,9 @@ import { GlobalContext } from '../../store';
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
-import mana from '../../static/images/mana_circle.webp';
-import eth from '../../static/images/eth.png';
-import dai from '../../static/images/dai_circle.webp';
+// import mana from '../../static/images/mana_circle.webp';
+// import eth from '../../static/images/eth.png';
+// import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
 
 const ContentTransactions = (props) => {
@@ -63,7 +63,7 @@ const ContentTransactions = (props) => {
         <Table.Row>
           <Table.Cell>
             <img
-              src={mana}
+              src={Global.IMAGES.ICON_MANA}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -103,7 +103,7 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <img
-              src={mana}
+              src={Global.IMAGES.ICON_MANA}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -123,7 +123,7 @@ const ContentTransactions = (props) => {
         <Table.Row>
           <Table.Cell>
             <img
-              src={dai}
+              src={Global.IMAGES.ICON_DAI}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -141,7 +141,7 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <img
-              src={dai}
+              src={Global.IMAGES.ICON_DAI}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -161,7 +161,7 @@ const ContentTransactions = (props) => {
         <Table.Row>
           <Table.Cell>
             <img
-              src={eth}
+              src={Global.IMAGES.ICON_ETH}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -179,7 +179,7 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <img
-              src={eth}
+              src={Global.IMAGES.ICON_ETH}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -218,7 +218,7 @@ const ContentTransactions = (props) => {
             <Table.Row key={i}>
               <Table.Cell>
                 <img
-                  src={mana}
+                  src={Global.IMAGES.ICON_MANA}
                   style={{
                     width: '18px',
                     paddingRight: '3px',
@@ -295,7 +295,7 @@ const ContentTransactions = (props) => {
             <Table.Row key={i}>
               <Table.Cell>
                 <img
-                  src={mana}
+                  src={Global.IMAGES.ICON_MANA}
                   style={{
                     width: '18px',
                     paddingRight: '3px',
@@ -306,8 +306,12 @@ const ContentTransactions = (props) => {
                 {action}
               </Table.Cell>
 
-              <Table.Cell>-{amount} {row.coinName}</Table.Cell>
-              <Table.Cell>+{result} {row.coinName}</Table.Cell>
+              <Table.Cell>
+                -{amount} {row.coinName}
+              </Table.Cell>
+              <Table.Cell>
+                +{result} {row.coinName}
+              </Table.Cell>
               <Table.Cell>{timestamp}</Table.Cell>
 
               <Table.Cell>

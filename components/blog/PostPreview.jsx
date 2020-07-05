@@ -19,7 +19,10 @@ const PostPreview = ({
       <a className="post">
         <Container className="post-container">
           <div className="post-image">
-            <img src={featured_image || Global.SOCIAL_SHARE_IMAGE} alt="" />
+            <img
+              src={featured_image || Global.IMAGES.SOCIAL_SHARE_IMAGE}
+              alt=""
+            />
           </div>
           <div className="post-info">
             <div className="top">

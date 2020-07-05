@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import mana from '../../static/images/mana.png';
+// import mana from '../../static/images/mana.png';
 import { Table, Dropdown, Icon } from 'semantic-ui-react';
 import ModalFunds from './ModalFunds';
 
@@ -194,7 +194,7 @@ class Dashboard extends React.Component {
     const data = [
       {
         name: 'MANA Slots',
-        image: mana,
+        image: Global.IMAGES.ICON_MANA,
         unit: 'MANA',
         balance: this.state.manaSlotBalance,
         volume: this.state.manaSlotVolume,
@@ -203,7 +203,7 @@ class Dashboard extends React.Component {
       },
       {
         name: 'MANA Roulette',
-        image: mana,
+        image: Global.IMAGES.ICON_MANA,
         unit: 'MANA',
         balance: this.state.manaRouletteBalance,
         volume: this.state.manaRouletteVolume,
@@ -212,7 +212,7 @@ class Dashboard extends React.Component {
       },
       {
         name: 'MANA Blackjack',
-        image: mana,
+        image: Global.IMAGES.ICON_MANA,
         unit: 'MANA',
         balance: 0,
         volume: 0,

@@ -32,15 +32,15 @@ const ContentWithdraw = (props) => {
               <h3 className="modal-h3 deposit">Withdraw from Matic</h3>
               <div className="right-aligned-crypto withdraw">
                 <span className="crypto-select-span mana">
-                  <img 
-                    src="../../static/images/mana_circle.webp" 
+                  <img
+                    src={Global.IMAGES.MANA_CIRCLE}
                     className="deposit-mana-image"
                   />
                   <p className="crypto-select-button"> MANA </p>
                 </span>
                 <span className="crypto-select-span">
-                  <img 
-                    src="../../static/images/dai_circle.webp" 
+                  <img
+                    src={Global.IMAGES.DAI_CIRCLE}
                     className="deposit-dai-image"
                   />
                   <p className="crypto-select-button"> DAI </p>
@@ -51,8 +51,8 @@ const ContentWithdraw = (props) => {
           <Grid.Row>
             <p className="modal-p" style={{ marginBottom: '6px' }}>
               Select the amount of Matic tokens to initiate a withdrawal from
-              Matic. Following this transaction, you will receive a transaction hash
-              as a proof of withdrawal.
+              Matic. Following this transaction, you will receive a transaction
+              hash as a proof of withdrawal.
             </p>
           </Grid.Row>
           <TokenBalances

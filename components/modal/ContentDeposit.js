@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Grid, Input, Dropdown, Button } from 'semantic-ui-react';
 import TokenBalances from './TokenBalances';
+import Global from '../Constants';
 
 const ContentDeposit = (props) => {
   // get token balances from the Context API store
@@ -68,15 +69,15 @@ const ContentDeposit = (props) => {
               <h3 className="modal-h3 deposit">Deposit to Matic</h3>
               <div className="right-aligned-crypto deposit">
                 <span className="crypto-select-span mana">
-                  <img 
-                    src="../../static/images/mana_circle.webp" 
+                  <img
+                    src={Global.IMAGES.MANA_CIRCLE}
                     className="deposit-mana-image"
                   />
                   <p className="crypto-select-button"> MANA </p>
                 </span>
                 <span className="crypto-select-span">
-                  <img 
-                    src="../../static/images/dai_circle.webp" 
+                  <img
+                    src={Global.IMAGES.DAI_CIRCLE}
                     className="deposit-dai-image"
                   />
                   <p className="crypto-select-button"> DAI </p>

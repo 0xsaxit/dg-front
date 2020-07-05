@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
 // import LogoSpinner from '../LogoSpinner';
-import mana from '../../static/images/mana.png';
+// import mana from '../../static/images/mana.png';
 
 let Global;
 const INITIAL_STATE = {
@@ -128,7 +128,7 @@ class Deposit extends React.Component {
                               className="image inline"
                               width="20px"
                               height="20px"
-                              src={mana}
+                              src={Global.ICON_MANA}
                             />
                             <span
                               style={{ textAlign: 'left', marginLeft: '10px' }}

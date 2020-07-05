@@ -12,16 +12,21 @@
     "dev": "next",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "next build",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@biconomy/mexa": "^1.5.11",
     "@maticnetwork/maticjs": "^2.0.0-beta.12",
+    "@next/bundle-analyzer": "^9.4.4",
     "@transak/transak-sdk": "^1.0.19",
     "abi-decoder": "^2.2.2",
     "babel-loader": "^8.0.5",
     "base-64": "^0.1.0",
     "buttercms": "1.2.2",
+    "cross-env": "^7.0.2",
     "decentraland-ui": "^2.22.0",
     "dotenv": "^8.2.0",
     "eslint-loader": "^4.0.0",

@@ -7,9 +7,12 @@ const Index = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Slots, Roulette, Blackjack and Backgammon Playable with Crypto'}
+        title={
+          Global.TITLE +
+          ' | Slots, Roulette, Blackjack and Backgammon Playable with Crypto'
+        }
         description={Global.DESCRIPTION}
-        image={Global.SOCIAL_SHARE_IMAGE}
+        image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
       />
 
       <Home />

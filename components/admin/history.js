@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import mana from '../../static/images/mana.png';
+// import mana from '../../static/images/mana.png';
 // import LogoSpinner from '../LogoSpinner';
 
 let Global;
@@ -126,7 +126,7 @@ class History extends React.Component {
                                 className="image inline"
                                 width="20px"
                                 height="20px"
-                                src={mana}
+                                src={Global.IMAGES.ICON_MANA}
                               />
                               <span
                                 style={{

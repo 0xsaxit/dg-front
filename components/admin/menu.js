@@ -42,7 +42,7 @@ class SideMenu extends React.Component {
         <a href="/">
           <img
             className="image inline"
-            src={Global.LOGO}
+            src={Global.IMAGES.LOGO}
             style={{ width: '42px', paddingTop: '30px', paddingBottom: '35px' }}
           />
         </a>

@@ -101,13 +101,13 @@ function blog() {
       {/* <Header
         title={Global.TITLE + ' | Blog'}
         description={Global.DESCRIPTION}
-        image={Global.SOCIAL_SHARE_IMAGE}
+        image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
       /> */}
 
       <div className="blog-page">
         <div className="mobile-menu-dark">
           <a href="/">
-            <img className="mobile-menu-image" src={Global.LOGO} />
+            <img className="mobile-menu-image" src={Global.IMAGES.LOGO} />
           </a>
         </div>
         <div className="mobile-menu-words dark">
