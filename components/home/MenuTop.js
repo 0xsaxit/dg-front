@@ -105,11 +105,12 @@ const MenuTop = (props) => {
                 style={{
                   verticalAlign: 'middle',
                   marginRight: '6px',
+                  marginTop: '-1px',
                 }}
                 className="image inline"
-                width="20px"
-                height="20px"
-                src={Global.IMAGES.ICON_DAI}
+                width="18px"
+                height="18px"
+                src={Global.IMAGES.DAI_CIRCLE}
               />
               {state.balances[1][1]} DAI
             </span>
@@ -119,11 +120,12 @@ const MenuTop = (props) => {
                 style={{
                   verticalAlign: 'middle',
                   marginRight: '6px',
+                  marginTop: '-1px',
                 }}
                 className="image inline"
-                width="20px"
-                height="20px"
-                src={Global.IMAGES.ICON_MANA}
+                width="18px"
+                height="18px"
+                src={Global.IMAGES.MANA_CIRCLE}
               />
               {state.balances[0][1]} MANA
             </span>
