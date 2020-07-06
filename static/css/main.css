@@ -388,6 +388,25 @@ span.text {
 /*         MODAL DEPOSIT SECTION CSS         */
 /* ----------------------------------------- */
 
+.deposit-notification-box {
+  max-width: 600px;
+  position: absolute !important;
+  z-index: 999 !important;
+  top: 84px;
+  right: 30px;
+}
+
+.ui.message {
+  background-color: rgba(0, 0, 0, 0.75);
+  border: none !important;
+}
+
+.ui.message div.content,
+.ui.message p,
+.ui.message i.close.icon {
+  color: white;
+}
+
 .modal-p-note {
   color: black;
   text-align: left;
