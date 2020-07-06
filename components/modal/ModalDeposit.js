@@ -33,6 +33,7 @@ class ModalDeposit extends React.Component {
       isValidAuthorize: 0,
       isValidLocation: 0,
       modalOpen: false,
+      visible: true,
       spinner: false,
     };
 
@@ -93,6 +94,13 @@ class ModalDeposit extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // handle closing of notification box
+  handleDismiss = () => {
+    this.setState({ visible: false })
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // handle opening or closing this modal
   getTrigger = () => {
     if (this.props.isLink) {
@@ -117,6 +125,14 @@ class ModalDeposit extends React.Component {
   handleClose = () => {
     this.setState({ modalOpen: false });
   };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // verify users location is not in a blacklisted jurisdiction
+  verifyLocation = async () => {
+    console.log(this.state.userStepValue);
+    this.setState({ userStepValue: 4.5 }); // advance to authorize step
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -158,6 +174,7 @@ class ModalDeposit extends React.Component {
         this.userAddress
       );
       if (txHash !== false) {
+        this.setState({ modalOpen: false });
         let ret = await this.updateHistory(
           this.state.amount,
           'Deposit',
@@ -403,88 +420,91 @@ class ModalDeposit extends React.Component {
       return this.switchRPC();
 
     return (
-      <Modal
-        trigger={this.getTrigger()}
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
-        closeIcon
-      >
-        {this.state.spinner ? <Spinner background={1} /> : null}
+      <div>
+        <Modal
+          trigger={this.getTrigger()}
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          closeIcon
+        >
+          {this.state.spinner ? <Spinner background={1} /> : null}
 
-        <div id="deposit">
-          <div className="ui depositContainer">
-            <Grid verticalAlign="middle" textAlign="center">
-              {this.state.userStepValue == 999 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // check the user is in a whitelisted jurisdiction
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'location'} // content type
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 4 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // authorize transfers to Matic Network, then deposit MANA to Matic Network
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'approve'} // content type
-                    isValidDeposit={this.state.isValidDeposit}
-                    amount={this.state.amount}
-                    isCustomAmount={this.state.isCustomAmount}
-                    onChangeAmount={this.onChangeAmount}
-                    onChangeCustomAmount={this.onChangeCustomAmount}
-                    depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'authorize'} // content type
-                    isValidAuthorize={this.state.isValidAuthorize}
-                    authorizeMana={this.metaTransaction}
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 5.5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // get number of confirmations from Matic Network and display to user
-                <Grid.Column>
-                  <Balances />
-
-                  <ContentDeposit
-                    content={'confirmations'} // content type
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : this.state.userStepValue == 6 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // user has finished onboard process and wishes to deposit more MANA to Matic Network
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'deposit'} // content type
-                    isValidDeposit={this.state.isValidDeposit}
-                    amount={this.state.amount}
-                    isCustomAmount={this.state.isCustomAmount}
-                    onChangeAmount={this.onChangeAmount}
-                    onChangeCustomAmount={this.onChangeCustomAmount}
-                    depositToMatic={this.depositToMatic}
-                    // nextStep={this.nextStep}
-                  />
-                </Grid.Column>
-              ) : null}
-            </Grid>
+          <div id="deposit">
+            <div className="ui depositContainer">
+              <Grid verticalAlign="middle" textAlign="center">
+                {this.state.userStepValue == 4 ? (
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  // check the user is in a whitelisted jurisdiction
+                  <Grid.Column>
+                    <ContentDeposit
+                      content={'location'} // content type
+                      verifyLocation={this.verifyLocation}
+                      // nextStep={this.nextStep}
+                    />
+                  </Grid.Column>
+                ) : this.state.userStepValue == 4.5 ? (
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+                  <Grid.Column>
+                    <ContentDeposit
+                      content={'authorize'} // content type
+                      isValidAuthorize={this.state.isValidAuthorize}
+                      authorizeMana={this.metaTransaction}
+                      // nextStep={this.nextStep}
+                    />
+                  </Grid.Column>
+                ) : this.state.userStepValue == 5 ? (
+                   /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  // authorize transfers to Matic Network, then deposit MANA to Matic Network
+                  <Grid.Column>
+                    <ContentDeposit
+                      content={'approve'} // content type
+                      isValidDeposit={this.state.isValidDeposit}
+                      amount={this.state.amount}
+                      isCustomAmount={this.state.isCustomAmount}
+                      onChangeAmount={this.onChangeAmount}
+                      onChangeCustomAmount={this.onChangeCustomAmount}
+                      depositToMatic={this.depositToMatic}
+                      // nextStep={this.nextStep}
+                    />
+                  </Grid.Column>
+                ) : this.state.userStepValue == 6 ? (
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  // user has finished onboard process and wishes to deposit more MANA to Matic Network
+                  <Grid.Column>
+                    <ContentDeposit
+                      content={'deposit'} // content type
+                      isValidDeposit={this.state.isValidDeposit}
+                      amount={this.state.amount}
+                      isCustomAmount={this.state.isCustomAmount}
+                      onChangeAmount={this.onChangeAmount}
+                      onChangeCustomAmount={this.onChangeCustomAmount}
+                      depositToMatic={this.depositToMatic}
+                      // nextStep={this.nextStep}
+                    />
+                  </Grid.Column>
+                ) : null}
+              </Grid>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+
+        { this.state.userStepValue == 5.5 && this.state.visible ? (
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        // get number of confirmations from Matic Network and display to user
+          <Message
+            className="deposit-notification-box"
+            onDismiss={this.handleDismiss}
+            header='Deposited Successfully'
+            content='Please allow 2-3 minutes for your balance to reflect on Matic.'
+          />
+        ) : null }
+      </div>
     );
   }
 }
