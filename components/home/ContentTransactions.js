@@ -3,9 +3,6 @@ import { GlobalContext } from '../../store';
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
-// import mana from '../../static/images/mana_circle.webp';
-// import eth from '../../static/images/eth.png';
-// import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
 
 const ContentTransactions = (props) => {
@@ -63,7 +60,7 @@ const ContentTransactions = (props) => {
         <Table.Row>
           <Table.Cell>
             <img
-              src={Global.IMAGES.ICON_MANA}
+              src={Global.IMAGES.MANA_CIRCLE}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -103,7 +100,7 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <img
-              src={Global.IMAGES.ICON_MANA}
+              src={Global.IMAGES.MANA_CIRCLE}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -123,7 +120,7 @@ const ContentTransactions = (props) => {
         <Table.Row>
           <Table.Cell>
             <img
-              src={Global.IMAGES.ICON_DAI}
+              src={Global.IMAGES.DAI_CIRCLE}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -141,7 +138,7 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <img
-              src={Global.IMAGES.ICON_DAI}
+              src={Global.IMAGES.DAI_CIRCLE}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -161,7 +158,7 @@ const ContentTransactions = (props) => {
         <Table.Row>
           <Table.Cell>
             <img
-              src={Global.IMAGES.ICON_ETH}
+              src={Global.IMAGES.LOGO}
               style={{
                 width: '18px',
                 paddingRight: '3px',
@@ -169,31 +166,16 @@ const ContentTransactions = (props) => {
                 marginTop: '-3px',
               }}
             />
-            0 ETH
+            5,000 PLAY
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <p className="balances-deposit">PURCHASE</p>
-              <p className="balances-withdraw">TRADE</p>
+              <a href="https://play.decentral.games" target="_blank" className="balances-deposit blue">PLAY NOW</a>
             </span>
           </Table.Cell>
           <Table.Cell>
-            <img
-              src={Global.IMAGES.ICON_ETH}
-              style={{
-                width: '18px',
-                paddingRight: '3px',
-                verticalAlign: 'middle',
-                marginTop: '-3px',
-              }}
-            />
-            0 ETH
           </Table.Cell>
           <Table.Cell>
-            <span className="balances-table-span">
-              <p className="balances-deposit">DEPOSIT</p>
-              <p className="balances-withdraw">WITHDRAW</p>
-            </span>
           </Table.Cell>
         </Table.Row>
       </Table.Body>
