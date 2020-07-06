@@ -177,40 +177,6 @@ const ContentDeposit = (props) => {
     );
   }
 
-  function contentConfirm() {
-    let timer = 0;
-
-    return (
-      <div className="modal-content-container">
-        <Grid>
-          <Grid.Row>
-            <h3 className="modal-h3">Matic Network Confirmations</h3>
-          </Grid.Row>
-          <Grid.Row>
-            <p className="modal-p">
-              Matic Network requires a total of 12 confirmations for transaction
-              to complete.
-            </p>
-
-            {/* {balanceNew === balanceStart ? (
-              // check balance every minute
-              timer > 60 ? (
-                <Balances />
-              ) : (
-                <ModalWithdraw isExit={1} transactionHash={row.txid} />
-              )
-            ) : null} */}
-          </Grid.Row>
-          <Grid.Row>
-            <p className="modal-p">Number of confirmations: ...</p>
-          </Grid.Row>
-        </Grid>
-
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
-      </div>
-    );
-  }
-
   function contentDeposit() {
     return (
       <div className="modal-content-container">
@@ -275,8 +241,6 @@ const ContentDeposit = (props) => {
     return contentApprove();
   } else if (props.content == 'authorize') {
     return contentAuthorize();
-  } else if (props.content == 'confirmations') {
-    return contentConfirm();
   } else if (props.content == 'deposit') {
     return contentDeposit();
   }
