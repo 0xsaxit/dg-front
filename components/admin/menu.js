@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 // import logo from '../../static/images/authorize_title.png';
-import { FaRegUserCircle } from 'react-icons/fa';
-import { FaServer } from 'react-icons/fa';
-import { MdHistory } from 'react-icons/md';
-import { MdPlaylistAddCheck } from 'react-icons/md';
-import { MdBookmarkBorder } from 'react-icons/md';
-import { MdInfoOutline } from 'react-icons/md';
+// import { FaRegUserCircle } from 'react-icons/fa'; // replace with semantic ui icons **********
+// import { FaServer } from 'react-icons/fa';
+// import { MdHistory } from 'react-icons/md';
+// import { MdPlaylistAddCheck } from 'react-icons/md';
+// import { MdBookmarkBorder } from 'react-icons/md';
+// import { MdInfoOutline } from 'react-icons/md';
 // import Svgeth from '../../static/images/svg6';
 
 let Global;
@@ -55,9 +55,9 @@ class SideMenu extends React.Component {
         >
           <span>
             {' '}
-            <FaRegUserCircle
+            {/* <FaRegUserCircle
               style={{ fontSize: '30px', paddingBottom: '6px' }}
-            />
+            /> */}
           </span>
           <br />
           Admin
@@ -71,7 +71,7 @@ class SideMenu extends React.Component {
         >
           <span>
             {' '}
-            <FaServer style={{ fontSize: '30px', paddingBottom: '6px' }} />
+            {/* <FaServer style={{ fontSize: '30px', paddingBottom: '6px' }} /> */}
           </span>
           <br />
           Games
@@ -85,7 +85,7 @@ class SideMenu extends React.Component {
         >
           <span>
             {' '}
-            <MdHistory style={{ fontSize: '30px', paddingBottom: '6px' }} />
+            {/* <MdHistory style={{ fontSize: '30px', paddingBottom: '6px' }} /> */}
           </span>
           <br />
           TX History

@@ -61,7 +61,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             disabled
           />
-          <script src="/static/js/ethereumjs-tx-1.3.3.min.js"></script>
+          {/* <script src="/static/js/ethereumjs-tx-1.3.3.min.js"></script> */}
         </Head>
         <body>
           <Main />

@@ -1,9 +1,9 @@
+import { MaticPOSClient } from '@maticnetwork/maticjs';
+import window from 'global';
 import Butter from 'buttercms';
 import ABIParentContract from './ABI/ABIParent';
 import ABIParentToken from './ABI/ABIDummyToken';
 import ABIChildToken from './ABI/ABIChildToken';
-import { MaticPOSClient } from '@maticnetwork/maticjs';
-import window from 'global';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

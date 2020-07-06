@@ -44,7 +44,7 @@ const Screen = ({
         if (count >= 3) {
           count = filteredPages.length - 3;
           array.splice(0, count);
-          console.log(array);
+          // console.log(array);
           return array;
         }
       }
@@ -61,14 +61,14 @@ const Screen = ({
         array1[otherIndex] = array1[otherIndex];
         array1[otherIndex] = temporaryValue;
       }
-      console.log(array);
+      //console.log(array);
       return array;
     }
     setFilteredPages(shuffle(filteredPages));
-    console.log(randomfilteredPages);
+    // console.log(randomfilteredPages);
   });
   window.scrollTo(0, 0);
-  console.log(randomfilteredPages);
+  // console.log(randomfilteredPages);
   return (
     <div className="blogdetail-page" style={{ backgroundColor: 'white' }}>
       <div className="coverimg">

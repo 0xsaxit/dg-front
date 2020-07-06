@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 // import mana from '../../static/images/mana.png';
 import { Table, Dropdown, Icon } from 'semantic-ui-react';
 import ModalFunds from './ModalFunds';
