@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
-import Fade from 'react-reveal/Fade';
+// import Fade from 'react-reveal/Fade';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
@@ -68,41 +68,41 @@ const Dashboard = () => {
         <div className="home-dashboard-content">
           <div>
             <div className="home-dashboard-description">
-              <Fade bottom distance="20px" duration={600}>
-                <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-                <h3
-                  className="home-dashboard-h3"
-                  style={{ marginBottom: '-12px' }}
-                >
-                  Tominoya
-                </h3>
-                <div>
-                  {state.dashboard ? (
-                    <Button
-                      color="blue"
-                      className="play-button"
-                      href="https://play.decentral.games"
-                      target="_blank"
-                      style={{ marginRight: '30px' }}
-                    >
-                      PLAY NOW
-                    </Button>
-                  ) : null}
+              {/* <Fade bottom distance="20px" duration={600}> */}
+              <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
+              <h3
+                className="home-dashboard-h3"
+                style={{ marginBottom: '-12px' }}
+              >
+                Tominoya
+              </h3>
+              <div>
+                {state.dashboard ? (
                   <Button
                     color="blue"
-                    className="play-shimmer"
+                    className="play-button"
+                    href="https://play.decentral.games"
                     target="_blank"
-                    href="https://docs.decentral.games/getting-started"
+                    style={{ marginRight: '30px' }}
                   >
-                    HOW TO PLAY
+                    PLAY NOW
                   </Button>
-                </div>
-                <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-                  Tominoya is a virtual casino built by Decentral Games in
-                  Decentraland. Enjoy non-custodial slots, roulette, and
-                  blackjack playable with crypto.
-                </p>
-              </Fade>
+                ) : null}
+                <Button
+                  color="blue"
+                  className="play-shimmer"
+                  target="_blank"
+                  href="https://docs.decentral.games/getting-started"
+                >
+                  HOW TO PLAY
+                </Button>
+              </div>
+              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+                Tominoya is a virtual casino built by Decentral Games in
+                Decentraland. Enjoy non-custodial slots, roulette, and blackjack
+                playable with crypto.
+              </p>
+              {/* </Fade> */}
             </div>
           </div>
           <p className="mobile-footer">Use a Chrome desktop browser to play.</p>

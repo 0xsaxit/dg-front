@@ -14,7 +14,7 @@ import {
 } from 'semantic-ui-react';
 import _ from 'lodash';
 // import flamingos from '../../static/images/flamingos.png';
-import Fade from 'react-reveal/Fade';
+// import Fade from 'react-reveal/Fade';
 import { GlobalContext } from '../../store';
 // import { Navbar } from 'semantic-ui-react';
 // const Navbar = require('decentraland-ui/src/components/Navbar');
@@ -130,71 +130,69 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
             </Menu>
           </Container>
           <Container style={{ marginTop: '-27px' }}>
-            <Fade bottom distance="20px">
-              <h3 className="main-blog-h3"> Decentral Games</h3>
-            </Fade>
-            <Fade bottom distance="10px" duration={600} delay={200}>
-              <h5 className="blog-hero">
-                {' '}
-                Check back here regularly for updates on our technology,
-                tutorials, and Decentral Games news.{' '}
-              </h5>
-            </Fade>
+            {/* <Fade bottom distance="20px"> */}
+            <h3 className="main-blog-h3"> Decentral Games</h3>
+            {/* </Fade> */}
+            {/* <Fade bottom distance="10px" duration={600} delay={200}> */}
+            <h5 className="blog-hero">
+              {' '}
+              Check back here regularly for updates on our technology,
+              tutorials, and Decentral Games news.{' '}
+            </h5>
+            {/* </Fade> */}
 
             <div className="mobile-featured-container">
-              <Fade bottom distance="20px" duration={600} delay={400}>
-                <p style={{ color: 'rgb(97, 97, 97)' }}> Featured Post</p>
-                <Divider style={{ opacity: '0.5', paddingBottom: '15px' }} />
-                <Link href="/blog/[id]" as="/blog/tominoya-casino-nft-sale">
-                  <a>
-                    <Grid
-                      style={{ paddingBottom: '120px' }}
-                      className="featured-post-padding"
-                    >
-                      <Grid.Row>
-                        <Grid.Column computer={11} tablet={16} mobile={16}>
-                          <Image
-                            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1588364844/tominoya_feature_lcfdm6.png"
-                            className="featured-image"
-                          />
-                        </Grid.Column>
-                        <Grid.Column computer={5} tablet={16} mobile={16}>
-                          <div className="post-info">
-                            <div className="top">
-                              <div>
-                                <span className="preview-date">
-                                  19 APR 2020
-                                </span>
-                                <span className="preview-category">
-                                  Announcements
-                                </span>
-                              </div>
-                            </div>
-                            <div className="bottom">
-                              <div className="blog-title">
-                                <h4
-                                  style={{
-                                    paddingBottom: '9px',
-                                    paddingTop: '8px',
-                                    color: 'black',
-                                  }}
-                                >
-                                  Tominoya Casino NFT Sale
-                                </h4>
-                                <p style={{ color: 'rgb(97, 97, 97)' }}>
-                                  Tominoya is a 3D virtual casino built by
-                                  Decentral Games on 52 LAND parcels within
-                                  Decentraland's Vegas City district.
-                                </p>
-                              </div>
+              {/* <Fade bottom distance="20px" duration={600} delay={400}> */}
+              <p style={{ color: 'rgb(97, 97, 97)' }}> Featured Post</p>
+              <Divider style={{ opacity: '0.5', paddingBottom: '15px' }} />
+              <Link href="/blog/[id]" as="/blog/tominoya-casino-nft-sale">
+                <a>
+                  <Grid
+                    style={{ paddingBottom: '120px' }}
+                    className="featured-post-padding"
+                  >
+                    <Grid.Row>
+                      <Grid.Column computer={11} tablet={16} mobile={16}>
+                        <Image
+                          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1588364844/tominoya_feature_lcfdm6.png"
+                          className="featured-image"
+                        />
+                      </Grid.Column>
+                      <Grid.Column computer={5} tablet={16} mobile={16}>
+                        <div className="post-info">
+                          <div className="top">
+                            <div>
+                              <span className="preview-date">19 APR 2020</span>
+                              <span className="preview-category">
+                                Announcements
+                              </span>
                             </div>
                           </div>
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
-                  </a>
-                </Link>
-              </Fade>
+                          <div className="bottom">
+                            <div className="blog-title">
+                              <h4
+                                style={{
+                                  paddingBottom: '9px',
+                                  paddingTop: '8px',
+                                  color: 'black',
+                                }}
+                              >
+                                Tominoya Casino NFT Sale
+                              </h4>
+                              <p style={{ color: 'rgb(97, 97, 97)' }}>
+                                Tominoya is a 3D virtual casino built by
+                                Decentral Games on 52 LAND parcels within
+                                Decentraland's Vegas City district.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </a>
+              </Link>
+              {/* </Fade> */}
             </div>
           </Container>
 
