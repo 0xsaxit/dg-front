@@ -403,7 +403,7 @@ span.text {
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 .deposit-notification-box {
-  max-width: 600px;
+  width: 270px;
   position: absolute !important;
   z-index: 999 !important;
   top: 84px;
@@ -412,6 +412,8 @@ span.text {
 .ui.message {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
+  padding: 18px;
+  padding-top: 6px;
 }
 
 .ui.message div.content,
