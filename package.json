@@ -21,6 +21,7 @@
     "@biconomy/mexa": "^1.5.11",
     "@maticnetwork/maticjs": "^2.0.0-beta.12",
     "@next/bundle-analyzer": "^9.4.4",
+    "@transak/transak-sdk": "^1.0.23",
     "buttercms": "1.2.2",
     "cross-env": "^7.0.2",
     "decentraland-ui": "^2.22.0",
