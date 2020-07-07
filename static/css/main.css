@@ -1219,11 +1219,6 @@ a.account-deposit-button {
   background-color: #2085f4;
 }
 
-a.account-deposit-button.extra {
-  padding-top: 6px;
-  padding-bottom: 7px;
-}
-
 a.account-deposit-button:hover {
   color: #2085f4;
   cursor: pointer;
