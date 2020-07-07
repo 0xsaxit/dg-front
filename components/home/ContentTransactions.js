@@ -15,7 +15,7 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // Your customer's email address
   redirectURL: '',
-  hostURL: 'http://decentral.games/account',
+  hostURL: 'https://decentral.games/account',
   widgetHeight: '720px',
   widgetWidth: '450px',
 });
