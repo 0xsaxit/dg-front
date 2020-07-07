@@ -107,7 +107,7 @@ class ModalDeposit extends React.Component {
   getTrigger = () => {
     if (this.props.isLink) {
       return (
-        <a className="account-deposit-button" onClick={this.handleOpen}>
+        <a className="account-deposit-button extra" onClick={this.handleOpen}>
           DEPOSIT
         </a>
       );
@@ -506,9 +506,10 @@ class ModalDeposit extends React.Component {
           <Message
             className="deposit-notification-box"
             onDismiss={this.handleDismiss}
-            header='Deposited Successfully'
-            content='Please allow 2-3 minutes for your balance to reflect on Matic.'
-          />
+          >
+            <p style={{ fontSize: '16px', fontWeight: 'bold' }}> Deposit Confirming on Matic  </p>
+            <p style={{ fontSize: '16px' }}> Refresh in 2-3 minutes to see <br /> your updated balance </p>
+          </Message>
         ) : null }
       </div>
     );
