@@ -21,7 +21,7 @@ const Dashboard = () => {
     return (
       <div>
         <div className="mobile-menu">
-          <img className="mobile-menu-image" src={Global.LOGO} />
+          <img className="mobile-menu-image" src={Global.IMAGES.LOGO} />
         </div>
         <div className="mobile-menu-words">
           <a className="mobile-menu-item-1" href="/blog">
