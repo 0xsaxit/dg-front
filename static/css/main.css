@@ -242,7 +242,7 @@ video.home-dashboard-video {
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
-  background-color: rgba(241, 243, 246, 0.75);
+  background-color: rgba(235, 236, 238, 1);
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
@@ -1155,6 +1155,19 @@ button.ui.blue.button.modal-buttons {
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
+}
+
+.ui.button.nft-read-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  margin-left: 18px;
 }
 
 .ui.button.modal-deposit-button {
