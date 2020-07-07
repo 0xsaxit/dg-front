@@ -10,6 +10,7 @@ const detailsNFTs = {
     '-120, 135',
     'Tominoya is a Japanese themed casino built by Decentral Games. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
     'https://opensea.io/assets?query=tominoya',
+    'https://decentral.games/blog/tominoya-casino-nft-sale',
   ],
   flamingos: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-06-18_at_12.27.19_PM_zoutwy.png',
@@ -17,7 +18,8 @@ const detailsNFTs = {
     'Flamingos, Vegas City',
     '-126, 118',
     'Flamingos is a casino built by Vegas City. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
-    'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
+    'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',    
+    'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
   ],
 };
 
@@ -66,6 +68,13 @@ class Tokens extends React.Component {
               href={detailsNFTs[item][5]}
             >
               BUY ON OPENSEA
+            </Button>
+            <Button
+              className="nft-read-button"
+              target="_blank"
+              href={detailsNFTs[item][6]}
+            >
+              READ MORE
             </Button>
           </div>
         </div>
