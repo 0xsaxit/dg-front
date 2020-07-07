@@ -75,7 +75,7 @@ class Tokens extends React.Component {
 
   myNFTs = () => {
     return (
-      <div style={{ paddingTop: '20%' }} className="account-other-inner-p">
+      <div style={{ fontSize: '16px' }} className="account-other-inner-p">
         You currently don't own any Decentral Games NFTs.
       </div>
     );
