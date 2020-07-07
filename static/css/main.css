@@ -335,7 +335,7 @@ video.home-dashboard-video {
 .modal-p-error {
   text-align: right;
   color: red;
-  padding-top: 30px;
+  padding-top: 15px;
   padding-right: 30px;
   margin-bottom: -30px !important;
 }
@@ -387,6 +387,20 @@ span.text {
 /* ----------------------------------------- */
 /*         MODAL DEPOSIT SECTION CSS         */
 /* ----------------------------------------- */
+
+#deposit-icon-loading {
+  -webkit-animation:spin 1.5s linear infinite;
+  -moz-animation:spin 1.5s linear infinite;
+  animation:spin 1.5s linear infinite;
+  font-size: 18px;
+  vertical-align: top;
+  margin-right: 6px;
+  margin-top: -1px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 .deposit-notification-box {
   max-width: 600px;
