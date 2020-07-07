@@ -407,7 +407,6 @@ span.text {
   position: absolute !important;
   z-index: 999 !important;
   top: 84px;
-  right: 30px;
 }
 
 .ui.message {
@@ -1216,6 +1215,11 @@ a.account-deposit-button {
   border-radius: 3px;
   font-weight: bold;
   background-color: #2085f4;
+}
+
+a.account-deposit-button.extra {
+  padding-top: 6px;
+  padding-bottom: 7px;
 }
 
 a.account-deposit-button:hover {
