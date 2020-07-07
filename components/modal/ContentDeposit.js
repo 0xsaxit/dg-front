@@ -22,7 +22,7 @@ const ContentDeposit = (props) => {
     return (
       <div
         className="modal-content-container"
-        style={{ paddingBottom: '90px' }}
+        style={{ paddingBottom: '70px' }}
       >
         <Grid>
           <Grid.Row>
@@ -39,7 +39,7 @@ const ContentDeposit = (props) => {
             <Button
               className="modal-buttons"
               color="blue"
-              style={{ marginTop: '20px' }}
+              style={{ marginTop: '0px' }}
               onClick={props.verifyLocation}
             >
               Verify
@@ -115,14 +115,28 @@ const ContentDeposit = (props) => {
             )}
           </Grid.Row>
           <Grid.Row>
-            <Button
-              className="modal-buttons"
-              color="blue"
-              style={{ marginTop: '-10px', display: 'block' }}
-              onClick={props.depositToMatic}
-            >
-              Deposit
-            </Button>
+            {props.depositLoading == false ? 
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px', display: 'block' }}
+                onClick={props.depositToMatic}
+              >
+                Deposit
+              </Button>
+              :
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px', display: 'block', width: '180px' }}
+                onClick={props.depositToMatic}
+              >
+                <span class="material-icons" id="deposit-icon-loading">
+                  data_usage
+                </span>
+                Depositing
+              </Button>
+            }
           </Grid.Row>
 
           {props.isValidDeposit == 1 ? (
@@ -153,14 +167,28 @@ const ContentDeposit = (props) => {
             </p>
           </Grid.Row>
           <Grid.Row>
-            <Button
-              className="modal-buttons"
-              color="blue"
-              style={{ marginTop: '0px' }}
-              onClick={props.authorizeMana}
-            >
-              Authorize
-            </Button>
+            {props.authorizeLoading == false ? 
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '0px', display: 'block' }}
+                onClick={props.authorizeMana}
+              >
+                Authorize
+              </Button>
+              :
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '0px', display: 'block', width: '180px' }}
+                onClick={props.authorizeMana}
+              >
+                <span class="material-icons" id="deposit-icon-loading">
+                  data_usage
+                </span>
+                Authorizing
+              </Button>
+            }
           </Grid.Row>
 
           {props.isValidAuthorize == 1 ? (
@@ -213,14 +241,28 @@ const ContentDeposit = (props) => {
             )}
           </Grid.Row>
           <Grid.Row>
-            <Button
-              className="modal-buttons"
-              color="blue"
-              style={{ marginTop: '-10px', display: 'block' }}
-              onClick={props.depositToMatic}
-            >
-              Deposit
-            </Button>
+            {props.depositLoading == false ? 
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px', display: 'block' }}
+                onClick={props.depositToMatic}
+              >
+                Deposit
+              </Button>
+              :
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px', display: 'block', width: '180px' }}
+                onClick={props.depositToMatic}
+              >
+                <span class="material-icons" id="deposit-icon-loading">
+                  data_usage
+                </span>
+                Depositing
+              </Button>
+            }
           </Grid.Row>
 
           {props.isValidDeposit == 1 ? (
