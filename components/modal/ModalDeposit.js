@@ -1,7 +1,7 @@
 import React from 'react';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Button, Grid, Modal } from 'semantic-ui-react';
+import { Button, Grid, Modal, Message } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
