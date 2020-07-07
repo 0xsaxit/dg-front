@@ -130,7 +130,7 @@ p {
   margin-top: 25px;
   border: none;
   box-shadow: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.25px;
   font-size: 16px;
 }
 
@@ -139,7 +139,7 @@ p {
   margin-top: 25px;
   border: none;
   box-shadow: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.25px;
   font-size: 16px;
   padding-left: 30px !important;
   padding-right: 30px !important;
@@ -1402,8 +1402,10 @@ a.balances-deposit.blue {
   .mobile-menu-item-1,
   .mobile-menu-item-2 {
     color: white;
-    font-size: 20px;
+    letter-spacing: 1.25px;
+    font-size: 18px;
     z-index: 3;
+    font-weight: bold;
   }
   .mobile-menu-item-1:hover,
   .mobile-menu-item-2:hover {
