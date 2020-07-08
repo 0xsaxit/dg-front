@@ -89,6 +89,7 @@ p {
 
 .ui.menu {
   border-radius: 0px;
+  margin: 0;
 }
 
 .ui.menu .active.item {
@@ -402,18 +403,29 @@ span.text {
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+.deposit-notification-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+  padding-right: 30px;
+  z-index: 3;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .deposit-notification-box {
-  width: 270px;
+  width: 400px;
   position: absolute !important;
   z-index: 999 !important;
-  top: 84px;
+  top: 74px;
 }
 
 .ui.message {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
   padding: 18px;
-  padding-top: 6px;
+  padding-top: 3px;
 }
 
 .ui.message div.content,
