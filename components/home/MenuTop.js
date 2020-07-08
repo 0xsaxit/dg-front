@@ -155,17 +155,19 @@ const MenuTop = (props) => {
       {state.userStatus == 5.5 && visible ? (
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
-        // get number of confirmations from Matic Network and display to user
-        <Message className="deposit-notification-box" onDismiss={handleDismiss}>
-          <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-            {' '}
-            Deposit Confirming on Matic{' '}
-          </p>
-          <p style={{ fontSize: '16px' }}>
-            {' '}
-            Refresh in 2-3 minutes to see <br /> your updated balance{' '}
-          </p>
-        </Message>
+        // message to notifiy users to refresh to view updated balances
+        <div className="deposit-notification-container">
+          <Message className="deposit-notification-box" onDismiss={handleDismiss}>
+            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+              {' '}
+              Deposit Confirming on Matic{' '}
+            </p>
+            <p style={{ fontSize: '16px' }}>
+              {' '}
+              Refresh in 2-3 minutes to see your updated balance{' '}
+            </p>
+          </Message>
+        </div>
       ) : null}
     </div>
   );
