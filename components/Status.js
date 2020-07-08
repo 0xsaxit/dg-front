@@ -40,11 +40,13 @@ function Status() {
       const stepValue = parseInt(json.result);
       console.log('User status: ' + stepValue);
 
-      if (stepValue > 3) {
-        return true;
-      } else {
-        return false;
-      }
+      // if (stepValue > 3) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+
+      return stepValue;
     }
   }
 

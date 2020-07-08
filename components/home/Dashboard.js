@@ -77,7 +77,7 @@ const Dashboard = () => {
                 Tominoya
               </h3>
               <div>
-                {state.dashboard ? (
+                {state.userStatus ? (
                   <Button
                     color="blue"
                     className="play-button"

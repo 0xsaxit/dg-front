@@ -1,17 +1,18 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Message } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
-// import mana from '../../static/images/mana_circle.webp';
-// import dai from '../../static/images/dai_circle.webp';
 import Global from '../Constants';
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
+  const [visible, setVisible] = useState(true);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +45,12 @@ const MenuTop = (props) => {
     }
   }
 
+  function handleDismiss() {
+    setVisible(false);
+  }
+
+  console.log('menu dashoard value: ' + state.userStatus);
+
   return (
     <div className={getContainerStyles('container')}>
       <Menu className={getLinkStyles('menu')} icon="labeled">
@@ -66,13 +73,13 @@ const MenuTop = (props) => {
           <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
 
-        {state.dashboard ? (
+        {state.userStatus ? (
           <Link href="/account">
             <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
           </Link>
         ) : null}
 
-        {state.dashboard ? (
+        {state.userStatus ? (
           <Link href="/nfts">
             <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
           </Link>
@@ -98,7 +105,10 @@ const MenuTop = (props) => {
           <div>DOCS</div>
         </Menu.Item>
 
-        {state.dashboard ? (
+        {state.userStatus ? (
+          /////////////////////////////////////////////////////////////////////////////////////////
+          /////////////////////////////////////////////////////////////////////////////////////////
+          // display token balances and 'ADD CRYPTO' button
           <span className="right-menu-items">
             <span className="sidebar-menu-text-2">
               <img
@@ -133,11 +143,30 @@ const MenuTop = (props) => {
             <ModalDeposit isLink={0} />
           </span>
         ) : (
+          /////////////////////////////////////////////////////////////////////////////////////////
+          /////////////////////////////////////////////////////////////////////////////////////////
+          // show 'CONNECT METAMASK' button
           <span className="right-menu-items">
             <ModalVerify />
           </span>
         )}
       </Menu>
+
+      {state.userStatus == 5.5 && visible ? (
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        // get number of confirmations from Matic Network and display to user
+        <Message className="deposit-notification-box" onDismiss={handleDismiss}>
+          <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+            {' '}
+            Deposit Confirming on Matic{' '}
+          </p>
+          <p style={{ fontSize: '16px' }}>
+            {' '}
+            Refresh in 2-3 minutes to see <br /> your updated balance{' '}
+          </p>
+        </Message>
+      ) : null}
     </div>
   );
 };

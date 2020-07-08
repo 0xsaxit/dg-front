@@ -7,7 +7,7 @@ const initialState = {
     data: [],
     meta: {},
   },
-  dashboard: false,
+  userStatus: 0,
   balances: [[], []],
   transactions: [[], []],
 };
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
     case 'update_status':
       return {
         ...state,
-        dashboard: action.data,
+        userStatus: action.data,
       };
 
     case 'update_balances':

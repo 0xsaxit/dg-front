@@ -19,9 +19,10 @@ const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
 const MATIC_NETWORK_ID = '80001';
-const MATIC_URL = 'https://rpc-mumbai.matic.today'; // 'https://testnetv3.matic.network';
-const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/'; // 'https://testnetv3-explorer.matic.network';
+const MATIC_URL = 'https://rpc-mumbai.matic.today';
+const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/';
 const BICONOMY_API_KEY = '9voMvaNpt.df75ecbb-b72e-405e-bca6-69080ac100cf';
+const TRANSAK_KEY = '4fcd6904-706b-4aff-bd9d-77422813bbb7';
 const ADMIN_ADDRESSES = [
   '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
@@ -643,6 +644,7 @@ export default {
   MATIC_URL,
   MATIC_EXPLORER,
   BICONOMY_API_KEY,
+  TRANSAK_KEY,
   ADMIN_ADDRESSES,
   TITLE,
   DESCRIPTION,

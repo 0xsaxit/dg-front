@@ -1,21 +1,21 @@
 import { useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
+import transakSDK from '@transak/transak-sdk';
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
+import { GlobalContext } from '../../store';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
-import transakSDK from '@transak/transak-sdk';
 
 let transak = new transakSDK({
-  apiKey: '4fcd6904-706b-4aff-bd9d-77422813bbb7', // Your API Key
+  apiKey: Global.TRANSAK_KEY, // API Key
   environment: 'STAGING', // STAGING/PRODUCTION
   defaultCryptoCurrency: 'MANA',
-  walletAddress: '', // Your customer's wallet address
-  themeColor: '000000', // App theme color
+  walletAddress: '', // customer wallet address
+  themeColor: '000000', // theme color
   fiatCurrency: '', // INR/GBP
-  email: '', // Your customer's email address
+  email: '', // customer email address
   redirectURL: '',
-  hostURL: 'https://decentral.games/account',
+  hostURL: Global.BASE_URL + '/account',
   widgetHeight: '720px',
   widgetWidth: '450px',
 });
@@ -23,7 +23,7 @@ let transak = new transakSDK({
 const ContentTransactions = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  
+
   useEffect(() => {
     // get all the events
     transak.on(transak.ALL_EVENTS, (data) => {
@@ -39,7 +39,7 @@ const ContentTransactions = (props) => {
       transak.close();
     });
   });
-  
+
   // initialize transak modal
   function show_transak() {
     transak.init();
@@ -198,13 +198,17 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <a href="https://play.decentral.games" target="_blank" className="balances-deposit blue">PLAY NOW</a>
+              <a
+                href="https://play.decentral.games"
+                target="_blank"
+                className="balances-deposit blue"
+              >
+                PLAY NOW
+              </a>
             </span>
           </Table.Cell>
-          <Table.Cell>
-          </Table.Cell>
-          <Table.Cell>
-          </Table.Cell>
+          <Table.Cell></Table.Cell>
+          <Table.Cell></Table.Cell>
         </Table.Row>
       </Table.Body>
     );

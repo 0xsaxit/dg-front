@@ -26,7 +26,7 @@ const ContentDeposit = (props) => {
       >
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3"> Verify your Location </h3>
+            <h3 className="modal-h3">Verify your Location</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
@@ -46,7 +46,7 @@ const ContentDeposit = (props) => {
             </Button>
           </Grid.Row>
 
-          {props.isValidLocation == 1 ? (
+          {props.validLocation == 1 ? (
             <Grid.Column floated="right" width={16}>
               <p className="modal-p-error">
                 You are in a blacklisted jurisdiction
@@ -98,7 +98,7 @@ const ContentDeposit = (props) => {
             </p>
           </Grid.Row>
           <Grid.Row>
-            {props.isCustomAmount == 0 ? (
+            {props.customAmount == 0 ? (
               <Dropdown
                 selection
                 options={amount}
@@ -110,12 +110,12 @@ const ContentDeposit = (props) => {
               <Input
                 value={props.amount}
                 style={{ width: '300px', marginTop: '0px' }}
-                onChange={props.onChangeCustomAmount}
+                onChange={props.changeCustomAmount}
               />
             )}
           </Grid.Row>
           <Grid.Row>
-            {props.depositLoading == false ? 
+            {props.processing == false ? (
               <Button
                 className="modal-buttons"
                 color="blue"
@@ -124,22 +124,22 @@ const ContentDeposit = (props) => {
               >
                 Deposit
               </Button>
-              :
+            ) : (
               <Button
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '-10px', display: 'block', width: '180px' }}
                 onClick={props.depositToMatic}
               >
-                <span class="material-icons" id="deposit-icon-loading">
+                <span className="material-icons" id="deposit-icon-loading">
                   data_usage
                 </span>
                 Depositing
               </Button>
-            }
+            )}
           </Grid.Row>
 
-          {props.isValidDeposit == 1 ? (
+          {props.validDeposit == 1 ? (
             <Grid.Column floated="right" width={16}>
               <p className="modal-p-error">Deposit failed</p>
             </Grid.Column>
@@ -167,7 +167,7 @@ const ContentDeposit = (props) => {
             </p>
           </Grid.Row>
           <Grid.Row>
-            {props.authorizeLoading == false ? 
+            {props.processing == false ? (
               <Button
                 className="modal-buttons"
                 color="blue"
@@ -176,22 +176,22 @@ const ContentDeposit = (props) => {
               >
                 Authorize
               </Button>
-              :
+            ) : (
               <Button
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '0px', display: 'block', width: '180px' }}
                 onClick={props.authorizeMana}
               >
-                <span class="material-icons" id="deposit-icon-loading">
+                <span className="material-icons" id="deposit-icon-loading">
                   data_usage
                 </span>
                 Authorizing
               </Button>
-            }
+            )}
           </Grid.Row>
 
-          {props.isValidAuthorize == 1 ? (
+          {props.validAuthorize == 1 ? (
             <Grid.Column floated="right" width={16}>
               <p className="modal-p-error" style={{ paddingTop: '30px' }}>
                 Authorization failed
@@ -224,7 +224,7 @@ const ContentDeposit = (props) => {
           />
 
           <Grid.Row>
-            {props.isCustomAmount == 0 ? (
+            {props.customAmount == 0 ? (
               <Dropdown
                 selection
                 options={amount}
@@ -236,12 +236,12 @@ const ContentDeposit = (props) => {
               <Input
                 value={props.amount}
                 style={{ width: '300px', marginTop: '0px' }}
-                onChange={props.onChangeCustomAmount}
+                onChange={props.changeCustomAmount}
               />
             )}
           </Grid.Row>
           <Grid.Row>
-            {props.depositLoading == false ? 
+            {props.processing == false ? (
               <Button
                 className="modal-buttons"
                 color="blue"
@@ -250,26 +250,49 @@ const ContentDeposit = (props) => {
               >
                 Deposit
               </Button>
-              :
+            ) : (
               <Button
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '-10px', display: 'block', width: '180px' }}
                 onClick={props.depositToMatic}
               >
-                <span class="material-icons" id="deposit-icon-loading">
+                <span className="material-icons" id="deposit-icon-loading">
                   data_usage
                 </span>
                 Depositing
               </Button>
-            }
+            )}
           </Grid.Row>
 
-          {props.isValidDeposit == 1 ? (
+          {props.validDeposit == 1 ? (
             <Grid.Column floated="right" width={16}>
               <p className="modal-p-error">Deposit failed</p>
             </Grid.Column>
           ) : null}
+        </Grid>
+
+        <Button content="Next step" onClick={props.nextStep} />
+      </div>
+    );
+  }
+
+  function contenPending() {
+    return (
+      <div
+        className="modal-content-container"
+        style={{ paddingBottom: '70px' }}
+      >
+        <Grid>
+          <Grid.Row>
+            <h3 className="modal-h3">Deposit Pending</h3>
+          </Grid.Row>
+          <Grid.Row>
+            <p className="modal-p">
+              Deposit confirmation pending. Please wait until deposit is
+              complete before depositing more tokens
+            </p>
+          </Grid.Row>
         </Grid>
 
         <Button content="Next step" onClick={props.nextStep} />
@@ -285,6 +308,8 @@ const ContentDeposit = (props) => {
     return contentAuthorize();
   } else if (props.content == 'deposit') {
     return contentDeposit();
+  } else if (props.content == 'pending') {
+    return contenPending();
   }
 };
 

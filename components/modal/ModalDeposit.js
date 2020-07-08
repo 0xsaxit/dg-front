@@ -1,57 +1,58 @@
-import React from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Button, Grid, Modal, Message } from 'semantic-ui-react';
-import Spinner from '../Spinner';
+import { Button, Grid, Modal } from 'semantic-ui-react';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
-import Balances from '../Balances';
 import Global from '../Constants';
 
 let web3 = {};
-let tokenAddressGoerli = '';
+let tokenAddressRoot = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
-  tokenAddressGoerli = addresses.ROOT_TOKEN_ADDRESS_MANA;
+  tokenAddressRoot = addresses.ROOT_TOKEN_ADDRESS_MANA;
   spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 }
 getAddresses();
 
-class ModalDeposit extends React.Component {
-  constructor(props) {
-    super(props);
+const ModalDeposit = (props) => {
+  // get user's transaction history from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+  let userAddress = '';
+  let tokenContract = {};
 
-    this.state = {
-      amount: Global.DEFAULT_AMOUNT,
-      isCustomAmount: 0,
-      userStepValue: 0,
-      networkID: 0,
-      isValidDeposit: 0,
-      isValidAuthorize: 0,
-      isValidLocation: 0,
-      modalOpen: false,
-      visible: true,
-      spinner: false,
-      depositLoading: false,
-      authorizeLoading: false,
-    };
+  //     amount: Global.DEFAULT_AMOUNT,
+  //     isCustomAmount: 0,
+  //     stepValue: 0,
+  //     networkID: 0,
+  //     isValidDeposit: 0,
+  //     isValidAuthorize: 0,
+  //     modalOpen: false,
+  //     processing: false,
+  //   this.userAddress = '';
+  //   this.tokenContract = {};
 
-    this.userAddress = '';
-    this.tokenContract = {};
-  }
+  // define local variables
+  const [amount, setAmount] = useState(Global.DEFAULT_AMOUNT);
+  const [customAmount, setCustomAmount] = useState(0);
+  const [networkID, setNetworkID] = useState(0);
+  const [modalState, setModalState] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [validDeposit, setValidDeposit] = useState(0);
+  const [validAuthorize, setValidAuthorize] = useState(0);
+  const [validLocation, setValidLocation] = useState(0);
 
-  async componentDidMount() {
+  useEffect(() => {
     if (window.web3) {
       // set user address and network ID
-      this.userAddress = window.web3.currentProvider.selectedAddress;
+      userAddress = window.web3.currentProvider.selectedAddress;
       window.web3.version.getNetwork((err, network) => {
-        this.setState({ networkID: parseInt(network) });
+        setNetworkID(parseInt(parseInt(network)));
       });
-
-      await this.checkUserVerify(); // get this value from Context API store ***********************************
 
       // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
       web3 = new Web3(window.ethereum);
@@ -63,7 +64,7 @@ class ModalDeposit extends React.Component {
         }
       );
       const getWeb3 = new Web3(biconomy);
-      this.tokenContract = Global.getTokenContract('child', getWeb3);
+      tokenContract = Global.getTokenContract('child', getWeb3);
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -73,261 +74,250 @@ class ModalDeposit extends React.Component {
           console.error(error);
         });
     }
-  }
+  });
 
-  onChangeAmount = (e, d) => {
+  function onChangeAmount(e, d) {
     if (d.value == -1) {
-      this.setState({ amount: 0, isCustomAmount: 1 });
+      setAmount(0);
+      setCustomAmount(1);
+
       return;
     }
 
-    this.setState({ amount: d.value });
-  };
+    setAmount(d.value);
+  }
 
-  onChangeCustomAmount = async (e) => {
+  function changeCustomAmount(e) {
     let value = parseInt(e.target.value);
 
     if (String(value) != 'NaN') {
-      this.setState({ amount: parseInt(e.target.value) });
+      setAmount(parseInt(e.target.value));
     } else {
-      this.setState({ amount: 0 });
+      setAmount(0);
     }
-  };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // handle closing of notification box
-  handleDismiss = () => {
-    this.setState({ visible: false });
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // handle opening or closing this modal
-  getTrigger = () => {
-    if (this.props.isLink) {
+  function getTrigger() {
+    if (props.isLink) {
       return (
-        <a className="account-deposit-button extra" onClick={this.handleOpen}>
+        <a className="account-deposit-button extra" onClick={handleOpen}>
           DEPOSIT
         </a>
       );
     } else {
       return (
-        <Button className="modal-deposit-button" onClick={this.handleOpen}>
+        <Button className="modal-deposit-button" onClick={handleOpen}>
           ADD CRYPTO
         </Button>
       );
     }
-  };
+  }
 
-  handleOpen = () => {
-    this.setState({ modalOpen: true });
-  };
+  function handleOpen() {
+    setModalState(true);
+  }
 
-  handleClose = () => {
-    this.setState({ modalOpen: false });
-  };
+  function handleClose() {
+    setModalState(false);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // verify users location is not in a blacklisted jurisdiction
-  // TODO: actually verify location via IP grab
-  verifyLocation = async () => {
-    console.log(this.state.userStepValue);
-    this.setState({ userStepValue: 4.5 }); // advance to authorize step
-  };
+  // verify users location and update the userStatus value in the Context API store
+
+  function verifyLocation() {
+    // dispatch({
+    //   type: 'update_status',
+    //   data: 4.5,
+    // });
+
+    updateStatus(true, 4.5); // TODO: actually verify location via IP grab
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // check the amount of tokens that user has allowed Matic Root contract to spend
   // authorize transfers to Matic Network, then deposit MANA to Matic Network
-  depositToMatic = async () => {
+  async function depositToMatic() {
     try {
-      this.setState({ depositLoading: true });
+      setProcessing(true);
 
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
-        tokenAddressGoerli,
-        this.userAddress
+        tokenAddressRoot,
+        userAddress
       );
       allowedAmount = allowedAmount / Global.FACTOR;
 
       console.log('allowed amount: ' + allowedAmount);
-      const amountWei = web3.utils.toWei(this.state.amount + '');
+      const amountWei = web3.utils.toWei(amount + '');
 
       if (allowedAmount == 0) {
         await Global.approveToken(
-          tokenAddressGoerli,
+          tokenAddressRoot,
           Global.MAX_AMOUNT,
-          this.userAddress
+          userAddress
         );
-      } else if (allowedAmount < this.state.amount) {
-        await Global.approveToken(tokenAddressGoerli, 0, this.userAddress);
+      } else if (allowedAmount < amount) {
+        await Global.approveToken(tokenAddressRoot, 0, userAddress);
         await Global.approveToken(
-          tokenAddressGoerli,
+          tokenAddressRoot,
           Global.MAX_AMOUNT,
-          this.userAddress
+          userAddress
         );
       }
 
       // now deposit tokens from Mainnet to Matic Network
       const txHash = await Global.depositTokenToMatic(
-        tokenAddressGoerli,
+        tokenAddressRoot,
         amountWei,
-        this.userAddress
+        userAddress
       );
       if (txHash !== false) {
-        this.setState({ modalOpen: false });
-        let ret = await this.updateHistory(
-          this.state.amount,
-          'Deposit',
-          'In Progress',
-          txHash
-        );
-        if (!ret) this.networkErrror(); // network error
+        setModalState(false);
+
+        let ret = await updateHistory(amount, 'Deposit', 'In Progress', txHash);
+        if (!ret) networkErrror(); // network error
 
         ret = await Global.getConfirmedTx(txHash); // return confirmation hash
         console.log('confirmation: ' + ret);
 
         if (ret.status == '0x0') {
-          ret = await this.updateHistory(
-            this.state.amount,
-            'Deposit',
-            'Failed',
-            txHash
-          );
+          ret = await updateHistory(amount, 'Deposit', 'Failed', txHash);
 
-          if (!ret) this.networkError(); // network error
+          if (!ret) networkError(); // network error
         } else {
-          ret = await this.updateHistory(
-            this.state.amount,
-            'Deposit',
-            'Confirmed',
-            txHash
-          );
+          ret = await updateHistory(amount, 'Deposit', 'Confirmed', txHash);
 
-          if (!ret) this.networkError(); // network error
+          if (!ret) networkError(); // network error
         }
 
-        if (this.state.userStepValue < 6) {
+        if (state.userStatus < 6) {
           console.log('updating step value to 5');
 
-          await this.postUserVerify(5); // update verify to 'authorize'
-          this.setState({ userStepValue: 5 }); // advance to auth step
-        } else if (this.state.userStepValue == 6) {
-          this.setState({ userStepValue: 5.5 }); // advance to confirmation step
+          // set this from our set status method ******************************************
+          await postUserVerify(5); // update verify to 'authorize'
+
+          // setState({ stepValue: 5 }); // advance to auth step
+          // dispatch({
+          //   type: 'update_status',
+          //   data: 5,
+          // });
+
+          updateStatsus(true, 5);
+        } else if (state.userStatus == 6) {
+          // change user status back to 5.5 and set to 6 again after deposit complete *********************
+          // handleModal(false); // ******************************************
+
+          // // advance to confirmation step // *****************************
+          // dispatch({
+          //   type: 'update_status',
+          //   data: 5.5,
+          // });
+
+          updateStatus(false, 5.5);
         }
 
-        this.setState({ isValidDeposit: 2 }); // valid deposit
+        // setState({ isValidDeposit: 2 }); // valid deposit
+        setValidDeposit(2);
+
         console.log('tx hash: ' + txHash);
       }
 
-      this.setState({ depositLoading: false });
+      setProcessing(false);
     } catch (error) {
       console.log(error);
-      this.setState({ isValidDeposit: 1 }); // invalid deposit
 
-      this.setState({ depositLoading: false });
+      // setState({ isValidDeposit: 1 }); // invalid deposit
+      setValidDeposit(1);
+
+      setProcessing(false);
     }
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
-  metaTransaction = async () => {
+  async function metaTransaction() {
     try {
-      this.setState({ authorizeLoading: true });
+      setProcessing(true);
 
-      console.log('Matic RPC xxx: ' + Global.MATIC_URL);
-      console.log('user address: ' + this.userAddress);
+      console.log('Matic RPC: ' + Global.MATIC_URL);
+      console.log('user address: ' + userAddress);
       console.log('spender (treasury) address: ' + spenderAddress);
       console.log('authorize amount: ' + Global.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = this.tokenContract.methods
+      let functionSignature = tokenContract.methods
         .approve(spenderAddress, Global.MAX_AMOUNT)
         .encodeABI();
 
       const txHash = await Global.executeMetaTransaction(
         functionSignature,
-        this.tokenContract,
-        this.userAddress,
+        tokenContract,
+        userAddress,
         web3
       );
       if (txHash == false) {
         console.log('authorization failed');
 
-        this.setState({ isValidAuthorize: 1 }); // invalid authorize
-        this.setState({ authorizeLoading: false });
+        // setState({ isValidAuthorize: 1 }); // invalid authorize
+        setValidAuthorize(1);
+
+        setProcessing(false);
 
         return;
       } else {
-        let ret = await this.updateHistory(
+        let ret = await updateHistory(
           Global.MAX_AMOUNT,
           'Authorization',
           'Confirmed',
           txHash
         );
-        if (!ret) this.networkErrror(); // network error
+        if (!ret) networkErrror(); // network error
 
-        await this.postUserVerify(6); // update verify to 'deposit'
-        this.setState({ userStepValue: 5.5 }); // advance to deposit confirmations step
+        // change user status back to 5.5 and set to 6 again after deposit complete *********************
+        await postUserVerify(6); // update verify to 'deposit'
 
-        this.setState({ isValidAuthorize: 2 }); // valid authorize
+        // handleModal(false); // ******************************************
+
+        // dispatch({
+        //   type: 'update_status',
+        //   data: 5.5,
+        // });
+
+        updateStatus(false, 5.5);
+
+        // setState({ isValidAuthorize: 2 }); // valid authorize
+        setValidAuthorize(2);
       }
 
-      this.setState({ authorizeLoading: false });
+      setProcessing(false);
     } catch (error) {
       console.log(error);
 
-      this.setState({ isValidAuthorize: 1 }); // invalid authorize
-      this.setState({ authorizeLoading: false });
-    }
-  };
+      // setState({ isValidAuthorize: 1 }); // invalid authorize
+      setValidAuthorize(1);
 
-  networkError = () => {
+      setProcessing(false);
+    }
+  }
+
+  function networkError() {
     console.log('network error');
 
-    this.setState({ spinner: false });
+    setProcessing(false);
+
     return;
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get/update user authorization and onboard status in database
-  checkUserVerify = async () => {
-    try {
-      const response = await this.getUserStatus();
-      const json = await response.json();
-
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          this.setState({ userStepValue: 1 });
-          return;
-        }
-
-        let stepValue = parseInt(json.result);
-        this.setState({ userStepValue: stepValue });
-      }
-    } catch (error) {
-      console.log('step value error deposit: ' + error);
-    }
-  };
-
-  getUserStatus = () => {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-      }),
-    });
-  };
-
-  postUserVerify = (step) => {
+  // REST API functions: update user transaction history and onboard status in database
+  function postUserVerify(step) {
     return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
       method: 'POST',
       headers: {
@@ -339,25 +329,11 @@ class ModalDeposit extends React.Component {
         verifyStep: step,
       }),
     });
-  };
+  }
 
-  postUserAuthState = (value) => {
-    return fetch(`${Global.API_BASE_URL}/order/updateUserAuthState`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: window.web3.currentProvider.selectedAddress,
-        authorized: value,
-      }),
-    });
-  };
-
-  updateHistory = async (amount, type, state, txHash = '') => {
+  async function updateHistory(_amount, type, state, txHash = '') {
     try {
-      const response = await this.postHistory(amount, type, state, txHash);
+      const response = await postHistory(_amount, type, state, txHash);
       const json = await response.json();
 
       if (json.status === 'ok') {
@@ -372,9 +348,9 @@ class ModalDeposit extends React.Component {
     }
 
     return false;
-  };
+  }
 
-  postHistory = async (amount, type, state, txHash) => {
+  async function postHistory(_amount, type, state, txHash) {
     return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
       method: 'POST',
       headers: {
@@ -383,145 +359,157 @@ class ModalDeposit extends React.Component {
       },
       body: JSON.stringify({
         address: window.web3.currentProvider.selectedAddress,
-        amount,
+        _amount,
         type,
         state,
         txHash,
       }),
     });
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  switchRPC = () => {
+  function switchRPC() {
     return (
       <Modal
-        trigger={this.getTrigger()}
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
+        trigger={getTrigger()}
+        open={modalState}
+        onClose={handleClose}
         closeIcon
       >
         <SwitchRPC />
       </Modal>
     );
-  };
+  }
 
-  nextStep = () => {
+  function nextStep() {
     let value;
-    if (this.state.userStepValue < 6) {
-      value = this.state.userStepValue + 0.5;
+    if (state.userStatus < 6) {
+      value = state.userStatus + 0.5;
     } else {
       value = 4;
     }
 
-    this.setState({ userStepValue: value });
-  };
+    // dispatch({
+    //   type: 'update_status',
+    //   data: value,
+    // });
 
-  render() {
-    if (this.state.networkID !== Global.PARENT_NETWORK_ID)
-      return this.switchRPC();
+    let toggle;
+    if (value == 5.5) {
+      toggle = false;
+    } else {
+      toggle = true;
+    }
 
-    return (
-      <div>
-        <Modal
-          trigger={this.getTrigger()}
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
-          closeIcon
-        >
-          {this.state.spinner ? <Spinner background={1} /> : null}
-
-          <div id="deposit">
-            <div className="ui depositContainer">
-              <Grid verticalAlign="middle" textAlign="center">
-                {this.state.userStepValue == 4 ? (
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  // check the user is in a whitelisted jurisdiction
-                  <Grid.Column>
-                    <ContentDeposit
-                      content={'location'} // content type
-                      verifyLocation={this.verifyLocation}
-                      nextStep={this.nextStep}
-                    />
-                  </Grid.Column>
-                ) : this.state.userStepValue == 4.5 ? (
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-                  <Grid.Column>
-                    <ContentDeposit
-                      content={'authorize'} // content type
-                      isValidAuthorize={this.state.isValidAuthorize}
-                      authorizeMana={this.metaTransaction}
-<<<<<<< HEAD
-                      nextStep={this.nextStep}
-=======
-                      authorizeLoading={this.state.authorizeLoading}
-                      // nextStep={this.nextStep}
->>>>>>> 81e2afa0cd5c190376720ad621f365f28a47240f
-                    />
-                  </Grid.Column>
-                ) : this.state.userStepValue == 5 ? (
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  // authorize transfers to Matic Network, then deposit MANA to Matic Network
-                  <Grid.Column>
-                    <ContentDeposit
-                      content={'approve'} // content type
-                      isValidDeposit={this.state.isValidDeposit}
-                      amount={this.state.amount}
-                      isCustomAmount={this.state.isCustomAmount}
-                      onChangeAmount={this.onChangeAmount}
-                      onChangeCustomAmount={this.onChangeCustomAmount}
-                      depositToMatic={this.depositToMatic}
-<<<<<<< HEAD
-                      nextStep={this.nextStep}
-=======
-                      depositLoading={this.state.depositLoading}
-                      // nextStep={this.nextStep}
->>>>>>> 81e2afa0cd5c190376720ad621f365f28a47240f
-                    />
-                  </Grid.Column>
-                ) : this.state.userStepValue == 6 ? (
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  /////////////////////////////////////////////////////////////////////////////////////////
-                  // user has finished onboard process and wishes to deposit more MANA to Matic Network
-                  <Grid.Column>
-                    <ContentDeposit
-                      content={'deposit'} // content type
-                      isValidDeposit={this.state.isValidDeposit}
-                      amount={this.state.amount}
-                      isCustomAmount={this.state.isCustomAmount}
-                      onChangeAmount={this.onChangeAmount}
-                      onChangeCustomAmount={this.onChangeCustomAmount}
-                      depositToMatic={this.depositToMatic}
-                      depositLoading={this.state.depositLoading}
-                      // nextStep={this.nextStep}
-                    />
-                  </Grid.Column>
-                ) : null}
-              </Grid>
-            </div>
-          </div>
-        </Modal>
-
-        {this.state.userStepValue == 5.5 && this.state.visible ? (
-          /////////////////////////////////////////////////////////////////////////////////////////
-          /////////////////////////////////////////////////////////////////////////////////////////
-          // get number of confirmations from Matic Network and display to user
-          <Message
-            className="deposit-notification-box"
-            onDismiss={this.handleDismiss}
-          >
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}> Deposit Confirming on Matic  </p>
-            <p style={{ fontSize: '16px' }}> Refresh in 2-3 minutes to see <br /> your updated balance </p>
-          </Message>
-        ) : null }
-      </div>
-    );
+    updateStatus(toggle, value);
   }
-}
+
+  function updateStatus(toggle, value) {
+    if (toggle) {
+      handleOpen();
+    } else {
+      handleClose();
+    }
+
+    dispatch({
+      type: 'update_status',
+      data: value,
+    });
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  if (networkID !== Global.PARENT_NETWORK_ID) return switchRPC();
+
+  return (
+    <div>
+      <Modal
+        trigger={getTrigger()}
+        open={modalState}
+        onClose={handleClose}
+        closeIcon
+      >
+        <div id="deposit">
+          <div className="ui depositContainer">
+            <Grid verticalAlign="middle" textAlign="center">
+              {state.userStatus == 4 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // check the user is in a whitelisted jurisdiction
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'location'} // content type
+                    verifyLocation={verifyLocation}
+                    validLocation={validLocation}
+                    nextStep={nextStep}
+                  />
+                </Grid.Column>
+              ) : state.userStatus == 4.5 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'authorize'} // content type
+                    validAuthorize={validAuthorize}
+                    authorizeMana={metaTransaction}
+                    processing={processing}
+                    nextStep={nextStep}
+                  />
+                </Grid.Column>
+              ) : state.userStatus == 5 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // authorize transfers to Matic Network, then deposit MANA to Matic Network
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'approve'} // content type
+                    validDeposit={validDeposit}
+                    amount={amount}
+                    customAmount={customAmount}
+                    onChangeAmount={onChangeAmount}
+                    changeCustomAmount={changeCustomAmount}
+                    depositToMatic={depositToMatic}
+                    processing={processing}
+                    nextStep={nextStep}
+                  />
+                </Grid.Column>
+              ) : state.userStatus == 5.5 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // deposit confirmation pending message
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'pending'} // content type
+                    nextStep={nextStep}
+                  />
+                </Grid.Column>
+              ) : state.userStatus == 6 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // user has finished onboard process and wishes to deposit more MANA to Matic Network
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'deposit'} // content type
+                    validDeposit={validDeposit}
+                    amount={amount}
+                    customAmount={customAmount}
+                    onChangeAmount={onChangeAmount}
+                    changeCustomAmount={changeCustomAmount}
+                    depositToMatic={depositToMatic}
+                    processing={processing}
+                    nextStep={nextStep}
+                  />
+                </Grid.Column>
+              ) : null}
+            </Grid>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  );
+};
 
 export default ModalDeposit;
