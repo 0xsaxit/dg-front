@@ -96,8 +96,8 @@ class ModalDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // handle closing of notification box
   handleDismiss = () => {
-    this.setState({ visible: false })
-  }
+    this.setState({ visible: false });
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +132,7 @@ class ModalDeposit extends React.Component {
   verifyLocation = async () => {
     console.log(this.state.userStepValue);
     this.setState({ userStepValue: 4.5 }); // advance to authorize step
-  }
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -407,7 +407,7 @@ class ModalDeposit extends React.Component {
   nextStep = () => {
     let value;
     if (this.state.userStepValue < 6) {
-      value = this.state.userStepValue + 1;
+      value = this.state.userStepValue + 0.5;
     } else {
       value = 4;
     }
@@ -440,7 +440,7 @@ class ModalDeposit extends React.Component {
                     <ContentDeposit
                       content={'location'} // content type
                       verifyLocation={this.verifyLocation}
-                      // nextStep={this.nextStep}
+                      nextStep={this.nextStep}
                     />
                   </Grid.Column>
                 ) : this.state.userStepValue == 4.5 ? (
@@ -452,11 +452,11 @@ class ModalDeposit extends React.Component {
                       content={'authorize'} // content type
                       isValidAuthorize={this.state.isValidAuthorize}
                       authorizeMana={this.metaTransaction}
-                      // nextStep={this.nextStep}
+                      nextStep={this.nextStep}
                     />
                   </Grid.Column>
                 ) : this.state.userStepValue == 5 ? (
-                   /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
                   /////////////////////////////////////////////////////////////////////////////////////////
                   // authorize transfers to Matic Network, then deposit MANA to Matic Network
                   <Grid.Column>
@@ -468,7 +468,7 @@ class ModalDeposit extends React.Component {
                       onChangeAmount={this.onChangeAmount}
                       onChangeCustomAmount={this.onChangeCustomAmount}
                       depositToMatic={this.depositToMatic}
-                      // nextStep={this.nextStep}
+                      nextStep={this.nextStep}
                     />
                   </Grid.Column>
                 ) : this.state.userStepValue == 6 ? (
@@ -484,7 +484,7 @@ class ModalDeposit extends React.Component {
                       onChangeAmount={this.onChangeAmount}
                       onChangeCustomAmount={this.onChangeCustomAmount}
                       depositToMatic={this.depositToMatic}
-                      // nextStep={this.nextStep}
+                      nextStep={this.nextStep}
                     />
                   </Grid.Column>
                 ) : null}
@@ -493,17 +493,17 @@ class ModalDeposit extends React.Component {
           </div>
         </Modal>
 
-        { this.state.userStepValue == 5.5 && this.state.visible ? (
-        /////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////
-        // get number of confirmations from Matic Network and display to user
+        {this.state.userStepValue == 5.5 && this.state.visible ? (
+          /////////////////////////////////////////////////////////////////////////////////////////
+          /////////////////////////////////////////////////////////////////////////////////////////
+          // get number of confirmations from Matic Network and display to user
           <Message
             className="deposit-notification-box"
             onDismiss={this.handleDismiss}
-            header='Deposited Successfully'
-            content='Please allow 2-3 minutes for your balance to reflect on Matic.'
+            header="Deposited Successfully"
+            content="Please allow 2-3 minutes for your balance to reflect on Matic."
           />
-        ) : null }
+        ) : null}
       </div>
     );
   }

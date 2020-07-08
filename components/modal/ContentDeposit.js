@@ -55,7 +55,7 @@ const ContentDeposit = (props) => {
           ) : null}
         </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -132,7 +132,7 @@ const ContentDeposit = (props) => {
           ) : null}
         </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -172,7 +172,7 @@ const ContentDeposit = (props) => {
           ) : null}
         </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -230,7 +230,7 @@ const ContentDeposit = (props) => {
           ) : null}
         </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
+        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
