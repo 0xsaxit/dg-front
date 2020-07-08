@@ -1,13 +1,49 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Table, Button, Icon, Modal } from 'semantic-ui-react';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
+import transakSDK from '@transak/transak-sdk';
+
+let transak = new transakSDK({
+  apiKey: '4fcd6904-706b-4aff-bd9d-77422813bbb7', // Your API Key
+  environment: 'STAGING', // STAGING/PRODUCTION
+  defaultCryptoCurrency: 'MANA',
+  walletAddress: '', // Your customer's wallet address
+  themeColor: '000000', // App theme color
+  fiatCurrency: '', // INR/GBP
+  email: '', // Your customer's email address
+  redirectURL: '',
+  hostURL: 'https://decentral.games/account',
+  widgetHeight: '720px',
+  widgetWidth: '450px',
+});
 
 const ContentTransactions = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  
+  useEffect(() => {
+    // get all the events
+    transak.on(transak.ALL_EVENTS, (data) => {
+      console.log(data);
+    });
+    // triggers when the user closes the widget
+    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak.close();
+    });
+    // triggers when the payment is complete
+    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+      console.log(orderData);
+      transak.close();
+    });
+  });
+  
+  // initialize transak modal
+  function show_transak() {
+    transak.init();
+  }
 
   function contentLabels() {
     if (props.type === 'Balances') {
@@ -72,17 +108,9 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <Modal
-                trigger={<p className="balances-purchase">PURCHASE</p>}
-                closeIcon
-              >
-                <Modal.Content className="purchase-modal">
-                  <p style={{ textAlign: 'center', paddingBottom: '12px' }}>
-                    {' '}
-                    Coming Soon{' '}
-                  </p>
-                </Modal.Content>
-              </Modal>
+              <a className="balances-purchase" onClick={show_transak}>
+                PURCHASE
+              </a>
               <Modal
                 trigger={<p className="balances-exchange">TRADE</p>}
                 closeIcon

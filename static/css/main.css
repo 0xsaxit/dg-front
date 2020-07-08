@@ -130,7 +130,7 @@ p {
   margin-top: 25px;
   border: none;
   box-shadow: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.25px;
   font-size: 16px;
 }
 
@@ -139,7 +139,7 @@ p {
   margin-top: 25px;
   border: none;
   box-shadow: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.25px;
   font-size: 16px;
   padding-left: 30px !important;
   padding-right: 30px !important;
@@ -335,7 +335,7 @@ video.home-dashboard-video {
 .modal-p-error {
   text-align: right;
   color: red;
-  padding-top: 30px;
+  padding-top: 15px;
   padding-right: 30px;
   margin-bottom: -30px !important;
 }
@@ -388,17 +388,32 @@ span.text {
 /*         MODAL DEPOSIT SECTION CSS         */
 /* ----------------------------------------- */
 
+#deposit-icon-loading {
+  -webkit-animation:spin 1.5s linear infinite;
+  -moz-animation:spin 1.5s linear infinite;
+  animation:spin 1.5s linear infinite;
+  font-size: 18px;
+  vertical-align: top;
+  margin-right: 6px;
+  margin-top: -1px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 .deposit-notification-box {
-  max-width: 600px;
+  width: 270px;
   position: absolute !important;
   z-index: 999 !important;
   top: 84px;
-  right: 30px;
 }
 
 .ui.message {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
+  padding: 18px;
+  padding-top: 6px;
 }
 
 .ui.message div.content,
@@ -1197,8 +1212,8 @@ a.account-deposit-button {
   color: white !important;
   padding-left: 12px;
   padding-right: 12px;
-  padding-top: 6px;
-  padding-bottom: 7px;
+  padding-top: 2px;
+  padding-bottom: 3px;
   border-radius: 3px;
   font-weight: bold;
   background-color: #2085f4;
@@ -1402,8 +1417,10 @@ a.balances-deposit.blue {
   .mobile-menu-item-1,
   .mobile-menu-item-2 {
     color: white;
-    font-size: 20px;
+    letter-spacing: 1.25px;
+    font-size: 18px;
     z-index: 3;
+    font-weight: bold;
   }
   .mobile-menu-item-1:hover,
   .mobile-menu-item-2:hover {

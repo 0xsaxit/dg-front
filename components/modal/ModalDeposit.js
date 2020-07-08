@@ -35,6 +35,8 @@ class ModalDeposit extends React.Component {
       modalOpen: false,
       visible: true,
       spinner: false,
+      depositLoading: false,
+      authorizeLoading: false,
     };
 
     this.userAddress = '';
@@ -105,7 +107,7 @@ class ModalDeposit extends React.Component {
   getTrigger = () => {
     if (this.props.isLink) {
       return (
-        <a className="account-deposit-button" onClick={this.handleOpen}>
+        <a className="account-deposit-button extra" onClick={this.handleOpen}>
           DEPOSIT
         </a>
       );
@@ -129,6 +131,7 @@ class ModalDeposit extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // verify users location is not in a blacklisted jurisdiction
+  // TODO: actually verify location via IP grab
   verifyLocation = async () => {
     console.log(this.state.userStepValue);
     this.setState({ userStepValue: 4.5 }); // advance to authorize step
@@ -140,7 +143,7 @@ class ModalDeposit extends React.Component {
   // authorize transfers to Matic Network, then deposit MANA to Matic Network
   depositToMatic = async () => {
     try {
-      this.setState({ spinner: true });
+      this.setState({ depositLoading: true });
 
       // check the amount of tokens that user has allowed Matic contract to spend
       let allowedAmount = await Global.getAllowedToken(
@@ -219,12 +222,12 @@ class ModalDeposit extends React.Component {
         console.log('tx hash: ' + txHash);
       }
 
-      this.setState({ spinner: false });
+      this.setState({ depositLoading: false });
     } catch (error) {
       console.log(error);
       this.setState({ isValidDeposit: 1 }); // invalid deposit
 
-      this.setState({ spinner: false });
+      this.setState({ depositLoading: false });
     }
   };
 
@@ -233,7 +236,7 @@ class ModalDeposit extends React.Component {
   // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   metaTransaction = async () => {
     try {
-      this.setState({ spinner: true });
+      this.setState({ authorizeLoading: true });
 
       console.log('Matic RPC xxx: ' + Global.MATIC_URL);
       console.log('user address: ' + this.userAddress);
@@ -255,7 +258,7 @@ class ModalDeposit extends React.Component {
         console.log('authorization failed');
 
         this.setState({ isValidAuthorize: 1 }); // invalid authorize
-        this.setState({ spinner: false });
+        this.setState({ authorizeLoading: false });
 
         return;
       } else {
@@ -273,12 +276,12 @@ class ModalDeposit extends React.Component {
         this.setState({ isValidAuthorize: 2 }); // valid authorize
       }
 
-      this.setState({ spinner: false });
+      this.setState({ authorizeLoading: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidAuthorize: 1 }); // invalid authorize
-      this.setState({ spinner: false });
+      this.setState({ authorizeLoading: false });
     }
   };
 
@@ -452,7 +455,12 @@ class ModalDeposit extends React.Component {
                       content={'authorize'} // content type
                       isValidAuthorize={this.state.isValidAuthorize}
                       authorizeMana={this.metaTransaction}
+<<<<<<< HEAD
                       nextStep={this.nextStep}
+=======
+                      authorizeLoading={this.state.authorizeLoading}
+                      // nextStep={this.nextStep}
+>>>>>>> 81e2afa0cd5c190376720ad621f365f28a47240f
                     />
                   </Grid.Column>
                 ) : this.state.userStepValue == 5 ? (
@@ -468,7 +476,12 @@ class ModalDeposit extends React.Component {
                       onChangeAmount={this.onChangeAmount}
                       onChangeCustomAmount={this.onChangeCustomAmount}
                       depositToMatic={this.depositToMatic}
+<<<<<<< HEAD
                       nextStep={this.nextStep}
+=======
+                      depositLoading={this.state.depositLoading}
+                      // nextStep={this.nextStep}
+>>>>>>> 81e2afa0cd5c190376720ad621f365f28a47240f
                     />
                   </Grid.Column>
                 ) : this.state.userStepValue == 6 ? (
@@ -484,7 +497,8 @@ class ModalDeposit extends React.Component {
                       onChangeAmount={this.onChangeAmount}
                       onChangeCustomAmount={this.onChangeCustomAmount}
                       depositToMatic={this.depositToMatic}
-                      nextStep={this.nextStep}
+                      depositLoading={this.state.depositLoading}
+                      // nextStep={this.nextStep}
                     />
                   </Grid.Column>
                 ) : null}
@@ -500,10 +514,11 @@ class ModalDeposit extends React.Component {
           <Message
             className="deposit-notification-box"
             onDismiss={this.handleDismiss}
-            header="Deposited Successfully"
-            content="Please allow 2-3 minutes for your balance to reflect on Matic."
-          />
-        ) : null}
+          >
+            <p style={{ fontSize: '16px', fontWeight: 'bold' }}> Deposit Confirming on Matic  </p>
+            <p style={{ fontSize: '16px' }}> Refresh in 2-3 minutes to see <br /> your updated balance </p>
+          </Message>
+        ) : null }
       </div>
     );
   }
