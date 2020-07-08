@@ -103,9 +103,9 @@ const ModalDeposit = (props) => {
   function getTrigger() {
     if (props.isLink) {
       return (
-        <a className="account-deposit-button extra" onClick={handleOpen}>
+        <Button className="account-deposit-button" onClick={handleOpen}>
           DEPOSIT
-        </a>
+        </Button>
       );
     } else {
       return (
