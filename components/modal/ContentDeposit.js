@@ -54,8 +54,6 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
-
-        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -145,8 +143,6 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
-
-        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -199,8 +195,6 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
-
-        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -271,13 +265,11 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
-
-        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
 
-  function contenPending() {
+  function contentPending() {
     return (
       <div
         className="modal-content-container"
@@ -294,8 +286,6 @@ const ContentDeposit = (props) => {
             </p>
           </Grid.Row>
         </Grid>
-
-        <Button content="Next step" onClick={props.nextStep} />
       </div>
     );
   }
@@ -309,7 +299,7 @@ const ContentDeposit = (props) => {
   } else if (props.content == 'deposit') {
     return contentDeposit();
   } else if (props.content == 'pending') {
-    return contenPending();
+    return contentPending();
   }
 };
 
