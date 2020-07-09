@@ -249,7 +249,7 @@ video.home-dashboard-video {
   padding-right: 30px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .nft-container {
     flex-direction: column;
   }
@@ -287,6 +287,12 @@ video.home-dashboard-video {
 
 .nft-description {
   padding-bottom: 45px;
+}
+
+.games-pic {
+  min-width: 330px;
+  padding-bottom: 30px;
+  padding-right: 45px;
 }
 
 /* ----------------------------------------- */
@@ -1195,6 +1201,18 @@ button.ui.blue.button.modal-buttons {
   letter-spacing: 1.25px;
   border-radius: 3px;
   margin-left: 18px;
+}
+
+.ui.blue.button.games-button {
+  background-color: #2085f4;
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
 }
 
 .ui.button.modal-deposit-button {
