@@ -20,23 +20,13 @@ async function getAddresses() {
 getAddresses();
 
 const ModalDeposit = (props) => {
-  // get user's transaction history from the Context API store
+  // get user's onboard status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   let userAddress = '';
   let tokenContract = {};
 
-  //     amount: Global.DEFAULT_AMOUNT,
-  //     isCustomAmount: 0,
-  //     stepValue: 0,
-  //     networkID: 0,
-  //     isValidDeposit: 0,
-  //     isValidAuthorize: 0,
-  //     modalOpen: false,
-  //     processing: false,
-  //   this.userAddress = '';
-  //   this.tokenContract = {};
-
-  // define local variables
   const [amount, setAmount] = useState(Global.DEFAULT_AMOUNT);
   const [customAmount, setCustomAmount] = useState(0);
   const [networkID, setNetworkID] = useState(0);
@@ -54,7 +44,8 @@ const ModalDeposit = (props) => {
         setNetworkID(parseInt(parseInt(network)));
       });
 
-      // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
+      // initialize Web3 providers and create token contract instance
+      // (MetaMask provider for web3 and Biconomy provider for getWeb3)
       web3 = new Web3(window.ethereum);
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.MATIC_URL),
@@ -76,6 +67,9 @@ const ModalDeposit = (props) => {
     }
   });
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // drop-down list functions
   function onChangeAmount(e, d) {
     if (d.value == -1) {
       setAmount(0);
@@ -126,14 +120,8 @@ const ModalDeposit = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // verify users location and update the userStatus value in the Context API store
-
+  // verify user's location and update the userStatus value in the Context API store
   function verifyLocation() {
-    // dispatch({
-    //   type: 'update_status',
-    //   data: 4.5,
-    // });
-
     updateStatus(true, 4.5); // TODO: actually verify location via IP grab
   }
 
@@ -207,7 +195,7 @@ const ModalDeposit = (props) => {
           //   data: 5,
           // });
 
-          updateStatsus(true, 5);
+          updateStatus(true, 5);
         } else if (state.userStatus == 6) {
           // change user status back to 5.5 and set to 6 again after deposit complete *********************
           // handleModal(false); // ******************************************
@@ -240,7 +228,7 @@ const ModalDeposit = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // Biconomy API meta-transaction - allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
+  // Biconomy API meta-transaction. Allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
   async function metaTransaction() {
     try {
       setProcessing(true);
@@ -385,18 +373,14 @@ const ModalDeposit = (props) => {
 
   function nextStep() {
     let value;
+    let toggle;
+
     if (state.userStatus < 6) {
       value = state.userStatus + 0.5;
     } else {
       value = 4;
     }
 
-    // dispatch({
-    //   type: 'update_status',
-    //   data: value,
-    // });
-
-    let toggle;
     if (value == 5.5) {
       toggle = false;
     } else {
@@ -421,6 +405,7 @@ const ModalDeposit = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // verify correct network
   if (networkID !== Global.PARENT_NETWORK_ID) return switchRPC();
 
   return (
