@@ -159,7 +159,7 @@ const ContentDeposit = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Authorize your wallet on Matic Network to play games with MANA.{' '}
+              Authorize your wallet on Matic Network to play games with MANA.
             </p>
           </Grid.Row>
           <Grid.Row>

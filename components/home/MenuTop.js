@@ -49,7 +49,7 @@ const MenuTop = (props) => {
     setVisible(false);
   }
 
-  console.log('menu dashoard value: ' + state.userStatus);
+  console.log('User status: ' + state.userStatus);
 
   return (
     <div className={getContainerStyles('container')}>
@@ -157,7 +157,10 @@ const MenuTop = (props) => {
         /////////////////////////////////////////////////////////////////////////////////////////
         // message to notifiy users to refresh to view updated balances
         <div className="deposit-notification-container">
-          <Message className="deposit-notification-box" onDismiss={handleDismiss}>
+          <Message
+            className="deposit-notification-box"
+            onDismiss={handleDismiss}
+          >
             <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
               {' '}
               Deposit Confirming on Matic{' '}

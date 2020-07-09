@@ -122,7 +122,7 @@ const ModalDeposit = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // verify user's location and update the userStatus value in the Context API store
   function verifyLocation() {
-    updateStatus(true, 4.5); // TODO: actually verify location via IP grab
+    updateStatus(true, 4.5, true); // TODO: actually verify location via IP grab
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,9 @@ const ModalDeposit = (props) => {
         );
       }
 
-      // now deposit tokens from Mainnet to Matic Network
+      // console.log('start deposit process...');
+
+      // now deposit tokens from root network to Matic Network
       const txHash = await Global.depositTokenToMatic(
         tokenAddressRoot,
         amountWei,
@@ -167,61 +169,45 @@ const ModalDeposit = (props) => {
       if (txHash !== false) {
         setModalState(false);
 
+        // update transaction status to 'in progress'
         let ret = await updateHistory(amount, 'Deposit', 'In Progress', txHash);
-        if (!ret) networkErrror(); // network error
+        if (!ret) networkError();
 
-        ret = await Global.getConfirmedTx(txHash); // return confirmation hash
+        // when we receive confirmation hash update transaction status to 'confirmed'
+        ret = await Global.getConfirmedTx(txHash);
         console.log('confirmation: ' + ret);
 
         if (ret.status == '0x0') {
           ret = await updateHistory(amount, 'Deposit', 'Failed', txHash);
-
-          if (!ret) networkError(); // network error
+          if (!ret) networkError();
         } else {
           ret = await updateHistory(amount, 'Deposit', 'Confirmed', txHash);
-
-          if (!ret) networkError(); // network error
+          if (!ret) networkError();
         }
 
+        // proceed to the next step
         if (state.userStatus < 6) {
-          console.log('updating step value to 5');
+          // console.log('updating user status to 5');
 
           // set this from our set status method ******************************************
-          await postUserVerify(5); // update verify to 'authorize'
+          // await postUserVerify(5); // update verify to 'authorize'
 
-          // setState({ stepValue: 5 }); // advance to auth step
-          // dispatch({
-          //   type: 'update_status',
-          //   data: 5,
-          // });
-
-          updateStatus(true, 5);
+          updateStatus(true, 5, true);
         } else if (state.userStatus == 6) {
+          // console.log('updating user status to 5.5');
+
           // change user status back to 5.5 and set to 6 again after deposit complete *********************
-          // handleModal(false); // ******************************************
-
-          // // advance to confirmation step // *****************************
-          // dispatch({
-          //   type: 'update_status',
-          //   data: 5.5,
-          // });
-
-          updateStatus(false, 5.5);
+          updateStatus(false, 5.5, true); // advance to confirmation step
         }
 
-        // setState({ isValidDeposit: 2 }); // valid deposit
-        setValidDeposit(2);
-
-        console.log('tx hash: ' + txHash);
+        setValidDeposit(2); // valid deposit
       }
 
       setProcessing(false);
     } catch (error) {
       console.log(error);
 
-      // setState({ isValidDeposit: 1 }); // invalid deposit
-      setValidDeposit(1);
-
+      setValidDeposit(1); // invalid deposit
       setProcessing(false);
     }
   }
@@ -252,9 +238,7 @@ const ModalDeposit = (props) => {
       if (txHash == false) {
         console.log('authorization failed');
 
-        // setState({ isValidAuthorize: 1 }); // invalid authorize
-        setValidAuthorize(1);
-
+        setValidAuthorize(1); // invalid authorize
         setProcessing(false);
 
         return;
@@ -265,31 +249,20 @@ const ModalDeposit = (props) => {
           'Confirmed',
           txHash
         );
-        if (!ret) networkErrror(); // network error
+        if (!ret) networkError();
 
         // change user status back to 5.5 and set to 6 again after deposit complete *********************
-        await postUserVerify(6); // update verify to 'deposit'
+        // await postUserVerify(6); // update verify to 'deposit' // *******************************************
 
-        // handleModal(false); // ******************************************
-
-        // dispatch({
-        //   type: 'update_status',
-        //   data: 5.5,
-        // });
-
-        updateStatus(false, 5.5);
-
-        // setState({ isValidAuthorize: 2 }); // valid authorize
-        setValidAuthorize(2);
+        updateStatus(false, 5.5, true);
+        setValidAuthorize(2); // valid authorize
       }
 
       setProcessing(false);
     } catch (error) {
       console.log(error);
 
-      // setState({ isValidAuthorize: 1 }); // invalid authorize
-      setValidAuthorize(1);
-
+      setValidAuthorize(1); // invalid authorize
       setProcessing(false);
     }
   }
@@ -298,7 +271,6 @@ const ModalDeposit = (props) => {
     console.log('network error');
 
     setProcessing(false);
-
     return;
   }
 
@@ -387,10 +359,12 @@ const ModalDeposit = (props) => {
       toggle = true;
     }
 
-    updateStatus(toggle, value);
+    updateStatus(toggle, value, false);
   }
 
-  function updateStatus(toggle, value) {
+  function updateStatus(toggle, value, post) {
+    console.log('updating user status to ' + value);
+
     if (toggle) {
       handleOpen();
     } else {
@@ -401,6 +375,11 @@ const ModalDeposit = (props) => {
       type: 'update_status',
       data: value,
     });
+
+    // update user status in database
+    if (post) {
+      postUserVerify(value);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -434,20 +413,7 @@ const ModalDeposit = (props) => {
               ) : state.userStatus == 4.5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
-                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'authorize'} // content type
-                    validAuthorize={validAuthorize}
-                    authorizeMana={metaTransaction}
-                    processing={processing}
-                    nextStep={nextStep}
-                  />
-                </Grid.Column>
-              ) : state.userStatus == 5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // authorize transfers to Matic Network, then deposit MANA to Matic Network
+                // authorize transfers to Matic Network, then deposit root tokens to Matic Network
                 <Grid.Column>
                   <ContentDeposit
                     content={'approve'} // content type
@@ -457,6 +423,19 @@ const ModalDeposit = (props) => {
                     onChangeAmount={onChangeAmount}
                     changeCustomAmount={changeCustomAmount}
                     depositToMatic={depositToMatic}
+                    processing={processing}
+                    nextStep={nextStep}
+                  />
+                </Grid.Column>
+              ) : state.userStatus == 5 ? (
+                /////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////
+                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+                <Grid.Column>
+                  <ContentDeposit
+                    content={'authorize'} // content type
+                    validAuthorize={validAuthorize}
+                    authorizeMana={metaTransaction}
                     processing={processing}
                     nextStep={nextStep}
                   />
@@ -474,7 +453,7 @@ const ModalDeposit = (props) => {
               ) : state.userStatus == 6 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
-                // user has finished onboard process and wishes to deposit more MANA to Matic Network
+                // user has finished onboard process and wishes to deposit more root tokens to Matic Network
                 <Grid.Column>
                   <ContentDeposit
                     content={'deposit'} // content type

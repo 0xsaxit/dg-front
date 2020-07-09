@@ -160,7 +160,7 @@ class ModalVerify extends Component {
   };
 
   onMetamask = async (e, d) => {
-    console.log('metamask...');
+    // console.log('metamask...');
 
     this.setState({ isValidMetamask: 0 });
     if (window.ethereum) {
