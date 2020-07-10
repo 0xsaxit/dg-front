@@ -1,4 +1,4 @@
-import ContentGames from '../components/home/ContentGames';
+import Offerings from '../components/home/Offerings';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
@@ -12,7 +12,7 @@ const Games = () => {
         image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
       />
 
-      <ContentGames />
+      <Offerings />
     </Layout>
   );
 };

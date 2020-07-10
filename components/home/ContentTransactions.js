@@ -184,6 +184,8 @@ const ContentTransactions = (props) => {
           </Table.Cell>
         </Table.Row>
         <Table.Row>
+          <Table.Cell></Table.Cell>
+          <Table.Cell></Table.Cell>
           <Table.Cell>
             <img
               src={Global.IMAGES.LOGO}
@@ -201,14 +203,12 @@ const ContentTransactions = (props) => {
               <a
                 href="https://play.decentral.games"
                 target="_blank"
-                className="balances-deposit blue"
+                className="balances-deposit play"
               >
-                PLAY NOW
+                PLAY
               </a>
             </span>
           </Table.Cell>
-          <Table.Cell></Table.Cell>
-          <Table.Cell></Table.Cell>
         </Table.Row>
       </Table.Body>
     );

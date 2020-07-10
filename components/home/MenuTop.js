@@ -87,8 +87,7 @@ const MenuTop = () => {
         ) : null}
 
         <Menu.Item
-          href="https://docs.decentral.games/games/slots"
-          target="_blank"
+          href="/games"
           className="sidebar-menu-text"
         >
           <div>GAMES</div>

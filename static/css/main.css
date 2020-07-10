@@ -249,7 +249,7 @@ video.home-dashboard-video {
   padding-right: 30px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .nft-container {
     flex-direction: column;
   }
@@ -287,6 +287,12 @@ video.home-dashboard-video {
 
 .nft-description {
   padding-bottom: 45px;
+}
+
+.games-pic {
+  min-width: 330px;
+  padding-bottom: 30px;
+  padding-right: 45px;
 }
 
 /* ----------------------------------------- */
@@ -1210,6 +1216,18 @@ button.ui.blue.button.modal-buttons {
   margin-left: 18px;
 }
 
+.ui.blue.button.games-button {
+  background-color: #2085f4;
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
 .ui.button.modal-deposit-button {
   background-color: #2085f4;
   color: white;
@@ -1275,6 +1293,21 @@ a.balances-deposit.blue {
   color: white !important;
   padding-left: 12px;
   padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #2085f4;
+}
+
+a.balances-deposit.play {
+  margin-bottom: 0px;
+  letter-spacing: 1.25px !important;
+  font-size: 12px;
+  line-height: 24px;
+  color: white !important;
+  padding-left: 25px;
+  padding-right: 24px;
   padding-top: 2px;
   padding-bottom: 2px;
   border-radius: 3px;
