@@ -86,12 +86,9 @@ const MenuTop = () => {
           </Link>
         ) : null}
 
-        <Menu.Item
-          href="/games"
-          className="sidebar-menu-text"
-        >
-          <div>GAMES</div>
-        </Menu.Item>
+        <Link href="/games">
+          <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
+        </Link>
 
         <Link href="/blog">
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
@@ -102,7 +99,7 @@ const MenuTop = () => {
           target="_blank"
           className="sidebar-menu-text"
         >
-          <div>DOCS</div>
+          DOCS
         </Menu.Item>
 
         {state.userStatus ? (
