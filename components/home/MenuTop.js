@@ -2,12 +2,13 @@ import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Message } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
+import MessageBox from './MessageBox';
 import Global from '../Constants';
 
-const MenuTop = (props) => {
+const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -140,7 +141,7 @@ const MenuTop = (props) => {
               {state.balances[0][1]} MANA
             </span>
 
-            <ModalDeposit isLink={0} />
+            <ModalDeposit menuLink={1} />
           </span>
         ) : (
           /////////////////////////////////////////////////////////////////////////////////////////
@@ -153,24 +154,7 @@ const MenuTop = (props) => {
       </Menu>
 
       {state.userStatus == 5.5 && visible ? (
-        /////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////
-        // message to notifiy users to refresh to view updated balances
-        <div className="deposit-notification-container">
-          <Message
-            className="deposit-notification-box"
-            onDismiss={handleDismiss}
-          >
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-              {' '}
-              Deposit Confirming on Matic{' '}
-            </p>
-            <p style={{ fontSize: '16px' }}>
-              {' '}
-              Refresh in 2-3 minutes to see your updated balance{' '}
-            </p>
-          </Message>
-        </div>
+        <MessageBox handleDismiss={handleDismiss} />
       ) : null}
     </div>
   );

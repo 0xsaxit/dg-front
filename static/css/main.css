@@ -390,18 +390,31 @@ span.text {
 /* ----------------------------------------- */
 
 #deposit-icon-loading {
-  -webkit-animation:spin 1.5s linear infinite;
-  -moz-animation:spin 1.5s linear infinite;
-  animation:spin 1.5s linear infinite;
+  -webkit-animation: spin 1.5s linear infinite;
+  -moz-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
   font-size: 18px;
   vertical-align: top;
   margin-right: 6px;
   margin-top: -1px;
 }
 
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 
 .deposit-notification-container {
   display: flex !important;
@@ -415,7 +428,7 @@ span.text {
 }
 
 .deposit-notification-box {
-  width: 400px;
+  width: 405px;
   position: absolute !important;
   z-index: 999 !important;
   top: 74px;

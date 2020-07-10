@@ -21,8 +21,6 @@ function Balances() {
       async function fetchData() {
         const response = await getTokenBalances();
 
-        // console.log('dispatch updated balances...');
-
         dispatch({
           type: 'update_balances',
           data: response,

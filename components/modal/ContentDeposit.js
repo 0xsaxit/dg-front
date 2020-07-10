@@ -54,6 +54,8 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -143,6 +145,8 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -195,6 +199,8 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -265,6 +271,8 @@ const ContentDeposit = (props) => {
             </Grid.Column>
           ) : null}
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }
@@ -277,15 +285,14 @@ const ContentDeposit = (props) => {
       >
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Deposit Pending</h3>
+            <h3 className="modal-h3">Transaction Hash</h3>
           </Grid.Row>
           <Grid.Row>
-            <p className="modal-p">
-              Deposit confirmation pending. Please wait until deposit is
-              complete before depositing more tokens
-            </p>
+            <p className="nft-number-content">{state.txHash}</p>
           </Grid.Row>
         </Grid>
+
+        {/* <Button content="Next step" onClick={props.nextStep} /> */}
       </div>
     );
   }

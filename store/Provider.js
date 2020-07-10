@@ -10,6 +10,7 @@ const initialState = {
   userStatus: 0,
   balances: [[], []],
   transactions: [[], []],
+  txHash: '',
 };
 
 const reducer = (state, action) => {
@@ -36,6 +37,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         transactions: action.data,
+      };
+
+    case 'transaction_hash':
+      return {
+        ...state,
+        txHash: action.data,
       };
 
     default:
