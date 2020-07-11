@@ -131,13 +131,13 @@ const ModalDeposit = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // verify user's location and update the userStatus value in the Context API store
   function verifyLocation() {
-    updateStatus(4.5, true); // TODO: actually verify location via IP grab
+    updateStatus(5, true); // TODO: actually verify location via IP grab
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // check the amount of tokens that user has allowed Matic root contract to spend
-  // authorize transfers to Matic Network, then deposit root token to Matic Network
+  // approve transfers to Matic Network, then deposit root token to Matic Network
   async function depositToMatic() {
     try {
       setProcessing(true);
@@ -175,12 +175,6 @@ const ModalDeposit = (props) => {
       );
 
       if (txHash !== false) {
-        // update global state transaction hash
-        // dispatch({
-        //   type: 'transaction_hash',
-        //   data: txHash,
-        // });
-
         // update transaction history status to 'in progress'
         let ret = await updateHistory(amount, 'Deposit', 'In Progress', txHash);
         if (!ret) networkError();
@@ -198,11 +192,9 @@ const ModalDeposit = (props) => {
         }
 
         // proceed to the next step
-        if (state.userStatus < 6) {
-          updateStatus(5, true); // advance to 'authorize'
-        } else if (state.userStatus == 6) {
-          // updateStatus(5.5, 0); // open message box
-
+        if (state.userStatus < 7) {
+          updateStatus(6, true); // advance to 'authorize' step
+        } else if (state.userStatus == 7) {
           openMessageBox(); // close the deposit modal and open message box
         }
 
@@ -220,7 +212,7 @@ const ModalDeposit = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // Biconomy API meta-transaction. Allow our contract to spend Global.MAX_AMOUNT of tokens on user's behalf
+  // Biconomy API meta-transaction. Authorize our contract to spend MAX_AMOUNT of tokens on user's behalf
   async function metaTransaction() {
     try {
       setProcessing(true);
@@ -257,7 +249,7 @@ const ModalDeposit = (props) => {
         );
         if (!ret) networkError();
 
-        updateStatus(6, true); // update user status to 6
+        updateStatus(7, true); // update user status to 7
         openMessageBox(); // close the deposit modal and open message box
 
         setValidAuthorize(2); // valid authorize
@@ -351,25 +343,17 @@ const ModalDeposit = (props) => {
   function nextStep() {
     let value = 0;
 
-    // let post = false;
-
-    if (state.userStatus < 6) {
-      value = state.userStatus + 0.5;
+    if (state.userStatus < 7) {
+      value = state.userStatus + 1;
     } else {
       value = 4;
     }
-
-    // if (value == 5.5) {
-    //   post = 6;
-    // } else {
-    //   post = value;
-    // }
 
     updateStatus(value, false);
   }
 
   function updateStatus(value, post) {
-    console.log('updating user status to ' + value);
+    console.log('Updating user status to: ' + value);
 
     // update global state user status
     dispatch({
@@ -379,7 +363,7 @@ const ModalDeposit = (props) => {
 
     // update user status in database
     if (post) {
-      console.log('posting user status to db: ' + value);
+      console.log('Posting user status to db: ' + value);
 
       postUserVerify(value);
     }
@@ -390,7 +374,6 @@ const ModalDeposit = (props) => {
   // verify correct network
   if (networkID !== Global.PARENT_NETWORK_ID) return switchRPC();
 
-  // if (state.userStatus) {
   return (
     <div>
       <Modal
@@ -414,7 +397,7 @@ const ModalDeposit = (props) => {
                     nextStep={nextStep}
                   />
                 </Grid.Column>
-              ) : state.userStatus == 4.5 ? (
+              ) : state.userStatus == 5 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // authorize transfers to Matic Network, then deposit root tokens to Matic Network
@@ -431,7 +414,7 @@ const ModalDeposit = (props) => {
                     nextStep={nextStep}
                   />
                 </Grid.Column>
-              ) : state.userStatus == 5 ? (
+              ) : state.userStatus == 6 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
@@ -444,7 +427,7 @@ const ModalDeposit = (props) => {
                     nextStep={nextStep}
                   />
                 </Grid.Column>
-              ) : state.userStatus == 6 ? (
+              ) : state.userStatus == 7 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // user has finished onboard process and wishes to deposit more root tokens to Matic Network
@@ -468,9 +451,6 @@ const ModalDeposit = (props) => {
       </Modal>
     </div>
   );
-  // } else {
-  //   return <Button className="account-deposit-button">DEPOSIT</Button>;
-  // }
 };
 
 export default ModalDeposit;

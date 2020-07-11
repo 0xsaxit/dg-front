@@ -91,7 +91,7 @@ const ContentWithdraw = (props) => {
     );
   }
 
-  function contentHistory() {
+  function contentPending() {
     return (
       <div className="modal-content-container">
         <Grid>
@@ -221,8 +221,8 @@ const ContentWithdraw = (props) => {
 
   if (props.content == 'burn') {
     return contentBurn();
-  } else if (props.content == 'history') {
-    return contentHistory();
+  } else if (props.content == 'pending') {
+    return contentPending();
   } else if (props.content == 'exit') {
     return contentExit();
   } else if (props.content == 'confirmation') {

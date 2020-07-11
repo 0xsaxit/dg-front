@@ -11,8 +11,6 @@ const MessageBox = (props) => {
   // define local variables
   const [amount, setAmount] = useState(state.balances[0][1]);
 
-  // const [balanceUpdated, setBalanceUpdated] = useState(false);
-
   let userAddress = '';
   let maticWeb3 = {};
 
@@ -42,9 +40,6 @@ const MessageBox = (props) => {
           });
 
           setAmount(newAmount);
-
-          // setBalanceUpdated(true);
-
           clearInterval(interval);
         }
       }

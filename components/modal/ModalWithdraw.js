@@ -25,7 +25,6 @@ class ModalWithdraw extends React.Component {
     };
 
     this.userAddress = '';
-    // this.maticWeb3 = {};
     this.tokenContract = {};
   }
 
@@ -36,13 +35,6 @@ class ModalWithdraw extends React.Component {
       window.web3.version.getNetwork((err, network) => {
         this.setState({ networkID: parseInt(network) });
       });
-
-      // set maticWeb3 provider and verify user/set userStepValue // ******************************
-      // this.maticWeb3 = new window.Web3(
-      //   new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      // );
-      // await this.getTokenBalance(); // ************************************************
-      // await this.checkUserVerify();
     }
 
     // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
@@ -93,7 +85,7 @@ class ModalWithdraw extends React.Component {
   submitHash = () => {
     this.setState({
       transactionHash: this.props.transactionHash,
-      userStepValue: 7,
+      userStepValue: 9,
     });
     this.handleOpen();
   };
@@ -151,7 +143,7 @@ class ModalWithdraw extends React.Component {
         if (!ret) this.networkErrror(); // network error
 
         this.setState({ transactionHash: txHash }); // set transaction hash and advance to next step
-        this.setState({ userStepValue: 6.5 }); // advance to hash step
+        this.setState({ userStepValue: 8 }); // advance to the pending step
         this.setState({ isValidBurn: 2 }); // valid burn
       }
 
@@ -195,7 +187,7 @@ class ModalWithdraw extends React.Component {
         if (!ret) this.networkErrror(); // network error
 
         this.setState({ transactionHash: txHash }); // set transaction hash for confimation
-        this.setState({ userStepValue: 7.5 }); // advance to exit confirmation step
+        this.setState({ userStepValue: 10 }); // advance to exit confirmation step
         this.setState({ isValidExit: 2 }); // valid exit
       }
 
@@ -218,40 +210,6 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and deposit status in database
-  // checkUserVerify = async () => {
-  //   try {
-  //     const response = await this.getUserStatus();
-  //     const json = await response.json();
-
-  //     if (json.status === 'ok') {
-  //       if (json.result === 'false') {
-  //         this.setState({ userStepValue: 1 });
-  //         return;
-  //       }
-
-  //       let stepValue = parseInt(json.result);
-  //       this.setState({ userStepValue: stepValue });
-
-  //       // console.log('userStepValue status: ' + stepValue); // get data from Context API store *******************
-  //     }
-  //   } catch (error) {
-  //     console.log('step value error withdraw: ' + error);
-  //   }
-  // };
-
-  // getUserStatus = () => {
-  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: this.userAddress,
-  //     }),
-  //   });
-  // };
-
   updateHistory = async (amount, type, state, txHash, step) => {
     try {
       const response = await this.postHistory(
@@ -310,21 +268,17 @@ class ModalWithdraw extends React.Component {
     );
   };
 
-  nextStep = () => {
-    let value;
+  nextStep() {
+    let value = 0;
 
-    if (this.state.userStepValue <= 6) {
-      value = 6.5;
-    } else if (this.state.userStepValue == 6.5) {
+    if (state.userStatus < 9) {
+      value = state.userStatus + 1;
+    } else {
       value = 7;
-    } else if (this.state.userStepValue == 7) {
-      value = 7.5;
-    } else if (this.state.userStepValue == 7.5) {
-      value = 6;
     }
 
     this.setState({ userStepValue: value });
-  };
+  }
 
   render() {
     if (this.state.networkID !== Global.PARENT_NETWORK_ID)
@@ -342,7 +296,7 @@ class ModalWithdraw extends React.Component {
         <div id="deposit">
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
-              {this.state.userStepValue <= 6 ? (
+              {this.state.userStepValue <= 7 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // burn tokens on matic chain and store transaction hash for use while generating burn proof
@@ -356,18 +310,18 @@ class ModalWithdraw extends React.Component {
                     nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 6.5 ? (
+              ) : this.state.userStepValue == 8 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // tell user to check transaction history page after 10 minutes
                 <Grid.Column>
                   <ContentWithdraw
-                    content={'history'} // content type
+                    content={'pending'} // content type
                     transactionHash={this.state.transactionHash}
                     nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 7 ? (
+              ) : this.state.userStepValue == 9 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // call exit function on RootChainManager contract to submit proof of burn transaction
@@ -381,7 +335,7 @@ class ModalWithdraw extends React.Component {
                     nextStep={this.nextStep}
                   />
                 </Grid.Column>
-              ) : this.state.userStepValue == 7.5 ? (
+              ) : this.state.userStepValue == 10 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
                 // display exit confirmation hash
