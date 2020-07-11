@@ -12,9 +12,6 @@ const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // define local variables
-  const [visible, setVisible] = useState(true);
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get path and render appropriate styles
@@ -46,11 +43,17 @@ const MenuTop = () => {
     }
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // close the message box popup
   function handleDismiss() {
-    setVisible(false);
+    dispatch({
+      type: 'message_box',
+      data: 0,
+    });
   }
 
-  console.log('User status: ' + state.userStatus);
+  if (state.userStatus) console.log('User status: ' + state.userStatus);
 
   return (
     <div className={getContainerStyles('container')}>
@@ -149,9 +152,7 @@ const MenuTop = () => {
         )}
       </Menu>
 
-      {state.userStatus == 5.5 && visible ? (
-        <MessageBox handleDismiss={handleDismiss} />
-      ) : null}
+      {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}
     </div>
   );
 };

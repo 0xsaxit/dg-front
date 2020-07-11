@@ -129,7 +129,6 @@ const ContentDeposit = (props) => {
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '-10px', display: 'block', width: '180px' }}
-                onClick={props.depositToMatic}
               >
                 <span className="material-icons" id="deposit-icon-loading">
                   data_usage
@@ -172,7 +171,7 @@ const ContentDeposit = (props) => {
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '0px', display: 'block' }}
-                onClick={props.authorizeMana}
+                onClick={props.metaTransaction}
               >
                 Authorize
               </Button>
@@ -181,7 +180,6 @@ const ContentDeposit = (props) => {
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '0px', display: 'block', width: '180px' }}
-                onClick={props.authorizeMana}
               >
                 <span className="material-icons" id="deposit-icon-loading">
                   data_usage
@@ -255,7 +253,6 @@ const ContentDeposit = (props) => {
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '-10px', display: 'block', width: '180px' }}
-                onClick={props.depositToMatic}
               >
                 <span className="material-icons" id="deposit-icon-loading">
                   data_usage
@@ -277,25 +274,25 @@ const ContentDeposit = (props) => {
     );
   }
 
-  function contentPending() {
-    return (
-      <div
-        className="modal-content-container"
-        style={{ paddingBottom: '70px' }}
-      >
-        <Grid>
-          <Grid.Row>
-            <h3 className="modal-h3">Transaction Hash</h3>
-          </Grid.Row>
-          <Grid.Row>
-            <p className="nft-number-content">{state.txHash}</p>
-          </Grid.Row>
-        </Grid>
+  // function contentPending() {
+  //   return (
+  //     <div
+  //       className="modal-content-container"
+  //       style={{ paddingBottom: '70px' }}
+  //     >
+  //       <Grid>
+  //         <Grid.Row>
+  //           <h3 className="modal-h3">Deposit Pending</h3>
+  //         </Grid.Row>
+  //         <Grid.Row>
+  //           <p className="modal-p">Current deposit confirmation pending</p>
+  //         </Grid.Row>
+  //       </Grid>
 
-        {/* <Button content="Next step" onClick={props.nextStep} /> */}
-      </div>
-    );
-  }
+  //       {/* <Button content="Next step" onClick={props.nextStep} /> */}
+  //     </div>
+  //   );
+  // }
 
   if (props.content == 'location') {
     return locationVerify();

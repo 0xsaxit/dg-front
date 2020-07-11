@@ -24,9 +24,6 @@ const ModalDeposit = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-
-  // const [userStatus, setUserStatus] = useState(0);
-
   const [amount, setAmount] = useState(Global.DEFAULT_AMOUNT);
   const [customAmount, setCustomAmount] = useState(0);
   const [networkID, setNetworkID] = useState(0);
@@ -36,15 +33,11 @@ const ModalDeposit = (props) => {
   const [validAuthorize, setValidAuthorize] = useState(0);
   const [validLocation, setValidLocation] = useState(0);
 
-  // const [transactionHash, setTransactionHash] = useState('');
-
   let userAddress = '';
   let tokenContract = {};
 
   useEffect(() => {
     if (window.web3) {
-      // setUserStatus(state.userStatus); // set initial local user status
-
       // set user address and network ID
       userAddress = window.web3.currentProvider.selectedAddress;
       window.web3.version.getNetwork((err, network) => {
@@ -100,7 +93,7 @@ const ModalDeposit = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // handle opening or closing this modal
+  // handle opening or closing this modal and the message box
   function getTrigger() {
     if (props.menuLink) {
       return (
@@ -125,11 +118,20 @@ const ModalDeposit = (props) => {
     setModalState(false);
   }
 
+  function openMessageBox() {
+    handleClose();
+
+    dispatch({
+      type: 'message_box',
+      data: 1,
+    });
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // verify user's location and update the userStatus value in the Context API store
   function verifyLocation() {
-    updateStatus(4.5, 4.5); // TODO: actually verify location via IP grab
+    updateStatus(4.5, true); // TODO: actually verify location via IP grab
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -172,19 +174,12 @@ const ModalDeposit = (props) => {
         userAddress
       );
 
-      // setTransactionHash(txHash);
-
-      // dispatch({
-      //   type: 'transaction_hash',
-      //   data: txHash,
-      // });
-
       if (txHash !== false) {
         // update global state transaction hash
-        dispatch({
-          type: 'transaction_hash',
-          data: txHash,
-        });
+        // dispatch({
+        //   type: 'transaction_hash',
+        //   data: txHash,
+        // });
 
         // update transaction history status to 'in progress'
         let ret = await updateHistory(amount, 'Deposit', 'In Progress', txHash);
@@ -204,9 +199,11 @@ const ModalDeposit = (props) => {
 
         // proceed to the next step
         if (state.userStatus < 6) {
-          updateStatus(5, 5); // advance to 'authorize'
+          updateStatus(5, true); // advance to 'authorize'
         } else if (state.userStatus == 6) {
-          updateStatus(5.5, 0); // advance to pending step
+          // updateStatus(5.5, 0); // open message box
+
+          openMessageBox(); // close the deposit modal and open message box
         }
 
         setValidDeposit(2); // valid deposit
@@ -260,7 +257,9 @@ const ModalDeposit = (props) => {
         );
         if (!ret) networkError();
 
-        updateStatus(5.5, 6); // advance to pending step
+        updateStatus(6, true); // update user status to 6
+        openMessageBox(); // close the deposit modal and open message box
+
         setValidAuthorize(2); // valid authorize
       }
 
@@ -351,7 +350,8 @@ const ModalDeposit = (props) => {
 
   function nextStep() {
     let value = 0;
-    let post = false;
+
+    // let post = false;
 
     if (state.userStatus < 6) {
       value = state.userStatus + 0.5;
@@ -359,20 +359,17 @@ const ModalDeposit = (props) => {
       value = 4;
     }
 
-    if (value == 5.5) {
-      post = 6;
-    } else {
-      post = value;
-    }
+    // if (value == 5.5) {
+    //   post = 6;
+    // } else {
+    //   post = value;
+    // }
 
-    updateStatus(value, post);
+    updateStatus(value, false);
   }
 
   function updateStatus(value, post) {
     console.log('updating user status to ' + value);
-
-    // update local user status
-    // setUserStatus(value);
 
     // update global state user status
     dispatch({
@@ -393,6 +390,7 @@ const ModalDeposit = (props) => {
   // verify correct network
   if (networkID !== Global.PARENT_NETWORK_ID) return switchRPC();
 
+  // if (state.userStatus) {
   return (
     <div>
       <Modal
@@ -441,19 +439,8 @@ const ModalDeposit = (props) => {
                   <ContentDeposit
                     content={'authorize'} // content type
                     validAuthorize={validAuthorize}
-                    authorizeMana={metaTransaction}
+                    metaTransaction={metaTransaction}
                     processing={processing}
-                    nextStep={nextStep}
-                  />
-                </Grid.Column>
-              ) : state.userStatus == 5.5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // display transaction hash and link to Matic network explorer
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'pending'} // content type
-                    // transactionHash={transactionHash}
                     nextStep={nextStep}
                   />
                 </Grid.Column>
@@ -481,6 +468,9 @@ const ModalDeposit = (props) => {
       </Modal>
     </div>
   );
+  // } else {
+  //   return <Button className="account-deposit-button">DEPOSIT</Button>;
+  // }
 };
 
 export default ModalDeposit;

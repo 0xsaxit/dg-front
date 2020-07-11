@@ -10,7 +10,8 @@ const MessageBox = (props) => {
 
   // define local variables
   const [amount, setAmount] = useState(state.balances[0][1]);
-  const [balanceUpdated, setBalanceUpdated] = useState(false);
+
+  // const [balanceUpdated, setBalanceUpdated] = useState(false);
 
   let userAddress = '';
   let maticWeb3 = {};
@@ -34,14 +35,16 @@ const MessageBox = (props) => {
             data: response,
           });
 
-          // update global state user status
+          // update message box text
           dispatch({
-            type: 'update_status',
-            data: 6,
+            type: 'message_box',
+            data: 2,
           });
 
           setAmount(newAmount);
-          setBalanceUpdated(true);
+
+          // setBalanceUpdated(true);
+
           clearInterval(interval);
         }
       }
@@ -93,7 +96,7 @@ const MessageBox = (props) => {
         className="deposit-notification-box"
         onDismiss={props.handleDismiss}
       >
-        {!balanceUpdated ? (
+        {state.messageBox == 1 ? (
           <Aux>
             <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
               Deposit Confirming on Matic
@@ -103,7 +106,7 @@ const MessageBox = (props) => {
             </p>
             <p style={{ fontSize: '16px' }}>(Normally 2 - 3 minutes)</p>
           </Aux>
-        ) : (
+        ) : state.messageBox == 2 ? (
           <Aux>
             <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
               Deposit Confirmed on Matic
@@ -112,7 +115,7 @@ const MessageBox = (props) => {
               Your Matic balances have been updated
             </p>
           </Aux>
-        )}
+        ) : null}
       </Message>
     </div>
   );
