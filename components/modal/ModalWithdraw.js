@@ -268,17 +268,17 @@ class ModalWithdraw extends React.Component {
     );
   };
 
-  nextStep() {
+  nextStep = () => {
     let value = 0;
 
-    if (state.userStatus < 9) {
-      value = state.userStatus + 1;
+    if (this.state.userStepValue < 9) {
+      value = this.state.userStepValue + 1;
     } else {
       value = 7;
     }
 
     this.setState({ userStepValue: value });
-  }
+  };
 
   render() {
     if (this.state.networkID !== Global.PARENT_NETWORK_ID)

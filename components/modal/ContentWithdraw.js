@@ -136,7 +136,7 @@ const ContentWithdraw = (props) => {
                 style={{ marginTop: '-10px' }}
                 onClick={props.goToTxHistory}
               >
-                Account History
+                Account
               </Button>
             </Link>
           </Grid.Row>
