@@ -69,14 +69,27 @@ const ContentWithdraw = (props) => {
             />
           </Grid.Row>
           <Grid.Row>
-            <Button
-              className="modal-buttons"
-              color="blue"
-              style={{ marginTop: '-10px' }}
-              onClick={props.burnOnMatic}
-            >
-              Withdraw
-            </Button>
+            {props.processing == false ? (
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px' }}
+                onClick={props.burnOnMatic}
+              >
+                Withdraw
+              </Button>
+            ) : (
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px' }}
+              >
+                <span className="material-icons" id="deposit-icon-loading">
+                  data_usage
+                </span>
+                Withdraw
+              </Button>
+            )}
           </Grid.Row>
 
           {props.isValidBurn == 1 ? (
@@ -100,10 +113,11 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Please check the Transaction History page in 10 minutes to confirm
+              Please check the Account History page in 10 minutes to confirm
               withdrawal of MANA tokens to Mainnet
             </p>
           </Grid.Row>
+
           <Grid.Row>
             <a
               target="_blank"
@@ -115,14 +129,14 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
 
           <Grid.Row>
-            <Link href="/txhistory">
+            <Link href="/account">
               <Button
                 className="modal-buttons"
                 color="blue"
                 style={{ marginTop: '-10px' }}
                 onClick={props.goToTxHistory}
               >
-                Tx History
+                Account History
               </Button>
             </Link>
           </Grid.Row>
@@ -149,7 +163,8 @@ const ContentWithdraw = (props) => {
             tokenBalanceL1={state.balances[0][0]}
             tokenBalanceL2={state.balances[0][1]}
           />
-          <Grid.Row>
+
+          {/* <Grid.Row>
             <a
               target="_blank"
               href={Global.MATIC_EXPLORER + '/tx/' + props.transactionHash}
@@ -157,17 +172,30 @@ const ContentWithdraw = (props) => {
             >
               {props.transactionHash}
             </a>
-          </Grid.Row>
+          </Grid.Row> */}
 
           <Grid.Row>
-            <Button
-              className="modal-buttons"
-              color="blue"
-              style={{ marginTop: '-10px' }}
-              onClick={props.exitToMainnet}
-            >
-              Exit
-            </Button>
+            {props.processing == false ? (
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px' }}
+                onClick={props.exitToMainnet}
+              >
+                Exit
+              </Button>
+            ) : (
+              <Button
+                className="modal-buttons"
+                color="blue"
+                style={{ marginTop: '-10px' }}
+              >
+                <span className="material-icons" id="deposit-icon-loading">
+                  data_usage
+                </span>
+                Withdraw
+              </Button>
+            )}
           </Grid.Row>
 
           {props.isValidExit == 1 ? (

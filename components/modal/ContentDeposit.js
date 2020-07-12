@@ -31,7 +31,7 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <p className="modal-p">
               Due to international online gaming legislation, we do not allow
-              accounts from US IP addresses.
+              accounts from US IP addresses
             </p>
           </Grid.Row>
 
@@ -88,12 +88,12 @@ const ContentDeposit = (props) => {
           <Grid.Row>
             <p className="modal-p">
               Approve cryptocurrency transfers and deposit to Matic Network (two
-              transactions).
+              transactions)
             </p>
             <p className="modal-p-note2">
               If you don't own any cryptocurrency, you can buy some{' '}
               <a style={{ color: '#2085f4' }} href="/exchange">
-                here.
+                here
               </a>
             </p>
           </Grid.Row>

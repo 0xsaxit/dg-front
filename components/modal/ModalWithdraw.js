@@ -21,7 +21,7 @@ class ModalWithdraw extends React.Component {
       isValidBurn: 0,
       isValidExit: 0,
       modalOpen: false,
-      spinner: false,
+      processing: false,
     };
 
     this.userAddress = '';
@@ -103,7 +103,7 @@ class ModalWithdraw extends React.Component {
   // burn tokens on Matic Network
   burnOnMatic = async () => {
     try {
-      this.setState({ spinner: true });
+      this.setState({ processing: true });
 
       console.log('burn amount: ' + this.state.amount);
       console.log('token contract: ');
@@ -129,7 +129,7 @@ class ModalWithdraw extends React.Component {
         console.log('burn failed');
 
         this.setState({ isValidBurn: 1 }); // invalid burn
-        this.setState({ spinner: false });
+        this.setState({ processing: false });
 
         return;
       } else {
@@ -147,12 +147,12 @@ class ModalWithdraw extends React.Component {
         this.setState({ isValidBurn: 2 }); // valid burn
       }
 
-      this.setState({ spinner: false });
+      this.setState({ processing: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidBurn: 1 }); // invalid burn
-      this.setState({ spinner: false });
+      this.setState({ processing: false });
     }
   };
 
@@ -160,7 +160,7 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   exitToMainnet = async () => {
     try {
-      this.setState({ spinner: true });
+      this.setState({ processing: true });
 
       let txHash = await Global.exitToMainnet(
         this.state.transactionHash,
@@ -173,7 +173,7 @@ class ModalWithdraw extends React.Component {
         console.log('exit failed');
 
         this.setState({ isValidExit: 1 }); // invalid exit
-        this.setState({ spinner: false });
+        this.setState({ processing: false });
 
         return;
       } else {
@@ -181,7 +181,7 @@ class ModalWithdraw extends React.Component {
           this.state.amount,
           'Exit',
           'Confirmed',
-          txHash,
+          this.state.transactionHash, // update pending burn transaction
           1
         );
         if (!ret) this.networkErrror(); // network error
@@ -191,19 +191,19 @@ class ModalWithdraw extends React.Component {
         this.setState({ isValidExit: 2 }); // valid exit
       }
 
-      this.setState({ spinner: false });
+      this.setState({ processing: false });
     } catch (error) {
       console.log(error);
 
       this.setState({ isValidExit: 1 }); // invalid exit
-      this.setState({ spinner: false });
+      this.setState({ processing: false });
     }
   };
 
   networkError = () => {
     console.log('network error');
 
-    this.setState({ spinner: false });
+    this.setState({ processing: false });
     return;
   };
 
@@ -291,7 +291,7 @@ class ModalWithdraw extends React.Component {
         onClose={this.handleClose}
         closeIcon
       >
-        {this.state.spinner ? <Spinner background={1} /> : null}
+        {/* {this.state.spinner ? <Spinner background={1} /> : null} */}
 
         <div id="deposit">
           <div className="ui depositContainer">
@@ -307,6 +307,7 @@ class ModalWithdraw extends React.Component {
                     amount={this.state.amount}
                     onChangeAmount={this.onChangeAmount}
                     burnOnMatic={this.burnOnMatic}
+                    processing={this.state.processing}
                     nextStep={this.nextStep}
                   />
                 </Grid.Column>
@@ -332,6 +333,7 @@ class ModalWithdraw extends React.Component {
                     isValidExit={this.state.isValidExit}
                     transactionHash={this.state.transactionHash}
                     exitToMainnet={this.exitToMainnet}
+                    processing={this.state.processing}
                     nextStep={this.nextStep}
                   />
                 </Grid.Column>
