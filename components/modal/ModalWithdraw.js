@@ -137,8 +137,7 @@ class ModalWithdraw extends React.Component {
           this.state.amount,
           'Exit',
           'In Progress',
-          txHash,
-          1
+          txHash
         );
         if (!ret) this.networkErrror(); // network error
 
@@ -181,8 +180,7 @@ class ModalWithdraw extends React.Component {
           this.state.amount,
           'Exit',
           'Confirmed',
-          this.state.transactionHash, // update pending burn transaction
-          1
+          this.state.transactionHash // update pending burn transaction
         );
         if (!ret) this.networkErrror(); // network error
 
@@ -210,17 +208,11 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and deposit status in database
-  updateHistory = async (amount, type, state, txHash, step) => {
-    console.log('Writing to database: ' + amount);
+  updateHistory = async (_amount, type, state, txHash) => {
+    console.log('Writing to database: ' + state);
 
     try {
-      const response = await this.postHistory(
-        amount,
-        type,
-        state,
-        txHash,
-        step
-      );
+      const response = await this.postHistory(_amount, type, state, txHash);
       const json = await response.json();
 
       if (json.status === 'ok') {
@@ -231,13 +223,13 @@ class ModalWithdraw extends React.Component {
         return true;
       }
     } catch (error) {
-      console.log('update history error: ' + error);
+      console.log('Update history error: ' + error);
     }
 
     return false;
   };
 
-  postHistory = async (amount, type, state, txHash, step) => {
+  postHistory = async (_amount, type, state, txHash) => {
     return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
       method: 'POST',
       headers: {
@@ -245,12 +237,12 @@ class ModalWithdraw extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: window.web3.currentProvider.selectedAddress,
-        amount,
+        address: this.userAddress,
+        amount: _amount,
         type,
         state,
         txHash,
-        step,
+        step: this.state.userStepValue,
       }),
     });
   };

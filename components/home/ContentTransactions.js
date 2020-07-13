@@ -228,6 +228,8 @@ const ContentTransactions = (props) => {
           const dateSecond = new Date();
           const timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
 
+          console.log(row);
+
           return (
             <Table.Row key={i}>
               <Table.Cell>

@@ -307,9 +307,8 @@ function depositTokenToMatic(
   web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
-    console.log('Deposit start');
+    console.log('Deposit start:' + amount);
     console.log('Token address: ' + tokenAddress);
-    console.log('Amount: ' + amount);
     console.log('User address: ' + userAddress);
 
     try {

@@ -183,7 +183,7 @@ const ModalDeposit = (props) => {
 
         // when we receive confirmation hash update transaction history status to 'confirmed'
         ret = await Global.getConfirmedTx(txHash);
-        console.log('confirmation: ' + ret);
+        console.log('Confirmation: ' + ret.transactionHash);
 
         if (ret.status == '0x0') {
           ret = await updateHistory(amount, 'Deposit', 'Failed', txHash);
@@ -284,14 +284,14 @@ const ModalDeposit = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: window.web3.currentProvider.selectedAddress,
+        address: userAddress,
         verifyStep: step,
       }),
     });
   }
 
-  async function updateHistory(_amount, type, state, txHash = '') {
-    console.log('Writing to database: ' + _amount);
+  async function updateHistory(_amount, type, state, txHash) {
+    console.log('Writing to database: ' + state);
 
     try {
       const response = await postHistory(_amount, type, state, txHash);
@@ -305,7 +305,7 @@ const ModalDeposit = (props) => {
         return true;
       }
     } catch (error) {
-      console.log(error);
+      console.log('Update history error: ' + error);
     }
 
     return false;
@@ -319,11 +319,12 @@ const ModalDeposit = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: window.web3.currentProvider.selectedAddress,
-        _amount,
+        address: userAddress,
+        amount: _amount,
         type,
         state,
         txHash,
+        step: state.userStatus,
       }),
     });
   }
