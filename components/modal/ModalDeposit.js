@@ -84,7 +84,7 @@ const ModalDeposit = (props) => {
   function changeCustomAmount(e) {
     let value = parseInt(e.target.value);
 
-    if (String(value) != 'NaN') {
+    if (String(value) !== 'NaN') {
       setAmount(parseInt(e.target.value));
     } else {
       setAmount(0);
@@ -149,7 +149,7 @@ const ModalDeposit = (props) => {
       );
       allowedAmount = allowedAmount / Global.FACTOR;
 
-      console.log('allowed amount: ' + allowedAmount);
+      console.log('Allowed amount: ' + allowedAmount);
       const amountWei = web3.utils.toWei(amount + '');
 
       if (allowedAmount == 0) {
@@ -166,6 +166,8 @@ const ModalDeposit = (props) => {
           userAddress
         );
       }
+
+      console.log('Amount to deposit: ' + amount);
 
       // now deposit tokens from root network to Matic Network
       const txHash = await Global.depositTokenToMatic(
@@ -289,6 +291,8 @@ const ModalDeposit = (props) => {
   }
 
   async function updateHistory(_amount, type, state, txHash = '') {
+    console.log('Writing to database: ' + _amount);
+
     try {
       const response = await postHistory(_amount, type, state, txHash);
       const json = await response.json();

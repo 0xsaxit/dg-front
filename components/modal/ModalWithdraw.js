@@ -211,6 +211,8 @@ class ModalWithdraw extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get/update user authorization and deposit status in database
   updateHistory = async (amount, type, state, txHash, step) => {
+    console.log('Writing to database: ' + amount);
+
     try {
       const response = await this.postHistory(
         amount,
@@ -220,6 +222,7 @@ class ModalWithdraw extends React.Component {
         step
       );
       const json = await response.json();
+
       if (json.status === 'ok') {
         if (json.result === 'false') {
           return false;
@@ -299,7 +302,7 @@ class ModalWithdraw extends React.Component {
               {this.state.userStepValue <= 7 ? (
                 /////////////////////////////////////////////////////////////////////////////////////////
                 /////////////////////////////////////////////////////////////////////////////////////////
-                // burn tokens on matic chain and store transaction hash for use while generating burn proof
+                // burn tokens on Matic chain and store transaction hash for use when generating burn proof
                 <Grid.Column>
                   <ContentWithdraw
                     content={'burn'} // content type

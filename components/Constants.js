@@ -241,7 +241,7 @@ function balanceOfToken(tokenContract, userAddress) {
 function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
     console.log('Get allowed tokens');
-    console.log('token address: ' + tokenAddress);
+    console.log('Token address: ' + tokenAddress);
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
@@ -308,9 +308,9 @@ function depositTokenToMatic(
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start');
-    console.log('token address: ' + tokenAddress);
-    console.log('amount: ' + amount);
-    console.log('user address: ' + userAddress);
+    console.log('Token address: ' + tokenAddress);
+    console.log('Amount: ' + amount);
+    console.log('User address: ' + userAddress);
 
     try {
       const logs = await maticPOSClient.depositERC20ForUser(

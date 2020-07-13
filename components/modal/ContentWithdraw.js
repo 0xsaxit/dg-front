@@ -109,12 +109,12 @@ const ContentWithdraw = (props) => {
       <div className="modal-content-container">
         <Grid>
           <Grid.Row>
-            <h3 className="modal-h3">Exit MANA to Mainnet pending</h3>
+            <h3 className="modal-h3">Matic Tokens Burned / Exit Pending</h3>
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Please check the Account History page in 10 minutes to confirm
-              withdrawal of MANA tokens to Mainnet
+              Please check the Account History page in 10 minutes to submit Poof
+              of Burn and withdraw MANA tokens to Mainnet
             </p>
           </Grid.Row>
 
@@ -156,7 +156,7 @@ const ContentWithdraw = (props) => {
           </Grid.Row>
           <Grid.Row>
             <p className="modal-p">
-              Click Exit to submit your transaction hash as proof of burn
+              Click Exit to submit your transaction hash as Proof of Burn
             </p>
           </Grid.Row>
           <TokenBalances
