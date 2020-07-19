@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, Button, Divider } from 'semantic-ui-react';
+import ContentNFTs from './ContentNFTs';
 import Spinner from '../Spinner';
 
 const detailsNFTs = {
@@ -18,7 +19,7 @@ const detailsNFTs = {
     'Flamingos, Vegas City',
     '-126, 118',
     'Flamingos is a casino built by Vegas City. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
-    'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',    
+    'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
     'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
   ],
 };
@@ -36,7 +37,7 @@ class Tokens extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // loop through the NFT details objects
+  // loop through the NFT details object
   buyNFTs = () => {
     return Object.keys(detailsNFTs).map((item, i) => {
       return (
@@ -84,8 +85,17 @@ class Tokens extends React.Component {
 
   myNFTs = () => {
     return (
-      <div style={{ fontSize: '16px' }} className="account-other-inner-p">
-        You currently don't own any Decentral Games NFTs.
+      <div className="nft-container">
+        <div className="nft-image">
+          <Image
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png"
+            className="tominoya-pic"
+            style={{ borderRadius: '3px' }}
+          />
+        </div>
+        <div className="nft-description">
+          <ContentNFTs />
+        </div>
       </div>
     );
   };

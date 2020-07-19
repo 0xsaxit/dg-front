@@ -247,7 +247,9 @@ const ContentTransactions = (props) => {
 
               <Table.Cell>
                 {sign}
-                {amount} MANA
+                {amount > 1000000000000000000000000
+                  ? 'MAX AMOUNT'
+                  : amount + ' MANA'}
               </Table.Cell>
 
               <Table.Cell>{row.status}</Table.Cell>

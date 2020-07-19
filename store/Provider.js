@@ -11,6 +11,7 @@ const initialState = {
   balances: [[], []],
   transactions: [[], []],
   messageBox: 0,
+  parcelData: {},
 };
 
 const reducer = (state, action) => {
@@ -43,6 +44,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         messageBox: action.data,
+      };
+
+    case 'parcel_data':
+      return {
+        ...state,
+        parcelData: action.data,
       };
 
     default:

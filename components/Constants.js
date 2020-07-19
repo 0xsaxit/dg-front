@@ -4,6 +4,7 @@ import Butter from 'buttercms';
 import ABIParentContract from './ABI/ABIParent';
 import ABIParentToken from './ABI/ABIDummyToken';
 import ABIChildToken from './ABI/ABIChildToken';
+import ABITominoya from './ABI/ABITominoya';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +35,11 @@ const DESCRIPTION =
 const BUTTER = Butter('d7d6d8425656d3cfe5f45d7a0a3a8470ef09d434'); // pass Butter CMS token
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
+const ABI_PARENT_TOKEN = ABIParentToken;
+const ABI_CHILD_TOKEN = ABIChildToken;
+const ABI_TOMINOYA = ABITominoya;
+const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
+
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +48,8 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const IMAGES = (() => {
   const LOGO =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png';
-  const SOCIAL_SHARE_IMAGE = 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg';
+  const SOCIAL_SHARE =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1595194024/twitterpreview_b1yemb.png';
   const LOADING_SPINNER =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593912197/120dgspin_okkzit.gif';
   const ICON_DAI =
@@ -62,7 +69,7 @@ const IMAGES = (() => {
 
   return {
     LOGO,
-    SOCIAL_SHARE_IMAGE,
+    SOCIAL_SHARE,
     LOADING_SPINNER,
     ICON_DAI,
     ICON_MANA,
@@ -114,8 +121,7 @@ let TREASURY_BACKGAMMON_ADDRESS = '';
 let TREASURY_BLACKJACK_ADDRESS = '';
 let ROOTCHAIN_ADDRESS = '';
 let ROOTCHAINMANAGER_ADDRESS = '';
-let ABI_PARENT_TOKEN = ABIParentToken;
-let ABI_CHILD_TOKEN = ABIChildToken;
+
 let maticPOSClient;
 
 const API_ADDRESSES = (async () => {
@@ -633,6 +639,8 @@ export default {
   API_ADDRESSES,
   ABI_PARENT_TOKEN,
   ABI_CHILD_TOKEN,
+  ABI_TOMINOYA,
+  ADDRESS_TOMINOYA,
   API_BASE_URL,
   BASE_URL,
   DEFAULT_AMOUNT,

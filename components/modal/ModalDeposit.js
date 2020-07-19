@@ -5,6 +5,7 @@ import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
+import Aux from '../_Aux';
 import Global from '../Constants';
 
 let web3 = {};
@@ -102,11 +103,15 @@ const ModalDeposit = (props) => {
         </Button>
       );
     } else {
-      return (
-        <Button className="account-deposit-button" onClick={handleOpen}>
-          DEPOSIT
-        </Button>
-      );
+      if (state.userStatus < 7) {
+        return (
+          <Button className="account-deposit-button" onClick={handleOpen}>
+            DEPOSIT
+          </Button>
+        );
+      } else {
+        return maticWidget();
+      }
     }
   }
 
@@ -125,6 +130,24 @@ const ModalDeposit = (props) => {
       type: 'message_box',
       data: 1,
     });
+  }
+
+  function maticWidget() {
+    return (
+      <Aux>
+        <button
+          class="matic-widget-button"
+          data-default-page="deposit"
+          data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+        >
+          DEPOSIT
+        </button>
+        <script
+          src="https://wallet.matic.today/embeds/widget-button.js"
+          data-script-name="matic-embeds"
+        ></script>
+      </Aux>
+    );
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -235,9 +258,9 @@ const ModalDeposit = (props) => {
         userAddress,
         web3
       );
-      if (txHash == false) {
-        console.log('authorization failed');
 
+      // update transaction history to 'confirmed'
+      if (txHash == false) {
         setValidAuthorize(1); // invalid authorize
         setProcessing(false);
 

@@ -101,7 +101,7 @@ function blog() {
       {/* <Header
         title={Global.TITLE + ' | Blog'}
         description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
+        image={Global.IMAGES.SOCIAL_SHARE}
       /> */}
 
       <div className="blog-page">

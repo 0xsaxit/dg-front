@@ -73,7 +73,7 @@ const Screen = ({
     <div className="blogdetail-page" style={{ backgroundColor: 'white' }}>
       <div className="coverimg">
         <div className="image" style={{ marginTop: '-60px' }}>
-          <img src={image || Global.IMAGES.SOCIAL_SHARE_IMAGE} alt="" />
+          <img src={image || Global.IMAGES.SOCIAL_SHARE} alt="" />
         </div>
       </div>
 

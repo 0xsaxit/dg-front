@@ -12,7 +12,7 @@ const Index = () => {
           ' | Slots, Roulette, Blackjack and Backgammon Playable with Crypto'
         }
         description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
+        image={Global.IMAGES.SOCIAL_SHARE}
       />
 
       <Home />

@@ -9,7 +9,7 @@ const Administration = () => {
       <Header
         title={Global.TITLE + ' | Admin'}
         description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
+        image={Global.IMAGES.SOCIAL_SHARE}
       />
 
       <Admin />

@@ -9,7 +9,7 @@ const Account = () => {
       <Header
         title={Global.TITLE + ' | Account'}
         description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE_IMAGE}
+        image={Global.IMAGES.SOCIAL_SHARE}
       />
 
       <TransactionHistory />

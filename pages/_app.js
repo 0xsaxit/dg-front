@@ -9,6 +9,7 @@ import Aux from '../components/_Aux';
 import Status from '../components/Status';
 import Balances from '../components/Balances';
 import Transactions from '../components/Transactions';
+import ParcelData from '../components/ParcelData';
 
 class Application extends App {
   render() {
@@ -20,6 +21,7 @@ class Application extends App {
           <Status />
           <Balances />
           <Transactions />
+          <ParcelData />
 
           <Component {...pageProps} />
         </Provider>

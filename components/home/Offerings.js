@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Divider } from 'semantic-ui-react';
+import { Image, Button } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 
 const detailsGames = {
@@ -17,7 +17,7 @@ const detailsGames = {
     'Roulette',
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
     'https://play.decentral.games',
-    'https://docs.decentral.games/games/roulette',    
+    'https://docs.decentral.games/games/roulette',
   ],
   Backgammon: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/dice_fheuwk_t8hjf6_ydjuva.jpg',
@@ -25,7 +25,7 @@ const detailsGames = {
     'Backgammon',
     'Decentral Games backgammon is standard backgammon game featuring two players. At the start of each game, the player agree upon and place a wager that capitalizes a pot to be paid out to the winner minus a fee at the end of the game. The current minimum bet is 10 MANA, and the wager may be raised by clicking on the doubling cube throughout the game.',
     'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold',
-    'https://docs.decentral.games/games/backgammon',    
+    'https://docs.decentral.games/games/backgammon',
   ],
   BlackJack: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/blackjack_haiuyl_pnpdet_nolik4.jpg',
@@ -33,7 +33,7 @@ const detailsGames = {
     'Blackjack',
     'Decentral Games blackjack accommodates 1-4 players. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     'https://play.decentral.games',
-    'https://docs.decentral.games/games/blackjack',    
+    'https://docs.decentral.games/games/blackjack',
   ],
 };
 
@@ -49,7 +49,7 @@ class Offerings extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // loop through the NFT details objects
+  // loop through the game offerings details object
   Games = () => {
     return Object.keys(detailsGames).map((item, i) => {
       return (
@@ -68,9 +68,7 @@ class Offerings extends React.Component {
             >
               {detailsGames[item][2]}
             </h3>
-            <p className="nft-other-p">
-              {detailsGames[item][3]}
-            </p>
+            <p className="nft-other-p">{detailsGames[item][3]}</p>
             <Button
               color="blue"
               className="games-button"
@@ -96,11 +94,12 @@ class Offerings extends React.Component {
     if (this.state.isLoading) return <Spinner background={0} />;
 
     return (
-      <div className="main-container" style={{ marginBottom: '60px', paddingTop: '120px' }}>
+      <div
+        className="main-container"
+        style={{ marginBottom: '60px', paddingTop: '120px' }}
+      >
         <div className="page-container">
-          <div className="account-other-inner-container">
-            {this.Games()}
-          </div>
+          <div className="account-other-inner-container">{this.Games()}</div>
         </div>
       </div>
     );
