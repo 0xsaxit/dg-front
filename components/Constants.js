@@ -128,19 +128,18 @@ let maticPOSClient = {};
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // fetch wallet and contract addresses from server REST API
-
-// let RELAY_ADDRESS = '';
-// let ROOT_TOKEN_ADDRESS_DAI = '';
-// let ROOT_TOKEN_ADDRESS_MANA = '';
-// let CHILD_TOKEN_ADDRESS_DAI = '';
-// let CHILD_TOKEN_ADDRESS_MANA = '';
-// let TREASURY_CONTRACT_ADDRESS = '';
-// let TREASURY_SLOTS_ADDRESS = '';
-// let TREASURY_ROULETTE_ADDRESS = '';
-// let TREASURY_BACKGAMMON_ADDRESS = '';
-// let TREASURY_BLACKJACK_ADDRESS = '';
-// let ROOTCHAIN_ADDRESS = '';
-// let ROOTCHAINMANAGER_ADDRESS = '';
+let RELAY_ADDRESS = '';
+let ROOT_TOKEN_ADDRESS_DAI = '';
+let ROOT_TOKEN_ADDRESS_MANA = '';
+let CHILD_TOKEN_ADDRESS_DAI = '';
+let CHILD_TOKEN_ADDRESS_MANA = '';
+let TREASURY_CONTRACT_ADDRESS = '';
+let TREASURY_SLOTS_ADDRESS = '';
+let TREASURY_ROULETTE_ADDRESS = '';
+let TREASURY_BACKGAMMON_ADDRESS = '';
+let TREASURY_BLACKJACK_ADDRESS = '';
+let ROOTCHAIN_ADDRESS = '';
+let ROOTCHAINMANAGER_ADDRESS = '';
 
 // let maticPOSClient;
 
@@ -148,18 +147,18 @@ const API_ADDRESSES = (async () => {
   const response = await getAddresses();
   let json = await response.json();
 
-  const RELAY_ADDRESS = json.WORKER_WALLET_ADDRESS;
-  const ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
-  const ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
-  const CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
-  const CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
-  const TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
-  const TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
-  const TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
-  const TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
-  const TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
-  const ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
-  const ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
+  RELAY_ADDRESS = json.WORKER_WALLET_ADDRESS;
+  ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
+  ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
+  CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
+  CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
+  TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
+  TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
+  TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
+  TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
+  TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
+  ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
+  ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDRESS);
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
@@ -223,12 +222,12 @@ function getTokenContract(network, web3Default = window.web3) {
   if (network == 'root') {
     tokenContract = new web3Default.eth.Contract(
       ABIs.ROOT_TOKEN,
-      API_ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
+      ROOT_TOKEN_ADDRESS_MANA
     );
   } else if (network == 'child') {
     tokenContract = new web3Default.eth.Contract(
       ABIs.CHILD_TOKEN,
-      API_ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+      CHILD_TOKEN_ADDRESS_MANA
     );
   }
 
@@ -269,6 +268,10 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
   return new Promise(async (resolve, reject) => {
     console.log('Get allowed tokens');
     console.log('Token address: ' + tokenAddress);
+    console.log('User address: ' + userAddress);
+
+    // console.log('abi...');
+    // console.log(ROOTCHAINMANAGER_ADDRESS);
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
@@ -277,7 +280,7 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
 
       TOKEN_CONTRACT.allowance(
         userAddress,
-        API_ADDRESSES.ROOTCHAINMANAGER_ADDRESS,
+        ROOTCHAINMANAGER_ADDRESS,
         async function (err, amount) {
           if (err) {
             console.log('Get allowed failed', err);
@@ -306,7 +309,9 @@ function approveToken(
 ) {
   return new Promise(async (resolve, reject) => {
     console.log('Approve contract');
-    console.log('token address: ' + tokenAddress);
+    console.log('Token address: ' + tokenAddress);
+    console.log('Amount: ' + amount);
+    console.log('User address: ' + userAddress);
 
     try {
       await maticPOSClient.approveERC20ForDeposit(tokenAddress, amount, {
@@ -392,7 +397,7 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
     try {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABITreasuryContract)
-        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
         err,
@@ -423,7 +428,7 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
     try {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABITreasuryContract)
-        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.checkAllocatedTokensPerGame(
         gameType,
@@ -456,7 +461,7 @@ function depositToParent(gameType, amount, tokenName) {
     try {
       const PARENT_CONTRACT = window.web3.eth
         .contract(ABITreasuryContract)
-        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.addFunds(
         gameType,
@@ -495,7 +500,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
     try {
       const PARENT_CONTRACT = window.web3.eth
         .contract(ABITreasuryContract)
-        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
+        .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.withdrawCollateral(
         gameType,
