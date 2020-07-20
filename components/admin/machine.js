@@ -35,7 +35,7 @@ class Deposit extends React.Component {
         if (json.result.length > 0) {
           var el = document.querySelector('.dataTable');
           if (!el) {
-            await Global.delay(1000);
+            // await Global.delay(1000);
             continue;
           }
 

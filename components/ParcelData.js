@@ -35,7 +35,7 @@ function ParcelData() {
   async function getTokenID() {
     try {
       const NFT_CONTRACT = window.web3.eth
-        .contract(Global.ABI_TOMINOYA)
+        .contract(Global.ABIs.TOMINOYA_TOKEN)
         .at(Global.ADDRESS_TOMINOYA);
 
       await NFT_CONTRACT.tokenOfOwnerByIndex(

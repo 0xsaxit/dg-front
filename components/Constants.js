@@ -1,10 +1,10 @@
 import { MaticPOSClient } from '@maticnetwork/maticjs';
 import window from 'global';
 import Butter from 'buttercms';
-import ABIParentContract from './ABI/ABIParent';
-import ABIParentToken from './ABI/ABIDummyToken';
+import ABITreasuryContract from './ABI/ABIParent';
+import ABIRootToken from './ABI/ABIDummyToken';
 import ABIChildToken from './ABI/ABIChildToken';
-import ABITominoya from './ABI/ABITominoya';
+import ABITominoyaToken from './ABI/ABITominoya';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -35,12 +35,29 @@ const DESCRIPTION =
 const BUTTER = Butter('d7d6d8425656d3cfe5f45d7a0a3a8470ef09d434'); // pass Butter CMS token
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
-const ABI_PARENT_TOKEN = ABIParentToken;
-const ABI_CHILD_TOKEN = ABIChildToken;
-const ABI_TOMINOYA = ABITominoya;
 const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+// const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// set global token contract ABIs
+
+// let ROOT_TOKEN = ABIRootToken;
+// let CHILD_TOKEN = ABIChildToken;
+// let TOMINOYA_TOKEN = ABITominoyaToken;
+
+const ABIs = (() => {
+  const ROOT_TOKEN = ABIRootToken;
+  const CHILD_TOKEN = ABIChildToken;
+  const TOMINOYA_TOKEN = ABITominoyaToken;
+
+  return {
+    ROOT_TOKEN,
+    CHILD_TOKEN,
+    TOMINOYA_TOKEN,
+  };
+})();
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +100,7 @@ const IMAGES = (() => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// define EIP712 domain params for Biconomy API
+// define EIP712 domain params for Biconomy API and MaticPOSClient instance
 const sigUtil = require('eth-sig-util');
 
 const domainType = [
@@ -106,40 +123,43 @@ let domainData = {
   verifyingContract: '',
 };
 
+let maticPOSClient = {};
+
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // fetch wallet and contract addresses from server REST API
-let RELAY_ADDRESS = '';
-let ROOT_TOKEN_ADDRESS_DAI = '';
-let ROOT_TOKEN_ADDRESS_MANA = '';
-let CHILD_TOKEN_ADDRESS_DAI = '';
-let CHILD_TOKEN_ADDRESS_MANA = '';
-let TREASURY_CONTRACT_ADDRESS = '';
-let TREASURY_SLOTS_ADDRESS = '';
-let TREASURY_ROULETTE_ADDRESS = '';
-let TREASURY_BACKGAMMON_ADDRESS = '';
-let TREASURY_BLACKJACK_ADDRESS = '';
-let ROOTCHAIN_ADDRESS = '';
-let ROOTCHAINMANAGER_ADDRESS = '';
 
-let maticPOSClient;
+// let RELAY_ADDRESS = '';
+// let ROOT_TOKEN_ADDRESS_DAI = '';
+// let ROOT_TOKEN_ADDRESS_MANA = '';
+// let CHILD_TOKEN_ADDRESS_DAI = '';
+// let CHILD_TOKEN_ADDRESS_MANA = '';
+// let TREASURY_CONTRACT_ADDRESS = '';
+// let TREASURY_SLOTS_ADDRESS = '';
+// let TREASURY_ROULETTE_ADDRESS = '';
+// let TREASURY_BACKGAMMON_ADDRESS = '';
+// let TREASURY_BLACKJACK_ADDRESS = '';
+// let ROOTCHAIN_ADDRESS = '';
+// let ROOTCHAINMANAGER_ADDRESS = '';
+
+// let maticPOSClient;
 
 const API_ADDRESSES = (async () => {
   const response = await getAddresses();
   let json = await response.json();
 
-  RELAY_ADDRESS = json.WORKER_WALLET_ADDRESS;
-  ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
-  ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
-  CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
-  CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
-  TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
-  TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
-  TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
-  TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
-  TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
-  ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
-  ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
+  const RELAY_ADDRESS = json.WORKER_WALLET_ADDRESS;
+  const ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
+  const ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
+  const CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
+  const CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
+  const TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
+  const TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
+  const TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
+  const TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
+  const TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
+  const ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
+  const ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
 
   console.log('RELAY_ADDRESS (WORKER): ' + RELAY_ADDRESS);
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
@@ -172,6 +192,7 @@ const API_ADDRESSES = (async () => {
     RELAY_ADDRESS,
     ROOT_TOKEN_ADDRESS_DAI,
     ROOT_TOKEN_ADDRESS_MANA,
+    CHILD_TOKEN_ADDRESS_DAI,
     CHILD_TOKEN_ADDRESS_MANA,
     TREASURY_CONTRACT_ADDRESS,
     TREASURY_SLOTS_ADDRESS,
@@ -201,13 +222,13 @@ function getTokenContract(network, web3Default = window.web3) {
 
   if (network == 'root') {
     tokenContract = new web3Default.eth.Contract(
-      ABI_PARENT_TOKEN,
-      ROOT_TOKEN_ADDRESS_MANA
+      ABIs.ROOT_TOKEN,
+      API_ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
     );
   } else if (network == 'child') {
     tokenContract = new web3Default.eth.Contract(
-      ABI_CHILD_TOKEN,
-      CHILD_TOKEN_ADDRESS_MANA
+      ABIs.CHILD_TOKEN,
+      API_ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
     );
   }
 
@@ -251,12 +272,12 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
 
     try {
       const TOKEN_CONTRACT = web3Default.eth
-        .contract(ABI_CHILD_TOKEN)
+        .contract(ABIs.CHILD_TOKEN)
         .at(tokenAddress);
 
       TOKEN_CONTRACT.allowance(
         userAddress,
-        ROOTCHAINMANAGER_ADDRESS,
+        API_ADDRESSES.ROOTCHAINMANAGER_ADDRESS,
         async function (err, amount) {
           if (err) {
             console.log('Get allowed failed', err);
@@ -370,8 +391,8 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
 
     try {
       const PARENT_CONTRACT = web3Default.eth
-        .contract(ABIParentContract)
-        .at(TREASURY_CONTRACT_ADDRESS);
+        .contract(ABITreasuryContract)
+        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
         err,
@@ -401,8 +422,8 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
 
     try {
       const PARENT_CONTRACT = web3Default.eth
-        .contract(ABIParentContract)
-        .at(TREASURY_CONTRACT_ADDRESS);
+        .contract(ABITreasuryContract)
+        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.checkAllocatedTokensPerGame(
         gameType,
@@ -434,8 +455,8 @@ function depositToParent(gameType, amount, tokenName) {
 
     try {
       const PARENT_CONTRACT = window.web3.eth
-        .contract(ABIParentContract)
-        .at(TREASURY_CONTRACT_ADDRESS);
+        .contract(ABITreasuryContract)
+        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.addFunds(
         gameType,
@@ -473,8 +494,8 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
     try {
       const PARENT_CONTRACT = window.web3.eth
-        .contract(ABIParentContract)
-        .at(TREASURY_CONTRACT_ADDRESS);
+        .contract(ABITreasuryContract)
+        .at(API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.withdrawCollateral(
         gameType,
@@ -628,7 +649,8 @@ function getConfirmedTx(txHash) {
         }
       });
 
-      await delay(2000); // must delay 2 seconds
+      const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+      await delay(2000);
     }
   });
 }
@@ -637,9 +659,10 @@ function getConfirmedTx(txHash) {
 /////////////////////////////////////////////////////////////////////////////////////////
 export default {
   API_ADDRESSES,
-  ABI_PARENT_TOKEN,
-  ABI_CHILD_TOKEN,
-  ABI_TOMINOYA,
+  ABIs,
+  // ABI_PARENT_TOKEN,
+  // ABI_CHILD_TOKEN,
+  // ABI_TOMINOYA,
   ADDRESS_TOMINOYA,
   API_BASE_URL,
   BASE_URL,
@@ -659,7 +682,7 @@ export default {
   DISCORD_URL,
   SOCIAL_HANDLE,
   IMAGES,
-  delay,
+  // delay,
   getTokenContract,
   balanceOfToken,
   getAllowedToken,

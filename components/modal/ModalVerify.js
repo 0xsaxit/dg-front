@@ -75,14 +75,15 @@ class ModalVerify extends Component {
       for (var i = 0; i < 3; i++) {
         USER_ADDRESS = window.web3.currentProvider.selectedAddress;
         if (!USER_ADDRESS) {
-          await Global.delay(2000);
+          // await Global.delay(2000);
+
           continue;
         }
 
         let ret = await this.checkUserVerifyStep();
         if (ret) return;
 
-        await Global.delay(2000);
+        // await Global.delay(2000);
       }
     } catch (err) {
       console.log(err);

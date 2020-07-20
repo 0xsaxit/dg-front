@@ -37,11 +37,11 @@ function Balances() {
     const addresses = await Global.API_ADDRESSES;
 
     const TOKEN_CONTRACT_ROOT = window.web3.eth
-      .contract(Global.ABI_PARENT_TOKEN)
+      .contract(Global.ABIs.ROOT_TOKEN)
       .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
 
     const TOKEN_CONTRACT_CHILD = maticWeb3.eth
-      .contract(Global.ABI_CHILD_TOKEN)
+      .contract(Global.ABIs.CHILD_TOKEN)
       .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
 
     try {
