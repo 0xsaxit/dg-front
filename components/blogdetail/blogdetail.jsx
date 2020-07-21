@@ -3,7 +3,7 @@ import Screen from './screen';
 import { GlobalContext } from '../../store';
 // import { butter } from "../../store/api";
 import { Segment } from 'semantic-ui-react';
-import ScrollToTop from '../scroll.js';
+import ScrollToTop from '../Scroll';
 import Global from '../Constants';
 
 const BlogDetail = ({ match }) => {

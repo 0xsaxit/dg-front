@@ -8,7 +8,7 @@ import ABITominoyaToken from './ABI/ABITominoya';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// set global constant values
+// global constant values
 const API_BASE_URL = 'https://api.decentral.games';
 const BASE_URL = 'https://decentral.games';
 const DEFAULT_AMOUNT = 1000;
@@ -22,8 +22,6 @@ const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
 const MATIC_NETWORK_ID = '80001';
 const MATIC_URL = 'https://rpc-mumbai.matic.today';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/';
-const BICONOMY_API_KEY = '9voMvaNpt.df75ecbb-b72e-405e-bca6-69080ac100cf';
-const TRANSAK_KEY = '4fcd6904-706b-4aff-bd9d-77422813bbb7';
 const ADMIN_ADDRESSES = [
   '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
@@ -37,16 +35,24 @@ const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
 const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
 
-// const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// third-party public API keys
+const KEYS = (() => {
+  const BICONOMY_API = '9voMvaNpt.df75ecbb-b72e-405e-bca6-69080ac100cf';
+  const TRANSAK_API = '4fcd6904-706b-4aff-bd9d-77422813bbb7';
+  const GOOGLE_ANALYTICS = 'UA-146057069-1';
+
+  return {
+    BICONOMY_API,
+    TRANSAK_API,
+    GOOGLE_ANALYTICS,
+  };
+})();
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// set global token contract ABIs
-
-// let ROOT_TOKEN = ABIRootToken;
-// let CHILD_TOKEN = ABIChildToken;
-// let TOMINOYA_TOKEN = ABITominoyaToken;
-
+// global token contract ABIs
 const ABIs = (() => {
   const ROOT_TOKEN = ABIRootToken;
   const CHILD_TOKEN = ABIChildToken;
@@ -100,7 +106,7 @@ const IMAGES = (() => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// define EIP712 domain params for Biconomy API and MaticPOSClient instance
+// EIP712 domain params for Biconomy API and MaticPOSClient instance
 const sigUtil = require('eth-sig-util');
 
 const domainType = [
@@ -140,8 +146,6 @@ let TREASURY_BACKGAMMON_ADDRESS = '';
 let TREASURY_BLACKJACK_ADDRESS = '';
 let ROOTCHAIN_ADDRESS = '';
 let ROOTCHAINMANAGER_ADDRESS = '';
-
-// let maticPOSClient;
 
 const API_ADDRESSES = (async () => {
   const response = await getAddresses();
@@ -270,9 +274,6 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
     console.log('Token address: ' + tokenAddress);
     console.log('User address: ' + userAddress);
 
-    // console.log('abi...');
-    // console.log(ROOTCHAINMANAGER_ADDRESS);
-
     try {
       const TOKEN_CONTRACT = web3Default.eth
         .contract(ABIs.CHILD_TOKEN)
@@ -300,7 +301,7 @@ function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// allows contractAddress to spend given amount of tokens on user's behalf
+// allows tokenAddress to spend given amount of tokens on user's behalf
 function approveToken(
   tokenAddress,
   amount,
@@ -308,7 +309,7 @@ function approveToken(
   web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
-    console.log('Approve contract');
+    console.log('Approve token contract');
     console.log('Token address: ' + tokenAddress);
     console.log('Amount: ' + amount);
     console.log('User address: ' + userAddress);
@@ -331,7 +332,7 @@ function approveToken(
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// deposit MANA from the Matic Root contract to Matic Network
+// deposit tokens from the Matic Root contract to Matic Network
 function depositTokenToMatic(
   tokenAddress,
   amount,
@@ -339,8 +340,9 @@ function depositTokenToMatic(
   web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
-    console.log('Deposit start:' + amount);
+    console.log('Deposit to Matic Network');
     console.log('Token address: ' + tokenAddress);
+    console.log('Amount:' + amount);
     console.log('User address: ' + userAddress);
 
     try {
@@ -538,14 +540,11 @@ function executeMetaTransaction(
   web3Default = window.web3
 ) {
   return new Promise(async (resolve, reject) => {
-    console.log('Execute Meta-Transactions start');
-    console.log('function signature: ' + functionSignature);
-    console.log('user address: ' + userAddress);
-    console.log('chain ID: ' + domainData.chainId);
-    console.log('verify contract: ' + domainData.verifyingContract);
-
-    console.log('web3: ');
-    console.log(web3Default);
+    console.log('Execute Biconomy PoS meta-transaction');
+    console.log('Function signature: ' + functionSignature);
+    console.log('User address: ' + userAddress);
+    console.log('Chain ID: ' + domainData.chainId);
+    console.log('Verify contract: ' + domainData.verifyingContract);
 
     try {
       let nonce = await tokenContract.methods.getNonce(userAddress).call();
@@ -565,7 +564,7 @@ function executeMetaTransaction(
         message: message,
       });
 
-      console.log('domain data: ');
+      console.log('Domain data: ');
       console.log(domainData);
 
       await web3Default.eth.currentProvider.send(
@@ -587,8 +586,8 @@ function executeMetaTransaction(
             sig: response.result,
           });
 
-          console.log('user signature: ' + response.result);
-          console.log('recovered address: ' + recovered);
+          console.log('User signature: ' + response.result);
+          console.log('Recovered address: ' + recovered);
           console.log('r: ' + r);
           console.log('s: ' + s);
           console.log('v: ' + v);
@@ -665,9 +664,6 @@ function getConfirmedTx(txHash) {
 export default {
   API_ADDRESSES,
   ABIs,
-  // ABI_PARENT_TOKEN,
-  // ABI_CHILD_TOKEN,
-  // ABI_TOMINOYA,
   ADDRESS_TOMINOYA,
   API_BASE_URL,
   BASE_URL,
@@ -678,8 +674,7 @@ export default {
   MATIC_NETWORK_ID,
   MATIC_URL,
   MATIC_EXPLORER,
-  BICONOMY_API_KEY,
-  TRANSAK_KEY,
+  KEYS,
   ADMIN_ADDRESSES,
   TITLE,
   DESCRIPTION,
@@ -687,7 +682,6 @@ export default {
   DISCORD_URL,
   SOCIAL_HANDLE,
   IMAGES,
-  // delay,
   getTokenContract,
   balanceOfToken,
   getAllowedToken,

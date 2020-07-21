@@ -42,7 +42,7 @@ class ModalWithdraw extends React.Component {
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(Global.MATIC_URL),
       {
-        apiKey: Global.BICONOMY_API_KEY,
+        apiKey: Global.KEYS.BICONOMY_API,
         debug: true,
       }
     );

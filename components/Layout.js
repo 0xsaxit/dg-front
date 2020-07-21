@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { initGA, logPageView } from './analytics.js';
+import { initGA, logPageView } from './Analytics';
 import MenuTop from './home/MenuTop';
 import Aux from './_Aux';
 

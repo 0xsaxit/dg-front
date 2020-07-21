@@ -7,7 +7,7 @@ import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
 let transak = new transakSDK({
-  apiKey: Global.TRANSAK_KEY, // API Key
+  apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'STAGING', // STAGING/PRODUCTION
   defaultCryptoCurrency: 'MANA',
   walletAddress: '', // customer wallet address
