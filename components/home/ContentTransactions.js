@@ -207,6 +207,12 @@ const ContentTransactions = (props) => {
               >
                 PLAY
               </a>
+              <p 
+                className="balances-withdraw"
+                style={{ paddingLeft: '27px', paddingRight: '27px' }}
+              >
+                TOP UP
+              </p>
             </span>
           </Table.Cell>
         </Table.Row>
