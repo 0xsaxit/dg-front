@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
@@ -9,13 +9,31 @@ const ModalVerify = () => {
 
   // define local variables
   let userAddress = '';
+  let isBrowserMetaMask = 0;
+
+  useEffect(() => {
+    if (window.web3) {
+      userAddress = window.web3.currentProvider.selectedAddress;
+      isBrowserMetaMask = 1;
+
+      console.log('user address 1: ' + userAddress); // null
+      console.log('metamask 1: ' + isBrowserMetaMask); // 1
+    }
+  });
 
   async function onMetaMask() {
-    await window.ethereum.enable(); // open MataMask for login
+    if (!window.ethereum) {
+      console.log('MetaMask not present...');
+    } else {
+      await window.ethereum.enable(); // open MataMask for login
 
-    // set the user's wallet address and update user status to 4
-    userAddress = window.web3.currentProvider.selectedAddress;
-    updateStatus(4);
+      console.log('user address 2: ' + userAddress);
+      console.log('metamask 2: ' + isBrowserMetaMask);
+
+      // set the user's wallet address and update user status to 4
+      // userAddress = window.web3.currentProvider.selectedAddress;
+      updateStatus(4);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
