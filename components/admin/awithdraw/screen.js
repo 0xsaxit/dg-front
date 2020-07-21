@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 // import box from '../../../static/images/box.png';
 // import check from '../../../static/images/check.png';
 // import verify from '../../../static/images/switch_matic.png';
@@ -48,11 +48,11 @@ class Withdraw extends React.Component {
     Global = require('../../Constants').default;
   }
 
-  ifMobileRedirect = () => {
-    if (isMobile) {
-      return <Redirect to="/" />;
-    }
-  };
+  // ifMobileRedirect = () => {
+  //   if (isMobile) {
+  //     return <Redirect to="/" />;
+  //   }
+  // };
 
   verifyNetwork = () => {
     window.web3.version.getNetwork((err, network) => {
@@ -162,7 +162,8 @@ class Withdraw extends React.Component {
     if (this.state.networkID == parseInt(Global.MATIC_NETWORK_ID)) {
       return (
         <div id="withdraw">
-          {this.ifMobileRedirect()}
+          {/* {this.ifMobileRedirect()} */}
+
           <Spinner background={this.state.isRunningTransaction} />
           <div className="ui depositContainer">
             <Grid verticalAlign="middle" textAlign="center">
@@ -309,7 +310,8 @@ class Withdraw extends React.Component {
 
     return (
       <div id="withdraw">
-        {this.ifMobileRedirect()}
+        {/* {this.ifMobileRedirect()} */}
+
         <Spinner background={this.state.isRunningTransaction} />
         <div className="ui depositContainer">
           <Grid verticalAlign="middle" textAlign="center">

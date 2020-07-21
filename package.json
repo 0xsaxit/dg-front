@@ -31,7 +31,6 @@
     "next": "^9.4.4",
     "next-seo": "^4.5.0",
     "react": "^16.8.1",
-    "react-device-detect": "^1.7.5",
     "react-dom": "^16.13.1",
     "react-ga": "^2.6.0",
     "react-highlight": "^0.12.0",

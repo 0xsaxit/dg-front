@@ -18,7 +18,7 @@ import {
   Popup,
   Button,
 } from 'semantic-ui-react';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 import Spinner from '../Spinner';
 
 let Global;
@@ -154,11 +154,11 @@ class ModalVerify extends Component {
     });
   };
 
-  ifMobileRedirect = () => {
-    if (isMobile) {
-      return <Redirect to="/" />;
-    }
-  };
+  // ifMobileRedirect = () => {
+  //   if (isMobile) {
+  //     return <Redirect to="/" />;
+  //   }
+  // };
 
   onMetamask = async (e, d) => {
     console.log('metamask...');

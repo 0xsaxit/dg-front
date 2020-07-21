@@ -1,5 +1,5 @@
 import React from 'react';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 import { Grid, Divider } from 'semantic-ui-react';
 import DepositFunds from './DepositFunds';
 import WithdrawFunds from './WithdrawFunds';
@@ -40,11 +40,11 @@ class ContractData extends React.Component {
     this.getInitialBalances();
   }
 
-  mobileRedirect = () => {
-    if (isMobile) {
-      return <Redirect to="/" />;
-    }
-  };
+  // mobileRedirect = () => {
+  //   if (isMobile) {
+  //     return <Redirect to="/" />;
+  //   }
+  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ class ContractData extends React.Component {
   render() {
     return (
       <div id="deposit">
-        {this.mobileRedirect()}
+        {/* {this.mobileRedirect()} */}
 
         <div className="ui depositContainer">
           <Grid verticalAlign="middle" textAlign="center">

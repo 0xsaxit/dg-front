@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
+// import { isMobile } from 'react-device-detect';
 import { Header } from 'semantic-ui-react';
 import { Container, Grid, Image } from 'semantic-ui-react';
 import SideMenu from './menu';
@@ -61,11 +61,11 @@ class Admin extends React.Component {
     if (this.state.selectedMenu == 2) return <History />;
   };
 
-  ifMobileRedirect = () => {
-    if (isMobile) {
-      return <Redirect to="/" />;
-    }
-  };
+  // ifMobileRedirect = () => {
+  //   if (isMobile) {
+  //     return <Redirect to="/" />;
+  //   }
+  // };
 
   render() {
     if (!this.isBrowserMetamsk) {
@@ -82,7 +82,8 @@ class Admin extends React.Component {
 
     return (
       <div id="admin">
-        {this.ifMobileRedirect()}
+        {/* {this.ifMobileRedirect()} */}
+
         <Spinner background={this.state.isRunningTransaction} />
         <div className="ui accountContainer">
           <Grid verticalAlign="middle">
