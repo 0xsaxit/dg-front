@@ -12,7 +12,6 @@ const ModalVerify = () => {
   const [modalState, setModalState] = useState(false);
   const [statusMetaMask, setStatusMetaMask] = useState(1);
 
-  // define local variables
   let userAddress = '';
 
   useEffect(() => {
@@ -55,26 +54,66 @@ const ModalVerify = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // update user status to 4 both locally and in the database
   async function onMetaMask() {
-    await window.ethereum.enable(); // open MataMask for login
-
-    // set the user's wallet address and update user status to 4
+    // open MataMask for login then get the user's wallet address
+    await window.ethereum.enable();
     userAddress = window.web3.currentProvider.selectedAddress;
-    updateStatus(4);
+
+    // set global user status based on values stored in database. if no value present
+    // update user status to 4 both locally and in the database
+    const response = await getUserStatus();
+    if (response) {
+      updateStatus(response, false);
+    } else {
+      updateStatus(4, true);
+    }
   }
 
-  function updateStatus(step) {
-    console.log('Updating user status to: ' + step);
+  function updateStatus(value, post) {
+    console.log('Updating user status to: ' + value);
 
     // update global state user status
     dispatch({
       type: 'update_status',
-      data: step,
+      data: value,
     });
 
     // update user status in database
-    postUserVerify(step);
+    if (post) {
+      console.log('Posting user status to db: ' + value);
+
+      postUserVerify(value);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // REST API functions: get or set user's onboard status
+  async function getUserStatus() {
+    const response = await fetchUserStatus();
+    const json = await response.json();
+
+    if (json.status === 'ok') {
+      if (json.result === 'false') {
+        return false;
+      }
+      const stepValue = parseInt(json.result);
+
+      return stepValue;
+    }
+  }
+
+  function fetchUserStatus() {
+    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: userAddress,
+      }),
+    });
   }
 
   function postUserVerify(step) {
