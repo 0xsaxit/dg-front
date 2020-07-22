@@ -129,7 +129,7 @@ class Offerings extends React.Component {
                 </abbr>{' '}
                 <b className="account-hover active">LEADERBOARD</b>
               </p>
-              <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 280px)', marginTop: '27px' }}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 281px)', marginTop: '27px' }}>
                 <span className="account-hover">
                   <img
                     style={{
