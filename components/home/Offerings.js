@@ -114,7 +114,7 @@ class Offerings extends React.Component {
       <div className="account-other-tabs">
         {this.state.GameState == 0 ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <b className="account-hover active">GAMES</b>{' '}
+            <b className="account-hover active">OUR GAMES</b>{' '}
             <abbr className="account-hover" onClick={() => this.setPage(1)}>
               LEADERBOARD
             </abbr>
@@ -125,11 +125,11 @@ class Offerings extends React.Component {
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
                 <abbr className="account-hover" onClick={() => this.setPage(0)}>
-                  GAMES
+                  OUR GAMES
                 </abbr>{' '}
                 <b className="account-hover active">LEADERBOARD</b>
               </p>
-              <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 242px)', marginTop: '27px' }}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 280px)', marginTop: '27px' }}>
                 <span className="account-hover">
                   <img
                     style={{
