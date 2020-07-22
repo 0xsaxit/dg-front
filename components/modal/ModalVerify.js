@@ -1,6 +1,7 @@
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Grid, Modal } from 'semantic-ui-react';
+import ContentVerify from './ContentVerify';
 import Global from '../Constants';
 
 const ModalVerify = () => {
@@ -8,37 +9,61 @@ const ModalVerify = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [modalState, setModalState] = useState(false);
+  const [statusMetaMask, setStatusMetaMask] = useState(1);
+
+  // define local variables
   let userAddress = '';
-  let isBrowserMetaMask = 0;
 
   useEffect(() => {
-    if (window.web3) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-      isBrowserMetaMask = 1;
+    // if not using Safari browser set MetaMask status = 2
+    if (window.safari == undefined) {
+      setStatusMetaMask(2);
+    }
 
-      console.log('user address 1: ' + userAddress); // null
-      console.log('metamask 1: ' + isBrowserMetaMask); // 1
+    // if MetaMask is enabled set MetaMask status = 3
+    if (window.ethereum) {
+      setStatusMetaMask(3);
     }
   });
 
-  async function onMetaMask() {
-    if (!window.ethereum) {
-      console.log('MetaMask not present...');
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // handle opening and closing modal or MetaMask popup
+  function getTrigger() {
+    return (
+      <Button
+        content="CONNECT METAMASK"
+        color="blue"
+        className="metamask-button"
+        onClick={handleOpen}
+      />
+    );
+  }
+
+  function handleOpen() {
+    if (statusMetaMask == 3) {
+      onMetaMask();
     } else {
-      await window.ethereum.enable(); // open MataMask for login
-
-      console.log('user address 2: ' + userAddress);
-      console.log('metamask 2: ' + isBrowserMetaMask);
-
-      // set the user's wallet address and update user status to 4
-      // userAddress = window.web3.currentProvider.selectedAddress;
-      updateStatus(4);
+      setModalState(true);
     }
+  }
+
+  function handleClose() {
+    setModalState(false);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // update user status to 4 both locally and in the database
+  async function onMetaMask() {
+    await window.ethereum.enable(); // open MataMask for login
+
+    // set the user's wallet address and update user status to 4
+    userAddress = window.web3.currentProvider.selectedAddress;
+    updateStatus(4);
+  }
+
   function updateStatus(step) {
     console.log('Updating user status to: ' + step);
 
@@ -67,12 +92,34 @@ const ModalVerify = () => {
   }
 
   return (
-    <Button
-      content="CONNECT METAMASK"
-      color="blue"
-      className="metamask-button"
-      onClick={onMetaMask}
-    />
+    <Modal
+      trigger={getTrigger()}
+      open={modalState}
+      onClose={handleClose}
+      closeIcon
+    >
+      {statusMetaMask == 1 ? (
+        <div id="deposit">
+          <div className="ui depositContainer">
+            <Grid verticalAlign="middle" textAlign="center">
+              <Grid.Column>
+                <ContentVerify content={'chrome'} />
+              </Grid.Column>
+            </Grid>
+          </div>
+        </div>
+      ) : statusMetaMask == 2 ? (
+        <div id="deposit">
+          <div className="ui depositContainer">
+            <Grid verticalAlign="middle" textAlign="center">
+              <Grid.Column>
+                <ContentVerify content={'metamask'} />
+              </Grid.Column>
+            </Grid>
+          </div>
+        </div>
+      ) : null}
+    </Modal>
   );
 };
 

@@ -403,81 +403,79 @@ const ModalDeposit = (props) => {
   if (networkID !== Global.PARENT_NETWORK_ID) return switchRPC();
 
   return (
-    <div>
-      <Modal
-        trigger={getTrigger()}
-        open={modalState}
-        onClose={handleClose}
-        closeIcon
-      >
-        <div id="deposit">
-          <div className="ui depositContainer">
-            <Grid verticalAlign="middle" textAlign="center">
-              {state.userStatus == 4 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // check the user is in a whitelisted jurisdiction
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'location'} // content type
-                    verifyLocation={verifyLocation}
-                    validLocation={validLocation}
-                    nextStep={nextStep}
-                  />
-                </Grid.Column>
-              ) : state.userStatus == 5 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // authorize transfers to Matic Network, then deposit root tokens to Matic Network
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'approve'} // content type
-                    validDeposit={validDeposit}
-                    amount={amount}
-                    customAmount={customAmount}
-                    onChangeAmount={onChangeAmount}
-                    changeCustomAmount={changeCustomAmount}
-                    depositToMatic={depositToMatic}
-                    processing={processing}
-                    nextStep={nextStep}
-                  />
-                </Grid.Column>
-              ) : state.userStatus == 6 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'authorize'} // content type
-                    validAuthorize={validAuthorize}
-                    metaTransaction={metaTransaction}
-                    processing={processing}
-                    nextStep={nextStep}
-                  />
-                </Grid.Column>
-              ) : state.userStatus == 7 ? (
-                /////////////////////////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////////////////////////
-                // user has finished onboard process and wishes to deposit more root tokens to Matic Network
-                <Grid.Column>
-                  <ContentDeposit
-                    content={'deposit'} // content type
-                    validDeposit={validDeposit}
-                    amount={amount}
-                    customAmount={customAmount}
-                    onChangeAmount={onChangeAmount}
-                    changeCustomAmount={changeCustomAmount}
-                    depositToMatic={depositToMatic}
-                    processing={processing}
-                    nextStep={nextStep}
-                  />
-                </Grid.Column>
-              ) : null}
-            </Grid>
-          </div>
+    <Modal
+      trigger={getTrigger()}
+      open={modalState}
+      onClose={handleClose}
+      closeIcon
+    >
+      <div id="deposit">
+        <div className="ui depositContainer">
+          <Grid verticalAlign="middle" textAlign="center">
+            {state.userStatus == 4 ? (
+              /////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////
+              // check the user is in a whitelisted jurisdiction
+              <Grid.Column>
+                <ContentDeposit
+                  content={'location'} // content type
+                  verifyLocation={verifyLocation}
+                  validLocation={validLocation}
+                  nextStep={nextStep}
+                />
+              </Grid.Column>
+            ) : state.userStatus == 5 ? (
+              /////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////
+              // authorize transfers to Matic Network, then deposit root tokens to Matic Network
+              <Grid.Column>
+                <ContentDeposit
+                  content={'approve'} // content type
+                  validDeposit={validDeposit}
+                  amount={amount}
+                  customAmount={customAmount}
+                  onChangeAmount={onChangeAmount}
+                  changeCustomAmount={changeCustomAmount}
+                  depositToMatic={depositToMatic}
+                  processing={processing}
+                  nextStep={nextStep}
+                />
+              </Grid.Column>
+            ) : state.userStatus == 6 ? (
+              /////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////
+              // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
+              <Grid.Column>
+                <ContentDeposit
+                  content={'authorize'} // content type
+                  validAuthorize={validAuthorize}
+                  metaTransaction={metaTransaction}
+                  processing={processing}
+                  nextStep={nextStep}
+                />
+              </Grid.Column>
+            ) : state.userStatus == 7 ? (
+              /////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////
+              // user has finished onboard process and wishes to deposit more root tokens to Matic Network
+              <Grid.Column>
+                <ContentDeposit
+                  content={'deposit'} // content type
+                  validDeposit={validDeposit}
+                  amount={amount}
+                  customAmount={customAmount}
+                  onChangeAmount={onChangeAmount}
+                  changeCustomAmount={changeCustomAmount}
+                  depositToMatic={depositToMatic}
+                  processing={processing}
+                  nextStep={nextStep}
+                />
+              </Grid.Column>
+            ) : null}
+          </Grid>
         </div>
-      </Modal>
-    </div>
+      </div>
+    </Modal>
   );
 };
 
