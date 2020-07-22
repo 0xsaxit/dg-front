@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button } from 'semantic-ui-react';
+import { Image, Button, Divider, Grid, Dropdown } from 'semantic-ui-react';
 import ContentGames from './ContentGames';
 import Spinner from '../Spinner';
 import Global from '../Constants';
