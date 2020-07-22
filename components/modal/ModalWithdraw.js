@@ -68,9 +68,13 @@ class ModalWithdraw extends React.Component {
   getTrigger = () => {
     if (this.props.isExit) {
       return (
-        <Button size="mini" color="blue" onClick={this.submitHash}>
+        <a 
+          className="account-withdraw-button" 
+          onClick={this.submitHash}
+          style={{ paddingLeft: '36px', paddingRight: '36px' }}
+        >
           EXIT
-        </Button>
+        </a>
       );
     } else {
       return (

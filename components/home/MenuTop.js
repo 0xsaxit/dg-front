@@ -83,14 +83,12 @@ const MenuTop = () => {
           </Link>
         ) : null}
 
-        {state.userStatus ? (
-          <Link href="/nfts">
-            <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
-          </Link>
-        ) : null}
-
         <Link href="/games">
           <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
+        </Link>
+
+        <Link href="/nfts">
+          <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
 
         <Link href="/blog">
