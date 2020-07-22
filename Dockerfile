@@ -1,4 +1,4 @@
-FROM node:12.18.0-alpine3.11 as base
+FROM node:12.18.2-alpine3.12 as base
 
 ARG CI=true
 
@@ -25,7 +25,7 @@ RUN npm run build
 
 ################################################################################
 
-FROM node:12.18.0-alpine3.11 as runtime
+FROM node:12.18.2-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 WORKDIR /app

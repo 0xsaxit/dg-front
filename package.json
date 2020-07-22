@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@biconomy/mexa": "^1.5.13",
-    "@maticnetwork/maticjs": "^2.0.0-beta.12",
+    "@maticnetwork/maticjs": "^2.0.2",
     "@next/bundle-analyzer": "^9.4.4",
     "@transak/transak-sdk": "^1.0.23",
     "buttercms": "^1.2.3",
