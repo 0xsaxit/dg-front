@@ -5,10 +5,26 @@ import Spinner from '../Spinner';
 import Global from '../Constants';
 
 const options = [
-  { key: 1, text: 'Month', value: 1 },
-  { key: 2, text: 'Week', value: 2 },
-  { key: 3, text: 'Day', value: 3 },
+  {
+    key: 'ALL TIME',
+    text: 'ALL TIME',
+    value: 'ALL TIME',
+    content: 'ALL TIME',
+  },
+  {
+    key: 'WEEK',
+    text: 'WEEK',
+    value: 'WEEK',
+    content: 'WEEK',
+  },
+  {
+    key: 'DAY',
+    text: 'DAY',
+    value: 'DAY',
+    content: 'DAY',
+  },
 ]
+
 
 const detailsGames = {
   Slots: [
@@ -48,11 +64,27 @@ const detailsGames = {
 class Offerings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { GameState: 0, isLoading: true };
+    this.state = { GameState: 0, isLoading: true, gameSelect: 'play', timePeriod: 'ALL TIME' };
   }
 
   async componentDidMount() {
     this.setState({ isLoading: false });
+  }
+
+  handleChange = (value) => {
+    var gameSelect = '';
+    if (value === "play") {
+      gameSelect = "play";
+    } else if (value === "mana") {
+      gameSelect = "mana";
+    } else {
+      gameSelect = "dai";
+    }
+    this.setState({ gameSelect: gameSelect });
+  }
+
+  timeChange = (event, data) => {
+    this.setState({ timePeriod: data.value });
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +133,7 @@ class Offerings extends React.Component {
   Leaderboard = () => {
     return (
       <div>
-        <ContentGames />
+        <ContentGames gameSelect={this.state.gameSelect} timePeriod={this.state.timePeriod} />
       </div>
     );
   };
@@ -130,7 +162,7 @@ class Offerings extends React.Component {
                 <b className="account-hover active">LEADERBOARD</b>
               </p>
               <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 281px)', marginTop: '27px' }}>
-                <span className="account-hover">
+                <span className="account-hover" onClick = {() => this.handleChange("play")}>
                   <img
                     style={{
                       verticalAlign: 'middle',
@@ -144,7 +176,7 @@ class Offerings extends React.Component {
                   />
                   PLAY
                 </span>
-                <span className="account-hover">
+                <span className="account-hover leaderboard" onClick = {() => this.handleChange("mana")}>
                   <img
                     style={{
                       verticalAlign: 'middle',
@@ -158,7 +190,7 @@ class Offerings extends React.Component {
                   />
                   MANA
                 </span>
-                <span className="account-hover">
+                <span className="account-hover leaderboard" onClick = {() => this.handleChange("dai")}>
                   <img
                     style={{
                       verticalAlign: 'middle',
@@ -173,7 +205,11 @@ class Offerings extends React.Component {
                   DAI
                 </span>
                 <span className="account-hover" style={{ marginLeft: '30px', marginRight: '0px', fontWeight: '400' }}>
-                  <Dropdown text='All Time' options={options}/>
+                  <Dropdown
+                    options={options}
+                    defaultValue={options[0].value}
+                    onChange = {this.timeChange}
+                  /> 
                 </span>                       
               </span>
             </span>
