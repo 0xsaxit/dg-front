@@ -1,6 +1,30 @@
 import React from 'react';
-import { Image, Button } from 'semantic-ui-react';
+import { Image, Button, Divider, Grid, Dropdown } from 'semantic-ui-react';
+import ContentGames from './ContentGames';
 import Spinner from '../Spinner';
+import Global from '../Constants';
+
+const options = [
+  {
+    key: 'ALL TIME',
+    text: 'ALL TIME',
+    value: 'ALL TIME',
+    content: 'ALL TIME',
+  },
+  {
+    key: 'WEEK',
+    text: 'WEEK',
+    value: 'WEEK',
+    content: 'WEEK',
+  },
+  {
+    key: 'DAY',
+    text: 'DAY',
+    value: 'DAY',
+    content: 'DAY',
+  },
+]
+
 
 const detailsGames = {
   Slots: [
@@ -40,11 +64,27 @@ const detailsGames = {
 class Offerings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoading: true };
+    this.state = { GameState: 0, isLoading: true, gameSelect: 'play', timePeriod: 'ALL TIME' };
   }
 
   async componentDidMount() {
     this.setState({ isLoading: false });
+  }
+
+  handleChange = (value) => {
+    var gameSelect = '';
+    if (value === "play") {
+      gameSelect = "play";
+    } else if (value === "mana") {
+      gameSelect = "mana";
+    } else {
+      gameSelect = "dai";
+    }
+    this.setState({ gameSelect: gameSelect });
+  }
+
+  timeChange = (event, data) => {
+    this.setState({ timePeriod: data.value });
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -90,16 +130,112 @@ class Offerings extends React.Component {
     });
   };
 
+  Leaderboard = () => {
+    return (
+      <div>
+        <ContentGames gameSelect={this.state.gameSelect} timePeriod={this.state.timePeriod} />
+      </div>
+    );
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
+  submenu = () => {
+    return (
+      <div className="account-other-tabs">
+        {this.state.GameState == 0 ? (
+          <p className="account-other-p" style={{ width: '100%' }}>
+            <b className="account-hover active">OUR GAMES</b>{' '}
+            <abbr className="account-hover" onClick={() => this.setPage(1)}>
+              LEADERBOARD
+            </abbr>
+            <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
+          </p>
+        ) : (
+          <div style={{ width: '100%' }}> 
+            <span style={{ display: 'flex', width: '100%' }}>
+              <p className="account-other-p">
+                <abbr className="account-hover" onClick={() => this.setPage(0)}>
+                  OUR GAMES
+                </abbr>{' '}
+                <b className="account-hover active">LEADERBOARD</b>
+              </p>
+              <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 281px)', marginTop: '27px' }}>
+                <span className="account-hover" onClick = {() => this.handleChange("play")}>
+                  <img
+                    style={{
+                      verticalAlign: 'middle',
+                      marginRight: '6px',
+                      marginTop: '-1px',
+                    }}
+                    className="image inline"
+                    width="18px"
+                    height="18px"
+                    src={Global.IMAGES.LOGO}
+                  />
+                  PLAY
+                </span>
+                <span className="account-hover leaderboard" onClick = {() => this.handleChange("mana")}>
+                  <img
+                    style={{
+                      verticalAlign: 'middle',
+                      marginRight: '6px',
+                      marginTop: '-1px',
+                    }}
+                    className="image inline"
+                    width="18px"
+                    height="18px"
+                    src={Global.IMAGES.MANA_CIRCLE}
+                  />
+                  MANA
+                </span>
+                <span className="account-hover leaderboard" onClick = {() => this.handleChange("dai")}>
+                  <img
+                    style={{
+                      verticalAlign: 'middle',
+                      marginRight: '6px',
+                      marginTop: '-1px',
+                    }}
+                    className="image inline"
+                    width="18px"
+                    height="18px"
+                    src={Global.IMAGES.DAI_CIRCLE}
+                  />
+                  DAI
+                </span>
+                <span className="account-hover" style={{ marginLeft: '30px', marginRight: '0px', fontWeight: '400' }}>
+                  <Dropdown
+                    options={options}
+                    defaultValue={options[0].value}
+                    onChange = {this.timeChange}
+                  /> 
+                </span>                       
+              </span>
+            </span>
+
+            <Divider style={{ marginTop: '0px', paddingBottom: '21px' }} />
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  setPage = (number) => {
+    this.setState({ GameState: number });
+  };
+
   render() {
     if (this.state.isLoading) return <Spinner background={0} />;
 
     return (
-      <div
-        className="main-container"
-        style={{ marginBottom: '60px', paddingTop: '120px' }}
-      >
+      <div className="main-container" style={{ marginBottom: '60px' }}>
         <div className="page-container">
-          <div className="account-other-inner-container">{this.Games()}</div>
+          <div className="account-other-inner-container">
+            {this.submenu()}
+
+            {this.state.GameState == 1 ? this.Leaderboard() : this.Games()}
+          </div>
         </div>
       </div>
     );

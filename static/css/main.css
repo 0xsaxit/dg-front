@@ -376,6 +376,13 @@ span.text {
 .ui.dropdown > .text,
 .ui.fluid.dropdown > .dropdown.icon {
   color: black;
+  font-weight: 400;
+}
+
+.ui.dropdown .menu, .ui.upward.dropdown > .menu,
+.ui.dropdown .menu > .item {
+  width: 110px !important;
+  min-width: 110px !important;
 }
 
 #modal-balance {
