@@ -5,7 +5,10 @@ import Global from './Constants';
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 function Balances() {
+  // dispatch user's token balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   let userAddress = '';
   let web3 = {};
   let maticWeb3 = {};

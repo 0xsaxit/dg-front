@@ -59,7 +59,7 @@ const ModalVerify = () => {
     await window.ethereum.enable();
     userAddress = window.web3.currentProvider.selectedAddress;
 
-    // set global user status based on values stored in database. if no value present
+    // set global user status based on value stored in database. if no value present
     // update user status to 4 both locally and in the database
     const response = await getUserStatus();
     if (response) {

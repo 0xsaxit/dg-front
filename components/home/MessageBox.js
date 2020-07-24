@@ -17,7 +17,7 @@ const MessageBox = (props) => {
   useEffect(() => {
     if (window.web3) {
       userAddress = window.web3.currentProvider.selectedAddress;
-      web3 = new Web3(window.ethereum);
+      web3 = new Web3(window.ethereum); // use the MetaMask provider
       maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );

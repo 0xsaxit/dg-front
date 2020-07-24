@@ -1,7 +1,9 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
 import Spinner from '../Spinner';
+import Aux from '../_Aux';
+import Global from '../Constants';
 
 const detailsNFTs = {
   tominoya: [
@@ -24,21 +26,36 @@ const detailsNFTs = {
   ],
 };
 
-class Tokens extends React.Component {
-  constructor(props) {
-    super(props);
+const Tokens = () => {
+  // constructor(props) {
+  //   super(props);
 
-    this.state = { NFTstate: 0, isLoading: true };
-  }
+  //   this.state = { NFTstate: 0, isLoading: true };
+  // }
 
-  async componentDidMount() {
-    this.setState({ isLoading: false });
-  }
+  // define local variables
+  const [NFTstate, setNFTState] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [networkID, setNetworkID] = useState(0);
+
+  // async componentDidMount() {
+  //   this.setState({ isLoading: false });
+  // }
+
+  useEffect(() => {
+    if (window.web3) {
+      window.web3.version.getNetwork((err, network) => {
+        setNetworkID(parseInt(parseInt(network)));
+      });
+
+      setLoading(false);
+    }
+  });
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the NFT details object
-  buyNFTs = () => {
+  function buyNFTs() {
     return Object.keys(detailsNFTs).map((item, i) => {
       return (
         <div className="nft-container" key={i}>
@@ -81,41 +98,49 @@ class Tokens extends React.Component {
         </div>
       );
     });
-  };
+  }
 
-  myNFTs = () => {
+  function myNFTs() {
     return (
-      <div className="nft-container">
-        <div className="nft-image">
-          <Image
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png"
-            className="tominoya-pic"
-            style={{ borderRadius: '3px' }}
-          />
-        </div>
-        <div className="nft-description">
-          <ContentNFTs />
-        </div>
-      </div>
+      <Aux>
+        {networkID !== Global.PARENT_NETWORK_ID ? (
+          <div className="nft-container">
+            <div className="nft-image">
+              <Image
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png"
+                className="tominoya-pic"
+                style={{ borderRadius: '3px' }}
+              />
+            </div>
+            <div className="nft-description">
+              <ContentNFTs />
+            </div>
+          </div>
+        ) : (
+          <div className="account-other-inner-p">
+            Please switch MetaMask to Ethereum Mainnet
+          </div>
+        )}
+      </Aux>
     );
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  submenu = () => {
+  function submenu() {
     return (
       <div className="account-other-tabs">
-        {this.state.NFTstate == 0 ? (
+        {NFTstate == 0 ? (
           <p className="account-other-p">
             <b className="account-hover active">BUY NFTS</b>{' '}
-            <abbr className="account-hover" onClick={() => this.setPage(1)}>
+            <abbr className="account-hover" onClick={() => setPage(1)}>
               MY NFTS
             </abbr>
           </p>
         ) : (
           <p className="account-other-p">
-            <abbr className="account-hover" onClick={() => this.setPage(0)}>
+            <abbr className="account-hover" onClick={() => setPage(0)}>
               BUY NFTS
             </abbr>{' '}
             <b className="account-hover active">MY NFTS</b>
@@ -123,29 +148,28 @@ class Tokens extends React.Component {
         )}
       </div>
     );
-  };
+  }
 
-  setPage = (number) => {
-    this.setState({ NFTstate: number });
-  };
+  function setPage(number) {
+    // this.setState({ NFTstate: number });
+    setNFTState(number);
+  }
 
-  render() {
-    if (this.state.isLoading) return <Spinner background={0} />;
+  if (loading) return <Spinner background={0} />;
 
-    return (
-      <div className="main-container" style={{ marginBottom: '60px' }}>
-        <div className="page-container">
-          <div className="account-other-inner-container">
-            {this.submenu()}
+  return (
+    <div className="main-container" style={{ marginBottom: '60px' }}>
+      <div className="page-container">
+        <div className="account-other-inner-container">
+          {submenu()}
 
-            <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
+          <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
 
-            {this.state.NFTstate == 1 ? this.myNFTs() : this.buyNFTs()}
-          </div>
+          {NFTstate == 1 ? myNFTs() : buyNFTs()}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Tokens;

@@ -661,6 +661,30 @@ function getConfirmedTx(txHash) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
+// REST API functions: get parcel data for particular token ID
+async function getParcelData(landID, tokenID) {
+  console.log('Fetch NFT parcel data');
+  console.log('Land ID: ' + landID);
+  console.log('Token ID: ' + tokenID);
+
+  const response = await fetchParcelData(landID, tokenID);
+  const json = await response.json();
+
+  return json;
+}
+
+function fetchParcelData(landID, tokenID) {
+  return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 export default {
   API_ADDRESSES,
   ABIs,
@@ -694,4 +718,5 @@ export default {
   withdrawFromParent,
   executeMetaTransaction,
   getConfirmedTx,
+  getParcelData,
 };
