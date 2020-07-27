@@ -8,7 +8,6 @@ import SwitchRPC from './SwitchRPC';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
-let web3 = {};
 let tokenAddressRoot = '';
 let spenderAddress = '';
 
@@ -36,6 +35,7 @@ const ModalDeposit = (props) => {
 
   let userAddress = '';
   let tokenContract = {};
+  let web3 = {};
 
   useEffect(() => {
     if (window.web3) {
@@ -46,7 +46,7 @@ const ModalDeposit = (props) => {
       });
 
       // initialize Web3 providers and create token contract instance
-      // (MetaMask provider for web3 and Biconomy provider for getWeb3)
+      // (pass MetaMask provider for web3 and Biconomy provider for getWeb3)
       web3 = new Web3(window.ethereum);
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.MATIC_URL),

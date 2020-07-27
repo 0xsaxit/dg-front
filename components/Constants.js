@@ -263,6 +263,22 @@ function balanceOfToken(tokenContract, userAddress) {
       reject(false);
     }
   });
+
+  // console.log('Get balance of token');
+
+  // try {
+  //   const balance = await tokenContract.methods.balanceOf(userAddress).call();
+
+  //   console.log('Get balance done');
+  //   const amountAdjusted = (amount / FACTOR)
+  //     .toFixed(DECIMAL_PLACES)
+  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  //   return amountAdjusted;
+  // } catch (error) {
+  //   console.log('Get balance failed: ', error);
+
+  //   return false;
+  // }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

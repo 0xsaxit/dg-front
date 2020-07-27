@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
 import { Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
 import Spinner from '../Spinner';
@@ -27,20 +28,13 @@ const detailsNFTs = {
 };
 
 const Tokens = () => {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = { NFTstate: 0, isLoading: true };
-  // }
+  // get user's NFT data from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [NFTstate, setNFTState] = useState(0);
   const [loading, setLoading] = useState(true);
   const [networkID, setNetworkID] = useState(0);
-
-  // async componentDidMount() {
-  //   this.setState({ isLoading: false });
-  // }
 
   useEffect(() => {
     if (window.web3) {
@@ -103,23 +97,17 @@ const Tokens = () => {
   function myNFTs() {
     return (
       <Aux>
-        {networkID !== Global.PARENT_NETWORK_ID ? (
-          <div className="nft-container">
-            <div className="nft-image">
-              <Image
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png"
-                className="tominoya-pic"
-                style={{ borderRadius: '3px' }}
-              />
-            </div>
-            <div className="nft-description">
-              <ContentNFTs />
-            </div>
-          </div>
-        ) : (
+        {networkID !== 1 ? (
           <div className="account-other-inner-p">
             Please switch MetaMask to Ethereum Mainnet
           </div>
+        ) : Object.keys(state.parcelData).length === 0 &&
+          state.parcelData.constructor === Object ? (
+          <div className="account-other-inner-p">
+            You do not own any Tominoya NFTs
+          </div>
+        ) : (
+          <ContentNFTs parcelData={state.parcelData} />
         )}
       </Aux>
     );
@@ -151,7 +139,6 @@ const Tokens = () => {
   }
 
   function setPage(number) {
-    // this.setState({ NFTstate: number });
     setNFTState(number);
   }
 

@@ -7,8 +7,6 @@ import ContentWithdraw from './ContentWithdraw';
 import SwitchRPC from './SwitchRPC';
 import Global from '../Constants';
 
-let web3 = {};
-
 class ModalWithdraw extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +24,7 @@ class ModalWithdraw extends React.Component {
 
     this.userAddress = '';
     this.tokenContract = {};
+    this.web3 = {};
   }
 
   async componentDidMount() {
@@ -37,8 +36,9 @@ class ModalWithdraw extends React.Component {
       });
     }
 
-    // initialize Web3 providers (MetaMask provider for web3 and Biconomy provider for getWeb3)
-    web3 = new Web3(window.ethereum);
+    // initialize Web3 providers and create token contract instance
+    // (pass MetaMask provider for web3 and Biconomy provider for getWeb3)
+    this.web3 = new Web3(window.ethereum);
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(Global.MATIC_URL),
       {
@@ -68,8 +68,8 @@ class ModalWithdraw extends React.Component {
   getTrigger = () => {
     if (this.props.isExit) {
       return (
-        <a 
-          className="account-withdraw-button" 
+        <a
+          className="account-withdraw-button"
           onClick={this.submitHash}
           style={{ paddingLeft: '36px', paddingRight: '36px' }}
         >
@@ -113,7 +113,7 @@ class ModalWithdraw extends React.Component {
       console.log('token contract: ');
       console.log(this.tokenContract);
 
-      const amountWei = web3.utils.toWei(this.state.amount + '');
+      const amountWei = this.web3.utils.toWei(this.state.amount + '');
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = this.tokenContract.methods
@@ -124,7 +124,7 @@ class ModalWithdraw extends React.Component {
         functionSignature,
         this.tokenContract,
         this.userAddress,
-        web3
+        this.web3
       );
 
       console.log('returned transaction hash: ' + txHash);

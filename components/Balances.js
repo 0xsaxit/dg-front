@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
+import Web3 from 'web3';
 import Global from './Constants';
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -14,9 +15,9 @@ function Balances() {
   let maticWeb3 = {};
 
   useEffect(() => {
-    if (window.web3) {
+    if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
-      web3 = new Web3(window.ethereum);
+      web3 = new Web3(window['ethereum']); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
@@ -42,6 +43,18 @@ function Balances() {
     const TOKEN_CONTRACT_ROOT = window.web3.eth
       .contract(Global.ABIs.ROOT_TOKEN)
       .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
+
+    // const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
+    //   Global.ABIs.ROOT_TOKEN,
+    //   addresses.ROOT_TOKEN_ADDRESS_MANA
+    // );
+
+    // const TOKEN_CONTRACT_ROOT = web3
+    //   .contract(Global.ABIs.ROOT_TOKEN)
+    //   .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
+
+    console.log('token contract...');
+    console.log(TOKEN_CONTRACT_ROOT);
 
     const TOKEN_CONTRACT_CHILD = maticWeb3.eth
       .contract(Global.ABIs.CHILD_TOKEN)

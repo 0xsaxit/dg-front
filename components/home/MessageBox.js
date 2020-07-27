@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Message } from 'semantic-ui-react';
+import Web3 from 'web3';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
@@ -12,12 +13,13 @@ const MessageBox = (props) => {
   const [amount, setAmount] = useState(state.balances[0][1]);
 
   let userAddress = '';
+  let web3 = {};
   let maticWeb3 = {};
 
   useEffect(() => {
-    if (window.web3) {
+    if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
-      web3 = new Web3(window.ethereum); // use the MetaMask provider
+      web3 = new Web3(window['ethereum']); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new window.Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       );
@@ -61,6 +63,11 @@ const MessageBox = (props) => {
     const TOKEN_CONTRACT_ROOT = window.web3.eth
       .contract(Global.ABIs.ROOT_TOKEN)
       .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
+
+    // const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
+    //   Global.ABIs.ROOT_TOKEN,
+    //   addresses.ROOT_TOKEN_ADDRESS_MANA
+    // );
 
     const TOKEN_CONTRACT_CHILD = maticWeb3.eth
       .contract(Global.ABIs.CHILD_TOKEN)
