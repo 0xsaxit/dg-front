@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Divider, Grid, Dropdown } from 'semantic-ui-react';
+import { Image, Button, Divider, Dropdown } from 'semantic-ui-react';
 import ContentGames from './ContentGames';
 import Spinner from '../Spinner';
 import Global from '../Constants';
@@ -23,8 +23,7 @@ const options = [
     value: 'DAY',
     content: 'DAY',
   },
-]
-
+];
 
 const detailsGames = {
   Slots: [
@@ -64,7 +63,12 @@ const detailsGames = {
 class Offerings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { GameState: 0, isLoading: true, gameSelect: 'play', timePeriod: 'ALL TIME' };
+    this.state = {
+      GameState: 0,
+      isLoading: true,
+      gameSelect: 'play',
+      timePeriod: 'ALL TIME',
+    };
   }
 
   async componentDidMount() {
@@ -73,19 +77,19 @@ class Offerings extends React.Component {
 
   handleChange = (value) => {
     var gameSelect = '';
-    if (value === "play") {
-      gameSelect = "play";
-    } else if (value === "mana") {
-      gameSelect = "mana";
+    if (value === 'play') {
+      gameSelect = 'play';
+    } else if (value === 'mana') {
+      gameSelect = 'mana';
     } else {
-      gameSelect = "dai";
+      gameSelect = 'dai';
     }
     this.setState({ gameSelect: gameSelect });
-  }
+  };
 
   timeChange = (event, data) => {
     this.setState({ timePeriod: data.value });
-  }
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +137,10 @@ class Offerings extends React.Component {
   Leaderboard = () => {
     return (
       <div>
-        <ContentGames gameSelect={this.state.gameSelect} timePeriod={this.state.timePeriod} />
+        <ContentGames
+          gameSelect={this.state.gameSelect}
+          timePeriod={this.state.timePeriod}
+        />
       </div>
     );
   };
@@ -153,7 +160,7 @@ class Offerings extends React.Component {
             <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
           </p>
         ) : (
-          <div style={{ width: '100%' }}> 
+          <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
                 <abbr className="account-hover" onClick={() => this.setPage(0)}>
@@ -161,8 +168,18 @@ class Offerings extends React.Component {
                 </abbr>{' '}
                 <b className="account-hover active">LEADERBOARD</b>
               </p>
-              <span style={{ display: 'flex', justifyContent: 'flex-end', width: 'calc(100% - 281px)', marginTop: '27px' }}>
-                <span className="account-hover" onClick = {() => this.handleChange("play")}>
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  width: 'calc(100% - 281px)',
+                  marginTop: '27px',
+                }}
+              >
+                <span
+                  className="account-hover"
+                  onClick={() => this.handleChange('play')}
+                >
                   <img
                     style={{
                       verticalAlign: 'middle',
@@ -176,7 +193,10 @@ class Offerings extends React.Component {
                   />
                   PLAY
                 </span>
-                <span className="account-hover leaderboard" onClick = {() => this.handleChange("mana")}>
+                <span
+                  className="account-hover leaderboard"
+                  onClick={() => this.handleChange('mana')}
+                >
                   <img
                     style={{
                       verticalAlign: 'middle',
@@ -190,7 +210,10 @@ class Offerings extends React.Component {
                   />
                   MANA
                 </span>
-                <span className="account-hover leaderboard" onClick = {() => this.handleChange("dai")}>
+                <span
+                  className="account-hover leaderboard"
+                  onClick={() => this.handleChange('dai')}
+                >
                   <img
                     style={{
                       verticalAlign: 'middle',
@@ -204,13 +227,20 @@ class Offerings extends React.Component {
                   />
                   DAI
                 </span>
-                <span className="account-hover" style={{ marginLeft: '30px', marginRight: '0px', fontWeight: '400' }}>
+                <span
+                  className="account-hover"
+                  style={{
+                    marginLeft: '30px',
+                    marginRight: '0px',
+                    fontWeight: '400',
+                  }}
+                >
                   <Dropdown
                     options={options}
                     defaultValue={options[0].value}
-                    onChange = {this.timeChange}
-                  /> 
-                </span>                       
+                    onChange={this.timeChange}
+                  />
+                </span>
               </span>
             </span>
 

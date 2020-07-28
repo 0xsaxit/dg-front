@@ -10,6 +10,7 @@ import Status from '../components/Status';
 import Balances from '../components/Balances';
 import Transactions from '../components/Transactions';
 import ParcelData from '../components/ParcelData';
+import GameRecords from '../components/GameRecords';
 
 class Application extends App {
   render() {
@@ -22,6 +23,7 @@ class Application extends App {
           <Balances />
           <Transactions />
           <ParcelData />
+          <GameRecords />
 
           <Component {...pageProps} />
         </Provider>

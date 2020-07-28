@@ -12,6 +12,7 @@ const initialState = {
   transactions: [[], []],
   messageBox: 0,
   parcelData: {},
+  gameRecords: {},
 };
 
 const reducer = (state, action) => {
@@ -50,6 +51,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         parcelData: action.data,
+      };
+
+    case 'update_records':
+      return {
+        ...state,
+        transactions: action.data,
       };
 
     default:

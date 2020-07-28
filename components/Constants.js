@@ -677,17 +677,17 @@ function getConfirmedTx(txHash) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// REST API functions: get parcel data for particular token ID
-async function getParcelData(landID, tokenID) {
-  console.log('Fetch NFT parcel data');
-  console.log('Land ID: ' + landID);
-  console.log('Token ID: ' + tokenID);
+// REST API functions: fetch data from server API endpoints
+// async function getParcelData(landID, tokenID) {
+//   console.log('Fetch NFT parcel data');
+//   console.log('Land ID: ' + landID);
+//   console.log('Token ID: ' + tokenID);
 
-  const response = await fetchParcelData(landID, tokenID);
-  const json = await response.json();
+//   const response = await fetchParcelData(landID, tokenID);
+//   const json = await response.json();
 
-  return json;
-}
+//   return json;
+// }
 
 function fetchParcelData(landID, tokenID) {
   return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
@@ -695,6 +695,46 @@ function fetchParcelData(landID, tokenID) {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+    },
+  });
+}
+
+async function fetchHistoryData(userAddress) {
+  return fetch(`${API_BASE_URL}/order/getHistory`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: userAddress,
+      limit: 99999, // just grab all of the data
+      page: 1,
+    }),
+  });
+}
+
+async function fetchPlayData(userAddress) {
+  return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: userAddress,
+      limit: 99999, // just grab all of the data
+      page: 1,
+    }),
+  });
+}
+
+async function fetchGameRecords() {
+  return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
   });
 }
@@ -734,5 +774,8 @@ export default {
   withdrawFromParent,
   executeMetaTransaction,
   getConfirmedTx,
-  getParcelData,
+  fetchParcelData,
+  fetchHistoryData,
+  fetchPlayData,
+  fetchGameRecords,
 };

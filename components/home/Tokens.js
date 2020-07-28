@@ -4,7 +4,6 @@ import { Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
-import Global from '../Constants';
 
 const detailsNFTs = {
   tominoya: [

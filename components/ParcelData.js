@@ -10,12 +10,12 @@ function ParcelData() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = ''; // '0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2'; // temporary
+  let userAddress = ''; // '0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2'; // test account
   let landID = '3'; // hard-code to Tominoya for now
   let web3 = {};
 
   useEffect(() => {
-    if (window.web3) {
+    if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
@@ -23,12 +23,16 @@ function ParcelData() {
         // get the owner's token ID from NFT smart contract
         const tokenID = await getTokenID();
 
-        // make call to server API and fetch parcel data for this particular parcel
-        const response = await Global.getParcelData(landID, tokenID);
+        // make call to server API and fetch parcel data for this particular token ID
+
+        // const response = await Global.getParcelData(landID, tokenID);
+
+        const response = await Global.fetchParcelData(landID, tokenID);
+        const jsonData = await response.json();
 
         dispatch({
           type: 'parcel_data',
-          data: response,
+          data: jsonData,
         });
       })();
     }

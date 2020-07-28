@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Image, Button, Grid, Icon } from 'semantic-ui-react';
+import { Image, Button, Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ContentNFTs = (props) => {
@@ -32,9 +32,6 @@ const ContentNFTs = (props) => {
 
   return (
     <div className="nft-container">
-      {console.log('parcel data...')}
-      {console.log(props.parcelData)}
-
       <div className="nft-image">
         <Image
           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png"
