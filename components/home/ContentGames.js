@@ -1,368 +1,114 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
-import { Image, Button, Grid, Icon, Table } from 'semantic-ui-react';
-import Spinner from '../Spinner';
+import { Grid, Table } from 'semantic-ui-react';
+import Global from '../Constants';
+// import Spinner from '../Spinner';
 
-let Global;
-let totalRecords;
+const ContentGames = (props) => {
+  // get game score records from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
 
-const INITIAL_STATE = {
-  data: [],
-  slotPlay: [],
-  slotMana: [],
-  slotDai: [],
-  roulettePlay: [],
-  rouletteMana: [],
-  rouletteDai: [],
-  backgammonPlay: [],
-  backgammonMana: [],
-  backgammonDai: [],
-  timePeriod: 'ALL TIME',
-  isLoading: true,
-};
+  // define local variables
+  const [loading, setLoading] = useState(true);
+  const games = ['SLOTS', 'ROULETTE', 'BLACKJACK', 'BACKGAMMON'];
+  const [dataSlots, setDataSlots] = useState([]);
+  const [dataRoulette, setDataRoulette] = useState([]);
+  const [dataBackgammon, setDataBackgammon] = useState([]);
 
-class ContentGames extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE };
-  }
-
-  async componentDidMount() {
-    Global = require('../Constants').default;
-    let object = this;
-    window.ethereum.on('accountsChanged', async function (accounts) {
-      await object.getUserData();
-    });    
-    await this.getTotalRecords();
-    await this.getUserData(this.props.timePeriod);
-  }
-
-  async componentDidUpdate(prevProps) {
-    if (this.props.timePeriod !== this.state.timePeriod) {
-      this.setState({timePeriod: this.props.timePeriod});
-      await this.getUserData(this.props.timePeriod);
-    }
-  }
-
-  async getTotalRecords() {
-    const response = await this.getData();
-    totalRecords = await response.json();
-    this.setState({isLoading: false});
-  }
-
-  async getUserData(timePeriod) {
-    let json;
-
-    if (timePeriod === 'ALL TIME') {
-      json = totalRecords.all;
-    } else if (timePeriod === 'WEEK') {
-      json = totalRecords.weekly;
+  useEffect(() => {
+    if (
+      Object.keys(state.gameRecords).length === 0 &&
+      state.gameRecords.constructor === Object
+    ) {
+      console.log('waiting...');
     } else {
-      json = totalRecords.daily;
-    }
-    
-    console.log("3", timePeriod, json);
+      let gameData;
+      let game1 = [];
+      let game2 = [];
+      let game3 = [];
 
-    if (json !== undefined) {
-      // get play data
-      let slotPlay = [];
-      json.slot.play.map((row) => {
-        slotPlay.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
+      if (props.timePeriod === 'ALL TIME') {
+        gameData = state.gameRecords.all;
+      } else if (props.timePeriod === 'WEEK') {
+        gameData = state.gameRecords.weekly;
+      } else if (props.timePeriod == 'DAY') {
+        gameData = state.gameRecords.daily;
+      }
 
-      let roulettePlay = [];
-      json.roulette.play.map((row) => {
-        roulettePlay.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
+      console.log('use effect...'); // why do we keep re-rendering??? ***************************************
 
-      let backgammonPlay = [];
-      json.backgammon.play.map((row) => {
-        backgammonPlay.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      // get mana data
-      let slotMana = [];
-      json.slot.mana.map((row) => {
-        slotMana.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      let rouletteMana = [];
-      json.roulette.mana.map((row) => {
-        rouletteMana.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      let backgammonMana = [];
-      json.backgammon.mana.map((row) => {
-        backgammonMana.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      // get dai data
-      let slotDai = [];
-      json.slot.dai.map((row) => {
-        slotDai.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      let rouletteDai = [];
-      json.roulette.dai.map((row) => {
-        rouletteDai.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      let backgammonDai = [];
-      json.backgammon.dai.map((row) => {
-        backgammonDai.push({name: row.name, address: row.address, winnings: row.winnings});
-      })
-
-      this.setState({
-        slotPlay: slotPlay, slotMana: slotMana, slotDai: slotDai,
-        roulettePlay: roulettePlay, rouletteMana: rouletteMana, rouletteDai: rouletteDai,
-        backgammonPlay: backgammonPlay, backgammonMana: backgammonMana, backgammonDai: backgammonDai
+      gameData.slot.play.map((row) => {
+        dataSlots.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
       });
+
+      gameData.roulette.play.map((row) => {
+        dataRoulette.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      gameData.backgammon.play.map((row) => {
+        dataBackgammon.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      console.log(game1);
+
+      setDataSlots(game1); // we can not set date from useEffect??? ****************************************
+      setDataRoulette(game2);
+      setDataBackgammon(game3);
     }
-  }
+  });
 
-  getData = () => {
-    return fetch(`${Global.API_BASE_URL}/admin/getTotalRecords`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  };
+  return (
+    <Grid>
+      {games.map((game, index) => {
+        return (
+          <Grid.Column computer={4} key={index}>
+            <Table id="header" singleLine fixed>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell className="table-header-text">
+                    {game}
+                  </Table.HeaderCell>
+                  <Table.HeaderCell className="table-header-text">
+                    WIN
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-  render() {
-    const { 
-      slotPlay, 
-      slotMana, 
-      slotDai, 
-      roulettePlay, 
-      rouletteMana, 
-      rouletteDai, 
-      backgammonPlay, 
-      backgammonMana, 
-      backgammonDai 
-    } = this.state;
-
-    if (this.state.isLoading === true) {
-      return (
-        <Spinner background={0} />
-      )
-    } else {
-      return (
-        <div>
-          <Grid>
-            <Grid.Column computer={4}>
-              <Table id="header" singleLine fixed>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="table-header-text">
-                      SLOTS
-                    </Table.HeaderCell>
-                    <Table.HeaderCell className="table-header-text">
-                      WIN
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-                {this.props.gameSelect === 'play' ? 
-                  <Table.Body>
-                    {slotPlay.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                : this.props.gameSelect === 'mana' ?
-                  <Table.Body>
-                    {slotMana.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                :
-                  <Table.Body>
-                    {slotDai.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                }
-              </Table>
-            </Grid.Column>
-
-            <Grid.Column computer={4}>
-              <Table id="header" singleLine fixed>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="table-header-text">
-                      ROULETTE
-                    </Table.HeaderCell>
-                    <Table.HeaderCell className="table-header-text">
-                      WIN
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-                {this.props.gameSelect === 'play' ? 
-                  <Table.Body>
-                    {roulettePlay.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                : this.props.gameSelect === 'mana' ?
-                  <Table.Body>
-                    {rouletteMana.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                :
-                  <Table.Body>
-                    {rouletteDai.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                }
-              </Table>
-            </Grid.Column>
-
-            <Grid.Column computer={4}>
-              <Table id="header" singleLine fixed>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="table-header-text">
-                      BLACKJACK
-                    </Table.HeaderCell>
-                    <Table.HeaderCell className="table-header-text">
-                      WIN
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-      
-              </Table>
-            </Grid.Column>
-
-            <Grid.Column computer={4}>
-              <Table id="header" singleLine fixed>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="table-header-text">
-                      BACKGAMMON
-                    </Table.HeaderCell>
-                    <Table.HeaderCell className="table-header-text">
-                      WIN
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-                {this.props.gameSelect === 'play' ? 
-                  <Table.Body>
-                    {backgammonPlay.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                : this.props.gameSelect === 'mana' ?
-                  <Table.Body>
-                    {backgammonMana.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                :
-                  <Table.Body>
-                    {backgammonDai.map((row, index) => {
-                      var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                      return (
-                        <Table.Row key={index}>
-                          <Table.Cell>
-                            {row.name === null || row.name === '' ? row.address.substr(0, 6) + '...' + row.address.substr(-4) : row.name}
-                          </Table.Cell>
-                          <Table.Cell>
-                            {amount}
-                          </Table.Cell>
-                        </Table.Row>
-                      )
-                    })}
-                  </Table.Body>
-                }
-              </Table>
-            </Grid.Column>
-          </Grid>
-        </div>
-      );
-    }
-  }
-}
+              <Table.Body>
+                {dataSlots.map((row, index) => {
+                  var amount = parseInt(Number(row.winnings) / Global.FACTOR);
+                  return (
+                    <Table.Row key={index}>
+                      <Table.Cell>
+                        {row.name === null || row.name === ''
+                          ? row.address.substr(0, 6) +
+                            '...' +
+                            row.address.substr(-4)
+                          : row.name}
+                      </Table.Cell>
+                      <Table.Cell>{amount}</Table.Cell>
+                    </Table.Row>
+                  );
+                })}
+              </Table.Body>
+            </Table>
+          </Grid.Column>
+        );
+      })}
+    </Grid>
+  );
+};
 
 export default ContentGames;

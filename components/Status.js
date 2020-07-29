@@ -2,8 +2,6 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import Global from './Constants';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 function Status() {
   const [state, dispatch] = useContext(GlobalContext);
   let userAddress = '';
@@ -24,11 +22,8 @@ function Status() {
     }
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get user's onboard status
   async function getUserStatus() {
-    const response = await fetchUserStatus();
+    const response = await Global.fetchUserStatus(userAddress);
     const json = await response.json();
 
     if (json.status === 'ok') {
@@ -41,18 +36,18 @@ function Status() {
     }
   }
 
-  function fetchUserStatus() {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: userAddress,
-      }),
-    });
-  }
+  // function fetchUserStatus() {
+  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //     }),
+  //   });
+  // }
 
   return null;
 }

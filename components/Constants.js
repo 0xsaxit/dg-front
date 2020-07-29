@@ -677,7 +677,8 @@ function getConfirmedTx(txHash) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// REST API functions: fetch data from server API endpoints
+// REST API functions: fetch or post data to server API endpoints
+
 // async function getParcelData(landID, tokenID) {
 //   console.log('Fetch NFT parcel data');
 //   console.log('Land ID: ' + landID);
@@ -689,6 +690,19 @@ function getConfirmedTx(txHash) {
 //   return json;
 // }
 
+function fetchUserStatus(address) {
+  return fetch(`${API_BASE_URL}/order/verifyAddress`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+    }),
+  });
+}
+
 function fetchParcelData(landID, tokenID) {
   return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
     method: 'GET',
@@ -699,7 +713,7 @@ function fetchParcelData(landID, tokenID) {
   });
 }
 
-async function fetchHistoryData(userAddress) {
+function fetchHistoryData(address) {
   return fetch(`${API_BASE_URL}/order/getHistory`, {
     method: 'POST',
     headers: {
@@ -707,14 +721,14 @@ async function fetchHistoryData(userAddress) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      address: userAddress,
-      limit: 99999, // just grab all of the data
+      address: address,
+      limit: 99999, // fetch all of the data
       page: 1,
     }),
   });
 }
 
-async function fetchPlayData(userAddress) {
+function fetchPlayData(address) {
   return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
     method: 'POST',
     headers: {
@@ -722,8 +736,8 @@ async function fetchPlayData(userAddress) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      address: userAddress,
-      limit: 99999, // just grab all of the data
+      address: address,
+      limit: 99999, // fetch all of the data
       page: 1,
     }),
   });
@@ -736,6 +750,38 @@ async function fetchGameRecords() {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+  });
+}
+
+function postUserVerify(address, step) {
+  return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+      verifyStep: step,
+    }),
+  });
+}
+
+function postHistory(address, amount, type, state, txHash, step) {
+  return fetch(`${API_BASE_URL}/order/updateHistory`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+      amount: amount,
+      type: type,
+      state: state,
+      txHash: txHash,
+      step: step,
+    }),
   });
 }
 
@@ -774,8 +820,11 @@ export default {
   withdrawFromParent,
   executeMetaTransaction,
   getConfirmedTx,
+  fetchUserStatus,
   fetchParcelData,
   fetchHistoryData,
   fetchPlayData,
   fetchGameRecords,
+  postUserVerify,
+  postHistory,
 };

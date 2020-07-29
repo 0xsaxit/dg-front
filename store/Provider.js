@@ -56,7 +56,7 @@ const reducer = (state, action) => {
     case 'update_records':
       return {
         ...state,
-        transactions: action.data,
+        gameRecords: action.data,
       };
 
     default:

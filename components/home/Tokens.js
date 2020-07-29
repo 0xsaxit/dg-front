@@ -36,7 +36,7 @@ const Tokens = () => {
   const [networkID, setNetworkID] = useState(0);
 
   useEffect(() => {
-    if (window.web3) {
+    if (window.ethereum) {
       window.web3.version.getNetwork((err, network) => {
         setNetworkID(parseInt(parseInt(network)));
       });

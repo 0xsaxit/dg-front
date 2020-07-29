@@ -216,7 +216,14 @@ class ModalWithdraw extends React.Component {
     console.log('Writing to database: ' + state);
 
     try {
-      const response = await this.postHistory(_amount, type, state, txHash);
+      const response = await Global.postHistory(
+        this.userAddress,
+        _amount,
+        type,
+        state,
+        txHash,
+        this.state.userStepValue
+      );
       const json = await response.json();
 
       if (json.status === 'ok') {
@@ -233,23 +240,23 @@ class ModalWithdraw extends React.Component {
     return false;
   };
 
-  postHistory = async (_amount, type, state, txHash) => {
-    return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: this.userAddress,
-        amount: _amount,
-        type,
-        state,
-        txHash,
-        step: this.state.userStepValue,
-      }),
-    });
-  };
+  // postHistory = async (_amount, type, state, txHash) => {
+  //   return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: this.userAddress,
+  //       amount: _amount,
+  //       type,
+  //       state,
+  //       txHash,
+  //       step: this.state.userStepValue,
+  //     }),
+  //   });
+  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

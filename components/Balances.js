@@ -3,8 +3,6 @@ import { GlobalContext } from '../store';
 import Web3 from 'web3';
 import Global from './Constants';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 function Balances() {
   // dispatch user's token balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -34,8 +32,6 @@ function Balances() {
     }
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on mainnet and Matic networks
   async function getTokenBalances() {
     const addresses = await Global.API_ADDRESSES;
@@ -52,9 +48,6 @@ function Balances() {
     // const TOKEN_CONTRACT_ROOT = web3
     //   .contract(Global.ABIs.ROOT_TOKEN)
     //   .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
-
-    console.log('token contract...');
-    console.log(TOKEN_CONTRACT_ROOT);
 
     const TOKEN_CONTRACT_CHILD = maticWeb3.eth
       .contract(Global.ABIs.CHILD_TOKEN)

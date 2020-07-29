@@ -3,8 +3,6 @@ import Web3 from 'web3';
 import { GlobalContext } from '../store';
 import Global from './Constants';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 function ParcelData() {
   // dispatch user's parcel data to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -16,30 +14,27 @@ function ParcelData() {
 
   useEffect(() => {
     if (window.ethereum) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      if (state.userStatus > 0) {
+        userAddress = window.web3.currentProvider.selectedAddress;
+        web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-      (async function () {
-        // get the owner's token ID from NFT smart contract
-        const tokenID = await getTokenID();
+        (async function () {
+          // get the owner's token ID from NFT smart contract
+          const tokenID = await getTokenID();
 
-        // make call to server API and fetch parcel data for this particular token ID
+          // make call to server API and fetch parcel data for this particular token ID
+          const response = await Global.fetchParcelData(landID, tokenID);
+          const jsonData = await response.json();
 
-        // const response = await Global.getParcelData(landID, tokenID);
-
-        const response = await Global.fetchParcelData(landID, tokenID);
-        const jsonData = await response.json();
-
-        dispatch({
-          type: 'parcel_data',
-          data: jsonData,
-        });
-      })();
+          dispatch({
+            type: 'parcel_data',
+            data: jsonData,
+          });
+        })();
+      }
     }
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // get owner's token ID from NFT smart contract
   async function getTokenID() {
     try {

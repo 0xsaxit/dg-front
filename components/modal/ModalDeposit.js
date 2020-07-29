@@ -299,25 +299,32 @@ const ModalDeposit = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: update user transaction history and onboard status in database
-  function postUserVerify(step) {
-    return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: userAddress,
-        verifyStep: step,
-      }),
-    });
-  }
+  // function postUserVerify(step) {
+  //   return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //       verifyStep: step,
+  //     }),
+  //   });
+  // }
 
   async function updateHistory(_amount, type, state, txHash) {
     console.log('Writing to database: ' + state);
 
     try {
-      const response = await postHistory(_amount, type, state, txHash);
+      const response = await Global.postHistory(
+        userAddress,
+        _amount,
+        type,
+        state,
+        txHash,
+        state.userStatus
+      );
       const json = await response.json();
 
       if (json.status === 'ok') {
@@ -334,23 +341,23 @@ const ModalDeposit = (props) => {
     return false;
   }
 
-  async function postHistory(_amount, type, state, txHash) {
-    return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: userAddress,
-        amount: _amount,
-        type,
-        state,
-        txHash,
-        step: state.userStatus,
-      }),
-    });
-  }
+  // async function postHistory(_amount, type, state, txHash) {
+  //   return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //       amount: _amount,
+  //       type,
+  //       state,
+  //       txHash,
+  //       step: state.userStatus,
+  //     }),
+  //   });
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -393,7 +400,7 @@ const ModalDeposit = (props) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      postUserVerify(value);
+      Global.postUserVerify(userAddress, value);
     }
   }
 

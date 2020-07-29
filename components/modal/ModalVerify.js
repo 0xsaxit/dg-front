@@ -69,6 +69,20 @@ const ModalVerify = () => {
     }
   }
 
+  async function getUserStatus() {
+    const response = await Global.fetchUserStatus(userAddress);
+    const json = await response.json();
+
+    if (json.status === 'ok') {
+      if (json.result === 'false') {
+        return false;
+      }
+      const stepValue = parseInt(json.result);
+
+      return stepValue;
+    }
+  }
+
   function updateStatus(value, post) {
     console.log('Updating user status to: ' + value);
 
@@ -82,53 +96,39 @@ const ModalVerify = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      postUserVerify(value);
+      Global.postUserVerify(userAddress, value);
     }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // REST API functions: get or set user's onboard status
-  async function getUserStatus() {
-    const response = await fetchUserStatus();
-    const json = await response.json();
+  // function fetchUserStatus() {
+  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //     }),
+  //   });
+  // }
 
-    if (json.status === 'ok') {
-      if (json.result === 'false') {
-        return false;
-      }
-      const stepValue = parseInt(json.result);
-
-      return stepValue;
-    }
-  }
-
-  function fetchUserStatus() {
-    return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: userAddress,
-      }),
-    });
-  }
-
-  function postUserVerify(step) {
-    return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: userAddress,
-        verifyStep: step,
-      }),
-    });
-  }
+  // function postUserVerify(step) {
+  //   return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //       verifyStep: step,
+  //     }),
+  //   });
+  // }
 
   return (
     <Modal
