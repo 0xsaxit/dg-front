@@ -177,7 +177,7 @@ class Offerings extends React.Component {
                 }}
               >
                 <span
-                  className="account-hover"
+                  className={ this.state.gameSelect === "play" ? "account-hover play" : "account-hover" }
                   onClick={() => this.handleChange('play')}
                 >
                   <img
@@ -194,7 +194,7 @@ class Offerings extends React.Component {
                   PLAY
                 </span>
                 <span
-                  className="account-hover leaderboard"
+                  className={ this.state.gameSelect === "mana" ? "account-hover mana" : "account-hover" }
                   onClick={() => this.handleChange('mana')}
                 >
                   <img
@@ -211,7 +211,7 @@ class Offerings extends React.Component {
                   MANA
                 </span>
                 <span
-                  className="account-hover leaderboard"
+                  className={ this.state.gameSelect === "dai" ? "account-hover dai" : "account-hover" }
                   onClick={() => this.handleChange('dai')}
                 >
                   <img
