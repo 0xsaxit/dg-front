@@ -105,7 +105,8 @@ const ContentGames = (props) => {
 
                 <Table.Body>
                   {dataGames[index].map((row, index) => {
-                    var amount = parseInt(Number(row.winnings) / Global.FACTOR);
+                    var num = parseInt(Number(row.winnings) / Global.FACTOR);
+                    var amount = Number(num.toFixed(0)).toLocaleString().split(/\s/).join(',');
                     return (
                       <Table.Row key={index}>
                         <Table.Cell>
