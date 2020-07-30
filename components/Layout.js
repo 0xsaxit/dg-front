@@ -10,7 +10,7 @@ const Layout = (props) => {
       window.GA_INITIALIZED = true;
     }
     logPageView();
-  });
+  }, []);
 
   return (
     <Aux>

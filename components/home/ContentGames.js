@@ -2,31 +2,30 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Grid, Table } from 'semantic-ui-react';
 import Global from '../Constants';
-// import Spinner from '../Spinner';
+import Aux from '../_Aux';
+import Spinner from '../Spinner';
 
 const ContentGames = (props) => {
   // get game score records from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [loading, setLoading] = useState(true);
+  const [dataGames, setDataGames] = useState([[], [], [], []]);
+  const [processing, setProcessing] = useState(true);
+
   const games = ['SLOTS', 'ROULETTE', 'BLACKJACK', 'BACKGAMMON'];
-  const [dataSlots, setDataSlots] = useState([]);
-  const [dataRoulette, setDataRoulette] = useState([]);
-  const [dataBackgammon, setDataBackgammon] = useState([]);
 
   useEffect(() => {
-    if (
-      Object.keys(state.gameRecords).length === 0 &&
-      state.gameRecords.constructor === Object
-    ) {
-      console.log('waiting...');
-    } else {
-      let gameData;
+    if (Object.keys(state.gameRecords).length !== 0) {
+      setProcessing(false);
+
+      let gameData = {};
       let game1 = [];
       let game2 = [];
       let game3 = [];
+      let selected = [];
 
+      // parse game scores based on time period
       if (props.timePeriod === 'ALL TIME') {
         gameData = state.gameRecords.all;
       } else if (props.timePeriod === 'WEEK') {
@@ -35,79 +34,98 @@ const ContentGames = (props) => {
         gameData = state.gameRecords.daily;
       }
 
-      console.log('use effect...'); // why do we keep re-rendering??? ***************************************
+      // parse game scores based on token type
+      if (props.gameSelect === 'play') {
+        selected = [
+          gameData.slot.play,
+          gameData.roulette.play,
+          gameData.backgammon.play,
+        ];
+      } else if (props.gameSelect === 'dai') {
+        selected = [
+          gameData.slot.dai,
+          gameData.roulette.dai,
+          gameData.backgammon.dai,
+        ];
+      } else if (props.gameSelect == 'mana') {
+        selected = [
+          gameData.slot.mana,
+          gameData.roulette.mana,
+          gameData.backgammon.mana,
+        ];
+      }
 
-      gameData.slot.play.map((row) => {
-        dataSlots.push({
+      selected[0].map((row) => {
+        game1.push({
           name: row.name,
           address: row.address,
           winnings: row.winnings,
         });
       });
 
-      gameData.roulette.play.map((row) => {
-        dataRoulette.push({
+      selected[1].map((row) => {
+        game2.push({
           name: row.name,
           address: row.address,
           winnings: row.winnings,
         });
       });
 
-      gameData.backgammon.play.map((row) => {
-        dataBackgammon.push({
+      selected[2].map((row) => {
+        game3.push({
           name: row.name,
           address: row.address,
           winnings: row.winnings,
         });
       });
 
-      console.log(game1);
-
-      setDataSlots(game1); // we can not set date from useEffect??? ****************************************
-      setDataRoulette(game2);
-      setDataBackgammon(game3);
+      setDataGames([game1, game2, [], game3]);
     }
-  });
+  }, [state.gameRecords, props.timePeriod, props.gameSelect]);
 
   return (
-    <Grid>
-      {games.map((game, index) => {
-        return (
-          <Grid.Column computer={4} key={index}>
-            <Table id="header" singleLine fixed>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell className="table-header-text">
-                    {game}
-                  </Table.HeaderCell>
-                  <Table.HeaderCell className="table-header-text">
-                    WIN
-                  </Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
+    <Aux>
+      {processing ? <Spinner background={0} /> : null}
 
-              <Table.Body>
-                {dataSlots.map((row, index) => {
-                  var amount = parseInt(Number(row.winnings) / Global.FACTOR);
-                  return (
-                    <Table.Row key={index}>
-                      <Table.Cell>
-                        {row.name === null || row.name === ''
-                          ? row.address.substr(0, 6) +
-                            '...' +
-                            row.address.substr(-4)
-                          : row.name}
-                      </Table.Cell>
-                      <Table.Cell>{amount}</Table.Cell>
-                    </Table.Row>
-                  );
-                })}
-              </Table.Body>
-            </Table>
-          </Grid.Column>
-        );
-      })}
-    </Grid>
+      <Grid>
+        {games.map((game, index) => {
+          return (
+            <Grid.Column computer={4} key={index}>
+              <Table id="header" singleLine fixed>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell className="table-header-text">
+                      {game}
+                    </Table.HeaderCell>
+                    <Table.HeaderCell className="table-header-text">
+                      WIN
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                  {dataGames[index].map((row, index) => {
+                    var amount = parseInt(Number(row.winnings) / Global.FACTOR);
+                    return (
+                      <Table.Row key={index}>
+                        <Table.Cell>
+                          {row.name === null || row.name === ''
+                            ? row.address.substr(0, 6) +
+                              '...' +
+                              row.address.substr(-4)
+                            : row.name}
+                        </Table.Cell>
+                        <Table.Cell>{amount}</Table.Cell>
+                      </Table.Row>
+                    );
+                  })}
+                </Table.Body>
+              </Table>
+            </Grid.Column>
+          );
+        })}
+      </Grid>
+    </Aux>
   );
 };
 

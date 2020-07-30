@@ -38,7 +38,7 @@ const ContentTransactions = (props) => {
       console.log(orderData);
       transak.close();
     });
-  });
+  }, []);
 
   // initialize transak modal
   function show_transak() {
@@ -207,7 +207,7 @@ const ContentTransactions = (props) => {
               >
                 PLAY
               </a>
-              <p 
+              <p
                 className="balances-withdraw"
                 style={{ paddingLeft: '27px', paddingRight: '27px' }}
               >

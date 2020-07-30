@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setLoading(false);
-  });
+  }, []);
 
   function getContent() {
     return (
