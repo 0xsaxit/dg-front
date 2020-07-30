@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     #runs-on: self-hosted
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Login to repository
       run: |
         docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_PASSWORD }}"
@@ -46,7 +46,7 @@ jobs:
     #runs-on: self-hosted
     needs: build
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Set tag
       id: vars
       run: |
@@ -174,7 +174,7 @@ jobs:
                             type: "mrkdwn",
                             text: status_icon_func(workflow_status) + " *${{ github.workflow }}* " + pr + "\nWorkflow run <" + wf_run.data.html_url + "|#${{ github.run_number }}> completed in " + date_diff_func(new Date(wf_run.data.created_at), new Date(wf_run.data.updated_at))
                         }
-                    },                
+                    },
                     {
                         type: "section",
                         text: {
