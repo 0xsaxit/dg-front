@@ -110,8 +110,8 @@ const ContentGames = (props) => {
                     return (
                       <Table.Row key={index}>
                         <Table.Cell>
+                          {index + 1}.{' '}
                           {row.name === null || row.name === ''
-                            {index + 1}.{' '}
                             ? row.address.substr(0, 6) +
                               '...' +
                               row.address.substr(-4)
