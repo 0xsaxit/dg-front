@@ -111,6 +111,7 @@ const ContentGames = (props) => {
                       <Table.Row key={index}>
                         <Table.Cell>
                           {row.name === null || row.name === ''
+                            {index + 1}.{' '}
                             ? row.address.substr(0, 6) +
                               '...' +
                               row.address.substr(-4)
