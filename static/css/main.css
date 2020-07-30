@@ -790,9 +790,25 @@ div.uniswap-modal.content {
   padding-bottom: 23px !important;
 }
 
-/* .account-hover:hover {
-  cursor: pointer;
-} */
+.account-hover.play {
+  background-color: #f5f6f8;
+  padding: 6px 9px 6px 9px;
+  margin-bottom: 18px;
+  margin-top: -6px;
+  border-radius: 2px;
+  margin-right: 21px;
+}
+
+.account-hover.mana,
+.account-hover.dai {
+  background-color: #f5f6f8;
+  padding: 6px 9px 6px 9px;
+  margin-bottom: 18px;
+  margin-top: -6px;
+  border-radius: 2px;
+  margin-left: -9px;
+  margin-right: 21px;
+}
 
 .pagination {
   position: fixed;
