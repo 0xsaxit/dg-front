@@ -85,7 +85,7 @@ const MenuTop = () => {
             icon='labeled'
             vertical
             visible={visible}
-            style={{ backgroundColor: 'black' }}
+            style={{ backgroundColor: 'rgba(10, 10, 10, 1)' }}
           >
             
             <Link href="/">
