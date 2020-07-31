@@ -590,6 +590,36 @@ span.text {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
+table {
+  border-spacing: 0px;
+  width: 100%;
+}
+
+.table-header {
+  background-color: #f5f6f8;
+}
+
+.table-header-text-1,
+.table-header-text-2 {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: black;
+}
+
+.table-body {
+  font-size: 16px;
+  letter-spacing: 0.25px;
+}
+
+.table-body-text-1 {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+
 .ui.table tr:first-child td {
   padding-top: 12px !important;
 }
@@ -1596,6 +1626,11 @@ a.balances-deposit.play {
     margin-left: calc((100vw - 60px) / 2);
     margin-top: calc((100vh - 180px) / 2);
   }
+  .ui.button.nft-read-button {
+    width: 180px !important;
+    margin-left: 0px !important;
+    margin-top: 18px !important;
+  }
 }
 
 @media (max-width: 399px) {
@@ -1627,6 +1662,12 @@ a.balances-deposit.play {
   }
 }
 
+@media (max-width: 512px) {
+  .nft-read-button {
+    width: 166px !important;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .grid-margin {
     margin-left: 0em !important;
@@ -1638,5 +1679,14 @@ a.balances-deposit.play {
   }
   .blogdetail-page .post__content {
     margin-left: -18px !important;
+  }
+  span.leaderboard-coin-select {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  span.leaderboard-coin-select-mobile {
+    display: none !important;
   }
 }
