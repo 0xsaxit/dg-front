@@ -20,39 +20,6 @@ const Dashboard = () => {
   function getContent() {
     return (
       <div>
-        <div className="mobile-menu">
-          <img className="mobile-menu-image" src={Global.IMAGES.LOGO} />
-        </div>
-        <div className="mobile-menu-words">
-          <a className="mobile-menu-item-1" href="/blog">
-            {' '}
-            BLOG{' '}
-          </a>
-          <a
-            className="mobile-menu-item-2"
-            href="https://docs.decentral.games"
-            target="_blank"
-          >
-            {' '}
-            DOCS{' '}
-          </a>
-          <Modal
-            trigger={<a className="mobile-menu-item-2"> DEMO </a>}
-            closeIcon
-            basic
-            size="small"
-          >
-            <Modal.Content>
-              <iframe
-                className="mobile-demo-video"
-                src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1"
-                frameborder="0"
-                allowfullscreen
-              ></iframe>
-            </Modal.Content>
-          </Modal>
-        </div>
-
         <div className="home-video-container">
           <video
             id="myVideo"
