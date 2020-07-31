@@ -178,9 +178,12 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .right-menu-items {
-  width: 100% !important;
+  width: calc(100% - 180px) !important;
+  margin-left: 180px;
   display: flex !important;
   justify-content: flex-end !important;
+  position: relative;
+  z-index: 998;
 }
 
 .sidebar-menu-text-2 {
