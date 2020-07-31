@@ -30,13 +30,11 @@ const ContentNFTs = (props) => {
     'TOTAL',
   ];
 
-  if (props.loading) return <Spinner background={0} />;
-
   return (
     <div className="nft-container">
       <div className="nft-image">
         <Image
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png"
+          src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelData.parcelLocation[0]},${props.parcelData.parcelLocation[1]},1.png`}
           className="tominoya-pic"
           style={{ borderRadius: '3px' }}
         />

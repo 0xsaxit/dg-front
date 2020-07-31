@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
-import Spinner from '../Spinner';
 import Aux from '../_Aux';
 
 const detailsNFTs = {
@@ -40,10 +39,14 @@ const Tokens = () => {
       window.web3.version.getNetwork((err, network) => {
         setNetworkID(parseInt(parseInt(network)));
       });
-
-      setLoading(false);
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    if (Object.keys(state.parcelData).length !== 0) {
+      setLoading(false);
+    }
+  }, [state.parcelData]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -96,17 +99,20 @@ const Tokens = () => {
   function myNFTs() {
     return (
       <Aux>
-        {networkID !== 1 ? (
+        {!networkID ? (
           <div className="account-other-inner-p">
-            Please switch MetaMask to Ethereum Mainnet
+            You must login to MetaMask to view your NFTs
           </div>
-        ) : Object.keys(state.parcelData).length === 0 &&
-          state.parcelData.constructor === Object ? (
+        ) : loading ? (
           <div className="account-other-inner-p">
             You do not own any Tominoya NFTs
           </div>
+        ) : networkID !== 1 ? (
+          <div className="account-other-inner-p">
+            Please switch MetaMask to Ethereum Mainnet
+          </div>
         ) : (
-          <ContentNFTs parcelData={state.parcelData} loading={loading} />
+          <ContentNFTs parcelData={state.parcelData} />
         )}
       </Aux>
     );

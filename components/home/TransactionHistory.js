@@ -21,10 +21,14 @@ const History = (props) => {
     if (state.userStatus) {
       const frameHeight = window.innerHeight;
       setMaximumCount(Math.floor(frameHeight * 0.01575));
-
-      setProcessing(false);
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    if (state.transactions[0].length) {
+      setProcessing(false);
+    }
+  }, [state.transactions]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
