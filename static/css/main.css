@@ -181,8 +181,6 @@ div.ui.segment.transparent-menu-segment {
   width: 100% !important;
   display: flex !important;
   justify-content: flex-end !important;
-  position: relative;
-  z-index: 999;
 }
 
 .sidebar-menu-text-2 {
