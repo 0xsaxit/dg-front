@@ -1500,7 +1500,8 @@ a.balances-deposit.play {
   video.home-dashboard-video,
   .menu-container-dark,
   .dashboard-menu-container,
-  .other-menu-container {
+  .other-menu-container,
+  .dropdown-menu {
     display: none !important;
   }
   .home-dashboard-content {
