@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
-import { Grid, Table } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
@@ -90,39 +90,39 @@ const ContentGames = (props) => {
       <Grid>
         {games.map((game, index) => {
           return (
-            <Grid.Column computer={4} key={index}>
-              <Table id="header" singleLine fixed>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="table-header-text">
+            <Grid.Column computer={4} tablet={8} mobile={16} key={index}>
+              <table>
+                <tbody>
+                  <tr className="table-header">
+                    <td className="table-header-text-1">
                       {game}
-                    </Table.HeaderCell>
-                    <Table.HeaderCell className="table-header-text">
+                    </td>
+                    <td className="table-header-text-2">
                       WIN
-                    </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
+                    </td>
+                  </tr>
+                </tbody>
 
-                <Table.Body>
+                <tbody>
                   {dataGames[index].map((row, index) => {
                     var num = parseInt(Number(row.winnings) / Global.FACTOR);
                     var amount = Number(num.toFixed(0)).toLocaleString().split(/\s/).join(',');
                     return (
-                      <Table.Row key={index}>
-                        <Table.Cell>
+                      <tr className="table-body" key={index}>
+                        <td className="table-body-text-1">
                           {index + 1}.{' '}
                           {row.name === null || row.name === ''
                             ? row.address.substr(0, 6) +
                               '...' +
                               row.address.substr(-4)
                             : row.name}
-                        </Table.Cell>
-                        <Table.Cell>{amount}</Table.Cell>
-                      </Table.Row>
+                        </td>
+                        <td className="table-body-text-2">{amount}</td>
+                      </tr>
                     );
                   })}
-                </Table.Body>
-              </Table>
+                </tbody>
+              </table>
             </Grid.Column>
           );
         })}
