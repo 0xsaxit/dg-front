@@ -52,6 +52,7 @@ export default class MyDocument extends Document {
           />
           <link rel="manifest" href="/static/js/manifest.json" />
           <link rel="stylesheet" href="/static/css/blog.css" />
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
