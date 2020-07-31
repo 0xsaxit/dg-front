@@ -136,7 +136,9 @@ const MenuTop = () => {
                 paddingBottom: '15px',
                 marginRight: '12px',
                 marginLeft: '24px',
-                height: '100%',
+                height: '100%',                
+                position: 'relative',
+                zIndex: '999'
               }}
             />
           </Link>
