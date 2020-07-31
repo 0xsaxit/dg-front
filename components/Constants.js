@@ -678,18 +678,6 @@ function getConfirmedTx(txHash) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // REST API functions: fetch or post data to server API endpoints
-
-// async function getParcelData(landID, tokenID) {
-//   console.log('Fetch NFT parcel data');
-//   console.log('Land ID: ' + landID);
-//   console.log('Token ID: ' + tokenID);
-
-//   const response = await fetchParcelData(landID, tokenID);
-//   const json = await response.json();
-
-//   return json;
-// }
-
 function fetchUserStatus(address) {
   return fetch(`${API_BASE_URL}/order/verifyAddress`, {
     method: 'POST',

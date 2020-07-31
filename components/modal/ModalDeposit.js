@@ -38,7 +38,7 @@ const ModalDeposit = (props) => {
   let web3 = {};
 
   useEffect(() => {
-    if (window.web3) {
+    if (state.userStatus) {
       // set user address and network ID
       userAddress = window.web3.currentProvider.selectedAddress;
       window.web3.version.getNetwork((err, network) => {
@@ -66,7 +66,7 @@ const ModalDeposit = (props) => {
           console.error(error);
         });
     }
-  }, []);
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

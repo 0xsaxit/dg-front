@@ -18,13 +18,13 @@ const History = (props) => {
   const [processing, setProcessing] = useState(true);
 
   useEffect(() => {
-    if (window.web3) {
+    if (state.userStatus) {
       const frameHeight = window.innerHeight;
       setMaximumCount(Math.floor(frameHeight * 0.01575));
 
       setProcessing(false);
     }
-  }, []);
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

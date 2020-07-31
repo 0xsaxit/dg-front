@@ -7,7 +7,7 @@ function Transactions() {
   let userAddress = '';
 
   useEffect(() => {
-    if (window.ethereum) {
+    if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       (async function () {
@@ -27,7 +27,7 @@ function Transactions() {
         });
       })();
     }
-  }, []);
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

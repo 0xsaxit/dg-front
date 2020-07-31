@@ -7,7 +7,7 @@ function Status() {
   let userAddress = '';
 
   useEffect(() => {
-    if (window.web3) {
+    if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       async function fetchData() {

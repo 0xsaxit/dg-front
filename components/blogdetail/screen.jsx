@@ -66,7 +66,7 @@ const Screen = ({
     }
     setFilteredPages(shuffle(filteredPages));
     // console.log(randomfilteredPages);
-  });
+  }, []);
   window.scrollTo(0, 0);
   // console.log(randomfilteredPages);
   return (

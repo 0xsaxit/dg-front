@@ -77,8 +77,8 @@ const ModalVerify = () => {
       if (json.result === 'false') {
         return false;
       }
-      const stepValue = parseInt(json.result);
 
+      const stepValue = parseInt(json.result);
       return stepValue;
     }
   }

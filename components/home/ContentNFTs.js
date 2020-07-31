@@ -30,6 +30,8 @@ const ContentNFTs = (props) => {
     'TOTAL',
   ];
 
+  if (props.loading) return <Spinner background={0} />;
+
   return (
     <div className="nft-container">
       <div className="nft-image">

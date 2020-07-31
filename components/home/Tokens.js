@@ -36,14 +36,14 @@ const Tokens = () => {
   const [networkID, setNetworkID] = useState(0);
 
   useEffect(() => {
-    if (window.ethereum) {
+    if (state.userStatus) {
       window.web3.version.getNetwork((err, network) => {
         setNetworkID(parseInt(parseInt(network)));
       });
 
       setLoading(false);
     }
-  }, []);
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ const Tokens = () => {
             You do not own any Tominoya NFTs
           </div>
         ) : (
-          <ContentNFTs parcelData={state.parcelData} />
+          <ContentNFTs parcelData={state.parcelData} loading={loading} />
         )}
       </Aux>
     );
@@ -140,8 +140,6 @@ const Tokens = () => {
   function setPage(number) {
     setNFTState(number);
   }
-
-  if (loading) return <Spinner background={0} />;
 
   return (
     <div className="main-container" style={{ marginBottom: '60px' }}>

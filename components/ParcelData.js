@@ -3,26 +3,29 @@ import Web3 from 'web3';
 import { GlobalContext } from '../store';
 import Global from './Constants';
 
+// 0xa7c825bb8c2c4d18288af8efe38c8bf75a1aab51 // Mile's account
+// 0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2 // test account
+
 function ParcelData() {
   // dispatch user's parcel data to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = ''; // '0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2'; // test account
+  let userAddress = '';
   let landID = '3'; // hard-code to Tominoya for now
   let web3 = {};
 
   useEffect(() => {
-    if (window.ethereum) {
-      if (state.userStatus > 0) {
-        userAddress = window.web3.currentProvider.selectedAddress;
-        web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+    if (state.userStatus) {
+      userAddress = window.web3.currentProvider.selectedAddress;
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-        (async function () {
-          // get the owner's token ID from NFT smart contract
-          const tokenID = await getTokenID();
+      (async function () {
+        // get the owner's token ID from NFT smart contract
+        const tokenID = await getTokenID();
 
-          // make call to server API and fetch parcel data for this particular token ID
+        // if user owns an NFT fetch parcel data for this particular token ID
+        if (tokenID) {
           const response = await Global.fetchParcelData(landID, tokenID);
           const jsonData = await response.json();
 
@@ -30,10 +33,10 @@ function ParcelData() {
             type: 'parcel_data',
             data: jsonData,
           });
-        })();
-      }
+        }
+      })();
     }
-  }, []);
+  }, [state.userStatus]);
 
   // get owner's token ID from NFT smart contract
   async function getTokenID() {
@@ -49,7 +52,9 @@ function ParcelData() {
 
       return tokenID;
     } catch (error) {
-      console.log('Get token ID error: ', error);
+      console.log('No NFT token ID found');
+
+      return false;
     }
   }
 
