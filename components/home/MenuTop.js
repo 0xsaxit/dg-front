@@ -141,35 +141,37 @@ const MenuTop = () => {
             />
           </Link>
 
-          <Link href="/">
-            <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
-          </Link>
-
-          {state.userStatus ? (
-            <Link href="/account">
-              <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
+          <div className="menu-items-to-hide">
+            <Link href="/">
+              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
             </Link>
-          ) : null}
 
-          <Link href="/games">
-            <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
-          </Link>
+            {state.userStatus ? (
+              <Link href="/account">
+                <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
+              </Link>
+            ) : null}
 
-          <Link href="/nfts">
-            <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
-          </Link>
+            <Link href="/games">
+              <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
+            </Link>
 
-          <Link href="/blog">
-            <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
-          </Link>
+            <Link href="/nfts">
+              <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
+            </Link>
 
-          <Menu.Item
-            href="https://docs.decentral.games/"
-            target="_blank"
-            className="sidebar-menu-text"
-          >
-            DOCS
-          </Menu.Item>
+            <Link href="/blog">
+              <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
+            </Link>
+
+            <Menu.Item
+              href="https://docs.decentral.games/"
+              target="_blank"
+              className="sidebar-menu-text"
+            >
+              DOCS
+            </Menu.Item>
+          </div>
 
           {state.userStatus ? (
             /////////////////////////////////////////////////////////////////////////////////////////
