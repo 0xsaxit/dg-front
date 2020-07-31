@@ -55,16 +55,16 @@ div.ui.segment.transparent-menu-segment {
   z-index: 999;
 }
 
-.mobile-menu-icon {
+#mobile-menu-icon {
   position: absolute;
   color: white;
-  top: 25px;
+  top: 23px;
   left: 90px;
   z-index: 100;
-  font-size: 18px !important;
+  font-size: 23px !important;
 }
 
-.mobile-menu-icon:hover {
+#mobile-menu-icon:hover {
   cursor: pointer;
 }
 
