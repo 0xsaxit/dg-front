@@ -75,77 +75,12 @@ function blog() {
 
   return (
     <Segment vertical style={{ top: '60px' }}>
-      {/* <html lang="en">
-          <Head>
-            <title> Decentral Games </title>
-          </Head>
-        </html>
-        
-          <NextSeo
-              openGraph={{
-                  type: 'website',
-                  url: 'https://decentral.games',
-                  title: 'Decentral Games Blog',
-                  description: '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!',
-                  images: [
-                          {
-                              url: 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg',
-                              width: 800,
-                              height: 600,
-                              alt: 'Decentral Games',
-                          },
-                ],
-              }}
-          /> */}
-
-      {/* <Header
-        title={Global.TITLE + ' | Blog'}
-        description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE}
-      /> */}
-
+      
       <div className="blog-page">
-        <div className="mobile-menu-dark">
-          <a href="/">
-            <img className="mobile-menu-image" src={Global.IMAGES.LOGO} />
-          </a>
-        </div>
-        <div className="mobile-menu-words dark">
-          <a className="mobile-menu-item-1" href="/">
-            {' '}
-            HOME{' '}
-          </a>
-          <a
-            className="mobile-menu-item-2"
-            href="https://docs.decentral.games"
-            target="_blank"
-          >
-            {' '}
-            DOCS{' '}
-          </a>
-          <Modal
-            trigger={<a className="mobile-menu-item-2"> DEMO </a>}
-            closeIcon
-            basic
-            size="small"
-          >
-            <Modal.Content>
-              <iframe
-                className="mobile-demo-video"
-                src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1"
-                frameborder="0"
-                allowfullscreen
-              ></iframe>
-            </Modal.Content>
-          </Modal>
-        </div>
         <Container className="featured-blog-container">
           <Container>
             <div className="blog-hero-text">
-              {/* <Fade bottom distance="20px"> */}
               <h3 className="main-blog-h3"> Decentral Games</h3>
-              {/* </Fade> */}
-              {/* <Fade bottom distance="10px" duration={600} delay={200}> */}
               <h5
                 className="blog-hero"
                 style={{ color: 'grey', paddingTop: '6px' }}
@@ -154,11 +89,9 @@ function blog() {
                 Check back here regularly for updates on our technology,
                 tutorials, and Decentral Games news.{' '}
               </h5>
-              {/* </Fade> */}
             </div>
 
             <div className="mobile-featured-container">
-              {/* <Fade bottom distance="20px" duration={600} delay={400}> */}
               <p style={{ color: 'rgb(97, 97, 97)' }}> Featured Post</p>
               <Divider style={{ opacity: '0.5', paddingBottom: '15px' }} />
               <Link href="/blog/[id]" as="/blog/tominoya-casino-nft-sale">
@@ -213,7 +146,6 @@ function blog() {
                   </Grid>
                 </a>
               </Link>
-              {/* </Fade> */}
             </div>
           </Container>
 
