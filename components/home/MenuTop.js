@@ -11,7 +11,7 @@ import Global from '../Constants';
 const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const [visible, setVisible] = React.useState(false)
+  const [visible, setVisible] = React.useState(0)
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ const MenuTop = () => {
           onClick={handleDimmedChange}
           id="mobile-menu-icon"
         >
-          {visible === 1 ? "close" : "menu"}
+          {visible === 0 ? "menu" : "close"}
         </span>
         <Sidebar.Pushable>
           <Sidebar
