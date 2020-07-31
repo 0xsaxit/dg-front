@@ -1525,22 +1525,17 @@ a.balances-deposit.play {
 /* ----------------------------------------- */
 
 @media (max-width: 499px) {
-  .menu-container,
   .wallet_board,
   .wallet_board_overlay,
   .dashboard-image-container,
   #mobile-casino-text,
-  video.home-dashboard-video,
-  .menu-container-dark,
-  .dashboard-menu-container,
-  .other-menu-container,
-  .dropdown-menu {
+  video.home-dashboard-video {
     display: none !important;
   }
   .home-dashboard-content {
     margin-left: -12px !important;
     margin-right: 30px;
-    margin-bottom: -100px;
+    margin-top: 120px;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1548,61 +1543,16 @@ a.balances-deposit.play {
   div.ui.vertical.segment {
     top: 0px !important;
   }
-  .mobile-menu-dark {
-    background-color: black;
-    padding-bottom: 13px;
-    margin-top: -24px;
-  }
-  .mobile-menu-dark-pages {
-    position: relative;
-    background-color: black;
-    margin-top: -24px;
-    padding-bottom: 13px;
-  }
   .blogdetail-page .coverimg .image {
     margin-top: 23px !important;
   }
   .featured-blog-container {
     padding-top: 60px;
   }
-  .mobile-menu-image {
-    width: 42px !important;
-    margin-left: 12px;
-    padding-top: 18px;
-  }
-  .mobile-menu-words {
-    display: flex;
-    float: right;
-    margin-top: -36px;
-    margin-right: 30px;
-  }
-  .mobile-menu-words.dark {
-    margin-top: -48px !important;
-  }
-  .mobile-menu-item-1,
-  .mobile-menu-item-2 {
-    color: white;
-    letter-spacing: 1.25px;
-    font-size: 18px;
-    z-index: 3;
-    font-weight: bold;
-  }
-  .mobile-menu-item-1:hover,
-  .mobile-menu-item-2:hover {
-    color: white;
-  }
-  .mobile-menu-item-2 {
-    margin-left: 21px;
-  }
   .mobile-footer {
     color: white;
     position: fixed;
     display: none;
-  }
-  .mobile-demo-video {
-    width: 100%;
-    border-radius: 3px;
-    height: 500px;
   }
   .home-dashboard {
     background-image: linear-gradient(
@@ -1618,6 +1568,7 @@ a.balances-deposit.play {
     width: 100vw;
     position: fixed;
     overflow-y: hidden;
+    margin-top: -260px;
   }
   .logospin {
     position: fixed;
@@ -1631,13 +1582,16 @@ a.balances-deposit.play {
     margin-left: 0px !important;
     margin-top: 18px !important;
   }
+  .metamask-button {
+    display: none !important;
+  }
 }
 
 @media (max-width: 399px) {
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-bottom: -115px;
+    margin-top: 90px;
   }
   .featured-casino-text {
     font-size: 12px !important;
@@ -1647,10 +1601,6 @@ a.balances-deposit.play {
   }
   .home-dashboard-h3 {
     font-size: 48px !important;
-  }
-  .mobile-menu-item-1,
-  .mobile-menu-item-2 {
-    font-size: 18px !important;
   }
 }
 
@@ -1668,7 +1618,15 @@ a.balances-deposit.play {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media (max-width: 573px) {
+  .nft-read-button.two {
+    width: 200px !important;
+    margin-left: 0px !important;
+    margin-top: 18px !important;
+  }
+}
+
+@media (max-width: 767px) {
   .grid-margin {
     margin-left: 0em !important;
     margin-right: 0em !important;
