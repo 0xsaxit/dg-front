@@ -70,11 +70,13 @@ const MenuTop = () => {
   return (
     <div>
       <div className="dropdown-menu" id={visible === 0 ? "pushable-one" : "pushable-two"}>
-        <Icon
-          name={ visible === 0 ? "sidebar" : "x" }
+        <span 
+          class="material-icons" 
           onClick={handleDimmedChange}
-          className="mobile-menu-icon"
-        />
+          id="mobile-menu-icon"
+        >
+          {visible === 1 ? "close" : "menu"}
+        </span>
         <Sidebar.Pushable>
           <Sidebar
             as={Menu}
