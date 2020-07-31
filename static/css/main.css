@@ -178,8 +178,8 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .right-menu-items {
-  width: calc(100% - 180px) !important;
-  margin-left: 180px;
+  width: calc(100% - 50px) !important;
+  margin-left: 50px;
   display: flex !important;
   justify-content: flex-end !important;
   position: relative;
