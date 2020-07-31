@@ -175,6 +175,7 @@ class Offerings extends React.Component {
                   width: 'calc(100% - 281px)',
                   marginTop: '27px',
                 }}
+                className="leaderboard-coin-select"
               >
                 <span
                   className={ this.state.gameSelect === "play" ? "account-hover play" : "account-hover" }
@@ -245,6 +246,68 @@ class Offerings extends React.Component {
             </span>
 
             <Divider style={{ marginTop: '0px', paddingBottom: '21px' }} />
+
+            <span style={{ display: 'flex', width: '100%' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  marginBottom: '21px'
+                }}
+                className="leaderboard-coin-select-mobile"
+              >
+                <span
+                  className={ this.state.gameSelect === "play" ? "account-hover play" : "account-hover" }
+                  onClick={() => this.handleChange('play')}
+                >
+                  <img
+                    style={{
+                      verticalAlign: 'middle',
+                      marginRight: '6px',
+                      marginTop: '-1px',
+                    }}
+                    className="image inline"
+                    width="18px"
+                    height="18px"
+                    src={Global.IMAGES.LOGO}
+                  />
+                  PLAY
+                </span>
+                <span
+                  className={ this.state.gameSelect === "mana" ? "account-hover mana" : "account-hover" }
+                  onClick={() => this.handleChange('mana')}
+                >
+                  <img
+                    style={{
+                      verticalAlign: 'middle',
+                      marginRight: '6px',
+                      marginTop: '-1px',
+                    }}
+                    className="image inline"
+                    width="18px"
+                    height="18px"
+                    src={Global.IMAGES.MANA_CIRCLE}
+                  />
+                  MANA
+                </span>
+                <span
+                  className={ this.state.gameSelect === "dai" ? "account-hover dai" : "account-hover" }
+                  onClick={() => this.handleChange('dai')}
+                >
+                  <img
+                    style={{
+                      verticalAlign: 'middle',
+                      marginRight: '6px',
+                      marginTop: '-1px',
+                    }}
+                    className="image inline"
+                    width="18px"
+                    height="18px"
+                    src={Global.IMAGES.DAI_CIRCLE}
+                  />
+                  DAI
+                </span>
+              </span>
+            </span>
           </div>
         )}
       </div>
