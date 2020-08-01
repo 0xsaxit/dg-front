@@ -20,7 +20,7 @@
   "dependencies": {
     "@biconomy/mexa": "^1.5.13",
     "@maticnetwork/maticjs": "^2.0.2",
-    "@next/bundle-analyzer": "^9.4.4",
+    "@next/bundle-analyzer": "^9.5.1",
     "@transak/transak-sdk": "^1.0.23",
     "buttercms": "^1.2.3",
     "cross-env": "^7.0.2",
@@ -28,7 +28,7 @@
     "eth-sig-util": "^2.5.3",
     "global": "^4.4.0",
     "html-to-react": "^1.4.3",
-    "next": "^9.4.4",
+    "next": "^9.5.1",
     "next-seo": "^4.7.3",
     "react": "^16.8.1",
     "react-dom": "^16.13.1",
@@ -36,8 +36,8 @@
     "react-highlight": "^0.12.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
-    "semantic-ui-react": "^1.0.0",
-    "web3": "^1.2.11"
+    "semantic-ui-react": "^1.1.0",
+    "web3": "^1.2.10-rc.0"
   },
   "browserslist": [
     ">0.2%",
