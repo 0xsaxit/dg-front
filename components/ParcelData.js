@@ -5,6 +5,7 @@ import Global from './Constants';
 
 // 0xa7c825bb8c2c4d18288af8efe38c8bf75a1aab51 // test account 1
 // 0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2 // test account 2
+//
 
 function ParcelData() {
   // dispatch user's parcel data to the Context API store
