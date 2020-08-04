@@ -86,9 +86,9 @@ const IMAGES = (() => {
   const CHECK =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png';
   const MANA_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_circle_oba61q.webp';
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_hx4tyd.png';
   const DAI_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/dai_circle_a9uwse.webp';
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png';
 
   return {
     LOGO,
