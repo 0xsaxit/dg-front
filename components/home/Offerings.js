@@ -31,6 +31,10 @@ const detailsGames = {
     'games-pic',
     'Slots',
     'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
+    'Gameplay:',
+    '1 player',
+    'Coins:',
+    'PLAY, MANA, DAI',
     'https://play.decentral.games',
     'https://docs.decentral.games/games/slots',
   ],
@@ -39,6 +43,10 @@ const detailsGames = {
     'games-pic',
     'Roulette',
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
+    'Gameplay:',
+    '1-8 players',
+    'Coins:',
+    'PLAY, MANA, DAI',   
     'https://play.decentral.games',
     'https://docs.decentral.games/games/roulette',
   ],
@@ -47,6 +55,10 @@ const detailsGames = {
     'games-pic',
     'Backgammon',
     'Decentral Games backgammon is standard backgammon game featuring two players. At the start of each game, the player agree upon and place a wager that capitalizes a pot to be paid out to the winner minus a fee at the end of the game. The current minimum bet is 10 MANA, and the wager may be raised by clicking on the doubling cube throughout the game.',
+    'Gameplay:',
+    '2 players',
+    'Coins:',
+    'PLAY, MANA, DAI',
     'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold',
     'https://docs.decentral.games/games/backgammon',
   ],
@@ -55,6 +67,10 @@ const detailsGames = {
     'games-pic',
     'Blackjack',
     'Decentral Games blackjack accommodates 1-4 players. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
+    'Gameplay:',
+    '1-4 players',
+    'Coins:',
+    'PLAY, MANA, DAI',
     'https://play.decentral.games',
     'https://docs.decentral.games/games/blackjack',
   ],
@@ -97,8 +113,8 @@ class Offerings extends React.Component {
   Games = () => {
     return Object.keys(detailsGames).map((item, i) => {
       return (
-        <div className="nft-container" key={i}>
-          <div className="nft-image">
+        <div className="games-container" key={i}>
+          <div className="games-image">
             <Image
               src={detailsGames[item][0]}
               className={detailsGames[item][1]}
@@ -113,18 +129,26 @@ class Offerings extends React.Component {
               {detailsGames[item][2]}
             </h3>
             <p className="nft-other-p">{detailsGames[item][3]}</p>
+            <span style={{ display: 'flex', marginTop: '-3px', }}>
+              <p className="nfts-other-p" style={{ fontWeight: 'bold', paddingRight: '5px' }}>{detailsGames[item][4]}</p>
+              <p className="nfts-other-p">{detailsGames[item][5]}</p>
+            </span>
+            <span style={{ display: 'flex', marginTop: '-12px', paddingBottom: '12px' }}>
+              <p className="nfts-other-p" style={{ fontWeight: 'bold', paddingRight: '5px' }}>{detailsGames[item][6]}</p>
+              <p className="nfts-other-p">{detailsGames[item][7]}</p>
+            </span>
             <Button
               color="blue"
               className="games-button"
               target="_blank"
-              href={detailsGames[item][4]}
+              href={detailsGames[item][8]}
             >
               PLAY NOW
             </Button>
             <Button
               className="nft-read-button"
               target="_blank"
-              href={detailsGames[item][5]}
+              href={detailsGames[item][9]}
             >
               READ MORE
             </Button>

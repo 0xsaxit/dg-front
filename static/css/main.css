@@ -79,13 +79,13 @@ div.ui.segment.transparent-menu-segment {
   }
 }
 
-@media (min-width: 1030px) {
+@media (min-width: 1070px) {
   .dropdown-menu {
     display: none;
   }
 }
 
-@media (max-width: 1029px) {
+@media (max-width: 1069px) {
   .menu-items-to-hide {
     display: none;
   }
@@ -298,6 +298,7 @@ video.home-dashboard-video {
 /*                NFT PAGE CSS               */
 /* ----------------------------------------- */
 
+.games-container,
 .nft-container {
   margin-top: 21px;
   display: flex;
@@ -310,6 +311,7 @@ video.home-dashboard-video {
 }
 
 @media (max-width: 991px) {
+  .games-container,
   .nft-container {
     flex-direction: column;
   }
@@ -333,27 +335,22 @@ video.home-dashboard-video {
   color: black;
 }
 
-.tominoya-pic {
-  min-width: 400px;
-  padding-bottom: 30px;
-  padding-right: 45px;
-}
-
-.flamingos-pic {
-  min-width: 400px;
-  padding-bottom: 30px;
-  padding-right: 45px;
-}
-
 .nft-description {
   padding-bottom: 45px;
 }
 
 .games-pic {
-  min-width: 330px;
-  padding-bottom: 30px;
   padding-right: 45px;
+  padding-bottom: 30px;
+  min-width: 410px;
 }
+
+@media (max-width: 499px) {
+  .games-pic {
+    min-width: calc(100vw - 75px) !important;
+  }
+}
+
 
 /* ----------------------------------------- */
 /*         CREATE ACCOUNT MODAL CSS          */
@@ -816,19 +813,6 @@ div.uniswap-modal.content {
   margin-right: 30px;
 }
 
-@media (min-width: 1400px) {
-  .account-other-inner-container.nfts {
-    margin-left: 37px;
-  }
-}
-
-@media (max-width: 1399px) {
-  .account-other-inner-container.nfts {
-    width: calc(100% - 46px);
-    margin-right: 16px !important;
-  }
-}
-
 .account-other-tabs {
   display: flex;
   justify-content: space-between;
@@ -846,10 +830,8 @@ div.uniswap-modal.content {
 }
 
 .account-other-inner-p {
-  /* margin-top: calc(50vh - 210px); */
   margin-top: 30px;
   padding-bottom: 20px;
-
   text-align: center;
   color: gray;
 }
