@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import transakSDK from '@transak/transak-sdk';
-import { Table, Button, Icon, Modal } from 'semantic-ui-react';
+import { Table, Button, Icon, Modal, Divider } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
 import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
@@ -48,22 +48,7 @@ const ContentTransactions = (props) => {
   function contentLabels() {
     if (props.type === 'Balances') {
       return (
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell className="table-header-text">
-              MAINCHAIN BALANCES
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
-              ACTION
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
-              MATIC BALANCES
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
-              ACTION
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+        null
       );
     } else if (props.type === 'Play' || 'History') {
       return (
@@ -92,131 +77,131 @@ const ContentTransactions = (props) => {
 
   function contentBalances() {
     return (
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell>
-            <img
-              src={Global.IMAGES.MANA_CIRCLE}
-              style={{
-                width: '18px',
-                paddingRight: '3px',
-                verticalAlign: 'middle',
-                marginTop: '-3px',
-              }}
-            />
-            0 MANA
-          </Table.Cell>
-          <Table.Cell>
-            <span className="balances-table-span">
-              <a className="balances-purchase" onClick={show_transak}>
-                PURCHASE
-              </a>
-              <Modal
-                trigger={<p className="balances-exchange">TRADE</p>}
-                closeIcon
-              >
-                <Modal.Content className="uniswap-modal">
-                  <iframe
-                    src="https://v2.uniswap.exchange/swap?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
-                    height="660px"
-                    width="100%"
-                    className="uniswap-iframe"
-                  />
-                </Modal.Content>
-              </Modal>
-            </span>
-          </Table.Cell>
-          <Table.Cell>
-            <img
-              src={Global.IMAGES.MANA_CIRCLE}
-              style={{
-                width: '18px',
-                paddingRight: '3px',
-                verticalAlign: 'middle',
-                marginTop: '-3px',
-              }}
-            />
-            {state.balances[0][1]} MANA
-          </Table.Cell>
-          <Table.Cell>
-            <span className="balances-table-span">
-              <ModalDeposit menuLink={0} />
-              <ModalWithdraw isExit={0} />
-            </span>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>
-            <img
-              src={Global.IMAGES.DAI_CIRCLE}
-              style={{
-                width: '18px',
-                paddingRight: '3px',
-                verticalAlign: 'middle',
-                marginTop: '-3px',
-              }}
-            />
-            0 DAI
-          </Table.Cell>
-          <Table.Cell>
-            <span className="balances-table-span">
-              <p className="balances-deposit">PURCHASE</p>
-              <p className="balances-withdraw">TRADE</p>
-            </span>
-          </Table.Cell>
-          <Table.Cell>
-            <img
-              src={Global.IMAGES.DAI_CIRCLE}
-              style={{
-                width: '18px',
-                paddingRight: '3px',
-                verticalAlign: 'middle',
-                marginTop: '-3px',
-              }}
-            />
-            {state.balances[1][1]} DAI
-          </Table.Cell>
-          <Table.Cell>
-            <span className="balances-table-span">
-              <p className="balances-deposit">DEPOSIT</p>
-              <p className="balances-withdraw">WITHDRAW</p>
-            </span>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell></Table.Cell>
-          <Table.Cell></Table.Cell>
-          <Table.Cell>
+      <div className="balances-container">
+        <div className='balances-column'>
+          <span className="balances-text">
             <img
               src={Global.IMAGES.LOGO}
               style={{
-                width: '18px',
-                paddingRight: '3px',
-                verticalAlign: 'middle',
-                marginTop: '-3px',
+                width: '28px',
+                marginRight: '9px',
+                verticalAlign: 'top',
+                marginTop: '-2px'
               }}
             />
-            5,000 PLAY
-          </Table.Cell>
-          <Table.Cell>
-            <span className="balances-table-span">
-              <a
-                href="https://play.decentral.games"
-                target="_blank"
-                className="balances-deposit play"
-              >
-                PLAY
-              </a>
-              <p
-                className="balances-withdraw"
-                style={{ paddingLeft: '27px', paddingRight: '27px' }}
-              >
-                TOP UP
-              </p>
-            </span>
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
+            $5,000
+          </span>
+          <Divider style={{ marginTop: '23px', marginBottom: '30px' }}/>
+          <span className="balances-button-span">
+            <Button
+              color="blue"
+              className="balances-play-button"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              PLAY NOW
+            </Button>
+            <Button
+              disabled
+              color="blue"
+              className="balances-play-button-2"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              TOP UP
+            </Button>
+          </span>
+        </div>
+        <div className='balances-column'>
+          <span className="balances-text">
+            <img
+              src={Global.IMAGES.MANA_CIRCLE}
+              style={{
+                width: '28px',
+                marginRight: '9px',
+                verticalAlign: 'top',
+                marginTop: '-2px'
+              }}
+            />
+            ${state.balances[0][1]}
+          </span>
+          <Divider style={{ marginTop: '23px', marginBottom: '30px' }}/>
+          <span className="balances-button-span">
+            <Button
+              color="blue"
+              className="balances-play-button"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              DEPOSIT
+            </Button>
+            <Button
+              color="blue"
+              className="balances-play-button-2"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              WITHDRAW
+            </Button>
+          </span>
+          <div>
+            <Button
+              color="blue"
+              className="balances-purchase-button"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              PURCHASE
+            </Button>
+          </div>
+        </div>
+        <div className='balances-column-end'>
+          <span className="balances-text">
+            <img
+              src={Global.IMAGES.DAI_CIRCLE}
+              style={{
+                width: '28px',
+                marginRight: '9px',
+                verticalAlign: 'top',
+                marginTop: '-2px'
+              }}
+            />
+            ${state.balances[0][1]}
+          </span>
+          <Divider style={{ marginTop: '23px', marginBottom: '30px' }}/>
+          <span className="balances-button-span">
+            <Button
+              disabled
+              color="blue"
+              className="balances-play-button"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              DEPOSIT
+            </Button>
+            <Button
+              disabled
+              color="blue"
+              className="balances-play-button-2"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              WITHDRAW
+            </Button>
+          </span>
+          <div>
+            <Button
+              disabled
+              color="blue"
+              className="balances-purchase-button"
+              href="https://play.decentral.games"
+              target="_blank"
+            >
+              PURCHASE
+            </Button>
+          </div>
+        </div>
+      </div>
     );
   }
 

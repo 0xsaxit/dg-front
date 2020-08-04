@@ -81,7 +81,7 @@ const Tokens = () => {
               target="_blank"
               href={detailsNFTs[item][5]}
             >
-              BUY ON OPENSEA
+              PURCHASE NFT
             </Button>
             <Button
               className="nft-read-button two"

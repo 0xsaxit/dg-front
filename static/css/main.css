@@ -304,7 +304,7 @@ video.home-dashboard-video {
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
-  background-color: rgba(235, 236, 238, 1);
+  background-color: #f2f2f2;
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
@@ -691,99 +691,6 @@ table.ui.fixed.single.line.table {
   border: 0px;
 }
 
-.balances-table-span {
-  display: flex;
-}
-
-.balances-purchase {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-}
-
-.balances-exchange {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-  margin-left: 21px;
-}
-
-.balances-exchange:hover,
-.balances-purchase:hover {
-  cursor: pointer;
-}
-
-div.uniswap-modal.content {
-  border: 0px !important;
-  margin: -2px !important;
-  border-radius: 4px !important;
-}
-
-.ui.modal > .content {
-  padding: 0px !important;
-}
-
-.uniswap-iframe {
-  border: 0px !important;
-  margin: 0 auto !important;
-  display: block !important;
-  border-radius: 3px !important;
-  margin: 0px !important;
-  height: 720px !important;
-}
-
-.balances-deposit {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #c5c6c8;
-}
-
-.balances-withdraw {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #c5c6c8;
-  margin-left: 21px;
-}
-
-.account-purchase {
-  color: grey;
-}
 
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
@@ -929,6 +836,112 @@ svg.spanbox.disable {
 
 .spanarrow {
   padding-top: 15px;
+}
+
+.balances-container {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .balances-container {
+    flex-wrap: wrap;
+  }
+  .balances-column,
+  .balances-column-end {
+    margin-right: 0px !important;
+    margin-bottom: 30px;
+  }
+  .balances-button-span {
+    flex-wrap: nowrap !important;
+  }
+  .ui.blue.button.balances-play-button {
+    margin-right: 18px !important;
+  }
+  .ui.blue.button.balances-play-button-2 {
+    margin-top: 0px !important;
+  }
+  .ui.blue.button.balances-play-button,
+  .ui.blue.button.balances-play-button-2 {
+    width: 100% !important;
+  }
+}
+
+.balances-column {
+  background-color: #f2f2f2;
+  width: 100%;
+  margin-right: 30px;
+  padding: 30px 30px 45px 30px;
+}
+
+.balances-column-end {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 30px 30px 45px 30px;
+}
+
+.balances-text {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+}
+
+@media (max-width: 1121px) {
+  .balances-button-span {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .balances-play-button {
+    margin-right: 0px !important;
+  }
+  .balances-play-button-2 {
+    margin-top: 21px !important;
+  }
+  .balances-play-button,
+  .balances-play-button-2 {
+    width: 100% !important;
+  }
+}
+
+.ui.blue.button.balances-play-button {
+  background-color: #4c9df6 !important;
+  margin-right: 18px;
+  color: white;
+  width: calc(50% - 9px);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
+.ui.blue.button.balances-play-button-2 {
+  background-color: #4c9df6 !important;
+  color: white;
+  width: calc(50% - 9px);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
+.ui.blue.button.balances-purchase-button {
+  background-color: #165daa !important;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 21px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
 }
 
 /* ----------------------------------------- */
@@ -1283,24 +1296,25 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.blue.button.nft-button {
-  background-color: #2085f4;
+  background-color: #4c9df6;
   color: white;
-  width: 240px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 3px;
-}
-
-.ui.button.nft-read-button {
-  background-color: white;
-  color: black;
   width: 180px;
   font-size: 14px;
   font-weight: 600;
-  padding: 13px;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  margin-top: 12px;
+}
+
+.ui.button.nft-read-button {
+  background-color: #165daa;
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
@@ -1308,15 +1322,27 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.blue.button.games-button {
-  background-color: #2085f4;
+  background-color: #4c9df6;
   color: white;
   width: 180px;
   font-size: 14px;
   font-weight: 600;
-  padding: 13px;
+  padding: 12px;
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
+}
+
+@media (max-width: 516px) {
+  .ui.button.nft-read-button,
+  .ui.blue.button.games-button,
+  .ui.blue.button.nft-button  {
+    width: 100% !important;
+  }
+  .ui.button.nft-read-button {
+    margin-left: 0px;
+    margin-top: 18px;
+  }
 }
 
 .ui.button.modal-deposit-button {
@@ -1559,11 +1585,6 @@ a.balances-deposit.play {
     margin-left: calc((100vw - 60px) / 2);
     margin-top: calc((100vh - 180px) / 2);
   }
-  .ui.button.nft-read-button {
-    width: 180px !important;
-    margin-left: 0px !important;
-    margin-top: 18px !important;
-  }
   .metamask-button {
     display: none !important;
   }
@@ -1591,20 +1612,6 @@ a.balances-deposit.play {
   .mobile-menu-words,
   .mobile-footer {
     display: none !important;
-  }
-}
-
-@media (max-width: 512px) {
-  .nft-read-button {
-    width: 166px !important;
-  }
-}
-
-@media (max-width: 573px) {
-  .nft-read-button.two {
-    width: 200px !important;
-    margin-left: 0px !important;
-    margin-top: 18px !important;
   }
 }
 
