@@ -105,7 +105,7 @@ const ModalDeposit = (props) => {
     } else {
       if (state.userStatus < 7) {
         return (
-          <Button className="account-deposit-button" onClick={handleOpen}>
+          <Button className="balances-deposit-button" onClick={handleOpen}>
             DEPOSIT
           </Button>
         );

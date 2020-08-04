@@ -15,9 +15,9 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  hostURL: Global.BASE_URL + '/account',
-  widgetHeight: '720px',
-  widgetWidth: '450px',
+  hostURL: 'http://localhost:3002/account',
+  widgetHeight: '633px',
+  widgetWidth: '450px'
 });
 
 const ContentTransactions = (props) => {
@@ -89,7 +89,7 @@ const ContentTransactions = (props) => {
                 marginTop: '-2px'
               }}
             />
-            $5,000
+            5,000
           </span>
           <Divider style={{ marginTop: '23px', marginBottom: '30px' }}/>
           <span className="balances-button-span">
@@ -123,33 +123,18 @@ const ContentTransactions = (props) => {
                 marginTop: '-2px'
               }}
             />
-            ${state.balances[0][1]}
+            {state.balances[0][1]}
           </span>
           <Divider style={{ marginTop: '23px', marginBottom: '30px' }}/>
           <span className="balances-button-span">
-            <Button
-              color="blue"
-              className="balances-play-button"
-              href="https://play.decentral.games"
-              target="_blank"
-            >
-              DEPOSIT
-            </Button>
-            <Button
-              color="blue"
-              className="balances-play-button-2"
-              href="https://play.decentral.games"
-              target="_blank"
-            >
-              WITHDRAW
-            </Button>
+            <ModalDeposit menuLink={0} />
+            <ModalWithdraw isExit={0} />
           </span>
           <div>
             <Button
               color="blue"
               className="balances-purchase-button"
-              href="https://play.decentral.games"
-              target="_blank"
+              onClick={show_transak}
             >
               PURCHASE
             </Button>
@@ -166,7 +151,7 @@ const ContentTransactions = (props) => {
                 marginTop: '-2px'
               }}
             />
-            ${state.balances[0][1]}
+            0
           </span>
           <Divider style={{ marginTop: '23px', marginBottom: '30px' }}/>
           <span className="balances-button-span">

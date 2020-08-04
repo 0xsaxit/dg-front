@@ -838,6 +838,10 @@ svg.spanbox.disable {
   padding-top: 15px;
 }
 
+/* ----------------------------------------- */
+/*           ACCOUNT BALANCES CSS            */
+/* ----------------------------------------- */
+
 .balances-container {
   display: flex;
 }
@@ -854,10 +858,12 @@ svg.spanbox.disable {
   .balances-button-span {
     flex-wrap: nowrap !important;
   }
-  .ui.blue.button.balances-play-button {
+  .ui.blue.button.balances-play-button,
+  .ui.button.balances-deposit-button {
     margin-right: 18px !important;
   }
-  .ui.blue.button.balances-play-button-2 {
+  .ui.blue.button.balances-play-button-2,
+  .ui.button.balances-withdraw-button {
     margin-top: 0px !important;
   }
   .ui.blue.button.balances-play-button,
@@ -892,14 +898,19 @@ svg.spanbox.disable {
     display: flex;
     flex-wrap: wrap;
   }
-  .balances-play-button {
+  .balances-play-button,
+  .balances-deposit-button,
+  .balances-withdraw-button {
     margin-right: 0px !important;
   }
-  .balances-play-button-2 {
+  .balances-play-button-2,
+  .balances-withdraw-button {
     margin-top: 21px !important;
   }
   .balances-play-button,
-  .balances-play-button-2 {
+  .balances-play-button-2,
+  .balances-deposit-button,
+  .balances-withdraw-button {
     width: 100% !important;
   }
 }
@@ -938,6 +949,21 @@ svg.spanbox.disable {
   font-size: 14px;
   font-weight: 600;
   margin-top: 21px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
+.ui.button.balances-deposit-button,
+.ui.button.balances-withdraw-button {
+  background-color: #4c9df6 !important;
+  margin-right: 18px;
+  color: white;
+  width: calc(50% - 9px);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
   padding: 10px 9px 9px 9px;
   height: 39px;
   letter-spacing: 1.25px;
@@ -1362,74 +1388,6 @@ button.ui.blue.button.modal-buttons {
 a.ui.blue.button.play-shimmer:hover,
 .ui.blue.button.metamask-button:hover {
   transform: translateY(-1px);
-}
-
-.account-deposit-button {
-  letter-spacing: 1.25px !important;
-  font-size: 12px !important;
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-  line-height: 24px !important;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
-  border-radius: 3px !important;
-  font-weight: bold !important;
-  background-color: #2085f4 !important;
-  color: white !important;
-  min-width: 30px !important;
-}
-
-a.account-withdraw-button {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-  margin-left: 21px;
-}
-
-a.account-withdraw-button:hover,
-.account-deposit-button:hover {
-  color: #2085f4;
-  cursor: pointer;
-  transform: translateY(0px) !important;
-}
-
-a.balances-deposit.blue {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-}
-
-a.balances-deposit.play {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 25px;
-  padding-right: 24px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
 }
 
 /* ----------------------------------------- */
