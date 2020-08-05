@@ -100,36 +100,6 @@ const ModalVerify = () => {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get or set user's onboard status
-  // function fetchUserStatus() {
-  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: userAddress,
-  //     }),
-  //   });
-  // }
-
-  // function postUserVerify(step) {
-  //   return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: userAddress,
-  //       verifyStep: step,
-  //     }),
-  //   });
-  // }
-
   return (
     <Modal
       trigger={getTrigger()}

@@ -185,6 +185,9 @@ const MenuTop = () => {
           </div>
 
           {state.userStatus ? (
+            /////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////
+            // display token balances and 'ADD CRYPTO' button
             <span className="right-menu-items">
               <span className="sidebar-menu-text-2">
                 <img
@@ -215,6 +218,8 @@ const MenuTop = () => {
                 />
                 {state.balances[0][1]} MANA
               </span>
+
+              {/* <ModalDeposit menuLink={1} /> */}
             </span>
           ) : (
             /////////////////////////////////////////////////////////////////////////////////////////
@@ -243,6 +248,8 @@ const MenuTop = () => {
               </Modal.Content>
             </Modal>
           </div>
+
+          <ModalDeposit menuLink={1} />
         </Menu>
 
         {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}
