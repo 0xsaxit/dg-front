@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-// import { butter } from '../../store/api';
 import {
   Container,
   Menu,
@@ -14,15 +13,9 @@ import {
   Modal,
 } from 'semantic-ui-react';
 import _ from 'lodash';
-// import Fade from 'react-reveal/Fade';
 import Link from 'next/link';
 import $ from 'jquery';
 import Global from '../../components/Constants';
-
-// import { NextSeo } from 'next-seo';
-// import Head from 'next/head';
-// import Header from '../../components/Header';
-// import Global from '../../components/Constants';
 
 function blog() {
   const [state, dispatch] = useContext(GlobalContext);

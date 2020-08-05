@@ -965,7 +965,7 @@ svg.spanbox.disable {
   letter-spacing: 1.25px;
   border-radius: 3px;
   position: relative;
-  z-index: 999;
+  z-index: 998;
 }
 
 .ui.blue.button.balances-play-button-2 {
@@ -1008,7 +1008,7 @@ svg.spanbox.disable {
   letter-spacing: 1.25px;
   border-radius: 3px;
   position: relative;
-  z-index: 999;
+  z-index: 998;
 }
 
 /* ----------------------------------------- */
