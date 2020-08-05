@@ -1440,8 +1440,8 @@ a.ui.blue.button.play-shimmer:hover,
 .Discord {
   position: fixed;
   z-index: 1000;
-  right: 2.2rem;
-  bottom: 2.2rem;
+  right: 21px;
+  bottom: 21px;
   overflow: hidden;
   width: 3rem;
   height: 3rem;
@@ -1540,11 +1540,11 @@ a.demo-button {
   font-size: 14px !important;
   font-weight: 600;
   margin-top: 15px;
-  padding: 9px 30px 9px 30px;
+  padding: 9px 39px 9px 39px;
   height: 39px;
   letter-spacing: 1.25px;
   border-radius: 3px;
-  margin-right: 30px;
+  margin-right: 21px;
 }
 
 .demo-button-container {
@@ -1614,6 +1614,17 @@ a.demo-button {
   }
   .metamask-button {
     display: none !important;
+  }
+  .account-other-inner-container {
+    width: calc(100% - 42px);
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+  #menu-logo {
+    margin-left: 14px !important;
+  }
+  #mobile-menu-icon {
+    left: 72px;
   }
 }
 

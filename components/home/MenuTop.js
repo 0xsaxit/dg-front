@@ -90,7 +90,7 @@ const MenuTop = () => {
           >
             
             <Link href="/">
-              <Menu.Item className={getLinkStyles("/")}>PLAY</Menu.Item>
+              <Menu.Item className="sidebar-menu-text">PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
@@ -132,6 +132,7 @@ const MenuTop = () => {
           <Link href="/">
             <img
               className="image inline pointer"
+              id="menu-logo"
               src={Global.IMAGES.LOGO}
               style={{
                 width: '39px',
@@ -148,7 +149,7 @@ const MenuTop = () => {
 
           <div className="menu-items-to-hide">
             <Link href="/">
-              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
+              <Menu.Item className="play-menu-item">PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
@@ -178,24 +179,6 @@ const MenuTop = () => {
             </Menu.Item>
           </div>
 
-
-          {/*<div className="demo-button-container">
-              <Modal
-                trigger={<a className="demo-button"> DEMO </a>}
-                closeIcon
-                basic
-                size="small"
-              >
-              <Modal.Content>
-                <iframe
-                  className="mobile-demo-video"
-                  src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1"
-                  frameborder="0"
-                  allowfullscreen
-                ></iframe>
-              </Modal.Content>
-            </Modal>
-          </div>*/}
 
           {state.userStatus ? (
             /////////////////////////////////////////////////////////////////////////////////////////
@@ -242,6 +225,26 @@ const MenuTop = () => {
               <ModalVerify />
             </span>
           )}
+          
+          <div className="demo-button-container">
+            <Modal
+              trigger={<a className="demo-button"> DEMO </a>}
+              closeIcon
+              basic
+              size="small"
+            >
+              <Modal.Content>
+                <iframe
+                  className="mobile-demo-video"
+                  src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1" 
+                  frameborder="0" 
+                  allow="autoplay"
+                  allowfullscreen
+                ></iframe>
+              </Modal.Content>
+            </Modal>
+          </div>
+
         </Menu>
 
         {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}

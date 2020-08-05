@@ -268,6 +268,7 @@ class Offerings extends React.Component {
               >
                 <span
                   className={ this.state.gameSelect === "play" ? "account-hover play" : "account-hover" }
+                  id="account-hover-play"
                   onClick={() => this.handleChange('play')}
                 >
                   <img
