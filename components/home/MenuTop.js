@@ -90,7 +90,7 @@ const MenuTop = () => {
           >
             
             <Link href="/">
-              <Menu.Item className="sidebar-menu-text">PLAY</Menu.Item>
+              <Menu.Item className={getLinkStyles('/')}>>PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
@@ -149,7 +149,7 @@ const MenuTop = () => {
 
           <div className="menu-items-to-hide">
             <Link href="/">
-              <Menu.Item className="play-menu-item">PLAY</Menu.Item>
+              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
