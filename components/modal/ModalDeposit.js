@@ -129,7 +129,15 @@ const ModalDeposit = (props) => {
         <MaticWidget style={'account-deposit-button'} label={'ADD CRYPTO'} />
       );
     } else {
-      return <MaticWidget style={'account-deposit-button'} label={'DEPOSIT'} />;
+      if (state.userStatus < 7) {
+        return (
+          <Button className="balances-deposit-button" onClick={handleOpen}>
+            DEPOSIT
+          </Button>
+        );
+      } else {
+        return maticWidget();
+      }
     }
   }
 

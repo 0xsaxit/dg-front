@@ -59,7 +59,7 @@ div.ui.segment.transparent-menu-segment {
   position: absolute;
   color: white;
   top: 23px;
-  left: 90px;
+  left: 81px;
   z-index: 100;
   font-size: 23px !important;
 }
@@ -79,13 +79,13 @@ div.ui.segment.transparent-menu-segment {
   }
 }
 
-@media (min-width: 1030px) {
+@media (min-width: 1070px) {
   .dropdown-menu {
     display: none;
   }
 }
 
-@media (max-width: 1029px) {
+@media (max-width: 1069px) {
   .menu-items-to-hide {
     display: none;
   }
@@ -298,21 +298,52 @@ video.home-dashboard-video {
 /*                NFT PAGE CSS               */
 /* ----------------------------------------- */
 
+.games-container,
 .nft-container {
   margin-top: 21px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 30px;
-  background-color: rgba(235, 236, 238, 1);
+  margin-bottom: 21px;
+  background-color: #f2f2f2;
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
 }
 
 @media (max-width: 991px) {
+  .games-container,
   .nft-container {
     flex-direction: column;
   }
+}
+
+.main-container {
+  margin-bottom: 60px;
+}
+
+@media (max-width: 499px) {
+  .main-container {
+    padding-bottom: 60px !important;
+  }  
+}
+
+.nfts-info,
+.nfts-info-2 {
+  font-size: 12px !important;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  background-color: #e2e2e2;
+  padding: 3px 6px 3px 6px;
+  margin-right: 12px;
+  margin-top: -1px !important;
+}
+
+.nfts-info {
+  margin-bottom: 14px !important;
+}
+
+.nfts-info-2 {
+  margin-bottom: 14px !important;
 }
 
 .nft-bold-content {
@@ -333,27 +364,22 @@ video.home-dashboard-video {
   color: black;
 }
 
-.tominoya-pic {
-  min-width: 400px;
-  padding-bottom: 30px;
-  padding-right: 45px;
-}
-
-.flamingos-pic {
-  min-width: 400px;
-  padding-bottom: 30px;
-  padding-right: 45px;
-}
-
 .nft-description {
   padding-bottom: 45px;
 }
 
 .games-pic {
-  min-width: 330px;
-  padding-bottom: 30px;
   padding-right: 45px;
+  padding-bottom: 30px;
+  min-width: 410px;
 }
+
+@media (max-width: 499px) {
+  .games-pic {
+    min-width: calc(100vw - 75px) !important;
+  }
+}
+
 
 /* ----------------------------------------- */
 /*         CREATE ACCOUNT MODAL CSS          */
@@ -599,6 +625,7 @@ table {
   background-color: #f5f6f8;
 }
 
+.table-header-text,
 .table-header-text-1,
 .table-header-text-2 {
   padding-top: 9px;
@@ -693,99 +720,6 @@ table.ui.fixed.single.line.table {
   border: 0px;
 }
 
-.balances-table-span {
-  display: flex;
-}
-
-.balances-purchase {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-}
-
-.balances-exchange {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-  margin-left: 21px;
-}
-
-.balances-exchange:hover,
-.balances-purchase:hover {
-  cursor: pointer;
-}
-
-div.uniswap-modal.content {
-  border: 0px !important;
-  margin: -2px !important;
-  border-radius: 4px !important;
-}
-
-.ui.modal > .content {
-  padding: 0px !important;
-}
-
-.uniswap-iframe {
-  border: 0px !important;
-  margin: 0 auto !important;
-  display: block !important;
-  border-radius: 3px !important;
-  margin: 0px !important;
-  height: 720px !important;
-}
-
-.balances-deposit {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #c5c6c8;
-}
-
-.balances-withdraw {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #c5c6c8;
-  margin-left: 21px;
-}
-
-.account-purchase {
-  color: grey;
-}
 
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
@@ -815,19 +749,6 @@ div.uniswap-modal.content {
   margin-right: 30px;
 }
 
-@media (min-width: 1400px) {
-  .account-other-inner-container.nfts {
-    margin-left: 37px;
-  }
-}
-
-@media (max-width: 1399px) {
-  .account-other-inner-container.nfts {
-    width: calc(100% - 46px);
-    margin-right: 16px !important;
-  }
-}
-
 .account-other-tabs {
   display: flex;
   justify-content: space-between;
@@ -845,10 +766,8 @@ div.uniswap-modal.content {
 }
 
 .account-other-inner-p {
-  /* margin-top: calc(50vh - 210px); */
   margin-top: 30px;
   padding-bottom: 20px;
-
   text-align: center;
   color: gray;
 }
@@ -946,6 +865,156 @@ svg.spanbox.disable {
 
 .spanarrow {
   padding-top: 15px;
+}
+
+/* ----------------------------------------- */
+/*           ACCOUNT BALANCES CSS            */
+/* ----------------------------------------- */
+
+.balances-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.balances-column {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 30px 30px 45px 30px;
+}
+
+.balances-column-end {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 30px 30px 45px 30px;
+}
+
+.balances-text {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+}
+
+
+@media (max-width: 1121px) {
+  .balances-button-span {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .balances-play-button,
+  .balances-deposit-button,
+  .balances-withdraw-button {
+    margin-right: 0px !important;
+  }
+  .balances-play-button-2,
+  .balances-withdraw-button {
+    margin-top: 21px !important;
+  }
+  .balances-play-button,
+  .balances-play-button-2,
+  .balances-deposit-button,
+  .balances-withdraw-button {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .balances-button-span {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .balances-play-button,
+  .balances-deposit-button {
+    margin-right: 18px !important;
+  }
+  .balances-play-button-2,
+  .balances-withdraw-button {
+    margin-top: 0px !important;
+  }
+  .balances-column.one,
+  .balances-column.two,
+  .balances-column.three {
+    max-width: calc(50% - 15px) !important;
+  }
+  .balances-column.three {
+    margin-top: 45px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .balances-column.one,
+  .balances-column.two,
+  .balances-column.three {
+    max-width: 100% !important;
+  }
+  .balances-column.one {
+    margin-bottom: 45px !important;
+  }
+  .balances-column.three {
+    margin-bottom: 90px !important;
+  }
+}
+
+.ui.blue.button.balances-play-button {
+  background-color: #4c9df6 !important;
+  margin-right: 18px;
+  color: white;
+  width: calc(50% - 9px);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  position: relative;
+  z-index: 999;
+}
+
+.ui.blue.button.balances-play-button-2 {
+  background-color: #4c9df6 !important;
+  color: white;
+  width: calc(50% - 9px);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
+.ui.blue.button.balances-purchase-button {
+  background-color: #165daa !important;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 21px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
+.ui.button.balances-deposit-button,
+.ui.button.balances-withdraw-button {
+  background-color: #4c9df6 !important;
+  margin-right: 18px;
+  color: white;
+  width: calc(50% - 9px);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0px;
+  padding: 10px 9px 9px 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  position: relative;
+  z-index: 999;
 }
 
 /* ----------------------------------------- */
@@ -1300,24 +1369,25 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.blue.button.nft-button {
-  background-color: #2085f4;
+  background-color: #4c9df6;
   color: white;
-  width: 240px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 3px;
-}
-
-.ui.button.nft-read-button {
-  background-color: white;
-  color: black;
   width: 180px;
   font-size: 14px;
   font-weight: 600;
-  padding: 13px;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  margin-top: 12px;
+}
+
+.ui.button.nft-read-button {
+  background-color: #165daa;
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
@@ -1325,15 +1395,27 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.blue.button.games-button {
-  background-color: #2085f4;
+  background-color: #4c9df6;
   color: white;
   width: 180px;
   font-size: 14px;
   font-weight: 600;
-  padding: 13px;
+  padding: 12px;
   height: 42px;
   letter-spacing: 1.25px;
   border-radius: 3px;
+}
+
+@media (max-width: 516px) {
+  .ui.button.nft-read-button,
+  .ui.blue.button.games-button,
+  .ui.blue.button.nft-button  {
+    width: 100% !important;
+  }
+  .ui.button.nft-read-button {
+    margin-left: 0px;
+    margin-top: 18px;
+  }
 }
 
 .ui.button.modal-deposit-button {
@@ -1347,80 +1429,12 @@ button.ui.blue.button.modal-buttons {
   height: 39px;
   letter-spacing: 1.25px;
   border-radius: 3px;
-  margin-right: 30px;
+  margin-right: 34px;
 }
 
 a.ui.blue.button.play-shimmer:hover,
 .ui.blue.button.metamask-button:hover {
   transform: translateY(-1px);
-}
-
-.account-deposit-button {
-  letter-spacing: 1.25px !important;
-  font-size: 12px !important;
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-  line-height: 24px !important;
-  padding-left: 12px !important;
-  padding-right: 12px !important;
-  border-radius: 3px !important;
-  font-weight: bold !important;
-  background-color: #2085f4 !important;
-  color: white !important;
-  min-width: 30px !important;
-}
-
-a.account-withdraw-button {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-  margin-left: 21px;
-}
-
-a.account-withdraw-button:hover,
-.account-deposit-button:hover {
-  color: #2085f4;
-  cursor: pointer;
-  transform: translateY(0px) !important;
-}
-
-a.balances-deposit.blue {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
-}
-
-a.balances-deposit.play {
-  margin-bottom: 0px;
-  letter-spacing: 1.25px !important;
-  font-size: 12px;
-  line-height: 24px;
-  color: white !important;
-  padding-left: 25px;
-  padding-right: 24px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 3px;
-  font-weight: bold;
-  background-color: #2085f4;
 }
 
 /* ----------------------------------------- */
@@ -1430,8 +1444,8 @@ a.balances-deposit.play {
 .Discord {
   position: fixed;
   z-index: 1000;
-  right: 2.2rem;
-  bottom: 2.2rem;
+  right: 21px;
+  bottom: 21px;
   overflow: hidden;
   width: 3rem;
   height: 3rem;
@@ -1523,6 +1537,27 @@ a.balances-deposit.play {
 /*                MOBILE CSS                 */
 /* ----------------------------------------- */
 
+a.demo-button {
+  background-color: #2085f4 !important;
+  color: white !important;
+  width: 90px;
+  font-size: 14px !important;
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 9px 39px 9px 39px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  margin-right: 21px;
+}
+
+.demo-button-container {
+  position: absolute;
+  z-index: 998;
+  top: 24px;
+  right: 0;
+}
+
 @media (max-width: 499px) {
   .wallet_board,
   .wallet_board_overlay,
@@ -1532,7 +1567,7 @@ a.balances-deposit.play {
     display: none !important;
   }
   .home-dashboard-content {
-    margin-left: -12px !important;
+    margin-left: 18px !important;
     margin-right: 30px;
     margin-top: 120px;
   }
@@ -1576,13 +1611,19 @@ a.balances-deposit.play {
     margin-left: calc((100vw - 60px) / 2);
     margin-top: calc((100vh - 180px) / 2);
   }
-  .ui.button.nft-read-button {
-    width: 180px !important;
-    margin-left: 0px !important;
-    margin-top: 18px !important;
-  }
   .metamask-button {
     display: none !important;
+  }
+  .account-other-inner-container {
+    width: calc(100% - 42px);
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+  #menu-logo {
+    margin-left: 14px !important;
+  }
+  #mobile-menu-icon {
+    left: 72px;
   }
 }
 
@@ -1590,7 +1631,7 @@ a.balances-deposit.play {
   .home-dashboard-content {
     margin-left: 18px !important;
     margin-right: 30px;
-    margin-top: 90px;
+    margin-top: 100px;
   }
   .featured-casino-text {
     font-size: 12px !important;
@@ -1606,23 +1647,16 @@ a.balances-deposit.play {
 @media (min-width: 500px) {
   .mobile-menu-image,
   .mobile-menu-words,
-  .mobile-footer {
+  .mobile-footer,
+  .demo-button-container {
     display: none !important;
   }
 }
 
-@media (max-width: 512px) {
-  .nft-read-button {
-    width: 166px !important;
-  }
-}
-
-@media (max-width: 573px) {
-  .nft-read-button.two {
-    width: 200px !important;
-    margin-left: 0px !important;
-    margin-top: 18px !important;
-  }
+.mobile-demo-video {
+  width: 100%;
+  border-radius: 3px;
+  height: 500px;
 }
 
 @media (max-width: 767px) {

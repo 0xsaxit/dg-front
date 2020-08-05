@@ -6,7 +6,6 @@ function GameRecords() {
   const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
-    // if (window.ethereum) {
 
     (async function () {
       const response = await Global.fetchGameRecords();

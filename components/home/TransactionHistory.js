@@ -67,13 +67,13 @@ const History = (props) => {
               )}
 
               {dataType == 'History' ? (
-                <b className="account-hover active">DEPOSITS/WITHDRAWALS</b>
+                <b className="account-hover active">TRANSFERS</b>
               ) : (
                 <abbr
                   className="account-hover"
                   onClick={() => setPageData('History')}
                 >
-                  DEPOSITS/WITHDRAWALS
+                  TRANSFERS
                 </abbr>
               )}
             </p>

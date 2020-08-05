@@ -2,10 +2,8 @@ import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Icon } from 'semantic-ui-react';
-
-// import ModalVerify from '../modal/ModalVerify';
-
+import { Menu, Sidebar, Segment, Icon, Modal, Button } from 'semantic-ui-react';
+import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
 import MessageBox from './MessageBox';
 import Global from '../Constants';
@@ -82,6 +80,7 @@ const MenuTop = () => {
         >
           {visible === 0 ? 'menu' : 'close'}
         </span>
+
         <Sidebar.Pushable>
           <Sidebar
             as={Menu}
@@ -93,7 +92,7 @@ const MenuTop = () => {
             style={{ backgroundColor: 'rgba(10, 10, 10, 1)' }}
           >
             <Link href="/">
-              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
+              <Menu.Item className="sidebar-menu-text">PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
@@ -136,13 +135,14 @@ const MenuTop = () => {
           <Link href="/">
             <img
               className="image inline pointer"
+              id="menu-logo"
               src={Global.IMAGES.LOGO}
               style={{
                 width: '39px',
                 paddingTop: '15px',
                 paddingBottom: '15px',
                 marginRight: '12px',
-                marginLeft: '24px',
+                marginLeft: '23px',
                 height: '100%',
                 position: 'relative',
                 zIndex: '999',
@@ -152,7 +152,7 @@ const MenuTop = () => {
 
           <div className="menu-items-to-hide">
             <Link href="/">
-              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
+              <Menu.Item className="sidebar-menu-text">PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
@@ -216,9 +216,33 @@ const MenuTop = () => {
                 {state.balances[0][1]} MANA
               </span>
             </span>
-          ) : null}
+          ) : (
+            /////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////
+            // show 'CONNECT METAMASK' button
+            <span className="right-menu-items">
+              <ModalVerify />
+            </span>
+          )}
 
-          <ModalDeposit menuLink={1} />
+          <div className="demo-button-container">
+            <Modal
+              trigger={<a className="demo-button"> DEMO </a>}
+              closeIcon
+              basic
+              size="small"
+            >
+              <Modal.Content>
+                <iframe
+                  className="mobile-demo-video"
+                  src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1"
+                  frameborder="0"
+                  allow="autoplay"
+                  allowfullscreen
+                ></iframe>
+              </Modal.Content>
+            </Modal>
+          </div>
         </Menu>
 
         {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
-// import Fade from 'react-reveal/Fade';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
@@ -35,7 +34,6 @@ const Dashboard = () => {
         <div className="home-dashboard-content">
           <div>
             <div className="home-dashboard-description">
-              {/* <Fade bottom distance="20px" duration={600}> */}
               <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
               <h3
                 className="home-dashboard-h3"
@@ -69,7 +67,6 @@ const Dashboard = () => {
                 Decentraland. Enjoy non-custodial slots, roulette, and blackjack
                 playable with crypto.
               </p>
-              {/* </Fade> */}
             </div>
           </div>
           <p className="mobile-footer">Use a Chrome desktop browser to play.</p>

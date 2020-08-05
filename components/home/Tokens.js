@@ -7,7 +7,7 @@ import Aux from '../_Aux';
 const detailsNFTs = {
   tominoya: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png',
-    'tominoya-pic',
+    'games-pic',
     'Tominoya, Vegas City',
     '-120, 135',
     'Tominoya is a Japanese themed casino built by Decentral Games. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
@@ -16,7 +16,7 @@ const detailsNFTs = {
   ],
   flamingos: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-06-18_at_12.27.19_PM_zoutwy.png',
-    'flamingos-pic',
+    'games-pic',
     'Flamingos, Vegas City',
     '-126, 118',
     'Flamingos is a casino built by Vegas City. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
@@ -69,10 +69,10 @@ const Tokens = () => {
             >
               {detailsNFTs[item][2]}
             </h3>
-            <p className="nft-other-p">
-              <b>Location:</b> {detailsNFTs[item][3]}
-            </p>
-            <p className="nft-other-p" style={{ marginTop: '-12px' }}>
+            <span style={{ display: 'flex' }}>
+              <p className="nfts-info">LOCATION: {detailsNFTs[item][3]}</p>
+            </span>
+            <p className="nft-other-p" style={{ marginTop: '-12px', paddingTop: '15px' }}>
               {detailsNFTs[item][4]}
             </p>
             <Button
@@ -81,7 +81,7 @@ const Tokens = () => {
               target="_blank"
               href={detailsNFTs[item][5]}
             >
-              BUY ON OPENSEA
+              PURCHASE NFT
             </Button>
             <Button
               className="nft-read-button two"
@@ -150,7 +150,7 @@ const Tokens = () => {
   return (
     <div className="main-container" style={{ marginBottom: '60px' }}>
       <div className="page-container">
-        <div className="account-other-inner-container">
+        <div className="account-other-inner-container ">
           {submenu()}
 
           <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
