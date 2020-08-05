@@ -844,38 +844,14 @@ svg.spanbox.disable {
 
 .balances-container {
   display: flex;
-}
-
-@media (max-width: 767px) {
-  .balances-container {
-    flex-wrap: wrap;
-  }
-  .balances-column,
-  .balances-column-end {
-    margin-right: 0px !important;
-    margin-bottom: 30px;
-  }
-  .balances-button-span {
-    flex-wrap: nowrap !important;
-  }
-  .ui.blue.button.balances-play-button,
-  .ui.button.balances-deposit-button {
-    margin-right: 18px !important;
-  }
-  .ui.blue.button.balances-play-button-2,
-  .ui.button.balances-withdraw-button {
-    margin-top: 0px !important;
-  }
-  .ui.blue.button.balances-play-button,
-  .ui.blue.button.balances-play-button-2 {
-    width: 100% !important;
-  }
+  justify-content: space-between;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .balances-column {
   background-color: #f2f2f2;
   width: 100%;
-  margin-right: 30px;
   padding: 30px 30px 45px 30px;
 }
 
@@ -892,6 +868,7 @@ svg.spanbox.disable {
   font-weight: 600;
   letter-spacing: 0.25px;
 }
+
 
 @media (max-width: 1121px) {
   .balances-button-span {
@@ -912,6 +889,43 @@ svg.spanbox.disable {
   .balances-deposit-button,
   .balances-withdraw-button {
     width: 100% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .balances-button-span {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .balances-play-button,
+  .balances-deposit-button {
+    margin-right: 18px !important;
+  }
+  .balances-play-button-2,
+  .balances-withdraw-button {
+    margin-top: 0px !important;
+  }
+  .balances-column.one,
+  .balances-column.two,
+  .balances-column.three {
+    max-width: calc(50% - 15px) !important;
+  }
+  .balances-column.three {
+    margin-top: 45px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .balances-column.one,
+  .balances-column.two,
+  .balances-column.three {
+    max-width: 100% !important;
+  }
+  .balances-column.one {
+    margin-bottom: 45px !important;
+  }
+  .balances-column.three {
+    margin-bottom: 90px !important;
   }
 }
 
