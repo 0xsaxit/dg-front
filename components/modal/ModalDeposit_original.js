@@ -5,19 +5,16 @@ import Web3 from 'web3';
 import { Button, Grid, Modal } from 'semantic-ui-react';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
-
-// import Aux from '../_Aux';
-import MaticWidget from '../home/MaticWidget';
-
+import Aux from '../_Aux';
 import Global from '../Constants';
 
-// let tokenAddressRoot = '';
+let tokenAddressRoot = '';
 let spenderAddress = '';
 
 async function getAddresses() {
   const addresses = await Global.API_ADDRESSES;
 
-  // tokenAddressRoot = addresses.ROOT_TOKEN_ADDRESS_MANA;
+  tokenAddressRoot = addresses.ROOT_TOKEN_ADDRESS_MANA;
   spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 }
 getAddresses();
@@ -27,19 +24,14 @@ const ModalDeposit = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-
-  // const [amount, setAmount] = useState(Global.DEFAULT_AMOUNT);
-  // const [customAmount, setCustomAmount] = useState(0);
-
+  const [amount, setAmount] = useState(Global.DEFAULT_AMOUNT);
+  const [customAmount, setCustomAmount] = useState(0);
   const [networkID, setNetworkID] = useState(0);
-
   const [modalState, setModalState] = useState(false);
   const [processing, setProcessing] = useState(false);
-
-  // const [validDeposit, setValidDeposit] = useState(0);
-
-  const [validLocation, setValidLocation] = useState(0);
+  const [validDeposit, setValidDeposit] = useState(0);
   const [validAuthorize, setValidAuthorize] = useState(0);
+  const [validLocation, setValidLocation] = useState(0);
 
   const [buttonWidget, setButtonWidget] = useState(false);
 
@@ -49,20 +41,11 @@ const ModalDeposit = (props) => {
 
   useEffect(() => {
     if (state.userStatus) {
+      // set user address and network ID
+      userAddress = window.web3.currentProvider.selectedAddress;
       window.web3.version.getNetwork((err, network) => {
         setNetworkID(parseInt(parseInt(network)));
       });
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
-    if (state.userStatus) {
-      // set user address and network ID
-      userAddress = window.web3.currentProvider.selectedAddress;
-
-      // window.web3.version.getNetwork((err, network) => {
-      //   setNetworkID(parseInt(parseInt(network)));
-      // });
 
       // initialize Web3 providers and create token contract instance
       // (pass MetaMask provider for web3 and Biconomy provider for getWeb3)
@@ -87,49 +70,61 @@ const ModalDeposit = (props) => {
     }
   }, [state.userStatus]);
 
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     <script
-  //       src="https://wallet.matic.today/embeds/widget-button.js"
-  //       data-script-name="matic-embeds"
-  //     ></script>;
+  useEffect(() => {
+    if (state.userStatus) {
+      <script
+        src="https://wallet.matic.today/embeds/widget-button.js"
+        data-script-name="matic-embeds"
+      ></script>;
 
-  //     setButtonWidget(true);
-  //   }
-  // }, [state.userStatus]);
+      setButtonWidget(true);
+    }
+  }, [state.userStatus]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // drop-down list functions
+  function onChangeAmount(e, d) {
+    if (d.value == -1) {
+      setAmount(0);
+      setCustomAmount(1);
+
+      return;
+    }
+
+    setAmount(d.value);
+  }
+
+  function changeCustomAmount(e) {
+    let value = parseInt(e.target.value);
+
+    if (String(value) !== 'NaN') {
+      setAmount(parseInt(e.target.value));
+    } else {
+      setAmount(0);
+    }
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // handle opening or closing this modal and the message box
-  // function getTrigger() {
-  //   if (1 == 0) {
-  //     return (
-  //       <Button className="modal-deposit-button" onClick={handleOpen}>
-  //         AUTHORIZE CONTRACT
-  //       </Button>
-  //     );
-  //   } else {
-  //     // if (state.userStatus < 7) {
-  //     //   return (
-  //     //     <Button className="account-deposit-button" onClick={handleOpen}>
-  //     //       DEPOSIT
-  //     //     </Button>
-  //     //   );
-  //     // } else {
-
-  //     return <MaticWidget />;
-
-  //     // }
-  //   }
-  // }
-
   function getTrigger() {
     if (props.menuLink) {
       return (
-        <MaticWidget style={'account-deposit-button'} label={'ADD CRYPTO'} />
+        <Button className="modal-deposit-button" onClick={handleOpen}>
+          ADD CRYPTO
+        </Button>
       );
     } else {
-      return <MaticWidget style={'account-deposit-button'} label={'DEPOSIT'} />;
+      // if (state.userStatus < 7) {
+      //   return (
+      //     <Button className="account-deposit-button" onClick={handleOpen}>
+      //       DEPOSIT
+      //     </Button>
+      //   );
+      // } else {
+      if (buttonWidget) return maticWidget();
+      // }
     }
   }
 
@@ -141,38 +136,116 @@ const ModalDeposit = (props) => {
     setModalState(false);
   }
 
-  // function openMessageBox() {
-  //   handleClose();
+  function openMessageBox() {
+    handleClose();
 
-  //   dispatch({
-  //     type: 'message_box',
-  //     data: 1,
-  //   });
-  // }
+    dispatch({
+      type: 'message_box',
+      data: 1,
+    });
+  }
 
-  // function maticWidget() {
-  //   return (
-  //     <Aux>
-  //       <button
-  //         class="matic-widget-button"
-  //         data-default-page="home"
-  //         data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-  //       >
-  //         DEPOSIT
-  //       </button>
-  //       <script
-  //         src="https://wallet.matic.today/embeds/widget-button.js"
-  //         data-script-name="matic-embeds"
-  //       ></script>
-  //     </Aux>
-  //   );
-  // }
+  function maticWidget() {
+    return (
+      <Aux>
+        <button
+          class="matic-widget-button"
+          data-default-page="home"
+          data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+        >
+          Matic Widget
+        </button>
+        {/* <script
+          src="https://wallet.matic.today/embeds/widget-button.js"
+          data-script-name="matic-embeds"
+        ></script> */}
+      </Aux>
+    );
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // verify user's location and update the userStatus value in the Context API store
   function verifyLocation() {
     updateStatus(5, true); // TODO: actually verify location via IP grab
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // check the amount of tokens that user has allowed Matic root contract to spend
+  // approve transfers to Matic Network, then deposit root token to Matic Network
+  async function depositToMatic() {
+    try {
+      setProcessing(true);
+
+      // check the amount of tokens that user has allowed Matic contract to spend
+      let allowedAmount = await Global.getAllowedToken(
+        tokenAddressRoot,
+        userAddress
+      );
+      allowedAmount = allowedAmount / Global.FACTOR;
+
+      console.log('Allowed amount: ' + allowedAmount);
+      const amountWei = web3.utils.toWei(amount + '');
+
+      if (allowedAmount == 0) {
+        await Global.approveToken(
+          tokenAddressRoot,
+          Global.MAX_AMOUNT,
+          userAddress
+        );
+      } else if (allowedAmount < amount) {
+        await Global.approveToken(tokenAddressRoot, 0, userAddress);
+        await Global.approveToken(
+          tokenAddressRoot,
+          Global.MAX_AMOUNT,
+          userAddress
+        );
+      }
+
+      console.log('Amount to deposit: ' + amount);
+
+      // now deposit tokens from root network to Matic Network
+      const txHash = await Global.depositTokenToMatic(
+        tokenAddressRoot,
+        amountWei,
+        userAddress
+      );
+
+      if (txHash !== false) {
+        // update transaction history status to 'in progress'
+        let ret = await updateHistory(amount, 'Deposit', 'In Progress', txHash);
+        if (!ret) networkError();
+
+        // when we receive confirmation hash update transaction history status to 'confirmed'
+        ret = await Global.getConfirmedTx(txHash);
+        console.log('Confirmation: ' + ret.transactionHash);
+
+        if (ret.status == '0x0') {
+          ret = await updateHistory(amount, 'Deposit', 'Failed', txHash);
+          if (!ret) networkError();
+        } else {
+          ret = await updateHistory(amount, 'Deposit', 'Confirmed', txHash);
+          if (!ret) networkError();
+        }
+
+        // proceed to the next step
+        if (state.userStatus < 7) {
+          updateStatus(6, true); // advance to 'authorize' step
+        } else if (state.userStatus == 7) {
+          openMessageBox(); // close the deposit modal and open message box
+        }
+
+        setValidDeposit(2); // valid deposit
+      }
+
+      setProcessing(false);
+    } catch (error) {
+      console.log(error);
+
+      setValidDeposit(1); // invalid deposit
+      setProcessing(false);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -215,7 +288,7 @@ const ModalDeposit = (props) => {
         if (!ret) networkError();
 
         updateStatus(7, true); // update user status to 7
-        // openMessageBox(); // close the deposit modal and open message box
+        openMessageBox(); // close the deposit modal and open message box
 
         setValidAuthorize(2); // valid authorize
       }
@@ -238,7 +311,21 @@ const ModalDeposit = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // helper functions
+  // REST API functions: update user transaction history and onboard status in database
+  // function postUserVerify(step) {
+  //   return fetch(`${Global.API_BASE_URL}/order/updateUserVerify`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //       verifyStep: step,
+  //     }),
+  //   });
+  // }
+
   async function updateHistory(_amount, type, state, txHash) {
     console.log('Writing to database: ' + state);
 
@@ -267,6 +354,27 @@ const ModalDeposit = (props) => {
     return false;
   }
 
+  // async function postHistory(_amount, type, state, txHash) {
+  //   return fetch(`${Global.API_BASE_URL}/order/updateHistory`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: userAddress,
+  //       amount: _amount,
+  //       type,
+  //       state,
+  //       txHash,
+  //       step: state.userStatus,
+  //     }),
+  //   });
+  // }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   function switchRPC() {
     return (
       <Modal
@@ -336,6 +444,23 @@ const ModalDeposit = (props) => {
                   nextStep={nextStep}
                 />
               </Grid.Column>
+            ) : state.userStatus == 5 ? (
+              /////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////
+              // authorize transfers to Matic Network, then deposit root tokens to Matic Network
+              <Grid.Column>
+                <ContentDeposit
+                  content={'approve'} // content type
+                  validDeposit={validDeposit}
+                  amount={amount}
+                  customAmount={customAmount}
+                  onChangeAmount={onChangeAmount}
+                  changeCustomAmount={changeCustomAmount}
+                  depositToMatic={depositToMatic}
+                  processing={processing}
+                  nextStep={nextStep}
+                />
+              </Grid.Column>
             ) : state.userStatus == 6 ? (
               /////////////////////////////////////////////////////////////////////////////////////////
               /////////////////////////////////////////////////////////////////////////////////////////
@@ -345,6 +470,23 @@ const ModalDeposit = (props) => {
                   content={'authorize'} // content type
                   validAuthorize={validAuthorize}
                   metaTransaction={metaTransaction}
+                  processing={processing}
+                  nextStep={nextStep}
+                />
+              </Grid.Column>
+            ) : state.userStatus == 7 ? (
+              /////////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////////////////
+              // user has finished onboard process and wishes to deposit more root tokens to Matic Network
+              <Grid.Column>
+                <ContentDeposit
+                  content={'deposit'} // content type
+                  validDeposit={validDeposit}
+                  amount={amount}
+                  customAmount={customAmount}
+                  onChangeAmount={onChangeAmount}
+                  changeCustomAmount={changeCustomAmount}
+                  depositToMatic={depositToMatic}
                   processing={processing}
                   nextStep={nextStep}
                 />

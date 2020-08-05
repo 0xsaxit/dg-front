@@ -140,7 +140,7 @@ const ContentTransactions = (props) => {
           </Table.Cell>
           <Table.Cell>
             <span className="balances-table-span">
-              <ModalDeposit menuLink={0} />
+              <ModalDeposit menuLink={1} />
               <ModalWithdraw isExit={0} />
             </span>
           </Table.Cell>

@@ -36,19 +36,6 @@ function Status() {
     }
   }
 
-  // function fetchUserStatus() {
-  //   return fetch(`${Global.API_BASE_URL}/order/verifyAddress`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: userAddress,
-  //     }),
-  //   });
-  // }
-
   return null;
 }
 

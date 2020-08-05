@@ -1,12 +1,7 @@
-import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
 import { Image, Button, Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ContentNFTs = (props) => {
-  // get owner's NFT data from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
-
   // define local variables
   const monthNames = [
     'JANUARY',

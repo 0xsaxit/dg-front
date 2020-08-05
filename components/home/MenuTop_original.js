@@ -3,10 +3,11 @@ import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Sidebar, Segment, Icon } from 'semantic-ui-react';
-
-// import ModalVerify from '../modal/ModalVerify';
-
+import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
+
+// import MaticWidget from './MaticWidget';
+
 import MessageBox from './MessageBox';
 import Global from '../Constants';
 
@@ -184,7 +185,12 @@ const MenuTop = () => {
             </Menu.Item>
           </div>
 
+          {/* <MaticWidget /> */}
+
           {state.userStatus ? (
+            /////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////
+            // display token balances and 'ADD CRYPTO' button
             <span className="right-menu-items">
               <span className="sidebar-menu-text-2">
                 <img
@@ -215,10 +221,17 @@ const MenuTop = () => {
                 />
                 {state.balances[0][1]} MANA
               </span>
-            </span>
-          ) : null}
 
-          <ModalDeposit menuLink={1} />
+              <ModalDeposit menuLink={1} />
+            </span>
+          ) : (
+            /////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////
+            // show 'CONNECT METAMASK' button
+            <span className="right-menu-items">
+              <ModalVerify />
+            </span>
+          )}
         </Menu>
 
         {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}

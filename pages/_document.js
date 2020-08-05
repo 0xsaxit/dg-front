@@ -52,17 +52,15 @@ export default class MyDocument extends Document {
           />
           <link rel="manifest" href="/static/js/manifest.json" />
           <link rel="stylesheet" href="/static/css/blog.css" />
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
-          ></link>
+          />
           <link
             href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
             rel="stylesheet"
             disabled
           />
-          {/* <script src="/static/js/ethereumjs-tx-1.3.3.min.js"></script> */}
         </Head>
         <body>
           <Main />
