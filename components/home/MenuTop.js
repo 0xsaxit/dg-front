@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Icon } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Icon, Modal, Button } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
 import ModalDeposit from '../modal/ModalDeposit';
 import MessageBox from './MessageBox';
@@ -77,6 +77,7 @@ const MenuTop = () => {
         >
           {visible === 0 ? "menu" : "close"}
         </span>
+
         <Sidebar.Pushable>
           <Sidebar
             as={Menu}
@@ -89,7 +90,7 @@ const MenuTop = () => {
           >
             
             <Link href="/">
-              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
+              <Menu.Item className={getLinkStyles("/")}>PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
@@ -137,7 +138,7 @@ const MenuTop = () => {
                 paddingTop: '15px',
                 paddingBottom: '15px',
                 marginRight: '12px',
-                marginLeft: '24px',
+                marginLeft: '23px',
                 height: '100%',                
                 position: 'relative',
                 zIndex: '999'
@@ -176,6 +177,25 @@ const MenuTop = () => {
               DOCS
             </Menu.Item>
           </div>
+
+
+          {/*<div className="demo-button-container">
+              <Modal
+                trigger={<a className="demo-button"> DEMO </a>}
+                closeIcon
+                basic
+                size="small"
+              >
+              <Modal.Content>
+                <iframe
+                  className="mobile-demo-video"
+                  src="https://www.youtube.com/embed/qklQZBooM-8?&autoplay=1"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+              </Modal.Content>
+            </Modal>
+          </div>*/}
 
           {state.userStatus ? (
             /////////////////////////////////////////////////////////////////////////////////////////

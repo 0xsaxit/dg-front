@@ -69,10 +69,10 @@ const Tokens = () => {
             >
               {detailsNFTs[item][2]}
             </h3>
-            <p className="nft-other-p">
-              <b>Location:</b> {detailsNFTs[item][3]}
-            </p>
-            <p className="nft-other-p" style={{ marginTop: '-12px' }}>
+            <span style={{ display: 'flex' }}>
+              <p className="nfts-info">LOCATION: {detailsNFTs[item][3]}</p>
+            </span>
+            <p className="nft-other-p" style={{ marginTop: '-12px', paddingTop: '15px' }}>
               {detailsNFTs[item][4]}
             </p>
             <Button
