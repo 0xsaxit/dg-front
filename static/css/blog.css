@@ -401,9 +401,9 @@ img.logo-image {
 .blogdetail-page-container .post__content li {
   font-family: Lato, sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
-  margin-top: 20px;
+  margin-top: 15px;
   word-break: break-word;
-  line-height: 1 !important;
+  line-height: 1.7 !important;
   font-size: 20px !important;
   margin-bottom: 0;
   color: #16141a;
