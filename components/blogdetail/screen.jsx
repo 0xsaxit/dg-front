@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PostPreview from '../blog/PostPreview';
-import { Divider, Icon } from 'semantic-ui-react';
+import { Divider, Icon, Button } from 'semantic-ui-react';
 import { Menu, Navbar } from 'semantic-ui-react';
 import HtmlParser from './HtmlParser';
 import Link from 'next/link';
@@ -28,10 +28,12 @@ const Screen = ({
     var otherIndex = unfilteredPages.length;
     var temporaryValue = 0;
     var randomIndex = 0;
+
     function shuffle(array) {
       var count = 0;
       var addcount = 0;
       var array1 = unfilteredPages;
+
       while (0 !== currentIndex) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -39,8 +41,9 @@ const Screen = ({
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
         count += 1;
-        if (count >= 3) {
-          count = filteredPages.length - 3;
+
+        if (count >= 2) {
+          count = filteredPages.length - 2;
           array.splice(0, count);
           // console.log(array);
           return array;
@@ -48,8 +51,8 @@ const Screen = ({
       }
 
       currentIndex = filteredPages.length;
-      if (currentIndex < 3) {
-        addcount = 3 - currentIndex;
+      if (currentIndex < 2) {
+        addcount = 2 - currentIndex;
       }
 
       while (0 !== addcount) {
@@ -61,17 +64,13 @@ const Screen = ({
         array1[otherIndex] = array1[otherIndex];
         array1[otherIndex] = temporaryValue;
       }
-
-      //console.log(array);
       return array;
     }
 
     setFilteredPages(shuffle(filteredPages));
-    // console.log(randomfilteredPages);
   }, []);
 
   window.scrollTo(0, 0);
-  // console.log(randomfilteredPages);
 
   return (
     <div>
@@ -125,6 +124,15 @@ const Screen = ({
           <div>
             <div className="post__content" style={{ marginTop: '-60px' }}>
               {HtmlParser(body)}
+            </div>
+
+            <div className="read-next-div">
+              {randomfilteredPages &&
+                randomfilteredPages.map((page) => (
+                  <Button className="read-next-button" href={page.slug}>
+                    {page.title}
+                  </Button>
+                ))}
             </div>
 
             <Divider
