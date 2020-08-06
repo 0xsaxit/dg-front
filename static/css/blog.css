@@ -64,26 +64,44 @@ p {
 
 .sidebar-menu-text.blog:hover {
   background-color: white !important;
-  color: rgba(10, 10, 10, 1) !important;
+  color: rgba(0, 0, 0, 1) !important;
   font-weight: 800 !important;
 }
 
 .sidebar-menu-text.blog.active {
-  color: rgba(10, 10, 10, 1) !important;
+  color: rgba(0, 0, 0, 1) !important;
+  background-color: white !important;
 }
 
 .sidebar-menu-text.blog {
-  color: rgba(155, 155, 155, 1) !important;
+  color: rgba(97, 97, 97, 1) !important;
 }
 
 .sidebar-menu-text-2.blog,
 .sidebar-menu-text-3.blog {
-  color: rgba(155, 155, 155, 1) !important;
+  color: rgba(97, 97, 97, 1) !important;
 }
 
 /* ----------------------------------------- */
 /*              CATEGORY MENU CSS            */
 /* ----------------------------------------- */
+
+.dcl.navbar .mobile-menu .item {
+  color: rgb(97, 97, 97);
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.25px !important;
+  margin-left: -30px;
+}
+
+.dcl.navbar .mobile-menu .item.active {
+  color: rgb(10, 10, 10);
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.25px !important;
+}
 
 .category-select.active {
   color: black;
@@ -122,7 +140,7 @@ p {
   }
   .dcl.navbar .navbar-mobile-menu .ui.header {
     color: rgb(97, 97, 97) !important;
-    margin-left: -6px !important;
+    margin-left: -9px !important;
   }
   .ui.secondary.stackable.menu {
     display: none;
@@ -238,11 +256,17 @@ a:hover {
   .post {
     width: 48.5%;
   }
+  .featured-blog-grid {
+    margin-bottom: -30px !important;
+  }
 }
 
 @media (max-width: 767px) {
   .post {
     width: 100%;
+  }
+  .featured-blog-grid {
+    margin-bottom: -60px !important;
   }
 }
 

@@ -69,6 +69,7 @@ function blog() {
           <a>
             <Grid
               style={{ paddingBottom: '120px' }}
+              className="featured-blog-grid"
             >
               <Grid.Row>
                 <Grid.Column computer={11} tablet={16} mobile={16}>
