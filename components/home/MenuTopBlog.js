@@ -23,23 +23,19 @@ const MenuTop = () => {
       if ('/' === router.pathname) {
         return 'dashboard-menu-container';
       } else {
-        return 'other-menu-container';
+        return 'other-menu-container blog';
       }
     }
   }
 
   function getLinkStyles(path) {
     if (path === 'menu') {
-      if ('/' === router.pathname) {
-        return 'menu-container';
-      } else {
-        return 'menu-container-dark';
-      }
+      return 'menu-container-dark blog';
     } else {
       if (path === router.pathname) {
-        return 'sidebar-menu-text' + ' active';
+        return 'sidebar-menu-text blog' + ' active';
       } else {
-        return 'sidebar-menu-text';
+        return 'sidebar-menu-text blog';
       }
     }
   }
@@ -68,12 +64,13 @@ const MenuTop = () => {
   if (state.userStatus) console.log('User status: ' + state.userStatus);
 
   return (
-    <div>
-      <div className="dropdown-menu" id={visible === 0 ? "pushable-one" : "pushable-two"}>
+    <div className="blog-menu-background">
+      <div className="dropdown-menu blog" id={visible === 0 ? "pushable-one" : "pushable-two"}>
         <span 
           class="material-icons" 
           onClick={handleDimmedChange}
           id="mobile-menu-icon"
+          style={{ color: 'rgb(10, 10, 10)' }}
         >
           {visible === 0 ? "menu" : "close"}
         </span>
@@ -86,7 +83,7 @@ const MenuTop = () => {
             icon='labeled'
             vertical
             visible={visible}
-            style={{ backgroundColor: 'rgba(10, 10, 10, 1)' }}
+            style={{ backgroundColor: 'white' }}
           >
             
             <Link href="/">
@@ -114,11 +111,12 @@ const MenuTop = () => {
             <Menu.Item
               href="https://docs.decentral.games/"
               target="_blank"
-              className="sidebar-menu-text"
+              className="sidebar-menu-text blog"
               style={{ paddingBottom: '27px' }}
             >
               DOCS
             </Menu.Item>
+
           </Sidebar>
           <Sidebar.Pusher>
             <Segment className="transparent-menu-segment">
@@ -173,7 +171,7 @@ const MenuTop = () => {
             <Menu.Item
               href="https://docs.decentral.games/"
               target="_blank"
-              className="sidebar-menu-text"
+              className="sidebar-menu-text blog"
             >
               DOCS
             </Menu.Item>
@@ -185,7 +183,7 @@ const MenuTop = () => {
             /////////////////////////////////////////////////////////////////////////////////////////
             // display token balances and 'ADD CRYPTO' button
             <span className="right-menu-items">
-              <span className="sidebar-menu-text-2">
+              <span className="sidebar-menu-text-2 blog">
                 <img
                   style={{
                     verticalAlign: 'middle',
@@ -200,7 +198,7 @@ const MenuTop = () => {
                 {state.balances[1][1]} DAI
               </span>
 
-              <span className="sidebar-menu-text-3">
+              <span className="sidebar-menu-text-3 blog">
                 <img
                   style={{
                     verticalAlign: 'middle',

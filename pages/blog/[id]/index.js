@@ -1,11 +1,11 @@
 import BlogPages from './blogPages';
-import Layout from '../../../components/Layout.js';
+import LayoutBlog from '../../../components/LayoutBlog.js';
 import Header from '../../../components/Header';
 import Global from '../../../components/Constants';
 
 const Index = ({ page_title, featured_image, page_summary }) => {
   return (
-    <Layout>
+    <LayoutBlog>
       <Header
         title={page_title}
         description={page_summary}
@@ -13,7 +13,7 @@ const Index = ({ page_title, featured_image, page_summary }) => {
       />
 
       <BlogPages />
-    </Layout>
+    </LayoutBlog>
   );
 };
 
