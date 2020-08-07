@@ -82,7 +82,7 @@ function blog() {
                   <div className="post-info">
                     <div className="top">
                       <div>
-                        <span className="blog-date">19 APR 2020</span>
+                        <span className="blog-date">23 JUL 2020</span>
                         <span className="blog-category">
                           Announcements
                         </span>
