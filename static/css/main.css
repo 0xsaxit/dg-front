@@ -636,6 +636,11 @@ table {
   color: black;
 }
 
+.table-header-text-2,
+.table-body-text-2 {
+  text-align: right !important;
+}
+
 .table-body {
   font-size: 16px;
   letter-spacing: 0.25px;
@@ -645,7 +650,6 @@ table {
   padding-top: 9px;
   padding-bottom: 9px;
 }
-
 
 .ui.table tr:first-child td {
   padding-top: 12px !important;
