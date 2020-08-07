@@ -426,6 +426,18 @@ img.logo-image {
   margin: 0px;
 }
 
+.blogdetail-page-container .post__content h6 {
+  font-family: Lato, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  margin-top: -18px !important;
+  margin-bottom: 42px !important;
+  text-align: center !important;
+  word-break: break-word;
+  line-height: 1.7 !important;
+  font-size: 14px !important;
+  font-weight: normal !important; 
+}
+
 .blogdetail-page-container .post__content iframe {
   width: 100%;
   height: 500px;
