@@ -37,7 +37,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "semantic-ui-react": "^1.1.0",
-    "web3": "^1.2.10-rc.0"
+    "web3": "^1.2.11"
   },
   "browserslist": [
     ">0.2%",

@@ -14,7 +14,7 @@ const History = (props) => {
   const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataType, setDataType] = useState('Balances');
+  const [dataType, setDataType] = useState('');
   const [processing, setProcessing] = useState(true);
 
   useEffect(() => {
@@ -29,6 +29,24 @@ const History = (props) => {
       setProcessing(false);
     }
   }, [state.transactions]);
+
+  useEffect(() => {
+    setPageData('Balances');
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      balancesOverlay(false);
+    };
+  }, []);
+
+  // display or remove the balances overlay
+  function balancesOverlay(toggle) {
+    dispatch({
+      type: 'balances_overlay',
+      data: toggle,
+    });
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -135,10 +153,13 @@ const History = (props) => {
 
     if (type === 'Balances') {
       result = true;
+      balancesOverlay(true);
     } else if (type === 'History') {
       result = dataHistory.slice(indexStart, indexEnd);
+      balancesOverlay(false);
     } else if (type === 'Play') {
       result = dataPlay.slice(indexStart, indexEnd);
+      balancesOverlay(false);
     }
 
     setDataPage(result);

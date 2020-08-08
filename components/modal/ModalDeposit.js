@@ -6,8 +6,8 @@ import { Button, Grid, Modal } from 'semantic-ui-react';
 import ContentDeposit from './ContentDeposit';
 import SwitchRPC from './SwitchRPC';
 
-// import Aux from '../_Aux';
-import MaticWidget from '../home/MaticWidget';
+import Aux from '../_Aux';
+// import MaticWidget from '../home/MaticWidget';
 
 import Global from '../Constants';
 
@@ -125,18 +125,24 @@ const ModalDeposit = (props) => {
 
   function getTrigger() {
     if (props.menuLink) {
-      return (
-        <MaticWidget style={'account-deposit-button'} label={'ADD CRYPTO'} />
-      );
+      if (!state.userStatus) {
+        return (
+          <Button className="modal-deposit-button" onClick={handleOpen}>
+            ADD CRYPTO
+          </Button>
+        );
+      } else {
+        return maticWidget('balances-deposit-button', 'DEPOSIT');
+      }
     } else {
-      if (state.userStatus < 7) {
+      if (!state.userStatus) {
         return (
           <Button className="balances-deposit-button" onClick={handleOpen}>
             DEPOSIT
           </Button>
         );
       } else {
-        return maticWidget();
+        return maticWidget('balances-deposit-button', 'DEPOSIT');
       }
     }
   }
@@ -158,23 +164,23 @@ const ModalDeposit = (props) => {
   //   });
   // }
 
-  // function maticWidget() {
-  //   return (
-  //     <Aux>
-  //       <button
-  //         class="matic-widget-button"
-  //         data-default-page="home"
-  //         data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-  //       >
-  //         DEPOSIT
-  //       </button>
-  //       <script
-  //         src="https://wallet.matic.today/embeds/widget-button.js"
-  //         data-script-name="matic-embeds"
-  //       ></script>
-  //     </Aux>
-  //   );
-  // }
+  function maticWidget() {
+    return (
+      <Aux>
+        <button
+          class="matic-widget-button"
+          data-default-page="home"
+          data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+        >
+          DEPOSIT
+        </button>
+        <script
+          src="https://wallet.matic.today/embeds/widget-button.js"
+          data-script-name="matic-embeds"
+        ></script>
+      </Aux>
+    );
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

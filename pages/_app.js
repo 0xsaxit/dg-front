@@ -11,6 +11,7 @@ import Balances from '../components/Balances';
 import Transactions from '../components/Transactions';
 import ParcelData from '../components/ParcelData';
 import GameRecords from '../components/GameRecords';
+import BalancesOverlay from '../components/BalancesOverlay';
 
 class Application extends App {
   render() {
@@ -24,6 +25,7 @@ class Application extends App {
           <Transactions />
           <ParcelData />
           <GameRecords />
+          <BalancesOverlay />
 
           <Component {...pageProps} />
         </Provider>

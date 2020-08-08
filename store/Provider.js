@@ -13,6 +13,7 @@ const initialState = {
   messageBox: 0,
   parcelData: {},
   gameRecords: {},
+  balancesOverlay: 0,
 };
 
 const reducer = (state, action) => {
@@ -57,6 +58,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         gameRecords: action.data,
+      };
+
+    case 'balances_overlay':
+      return {
+        ...state,
+        balancesOverlay: action.data,
       };
 
     default:

@@ -1,11 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
 import transakSDK from '@transak/transak-sdk';
 import { Table, Button, Icon, Divider, Grid } from 'semantic-ui-react';
-
-// import ModalDeposit from '../modal/ModalDeposit';
-// import MaticWidget from '../MaticWidget';
-
+import { GlobalContext } from '../../store';
+import ModalDeposit from '../modal/ModalDeposit';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
@@ -25,7 +22,7 @@ let transak = new transakSDK({
 
 const ContentTransactions = (props) => {
   // get token balances from the Context API store
-  // const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
     // get all the events
@@ -74,6 +71,142 @@ const ContentTransactions = (props) => {
         </Table.Header>
       );
     }
+  }
+
+  function contentBalances() {
+    return (
+      <div>
+        <Grid className="balances-container">
+          <Grid.Row>
+            <Grid.Column
+              computer={5}
+              tablet={8}
+              mobile={16}
+              className="balances-column one"
+            >
+              <span className="balances-text">
+                <img
+                  src={Global.IMAGES.LOGO}
+                  style={{
+                    width: '28px',
+                    marginRight: '9px',
+                    verticalAlign: 'top',
+                    marginTop: '-2px',
+                  }}
+                />
+                5,000 PLAY
+              </span>
+              <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
+              <span className="balances-button-span">
+                <Button
+                  color="blue"
+                  className="balances-play-button"
+                  href="https://play.decentral.games"
+                  target="_blank"
+                >
+                  PLAY NOW
+                </Button>
+                <Button
+                  disabled
+                  color="blue"
+                  className="balances-play-button-2"
+                  href="https://play.decentral.games"
+                  target="_blank"
+                >
+                  TOP UP
+                </Button>
+              </span>
+            </Grid.Column>
+
+            <Grid.Column
+              computer={5}
+              tablet={8}
+              mobile={16}
+              className="balances-column two"
+            >
+              <span className="balances-text">
+                <img
+                  src={Global.IMAGES.MANA_CIRCLE}
+                  style={{
+                    width: '28px',
+                    marginRight: '9px',
+                    verticalAlign: 'top',
+                    marginTop: '-2px',
+                  }}
+                />
+                {state.balances[0][1]} MANA
+              </span>
+              <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
+              <span className="balances-button-span">
+                <ModalDeposit menuLink={0} />
+                <ModalWithdraw isExit={0} />
+              </span>
+              <div>
+                <Button
+                  color="blue"
+                  className="balances-purchase-button"
+                  onClick={show_transak}
+                >
+                  PURCHASE
+                </Button>
+              </div>
+            </Grid.Column>
+
+            <Grid.Column
+              computer={5}
+              tablet={8}
+              mobile={16}
+              className="balances-column three"
+            >
+              <span className="balances-text">
+                <img
+                  src={Global.IMAGES.DAI_CIRCLE}
+                  style={{
+                    width: '28px',
+                    marginRight: '9px',
+                    verticalAlign: 'top',
+                    marginTop: '-2px',
+                  }}
+                />
+                0 DAI
+              </span>
+              <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
+              <span className="balances-button-span">
+                <Button
+                  disabled
+                  color="blue"
+                  className="balances-play-button"
+                  href="https://play.decentral.games"
+                  target="_blank"
+                >
+                  DEPOSIT
+                </Button>
+                <Button
+                  disabled
+                  color="blue"
+                  className="balances-play-button-2"
+                  href="https://play.decentral.games"
+                  target="_blank"
+                >
+                  WITHDRAW
+                </Button>
+              </span>
+              <div>
+                <Button
+                  disabled
+                  color="blue"
+                  className="balances-purchase-button"
+                  href="https://play.decentral.games"
+                  target="_blank"
+                >
+                  PURCHASE
+                </Button>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
+    );
   }
 
   function contentHistory() {
@@ -221,7 +354,7 @@ const ContentTransactions = (props) => {
   if (props.content == 'Labels') {
     return contentLabels();
   } else if (props.content == 'Balances') {
-    return null;
+    return contentBalances();
   } else if (props.content == 'History') {
     return contentHistory();
   } else if (props.content == 'Play') {

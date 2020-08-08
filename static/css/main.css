@@ -52,7 +52,7 @@ div.ui.segment.transparent-menu-segment {
 
 #pushable-two {
   position: relative;
-  z-index: 999;
+  z-index: 2;
 }
 
 #mobile-menu-icon {
@@ -60,7 +60,7 @@ div.ui.segment.transparent-menu-segment {
   color: white;
   top: 23px;
   left: 81px;
-  z-index: 100;
+  z-index: 2;
   font-size: 23px !important;
 }
 
@@ -121,7 +121,7 @@ div.ui.segment.transparent-menu-segment {
   flex-direction: row !important;
   border: none;
   overflow: hidden;
-  z-index: 999 !important;
+  z-index: 4 !important;
   background-color: rgba(10, 10, 10, 1) !important;
   width: 100% !important;
   max-width: 1400px !important;
@@ -183,7 +183,7 @@ div.ui.segment.transparent-menu-segment {
   display: flex !important;
   justify-content: flex-end !important;
   position: relative;
-  z-index: 998;
+  z-index: 2;
 }
 
 .sidebar-menu-text-2 {
@@ -324,7 +324,7 @@ video.home-dashboard-video {
 @media (max-width: 499px) {
   .main-container {
     padding-bottom: 60px !important;
-  }  
+  }
 }
 
 .nfts-info,
@@ -379,7 +379,6 @@ video.home-dashboard-video {
     min-width: calc(100vw - 75px) !important;
   }
 }
-
 
 /* ----------------------------------------- */
 /*         CREATE ACCOUNT MODAL CSS          */
@@ -523,7 +522,7 @@ span.text {
 .deposit-notification-box {
   width: 405px;
   position: absolute !important;
-  z-index: 999 !important;
+  z-index: 4 !important;
   top: 74px;
 }
 
@@ -720,7 +719,6 @@ table.ui.fixed.single.line.table {
   border: 0px;
 }
 
-
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
 /* ----------------------------------------- */
@@ -791,7 +789,7 @@ table.ui.fixed.single.line.table {
   margin-right: 30px;
   letter-spacing: 0.25px !important;
   position: relative;
-  z-index: 998 !important;
+  z-index: 4 !important;
 }
 
 .account-hover.active {
@@ -898,7 +896,6 @@ svg.spanbox.disable {
   letter-spacing: 0.25px;
 }
 
-
 @media (max-width: 1121px) {
   .balances-button-span {
     display: flex;
@@ -971,7 +968,7 @@ svg.spanbox.disable {
   letter-spacing: 1.25px;
   border-radius: 3px;
   position: relative;
-  z-index: 999;
+  z-index: 2;
 }
 
 .ui.blue.button.balances-play-button-2 {
@@ -1014,7 +1011,7 @@ svg.spanbox.disable {
   letter-spacing: 1.25px;
   border-radius: 3px;
   position: relative;
-  z-index: 999;
+  z-index: 2;
 }
 
 /* ----------------------------------------- */
@@ -1027,7 +1024,7 @@ svg.spanbox.disable {
   height: -webkit-fill-available;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 3;
 }
 
 .logospin {
@@ -1409,7 +1406,7 @@ button.ui.blue.button.modal-buttons {
 @media (max-width: 516px) {
   .ui.button.nft-read-button,
   .ui.blue.button.games-button,
-  .ui.blue.button.nft-button  {
+  .ui.blue.button.nft-button {
     width: 100% !important;
   }
   .ui.button.nft-read-button {
@@ -1443,7 +1440,7 @@ a.ui.blue.button.play-shimmer:hover,
 
 .Discord {
   position: fixed;
-  z-index: 1000;
+  z-index: 2;
   right: 21px;
   bottom: 21px;
   overflow: hidden;

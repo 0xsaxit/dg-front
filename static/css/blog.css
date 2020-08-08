@@ -3,8 +3,8 @@
 /* ----------------------------------------- */
 
 .ui.segment {
-	box-shadow: none;
-	border: white;
+  box-shadow: none;
+  border: white;
 }
 
 .blog-page,
@@ -32,11 +32,11 @@ h5 {
 }
 
 i.dcl.logo {
-	display: none;
+  display: none;
 }
 
 .featured-blog-container {
-	margin-top: -30px;
+  margin-top: -30px;
 }
 
 .preview-date {
@@ -52,9 +52,9 @@ i.dcl.logo {
 }
 
 @media (max-width: 991px) {
-	img.ui.image.featured-image {
-		margin-bottom: 12px !important;
-	}
+  img.ui.image.featured-image {
+    margin-bottom: 12px !important;
+  }
 }
 
 img.ui.image.featured-image {
@@ -64,30 +64,30 @@ img.ui.image.featured-image {
 
 .mail.icon,
 .twitter.icon {
-	padding-right: 10px;
+  padding-right: 10px;
 }
 
 .discord.icon {
-	padding-right: 0px;
-	margin-right: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
 }
 
 .mail.icon:hover,
 .twitter.icon:hover,
 .discord.icon:hover,
 a:hover {
-	color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .mail.icon,
 .twitter.icon,
 .discord.icon {
-	vertical-align: top;
-	margin-top: -6px;
+  vertical-align: top;
+  margin-top: -6px;
 }
 
 .dcl.navbar .mobile-menu {
-	margin-left: 30px;
+  margin-left: 30px;
 }
 
 /* ----------------------------------------- */
@@ -96,14 +96,14 @@ a:hover {
 
 div.mobile-featured-container,
 .blog-nav-container,
-.blog-hero-text  {
-	width: calc(100% - 40px) !important;
-	margin-left: 20px;
+.blog-hero-text {
+  width: calc(100% - 40px) !important;
+  margin-left: 20px;
 }
 
 .blog-hero-text {
-	margin-top: 30px;
-	margin-bottom: 60px;
+  margin-top: 30px;
+  margin-bottom: 60px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -172,10 +172,11 @@ div.ui.container.test-container,
 div.posts-2.read-next,
 .read-next-container .post-container,
 .read-next-container .post-info * {
-  background-color: #F6F8F9 !important;
+  background-color: #f6f8f9 !important;
 }
 
-.blog-page .container .posts .post .bottom, .blog-page .container .posts-2 .post .bottom {
+.blog-page .container .posts .post .bottom,
+.blog-page .container .posts-2 .post .bottom {
   margin-top: 0px !important;
   padding-top: 8px;
 }
@@ -217,12 +218,11 @@ div.blog-footer-container {
   }
 }
 
-.blog-page .container .posts, 
+.blog-page .container .posts,
 .blog-page .container .posts-2 {
   display: flex;
   flex-wrap: wrap;
 }
-
 
 .blog-page .container .posts .post {
   width: calc(33.33% - 40px);
@@ -336,7 +336,6 @@ div.blog-footer-container {
 .dcl.navbar-account {
   margin-right: 40px !important;
 }
-
 
 /* ----------------------------------------- */
 /*            BLOGDETAIL PAGE CSS            */
@@ -456,12 +455,14 @@ div.blog-footer-container {
   text-transform: uppercase;
 }
 
-div.date1, .date-divider {
+div.date1,
+.date-divider {
   margin-right: 1px;
 }
 
 @media (max-width: 767px) {
-  div.date1, .date-divider {
+  div.date1,
+  .date-divider {
     margin-left: -18px !important;
   }
 }
@@ -551,7 +552,6 @@ div.date1, .date-divider {
   fill: red;
 }
 
-
 .blogdetail-page .post__content {
   font-size: 16px;
   font-weight: 100 !important;
@@ -625,8 +625,8 @@ div.date1, .date-divider {
   }
 }
 
-.blogdetail-page .post__content p, 
-.blogdetail-page .post__content li, 
+.blogdetail-page .post__content p,
+.blogdetail-page .post__content li,
 .summary_content {
   font-family: Lato, sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
@@ -660,7 +660,7 @@ div.date1, .date-divider {
   line-height: 1.7 !important;
   font-size: 20px !important;
   margin-bottom: 0;
-  font-weight: normal !important; 
+  font-weight: normal !important;
   margin: 0px;
 }
 
@@ -673,7 +673,7 @@ div.date1, .date-divider {
   font-size: 16px !important;
   margin-bottom: 0;
   color: rgb(97, 97, 97);
-  font-weight: normal !important; 
+  font-weight: normal !important;
 }
 
 .date2 {
@@ -685,7 +685,7 @@ div.date1, .date-divider {
   font-size: 16px !important;
   margin-bottom: 0;
   color: rgb(97, 97, 97);
-  font-weight: normal !important; 
+  font-weight: normal !important;
 }
 
 .date4 {
@@ -698,7 +698,7 @@ div.date1, .date-divider {
   margin-bottom: 0;
   margin-top: -29px;
   color: rgb(97, 97, 97);
-  font-weight: normal !important; 
+  font-weight: normal !important;
 }
 
 .date3 {
@@ -717,7 +717,8 @@ div.date1, .date-divider {
   font-size: 48px;
 }
 
-.blogdetail-page h1, .blogdetail-page a {
+.blogdetail-page h1,
+.blogdetail-page a {
   font-weight: 500 !important;
   color: black;
   font-family: Lato, sans-serif !important;
@@ -742,7 +743,7 @@ div.date1, .date-divider {
 }
 
 .blogdetail-page .post__content li::before {
-  content: "•";
+  content: '•';
   position: absolute;
   top: 3px !important;
   left: 0px !important;
@@ -777,12 +778,14 @@ div.date1, .date-divider {
 }
 .menu-hide {
   display: none !important;
-  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, -webkit-transform 0.25s ease !important;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease,
+    -webkit-transform 0.25s ease !important;
   /* opacity: 0 !important; */
 }
 .menu-show {
   display: flex !important;
-  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, -webkit-transform 0.25s ease !important;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease,
+    -webkit-transform 0.25s ease !important;
   /* opacity: 1 !important; */
 }
 
@@ -794,12 +797,12 @@ div.date1, .date-divider {
     display: block !important;
   }
   div.ui.container.blog-nav-container {
-  	margin-right: 15px !important;
-  	margin-left: 20px !important;
+    margin-right: 15px !important;
+    margin-left: 20px !important;
   }
   .mobile-menu {
     opacity: 1 !important;
-    z-index: 10 !important;
+    z-index: 3 !important;
   }
   .mobile-menu-items {
     pointer-events: all !important;
@@ -811,8 +814,9 @@ div.date1, .date-divider {
     margin-left: -36px !important;
     min-width: 100vw !important;
     background-color: var(--navbar-popup);
-    box-shadow: 0 12px 12px -4px rgba(0,0,0,.1) !important;
-    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, -webkit-transform 0.25s ease;
+    box-shadow: 0 12px 12px -4px rgba(0, 0, 0, 0.1) !important;
+    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease,
+      -webkit-transform 0.25s ease;
   }
   .mobile-menu-items .item {
     padding-top: 25px !important;
@@ -840,20 +844,20 @@ div.dcl.navbar.menu-mobile {
 }
 
 .dcl.navbar {
-	border-bottom: white;
-	width: calc(100% + 40px);
-	margin-right: -20px;
-	margin-bottom: -11px;
+  border-bottom: white;
+  width: calc(100% + 40px);
+  margin-right: -20px;
+  margin-bottom: -11px;
 }
 
 div.dcl.navbar-menu {
-	margin-left: -60px;
+  margin-left: -60px;
 }
 
 .dcl.navbar .ui.menu .item {
-	font-size: 14px;
-	font-weight: 400;
-	letter-spacing: 0.25px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.25px;
 }
 
 .dcl.navbar .ui.menu .item.active {

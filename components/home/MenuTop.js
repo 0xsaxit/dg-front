@@ -4,7 +4,9 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Sidebar, Segment, Icon, Modal, Button } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
-import ModalDeposit from '../modal/ModalDeposit';
+
+// import ModalDeposit from '../modal/ModalDeposit';
+
 import MessageBox from './MessageBox';
 import Global from '../Constants';
 
@@ -53,6 +55,22 @@ const MenuTop = () => {
       data: 0,
     });
   }
+
+  // function maticWidget() {
+  //   console.log('matic widget state: ' + state.maticWidget);
+
+  //   // dispatch({
+  //   //   type: 'matic_widget',
+  //   //   data: 1,
+  //   // });
+
+  //   return (
+  //     <script
+  //       src="https://wallet.matic.today/embeds/widget-button.js"
+  //       data-script-name="matic-embeds"
+  //     ></script>
+  //   );
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -145,7 +163,7 @@ const MenuTop = () => {
                 marginLeft: '23px',
                 height: '100%',
                 position: 'relative',
-                zIndex: '999',
+                zIndex: '2',
               }}
             />
           </Link>
@@ -203,7 +221,6 @@ const MenuTop = () => {
                 />
                 {state.balances[1][1]} DAI
               </span>
-
               <span className="sidebar-menu-text-3">
                 <img
                   style={{
@@ -218,8 +235,20 @@ const MenuTop = () => {
                 />
                 {state.balances[0][1]} MANA
               </span>
-
               {/* <ModalDeposit menuLink={1} /> */}
+              {/* <Button className="account-deposit-button" onClick={maticWidget}>
+                ADD CRYPTO
+              </Button> */}
+              <Button
+                // className={props.style}
+                class="matic-widget-button"
+                data-default-page="home"
+                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                // onClick={maticWidget}
+              >
+                ADD CRYPTO
+              </Button>
+              ;
             </span>
           ) : (
             /////////////////////////////////////////////////////////////////////////////////////////
@@ -249,7 +278,7 @@ const MenuTop = () => {
             </Modal>
           </div>
 
-          <ModalDeposit menuLink={1} />
+          {/* <ModalDeposit menuLink={1} /> */}
         </Menu>
 
         {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}
