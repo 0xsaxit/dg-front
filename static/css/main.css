@@ -371,12 +371,15 @@ video.home-dashboard-video {
 .games-pic {
   padding-right: 45px;
   padding-bottom: 30px;
-  min-width: 410px;
+  min-width: 500px;
+  max-width: 500px !important;
 }
 
 @media (max-width: 499px) {
   .games-pic {
-    min-width: calc(100vw - 75px) !important;
+    min-width: calc(100vw - 21px) !important;
+    padding-right: 21px !important;
+    max-width: calc(100vw - 21px) !important;
   }
 }
 
