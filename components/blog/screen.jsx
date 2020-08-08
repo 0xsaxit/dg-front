@@ -1,23 +1,11 @@
 import React, { useContext, useState } from 'react';
 import PostPreview from './PostPreview';
 import { Container, Menu } from 'semantic-ui-react';
-// import logo from '../../static/images/authorize_title.png';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
-import {
-  Image,
-  Divider,
-  Grid,
-  Icon,
-  Breadcrumb,
-  Search,
-} from 'semantic-ui-react';
+import { Image, Divider, Grid, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
-// import flamingos from '../../static/images/flamingos.png';
-// import Fade from 'react-reveal/Fade';
 import { GlobalContext } from '../../store';
-// import { Navbar } from 'semantic-ui-react';
-// const Navbar = require('decentraland-ui/src/components/Navbar');
 
 const Screen = ({ pages, category, handleClickButton, match, history }) => {
   const filteredPages =
@@ -39,6 +27,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
       slug: blog.slug,
     };
   });
+
   const handleResultSelect = (e, { result }) => {
     setValue('');
     history.push(`/blog/${result.slug}`);
@@ -65,29 +54,6 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
 
   return (
     <Segment vertical>
-      {/* <html lang="en">
-          <Head>
-            <title> Decentral Games </title>
-          </Head>
-        </html>
-        <div className="blog-page">
-          <NextSeo
-              openGraph={{
-                  type: 'website',
-                  url: 'https://decentral.games',
-                  title: 'Decentral Games Blog',
-                  description: '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!',
-                  images: [
-                          {
-                              url: 'https://cdn.buttercms.com/YzOXgTtkQOiqzTcyAWMg',
-                              width: 800,
-                              height: 600,
-                              alt: 'Decentral Games',
-                          },
-                ],
-              }}
-          /> */}
-
       <div className="blog-page">
         <Container className="featured-blog-container">
           <Container>

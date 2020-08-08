@@ -4,16 +4,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Sidebar, Segment, Icon, Modal, Button } from 'semantic-ui-react';
 import ModalVerify from '../modal/ModalVerify';
-
-// import ModalDeposit from '../modal/ModalDeposit';
-
+import ModalDeposit from '../modal/ModalDeposit';
 import MessageBox from './MessageBox';
 import Global from '../Constants';
 
 const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const [visible, setVisible] = React.useState(0);
+  const [visible, setVisible] = React.useState(0)
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -25,23 +23,19 @@ const MenuTop = () => {
       if ('/' === router.pathname) {
         return 'dashboard-menu-container';
       } else {
-        return 'other-menu-container';
+        return 'other-menu-container blog';
       }
     }
   }
 
   function getLinkStyles(path) {
     if (path === 'menu') {
-      if ('/' === router.pathname) {
-        return 'menu-container';
-      } else {
-        return 'menu-container-dark';
-      }
+      return 'menu-container-dark blog';
     } else {
       if (path === router.pathname) {
-        return 'sidebar-menu-text' + ' active';
+        return 'sidebar-menu-text blog' + ' active';
       } else {
-        return 'sidebar-menu-text';
+        return 'sidebar-menu-text blog';
       }
     }
   }
@@ -55,26 +49,10 @@ const MenuTop = () => {
       data: 0,
     });
   }
-
-  // function maticWidget() {
-  //   console.log('matic widget state: ' + state.maticWidget);
-
-  //   // dispatch({
-  //   //   type: 'matic_widget',
-  //   //   data: 1,
-  //   // });
-
-  //   return (
-  //     <script
-  //       src="https://wallet.matic.today/embeds/widget-button.js"
-  //       data-script-name="matic-embeds"
-  //     ></script>
-  //   );
-  // }
-
+  
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // open and close mobile dropdown menu
+  // open and close mobile dropdown menu 
   function handleDimmedChange() {
     if (visible === 0) {
       setVisible(1);
@@ -86,38 +64,35 @@ const MenuTop = () => {
   if (state.userStatus) console.log('User status: ' + state.userStatus);
 
   return (
-    <div>
-      <div
-        className="dropdown-menu"
-        id={visible === 0 ? 'pushable-one' : 'pushable-two'}
-      >
-        <span
-          class="material-icons"
+    <div className="blog-menu-background">
+      <div className="dropdown-menu blog" id={visible === 0 ? "pushable-one" : "pushable-two"}>
+        <span 
+          class="material-icons" 
           onClick={handleDimmedChange}
           id="mobile-menu-icon"
+          style={{ color: 'rgb(10, 10, 10)' }}
         >
-          {visible === 0 ? 'menu' : 'close'}
+          {visible === 0 ? "menu" : "close"}
         </span>
 
         <Sidebar.Pushable>
           <Sidebar
             as={Menu}
             direction="top"
-            animation="overlay"
-            icon="labeled"
+            animation='overlay'
+            icon='labeled'
             vertical
             visible={visible}
-            style={{ backgroundColor: 'rgba(10, 10, 10, 1)' }}
+            style={{ backgroundColor: 'white' }}
           >
+            
             <Link href="/">
               <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
             </Link>
 
             {state.userStatus ? (
               <Link href="/account">
-                <Menu.Item className={getLinkStyles('/account')}>
-                  ACCOUNT
-                </Menu.Item>
+                <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
               </Link>
             ) : null}
 
@@ -136,14 +111,16 @@ const MenuTop = () => {
             <Menu.Item
               href="https://docs.decentral.games/"
               target="_blank"
-              className="sidebar-menu-text"
+              className="sidebar-menu-text blog"
               style={{ paddingBottom: '27px' }}
             >
               DOCS
             </Menu.Item>
+
           </Sidebar>
           <Sidebar.Pusher>
-            <Segment className="transparent-menu-segment"></Segment>
+            <Segment className="transparent-menu-segment">
+            </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
@@ -161,9 +138,9 @@ const MenuTop = () => {
                 paddingBottom: '15px',
                 marginRight: '12px',
                 marginLeft: '23px',
-                height: '100%',
+                height: '100%',                
                 position: 'relative',
-                zIndex: '2',
+                zIndex: '999'
               }}
             />
           </Link>
@@ -175,9 +152,7 @@ const MenuTop = () => {
 
             {state.userStatus ? (
               <Link href="/account">
-                <Menu.Item className={getLinkStyles('/account')}>
-                  ACCOUNT
-                </Menu.Item>
+                <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
               </Link>
             ) : null}
 
@@ -196,18 +171,19 @@ const MenuTop = () => {
             <Menu.Item
               href="https://docs.decentral.games/"
               target="_blank"
-              className="sidebar-menu-text"
+              className="sidebar-menu-text blog"
             >
               DOCS
             </Menu.Item>
           </div>
+
 
           {state.userStatus ? (
             /////////////////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////////////////////////////////////////////////////////
             // display token balances and 'ADD CRYPTO' button
             <span className="right-menu-items">
-              <span className="sidebar-menu-text-2">
+              <span className="sidebar-menu-text-2 blog">
                 <img
                   style={{
                     verticalAlign: 'middle',
@@ -221,7 +197,8 @@ const MenuTop = () => {
                 />
                 {state.balances[1][1]} DAI
               </span>
-              <span className="sidebar-menu-text-3">
+
+              <span className="sidebar-menu-text-3 blog">
                 <img
                   style={{
                     verticalAlign: 'middle',
@@ -235,20 +212,8 @@ const MenuTop = () => {
                 />
                 {state.balances[0][1]} MANA
               </span>
-              {/* <ModalDeposit menuLink={1} /> */}
-              {/* <Button className="account-deposit-button" onClick={maticWidget}>
-                ADD CRYPTO
-              </Button> */}
-              <Button
-                // className={props.style}
-                class="matic-widget-button"
-                data-default-page="home"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                // onClick={maticWidget}
-              >
-                ADD CRYPTO
-              </Button>
-              ;
+
+              <ModalDeposit menuLink={1} />
             </span>
           ) : (
             /////////////////////////////////////////////////////////////////////////////////////////
@@ -258,7 +223,7 @@ const MenuTop = () => {
               <ModalVerify />
             </span>
           )}
-
+          
           <div className="demo-button-container">
             <Modal
               trigger={<a className="demo-button"> DEMO </a>}
@@ -269,8 +234,8 @@ const MenuTop = () => {
               <Modal.Content>
                 <iframe
                   className="mobile-demo-video"
-                  src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1"
-                  frameborder="0"
+                  src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1" 
+                  frameborder="0" 
                   allow="autoplay"
                   allowfullscreen
                 ></iframe>
@@ -278,7 +243,6 @@ const MenuTop = () => {
             </Modal>
           </div>
 
-          {/* <ModalDeposit menuLink={1} /> */}
         </Menu>
 
         {state.messageBox ? <MessageBox handleDismiss={handleDismiss} /> : null}
