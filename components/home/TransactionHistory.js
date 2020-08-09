@@ -36,7 +36,7 @@ const History = (props) => {
 
   useEffect(() => {
     return () => {
-      balancesOverlay(false);
+      balancesOverlay(0);
     };
   }, []);
 
@@ -153,13 +153,13 @@ const History = (props) => {
 
     if (type === 'Balances') {
       result = true;
-      balancesOverlay(true);
+      balancesOverlay(1);
     } else if (type === 'History') {
       result = dataHistory.slice(indexStart, indexEnd);
-      balancesOverlay(false);
+      balancesOverlay(0);
     } else if (type === 'Play') {
       result = dataPlay.slice(indexStart, indexEnd);
-      balancesOverlay(false);
+      balancesOverlay(0);
     }
 
     setDataPage(result);

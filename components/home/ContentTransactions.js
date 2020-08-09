@@ -4,7 +4,6 @@ import transakSDK from '@transak/transak-sdk';
 import { Table, Button, Icon, Divider, Grid } from 'semantic-ui-react';
 
 // import ModalDeposit from '../modal/ModalDeposit';
-// import MaticWidget from '../MaticWidget';
 
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';

@@ -3,7 +3,10 @@ import { GlobalContext } from '../store';
 import Global from './Constants';
 
 function Transactions() {
+  // dispatch users transaction history data to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   let userAddress = '';
 
   useEffect(() => {
@@ -28,39 +31,6 @@ function Transactions() {
       })();
     }
   }, [state.userStatus]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // REST API functions: get user's transaction history data
-  // async function getHistoryData() {
-  //   return fetch(`${Global.API_BASE_URL}/order/getHistory`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: userAddress,
-  //       limit: 99999, // just grab all of the data
-  //       page: 1,
-  //     }),
-  //   });
-  // }
-
-  // async function getPlayData() {
-  //   return fetch(`${Global.API_BASE_URL}/order/getPlayInfo`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: userAddress,
-  //       limit: 99999, // just grab all of the data
-  //       page: 1,
-  //     }),
-  //   });
-  // }
 
   return null;
 }

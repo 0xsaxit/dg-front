@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import ContentBalances from './ContentBalances';
+import Aux from './_Aux';
 
 const BalancesOverlay = () => {
   // get balances overlay state from the Context API store
@@ -17,28 +18,54 @@ const BalancesOverlay = () => {
     }
   }, [state.balancesOverlay]);
 
+  function close() {
+    dispatch({
+      type: 'balances_overlay',
+      data: 0,
+    });
+  }
+
   const styles = {
     balancesContainer: {
       position: 'absolute',
       top: '400px',
-      left: 0,
-      right: 0,
+      left: 10,
+      right: 10,
       marginLeft: 'auto',
       marginRight: 'auto',
-      zIndex: 4,
+      background: '#ffffff',
+      borderRadius: '25px',
+      zIndex: 5,
       display: visibility,
+    },
+    close: {
+      cursor: 'pointer',
+      position: 'absolute',
+      fontSize: '24px',
+      fontWeight: 800,
+      top: '410px',
+      right: 25,
+      color: '#000000',
+      zIndex: 6,
     },
   };
 
-  // function balancesOverlay() {
   return (
-    <div style={styles.balancesContainer}>
-      <ContentBalances />
-    </div>
-  );
-  // }
+    <Aux>
+      {state.balancesOverlay === 2 ? (
+        <span style={styles.close} onClick={close}>
+          X
+        </span>
+      ) : null}
 
-  // return balancesOverlay();
+      <div style={styles.balancesContainer}>
+        <div className="page-container">
+          <div className="account-other-inner-container"></div>
+          <ContentBalances />
+        </div>
+      </div>
+    </Aux>
+  );
 };
 
 export default BalancesOverlay;

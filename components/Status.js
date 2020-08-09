@@ -3,7 +3,10 @@ import { GlobalContext } from '../store';
 import Global from './Constants';
 
 function Status() {
+  // dispatch user's status value to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   let userAddress = '';
 
   useEffect(() => {
