@@ -25,10 +25,11 @@ const BalancesOverlay = () => {
     });
   }
 
+  // set overlay visibility based on value of state.balancesOverlay
   const styles = {
     balancesContainer: {
       position: 'absolute',
-      top: '400px',
+      top: '240px',
       left: 10,
       right: 10,
       marginLeft: 'auto',
@@ -36,14 +37,14 @@ const BalancesOverlay = () => {
       background: '#ffffff',
       borderRadius: '25px',
       zIndex: 5,
-      display: visibility,
+      display: visibility || 'none',
     },
     close: {
       cursor: 'pointer',
       position: 'absolute',
       fontSize: '24px',
       fontWeight: 800,
-      top: '410px',
+      top: '250px',
       right: 25,
       color: '#000000',
       zIndex: 6,

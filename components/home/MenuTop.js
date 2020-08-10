@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -13,6 +13,40 @@ const MenuTop = () => {
 
   // define local variables
   const [visible, setVisible] = React.useState(0);
+  const [menuStyle, setMenuStyle] = React.useState([]);
+
+  // set menu styles
+  useEffect(() => {
+    if (router.pathname === '/blog') {
+      setMenuStyle([
+        'other-menu-container blog',
+        'menu-container-dark blog',
+        'sidebar-menu-text blog',
+        'blog-menu-background',
+        'dropdown-menu blog',
+        'rgb(10, 10, 10)',
+        'white',
+        'sidebar-menu-text blog',
+        'sidebar-menu-text blog',
+        'sidebar-menu-text-2 blog',
+        'sidebar-menu-text-3 blog',
+      ]);
+    } else {
+      setMenuStyle([
+        'other-menu-container',
+        'menu-container-dark',
+        'sidebar-menu-text',
+        '',
+        'dropdown-menu',
+        '',
+        'rgba(10, 10, 10, 1)',
+        'sidebar-menu-text',
+        'sidebar-menu-text',
+        'sidebar-menu-text-2',
+        'sidebar-menu-text-3',
+      ]);
+    }
+  }, []);
 
   // display the balances overlay
   function balancesOverlay() {
@@ -34,7 +68,7 @@ const MenuTop = () => {
       if ('/' === router.pathname) {
         return 'dashboard-menu-container';
       } else {
-        return 'other-menu-container';
+        return menuStyle[0];
       }
     }
   }
@@ -44,30 +78,26 @@ const MenuTop = () => {
       if ('/' === router.pathname) {
         return 'menu-container';
       } else {
-        return 'menu-container-dark';
+        return menuStyle[1];
       }
     } else {
       if (path === router.pathname) {
-        return 'sidebar-menu-text' + ' active';
+        return menuStyle[2] + ' active';
       } else {
-        return 'sidebar-menu-text';
+        return menuStyle[2];
       }
     }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // close the message box popup
+  // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
     dispatch({
       type: 'message_box',
       data: 0,
     });
   }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // open and close mobile dropdown menu
   function handleDimmedChange() {
     if (visible === 0) {
       setVisible(1);
@@ -79,15 +109,16 @@ const MenuTop = () => {
   if (state.userStatus) console.log('User status: ' + state.userStatus);
 
   return (
-    <div>
+    <div className={menuStyle[3]}>
       <div
-        className="dropdown-menu"
+        className={menuStyle[4]}
         id={visible === 0 ? 'pushable-one' : 'pushable-two'}
       >
         <span
           class="material-icons"
           onClick={handleDimmedChange}
           id="mobile-menu-icon"
+          style={{ color: menuStyle[5] }}
         >
           {visible === 0 ? 'menu' : 'close'}
         </span>
@@ -100,7 +131,7 @@ const MenuTop = () => {
             icon="labeled"
             vertical
             visible={visible}
-            style={{ backgroundColor: 'rgba(10, 10, 10, 1)' }}
+            style={{ backgroundColor: menuStyle[6] }}
           >
             <Link href="/">
               <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
@@ -129,7 +160,7 @@ const MenuTop = () => {
             <Menu.Item
               href="https://docs.decentral.games/"
               target="_blank"
-              className="sidebar-menu-text"
+              className={menuStyle[7]}
               style={{ paddingBottom: '27px' }}
             >
               DOCS
@@ -189,7 +220,7 @@ const MenuTop = () => {
             <Menu.Item
               href="https://docs.decentral.games/"
               target="_blank"
-              className="sidebar-menu-text"
+              className={menuStyle[8]}
             >
               DOCS
             </Menu.Item>
@@ -200,7 +231,7 @@ const MenuTop = () => {
             /////////////////////////////////////////////////////////////////////////////////////////
             // display token balances and 'ADD CRYPTO' button
             <span className="right-menu-items">
-              <span className="sidebar-menu-text-2">
+              <span className={menuStyle[9]}>
                 <img
                   style={{
                     verticalAlign: 'middle',
@@ -214,7 +245,7 @@ const MenuTop = () => {
                 />
                 {state.balances[1][1]} DAI
               </span>
-              <span className="sidebar-menu-text-3">
+              <span className={menuStyle[10]}>
                 <img
                   style={{
                     verticalAlign: 'middle',
@@ -234,7 +265,7 @@ const MenuTop = () => {
                 className="modal-deposit-button"
                 onClick={balancesOverlay}
               >
-                ADD CRYPTO
+                ADD TOKENS
               </Button>
             </span>
           ) : (

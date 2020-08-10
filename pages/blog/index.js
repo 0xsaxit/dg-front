@@ -1,11 +1,11 @@
 import BlogHome from './blogHome';
-import LayoutBlog from '../../components/LayoutBlog.js';
+import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 
 const Index = () => {
   return (
-    <LayoutBlog>
+    <Layout>
       <Header
         title={Global.TITLE + ' | Blog'}
         description={Global.DESCRIPTION}
@@ -13,7 +13,7 @@ const Index = () => {
       />
 
       <BlogHome />
-    </LayoutBlog>
+    </Layout>
   );
 };
 
