@@ -69,7 +69,7 @@ const BalancesOverlay = () => {
       <div style={styles.balancesContainer}>
         <div className="page-container">
           <div className="account-other-inner-container"></div>
-          <ContentBalances />
+          {state.userStatus ? <ContentBalances /> : null}
         </div>
       </div>
     </Aux>
