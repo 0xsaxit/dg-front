@@ -11,13 +11,13 @@ function ParcelData() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = '';
+  let userAddress = '0xa7c825bb8c2c4d18288af8efe38c8bf75a1aab51';
   let landID = '3'; // hard-code to Tominoya for now
   let web3 = {};
 
   useEffect(() => {
     if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+      // userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       (async function () {
@@ -27,6 +27,8 @@ function ParcelData() {
         if (tokenID) {
           const response = await Global.fetchParcelData(landID, tokenID);
           const jsonData = await response.json();
+
+          console.log(jsonData);
 
           dispatch({
             type: 'parcel_data',

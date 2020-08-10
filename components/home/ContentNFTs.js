@@ -29,7 +29,7 @@ const ContentNFTs = (props) => {
     <div className="nft-container">
       <div className="nft-image">
         <Image
-          src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelData.parcelLocation[0]},${props.parcelData.parcelLocation[1]},1.png`}
+          src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelData.parcelLocation[0]},${props.parcelData.parcelLocation[2]},1.png`}
           className="tominoya-pic"
           style={{ borderRadius: '3px' }}
         />
@@ -58,7 +58,7 @@ const ContentNFTs = (props) => {
               <br />
               <p className="nft-number-content">
                 {props.parcelData.parcelLocation[0]},{' '}
-                {props.parcelData.parcelLocation[1]}
+                {props.parcelData.parcelLocation[2]}
               </p>
             </Grid.Column>
           </Grid.Row>
@@ -139,7 +139,7 @@ const ContentNFTs = (props) => {
         <Button
           color="blue"
           className="nft-button"
-          href={`https://play.decentraland.org/?position=${props.parcelData.parcelLocation[0]}%2C${props.parcelData.parcelLocation[1]}&realm=fenrir-gold`}
+          href={`https://play.decentraland.org/?position=${props.parcelData.parcelLocation[0]}%2C${props.parcelData.parcelLocation[2]}&realm=fenrir-gold`}
           target="_blank"
         >
           Teleport in
