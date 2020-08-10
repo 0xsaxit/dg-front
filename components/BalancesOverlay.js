@@ -8,7 +8,16 @@ const BalancesOverlay = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [containerPosition, setContainerPosition] = useState('3000');
+  const [buttonPosition, setButtonPosition] = useState('3000');
   const [visibility, setVisibility] = useState('visible');
+
+  useEffect(() => {
+    if (state.userStatus) {
+      setContainerPosition('240px');
+      setButtonPosition('250px');
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     if (state.balancesOverlay) {
@@ -29,7 +38,7 @@ const BalancesOverlay = () => {
   const styles = {
     balancesContainer: {
       position: 'absolute',
-      top: '240px',
+      top: containerPosition,
       left: 10,
       right: 10,
       marginLeft: 'auto',
@@ -44,7 +53,7 @@ const BalancesOverlay = () => {
       position: 'absolute',
       fontSize: '24px',
       fontWeight: 800,
-      top: '250px',
+      top: buttonPosition,
       right: 25,
       color: '#000000',
       zIndex: 6,
