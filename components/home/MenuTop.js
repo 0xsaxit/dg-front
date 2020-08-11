@@ -12,7 +12,7 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [visible, setVisible] = React.useState(0);
+  const [visible, setVisible] = React.useState(false);
   const [menuStyle, setMenuStyle] = React.useState([]);
 
   // set menu styles
@@ -47,6 +47,12 @@ const MenuTop = () => {
       ]);
     }
   }, []);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      console.log('User status: ' + state.userStatus);
+    }
+  }, [state.userStatus]);
 
   // display the balances overlay
   function balancesOverlay() {
@@ -98,29 +104,29 @@ const MenuTop = () => {
       data: 0,
     });
   }
+
   function handleDimmedChange() {
-    if (visible === 0) {
-      setVisible(1);
+    if (!visible) {
+      setVisible(true);
     } else {
-      setVisible(0);
+      setVisible(false);
     }
   }
-
-  if (state.userStatus) console.log('User status: ' + state.userStatus);
 
   return (
     <div className={menuStyle[3]}>
       <div
         className={menuStyle[4]}
-        id={visible === 0 ? 'pushable-one' : 'pushable-two'}
+        id={visible === false ? 'pushable-one' : 'pushable-two'}
+        style={{ zIndex: 7 }}
       >
         <span
-          class="material-icons"
+          className="material-icons"
           onClick={handleDimmedChange}
           id="mobile-menu-icon"
           style={{ color: menuStyle[5] }}
         >
-          {visible === 0 ? 'menu' : 'close'}
+          {visible === false ? 'menu' : 'close'}
         </span>
 
         <Sidebar.Pushable>
