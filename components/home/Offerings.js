@@ -42,7 +42,7 @@ const detailsGames = {
     'Roulette',
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
     '1-8 PLAYERS',
-    'PLAY, MANA, DAI',   
+    'PLAY, MANA, DAI',
     'https://play.decentral.games',
     'https://docs.decentral.games/games/roulette',
   ],
@@ -123,7 +123,9 @@ class Offerings extends React.Component {
               <p className="nfts-info">{detailsGames[item][4]}</p>
               <p className="nfts-info-2">{detailsGames[item][5]}</p>
             </span>
-            <p className="nft-other-p" style={{ paddingTop: '2px' }}>{detailsGames[item][3]}</p>
+            <p className="nft-other-p" style={{ paddingTop: '2px' }}>
+              {detailsGames[item][3]}
+            </p>
             <Button
               color="blue"
               className="games-button"
@@ -189,7 +191,11 @@ class Offerings extends React.Component {
                 className="leaderboard-coin-select"
               >
                 <span
-                  className={ this.state.gameSelect === "play" ? "account-hover play" : "account-hover" }
+                  className={
+                    this.state.gameSelect === 'play'
+                      ? 'account-hover play'
+                      : 'account-hover'
+                  }
                   onClick={() => this.handleChange('play')}
                 >
                   <img
@@ -206,7 +212,11 @@ class Offerings extends React.Component {
                   PLAY
                 </span>
                 <span
-                  className={ this.state.gameSelect === "mana" ? "account-hover mana" : "account-hover" }
+                  className={
+                    this.state.gameSelect === 'mana'
+                      ? 'account-hover mana'
+                      : 'account-hover'
+                  }
                   onClick={() => this.handleChange('mana')}
                 >
                   <img
@@ -223,7 +233,11 @@ class Offerings extends React.Component {
                   MANA
                 </span>
                 <span
-                  className={ this.state.gameSelect === "dai" ? "account-hover dai" : "account-hover" }
+                  className={
+                    this.state.gameSelect === 'dai'
+                      ? 'account-hover dai'
+                      : 'account-hover'
+                  }
                   onClick={() => this.handleChange('dai')}
                 >
                   <img
@@ -262,12 +276,16 @@ class Offerings extends React.Component {
               <span
                 style={{
                   display: 'flex',
-                  marginBottom: '21px'
+                  marginBottom: '21px',
                 }}
                 className="leaderboard-coin-select-mobile"
               >
                 <span
-                  className={ this.state.gameSelect === "play" ? "account-hover play" : "account-hover play2" }
+                  className={
+                    this.state.gameSelect === 'play'
+                      ? 'account-hover play'
+                      : 'account-hover play2'
+                  }
                   id="account-hover-play"
                   onClick={() => this.handleChange('play')}
                 >
@@ -285,7 +303,11 @@ class Offerings extends React.Component {
                   PLAY
                 </span>
                 <span
-                  className={ this.state.gameSelect === "mana" ? "account-hover mana" : "account-hover" }
+                  className={
+                    this.state.gameSelect === 'mana'
+                      ? 'account-hover mana'
+                      : 'account-hover'
+                  }
                   onClick={() => this.handleChange('mana')}
                 >
                   <img
@@ -302,7 +324,11 @@ class Offerings extends React.Component {
                   MANA
                 </span>
                 <span
-                  className={ this.state.gameSelect === "dai" ? "account-hover dai" : "account-hover" }
+                  className={
+                    this.state.gameSelect === 'dai'
+                      ? 'account-hover dai'
+                      : 'account-hover'
+                  }
                   onClick={() => this.handleChange('dai')}
                 >
                   <img

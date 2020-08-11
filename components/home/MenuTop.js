@@ -13,6 +13,7 @@ const MenuTop = () => {
 
   // define local variables
   const [visible, setVisible] = React.useState(false);
+  const [zIndexMobile, setZIndexMobile] = React.useState(1);
   const [menuStyle, setMenuStyle] = React.useState([]);
 
   // set menu styles
@@ -108,8 +109,10 @@ const MenuTop = () => {
   function handleDimmedChange() {
     if (!visible) {
       setVisible(true);
+      setZIndexMobile(7);
     } else {
       setVisible(false);
+      setZIndexMobile(1);
     }
   }
 
@@ -118,7 +121,7 @@ const MenuTop = () => {
       <div
         className={menuStyle[4]}
         id={visible === false ? 'pushable-one' : 'pushable-two'}
-        style={{ zIndex: 7 }}
+        style={{ zIndex: zIndexMobile }}
       >
         <span
           className="material-icons"
