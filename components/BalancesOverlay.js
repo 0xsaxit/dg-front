@@ -8,12 +8,12 @@ const BalancesOverlay = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [containerStyles, setContainerStyles] = useState([]);
+  const [positions, setPositions] = useState([]);
   const [visibility, setVisibility] = useState('visible');
 
   useEffect(() => {
     if (state.userStatus) {
-      setContainerStyles(['240px', 'auto', '#ffffff', '250px']);
+      setPositions(['240px', '250px']);
     }
   }, [state.userStatus]);
 
@@ -36,12 +36,12 @@ const BalancesOverlay = () => {
   const styles = {
     balancesContainer: {
       position: 'absolute',
-      top: containerStyles[0] || '3000',
+      top: positions[0] || '3000px',
       left: 10,
       right: 10,
-      marginLeft: containerStyles[1] || '3000',
-      marginRight: containerStyles[1] || '3000',
-      background: containerStyles[2] || '',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      background: '#ffffff',
       borderRadius: '25px',
       zIndex: 5,
       display: visibility || 'none',
@@ -51,7 +51,7 @@ const BalancesOverlay = () => {
       position: 'absolute',
       fontSize: '24px',
       fontWeight: 800,
-      top: containerStyles[3] || '3000',
+      top: positions[1] || '3000px',
       right: 25,
       color: '#000000',
       zIndex: 6,
@@ -69,7 +69,7 @@ const BalancesOverlay = () => {
       <div style={styles.balancesContainer}>
         <div className="page-container">
           <div className="account-other-inner-container"></div>
-          {state.userStatus ? <ContentBalances /> : null}
+          <ContentBalances />
         </div>
       </div>
     </Aux>
