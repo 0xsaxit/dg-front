@@ -193,7 +193,7 @@ const MenuTop = () => {
                 marginLeft: '23px',
                 height: '100%',
                 position: 'relative',
-                zIndex: '2',
+                zIndex: '6',
               }}
             />
           </Link>
