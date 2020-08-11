@@ -33,7 +33,7 @@ WORKDIR /app
 ENV NODE_ENV="production"
 ENV PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-COPY --from=base /app .
+COPY --from=base --chown=node:node /app .
 
 USER node
 
