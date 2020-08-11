@@ -1039,7 +1039,7 @@ svg.spanbox.disable {
   height: -webkit-fill-available;
   top: 0;
   left: 0;
-  z-index: 9;
+  z-index: 4;
 }
 
 .logospin {

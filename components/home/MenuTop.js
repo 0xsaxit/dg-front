@@ -15,6 +15,7 @@ const MenuTop = () => {
   const [visible, setVisible] = React.useState(false);
   const [zIndexMobile, setZIndexMobile] = React.useState(1);
   const [menuStyle, setMenuStyle] = React.useState([]);
+  const [menuPosition, setMenuPosition] = useState('3000px');
 
   // set menu styles
   useEffect(() => {
@@ -52,6 +53,12 @@ const MenuTop = () => {
   useEffect(() => {
     if (state.userStatus) {
       console.log('User status: ' + state.userStatus);
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      setMenuPosition(['0px']);
     }
   }, [state.userStatus]);
 
@@ -117,7 +124,7 @@ const MenuTop = () => {
   }
 
   return (
-    <div className={menuStyle[3]}>
+    <div className={menuStyle[3]} style={{ top: menuPosition }}>
       <div
         className={menuStyle[4]}
         id={visible === false ? 'pushable-one' : 'pushable-two'}
