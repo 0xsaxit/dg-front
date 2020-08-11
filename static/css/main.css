@@ -1449,12 +1449,9 @@ a.ui.blue.button.play-shimmer:hover,
   transform: translateY(-1px);
 }
 
-.ui.blue.button:hover,
-.ui.blue.buttons .button:hover,
-.ui.blue.button:active,
-.ui.blue.buttons .button:active,
-.ui.blue.button:focus,
-.ui.blue.buttons .button:focus {
+button.ui.blue.button.modal-deposit-button:hover,
+button.ui.blue.button.modal-deposit-button:active,
+button.ui.blue.button.modal-deposit-button:focus {
   background-color: #2085f4 !important;
 }
 
