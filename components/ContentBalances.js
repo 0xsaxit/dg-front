@@ -13,7 +13,7 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  hostURL: 'http://localhost:3002/account',
+  hostURL: 'https://decentral.games',
   widgetHeight: '633px',
   widgetWidth: '450px',
 });
@@ -45,161 +45,66 @@ const ContentBalances = (props) => {
 
   function balancesOverlay() {
     return (
-      <Grid className="balances-container">
-        <Grid.Row>
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column one"
-          >
-            <span className="balances-text">
+      <div className="matic-overlay">
+        <div className="matic-top-bar">
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex' }}>
               <img
-                src={Global.IMAGES.LOGO}
-                style={{
-                  width: '28px',
-                  marginRight: '9px',
-                  verticalAlign: 'top',
-                  marginTop: '-2px',
-                }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png"
+                className="matic-top-image"
               />
-              5,000 PLAY
+              <p className="matic-top-text-1"> Account Connected </p>
             </span>
-            <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
-            <span className="balances-button-span">
-              <Button
-                color="blue"
-                className="balances-play-button"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                PLAY NOW
-              </Button>
-              <Button
-                disabled
-                color="blue"
-                className="balances-play-button-2"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                TOP UP
-              </Button>
+            <span style={{ display: 'flex' }}>
+              <p className="matic-top-text-2">
+                {' '}
+                Matic Testnet Mumbai • Metamask{' '}
+              </p>
             </span>
-          </Grid.Column>
-
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column two"
-          >
-            <span className="balances-text">
-              <img
-                src={Global.IMAGES.DAI_CIRCLE}
-                style={{
-                  width: '28px',
-                  marginRight: '9px',
-                  verticalAlign: 'top',
-                  marginTop: '-2px',
-                }}
-              />
-              0 DAI
-            </span>
-            <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
-            <span className="balances-button-span">
-              <Button
-                disabled
-                color="blue"
-                className="balances-play-button"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                DEPOSIT
-              </Button>
-              <Button
-                disabled
-                color="blue"
-                className="balances-play-button-2"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                WITHDRAW
-              </Button>
-            </span>
+          </span>
+        </div>
+        <div>
+          <p className="matic-header-text"> Add Tokens </p>
+          <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
+          <div className="matic-widget-button-container">
             <div>
               <Button
-                disabled
-                color="blue"
-                className="balances-purchase-button"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                PURCHASE
-              </Button>
-            </div>
-          </Grid.Column>
-
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column three"
-          >
-            <span className="balances-text">
-              <img
-                src={Global.IMAGES.MANA_CIRCLE}
-                style={{
-                  width: '28px',
-                  marginRight: '9px',
-                  verticalAlign: 'top',
-                  marginTop: '-2px',
-                }}
-              />
-              {state.balances[0][1]} MANA
-            </span>
-            <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
-            <span className="balances-button-span">
-              {state.location ? (
-                <Button
-                  color="blue"
-                  className="matic-widget-button balances-play-button"
-                  data-default-page="deposit"
-                  data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                >
-                  DEPOSIT
-                </Button>
-              ) : (
-                <Button disabled color="blue" className="balances-play-button">
-                  DEPOSIT
-                </Button>
-              )}
-
-              <Button
-                color="blue"
-                className="matic-widget-button balances-play-button-2"
-                data-default-page="withdraw"
+                className="matic-widget-button"
+                data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
               >
-                WITHDRAW
+                <span className="matic-icon-background">
+                  <span class="material-icons" id="matic-widget-icon-left-1">
+                    add
+                  </span>
+                </span>
+                Deposit from Metamask
+                <span class="material-icons" id="matic-widget-icon-right-1">
+                  keyboard_arrow_right
+                </span>
               </Button>
 
               <script
                 src="https://wallet.matic.today/embeds/widget-button.js"
                 data-script-name="matic-embeds"
               ></script>
-            </span>
+            </div>
             <div>
-              <Button
-                color="blue"
-                className="balances-purchase-button"
-                onClick={show_transak}
-              >
-                PURCHASE
+              <Button className="matic-widget-button-2" onClick={show_transak}>
+                <span className="matic-icon-background-2">
+                  <span class="material-icons" id="matic-widget-icon-left-2">
+                    add
+                  </span>
+                </span>
+                Purchase with Debit Card
+                <span class="material-icons" id="matic-widget-icon-right-2">
+                  keyboard_arrow_right
+                </span>
               </Button>
             </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          </div>
+        </div>
+      </div>
     );
   }
 

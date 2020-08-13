@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { Icon } from 'semantic-ui-react';
 import { GlobalContext } from '../store';
 import ContentBalances from './ContentBalances';
 import Aux from './_Aux';
@@ -36,23 +37,22 @@ const BalancesOverlay = () => {
   const styles = {
     balancesContainer: {
       position: 'absolute',
-      top: positions[0] || '3000px',
-      left: 10,
-      right: 10,
-      marginLeft: 'auto',
+      top: '0',
+      minWidth: '446px',
+      marginLeft: 'calc(50% - 223px)',
       marginRight: 'auto',
       background: '#ffffff',
-      borderRadius: '25px',
+      borderRadius: '12px',
       zIndex: 5,
       display: visibility || 'none',
     },
     close: {
       cursor: 'pointer',
       position: 'absolute',
-      fontSize: '24px',
-      fontWeight: 800,
-      top: positions[1] || '3000px',
-      right: 25,
+      fontSize: '12px',
+      fontWeight: 400,
+      marginLeft: 'calc(50% - 188px)',
+      marginTop: '72px',
       color: '#000000',
       zIndex: 6,
     },
@@ -62,7 +62,7 @@ const BalancesOverlay = () => {
     <Aux>
       {state.balancesOverlay === 2 ? (
         <span style={styles.close} onClick={close}>
-          X
+          <span className="material-icons" style={{ fontSize: '29px' }}> close </span>
         </span>
       ) : null}
 

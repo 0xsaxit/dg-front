@@ -888,14 +888,150 @@ svg.spanbox.disable {
 }
 
 /* ----------------------------------------- */
+/*             DEPOSIT MODAL CSS             */
+/* ----------------------------------------- */
+
+.matic-overlay {
+  margin-top: -21px;
+}
+
+.matic-top-bar {
+  padding: 11px 12px 11px 10px;
+  height: 44px;
+  background-color: #e7e9ee;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+  margin-bottom: 80px;
+}
+
+.matic-top-image {
+  width: 30px;
+  padding-right: 6px;
+}
+
+.matic-top-text-1 {
+  opacity: 0.6;
+  font-family: Graphik, sans-serif !important;
+  text-align: left;
+  font-size: 12px;
+  padding-top: 3px;
+}
+
+.matic-top-text-2 {
+  opacity: 0.6;
+  font-family: Graphik, sans-serif !important;
+  padding-top: 3px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.matic-header-text {
+  margin-top: -47px !important;
+  margin-bottom: 33px;
+  font-family: Graphik, sans-serif !important;
+  font-size: 17px;
+  line-height: 1.5rem;
+  font-weight: 800 !important;
+  text-align: center;
+}
+
+.matic-widget-button-container {
+  padding: 20px 40px 40px 40px;
+}
+
+button.ui.button.matic-widget-button {
+  text-align: left;
+  width: 364px;
+  height: 56px;
+  padding: 16px 2px 12px 13px;
+  background-color: white;
+  border: 1px solid rgb(231, 233, 238);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Graphik, sans-serif !important;
+}
+
+button.ui.button.matic-widget-button-2 {
+  text-align: left;
+  margin-top: -1px;
+  width: 364px;
+  height: 56px;
+  padding: 16px 2px 12px 13px;
+  background-color: white;
+  border: 1px solid rgb(231, 233, 238);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Graphik, sans-serif !important;
+}
+
+button.ui.button.matic-widget-button:hover,
+button.ui.button.matic-widget-button-2:hover {
+  transform: translateY(0px) !important;
+  box-shadow: none;
+}
+
+span.matic-icon-background {
+  padding: 5px 5px 3px 5px;
+  background-color: #d5e2fc;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+span.matic-icon-background-2 {
+  padding: 3px 5px 5px 5px;
+  background-color: #d5e2fc;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+#matic-widget-icon-left-1 {
+  vertical-align: top;
+  color: #003cb2;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#matic-widget-icon-left-2 {
+  vertical-align: top;
+  color: #003cb2;
+  padding-top: 2px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#matic-widget-icon-right-1 {
+  float: right;
+  font-size: 27px;
+  font-weight: 100 !important;
+  opacity: 0.3;
+  margin-top: -5px;
+}
+
+#matic-widget-icon-right-2 {
+  float: right;
+  font-size: 27px;
+  font-weight: 100 !important;
+  opacity: 0.3;
+  margin-top: -5px;
+}
+
+/* ----------------------------------------- */
 /*           ACCOUNT BALANCES CSS            */
 /* ----------------------------------------- */
 
 .balances-container {
   display: flex;
   justify-content: space-between;
-  margin-left: 5px !important;
-  margin-right: 5px !important;
 }
 
 .balances-column {
