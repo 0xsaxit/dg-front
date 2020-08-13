@@ -153,7 +153,7 @@ const History = (props) => {
 
     if (type === 'Balances') {
       result = true;
-      balancesOverlay(0);
+      balancesOverlay(1);
     } else if (type === 'History') {
       result = dataHistory.slice(indexStart, indexEnd);
       balancesOverlay(0);

@@ -6,7 +6,7 @@ const MessageBar = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [message, setMessage] = React.useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (state.userStatus) {
@@ -37,31 +37,17 @@ const MessageBar = () => {
     }
   }, [state.networkID, state.location]);
 
-  //   function getMessage() {
-  //     if (!state.networkID) {
-  //       setMessage('You must login to MetaMask to view your NFTs');
-  //     } else if (state.networkID !== 1) {
-  //       setMessage('Please switch MetaMask to Ethereum Mainnet');
-  //     } else if (!state.location) {
-  //       setMessage(
-  //         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play our free play games'
-  //       );
-  //     }
-  //   }
-
   if (message !== '') {
-    // console.log('message: ' + message);
-
     return (
       <div
         style={{
-          color: 'white',
+          color: '#252525',
           textAlign: 'center',
-          padding: '13px 0',
+          padding: '10px 0',
           fontSize: '18px',
           fontWeight: 500,
-          backgroundColor: 'red',
-          height: '45px',
+          backgroundColor: '#cecece',
+          height: '40px',
         }}
       >
         {message}

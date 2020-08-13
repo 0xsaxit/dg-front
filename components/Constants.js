@@ -691,6 +691,16 @@ function fetchUserStatus(address) {
   });
 }
 
+function fetchCountryCode(address) {
+  // return fetch(
+  //   `http://api.ipstack.com/${address}?access_key=${KEYS.IPSTACK}&fields=country_code`
+  // );
+
+  // const field = 'country';
+
+  return fetch(`https://ipapi.co/json/`);
+}
+
 function fetchParcelData(landID, tokenID) {
   return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
     method: 'GET',
@@ -809,6 +819,7 @@ export default {
   executeMetaTransaction,
   getConfirmedTx,
   fetchUserStatus,
+  fetchCountryCode,
   fetchParcelData,
   fetchHistoryData,
   fetchPlayData,

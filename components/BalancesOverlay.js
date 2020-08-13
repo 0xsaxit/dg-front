@@ -62,7 +62,10 @@ const BalancesOverlay = () => {
     <Aux>
       {state.balancesOverlay === 2 ? (
         <span style={styles.close} onClick={close}>
-          <span className="material-icons" style={{ fontSize: '29px' }}> close </span>
+          <span className="material-icons" style={{ fontSize: '29px' }}>
+            {' '}
+            close{' '}
+          </span>
         </span>
       ) : null}
 

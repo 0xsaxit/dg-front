@@ -14,10 +14,9 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [visible, setVisible] = React.useState(false);
-  const [zIndexMobile, setZIndexMobile] = React.useState(1);
-  const [menuStyle, setMenuStyle] = React.useState([]);
-  // const [menuPosition, setMenuPosition] = useState('3000px');
+  const [visible, setVisible] = useState(false);
+  const [zIndexMobile, setZIndexMobile] = useState(1);
+  const [menuStyle, setMenuStyle] = useState([]);
 
   // set menu styles
   useEffect(() => {
@@ -57,12 +56,6 @@ const MenuTop = () => {
       console.log('User status: ' + state.userStatus);
     }
   }, [state.userStatus]);
-
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     setMenuPosition(['0px']);
-  //   }
-  // }, [state.userStatus]);
 
   // display the balances overlay
   function balancesOverlay() {
@@ -241,7 +234,7 @@ const MenuTop = () => {
     );
   }
 
-  // links are shown or hidden based on display resolution
+  // links are shown or hidden based on user's display resolution
   function shownOrHiddenItems() {
     return (
       <div className="menu-items-to-hide">
@@ -278,7 +271,7 @@ const MenuTop = () => {
     );
   }
 
-  // display token balances and 'ADD CRYPTO' button, or 'CONNECT METAMASK' button
+  // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
     if (state.userStatus) {
       return (
