@@ -14,6 +14,8 @@ const initialState = {
   parcelData: {},
   gameRecords: {},
   balancesOverlay: 0,
+  networkID: 0,
+  location: true,
 };
 
 const reducer = (state, action) => {
@@ -64,6 +66,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         balancesOverlay: action.data,
+      };
+
+    case 'network_id':
+      return {
+        ...state,
+        networkID: action.data,
+      };
+
+    case 'ip_address':
+      return {
+        ...state,
+        location: action.data,
       };
 
     default:

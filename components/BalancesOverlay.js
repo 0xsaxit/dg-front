@@ -9,7 +9,7 @@ const BalancesOverlay = () => {
 
   // define local variables
   const [positions, setPositions] = useState([]);
-  const [visibility, setVisibility] = useState('visible');
+  const [visibility, setVisibility] = useState('');
 
   useEffect(() => {
     if (state.userStatus) {

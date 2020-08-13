@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
-import { Button, Divider, Grid } from 'semantic-ui-react';
+import { Button, Divider, Grid, FormDropdown } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
 import Global from './Constants';
 
@@ -159,14 +159,21 @@ const ContentBalances = (props) => {
             </span>
             <Divider style={{ marginTop: '23px', marginBottom: '30px' }} />
             <span className="balances-button-span">
-              <Button
-                color="blue"
-                className="matic-widget-button balances-play-button"
-                data-default-page="deposit"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-              >
-                DEPOSIT
-              </Button>
+              {state.location ? (
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="deposit"
+                  data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                >
+                  DEPOSIT
+                </Button>
+              ) : (
+                <Button disabled color="blue" className="balances-play-button">
+                  DEPOSIT
+                </Button>
+              )}
+
               <Button
                 color="blue"
                 className="matic-widget-button balances-play-button-2"

@@ -32,15 +32,15 @@ const Tokens = () => {
   // define local variables
   const [NFTstate, setNFTState] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [networkID, setNetworkID] = useState(0);
+  // const [networkID, setNetworkID] = useState(0);
 
-  useEffect(() => {
-    if (state.userStatus) {
-      window.web3.version.getNetwork((err, network) => {
-        setNetworkID(parseInt(parseInt(network)));
-      });
-    }
-  }, [state.userStatus]);
+  // useEffect(() => {
+  //   if (state.userStatus) {
+  //     window.web3.version.getNetwork((err, network) => {
+  //       setNetworkID(parseInt(parseInt(network)));
+  //     });
+  //   }
+  // }, [state.userStatus]);
 
   useEffect(() => {
     if (Object.keys(state.parcelData).length !== 0) {
@@ -72,7 +72,10 @@ const Tokens = () => {
             <span style={{ display: 'flex' }}>
               <p className="nfts-info">LOCATION: {detailsNFTs[item][3]}</p>
             </span>
-            <p className="nft-other-p" style={{ marginTop: '-12px', paddingTop: '15px' }}>
+            <p
+              className="nft-other-p"
+              style={{ marginTop: '-12px', paddingTop: '15px' }}
+            >
               {detailsNFTs[item][4]}
             </p>
             <Button
@@ -99,7 +102,7 @@ const Tokens = () => {
   function myNFTs() {
     return (
       <Aux>
-        {!networkID ? (
+        {!state.networkID ? (
           <div className="account-other-inner-p">
             You must login to MetaMask to view your NFTs
           </div>
@@ -107,7 +110,7 @@ const Tokens = () => {
           <div className="account-other-inner-p">
             You do not own any Tominoya NFTs
           </div>
-        ) : networkID !== 1 ? (
+        ) : state.networkID !== 1 ? (
           <div className="account-other-inner-p">
             Please switch MetaMask to Ethereum Mainnet
           </div>
