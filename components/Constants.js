@@ -26,6 +26,7 @@ const ADMIN_ADDRESSES = [
   '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
   '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
+  '0x503aaA04A19e0c4b04d1E109F1369C1f2e85fDF0'.toLowerCase(),
 ];
 const TITLE = 'Decentral Games';
 const DESCRIPTION =
