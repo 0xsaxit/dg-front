@@ -90,6 +90,8 @@ const IMAGES = (() => {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1597702325/decentraland-mana-logo_uennji.png';
   const DAI_CIRCLE =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png';
+  const PLAY_CIRCLE =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597779125/Group_6_Copy_que5y2.png';
 
   return {
     LOGO,
@@ -102,6 +104,7 @@ const IMAGES = (() => {
     CHECK,
     MANA_CIRCLE,
     DAI_CIRCLE,
+    PLAY_CIRCLE,
   };
 })();
 

@@ -85,7 +85,7 @@ const ContentTransactions = (props) => {
             <p className="balances-token-name"> Play </p>
             <Divider className="balances-divider" />
             <img
-              src={Global.IMAGES.LOGO}
+              src={Global.IMAGES.PLAY_CIRCLE}
               style={{
                 width: '60px',
                 display: 'flex',
