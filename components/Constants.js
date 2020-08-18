@@ -26,6 +26,7 @@ const ADMIN_ADDRESSES = [
   '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
   '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
+  '0x503aaA04A19e0c4b04d1E109F1369C1f2e85fDF0'.toLowerCase(),
 ];
 const TITLE = 'Decentral Games';
 const DESCRIPTION =
@@ -88,7 +89,7 @@ const IMAGES = (() => {
   const CHECK =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png';
   const MANA_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_hx4tyd.png';
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597702325/decentraland-mana-logo_uennji.png';
   const DAI_CIRCLE =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png';
 
@@ -767,6 +768,16 @@ function fetchPlayData(address) {
 
 function fetchGameRecords() {
   return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+async function fetchUserNumbers() {
+  return fetch(`${API_BASE_URL}/players/getPlayerCount`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

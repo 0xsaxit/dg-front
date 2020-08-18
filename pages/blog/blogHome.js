@@ -64,7 +64,7 @@ function blog() {
 
       <div className="featured-blog-container">
         <p className="featured-text"> FEATURED POST</p>
-        <Divider style={{ opacity: '0.5', paddingBottom: '15px' }} />
+        <Divider id="blog-divider" style={{ paddingBottom: '15px' }} />
         <Link href="/blog/[id]" as="/blog/decentral-games-dcl-wearables-have-arrived">
           <a>
             <Grid

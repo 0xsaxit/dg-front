@@ -14,9 +14,9 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [visible, setVisible] = useState(false);
-  const [zIndexMobile, setZIndexMobile] = useState(1);
-  const [menuStyle, setMenuStyle] = useState([]);
+  const [visible, setVisible] = React.useState(false);
+  const [zIndexMobile, setZIndexMobile] = React.useState(1);
+  const [menuStyle, setMenuStyle] = React.useState([]);
 
   // set menu styles
   useEffect(() => {
@@ -57,7 +57,6 @@ const MenuTop = () => {
     }
   }, [state.userStatus]);
 
-  // display the 'ADD TOKENS' popup
   function balancesOverlay() {
     if (state.balancesOverlay !== 1) {
       dispatch({
@@ -279,9 +278,14 @@ const MenuTop = () => {
           <span className={menuStyle[9]}>
             <img
               style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-1px',
+                width: '39px',
+                paddingTop: '15px',
+                paddingBottom: '15px',
+                marginRight: '12px',
+                marginLeft: '23px',
+                height: '100%',
+                position: 'relative',
+                zIndex: '7',
               }}
               className="image inline"
               width="18px"
