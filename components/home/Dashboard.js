@@ -5,16 +5,44 @@ import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
-const Dashboard = () => {
-  // get user's onboard status from the Context API store
+const Dashboard = (props) => {
+  // get user's onboard status and usser countfrom the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
+  const [userNumbers, getUserNumbers] = useState([]);
+  const [totalPlayers, setTotalPlayers] = useState("");
+  const [realm, setRealm] = useState("");
+  const [playerCount, setPlayerCount] = useState("");
+
+  async function fetchUserNumbers() {
+    return fetch(`https://api.decentral.games/players/getPlayerCount`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  }
 
   useEffect(() => {
     setLoading(false);
+    (async function () {
+      let response = await fetchUserNumbers();
+      let json =  await response.json();
+      setTotalPlayers(json.totalPlayers);
+      setRealm(json.topServerRealm.realm);
+      setPlayerCount(json.topServerRealm.playerCount);
+      console.log("user numbers:" + totalPlayers);
+    })();
   }, []);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      console.log('User status: ' + state.userStatus);
+    }
+  }, [state.userStatus]);
 
   function getContent() {
     return (
@@ -31,18 +59,44 @@ const Dashboard = () => {
             className="home-dashboard-video"
           ></video>
         </div>
-        <div className="home-dashboard-content">
-          <div>
-            <div className="home-dashboard-description">
-              <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-              <h3
-                className="home-dashboard-h3"
-                style={{ marginBottom: '-12px' }}
-              >
-                Tominoya
-              </h3>
+
+        {!state.userStatus ? (
+          <div className="home-dashboard-content">
+            <div>
+              <div className="home-dashboard-description">
+                <h3
+                  className="home-dashboard-mission"
+                  style={{ marginBottom: '-12px' }}
+                >
+                  Non-custodial and provably fair casino games in VR
+                </h3>
+                <div>
+                  <Button
+                    color="blue"
+                    className="how-to-button"
+                    target="_blank"
+                    href="https://docs.decentral.games/getting-started"
+                  >
+                    HOW TO PLAY
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {state.userStatus ? (
+          <div className="home-dashboard-content">
+            <div>
               <div>
-                {state.userStatus ? (
+                <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
+                <h3
+                  className="home-dashboard-h3"
+                  style={{ marginBottom: '-12px' }}
+                >
+                  Tominoya
+                </h3>
+                <div>
                   <Button
                     color="blue"
                     className="play-button"
@@ -52,25 +106,35 @@ const Dashboard = () => {
                   >
                     PLAY NOW
                   </Button>
-                ) : null}
-                <Button
-                  color="blue"
-                  className="play-shimmer"
-                  target="_blank"
-                  href="https://docs.decentral.games/getting-started"
-                >
-                  HOW TO PLAY
-                </Button>
+                  <Button
+                    color="blue"
+                    className="play-shimmer"
+                    target="_blank"
+                    href="https://docs.decentral.games/getting-started"
+                  >
+                    HOW TO PLAY
+                  </Button>
+                </div>
+                <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+                  Tominoya is a virtual casino built by Decentral Games in
+                  Decentraland. Enjoy non-custodial slots, roulette, and blackjack
+                  playable with crypto.
+                </p>
+
+                <span className="user-numbers-container-1" style={{ display: 'flex' }}>
+                  <p className="online-dot">•</p>
+                  <p className="home-dashboard-p"> {totalPlayers} total players online </p>
+                </span>
+
+                <span className="user-numbers-container-2" style={{ display: 'flex' }}>
+                  <p className="online-dot">•</p>
+                  <p className="home-dashboard-p"> {playerCount} players online in {realm} </p>
+                </span>
+
               </div>
-              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-                Tominoya is a virtual casino built by Decentral Games in
-                Decentraland. Enjoy non-custodial slots, roulette, and blackjack
-                playable with crypto.
-              </p>
             </div>
           </div>
-          <p className="mobile-footer">Use a Chrome desktop browser to play.</p>
-        </div>
+          ) : null}
       </div>
     );
   }

@@ -86,7 +86,7 @@ const IMAGES = (() => {
   const CHECK =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png';
   const MANA_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_hx4tyd.png';
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597702325/decentraland-mana-logo_uennji.png';
   const DAI_CIRCLE =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png';
 
@@ -733,6 +733,16 @@ function fetchPlayData(address) {
 
 async function fetchGameRecords() {
   return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+async function fetchUserNumbers() {
+  return fetch(`${API_BASE_URL}/players/getPlayerCount`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

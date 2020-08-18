@@ -15,6 +15,11 @@ a {
   color: black;
 }
 
+.ui.divider {
+  border-top: 1px solid #edf2f9 !important;
+  border-bottom: 0px !important;
+}
+
 h3 {
   font-size: 48px;
   font-weight: 500;
@@ -32,6 +37,10 @@ p {
 
 .grid-margin {
   margin-left: 1em !important;
+}
+
+.ui.segment {
+  border: none !important;
 }
 
 /* ----------------------------------------- */
@@ -248,8 +257,9 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: relative;
-  padding-top: calc(100vh - 630px);
+  padding-top: calc(100vh - 645px);
   padding-left: 30px;
+  padding-right: 30px;
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -268,6 +278,22 @@ video.home-dashboard-video {
 
 .dashboard-image:hover {
   filter: brightness(80%);
+}
+
+.home-dashboard-description {
+  max-width: 600px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.home-dashboard-mission {
+  text-align: center;
+  float: center;
+  color: white;
+  font-weight: 600;
+  padding-bottom: 12px;
+  text-shadow: 1px 1px 5px black;
+  margin-top: -240px !important;
 }
 
 .home-dashboard-h3 {
@@ -294,20 +320,37 @@ video.home-dashboard-video {
   text-shadow: 1px 1px 5px black;
 }
 
+.user-numbers-container-1 {
+  margin-top: -6px;
+}
+
+.user-numbers-container-2 {
+  margin-top: -19px;
+}
+
+.online-dot {
+  color: #4DBD33;
+  padding-right: 4px;
+  font-size: 21px;
+  margin-top: -2px !important;
+}
+
 /* ----------------------------------------- */
 /*                NFT PAGE CSS               */
 /* ----------------------------------------- */
 
 .games-container,
 .nft-container {
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.03);
   margin-top: 21px;
   display: flex;
   flex-direction: row;
-  margin-bottom: 21px;
+  margin-bottom: 30px;
   background-color: white;
   padding-top: 30px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 @media (max-width: 991px) {
@@ -375,19 +418,19 @@ video.home-dashboard-video {
   max-width: 500px !important;
 }
 
-@media (max-width: 515px) {
+@media (max-width: 590px) {
   .games-pic {
-    min-width: calc(100vw - 45px) !important;
-    padding-right: 30px !important;
-    max-width: calc(100vw - 45px) !important;
+    min-width: calc(100vw - 75px) !important;
+    padding-right: 60px !important;
+    max-width: calc(100vw - 75px) !important;
   }
 }
 
 @media (max-width: 499px) {
   .games-pic {
-    min-width: calc(100vw - 21px) !important;
-    padding-right: 21px !important;
-    max-width: calc(100vw - 21px) !important;
+    min-width: calc(100vw - 75px) !important;
+    padding-right: 30px !important;
+    max-width: calc(100vw - 75px) !important;
   }
 }
 
@@ -995,6 +1038,7 @@ span.matic-icon-background-2 {
 }
 
 #matic-widget-icon-left-1 {
+  padding-left: 1px;
   vertical-align: top;
   color: #003cb2;
   font-weight: 600;
@@ -1002,6 +1046,7 @@ span.matic-icon-background-2 {
 }
 
 #matic-widget-icon-left-2 {
+  padding-left: 1px;
   vertical-align: top;
   color: #003cb2;
   padding-top: 2px;
@@ -1032,85 +1077,88 @@ span.matic-icon-background-2 {
 .balances-container {
   display: flex;
   justify-content: space-between;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .balances-column {
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.03);
   width: 100%;
-  padding: 30px 0px 45px 0px;
+  padding: 12px 18px 39px 18px !important;
+}
+
+.name-purchase-span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.balances-token-name {
+  font-weight: bold;
+}
+
+.ui.button.balances-purchase-button {
+  background-color: #165daa;
+  margin-top: 1px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 3px;
+  height: 27px;
+  padding-top: 4px;
+  max-width: 90px !important;
+  min-width: 90px;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+}
+
+.balances-divider {
+  border-top: 1px solid #edf2f9 !important;
+  border-bottom: 0px !important;
+  width: calc(100% + 36px);
+  margin-left: -18px !important;
+  margin-top: -6px !important;
 }
 
 .balances-text {
   display: flex;
   justify-content: center;
-  font-size: 28px;
+  font-size: 48px;
   font-weight: 600;
   letter-spacing: 0.25px;
-}
-
-@media (max-width: 1121px) {
-  .balances-button-span {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .balances-play-button,
-  .balances-deposit-button,
-  .balances-withdraw-button {
-    margin-right: 0px !important;
-  }
-  .balances-play-button-2,
-  .balances-withdraw-button {
-    margin-top: 21px !important;
-  }
-  .balances-play-button,
-  .balances-play-button-2,
-  .balances-deposit-button,
-  .balances-withdraw-button {
-    width: 100% !important;
-  }
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 991px) {
-  .balances-button-span {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  .balances-play-button,
-  .balances-deposit-button {
-    margin-right: 18px !important;
-  }
-  .balances-play-button-2,
-  .balances-withdraw-button {
-    margin-top: 0px !important;
-  }
-  .balances-column.one,
-  .balances-column.two,
-  .balances-column.three {
-    max-width: calc(50% - 15px) !important;
-  }
-  .balances-column.three {
-    margin-top: 45px !important;
-  }
-}
-
-@media (max-width: 767px) {
   .balances-column.one,
   .balances-column.two,
   .balances-column.three {
     max-width: 100% !important;
   }
-  .balances-column.one {
-    margin-bottom: 45px !important;
+  .balances-column.one,
+  .balances-column.two {
+    margin-bottom: 30px !important;
   }
   .balances-column.three {
     margin-bottom: 90px !important;
   }
 }
 
+.balances-button-span {
+  display: flex;
+  justify-content: center;
+
+}
+
 .ui.blue.button.balances-play-button {
-  background-color: #4c9df6 !important;
+  background-color: #2085f4 !important;
   margin-right: 18px;
   color: white;
-  width: calc(50% - 9px);
+  width: calc(50% - 30px);
+  min-width: 115px;
+  max-width: 180px;
   font-size: 14px;
   font-weight: 600;
   margin-top: 0px;
@@ -1123,9 +1171,11 @@ span.matic-icon-background-2 {
 }
 
 .ui.blue.button.balances-play-button-2 {
-  background-color: #4c9df6 !important;
+  background-color: #2085f4 !important;
   color: white;
-  width: calc(50% - 9px);
+  width: calc(50% - 30px);
+  min-width: 115px;
+  max-width: 180px;
   font-size: 14px;
   font-weight: 600;
   margin-top: 0px;
@@ -1473,6 +1523,20 @@ a.ui.blue.button.play-shimmer {
   border-radius: 3px;
 }
 
+a.ui.blue.button.how-to-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 30px;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+  margin-left: calc(50% - 90px);
+}
+
 a.ui.blue.button.play-button,
 .ui.blue.button.play-button {
   background-color: #2085f4 !important;
@@ -1732,6 +1796,9 @@ a.demo-button {
     margin-right: 30px;
     margin-top: 120px;
   }
+  .home-dashboard-mission {
+    margin-top: -120px !important;
+  }
   .home-dashboard-p {
     width: 100%;
   }
@@ -1786,7 +1853,10 @@ a.demo-button {
   .home-dashboard-content {
     margin-left: -9px !important;
     margin-right: 30px;
-    margin-top: 100px;
+    margin-top: 90px;
+  }
+  .home-dashboard-mission {
+    margin-top: -90px !important;
   }
   .featured-casino-text {
     font-size: 12px !important;

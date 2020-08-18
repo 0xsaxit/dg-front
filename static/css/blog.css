@@ -48,6 +48,14 @@ p {
   line-height: 1.4;
 }
 
+.dcl.navbar {
+  border-bottom: 1px solid rgb(241, 241, 241) !important;
+}
+
+#blog-divider {
+ color: rgb(241, 241, 241) !important;
+}
+
 /* ----------------------------------------- */
 /*             BLOG PAGE MENU CSS            */
 /* ----------------------------------------- */

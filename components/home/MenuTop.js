@@ -15,7 +15,6 @@ const MenuTop = () => {
   const [visible, setVisible] = React.useState(false);
   const [zIndexMobile, setZIndexMobile] = React.useState(1);
   const [menuStyle, setMenuStyle] = React.useState([]);
-  // const [menuPosition, setMenuPosition] = useState('3000px');
 
   // set menu styles
   useEffect(() => {
@@ -56,13 +55,6 @@ const MenuTop = () => {
     }
   }, [state.userStatus]);
 
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     setMenuPosition(['0px']);
-  //   }
-  // }, [state.userStatus]);
-
-  // display the balances overlay
   function balancesOverlay() {
     if (state.balancesOverlay !== 1) {
       dispatch({
@@ -203,7 +195,7 @@ const MenuTop = () => {
                 marginLeft: '23px',
                 height: '100%',
                 position: 'relative',
-                zIndex: '6',
+                zIndex: '7',
               }}
             />
           </Link>
