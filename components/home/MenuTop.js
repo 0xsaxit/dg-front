@@ -14,9 +14,9 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [visible, setVisible] = React.useState(false);
-  const [zIndexMobile, setZIndexMobile] = React.useState(1);
-  const [menuStyle, setMenuStyle] = React.useState([]);
+  const [visible, setVisible] = useState(false);
+  const [zIndexMobile, setZIndexMobile] = useState(1);
+  const [menuStyle, setMenuStyle] = useState([]);
 
   // set menu styles
   useEffect(() => {
@@ -57,6 +57,7 @@ const MenuTop = () => {
     }
   }, [state.userStatus]);
 
+  // display the 'ADD TOKENS' popup
   function balancesOverlay() {
     if (state.balancesOverlay !== 1) {
       dispatch({
