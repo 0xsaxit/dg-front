@@ -52,12 +52,12 @@ const MenuTop = () => {
   }, []);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus !== 0) {
       console.log('User status: ' + state.userStatus);
     }
   }, [state.userStatus]);
 
-  // display the balances overlay
+  // display the 'ADD TOKENS' popup
   function balancesOverlay() {
     if (state.balancesOverlay !== 1) {
       dispatch({

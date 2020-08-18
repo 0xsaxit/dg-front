@@ -9,20 +9,12 @@ function Location() {
   // define local variables
   let bool = true;
 
-  // let ipAddress = '';
-
   useEffect(() => {
-    // get the user's IP address and exclude forbidden regions
-    // bool = false;
-
-    // ipAddress = '134.201.250.155';
-
     async function fetchData() {
       const countryCode = await getCountryCode();
+      console.log('Country code: ' + countryCode);
 
       if (countryCode === 'US') bool = false;
-
-      console.log('Country code: ' + countryCode);
 
       dispatch({
         type: 'ip_address',
@@ -33,28 +25,10 @@ function Location() {
   }, []);
 
   async function getCountryCode() {
-    // const ipstackObject =
-    //   'https://api.ipstack.com/' +
-    //   ipAddress +
-    //   '?access_key=' +
-    //   Global.KEYS.IPSTACK +
-    //   '&fields=country_code';
-
     const response = await Global.fetchCountryCode();
     const json = await response.json();
 
-    // console.log(json);
-
-    // if (json.status === 'ok') {
-    //   if (json.result === 'false') {
-    //     return false;
-    //   }
-
-    //   console.log('ipstack result...');
-    //   console.log(json.result);
-
     return json.country_code;
-    // }
   }
 
   return null;

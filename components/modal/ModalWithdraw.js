@@ -37,8 +37,7 @@ class ModalWithdraw extends React.Component {
     }
 
     // initialize Web3 providers and create token contract instance
-    // (pass MetaMask provider for web3 and Biconomy provider for getWeb3)
-    this.web3 = new Web3(window.ethereum);
+    this.web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
     const biconomy = new Biconomy(
       new Web3.providers.HttpProvider(Global.MATIC_URL),
       {
@@ -46,7 +45,7 @@ class ModalWithdraw extends React.Component {
         debug: true,
       }
     );
-    const getWeb3 = new Web3(biconomy);
+    const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
     this.tokenContract = Global.getTokenContract('child', getWeb3);
 
     biconomy
@@ -121,6 +120,7 @@ class ModalWithdraw extends React.Component {
         .encodeABI();
 
       let txHash = await Global.executeMetaTransaction(
+        0,
         functionSignature,
         this.tokenContract,
         this.userAddress,

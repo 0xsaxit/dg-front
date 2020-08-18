@@ -1,7 +1,7 @@
 import { MaticPOSClient } from '@maticnetwork/maticjs';
 import window from 'global';
 import Butter from 'buttercms';
-import ABITreasuryContract from './ABI/ABIParent';
+import ABITreasuryContract from './ABI/ABITreasury';
 import ABIRootToken from './ABI/ABIDummyToken';
 import ABIChildToken from './ABI/ABIChildToken';
 import ABITominoyaToken from './ABI/ABITominoya';
@@ -54,11 +54,13 @@ const KEYS = (() => {
 /////////////////////////////////////////////////////////////////////////////////////////
 // global token contract ABIs
 const ABIs = (() => {
+  const TREASURY_CONTRACT = ABITreasuryContract;
   const ROOT_TOKEN = ABIRootToken;
   const CHILD_TOKEN = ABIChildToken;
   const TOMINOYA_TOKEN = ABITominoyaToken;
 
   return {
+    TREASURY_CONTRACT,
     ROOT_TOKEN,
     CHILD_TOKEN,
     TOMINOYA_TOKEN,
@@ -122,12 +124,24 @@ const metaTransactionType = [
   { name: 'functionSignature', type: 'bytes' },
 ];
 
-let domainData = {
+let domainArray = [];
+
+const domainDataToken = {
   name: 'Dummy Child Token',
   version: '1',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',
 };
+
+const domainDataTreasury = {
+  name: 'Treasury',
+  version: '1',
+  chainId: PARENT_NETWORK_ID,
+  verifyingContract: '',
+};
+
+domainArray.push(domainDataToken);
+domainArray.push(domainDataTreasury);
 
 let maticPOSClient = {};
 
@@ -189,7 +203,8 @@ const API_ADDRESSES = (async () => {
     posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
   });
 
-  domainData.verifyingContract = CHILD_TOKEN_ADDRESS_MANA; // set verifying contract for Biconomy API
+  domainArray[0].verifyingContract = CHILD_TOKEN_ADDRESS_MANA; // verifying contract for Biconomy Token contract
+  domainArray[1].verifyingContract = TREASURY_CONTRACT_ADDRESS; // verifying contract for Biconomy Treasury contract
 
   return {
     RELAY_ADDRESS,
@@ -206,16 +221,6 @@ const API_ADDRESSES = (async () => {
     ROOTCHAINMANAGER_ADDRESS,
   };
 })();
-
-function getAddresses() {
-  return fetch(`${API_BASE_URL}/addresses`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  });
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -236,6 +241,20 @@ function getTokenContract(network, web3Default = window.web3) {
   }
 
   return tokenContract;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// return treasury contract for Biconomy API meta-transaction calls
+function getTreasuryContract(web3Default = window.web3) {
+  let treasuryContract;
+
+  treasuryContract = new web3Default.eth.Contract(
+    ABIs.TREASURY_CONTRACT,
+    TREASURY_CONTRACT_ADDRESS
+  );
+
+  return treasuryContract;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -414,7 +433,7 @@ function getBalanceParent(tokenName, web3Default = window.web3) {
 
     try {
       const PARENT_CONTRACT = web3Default.eth
-        .contract(ABITreasuryContract)
+        .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
@@ -445,7 +464,7 @@ function getTokensGame(gameType, tokenName, web3Default = window.web3) {
 
     try {
       const PARENT_CONTRACT = web3Default.eth
-        .contract(ABITreasuryContract)
+        .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.checkAllocatedTokensPerGame(
@@ -478,7 +497,7 @@ function depositToParent(gameType, amount, tokenName) {
 
     try {
       const PARENT_CONTRACT = window.web3.eth
-        .contract(ABITreasuryContract)
+        .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.addFunds(
@@ -517,7 +536,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
 
     try {
       const PARENT_CONTRACT = window.web3.eth
-        .contract(ABITreasuryContract)
+        .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.withdrawCollateral(
@@ -550,6 +569,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
 /////////////////////////////////////////////////////////////////////////////////////////
 // execute functions on Matic Network from Mainnet using Biconomy PoS meta-transactions API
 function executeMetaTransaction(
+  i,
   functionSignature,
   tokenContract,
   userAddress,
@@ -559,8 +579,8 @@ function executeMetaTransaction(
     console.log('Execute Biconomy PoS meta-transaction');
     console.log('Function signature: ' + functionSignature);
     console.log('User address: ' + userAddress);
-    console.log('Chain ID: ' + domainData.chainId);
-    console.log('Verify contract: ' + domainData.verifyingContract);
+    console.log('Chain ID: ' + domainArray[i].chainId);
+    console.log('Verify contract: ' + domainArray[i].verifyingContract);
 
     try {
       let nonce = await tokenContract.methods.getNonce(userAddress).call();
@@ -575,13 +595,13 @@ function executeMetaTransaction(
           EIP712Domain: domainType,
           MetaTransaction: metaTransactionType,
         },
-        domain: domainData,
+        domain: domainArray[i],
         primaryType: 'MetaTransaction',
         message: message,
       });
 
       console.log('Domain data: ');
-      console.log(domainData);
+      console.log(domainArray[i]);
 
       await web3Default.eth.currentProvider.send(
         {
@@ -678,6 +698,16 @@ function getConfirmedTx(txHash) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // REST API functions: fetch or post data to server API endpoints
+function getAddresses() {
+  return fetch(`${API_BASE_URL}/addresses`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+}
+
 function fetchUserStatus(address) {
   return fetch(`${API_BASE_URL}/order/verifyAddress`, {
     method: 'POST',
@@ -691,14 +721,8 @@ function fetchUserStatus(address) {
   });
 }
 
-function fetchCountryCode(address) {
-  // return fetch(
-  //   `http://api.ipstack.com/${address}?access_key=${KEYS.IPSTACK}&fields=country_code`
-  // );
-
-  // const field = 'country';
-
-  return fetch(`https://ipapi.co/json/`);
+function fetchCountryCode() {
+  return fetch(`https://ipapi.co/json`);
 }
 
 function fetchParcelData(landID, tokenID) {
@@ -741,7 +765,7 @@ function fetchPlayData(address) {
   });
 }
 
-async function fetchGameRecords() {
+function fetchGameRecords() {
   return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
     method: 'GET',
     headers: {
@@ -807,6 +831,7 @@ export default {
   SOCIAL_HANDLE,
   IMAGES,
   getTokenContract,
+  getTreasuryContract,
   balanceOfToken,
   getAllowedToken,
   approveToken,

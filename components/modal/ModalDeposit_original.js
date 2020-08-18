@@ -266,6 +266,7 @@ const ModalDeposit = (props) => {
         .encodeABI();
 
       const txHash = await Global.executeMetaTransaction(
+        0,
         functionSignature,
         tokenContract,
         userAddress,

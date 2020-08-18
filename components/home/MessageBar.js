@@ -32,21 +32,25 @@ const MessageBar = () => {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play our free play games'
       );
+    } else if (!state.activeStatus) {
+      setMessage(
+        'To ensure the security of your funds, we require a reauthorization signature after 12 dormant hours'
+      );
     } else {
       setMessage('');
     }
-  }, [state.networkID, state.location]);
+  }, [state.networkID, state.location, state.activeStatus]);
 
   if (message !== '') {
     return (
       <div
         style={{
-          color: '#252525',
+          color: '#cc0000',
           textAlign: 'center',
           padding: '10px 0',
           fontSize: '18px',
           fontWeight: 500,
-          backgroundColor: '#cecece',
+          backgroundColor: '#cdcdcd',
           height: '40px',
         }}
       >

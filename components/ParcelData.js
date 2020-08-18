@@ -27,8 +27,6 @@ function ParcelData() {
           const response = await Global.fetchParcelData(landID, tokenID);
           const jsonData = await response.json();
 
-          console.log(jsonData);
-
           dispatch({
             type: 'parcel_data',
             data: jsonData,
@@ -52,7 +50,7 @@ function ParcelData() {
 
       return tokenID;
     } catch (error) {
-      console.log('No NFT token ID found: ' + error);
+      console.log('No NFT token ID found');
 
       return false;
     }

@@ -13,6 +13,7 @@ import ParcelData from '../components/ParcelData';
 import GameRecords from '../components/GameRecords';
 import BalancesOverlay from '../components/BalancesOverlay';
 import Location from '../components/Location';
+import ActiveStatus from '../components/ActiveStatus';
 
 class Application extends App {
   render() {
@@ -28,6 +29,7 @@ class Application extends App {
           <GameRecords />
           <BalancesOverlay />
           <Location />
+          <ActiveStatus />
 
           <Component {...pageProps} />
         </Provider>

@@ -65,8 +65,7 @@ const ModalDeposit = (props) => {
       // });
 
       // initialize Web3 providers and create token contract instance
-      // (pass MetaMask provider for web3 and Biconomy provider for getWeb3)
-      web3 = new Web3(window.ethereum);
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.MATIC_URL),
         {
@@ -74,7 +73,7 @@ const ModalDeposit = (props) => {
           debug: true,
         }
       );
-      const getWeb3 = new Web3(biconomy);
+      const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
       tokenContract = Global.getTokenContract('child', getWeb3);
 
       biconomy
@@ -207,6 +206,7 @@ const ModalDeposit = (props) => {
         .encodeABI();
 
       const txHash = await Global.executeMetaTransaction(
+        0,
         functionSignature,
         tokenContract,
         userAddress,
