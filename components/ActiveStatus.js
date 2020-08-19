@@ -12,6 +12,8 @@ function ActiveStatus() {
   let userAddress = '';
   let treasuryContract = {};
   let web3 = {};
+  let maticWeb3 = {};
+  const sessionDuration = 60; // 3600 == 1 hour
 
   useEffect(() => {
     if (state.userStatus) {
@@ -19,6 +21,9 @@ function ActiveStatus() {
 
       // initialize Web3 providers and create token contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      maticWeb3 = new Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      ); // pass Matic provider to maticWeb3 object
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.MATIC_URL),
         {
@@ -40,61 +45,55 @@ function ActiveStatus() {
       (async function () {
         const activeStatus = await getActiveStatus();
         console.log('Active status: ' + activeStatus);
+        dispatchActiveStatus(activeStatus);
 
-        if (activeStatus === 0) metaTransaction();
-
-        console.log('here here here... ' + activeStatus);
-
-        // dispatch user's active status
-        dispatch({
-          type: 'active_status',
-          data: activeStatus,
-        });
+        if (!activeStatus) metaTransaction(); // MetaMask popup window
       })();
     }
   }, [state.userStatus]);
 
-  //
+  // dispatch user's active status
+  function dispatchActiveStatus(status) {
+    dispatch({
+      type: 'active_status',
+      data: status,
+    });
+  }
+
+  // get user's active status (true or false) from smart contract
   async function getActiveStatus() {
+    const addresses = await Global.API_ADDRESSES;
+
+    const TREASURY_CONTRACT = new maticWeb3.eth.Contract(
+      Global.ABIs.TREASURY_CONTRACT,
+      addresses.TREASURY_CONTRACT_ADDRESS
+    );
+
     try {
-      const TREASURY_CONTRACT = new web3.eth.Contract(
-        Global.ABIs.TREASURY_CONTRACT,
-        Global.API_ADDRESSES.TREASURY_CONTRACT_ADDRESS
-      );
+      const activeStatus = await TREASURY_CONTRACT.methods
+        .isEnabled(userAddress)
+        .call();
 
-      //   const activeStatus = await TREASURY_CONTRACT.methods
-      //     .tokenOfOwnerByIndex(userAddress, 0) // ***********************************
-      //     .call();
-
-      //   return activeStatus;
-
-      return 0;
+      return activeStatus;
     } catch (error) {
       console.log('No active status found: ' + error);
-
-      return false;
     }
   }
 
   // Biconomy API meta-transaction. User must re-authoriza signature after 12 dormant hours
   async function metaTransaction() {
     try {
-      const addresses = await Global.API_ADDRESSES;
-      const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-
-      console.log('Matic RPC: ' + Global.MATIC_URL);
-      console.log('user address: ' + userAddress);
-      console.log('spender (treasury) address: ' + spenderAddress);
-      console.log('authorize amount: ' + Global.MAX_AMOUNT);
+      console.log('Session Duration: ' + sessionDuration);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = treasuryContract.methods
-        .enableAccount(1)
+        .enableAccount(sessionDuration)
         .encodeABI();
 
       const txHash = await Global.executeMetaTransaction(
         1,
         functionSignature,
+        sessionDuration,
         treasuryContract,
         userAddress,
         web3
@@ -105,11 +104,9 @@ function ActiveStatus() {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        // dispatch user's active status
-        dispatch({
-          type: 'active_status',
-          data: 1,
-        });
+        const activeStatus = await getActiveStatus();
+        console.log('Active status (updated): ' + activeStatus);
+        dispatchActiveStatus(activeStatus);
       }
     } catch (error) {
       console.log(error);

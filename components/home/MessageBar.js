@@ -26,8 +26,8 @@ const MessageBar = () => {
       setMessage(
         'You must login to MetaMask to play games with crypto. You may still play our free play games'
       );
-    } else if (state.networkID !== 1) {
-      setMessage('Please switch MetaMask to Ethereum Mainnet');
+    } else if (state.networkID !== 5) {
+      setMessage('Please switch MetaMask to Goerli Network'); // Ethereum Mainnet
     } else if (!state.location) {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play our free play games'
@@ -45,13 +45,14 @@ const MessageBar = () => {
     return (
       <div
         style={{
+          fontFamily: 'Graphik, sans-serif',
           color: '#cc0000',
           textAlign: 'center',
-          padding: '10px 0',
-          fontSize: '18px',
+          padding: '13px 0',
+          fontSize: '17px',
           fontWeight: 500,
-          backgroundColor: '#cdcdcd',
-          height: '40px',
+          backgroundColor: '#dddddd',
+          height: '45px',
         }}
       >
         {message}

@@ -40,7 +40,7 @@ const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
 /////////////////////////////////////////////////////////////////////////////////////////
 // third-party public API keys
 const KEYS = (() => {
-  const BICONOMY_API = '9voMvaNpt.df75ecbb-b72e-405e-bca6-69080ac100cf';
+  const BICONOMY_API = 'NfWiOc7He.104e7174-6d0e-4e38-84b7-fcfb9c0cc367';
   const TRANSAK_API = '4fcd6904-706b-4aff-bd9d-77422813bbb7';
   const GOOGLE_ANALYTICS = 'UA-146057069-1';
 
@@ -136,7 +136,7 @@ const domainDataToken = {
 
 const domainDataTreasury = {
   name: 'Treasury',
-  version: '1',
+  version: 'v2.1',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',
 };
@@ -171,7 +171,7 @@ const API_ADDRESSES = (async () => {
   ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
   CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
   CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
-  TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
+  TREASURY_CONTRACT_ADDRESS = '0x50C593A2eD20B6B210269094B6060a74BA114589'; // json.TREASURY_CONTRACT_ADDRESS;
   TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
   TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
   TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
@@ -572,6 +572,7 @@ function withdrawFromParent(gameType, amount, tokenName) {
 function executeMetaTransaction(
   i,
   functionSignature,
+  sessionDuration,
   tokenContract,
   userAddress,
   web3Default = window.web3
@@ -631,7 +632,14 @@ function executeMetaTransaction(
 
           try {
             const ret = await tokenContract.methods
-              .executeMetaTransaction(userAddress, functionSignature, r, s, v)
+              .executeMetaTransaction(
+                userAddress,
+                functionSignature,
+                sessionDuration,
+                r,
+                s,
+                v
+              )
               .send({
                 from: userAddress,
               });
