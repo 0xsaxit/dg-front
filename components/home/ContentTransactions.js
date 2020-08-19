@@ -72,6 +72,7 @@ const ContentTransactions = (props) => {
     // }
   }
 
+<<<<<<< HEAD
   // function contentBalancesMain() {
   //   return (
   //     <Grid className="balances-container">
@@ -114,6 +115,50 @@ const ContentTransactions = (props) => {
   //             </Button>
   //           </span>
   //         </Grid.Column>
+=======
+  function contentBalancesMain() {
+    return (
+      <Grid className="balances-container">
+        <Grid.Row>
+          <Grid.Column
+            computer={5}
+            tablet={16}
+            mobile={16}
+            className="balances-column one"
+          >
+            <p className="balances-token-name"> Play </p>
+            <Divider className="balances-divider" />
+            <img
+              src={Global.IMAGES.PLAY_CIRCLE}
+              style={{
+                width: '60px',
+                display: 'flex',
+                marginLeft: 'calc(50% - 30px)',
+                paddingTop: '12px'
+              }}
+            />
+            <p className="balances-text"> 5,000 </p>
+            <span className="balances-button-span">
+              <Button
+                color="blue"
+                className="balances-play-button"
+                href="https://play.decentral.games"
+                target="_blank"
+              >
+                PLAY NOW
+              </Button>
+              <Button
+                disabled
+                color="blue"
+                className="balances-play-button-2"
+                href="https://play.decentral.games"
+                target="_blank"
+              >
+                TOP UP
+              </Button>
+            </span>
+          </Grid.Column>
+>>>>>>> c90d30f709d7682a908610fbe58ce91965037492
 
   //         <Grid.Column
   //           computer={5}

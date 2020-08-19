@@ -121,12 +121,12 @@ const Dashboard = (props) => {
                   playable with crypto.
                 </p>
 
-                <span className="user-numbers-container-1" style={{ display: 'flex' }}>
+                {/*<span className="user-numbers-container-1" style={{ display: 'flex' }}>
                   <p className="online-dot">•</p>
                   <p className="home-dashboard-p"> {totalPlayers} total players online </p>
-                </span>
+                </span>*/}
 
-                <span className="user-numbers-container-2" style={{ display: 'flex' }}>
+                <span className="user-numbers-container-1" style={{ display: 'flex' }}>
                   <p className="online-dot">•</p>
                   <p className="home-dashboard-p"> {playerCount} players online in {realm} </p>
                 </span>
