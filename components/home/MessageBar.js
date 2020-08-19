@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 
 const MessageBar = () => {
-  // get user's network and location from the Context API store
+  // get user's network, location, and active status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables

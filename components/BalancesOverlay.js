@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import { Icon } from 'semantic-ui-react';
 import { GlobalContext } from '../store';
 import ContentBalances from './ContentBalances';
 import Aux from './_Aux';
@@ -9,20 +8,19 @@ const BalancesOverlay = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [positions, setPositions] = useState([]);
-  const [visibility, setVisibility] = useState('');
+  const [visibilityModal, setVisibilityModal] = useState('none');
+  const [visibilityAccountPage, setVisibilityAccountPage] = useState('none');
 
   useEffect(() => {
-    if (state.userStatus) {
-      setPositions(['240px', '250px']);
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
-    if (state.balancesOverlay) {
-      setVisibility('block');
+    if (state.balancesOverlay === 1) {
+      setVisibilityModal('block');
+      setVisibilityAccountPage('none');
+    } else if (state.balancesOverlay === 2) {
+      setVisibilityModal('none');
+      setVisibilityAccountPage('block');
     } else {
-      setVisibility('none');
+      setVisibilityModal('none');
+      setVisibilityAccountPage('none');
     }
   }, [state.balancesOverlay]);
 
@@ -35,7 +33,7 @@ const BalancesOverlay = () => {
 
   // set overlay visibility based on value of state.balancesOverlay
   const styles = {
-    balancesContainer: {
+    balancesModal: {
       position: 'absolute',
       top: '0',
       minWidth: '446px',
@@ -44,7 +42,19 @@ const BalancesOverlay = () => {
       background: '#ffffff',
       borderRadius: '12px',
       zIndex: 5,
-      display: visibility || 'none',
+      display: visibilityModal || 'none',
+    },
+    balancesAccountPage: {
+      position: 'absolute',
+      top: '200px',
+      left: 30,
+      right: 30,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      background: '#ffffff',
+      borderRadius: '25px',
+      zIndex: 5,
+      display: visibilityAccountPage || 'none',
     },
     close: {
       cursor: 'pointer',
@@ -60,7 +70,7 @@ const BalancesOverlay = () => {
 
   return (
     <Aux>
-      {state.balancesOverlay === 2 ? (
+      {state.balancesOverlay === 1 ? (
         <span style={styles.close} onClick={close}>
           <span className="material-icons" style={{ fontSize: '29px' }}>
             {' '}
@@ -69,10 +79,17 @@ const BalancesOverlay = () => {
         </span>
       ) : null}
 
-      <div style={styles.balancesContainer}>
+      <div style={styles.balancesModal}>
         <div className="page-container">
           <div className="account-other-inner-container"></div>
-          <ContentBalances />
+          <ContentBalances balancesOverlay={1} />
+        </div>
+      </div>
+
+      <div style={styles.balancesAccountPage}>
+        <div className="page-container">
+          <div className="account-other-inner-container"></div>
+          <ContentBalances balancesOverlay={2} />
         </div>
       </div>
     </Aux>

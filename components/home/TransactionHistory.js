@@ -150,20 +150,22 @@ const History = (props) => {
     let result = [];
     const indexStart = (page - 1) * maximumCount;
     const indexEnd = indexStart + maximumCount;
+    let overlay = 0;
 
     if (type === 'Balances') {
       result = true;
-      balancesOverlay(1);
+      overlay = 2;
     } else if (type === 'History') {
       result = dataHistory.slice(indexStart, indexEnd);
-      balancesOverlay(0);
+      overlay = 0;
     } else if (type === 'Play') {
       result = dataPlay.slice(indexStart, indexEnd);
-      balancesOverlay(0);
+      overlay = 0;
     }
 
     setDataPage(result);
     setCurrentPage(page);
+    balancesOverlay(overlay);
   }
 
   function noTxHistory() {

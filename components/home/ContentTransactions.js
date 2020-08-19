@@ -1,78 +1,77 @@
-import { useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
-import transakSDK from '@transak/transak-sdk';
-import { Table, Button, Icon, Divider, Grid } from 'semantic-ui-react';
+// import { useContext, useEffect } from 'react';
+// import { GlobalContext } from '../../store';
+// import transakSDK from '@transak/transak-sdk';
+import { Table, Button, Icon } from 'semantic-ui-react';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
-let transak = new transakSDK({
-  apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'STAGING', // STAGING/PRODUCTION
-  defaultCryptoCurrency: 'MANA',
-  walletAddress: '', // customer wallet address
-  themeColor: '000000', // theme color
-  fiatCurrency: '', // INR/GBP
-  email: '', // customer email address
-  redirectURL: '',
-  hostURL: 'https://decentral.games/account',
-  widgetHeight: '633px',
-  widgetWidth: '450px',
-});
+// let transak = new transakSDK({
+//   apiKey: Global.KEYS.TRANSAK_API, // API Key
+//   environment: 'STAGING', // STAGING/PRODUCTION
+//   defaultCryptoCurrency: 'MANA',
+//   walletAddress: '', // customer wallet address
+//   themeColor: '000000', // theme color
+//   fiatCurrency: '', // INR/GBP
+//   email: '', // customer email address
+//   redirectURL: '',
+//   hostURL: 'https://decentral.games/account',
+//   widgetHeight: '633px',
+//   widgetWidth: '450px',
+// });
 
 const ContentTransactions = (props) => {
   // get token balances from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  // const [state, dispatch] = useContext(GlobalContext);
 
-  useEffect(() => {
-    // get all the events
-    transak.on(transak.ALL_EVENTS, (data) => {
-      console.log(data);
-    });
-    // triggers when the user closes the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak.close();
-    });
-    // triggers when the payment is complete
-    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData);
-      transak.close();
-    });
-  }, []);
+  // useEffect(() => {
+  //   // get all the events
+  //   transak.on(transak.ALL_EVENTS, (data) => {
+  //     console.log(data);
+  //   });
+  //   // triggers when the user closes the widget
+  //   transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+  //     transak.close();
+  //   });
+  //   // triggers when the payment is complete
+  //   transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+  //     console.log(orderData);
+  //     transak.close();
+  //   });
+  // }, []);
 
-  // initialize transak modal
-  function show_transak() {
-    transak.init();
-  }
+  // // initialize transak modal
+  // function show_transak() {
+  //   transak.init();
+  // }
 
   function contentLabels() {
-    // if (props.type === 'Balances') {
-    //   return null;
-    // } else if (props.type === 'Play' || 'History') {
-    return (
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell className="table-header-text">
-            ACTION
-          </Table.HeaderCell>
-          <Table.HeaderCell className="table-header-text">
-            AMOUNT
-          </Table.HeaderCell>
-          <Table.HeaderCell className="table-header-text">
-            RESULT
-          </Table.HeaderCell>
-          <Table.HeaderCell className="table-header-text">
-            DATE
-          </Table.HeaderCell>
-          <Table.HeaderCell className="table-header-text">
-            TX HASH
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-    );
-    // }
+    if (props.type === 'Balances') {
+      return null;
+    } else if (props.type === 'Play' || 'History') {
+      return (
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell className="table-header-text">
+              ACTION
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              AMOUNT
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              RESULT
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              DATE
+            </Table.HeaderCell>
+            <Table.HeaderCell className="table-header-text">
+              TX HASH
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+      );
+    }
   }
 
-<<<<<<< HEAD
   // function contentBalancesMain() {
   //   return (
   //     <Grid className="balances-container">
@@ -86,7 +85,7 @@ const ContentTransactions = (props) => {
   //           <p className="balances-token-name"> Play </p>
   //           <Divider className="balances-divider" />
   //           <img
-  //             src={Global.IMAGES.LOGO}
+  //             src={Global.IMAGES.PLAY_CIRCLE}
   //             style={{
   //               width: '60px',
   //               display: 'flex',
@@ -115,50 +114,6 @@ const ContentTransactions = (props) => {
   //             </Button>
   //           </span>
   //         </Grid.Column>
-=======
-  function contentBalancesMain() {
-    return (
-      <Grid className="balances-container">
-        <Grid.Row>
-          <Grid.Column
-            computer={5}
-            tablet={16}
-            mobile={16}
-            className="balances-column one"
-          >
-            <p className="balances-token-name"> Play </p>
-            <Divider className="balances-divider" />
-            <img
-              src={Global.IMAGES.PLAY_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                marginLeft: 'calc(50% - 30px)',
-                paddingTop: '12px'
-              }}
-            />
-            <p className="balances-text"> 5,000 </p>
-            <span className="balances-button-span">
-              <Button
-                color="blue"
-                className="balances-play-button"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                PLAY NOW
-              </Button>
-              <Button
-                disabled
-                color="blue"
-                className="balances-play-button-2"
-                href="https://play.decentral.games"
-                target="_blank"
-              >
-                TOP UP
-              </Button>
-            </span>
-          </Grid.Column>
->>>>>>> c90d30f709d7682a908610fbe58ce91965037492
 
   //         <Grid.Column
   //           computer={5}
@@ -391,13 +346,13 @@ const ContentTransactions = (props) => {
     );
   }
 
-  if (props.content == 'Labels') {
+  if (props.content === 'Labels') {
     return contentLabels();
-  } else if (props.content == 'Balances') {
+  } else if (props.content === 'Balances') {
     return null;
-  } else if (props.content == 'History') {
+  } else if (props.content === 'History') {
     return contentHistory();
-  } else if (props.content == 'Play') {
+  } else if (props.content === 'Play') {
     return contentGameplay();
   }
 };

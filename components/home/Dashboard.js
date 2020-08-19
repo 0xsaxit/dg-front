@@ -12,9 +12,9 @@ const Dashboard = (props) => {
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
   const [userNumbers, getUserNumbers] = useState([]);
-  const [totalPlayers, setTotalPlayers] = useState("");
-  const [realm, setRealm] = useState("");
-  const [playerCount, setPlayerCount] = useState("");
+  const [totalPlayers, setTotalPlayers] = useState('');
+  const [realm, setRealm] = useState('');
+  const [playerCount, setPlayerCount] = useState('');
 
   async function fetchUserNumbers() {
     return fetch(`https://api.decentral.games/players/getPlayerCount`, {
@@ -30,11 +30,11 @@ const Dashboard = (props) => {
     setLoading(false);
     (async function () {
       let response = await fetchUserNumbers();
-      let json =  await response.json();
+      let json = await response.json();
       setTotalPlayers(json.totalPlayers);
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
-      console.log("user numbers:" + totalPlayers);
+      console.log('user numbers:' + totalPlayers);
     })();
   }, []);
 
@@ -117,8 +117,8 @@ const Dashboard = (props) => {
                 </div>
                 <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
                   Tominoya is a virtual casino built by Decentral Games in
-                  Decentraland. Enjoy non-custodial slots, roulette, and blackjack
-                  playable with crypto.
+                  Decentraland. Enjoy non-custodial slots, roulette, and
+                  blackjack playable with crypto.
                 </p>
 
                 {/*<span className="user-numbers-container-1" style={{ display: 'flex' }}>
@@ -126,15 +126,20 @@ const Dashboard = (props) => {
                   <p className="home-dashboard-p"> {totalPlayers} total players online </p>
                 </span>*/}
 
-                <span className="user-numbers-container-1" style={{ display: 'flex' }}>
+                <span
+                  className="user-numbers-container-1"
+                  style={{ display: 'flex' }}
+                >
                   <p className="online-dot">•</p>
-                  <p className="home-dashboard-p"> {playerCount} players online in {realm} </p>
+                  <p className="home-dashboard-p">
+                    {' '}
+                    {playerCount} players online in {realm}{' '}
+                  </p>
                 </span>
-
               </div>
             </div>
           </div>
-          ) : null}
+        ) : null}
       </div>
     );
   }

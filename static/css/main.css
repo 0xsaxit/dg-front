@@ -47,7 +47,7 @@ p {
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
-.animating.ui.overlay.sidebar, 
+.animating.ui.overlay.sidebar,
 .ui.visible.overlay.sidebar {
   transition: none !important;
 }
@@ -334,7 +334,7 @@ video.home-dashboard-video {
 }
 
 .online-dot {
-  color: #4DBD33;
+  color: #4dbd33;
   padding-right: 4px;
   font-size: 21px;
   margin-top: -2px !important;
@@ -347,7 +347,7 @@ video.home-dashboard-video {
 .games-container,
 .nft-container {
   border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.03);
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   margin-top: 21px;
   display: flex;
   flex-direction: row;
@@ -1088,7 +1088,7 @@ span.matic-icon-background-2 {
 
 .balances-column {
   border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.03);
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   width: 100%;
   padding: 12px 18px 39px 18px !important;
 }
@@ -1154,7 +1154,6 @@ span.matic-icon-background-2 {
 .balances-button-span {
   display: flex;
   justify-content: center;
-
 }
 
 .ui.blue.button.balances-play-button {

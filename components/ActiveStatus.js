@@ -13,7 +13,7 @@ function ActiveStatus() {
   let treasuryContract = {};
   let web3 = {};
   let maticWeb3 = {};
-  const sessionDuration = 60; // 3600 == 1 hour
+  const sessionDuration = 300; // 3600 == 1 hour
 
   useEffect(() => {
     if (state.userStatus) {
