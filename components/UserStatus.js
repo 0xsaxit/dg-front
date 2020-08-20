@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import Global from './Constants';
 
-function Status() {
+function UserStatus() {
   // dispatch user's status value to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -42,4 +42,4 @@ function Status() {
   return null;
 }
 
-export default Status;
+export default UserStatus;

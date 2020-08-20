@@ -94,6 +94,8 @@ const IMAGES = (() => {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png';
   const PLAY_CIRCLE =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1597779125/Group_6_Copy_que5y2.png';
+  const MATIC_TOP =
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png';
 
   return {
     LOGO,
@@ -107,6 +109,7 @@ const IMAGES = (() => {
     MANA_CIRCLE,
     DAI_CIRCLE,
     PLAY_CIRCLE,
+    MATIC_TOP,
   };
 })();
 

@@ -16,7 +16,7 @@ const initialState = {
   balancesOverlay: 0,
   networkID: 0,
   location: true,
-  activeStatus: 1,
+  activeStatus: true,
 };
 
 const reducer = (state, action) => {

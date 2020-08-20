@@ -6,7 +6,7 @@ import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
 import Aux from '../components/_Aux';
-import Status from '../components/Status';
+import UserStatus from '../components/UserStatus';
 import Balances from '../components/Balances';
 import Transactions from '../components/Transactions';
 import ParcelData from '../components/ParcelData';
@@ -22,7 +22,7 @@ class Application extends App {
     return (
       <Aux>
         <Provider store={store}>
-          <Status />
+          <UserStatus />
           <Balances />
           <Transactions />
           <ParcelData />
@@ -37,4 +37,5 @@ class Application extends App {
     );
   }
 }
+
 export default Application;

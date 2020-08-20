@@ -49,10 +49,7 @@ const ContentBalances = (props) => {
         <div className="matic-top-bar">
           <span style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ display: 'flex' }}>
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png"
-                className="matic-top-image"
-              />
+              <img src={Global.IMAGES.MATIC_TOP} className="matic-top-image" />
               <p className="matic-top-text-1"> Account Connected </p>
             </span>
             <span style={{ display: 'flex' }}>
@@ -247,8 +244,6 @@ const ContentBalances = (props) => {
     return contentModal();
   } else if (props.balancesOverlay === 2) {
     return contentAccountPage();
-  } else {
-    return null;
   }
 };
 

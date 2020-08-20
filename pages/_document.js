@@ -61,11 +61,6 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             disabled
           />
-
-          <script
-            src="https://wallet.matic.today/embeds/widget-button.js"
-            data-script-name="matic-embeds"
-          ></script>
         </Head>
         <body>
           <Main />
