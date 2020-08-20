@@ -24,7 +24,7 @@ const MessageBar = () => {
   useEffect(() => {
     if (!state.networkID) {
       setMessage(
-        'You must login to MetaMask to play games with crypto. You may still play our free play games'
+        'You must use Chrome browser with MetaMask enabled to play our games'
       );
     } else if (state.networkID !== 5) {
       setMessage('Please switch MetaMask to Goerli Network'); // Ethereum Mainnet

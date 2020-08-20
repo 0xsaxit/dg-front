@@ -16,7 +16,7 @@ function ActiveStatus() {
   const sessionDuration = 300; // 3600 == 1 hour
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus === 7) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // initialize Web3 providers and create token contract instance
