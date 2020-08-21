@@ -27,7 +27,7 @@ const MessageBar = () => {
         'You must use Chrome browser with MetaMask enabled to play our games'
       );
     } else if (state.networkID !== 5) {
-      setMessage('Please switch MetaMask to Goerli Network'); // Ethereum Mainnet
+      setMessage('Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'); // Ethereum Mainnet
     } else if (!state.location) {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play our free play games'
@@ -44,15 +44,17 @@ const MessageBar = () => {
   if (message !== '') {
     return (
       <div
+        className="mobile-message-bar"
         style={{
           fontFamily: 'Graphik, sans-serif',
-          color: '#cc0000',
+          color: 'white',
           textAlign: 'center',
-          padding: '13px 0',
-          fontSize: '17px',
+          padding: '10px 0',
+          fontSize: '14px',
+          letterSpacing: '0.5px',
           fontWeight: 500,
-          backgroundColor: '#dddddd',
-          height: '45px',
+          backgroundColor: '#2185f4',
+          height: '38px',
         }}
       >
         {message}

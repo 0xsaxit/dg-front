@@ -298,7 +298,7 @@ video.home-dashboard-video {
   font-weight: 600;
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
-  margin-top: -240px !important;
+  margin-top: -210px !important;
 }
 
 .home-dashboard-h3 {
@@ -375,6 +375,10 @@ video.home-dashboard-video {
   }
 }
 
+.my-nft-row {
+  padding-bottom: 6px !important;
+}
+
 .nfts-info,
 .nfts-info-2 {
   font-size: 12px !important;
@@ -416,6 +420,12 @@ video.home-dashboard-video {
   padding-bottom: 45px;
 }
 
+@media (max-width: 991px) {
+  .games-pic {
+    padding-bottom: 45px !important;
+  }
+}
+
 .games-pic {
   padding-right: 45px;
   padding-bottom: 30px;
@@ -423,8 +433,23 @@ video.home-dashboard-video {
   max-width: 500px !important;
 }
 
+.tominoya-pic {
+  margin-top: -45px;
+  padding-right: 45px;
+  padding-bottom: 30px;
+  min-width: 500px;
+  max-width: 500px !important;
+}
+
+@media (max-width: 991px) {
+  .nft-description {
+    margin-top: -30px !important;
+  }
+}
+
 @media (max-width: 590px) {
-  .games-pic {
+  .games-pic,
+  .tominoya-pic {
     min-width: calc(100vw - 75px) !important;
     padding-right: 60px !important;
     max-width: calc(100vw - 75px) !important;
@@ -432,7 +457,8 @@ video.home-dashboard-video {
 }
 
 @media (max-width: 499px) {
-  .games-pic {
+  .games-pic,
+  .tominoya-pic {
     min-width: calc(100vw - 75px) !important;
     padding-right: 30px !important;
     max-width: calc(100vw - 75px) !important;
@@ -830,7 +856,7 @@ table.ui.fixed.single.line.table {
 }
 
 .account-other-inner-p {
-  margin-top: 30px;
+  margin-top: 25vh;
   padding-bottom: 20px;
   text-align: center;
   color: gray;
@@ -987,47 +1013,6 @@ svg.spanbox.disable {
   padding: 20px 40px 40px 40px;
 }
 
-button.ui.button.matic-widget-button {
-  text-align: left;
-  width: 364px;
-  height: 56px;
-  padding: 16px 2px 12px 13px;
-  background-color: white;
-  border: 1px solid rgb(231, 233, 238);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  text-transform: capitalize;
-  font-size: 16px;
-  font-weight: 600;
-  font-family: Graphik, sans-serif !important;
-}
-
-button.ui.button.matic-widget-button-2 {
-  text-align: left;
-  margin-top: -1px;
-  width: 364px;
-  height: 56px;
-  padding: 16px 2px 12px 13px;
-  background-color: white;
-  border: 1px solid rgb(231, 233, 238);
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  text-transform: capitalize;
-  font-size: 16px;
-  font-weight: 600;
-  font-family: Graphik, sans-serif !important;
-}
-
-button.ui.button.matic-widget-button:hover,
-button.ui.button.matic-widget-button-2:hover {
-  transform: translateY(0px) !important;
-  box-shadow: none;
-}
-
 span.matic-icon-background {
   padding: 5px 5px 3px 5px;
   background-color: #d5e2fc;
@@ -1079,11 +1064,17 @@ span.matic-icon-background-2 {
 /*           ACCOUNT BALANCES CSS            */
 /* ----------------------------------------- */
 
+div.ui.grid.balances-container {
+  max-width: 1343px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .balances-container {
   display: flex;
   justify-content: space-between;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .balances-column {
@@ -1622,11 +1613,26 @@ button.ui.blue.button.modal-buttons {
   border-radius: 3px;
 }
 
+.ui.blue.button.my-nft-button {
+  background-color: #4c9df6;
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 3px;
+}
+
 @media (max-width: 516px) {
   .ui.button.nft-read-button,
   .ui.blue.button.games-button,
   .ui.blue.button.nft-button {
     width: 100% !important;
+  }
+  .ui.blue.button.my-nft-button {
+    width: calc(100% - 21px) !important;
   }
   .ui.button.nft-read-button {
     margin-left: 0px;
@@ -1783,11 +1789,14 @@ a.demo-button {
 .demo-button-container {
   position: absolute;
   z-index: 3;
-  top: 24px;
+  top: 87px;
   right: 0;
 }
 
 @media (max-width: 499px) {
+  .mobile-message-bar {
+    height: 66px !important;
+  }
   .wallet_board,
   .wallet_board_overlay,
   .dashboard-image-container,

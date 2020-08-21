@@ -68,7 +68,7 @@ const Dashboard = (props) => {
                   className="home-dashboard-mission"
                   style={{ marginBottom: '-12px' }}
                 >
-                  Non-custodial and provably fair casino games in VR
+                  Non-custodial casino games in virtual worlds
                 </h3>
                 <div>
                   <Button
@@ -133,7 +133,7 @@ const Dashboard = (props) => {
                   <p className="online-dot">•</p>
                   <p className="home-dashboard-p">
                     {' '}
-                    {playerCount} players online in {realm}{' '}
+                    {playerCount} online in {realm}{' '}
                   </p>
                 </span>
               </div>

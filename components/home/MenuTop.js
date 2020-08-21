@@ -20,21 +20,10 @@ const MenuTop = () => {
 
   // set menu styles
   useEffect(() => {
-    if (router.pathname === '/blog') {
-      setMenuStyle([
-        'other-menu-container blog',
-        'menu-container-dark blog',
-        'sidebar-menu-text blog',
-        'blog-menu-background',
-        'dropdown-menu blog',
-        'rgb(10, 10, 10)',
-        'white',
-        'sidebar-menu-text blog',
-        'sidebar-menu-text blog',
-        'sidebar-menu-text-2 blog',
-        'sidebar-menu-text-3 blog',
-      ]);
-    } else {
+    if (router.pathname === '/' 
+      || router.pathname === '/games'
+      || router.pathname === '/account'
+      || router.pathname === '/nfts') {
       setMenuStyle([
         'other-menu-container',
         'menu-container-dark',
@@ -47,6 +36,20 @@ const MenuTop = () => {
         'sidebar-menu-text',
         'sidebar-menu-text-2',
         'sidebar-menu-text-3',
+      ]);
+    } else {
+      setMenuStyle([
+        'other-menu-container blog',
+        'menu-container-dark blog',
+        'sidebar-menu-text blog',
+        'blog-menu-background',
+        'dropdown-menu blog',
+        'rgb(10, 10, 10)',
+        'white',
+        'sidebar-menu-text blog',
+        'sidebar-menu-text blog',
+        'sidebar-menu-text-2 blog',
+        'sidebar-menu-text-3 blog',
       ]);
     }
   }, []);
@@ -123,7 +126,7 @@ const MenuTop = () => {
   // helper functions
   function DGLogo() {
     return (
-      <Link href="/">
+      <Link href=''>
         <img
           className="image inline pointer"
           id="menu-logo"
@@ -136,7 +139,7 @@ const MenuTop = () => {
             marginLeft: '23px',
             height: '100%',
             position: 'relative',
-            zIndex: '6',
+            zIndex: '7',
           }}
         />
       </Link>
