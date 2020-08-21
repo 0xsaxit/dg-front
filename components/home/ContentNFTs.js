@@ -27,32 +27,21 @@ const ContentNFTs = (props) => {
 
   return (
     <div className="nft-container">
-      <div className="nft-image">
+      <div>
         <Image
           src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelData.parcelLocation[0]},${props.parcelData.parcelLocation[2]},1.png`}
           className="tominoya-pic"
-          style={{ borderRadius: '3px' }}
         />
       </div>
       <div className="nft-description">
-        <Grid>
-          <Grid.Row>
-            <Grid.Column
-              className="nft-grid"
-              computer={8}
-              tablet={8}
-              mobile={16}
-            >
-              <p className="nft-bold-content">PARCEL ID</p>
-              <br />
-              <p className="nft-number-content">{props.parcelData.parcelID}</p>
-            </Grid.Column>
+        <Grid style={{ paddingLeft: '15px' }}>
+          <Grid.Row className="my-nft-row">
 
             <Grid.Column
               className="nft-grid"
               computer={8}
               tablet={8}
-              mobile={16}
+              mobile={8}
             >
               <p className="nft-bold-content">PARCEL LOCATION</p>
               <br />
@@ -65,13 +54,12 @@ const ContentNFTs = (props) => {
 
           {months.map((item, i) => {
             return (
-              <Grid.Row key={i}>
+              <Grid.Row className="my-nft-row" key={i}>
                 <Grid.Column
                   className="nft-grid"
-                  computer={8}
-                  tablet={8}
-                  mobile={16}
-                  style={{ marginTop: '10px' }}
+                  computer={6}
+                  tablet={4}
+                  mobile={8}
                 >
                   <p className="nft-bold-content">VOLUME ({item})</p>
                   <br />
@@ -100,10 +88,9 @@ const ContentNFTs = (props) => {
 
                 <Grid.Column
                   className="nft-grid"
-                  computer={8}
-                  tablet={8}
-                  mobile={16}
-                  style={{ marginTop: '10px' }}
+                  computer={6}
+                  tablet={4}
+                  mobile={8}
                 >
                   <p className="nft-bold-content">PROFIT ({item})</p>
                   <br />
@@ -138,9 +125,10 @@ const ContentNFTs = (props) => {
 
         <Button
           color="blue"
-          className="nft-button"
+          className="my-nft-button"
           href={`https://play.decentraland.org/?position=${props.parcelData.parcelLocation[0]}%2C${props.parcelData.parcelLocation[2]}&realm=fenrir-gold`}
           target="_blank"
+          style={{ marginLeft: '12px', marginTop: '30px' }}
         >
           Teleport in
         </Button>

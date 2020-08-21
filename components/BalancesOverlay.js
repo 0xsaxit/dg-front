@@ -46,13 +46,11 @@ const BalancesOverlay = () => {
     },
     balancesAccountPage: {
       position: 'absolute',
-      top: '200px',
-      left: 30,
-      right: 30,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+
+      top: '230px',
+      right: '30px',
+      left: '30px',
       background: '#ffffff',
-      borderRadius: '25px',
       zIndex: 5,
       display: visibilityAccountPage || 'none',
     },
