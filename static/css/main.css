@@ -1875,10 +1875,10 @@ a.demo-button {
     background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
-    height: 100vh;
+    height: calc(100% - 27px) !important;
     width: 100vw;
-    position: fixed;
-    overflow-y: hidden;
+    position: absolute;
+    overflow: hidden !important;
     margin-top: -260px;
   }
   .logospin {
