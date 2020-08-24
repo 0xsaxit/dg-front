@@ -257,7 +257,7 @@ const ModalDeposit = (props) => {
     console.log('Writing to database: ' + state);
 
     try {
-      const response = await Global.postHistory(
+      const response = await Global.FETCH.HISTORY(
         userAddress,
         _amount,
         type,
@@ -319,7 +319,7 @@ const ModalDeposit = (props) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      Global.postUserVerify(userAddress, value);
+      Global.FETCH.USER_VERIFY(userAddress, value);
     }
   }
 

@@ -26,7 +26,7 @@ function UserStatus() {
   }, []);
 
   async function getUserStatus() {
-    const response = await Global.fetchUserStatus(userAddress);
+    const response = await Global.FETCH.USER_STATUS(userAddress);
     const json = await response.json();
 
     if (json.status === 'ok') {

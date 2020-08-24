@@ -24,7 +24,7 @@ function ParcelData() {
 
         // if user owns an NFT fetch parcel data for this particular token ID
         if (tokenID) {
-          const response = await Global.fetchParcelData(landID, tokenID);
+          const response = await Global.FETCH.PARCEL_DATA(landID, tokenID);
           const jsonData = await response.json();
 
           dispatch({

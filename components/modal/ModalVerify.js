@@ -70,7 +70,7 @@ const ModalVerify = () => {
   }
 
   async function getUserStatus() {
-    const response = await Global.fetchUserStatus(userAddress);
+    const response = await Global.FETCH.USER_STATUS(userAddress);
     const json = await response.json();
 
     if (json.status === 'ok') {
@@ -96,7 +96,7 @@ const ModalVerify = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      Global.postUserVerify(userAddress, value);
+      Global.FETCH.USER_VERIFY(userAddress, value);
     }
   }
 

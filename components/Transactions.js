@@ -14,11 +14,11 @@ function Transactions() {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       (async function () {
-        const responseHistory = await Global.fetchHistoryData(userAddress);
+        const responseHistory = await Global.FETCH.HISTORY_DATA(userAddress);
         const jsonHistory = await responseHistory.json();
         const dataHistory = jsonHistory.result;
 
-        const responsePlay = await Global.fetchPlayData(userAddress);
+        const responsePlay = await Global.FETCH.PLAY_DATA(userAddress);
         const jsonPlay = await responsePlay.json();
         const dataPlay = jsonPlay.result;
 

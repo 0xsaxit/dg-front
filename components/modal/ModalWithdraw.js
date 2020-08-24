@@ -216,7 +216,7 @@ class ModalWithdraw extends React.Component {
     console.log('Writing to database: ' + state);
 
     try {
-      const response = await Global.postHistory(
+      const response = await Global.FETCH.HISTORY(
         this.userAddress,
         _amount,
         type,

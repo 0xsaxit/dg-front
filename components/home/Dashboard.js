@@ -11,25 +11,25 @@ const Dashboard = (props) => {
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
-  const [userNumbers, getUserNumbers] = useState([]);
+  // const [userNumbers, getUserNumbers] = useState([]);
   const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
 
-  async function fetchUserNumbers() {
-    return fetch(`https://api.decentral.games/players/getPlayerCount`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  }
+  // async function fetchUserNumbers() {
+  //   return fetch(`https://api.decentral.games/players/getPlayerCount`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // }
 
   useEffect(() => {
     setLoading(false);
     (async function () {
-      let response = await fetchUserNumbers();
+      let response = await Global.FETCH.USER_NUMBERS();
       let json = await response.json();
       setTotalPlayers(json.totalPlayers);
       setRealm(json.topServerRealm.realm);

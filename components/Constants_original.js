@@ -154,130 +154,6 @@ domainArray.push(domainDataTreasury);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// REST API functions: fetch/post data to server API endpoints
-const FETCH = {
-  GET_ADDRESSES: () => {
-    return fetch(`${API_BASE_URL}/addresses`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-  },
-
-  USER_STATUS: (address) => {
-    return fetch(`${API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-      }),
-    });
-  },
-
-  COUNTRY_CODE: () => {
-    return fetch(`https://ipapi.co/json`);
-  },
-
-  PARCEL_DATA: (landID, tokenID) => {
-    return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-  },
-
-  HISTORY_DATA: (address) => {
-    return fetch(`${API_BASE_URL}/order/getHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        limit: 99999, // fetch all of the data
-        page: 1,
-      }),
-    });
-  },
-
-  PLAY_DATA: (address) => {
-    return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        limit: 99999, // fetch all of the data
-        page: 1,
-      }),
-    });
-  },
-
-  GAME_RECORDS: () => {
-    return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  },
-
-  USER_NUMBERS: () => {
-    return fetch(`${API_BASE_URL}/players/getPlayerCount`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  },
-
-  USER_VERIFY: (address, step) => {
-    return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        verifyStep: step,
-      }),
-    });
-  },
-
-  HISTORY: (address, amount, type, state, txHash, step) => {
-    return fetch(`${API_BASE_URL}/order/updateHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        amount: amount,
-        type: type,
-        state: state,
-        txHash: txHash,
-        step: step,
-      }),
-    });
-  },
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // fetch wallet and contract addresses from server REST API
 let WORKER_ADDRESS = '';
 let ROOT_TOKEN_ADDRESS_DAI = '';
@@ -294,7 +170,7 @@ let TREASURY_CONTRACT_ADDRESS = '';
 // let ROOTCHAINMANAGER_ADDRESS = '';
 
 const API_ADDRESSES = (async () => {
-  const response = await FETCH.GET_ADDRESSES();
+  const response = await getAddresses();
   let json = await response.json();
 
   WORKER_ADDRESS = json.WORKER_WALLET_ADDRESS;
@@ -720,7 +596,7 @@ function withdrawFromParent(
 function executeMetaTransaction(
   i,
   functionSignature,
-  sessionDuration,
+  // sessionDuration,
   tokenContract,
   userAddress,
   web3Default
@@ -783,7 +659,7 @@ function executeMetaTransaction(
               .executeMetaTransaction(
                 userAddress,
                 functionSignature,
-                sessionDuration,
+                // sessionDuration,
                 r,
                 s,
                 v
@@ -854,6 +730,128 @@ function getConfirmedTx(txHash, web3Default) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
+// REST API functions: fetch or post data to server API endpoints
+function getAddresses() {
+  return fetch(`${API_BASE_URL}/addresses`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+}
+
+function fetchUserStatus(address) {
+  return fetch(`${API_BASE_URL}/order/verifyAddress`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+    }),
+  });
+}
+
+function fetchCountryCode() {
+  return fetch(`https://ipapi.co/json`);
+}
+
+function fetchParcelData(landID, tokenID) {
+  return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+}
+
+function fetchHistoryData(address) {
+  return fetch(`${API_BASE_URL}/order/getHistory`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+      limit: 99999, // fetch all of the data
+      page: 1,
+    }),
+  });
+}
+
+function fetchPlayData(address) {
+  return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+      limit: 99999, // fetch all of the data
+      page: 1,
+    }),
+  });
+}
+
+function fetchGameRecords() {
+  return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+async function fetchUserNumbers() {
+  return fetch(`${API_BASE_URL}/players/getPlayerCount`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
+function postUserVerify(address, step) {
+  return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+      verifyStep: step,
+    }),
+  });
+}
+
+function postHistory(address, amount, type, state, txHash, step) {
+  return fetch(`${API_BASE_URL}/order/updateHistory`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: address,
+      amount: amount,
+      type: type,
+      state: state,
+      txHash: txHash,
+      step: step,
+    }),
+  });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 export default {
   API_ADDRESSES,
   ABIs,
@@ -875,7 +873,6 @@ export default {
   DISCORD_URL,
   SOCIAL_HANDLE,
   IMAGES,
-  FETCH,
   getTokenContract,
   getTreasuryContract,
   balanceOfToken,
@@ -889,13 +886,13 @@ export default {
   withdrawFromParent,
   executeMetaTransaction,
   getConfirmedTx,
-  // fetchUserStatus,
-  // fetchCountryCode,
-  // fetchParcelData,
-  // fetchHistoryData,
-  // fetchPlayData,
-  // fetchGameRecords,
-  // fetchUserNumbers,
-  // postUserVerify,
-  // postHistory,
+  fetchUserStatus,
+  fetchCountryCode,
+  fetchParcelData,
+  fetchHistoryData,
+  fetchPlayData,
+  fetchGameRecords,
+  fetchUserNumbers,
+  postUserVerify,
+  postHistory,
 };

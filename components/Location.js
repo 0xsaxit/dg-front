@@ -25,7 +25,7 @@ function Location() {
   }, []);
 
   async function getCountryCode() {
-    const response = await Global.fetchCountryCode();
+    const response = await Global.FETCH.COUNTRY_CODE();
     const json = await response.json();
 
     return json.country_code;

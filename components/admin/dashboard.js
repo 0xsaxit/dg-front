@@ -132,14 +132,14 @@ class Dashboard extends React.Component {
   getEthBalance = () => {
     try {
       var Obj = this;
-      window.web3.eth.getBalance(Global.RELAY_ADDRESS, function (err, amount) {
+      window.web3.eth.getBalance(Global.WORKER_ADDRESS, function (err, amount) {
         if (err) return;
 
         Obj.setState({
           ethRopstenGasBalance: window.web3.fromWei(amount, 'ether').toFixed(8),
         });
       });
-      this.maticWeb3.eth.getBalance(Global.RELAY_ADDRESS, function (
+      this.maticWeb3.eth.getBalance(Global.WORKER_ADDRESS, function (
         err,
         amount
       ) {

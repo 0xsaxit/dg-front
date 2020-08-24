@@ -8,7 +8,7 @@ function GameRecords() {
 
   useEffect(() => {
     (async function () {
-      const response = await Global.fetchGameRecords();
+      const response = await Global.FETCH.GAME_RECORDS();
       const jsonRecords = await response.json();
 
       dispatch({
