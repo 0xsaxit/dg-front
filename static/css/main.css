@@ -234,8 +234,8 @@ div.ui.segment.transparent-menu-segment {
   bottom: 0;
   width: 100%;
   height: calc(100% + 1px);
-  overflow: hidden;
   z-index: -2;
+  overflow: hidden !important;
 }
 
 .home-video-container video {
@@ -262,7 +262,7 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: relative;
-  padding-top: calc(100vh - 645px);
+  padding-top: calc(100vh - 670px);
   padding-left: 30px;
   padding-right: 30px;
   max-width: 1400px !important;

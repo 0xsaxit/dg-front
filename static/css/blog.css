@@ -227,17 +227,21 @@ p {
   color: black !important;
 }
 
-@media (max-width: 767px) {
-  .featured-image {
-    margin-bottom: 15px;
-    object-fit: cover;
-    height: 240px;
-  }
+.featured-image {
+  z-index: 1;
 }
 
 @media (max-width: 991px) {
   .featured-image {
     margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-image {
+    margin-bottom: 15px;
+    object-fit: cover;
+    height: 240px;
   }
 }
 
