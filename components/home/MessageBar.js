@@ -24,7 +24,7 @@ const MessageBar = () => {
   useEffect(() => {
     if (!state.networkID) {
       setMessage(
-        'You must use Chrome browser with MetaMask enabled to play our games'
+        'Use Chrome browser with MetaMask enabled to play'
       );
     } else if (state.networkID !== 5) {
       setMessage('Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'); // Ethereum Mainnet

@@ -1013,6 +1013,47 @@ svg.spanbox.disable {
   padding: 20px 40px 40px 40px;
 }
 
+button.ui.button.matic-widget-button {
+  text-align: left;
+  width: 364px;
+  height: 56px;
+  padding: 16px 2px 12px 13px;
+  background-color: white;
+  border: 1px solid rgb(231, 233, 238);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Graphik, sans-serif !important;
+}
+
+button.ui.button.matic-widget-button-2 {
+  text-align: left;
+  margin-top: -1px;
+  width: 364px;
+  height: 56px;
+  padding: 16px 2px 12px 13px;
+  background-color: white;
+  border: 1px solid rgb(231, 233, 238);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Graphik, sans-serif !important;
+}
+
+button.ui.button.matic-widget-button:hover,
+button.ui.button.matic-widget-button-2:hover {
+  transform: translateY(0px) !important;
+  box-shadow: none;
+}
+
 span.matic-icon-background {
   padding: 5px 5px 3px 5px;
   background-color: #d5e2fc;
@@ -1794,26 +1835,16 @@ a.demo-button {
 }
 
 @media (max-width: 499px) {
-  span#mobile-menu-icon.material-icons {
-    position: fixed;
-    left: calc(100vw - 42px);
-    top: 79px;
-  }
-  #menu-logo {
-    padding-top: 3px !important;
-  }
-  .mobile-message-bar {
-    position: relative;
-    z-index: 999 !important;
-    height: 57px !important;
-  }
   .wallet_board,
   .wallet_board_overlay,
   .dashboard-image-container,
   #mobile-casino-text,
-  video.home-dashboard-video,
-  .right-menu-items {
+  video.home-dashboard-video {
     display: none !important;
+  }
+  .mobile-message-bar {
+    position: relative;
+    z-index: 999 !important;
   }
   .home-dashboard-content {
     margin-left: -9px !important;
@@ -1869,7 +1900,7 @@ a.demo-button {
     margin-left: 14px !important;
   }
   .dashboard-menu-container {
-    margin-top: -349px !important;
+    margin-top: -360px !important;
   }
 }
 

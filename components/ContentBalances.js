@@ -214,7 +214,7 @@ const ContentBalances = (props) => {
             <span className="balances-button-span">
               <Button
                 color="blue"
-                className="matic-widget-button balances-play-button"
+                className="balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
               >
@@ -222,7 +222,7 @@ const ContentBalances = (props) => {
               </Button>
               <Button
                 color="blue"
-                className="matic-widget-button balances-play-button-2"
+                className="balances-play-button-2"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
               >

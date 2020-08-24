@@ -35,18 +35,19 @@ const BalancesOverlay = () => {
   const styles = {
     balancesModal: {
       position: 'absolute',
-      top: '0',
+      top: '132px',
       minWidth: '446px',
       marginLeft: 'calc(50% - 223px)',
       marginRight: 'auto',
       background: '#ffffff',
       borderRadius: '12px',
-      zIndex: 5,
+      zIndex: 9,
+      border: '1px solid #edf2f9',
+      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
       display: visibilityModal || 'none',
     },
     balancesAccountPage: {
       position: 'absolute',
-
       top: '230px',
       right: '30px',
       left: '30px',
@@ -60,9 +61,9 @@ const BalancesOverlay = () => {
       fontSize: '12px',
       fontWeight: 400,
       marginLeft: 'calc(50% - 188px)',
-      marginTop: '72px',
+      marginTop: '204px',
       color: '#000000',
-      zIndex: 6,
+      zIndex: 10,
     },
   };
 
