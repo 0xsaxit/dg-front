@@ -1794,14 +1794,25 @@ a.demo-button {
 }
 
 @media (max-width: 499px) {
+  span#mobile-menu-icon.material-icons {
+    position: fixed;
+    left: calc(100vw - 42px);
+    top: 79px;
+  }
+  #menu-logo {
+    padding-top: 3px !important;
+  }
   .mobile-message-bar {
-    height: 66px !important;
+    position: relative;
+    z-index: 999 !important;
+    height: 57px !important;
   }
   .wallet_board,
   .wallet_board_overlay,
   .dashboard-image-container,
   #mobile-casino-text,
-  video.home-dashboard-video {
+  video.home-dashboard-video,
+  .right-menu-items {
     display: none !important;
   }
   .home-dashboard-content {
@@ -1857,8 +1868,8 @@ a.demo-button {
   #menu-logo {
     margin-left: 14px !important;
   }
-  #mobile-menu-icon {
-    left: 72px;
+  .dashboard-menu-container {
+    margin-top: -349px !important;
   }
 }
 

@@ -126,7 +126,7 @@ const MenuTop = () => {
   // helper functions
   function DGLogo() {
     return (
-      <Link href=''>
+      <Link href='/'>
         <img
           className="image inline pointer"
           id="menu-logo"
@@ -338,7 +338,6 @@ const MenuTop = () => {
             {DGLogo()}
             {shownOrHiddenItems()}
             {balancesAndButtons()}
-            {demoButton()}
           </Menu>
 
           {state.messageBox ? (
