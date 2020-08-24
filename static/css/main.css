@@ -1845,6 +1845,14 @@ a.demo-button {
   .mobile-message-bar {
     position: relative;
     z-index: 999 !important;
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+  }
+  .right-menu-items {
+    width: 0px !important;
+  }
+  #mobile-menu-icon {
+    left: calc(100% - 42px);
   }
   .home-dashboard-content {
     margin-left: -9px !important;
@@ -1953,8 +1961,4 @@ a.demo-button {
   span.leaderboard-coin-select-mobile {
     display: none !important;
   }
-}
-
-.post:first-child {
-  display: none !important;
 }
