@@ -184,6 +184,10 @@ p {
 /*             MAIN BLOG PAGE CSS            */
 /* ----------------------------------------- */
 
+.post:first-child {
+  display: none !important;
+}
+
 .blog-home-container {
   max-width: 1400px;
   padding-left: 30px;
@@ -221,6 +225,14 @@ p {
   margin-top: -1px !important;
   text-transform: uppercase !important;
   color: black !important;
+}
+
+@media (max-width: 767px) {
+  .featured-image {
+    margin-bottom: 15px;
+    object-fit: cover;
+    height: 240px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -309,6 +321,8 @@ a:hover {
   padding-right: 30px;
   margin-left: auto !important;
   margin-right: auto !important;
+  padding-bottom: 0px !important;
+  margin-bottom: -30px;
 }
 
 @media (max-width: 499px) {
