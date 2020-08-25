@@ -1664,7 +1664,7 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.blue.button.nft-button {
-  background-color: #4c9df6;
+  background-color: #2085f4;
   color: white;
   width: 180px;
   font-size: 14px;
@@ -1677,8 +1677,9 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.button.nft-read-button {
-  background-color: #165daa;
-  color: white;
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
   width: 180px;
   font-size: 14px;
   font-weight: 600;
@@ -1690,7 +1691,7 @@ button.ui.blue.button.modal-buttons {
 }
 
 .ui.blue.button.games-button {
-  background-color: #4c9df6;
+  background-color: #2085f4;
   color: white;
   width: 180px;
   font-size: 14px;
