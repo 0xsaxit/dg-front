@@ -43,6 +43,40 @@ p {
   border: none !important;
 }
 
+@media (min-width: 500px) {
+  .page-header-text {
+    display: none;
+  }
+}
+
+@media (max-width: 499px) {
+  .page-header-text {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 0px;
+    letter-spacing: 0.25px;
+    line-height: 1.4;
+    color: white;
+    margin-top: -68px !important;
+    position: relative;
+    z-index: 6;
+    width: 100px;
+    margin-left: 45px;
+  }
+  .page-header-text.dark {
+    color: black;
+    margin-top: -112px !important;
+    margin-bottom: 60px;
+  }
+  .page-header-text.dark.detail {
+    color: black;
+    margin-top: -76px !important;
+    margin-bottom: 45px;
+    margin-left: 66px !important;
+  }
+}
+
+
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
@@ -344,11 +378,23 @@ video.home-dashboard-video {
 /*                NFT PAGE CSS               */
 /* ----------------------------------------- */
 
-.games-container,
 .nft-container {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   margin-top: 21px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+  background-color: white;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.games-container {
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  margin-top: 6px;
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
@@ -839,8 +885,9 @@ table.ui.fixed.single.line.table {
 
 .account-other-tabs {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin-top: 90px;
+  margin-top: 75px;
   position: relative !important;
   z-index: 5 !important;
 }

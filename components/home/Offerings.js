@@ -164,6 +164,9 @@ class Offerings extends React.Component {
   submenu = () => {
     return (
       <div className="account-other-tabs">
+        <div>
+          <p className="page-header-text">Games</p>
+        </div>
         {this.state.GameState == 0 ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
