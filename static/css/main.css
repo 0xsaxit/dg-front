@@ -1023,7 +1023,7 @@ span.matic-icon-background-2 {
 /* ----------------------------------------- */
 
 .online-dot.account {
-  margin-top: -23px !important;
+  margin-top: -24px !important;
   font-size: 16px;
   margin-bottom: -30px !important;
 }
@@ -1034,6 +1034,7 @@ span.matic-icon-background-2 {
   text-transform: uppercase;
   float: right;
   margin-top: -23px !important;
+  font-weight: bold;
 }
 
 div.ui.grid.balances-container {
