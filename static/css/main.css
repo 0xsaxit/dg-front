@@ -391,6 +391,10 @@ video.home-dashboard-video {
   padding-right: 30px;
 }
 
+.ui.dropdown > .dropdown.icon {
+  color: #2085f4;
+}
+
 .games-container {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -606,140 +610,6 @@ span.text {
 .matic-balances-row {
   border-top: 0px !important;
   padding-top: 0px !important;
-}
-
-/* ----------------------------------------- */
-/*         MODAL DEPOSIT SECTION CSS         */
-/* ----------------------------------------- */
-
-#deposit-icon-loading {
-  -webkit-animation: spin 1.5s linear infinite;
-  -moz-animation: spin 1.5s linear infinite;
-  animation: spin 1.5s linear infinite;
-  font-size: 18px;
-  vertical-align: top;
-  margin-right: 6px;
-  margin-top: -1px;
-}
-
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-.deposit-notification-container {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: flex-end !important;
-  padding-right: 30px;
-  z-index: 3;
-  max-width: 1400px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.deposit-notification-box {
-  width: 405px;
-  position: absolute !important;
-  z-index: 3 !important;
-  top: 74px;
-}
-
-.ui.message {
-  background-color: rgba(0, 0, 0, 0.75);
-  border: none !important;
-  padding: 18px;
-  padding-top: 3px;
-}
-
-.ui.message div.content,
-.ui.message p,
-.ui.message i.close.icon {
-  color: white;
-}
-
-.modal-p-note {
-  color: black;
-  text-align: left;
-  padding-right: 60px;
-  padding-top: 45px;
-}
-
-.modal-p-note2 {
-  color: black;
-  text-align: left;
-  padding-right: 60px;
-}
-
-.ui.dropdown > .dropdown.icon {
-  color: #2085f4;
-}
-
-.ui.selection.dropdown {
-  border-radius: 3px;
-  width: 100% !important;
-  margin-right: 45px;
-}
-
-.modal-h3.deposit {
-  min-width: 180px;
-}
-
-.deposit-top-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.right-aligned-crypto.deposit {
-  display: flex;
-  margin-left: 189px;
-}
-
-.right-aligned-crypto.withdraw {
-  display: flex;
-  margin-left: 135px;
-}
-
-@media (max-width: 991px) {
-  .right-aligned-crypto {
-    margin-left: 30px;
-  }
-}
-
-.crypto-select-span {
-  display: flex;
-  flex-direction: row;
-  margin-top: 26px;
-}
-
-.crypto-select-span.mana {
-  background-color: #eaeaea;
-  width: 105px;
-  height: 32px;
-  border-radius: 3px;
-  padding-top: 1px;
-  margin-right: 16px;
-}
-
-.deposit-mana-image,
-.deposit-dai-image {
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
-  margin-top: 4px;
-  margin-left: 9px;
 }
 
 /* ----------------------------------------- */
@@ -1152,6 +1022,20 @@ span.matic-icon-background-2 {
 /*           ACCOUNT BALANCES CSS            */
 /* ----------------------------------------- */
 
+.online-dot.account {
+  margin-top: -23px !important;
+  font-size: 16px;
+  margin-bottom: -30px !important;
+}
+
+.account-name {
+  font-size: 16px;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  float: right;
+  margin-top: -23px !important;
+}
+
 div.ui.grid.balances-container {
   max-width: 1343px;
   margin-left: auto !important;
@@ -1163,6 +1047,7 @@ div.ui.grid.balances-container {
   justify-content: space-between;
   margin-left: 0px;
   margin-right: 0px;
+  padding-bottom: 90px !important;
 }
 
 .balances-column {
@@ -1170,6 +1055,15 @@ div.ui.grid.balances-container {
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   width: 100%;
   padding: 12px 18px 39px 18px !important;
+}
+
+.balances-column.zero {
+  padding-bottom: 30px !important;
+  margin-bottom: 15px !important;
+}
+
+.avatar-name-row {
+  margin-bottom: 30px !important;
 }
 
 .name-purchase-span {
@@ -1214,6 +1108,12 @@ div.ui.grid.balances-container {
   letter-spacing: 0.25px;
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+  .balances-column.one {
+    margin-top: 20px !important;
+  }
 }
 
 @media (max-width: 991px) {
@@ -1959,6 +1859,12 @@ a.demo-button {
   .dashboard-menu-container {
     margin-top: -360px !important;
   }
+  #mobile-time-select {
+    margin-left: 0px !important;
+  }
+  .ui.dropdown {
+    margin-bottom: 30px !important;
+  }
 }
 
 @media (max-width: 399px) {
@@ -1985,7 +1891,8 @@ a.demo-button {
   .mobile-menu-image,
   .mobile-menu-words,
   .mobile-footer,
-  .demo-button-container {
+  .demo-button-container,
+  #mobile-time-select {
     display: none !important;
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
@@ -21,6 +21,14 @@ let transak = new transakSDK({
 const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  
+  // define local loading variable
+  const [playBalance, setPlayBalance] = useState('');
+  const [avatarName, setAvatarName] = useState('');
+  const [address, setAddress] = useState('');
+
+  // define local variables
+  let userAddress = '';
 
   useEffect(() => {
     // get all the events
@@ -37,6 +45,58 @@ const ContentBalances = (props) => {
       transak.close();
     });
   }, []);
+
+  // get user address
+  useEffect(() => {
+    if (window.ethereum) {
+      userAddress = window.web3.currentProvider.selectedAddress;
+
+      // get play balance, avatar name
+      (async function () {
+        let response = await getPlayerInfo(userAddress);
+        let json = await response.json();
+        console.log(json.playBalance);
+        console.log(json.address);
+        console.log(json.avatarName);
+        setAddress(json.address);
+        setAvatarName(json.avatarName);
+        setPlayBalance(json.playBalance);
+      })();
+    }
+  }, []);
+
+  async function getPlayerInfo(userAddress) {
+    let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
+    console.log(fetchURL);
+    return fetch(fetchURL, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+
+  // // top up user to 5000 play tokens
+  // function topUpUser() {
+  //   return fetch(`https://api.decentral.games/order/topup`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: address,
+  //     }),
+  //   });
+  // }
+
+  // async function topUp() {
+  //   let response = await topUpUser();
+  //   let json = await response.json();
+  //   console.log(json);
+  // }
 
   // initialize transak modal
   function show_transak() {
@@ -115,7 +175,7 @@ const ContentBalances = (props) => {
             mobile={16}
             className="balances-column one"
           >
-            <p className="balances-token-name"> Play </p>
+            <p className="balances-token-name">Play</p>
             <Divider className="balances-divider" />
             <img
               src={Global.IMAGES.PLAY_CIRCLE}
@@ -126,7 +186,7 @@ const ContentBalances = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> 5,000 </p>
+            <p className="balances-text"> {playBalance} </p>
             <span className="balances-button-span">
               <Button
                 color="blue"
@@ -137,11 +197,10 @@ const ContentBalances = (props) => {
                 PLAY NOW
               </Button>
               <Button
+                // onClick={topUp()}
                 disabled
                 color="blue"
                 className="balances-play-button-2"
-                href="https://play.decentral.games"
-                target="_blank"
               >
                 TOP UP
               </Button>
@@ -235,6 +294,7 @@ const ContentBalances = (props) => {
               ></script>
             </span>
           </Grid.Column>
+
         </Grid.Row>
       </Grid>
     );

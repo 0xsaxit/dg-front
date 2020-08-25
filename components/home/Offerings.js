@@ -279,7 +279,7 @@ class Offerings extends React.Component {
               <span
                 style={{
                   display: 'flex',
-                  marginBottom: '21px',
+                  marginBottom: '9px',
                 }}
                 className="leaderboard-coin-select-mobile"
               >
@@ -348,6 +348,21 @@ class Offerings extends React.Component {
                   DAI
                 </span>
               </span>
+            </span>
+            <span
+              className="account-hover"
+              id="mobile-time-select"
+              style={{
+                marginLeft: '30px',
+                marginRight: '0px',
+                fontWeight: '400',
+              }}
+            >
+              <Dropdown
+                options={options}
+                defaultValue={options[0].value}
+                onChange={this.timeChange}
+              />
             </span>
           </div>
         )}
