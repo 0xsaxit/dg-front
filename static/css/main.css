@@ -430,12 +430,30 @@ video.home-dashboard-video {
   }
 }
 
-@media (min-width: 1400px) and (max-width: 1411px) {
+@media (min-width: 1408px) and (max-width: 1411px) {
   .other-menu-container {
-    margin-left: -0.05%;
+    margin-left: -0.36%;
   }
   .right-menu-items {
-    margin-right: 0.7%;
+    margin-right: 0.5%;
+  }
+}
+
+@media (min-width: 1404px) and (max-width: 1407px) {
+  .other-menu-container {
+    margin-left: -0.26%;
+  }
+  .right-menu-items {
+    margin-right: 0.5%;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1403px) {
+  .other-menu-container {
+    margin-left: -0.1%;
+  }
+  .right-menu-items {
+    margin-right: 0.75%;
   }
 }
 
