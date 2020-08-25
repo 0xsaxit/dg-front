@@ -1860,12 +1860,6 @@ a.demo-button {
   .dashboard-menu-container {
     margin-top: -360px !important;
   }
-  #mobile-time-select {
-    margin-left: 0px !important;
-  }
-  .ui.dropdown {
-    margin-bottom: 30px !important;
-  }
 }
 
 @media (max-width: 399px) {
@@ -1892,8 +1886,7 @@ a.demo-button {
   .mobile-menu-image,
   .mobile-menu-words,
   .mobile-footer,
-  .demo-button-container,
-  #mobile-time-select {
+  .demo-button-container {
     display: none !important;
   }
 }
@@ -1912,10 +1905,17 @@ a.demo-button {
   span.leaderboard-coin-select {
     display: none !important;
   }
+  #mobile-time-select {
+    margin-left: 0px !important;
+  }
+  .ui.dropdown {
+    margin-bottom: 30px !important;
+  }
 }
 
 @media (min-width: 768px) {
-  span.leaderboard-coin-select-mobile {
+  span.leaderboard-coin-select-mobile,
+  #mobile-time-select {
     display: none !important;
   }
 }
