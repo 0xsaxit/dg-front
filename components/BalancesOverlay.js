@@ -48,7 +48,7 @@ const BalancesOverlay = () => {
     },
     balancesAccountPage: {
       position: 'absolute',
-      top: '230px',
+      top: '215px',
       right: '30px',
       left: '30px',
       background: '#ffffff',
