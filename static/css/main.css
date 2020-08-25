@@ -415,6 +415,36 @@ video.home-dashboard-video {
   }
 }
 
+@media (min-width: 1444px) {
+  .main-container {
+    padding-left: calc(100vw - 100%);
+  }
+}
+
+@media (min-width: 1412px) and (max-width: 1444px) {
+  .other-menu-container {
+    margin-left: -0.36%;
+  }
+  .right-menu-items {
+    margin-right: 0.36%;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1411px) {
+  .other-menu-container {
+    margin-left: -0.05%;
+  }
+  .right-menu-items {
+    margin-right: 0.7%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .right-menu-items {
+    margin-right: 15px;
+  }
+}
+
 .main-container {
   margin-bottom: 60px;
 }
