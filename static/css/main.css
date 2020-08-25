@@ -1182,9 +1182,10 @@ div.ui.grid.balances-container {
 }
 
 .ui.button.balances-purchase-button {
-  background-color: #165daa;
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
   margin-top: 1px;
-  color: white;
   font-size: 12px;
   font-weight: bold !important;
   border-radius: 3px;
