@@ -20,7 +20,7 @@ const MessageBox = (props) => {
 
       ws.onopen = () => {
         ws.send(
-          `{"id": 1, "method": "eth_subscribe", "params": ["newDeposits", {'0x2e5e27d50EFa501D90Ad3638ff8441a0C0C0d75e'}]}`
+          `{"id": 1, "method": "eth_subscribe", "params": ["newDeposits", {"0x2e5e27d50EFa501D90Ad3638ff8441a0C0C0d75e"}]}`
         );
       };
 

@@ -47,31 +47,33 @@ const ContentBalances = (props) => {
 
   // get user address
   useEffect(() => {
-    if (window.ethereum) {
+    if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // get play balance, avatar name
       (async function () {
-        let response = await getPlayerInfo(userAddress);
+        let response = await Global.FETCH.PLAYER_INFO(userAddress);
         let json = await response.json();
+
         setPlayBalance(json.playBalance.toLocaleString());
         setAddress(json.address);
         setAvatarName(json.avatarName);
       })();
     }
-  }, []);
+  }, [state.userStatus]);
 
-  async function getPlayerInfo(userAddress) {
-    let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
-    console.log(fetchURL);
-    return fetch(fetchURL, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-  }
+  // async function getPlayerInfo(userAddress) {
+  //   let fetchURL =
+  //     'https://api.decentral.games/admin/getUser?address=' + userAddress;
+  //   console.log(fetchURL);
+  //   return fetch(fetchURL, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // }
 
   // // top up user to 5000 play tokens
   // function topUpUser() {
@@ -173,7 +175,6 @@ const ContentBalances = (props) => {
   function contentAccountPage() {
     return (
       <Grid className="balances-container">
-
         <Grid.Row>
           <Grid.Column
             computer={16}
@@ -193,7 +194,7 @@ const ContentBalances = (props) => {
             </span>
             <Divider className="balances-divider" />
             <span style={{ display: 'flex' }}>
-              <img 
+              <img
                 src={`https://events.decentraland.org/api/profile/${address}/face.png`}
                 style={{
                   width: '90px',
@@ -205,19 +206,17 @@ const ContentBalances = (props) => {
               />
               <span style={{ display: 'flex', flexDirection: 'column' }}>
                 <p className="welcome-text"> welcome back </p>
-                { avatarName === null || avatarName === '' ? 
+                {avatarName === null || avatarName === '' ? (
                   <div>
                     <p className="account-name">
                       {address.substr(0, 2) + '...' + address.substr(-7)}
                     </p>
-                  </div> 
-                  : 
+                  </div>
+                ) : (
                   <div>
-                    <p className="account-name">
-                      {avatarName}
-                    </p>
-                  </div> 
-                }
+                    <p className="account-name">{avatarName}</p>
+                  </div>
+                )}
               </span>
             </span>
           </Grid.Column>
@@ -351,7 +350,6 @@ const ContentBalances = (props) => {
               ></script>
             </span>
           </Grid.Column>
-
         </Grid.Row>
       </Grid>
     );

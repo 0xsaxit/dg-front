@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Modal } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Global from '../Constants';
@@ -11,19 +11,20 @@ const Dashboard = (props) => {
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
-  const [totalPlayers, setTotalPlayers] = useState('');
+  // const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
 
   useEffect(() => {
     setLoading(false);
+
     (async function () {
       let response = await Global.FETCH.USER_NUMBERS();
       let json = await response.json();
 
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
-      setTotalPlayers(json.totalPlayers);
+      // setTotalPlayers(json.totalPlayers);
 
       console.log('Total players: ' + json.totalPlayers);
     })();

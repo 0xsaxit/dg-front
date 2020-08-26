@@ -199,6 +199,16 @@ const FETCH = {
     });
   },
 
+  PLAYER_INFO: (userAddress) => {
+    return fetch(`${API_BASE_URL}/admin/getUser?address=${userAddress}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   PLAY_DATA: (address) => {
     return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
       method: 'POST',

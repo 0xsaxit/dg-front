@@ -48,13 +48,15 @@ const History = (props) => {
 
   // get user address
   useEffect(() => {
-    if (window.ethereum) {
+    if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // get play balance, avatar name
       (async function () {
-        let response = await getPlayerInfo(userAddress);
+        // let response = await getPlayerInfo(userAddress);
+        let response = await Global.FETCH.PLAYER_INFO(userAddress);
         let json = await response.json();
+
         console.log(json.playBalance);
         console.log(json.address);
         console.log(json.avatarName);
@@ -63,19 +65,20 @@ const History = (props) => {
         setPlayBalance(json.playBalance);
       })();
     }
-  }, []);
+  }, [state.userStatus]);
 
-  async function getPlayerInfo(userAddress) {
-    let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
-    console.log(fetchURL);
-    return fetch(fetchURL, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-  }
+  // async function getPlayerInfo(userAddress) {
+  //   let fetchURL =
+  //     'https://api.decentral.games/admin/getUser?address=' + userAddress;
+  //   console.log(fetchURL);
+  //   return fetch(fetchURL, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // }
 
   // display or remove the balances overlay
   function balancesOverlay(toggle) {
