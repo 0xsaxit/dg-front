@@ -679,12 +679,24 @@ table.ui.fixed.single.line.table {
 /*            ACCOUNT SECTION CSS            */
 /* ----------------------------------------- */
 
+.account-connected-grid {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 3px !important;
+  margin-bottom: 0px !important;
+}
+
+.tab-divider {
+  position: relative !important;
+  z-index: 999 !important;
+  margin-top: 21px !important;
+}
+
 .main-container {
   margin-top: -60px !important;
 }
 
 .page-container {
-  padding-top: 1px;
   max-width: 1400px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -985,7 +997,7 @@ span.matic-icon-background-2 {
 }
 
 .account-name {
-  font-size: 48px;
+  font-size: 34px;
   font-weight: 600;
   letter-spacing: 0.25px;
   padding-left: 21px;
@@ -999,11 +1011,12 @@ span.matic-icon-background-2 {
   color: rgb(97, 97, 97);
   text-transform: uppercase;
   padding-left: 22px;
-  padding-top: 12px !important;
-  margin-bottom: -6px;
+  padding-top: 9px !important;
+  margin-bottom: -3px;
 }
 
 div.ui.grid.balances-container {
+  padding-top: 140px;
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1031,7 +1044,7 @@ div.ui.grid.balances-container {
 }
 
 .balances-column.zero {
-  height: 180px;
+  height: 100px;
   padding: 12px 17px 39px 18px !important;
 }
 
@@ -1075,7 +1088,7 @@ div.ui.grid.balances-container {
   letter-spacing: 0.5px;
 }
 
-.ui.button.balances-top-play-button {
+.ui.button.account-connected-play-button {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;
@@ -1090,7 +1103,7 @@ div.ui.grid.balances-container {
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-left: calc(100% - 283px);
+  margin-left: calc(100% - 378px);
 }
 
 .balances-divider {
@@ -1109,12 +1122,6 @@ div.ui.grid.balances-container {
   letter-spacing: 0.25px;
   margin-top: 10px;
   margin-bottom: 20px;
-}
-
-@media (max-width: 800px) {
-  .balances-column.zero {
-    margin-top: 20px !important;
-  }
 }
 
 @media (max-width: 991px) {
@@ -1494,6 +1501,11 @@ div.ui.grid.balances-container {
 /* ----------------------------------------- */
 /*                BUTTONS CSS                */
 /* ----------------------------------------- */
+
+.ui.button:hover {
+  transform: translateY(0px) !important;
+  filter: brightness(90%);
+}
 
 a.ui.blue.button.play-shimmer {
   background-color: white;

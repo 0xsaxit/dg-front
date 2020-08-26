@@ -166,55 +166,6 @@ const ContentBalances = (props) => {
 
         <Grid.Row>
           <Grid.Column
-            computer={16}
-            tablet={16}
-            mobile={16}
-            className="balances-column zero"
-          >
-            <span style={{ display: 'flex' }}>
-              <p className="online-dot account">•</p>
-              <p className="balances-token-name">Account Connected</p>
-              <Button
-                className="balances-top-play-button"
-                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
-              >
-                PLAY NOW
-              </Button>
-            </span>
-            <Divider className="balances-divider" />
-            <span style={{ display: 'flex' }}>
-              <img 
-                src={`https://events.decentraland.org/api/profile/${address}/face.png`}
-                style={{
-                  width: '90px',
-                  display: 'flex',
-                  border: '1px solid rgb(227, 232, 238)',
-                  borderRadius: '100%',
-                  boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                }}
-              />
-              <span style={{ display: 'flex', flexDirection: 'column' }}>
-                <p className="welcome-text"> welcome back </p>
-                { avatarName === null || avatarName === '' ? 
-                  <div>
-                    <p className="account-name">
-                      {address.substr(0, 2) + '...' + address.substr(-7)}
-                    </p>
-                  </div> 
-                  : 
-                  <div>
-                    <p className="account-name">
-                      {avatarName}
-                    </p>
-                  </div> 
-                }
-              </span>
-            </span>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row>
-          <Grid.Column
             computer={5}
             tablet={16}
             mobile={16}

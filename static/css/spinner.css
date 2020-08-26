@@ -23,6 +23,48 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0);
+  background: white;
   z-index: 9;
+}
+
+/* ----------------------------------------- */
+/*            ZOOM ANIMATION CSS             */
+/* ----------------------------------------- */
+
+.zoom-animation {
+  z-index: 999;
+  height: 0px;
+  padding: 0px;
+  border: 150em solid white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  display: block;
+  box-sizing: initial;
+  overflow: hidden;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: puff 0.4s 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0s 0.8s linear forwards;
+}
+
+@keyframes puff {
+  0% {
+    top: 50%;
+    height: 0px;
+    padding: 0px;
+  }
+  100% {
+    top: 50%;
+    height: 100vw;
+    padding: 0px 100vh;
+  }
+}
+
+@keyframes borderRadius {
+  0% {
+    border-radius: 50%;
+  }
+  100% {
+    border-radius: 0px;
+  }
 }
