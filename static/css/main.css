@@ -81,52 +81,11 @@ p {
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
-/* this is temporary until I figure out why  */
-/* the menu jumps between 1400 and 1444px    */
-
 @media (min-width: 1444px) {
   .main-container {
     padding-left: calc(100vw - 100%);
   }
 }
-
-@media (min-width: 1412px) and (max-width: 1444px) {
-  .other-menu-container {
-    margin-left: -0.36%;
-  }
-  .right-menu-items {
-    margin-right: 0.36%;
-  }
-}
-
-@media (min-width: 1408px) and (max-width: 1411px) {
-  .other-menu-container {
-    margin-left: -0.36%;
-  }
-  .right-menu-items {
-    margin-right: 0.5%;
-  }
-}
-
-@media (min-width: 1404px) and (max-width: 1407px) {
-  .other-menu-container {
-    margin-left: -0.26%;
-  }
-  .right-menu-items {
-    margin-right: 0.5%;
-  }
-}
-
-@media (min-width: 1400px) and (max-width: 1403px) {
-  .other-menu-container {
-    margin-left: -0.1%;
-  }
-  .right-menu-items {
-    margin-right: 0.75%;
-  }
-}
-
-/* end janky css stuffs */
 
 .animating.ui.overlay.sidebar,
 .ui.visible.overlay.sidebar {

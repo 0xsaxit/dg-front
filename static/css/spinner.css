@@ -23,7 +23,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: white;
+  background: black;
   z-index: 9;
 }
 
@@ -35,7 +35,7 @@
   z-index: 999;
   height: 0px;
   padding: 0px;
-  border: 150em solid white;
+  border: 150em solid black !important;
   position: fixed;
   left: 50%;
   top: 50%;
