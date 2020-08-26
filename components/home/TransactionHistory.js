@@ -133,27 +133,6 @@ const History = (props) => {
               )}
             </p>
           </div>
-
-            { avatarName === null || avatarName === '' ? 
-              <div>
-                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <p className="online-dot account">•</p>
-                  <p className="account-name">
-                    {address.substr(0, 6) + ' ... ' + address.substr(-6)}
-                  </p>
-                </span>
-              </div> 
-              : 
-              <div>
-                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <p className="online-dot account">•</p>
-                  <p className="account-name">
-                    {avatarName}
-                  </p>
-                </span>
-              </div> 
-            }
-
         </div>
 
         <Divider style={{ marginTop: '21px', paddingBottom: '12px' }} />
