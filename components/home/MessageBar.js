@@ -49,7 +49,7 @@ const MessageBar = () => {
           fontFamily: 'Graphik, sans-serif',
           color: 'white',
           textAlign: 'center',
-          padding: '9px 30px 9px 30px',
+          padding: '10px 30px 9px 30px',
           fontSize: '14px',
           letterSpacing: '0.5px',
           fontWeight: 500,

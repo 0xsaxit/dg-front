@@ -11,20 +11,9 @@ const Dashboard = (props) => {
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
-  // const [userNumbers, getUserNumbers] = useState([]);
   const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
-
-  // async function fetchUserNumbers() {
-  //   return fetch(`https://api.decentral.games/players/getPlayerCount`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // }
 
   useEffect(() => {
     setLoading(false);
@@ -102,7 +91,7 @@ const Dashboard = (props) => {
                   <Button
                     color="blue"
                     className="play-button"
-                    href="https://play.decentral.games"
+                    href={`https://play.decentraland.org/?position=-120%2C135&realm=${realm}`}
                     target="_blank"
                     style={{ marginRight: '30px' }}
                   >
@@ -122,11 +111,6 @@ const Dashboard = (props) => {
                   Decentraland. Enjoy non-custodial slots, roulette, and
                   blackjack playable with crypto.
                 </p>
-
-                {/*<span className="user-numbers-container-1" style={{ display: 'flex' }}>
-                  <p className="online-dot">•</p>
-                  <p className="home-dashboard-p"> {totalPlayers} total players online </p>
-                </span>*/}
 
                 <span
                   className="user-numbers-container-1"

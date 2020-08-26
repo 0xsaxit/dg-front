@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
@@ -22,6 +22,13 @@ const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  // define local variables
+  const [playBalance, setPlayBalance] = useState('');
+  const [avatarName, setAvatarName] = useState('');
+  const [address, setAddress] = useState('');
+
+  let userAddress = '';
+
   useEffect(() => {
     // get all the events
     transak.on(transak.ALL_EVENTS, (data) => {
@@ -37,6 +44,54 @@ const ContentBalances = (props) => {
       transak.close();
     });
   }, []);
+
+  // get user address
+  useEffect(() => {
+    if (window.ethereum) {
+      userAddress = window.web3.currentProvider.selectedAddress;
+
+      // get play balance, avatar name
+      (async function () {
+        let response = await getPlayerInfo(userAddress);
+        let json = await response.json();
+        setPlayBalance(json.playBalance.toLocaleString());
+        setAddress(json.address);
+        setAvatarName(json.avatarName);
+      })();
+    }
+  }, []);
+
+  async function getPlayerInfo(userAddress) {
+    let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
+    console.log(fetchURL);
+    return fetch(fetchURL, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+  // // top up user to 5000 play tokens
+  // function topUpUser() {
+  //   return fetch(`https://api.decentral.games/order/topup`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: address,
+  //     }),
+  //   });
+  // }
+
+  // async function topUp() {
+  //   let response = await topUpUser();
+  //   let json = await response.json();
+  //   console.log(json);
+  // }
 
   // initialize transak modal
   function show_transak() {
@@ -118,6 +173,56 @@ const ContentBalances = (props) => {
   function contentAccountPage() {
     return (
       <Grid className="balances-container">
+
+        <Grid.Row>
+          <Grid.Column
+            computer={16}
+            tablet={16}
+            mobile={16}
+            className="balances-column zero"
+          >
+            <span style={{ display: 'flex' }}>
+              <p className="online-dot account">•</p>
+              <p className="balances-token-name">Account Connected</p>
+              <Button
+                className="balances-top-play-button"
+                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+              >
+                PLAY NOW
+              </Button>
+            </span>
+            <Divider className="balances-divider" />
+            <span style={{ display: 'flex' }}>
+              <img 
+                src={`https://events.decentraland.org/api/profile/${address}/face.png`}
+                style={{
+                  width: '90px',
+                  display: 'flex',
+                  border: '1px solid rgb(227, 232, 238)',
+                  borderRadius: '100%',
+                  boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                }}
+              />
+              <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <p className="welcome-text"> welcome back </p>
+                { avatarName === null || avatarName === '' ? 
+                  <div>
+                    <p className="account-name">
+                      {address.substr(0, 2) + '...' + address.substr(-7)}
+                    </p>
+                  </div> 
+                  : 
+                  <div>
+                    <p className="account-name">
+                      {avatarName}
+                    </p>
+                  </div> 
+                }
+              </span>
+            </span>
+          </Grid.Column>
+        </Grid.Row>
+
         <Grid.Row>
           <Grid.Column
             computer={5}
@@ -125,7 +230,7 @@ const ContentBalances = (props) => {
             mobile={16}
             className="balances-column one"
           >
-            <p className="balances-token-name"> Play </p>
+            <p className="balances-token-name">Play</p>
             <Divider className="balances-divider" />
             <img
               src={Global.IMAGES.PLAY_CIRCLE}
@@ -136,22 +241,21 @@ const ContentBalances = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> 5,000 </p>
+            <p className="balances-text"> {playBalance} </p>
             <span className="balances-button-span">
               <Button
                 color="blue"
                 className="balances-play-button"
-                href="https://play.decentral.games"
+                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
                 target="_blank"
               >
                 PLAY NOW
               </Button>
               <Button
+                // onClick={topUp()}
                 disabled
                 color="blue"
                 className="balances-play-button-2"
-                href="https://play.decentral.games"
-                target="_blank"
               >
                 TOP UP
               </Button>
@@ -247,6 +351,7 @@ const ContentBalances = (props) => {
               ></script>
             </span>
           </Grid.Column>
+
         </Grid.Row>
       </Grid>
     );
