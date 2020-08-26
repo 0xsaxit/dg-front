@@ -35,7 +35,7 @@ const ModalVerify = () => {
         content="CONNECT METAMASK"
         color="blue"
         className="metamask-button"
-        onClick={handleOpen}
+        onClick={() => handleOpen()}
       />
     );
   }

@@ -69,14 +69,18 @@ const ContentBalances = (props) => {
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => openMessageBox()}
               >
                 <span className="matic-icon-background">
-                  <span class="material-icons" id="matic-widget-icon-left-1">
+                  <span
+                    className="material-icons"
+                    id="matic-widget-icon-left-1"
+                  >
                     add
                   </span>
                 </span>
                 Deposit from Metamask
-                <span class="material-icons" id="matic-widget-icon-right-1">
+                <span className="material-icons" id="matic-widget-icon-right-1">
                   keyboard_arrow_right
                 </span>
               </Button>
@@ -87,14 +91,20 @@ const ContentBalances = (props) => {
               ></script>
             </div>
             <div>
-              <Button className="matic-widget-button-2" onClick={show_transak}>
+              <Button
+                className="matic-widget-button-2"
+                onClick={() => show_transak()}
+              >
                 <span className="matic-icon-background-2">
-                  <span class="material-icons" id="matic-widget-icon-left-2">
+                  <span
+                    className="material-icons"
+                    id="matic-widget-icon-left-2"
+                  >
                     add
                   </span>
                 </span>
                 Purchase with Debit Card
-                <span class="material-icons" id="matic-widget-icon-right-2">
+                <span className="material-icons" id="matic-widget-icon-right-2">
                   keyboard_arrow_right
                 </span>
               </Button>
@@ -159,7 +169,7 @@ const ContentBalances = (props) => {
               <Button
                 disabled
                 className="balances-purchase-button"
-                onClick={show_transak}
+                onClick={() => show_transak()}
               >
                 Purchase
               </Button>
@@ -195,7 +205,7 @@ const ContentBalances = (props) => {
               <p className="balances-token-name"> Mana </p>
               <Button
                 className="balances-purchase-button"
-                onClick={show_transak}
+                onClick={() => show_transak()}
               >
                 PURCHASE
               </Button>
@@ -214,17 +224,19 @@ const ContentBalances = (props) => {
             <span className="balances-button-span">
               <Button
                 color="blue"
-                className="balances-play-button"
+                className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => openMessageBox()}
               >
                 DEPOSIT
               </Button>
               <Button
                 color="blue"
-                className="balances-play-button-2"
+                className="matic-widget-button balances-play-button-2"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => openMessageBox()}
               >
                 WITHDRAW
               </Button>
@@ -238,6 +250,13 @@ const ContentBalances = (props) => {
         </Grid.Row>
       </Grid>
     );
+  }
+
+  function openMessageBox() {
+    dispatch({
+      type: 'message_box',
+      data: 1,
+    });
   }
 
   if (props.balancesOverlay === 1) {

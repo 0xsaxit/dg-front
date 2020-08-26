@@ -70,7 +70,7 @@ const BalancesOverlay = () => {
   return (
     <Aux>
       {state.balancesOverlay === 1 ? (
-        <span style={styles.close} onClick={close}>
+        <span style={styles.close} onClick={() => close()}>
           <span className="material-icons" style={{ fontSize: '29px' }}>
             {' '}
             close{' '}

@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
+import Aux from './_Aux';
 import Global from './Constants';
 
 const Header = (props) => {
   return (
-    <div>
+    <Aux>
       <Head>
         <title>{props.title}</title>
         <meta property="og:title" content={props.title} />
@@ -30,7 +31,7 @@ const Header = (props) => {
           ],
         }}
       />
-    </div>
+    </Aux>
   );
 };
 

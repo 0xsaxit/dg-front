@@ -20,10 +20,12 @@ const MenuTop = () => {
 
   // set menu styles
   useEffect(() => {
-    if (router.pathname === '/' 
-      || router.pathname === '/games'
-      || router.pathname === '/account'
-      || router.pathname === '/nfts') {
+    if (
+      router.pathname === '/' ||
+      router.pathname === '/games' ||
+      router.pathname === '/account' ||
+      router.pathname === '/nfts'
+    ) {
       setMenuStyle([
         'other-menu-container',
         'menu-container-dark',
@@ -126,7 +128,7 @@ const MenuTop = () => {
   // helper functions
   function DGLogo() {
     return (
-      <Link href='/'>
+      <Link href="/">
         <img
           className="image inline pointer"
           id="menu-logo"
@@ -179,7 +181,7 @@ const MenuTop = () => {
       >
         <span
           className="material-icons"
-          onClick={handleDimmedChange}
+          onClick={() => handleDimmedChange()}
           id="mobile-menu-icon"
           style={{ color: menuStyle[5] }}
         >
@@ -311,7 +313,7 @@ const MenuTop = () => {
           <Button
             color="blue"
             className="modal-deposit-button"
-            onClick={balancesModal}
+            onClick={() => balancesModal()}
           >
             ADD TOKENS
           </Button>

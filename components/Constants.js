@@ -1,10 +1,18 @@
-// import { MaticPOSClient } from '@maticnetwork/maticjs';
-// import window from 'global'; // **************************
 import Butter from 'buttercms';
 import ABITreasuryContract from './ABI/ABITreasury';
 import ABIRootToken from './ABI/ABIDummyToken';
 import ABIChildToken from './ABI/ABIChildToken';
 import ABITominoyaToken from './ABI/ABITominoya';
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// third-party public API keys
+const KEYS = {
+  BICONOMY_API: 'NfWiOc7He.104e7174-6d0e-4e38-84b7-fcfb9c0cc367',
+  TRANSAK_API: '4fcd6904-706b-4aff-bd9d-77422813bbb7',
+  GOOGLE_ANALYTICS: 'UA-146057069-1',
+  BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -31,25 +39,47 @@ const ADMIN_ADDRESSES = [
 const TITLE = 'Decentral Games';
 const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
-const BUTTER = Butter('d7d6d8425656d3cfe5f45d7a0a3a8470ef09d434'); // pass Butter CMS token
+const BUTTER = Butter(KEYS.BUTTER_TOKEN);
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = '@decentralgames';
 const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// third-party public API keys
-const KEYS = (() => {
-  const BICONOMY_API = 'NfWiOc7He.104e7174-6d0e-4e38-84b7-fcfb9c0cc367';
-  const TRANSAK_API = '4fcd6904-706b-4aff-bd9d-77422813bbb7';
-  const GOOGLE_ANALYTICS = 'UA-146057069-1';
+// EIP712 domain params for Biconomy API
+const sigUtil = require('eth-sig-util');
 
-  return {
-    BICONOMY_API,
-    TRANSAK_API,
-    GOOGLE_ANALYTICS,
-  };
-})();
+const domainType = [
+  { name: 'name', type: 'string' },
+  { name: 'version', type: 'string' },
+  { name: 'chainId', type: 'uint256' },
+  { name: 'verifyingContract', type: 'address' },
+];
+
+const metaTransactionType = [
+  { name: 'nonce', type: 'uint256' },
+  { name: 'from', type: 'address' },
+  { name: 'functionSignature', type: 'bytes' },
+];
+
+let domainArray = [];
+
+const domainDataToken = {
+  name: 'Dummy Child Token',
+  version: '1',
+  chainId: PARENT_NETWORK_ID,
+  verifyingContract: '',
+};
+
+const domainDataTreasury = {
+  name: 'Treasury',
+  version: 'v2.1',
+  chainId: PARENT_NETWORK_ID,
+  verifyingContract: '',
+};
+
+domainArray.push(domainDataToken);
+domainArray.push(domainDataTreasury);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -115,46 +145,7 @@ const IMAGES = (() => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// EIP712 domain params for Biconomy API
-const sigUtil = require('eth-sig-util');
-
-const domainType = [
-  { name: 'name', type: 'string' },
-  { name: 'version', type: 'string' },
-  { name: 'chainId', type: 'uint256' },
-  { name: 'verifyingContract', type: 'address' },
-];
-
-const metaTransactionType = [
-  { name: 'nonce', type: 'uint256' },
-  { name: 'from', type: 'address' },
-  { name: 'functionSignature', type: 'bytes' },
-];
-
-let domainArray = [];
-
-const domainDataToken = {
-  name: 'Dummy Child Token',
-  version: '1',
-  chainId: PARENT_NETWORK_ID,
-  verifyingContract: '',
-};
-
-const domainDataTreasury = {
-  name: 'Treasury',
-  version: 'v2.1',
-  chainId: PARENT_NETWORK_ID,
-  verifyingContract: '',
-};
-
-domainArray.push(domainDataToken);
-domainArray.push(domainDataTreasury);
-
-// let maticPOSClient = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
-// REST API functions: fetch/post data to server API endpoints
+// REST API functions: GET/POST data to server API endpoints
 const FETCH = {
   GET_ADDRESSES: () => {
     return fetch(`${API_BASE_URL}/addresses`, {

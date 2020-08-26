@@ -31,10 +31,12 @@ const Dashboard = (props) => {
     (async function () {
       let response = await Global.FETCH.USER_NUMBERS();
       let json = await response.json();
-      setTotalPlayers(json.totalPlayers);
+
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
-      console.log('user numbers:' + totalPlayers);
+      setTotalPlayers(json.totalPlayers);
+
+      console.log('Total players: ' + json.totalPlayers);
     })();
   }, []);
 
