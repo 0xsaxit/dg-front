@@ -71,12 +71,15 @@ const Dashboard = (props) => {
           <div className="home-dashboard-content">
             <div>
               <div className="home-dashboard-description">
-                <h3
+                <h1
                   className="home-dashboard-mission"
                   style={{ marginBottom: '-12px' }}
                 >
                   Hit the tables in a virtual casino
-                </h3>
+                </h1>
+                <h2 className="home-dashboard-h2">
+                  Non-custodial slots, roulette, blackjack, and backgammon playable with crypto in Decentraland
+                </h2>
                 <div>
                   <Button
                     color="blue"
@@ -97,12 +100,12 @@ const Dashboard = (props) => {
             <div>
               <div>
                 <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-                <h3
-                  className="home-dashboard-h3"
+                <h1
+                  className="home-dashboard-h1"
                   style={{ marginBottom: '-12px' }}
                 >
                   Tominoya
-                </h3>
+                </h1>
                 <div>
                   <Button
                     color="blue"
