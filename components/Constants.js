@@ -77,7 +77,7 @@ const IMAGES = (() => {
   const SOCIAL_SHARE =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1595194024/twitterpreview_b1yemb.png';
   const LOADING_SPINNER =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593912197/120dgspin_okkzit.gif';
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif';
   const ICON_DAI =
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/dai_l8u5ig.png';
   const ICON_MANA =

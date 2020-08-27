@@ -75,7 +75,7 @@ const Dashboard = (props) => {
                   className="home-dashboard-mission"
                   style={{ marginBottom: '-12px' }}
                 >
-                  Non-custodial casino games in virtual worlds
+                  Hit the tables in a virtual casino
                 </h3>
                 <div>
                   <Button

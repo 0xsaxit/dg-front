@@ -401,6 +401,11 @@ video.home-dashboard-video {
   color: #2085f4;
 }
 
+.ui.dropdown > .text {
+  color: black;
+  font-weight: 400;
+}
+
 .games-container {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -1776,12 +1781,11 @@ a.demo-button {
     left: calc(100% - 42px);
   }
   .home-dashboard-content {
-    margin-left: -9px !important;
     margin-right: 30px;
     margin-top: 120px;
   }
   .home-dashboard-mission {
-    margin-top: -120px !important;
+    margin-top: -90px !important;
   }
   .home-dashboard-p {
     width: 100%;
@@ -1796,11 +1800,11 @@ a.demo-button {
   }
   .home-dashboard {
     background-image: linear-gradient(
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.9)
+        rgba(0, 0, 0, 0.30),
+        rgba(0, 0, 0, 0.60),
+        rgba(0, 0, 0, 0.90)
       ),
-      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598487812/makeitrain2_sbggi4.gif');
+      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
     background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
@@ -1809,7 +1813,6 @@ a.demo-button {
     position: absolute;
     overflow: hidden !important;
     margin-top: -260px;
-    filter: brightness(75%);
   }
   .logospin {
     position: fixed;
