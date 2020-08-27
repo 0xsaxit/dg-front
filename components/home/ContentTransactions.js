@@ -1,9 +1,26 @@
+// import { useContext, useEffect } from 'react';
+// import { GlobalContext } from '../../store';
+// import transakSDK from '@transak/transak-sdk';
 import { Table, Button, Icon } from 'semantic-ui-react';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
+// let transak = new transakSDK({
+//   apiKey: Global.KEYS.TRANSAK_API, // API Key
+//   environment: 'STAGING', // STAGING/PRODUCTION
+//   defaultCryptoCurrency: 'MANA',
+//   walletAddress: '', // customer wallet address
+//   themeColor: '000000', // theme color
+//   fiatCurrency: '', // INR/GBP
+//   email: '', // customer email address
+//   redirectURL: '',
+//   hostURL: 'https://decentral.games/account',
+//   widgetHeight: '633px',
+//   widgetWidth: '450px',
+// });
 
 const ContentTransactions = (props) => {
+
 
   function contentLabels() {
     if (props.type === 'Balances') {
@@ -16,10 +33,10 @@ const ContentTransactions = (props) => {
               GAME
             </Table.HeaderCell>
             <Table.HeaderCell className="table-header-text">
-              BET
+              AMOUNT
             </Table.HeaderCell>
             <Table.HeaderCell className="table-header-text">
-              PAYOUT
+              RESULT
             </Table.HeaderCell>
             <Table.HeaderCell className="table-header-text">
               DATE
@@ -35,13 +52,13 @@ const ContentTransactions = (props) => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell className="table-header-text">
-              ACTION
+              poos
             </Table.HeaderCell>
             <Table.HeaderCell className="table-header-text">
               AMOUNT
             </Table.HeaderCell>
             <Table.HeaderCell className="table-header-text">
-              STATUS
+              RESULT
             </Table.HeaderCell>
             <Table.HeaderCell className="table-header-text">
               DATE
@@ -52,6 +69,8 @@ const ContentTransactions = (props) => {
           </Table.Row>
         </Table.Header>
       );
+    } else {
+      return null;
     }
   }
 
