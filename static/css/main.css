@@ -1800,7 +1800,7 @@ a.demo-button {
         rgba(0, 0, 0, 0.2),
         rgba(0, 0, 0, 0.9)
       ),
-      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/image_noccib_s7x7xk_uvqwwz_djisxi.jpg');
+      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598487812/makeitrain2_sbggi4.gif');
     background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
@@ -1809,6 +1809,7 @@ a.demo-button {
     position: absolute;
     overflow: hidden !important;
     margin-top: -260px;
+    filter: brightness(75%);
   }
   .logospin {
     position: fixed;
