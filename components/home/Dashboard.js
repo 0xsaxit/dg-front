@@ -11,22 +11,28 @@ const Dashboard = (props) => {
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
-  // const [totalPlayers, setTotalPlayers] = useState('');
+  const [isZooming, setZooming] = useState(true);
+  const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
 
   useEffect(() => {
-    setLoading(false);
-
+    setLoading(true);
     (async function () {
       let response = await Global.FETCH.USER_NUMBERS();
       let json = await response.json();
 
+      setTotalPlayers(json.totalPlayers);
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
-      // setTotalPlayers(json.totalPlayers);
 
-      console.log('Total players: ' + json.totalPlayers);
+      console.log('Total players:' + totalPlayers);
+
+      setLoading(false);
+      const timer = setTimeout(() => {
+        setZooming(false);
+      }, 800);
+      return () => clearTimeout(timer);
     })();
   }, []);
 
@@ -37,6 +43,17 @@ const Dashboard = (props) => {
   }, [state.userStatus]);
 
   function getContent() {
+    return (
+      <div>
+        {isZooming === true ? (
+          <span id="zoom-overlay" class="zoom-animation" />
+        ) : null}
+        {mainContent()}
+      </div>
+    );
+  }
+
+  function mainContent() {
     return (
       <div>
         <div className="home-video-container">
@@ -60,7 +77,7 @@ const Dashboard = (props) => {
                   className="home-dashboard-mission"
                   style={{ marginBottom: '-12px' }}
                 >
-                  Non-custodial casino games in virtual worlds
+                  Hit the tables in a virtual casino
                 </h3>
                 <div>
                   <Button
@@ -133,8 +150,13 @@ const Dashboard = (props) => {
 
   return (
     <Aux>
-      {isLoading ? <Spinner background={2} /> : null}
-      <div className="home-dashboard">{getContent()}</div>;
+      {isLoading === true ? (
+        <div>
+          <Spinner background={2} />
+        </div>
+      ) : (
+        <div className="home-dashboard">{getContent()}</div>
+      )}
     </Aux>
   );
 };

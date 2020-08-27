@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Icon, Divider } from 'semantic-ui-react';
+import { Table, Icon, Divider, Grid, Button } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
 
@@ -99,7 +99,54 @@ const History = (props) => {
   function topLinks() {
     return (
       <div>
+
         <div className="account-other-tabs">
+
+          <Grid className="account-connected-grid">
+            <Grid.Row>
+              <Grid.Column
+                floated='right' 
+                width={16}
+                className="balances-column zero"
+              >
+                <span style={{ display: 'flex' }}>
+                  <img 
+                    src={`https://events.decentraland.org/api/profile/${address}/face.png`}
+                    style={{
+                      width: '72px',
+                      display: 'flex',
+                      border: '1px solid rgb(227, 232, 238)',
+                      borderRadius: '100%',
+                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                    }}
+                  />
+                  <span style={{ display: 'flex', flexDirection: 'column' }}>
+                    <p className="welcome-text"> Account Connected </p>
+                    { avatarName === null || avatarName === '' ? 
+                      <div>
+                        <p className="account-name">
+                          {address.substr(0, 2) + '...' + address.substr(-7)}
+                        </p>
+                      </div> 
+                      : 
+                      <div>
+                        <p className="account-name">
+                          {avatarName}
+                        </p>
+                      </div> 
+                    }
+                  </span>
+                  {/*<Button
+                    href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                    className="account-connected-play-button"
+                  >
+                    Play now
+                  </Button>*/}
+                </span>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
           <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
               {dataType == 'Balances' ? (
@@ -138,7 +185,7 @@ const History = (props) => {
           </div>
         </div>
 
-        <Divider style={{ marginTop: '21px', paddingBottom: '12px' }} />
+        <Divider className="tab-divider" />
       </div>
     );
   }
@@ -231,7 +278,7 @@ const History = (props) => {
           {topLinks()}
 
           <div id="tx-box-history-2">
-            <Table id="header" singleLine fixed>
+            <table className="account-table">
               <ContentTransactions content={'Labels'} type={dataType} />
 
               {!processing ? (
@@ -241,7 +288,7 @@ const History = (props) => {
                   noTxHistory()
                 )
               ) : null}
-            </Table>
+            </table>
           </div>
 
           {pagination()}

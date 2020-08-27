@@ -177,6 +177,7 @@ const ContentBalances = (props) => {
       <Grid className="balances-container">
         <Grid.Row>
           <Grid.Column
+<<<<<<< HEAD
             computer={16}
             tablet={16}
             mobile={16}
@@ -224,6 +225,8 @@ const ContentBalances = (props) => {
 
         <Grid.Row>
           <Grid.Column
+=======
+>>>>>>> 2dadb113c8b1e64af4e5990fccefe57520cf2a73
             computer={5}
             tablet={16}
             mobile={16}
