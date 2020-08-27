@@ -68,7 +68,7 @@ const Dashboard = (props) => {
         </div>
 
         {!state.userStatus ? (
-          <div className="home-dashboard-content">
+          <div className="home-mission-content">
             <div>
               <div className="home-dashboard-description">
                 <h1
