@@ -975,6 +975,7 @@ button.ui.button.matic-widget-button:hover,
 button.ui.button.matic-widget-button-2:hover {
   transform: translateY(0px) !important;
   box-shadow: none;
+  filter: brightness(100%) !important;
 }
 
 span.matic-icon-background {

@@ -161,7 +161,7 @@ const Dashboard = (props) => {
 
   return (
     <Aux>
-      {isLoading === true ?
+      {isLoading === true && visited === false ?
         <div>
           <Spinner background={2} /> 
         </div>

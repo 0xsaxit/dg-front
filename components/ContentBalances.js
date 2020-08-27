@@ -109,6 +109,14 @@ const ContentBalances = (props) => {
     transak.init();
   }
 
+  // close function
+  function close() {
+    dispatch({
+      type: 'balances_overlay',
+      data: 0,
+    });
+  }
+
   function contentModal() {
     return (
       <div className="matic-overlay">
@@ -135,6 +143,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={close}
               >
                 <span className="matic-icon-background">
                   <span class="material-icons" id="matic-widget-icon-left-1">
@@ -152,7 +161,7 @@ const ContentBalances = (props) => {
                 data-script-name="matic-embeds"
               ></script>
             </div>
-            <div>
+            <div onClick={close}>
               <Button className="matic-widget-button-2" onClick={show_transak}>
                 <span className="matic-icon-background-2">
                   <span class="material-icons" id="matic-widget-icon-left-2">
