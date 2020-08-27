@@ -111,6 +111,19 @@ const ContentGames = (props) => {
                       <tr className="table-body" key={index}>
                         <td className="table-body-text-1 games">
                           {index + 1}.{' '}
+                        <img 
+                          className="avatar-picture"
+                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
+                          style={{
+                            width: '24px',
+                            marginRight: '6px',
+                            verticalAlign: 'middle',
+                            marginTop: '-2px',
+                            border: '1px solid rgb(227, 232, 238)',
+                            borderRadius: '100%',
+                            boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                          }}
+                        />
                           {row.name === null || row.name === ''
                             ? row.address.substr(0, 6) +
                               '...' +

@@ -583,9 +583,14 @@ table {
   border-bottom: 1px solid #edf2f9;
 }
 
-.table-header-text-1.games,
+.table-header-text-1.games {
+  padding-left: 9px;
+}
+
 .table-body-text-1.games {
   padding-left: 9px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .table-header-text-2.games,
@@ -706,7 +711,7 @@ table.ui.fixed.single.line.table {
 
 .tab-divider {
   position: relative !important;
-  z-index: 999 !important;
+  z-index: 5 !important;
   margin-top: 21px !important;
 }
 

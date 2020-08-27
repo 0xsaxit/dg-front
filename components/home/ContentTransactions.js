@@ -72,10 +72,10 @@ const ContentTransactions = (props) => {
                 <img
                   src={Global.IMAGES.ICON_MANA}
                   style={{
-                    width: '24px',
+                    width: '25px',
                     paddingRight: '6px',
                     verticalAlign: 'middle',
-                    marginTop: '-2px',
+                    marginTop: '-3px',
                   }}
                 />
                 {row.type}
