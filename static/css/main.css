@@ -1064,6 +1064,29 @@ div.ui.grid.balances-container {
   padding: 12px 17px 39px 18px !important;
 }
 
+.avatar-picture .avatar-edit {
+  visibility: hidden;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  background-color: rgba(97, 97, 97, 0.75);
+  color: white;
+  width: 72px;
+  height: 36px;
+  margin-top: -36px;
+  border-bottom-left-radius: 50% 36px;
+  border-bottom-right-radius: 50% 36px;
+  padding-top: 15px;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  clip: rect(15px, 72px, 72px, 0px);
+}
+
+.avatar-picture:hover .avatar-edit {
+  visibility: visible;
+}
+
 .avatar-name-row {
   margin-bottom: 30px !important;
 }
