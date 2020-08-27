@@ -148,28 +148,28 @@ const MenuTop = () => {
     );
   }
 
-  function demoButton() {
-    return (
-      <div className="demo-button-container">
-        <Modal
-          trigger={<a className="demo-button"> DEMO </a>}
-          closeIcon
-          basic
-          size="small"
-        >
-          <Modal.Content>
-            <iframe
-              className="mobile-demo-video"
-              src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1"
-              frameborder="0"
-              allow="autoplay"
-              allowfullscreen
-            ></iframe>
-          </Modal.Content>
-        </Modal>
-      </div>
-    );
-  }
+  // function demoButton() {
+  //   return (
+  //     <div className="demo-button-container">
+  //       <Modal
+  //         trigger={<a className="demo-button"> DEMO </a>}
+  //         closeIcon
+  //         basic
+  //         size="small"
+  //       >
+  //         <Modal.Content>
+  //           <iframe
+  //             className="mobile-demo-video"
+  //             src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1"
+  //             frameborder="0"
+  //             allow="autoplay"
+  //             allowfullscreen
+  //           ></iframe>
+  //         </Modal.Content>
+  //       </Modal>
+  //     </div>
+  //   );
+  // }
 
   // dropdown menu for mobile
   function dropdownMenu() {
@@ -342,9 +342,7 @@ const MenuTop = () => {
             {balancesAndButtons()}
           </Menu>
 
-          {state.messageBox ? (
-            <MessageBox handleDismiss={handleDismiss} />
-          ) : null}
+          <MessageBox handleDismiss={handleDismiss} />
         </div>
       </div>
     </Aux>

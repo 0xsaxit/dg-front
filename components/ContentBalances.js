@@ -126,7 +126,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => openMessageBox()}
+                // onClick={() => openMessageBox()}
               >
                 <span className="matic-icon-background">
                   <span
@@ -330,7 +330,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => openMessageBox()}
+                // onClick={() => openMessageBox()}
               >
                 DEPOSIT
               </Button>
@@ -339,7 +339,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button-2"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => openMessageBox()}
+                // onClick={() => openMessageBox()}
               >
                 WITHDRAW
               </Button>
@@ -355,12 +355,12 @@ const ContentBalances = (props) => {
     );
   }
 
-  function openMessageBox() {
-    dispatch({
-      type: 'message_box',
-      data: 1,
-    });
-  }
+  // function openMessageBox() {
+  //   dispatch({
+  //     type: 'message_box',
+  //     data: 1,
+  //   });
+  // }
 
   if (props.balancesOverlay === 1) {
     return contentModal();

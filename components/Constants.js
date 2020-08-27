@@ -184,6 +184,16 @@ const FETCH = {
     });
   },
 
+  PLAYER_INFO: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   HISTORY_DATA: (address) => {
     return fetch(`${API_BASE_URL}/order/getHistory`, {
       method: 'POST',
@@ -196,16 +206,6 @@ const FETCH = {
         limit: 99999, // fetch all of the data
         page: 1,
       }),
-    });
-  },
-
-  PLAYER_INFO: (userAddress) => {
-    return fetch(`${API_BASE_URL}/admin/getUser?address=${userAddress}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
     });
   },
 
