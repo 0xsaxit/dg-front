@@ -91,13 +91,13 @@ const ContentGames = (props) => {
         {games.map((game, index) => {
           return (
             <Grid.Column computer={4} tablet={8} mobile={16} key={index}>
-              <table>
+              <table style={{ marginTop: '5px' }}>
                 <tbody>
                   <tr className="table-header">
-                    <td className="table-header-text-1">
+                    <td className="table-header-text-1 games">
                       {game}
                     </td>
-                    <td className="table-header-text-2">
+                    <td className="table-header-text-2 games">
                       WIN
                     </td>
                   </tr>
@@ -109,7 +109,7 @@ const ContentGames = (props) => {
                     var amount = Number(num.toFixed(0)).toLocaleString().split(/\s/).join(',');
                     return (
                       <tr className="table-body" key={index}>
-                        <td className="table-body-text-1">
+                        <td className="table-body-text-1 games">
                           {index + 1}.{' '}
                           {row.name === null || row.name === ''
                             ? row.address.substr(0, 6) +
@@ -117,7 +117,7 @@ const ContentGames = (props) => {
                               row.address.substr(-4)
                             : row.name}
                         </td>
-                        <td className="table-body-text-2">{amount}</td>
+                        <td className="table-body-text-2 games">{amount}</td>
                       </tr>
                     );
                   })}

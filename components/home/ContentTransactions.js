@@ -1,4 +1,4 @@
-import { Table, Button, Icon } from 'semantic-ui-react';
+import { Table, Button, Icon, Divider } from 'semantic-ui-react';
 import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
@@ -9,47 +9,43 @@ const ContentTransactions = (props) => {
       return null;
     } else if (props.type === 'Play') {
       return (
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell className="table-header-text">
+        <tbody>
+          <tr className="table-header">
+            <td className="table-header-text account">
               GAME
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
+            </td>
+            <td className="table-header-text-1 bet">
               BET
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
-              PAYOUTT
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
+            </td>
+            <td className="table-header-text-1">
+              PAYOUT
+            </td>
+            <td className="table-header-text-1 date">
               DATE
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
-              TX HASH
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+            </td>
+            <td />
+          </tr>
+        </tbody>
       );
     } else if (props.type === 'History') {
       return (
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell className="table-header-text">
+        <tbody>
+          <tr className="table-header">
+            <td className="table-header-text account">
               ACTION
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
+            </td>
+            <td className="table-header-text-1">
               AMOUNT
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
+            </td>
+            <td className="table-header-text-1 status">
               STATUS
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
+            </td>
+            <td className="table-header-text-1 date">
               DATE
-            </Table.HeaderCell>
-            <Table.HeaderCell className="table-header-text">
-              TX HASH
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+            </td>
+            <td />
+          </tr>
+        </tbody>
       );
     } else {
       return null;
@@ -58,7 +54,7 @@ const ContentTransactions = (props) => {
 
   function contentHistory() {
     return (
-      <Table.Body>
+      <tbody>
         {props.dataPage.map((row, i) => {
           const date = new Date(row.createdAt);
           const timestamp = date.toLocaleString();
@@ -71,32 +67,32 @@ const ContentTransactions = (props) => {
           const timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
 
           return (
-            <Table.Row key={i}>
-              <Table.Cell>
+            <tr className="table-body" key={i}>
+              <td className="table-body-text-1 first">
                 <img
                   src={Global.IMAGES.ICON_MANA}
                   style={{
-                    width: '18px',
-                    paddingRight: '3px',
+                    width: '24px',
+                    paddingRight: '6px',
                     verticalAlign: 'middle',
-                    marginTop: '-3px',
+                    marginTop: '-2px',
                   }}
                 />
                 {row.type}
-              </Table.Cell>
+              </td>
 
-              <Table.Cell>
+              <td className="table-body-text-1">
                 {sign}
                 {amount > 1000000000000000000000000
                   ? 'MAX AMOUNT'
                   : amount + ' MANA'}
-              </Table.Cell>
+              </td>
 
-              <Table.Cell>{row.status}</Table.Cell>
-              <Table.Cell>{timestamp}</Table.Cell>
+              <td className="table-body-text-1 status">{row.status}</td>
+              <td className="table-body-text-1 date">{timestamp}</td>
 
-              <Table.Cell>
-                <a
+              <td className="table-body-text-1 hash">
+                {/*<a
                   style={{
                     color: '#2085F4',
                     maxWidth: '90px',
@@ -110,7 +106,20 @@ const ContentTransactions = (props) => {
                 >
                   {row.txid}
                 </a>
-                <Icon name="caret right" style={{ color: '#2085F4' }} />
+                <Icon name="caret right" style={{ color: '#2085F4' }} />*/}
+
+                <span style={{ float: 'right', paddingRight: '12px' }}>
+                  <Button
+                    href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
+                    target="_blank"
+                    className="etherscan-button"
+                  >
+                    etherscan
+                    <span class="material-icons" id="etherscan-button-icon">
+                      launch
+                    </span> 
+                  </Button>
+                </span>
 
                 {row.type === 'Exit' && row.status === 'In Progress' ? (
                   // set PENDING time to 600 seconds (10 minutes)
@@ -122,17 +131,17 @@ const ContentTransactions = (props) => {
                     <ModalWithdraw isExit={1} transactionHash={row.txid} />
                   )
                 ) : null}
-              </Table.Cell>
-            </Table.Row>
+              </td>
+            </tr>
           );
         })}
-      </Table.Body>
+      </tbody>
     );
   }
 
   function contentGameplay() {
     return (
-      <Table.Body>
+      <tbody>
         {props.dataPage.map((row, i) => {
           const date = new Date(row.createdAt);
           const timestamp = date.toLocaleString();
@@ -150,30 +159,30 @@ const ContentTransactions = (props) => {
           }
 
           return (
-            <Table.Row key={i}>
-              <Table.Cell>
+            <tr className="table-body" key={i}>
+              <td className="table-body-text-1 first">
                 <img
                   src={Global.IMAGES.ICON_MANA}
                   style={{
-                    width: '18px',
-                    paddingRight: '3px',
+                    width: '24px',
+                    paddingRight: '6px',
                     verticalAlign: 'middle',
-                    marginTop: '-3px',
+                    marginTop: '-2px',
                   }}
                 />
                 {action}
-              </Table.Cell>
+              </td>
 
-              <Table.Cell>
+              <td className="table-body-text-1 bet">
                 -{amount} {row.coinName}
-              </Table.Cell>
-              <Table.Cell>
+              </td>
+              <td className="table-body-text-1">
                 +{result} {row.coinName}
-              </Table.Cell>
-              <Table.Cell>{timestamp}</Table.Cell>
+              </td>
+              <td className="table-body-text-1 date">{timestamp}</td>
 
-              <Table.Cell>
-                <a
+              <td className="table-body-text-1 hash">
+                {/*<a
                   style={{
                     color: '#2085F4',
                     maxWidth: '90px',
@@ -187,12 +196,25 @@ const ContentTransactions = (props) => {
                 >
                   {row.txid}
                 </a>
-                <Icon name="caret right" style={{ color: '#2085F4' }} />
-              </Table.Cell>
-            </Table.Row>
+                <Icon name="caret right" style={{ color: '#2085F4' }} />*/}
+
+                <span style={{ float: 'right', paddingRight: '12px' }}>
+                  <Button
+                    href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
+                    target="_blank"
+                    className="etherscan-button"
+                  >
+                    etherscan
+                    <span class="material-icons" id="etherscan-button-icon">
+                      launch
+                    </span> 
+                  </Button>
+                </span>
+              </td>
+            </tr>
           );
         })}
-      </Table.Body>
+      </tbody>
     );
   }
 

@@ -133,12 +133,12 @@ const History = (props) => {
                       </div> 
                     }
                   </span>
-                  <Button
+                  {/*<Button
                     href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
                     className="account-connected-play-button"
                   >
                     Play now
-                  </Button>
+                  </Button>*/}
                 </span>
               </Grid.Column>
             </Grid.Row>
@@ -275,7 +275,7 @@ const History = (props) => {
           {topLinks()}
 
           <div id="tx-box-history-2">
-            <Table id="header" singleLine fixed>
+            <table className="account-table">
               <ContentTransactions content={'Labels'} type={dataType} />
 
               {!processing ? (
@@ -285,7 +285,7 @@ const History = (props) => {
                   noTxHistory()
                 )
               ) : null}
-            </Table>
+            </table>
           </div>
 
           {pagination()}
