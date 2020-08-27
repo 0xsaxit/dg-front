@@ -1800,9 +1800,9 @@ a.demo-button {
   }
   .home-dashboard {
     background-image: linear-gradient(
-        rgba(0, 0, 0, 0.30),
-        rgba(0, 0, 0, 0.60),
-        rgba(0, 0, 0, 0.90)
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.55)
       ),
       url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
     background-position: 75% !important;
