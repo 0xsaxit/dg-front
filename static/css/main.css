@@ -1959,8 +1959,6 @@ a.demo-button {
   }
   .home-mission-content {
     padding-top: calc(50vh - 270px);
-    padding-right: 21px !important;
-    padding-left: 21px !important;
   }
 }
 
