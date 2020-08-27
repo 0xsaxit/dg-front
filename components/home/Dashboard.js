@@ -15,8 +15,16 @@ const Dashboard = (props) => {
   const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
+  const [visited, setVisited] = useState(false);
 
   useEffect(() => {
+    let visited = window.sessionStorage.getItem("visited");
+    if (visited) {
+       setVisited(true);
+    } else {
+       window.sessionStorage.setItem("visited", true);
+    }
+
     setLoading(true);
     (async function () {
       let response = await Global.FETCH.USER_NUMBERS();
@@ -45,8 +53,10 @@ const Dashboard = (props) => {
   function getContent() {
     return (
       <div>
-      { isZooming === true? <span id="zoom-overlay" class="zoom-animation" /> : null }
-      { mainContent() }
+        {isZooming === true ? (visited === false ? 
+          <span id="zoom-overlay" class="zoom-animation" /> 
+        : null) : null}
+        { mainContent() }
       </div>
     );
   }
@@ -151,7 +161,7 @@ const Dashboard = (props) => {
 
   return (
     <Aux>
-      {isLoading === true ? 
+      {isLoading === true ?
         <div>
           <Spinner background={2} /> 
         </div>

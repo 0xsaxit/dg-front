@@ -31,6 +31,26 @@
 /*            ZOOM ANIMATION CSS             */
 /* ----------------------------------------- */
 
+.dg-presents-span {
+  display: flex;
+  justify-content: center;
+  margin-top: calc(50vh - 64px);
+}
+
+.dg-presents-spinner {
+  width: 60px;
+  height: 60px;
+  margin-right: 16px;
+}
+
+.dg-presents {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  color: white;
+  margin-top: 2px;
+}
+
 .zoom-animation {
   z-index: 999;
   height: 0px;
