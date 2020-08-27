@@ -44,7 +44,13 @@
   overflow: hidden;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: puff 0.4s 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0s 0.8s linear forwards;
+  animation: puff 0.3s 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0s 0.8s linear forwards;
+}
+
+@media (max-width: 600px) {
+  .zoom-animation {
+    display: none;
+  }
 }
 
 @keyframes puff {
