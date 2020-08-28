@@ -3,7 +3,7 @@ import { GlobalContext } from '../../store';
 import { Table, Icon, Divider, Grid } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
-import Global from '../Constants';
+// import Global from '../Constants';
 
 const History = (props) => {
   // get user's transaction history from the Context API store
@@ -15,14 +15,14 @@ const History = (props) => {
   const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataType, setDataType] = useState('');
+  const [dataType, setDataType] = useState('Balances');
   const [processing, setProcessing] = useState(true);
 
-  const [playBalance, setPlayBalance] = useState('');
-  const [avatarName, setAvatarName] = useState('');
-  const [address, setAddress] = useState('');
+  // const [playBalance, setPlayBalance] = useState('');
+  // const [avatarName, setAvatarName] = useState('');
+  // const [address, setAddress] = useState('');
 
-  let userAddress = '';
+  // let userAddress = '';
 
   useEffect(() => {
     if (state.userStatus) {
@@ -38,35 +38,35 @@ const History = (props) => {
   }, [state.transactions]);
 
   useEffect(() => {
-    setPageData('Balances');
+    setUserData('Balances', 1);
   }, []);
 
+  // close balances overlay on leaving page
   useEffect(() => {
     return () => {
       balancesOverlay(0);
     };
   }, []);
 
-  // get user address
-  useEffect(() => {
-    if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+  // get user's play balance, wallet address, and avatar name
+  // useEffect(() => {
+  //   if (state.userStatus) {
+  //     userAddress = window.web3.currentProvider.selectedAddress;
 
-      // get play balance, avatar name
-      (async function () {
-        // let response = await getPlayerInfo(userAddress);
-        let response = await Global.FETCH.PLAYER_INFO(userAddress);
-        let json = await response.json();
+  //     (async function () {
+  //       let response = await Global.FETCH.PLAYER_INFO(userAddress);
+  //       let json = await response.json();
 
-        console.log(json.playBalance);
-        console.log(json.address);
-        console.log(json.avatarName);
-        setAddress(json.address);
-        setAvatarName(json.avatarName);
-        setPlayBalance(json.playBalance);
-      })();
-    }
-  }, [state.userStatus]);
+  //       console.log('Play balance: ' + json.playBalance);
+  //       console.log('Wallet address: ' + json.address);
+  //       console.log('Avatar name: ' + json.avatarName);
+
+  //       setAddress(json.address);
+  //       setAvatarName(json.avatarName);
+  //       // setPlayBalance(json.playBalance);
+  //     })();
+  //   }
+  // }, [state.userStatus]);
 
   // async function getPlayerInfo(userAddress) {
   //   let fetchURL =
@@ -116,7 +116,7 @@ const History = (props) => {
                     >
                       <img
                         className="avatar-picture"
-                        src={`https://events.decentraland.org/api/profile/${address}/face.png`}
+                        src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
                         style={{
                           width: '72px',
                           display: 'flex',
@@ -130,15 +130,17 @@ const History = (props) => {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text"> Account Connected </p>
-                    {avatarName === null || avatarName === '' ? (
+                    {state.userInfo[0] === null || state.userInfo[0] === '' ? (
                       <div>
                         <p className="account-name">
-                          {address.substr(0, 2) + '...' + address.substr(-7)}
+                          {state.userInfo[1].substr(0, 2) +
+                            '...' +
+                            state.userInfo[1].substr(-7)}
                         </p>
                       </div>
                     ) : (
                       <div>
-                        <p className="account-name">{avatarName}</p>
+                        <p className="account-name">{state.userInfo[0]}</p>
                       </div>
                     )}
                   </span>

@@ -194,6 +194,19 @@ const FETCH = {
     });
   },
 
+  TOP_UP_USER: (address) => {
+    return fetch(`https://api.decentral.games/order/topup`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: address,
+      }),
+    });
+  },
+
   HISTORY_DATA: (address) => {
     return fetch(`${API_BASE_URL}/order/getHistory`, {
       method: 'POST',

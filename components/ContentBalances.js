@@ -25,10 +25,14 @@ const ContentBalances = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [playBalance, setPlayBalance] = useState('');
-  const [avatarName, setAvatarName] = useState('');
-  const [address, setAddress] = useState('');
-  const [count, setCount] = useState('');
+  const [playBalance, setPlayBalance] = useState(0);
+
+  // const [avatarName, setAvatarName] = useState('');
+  // const [address, setAddress] = useState('');
+
+  const [count, setCount] = useState(0);
+
+  let userAddress = '';
 
   useEffect(() => {
     // get all the events
@@ -54,21 +58,22 @@ const ContentBalances = (props) => {
       // setAddress(userAddress);
       // console.log('User Addreses: ' + userAddress);
 
-      setPlayerInfo(userAddress);
+      setPlayerInfo();
     }
   }, [state.userStatus]);
 
-  // get play balance, avatar name
-  async function setPlayerInfo(userAddress) {
+  // get user's play balance and topup count
+  async function setPlayerInfo() {
     let response = await Global.FETCH.PLAYER_INFO(userAddress);
     let json = await response.json();
 
-    setPlayBalance(json.playBalance.toLocaleString());
+    setPlayBalance(json.playBalance);
 
     // userAddress = json.address;
     // setAddress(json.address);
 
-    setAvatarName(json.avatarName);
+    // setAvatarName(json.avatarName);
+
     setCount(json.callCount);
   }
 
@@ -85,28 +90,31 @@ const ContentBalances = (props) => {
   // }
 
   // top up user to 5000 play tokens
-  async function topUpUser() {
-    return fetch(`https://api.decentral.games/order/topup`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-      }),
-    });
-  }
+  // async function topUpUser() {
+  //   return fetch(`https://api.decentral.games/order/topup`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: address,
+  //     }),
+  //   });
+  // }
 
-  async function getResponseTopUpUser() {
-    let response = await topUpUser();
-    let json = await response.json();
+  // async function getResponseTopUpUser() {
+  //   let response = await topUpUser();
+  //   let json = await response.json();
+  //   setPlayerInfo();
+  //   let status = await json.status;
+  // }
+
+  // top up user to 5000 play tokens
+  async function topUp() {
+    await Global.FETCH.TOP_UP_USER(userAddress);
+
     setPlayerInfo();
-    let status = await json.status;
-  }
-
-  function topUp() {
-    getResponseTopUpUser();
   }
 
   // initialize transak modal

@@ -3,7 +3,6 @@ import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
 const ContentTransactions = (props) => {
-
   function contentLabels() {
     if (props.type === 'Balances') {
       return null;
@@ -11,18 +10,10 @@ const ContentTransactions = (props) => {
       return (
         <tbody>
           <tr className="table-header">
-            <td className="table-header-text account">
-              GAME
-            </td>
-            <td className="table-header-text-1 bet">
-              BET
-            </td>
-            <td className="table-header-text-1">
-              PAYOUT
-            </td>
-            <td className="table-header-text-1 date">
-              DATE
-            </td>
+            <td className="table-header-text account">GAME</td>
+            <td className="table-header-text-1 bet">BET</td>
+            <td className="table-header-text-1">PAYOUT</td>
+            <td className="table-header-text-1 date">DATE</td>
             <td />
           </tr>
         </tbody>
@@ -31,24 +22,14 @@ const ContentTransactions = (props) => {
       return (
         <tbody>
           <tr className="table-header">
-            <td className="table-header-text account">
-              ACTION
-            </td>
-            <td className="table-header-text-1">
-              AMOUNT
-            </td>
-            <td className="table-header-text-1 status">
-              STATUS
-            </td>
-            <td className="table-header-text-1 date">
-              DATE
-            </td>
+            <td className="table-header-text account">ACTION</td>
+            <td className="table-header-text-1">AMOUNT</td>
+            <td className="table-header-text-1 status">STATUS</td>
+            <td className="table-header-text-1 date">DATE</td>
             <td />
           </tr>
         </tbody>
       );
-    } else {
-      return null;
     }
   }
 
@@ -117,7 +98,7 @@ const ContentTransactions = (props) => {
                     etherscan
                     <span class="material-icons" id="etherscan-button-icon">
                       launch
-                    </span> 
+                    </span>
                   </Button>
                 </span>
 
@@ -207,7 +188,7 @@ const ContentTransactions = (props) => {
                     etherscan
                     <span class="material-icons" id="etherscan-button-icon">
                       launch
-                    </span> 
+                    </span>
                   </Button>
                 </span>
               </td>

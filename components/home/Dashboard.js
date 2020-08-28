@@ -2,44 +2,51 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Spinner from '../Spinner';
-import Aux from '../_Aux';
 import Global from '../Constants';
 
 const Dashboard = (props) => {
-  // get user's onboard status and usser countfrom the Context API store
+  // get user's onboard status the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
   const [isZooming, setZooming] = useState(true);
-  const [totalPlayers, setTotalPlayers] = useState('');
+  // const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [visited, setVisited] = useState(false);
 
   useEffect(() => {
-    let visited = window.sessionStorage.getItem("visited");
-    if (visited) {
-       setVisited(true);
-    } else {
-       window.sessionStorage.setItem("visited", true);
-    }
+    if (window) {
+      let visited = window.sessionStorage.getItem('visited');
 
+      if (visited) {
+        setVisited(true);
+      } else {
+        window.sessionStorage.setItem('visited', true);
+      }
+    }
+  }, []);
+
+  // fetch user count from the server API
+  useEffect(() => {
     setLoading(true);
+
     (async function () {
       let response = await Global.FETCH.USER_NUMBERS();
       let json = await response.json();
 
-      setTotalPlayers(json.totalPlayers);
+      // setTotalPlayers(json.totalPlayers);
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
-
       console.log('Total players: ' + json.totalPlayers);
 
       setLoading(false);
+
       const timer = setTimeout(() => {
         setZooming(false);
       }, 800);
+
       return () => clearTimeout(timer);
     })();
   }, []);
@@ -50,13 +57,19 @@ const Dashboard = (props) => {
     }
   }, [state.userStatus]);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   function getContent() {
     return (
-      <div>
-        {isZooming === true ? (visited === false ? 
-          <span id="zoom-overlay" class="zoom-animation" /> 
-        : null) : null}
-        { mainContent() }
+      <div className="home-dashboard">
+        {isZooming === true ? (
+          visited === false ? (
+            <span id="zoom-overlay" className="zoom-animation" />
+          ) : null
+        ) : null}
+
+        {mainContent()}
       </div>
     );
   }
@@ -88,7 +101,8 @@ const Dashboard = (props) => {
                   Hit the tables in a virtual casino
                 </h1>
                 <h2 className="home-dashboard-h2">
-                  Non-custodial slots, roulette, blackjack, and backgammon playable with crypto in Decentraland
+                  Non-custodial slots, roulette, blackjack, and backgammon
+                  playable with crypto in Decentraland
                 </h2>
                 <div>
                   <Button
@@ -159,17 +173,11 @@ const Dashboard = (props) => {
     );
   }
 
-  return (
-    <Aux>
-      {isLoading === true && visited === false ?
-        <div>
-          <Spinner background={2} />
-        </div>
-      ) : (
-        <div className="home-dashboard">{getContent()}</div>
-      )}
-    </Aux>
-  );
+  if (isLoading === true && visited === false) {
+    return <Spinner background={2} />;
+  } else {
+    return getContent();
+  }
 };
 
 export default Dashboard;

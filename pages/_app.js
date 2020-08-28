@@ -14,6 +14,7 @@ import GameRecords from '../components/GameRecords';
 import BalancesOverlay from '../components/BalancesOverlay';
 import Location from '../components/Location';
 import ActiveStatus from '../components/ActiveStatus';
+import UserInfo from '../components/UserInfo';
 
 class Application extends App {
   render() {
@@ -30,6 +31,7 @@ class Application extends App {
           <BalancesOverlay />
           <Location />
           <ActiveStatus />
+          <UserInfo />
 
           <Component {...pageProps} />
         </Provider>
