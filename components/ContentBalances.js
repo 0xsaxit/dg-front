@@ -18,6 +18,8 @@ let transak = new transakSDK({
   widgetWidth: '450px',
 });
 
+// let userAddress = '';
+
 const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -26,8 +28,7 @@ const ContentBalances = (props) => {
   const [playBalance, setPlayBalance] = useState('');
   const [avatarName, setAvatarName] = useState('');
   const [address, setAddress] = useState('');
-
-  let userAddress = '';
+  const [count, setCount] = useState('');
 
   useEffect(() => {
     // get all the events
@@ -50,54 +51,75 @@ const ContentBalances = (props) => {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
-      // get play balance, avatar name
-      (async function () {
-        let response = await Global.FETCH.PLAYER_INFO(userAddress);
-        let json = await response.json();
+      // setAddress(userAddress);
+      // console.log('User Addreses: ' + userAddress);
 
-        setPlayBalance(json.playBalance.toLocaleString());
-        setAddress(json.address);
-        setAvatarName(json.avatarName);
-      })();
+      setPlayerInfo(userAddress);
     }
   }, [state.userStatus]);
 
+  // get play balance, avatar name
+  async function setPlayerInfo(userAddress) {
+    let response = await Global.FETCH.PLAYER_INFO(userAddress);
+    let json = await response.json();
+
+    setPlayBalance(json.playBalance.toLocaleString());
+
+    // userAddress = json.address;
+    // setAddress(json.address);
+
+    setAvatarName(json.avatarName);
+    setCount(json.callCount);
+  }
+
   // async function getPlayerInfo(userAddress) {
-  //   let fetchURL =
-  //     'https://api.decentral.games/admin/getUser?address=' + userAddress;
-  //   console.log(fetchURL);
+  //   let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
+  //   // console.log(fetchURL);
   //   return fetch(fetchURL, {
   //     method: 'GET',
   //     headers: {
   //       Accept: 'application/json',
   //       'Content-Type': 'application/json',
   //     },
-  //   });
+  //   })
   // }
 
-  // // top up user to 5000 play tokens
-  // function topUpUser() {
-  //   return fetch(`https://api.decentral.games/order/topup`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: address,
-  //     }),
-  //   });
-  // }
+  // top up user to 5000 play tokens
+  async function topUpUser() {
+    return fetch(`https://api.decentral.games/order/topup`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: address,
+      }),
+    });
+  }
 
-  // async function topUp() {
-  //   let response = await topUpUser();
-  //   let json = await response.json();
-  //   console.log(json);
-  // }
+  async function getResponseTopUpUser() {
+    let response = await topUpUser();
+    let json = await response.json();
+    setPlayerInfo();
+    let status = await json.status;
+  }
+
+  function topUp() {
+    getResponseTopUpUser();
+  }
 
   // initialize transak modal
   function show_transak() {
     transak.init();
+  }
+
+  // close function
+  function close() {
+    dispatch({
+      type: 'balances_overlay',
+      data: 0,
+    });
   }
 
   function contentModal() {
@@ -126,6 +148,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={close}
               >
                 <span className="matic-icon-background">
                   <span
@@ -146,11 +169,8 @@ const ContentBalances = (props) => {
                 data-script-name="matic-embeds"
               ></script>
             </div>
-            <div>
-              <Button
-                className="matic-widget-button-2"
-                onClick={() => show_transak()}
-              >
+            <div onClick={close}>
+              <Button className="matic-widget-button-2" onClick={show_transak}>
                 <span className="matic-icon-background-2">
                   <span
                     className="material-icons"
@@ -202,14 +222,23 @@ const ContentBalances = (props) => {
               >
                 PLAY NOW
               </Button>
-              <Button
-                // onClick={topUp()}
-                disabled
-                color="blue"
-                className="balances-play-button-2"
-              >
-                TOP UP
-              </Button>
+              {count === 2 ? (
+                <Button
+                  disabled
+                  color="blue"
+                  className="balances-play-button-2"
+                >
+                  TOP UP
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => topUp()}
+                  color="blue"
+                  className="balances-play-button-2"
+                >
+                  TOP UP
+                </Button>
+              )}
             </span>
           </Grid.Column>
 

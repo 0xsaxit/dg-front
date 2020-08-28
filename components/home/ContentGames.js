@@ -13,7 +13,7 @@ const ContentGames = (props) => {
   const [dataGames, setDataGames] = useState([[], [], [], []]);
   const [processing, setProcessing] = useState(true);
 
-  const games = ['SLOTS', 'ROULETTE', 'BLACKJACK', 'BACKGAMMON'];
+  const games = ['ALL GAMES', 'SLOTS', 'ROULETTE', 'BACKGAMMON'];
 
   useEffect(() => {
     if (Object.keys(state.gameRecords).length !== 0) {
@@ -23,6 +23,7 @@ const ContentGames = (props) => {
       let game1 = [];
       let game2 = [];
       let game3 = [];
+      let game4 = [];
       let selected = [];
 
       // parse game scores based on time period
@@ -37,18 +38,21 @@ const ContentGames = (props) => {
       // parse game scores based on token type
       if (props.gameSelect === 'play') {
         selected = [
+          gameData.all.play,
           gameData.slot.play,
           gameData.roulette.play,
           gameData.backgammon.play,
         ];
       } else if (props.gameSelect === 'dai') {
         selected = [
+          gameData.all.dai,
           gameData.slot.dai,
           gameData.roulette.dai,
           gameData.backgammon.dai,
         ];
       } else if (props.gameSelect == 'mana') {
         selected = [
+          gameData.all.mana,
           gameData.slot.mana,
           gameData.roulette.mana,
           gameData.backgammon.mana,
@@ -79,7 +83,15 @@ const ContentGames = (props) => {
         });
       });
 
-      setDataGames([game1, game2, [], game3]);
+      selected[3].map((row) => {
+        game4.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      setDataGames([game1, game2, game3, game4]);
     }
   }, [state.gameRecords, props.timePeriod, props.gameSelect]);
 
@@ -111,6 +123,19 @@ const ContentGames = (props) => {
                       <tr className="table-body" key={index}>
                         <td className="table-body-text-1 games">
                           {index + 1}.{' '}
+                        <img 
+                          className="avatar-picture"
+                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
+                          style={{
+                            width: '24px',
+                            marginRight: '6px',
+                            verticalAlign: 'middle',
+                            marginTop: '-2px',
+                            border: '1px solid rgb(227, 232, 238)',
+                            borderRadius: '100%',
+                            boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                          }}
+                        />
                           {row.name === null || row.name === ''
                             ? row.address.substr(0, 6) +
                               '...' +

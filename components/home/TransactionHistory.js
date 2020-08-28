@@ -109,16 +109,25 @@ const History = (props) => {
                 className="balances-column zero"
               >
                 <span style={{ display: 'flex' }}>
-                  <img
-                    src={`https://events.decentraland.org/api/profile/${address}/face.png`}
-                    style={{
-                      width: '72px',
-                      display: 'flex',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                    }}
-                  />
+                  <span className="avatar-picture">
+                    <a
+                      href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                      target="_blank"
+                    >
+                      <img
+                        className="avatar-picture"
+                        src={`https://events.decentraland.org/api/profile/${address}/face.png`}
+                        style={{
+                          width: '72px',
+                          display: 'flex',
+                          border: '1px solid rgb(227, 232, 238)',
+                          borderRadius: '100%',
+                          boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                        }}
+                      />
+                      <span className="avatar-edit"> edit </span>
+                    </a>
+                  </span>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text"> Account Connected </p>
                     {avatarName === null || avatarName === '' ? (

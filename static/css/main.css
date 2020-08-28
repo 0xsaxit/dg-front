@@ -20,7 +20,7 @@ a {
   border-bottom: 0px !important;
 }
 
-h3 {
+h1 {
   font-size: 48px;
   font-weight: 500;
   margin-bottom: 0px;
@@ -310,6 +310,15 @@ video.home-dashboard-video {
   margin-right: auto !important;
 }
 
+.home-mission-content {
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .dashboard-image-container {
   display: flex;
   flex-direction: row;
@@ -326,7 +335,7 @@ video.home-dashboard-video {
 }
 
 .home-dashboard-description {
-  max-width: 600px;
+  max-width: 700px;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -338,10 +347,24 @@ video.home-dashboard-video {
   font-weight: 600;
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
-  margin-top: -210px !important;
+  margin-top: calc(50vh - 375px) !important;
 }
 
-.home-dashboard-h3 {
+.home-dashboard-h2 {
+  color: white !important;
+  float: center;
+  text-align: center;
+  letter-spacing: 0.15px;
+  text-shadow: 1px 1px 5px black;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 0.5;
+  line-height: 1.4;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.home-dashboard-h1 {
   color: white;
   font-weight: 600;
   padding-bottom: 12px;
@@ -583,9 +606,14 @@ table {
   border-bottom: 1px solid #edf2f9;
 }
 
-.table-header-text-1.games,
+.table-header-text-1.games {
+  padding-left: 9px;
+}
+
 .table-body-text-1.games {
   padding-left: 9px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .table-header-text-2.games,
@@ -706,7 +734,7 @@ table.ui.fixed.single.line.table {
 
 .tab-divider {
   position: relative !important;
-  z-index: 999 !important;
+  z-index: 5 !important;
   margin-top: 21px !important;
 }
 
@@ -947,6 +975,7 @@ button.ui.button.matic-widget-button:hover,
 button.ui.button.matic-widget-button-2:hover {
   transform: translateY(0px) !important;
   box-shadow: none;
+  filter: brightness(100%) !important;
 }
 
 span.matic-icon-background {
@@ -1062,6 +1091,29 @@ div.ui.grid.balances-container {
 .balances-column.zero {
   height: 100px;
   padding: 12px 17px 39px 18px !important;
+}
+
+.avatar-picture .avatar-edit {
+  visibility: hidden;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  background-color: rgba(97, 97, 97, 0.75);
+  color: white;
+  width: 72px;
+  height: 36px;
+  margin-top: -36px;
+  border-bottom-left-radius: 50% 36px;
+  border-bottom-right-radius: 50% 36px;
+  padding-top: 15px;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  clip: rect(15px, 72px, 72px, 0px);
+}
+
+.avatar-picture:hover .avatar-edit {
+  visibility: visible;
 }
 
 .avatar-name-row {
@@ -1858,9 +1910,6 @@ a.demo-button {
     margin-right: 30px;
     margin-top: 120px;
   }
-  .home-dashboard-mission {
-    margin-top: -90px !important;
-  }
   .home-dashboard-p {
     width: 100%;
   }
@@ -1909,6 +1958,9 @@ a.demo-button {
   .dashboard-menu-container {
     margin-top: -360px !important;
   }
+  .home-mission-content {
+    padding-top: calc(50vh - 270px);
+  }
 }
 
 @media (max-width: 399px) {
@@ -1917,17 +1969,23 @@ a.demo-button {
     margin-right: 30px;
     margin-top: 90px;
   }
-  .home-dashboard-mission {
-    margin-top: -90px !important;
-  }
   .featured-casino-text {
     font-size: 12px !important;
   }
   .home-dashboard-p {
     font-size: 18px !important;
   }
-  .home-dashboard-h3 {
+  .home-dashboard-h1 {
     font-size: 48px !important;
+  }
+  .home-mission-content {
+    padding-top: calc(50vh - 270px);
+  }
+}
+
+@media (max-width: 350px) {
+  .home-mission-content {
+    padding-top: calc(50vh - 150px);
   }
 }
 
