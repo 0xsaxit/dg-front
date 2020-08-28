@@ -429,6 +429,14 @@ video.home-dashboard-video {
   font-weight: 400;
 }
 
+.ui.dropdown .menu {
+  right: 0;
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  padding: 0px;
+  border-radius: 2px;
+}
+
 .games-container {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -440,6 +448,10 @@ video.home-dashboard-video {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.leaderboard-column {
+  min-width: 33.33% !important;
 }
 
 @media (max-width: 991px) {
@@ -781,8 +793,8 @@ table.ui.fixed.single.line.table {
 }
 
 .account-other-inner-p {
-  margin-top: 25vh;
-  padding-bottom: 20px;
+  margin-top: 45px;
+  padding-bottom: 60px;
   text-align: center;
   color: gray;
 }
@@ -1096,6 +1108,10 @@ div.ui.grid.balances-container {
   }
 }
 
+.leaderboard-column {
+  width: 100%;
+}
+
 .balances-column {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -1362,7 +1378,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 }
 
 /* ----------------------------------------- */
-/*         WAITING ANIMATION CSS             */
+/*           WAITING ANIMATION CSS            */
 /* ----------------------------------------- */
 
 .spinner {
@@ -2025,6 +2041,14 @@ a.demo-button {
   .home-mission-content {
     padding-top: calc(50vh - 270px);
   }
+  #intermediate-time-select {
+    display: none;
+  }
+}
+
+#intermediate-time-select {
+  position: absolute;
+  right: 0;
 }
 
 @media (max-width: 399px) {
@@ -2057,7 +2081,8 @@ a.demo-button {
   .mobile-menu-image,
   .mobile-menu-words,
   .mobile-footer,
-  .demo-button-container {
+  .demo-button-container,
+  #mobile-time-select {
     display: none !important;
   }
 }
@@ -2086,7 +2111,7 @@ a.demo-button {
 
 @media (min-width: 768px) {
   span.leaderboard-coin-select-mobile,
-  #mobile-time-select {
+  #intermediate-time-select {
     display: none !important;
   }
 }

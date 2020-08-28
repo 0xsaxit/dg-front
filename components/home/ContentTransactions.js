@@ -142,6 +142,7 @@ const ContentTransactions = (props) => {
           return (
             <tr className="table-body" key={i}>
               <td className="table-body-text-1 first">
+              {row.coinName === 'play' ?
                 <img
                   src={Global.IMAGES.ICON_MANA}
                   style={{
@@ -151,6 +152,17 @@ const ContentTransactions = (props) => {
                     marginTop: '-2px',
                   }}
                 />
+              :
+                <img
+                  src={Global.IMAGES.ICON_PLAY}
+                  style={{
+                    width: '24px',
+                    paddingRight: '6px',
+                    verticalAlign: 'middle',
+                    marginTop: '-2px',
+                  }}
+                />
+              }
                 {action}
               </td>
 
@@ -163,33 +175,29 @@ const ContentTransactions = (props) => {
               <td className="table-body-text-1 date">{timestamp}</td>
 
               <td className="table-body-text-1 hash">
-                {/*<a
-                  style={{
-                    color: '#2085F4',
-                    maxWidth: '90px',
-                    display: 'inline-block',
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    verticalAlign: 'middle',
-                  }}
-                  target="_blank"
-                  href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                >
-                  {row.txid}
-                </a>
-                <Icon name="caret right" style={{ color: '#2085F4' }} />*/}
-
                 <span style={{ float: 'right', paddingRight: '12px' }}>
-                  <Button
-                    href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                    target="_blank"
-                    className="etherscan-button"
-                  >
-                    etherscan
-                    <span class="material-icons" id="etherscan-button-icon">
-                      launch
-                    </span>
-                  </Button>
+                  {row.coinName === 'play' ?
+                    <Button
+                      href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
+                      target="_blank"
+                      className="etherscan-button"
+                    >
+                      etherscan
+                      <span class="material-icons" id="etherscan-button-icon">
+                        launch
+                      </span>
+                    </Button>
+                  :
+                    <Button
+                      disabled
+                      className="etherscan-button"
+                    >
+                      etherscan
+                      <span class="material-icons" id="etherscan-button-icon">
+                        launch
+                      </span>
+                    </Button>
+                  }
                 </span>
               </td>
             </tr>

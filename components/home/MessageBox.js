@@ -193,12 +193,9 @@ const MessageBox = (props) => {
           // ) :
           state.messageBox.length ? (
             <Aux>
-              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-                Deposit Confirmed on Matic
-              </p>
               <p style={{ fontSize: '16px' }}>
                 {state.messageBox.map((amount, i) => (
-                  <li key={i}>Deposited amount: {amount}</li>
+                  <li key={i}>{amount} MANA Deposit Confirmed</li>
                 ))}
               </p>
               <p style={{ fontSize: '16px' }}>

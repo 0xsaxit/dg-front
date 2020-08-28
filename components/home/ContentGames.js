@@ -10,10 +10,10 @@ const ContentGames = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [dataGames, setDataGames] = useState([[], [], [], []]);
+  const [dataGames, setDataGames] = useState([[], [], [], [], []]);
   const [processing, setProcessing] = useState(true);
 
-  const games = ['ALL GAMES', 'SLOTS', 'ROULETTE', 'BACKGAMMON'];
+  const games = ['ALL GAMES', 'SLOTS', 'ROULETTE', 'BLACKJACK', 'BACKGAMMON'];
 
   useEffect(() => {
     if (Object.keys(state.gameRecords).length !== 0) {
@@ -24,6 +24,7 @@ const ContentGames = (props) => {
       let game2 = [];
       let game3 = [];
       let game4 = [];
+      let game5 = [];
       let selected = [];
 
       // parse game scores based on time period
@@ -41,6 +42,7 @@ const ContentGames = (props) => {
           gameData.all.play,
           gameData.slot.play,
           gameData.roulette.play,
+          gameData.blackjack.play,
           gameData.backgammon.play,
         ];
       } else if (props.gameSelect === 'dai') {
@@ -48,6 +50,7 @@ const ContentGames = (props) => {
           gameData.all.dai,
           gameData.slot.dai,
           gameData.roulette.dai,
+          gameData.blackjack.dai,
           gameData.backgammon.dai,
         ];
       } else if (props.gameSelect == 'mana') {
@@ -55,6 +58,7 @@ const ContentGames = (props) => {
           gameData.all.mana,
           gameData.slot.mana,
           gameData.roulette.mana,
+          gameData.blackjack.mana,
           gameData.backgammon.mana,
         ];
       }
@@ -91,7 +95,15 @@ const ContentGames = (props) => {
         });
       });
 
-      setDataGames([game1, game2, game3, game4]);
+      selected[4].map((row) => {
+        game5.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      setDataGames([game1, game2, game3, game4, game5]);
     }
   }, [state.gameRecords, props.timePeriod, props.gameSelect]);
 
@@ -102,7 +114,7 @@ const ContentGames = (props) => {
       <Grid>
         {games.map((game, index) => {
           return (
-            <Grid.Column computer={4} tablet={8} mobile={16} key={index}>
+            <Grid.Column computer={5} tablet={8} mobile={16} key={index} className="leaderboard-column">
               <table style={{ marginTop: '5px' }}>
                 <tbody>
                   <tr className="table-header">
