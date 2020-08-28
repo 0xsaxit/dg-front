@@ -347,7 +347,7 @@ video.home-dashboard-video {
   font-weight: 600;
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
-  margin-top: calc(50vh - 375px) !important;
+  margin-top: 0px !important;
 }
 
 .home-dashboard-h2 {
@@ -370,6 +370,19 @@ video.home-dashboard-video {
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
   margin-top: -12px;
+}
+
+.logged-out-button-span {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .logged-out-button-span {
+    display: flex;
+    margin-left: calc(50% - 90px);
+    flex-direction: column;
+  }
 }
 
 .home-dashboard-p {
@@ -396,11 +409,34 @@ video.home-dashboard-video {
   margin-top: -19px;
 }
 
+.online-dot-container {
+  display: flex;
+}
+
 .online-dot {
-  color: #4dbd33;
-  padding-right: 4px;
-  font-size: 21px;
-  margin-top: -2px !important;
+  background: #4dbd33;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  margin: 12px 6px 0px 1px;
+  height: 6px;
+  width: 6px;
+  transform: scale(1);
+  animation: pulse-black 2s infinite;
+}
+
+@keyframes pulse-black {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(77, 189, 51, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(77, 189, 51, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(77, 189, 51, 0);
+  }
 }
 
 /* ----------------------------------------- */
@@ -950,6 +986,11 @@ svg.spanbox.disable {
 
 .button.matic-widget-button {
   text-align: left;
+  border: 1px solid rgb(231, 233, 238);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   width: 364px;
   height: 56px;
   padding: 16px 2px 12px 13px;
@@ -1672,9 +1713,11 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 /*                BUTTONS CSS                */
 /* ----------------------------------------- */
 
-.ui.button:hover {
+.ui.button:hover,
+button.ui.button.matic-widget-button.balances-play-button-2:hover,
+button.ui.button.matic-widget-button.balances-play-button:hover {
   transform: translateY(0px) !important;
-  filter: brightness(90%);
+  filter: brightness(90%) !important;
 }
 
 a.ui.blue.button.play-shimmer {
@@ -1971,7 +2014,7 @@ a.demo-button {
   .wallet_board_overlay,
   .dashboard-image-container,
   #mobile-casino-text,
-  video.home-dashboard-video {
+  video#myVideo.home-dashboard-video {
     display: none !important;
   }
   .mobile-message-bar {
@@ -2039,10 +2082,16 @@ a.demo-button {
     margin-top: -360px !important;
   }
   .home-mission-content {
-    padding-top: calc(50vh - 270px);
+    padding-top: 180px;
   }
   #intermediate-time-select {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-dashboard-mission {
+    margin-top: -15px !important;
   }
 }
 
@@ -2067,13 +2116,13 @@ a.demo-button {
     font-size: 48px !important;
   }
   .home-mission-content {
-    padding-top: calc(50vh - 270px);
+    padding-top: 160px;
   }
 }
 
 @media (max-width: 350px) {
   .home-mission-content {
-    padding-top: calc(50vh - 150px);
+    padding-top: calc(50vh - 40px);
   }
 }
 

@@ -220,7 +220,7 @@ const ContentBalances = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> {playBalance} </p>
+            <p className="balances-text"> {playBalance.toLocaleString()} </p>
             <span className="balances-button-span">
               <Button
                 color="blue"

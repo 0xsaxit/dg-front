@@ -12,6 +12,7 @@ const History = (props) => {
   const dataPlay = state.transactions[1];
 
   // define local variables
+  const [isLoading, setLoading] = useState(true);
   const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);

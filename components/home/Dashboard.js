@@ -11,10 +11,10 @@ const Dashboard = (props) => {
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
   const [isZooming, setZooming] = useState(true);
-  // const [totalPlayers, setTotalPlayers] = useState('');
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [visited, setVisited] = useState(false);
+  const [videoPlay, setVideoPlay] = useState(true);
 
   useEffect(() => {
     if (window) {
@@ -25,6 +25,12 @@ const Dashboard = (props) => {
       } else {
         window.sessionStorage.setItem('visited', true);
       }
+    }
+
+    if (window.innerWidth < 500) {
+      setVideoPlay(false);
+    } else {
+      setVideoPlay(true);
     }
   }, []);
 
@@ -83,7 +89,7 @@ const Dashboard = (props) => {
             src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
             type="video/mp4"
             frameBorder="0"
-            autoPlay={true}
+            autoPlay={videoPlay}
             loop
             muted
             className="home-dashboard-video"
@@ -104,16 +110,25 @@ const Dashboard = (props) => {
                   Non-custodial slots, roulette, blackjack, and backgammon
                   playable with crypto in Decentraland
                 </h2>
-                <div>
+
+                <span className="logged-out-button-span">
+                  <Button
+                    disabled
+                    color="blue"
+                    className="play-button"
+                    style={{ marginRight: '30px' }}
+                  >
+                    DEMO
+                  </Button>
                   <Button
                     color="blue"
-                    className="how-to-button"
+                    className="play-shimmer"
                     target="_blank"
                     href="https://docs.decentral.games/getting-started"
                   >
                     HOW TO PLAY
                   </Button>
-                </div>
+                </span>
               </div>
             </div>
           </div>
@@ -155,16 +170,25 @@ const Dashboard = (props) => {
                   blackjack playable with crypto.
                 </p>
 
-                <span
-                  className="user-numbers-container-1"
-                  style={{ display: 'flex' }}
-                >
-                  <p className="online-dot">•</p>
-                  <p className="home-dashboard-p">
-                    {' '}
-                    {playerCount} online in {realm}{' '}
-                  </p>
-                </span>
+                {isLoading === true ? 
+                  <span
+                    className="user-numbers-container-1"
+                    style={{ display: 'flex' }}
+                  >
+                    <div className="online-dot"></div>
+                  </span>
+                :
+                  <span
+                    className="user-numbers-container-1"
+                    style={{ display: 'flex' }}
+                  >
+                    <div className="online-dot"></div>
+                    <p className="home-dashboard-p">
+                      {' '}
+                      {playerCount} online in {realm}{' '}
+                    </p>
+                  </span>
+                }
               </div>
             </div>
           </div>
