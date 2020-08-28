@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Icon, Divider, Grid, Button } from 'semantic-ui-react';
+import { Table, Icon, Divider, Grid } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
+import Global from '../Constants';
 
 const History = (props) => {
   // get user's transaction history from the Context API store
@@ -99,18 +100,16 @@ const History = (props) => {
   function topLinks() {
     return (
       <div>
-
         <div className="account-other-tabs">
-
           <Grid className="account-connected-grid">
             <Grid.Row>
               <Grid.Column
-                floated='right' 
+                floated="right"
                 width={16}
                 className="balances-column zero"
               >
                 <span style={{ display: 'flex' }}>
-                  <img 
+                  <img
                     src={`https://events.decentraland.org/api/profile/${address}/face.png`}
                     style={{
                       width: '72px',
@@ -122,19 +121,17 @@ const History = (props) => {
                   />
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text"> Account Connected </p>
-                    { avatarName === null || avatarName === '' ? 
+                    {avatarName === null || avatarName === '' ? (
                       <div>
                         <p className="account-name">
                           {address.substr(0, 2) + '...' + address.substr(-7)}
                         </p>
-                      </div> 
-                      : 
+                      </div>
+                    ) : (
                       <div>
-                        <p className="account-name">
-                          {avatarName}
-                        </p>
-                      </div> 
-                    }
+                        <p className="account-name">{avatarName}</p>
+                      </div>
+                    )}
                   </span>
                   {/*<Button
                     href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"

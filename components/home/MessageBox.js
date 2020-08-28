@@ -3,64 +3,66 @@ import { GlobalContext } from '../../store';
 import { Message } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Aux from '../_Aux';
+import Global from '../Constants';
 
 const MessageBox = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [messages, setMessage] = useState([]);
-  let userAddress = '';
-  let ws = {};
+  // const [amounts, setAmount] = useState([]);
 
+  let addressMetaMask = '';
+  let ws = {};
+  let maticWeb3 = {};
   const web3 = new Web3();
   const abiCoder = web3.eth.abi;
-
-  // 0x2e5e27d50EFa501D90Ad3638ff8441a0C0C0d75e // pos_child_chain_manager_contract_address
-
   const data = {
     id: 1,
     method: 'eth_subscribe',
-    params: ['newDeposits', {}],
+    params: [
+      'newDeposits',
+      { Contract: '0xb5505a6d998549090530911180f38aC5130101c6' },
+    ],
   };
 
-  const initWebsocket = () => {
+  useEffect(() => {
+    if (state.userStatus) {
+      addressMetaMask = window.web3.currentProvider.selectedAddress;
+
+      maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      initWebSocket();
+
+      // cleanup method called before unmount
+      return () => {
+        ws.close;
+      };
+    }
+  }, [state.userStatus]);
+
+  const initWebSocket = () => {
     ws = new WebSocket('wss://ws-mumbai.matic.today');
 
     ws.onopen = () => {
       console.log('Open WebSocket connection');
 
-      // ws.send(
-      //   `{"id": 1, "method": "eth_subscribe", "params": ["newDeposits",{"Contract": "0x2e5e27d50EFa501D90Ad3638ff8441a0C0C0d75e"}]}`
-      // );
-
-      // ws.send(
-      //   `{"id": 1, "method": "eth_subscribe", "params": ["newDeposits",{}]}`
-      // );
-
       ws.send(JSON.stringify(data));
     };
 
     ws.onmessage = (event) => {
-      dispatch({
-        type: 'message_box',
-        data: 3,
-      });
-
-      console.log('deposit data...');
-
-      // const dataString = event.data.toString();
-      // console.log(dataString.result);
-
       const parsedData = JSON.parse(event.data);
-      console.log(parsedData);
+      if (parsedData.result) console.log('Listening for events');
 
-      if (parsedData.result) console.log(parsedData.result);
-
-      // console.log(parsedMsg);
-      // const parsedMsg = event.data; // .toString();
-      // console.log(parsedMsg.params.result.Data);
-
+      /////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////////////////
+      // if this is a deposit/withdraw event let's parse and decode the data
       if (
         parsedData &&
         parsedData.params &&
@@ -73,74 +75,138 @@ const MessageBox = (props) => {
           fullData
         );
 
-        setMessage([...messages, fullData]);
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        // check if sync is of deposit type (keccak256("DEPOSIT")) and filter the data
+        const depositType =
+          '0x87a7811f4bfedea3d341ad165680ae306b01aaeacc205d227629cf157dd9f821';
+        if (syncType.toLowerCase() === depositType.toLowerCase()) {
+          const {
+            0: userAddress,
+            1: rootTokenAddress,
+            2: depositData,
+          } = abiCoder.decodeParameters(
+            ['address', 'address', 'bytes'],
+            syncData
+          );
+
+          // const addressMetaMask = window.web3.currentProvider.selectedAddress;
+
+          console.log('User address (MetaMask): ' + addressMetaMask);
+          console.log('User address (return data): ' + userAddress);
+          console.log('Root token address: ' + rootTokenAddress);
+
+          // decode depositData to get amount
+          if (userAddress.toLowerCase() === addressMetaMask) {
+            const { 0: amount } = abiCoder.decodeParameters(
+              ['uint256'],
+              depositData
+            );
+
+            const amountAdjusted = amount / Global.FACTOR;
+            console.log('Amount: ' + amountAdjusted);
+
+            // setAmount([...amounts, amountAdjusted]);
+
+            // display the message box with updated deposit amount
+            dispatch({
+              type: 'message_box',
+              data: [...state.messageBox, amountAdjusted],
+            });
+
+            // update global state token balances
+            (async function () {
+              const response = await getTokenBalances();
+
+              dispatch({
+                type: 'update_balances',
+                data: response,
+              });
+            })();
+          }
+        }
       }
-
-      // setMessage([...messages, event.data]);
-      // const txData = JSON.parse(event.data); // , 'params.result.Data', '');
-      // var userAddress = txData.substring(0, 64).replace(/^0+/, '0x');
-      // var contractAddress = txData.substring(65, 128).replace(/^0+/, '0x');
-
-      // setMessage([...messages, parsedMsg]);
     };
 
     ws.onclose = () => {
       console.log('Close WebSocket connection');
 
-      initWebsocket();
+      initWebSocket();
     };
   };
 
-  useEffect(() => {
-    if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get balances on mainnet and Matic networks
+  async function getTokenBalances() {
+    const addresses = await Global.API_ADDRESSES;
+
+    const TOKEN_CONTRACT_ROOT = window.web3.eth
+      .contract(Global.ABIs.ROOT_TOKEN)
+      .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
+
+    // const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
+    //   Global.ABIs.ROOT_TOKEN,
+    //   addresses.ROOT_TOKEN_ADDRESS_MANA
+    // );
+
+    const TOKEN_CONTRACT_CHILD = maticWeb3.eth
+      .contract(Global.ABIs.CHILD_TOKEN)
+      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+
+    try {
+      const amount1 = await Global.balanceOfToken(
+        TOKEN_CONTRACT_ROOT,
+        addressMetaMask
+      );
+      const amount2 = await Global.balanceOfToken(
+        TOKEN_CONTRACT_CHILD,
+        addressMetaMask
+      );
+
+      return [
+        [amount1, amount2],
+        [0, 0],
+      ];
+    } catch (error) {
+      console.log(error);
     }
-  }, [state.userStatus]);
+  }
 
-  useEffect(() => {
-    initWebsocket();
-
-    // cleanup method which will be called before next execution. in your case unmount.
-    return () => {
-      ws.close;
-    };
-  }, []);
-
-  if (state.messageBox) {
+  if (state.messageBox.length) {
     return (
       <Message
         className="deposit-notification-box"
         onDismiss={props.handleDismiss}
       >
-        {state.messageBox == 1 ? (
-          <Aux>
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-              Deposit Confirming on Matic
-            </p>
-            <p style={{ fontSize: '16px' }}>
-              Matic balances will update once deposit is confirmed
-            </p>
-            <p style={{ fontSize: '16px' }}>(Normally 2 - 3 minutes)</p>
-          </Aux>
-        ) : state.messageBox == 2 ? (
-          <Aux>
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-              Deposit Confirmed on Matic
-            </p>
-            <p style={{ fontSize: '16px' }}>
-              Your Matic balances have been updated
-            </p>
-          </Aux>
-        ) : state.messageBox == 3 ? (
-          <Aux>
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Testing...</p>
-            <p style={{ fontSize: '16px' }}>
-              {messages.map((message, i) => (
-                <li key={i}>{message}</li>
-              ))}
-            </p>
-          </Aux>
-        ) : null}
+        {
+          // state.messageBox.length === 1 ? (
+          //   <Aux>
+          //     <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+          //       Deposit Confirming on Matic
+          //     </p>
+          //     <p style={{ fontSize: '16px' }}>
+          //       Matic balances will update once deposit is confirmed
+          //     </p>
+          //     <p style={{ fontSize: '16px' }}>(Normally 2 - 3 minutes)</p>
+          //   </Aux>
+          // ) :
+          state.messageBox.length ? (
+            <Aux>
+              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                Deposit Confirmed on Matic
+              </p>
+              <p style={{ fontSize: '16px' }}>
+                {state.messageBox.map((amount, i) => (
+                  <li key={i}>Deposited amount: {amount}</li>
+                ))}
+              </p>
+              <p style={{ fontSize: '16px' }}>
+                Your Matic balances have been updated
+              </p>
+            </Aux>
+          ) : null
+        }
       </Message>
     );
   } else {

@@ -10,7 +10,7 @@ const initialState = {
   userStatus: 0,
   balances: [[], []],
   transactions: [[], []],
-  messageBox: 0,
+  messageBox: [],
   parcelData: {},
   gameRecords: {},
   balancesOverlay: 0,

@@ -109,7 +109,7 @@ const MenuTop = () => {
   function handleDismiss() {
     dispatch({
       type: 'message_box',
-      data: 0,
+      data: [],
     });
   }
 

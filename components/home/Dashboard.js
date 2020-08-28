@@ -26,7 +26,7 @@ const Dashboard = (props) => {
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
 
-      console.log('Total players:' + totalPlayers);
+      console.log('Total players: ' + json.totalPlayers);
 
       setLoading(false);
       const timer = setTimeout(() => {
