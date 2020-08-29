@@ -18,6 +18,9 @@ const BalancesOverlay = () => {
     } else if (state.balancesOverlay === 2) {
       setVisibilityModal('none');
       setVisibilityAccountPage('block');
+    } else if (state.balancesOverlay === 3) {
+      setVisibilityModal('block');
+      setVisibilityAccountPage('block');
     } else {
       setVisibilityModal('none');
       setVisibilityAccountPage('none');
@@ -25,10 +28,17 @@ const BalancesOverlay = () => {
   }, [state.balancesOverlay]);
 
   function close() {
-    dispatch({
-      type: 'balances_overlay',
-      data: 0,
-    });
+    if (state.balancesOverlay === 3) {
+      dispatch({
+        type: 'balances_overlay',
+        data: 2,
+      });
+    } else {
+      dispatch({
+        type: 'balances_overlay',
+        data: 0,
+      });
+    }
   }
 
   // set overlay visibility based on value of state.balancesOverlay
@@ -69,11 +79,10 @@ const BalancesOverlay = () => {
 
   return (
     <Aux>
-      {state.balancesOverlay === 1 ? (
+      {state.balancesOverlay === 1 || state.balancesOverlay === 3 ? (
         <span style={styles.close} onClick={() => close()}>
           <span className="material-icons" style={{ fontSize: '29px' }}>
-            {' '}
-            close{' '}
+            close
           </span>
         </span>
       ) : null}

@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
@@ -25,12 +25,11 @@ const ContentBalances = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [playBalance, setPlayBalance] = useState(0);
 
+  // const [playBalance, setPlayBalance] = useState(0);
   // const [avatarName, setAvatarName] = useState('');
   // const [address, setAddress] = useState('');
-
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   let userAddress = '';
 
@@ -58,24 +57,24 @@ const ContentBalances = (props) => {
       // setAddress(userAddress);
       // console.log('User Addreses: ' + userAddress);
 
-      setPlayerInfo();
+      // setPlayerInfo();
     }
   }, [state.userStatus]);
 
   // get user's play balance and topup count
-  async function setPlayerInfo() {
-    let response = await Global.FETCH.PLAYER_INFO(userAddress);
-    let json = await response.json();
+  // async function setPlayerInfo() {
+  //   let response = await Global.FETCH.PLAYER_INFO(userAddress);
+  //   let json = await response.json();
 
-    setPlayBalance(json.playBalance);
+  //   setPlayBalance(json.playBalance);
 
-    // userAddress = json.address;
-    // setAddress(json.address);
+  //   // userAddress = json.address;
+  //   // setAddress(json.address);
 
-    // setAvatarName(json.avatarName);
+  //   // setAvatarName(json.avatarName);
 
-    setCount(json.callCount);
-  }
+  //   setCount(json.callCount);
+  // }
 
   // async function getPlayerInfo(userAddress) {
   //   let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
@@ -114,7 +113,25 @@ const ContentBalances = (props) => {
   async function topUp() {
     await Global.FETCH.TOP_UP_USER(userAddress);
 
-    setPlayerInfo();
+    // setPlayerInfo();
+
+    let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress);
+    let json = await responseInfo.json();
+
+    // const name = json.avatarName;
+    // const address = json.address;
+    // const balance = json.playBalance.toLocaleString();
+    // const count = json.callCount;
+
+    // const response = [name, address, balance, count];
+
+    let arrayInfo = state.userInfo;
+    arrayInfo[3] = json.callCount;
+
+    dispatch({
+      type: 'user_info',
+      data: arrayInfo,
+    });
   }
 
   // initialize transak modal
@@ -124,10 +141,17 @@ const ContentBalances = (props) => {
 
   // close function
   function close() {
-    dispatch({
-      type: 'balances_overlay',
-      data: 0,
-    });
+    if (state.balancesOverlay === 3) {
+      dispatch({
+        type: 'balances_overlay',
+        data: 2,
+      });
+    } else {
+      dispatch({
+        type: 'balances_overlay',
+        data: 0,
+      });
+    }
   }
 
   function contentModal() {
@@ -220,7 +244,7 @@ const ContentBalances = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> {playBalance.toLocaleString()} </p>
+            <p className="balances-text"> {state.userInfo[2]} </p>
             <span className="balances-button-span">
               <Button
                 color="blue"
@@ -230,7 +254,7 @@ const ContentBalances = (props) => {
               >
                 PLAY NOW
               </Button>
-              {count === 2 ? (
+              {state.userInfo[3] === 2 ? (
                 <Button
                   disabled
                   color="blue"

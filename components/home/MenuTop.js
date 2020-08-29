@@ -69,6 +69,11 @@ const MenuTop = () => {
         type: 'balances_overlay',
         data: 1,
       });
+    } else {
+      dispatch({
+        type: 'balances_overlay',
+        data: 3,
+      });
     }
   }
 

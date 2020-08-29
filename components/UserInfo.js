@@ -18,11 +18,12 @@ function UserInfo() {
         let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress);
         let json = await responseInfo.json();
 
-        const avatarName = json.avatarName;
-        const avatarAddress = json.address;
-        const avatarBalance = json.playBalance;
+        const name = json.avatarName;
+        const address = json.address;
+        const balance = json.playBalance.toLocaleString();
+        const count = json.callCount;
 
-        const response = [avatarName, avatarAddress, avatarBalance];
+        const response = [name, address, balance, count];
 
         dispatch({
           type: 'user_info',
