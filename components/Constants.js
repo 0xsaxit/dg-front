@@ -8,7 +8,7 @@ import ABITominoyaToken from './ABI/ABITominoya';
 /////////////////////////////////////////////////////////////////////////////////////////
 // third-party public API keys
 const KEYS = {
-  BICONOMY_API: 'NfWiOc7He.104e7174-6d0e-4e38-84b7-fcfb9c0cc367',
+  BICONOMY_API: 'spWcIKmce.df09f12f-b278-4093-8ca5-0dfafd5b37a7',
   TRANSAK_API: '4fcd6904-706b-4aff-bd9d-77422813bbb7',
   GOOGLE_ANALYTICS: 'UA-146057069-1',
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
@@ -73,7 +73,7 @@ const domainDataToken = {
 
 const domainDataTreasury = {
   name: 'Treasury',
-  version: 'v2.1',
+  version: 'v3.0',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',
 };
@@ -318,8 +318,8 @@ const API_ADDRESSES = (async () => {
   ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
   ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
   CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
-  CHILD_TOKEN_ADDRESS_MANA = '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1'; // json.CHILD_TOKEN_ADDRESS_MANA;
-  TREASURY_CONTRACT_ADDRESS = '0x50C593A2eD20B6B210269094B6060a74BA114589'; // json.TREASURY_CONTRACT_ADDRESS;
+  CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
+  TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
 
   // TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
   // TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
@@ -795,19 +795,29 @@ function executeMetaTransaction(
           console.log('s: ' + s);
           console.log('v: ' + v);
 
+          let ret;
+
           try {
-            const ret = await tokenContract.methods
-              .executeMetaTransaction(
-                userAddress,
-                functionSignature,
-                sessionDuration,
-                r,
-                s,
-                v
-              )
-              .send({
-                from: userAddress,
-              });
+            if (i === 0) {
+              ret = await tokenContract.methods
+                .executeMetaTransaction(userAddress, functionSignature, r, s, v)
+                .send({
+                  from: userAddress,
+                });
+            } else if (i === 1) {
+              ret = await tokenContract.methods
+                .executeMetaTransaction(
+                  userAddress,
+                  functionSignature,
+                  sessionDuration,
+                  r,
+                  s,
+                  v
+                )
+                .send({
+                  from: userAddress,
+                });
+            }
 
             console.log('Execute Meta-Transactions done');
             resolve(ret.transactionHash);

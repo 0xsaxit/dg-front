@@ -62,6 +62,8 @@ function ActiveStatus() {
 
   // get user's active status (true or false) from smart contract
   async function getActiveStatus() {
+    console.log('address: ' + userAddress);
+
     const addresses = await Global.API_ADDRESSES;
 
     const TREASURY_CONTRACT = new maticWeb3.eth.Contract(

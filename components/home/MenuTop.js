@@ -113,8 +113,8 @@ const MenuTop = () => {
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
     dispatch({
-      type: 'message_box',
-      data: [],
+      type: 'token_pings',
+      data: 0,
     });
   }
 
@@ -152,29 +152,6 @@ const MenuTop = () => {
       </Link>
     );
   }
-
-  // function demoButton() {
-  //   return (
-  //     <div className="demo-button-container">
-  //       <Modal
-  //         trigger={<a className="demo-button"> DEMO </a>}
-  //         closeIcon
-  //         basic
-  //         size="small"
-  //       >
-  //         <Modal.Content>
-  //           <iframe
-  //             className="mobile-demo-video"
-  //             src="https://www.youtube.com/embed/qklQZBooM-8?autoplay=1"
-  //             frameborder="0"
-  //             allow="autoplay"
-  //             allowfullscreen
-  //           ></iframe>
-  //         </Modal.Content>
-  //       </Modal>
-  //     </div>
-  //   );
-  // }
 
   // dropdown menu for mobile
   function dropdownMenu() {

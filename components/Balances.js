@@ -9,6 +9,7 @@ function Balances() {
 
   // define local variables
   let userAddress = '';
+  const value = 6;
   let web3 = {};
   let maticWeb3 = {};
 
@@ -27,11 +28,53 @@ function Balances() {
           type: 'update_balances',
           data: response,
         });
+
+        if (state.userStatus === 5 && response.length) {
+          updateStatus();
+        }
       }
       fetchData();
     }
   }, [state.userStatus]);
 
+  useEffect(() => {
+    if (state.tokenPings === 1) {
+      async function fetchData() {
+        const response = await getTokenBalances();
+
+        if (response.length) {
+          updateStatus();
+        }
+
+        // display the message box with deposit confirmation
+        dispatch({
+          type: 'token_pings',
+          data: 2,
+        });
+      }
+
+      // call token contract every 10 seconds to get new balances
+      const interval = setInterval(() => {
+        fetchData();
+      }, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [state.tokenPings]);
+
+  function updateStatus() {
+    // update global state user status
+    dispatch({
+      type: 'update_status',
+      data: value,
+    });
+
+    // update user status in database
+    console.log('Posting user status to db: ' + value);
+    Global.FETCH.USER_VERIFY(userAddress, value);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on mainnet and Matic networks
   async function getTokenBalances() {
     const addresses = await Global.API_ADDRESSES;

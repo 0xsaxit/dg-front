@@ -23,14 +23,18 @@ const MessageBar = () => {
 
   useEffect(() => {
     if (!state.networkID) {
-      setMessage(
-        'Use Chrome browser with MetaMask enabled to play'
-      );
+      setMessage('Use Chrome browser with MetaMask enabled to play');
     } else if (state.networkID !== 5) {
-      setMessage('Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'); // Ethereum Mainnet
-    } else if (!state.location) {
+      setMessage(
+        'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
+      );
+    } else if (!state.userStatus === 4) {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play our free play games'
+      );
+    } else if (state.userStatus === 6) {
+      setMessage(
+        'You must authorize our smart contract access to your funds on Matic Network before playing our games'
       );
     } else if (!state.activeStatus) {
       setMessage(
@@ -39,7 +43,7 @@ const MessageBar = () => {
     } else {
       setMessage('');
     }
-  }, [state.networkID, state.location, state.activeStatus]);
+  }, [state.networkID, state.userStatus, state.activeStatus]);
 
   if (message !== '') {
     return (

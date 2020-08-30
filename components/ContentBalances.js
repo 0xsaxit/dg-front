@@ -137,6 +137,21 @@ const ContentBalances = (props) => {
   // initialize transak modal
   function show_transak() {
     transak.init();
+
+    initializePings();
+  }
+
+  // initialize token contract pings
+  function initializePings() {
+    if (state.userStatus === 5) {
+      console.log('Ping token contract');
+
+      // start pinging the token contract for deposit confirmation
+      dispatch({
+        type: 'token_pings',
+        data: 1,
+      });
+    }
   }
 
   // close function
@@ -175,12 +190,12 @@ const ContentBalances = (props) => {
           <p className="matic-header-text"> Add Tokens </p>
           <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
           <div className="matic-widget-button-container">
-            <div>
+            <div onClick={close}>
               <Button
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={close}
+                onClick={() => initializePings()}
               >
                 <span className="matic-icon-background">
                   <span
@@ -201,6 +216,7 @@ const ContentBalances = (props) => {
                 data-script-name="matic-embeds"
               ></script>
             </div>
+
             <div onClick={close}>
               <Button className="matic-widget-button-2" onClick={show_transak}>
                 <span className="matic-icon-background-2">
@@ -287,7 +303,7 @@ const ContentBalances = (props) => {
                 className="balances-purchase-button"
                 onClick={() => show_transak()}
               >
-                Purchase
+                PURCHASE
               </Button>
             </span>
             <Divider className="balances-divider" />
@@ -343,6 +359,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
               >
                 DEPOSIT
               </Button>
@@ -351,6 +368,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button-2"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
               >
                 WITHDRAW
               </Button>

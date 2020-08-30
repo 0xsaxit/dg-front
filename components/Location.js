@@ -3,26 +3,38 @@ import { GlobalContext } from '../store';
 import Global from './Constants';
 
 function Location() {
-  // dispatch user's location boolean to the Context API store
+  // verify user's location and update userStatus in the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let bool = true;
+  let userAddress = '';
+  const value = 5;
 
   useEffect(() => {
-    async function fetchData() {
-      const countryCode = await getCountryCode();
-      console.log('Country code: ' + countryCode);
+    if (state.userStatus) {
+      userAddress = window.web3.currentProvider.selectedAddress;
 
-      if (countryCode === 'US') bool = false;
+      async function fetchData() {
+        const countryCode = await getCountryCode();
+        console.log('Country code: ' + countryCode);
 
-      dispatch({
-        type: 'ip_address',
-        data: bool,
-      });
+        if (state.userStatus === 4) {
+          // if (countryCode === 'US') return;
+
+          // update global state user status
+          dispatch({
+            type: 'update_status',
+            data: value,
+          });
+
+          // update user status in database
+          console.log('Posting user status to db: ' + value);
+          Global.FETCH.USER_VERIFY(userAddress, value);
+        }
+      }
+      fetchData();
     }
-    fetchData();
-  }, []);
+  }, [state.userStatus]);
 
   async function getCountryCode() {
     const response = await Global.FETCH.COUNTRY_CODE();
