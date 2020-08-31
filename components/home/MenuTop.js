@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Modal, Button } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
 import MessageBar from './MessageBar';
-import ModalVerify from '../modal/ModalVerify';
+import Verify from './Verify';
 import MessageBox from './MessageBox';
 import Aux from '../_Aux';
 import Global from '../Constants';
@@ -17,6 +17,8 @@ const MenuTop = () => {
   const [visible, setVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
+
+  const router = useRouter();
 
   // set menu styles
   useEffect(() => {
@@ -80,8 +82,6 @@ const MenuTop = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get path and render appropriate styles
-  const router = useRouter();
-
   function getContainerStyles(path) {
     if (path === 'container') {
       if ('/' === router.pathname) {
@@ -302,11 +302,7 @@ const MenuTop = () => {
         </span>
       );
     } else {
-      return (
-        <span className="right-menu-items">
-          <ModalVerify />
-        </span>
-      );
+      return <Verify />;
     }
   }
 

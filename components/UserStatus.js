@@ -16,10 +16,12 @@ function UserStatus() {
       async function fetchData() {
         const response = await getUserStatus();
 
-        dispatch({
-          type: 'update_status',
-          data: response,
-        });
+        if (response) {
+          dispatch({
+            type: 'update_status',
+            data: response,
+          });
+        }
       }
       fetchData();
     }

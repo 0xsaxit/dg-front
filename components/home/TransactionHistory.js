@@ -1,18 +1,20 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Icon, Divider, Grid } from 'semantic-ui-react';
+import { Table, Icon, Divider, Grid, Button } from 'semantic-ui-react';
+import ModalDeposit from '../modal/ModalDeposit';
+import ButtonEnable from './ButtonEnable';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
 // import Global from '../Constants';
 
-const History = (props) => {
+const History = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
 
   // define local variables
-  const [isLoading, setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
   const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -145,12 +147,16 @@ const History = (props) => {
                       </div>
                     )}
                   </span>
-                  {/*<Button
-                    href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
-                    className="account-connected-play-button"
-                  >
-                    Play now
-                  </Button>*/}
+
+                  {state.userStatus === 6 ? (
+                    <ModalDeposit />
+                  ) : state.userStatus === 7 ? (
+                    <ButtonEnable />
+                  ) : (
+                    <Button disabled className="account-connected-play-button">
+                      AUTHORIZE GAMEPLAY
+                    </Button>
+                  )}
                 </span>
               </Grid.Column>
             </Grid.Row>

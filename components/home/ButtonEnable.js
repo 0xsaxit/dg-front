@@ -1,14 +1,17 @@
-import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import Global from './Constants';
+import { Button } from 'semantic-ui-react';
+import Global from '../Constants';
 
-function ActiveStatus() {
+function ButtonEnable() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [transaction, setTransaction] = useState(false);
+
   let userAddress = '';
   let treasuryContract = {};
   let web3 = {};
@@ -16,7 +19,7 @@ function ActiveStatus() {
   const sessionDuration = Global.ACTIVE_PERIOD;
 
   useEffect(() => {
-    if (state.userStatus === 7) {
+    if (state.userStatus >= 4) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // initialize Web3 providers and create token contract instance
@@ -43,15 +46,9 @@ function ActiveStatus() {
           console.error(error);
         });
 
-      (async function () {
-        const activeStatus = await getActiveStatus();
-        console.log('Active status: ' + activeStatus);
-        dispatchActiveStatus(activeStatus);
-
-        if (!activeStatus) metaTransaction(); // MetaMask popup window
-      })();
+      if (transaction) metaTransaction(); // MetaMask popup window
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, transaction]);
 
   // dispatch user's active status
   function dispatchActiveStatus(status) {
@@ -116,7 +113,14 @@ function ActiveStatus() {
     }
   }
 
-  return null;
+  return (
+    <Button
+      className="account-connected-play-button"
+      onClick={() => setTransaction(true)}
+    >
+      AUTHORIZE GAMEPLAY
+    </Button>
+  );
 }
 
-export default ActiveStatus;
+export default ButtonEnable;

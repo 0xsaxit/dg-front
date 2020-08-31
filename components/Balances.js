@@ -14,7 +14,7 @@ function Balances() {
   let maticWeb3 = {};
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window['ethereum']); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new window.Web3(
@@ -29,7 +29,21 @@ function Balances() {
           data: response,
         });
 
-        if (state.userStatus === 5 && response.length) {
+        // console.log('balances...');
+        // console.log(response);
+        // console.log('non zero values?');
+
+        const nonZeroMANA = response[0].some(
+          (item) => item !== '0' && item !== 0
+        );
+        const nonZeroDAI = response[1].some(
+          (item) => item !== '0' && item !== 0
+        );
+
+        // console.log(nonZeroMANA);
+        // console.log(nonZeroDAI);
+
+        if (state.userStatus === 5 && (nonZeroMANA || nonZeroDAI)) {
           updateStatus();
         }
       }

@@ -8,22 +8,24 @@ const MessageBar = () => {
   // define local variables
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    if (state.userStatus) {
-      window.web3.version.getNetwork((err, network) => {
-        const networkInt = parseInt(parseInt(network));
+  // useEffect(() => {
+  //   if (state.userStatus >= 4) {
+  //     window.web3.version.getNetwork((err, network) => {
+  //       const networkInt = parseInt(parseInt(network));
 
-        dispatch({
-          type: 'network_id',
-          data: networkInt,
-        });
-      });
-    }
-  }, [state.userStatus]);
+  //       dispatch({
+  //         type: 'network_id',
+  //         data: networkInt,
+  //       });
+  //     });
+  //   }
+  // }, [state.userStatus]);
 
   useEffect(() => {
-    if (!state.networkID) {
-      setMessage('Use Chrome browser with MetaMask enabled to play');
+    if (state.userStatus === 1) {
+      setMessage('Please use Chrome browser to play our games');
+    } else if (!state.networkID) {
+      setMessage('Please enable MetaMask to play our games');
     } else if (state.networkID !== 5) {
       setMessage(
         'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
@@ -34,7 +36,7 @@ const MessageBar = () => {
       );
     } else if (state.userStatus === 6) {
       setMessage(
-        'You must authorize our smart contract access to your funds on Matic Network before playing our games'
+        'You must authorize the Decentral Games smart contract on Matic Network to play games'
       );
     } else if (!state.activeStatus) {
       setMessage(

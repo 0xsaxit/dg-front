@@ -1,19 +1,22 @@
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
+import { Button } from 'semantic-ui-react';
 import Global from './Constants';
 
-function ActiveStatus() {
+function ActiveStatus(props) {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [transaction, setTransaction] = useState(false);
+
   let userAddress = '';
   let treasuryContract = {};
   let web3 = {};
   let maticWeb3 = {};
-  const sessionDuration = Global.ACTIVE_PERIOD;
+  const sessionDuration = 60; // 300 // 3600 == 1 hour
 
   useEffect(() => {
     if (state.userStatus === 7) {
@@ -43,15 +46,19 @@ function ActiveStatus() {
           console.error(error);
         });
 
-      (async function () {
-        const activeStatus = await getActiveStatus();
-        console.log('Active status: ' + activeStatus);
-        dispatchActiveStatus(activeStatus);
+      if (props.button) {
+        if (transaction) metaTransaction(); // MetaMask popup window
+      } else if (!props.button) {
+        (async function () {
+          const activeStatus = await getActiveStatus();
+          console.log('Active status: ' + activeStatus);
+          dispatchActiveStatus(activeStatus);
 
-        if (!activeStatus) metaTransaction(); // MetaMask popup window
-      })();
+          if (!activeStatus) metaTransaction(); // MetaMask popup window
+        })();
+      }
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, transaction]);
 
   // dispatch user's active status
   function dispatchActiveStatus(status) {
@@ -116,7 +123,18 @@ function ActiveStatus() {
     }
   }
 
-  return null;
+  if (props.button) {
+    return (
+      <Button
+        className="account-connected-play-button"
+        onClick={() => setTransaction(true)}
+      >
+        AUTHORIZE GAMEPLAY 2
+      </Button>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default ActiveStatus;

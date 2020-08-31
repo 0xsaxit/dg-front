@@ -22,7 +22,7 @@ async function getAddresses() {
 }
 getAddresses();
 
-const ModalDeposit = (props) => {
+const ModalDeposit = () => {
   // get user's onboard status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -56,7 +56,7 @@ const ModalDeposit = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       // set user address and network ID
       userAddress = window.web3.currentProvider.selectedAddress;
 
@@ -123,27 +123,11 @@ const ModalDeposit = (props) => {
   // }
 
   function getTrigger() {
-    if (props.menuLink) {
-      if (!state.userStatus) {
-        return (
-          <Button className="modal-deposit-button" onClick={handleOpen}>
-            ADD CRYPTO
-          </Button>
-        );
-      } else {
-        return maticWidget('balances-deposit-button', 'DEPOSIT');
-      }
-    } else {
-      if (!state.userStatus) {
-        return (
-          <Button className="balances-deposit-button" onClick={handleOpen}>
-            DEPOSIT
-          </Button>
-        );
-      } else {
-        return maticWidget('balances-deposit-button', 'DEPOSIT');
-      }
-    }
+    return (
+      <Button className="account-connected-play-button" onClick={handleOpen}>
+        AUTHORIZE GAMEPLAY
+      </Button>
+    );
   }
 
   function handleOpen() {
@@ -163,23 +147,23 @@ const ModalDeposit = (props) => {
   //   });
   // }
 
-  function maticWidget() {
-    return (
-      <Aux>
-        <button
-          class="matic-widget-button"
-          data-default-page="home"
-          data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-        >
-          DEPOSIT
-        </button>
-        <script
-          src="https://wallet.matic.today/embeds/widget-button.js"
-          data-script-name="matic-embeds"
-        ></script>
-      </Aux>
-    );
-  }
+  // function maticWidget() {
+  //   return (
+  //     <Aux>
+  //       <button
+  //         class="matic-widget-button"
+  //         data-default-page="home"
+  //         data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+  //       >
+  //         DEPOSIT
+  //       </button>
+  //       <script
+  //         src="https://wallet.matic.today/embeds/widget-button.js"
+  //         data-script-name="matic-embeds"
+  //       ></script>
+  //     </Aux>
+  //   );
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -328,6 +312,7 @@ const ModalDeposit = (props) => {
   // verify correct network
   if (networkID !== Global.PARENT_NETWORK_ID) return switchRPC();
 
+  // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
   return (
     <Modal
       trigger={getTrigger()}
@@ -338,32 +323,15 @@ const ModalDeposit = (props) => {
       <div id="deposit">
         <div className="ui depositContainer">
           <Grid verticalAlign="middle" textAlign="center">
-            {state.userStatus == 4 ? (
-              /////////////////////////////////////////////////////////////////////////////////////////
-              /////////////////////////////////////////////////////////////////////////////////////////
-              // check the user is in a whitelisted jurisdiction
-              <Grid.Column>
-                <ContentDeposit
-                  content={'location'} // content type
-                  verifyLocation={verifyLocation}
-                  validLocation={validLocation}
-                  nextStep={nextStep}
-                />
-              </Grid.Column>
-            ) : state.userStatus == 6 ? (
-              /////////////////////////////////////////////////////////////////////////////////////////
-              /////////////////////////////////////////////////////////////////////////////////////////
-              // allow our treasury contract to spend up to Global.MAX_AMOUNT of tokens on user's behalf
-              <Grid.Column>
-                <ContentDeposit
-                  content={'authorize'} // content type
-                  validAuthorize={validAuthorize}
-                  metaTransaction={metaTransaction}
-                  processing={processing}
-                  nextStep={nextStep}
-                />
-              </Grid.Column>
-            ) : null}
+            <Grid.Column>
+              <ContentDeposit
+                content={'authorize'} // content type
+                validAuthorize={validAuthorize}
+                metaTransaction={metaTransaction}
+                processing={processing}
+                nextStep={nextStep}
+              />
+            </Grid.Column>
           </Grid>
         </div>
       </div>

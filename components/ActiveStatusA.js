@@ -1,22 +1,27 @@
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
+import { Button } from 'semantic-ui-react';
 import Global from './Constants';
 
-function ActiveStatus() {
+function ActiveStatus(props) {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [transaction, setTransaction] = useState(false);
+
   let userAddress = '';
   let treasuryContract = {};
   let web3 = {};
   let maticWeb3 = {};
-  const sessionDuration = Global.ACTIVE_PERIOD;
+  const sessionDuration = 300; // 3600 == 1 hour
 
   useEffect(() => {
-    if (state.userStatus === 7) {
+    //  console.log('here we are...');
+
+    if ((state.userStatus === 7 && !props.button) || transaction) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // initialize Web3 providers and create token contract instance
@@ -33,7 +38,13 @@ function ActiveStatus() {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
+      // console.log('get web3');
+      // console.log(getWeb3);
+
       treasuryContract = Global.getTreasuryContract(getWeb3);
+
+      console.log('treasuryContract');
+      console.log(treasuryContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -51,7 +62,7 @@ function ActiveStatus() {
         if (!activeStatus) metaTransaction(); // MetaMask popup window
       })();
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, transaction]);
 
   // dispatch user's active status
   function dispatchActiveStatus(status) {
@@ -85,6 +96,9 @@ function ActiveStatus() {
 
   // Biconomy API meta-transaction. User must re-authoriza signature after 12 dormant hours
   async function metaTransaction() {
+    console.log('foo foo foo...');
+    console.log(treasuryContract);
+
     try {
       console.log('Session Duration: ' + sessionDuration);
 
@@ -116,7 +130,18 @@ function ActiveStatus() {
     }
   }
 
-  return null;
+  if (props.button) {
+    return (
+      <Button
+        className="account-connected-play-button"
+        onClick={() => setTransaction(true)}
+      >
+        AUTHORIZE GAMEPLAY 2
+      </Button>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default ActiveStatus;

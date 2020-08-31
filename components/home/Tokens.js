@@ -106,13 +106,13 @@ const Tokens = () => {
           <div className="account-other-inner-p">
             You must login to MetaMask to view your NFTs
           </div>
-        ) : loading ? (
-          <div className="account-other-inner-p">
-            You do not own any Tominoya NFTs
-          </div>
         ) : state.networkID !== 1 ? (
           <div className="account-other-inner-p">
             Please switch MetaMask to Ethereum Mainnet
+          </div>
+        ) : loading ? (
+          <div className="account-other-inner-p">
+            You do not own any Tominoya NFTs
           </div>
         ) : (
           <ContentNFTs parcelData={state.parcelData} />

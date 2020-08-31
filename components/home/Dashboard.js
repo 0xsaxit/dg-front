@@ -57,11 +57,11 @@ const Dashboard = (props) => {
     })();
   }, []);
 
-  useEffect(() => {
-    if (state.userStatus) {
-      console.log('User status: ' + state.userStatus);
-    }
-  }, [state.userStatus]);
+  // useEffect(() => {
+  //   if (state.userStatus) {
+  //     console.log('User status: ' + state.userStatus);
+  //   }
+  // }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ const Dashboard = (props) => {
           ></video>
         </div>
 
-        {!state.userStatus ? (
+        {state.userStatus < 4 ? (
           <div className="home-mission-content">
             <div>
               <div className="home-dashboard-description">
@@ -132,9 +132,7 @@ const Dashboard = (props) => {
               </div>
             </div>
           </div>
-        ) : null}
-
-        {state.userStatus ? (
+        ) : (
           <div className="home-dashboard-content">
             <div>
               <div>
@@ -170,14 +168,14 @@ const Dashboard = (props) => {
                   blackjack playable with crypto.
                 </p>
 
-                {isLoading === true ? 
+                {isLoading === true ? (
                   <span
                     className="user-numbers-container-1"
                     style={{ display: 'flex' }}
                   >
                     <div className="online-dot"></div>
                   </span>
-                :
+                ) : (
                   <span
                     className="user-numbers-container-1"
                     style={{ display: 'flex' }}
@@ -188,11 +186,11 @@ const Dashboard = (props) => {
                       {playerCount} online in {realm}{' '}
                     </p>
                   </span>
-                }
+                )}
               </div>
             </div>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }
