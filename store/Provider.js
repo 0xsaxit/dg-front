@@ -11,13 +11,12 @@ const initialState = {
   userInfo: [],
   balances: [[], []],
   transactions: [[], []],
-  // messageBox: 0,
   tokenPings: 0,
   parcelData: {},
   gameRecords: {},
   balancesOverlay: 0,
   networkID: 0,
-  // location: true,
+  isLoggedIn: false,
   activeStatus: true,
 };
 
@@ -53,12 +52,6 @@ const reducer = (state, action) => {
         transactions: action.data,
       };
 
-    // case 'message_box':
-    //   return {
-    //     ...state,
-    //     messageBox: action.data,
-    //   };
-
     case 'token_pings':
       return {
         ...state,
@@ -89,11 +82,11 @@ const reducer = (state, action) => {
         networkID: action.data,
       };
 
-    // case 'ip_address':
-    //   return {
-    //     ...state,
-    //     location: action.data,
-    //   };
+    case 'is_loggedIn':
+      return {
+        ...state,
+        isLoggedIn: action.data,
+      };
 
     case 'active_status':
       return {

@@ -27,7 +27,7 @@ const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
-const ACTIVE_PERIOD = 60; // user account active period: 3600 == 1 hour // 300
+const ACTIVE_PERIOD = 300; // user account active period: 3600 == 1 hour
 const MATIC_NETWORK_ID = '80001';
 const MATIC_URL = 'https://rpc-mumbai.matic.today';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/';
@@ -66,7 +66,7 @@ const metaTransactionType = [
 let domainArray = [];
 
 const domainDataToken = {
-  name: 'Dummy Child Token',
+  name: 'Dummy ERC20',
   version: '1',
   chainId: PARENT_NETWORK_ID,
   verifyingContract: '',

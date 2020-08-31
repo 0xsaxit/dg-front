@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Table, Icon, Divider, Grid, Button } from 'semantic-ui-react';
-import ModalDeposit from '../modal/ModalDeposit';
+import ButtonAuthorize from './ButtonAuthorize';
 import ButtonEnable from './ButtonEnable';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
@@ -149,7 +149,7 @@ const History = () => {
                   </span>
 
                   {state.userStatus === 6 ? (
-                    <ModalDeposit />
+                    <ButtonAuthorize />
                   ) : state.userStatus === 7 ? (
                     <ButtonEnable />
                   ) : (

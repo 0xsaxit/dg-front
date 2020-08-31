@@ -8,24 +8,57 @@ const MessageBar = () => {
   // define local variables
   const [message, setMessage] = useState('');
 
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     window.web3.version.getNetwork((err, network) => {
-  //       const networkInt = parseInt(parseInt(network));
+  // const [loggedIn, setLoggedIn] = useState(false);
 
-  //       dispatch({
-  //         type: 'network_id',
-  //         data: networkInt,
-  //       });
-  //     });
-  //   }
-  // }, [state.userStatus]);
+  let isSafari = false;
+
+  // let loggedIn = false;
+
+  // using Safari browser
+  useEffect(() => {
+    if (window.safari !== undefined) {
+      isSafari = true;
+    }
+  }, []);
+
+  // get network ID
+  useEffect(() => {
+    if (window.web3) {
+      window.web3.version.getNetwork((err, network) => {
+        const networkInt = parseInt(network);
+
+        dispatch({
+          type: 'network_id',
+          data: networkInt,
+        });
+      });
+    }
+  }, []);
+
+  // check for MetaMask login
+  useEffect(() => {
+    if (window.ethereum) {
+      const address = window.web3.currentProvider.selectedAddress;
+
+      if (address) {
+        // setLoggedIn(true);
+        // loggedIn = true;
+
+        dispatch({
+          type: 'is_loggedIn',
+          data: true,
+        });
+      }
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.userStatus === 1) {
+    if (isSafari) {
       setMessage('Please use Chrome browser to play our games');
     } else if (!state.networkID) {
       setMessage('Please enable MetaMask to play our games');
+    } else if (!state.isLoggedIn) {
+      setMessage('Please loggin to MetaMask to play our games');
     } else if (state.networkID !== 5) {
       setMessage(
         'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
@@ -45,7 +78,13 @@ const MessageBar = () => {
     } else {
       setMessage('');
     }
-  }, [state.networkID, state.userStatus, state.activeStatus]);
+  }, [
+    state.isSafari,
+    state.networkID,
+    state.isLoggedIn,
+    state.userStatus,
+    state.activeStatus,
+  ]);
 
   if (message !== '') {
     return (

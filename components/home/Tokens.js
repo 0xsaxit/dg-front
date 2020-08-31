@@ -31,20 +31,11 @@ const Tokens = () => {
 
   // define local variables
   const [NFTstate, setNFTState] = useState(0);
-  const [loading, setLoading] = useState(true);
-  // const [networkID, setNetworkID] = useState(0);
-
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     window.web3.version.getNetwork((err, network) => {
-  //       setNetworkID(parseInt(parseInt(network)));
-  //     });
-  //   }
-  // }, [state.userStatus]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (Object.keys(state.parcelData).length !== 0) {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, [state.parcelData]);
 
@@ -110,7 +101,7 @@ const Tokens = () => {
           <div className="account-other-inner-p">
             Please switch MetaMask to Ethereum Mainnet
           </div>
-        ) : loading ? (
+        ) : isLoading ? (
           <div className="account-other-inner-p">
             You do not own any Tominoya NFTs
           </div>

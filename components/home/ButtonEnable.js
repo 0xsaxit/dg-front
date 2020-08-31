@@ -19,7 +19,7 @@ function ButtonEnable() {
   const sessionDuration = Global.ACTIVE_PERIOD;
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // initialize Web3 providers and create token contract instance
@@ -35,7 +35,6 @@ function ButtonEnable() {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-
       treasuryContract = Global.getTreasuryContract(getWeb3);
 
       biconomy
