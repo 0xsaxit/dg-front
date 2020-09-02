@@ -79,7 +79,7 @@ function ButtonEnable() {
     }
   }
 
-  // Biconomy API meta-transaction. User must re-authoriza signature after 12 dormant hours
+  // Biconomy API meta-transaction. User must re-authoriza treasury contract after dormant period
   async function metaTransaction() {
     try {
       console.log('Session Duration: ' + sessionDuration);

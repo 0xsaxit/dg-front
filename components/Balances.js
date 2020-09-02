@@ -12,6 +12,7 @@ function Balances() {
   const value = 6;
   let web3 = {};
   let maticWeb3 = {};
+  let balances = [];
 
   useEffect(() => {
     if (state.userStatus) {
@@ -22,58 +23,31 @@ function Balances() {
       );
 
       async function fetchData() {
-        const response = await getTokenBalances();
+        balances = await getTokenBalances();
 
         dispatch({
           type: 'update_balances',
-          data: response,
+          data: balances,
         });
 
-        // console.log('balances...');
-        // console.log(response);
-        // console.log('non zero values?');
-
-        const nonZeroMANA = response[0].some(
+        // if user has deposited tokens to Matic Network already adjust their status
+        // if new deposit start pinging the token contract for changed balances
+        const nonZeroMANA = balances[0].some(
           (item) => item !== '0' && item !== 0
         );
-        const nonZeroDAI = response[1].some(
+        const nonZeroDAI = balances[1].some(
           (item) => item !== '0' && item !== 0
         );
-
-        // console.log(nonZeroMANA);
-        // console.log(nonZeroDAI);
 
         if (state.userStatus === 5 && (nonZeroMANA || nonZeroDAI)) {
           updateStatus();
+        } else if (state.tokenPings === 1) {
+          dataInterval();
         }
       }
       fetchData();
     }
-  }, [state.userStatus]);
-
-  useEffect(() => {
-    if (state.tokenPings === 1) {
-      async function fetchData() {
-        const response = await getTokenBalances();
-
-        if (response.length) {
-          updateStatus();
-        }
-
-        // display the message box with deposit confirmation
-        dispatch({
-          type: 'token_pings',
-          data: 2,
-        });
-      }
-
-      // call token contract every 10 seconds to get new balances
-      const interval = setInterval(() => {
-        fetchData();
-      }, 10000);
-      return () => clearInterval(interval);
-    }
-  }, [state.tokenPings]);
+  }, [state.userStatus, state.tokenPings]);
 
   function updateStatus() {
     // update global state user status
@@ -85,6 +59,33 @@ function Balances() {
     // update user status in database
     console.log('Posting user status to db: ' + value);
     Global.FETCH.USER_VERIFY(userAddress, value);
+  }
+
+  function dataInterval() {
+    async function fetchData() {
+      const response = await getTokenBalances();
+
+      // as soon as the balance updates on Matic display deposit confirmation
+      if (
+        response[0][1] !== balances[0][1] ||
+        response[1][1] !== balances[1][1]
+      ) {
+        console.log('Matic balances have updated');
+
+        dispatch({
+          type: 'token_pings',
+          data: 2,
+        });
+
+        clearInterval(interval);
+      }
+    }
+
+    // call token contract every 10 seconds to get new balances
+    const interval = setInterval(() => {
+      fetchData();
+    }, 10000);
+    return () => clearInterval(interval);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////

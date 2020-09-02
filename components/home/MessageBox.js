@@ -4,17 +4,17 @@ import { Message } from 'semantic-ui-react';
 import Aux from '../_Aux';
 
 const MessageBox = (props) => {
-  // get token balances from the Context API store
+  // get token ping state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  if (state.tokenPings) {
+  if (state.tokenPings === 2) {
     return (
       <div className="deposit-notification-container">
         <Message
           className="deposit-notification-box"
           onDismiss={props.handleDismiss}
         >
-          {state.tokenPings == 1 ? (
+          {state.tokenPings === 1 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Deposit Confirming on Matic
@@ -24,7 +24,7 @@ const MessageBox = (props) => {
               </p>
               <p style={{ fontSize: '16px' }}>(Normally 2 - 3 minutes)</p>
             </Aux>
-          ) : state.tokenPings == 2 ? (
+          ) : state.tokenPings === 2 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Deposit Confirmed on Matic

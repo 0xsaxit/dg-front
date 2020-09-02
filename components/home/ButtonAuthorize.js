@@ -68,7 +68,7 @@ function ButtonAuthorize() {
     Global.FETCH.USER_VERIFY(userAddress, value);
   }
 
-  // Biconomy API meta-transaction. User must re-authoriza signature after 12 dormant hours
+  // Biconomy API meta-transaction. User must authoriza treasury contract to access their funds
   async function metaTransaction() {
     try {
       console.log('authorize amount: ' + Global.MAX_AMOUNT);

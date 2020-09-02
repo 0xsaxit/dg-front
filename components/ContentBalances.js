@@ -18,19 +18,11 @@ let transak = new transakSDK({
   widgetWidth: '450px',
 });
 
-// let userAddress = '';
-
 const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-
-  // const [playBalance, setPlayBalance] = useState(0);
-  // const [avatarName, setAvatarName] = useState('');
-  // const [address, setAddress] = useState('');
-  // const [count, setCount] = useState(0);
-
   let userAddress = '';
 
   useEffect(() => {
@@ -53,77 +45,15 @@ const ContentBalances = (props) => {
   useEffect(() => {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
-
-      // setAddress(userAddress);
-      // console.log('User Addreses: ' + userAddress);
-
-      // setPlayerInfo();
     }
   }, [state.userStatus]);
-
-  // get user's play balance and topup count
-  // async function setPlayerInfo() {
-  //   let response = await Global.FETCH.PLAYER_INFO(userAddress);
-  //   let json = await response.json();
-
-  //   setPlayBalance(json.playBalance);
-
-  //   // userAddress = json.address;
-  //   // setAddress(json.address);
-
-  //   // setAvatarName(json.avatarName);
-
-  //   setCount(json.callCount);
-  // }
-
-  // async function getPlayerInfo(userAddress) {
-  //   let fetchURL = 'https://api.decentral.games/admin/getUser?address=' + userAddress;
-  //   // console.log(fetchURL);
-  //   return fetch(fetchURL, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  // }
-
-  // top up user to 5000 play tokens
-  // async function topUpUser() {
-  //   return fetch(`https://api.decentral.games/order/topup`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: address,
-  //     }),
-  //   });
-  // }
-
-  // async function getResponseTopUpUser() {
-  //   let response = await topUpUser();
-  //   let json = await response.json();
-  //   setPlayerInfo();
-  //   let status = await json.status;
-  // }
 
   // top up user to 5000 play tokens
   async function topUp() {
     await Global.FETCH.TOP_UP_USER(userAddress);
 
-    // setPlayerInfo();
-
     let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress);
     let json = await responseInfo.json();
-
-    // const name = json.avatarName;
-    // const address = json.address;
-    // const balance = json.playBalance.toLocaleString();
-    // const count = json.callCount;
-
-    // const response = [name, address, balance, count];
 
     let arrayInfo = state.userInfo;
     arrayInfo[3] = json.callCount;
@@ -143,7 +73,7 @@ const ContentBalances = (props) => {
 
   // initialize token contract pings
   function initializePings() {
-    if (state.userStatus === 5) {
+    if (state.userStatus >= 6) {
       console.log('Ping token contract');
 
       // start pinging the token contract for deposit confirmation
