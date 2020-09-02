@@ -54,11 +54,11 @@ const MessageBar = () => {
 
   useEffect(() => {
     if (isSafari) {
-      setMessage('Please use Chrome browser to play our games');
+      setMessage('Please use a Chrome browser with Metamask to play games');
     } else if (!state.networkID) {
-      setMessage('Please enable MetaMask to play our games');
+      setMessage('Please enable MetaMask to play games');
     } else if (!state.isLoggedIn) {
-      setMessage('Please loggin to MetaMask to play our games');
+      setMessage('Please log in to MetaMask to play games');
     } else if (state.networkID !== 5) {
       setMessage(
         'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
