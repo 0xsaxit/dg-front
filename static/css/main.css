@@ -89,7 +89,12 @@ p {
 
 .animating.ui.overlay.sidebar,
 .ui.visible.overlay.sidebar {
-  transition: none !important;
+  transition: none important;
+}
+
+.ui.divider {
+  position: relative;
+  z-index: 0 !important;
 }
 
 div.ui.segment.transparent-menu-segment {
