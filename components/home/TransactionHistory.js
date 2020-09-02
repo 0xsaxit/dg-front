@@ -154,7 +154,7 @@ const History = () => {
                     <ButtonEnable />
                   ) : (
                     <Button disabled className="account-connected-play-button">
-                      AUTHORIZE GAMEPLAY
+                      AUTHORIZE
                     </Button>
                   )}
                 </span>

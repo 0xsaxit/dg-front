@@ -123,8 +123,10 @@ const MenuTop = () => {
       setVisible(true);
       setZIndexMobile(7);
     } else {
+      const timer = setTimeout(() => {      
+        setZIndexMobile(1);
+      }, 500);
       setVisible(false);
-      setZIndexMobile(1);
     }
   }
 

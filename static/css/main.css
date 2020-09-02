@@ -89,12 +89,9 @@ p {
 
 .animating.ui.overlay.sidebar,
 .ui.visible.overlay.sidebar {
-  transition: none important;
-}
-
-.ui.divider {
-  position: relative;
-  z-index: 0 !important;
+  transition: transform .5s ease, -webkit-transform .5s ease !important;
+  position: absolute !important;
+  z-index: 999 !important;
 }
 
 div.ui.segment.transparent-menu-segment {
@@ -1120,6 +1117,7 @@ span.matic-icon-background-2 {
   letter-spacing: 0.25px;
   padding-left: 21px;
   font-weight: bold;
+  min-width: 300px !important;
 }
 
 .welcome-text {
@@ -1270,7 +1268,7 @@ div.ui.grid.balances-container {
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-left: calc(100% - 378px);
+  margin-left: calc(100% - 463px);
 }
 
 .balances-divider {
