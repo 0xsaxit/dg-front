@@ -53,13 +53,19 @@ function ButtonAuthorize() {
     }
   }, [state.userStatus, transaction]);
 
-  // dispatch user's active status
+  // dispatch user's active status and new user status
   function dispatchActiveStatus() {
     console.log('Updating user status to: ' + value);
 
-    // update global state user status
+    // update global state active status
     dispatch({
       type: 'active_status',
+      data: true,
+    });
+
+    // update global state user status
+    dispatch({
+      type: 'update_status',
       data: value,
     });
 
