@@ -7,16 +7,18 @@ function GameRecords() {
   const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
-    (async function () {
-      const response = await Global.FETCH.GAME_RECORDS();
-      const jsonRecords = await response.json();
+    if (state.userStatus) {
+      (async function () {
+        const response = await Global.FETCH.GAME_RECORDS();
+        const jsonRecords = await response.json();
 
-      dispatch({
-        type: 'update_records',
-        data: jsonRecords,
-      });
-    })();
-  }, []);
+        dispatch({
+          type: 'update_records',
+          data: jsonRecords,
+        });
+      })();
+    }
+  }, [state.userStatus]);
 
   return null;
 }

@@ -14,7 +14,7 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
 
@@ -119,14 +119,14 @@ const MenuTop = () => {
   }
 
   function handleDimmedChange() {
-    if (!visible) {
-      setVisible(true);
+    if (!isVisible) {
+      setIsVisible(true);
       setZIndexMobile(7);
     } else {
-      const timer = setTimeout(() => {      
+      const timer = setTimeout(() => {
         setZIndexMobile(1);
       }, 500);
-      setVisible(false);
+      setIsVisible(false);
     }
   }
 
@@ -160,7 +160,7 @@ const MenuTop = () => {
     return (
       <div
         className={menuStyle[4]}
-        id={visible === false ? 'pushable-one' : 'pushable-two'}
+        id={isVisible === false ? 'pushable-one' : 'pushable-two'}
         style={{ zIndex: zIndexMobile }}
       >
         <span
@@ -169,7 +169,7 @@ const MenuTop = () => {
           id="mobile-menu-icon"
           style={{ color: menuStyle[5] }}
         >
-          {visible === false ? 'menu' : 'close'}
+          {isVisible === false ? 'menu' : 'close'}
         </span>
 
         <Sidebar.Pushable>
@@ -179,7 +179,7 @@ const MenuTop = () => {
             animation="overlay"
             icon="labeled"
             vertical
-            visible={visible}
+            visible={isVisible}
             style={{ backgroundColor: menuStyle[6] }}
           >
             <Link href="/">

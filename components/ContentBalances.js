@@ -73,7 +73,7 @@ const ContentBalances = (props) => {
 
   // initialize token contract pings
   function initializePings() {
-    if (state.userStatus >= 6) {
+    if (state.userStatus >= 5) {
       console.log('Ping token contract');
 
       // start pinging the token contract for deposit confirmation

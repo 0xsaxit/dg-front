@@ -7,7 +7,7 @@ const MessageBox = (props) => {
   // get token ping state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  if (state.tokenPings === 2) {
+  if (state.tokenPings >= 2) {
     return (
       <div className="deposit-notification-container">
         <Message
@@ -28,6 +28,15 @@ const MessageBox = (props) => {
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Deposit Confirmed on Matic
+              </p>
+              <p style={{ fontSize: '16px' }}>
+                Your Matic balances have been updated
+              </p>
+            </Aux>
+          ) : state.tokenPings === 3 ? (
+            <Aux>
+              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                Withdrawal Confirmed on Matic
               </p>
               <p style={{ fontSize: '16px' }}>
                 Your Matic balances have been updated

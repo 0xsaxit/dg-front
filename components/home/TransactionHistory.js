@@ -5,7 +5,6 @@ import ButtonAuthorize from './ButtonAuthorize';
 import ButtonEnable from './ButtonEnable';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
-// import Global from '../Constants';
 
 const History = () => {
   // get user's transaction history from the Context API store
@@ -14,18 +13,11 @@ const History = () => {
   const dataPlay = state.transactions[1];
 
   // define local variables
-  // const [isLoading, setLoading] = useState(true);
   const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [dataType, setDataType] = useState('Balances');
-  const [processing, setProcessing] = useState(true);
-
-  // const [playBalance, setPlayBalance] = useState('');
-  // const [avatarName, setAvatarName] = useState('');
-  // const [address, setAddress] = useState('');
-
-  // let userAddress = '';
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -36,7 +28,7 @@ const History = () => {
 
   useEffect(() => {
     if (state.transactions[0].length) {
-      setProcessing(false);
+      setIsLoading(false);
     }
   }, [state.transactions]);
 
@@ -50,39 +42,6 @@ const History = () => {
       balancesOverlay(0);
     };
   }, []);
-
-  // get user's play balance, wallet address, and avatar name
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     userAddress = window.web3.currentProvider.selectedAddress;
-
-  //     (async function () {
-  //       let response = await Global.FETCH.PLAYER_INFO(userAddress);
-  //       let json = await response.json();
-
-  //       console.log('Play balance: ' + json.playBalance);
-  //       console.log('Wallet address: ' + json.address);
-  //       console.log('Avatar name: ' + json.avatarName);
-
-  //       setAddress(json.address);
-  //       setAvatarName(json.avatarName);
-  //       // setPlayBalance(json.playBalance);
-  //     })();
-  //   }
-  // }, [state.userStatus]);
-
-  // async function getPlayerInfo(userAddress) {
-  //   let fetchURL =
-  //     'https://api.decentral.games/admin/getUser?address=' + userAddress;
-  //   console.log(fetchURL);
-  //   return fetch(fetchURL, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // }
 
   // display or remove the balances overlay
   function balancesOverlay(toggle) {
@@ -154,7 +113,7 @@ const History = () => {
                     <ButtonEnable />
                   ) : (
                     <Button disabled className="account-connected-play-button">
-                      AUTHORIZE
+                      AUTHORIZE GAMEPLAY
                     </Button>
                   )}
                 </span>
@@ -286,7 +245,7 @@ const History = () => {
 
   return (
     <div className="main-container">
-      {processing ? <Spinner background={0} /> : null}
+      {isLoading ? <Spinner background={0} /> : null}
 
       <div className="page-container">
         <div className="account-other-inner-container">
@@ -296,7 +255,7 @@ const History = () => {
             <table className="account-table">
               <ContentTransactions content={'Labels'} type={dataType} />
 
-              {!processing ? (
+              {!isLoading ? (
                 dataPage !== 'false' ? (
                   <ContentTransactions content={dataType} dataPage={dataPage} />
                 ) : (
