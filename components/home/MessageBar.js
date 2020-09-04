@@ -79,7 +79,7 @@ const MessageBar = () => {
       setMessage('');
     }
   }, [
-    state.isSafari,
+    isSafari,
     state.networkID,
     state.isLoggedIn,
     state.userStatus,
