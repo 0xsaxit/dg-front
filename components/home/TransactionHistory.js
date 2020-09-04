@@ -95,9 +95,9 @@ const History = () => {
                     {state.userInfo[0] === null || state.userInfo[0] === '' ? (
                       <div>
                         <p className="account-name">
-                          {state.userInfo[1].substr(0, 2) +
+                          {state.userInfo[1].substr(0, 4) +
                             '...' +
-                            state.userInfo[1].substr(-7)}
+                            state.userInfo[1].substr(-4)}
                         </p>
                       </div>
                     ) : (
