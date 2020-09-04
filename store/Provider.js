@@ -16,7 +16,7 @@ const initialState = {
   gameRecords: {},
   balancesOverlay: 0,
   networkID: 0,
-  isLoggedIn: false,
+  // isLoggedIn: false,
   activeStatus: true,
 };
 
@@ -82,11 +82,11 @@ const reducer = (state, action) => {
         networkID: action.data,
       };
 
-    case 'is_loggedIn':
-      return {
-        ...state,
-        isLoggedIn: action.data,
-      };
+    // case 'is_loggedIn':
+    //   return {
+    //     ...state,
+    //     isLoggedIn: action.data,
+    //   };
 
     case 'active_status':
       return {

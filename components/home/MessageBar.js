@@ -36,28 +36,28 @@ const MessageBar = () => {
   }, []);
 
   // check for MetaMask login
-  useEffect(() => {
-    if (window.ethereum) {
-      const address = window.web3.currentProvider.selectedAddress;
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     const address = window.web3.currentProvider.selectedAddress;
 
-      if (address) {
-        // setLoggedIn(true);
-        // loggedIn = true;
+  //     if (address) {
+  //       // setLoggedIn(true);
+  //       // loggedIn = true;
 
-        dispatch({
-          type: 'is_loggedIn',
-          data: true,
-        });
-      }
-    }
-  }, [state.userStatus]);
+  //       dispatch({
+  //         type: 'is_loggedIn',
+  //         data: true,
+  //       });
+  //     }
+  //   }
+  // }, [state.userStatus]);
 
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use a Chrome browser with Metamask to play games');
     } else if (!state.networkID) {
       setMessage('Please enable MetaMask to play games');
-    } else if (!state.isLoggedIn) {
+    } else if (!state.userStatus) {
       setMessage('Please log in to MetaMask to play games');
     } else if (state.networkID !== 5) {
       setMessage(
@@ -81,7 +81,7 @@ const MessageBar = () => {
   }, [
     isSafari,
     state.networkID,
-    state.isLoggedIn,
+    // state.isLoggedIn,
     state.userStatus,
     state.activeStatus,
   ]);
