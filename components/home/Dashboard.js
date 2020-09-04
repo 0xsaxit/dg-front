@@ -86,7 +86,7 @@ const Dashboard = (props) => {
         <div className="home-video-container">
           <video
             id="myVideo"
-            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1590041720/dg_site_vid_1_ytcfka.mp4"
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1599166597/DG_site_asy69z.mp4"
             type="video/mp4"
             frameBorder="0"
             autoPlay={videoPlay}
