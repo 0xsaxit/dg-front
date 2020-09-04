@@ -2,11 +2,11 @@ import { Table, Button, Icon, Divider } from 'semantic-ui-react';
 // import ModalWithdraw from '../modal/ModalWithdraw';
 import Global from '../Constants';
 
-const ContentTransactions = (props) => {
+const ContentAdmin = (props) => {
   function contentLabels() {
     if (props.type === 'balances') {
       return null;
-    } else if (props.type === 'play') {
+    } else if (props.type === 'machines') {
       return (
         <tbody>
           <tr className="table-header">
@@ -120,7 +120,7 @@ const ContentTransactions = (props) => {
     );
   }
 
-  function contentGameplay() {
+  function contentMachines() {
     return (
       <tbody>
         {props.dataPage.map((row, i) => {
@@ -207,12 +207,15 @@ const ContentTransactions = (props) => {
   if (props.content === 'labels') {
     return contentLabels();
   } else if (props.content === 'balances') {
-    return null;
+    return contentHistory();
   } else if (props.content === 'history') {
     return contentHistory();
-  } else if (props.content === 'play') {
-    return contentGameplay();
+  } else if (props.content === 'machines') {
+    return contentMachines();
+  } else {
+    console.log('data type: ' + props.content);
+    console.log('data page: ' + props.dataPage);
   }
 };
 
-export default ContentTransactions;
+export default ContentAdmin;

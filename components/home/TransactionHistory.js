@@ -5,6 +5,7 @@ import ButtonAuthorize from './ButtonAuthorize';
 import ButtonEnable from './ButtonEnable';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
+import Aux from '../_Aux';
 
 const History = () => {
   // get user's transaction history from the Context API store
@@ -13,10 +14,10 @@ const History = () => {
   const dataPlay = state.transactions[1];
 
   // define local variables
-  const [dataPage, setDataPage] = useState([]);
   const [maximumCount, setMaximumCount] = useState(0);
+  const [dataType, setDataType] = useState('balances');
+  const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataType, setDataType] = useState('Balances');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const History = () => {
   }, [state.transactions]);
 
   useEffect(() => {
-    setUserData('Balances', 1);
+    setUserData('balances', 1);
   }, []);
 
   // close balances overlay on leaving page
@@ -61,7 +62,7 @@ const History = () => {
 
   function topLinks() {
     return (
-      <div>
+      <Aux>
         <div className="account-other-tabs">
           <Grid className="account-connected-grid">
             <Grid.Row>
@@ -123,34 +124,34 @@ const History = () => {
 
           <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
-              {dataType == 'Balances' ? (
+              {dataType == 'balances' ? (
                 <b className="account-hover active">BALANCES</b>
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('Balances')}
+                  onClick={() => setPageData('balances')}
                 >
                   BALANCES
                 </abbr>
               )}
 
-              {dataType == 'Play' ? (
+              {dataType == 'play' ? (
                 <b className="account-hover active">GAME HISTORY</b>
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('Play')}
+                  onClick={() => setPageData('play')}
                 >
                   GAME HISTORY
                 </abbr>
               )}
 
-              {dataType == 'History' ? (
+              {dataType == 'history' ? (
                 <b className="account-hover active">TRANSFERS</b>
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('History')}
+                  onClick={() => setPageData('history')}
                 >
                   TRANSFERS
                 </abbr>
@@ -160,7 +161,7 @@ const History = () => {
         </div>
 
         <Divider className="tab-divider" />
-      </div>
+      </Aux>
     );
   }
 
@@ -169,9 +170,9 @@ const History = () => {
     const nextPage = currentPage + 1;
 
     let totalRows = 0;
-    if (dataType === 'History') {
+    if (dataType === 'history') {
       totalRows = dataHistory.length;
-    } else if (dataType === 'Play') {
+    } else if (dataType === 'play') {
       totalRows = dataPlay.length;
     }
 
@@ -213,13 +214,13 @@ const History = () => {
     const indexEnd = indexStart + maximumCount;
     let overlay = 0;
 
-    if (type === 'Balances') {
+    if (type === 'balances') {
       result = true;
       overlay = 2;
-    } else if (type === 'History') {
+    } else if (type === 'history') {
       result = dataHistory.slice(indexStart, indexEnd);
       overlay = 0;
-    } else if (type === 'Play') {
+    } else if (type === 'play') {
       result = dataPlay.slice(indexStart, indexEnd);
       overlay = 0;
     }
@@ -253,7 +254,7 @@ const History = () => {
 
           <div id="tx-box-history-2">
             <table className="account-table">
-              <ContentTransactions content={'Labels'} type={dataType} />
+              <ContentTransactions content={'labels'} type={dataType} />
 
               {!isLoading ? (
                 dataPage !== 'false' ? (

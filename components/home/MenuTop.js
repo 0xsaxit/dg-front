@@ -26,7 +26,8 @@ const MenuTop = () => {
       router.pathname === '/' ||
       router.pathname === '/games' ||
       router.pathname === '/account' ||
-      router.pathname === '/nfts'
+      router.pathname === '/nfts' ||
+      router.pathname === '/admin'
     ) {
       setMenuStyle([
         'other-menu-container',

@@ -1,4 +1,4 @@
-import Admin from '../components/admin/admin';
+import Admin from '../components/home/Admin';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
