@@ -184,7 +184,7 @@ p {
 /*             MAIN BLOG PAGE CSS            */
 /* ----------------------------------------- */
 
-.post:first-child {
+.post:nth-child(2) {
   display: none !important;
 }
 
