@@ -13,7 +13,7 @@ const ContentGames = (props) => {
   const [dataGames, setDataGames] = useState([[], [], [], [], []]);
   const [processing, setProcessing] = useState(true);
 
-  const games = ['ALL GAMES', 'SLOTS', 'ROULETTE', 'BLACKJACK', 'BACKGAMMON'];
+  const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
 
   useEffect(() => {
     if (Object.keys(state.gameRecords).length !== 0) {
@@ -40,25 +40,25 @@ const ContentGames = (props) => {
       if (props.gameSelect === 'play') {
         selected = [
           gameData.all.play,
-          gameData.slot.play,
-          gameData.roulette.play,
           gameData.blackjack.play,
+          gameData.roulette.play,
+          gameData.slot.play,
           gameData.backgammon.play,
         ];
       } else if (props.gameSelect === 'dai') {
         selected = [
           gameData.all.dai,
-          gameData.slot.dai,
-          gameData.roulette.dai,
           gameData.blackjack.dai,
+          gameData.roulette.dai,
+          gameData.slot.dai,
           gameData.backgammon.dai,
         ];
       } else if (props.gameSelect == 'mana') {
         selected = [
           gameData.all.mana,
-          gameData.slot.mana,
-          gameData.roulette.mana,
           gameData.blackjack.mana,
+          gameData.roulette.mana,
+          gameData.slot.mana,
           gameData.backgammon.mana,
         ];
       }

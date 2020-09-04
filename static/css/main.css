@@ -348,7 +348,7 @@ video.home-dashboard-video {
   font-weight: 600;
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
-  margin-top: 0px !important;
+  padding-top: calc(50vh - 360px) !important;
 }
 
 .home-dashboard-h2 {
@@ -2109,7 +2109,7 @@ a.demo-button {
 
 @media (max-width: 600px) {
   .home-dashboard-mission {
-    margin-top: -15px !important;
+    margin-top: -60px !important;
   }
 }
 
