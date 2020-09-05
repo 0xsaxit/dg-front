@@ -43,9 +43,9 @@ const ContentTransactions = (props) => {
           let sign = '+';
           if (row.type !== 'Deposit') sign = '-';
 
-          const dateFirst = new Date(timestamp);
-          const dateSecond = new Date();
-          const timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+          // const dateFirst = new Date(timestamp);
+          // const dateSecond = new Date();
+          // const timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
 
           return (
             <tr className="table-body" key={i}>

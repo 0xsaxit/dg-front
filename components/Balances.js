@@ -35,12 +35,6 @@ function Balances() {
         const nonZeroMANA = balances[0][1] !== '0' && balances[0][1] !== 0;
         const nonZeroDAI = balances[1][1] !== '0' && balances[1][1] !== 0;
 
-        // console.log('non zero...');
-        // console.log(balances[0][1]);
-        // console.log(nonZeroMANA);
-        // console.log(balances[1][1]);
-        // console.log(nonZeroDAI);
-
         if (state.userStatus === 5 && (nonZeroMANA || nonZeroDAI)) {
           updateStatus();
         } else if (state.tokenPings === 1) {
@@ -75,6 +69,8 @@ function Balances() {
           type: 'token_pings',
           data: 2,
         });
+        const amount = response[0][1] - balances[0][1];
+        updateHistory(amount, 'Deposit', 'Confirmed', ''); // add tx hash later
 
         clearInterval(interval);
       } else if (
@@ -87,6 +83,8 @@ function Balances() {
           type: 'token_pings',
           data: 3,
         });
+        const amount = balances[0][1] - response[0][1];
+        updateHistory(amount, 'Withdraw', 'Confirmed', ''); // add tx hash later
 
         clearInterval(interval);
       }
@@ -97,6 +95,29 @@ function Balances() {
       fetchData();
     }, 10000);
     return () => clearInterval(interval);
+  }
+
+  // update transaction history in the database
+  async function updateHistory(_amount, type, state, txHash) {
+    console.log('Writing to database: ' + type);
+
+    const txHashRandom = Math.floor(Math.random() * 1000000);
+
+    try {
+      const response = await Global.FETCH.POST_HISTORY(
+        userAddress,
+        _amount,
+        type,
+        state,
+        txHashRandom,
+        state.userStatus
+      );
+
+      const json = await response.json();
+      console.log('Update history complete: ' + json.status);
+    } catch (error) {
+      console.log('Update history error: ' + error);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////

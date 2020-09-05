@@ -53,12 +53,26 @@ function ActiveStatus() {
     }
   }, [state.userStatus]);
 
-  // dispatch user's active status
+  // dispatch user's active status to Context API store
   function dispatchActiveStatus(status) {
     dispatch({
       type: 'active_status',
       data: status,
     });
+
+    // post reauthorization to database
+    // if (status) {
+    //   console.log('Posting reauthorization transaction to db');
+
+    //   Global.FETCH.POST_HISTORY(
+    //     userAddress,
+    //     Global.MAX_AMOUNT,
+    //     'Reauthorization',
+    //     'Confirmed',
+    //     txHash,
+    //     state.userStatus
+    //   );
+    // }
   }
 
   // get user's active status (true or false) from smart contract

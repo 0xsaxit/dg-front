@@ -72,6 +72,18 @@ function ButtonAuthorize() {
     // update user status in database
     console.log('Posting user status to db: ' + value);
     Global.FETCH.USER_VERIFY(userAddress, value);
+
+    // post authorization to database
+    // console.log('Posting authorization transaction to db: MAX_AMOUNT');
+
+    // Global.FETCH.POST_HISTORY(
+    //   userAddress,
+    //   Global.MAX_AMOUNT,
+    //   'Authorization',
+    //   'Confirmed',
+    //   txHash,
+    //   state.userStatus
+    // );
   }
 
   // Biconomy API meta-transaction. User must authoriza treasury contract to access their funds

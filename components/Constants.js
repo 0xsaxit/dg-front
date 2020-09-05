@@ -30,7 +30,7 @@ const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
 const ACTIVE_PERIOD = 300; // user account active period: 3600 == 1 hour
 const MATIC_NETWORK_ID = '80001';
 const MATIC_URL = 'https://rpc-mumbai.matic.today';
-const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today/';
+const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today';
 const ADMIN_ADDRESSES = [
   '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
   '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
@@ -275,7 +275,7 @@ const FETCH = {
     });
   },
 
-  HISTORY: (address, amount, type, state, txHash, step) => {
+  POST_HISTORY: (address, amount, type, state, txHash, step) => {
     return fetch(`${API_BASE_URL}/order/updateHistory`, {
       method: 'POST',
       headers: {
