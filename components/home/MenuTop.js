@@ -17,7 +17,7 @@ const MenuTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
-  const isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+  // const isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 
   const router = useRouter();
 
@@ -305,7 +305,7 @@ const MenuTop = () => {
           </Button>
         </span>
       );
-    } else if (isChrome) {
+    } else {
       return <Verify />;
     }
   }
