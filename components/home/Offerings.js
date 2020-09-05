@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Divider, Dropdown } from 'semantic-ui-react';
+import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from './ContentGames';
 import Spinner from '../Spinner';
 import Global from '../Constants';
@@ -214,6 +214,7 @@ class Offerings extends React.Component {
                   />
                   PLAY
                 </span>
+
                 <span
                   className={
                     this.state.gameSelect === 'mana'
@@ -268,8 +269,12 @@ class Offerings extends React.Component {
                     defaultValue={options[0].value}
                     onChange={this.timeChange}
                   />
+                  <Button className="reload-button" icon onClick={() => window.location.reload(false)}>
+                    <Icon name='redo' />
+                  </Button>
                 </span>
               </span>
+
             </span>
 
             <Divider style={{ marginTop: '0px', paddingBottom: '21px' }} />
@@ -360,6 +365,9 @@ class Offerings extends React.Component {
                   defaultValue={options[0].value}
                   onChange={this.timeChange}
                 />
+                <Button className="reload-button" icon onClick={() => window.location.reload(false)}>
+                  <Icon name='redo' />
+                </Button>
               </span>
             </span>
             <span

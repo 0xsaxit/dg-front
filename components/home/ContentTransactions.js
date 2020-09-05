@@ -95,7 +95,7 @@ const ContentTransactions = (props) => {
                     target="_blank"
                     className="etherscan-button"
                   >
-                    etherscan
+                    blockchain tx
                     <span class="material-icons" id="etherscan-button-icon">
                       launch
                     </span>
@@ -182,14 +182,14 @@ const ContentTransactions = (props) => {
                       target="_blank"
                       className="etherscan-button"
                     >
-                      etherscan
+                      blockchain tx
                       <span class="material-icons" id="etherscan-button-icon">
                         launch
                       </span>
                     </Button>
                   ) : (
                     <Button disabled className="etherscan-button">
-                      etherscan
+                      blockchain tx
                       <span class="material-icons" id="etherscan-button-icon">
                         launch
                       </span>

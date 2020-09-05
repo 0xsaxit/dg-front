@@ -185,6 +185,8 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .other-menu-container {
+  position: relative;
+  z-index: 999;
   width: 100vw;
   background-color: rgba(10, 10, 10, 1) !important;
 }
@@ -309,6 +311,7 @@ video.home-dashboard-video {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  z-index: -1;
 }
 
 .home-mission-content {
@@ -635,6 +638,17 @@ table {
   color: black;
 }
 
+@media (min-width: 992px) {
+  .table-header-text-1,
+  .table-body-text-1{
+    padding-left: 75px !important;
+  }
+  .table-header-text-1.games,
+  .table-body-text-1.games {
+    padding-left: 9px !important;
+  }
+}
+
 .table-header-text.account {
   padding-left: 12px !important;
 }
@@ -853,6 +867,23 @@ table.ui.fixed.single.line.table {
   flex-direction: row;
 }
 
+.ui.button.reload-button {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -5px;
+  margin-left: 24px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 29px;
+  padding-top: 5px;
+  max-width: 30px !important;
+  min-width: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .account-hover {
   cursor: pointer;
   letter-spacing: 0.5px;
@@ -941,6 +972,13 @@ svg.spanbox.disable {
 /* ----------------------------------------- */
 /*             DEPOSIT MODAL CSS             */
 /* ----------------------------------------- */
+
+.main-modal-background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 4;
+}
 
 .matic-overlay {
   margin-top: -21px;
@@ -1256,8 +1294,8 @@ div.ui.grid.balances-container {
   border-radius: 2px;
   height: 27px;
   padding-top: 4px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
   letter-spacing: 0.5px;
 }
 
@@ -1278,12 +1316,12 @@ div.ui.grid.balances-container {
   border-radius: 2px;
   height: 27px;
   padding-top: 4px;
-  max-width: 90px !important;
-  min-width: 90px;
+  max-width: 100px !important;
+  min-width: 100px;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-left: calc(100% - 463px);
+  margin-left: calc(100% - 473px);
 }
 
 .balances-divider {
@@ -2160,7 +2198,7 @@ a.demo-button {
   height: 500px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 800px) {
   .grid-margin {
     margin-left: 0em !important;
     margin-right: 0em !important;
@@ -2176,7 +2214,7 @@ a.demo-button {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 801px) {
   span.leaderboard-coin-select-mobile,
   #intermediate-time-select {
     display: none !important;

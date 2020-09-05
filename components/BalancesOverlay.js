@@ -87,12 +87,14 @@ const BalancesOverlay = () => {
         </span>
       ) : null}
 
-      <div style={styles.balancesModal}>
-        <div className="page-container">
-          <div className="account-other-inner-container"></div>
-          <ContentBalances balancesOverlay={1} />
+      {/*<div className="main-modal-background" onClick={() => close()}>*/}
+        <div style={styles.balancesModal}>
+          <div className="page-container">
+            <div className="account-other-inner-container"></div>
+            <ContentBalances balancesOverlay={1} />
+          </div>
         </div>
-      </div>
+      {/*</div>*/}
 
       <div style={styles.balancesAccountPage}>
         <div className="page-container">
@@ -100,6 +102,7 @@ const BalancesOverlay = () => {
           <ContentBalances balancesOverlay={2} />
         </div>
       </div>
+
     </Aux>
   );
 };
