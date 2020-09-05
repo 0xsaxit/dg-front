@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Spinner from '../Spinner';
+import Aux from '../_Aux';
 import Global from '../Constants';
 
 const Dashboard = (props) => {
@@ -76,7 +77,7 @@ const Dashboard = (props) => {
 
   function mainContent() {
     return (
-      <div>
+      <Aux>
         <div className="home-video-container">
           <video
             id="myVideo"
@@ -90,102 +91,90 @@ const Dashboard = (props) => {
           ></video>
         </div>
 
-        {state.userStatus < 4 ? (
+        {!state.userStatus ? (
           <div className="home-mission-content">
-            <div>
-              <div className="home-dashboard-description">
-                <h1
-                  className="home-dashboard-mission"
-                  style={{ marginBottom: '-12px' }}
+            <div className="home-dashboard-description">
+              <h1
+                className="home-dashboard-mission"
+                style={{ marginBottom: '-12px' }}
+              >
+                Hit the tables in a virtual casino
+              </h1>
+              <h2 className="home-dashboard-h2">
+                Non-custodial slots, roulette, blackjack, and backgammon
+                playable with crypto in Decentraland
+              </h2>
+              <span className="logged-out-button-span">
+                <Button
+                  disabled
+                  color="blue"
+                  className="play-button"
+                  style={{ marginRight: '30px' }}
                 >
-                  Hit the tables in a virtual casino
-                </h1>
-                <h2 className="home-dashboard-h2">
-                  Non-custodial slots, roulette, blackjack, and backgammon
-                  playable with crypto in Decentraland
-                </h2>
-
-                <span className="logged-out-button-span">
-                  <Button
-                    disabled
-                    color="blue"
-                    className="play-button"
-                    style={{ marginRight: '30px' }}
-                  >
-                    DEMO
-                  </Button>
-                  <Button
-                    color="blue"
-                    className="play-shimmer"
-                    target="_blank"
-                    href="https://docs.decentral.games/getting-started"
-                  >
-                    HOW TO PLAY
-                  </Button>
-                </span>
-              </div>
+                  DEMO
+                </Button>
+                <Button
+                  color="blue"
+                  className="play-shimmer"
+                  target="_blank"
+                  href="https://docs.decentral.games/getting-started"
+                >
+                  HOW TO PLAY
+                </Button>
+              </span>
             </div>
           </div>
         ) : (
           <div className="home-dashboard-content">
-            <div>
-              <div>
-                <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
-                <h1
-                  className="home-dashboard-h1"
-                  style={{ marginBottom: '-12px' }}
-                >
-                  Tominoya
-                </h1>
-                <div>
-                  <Button
-                    color="blue"
-                    className="play-button"
-                    href={`https://play.decentraland.org/?position=-120%2C135&realm=${realm}`}
-                    target="_blank"
-                    style={{ marginRight: '30px' }}
-                  >
-                    PLAY NOW
-                  </Button>
-                  <Button
-                    color="blue"
-                    className="play-shimmer"
-                    target="_blank"
-                    href="https://docs.decentral.games/getting-started"
-                  >
-                    HOW TO PLAY
-                  </Button>
-                </div>
-                <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-                  Tominoya is a virtual casino built by Decentral Games in
-                  Decentraland. Enjoy non-custodial slots, roulette, and
-                  blackjack playable with crypto.
-                </p>
+            <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
+            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
+              Tominoya
+            </h1>
+            <Button
+              color="blue"
+              className="play-button"
+              href={`https://play.decentraland.org/?position=-120%2C135&realm=${realm}`}
+              target="_blank"
+              style={{ marginRight: '30px' }}
+            >
+              PLAY NOW
+            </Button>
+            <Button
+              color="blue"
+              className="play-shimmer"
+              target="_blank"
+              href="https://docs.decentral.games/getting-started"
+            >
+              HOW TO PLAY
+            </Button>
+            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              Tominoya is a virtual casino built by Decentral Games in
+              Decentraland. Enjoy non-custodial slots, roulette, and blackjack
+              playable with crypto.
+            </p>
 
-                {isLoading === true ? (
-                  <span
-                    className="user-numbers-container-1"
-                    style={{ display: 'flex' }}
-                  >
-                    <div className="online-dot"></div>
-                  </span>
-                ) : (
-                  <span
-                    className="user-numbers-container-1"
-                    style={{ display: 'flex' }}
-                  >
-                    <div className="online-dot"></div>
-                    <p className="home-dashboard-p">
-                      {' '}
-                      {playerCount} online in {realm}{' '}
-                    </p>
-                  </span>
-                )}
-              </div>
-            </div>
+            {isLoading === true ? (
+              <span
+                className="user-numbers-container-1"
+                style={{ display: 'flex' }}
+              >
+                <div className="online-dot"></div>
+              </span>
+            ) : (
+              <span
+                className="user-numbers-container-1"
+                style={{ display: 'flex' }}
+              >
+                <div className="online-dot"></div>
+                <p className="home-dashboard-p">
+                  {' '}
+                  {playerCount} online in {realm}{' '}
+                </p>
+              </span>
+            )}
           </div>
         )}
-      </div>
+      </Aux>
     );
   }
 

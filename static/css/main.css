@@ -311,7 +311,7 @@ video.home-dashboard-video {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .home-mission-content {
@@ -640,7 +640,7 @@ table {
 
 @media (min-width: 992px) {
   .table-header-text-1,
-  .table-body-text-1{
+  .table-body-text-1 {
     padding-left: 75px !important;
   }
   .table-header-text-1.games,
