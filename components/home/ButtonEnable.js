@@ -49,24 +49,24 @@ function ButtonEnable() {
     }
   }, [state.userStatus, transaction]);
 
-  // dispatch user's active status to Context API store
-  function dispatchActiveStatus(status) {
+  function dispatchActiveStatus(status, txHash) {
+    // update global state active status
     dispatch({
       type: 'active_status',
       data: status,
     });
 
     // post reauthorization to database
-    // console.log('Posting reauthorization transaction to db');
+    console.log('Posting reauthorization transaction to db');
 
-    // Global.FETCH.POST_HISTORY(
-    //   userAddress,
-    //   Global.MAX_AMOUNT,
-    //   'Reauthorization',
-    //   'Confirmed',
-    //   txHash,
-    //   state.userStatus
-    // );
+    Global.FETCH.POST_HISTORY(
+      userAddress,
+      Global.MAX_AMOUNT,
+      'Reauthorization',
+      'Confirmed',
+      txHash,
+      state.userStatus
+    );
   }
 
   // get user's active status (true or false) from smart contract
@@ -117,7 +117,7 @@ function ButtonEnable() {
 
         const activeStatus = await getActiveStatus();
         console.log('Active status (updated): ' + activeStatus);
-        dispatchActiveStatus(activeStatus);
+        dispatchActiveStatus(activeStatus, txHash);
       }
     } catch (error) {
       console.log(error);

@@ -26,12 +26,12 @@ const Dashboard = (props) => {
       } else {
         window.sessionStorage.setItem('visited', true);
       }
-    }
 
-    if (window.innerWidth < 500) {
-      setVideoPlay(false);
-    } else {
-      setVideoPlay(true);
+      if (window.innerWidth < 500) {
+        setVideoPlay(false);
+      } else {
+        setVideoPlay(true);
+      }
     }
   }, []);
 
@@ -75,21 +75,40 @@ const Dashboard = (props) => {
     );
   }
 
+  function homeVideo() {
+    return (
+      <div className="home-video-container">
+        <video
+          id="myVideo"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1599166597/DG_site_asy69z.mp4"
+          type="video/mp4"
+          frameBorder="0"
+          autoPlay={videoPlay}
+          loop
+          muted
+          className="home-dashboard-video"
+        ></video>
+      </div>
+    );
+  }
+
+  function playerNumbers() {
+    return (
+      <span className="user-numbers-container-1" style={{ display: 'flex' }}>
+        <div className="online-dot"></div>
+        {!isLoading ? (
+          <p className="home-dashboard-p">
+            {playerCount} online in {realm}
+          </p>
+        ) : null}
+      </span>
+    );
+  }
+
   function mainContent() {
     return (
       <Aux>
-        <div className="home-video-container">
-          <video
-            id="myVideo"
-            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1599166597/DG_site_asy69z.mp4"
-            type="video/mp4"
-            frameBorder="0"
-            autoPlay={videoPlay}
-            loop
-            muted
-            className="home-dashboard-video"
-          ></video>
-        </div>
+        {homeVideo()}
 
         {!state.userStatus ? (
           <div className="home-mission-content">
@@ -153,25 +172,7 @@ const Dashboard = (props) => {
               playable with crypto.
             </p>
 
-            {isLoading === true ? (
-              <span
-                className="user-numbers-container-1"
-                style={{ display: 'flex' }}
-              >
-                <div className="online-dot"></div>
-              </span>
-            ) : (
-              <span
-                className="user-numbers-container-1"
-                style={{ display: 'flex' }}
-              >
-                <div className="online-dot"></div>
-                <p className="home-dashboard-p">
-                  {' '}
-                  {playerCount} online in {realm}{' '}
-                </p>
-              </span>
-            )}
+            {playerNumbers()}
           </div>
         )}
       </Aux>

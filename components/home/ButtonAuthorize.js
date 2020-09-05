@@ -53,8 +53,7 @@ function ButtonAuthorize() {
     }
   }, [state.userStatus, transaction]);
 
-  // dispatch user's active status and new user status
-  function dispatchActiveStatus() {
+  function dispatchActiveStatus(txHash) {
     console.log('Updating user status to: ' + value);
 
     // update global state active status
@@ -74,16 +73,16 @@ function ButtonAuthorize() {
     Global.FETCH.USER_VERIFY(userAddress, value);
 
     // post authorization to database
-    // console.log('Posting authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting authorization transaction to db: MAX_AMOUNT');
 
-    // Global.FETCH.POST_HISTORY(
-    //   userAddress,
-    //   Global.MAX_AMOUNT,
-    //   'Authorization',
-    //   'Confirmed',
-    //   txHash,
-    //   state.userStatus
-    // );
+    Global.FETCH.POST_HISTORY(
+      userAddress,
+      Global.MAX_AMOUNT,
+      'Authorization',
+      'Confirmed',
+      txHash,
+      state.userStatus
+    );
   }
 
   // Biconomy API meta-transaction. User must authoriza treasury contract to access their funds
@@ -110,7 +109,7 @@ function ButtonAuthorize() {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        dispatchActiveStatus();
+        dispatchActiveStatus(txHash);
       }
     } catch (error) {
       console.log(error);

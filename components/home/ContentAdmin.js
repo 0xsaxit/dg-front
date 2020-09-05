@@ -1,8 +1,12 @@
-import { Table, Button, Icon, Divider } from 'semantic-ui-react';
-// import ModalWithdraw from '../modal/ModalWithdraw';
+import { useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
+import { Button, Divider, Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ContentAdmin = (props) => {
+  // get token balances from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   function contentLabels() {
     if (props.type === 'balances') {
       return null;
@@ -31,6 +35,151 @@ const ContentAdmin = (props) => {
         </tbody>
       );
     }
+  }
+
+  function contentBalances() {
+    return (
+      <Grid className="balances-container">
+        <Grid.Row>
+          <Grid.Column
+            computer={5}
+            tablet={16}
+            mobile={16}
+            className="balances-column one"
+          >
+            <p className="balances-token-name">Play</p>
+            <Divider className="balances-divider" />
+            <img
+              src={Global.IMAGES.PLAY_CIRCLE}
+              style={{
+                width: '60px',
+                display: 'flex',
+                marginLeft: 'calc(50% - 30px)',
+                paddingTop: '12px',
+              }}
+            />
+            <p className="balances-text"> {state.userInfo[2]} </p>
+            <span className="balances-button-span">
+              <Button
+                color="blue"
+                className="balances-play-button"
+                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                target="_blank"
+              >
+                PLAY NOW
+              </Button>
+              {state.userInfo[3] === 2 ? (
+                <Button
+                  disabled
+                  color="blue"
+                  className="balances-play-button-2"
+                >
+                  TOP UP
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => topUp()}
+                  color="blue"
+                  className="balances-play-button-2"
+                >
+                  TOP UP
+                </Button>
+              )}
+            </span>
+          </Grid.Column>
+
+          <Grid.Column
+            computer={5}
+            tablet={16}
+            mobile={16}
+            className="balances-column two"
+          >
+            <span className="name-purchase-span">
+              <p className="balances-token-name"> Dai </p>
+              <Button
+                disabled
+                className="balances-purchase-button"
+                onClick={() => show_transak()}
+              >
+                PURCHASE
+              </Button>
+            </span>
+            <Divider className="balances-divider" />
+            <img
+              src={Global.IMAGES.DAI_CIRCLE}
+              style={{
+                width: '60px',
+                display: 'flex',
+                marginLeft: 'calc(50% - 30px)',
+                paddingTop: '12px',
+              }}
+            />
+            <p className="balances-text"> 0 </p>
+            <span className="balances-button-span">
+              <Button disabled color="blue" className="balances-play-button">
+                DEPOSIT
+              </Button>
+              <Button disabled color="blue" className="balances-play-button-2">
+                WITHDRAW
+              </Button>
+            </span>
+          </Grid.Column>
+
+          <Grid.Column
+            computer={5}
+            tablet={16}
+            mobile={16}
+            className="balances-column three"
+          >
+            <span className="name-purchase-span">
+              <p className="balances-token-name"> Mana </p>
+              <Button
+                className="balances-purchase-button"
+                onClick={() => show_transak()}
+              >
+                PURCHASE
+              </Button>
+            </span>
+            <Divider className="balances-divider" />
+            <img
+              src={Global.IMAGES.MANA_CIRCLE}
+              style={{
+                width: '60px',
+                display: 'flex',
+                marginLeft: 'calc(50% - 30px)',
+                paddingTop: '12px',
+              }}
+            />
+            <p className="balances-text"> {state.balances[0][1]} </p>
+            <span className="balances-button-span">
+              <Button
+                color="blue"
+                className="matic-widget-button balances-play-button"
+                data-default-page="deposit"
+                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
+              >
+                DEPOSIT
+              </Button>
+              <Button
+                color="blue"
+                className="matic-widget-button balances-play-button-2"
+                data-default-page="withdraw"
+                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
+              >
+                WITHDRAW
+              </Button>
+
+              <script
+                src="https://wallet.matic.today/embeds/widget-button.js"
+                data-script-name="matic-embeds"
+              ></script>
+            </span>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    );
   }
 
   function contentHistory() {
@@ -73,22 +222,6 @@ const ContentAdmin = (props) => {
               <td className="table-body-text-1 date">{timestamp}</td>
 
               <td className="table-body-text-1 hash">
-                {/*<a
-                  style={{
-                    color: '#2085F4',
-                    maxWidth: '90px',
-                    display: 'inline-block',
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    verticalAlign: 'middle',
-                  }}
-                  target="_blank"
-                  href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                >
-                  {row.txid}
-                </a>
-                <Icon name="caret right" style={{ color: '#2085F4' }} />*/}
-
                 <span style={{ float: 'right', paddingRight: '12px' }}>
                   <Button
                     href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
@@ -101,17 +234,6 @@ const ContentAdmin = (props) => {
                     </span>
                   </Button>
                 </span>
-
-                {/* {row.type === 'Exit' && row.status === 'In Progress' ? (
-                  // set PENDING time to 600 seconds (10 minutes)
-                  timeDiff * 0.001 < 600 ? (
-                    <Button size="mini" color="red">
-                      PENDING
-                    </Button>
-                  ) : (
-                    <ModalWithdraw isExit={1} transactionHash={row.txid} />
-                  )
-                ) : null} */}
               </td>
             </tr>
           );
@@ -207,7 +329,7 @@ const ContentAdmin = (props) => {
   if (props.content === 'labels') {
     return contentLabels();
   } else if (props.content === 'balances') {
-    return contentHistory();
+    return contentBalances();
   } else if (props.content === 'history') {
     return contentHistory();
   } else if (props.content === 'machines') {

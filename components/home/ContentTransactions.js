@@ -1,5 +1,4 @@
-import { Table, Button, Icon, Divider } from 'semantic-ui-react';
-// import ModalWithdraw from '../modal/ModalWithdraw';
+import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ContentTransactions = (props) => {
@@ -40,12 +39,13 @@ const ContentTransactions = (props) => {
           const date = new Date(row.createdAt);
           const timestamp = date.toLocaleString();
           const amount = row.amount;
-          let sign = '+';
-          if (row.type !== 'Deposit') sign = '-';
 
-          // const dateFirst = new Date(timestamp);
-          // const dateSecond = new Date();
-          // const timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+          let sign = '';
+          if (row.type === 'Deposit') {
+            sign = '+';
+          } else if (row.type === 'Withdraw') {
+            sign = '-';
+          }
 
           return (
             <tr className="table-body" key={i}>
@@ -73,22 +73,6 @@ const ContentTransactions = (props) => {
               <td className="table-body-text-1 date">{timestamp}</td>
 
               <td className="table-body-text-1 hash">
-                {/*<a
-                  style={{
-                    color: '#2085F4',
-                    maxWidth: '90px',
-                    display: 'inline-block',
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    verticalAlign: 'middle',
-                  }}
-                  target="_blank"
-                  href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                >
-                  {row.txid}
-                </a>
-                <Icon name="caret right" style={{ color: '#2085F4' }} />*/}
-
                 <span style={{ float: 'right', paddingRight: '12px' }}>
                   <Button
                     href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
@@ -101,17 +85,6 @@ const ContentTransactions = (props) => {
                     </span>
                   </Button>
                 </span>
-
-                {/* {row.type === 'Exit' && row.status === 'In Progress' ? (
-                  // set PENDING time to 600 seconds (10 minutes)
-                  timeDiff * 0.001 < 600 ? (
-                    <Button size="mini" color="red">
-                      PENDING
-                    </Button>
-                  ) : (
-                    <ModalWithdraw isExit={1} transactionHash={row.txid} />
-                  )
-                ) : null} */}
               </td>
             </tr>
           );
