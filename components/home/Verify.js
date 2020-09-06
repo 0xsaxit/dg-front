@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';

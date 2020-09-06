@@ -274,7 +274,6 @@ class Offerings extends React.Component {
                   </Button>
                 </span>
               </span>
-
             </span>
 
             <Divider style={{ marginTop: '0px', paddingBottom: '21px' }} />

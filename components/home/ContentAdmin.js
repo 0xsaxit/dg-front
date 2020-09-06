@@ -1,6 +1,6 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider, Grid } from 'semantic-ui-react';
+import { Table, Button, Divider, Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ContentAdmin = (props) => {
@@ -15,10 +15,10 @@ const ContentAdmin = (props) => {
         <tbody>
           <tr className="table-header">
             <td className="table-header-text account">GAME</td>
-            <td className="table-header-text-1 bet">BET</td>
+            <td className="table-header-text-1 bet">MACHINE ID</td>
+            <td className="table-header-text-1 date">BET</td>
             <td className="table-header-text-1">PAYOUT</td>
-            <td className="table-header-text-1 date">DATE</td>
-            <td />
+            <td className="table-header-text-1 date">TIMESTAMP</td>
           </tr>
         </tbody>
       );
@@ -26,11 +26,12 @@ const ContentAdmin = (props) => {
       return (
         <tbody>
           <tr className="table-header">
-            <td className="table-header-text account">ACTION</td>
-            <td className="table-header-text-1">AMOUNT</td>
-            <td className="table-header-text-1 status">STATUS</td>
-            <td className="table-header-text-1 date">DATE</td>
-            <td />
+            <td className="table-header-text account">GAME</td>
+            <td className="table-header-text-1 bet">MACHINE ID</td>
+            <td className="table-header-text-1">PLAYER</td>
+            <td className="table-header-text-1 date">BET</td>
+            <td className="table-header-text-1">PAYOUT</td>
+            <td className="table-header-text-1 date">TIMESTAMP</td>
           </tr>
         </tbody>
       );
@@ -45,12 +46,21 @@ const ContentAdmin = (props) => {
             computer={5}
             tablet={16}
             mobile={16}
-            className="balances-column one"
+            className="balances-column two"
           >
-            <p className="balances-token-name">Play</p>
+            <span className="name-purchase-span">
+              <p className="balances-token-name"> Slots </p>
+              <Button
+                disabled
+                className="balances-purchase-button"
+                onClick={() => show_transak()}
+              >
+                PAUSE
+              </Button>
+            </span>
             <Divider className="balances-divider" />
             <img
-              src={Global.IMAGES.PLAY_CIRCLE}
+              src={Global.IMAGES.DAI_CIRCLE}
               style={{
                 width: '60px',
                 display: 'flex',
@@ -58,33 +68,14 @@ const ContentAdmin = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> {state.userInfo[2]} </p>
+            <p className="balances-text"> 0 </p>
             <span className="balances-button-span">
-              <Button
-                color="blue"
-                className="balances-play-button"
-                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
-                target="_blank"
-              >
-                PLAY NOW
+              <Button disabled color="blue" className="balances-play-button">
+                DEPOSIT
               </Button>
-              {state.userInfo[3] === 2 ? (
-                <Button
-                  disabled
-                  color="blue"
-                  className="balances-play-button-2"
-                >
-                  TOP UP
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => topUp()}
-                  color="blue"
-                  className="balances-play-button-2"
-                >
-                  TOP UP
-                </Button>
-              )}
+              <Button disabled color="blue" className="balances-play-button-2">
+                WITHDRAW
+              </Button>
             </span>
           </Grid.Column>
 
@@ -95,13 +86,13 @@ const ContentAdmin = (props) => {
             className="balances-column two"
           >
             <span className="name-purchase-span">
-              <p className="balances-token-name"> Dai </p>
+              <p className="balances-token-name"> Roulette </p>
               <Button
                 disabled
                 className="balances-purchase-button"
                 onClick={() => show_transak()}
               >
-                PURCHASE
+                PAUSE
               </Button>
             </span>
             <Divider className="balances-divider" />
@@ -132,12 +123,12 @@ const ContentAdmin = (props) => {
             className="balances-column three"
           >
             <span className="name-purchase-span">
-              <p className="balances-token-name"> Mana </p>
+              <p className="balances-token-name"> Backgammon </p>
               <Button
                 className="balances-purchase-button"
                 onClick={() => show_transak()}
               >
-                PURCHASE
+                PAUSE
               </Button>
             </span>
             <Divider className="balances-divider" />
@@ -186,57 +177,60 @@ const ContentAdmin = (props) => {
     return (
       <tbody>
         {props.dataPage.map((row, i) => {
-          const date = new Date(row.createdAt);
-          const timestamp = date.toLocaleString();
-          const amount = row.amount;
-          let sign = '+';
-          if (row.type !== 'Deposit') sign = '-';
+          var date = new Date(row.createdAt);
+          var timestamp = date.toLocaleString();
+          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
+          var game;
 
-          const dateFirst = new Date(timestamp);
-          const dateSecond = new Date();
-          const timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+          if (row.betAmount) {
+            var amount = Number(row.betAmount) / Global.FACTOR;
+            var payout = Number(row.amountWin) / Global.FACTOR;
+            var machine_id = row.globalID.substr(row.globalID.length - 3, 3);
+            var row_type = row.globalID.substr(row.globalID.length - 6, 3);
+            if (row_type === '002') game = 'MANA Roulette';
+            else game = 'MANA Slots';
 
-          return (
-            <tr className="table-body" key={i}>
-              <td className="table-body-text-1 first">
-                <img
-                  src={Global.IMAGES.ICON_MANA}
-                  style={{
-                    width: '25px',
-                    paddingRight: '6px',
-                    verticalAlign: 'middle',
-                    marginTop: '-3px',
-                  }}
-                />
-                {row.type}
-              </td>
-
-              <td className="table-body-text-1">
-                {sign}
-                {amount > 1000000000000000000000000
-                  ? 'MAX AMOUNT'
-                  : amount + ' MANA'}
-              </td>
-
-              <td className="table-body-text-1 status">{row.status}</td>
-              <td className="table-body-text-1 date">{timestamp}</td>
-
-              <td className="table-body-text-1 hash">
-                <span style={{ float: 'right', paddingRight: '12px' }}>
-                  <Button
-                    href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                    target="_blank"
-                    className="etherscan-button"
+            return (
+              <Table.Row>
+                <Table.Cell style={{ paddingLeft: '20px' }}>
+                  <img
+                    style={{ verticalAlign: 'middle' }}
+                    className="image inline"
+                    width="20px"
+                    height="20px"
+                    src={Global.IMAGES.ICON_MANA}
+                  />
+                  <span
+                    style={{
+                      textAlign: 'left',
+                      marginLeft: '10px',
+                    }}
                   >
-                    etherscan
-                    <span class="material-icons" id="etherscan-button-icon">
-                      launch
-                    </span>
-                  </Button>
-                </span>
-              </td>
-            </tr>
-          );
+                    {game}
+                  </span>
+                </Table.Cell>
+                <Table.Cell>{machine_id}</Table.Cell>
+                <Table.Cell>
+                  <a
+                    style={{ color: 'gray' }}
+                    target="_blank"
+                    href={Global.MATIC_EXPLORER + `/address/${row.address}`}
+                  >
+                    {row.address.substr(0, 6) + '...' + row.address.substr(-4)}
+                  </a>
+                </Table.Cell>
+                <Table.Cell className="admin-tx-table-padding">
+                  {amount} MANA
+                </Table.Cell>
+                <Table.Cell className="admin-tx-table-padding2">
+                  {payout} MANA
+                </Table.Cell>
+                <Table.Cell>
+                  {timestamp} <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
+                </Table.Cell>
+              </Table.Row>
+            );
+          }
         })}
       </tbody>
     );
@@ -246,80 +240,38 @@ const ContentAdmin = (props) => {
     return (
       <tbody>
         {props.dataPage.map((row, i) => {
-          const date = new Date(row.createdAt);
-          const timestamp = date.toLocaleString();
-          const amount = Number(row.betAmount) / Global.FACTOR;
-          const result = Number(row.amountWin) / Global.FACTOR;
-          let action;
-          if (row.gameType === 1) {
-            action = 'Slots';
-          } else if (row.gameType === 2) {
-            action = 'Roulette';
-          } else if (row.gameType === 3) {
-            action = 'Backgammon';
-          } else if (row.gameType === 4) {
-            action = 'Blackjack';
-          }
-
+          var bets = (Number(row.totalBetAmount) / Global.FACTOR).toFixed(0);
+          var payouts = (Number(row.totalAmountWin) / Global.FACTOR).toFixed(0);
+          var date = new Date(row.latestSessionDate);
+          var timestamp = date.toLocaleString();
+          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
+          var game;
+          var machine_id = row.globalID.substr(row.globalID.length - 3, 3);
+          var row_type = row.globalID.substr(row.globalID.length - 6, 3);
+          if (row_type === '002') game = 'MANA Roulette';
+          else game = 'MANA Slots';
           return (
-            <tr className="table-body" key={i}>
-              <td className="table-body-text-1 first">
-                {row.coinName === 'play' ? (
-                  <img
-                    src={Global.IMAGES.ICON_MANA}
-                    style={{
-                      width: '24px',
-                      paddingRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={Global.IMAGES.ICON_PLAY}
-                    style={{
-                      width: '24px',
-                      paddingRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                    }}
-                  />
-                )}
-                {action}
-              </td>
-
-              <td className="table-body-text-1 bet">
-                -{amount} {row.coinName}
-              </td>
-              <td className="table-body-text-1">
-                +{result} {row.coinName}
-              </td>
-              <td className="table-body-text-1 date">{timestamp}</td>
-
-              <td className="table-body-text-1 hash">
-                <span style={{ float: 'right', paddingRight: '12px' }}>
-                  {row.coinName === 'play' ? (
-                    <Button
-                      href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
-                      target="_blank"
-                      className="etherscan-button"
-                    >
-                      etherscan
-                      <span class="material-icons" id="etherscan-button-icon">
-                        launch
-                      </span>
-                    </Button>
-                  ) : (
-                    <Button disabled className="etherscan-button">
-                      etherscan
-                      <span class="material-icons" id="etherscan-button-icon">
-                        launch
-                      </span>
-                    </Button>
-                  )}
+            <Table.Row>
+              <Table.Cell style={{ paddingLeft: '20px' }}>
+                <img
+                  style={{ verticalAlign: 'middle' }}
+                  className="image inline"
+                  width="20px"
+                  height="20px"
+                  src={Global.ICON_MANA}
+                />
+                <span style={{ textAlign: 'left', marginLeft: '10px' }}>
+                  {game}
                 </span>
-              </td>
-            </tr>
+              </Table.Cell>
+              <Table.Cell>{machine_id}</Table.Cell>
+              <Table.Cell>{bets} MANA</Table.Cell>
+              <Table.Cell>{payouts} MANA</Table.Cell>
+              <Table.Cell>
+                {timestamp}
+                <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
+              </Table.Cell>
+            </Table.Row>
           );
         })}
       </tbody>
@@ -334,9 +286,6 @@ const ContentAdmin = (props) => {
     return contentHistory();
   } else if (props.content === 'machines') {
     return contentMachines();
-  } else {
-    console.log('data type: ' + props.content);
-    console.log('data page: ' + props.dataPage);
   }
 };
 
