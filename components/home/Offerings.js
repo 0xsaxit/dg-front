@@ -269,12 +269,15 @@ class Offerings extends React.Component {
                     defaultValue={options[0].value}
                     onChange={this.timeChange}
                   />
-                  <Button className="reload-button" icon onClick={() => window.location.reload(false)}>
-                    <Icon name='redo' />
+                  <Button
+                    className="reload-button"
+                    icon
+                    onClick={() => window.location.reload(false)}
+                  >
+                    <Icon name="redo" />
                   </Button>
                 </span>
               </span>
-
             </span>
 
             <Divider style={{ marginTop: '0px', paddingBottom: '21px' }} />
@@ -365,8 +368,12 @@ class Offerings extends React.Component {
                   defaultValue={options[0].value}
                   onChange={this.timeChange}
                 />
-                <Button className="reload-button" icon onClick={() => window.location.reload(false)}>
-                  <Icon name='redo' />
+                <Button
+                  className="reload-button"
+                  icon
+                  onClick={() => window.location.reload(false)}
+                >
+                  <Icon name="redo" />
                 </Button>
               </span>
             </span>

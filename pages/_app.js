@@ -15,6 +15,7 @@ import BalancesOverlay from '../components/BalancesOverlay';
 import Location from '../components/Location';
 import ActiveStatus from '../components/ActiveStatus';
 import UserInfo from '../components/UserInfo';
+import AdminData from '../components/AdminData';
 
 class Application extends App {
   render() {
@@ -32,6 +33,7 @@ class Application extends App {
           <Location />
           <ActiveStatus />
           <UserInfo />
+          <AdminData />
 
           <Component {...pageProps} />
         </Provider>

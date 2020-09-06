@@ -13,7 +13,6 @@ const ContentTransactions = (props) => {
             <td className="table-header-text-1 bet">BET</td>
             <td className="table-header-text-1">PAYOUT</td>
             <td className="table-header-text-1 date">DATE</td>
-            <td />
           </tr>
         </tbody>
       );
@@ -25,7 +24,6 @@ const ContentTransactions = (props) => {
             <td className="table-header-text-1">AMOUNT</td>
             <td className="table-header-text-1 status">STATUS</td>
             <td className="table-header-text-1 date">DATE</td>
-            <td />
           </tr>
         </tbody>
       );

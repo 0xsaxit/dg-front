@@ -16,8 +16,8 @@ const initialState = {
   gameRecords: {},
   balancesOverlay: 0,
   networkID: 0,
-  // isLoggedIn: false,
   activeStatus: true,
+  adminHistory: [[], []],
 };
 
 const reducer = (state, action) => {
@@ -82,16 +82,16 @@ const reducer = (state, action) => {
         networkID: action.data,
       };
 
-    // case 'is_loggedIn':
-    //   return {
-    //     ...state,
-    //     isLoggedIn: action.data,
-    //   };
-
     case 'active_status':
       return {
         ...state,
         activeStatus: action.data,
+      };
+
+    case 'admin_history':
+      return {
+        ...state,
+        adminHistory: action.data,
       };
 
     default:

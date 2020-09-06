@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Divider } from 'semantic-ui-react';
+import { Table, Divider } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentAdmin from './ContentAdmin';
 import Pagination from './Pagination';
@@ -9,8 +9,8 @@ import Aux from '../_Aux';
 const Admin = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const dataHistory = state.transactions[0]; // ***********************************
-  const dataMachines = state.transactions[1]; // **************************************
+  const dataHistory = state.adminHistory[0];
+  const dataMachines = state.adminHistory[1];
 
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
@@ -20,16 +20,28 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (state.userStatus) {
+      const frameHeight = window.innerHeight;
+      setMaximumCount(Math.floor(frameHeight * 0.01575));
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
     if (state.transactions[0].length) {
       setIsLoading(false);
     }
   }, [state.transactions]);
+
+  useEffect(() => {
+    setUserData('balances', 1);
+  }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function setPageData(type) {
     setDataType(type);
+    setUserData(type, 1);
   }
 
   function topLinks() {
@@ -61,13 +73,13 @@ const Admin = () => {
               )}
 
               {dataType == 'history' ? (
-                <b className="account-hover active">TRANSFERS</b>
+                <b className="account-hover active">TRANSACTIONS</b>
               ) : (
                 <abbr
                   className="account-hover"
                   onClick={() => setPageData('history')}
                 >
-                  TRANSFERS
+                  TRANSACTIONS
                 </abbr>
               )}
             </p>
@@ -98,7 +110,6 @@ const Admin = () => {
 
     setDataPage(result);
     setCurrentPage(page);
-    balancesOverlay(overlay);
   }
 
   function noTxHistory() {
@@ -137,14 +148,16 @@ const Admin = () => {
             </table>
           </div>
 
-          <Pagination
-            currentPage={currentPage}
-            dataType={dataType}
-            dataHistory={dataHistory}
-            dataMachines={dataMachines}
-            maximumCount={maximumCount}
-            setUserData={setUserData}
-          />
+          {dataType !== 'balances' ? (
+            <Pagination
+              currentPage={currentPage}
+              dataType={dataType}
+              dataHistory={dataHistory}
+              dataMachines={dataMachines}
+              maximumCount={maximumCount}
+              setUserData={setUserData}
+            />
+          ) : null}
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   // get user's onboard status the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -64,8 +64,8 @@ const Dashboard = (props) => {
   function getContent() {
     return (
       <div className="home-dashboard">
-        {isZooming === true ? (
-          visited === false ? (
+        {isZooming ? (
+          !visited ? (
             <span id="zoom-overlay" className="zoom-animation" />
           ) : null
         ) : null}
@@ -96,6 +96,7 @@ const Dashboard = (props) => {
     return (
       <span className="user-numbers-container-1" style={{ display: 'flex' }}>
         <div className="online-dot"></div>
+
         {!isLoading ? (
           <p className="home-dashboard-p">
             {playerCount} online in {realm}
@@ -179,7 +180,7 @@ const Dashboard = (props) => {
     );
   }
 
-  if (isLoading === true && visited === false) {
+  if (isLoading && !visited) {
     return <Spinner background={2} />;
   } else {
     return getContent();

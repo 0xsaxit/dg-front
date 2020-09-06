@@ -16,7 +16,7 @@ const KEYS = {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// global constant values
+// common constant values
 const API_BASE_URL = 'https://api.decentral.games';
 const BASE_URL = 'https://decentral.games';
 const DEFAULT_AMOUNT = 1000;
@@ -27,7 +27,7 @@ const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
-const ACTIVE_PERIOD = 300; // user account active period: 3600 == 1 hour
+const ACTIVE_PERIOD = 43200; // user account active period: 3600 == 1 hour
 const MATIC_NETWORK_ID = '80001';
 const MATIC_URL = 'https://rpc-mumbai.matic.today';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today';
@@ -101,51 +101,35 @@ const ABIs = (() => {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// CDN image URLs
-const IMAGES = (() => {
-  const LOGO =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png';
-  const SOCIAL_SHARE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1595194024/twitterpreview_b1yemb.png';
-  const LOADING_SPINNER =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif';
-  const ICON_DAI =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/dai_l8u5ig.png';
-  const ICON_MANA =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_hx4tyd.png';
-  const ICON_ETH =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/eth_ua2hza.png';
-  const BOX =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/box_mjulo4.png';
-  const CHECK =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png';
-  const MANA_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597702325/decentraland-mana-logo_uennji.png';
-  const DAI_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png';
-  const PLAY_CIRCLE =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597779125/Group_6_Copy_que5y2.png';
-  const ICON_PLAY =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597779125/Group_6_Copy_que5y2.png';
-  const MATIC_TOP =
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png';
-
-  return {
-    LOGO,
-    SOCIAL_SHARE,
-    LOADING_SPINNER,
-    ICON_DAI,
-    ICON_MANA,
-    ICON_ETH,
-    BOX,
-    CHECK,
-    MANA_CIRCLE,
-    DAI_CIRCLE,
-    PLAY_CIRCLE,
-    MATIC_TOP,
-    ICON_PLAY,
-  };
-})();
+// common image URLs
+const IMAGES = {
+  LOGO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
+  SOCIAL_SHARE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1595194024/twitterpreview_b1yemb.png',
+  LOADING_SPINNER:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif',
+  ICON_DAI:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/dai_l8u5ig.png',
+  ICON_MANA:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/mana_hx4tyd.png',
+  ICON_ETH:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/eth_ua2hza.png',
+  BOX:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/box_mjulo4.png',
+  CHECK:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png',
+  MANA_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597702325/decentraland-mana-logo_uennji.png',
+  DAI_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1596577071/multi-collateral-dai-dai-logo_vexgwq.png',
+  PLAY_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597779125/Group_6_Copy_que5y2.png',
+  ICON_PLAY:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597779125/Group_6_Copy_que5y2.png',
+  MATIC_TOP:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png',
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -290,6 +274,26 @@ const FETCH = {
         txHash: txHash,
         step: step,
       }),
+    });
+  },
+
+  ADMIN_HISTORY: () => {
+    return fetch(`${API_BASE_URL}/admin/getHistory`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  MACHINE_DATA: () => {
+    return fetch(`${API_BASE_URL}/admin/getMachine`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
   },
 };

@@ -36,7 +36,6 @@ const ContentNFTs = (props) => {
       <div className="nft-description">
         <Grid style={{ paddingLeft: '15px' }}>
           <Grid.Row className="my-nft-row">
-
             <Grid.Column
               className="nft-grid"
               computer={8}
