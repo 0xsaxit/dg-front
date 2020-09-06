@@ -145,7 +145,7 @@ const Tokens = () => {
   }
 
   return (
-    <div className="main-container" style={{ marginBottom: '60px' }}>
+    <div className="main-container">
       <div className="page-container">
         <div className="account-other-inner-container ">
           {submenu()}

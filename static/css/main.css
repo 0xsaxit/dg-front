@@ -351,7 +351,7 @@ video.home-dashboard-video {
   font-weight: 600;
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
-  padding-top: calc(50vh - 360px) !important;
+  padding-top: calc(50vh - 390px) !important;
 }
 
 .home-dashboard-h2 {
@@ -411,6 +411,11 @@ video.home-dashboard-video {
 
 .user-numbers-container-2 {
   margin-top: -19px;
+}
+
+.user-numbers-container-3 {
+  margin-top: 30px;
+  padding-left: calc(50% - 113px) ;
 }
 
 .online-dot-container {
@@ -507,7 +512,7 @@ video.home-dashboard-video {
 }
 
 .main-container {
-  margin-bottom: 60px;
+  padding-bottom: 60px !important;
 }
 
 @media (max-width: 499px) {
