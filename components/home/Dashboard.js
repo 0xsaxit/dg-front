@@ -142,6 +142,16 @@ const Dashboard = () => {
                   HOW TO PLAY
                 </Button>
               </span>
+
+              <span className="user-numbers-container-3" style={{ display: 'flex' }}>
+                <div className="online-dot"></div>
+                {!isLoading ? (
+                  <p className="home-dashboard-p">
+                    {playerCount} online in {realm}
+                  </p>
+                ) : null}
+              </span>
+
             </div>
           </div>
         ) : (

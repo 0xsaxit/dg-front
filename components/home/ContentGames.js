@@ -109,7 +109,7 @@ const ContentGames = (props) => {
 
   return (
     <Aux>
-      {processing ? <Spinner background={0} /> : null}
+      {processing ? <Spinner background={1} /> : null}
 
       <Grid>
         {games.map((game, index) => {
