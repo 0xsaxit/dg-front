@@ -439,148 +439,16 @@ function balanceOfToken(tokenContract, userAddress) {
       reject(false);
     }
   });
-
-  // console.log('Get balance of token');
-
-  // try {
-  //   const balance = await tokenContract.methods.balanceOf(userAddress).call();
-
-  //   console.log('Get balance done');
-  //   const amountAdjusted = (amount / FACTOR)
-  //     .toFixed(DECIMAL_PLACES)
-  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  //   return amountAdjusted;
-  // } catch (error) {
-  //   console.log('Get balance failed: ', error);
-
-  //   return false;
-  // }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// returns the amount of MANA contractAddress is approved to spend on behalf of the user
-// function getAllowedToken(tokenAddress, userAddress, web3Default = window.web3) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Get allowed tokens');
-//     console.log('Token address: ' + tokenAddress);
-//     console.log('User address: ' + userAddress);
-
-//     try {
-//       const TOKEN_CONTRACT = web3Default.eth
-//         .contract(ABIs.CHILD_TOKEN)
-//         .at(tokenAddress);
-
-//       TOKEN_CONTRACT.allowance(
-//         userAddress,
-//         ROOTCHAINMANAGER_ADDRESS,
-//         async function (err, amount) {
-//           if (err) {
-//             console.log('Get allowed failed', err);
-//             reject(false);
-//           }
-
-//           console.log('Get allowed done');
-//           resolve(amount);
-//         }
-//       );
-//     } catch (error) {
-//       console.log('Get allowed failed: ', error);
-//       reject(false);
-//     }
-//   });
-// }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// allows tokenAddress to spend given amount of tokens on user's behalf
-// function approveToken(
-//   tokenAddress,
-//   amount,
-//   userAddress,
-//   web3Default = window.web3
-// ) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Approve token contract');
-//     console.log('Token address: ' + tokenAddress);
-//     console.log('Amount: ' + amount);
-//     console.log('User address: ' + userAddress);
-
-//     try {
-//       await maticPOSClient.approveERC20ForDeposit(tokenAddress, amount, {
-//         from: userAddress,
-//         gasLimit: web3Default.toHex(GAS_LIMIT),
-//         gasPrice: web3Default.toHex(GAS_AMOUNT),
-//       });
-
-//       console.log('Approve done');
-//       resolve(true);
-//     } catch (error) {
-//       console.log('Approve failed: ', error);
-//       reject(false);
-//     }
-//   });
-// }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// deposit tokens from the Matic Root contract to Matic Network
-// function depositTokenToMatic(
-//   tokenAddress,
-//   amount,
-//   userAddress,
-//   web3Default = window.web3
-// ) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Deposit to Matic Network');
-//     console.log('Token address: ' + tokenAddress);
-//     console.log('Amount:' + amount);
-//     console.log('User address: ' + userAddress);
-
-//     try {
-//       const logs = await maticPOSClient.depositERC20ForUser(
-//         tokenAddress,
-//         userAddress,
-//         amount,
-//         {
-//           from: userAddress,
-//           gasLimit: web3Default.toHex(GAS_LIMIT),
-//           gasPrice: web3Default.toHex(GAS_AMOUNT),
-//         }
-//       );
-
-//       console.log('Deposit done');
-//       resolve(logs.transactionHash);
-//     } catch (error) {
-//       console.log('Deposit failed: ', error);
-//       reject(false);
-//     }
-//   });
-// }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// withdraw tokens from Matic Network to Mainnet
-// function exitToMainnet(transactionHash, userAddress) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Exit to Mainnet start');
-//     console.log('transaction hash: ' + transactionHash);
-//     console.log('user address: ' + userAddress);
-
-//     try {
-//       let ret = await maticPOSClient.exitERC20(transactionHash, {
-//         from: userAddress,
-//       });
-
-//       console.log('Exit to Mainnet done');
-//       resolve(ret.transactionHash);
-//     } catch (error) {
-//       console.log('Exit to Mainnet failed: ', error);
-//       reject(false);
-//     }
-//   });
-// }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get balance from parent contract and allocated tokens from slots and roulette games
@@ -657,8 +525,6 @@ function depositToParent(
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start:' + amount);
 
-    // const userAddress = window.web3.currentProvider.selectedAddress;
-
     try {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABIs.TREASURY_CONTRACT)
@@ -703,8 +569,6 @@ function withdrawFromParent(
   return new Promise(async (resolve, reject) => {
     console.log('Withdraw start: ' + amount);
 
-    // const userAddress = window.web3.currentProvider.selectedAddress;
-
     try {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABIs.TREASURY_CONTRACT)
@@ -735,6 +599,16 @@ function withdrawFromParent(
     }
   });
 }
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

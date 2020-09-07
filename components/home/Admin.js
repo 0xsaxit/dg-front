@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Divider } from 'semantic-ui-react';
+import { Table, Divider, Grid, Button } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentAdmin from './ContentAdmin';
 import Pagination from './Pagination';
@@ -48,6 +48,30 @@ const Admin = () => {
     return (
       <Aux>
         <div className="account-other-tabs">
+          <Grid className="account-connected-grid">
+            <Grid.Row>
+              <Grid.Column
+                floated="right"
+                width={16}
+                className="balances-column zero"
+              >
+                <span style={{ display: 'flex' }}>
+                  <span style={{ display: 'flex', flexDirection: 'column' }}>
+                    <p className="welcome-text">Treasury Ballances</p>
+
+                    <div>
+                      <p className="account-name">0 MANA 0 DAI</p>
+                    </div>
+                  </span>
+
+                  <Button disabled className="account-connected-play-button">
+                    PAUSE GAMES
+                  </Button>
+                </span>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
           <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
               {dataType == 'balances' ? (
