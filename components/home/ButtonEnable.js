@@ -129,7 +129,7 @@ function ButtonEnable() {
       className="account-connected-play-button"
       onClick={() => setTransaction(true)}
     >
-      AUTHORIZE GAMEPLAY
+      AUTHORIZE
     </Button>
   );
 }
