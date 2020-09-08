@@ -417,12 +417,15 @@ function getTreasuryContract(web3Default) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get user or contract token balance from MetaMask
-function balanceOfToken(tokenContract, userAddress) {
+function balanceOfToken(tokenContract, userOrContractAddress) {
   return new Promise(async (resolve, reject) => {
     console.log('Get balance of token');
 
     try {
-      tokenContract.balanceOf(userAddress, async function (err, amount) {
+      tokenContract.balanceOf(userOrContractAddress, async function (
+        err,
+        amount
+      ) {
         if (err) {
           console.log('Get balance failed', err);
           reject(false);
@@ -452,38 +455,38 @@ function balanceOfToken(tokenContract, userAddress) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get balance from parent contract and allocated tokens from slots and roulette games
-function getBalanceParent(tokenName, web3Default) {
-  return new Promise(async (resolve, reject) => {
-    console.log('Get balance of parent contract');
+// function getBalanceParent(tokenName, web3Default) {
+//   return new Promise(async (resolve, reject) => {
+//     console.log('Get balance of parent contract');
 
-    try {
-      const PARENT_CONTRACT = web3Default.eth
-        .contract(ABIs.TREASURY_CONTRACT)
-        .at(TREASURY_CONTRACT_ADDRESS);
+//     try {
+//       const PARENT_CONTRACT = web3Default.eth
+//         .contract(ABIs.TREASURY_CONTRACT)
+//         .at(TREASURY_CONTRACT_ADDRESS);
 
-      PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
-        err,
-        amount
-      ) {
-        if (err) {
-          console.log('Get balance failed', err);
-          reject(false);
-        }
+//       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
+//         err,
+//         amount
+//       ) {
+//         if (err) {
+//           console.log('Get balance failed', err);
+//           reject(false);
+//         }
 
-        console.log('Get balance done');
-        resolve(amount);
-      });
-    } catch (error) {
-      console.log('Get balance failed', error);
-      reject(false);
-    }
-  });
-}
+//         console.log('Get balance done');
+//         resolve(amount);
+//       });
+//     } catch (error) {
+//       console.log('Get balance failed', error);
+//       reject(false);
+//     }
+//   });
+// }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // get allocated tokens for specified game
-function getTokensGame(gameType, tokenName, web3Default) {
+function getTokensGame(gameIndex, tokenIndex, web3Default) {
   return new Promise(async (resolve, reject) => {
     console.log('Get tokens per game');
 
@@ -492,19 +495,18 @@ function getTokensGame(gameType, tokenName, web3Default) {
         .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
 
-      PARENT_CONTRACT.checkAllocatedTokensPerGame(
-        gameType,
-        tokenName,
-        async function (err, amount) {
-          if (err) {
-            console.log('Get tokens per game failed', err);
-            reject(false);
-          }
-
-          console.log('Get tokens per game done');
-          resolve(amount);
+      PARENT_CONTRACT.checkGameTokens(gameIndex, tokenIndex, async function (
+        err,
+        amount
+      ) {
+        if (err) {
+          console.log('Get tokens per game failed', err);
+          reject(false);
         }
-      );
+
+        console.log('Get tokens per game done');
+        resolve(amount);
+      });
     } catch (error) {
       console.log('Get tokens per game failed', error);
       reject(false);
@@ -790,7 +792,7 @@ export default {
   // approveToken,
   // depositTokenToMatic,
   // exitToMainnet,
-  getBalanceParent,
+  // getBalanceParent,
   getTokensGame,
   depositToParent,
   withdrawFromParent,

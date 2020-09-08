@@ -270,7 +270,7 @@ class Offerings extends React.Component {
                     onChange={this.timeChange}
                   />
                   <Button disabled className="reload-button" icon>
-                    <Icon name='redo' />
+                    <Icon name="redo" />
                   </Button>
                 </span>
               </span>
@@ -365,7 +365,7 @@ class Offerings extends React.Component {
                   onChange={this.timeChange}
                 />
                 <Button disabled className="reload-button" icon>
-                  <Icon name='redo' />
+                  <Icon name="redo" />
                 </Button>
               </span>
             </span>

@@ -5,6 +5,7 @@ import ButtonAuthorize from './ButtonAuthorize';
 import ButtonEnable from './ButtonEnable';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
+import Pagination from './Pagination';
 import Aux from '../_Aux';
 
 const History = () => {
@@ -94,17 +95,13 @@ const History = () => {
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text"> Account Connected </p>
                     {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                      <div>
-                        <p className="account-name">
-                          {state.userInfo[1].substr(0, 4) +
-                            '...' +
-                            state.userInfo[1].substr(-4)}
-                        </p>
-                      </div>
+                      <p className="account-name">
+                        {state.userInfo[1].substr(0, 4) +
+                          '...' +
+                          state.userInfo[1].substr(-4)}
+                      </p>
                     ) : (
-                      <div>
-                        <p className="account-name">{state.userInfo[0]}</p>
-                      </div>
+                      <p className="account-name">{state.userInfo[0]}</p>
                     )}
                   </span>
 
@@ -165,48 +162,48 @@ const History = () => {
     );
   }
 
-  function pagination() {
-    const previousPage = currentPage - 1;
-    const nextPage = currentPage + 1;
+  // function pagination() {
+  //   const previousPage = currentPage - 1;
+  //   const nextPage = currentPage + 1;
 
-    let totalRows = 0;
-    if (dataType === 'history') {
-      totalRows = dataHistory.length;
-    } else if (dataType === 'play') {
-      totalRows = dataPlay.length;
-    }
+  //   let totalRows = 0;
+  //   if (dataType === 'history') {
+  //     totalRows = dataHistory.length;
+  //   } else if (dataType === 'play') {
+  //     totalRows = dataPlay.length;
+  //   }
 
-    return (
-      <div className="pagination" style={{ paddingTop: '12px' }}>
-        {currentPage > 1 ? (
-          <Icon
-            name="caret left"
-            style={{ cursor: 'pointer', color: '#2085F4' }}
-            onClick={() => setUserData(dataType, previousPage)}
-          />
-        ) : (
-          <Icon name="caret left" style={{ color: '#aaaaaa' }} />
-        )}
+  //   return (
+  //     <div className="pagination" style={{ paddingTop: '12px' }}>
+  //       {currentPage > 1 ? (
+  //         <Icon
+  //           name="caret left"
+  //           style={{ cursor: 'pointer', color: '#2085F4' }}
+  //           onClick={() => setUserData(dataType, previousPage)}
+  //         />
+  //       ) : (
+  //         <Icon name="caret left" style={{ color: '#aaaaaa' }} />
+  //       )}
 
-        <span
-          className="spanbox"
-          style={{ padding: '6px 15px', display: 'inline-block' }}
-        >
-          Page {currentPage}
-        </span>
+  //       <span
+  //         className="spanbox"
+  //         style={{ padding: '6px 15px', display: 'inline-block' }}
+  //       >
+  //         Page {currentPage}
+  //       </span>
 
-        {totalRows > maximumCount * currentPage ? (
-          <Icon
-            name="caret right"
-            style={{ cursor: 'pointer', color: '#2085F4' }}
-            onClick={() => setUserData(dataType, nextPage)}
-          />
-        ) : (
-          <Icon name="caret right" style={{ color: '#aaaaaa' }} />
-        )}
-      </div>
-    );
-  }
+  //       {totalRows > maximumCount * currentPage ? (
+  //         <Icon
+  //           name="caret right"
+  //           style={{ cursor: 'pointer', color: '#2085F4' }}
+  //           onClick={() => setUserData(dataType, nextPage)}
+  //         />
+  //       ) : (
+  //         <Icon name="caret right" style={{ color: '#aaaaaa' }} />
+  //       )}
+  //     </div>
+  //   );
+  // }
 
   function setUserData(type, page) {
     let result = [];
@@ -256,17 +253,22 @@ const History = () => {
             <table className="account-table">
               <ContentTransactions content={'labels'} type={dataType} />
 
-              {!isLoading ? (
-                dataPage !== 'false' ? (
-                  <ContentTransactions content={dataType} dataPage={dataPage} />
-                ) : (
-                  noTxHistory()
-                )
-              ) : null}
+              {dataPage !== 'false' ? (
+                <ContentTransactions content={dataType} dataPage={dataPage} />
+              ) : (
+                noTxHistory()
+              )}
             </table>
           </div>
 
-          {pagination()}
+          <Pagination
+            currentPage={currentPage}
+            dataType={dataType}
+            data1={dataHistory}
+            data2={dataPlay}
+            maximumCount={maximumCount}
+            setUserData={setUserData}
+          />
         </div>
       </div>
     </div>

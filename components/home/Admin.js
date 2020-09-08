@@ -5,6 +5,7 @@ import Spinner from '../Spinner';
 import ContentAdmin from './ContentAdmin';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
+import Global from '../Constants';
 
 const Admin = () => {
   // get user's transaction history from the Context API store
@@ -18,6 +19,10 @@ const Admin = () => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [balances, setBalances] = useState([[0], [0]]);
+
+  let contractAddress = '';
+  let maticWeb3 = {};
 
   useEffect(() => {
     if (state.userStatus) {
@@ -33,8 +38,49 @@ const Admin = () => {
   }, [state.transactions]);
 
   useEffect(() => {
-    setUserData('balances', 1);
-  }, []);
+    if (state.userStatus) {
+      maticWeb3 = new window.Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      );
+
+      async function fetchData() {
+        const addresses = await Global.API_ADDRESSES;
+        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+
+        const amounts = await getTokenBalances();
+
+        // console.log('amounts');
+        // console.log(amounts);
+
+        setBalances(amounts);
+
+        setUserData('balances', 1);
+      }
+      fetchData();
+    }
+  }, [state.userStatus]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get balances on mainnet and Matic networks
+  async function getTokenBalances() {
+    const addresses = await Global.API_ADDRESSES;
+
+    const TREASURY_CONTRACT = maticWeb3.eth
+      .contract(Global.ABIs.CHILD_TOKEN)
+      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+
+    try {
+      const amount = await Global.balanceOfToken(
+        TREASURY_CONTRACT,
+        contractAddress
+      );
+
+      return [amount, 0];
+    } catch (error) {
+      console.log('Get balances error: ' + error);
+    }
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -59,9 +105,10 @@ const Admin = () => {
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text">Treasury Ballances</p>
 
-                    <div>
-                      <p className="account-name">0 MANA 0 DAI</p>
-                    </div>
+                    <p className="account-name">
+                      <div style={{ color: 'red' }}>{balances[0]}</div> MANA{' '}
+                      <div style={{ color: 'red' }}>{balances[1]}</div> DAI
+                    </p>
                   </span>
 
                   <Button disabled className="account-connected-play-button">
@@ -158,30 +205,36 @@ const Admin = () => {
         <div className="account-other-inner-container">
           {topLinks()}
 
-          <div id="tx-box-history-2">
-            <table className="account-table">
-              <ContentAdmin content={'labels'} type={dataType} />
-
-              {!isLoading ? (
-                dataPage !== 'false' ? (
-                  <ContentAdmin content={dataType} dataPage={dataPage} />
-                ) : (
-                  noTxHistory()
-                )
-              ) : null}
-            </table>
-          </div>
-
           {dataType !== 'balances' ? (
-            <Pagination
-              currentPage={currentPage}
-              dataType={dataType}
-              dataHistory={dataHistory}
-              dataMachines={dataMachines}
-              maximumCount={maximumCount}
-              setUserData={setUserData}
-            />
-          ) : null}
+            <Aux>
+              <div id="tx-box-history-2">
+                <table className="account-table">
+                  <ContentAdmin content={'labels'} type={dataType} />
+
+                  {dataPage !== 'false' ? (
+                    <ContentAdmin content={dataType} dataPage={dataPage} />
+                  ) : (
+                    noTxHistory()
+                  )}
+                </table>
+              </div>
+
+              <Pagination
+                currentPage={currentPage}
+                dataType={dataType}
+                data1={dataHistory}
+                data2={dataMachines}
+                maximumCount={maximumCount}
+                setUserData={setUserData}
+              />
+            </Aux>
+          ) : (
+            <div id="tx-box-history-2">
+              <table className="account-table">
+                <ContentAdmin content={dataType} dataPage={dataPage} />
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

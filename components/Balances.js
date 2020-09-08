@@ -158,7 +158,7 @@ function Balances() {
         [0, 0],
       ];
     } catch (error) {
-      console.log(error);
+      console.log('Get balances error: ' + error);
     }
   }
 

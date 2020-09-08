@@ -6,10 +6,10 @@ const Pagination = (props) => {
     const nextPage = props.currentPage + 1;
 
     let totalRows = 0;
-    if (props.dataType === 'History') {
-      totalRows = props.dataHistory.length;
-    } else if (props.dataType === 'Play') {
-      totalRows = props.dataPlay.length;
+    if (props.dataType === 'history') {
+      totalRows = props.data1.length;
+    } else if (props.dataType === 'play') {
+      totalRows = props.data2.length;
     }
 
     return (
@@ -18,7 +18,7 @@ const Pagination = (props) => {
           <Icon
             name="caret left"
             style={{ cursor: 'pointer', color: '#2085F4' }}
-            onClick={() => props.setUserData(dataType, previousPage)}
+            onClick={() => props.setUserData(props.dataType, previousPage)}
           />
         ) : (
           <Icon name="caret left" style={{ color: '#aaaaaa' }} />

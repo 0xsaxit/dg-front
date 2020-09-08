@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
-import Aux from '../_Aux';
+// import Aux from '../_Aux';
 import Spinner from '../Spinner';
 
 const ContentGames = (props) => {
@@ -11,13 +11,13 @@ const ContentGames = (props) => {
 
   // define local variables
   const [dataGames, setDataGames] = useState([[], [], [], [], []]);
-  const [processing, setProcessing] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
 
   useEffect(() => {
     if (Object.keys(state.gameRecords).length !== 0) {
-      setProcessing(false);
+      setIsLoading(false);
 
       let gameData = {};
       let game1 = [];
@@ -107,35 +107,42 @@ const ContentGames = (props) => {
     }
   }, [state.gameRecords, props.timePeriod, props.gameSelect]);
 
+  if (isLoading) return <Spinner background={0} />;
+
   return (
-    <Aux>
-      {processing ? <Spinner background={1} /> : null}
+    // <Aux>
+    //   {isLoading ? <Spinner background={1} /> : null}
 
-      <Grid>
-        {games.map((game, index) => {
-          return (
-            <Grid.Column computer={5} tablet={8} mobile={16} key={index} className="leaderboard-column">
-              <table style={{ marginTop: '5px' }}>
-                <tbody>
-                  <tr className="table-header">
-                    <td className="table-header-text-1 games">
-                      {game}
-                    </td>
-                    <td className="table-header-text-2 games">
-                      WIN
-                    </td>
-                  </tr>
-                </tbody>
+    <Grid>
+      {games.map((game, index) => {
+        return (
+          <Grid.Column
+            computer={5}
+            tablet={8}
+            mobile={16}
+            key={index}
+            className="leaderboard-column"
+          >
+            <table style={{ marginTop: '5px' }}>
+              <tbody>
+                <tr className="table-header">
+                  <td className="table-header-text-1 games">{game}</td>
+                  <td className="table-header-text-2 games">WIN</td>
+                </tr>
+              </tbody>
 
-                <tbody>
-                  {dataGames[index].map((row, index) => {
-                    var num = parseInt(Number(row.winnings) / Global.FACTOR);
-                    var amount = Number(num.toFixed(0)).toLocaleString().split(/\s/).join(',');
-                    return (
-                      <tr className="table-body" key={index}>
-                        <td className="table-body-text-1 games">
-                          {index + 1}.{' '}
-                        <img 
+              <tbody>
+                {dataGames[index].map((row, index) => {
+                  var num = parseInt(Number(row.winnings) / Global.FACTOR);
+                  var amount = Number(num.toFixed(0))
+                    .toLocaleString()
+                    .split(/\s/)
+                    .join(',');
+                  return (
+                    <tr className="table-body" key={index}>
+                      <td className="table-body-text-1 games">
+                        {index + 1}.{' '}
+                        <img
                           className="avatar-picture"
                           src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
                           style={{
@@ -145,26 +152,28 @@ const ContentGames = (props) => {
                             marginTop: '-2px',
                             border: '1px solid rgb(227, 232, 238)',
                             borderRadius: '100%',
-                            boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                            boxShadow:
+                              '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                           }}
                         />
-                          {row.name === null || row.name === ''
-                            ? row.address.substr(0, 6) +
-                              '...' +
-                              row.address.substr(-4)
-                            : row.name}
-                        </td>
-                        <td className="table-body-text-2 games">{amount}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </Grid.Column>
-          );
-        })}
-      </Grid>
-    </Aux>
+                        {row.name === null || row.name === ''
+                          ? row.address.substr(0, 6) +
+                            '...' +
+                            row.address.substr(-4)
+                          : row.name}
+                      </td>
+                      <td className="table-body-text-2 games">{amount}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Grid.Column>
+        );
+      })}
+    </Grid>
+
+    // </Aux>
   );
 };
 
