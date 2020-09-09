@@ -11,18 +11,20 @@ const Verify = () => {
   let userAddress = '';
 
   async function openMetaMask() {
-    // open MataMask for login then get the user's wallet address
-    await window.ethereum.enable();
-    userAddress = window.web3.currentProvider.selectedAddress;
+    if (window.web3) {
+      // open MataMask for login then get the user's wallet address
+      await window.ethereum.enable();
+      userAddress = window.web3.currentProvider.selectedAddress;
 
-    // set global user status based on value stored in database. if no value present
-    // update user status to 4 both locally and in the database
-    const response = await getUserStatus();
+      // set global user status based on value stored in database. if no value present
+      // update user status to 4 both locally and in the database
+      const response = await getUserStatus();
 
-    if (response) {
-      updateStatus(response, false);
-    } else {
-      updateStatus(4, true);
+      if (response) {
+        updateStatus(response, false);
+      } else {
+        updateStatus(4, true);
+      }
     }
   }
 
