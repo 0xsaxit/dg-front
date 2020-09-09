@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { isChrome, isFirefox } from 'react-device-detect'
+// import { isChrome, isFirefox } from 'react-device-detect'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
@@ -306,7 +306,7 @@ const MenuTop = () => {
           </Button>
         </span>
       );
-    } else if(isChrome || isFirefox) {
+    } else {
       return <Verify />;
     }
   }
