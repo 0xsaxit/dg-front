@@ -186,7 +186,6 @@ div.ui.segment.transparent-menu-segment {
 
 .other-menu-container {
   position: relative;
-  z-index: 999;
   width: 100vw;
   background-color: rgba(10, 10, 10, 1) !important;
 }
@@ -346,14 +345,24 @@ video.home-dashboard-video {
 
 .home-dashboard-mission {
   text-align: center;
-  float: center;
   color: white;
   font-weight: 600;
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
-  padding-top: calc(50vh - 390px) !important;
 }
 
+@media (min-height: 600px) {
+  .home-dashboard-mission {
+    margin-top: calc(50vh - 390px) !important;
+  }
+}
+
+@media (max-height: 599px) {
+  .home-dashboard-mission {
+    margin-top: -90px !important;
+  }
+}
+  
 .home-dashboard-h2 {
   color: white !important;
   float: center;

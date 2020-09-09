@@ -54,7 +54,7 @@ const MessageBar = () => {
 
   useEffect(() => {
     if (isSafari) {
-      setMessage('Please use a Chrome browser with Metamask to play games');
+      setMessage('Please use a Metamask enabled browser to play games');
     } else if (!state.networkID) {
       setMessage('Please enable MetaMask to play games');
     } else if (!state.userStatus) {
