@@ -466,7 +466,7 @@ a.demo-button {
 /* ----------------------------------------- */
 
 .nft-pic {
-  width: 366px;
+  width: 368px;
 }
 
 .my-nft-pic {
@@ -481,6 +481,7 @@ a.demo-button {
   flex-wrap: wrap !important;
   justify-content: space-between;
   margin-top: -15px;
+  margin-bottom: 30px;
 }
 
 .nft-container {
@@ -490,7 +491,7 @@ a.demo-button {
   margin-top: 21px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 6px;
   background-color: white;
   padding-top: 30px;
   padding-left: 30px;
