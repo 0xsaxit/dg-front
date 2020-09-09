@@ -57,7 +57,7 @@ p {
     letter-spacing: 0.25px;
     line-height: 1.4;
     color: white;
-    margin-top: -68px !important;
+    margin-top: -66px !important;
     position: relative;
     z-index: 6;
     width: 100px;
@@ -2152,7 +2152,7 @@ a.demo-button {
     margin-top: -360px !important;
   }
   .home-mission-content {
-    padding-top: 180px;
+    padding-top: 210px;
   }
   #intermediate-time-select {
     display: none;
@@ -2186,7 +2186,7 @@ a.demo-button {
     font-size: 48px !important;
   }
   .home-mission-content {
-    padding-top: 160px;
+    padding-top: 190px;
   }
 }
 
