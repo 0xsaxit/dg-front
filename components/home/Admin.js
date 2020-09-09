@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 import ContentAdmin from './ContentAdmin';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
-import Global from '../Constants';
+// import Global from '../Constants';
 
 const Admin = () => {
   // get user's transaction history from the Context API store
@@ -19,7 +19,7 @@ const Admin = () => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [balances, setBalances] = useState([[0], [0]]);
+  // const [balances, setBalances] = useState([[0], [0]]);
 
   let contractAddress = '';
   let maticWeb3 = {};
@@ -39,48 +39,46 @@ const Admin = () => {
 
   useEffect(() => {
     if (state.userStatus) {
-      maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      );
+      // maticWeb3 = new window.Web3(
+      //   new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      // );
 
-      async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
-        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+      // async function fetchData() {
+      //   const addresses = await Global.API_ADDRESSES;
+      //   contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
-        const amounts = await getTokenBalances();
+      //   const amounts = await getTokenBalances();
+      //   setBalances(amounts);
 
-        // console.log('amounts');
-        // console.log(amounts);
+      //   setUserData('balances', 1);
+      // }
+      // fetchData();
 
-        setBalances(amounts);
-
-        setUserData('balances', 1);
-      }
-      fetchData();
+      setUserData('balances', 1);
     }
   }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on mainnet and Matic networks
-  async function getTokenBalances() {
-    const addresses = await Global.API_ADDRESSES;
+  // async function getTokenBalances() {
+  //   const addresses = await Global.API_ADDRESSES;
 
-    const TREASURY_CONTRACT = maticWeb3.eth
-      .contract(Global.ABIs.CHILD_TOKEN)
-      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+  //   const TREASURY_CONTRACT = maticWeb3.eth
+  //     .contract(Global.ABIs.CHILD_TOKEN)
+  //     .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
 
-    try {
-      const amount = await Global.balanceOfToken(
-        TREASURY_CONTRACT,
-        contractAddress
-      );
+  //   try {
+  //     const amount = await Global.balanceOfToken(
+  //       TREASURY_CONTRACT,
+  //       contractAddress
+  //     );
 
-      return [amount, 0];
-    } catch (error) {
-      console.log('Get balances error: ' + error);
-    }
-  }
+  //     return [amount, 0];
+  //   } catch (error) {
+  //     console.log('Get balances error: ' + error);
+  //   }
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -104,11 +102,14 @@ const Admin = () => {
                 <span style={{ display: 'flex' }}>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text">Treasury Ballances</p>
-
-                    <p className="account-name">
-                      <div style={{ color: 'red' }}>{balances[0]}</div> MANA{' '}
-                      <div style={{ color: 'red' }}>{balances[1]}</div> DAI
-                    </p>
+                    <div style={{ color: 'red' }}>
+                      {state.adminBalances[0][0]}
+                    </div>{' '}
+                    DAI
+                    <div style={{ color: 'red' }}>
+                      {state.adminBalances[0][1]}
+                    </div>{' '}
+                    MANA{' '}
                   </span>
 
                   <Button disabled className="account-connected-play-button">

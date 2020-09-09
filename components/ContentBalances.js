@@ -246,7 +246,7 @@ const ContentBalances = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> 0 </p>
+            <p className="balances-text">{state.userBalances[0][1]}</p>
             <span className="balances-button-span">
               <Button disabled color="blue" className="balances-play-button">
                 DEPOSIT
@@ -282,7 +282,7 @@ const ContentBalances = (props) => {
                 paddingTop: '12px',
               }}
             />
-            <p className="balances-text"> {state.balances[0][1]} </p>
+            <p className="balances-text">{state.userBalances[1][1]}</p>
             <span className="balances-button-span">
               <Button
                 color="blue"

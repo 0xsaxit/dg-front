@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
-// import Aux from '../_Aux';
 import Spinner from '../Spinner';
 
 const ContentGames = (props) => {
@@ -110,9 +109,6 @@ const ContentGames = (props) => {
   if (isLoading) return <Spinner background={0} />;
 
   return (
-    // <Aux>
-    //   {isLoading ? <Spinner background={1} /> : null}
-
     <Grid>
       {games.map((game, index) => {
         return (
@@ -172,8 +168,6 @@ const ContentGames = (props) => {
         );
       })}
     </Grid>
-
-    // </Aux>
   );
 };
 

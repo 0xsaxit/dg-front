@@ -280,7 +280,7 @@ const MenuTop = () => {
               height="18px"
               src={Global.IMAGES.DAI_CIRCLE}
             />
-            {state.balances[1][1]} DAI
+            {state.userBalances[0][1]} DAI
           </span>
           <span className={menuStyle[10]}>
             <img
@@ -294,7 +294,7 @@ const MenuTop = () => {
               height="18px"
               src={Global.IMAGES.MANA_CIRCLE}
             />
-            {state.balances[0][1]} MANA
+            {state.userBalances[1][1]} MANA
           </span>
 
           <Button

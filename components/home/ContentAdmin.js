@@ -41,7 +41,29 @@ const ContentAdmin = (props) => {
     }
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentBalances() {
+    return (
+      <Grid className="balances-container">
+        <Grid.Row>
+          {games.slice(0, 3).map((game, i) => {
+            return balanceBox(game, i);
+          })}
+        </Grid.Row>
+
+        <Grid.Row>
+          {games.slice(3, 6).map((game, i) => {
+            return balanceBox(game, i + 3);
+          })}
+        </Grid.Row>
+      </Grid>
+    );
+  }
+
   function balanceBox(game, i) {
+    // console.log('number: ' + i);
+
     let number;
     if (i === 1) {
       number = 'one';
@@ -63,7 +85,7 @@ const ContentAdmin = (props) => {
         </span>
         <Divider className="balances-divider" />
 
-        <p className="balances-text">0</p>
+        <p className="balances-text">{state.adminBalances[1][i][1]}</p>
         <span className="balances-button-span">
           <Button color="blue" className="balances-play-button">
             DEPOSIT
@@ -76,24 +98,8 @@ const ContentAdmin = (props) => {
     );
   }
 
-  function contentBalances() {
-    return (
-      <Grid className="balances-container">
-        <Grid.Row>
-          {games.slice(0, 3).map((game, i) => {
-            return balanceBox(game, i);
-          })}
-        </Grid.Row>
-
-        <Grid.Row>
-          {games.slice(3, 6).map((game, i) => {
-            return balanceBox(game, i);
-          })}
-        </Grid.Row>
-      </Grid>
-    );
-  }
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentHistory() {
     return (
       <tbody>
@@ -157,6 +163,8 @@ const ContentAdmin = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentMachines() {
     return (
       <tbody>

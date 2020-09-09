@@ -505,7 +505,16 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
         }
 
         console.log('Get tokens per game done');
-        resolve(amount);
+
+        // console.log(amount * 22);
+
+        const amountAdjusted = (amount / FACTOR)
+          .toFixed(DECIMAL_PLACES)
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        // console.log(amountAdjusted);
+
+        resolve(amountAdjusted);
       });
     } catch (error) {
       console.log('Get tokens per game failed', error);

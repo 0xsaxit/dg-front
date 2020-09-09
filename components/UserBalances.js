@@ -3,7 +3,7 @@ import { GlobalContext } from '../store';
 import Web3 from 'web3';
 import Global from './Constants';
 
-function Balances() {
+function UserBalances() {
   // dispatch user's token balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -69,7 +69,7 @@ function Balances() {
           type: 'token_pings',
           data: 2,
         });
-        const amount = response[0][1] - balances[0][1];
+        const amount = response[1][1] - balances[1][1];
         updateHistory(amount, 'Deposit', 'Confirmed', ''); // add tx hash later
 
         clearInterval(interval);
@@ -83,7 +83,7 @@ function Balances() {
           type: 'token_pings',
           data: 3,
         });
-        const amount = balances[0][1] - response[0][1];
+        const amount = balances[1][1] - response[1][1];
         updateHistory(amount, 'Withdraw', 'Confirmed', ''); // add tx hash later
 
         clearInterval(interval);
@@ -154,8 +154,8 @@ function Balances() {
       );
 
       return [
-        [amount1, amount2],
         [0, 0],
+        [amount1, amount2],
       ];
     } catch (error) {
       console.log('Get balances error: ' + error);
@@ -165,4 +165,4 @@ function Balances() {
   return null;
 }
 
-export default Balances;
+export default UserBalances;

@@ -9,7 +9,7 @@ const initialState = {
   },
   userStatus: 0,
   userInfo: [],
-  balances: [[], []],
+  userBalances: [[], []],
   transactions: [[], []],
   tokenPings: 0,
   parcelData: {},
@@ -17,6 +17,15 @@ const initialState = {
   balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
+  adminBalances: [
+    [0, 0],
+    [
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+    ],
+  ],
   adminHistory: [[], []],
 };
 
@@ -43,7 +52,7 @@ const reducer = (state, action) => {
     case 'update_balances':
       return {
         ...state,
-        balances: action.data,
+        userBalances: action.data,
       };
 
     case 'update_history':
@@ -86,6 +95,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         activeStatus: action.data,
+      };
+
+    case 'admin_balances':
+      return {
+        ...state,
+        adminBalances: action.data,
       };
 
     case 'admin_history':
