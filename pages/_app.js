@@ -5,6 +5,7 @@ import '../static/css/main.css';
 import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
+import '../static/css/mobile.css';
 import UserStatus from '../components/UserStatus';
 import UserBalances from '../components/UserBalances';
 import Transactions from '../components/Transactions';

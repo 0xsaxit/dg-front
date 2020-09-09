@@ -67,7 +67,7 @@ function blog() {
       <div className="featured-blog-container">
         <p className="featured-text"> FEATURED POST</p>
         <Divider id="blog-divider" style={{ paddingBottom: '15px' }} />
-        <Link href="/blog/[id]" as="/blog/decentral-games-dcl-wearables-have-arrived">
+        <Link href="/blog/[id]" as="/blog/blackjack-is-live-in-time-for-decentral-games-casino-night">
           <a>
             <Grid
               style={{ paddingBottom: '120px' }}
@@ -76,7 +76,7 @@ function blog() {
               <Grid.Row>
                 <Grid.Column computer={11} tablet={16} mobile={16}>
                   <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1596651181/dgwearables_vxvwdp.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1599679135/Screen_Shot_2020-09-01_at_3.02.47_AM_dwtwxr.png"
                     className="featured-image"
                   />
                 </Grid.Column>
@@ -84,7 +84,7 @@ function blog() {
                   <div className="post-info">
                     <div className="top">
                       <div>
-                        <span className="blog-date">23 JUL 2020</span>
+                        <span className="blog-date">1 SEPT 2020</span>
                         <span className="blog-category">
                           Announcements
                         </span>
@@ -99,14 +99,15 @@ function blog() {
                             color: 'black',
                           }}
                         >
-                          Decentral Games DCL Wearables Have Arrived!
+                          Blackjack is live in time for Decentral Games Casino Night!
                         </h4>
                         <p
                           style={{
-                            color: 'rgb(97, 97, 97)'
+                            color: 'rgb(97, 97, 97)',
+                            lineHeight: '1.3'
                           }}
                         >
-                          Today, we debut our first line of Decentraland Wearables at the Decentraland summer 2020 fashion show. We had the amazing opportunity to design six custom Decentral Games wearables, each with a total supply of 100 as a legendary NFT.
+                          Blackjack is now live in Tominoya! Gameplay is in free PLAY tokens and each table supports up to 4 players. New players start with 5,000 PLAY and we'll have periodic top ups before competitions with prizes.
                         </p>
                       </div>
                     </div>

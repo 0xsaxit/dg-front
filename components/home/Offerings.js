@@ -173,7 +173,7 @@ class Offerings extends React.Component {
             <abbr className="account-hover" onClick={() => this.setPage(1)}>
               LEADERBOARD
             </abbr>
-            <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
+            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
           </p>
         ) : (
           <div style={{ width: '100%' }}>
@@ -188,7 +188,7 @@ class Offerings extends React.Component {
                 style={{
                   display: 'flex',
                   justifyContent: 'flex-end',
-                  width: 'calc(100% - 281px)',
+                  width: 'calc(100% - 272px)',
                   marginTop: '27px',
                 }}
                 className="leaderboard-coin-select"
@@ -196,8 +196,8 @@ class Offerings extends React.Component {
                 <span
                   className={
                     this.state.gameSelect === 'play'
-                      ? 'account-hover play'
-                      : 'account-hover'
+                      ? 'account-select play'
+                      : 'account-select'
                   }
                   onClick={() => this.handleChange('play')}
                 >
@@ -218,8 +218,8 @@ class Offerings extends React.Component {
                 <span
                   className={
                     this.state.gameSelect === 'mana'
-                      ? 'account-hover mana'
-                      : 'account-hover'
+                      ? 'account-select mana'
+                      : 'account-select'
                   }
                   onClick={() => this.handleChange('mana')}
                 >
@@ -239,8 +239,8 @@ class Offerings extends React.Component {
                 <span
                   className={
                     this.state.gameSelect === 'dai'
-                      ? 'account-hover dai'
-                      : 'account-hover'
+                      ? 'account-select dai'
+                      : 'account-select'
                   }
                   onClick={() => this.handleChange('dai')}
                 >
@@ -258,7 +258,7 @@ class Offerings extends React.Component {
                   DAI
                 </span>
                 <span
-                  className="account-hover"
+                  className="account-select dropdown"
                   style={{
                     marginRight: '0px',
                     fontWeight: '400',
@@ -276,7 +276,7 @@ class Offerings extends React.Component {
               </span>
             </span>
 
-            <Divider style={{ marginTop: '0px', paddingBottom: '21px' }} />
+            <Divider style={{ marginTop: '-2px', paddingBottom: '21px' }} />
 
             <span style={{ display: 'flex', width: '100%' }}>
               <span
@@ -289,10 +289,10 @@ class Offerings extends React.Component {
                 <span
                   className={
                     this.state.gameSelect === 'play'
-                      ? 'account-hover play'
-                      : 'account-hover play2'
+                      ? 'account-select play'
+                      : 'account-select play2'
                   }
-                  id="account-hover-play"
+                  id="account-select-play"
                   onClick={() => this.handleChange('play')}
                 >
                   <img
@@ -311,8 +311,8 @@ class Offerings extends React.Component {
                 <span
                   className={
                     this.state.gameSelect === 'mana'
-                      ? 'account-hover mana'
-                      : 'account-hover'
+                      ? 'account-select mana'
+                      : 'account-select'
                   }
                   onClick={() => this.handleChange('mana')}
                 >
@@ -332,8 +332,8 @@ class Offerings extends React.Component {
                 <span
                   className={
                     this.state.gameSelect === 'dai'
-                      ? 'account-hover dai'
-                      : 'account-hover'
+                      ? 'account-select dai'
+                      : 'account-select'
                   }
                   onClick={() => this.handleChange('dai')}
                 >
@@ -352,7 +352,7 @@ class Offerings extends React.Component {
                 </span>
               </span>
               <span
-                className="account-hover"
+                className="account-select dropdown"
                 id="intermediate-time-select"
                 style={{
                   marginRight: '0px',
@@ -370,7 +370,7 @@ class Offerings extends React.Component {
               </span>
             </span>
             <span
-              className="account-hover"
+              className="account-select dropdown"
               id="mobile-time-select"
               style={{
                 marginRight: '0px',
@@ -378,6 +378,7 @@ class Offerings extends React.Component {
               }}
             >
               <Dropdown
+                style={{ marginTop: '6px' }}
                 options={options}
                 defaultValue={options[0].value}
                 onChange={this.timeChange}

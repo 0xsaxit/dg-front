@@ -10,6 +10,8 @@ const BalancesOverlay = () => {
   // define local variables
   const [visibilityModal, setVisibilityModal] = useState('none');
   const [visibilityAccountPage, setVisibilityAccountPage] = useState('none');
+  const [isVisible, setIsVisible] = useState(false);
+  const [zIndexMobile, setZIndexMobile] = useState(1);
 
   useEffect(() => {
     if (state.balancesOverlay === 1) {
@@ -87,14 +89,12 @@ const BalancesOverlay = () => {
         </span>
       ) : null}
 
-      {/*<div className="main-modal-background" onClick={() => close()}>*/}
-        <div style={styles.balancesModal}>
-          <div className="page-container">
-            <div className="account-other-inner-container"></div>
-            <ContentBalances balancesOverlay={1} />
-          </div>
+      <div style={styles.balancesModal}>
+        <div className="page-container">
+          <div className="account-other-inner-container"></div>
+          <ContentBalances balancesOverlay={1} />
         </div>
-      {/*</div>*/}
+      </div>
 
       <div style={styles.balancesAccountPage}>
         <div className="page-container">

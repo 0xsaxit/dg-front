@@ -50,6 +50,7 @@ p {
 
 .dcl.navbar {
   border-bottom: 1px solid rgb(241, 241, 241) !important;
+  height: 60px;
 }
 
 #blog-divider {
@@ -65,7 +66,6 @@ p {
 }
 
 .other-menu-container.blog {
-  width: 100vw;
   background-color: white !important;
   border-bottom: 1px solid rgb(241, 241, 241) !important;
 }
@@ -95,26 +95,22 @@ p {
 /* ----------------------------------------- */
 
 .dcl.navbar .mobile-menu .item {
+  cursor: pointer;
+  font-size: 15px !important;
+  font-weight: 700;
+  letter-spacing: 0.5px !important;
   color: rgb(97, 97, 97);
-  letter-spacing: 0.5px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.25px !important;
   margin-left: -30px;
 }
 
 .dcl.navbar .mobile-menu .item.active {
-  color: rgb(10, 10, 10);
-  letter-spacing: 0.5px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.25px !important;
+  color: black;
 }
 
 .category-select.active {
   color: black;
   cursor: default;
-  border-bottom: 2px solid #2085f4;
+  border-bottom: 3px solid #2085f4;
 }
 
 .menu-mobile {
@@ -135,7 +131,7 @@ p {
 
 @media (width: 768px) {
   .dcl.navbar {
-    height: 64px;
+    height: 61px;
   }
 }
 
@@ -147,6 +143,7 @@ p {
   .dcl.navbar .navbar-mobile-menu .ui.header {
     color: rgb(97, 97, 97) !important;
     margin-left: -9px !important;
+    margin-top: 33px !important;
   }
   .ui.secondary.stackable.menu {
     display: none;
@@ -184,10 +181,6 @@ p {
 /*             MAIN BLOG PAGE CSS            */
 /* ----------------------------------------- */
 
-.post:nth-child(2) {
-  display: none !important;
-}
-
 .blog-home-container {
   max-width: 1400px;
   padding-left: 30px;
@@ -206,10 +199,11 @@ p {
 }
 
 .featured-text {
-  color: rgb(97, 97, 97);
   letter-spacing: 0.5px;
-  font-size: 16px;
-  letter-spacing: 0.25px !important;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px !important;
+  color: rgb(97, 97, 97);
 }
 
 .blog-date,
@@ -229,6 +223,9 @@ p {
 
 .featured-image {
   z-index: 1;
+  object-fit: cover;
+  height: 360px;
+  width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -257,11 +254,12 @@ a:hover {
 .category-select {
   cursor: pointer;
   letter-spacing: 0.5px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px !important;
   margin-right: 30px;
-  letter-spacing: 0.25px !important;
   color: rgb(97, 97, 97);
-  margin-bottom: -24px;
+  margin-bottom: -21px;
   margin-top: 21px;
 }
 
@@ -565,9 +563,13 @@ img.logo-image {
 
 .read-next-button:last-child:before {
   content: 'Next    ' !important;
-  margin-right: calc(100% - 82px);
+  margin-right: 100%;
   color: rgb(97, 97, 97);
   font-size: 14px;
+}
+
+.ui.button.read-next-button:hover {
+  filter: brightness(100%) !important;
 }
 
 @media (max-width: 660px) {

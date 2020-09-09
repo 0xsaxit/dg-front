@@ -1,28 +1,37 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Image, Button, Divider } from 'semantic-ui-react';
+import { Image, Button, Divider, Grid, Breadcrumb } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
 import Aux from '../_Aux';
 
 const detailsNFTs = {
   tominoya: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png',
-    'games-pic',
+    'nft-pic',
     'Tominoya, Vegas City',
-    '-120, 135',
-    'Tominoya is a Japanese themed casino built by Decentral Games. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
+    'LOCATION: -120, 135',
+    'Tominoya is a Japanese themed casino built by Decentral Games. Own a physical section of the virtual casino through an NFT that generates passive rent from our games.',
     'https://opensea.io/assets?query=tominoya',
     'https://decentral.games/blog/tominoya-casino-nft-sale',
   ],
   flamingos: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-06-18_at_12.27.19_PM_zoutwy.png',
-    'games-pic',
+    'nft-pic',
     'Flamingos, Vegas City',
-    '-126, 118',
-    'Flamingos is a casino built by Vegas City. Own a physical section of the virtual casino through an NFT that generates passive rent from the games. Decentral Games provides non-custodial slots, roulette, and blackjack games playable with crypto.',
+    'LOCATION: -126, 118',
+    'Flamingos is a casino built by Vegas City. Own a physical section of the virtual casino through an NFT that generates passive rent from our games.',
     'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
     'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
   ],
+  tracksuit_bottom: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599674407/tracksuit_bottom_dpt3uz.png',
+    'nft-pic',
+    'Tracksuit Bottom',
+    'LEGENDARY',
+    'The bottom of the decadent and elegant Decentral Games tracksuit fit. #drip',
+    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/65',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ]
 };
 
 const Tokens = () => {
@@ -43,51 +52,56 @@ const Tokens = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the NFT details object
   function buyNFTs() {
-    return Object.keys(detailsNFTs).map((item, i) => {
-      return (
-        <div className="nft-container" key={i}>
-          <div className="nft-image">
-            <Image
-              src={detailsNFTs[item][0]}
-              className={detailsNFTs[item][1]}
-              style={{ borderRadius: '3px' }}
-            />
+    return (
+      <div className="outter-nft-container">
+        {Object.keys(detailsNFTs).map((item, i) => (
+          <div className="nft-container" key={i}>
+            <div className="nft-image">
+              <Image
+                src={detailsNFTs[item][0]}
+                className={detailsNFTs[item][1]}
+                style={{ borderRadius: '3px' }}
+              />
+            </div>
+            <div className="nft-description">
+              <h3
+                className="nft-other-h3"
+              >
+                {detailsNFTs[item][2]}
+              </h3>
+              <span style={{ display: 'flex' }}>
+                <p className="nfts-info">{detailsNFTs[item][3]}</p>
+              </span>
+              <p
+                className="nft-other-p"
+                style={{ marginTop: '-12px', paddingTop: '15px' }}
+              >
+                {detailsNFTs[item][4]}
+              </p>
+
+              <span style={{ display: 'flex' }}>
+                <Button
+                  color="blue"
+                  className="nft-button"
+                  target="_blank"
+                  href={detailsNFTs[item][5]}
+                >
+                  PURCHASE NFT
+                </Button>
+                <Button
+                  className="nft-read-button two"
+                  target="_blank"
+                  href={detailsNFTs[item][6]}
+                >
+                  READ MORE
+                </Button>
+              </span>
+
+            </div>
           </div>
-          <div className="nft-description">
-            <h3
-              className="nft-other-h3"
-              style={{ textAlign: 'left', marginTop: '0px' }}
-            >
-              {detailsNFTs[item][2]}
-            </h3>
-            <span style={{ display: 'flex' }}>
-              <p className="nfts-info">LOCATION: {detailsNFTs[item][3]}</p>
-            </span>
-            <p
-              className="nft-other-p"
-              style={{ marginTop: '-12px', paddingTop: '15px' }}
-            >
-              {detailsNFTs[item][4]}
-            </p>
-            <Button
-              color="blue"
-              className="nft-button"
-              target="_blank"
-              href={detailsNFTs[item][5]}
-            >
-              PURCHASE NFT
-            </Button>
-            <Button
-              className="nft-read-button two"
-              target="_blank"
-              href={detailsNFTs[item][6]}
-            >
-              READ MORE
-            </Button>
-          </div>
-        </div>
-      );
-    });
+        ))}
+      </div>
+    );
   }
 
   function myNFTs() {
@@ -150,7 +164,7 @@ const Tokens = () => {
         <div className="account-other-inner-container ">
           {submenu()}
 
-          <Divider style={{ marginTop: '21px', paddingBottom: '21px' }} />
+          <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
           {NFTstate == 1 ? myNFTs() : buyNFTs()}
         </div>

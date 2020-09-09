@@ -18,7 +18,6 @@ const MenuTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
-  // const isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 
   const router = useRouter();
 
@@ -147,8 +146,8 @@ const MenuTop = () => {
             width: '39px',
             paddingTop: '15px',
             paddingBottom: '15px',
-            marginRight: '12px',
-            marginLeft: '23px',
+            marginRight: '9px',
+            marginLeft: '24px',
             height: '100%',
             position: 'relative',
             zIndex: '7',

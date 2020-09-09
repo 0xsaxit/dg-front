@@ -1,0 +1,328 @@
+/* ----------------------------------------- */
+/*                 MENU CSS                  */
+/* ----------------------------------------- */
+
+@media (min-width: 500px) {
+  .page-header-text {
+    display: none;
+  }
+}
+
+@media (max-width: 499px) {
+  .page-header-text {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 0px;
+    letter-spacing: 0.25px;
+    line-height: 1.4;
+    color: white;
+    margin-top: -66px !important;
+    position: relative;
+    z-index: 6;
+    width: 100px;
+    margin-left: 45px;
+  }
+  .page-header-text.dark {
+    color: black;
+    margin-top: -112px !important;
+    margin-bottom: 60px;
+  }
+  .page-header-text.dark.detail {
+    color: black;
+    margin-top: -76px !important;
+    margin-bottom: 45px;
+    margin-left: 66px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .sidebar-menu-text-2,
+  .sidebar-menu-text-3 {
+    display: none;
+  }
+}
+
+@media (min-width: 1070px) {
+  .dropdown-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 1069px) {
+  .menu-items-to-hide {
+    display: none;
+  }
+  .dashboard-menu-container,
+  .menu-container-dark {
+    margin-top: -360px !important;
+  }
+}
+
+/* ----------------------------------------- */
+/*               HOME PAGE CSS               */
+/* ----------------------------------------- */
+
+
+@media (min-height: 600px) {
+  .home-dashboard-mission {
+    margin-top: calc(50vh - 390px) !important;
+  }
+}
+
+@media (max-height: 599px) {
+  .home-dashboard-mission {
+    margin-top: -90px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .logged-out-button-span {
+    display: flex;
+    margin-left: calc(50% - 90px);
+    flex-direction: column;
+  }
+}
+
+/* ----------------------------------------- */
+/*             NFT/GAMES PAGE CSS            */
+/* ----------------------------------------- */
+
+@media (max-width: 590px) {
+  .games-pic,
+  .tominoya-pic {
+    min-width: calc(100vw - 75px) !important;
+    padding-right: 60px !important;
+    max-width: calc(100vw - 75px) !important;
+  }
+}
+
+@media (max-width: 499px) {
+  .games-pic,
+  .tominoya-pic {
+    min-width: calc(100vw - 75px) !important;
+    padding-right: 30px !important;
+    max-width: calc(100vw - 75px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .account-select.play2 {
+    margin-left: 9px !important;
+  }
+}
+
+@media (max-width: 499px) {
+  .main-container {
+    padding-bottom: 60px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .games-pic {
+    padding-bottom: 45px !important;
+  }
+}
+
+/* ----------------------------------------- */
+/*              DATA TABLE CSS               */
+/* ----------------------------------------- */
+
+@media (max-width: 991px) {
+  .table-header-text-1.date,
+  .table-body-text-1.date {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .table-header-text-1.status,
+  .table-body-text-1.status,
+  .table-header-text-1.bet,
+  .table-body-text-1.bet {
+    display: none;
+  }
+}
+
+/* ----------------------------------------- */
+/*           ACCOUNT BALANCES CSS            */
+/* ----------------------------------------- */
+
+@media (max-width: 991px) {
+  .balances-column.one,
+  .balances-column.two,
+  .balances-column.three {
+    max-width: 100% !important;
+  }
+  .balances-column.one,
+  .balances-column.two {
+    margin-bottom: 30px !important;
+  }
+  .balances-column.three {
+    margin-bottom: 90px !important;
+  }
+}
+
+/* ----------------------------------------- */
+/*         CLEAN THIS UP MOBILE CSS          */
+/* ----------------------------------------- */
+
+@media (max-width: 499px) {
+  .wallet_board,
+  .wallet_board_overlay,
+  .dashboard-image-container,
+  #mobile-casino-text,
+  video#myVideo.home-dashboard-video {
+    display: none !important;
+  }
+  .mobile-message-bar {
+    position: relative;
+    z-index: 999 !important;
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+  }
+  .right-menu-items {
+    width: 0px !important;
+  }
+  #mobile-menu-icon {
+    left: calc(100% - 42px);
+  }
+  .home-dashboard-content {
+    margin-right: 30px;
+    margin-top: 120px;
+  }
+  .home-dashboard-p {
+    width: 100%;
+  }
+  div.ui.vertical.segment {
+    top: 0px !important;
+  }
+  .mobile-footer {
+    color: white;
+    position: fixed;
+    display: none;
+  }
+  .home-dashboard {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
+    background-position: 75% !important;
+    background-color: transparent;
+    background-size: cover !important;
+    height: calc(100% - 27px) !important;
+    width: 100vw;
+    position: absolute;
+    overflow: hidden !important;
+    margin-top: -260px;
+  }
+  .logospin {
+    position: fixed;
+    display: block;
+    width: 60px;
+    margin-left: calc((100vw - 60px) / 2);
+    margin-top: calc((100vh - 180px) / 2);
+  }
+  .metamask-button {
+    display: none !important;
+  }
+  .account-other-inner-container {
+    width: calc(100% - 42px);
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+  #menu-logo {
+    margin-left: 14px !important;
+  }
+  .dashboard-menu-container {
+    margin-top: -360px !important;
+  }
+  .home-mission-content {
+    padding-top: 210px;
+  }
+  #intermediate-time-select {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-dashboard-mission {
+    margin-top: -60px !important;
+  }
+}
+
+#intermediate-time-select {
+  position: absolute;
+  right: 0;
+}
+
+@media (max-width: 399px) {
+  .home-dashboard-content {
+    margin-left: -9px !important;
+    margin-right: 30px;
+    margin-top: 90px;
+  }
+  .featured-casino-text {
+    font-size: 12px !important;
+  }
+  .home-dashboard-p {
+    font-size: 18px !important;
+  }
+  .home-dashboard-h1 {
+    font-size: 48px !important;
+  }
+  .home-mission-content {
+    padding-top: 190px;
+  }
+}
+
+@media (max-width: 350px) {
+  .home-mission-content {
+    padding-top: calc(50vh - 40px);
+  }
+}
+
+@media (min-width: 500px) {
+  .mobile-menu-image,
+  .mobile-menu-words,
+  .mobile-footer,
+  .demo-button-container,
+  #mobile-time-select {
+    display: none !important;
+  }
+}
+
+.mobile-demo-video {
+  width: 100%;
+  border-radius: 2px;
+  height: 500px;
+}
+
+#mobile-time-select {
+  padding-top: 30px !important;
+}
+
+@media (max-width: 800px) {
+  .grid-margin {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+  }
+  span.leaderboard-coin-select {
+    display: none !important;
+  }
+  #mobile-time-select {
+    margin-left: 0px !important;
+  }
+  .ui.dropdown {
+    margin-bottom: 30px !important;
+  }
+}
+
+@media (min-width: 801px) {
+  span.leaderboard-coin-select-mobile,
+  #intermediate-time-select {
+    display: none !important;
+  }
+}
+

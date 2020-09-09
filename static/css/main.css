@@ -43,47 +43,47 @@ p {
   border: none !important;
 }
 
-@media (min-width: 500px) {
-  .page-header-text {
-    display: none;
-  }
-}
-
-@media (max-width: 499px) {
-  .page-header-text {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 0px;
-    letter-spacing: 0.25px;
-    line-height: 1.4;
-    color: white;
-    margin-top: -66px !important;
-    position: relative;
-    z-index: 6;
-    width: 100px;
-    margin-left: 45px;
-  }
-  .page-header-text.dark {
-    color: black;
-    margin-top: -112px !important;
-    margin-bottom: 60px;
-  }
-  .page-header-text.dark.detail {
-    color: black;
-    margin-top: -76px !important;
-    margin-bottom: 45px;
-    margin-left: 66px !important;
-  }
-}
-
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
-@media (min-width: 1444px) {
-  .main-container {
+.ui.blue.button.metamask-button {
+  background-color: #2085f4;
+  color: white;
+  width: 240px;
+  font-size: 14px !important;
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-right: 30px;
+}
+
+.ui.button.modal-deposit-button {
+  background-color: #2085f4;
+  color: white;
+  width: 180px;
+  font-size: 14px !important;
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 9px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-right: 30px;
+}
+  
+@media (min-width: 1400px) {
+  .main-container,
+  .other-menu-container {
     padding-left: calc(100vw - 100%);
   }
+}
+
+.other-menu-container.blog {
+  padding-left: 0px;
 }
 
 .animating.ui.overlay.sidebar,
@@ -127,29 +127,6 @@ div.ui.segment.transparent-menu-segment {
   display: flex;
 }
 
-@media (max-width: 650px) {
-  .sidebar-menu-text-2,
-  .sidebar-menu-text-3 {
-    display: none;
-  }
-}
-
-@media (min-width: 1070px) {
-  .dropdown-menu {
-    display: none;
-  }
-}
-
-@media (max-width: 1069px) {
-  .menu-items-to-hide {
-    display: none;
-  }
-  .dashboard-menu-container,
-  .menu-container-dark {
-    margin-top: -360px !important;
-  }
-}
-
 .menu-container {
   display: flex !important;
   flex-direction: row !important;
@@ -186,7 +163,6 @@ div.ui.segment.transparent-menu-segment {
 
 .other-menu-container {
   position: relative;
-  width: 100vw;
   background-color: rgba(10, 10, 10, 1) !important;
 }
 
@@ -234,8 +210,8 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .right-menu-items {
-  width: calc(100% - 50px) !important;
-  margin-left: 50px;
+  width: calc(100% - 60px);
+  margin-left: 60px;
   display: flex !important;
   justify-content: flex-end !important;
   position: relative;
@@ -313,6 +289,54 @@ video.home-dashboard-video {
   /* z-index: -1; */
 }
 
+a.ui.blue.button.play-shimmer {
+  background-color: white;
+  color: black;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+}
+
+a.ui.blue.button.how-to-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 30px;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-left: calc(50% - 90px);
+}
+
+a.demo-button {
+  background-color: #2085f4 !important;
+  color: white !important;
+  width: 90px;
+  font-size: 14px !important;
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 9px 39px 9px 39px;
+  height: 39px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-right: 21px;
+}
+
+.demo-button-container {
+  position: absolute;
+  z-index: 3;
+  top: 87px;
+  right: 0;
+}
+
 .home-mission-content {
   position: relative;
   padding-left: 30px;
@@ -350,18 +374,6 @@ video.home-dashboard-video {
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
 }
-
-@media (min-height: 600px) {
-  .home-dashboard-mission {
-    margin-top: calc(50vh - 390px) !important;
-  }
-}
-
-@media (max-height: 599px) {
-  .home-dashboard-mission {
-    margin-top: -90px !important;
-  }
-}
   
 .home-dashboard-h2 {
   color: white !important;
@@ -388,14 +400,6 @@ video.home-dashboard-video {
 .logged-out-button-span {
   display: flex;
   justify-content: center;
-}
-
-@media (max-width: 600px) {
-  .logged-out-button-span {
-    display: flex;
-    margin-left: calc(50% - 90px);
-    flex-direction: column;
-  }
 }
 
 .home-dashboard-p {
@@ -458,20 +462,51 @@ video.home-dashboard-video {
 }
 
 /* ----------------------------------------- */
-/*                NFT PAGE CSS               */
+/*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
 
+.nft-pic {
+  width: 366px;
+}
+
+.my-nft-pic {
+  width: calc(100% + 16px);
+  max-width: 400px;
+  margin-top: -42px;
+  margin-left: -8px;
+}
+
+.outter-nft-container {
+  display: flex;
+  flex-wrap: wrap !important;
+  justify-content: space-between;
+  margin-top: -15px;
+}
+
 .nft-container {
+  width: 32%;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   margin-top: 21px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 30px;
   background-color: white;
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+@media (max-width: 1251px) {
+  .nft-container {
+    width: 48.5%;
+  }
+}
+
+@media (max-width: 851px) {
+  .nft-container {
+    width: 100%;
+  }
 }
 
 .ui.dropdown > .dropdown.icon {
@@ -488,6 +523,40 @@ video.home-dashboard-video {
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 0px;
   border-radius: 2px;
+}
+
+.account-select {
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px !important;
+  padding-right: 30px;
+  color: black;
+}
+
+.account-select.play {
+  background-color: #f5f6f8;
+  padding: 6px 9px 6px 9px;
+  margin-bottom: 15px;
+  margin-top: -6px;
+  border-radius: 2px;
+  margin-right: 21px;
+}
+
+.account-select.mana,
+.account-select.dai {
+  background-color: #f5f6f8;
+  padding: 6px 9px 6px 9px;
+  margin-bottom: 15px;
+  margin-top: -6px;
+  border-radius: 2px;
+  margin-left: -9px;
+  margin-right: 21px;
+}
+
+.account-select.dropdown {
+  padding-right: 0px;
 }
 
 @media (min-width: 500px) {
@@ -514,20 +583,13 @@ video.home-dashboard-video {
 }
 
 @media (max-width: 991px) {
-  .games-container,
-  .nft-container {
+  .games-container {
     flex-direction: column;
   }
 }
 
 .main-container {
   padding-bottom: 60px !important;
-}
-
-@media (max-width: 499px) {
-  .main-container {
-    padding-bottom: 60px !important;
-  }
 }
 
 .my-nft-row {
@@ -549,6 +611,10 @@ video.home-dashboard-video {
   margin-bottom: 14px !important;
 }
 
+.nfts-info.mine {
+  margin-top: -18px !important;
+}
+
 .nfts-info-2 {
   margin-bottom: 14px !important;
 }
@@ -556,7 +622,7 @@ video.home-dashboard-video {
 .nft-bold-content {
   font-size: 13px;
   font-weight: bold;
-  margin-bottom: -15px;
+  margin-bottom: -12px;
 }
 
 .nft-number-content {
@@ -569,16 +635,25 @@ video.home-dashboard-video {
   font-weight: 600;
   padding-bottom: 12px;
   color: black;
+  padding-top: 15px;
 }
 
 .nft-description {
   padding-bottom: 45px;
 }
 
-@media (max-width: 991px) {
-  .games-pic {
-    padding-bottom: 45px !important;
-  }
+a.ui.blue.button.play-button,
+.ui.blue.button.play-button {
+  background-color: #2085f4 !important;
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 13px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
 }
 
 .games-pic {
@@ -590,34 +665,60 @@ video.home-dashboard-video {
 
 .tominoya-pic {
   margin-top: -45px;
-  padding-right: 45px;
+  padding-right: 30px;
   padding-bottom: 30px;
-  min-width: 500px;
-  max-width: 500px !important;
+  width: 366px;
 }
 
-@media (max-width: 991px) {
-  .nft-description {
-    margin-top: -30px !important;
-  }
+.ui.blue.button.nft-button {
+  background-color: #2085f4;
+  color: white;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-top: 0px;
 }
 
-@media (max-width: 590px) {
-  .games-pic,
-  .tominoya-pic {
-    min-width: calc(100vw - 75px) !important;
-    padding-right: 60px !important;
-    max-width: calc(100vw - 75px) !important;
-  }
+.ui.button.nft-read-button {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-left: 18px;
 }
 
-@media (max-width: 499px) {
-  .games-pic,
-  .tominoya-pic {
-    min-width: calc(100vw - 75px) !important;
-    padding-right: 30px !important;
-    max-width: calc(100vw - 75px) !important;
-  }
+.ui.blue.button.games-button {
+  background-color: #2085f4;
+  color: white;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+}
+
+.ui.blue.button.my-nft-button {
+  background-color: #2085f4;
+  color: white;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
 }
 
 /* ----------------------------------------- */
@@ -711,22 +812,6 @@ table {
 .table-header-text-1.hash,
 .table-body-text-1.hash {
   margin-left: -60px !important;
-}
-
-@media (max-width: 991px) {
-  .table-header-text-1.date,
-  .table-body-text-1.date {
-    display: none;
-  }
-}
-
-@media (max-width: 650px) {
-  .table-header-text-1.status,
-  .table-body-text-1.status,
-  .table-header-text-1.bet,
-  .table-body-text-1.bet {
-    display: none;
-  }
 }
 
 .ui.table tr:first-child td {
@@ -901,41 +986,27 @@ table.ui.fixed.single.line.table {
 .account-hover {
   cursor: pointer;
   letter-spacing: 0.5px;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px !important;
   margin-right: 30px;
-  letter-spacing: 0.25px !important;
+  color: rgb(97, 97, 97);
 }
 
 .account-hover.active {
+  color: black;
   cursor: default;
-  border-bottom: 2px solid #2085f4;
-  padding-bottom: 23px !important;
+  font-weight: 700 !important;
+  border-bottom: 3px solid #2085f4;
+  padding-bottom: 18px !important;
 }
 
-.account-hover.play {
-  background-color: #f5f6f8;
-  padding: 6px 9px 6px 9px;
-  margin-bottom: 18px;
-  margin-top: -6px;
-  border-radius: 2px;
-  margin-right: 21px;
+.account-hover:hover {
+  color: black;
 }
 
-@media (max-width: 767px) {
-  .account-hover.play2 {
-    margin-left: 9px !important;
-  }
-}
-
-.account-hover.mana,
-.account-hover.dai {
-  background-color: #f5f6f8;
-  padding: 6px 9px 6px 9px;
-  margin-bottom: 18px;
-  margin-top: -6px;
-  border-radius: 2px;
-  margin-left: -9px;
-  margin-right: 21px;
+.ui.divider.tab-divider {
+  margin-top: 18px !important;
 }
 
 .pagination {
@@ -987,11 +1058,11 @@ svg.spanbox.disable {
 /*             DEPOSIT MODAL CSS             */
 /* ----------------------------------------- */
 
-.main-modal-background {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 4;
+.ui.button:hover,
+button.ui.button.matic-widget-button.balances-play-button-2:hover,
+button.ui.button.matic-widget-button.balances-play-button:hover {
+  transform: translateY(0px) !important;
+  filter: brightness(90%) !important;
 }
 
 .matic-overlay {
@@ -1354,21 +1425,6 @@ div.ui.grid.balances-container {
   letter-spacing: 0.25px;
   margin-top: 10px;
   margin-bottom: 20px;
-}
-
-@media (max-width: 991px) {
-  .balances-column.one,
-  .balances-column.two,
-  .balances-column.three {
-    max-width: 100% !important;
-  }
-  .balances-column.one,
-  .balances-column.two {
-    margin-bottom: 30px !important;
-  }
-  .balances-column.three {
-    margin-bottom: 90px !important;
-  }
 }
 
 .balances-button-span {
@@ -1780,178 +1836,6 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 }
 
 /* ----------------------------------------- */
-/*                BUTTONS CSS                */
-/* ----------------------------------------- */
-
-.ui.button:hover,
-button.ui.button.matic-widget-button.balances-play-button-2:hover,
-button.ui.button.matic-widget-button.balances-play-button:hover {
-  transform: translateY(0px) !important;
-  filter: brightness(90%) !important;
-}
-
-a.ui.blue.button.play-shimmer {
-  background-color: white;
-  color: black;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-}
-
-a.ui.blue.button.how-to-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 30px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  margin-left: calc(50% - 90px);
-}
-
-a.ui.blue.button.play-button,
-.ui.blue.button.play-button {
-  background-color: #2085f4 !important;
-  color: white;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-}
-
-button.ui.blue.button.modal-buttons {
-  background-color: #2085f4 !important;
-  color: white;
-  width: 150px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  position: absolute;
-  right: 45px;
-}
-
-.ui.blue.button.metamask-button {
-  background-color: #2085f4;
-  color: white;
-  width: 240px;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 15px;
-  padding: 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  margin-right: 30px;
-}
-
-.ui.blue.button.nft-button {
-  background-color: #2085f4;
-  color: white;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  margin-top: 12px;
-}
-
-.ui.button.nft-read-button {
-  background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  margin-left: 18px;
-}
-
-.ui.blue.button.games-button {
-  background-color: #2085f4;
-  color: white;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-}
-
-.ui.blue.button.my-nft-button {
-  background-color: #4c9df6;
-  color: white;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-}
-
-@media (max-width: 516px) {
-  .ui.button.nft-read-button,
-  .ui.blue.button.games-button,
-  .ui.blue.button.nft-button {
-    width: 100% !important;
-  }
-  .ui.blue.button.my-nft-button {
-    width: calc(100% - 21px) !important;
-  }
-  .ui.button.nft-read-button {
-    margin-left: 0px;
-    margin-top: 18px;
-  }
-}
-
-.ui.button.modal-deposit-button {
-  background-color: #2085f4;
-  color: white;
-  width: 180px;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 15px;
-  padding: 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  margin-right: 30px;
-}
-
-a.ui.blue.button.play-shimmer:hover,
-.ui.blue.button.metamask-button:hover {
-  transform: translateY(-1px);
-}
-
-button.ui.blue.button.modal-deposit-button:hover,
-button.ui.blue.button.modal-deposit-button:active,
-button.ui.blue.button.modal-deposit-button:focus {
-  background-color: #2085f4 !important;
-}
-
-/* ----------------------------------------- */
 /*           DISCORD BUTTON CSS              */
 /* ----------------------------------------- */
 
@@ -2054,183 +1938,3 @@ button.ui.blue.button.modal-deposit-button:focus {
   opacity: 1;
 }
 
-/* ----------------------------------------- */
-/*                MOBILE CSS                 */
-/* ----------------------------------------- */
-
-a.demo-button {
-  background-color: #2085f4 !important;
-  color: white !important;
-  width: 90px;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 15px;
-  padding: 9px 39px 9px 39px;
-  height: 39px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-  margin-right: 21px;
-}
-
-.demo-button-container {
-  position: absolute;
-  z-index: 3;
-  top: 87px;
-  right: 0;
-}
-
-@media (max-width: 499px) {
-  .wallet_board,
-  .wallet_board_overlay,
-  .dashboard-image-container,
-  #mobile-casino-text,
-  video#myVideo.home-dashboard-video {
-    display: none !important;
-  }
-  .mobile-message-bar {
-    position: relative;
-    z-index: 999 !important;
-    padding-left: 21px !important;
-    padding-right: 21px !important;
-  }
-  .right-menu-items {
-    width: 0px !important;
-  }
-  #mobile-menu-icon {
-    left: calc(100% - 42px);
-  }
-  .home-dashboard-content {
-    margin-right: 30px;
-    margin-top: 120px;
-  }
-  .home-dashboard-p {
-    width: 100%;
-  }
-  div.ui.vertical.segment {
-    top: 0px !important;
-  }
-  .mobile-footer {
-    color: white;
-    position: fixed;
-    display: none;
-  }
-  .home-dashboard {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.5)
-      ),
-      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
-    background-position: 75% !important;
-    background-color: transparent;
-    background-size: cover !important;
-    height: calc(100% - 27px) !important;
-    width: 100vw;
-    position: absolute;
-    overflow: hidden !important;
-    margin-top: -260px;
-  }
-  .logospin {
-    position: fixed;
-    display: block;
-    width: 60px;
-    margin-left: calc((100vw - 60px) / 2);
-    margin-top: calc((100vh - 180px) / 2);
-  }
-  .metamask-button {
-    display: none !important;
-  }
-  .account-other-inner-container {
-    width: calc(100% - 42px);
-    margin-left: 21px;
-    margin-right: 21px;
-  }
-  #menu-logo {
-    margin-left: 14px !important;
-  }
-  .dashboard-menu-container {
-    margin-top: -360px !important;
-  }
-  .home-mission-content {
-    padding-top: 210px;
-  }
-  #intermediate-time-select {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .home-dashboard-mission {
-    margin-top: -60px !important;
-  }
-}
-
-#intermediate-time-select {
-  position: absolute;
-  right: 0;
-}
-
-@media (max-width: 399px) {
-  .home-dashboard-content {
-    margin-left: -9px !important;
-    margin-right: 30px;
-    margin-top: 90px;
-  }
-  .featured-casino-text {
-    font-size: 12px !important;
-  }
-  .home-dashboard-p {
-    font-size: 18px !important;
-  }
-  .home-dashboard-h1 {
-    font-size: 48px !important;
-  }
-  .home-mission-content {
-    padding-top: 190px;
-  }
-}
-
-@media (max-width: 350px) {
-  .home-mission-content {
-    padding-top: calc(50vh - 40px);
-  }
-}
-
-@media (min-width: 500px) {
-  .mobile-menu-image,
-  .mobile-menu-words,
-  .mobile-footer,
-  .demo-button-container,
-  #mobile-time-select {
-    display: none !important;
-  }
-}
-
-.mobile-demo-video {
-  width: 100%;
-  border-radius: 2px;
-  height: 500px;
-}
-
-@media (max-width: 800px) {
-  .grid-margin {
-    margin-left: 0em !important;
-    margin-right: 0em !important;
-  }
-  span.leaderboard-coin-select {
-    display: none !important;
-  }
-  #mobile-time-select {
-    margin-left: 0px !important;
-  }
-  .ui.dropdown {
-    margin-bottom: 30px !important;
-  }
-}
-
-@media (min-width: 801px) {
-  span.leaderboard-coin-select-mobile,
-  #intermediate-time-select {
-    display: none !important;
-  }
-}
