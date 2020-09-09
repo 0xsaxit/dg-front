@@ -14,6 +14,7 @@ const Dashboard = () => {
   const [isZooming, setZooming] = useState(true);
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
+  const [onlineUsers, setOnlineUsers] = useState([[], []]);
   const [visited, setVisited] = useState(false);
   const [videoPlay, setVideoPlay] = useState(true);
 
@@ -46,6 +47,14 @@ const Dashboard = () => {
       // setTotalPlayers(json.totalPlayers);
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
+      setOnlineUsers(json.totalAddresses);
+
+
+      for (const [index, value] of json.totalAddresses.entries()) {
+        setOnlineUsers([json.totalAddresses[0]], [json.totalAddresses[1]]); 
+        console.log(onlineUsers);
+      }
+
       console.log('Total players: ' + json.totalPlayers);
 
       setLoading(false);
@@ -94,15 +103,29 @@ const Dashboard = () => {
 
   function playerNumbers() {
     return (
-      <span className="user-numbers-container-1" style={{ display: 'flex' }}>
-        <div className="online-dot"></div>
+      <div>
+        <span className="user-numbers-container-1" style={{ display: 'flex' }}>
+          <div className="online-dot"></div>
 
-        {!isLoading ? (
-          <p className="home-dashboard-p">
-            {playerCount} online in {realm}
-          </p>
-        ) : null}
-      </span>
+          {!isLoading ? (
+            <p className="home-dashboard-p">
+              {playerCount} online in {realm}
+            </p>
+          ) : null}
+        </span>
+        {/*<img
+          className="avatar-picture"
+          src={`https://events.decentraland.org/api/profile/${onlineUsers}/face.png`}
+          style={{
+            marginTop: '15px',
+            width: '45px',
+            display: 'flex',
+            border: '1px solid rgb(227, 232, 238)',
+            borderRadius: '100%',
+            boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+          }}
+        />*/}
+      </div>
     );
   }
 
