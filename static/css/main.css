@@ -504,6 +504,13 @@ a.demo-button {
   }
 }
 
+@media (min-width: 1252px) {
+  .ui.blue.button.nft-button,
+  .ui.button.nft-read-button {
+    width: 48.5% !important;
+  }
+}
+
 @media (max-width: 851px) {
   .nft-container {
     width: 100%;
