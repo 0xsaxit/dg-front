@@ -188,7 +188,7 @@ class Offerings extends React.Component {
                 style={{
                   display: 'flex',
                   justifyContent: 'flex-end',
-                  width: 'calc(100% - 272px)',
+                  width: 'calc(100% - 273px)',
                   marginTop: '27px',
                 }}
                 className="leaderboard-coin-select"
