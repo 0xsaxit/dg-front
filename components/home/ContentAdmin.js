@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Table, Button, Divider, Grid } from 'semantic-ui-react';
+import ModalFunds from '../modal/ModalFunds';
 import Global from '../Constants';
 
 const ContentAdmin = (props) => {
@@ -62,8 +63,6 @@ const ContentAdmin = (props) => {
   }
 
   function balanceBox(game, i) {
-    // console.log('number: ' + i);
-
     let number;
     if (i === 1) {
       number = 'one';
@@ -86,10 +85,14 @@ const ContentAdmin = (props) => {
         <Divider className="balances-divider" />
 
         <p className="balances-text">{state.adminBalances[1][i][1]}</p>
+
         <span className="balances-button-span">
-          <Button color="blue" className="balances-play-button">
+          {/* <Button color="blue" className="balances-play-button">
             DEPOSIT
-          </Button>
+          </Button> */}
+
+          <ModalFunds modalType={'deposit'} gameType={game} />
+
           <Button color="blue" className="balances-play-button-2">
             WITHDRAW
           </Button>

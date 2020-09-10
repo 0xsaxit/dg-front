@@ -28,7 +28,7 @@ const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
 const ACTIVE_PERIOD = 43200; // user account active period: 3600 == 1 hour
-const MATIC_NETWORK_ID = '80001';
+const MATIC_NETWORK_ID = 80001;
 const MATIC_URL = 'https://rpc-mumbai.matic.today';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today';
 const ADMIN_ADDRESSES = [
@@ -526,15 +526,14 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // deposit funds to parent contract
-function depositToParent(
-  gameType,
-  amount,
-  tokenName,
-  userAddress,
-  web3Default
-) {
+function depositToParent(gameType, tokenID, amount, userAddress, web3Default) {
   return new Promise(async (resolve, reject) => {
-    console.log('Deposit start:' + amount);
+    console.log('Deposit start: ' + amount);
+    console.log('User address: ' + userAddress);
+
+    console.log(gameType);
+    console.log(tokenID);
+    console.log(amount);
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -543,8 +542,8 @@ function depositToParent(
 
       PARENT_CONTRACT.addFunds(
         gameType,
+        tokenID,
         amount,
-        tokenName,
         {
           from: userAddress,
           gasLimit: web3Default.toHex(GAS_LIMIT),

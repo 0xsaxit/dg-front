@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import { GlobalContext } from '../../store';
+import Global from '../Constants';
 
 const MessageBar = () => {
   // get user's network, location, and active status from the Context API store
@@ -7,12 +9,10 @@ const MessageBar = () => {
 
   // define local variables
   const [message, setMessage] = useState('');
-
-  // const [loggedIn, setLoggedIn] = useState(false);
+  const [adminError, setAdminError] = useState(false);
 
   let isSafari = false;
-
-  // let loggedIn = false;
+  const router = useRouter();
 
   // using Safari browser
   useEffect(() => {
@@ -35,22 +35,16 @@ const MessageBar = () => {
     }
   }, []);
 
-  // check for MetaMask login
-  // useEffect(() => {
-  //   if (window.ethereum) {
-  //     const address = window.web3.currentProvider.selectedAddress;
-
-  //     if (address) {
-  //       // setLoggedIn(true);
-  //       // loggedIn = true;
-
-  //       dispatch({
-  //         type: 'is_loggedIn',
-  //         data: true,
-  //       });
-  //     }
-  //   }
-  // }, [state.userStatus]);
+  // notify admins to switch to Matic Network
+  useEffect(() => {
+    if (router.pathname === '/admin') {
+      if (state.networkID !== Global.MATIC_NETWORK_ID) {
+        setAdminError(true);
+      } else {
+        setAdminError(false);
+      }
+    }
+  }, [state.networkID]);
 
   useEffect(() => {
     if (isSafari) {
@@ -59,6 +53,10 @@ const MessageBar = () => {
       setMessage('Please enable MetaMask to play games');
     } else if (!state.userStatus) {
       setMessage('Please log in to MetaMask to play games');
+    } else if (adminError) {
+      setMessage(
+        'You must switch to Matic Network to deposit and withdraw funds'
+      );
     } else if (state.networkID !== 5) {
       setMessage(
         'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
@@ -81,8 +79,8 @@ const MessageBar = () => {
   }, [
     isSafari,
     state.networkID,
-    // state.isLoggedIn,
     state.userStatus,
+    adminError,
     state.activeStatus,
   ]);
 

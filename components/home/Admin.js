@@ -19,10 +19,6 @@ const Admin = () => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  // const [balances, setBalances] = useState([[0], [0]]);
-
-  let contractAddress = '';
-  let maticWeb3 = {};
 
   useEffect(() => {
     if (state.userStatus) {
@@ -39,46 +35,9 @@ const Admin = () => {
 
   useEffect(() => {
     if (state.userStatus) {
-      // maticWeb3 = new window.Web3(
-      //   new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      // );
-
-      // async function fetchData() {
-      //   const addresses = await Global.API_ADDRESSES;
-      //   contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-
-      //   const amounts = await getTokenBalances();
-      //   setBalances(amounts);
-
-      //   setUserData('balances', 1);
-      // }
-      // fetchData();
-
       setUserData('balances', 1);
     }
   }, [state.userStatus]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on mainnet and Matic networks
-  // async function getTokenBalances() {
-  //   const addresses = await Global.API_ADDRESSES;
-
-  //   const TREASURY_CONTRACT = maticWeb3.eth
-  //     .contract(Global.ABIs.CHILD_TOKEN)
-  //     .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
-
-  //   try {
-  //     const amount = await Global.balanceOfToken(
-  //       TREASURY_CONTRACT,
-  //       contractAddress
-  //     );
-
-  //     return [amount, 0];
-  //   } catch (error) {
-  //     console.log('Get balances error: ' + error);
-  //   }
-  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
