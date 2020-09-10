@@ -175,25 +175,54 @@ const ContentBalances = (props) => {
         <Grid.Row>
           <Grid.Column
             computer={5}
-            tablet={16}
+            tablet={8}
             mobile={16}
             className="balances-column one"
           >
-            <p className="balances-token-name">Play</p>
-            <Divider className="balances-divider" />
-            <img
-              src={Global.IMAGES.PLAY_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                marginLeft: 'calc(50% - 30px)',
-                paddingTop: '12px',
-              }}
-            />
-            <p className="balances-text"> {state.userInfo[2]} </p>
+
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <a
+                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                  target="_blank"
+                >
+                  <img
+                    src={Global.IMAGES.PLAY_CIRCLE}
+                    style={{
+                      width: '60px',
+                      display: 'flex',
+                      paddingTop: '12px',
+                    }}
+                  />
+                </a>
+              </span>
+              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '7px' }}>
+                <p className="welcome-text"> Play </p>
+                <p className="account-name">{state.userInfo[2]}</p>
+              </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                disabled
+                className="balances-top-button"
+                target="_blank"
+                style={{ marginTop: '-75px' }}
+              >
+                FREE
+              </Button>
+            </span>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Total Earned </p>
+              <p className="earned-amount"> 0 </p>
+            </span>
+            <Divider />
+
             <span className="balances-button-span">
               <Button
-                color="blue"
                 className="balances-play-button"
                 href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
                 target="_blank"
@@ -203,16 +232,14 @@ const ContentBalances = (props) => {
               {state.userInfo[3] === 2 ? (
                 <Button
                   disabled
-                  color="blue"
-                  className="balances-play-button-2"
+                  className="balances-play-button"
                 >
                   TOP UP
                 </Button>
               ) : (
                 <Button
                   onClick={() => topUp()}
-                  color="blue"
-                  className="balances-play-button-2"
+                  className="balances-play-button"
                 >
                   TOP UP
                 </Button>
@@ -222,36 +249,57 @@ const ContentBalances = (props) => {
 
           <Grid.Column
             computer={5}
-            tablet={16}
+            tablet={8}
             mobile={16}
             className="balances-column two"
           >
-            <span className="name-purchase-span">
-              <p className="balances-token-name"> Dai </p>
+
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <a
+                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                  target="_blank"
+                >
+                  <img
+                    src={Global.IMAGES.DAI_CIRCLE}
+                    style={{
+                      width: '60px',
+                      display: 'flex',
+                      paddingTop: '12px',
+                    }}
+                  />
+                </a>
+              </span>
+              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '7px' }}>
+                <p className="welcome-text"> Dai </p>
+                <p className="account-name">{state.userBalances[0][1]}</p>
+              </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
                 disabled
-                className="balances-purchase-button"
-                onClick={() => show_transak()}
+                className="balances-top-button two"
+                target="_blank"
+                style={{ marginTop: '-75px' }}
               >
                 PURCHASE
               </Button>
             </span>
-            <Divider className="balances-divider" />
-            <img
-              src={Global.IMAGES.DAI_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                marginLeft: 'calc(50% - 30px)',
-                paddingTop: '12px',
-              }}
-            />
-            <p className="balances-text">{state.userBalances[0][1]}</p>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Total Earned </p>
+              <p className="earned-amount"> 0 </p>
+            </span>
+
+            <Divider />
             <span className="balances-button-span">
               <Button disabled color="blue" className="balances-play-button">
                 DEPOSIT
               </Button>
-              <Button disabled color="blue" className="balances-play-button-2">
+              <Button disabled color="blue" className="balances-play-button">
                 WITHDRAW
               </Button>
             </span>
@@ -259,30 +307,51 @@ const ContentBalances = (props) => {
 
           <Grid.Column
             computer={5}
-            tablet={16}
+            tablet={8}
             mobile={16}
             className="balances-column three"
           >
-            <span className="name-purchase-span">
-              <p className="balances-token-name"> Mana </p>
+
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <a
+                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                  target="_blank"
+                >
+                  <img
+                    src={Global.IMAGES.MANA_CIRCLE}
+                    style={{
+                      width: '60px',
+                      display: 'flex',
+                      paddingTop: '12px',
+                    }}
+                  />
+                </a>
+              </span>
+              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '7px' }}>
+                <p className="welcome-text"> Mana </p>
+                <p className="account-name">{state.userBalances[1][1]}</p>
+              </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
-                className="balances-purchase-button"
+                className="balances-top-button"
                 onClick={() => show_transak()}
+                style={{ marginTop: '-75px' }}
               >
                 PURCHASE
               </Button>
             </span>
-            <Divider className="balances-divider" />
-            <img
-              src={Global.IMAGES.MANA_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                marginLeft: 'calc(50% - 30px)',
-                paddingTop: '12px',
-              }}
-            />
-            <p className="balances-text">{state.userBalances[1][1]}</p>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Total Earned </p>
+              <p className="earned-amount"> 0 </p>
+            </span>
+
+            <Divider />
             <span className="balances-button-span">
               <Button
                 color="blue"
@@ -295,7 +364,7 @@ const ContentBalances = (props) => {
               </Button>
               <Button
                 color="blue"
-                className="matic-widget-button balances-play-button-2"
+                className="matic-widget-button balances-play-button"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
                 onClick={() => initializePings()}

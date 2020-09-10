@@ -31,11 +31,7 @@
 /*            ZOOM ANIMATION CSS             */
 /* ----------------------------------------- */
 
-.dg-presents-span {
-  display: flex;
-  justify-content: center;
-  margin-top: calc(50vh - 64px);
-}
+
 
 .dg-presents-spinner {
   width: 60px;

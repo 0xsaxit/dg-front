@@ -158,9 +158,8 @@ const Dashboard = () => {
               </h2>
               <span className="logged-out-button-span">
                 <Button
-                  disabled
                   color="blue"
-                  className="play-button"
+                  className="demo-button"
                   style={{ marginRight: '30px' }}
                 >
                   DEMO

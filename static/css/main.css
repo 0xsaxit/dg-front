@@ -257,15 +257,10 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .home-video-container video {
-  /* Make video to at least 100% wide and tall */
   min-width: 100%;
   min-height: 100%;
-
-  /* Setting width & height to auto prevents the browser from stretching or squishing the video */
   width: auto;
   height: auto;
-
-  /* Center the video */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -316,18 +311,18 @@ a.ui.blue.button.how-to-button {
   margin-left: calc(50% - 90px);
 }
 
-a.demo-button {
+.ui.blue.button.demo-button {
+  position: relative;
   background-color: #2085f4 !important;
-  color: white !important;
-  width: 90px;
-  font-size: 14px !important;
+  color: white;
+  width: 180px;
+  font-size: 14px;
   font-weight: 600;
-  margin-top: 15px;
-  padding: 9px 39px 9px 39px;
-  height: 39px;
+  margin-top: 20px;
+  padding: 13px;
+  height: 42px;
   letter-spacing: 1.25px;
   border-radius: 2px;
-  margin-right: 21px;
 }
 
 .demo-button-container {
@@ -1277,6 +1272,25 @@ span.matic-icon-background-2 {
   margin-bottom: -3px;
 }
 
+.earned-text {
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: rgb(97, 97, 97);
+  text-transform: uppercase;
+  padding-top: 9px !important;
+  margin-bottom: 7px;
+}
+
+.earned-amount {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: black;
+  text-transform: uppercase;
+  padding-top: 4px !important;
+}
+
 div.ui.grid.balances-container {
   padding-top: 130px;
   max-width: 1343px;
@@ -1436,26 +1450,55 @@ div.ui.grid.balances-container {
 }
 
 .balances-button-span {
+  margin-top: 30px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.ui.blue.button.balances-play-button {
-  background-color: #2085f4 !important;
-  margin-right: 18px;
-  color: white;
-  width: calc(50% - 30px);
-  min-width: 115px;
-  max-width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 0px;
-  padding: 10px 9px 9px 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
+.ui.disabled.button.balances-top-button,
+.ui.button.balances-top-button {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: 1px;
+  font-size: 12px;
+  font-weight: bold !important;
   border-radius: 2px;
-  position: relative;
-  z-index: 5;
+  height: 27px;
+  padding-top: 4px;
+  max-width: 90px !important;
+  min-width: 90px;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+  opacity: 100% !important;
+}
+
+.ui.button.balances-play-button {
+  color: white;
+  background-color: #2085f4;
+  margin-top: 1px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 46.5% !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+}
+
+.ui.disabled.button.balances-top-button.two {
+  opacity: 45% !important;
+}
+
+.ui.button.balances-top-button:hover {
+  filter: brightness(100%) !important;
+}
+
+button.ui.button.matic-widget-button.balances-button {
+  text-align: center !important;
 }
 
 button.ui.button.matic-widget-button.balances-play-button {
@@ -1466,18 +1509,17 @@ button.ui.button.matic-widget-button.balances-play-button {
   border-bottom-right-radius: 2px;
   text-align: center !important;
   background-color: #2085f4 !important;
-  margin-right: 18px !important;
   color: white !important;
-  width: calc(50% - 30px) !important;
-  min-width: 115px !important;
-  max-width: 180px !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  margin-top: 0px !important;
-  padding: 10px 9px 9px 9px !important;
-  height: 39px !important;
-  letter-spacing: 1.25px !important;
-  border-radius: 2px !important;
+  margin-top: 1px;
+  font-size: 12px;
+  font-weight: bold !important;
+  height: 34px;
+  padding-top: 8px;
+  max-width: 110px !important;
+  min-width: 120px;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px !important;
   position: relative !important;
   z-index: 5 !important;
   font-family: Lato, sans-serif !important;
@@ -1505,21 +1547,6 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   position: relative !important;
   z-index: 5 !important;
   font-family: Lato, sans-serif !important;
-}
-
-.ui.blue.button.balances-play-button-2 {
-  background-color: #2085f4 !important;
-  color: white;
-  width: calc(50% - 30px);
-  min-width: 115px;
-  max-width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 0px;
-  padding: 10px 9px 9px 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
 }
 
 .ui.blue.button.balances-purchase-button {

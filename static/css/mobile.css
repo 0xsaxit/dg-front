@@ -151,6 +151,21 @@
   .balances-column.one,
   .balances-column.two,
   .balances-column.three {
+    max-width: 48.5% !important;
+  }
+  .balances-column.one,
+  .balances-column.two {
+    margin-bottom: 30px !important;
+  }
+  .balances-column.three {
+    margin-bottom: 90px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .balances-column.one,
+  .balances-column.two,
+  .balances-column.three {
     max-width: 100% !important;
   }
   .balances-column.one,
@@ -161,6 +176,7 @@
     margin-bottom: 90px !important;
   }
 }
+
 
 /* ----------------------------------------- */
 /*         CLEAN THIS UP MOBILE CSS          */
