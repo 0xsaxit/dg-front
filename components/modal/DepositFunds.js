@@ -19,17 +19,42 @@ const DepositFunds = (props) => {
       userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-      if (transaction) depositFunds(); // MetaMask popup window
+      if (transaction && amount) {
+        depositFunds(); // MetaMask popup window
+      } else {
+        setTransaction(false);
+      }
     }
-  }, [state.userStatus, transaction]);
+  }, [state.userStatus, transaction, amount]);
 
   function inputChange(e) {
     const valueWei = e.target.value * Global.FACTOR;
     setAmount(valueWei);
   }
 
-  function depositFunds() {
-    Global.depositToParent(props.gameTypeInt, 0, amount, userAddress, web3);
+  async function depositFunds() {
+    props.showModal(false); // close the modal
+
+    const txHash = await Global.depositToParent(
+      props.gameTypeInt,
+      0,
+      amount,
+      userAddress,
+      web3
+    );
+    console.log('Tx Hash: ' + txHash);
+
+    initializePings();
+  }
+
+  // start pinging the token contract for deposit/withdraw confirmation
+  function initializePings() {
+    console.log('Ping token contract');
+
+    dispatch({
+      type: 'token_pings',
+      data: 1,
+    });
   }
 
   return (

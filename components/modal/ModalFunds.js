@@ -6,6 +6,7 @@ import WithdrawFunds from './WithdrawFunds';
 const ModalFunds = (props) => {
   // define local variables
   const [gameTypeInt, setGameTypeInt] = useState(0);
+  const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
     if (props.gameType == 'Slots') {
@@ -19,20 +20,30 @@ const ModalFunds = (props) => {
     }
   }, []);
 
+  function showModal(toggle) {
+    setModalState(toggle);
+  }
+
   return (
     <Modal
+      open={modalState}
       trigger={
-        <Button color="blue" className="balances-play-button">
+        <Button
+          color="blue"
+          className="balances-play-button"
+          onClick={() => showModal(true)}
+        >
           {props.modalType}
         </Button>
       }
       closeIcon
+      onClose={() => showModal(false)}
     >
       <Modal.Content>
         {props.modalType === 'deposit' ? (
-          <DepositFunds gameTypeInt={gameTypeInt} />
+          <DepositFunds gameTypeInt={gameTypeInt} showModal={showModal} />
         ) : (
-          <WithdrawFunds gameTypeInt={gameTypeInt} />
+          <WithdrawFunds gameTypeInt={gameTypeInt} showModal={showModal} />
         )}
       </Modal.Content>
     </Modal>

@@ -454,37 +454,6 @@ function balanceOfToken(tokenContract, userOrContractAddress) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// get balance from parent contract and allocated tokens from slots and roulette games
-// function getBalanceParent(tokenName, web3Default) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Get balance of parent contract');
-
-//     try {
-//       const PARENT_CONTRACT = web3Default.eth
-//         .contract(ABIs.TREASURY_CONTRACT)
-//         .at(TREASURY_CONTRACT_ADDRESS);
-
-//       PARENT_CONTRACT.getBalanceByTokenName(tokenName, async function (
-//         err,
-//         amount
-//       ) {
-//         if (err) {
-//           console.log('Get balance failed', err);
-//           reject(false);
-//         }
-
-//         console.log('Get balance done');
-//         resolve(amount);
-//       });
-//     } catch (error) {
-//       console.log('Get balance failed', error);
-//       reject(false);
-//     }
-//   });
-// }
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // get allocated tokens for specified game
 function getTokensGame(gameIndex, tokenIndex, web3Default) {
   return new Promise(async (resolve, reject) => {
@@ -503,17 +472,11 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
           console.log('Get tokens per game failed', err);
           reject(false);
         }
-
         console.log('Get tokens per game done');
-
-        // console.log(amount * 22);
 
         const amountAdjusted = (amount / FACTOR)
           .toFixed(DECIMAL_PLACES)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-        // console.log(amountAdjusted);
-
         resolve(amountAdjusted);
       });
     } catch (error) {
@@ -529,11 +492,6 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
 function depositToParent(gameType, tokenID, amount, userAddress, web3Default) {
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start: ' + amount);
-    console.log('User address: ' + userAddress);
-
-    console.log(gameType);
-    console.log(tokenID);
-    console.log(amount);
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -746,27 +704,27 @@ function getSignatureParameters(signature, web3Default) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // return confirmation hash
-function getConfirmedTx(txHash, web3Default) {
-  return new Promise(async (resolve, reject) => {
-    let finish = false;
+// function getConfirmedTx(txHash, web3Default) {
+//   return new Promise(async (resolve, reject) => {
+//     let finish = false;
 
-    while (!finish) {
-      web3Default.eth.getTransactionReceipt(txHash, (err, res) => {
-        if (err) {
-          finish = true;
-          reject(err);
-        }
-        if (res) {
-          finish = true;
-          resolve(res);
-        }
-      });
+//     while (!finish) {
+//       web3Default.eth.getTransactionReceipt(txHash, (err, res) => {
+//         if (err) {
+//           finish = true;
+//           reject(err);
+//         }
+//         if (res) {
+//           finish = true;
+//           resolve(res);
+//         }
+//       });
 
-      const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-      await delay(2000);
-    }
-  });
-}
+//       const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+//       await delay(2000);
+//     }
+//   });
+// }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -805,7 +763,7 @@ export default {
   depositToParent,
   withdrawFromParent,
   executeMetaTransaction,
-  getConfirmedTx,
+  // getConfirmedTx,
   // fetchUserStatus,
   // fetchCountryCode,
   // fetchParcelData,
