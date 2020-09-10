@@ -126,21 +126,23 @@ class Offerings extends React.Component {
             <p className="nft-other-p" style={{ paddingTop: '2px' }}>
               {detailsGames[item][3]}
             </p>
-            <Button
-              color="blue"
-              className="games-button"
-              target="_blank"
-              href={detailsGames[item][6]}
-            >
-              PLAY NOW
-            </Button>
-            <Button
-              className="games-read-button"
-              target="_blank"
-              href={detailsGames[item][7]}
-            >
-              READ MORE
-            </Button>
+            <span style={{ display: 'flex' }}>
+              <Button
+                color="blue"
+                className="games-button"
+                target="_blank"
+                href={detailsGames[item][6]}
+              >
+                PLAY NOW
+              </Button>
+              <Button
+                className="games-read-button"
+                target="_blank"
+                href={detailsGames[item][7]}
+              >
+                READ MORE
+              </Button>
+            </span>
           </div>
         </div>
       );

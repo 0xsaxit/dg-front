@@ -109,6 +109,15 @@
   }
 }
 
+@media (max-width: 499px) {
+  .ui.button.games-read-button {
+    width: 50%;
+  }
+  .ui.blue.button.games-button {
+    width: 50%;
+  }
+}
+
 @media (max-width: 767px) {
   .account-select.play2 {
     margin-left: 9px !important;
