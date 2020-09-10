@@ -55,10 +55,11 @@ const ContentTransactions = (props) => {
                 <img
                   src={Global.IMAGES.ICON_MANA}
                   style={{
-                    width: '25px',
-                    paddingRight: '6px',
+                    width: '21px',
+                    marginRight: '6px',
                     verticalAlign: 'middle',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                 />
                 {row.type}
@@ -123,20 +124,22 @@ const ContentTransactions = (props) => {
                   <img
                     src={Global.IMAGES.ICON_MANA}
                     style={{
-                      width: '24px',
-                      paddingRight: '6px',
+                      width: '21px',
+                      marginRight: '6px',
                       verticalAlign: 'middle',
                       marginTop: '-2px',
+                      borderRadius: '100%',
                     }}
                   />
                 ) : (
                   <img
                     src={Global.IMAGES.ICON_PLAY}
                     style={{
-                      width: '24px',
-                      paddingRight: '6px',
+                      width: '21px',
+                      marginRight: '6px',
                       verticalAlign: 'middle',
                       marginTop: '-2px',
+                      borderRadius: '100%',
                     }}
                   />
                 )}

@@ -272,11 +272,11 @@ const MenuTop = () => {
               style={{
                 verticalAlign: 'middle',
                 marginRight: '6px',
-                marginTop: '-1px',
+                marginTop: '-4px',
               }}
               className="image inline"
-              width="18px"
-              height="18px"
+              width="21px"
+              height="21px"
               src={Global.IMAGES.DAI_CIRCLE}
             />
             {state.userBalances[0][1]} DAI
@@ -286,11 +286,11 @@ const MenuTop = () => {
               style={{
                 verticalAlign: 'middle',
                 marginRight: '6px',
-                marginTop: '-1px',
+                marginTop: '-4px',
               }}
               className="image inline"
-              width="18px"
-              height="18px"
+              width="21px"
+              height="21px"
               src={Global.IMAGES.MANA_CIRCLE}
             />
             {state.userBalances[1][1]} MANA
