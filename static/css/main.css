@@ -275,7 +275,6 @@ video.home-dashboard-video {
 
 .home-dashboard-content {
   position: relative;
-  padding-top: calc(100vh - 670px);
   padding-left: 30px;
   padding-right: 30px;
   max-width: 1400px !important;
@@ -560,12 +559,6 @@ a.ui.blue.button.how-to-button {
 
 .account-select.dropdown {
   padding-right: 0px;
-}
-
-@media (min-width: 500px) {
-  .ui.dropdown .menu {
-    left: calc(-100% - 24px) !important;
-  }
 }
 
 .games-container {
@@ -1446,21 +1439,19 @@ div.ui.grid.balances-container {
 }
 
 .ui.button.account-connected-play-button {
-  background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  color: white;
+  background-color: #2085f4;
   margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
   border-radius: 2px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 100px !important;
-  min-width: 100px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 120px !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-left: calc(100% - 473px);
+  margin-top: -72px;
 }
 
 .balances-divider {

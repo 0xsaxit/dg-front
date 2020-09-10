@@ -67,16 +67,16 @@ function blog() {
       <div className="featured-blog-container">
         <p className="featured-text"> FEATURED POST</p>
         <Divider id="blog-divider" style={{ paddingBottom: '15px' }} />
-        <Link href="/blog/[id]" as="/blog/blackjack-is-live-in-time-for-decentral-games-casino-night">
+        <Link href="/blog/[id]" as="/blog/decentralgames-secures-investment">
           <a>
             <Grid
-              style={{ paddingBottom: '120px' }}
+              style={{ paddingBottom: '90px' }}
               className="featured-blog-grid"
             >
               <Grid.Row>
                 <Grid.Column computer={11} tablet={16} mobile={16}>
                   <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1599679135/Screen_Shot_2020-09-01_at_3.02.47_AM_dwtwxr.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1599777537/Group_6_vj1jdx.png"
                     className="featured-image"
                   />
                 </Grid.Column>
@@ -84,7 +84,7 @@ function blog() {
                   <div className="post-info">
                     <div className="top">
                       <div>
-                        <span className="blog-date">1 SEPT 2020</span>
+                        <span className="blog-date">9 SEPT 2020</span>
                         <span className="blog-category">
                           Announcements
                         </span>
@@ -99,7 +99,7 @@ function blog() {
                             color: 'black',
                           }}
                         >
-                          Blackjack is live in time for Decentral Games Casino Night!
+                          Decentral Games Secures Investment to Accelerate Development of Virtual World-Class Casinos
                         </h4>
                         <p
                           style={{
@@ -107,7 +107,7 @@ function blog() {
                             lineHeight: '1.3'
                           }}
                         >
-                          Blackjack is now live in Tominoya! Gameplay is in free PLAY tokens and each table supports up to 4 players. New players start with 5,000 PLAY and we'll have periodic top ups before competitions with prizes.
+                          We are pleased to announce we’ve closed our pre-seed round, raising over $400,000 in investments and grants with participation from Metaverse Ventures
                         </p>
                       </div>
                     </div>

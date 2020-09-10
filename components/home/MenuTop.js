@@ -273,6 +273,7 @@ const MenuTop = () => {
                 verticalAlign: 'middle',
                 marginRight: '6px',
                 marginTop: '-4px',
+                borderRadius: '100%',
               }}
               className="image inline"
               width="21px"
@@ -287,6 +288,7 @@ const MenuTop = () => {
                 verticalAlign: 'middle',
                 marginRight: '6px',
                 marginTop: '-4px',
+                borderRadius: '100%',
               }}
               className="image inline"
               width="21px"

@@ -104,7 +104,9 @@ const History = () => {
                       <p className="account-name">{state.userInfo[0]}</p>
                     )}
                   </span>
+                </span>
 
+                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {state.userStatus === 6 ? (
                     <ButtonAuthorize />
                   ) : state.userStatus === 7 ? (
@@ -115,6 +117,7 @@ const History = () => {
                     </Button>
                   )}
                 </span>
+                  
               </Grid.Column>
             </Grid.Row>
           </Grid>

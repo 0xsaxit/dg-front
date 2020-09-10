@@ -122,7 +122,7 @@ const Dashboard = () => {
                 src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
                 style={{
                     marginTop: '15px',
-                    marginRight: '15px',
+                    marginRight: '12px',
                     width: '45px',
                     display: 'flex',
                     border: '1px solid rgb(227, 232, 238)',
@@ -181,6 +181,28 @@ const Dashboard = () => {
                     {playerCount} online in {realm}
                   </p>
                 ) : null}
+              </span>
+
+              <span style={{ display: 'flex', justifyContent: 'center' }} className="online-pics-mobile">
+                {onlineUsers.map((onlineUser) => {
+                  return (
+                    <img
+                      className="avatar-picture"
+                      src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+                      style={{
+                          marginTop: '15px',
+                          marginRight: '6px',
+                          marginLeft: '6px',
+                          width: '45px',
+                          display: 'flex',
+                          border: '1px solid rgb(227, 232, 238)',
+                          borderRadius: '100%',
+                          boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                        }}
+                      />
+                    )
+                  })
+                }
               </span>
 
             </div>

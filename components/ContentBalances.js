@@ -192,6 +192,7 @@ const ContentBalances = (props) => {
                       width: '60px',
                       display: 'flex',
                       paddingTop: '12px',
+                      paddingBottom: '9px',
                     }}
                   />
                 </a>
@@ -207,7 +208,7 @@ const ContentBalances = (props) => {
                 disabled
                 className="balances-top-button"
                 target="_blank"
-                style={{ marginTop: '-75px' }}
+                style={{ marginTop: '-80px' }}
               >
                 FREE
               </Button>
@@ -266,6 +267,7 @@ const ContentBalances = (props) => {
                       width: '60px',
                       display: 'flex',
                       paddingTop: '12px',
+                      paddingBottom: '9px',
                     }}
                   />
                 </a>
@@ -281,7 +283,7 @@ const ContentBalances = (props) => {
                 disabled
                 className="balances-top-button two"
                 target="_blank"
-                style={{ marginTop: '-75px' }}
+                style={{ marginTop: '-80px' }}
               >
                 PURCHASE
               </Button>
@@ -324,6 +326,7 @@ const ContentBalances = (props) => {
                       width: '60px',
                       display: 'flex',
                       paddingTop: '12px',
+                      paddingBottom: '9px',
                     }}
                   />
                 </a>
@@ -338,7 +341,7 @@ const ContentBalances = (props) => {
               <Button
                 className="balances-top-button"
                 onClick={() => show_transak()}
-                style={{ marginTop: '-75px' }}
+                style={{ marginTop: '-80px' }}
               >
                 PURCHASE
               </Button>

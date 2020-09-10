@@ -160,13 +160,18 @@ class Offerings extends React.Component {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // helper functions
+  // tab select and coin select area 
   submenu = () => {
     return (
       <div className="account-other-tabs">
         <div>
           <p className="page-header-text">Games</p>
         </div>
+
+        {/* ////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////  tab select area   //////////////////////////////// */}
+
         {this.state.GameState == 0 ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
@@ -184,99 +189,106 @@ class Offerings extends React.Component {
                 </abbr>{' '}
                 <b className="account-hover active">LEADERBOARD</b>
               </p>
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  width: 'calc(100% - 274px)',
-                  marginTop: '27px',
-                }}
-                className="leaderboard-coin-select"
-              >
-                <span
-                  className={
-                    this.state.gameSelect === 'play'
-                      ? 'account-select play'
-                      : 'account-select'
-                  }
-                  onClick={() => this.handleChange('play')}
-                >
-                  <img
-                    style={{
-                      verticalAlign: 'middle',
-                      marginRight: '6px',
-                      marginTop: '-3px',
-                    }}
-                    className="image inline"
-                    width="21px"
-                    height="21px"
-                    src={Global.IMAGES.PLAY_CIRCLE}
-                  />
-                  PLAY
-                </span>
+            </span>
 
-                <span
-                  className={
-                    this.state.gameSelect === 'mana'
-                      ? 'account-select mana'
-                      : 'account-select'
-                  }
-                  onClick={() => this.handleChange('mana')}
-                >
-                  <img
-                    style={{
-                      verticalAlign: 'middle',
-                      marginRight: '6px',
-                      marginTop: '-3px',
-                    }}
-                    className="image inline"
-                    width="21px"
-                    height="21px"
-                    src={Global.IMAGES.MANA_CIRCLE}
-                  />
-                  MANA
-                </span>
-                <span
-                  className={
-                    this.state.gameSelect === 'dai'
-                      ? 'account-select dai'
-                      : 'account-select'
-                  }
-                  onClick={() => this.handleChange('dai')}
-                >
-                  <img
-                    style={{
-                      verticalAlign: 'middle',
-                      marginRight: '6px',
-                      marginTop: '-3px',
-                    }}
-                    className="image inline"
-                    width="21px"
-                    height="21px"
-                    src={Global.IMAGES.DAI_CIRCLE}
-                  />
-                  DAI
-                </span>
-                <span
-                  className="account-select dropdown"
+        {/* ////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////  desktop coin select  ////////////////////////////// */}
+
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+              className="leaderboard-coin-select"
+            >
+              <span
+                className={
+                  this.state.gameSelect === 'play'
+                    ? 'account-select play'
+                    : 'account-select'
+                }
+                onClick={() => this.handleChange('play')}
+              >
+                <img
                   style={{
-                    marginRight: '0px',
-                    fontWeight: '400',
+                    verticalAlign: 'middle',
+                    marginRight: '6px',
+                    marginTop: '-3px',
                   }}
-                >
-                  <Dropdown
-                    options={options}
-                    defaultValue={options[0].value}
-                    onChange={this.timeChange}
-                  />
-                  <Button disabled className="reload-button" icon>
-                    <Icon name="redo" />
-                  </Button>
-                </span>
+                  className="image inline"
+                  width="21px"
+                  height="21px"
+                  src={Global.IMAGES.PLAY_CIRCLE}
+                />
+                PLAY
+              </span>
+
+              <span
+                className={
+                  this.state.gameSelect === 'mana'
+                    ? 'account-select mana'
+                    : 'account-select'
+                }
+                onClick={() => this.handleChange('mana')}
+              >
+                <img
+                  style={{
+                    verticalAlign: 'middle',
+                    marginRight: '6px',
+                    marginTop: '-3px',
+                  }}
+                  className="image inline"
+                  width="21px"
+                  height="21px"
+                  src={Global.IMAGES.MANA_CIRCLE}
+                />
+                MANA
+              </span>
+              <span
+                className={
+                  this.state.gameSelect === 'dai'
+                    ? 'account-select dai'
+                    : 'account-select'
+                }
+                onClick={() => this.handleChange('dai')}
+              >
+                <img
+                  style={{
+                    verticalAlign: 'middle',
+                    marginRight: '6px',
+                    marginTop: '-3px',
+                  }}
+                  className="image inline"
+                  width="21px"
+                  height="21px"
+                  src={Global.IMAGES.DAI_CIRCLE}
+                />
+                DAI
+              </span>
+              <span
+                className="account-select dropdown"
+                style={{
+                  marginRight: '0px',
+                  fontWeight: '400',
+                }}
+              >
+                <Dropdown
+                  options={options}
+                  defaultValue={options[0].value}
+                  onChange={this.timeChange}
+                />
+                <Button disabled className="reload-button" icon>
+                  <Icon name="redo" />
+                </Button>
               </span>
             </span>
 
-            <Divider style={{ marginTop: '-2px', paddingBottom: '21px' }} />
+            <Divider className="coin-select-divider" />
+
+        {/* ////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////  mobile coin select  ////////////////////////////// */}
 
             <span style={{ display: 'flex', width: '100%' }}>
               <span
@@ -351,6 +363,11 @@ class Offerings extends React.Component {
                   DAI
                 </span>
               </span>
+
+            {/* ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////  send time select to own row  ///////////////////////// */}
+
               <span
                 className="account-select dropdown"
                 id="intermediate-time-select"
@@ -373,7 +390,9 @@ class Offerings extends React.Component {
               className="account-select dropdown"
               id="mobile-time-select"
               style={{
-                marginRight: '0px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                left: '0px',
                 fontWeight: '400',
               }}
             >
@@ -383,6 +402,9 @@ class Offerings extends React.Component {
                 defaultValue={options[0].value}
                 onChange={this.timeChange}
               />
+              <Button disabled className="reload-button" icon>
+                <Icon name="redo" />
+              </Button>
             </span>
           </div>
         )}
