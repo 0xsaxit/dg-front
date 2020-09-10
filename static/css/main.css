@@ -641,6 +641,24 @@ a.ui.blue.button.how-to-button {
   padding-top: 15px;
 }
 
+.games-other-h3 {
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  color: black;
+  margin-top: 0px;
+}
+
+@media (max-width: 991px) {
+  .games-other-h3 {
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    color: black;
+    margin-top: -30px !important;
+  }
+}
+
 .nft-description {
   padding-bottom: 45px;
 }
@@ -687,6 +705,20 @@ a.ui.blue.button.play-button,
 }
 
 .ui.button.nft-read-button {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  height: 42px;
+  letter-spacing: 1.25px;
+  border-radius: 2px;
+  margin-left: 18px;
+}
+
+.ui.button.games-read-button {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;

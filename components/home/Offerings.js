@@ -114,7 +114,7 @@ class Offerings extends React.Component {
           </div>
           <div className="nft-description">
             <h3
-              className="nft-other-h3"
+              className="games-other-h3"
               style={{ textAlign: 'left', marginTop: '0px' }}
             >
               {detailsGames[item][2]}
@@ -135,7 +135,7 @@ class Offerings extends React.Component {
               PLAY NOW
             </Button>
             <Button
-              className="nft-read-button"
+              className="games-read-button"
               target="_blank"
               href={detailsGames[item][7]}
             >
@@ -205,12 +205,12 @@ class Offerings extends React.Component {
                     style={{
                       verticalAlign: 'middle',
                       marginRight: '6px',
-                      marginTop: '-1px',
+                      marginTop: '-3px',
                     }}
                     className="image inline"
-                    width="18px"
-                    height="18px"
-                    src={Global.IMAGES.LOGO}
+                    width="21px"
+                    height="21px"
+                    src={Global.IMAGES.PLAY_CIRCLE}
                   />
                   PLAY
                 </span>
@@ -227,11 +227,11 @@ class Offerings extends React.Component {
                     style={{
                       verticalAlign: 'middle',
                       marginRight: '6px',
-                      marginTop: '-1px',
+                      marginTop: '-3px',
                     }}
                     className="image inline"
-                    width="18px"
-                    height="18px"
+                    width="21px"
+                    height="21px"
                     src={Global.IMAGES.MANA_CIRCLE}
                   />
                   MANA
@@ -248,11 +248,11 @@ class Offerings extends React.Component {
                     style={{
                       verticalAlign: 'middle',
                       marginRight: '6px',
-                      marginTop: '-1px',
+                      marginTop: '-3px',
                     }}
                     className="image inline"
-                    width="18px"
-                    height="18px"
+                    width="21px"
+                    height="21px"
                     src={Global.IMAGES.DAI_CIRCLE}
                   />
                   DAI
@@ -299,12 +299,12 @@ class Offerings extends React.Component {
                     style={{
                       verticalAlign: 'middle',
                       marginRight: '6px',
-                      marginTop: '-1px',
+                      marginTop: '-3px',
                     }}
                     className="image inline"
-                    width="18px"
-                    height="18px"
-                    src={Global.IMAGES.LOGO}
+                    width="21px"
+                    height="21px"
+                    src={Global.IMAGES.PLAY_CIRCLE}
                   />
                   PLAY
                 </span>
@@ -320,11 +320,11 @@ class Offerings extends React.Component {
                     style={{
                       verticalAlign: 'middle',
                       marginRight: '6px',
-                      marginTop: '-1px',
+                      marginTop: '-3px',
                     }}
                     className="image inline"
-                    width="18px"
-                    height="18px"
+                    width="21px"
+                    height="21px"
                     src={Global.IMAGES.MANA_CIRCLE}
                   />
                   MANA
@@ -341,11 +341,11 @@ class Offerings extends React.Component {
                     style={{
                       verticalAlign: 'middle',
                       marginRight: '6px',
-                      marginTop: '-1px',
+                      marginTop: '-3px',
                     }}
                     className="image inline"
-                    width="18px"
-                    height="18px"
+                    width="21px"
+                    height="21px"
                     src={Global.IMAGES.DAI_CIRCLE}
                   />
                   DAI
