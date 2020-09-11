@@ -112,10 +112,6 @@ const ContentAdmin = (props) => {
         <span className="balances-button-span">
           <ModalFunds modalType={'deposit'} gameType={game} />
           <ModalFunds modalType={'withdraw'} gameType={game} />
-
-          {/* <Button color="blue" className="balances-play-button-2">
-            WITHDRAW
-          </Button> */}
         </span>
       </Grid.Column>
     );

@@ -367,7 +367,7 @@ function getTokenContract(network, web3Default) {
 /////////////////////////////////////////////////////////////////////////////////////////
 // return treasury contract for Biconomy API meta-transaction calls
 function getTreasuryContract(web3Default) {
-  let treasuryContract;
+  let treasuryContract = {};
 
   treasuryContract = new web3Default.eth.Contract(
     ABIs.TREASURY_CONTRACT,
@@ -375,6 +375,25 @@ function getTreasuryContract(web3Default) {
   );
 
   return treasuryContract;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// get user's active status (true or false) from smart contract
+async function getActiveStatus(userAddress, web3Default) {
+  console.log("Get user's active status from smart contract");
+
+  const treasuryContract = getTreasuryContract(web3Default);
+
+  try {
+    const activeStatus = await treasuryContract.methods
+      .isEnabled(userAddress)
+      .call();
+
+    return activeStatus;
+  } catch (error) {
+    console.log('No active status found: ' + error);
+  }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -394,7 +413,6 @@ function balanceOfToken(tokenContract, userOrContractAddress) {
           reject(false);
         }
 
-        console.log('Get balance done');
         const amountAdjusted = (amount / FACTOR)
           .toFixed(DECIMAL_PLACES)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -435,7 +453,6 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
           console.log('Get tokens per game failed', err);
           reject(false);
         }
-        console.log('Get tokens per game done');
 
         const amountAdjusted = (amount / FACTOR)
           .toFixed(DECIMAL_PLACES)
@@ -524,6 +541,57 @@ function withdrawFromParent(gameID, tokenID, amount, userAddress, web3Default) {
     }
   });
 }
+
+function pauseContract(toggle, web3Default) {
+  return new Promise(async (resolve, reject) => {
+    console.log('Pause or un-pause all games registered to Treasury contract');
+
+    try {
+      const PARENT_CONTRACT = web3Default.eth
+        .contract(ABIs.TREASURY_CONTRACT)
+        .at(TREASURY_CONTRACT_ADDRESS);
+
+      // const PARENT_CONTRACT = getTreasuryContract(web3Default);
+
+      if (toggle) {
+        PARENT_CONTRACT.pause(
+          {
+            gasLimit: web3Default.toHex(GAS_LIMIT),
+            gasPrice: web3Default.toHex(GAS_AMOUNT),
+          },
+          async function (err, hash) {
+            if (err) {
+              console.log('Pause failed', err);
+              reject(false);
+            }
+
+            console.log('Pause done');
+            resolve(hash);
+          }
+        );
+      } else {
+        PARENT_CONTRACT.unpause(
+          {
+            gasLimit: web3Default.toHex(GAS_LIMIT),
+            gasPrice: web3Default.toHex(GAS_AMOUNT),
+          },
+          async function (err, hash) {
+            if (err) {
+              console.log('Un-pause failed', err);
+              reject(false);
+            }
+
+            console.log('Un-pause done');
+            resolve(hash);
+          }
+        );
+      }
+    } catch (error) {
+      console.log('Pause or un-pause status error: ' + error);
+    }
+  });
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -685,9 +753,11 @@ export default {
   FETCH,
   getTokenContract,
   getTreasuryContract,
+  getActiveStatus,
   balanceOfToken,
   getTokensGame,
   depositToParent,
   withdrawFromParent,
+  pauseContract,
   executeMetaTransaction,
 };

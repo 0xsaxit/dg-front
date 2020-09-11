@@ -70,26 +70,28 @@ function ButtonEnable() {
   }
 
   // get user's active status (true or false) from smart contract
-  async function getActiveStatus() {
-    console.log('address: ' + userAddress);
+  // async function getActiveStatus() {
+  //   console.log('address: ' + userAddress);
 
-    const addresses = await Global.API_ADDRESSES;
+  //   // const addresses = await Global.API_ADDRESSES;
 
-    const TREASURY_CONTRACT = new maticWeb3.eth.Contract(
-      Global.ABIs.TREASURY_CONTRACT,
-      addresses.TREASURY_CONTRACT_ADDRESS
-    );
+  //   // const TREASURY_CONTRACT = new maticWeb3.eth.Contract(
+  //   //   Global.ABIs.TREASURY_CONTRACT,
+  //   //   addresses.TREASURY_CONTRACT_ADDRESS
+  //   // );
 
-    try {
-      const activeStatus = await TREASURY_CONTRACT.methods
-        .isEnabled(userAddress)
-        .call();
+  //   const treasuryContract = Global.getTreasuryContract(maticWeb3);
 
-      return activeStatus;
-    } catch (error) {
-      console.log('No active status found: ' + error);
-    }
-  }
+  //   try {
+  //     const activeStatus = await treasuryContract.methods
+  //       .isEnabled(userAddress)
+  //       .call();
+
+  //     return activeStatus;
+  //   } catch (error) {
+  //     console.log('No active status found: ' + error);
+  //   }
+  // }
 
   // Biconomy API meta-transaction. User must re-authoriza treasury contract after dormant period
   async function metaTransaction() {
@@ -115,7 +117,10 @@ function ButtonEnable() {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        const activeStatus = await getActiveStatus();
+        const activeStatus = await Global.getActiveStatus(
+          userAddress,
+          maticWeb3
+        );
         console.log('Active status (updated): ' + activeStatus);
         dispatchActiveStatus(activeStatus, txHash);
       }
