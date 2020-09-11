@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from './index';
 import { Message } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Aux from '../_Aux';
-import Global from '../Constants';
+import Global from '../components/Constants';
 
 const MessageBox = (props) => {
   // get token balances from the Context API store

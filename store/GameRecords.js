@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
-import Global from './Constants';
+import { GlobalContext } from './index';
+import Global from '../components/Constants';
 
 function GameRecords() {
   // dispatch user's game records to the Context API store

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Button, Divider, Grid } from 'semantic-ui-react';
+import { Table, Divider, Grid } from 'semantic-ui-react';
 import ModalFunds from '../modal/ModalFunds';
 import Global from '../Constants';
 
@@ -82,9 +82,8 @@ const ContentAdmin = (props) => {
         <span className="name-purchase-span">
           <p className="welcome-text">{game}</p>
         </span>
-        <Divider className="balances-divider" />
 
-        {/* <p className="balances-text">{state.adminBalances[1][i][1]}</p> */}
+        <Divider className="balances-divider" />
 
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
@@ -111,15 +110,12 @@ const ContentAdmin = (props) => {
         </span>
 
         <span className="balances-button-span">
-          {/* <Button color="blue" className="balances-play-button">
-            DEPOSIT
-          </Button> */}
-
           <ModalFunds modalType={'deposit'} gameType={game} />
+          <ModalFunds modalType={'withdraw'} gameType={game} />
 
-          <Button color="blue" className="balances-play-button-2">
+          {/* <Button color="blue" className="balances-play-button-2">
             WITHDRAW
-          </Button>
+          </Button> */}
         </span>
       </Grid.Column>
     );

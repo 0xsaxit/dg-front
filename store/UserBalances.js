@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from './index';
 import Web3 from 'web3';
-import Global from './Constants';
+import Global from '../components/Constants';
 
 function UserBalances() {
   // dispatch user's token balances to the Context API store

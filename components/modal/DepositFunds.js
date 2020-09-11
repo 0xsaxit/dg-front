@@ -47,7 +47,7 @@ const DepositFunds = (props) => {
     initializePings();
   }
 
-  // start pinging the token contract for deposit/withdraw confirmation
+  // start pinging the token contract for deposit confirmation
   function initializePings() {
     console.log('Ping token contract');
 

@@ -1,8 +1,8 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from './index';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import Global from './Constants';
+import Global from '../components/Constants';
 
 function ActiveStatus() {
   // dispatch user's treasury contract active status to the Context API store
@@ -16,7 +16,10 @@ function ActiveStatus() {
   const sessionDuration = Global.ACTIVE_PERIOD;
 
   useEffect(() => {
-    if (state.userStatus === 7) {
+    if (
+      state.userStatus === 7 &&
+      state.networkID === Global.PARENT_NETWORK_ID
+    ) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // initialize Web3 providers and create token contract instance

@@ -1,8 +1,8 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from './index';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
-import Global from './Constants';
+import Global from '../components/Constants';
 
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -179,7 +179,6 @@ const ContentBalances = (props) => {
             mobile={16}
             className="balances-column one"
           >
-
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <a
@@ -197,7 +196,13 @@ const ContentBalances = (props) => {
                   />
                 </a>
               </span>
-              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '7px' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
                 <p className="welcome-text"> Play </p>
                 <p className="account-name">{state.userInfo[2]}</p>
               </span>
@@ -231,10 +236,7 @@ const ContentBalances = (props) => {
                 PLAY NOW
               </Button>
               {state.userInfo[3] === 2 ? (
-                <Button
-                  disabled
-                  className="balances-play-button"
-                >
+                <Button disabled className="balances-play-button">
                   TOP UP
                 </Button>
               ) : (
@@ -254,7 +256,6 @@ const ContentBalances = (props) => {
             mobile={16}
             className="balances-column two"
           >
-
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <a
@@ -272,7 +273,13 @@ const ContentBalances = (props) => {
                   />
                 </a>
               </span>
-              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '7px' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
                 <p className="welcome-text"> Dai </p>
                 <p className="account-name">{state.userBalances[0][1]}</p>
               </span>
@@ -313,7 +320,6 @@ const ContentBalances = (props) => {
             mobile={16}
             className="balances-column three"
           >
-
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <a
@@ -331,7 +337,13 @@ const ContentBalances = (props) => {
                   />
                 </a>
               </span>
-              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '7px' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
                 <p className="welcome-text"> Mana </p>
                 <p className="account-name">{state.userBalances[1][1]}</p>
               </span>

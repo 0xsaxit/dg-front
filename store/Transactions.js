@@ -1,8 +1,8 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
-import Global from './Constants';
+import { GlobalContext } from './index';
+import Global from '../components/Constants';
 
-function AdminHistory() {
+function Transactions() {
   // dispatch users transaction history data to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -14,18 +14,18 @@ function AdminHistory() {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       (async function () {
-        const responseHistory = await Global.FETCH.ADMIN_HISTORY(userAddress);
+        const responseHistory = await Global.FETCH.HISTORY_DATA(userAddress);
         const jsonHistory = await responseHistory.json();
         const dataHistory = jsonHistory.result;
 
-        const responsePlay = await Global.FETCH.MACHINE_DATA(userAddress);
+        const responsePlay = await Global.FETCH.PLAY_DATA(userAddress);
         const jsonPlay = await responsePlay.json();
-        const dataMachines = jsonPlay.result;
+        const dataPlay = jsonPlay.result;
 
-        const response = [dataHistory, dataMachines];
+        const response = [dataHistory, dataPlay];
 
         dispatch({
-          type: 'admin_history',
+          type: 'update_history',
           data: response,
         });
       })();
@@ -35,4 +35,4 @@ function AdminHistory() {
   return null;
 }
 
-export default AdminHistory;
+export default Transactions;

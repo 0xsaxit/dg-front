@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
+import { GlobalContext } from './index';
 import ContentBalances from './ContentBalances';
-import Aux from './_Aux';
+import Aux from '../components/_Aux';
 
 const BalancesOverlay = () => {
   // get balances overlay state from the Context API store

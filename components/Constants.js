@@ -308,13 +308,6 @@ let CHILD_TOKEN_ADDRESS_DAI = '';
 let CHILD_TOKEN_ADDRESS_MANA = '';
 let TREASURY_CONTRACT_ADDRESS = '';
 
-// nlet TREASURY_SLOTS_ADDRESS = '';
-// let TREASURY_ROULETTE_ADDRESS = '';
-// let TREASURY_BACKGAMMON_ADDRESS = '';
-// let TREASURY_BLACKJACK_ADDRESS = '';
-// let ROOTCHAIN_ADDRESS = '';
-// let ROOTCHAINMANAGER_ADDRESS = '';
-
 const API_ADDRESSES = (async () => {
   const response = await FETCH.GET_ADDRESSES();
   let json = await response.json();
@@ -326,13 +319,6 @@ const API_ADDRESSES = (async () => {
   CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
   TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
 
-  // TREASURY_SLOTS_ADDRESS = json.TREASURY_SLOTS_ADDRESS;
-  // TREASURY_ROULETTE_ADDRESS = json.TREASURY_ROULETTE_ADDRESS;
-  // TREASURY_BACKGAMMON_ADDRESS = json.TREASURY_BACKGAMMON_ADDRESS;
-  // TREASURY_BLACKJACK_ADDRESS = json.TREASURY_BLACKJACK_ADDRESS;
-  // ROOTCHAIN_ADDRESS = json.ROOTCHAIN_ADDRESS;
-  // ROOTCHAINMANAGER_ADDRESS = json.ROOTCHAINMANAGER_ADDRESS;
-
   console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
   console.log('ROOT_TOKEN_ADDRESS_MANA: ' + ROOT_TOKEN_ADDRESS_MANA);
@@ -340,27 +326,11 @@ const API_ADDRESSES = (async () => {
   console.log('CHILD_TOKEN_ADDRESS_MANA: ' + CHILD_TOKEN_ADDRESS_MANA);
   console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);
 
-  // console.log('TREASURY_SLOTS_ADDRESS: ' + TREASURY_SLOTS_ADDRESS);
-  // console.log('TREASURY_ROULETTE_ADDRESS: ' + TREASURY_ROULETTE_ADDRESS);
-  // console.log('TREASURY_BACKGAMMON_ADDRESS: ' + TREASURY_BACKGAMMON_ADDRESS);
-  // console.log('TREASURY_BLACKJACK_ADDRESS: ' + TREASURY_BLACKJACK_ADDRESS);
-  // console.log('ROOTCHAIN_ADDRESS: ' + ROOTCHAIN_ADDRESS);
-  //console.log('ROOTCHAINMANAGER_ADDRESS: ' + ROOTCHAINMANAGER_ADDRESS);
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // create MaticPOSClient object to deposit tokens from Mainnet to Matic Network
-  // const ethereum = await window.ethereum;
-
-  // maticPOSClient = new MaticPOSClient({
-  //   maticProvider: MATIC_URL,
-  //   parentProvider: ethereum,
-  //   rootChain: ROOTCHAIN_ADDRESS,
-  //   posRootChainManager: ROOTCHAINMANAGER_ADDRESS,
-  // });
-
-  domainArray[0].verifyingContract = CHILD_TOKEN_ADDRESS_MANA; // verifying contract for Biconomy Token contract
-  domainArray[1].verifyingContract = TREASURY_CONTRACT_ADDRESS; // verifying contract for Biconomy Treasury contract
+  // verifying contracts for Biconomy Token/Treasury meta-transactions
+  domainArray[0].verifyingContract = CHILD_TOKEN_ADDRESS_MANA;
+  domainArray[1].verifyingContract = TREASURY_CONTRACT_ADDRESS;
 
   return {
     WORKER_ADDRESS,
@@ -369,13 +339,6 @@ const API_ADDRESSES = (async () => {
     CHILD_TOKEN_ADDRESS_DAI,
     CHILD_TOKEN_ADDRESS_MANA,
     TREASURY_CONTRACT_ADDRESS,
-
-    // TREASURY_SLOTS_ADDRESS,
-    // TREASURY_ROULETTE_ADDRESS,
-    // TREASURY_BACKGAMMON_ADDRESS,
-    // TREASURY_BLACKJACK_ADDRESS,
-    // ROOTCHAIN_ADDRESS,
-    // ROOTCHAINMANAGER_ADDRESS,
   };
 })();
 
@@ -489,7 +452,7 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // deposit funds to parent contract
-function depositToParent(gameType, tokenID, amount, userAddress, web3Default) {
+function depositToParent(gameID, tokenID, amount, userAddress, web3Default) {
   return new Promise(async (resolve, reject) => {
     console.log('Deposit start: ' + amount);
 
@@ -499,7 +462,7 @@ function depositToParent(gameType, tokenID, amount, userAddress, web3Default) {
         .at(TREASURY_CONTRACT_ADDRESS);
 
       PARENT_CONTRACT.addFunds(
-        gameType,
+        gameID,
         tokenID,
         amount,
         {
@@ -527,13 +490,7 @@ function depositToParent(gameType, tokenID, amount, userAddress, web3Default) {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // withdraw funds from parent contract
-function withdrawFromParent(
-  gameType,
-  amount,
-  tokenName,
-  userAddress,
-  web3Default
-) {
+function withdrawFromParent(gameID, tokenID, amount, userAddress, web3Default) {
   return new Promise(async (resolve, reject) => {
     console.log('Withdraw start: ' + amount);
 
@@ -542,10 +499,10 @@ function withdrawFromParent(
         .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
 
-      PARENT_CONTRACT.withdrawCollateral(
-        gameType,
+      PARENT_CONTRACT.withdrawGameTokens(
+        gameID,
+        tokenID,
         amount,
-        tokenName,
         {
           from: userAddress,
           gasLimit: web3Default.toHex(GAS_LIMIT),
@@ -703,31 +660,6 @@ function getSignatureParameters(signature, web3Default) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
-// return confirmation hash
-// function getConfirmedTx(txHash, web3Default) {
-//   return new Promise(async (resolve, reject) => {
-//     let finish = false;
-
-//     while (!finish) {
-//       web3Default.eth.getTransactionReceipt(txHash, (err, res) => {
-//         if (err) {
-//           finish = true;
-//           reject(err);
-//         }
-//         if (res) {
-//           finish = true;
-//           resolve(res);
-//         }
-//       });
-
-//       const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-//       await delay(2000);
-//     }
-//   });
-// }
-
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 export default {
   API_ADDRESSES,
   ABIs,
@@ -754,23 +686,8 @@ export default {
   getTokenContract,
   getTreasuryContract,
   balanceOfToken,
-  // getAllowedToken,
-  // approveToken,
-  // depositTokenToMatic,
-  // exitToMainnet,
-  // getBalanceParent,
   getTokensGame,
   depositToParent,
   withdrawFromParent,
   executeMetaTransaction,
-  // getConfirmedTx,
-  // fetchUserStatus,
-  // fetchCountryCode,
-  // fetchParcelData,
-  // fetchHistoryData,
-  // fetchPlayData,
-  // fetchGameRecords,
-  // fetchUserNumbers,
-  // postUserVerify,
-  // postHistory,
 };

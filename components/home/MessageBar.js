@@ -57,7 +57,7 @@ const MessageBar = () => {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
       );
-    } else if (state.networkID !== 5) {
+    } else if (state.networkID !== Global.PARENT_NETWORK_ID) {
       setMessage(
         'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
       );

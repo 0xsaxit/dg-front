@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
+import { GlobalContext } from './index';
 import Web3 from 'web3';
-import { GlobalContext } from '../store';
-import Global from './Constants';
+import Global from '../components/Constants';
 
 // 0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2 // test account
 

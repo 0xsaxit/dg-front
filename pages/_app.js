@@ -6,17 +6,17 @@ import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
 import '../static/css/mobile.css';
-import UserStatus from '../components/UserStatus';
-import UserBalances from '../components/UserBalances';
-import Transactions from '../components/Transactions';
-import ParcelData from '../components/ParcelData';
-import GameRecords from '../components/GameRecords';
-import BalancesOverlay from '../components/BalancesOverlay';
-import Location from '../components/Location';
-import ActiveStatus from '../components/ActiveStatus';
-import UserInfo from '../components/UserInfo';
-import AdminBalances from '../components/AdminBalances';
-import AdminData from '../components/AdminData';
+import UserStatus from '../store/UserStatus';
+import UserBalances from '../store/UserBalances';
+import Transactions from '../store/Transactions';
+import ParcelData from '../store/ParcelData';
+import GameRecords from '../store/GameRecords';
+import BalancesOverlay from '../store/BalancesOverlay';
+import Location from '../store/Location';
+import ActiveStatus from '../store/ActiveStatus';
+import UserInfo from '../store/UserInfo';
+import AdminBalances from '../store/AdminBalances';
+import AdminData from '../store/AdminData';
 
 class Application extends App {
   render() {

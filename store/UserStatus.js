@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
-import Global from './Constants';
+import { GlobalContext } from './index';
+import Global from '../components/Constants';
 
 function UserStatus() {
   // dispatch user's status value to the Context API store
