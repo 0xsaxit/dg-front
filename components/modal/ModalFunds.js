@@ -9,13 +9,13 @@ const ModalFunds = (props) => {
   const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
-    if (props.gameType == 'Slots') {
+    if (props.gameType == 'slots') {
       setGameTypeInt(1);
-    } else if (props.gameType == 'Roulette') {
+    } else if (props.gameType == 'roulette') {
       setGameTypeInt(2);
-    } else if (props.gameType == 'Backgammon') {
+    } else if (props.gameType == 'backgammon') {
       setGameTypeInt(3);
-    } else if (props.gameType == 'Blackjack') {
+    } else if (props.gameType == 'blackjack') {
       setGameTypeInt(4);
     }
   }, []);

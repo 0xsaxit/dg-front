@@ -10,8 +10,6 @@ const BalancesOverlay = () => {
   // define local variables
   const [visibilityModal, setVisibilityModal] = useState('none');
   const [visibilityAccountPage, setVisibilityAccountPage] = useState('none');
-  const [isVisible, setIsVisible] = useState(false);
-  const [zIndexMobile, setZIndexMobile] = useState(1);
 
   useEffect(() => {
     if (state.balancesOverlay === 1) {
@@ -102,7 +100,6 @@ const BalancesOverlay = () => {
           <ContentBalances balancesOverlay={2} />
         </div>
       </div>
-
     </Aux>
   );
 };

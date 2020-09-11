@@ -9,7 +9,7 @@ const ContentAdmin = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const games = ['Slots', 'Roulette', 'Backgammon', 'Blackjack'];
+  const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
 
   function contentLabels() {
     if (props.type === 'balances') {
@@ -80,11 +80,35 @@ const ContentAdmin = (props) => {
         className={`balances-column ${number}`}
       >
         <span className="name-purchase-span">
-          <p className="balances-token-name">{game}</p>
+          <p className="welcome-text">{game}</p>
         </span>
         <Divider className="balances-divider" />
 
-        <p className="balances-text">{state.adminBalances[1][i][1]}</p>
+        {/* <p className="balances-text">{state.adminBalances[1][i][1]}</p> */}
+
+        <span style={{ display: 'flex' }}>
+          <span className="avatar-picture">
+            <img
+              src={Global.IMAGES.MANA_CIRCLE}
+              style={{
+                width: '60px',
+                display: 'flex',
+                paddingTop: '12px',
+                paddingBottom: '9px',
+              }}
+            />
+          </span>
+          <span
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: '7px',
+            }}
+          >
+            <p className="welcome-text">Mana</p>
+            <p className="account-name">{state.adminBalances[1][i][1]}</p>
+          </span>
+        </span>
 
         <span className="balances-button-span">
           {/* <Button color="blue" className="balances-play-button">

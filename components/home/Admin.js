@@ -70,7 +70,9 @@ const Admin = () => {
                     </div>{' '}
                     MANA{' '}
                   </span>
+                </span>
 
+                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <Button disabled className="account-connected-play-button">
                     PAUSE GAMES
                   </Button>
