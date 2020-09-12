@@ -1,20 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Table, Divider, Grid, Button } from 'semantic-ui-react';
-
-import Web3 from 'web3'; // ******************************************
-
+import Web3 from 'web3';
 import Spinner from '../Spinner';
-
-import ButtonPaused from './ButtonPaused';
-
+import ButtonPause from './ButtonPause';
 import ContentAdmin from './ContentAdmin';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 import Global from '../Constants';
 
 const Admin = () => {
-  // get user's transaction history from the Context API store
+  // get player/machine transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.adminHistory[0];
   const dataMachines = state.adminHistory[1];
@@ -26,12 +22,8 @@ const Admin = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
-  // const [paused, setPaused] = useState(false);
 
-  // let web3 = {};
-  // const web3 = new Web3();
   let maticWeb3 = {};
-  // let treasuryContract = {};
 
   useEffect(() => {
     if (state.userStatus) {
@@ -48,20 +40,9 @@ const Admin = () => {
 
   useEffect(() => {
     if (state.userStatus) {
-      // web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-
       maticWeb3 = new Web3(
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       ); // pass Matic provider to maticWeb3 object
-
-      // maticWeb3 = new window.Web3(
-      //   new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      // );
-
-      // treasuryContract = Global.getTreasuryContract(web3);
-      // treasuryContract = web3.eth
-      //   .contract(Global.ABIs.TREASURY_CONTRACT)
-      //   .at(Global.TREASURY_CONTRACT_ADDRESS);
 
       const treasuryContract = Global.getTreasuryContract(maticWeb3);
 
@@ -76,69 +57,6 @@ const Admin = () => {
       })();
     }
   }, [state.userStatus, isPaused]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get treasury contract's paused status (true or false)
-  // async function getPauseStatus() {
-  //   console.log('Get pause status');
-
-  //   // const addresses = await Global.API_ADDRESSES;
-
-  //   // const TREASURY_CONTRACT = new maticWeb3.eth.Contract(
-  //   //   Global.ABIs.TREASURY_CONTRACT,
-  //   //   addresses.TREASURY_CONTRACT_ADDRESS
-  //   // );
-
-  //   const treasuryContract = Global.getTreasuryContract(maticWeb3);
-  //   // const treasuryContract = Global.getTreasuryContract(web3);
-
-  //   try {
-  //     const pauseStatus = await treasuryContract.methods.paused().call();
-
-  //     return pauseStatus;
-  //   } catch (error) {
-  //     console.log('Pause status error: ' + error);
-  //   }
-  // }
-
-  // async function pauseContract() {
-  //   console.log('Pause all games registered to Treasury contract');
-
-  //   // const treasuryContract = Global.getTreasuryContract(maticWeb3);
-
-  //   const PARENT_CONTRACT = web3.eth
-  //     .contract(Global.ABIs.TREASURY_CONTRACT)
-  //     .at(Global.API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
-
-  //   try {
-  //     const pause = await PARENT_CONTRACT.pause();
-
-  //     console.log('Contract paused:');
-  //     console.log(pause);
-  //   } catch (error) {
-  //     console.log('Pause status error: ' + error);
-  //   }
-  // }
-
-  // async function unPauseContract() {
-  //   console.log('Un-pause all games registered to Treasury contract');
-
-  //   // const treasuryContract = Global.getTreasuryContract(maticWeb3);
-
-  //   const PARENT_CONTRACT = web3.eth
-  //     .contract(Global.ABIs.TREASURY_CONTRACT)
-  //     .at(Global.API_ADDRESSES.TREASURY_CONTRACT_ADDRESS);
-
-  //   try {
-  //     const unPause = await PARENT_CONTRACT.unpause();
-
-  //     console.log('Contract un-paused:');
-  //     console.log(unPause);
-  //   } catch (error) {
-  //     console.log('Un-pause status error: ' + error);
-  //   }
-  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -174,7 +92,7 @@ const Admin = () => {
                 </span>
 
                 <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <ButtonPaused isPaused={isPaused} />
+                  <ButtonPause isPaused={isPaused} />
                 </span>
               </Grid.Column>
             </Grid.Row>

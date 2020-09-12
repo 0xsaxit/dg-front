@@ -88,6 +88,30 @@ const ContentAdmin = (props) => {
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img
+              src={Global.IMAGES.DAI_CIRCLE}
+              style={{
+                width: '60px',
+                display: 'flex',
+                paddingTop: '12px',
+                paddingBottom: '9px',
+              }}
+            />
+          </span>
+          <span
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginTop: '7px',
+            }}
+          >
+            <p className="welcome-text">dai</p>
+            <p className="account-name">{state.adminBalances[1][i][0]}</p>
+          </span>
+        </span>
+
+        <span style={{ display: 'flex' }}>
+          <span className="avatar-picture">
+            <img
               src={Global.IMAGES.MANA_CIRCLE}
               style={{
                 width: '60px',
@@ -104,7 +128,7 @@ const ContentAdmin = (props) => {
               marginTop: '7px',
             }}
           >
-            <p className="welcome-text">Mana</p>
+            <p className="welcome-text">mana</p>
             <p className="account-name">{state.adminBalances[1][i][1]}</p>
           </span>
         </span>

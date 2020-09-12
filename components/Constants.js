@@ -374,6 +374,10 @@ function getTreasuryContract(web3Default) {
     TREASURY_CONTRACT_ADDRESS
   );
 
+  // treasuryContract = web3Default.eth
+  //   .contract(ABIs.TREASURY_CONTRACT)
+  //   .at(TREASURY_CONTRACT_ADDRESS);
+
   return treasuryContract;
 }
 
@@ -550,8 +554,6 @@ function pauseContract(toggle, web3Default) {
       const PARENT_CONTRACT = web3Default.eth
         .contract(ABIs.TREASURY_CONTRACT)
         .at(TREASURY_CONTRACT_ADDRESS);
-
-      // const PARENT_CONTRACT = getTreasuryContract(web3Default);
 
       if (toggle) {
         PARENT_CONTRACT.pause(
