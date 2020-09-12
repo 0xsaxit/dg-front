@@ -551,7 +551,7 @@ function pauseContract(toggle, web3Default) {
     if (toggle) {
       console.log('Pause all games registered to Treasury contract');
     } else {
-      console.log('Un-pause all games registered to Treasury contract');
+      console.log('Unpause all games registered to Treasury contract');
     }
 
     try {
@@ -582,7 +582,7 @@ function pauseContract(toggle, web3Default) {
           },
           async function (err, hash) {
             if (err) {
-              console.log('Un-pause failed: ' + err);
+              console.log('Unpause failed: ' + err);
               reject(false);
             }
 
@@ -591,7 +591,7 @@ function pauseContract(toggle, web3Default) {
         );
       }
     } catch (error) {
-      console.log('Pause or un-pause status error: ' + error);
+      console.log('Pause or unpause status error: ' + error);
     }
   });
 }
