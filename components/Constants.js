@@ -548,7 +548,11 @@ function withdrawFromParent(gameID, tokenID, amount, userAddress, web3Default) {
 
 function pauseContract(toggle, web3Default) {
   return new Promise(async (resolve, reject) => {
-    console.log('Pause or un-pause all games registered to Treasury contract');
+    if (toggle) {
+      console.log('Pause all games registered to Treasury contract');
+    } else {
+      console.log('Un-pause all games registered to Treasury contract');
+    }
 
     try {
       const PARENT_CONTRACT = web3Default.eth
@@ -563,11 +567,10 @@ function pauseContract(toggle, web3Default) {
           },
           async function (err, hash) {
             if (err) {
-              console.log('Pause failed', err);
+              console.log('Pause failed: ' + err);
               reject(false);
             }
 
-            console.log('Pause done');
             resolve(hash);
           }
         );
@@ -579,11 +582,10 @@ function pauseContract(toggle, web3Default) {
           },
           async function (err, hash) {
             if (err) {
-              console.log('Un-pause failed', err);
+              console.log('Un-pause failed: ' + err);
               reject(false);
             }
 
-            console.log('Un-pause done');
             resolve(hash);
           }
         );

@@ -46,7 +46,7 @@ const Admin = () => {
 
       const treasuryContract = Global.getTreasuryContract(maticWeb3);
 
-      setUserData('balances', 1);
+      setUserData('balances', 1); // ******************************************
 
       // get treasury contract's paused status (true or false)
       (async function () {
@@ -57,6 +57,37 @@ const Admin = () => {
       })();
     }
   }, [state.userStatus, isPaused]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // ping the treasury contract for pause status
+  function dataInterval(currentStatus) {
+    maticWeb3 = new Web3(
+      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+    ); // pass Matic provider to maticWeb3 object
+
+    const treasuryContract = Global.getTreasuryContract(maticWeb3);
+
+    async function fetchData() {
+      const response = await treasuryContract.methods.paused().call();
+
+      // as soon as the balance updates on Matic display deposit confirmation
+      if (response !== currentStatus) {
+        console.log('Treasury contract pause status: ' + response);
+
+        setIsPaused(response);
+
+        clearInterval(interval);
+      }
+    }
+
+    // call token contract every 3 seconds to get new pause status
+    const interval = setInterval(() => {
+      fetchData();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -92,7 +123,10 @@ const Admin = () => {
                 </span>
 
                 <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <ButtonPause isPaused={isPaused} />
+                  <ButtonPause
+                    isPaused={isPaused}
+                    dataInterval={() => dataInterval()}
+                  />
                 </span>
               </Grid.Column>
             </Grid.Row>
