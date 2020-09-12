@@ -181,20 +181,15 @@ const ContentBalances = (props) => {
           >
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
-                <a
-                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                  target="_blank"
-                >
-                  <img
-                    src={Global.IMAGES.PLAY_CIRCLE}
-                    style={{
-                      width: '60px',
-                      display: 'flex',
-                      paddingTop: '12px',
-                      paddingBottom: '9px',
-                    }}
-                  />
-                </a>
+                <img
+                  src={Global.IMAGES.PLAY_CIRCLE}
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
+                />
               </span>
               <span
                 style={{
@@ -258,20 +253,15 @@ const ContentBalances = (props) => {
           >
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
-                <a
-                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                  target="_blank"
-                >
-                  <img
-                    src={Global.IMAGES.DAI_CIRCLE}
-                    style={{
-                      width: '60px',
-                      display: 'flex',
-                      paddingTop: '12px',
-                      paddingBottom: '9px',
-                    }}
-                  />
-                </a>
+                <img
+                  src={Global.IMAGES.DAI_CIRCLE}
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
+                />
               </span>
               <span
                 style={{
@@ -322,20 +312,15 @@ const ContentBalances = (props) => {
           >
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
-                <a
-                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                  target="_blank"
-                >
-                  <img
-                    src={Global.IMAGES.MANA_CIRCLE}
-                    style={{
-                      width: '60px',
-                      display: 'flex',
-                      paddingTop: '12px',
-                      paddingBottom: '9px',
-                    }}
-                  />
-                </a>
+                <img
+                  src={Global.IMAGES.MANA_CIRCLE}
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
+                />
               </span>
               <span
                 style={{

@@ -152,8 +152,11 @@ const Dashboard = () => {
               >
                 Hit the tables in a virtual casino
               </h1>
+              {/*<h2 className="home-dashboard-h2">
+                Non-custodial. Provably fair.
+              </h2>*/}
               <h2 className="home-dashboard-h2">
-                Non-custodial slots, roulette, blackjack, and backgammon
+                Non-custodial, provably fair slots, roulette, blackjack, and backgammon
                 playable with crypto in Decentraland
               </h2>
               <span className="logged-out-button-span">

@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from './ContentGames';
 import Spinner from '../Spinner';
@@ -28,7 +29,7 @@ const options = [
 const detailsGames = {
   Slots: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/slots-1_qa9ced_a8rqpc_lcvhua.jpg',
-    'games-pic',
+    'nft-pic',
     'Slots',
     'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
     '1 PLAYER',
@@ -38,7 +39,7 @@ const detailsGames = {
   ],
   Roulette: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/roulette-1_rmgcgr_evcxkj_rwjlcw.jpg',
-    'games-pic',
+    'nft-pic',
     'Roulette',
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
     '1-8 PLAYERS',
@@ -48,9 +49,9 @@ const detailsGames = {
   ],
   Backgammon: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/dice_fheuwk_t8hjf6_ydjuva.jpg',
-    'games-pic',
+    'nft-pic',
     'Backgammon',
-    'Decentral Games backgammon is standard backgammon game featuring two players. At the start of each game, the player agree upon and place a wager that capitalizes a pot to be paid out to the winner minus a fee at the end of the game. The current minimum bet is 10 MANA, and the wager may be raised by clicking on the doubling cube throughout the game.',
+    'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
     '2 PLAYERS',
     'PLAY, MANA, DAI',
     'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold',
@@ -58,9 +59,9 @@ const detailsGames = {
   ],
   BlackJack: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/blackjack_haiuyl_pnpdet_nolik4.jpg',
-    'games-pic',
+    'nft-pic',
     'Blackjack',
-    'Decentral Games blackjack accommodates 1-4 players. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
+    'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS',
     'PLAY, MANA, DAI',
     'https://play.decentral.games',
@@ -68,22 +69,18 @@ const detailsGames = {
   ],
 };
 
-class Offerings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      GameState: 0,
-      isLoading: true,
-      gameSelect: 'play',
-      timePeriod: 'ALL TIME',
-    };
-  }
+const Offerings = () => {
 
-  async componentDidMount() {
-    this.setState({ isLoading: false });
-  }
+  // get user's NFT data from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
 
-  handleChange = (value) => {
+  // define local variables
+  const [gameSelect, setGameSelect] = useState('play');
+  const [timePeriod, setTimePeriod] = useState('ALL TIME')
+  const [isLoading, setIsLoading] = useState(true);
+  const [gameState, setGameState] = useState('0');
+
+  function handleChange(value) {
     var gameSelect = '';
     if (value === 'play') {
       gameSelect = 'play';
@@ -92,69 +89,80 @@ class Offerings extends React.Component {
     } else {
       gameSelect = 'dai';
     }
-    this.setState({ gameSelect: gameSelect });
+    setGameSelect(gameSelect);
   };
 
-  timeChange = (event, data) => {
-    this.setState({ timePeriod: data.value });
+  function timeChange(event, data) {
+    setTimePeriod(data.value);
   };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the game offerings details object
-  Games = () => {
-    return Object.keys(detailsGames).map((item, i) => {
-      return (
-        <div className="games-container" key={i}>
-          <div className="games-image">
-            <Image
-              src={detailsGames[item][0]}
-              className={detailsGames[item][1]}
-            />
-          </div>
-          <div className="nft-description">
-            <h3
-              className="games-other-h3"
-              style={{ textAlign: 'left', marginTop: '0px' }}
-            >
-              {detailsGames[item][2]}
-            </h3>
-            <span style={{ display: 'flex' }}>
-              <p className="nfts-info">{detailsGames[item][4]}</p>
-              <p className="nfts-info-2">{detailsGames[item][5]}</p>
+  function Games() {
+    return (
+      <div className="outter-games-container">
+        {Object.keys(detailsGames).map((item, i) => (
+          <div className="games-container">
+            <span style={{ display: 'flex', justifyContent: 'center' }} className="nft-image">
+              <Image
+                src={detailsGames[item][0]}
+                className={detailsGames[item][1]}
+                style={{ borderRadius: '2px' }}
+              />
             </span>
-            <p className="nft-other-p" style={{ paddingTop: '2px' }}>
-              {detailsGames[item][3]}
-            </p>
-            <span style={{ display: 'flex' }}>
-              <Button
-                color="blue"
-                className="games-button"
-                target="_blank"
-                href={detailsGames[item][6]}
+            <div className="nft-description">
+              <h3
+                className="nft-other-h3"
               >
-                PLAY NOW
-              </Button>
-              <Button
-                className="games-read-button"
-                target="_blank"
-                href={detailsGames[item][7]}
-              >
-                READ MORE
-              </Button>
-            </span>
-          </div>
-        </div>
-      );
-    });
-  };
+                {detailsGames[item][2]}
+              </h3>
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <p className="nfts-info">{detailsGames[item][4]}</p>
+                <p className="nfts-info-2">{detailsGames[item][5]}</p>
+              </span>
 
-  Leaderboard = () => {
+              <Divider style={{ margin: '9px 0px 12px 0px' }}/>
+
+              <p
+                className="nft-other-p"
+                style={{ marginTop: '-12px', paddingTop: '15px', textAlign: 'center' }}
+              >
+                {detailsGames[item][3]}
+              </p>
+
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button
+                  color="blue"
+                  className="nft-button"
+                  target="_blank"
+                  href={detailsGames[item][5]}
+                >
+                  PURCHASE NFT
+                </Button>
+                <Button
+                  className="nft-read-button two"
+                  target="_blank"
+                  href={detailsGames[item][6]}
+                >
+                  READ MORE
+                </Button>
+              </span>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+
+  function Leaderboard() {
     return (
       <div>
         <ContentGames
-          gameSelect={this.state.gameSelect}
-          timePeriod={this.state.timePeriod}
+          gameSelect={gameSelect}
+          timePeriod={timePeriod}
         />
       </div>
     );
@@ -163,7 +171,7 @@ class Offerings extends React.Component {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // tab select and coin select area 
-  submenu = () => {
+  function submenu() {
     return (
       <div className="account-other-tabs">
         <div>
@@ -174,10 +182,10 @@ class Offerings extends React.Component {
             ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////  tab select area   //////////////////////////////// */}
 
-        {this.state.GameState == 0 ? (
+        {gameState == 0 ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
-            <abbr className="account-hover" onClick={() => this.setPage(1)}>
+            <abbr className="account-hover" onClick={() => setPage(1)}>
               LEADERBOARD
             </abbr>
             <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
@@ -186,7 +194,7 @@ class Offerings extends React.Component {
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
-                <abbr className="account-hover" onClick={() => this.setPage(0)}>
+                <abbr className="account-hover" onClick={() => setPage(0)}>
                   OUR GAMES
                 </abbr>{' '}
                 <b className="account-hover active">LEADERBOARD</b>
@@ -206,11 +214,11 @@ class Offerings extends React.Component {
             >
               <span
                 className={
-                  this.state.gameSelect === 'play'
+                  gameSelect === 'play'
                     ? 'account-select play'
                     : 'account-select'
                 }
-                onClick={() => this.handleChange('play')}
+                onClick={() => handleChange('play')}
               >
                 <img
                   style={{
@@ -228,11 +236,11 @@ class Offerings extends React.Component {
 
               <span
                 className={
-                  this.state.gameSelect === 'mana'
+                  gameSelect === 'mana'
                     ? 'account-select mana'
                     : 'account-select'
                 }
-                onClick={() => this.handleChange('mana')}
+                onClick={() => handleChange('mana')}
               >
                 <img
                   style={{
@@ -249,11 +257,11 @@ class Offerings extends React.Component {
               </span>
               <span
                 className={
-                  this.state.gameSelect === 'dai'
+                  gameSelect === 'dai'
                     ? 'account-select dai'
                     : 'account-select'
                 }
-                onClick={() => this.handleChange('dai')}
+                onClick={() => handleChange('dai')}
               >
                 <img
                   style={{
@@ -278,7 +286,7 @@ class Offerings extends React.Component {
                 <Dropdown
                   options={options}
                   defaultValue={options[0].value}
-                  onChange={this.timeChange}
+                  onChange={timeChange}
                 />
                 <Button disabled className="reload-button" icon>
                   <Icon name="redo" />
@@ -302,12 +310,12 @@ class Offerings extends React.Component {
               >
                 <span
                   className={
-                    this.state.gameSelect === 'play'
+                    gameSelect === 'play'
                       ? 'account-select play'
                       : 'account-select play2'
                   }
                   id="account-select-play"
-                  onClick={() => this.handleChange('play')}
+                  onClick={() => handleChange('play')}
                 >
                   <img
                     style={{
@@ -324,11 +332,11 @@ class Offerings extends React.Component {
                 </span>
                 <span
                   className={
-                    this.state.gameSelect === 'mana'
+                    gameSelect === 'mana'
                       ? 'account-select mana'
                       : 'account-select'
                   }
-                  onClick={() => this.handleChange('mana')}
+                  onClick={() => handleChange('mana')}
                 >
                   <img
                     style={{
@@ -345,11 +353,11 @@ class Offerings extends React.Component {
                 </span>
                 <span
                   className={
-                    this.state.gameSelect === 'dai'
+                    gameSelect === 'dai'
                       ? 'account-select dai'
                       : 'account-select'
                   }
-                  onClick={() => this.handleChange('dai')}
+                  onClick={() => handleChange('dai')}
                 >
                   <img
                     style={{
@@ -381,7 +389,7 @@ class Offerings extends React.Component {
                 <Dropdown
                   options={options}
                   defaultValue={options[0].value}
-                  onChange={this.timeChange}
+                  onChange={timeChange}
                 />
                 <Button disabled className="reload-button" icon>
                   <Icon name="redo" />
@@ -402,7 +410,7 @@ class Offerings extends React.Component {
                 style={{ marginTop: '6px' }}
                 options={options}
                 defaultValue={options[0].value}
-                onChange={this.timeChange}
+                onChange={timeChange}
               />
               <Button disabled className="reload-button" icon>
                 <Icon name="redo" />
@@ -414,25 +422,22 @@ class Offerings extends React.Component {
     );
   };
 
-  setPage = (number) => {
-    this.setState({ GameState: number });
+  function setPage(number) {
+    setGameState(number);
   };
 
-  render() {
-    if (this.state.isLoading) return <Spinner background={0} />;
 
     return (
       <div className="main-container">
         <div className="page-container">
           <div className="account-other-inner-container">
-            {this.submenu()}
+            {submenu()}
 
-            {this.state.GameState == 1 ? this.Leaderboard() : this.Games()}
+            {gameState == 1 ? Leaderboard() : Games()}
           </div>
         </div>
       </div>
     );
   }
-}
 
 export default Offerings;

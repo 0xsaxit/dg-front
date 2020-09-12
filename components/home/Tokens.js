@@ -19,7 +19,7 @@ const detailsNFTs = {
     'nft-pic',
     'Flamingos, Vegas City',
     'LOCATION: -126, 118',
-    'Flamingos is a casino built by Vegas City.',
+    'Flamingos is a casino built by the Vegas City team.',
     'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
     'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
   ],
@@ -83,30 +83,33 @@ const Tokens = () => {
       <div className="outter-nft-container">
         {Object.keys(detailsNFTs).map((item, i) => (
           <div className="nft-container" key={i}>
-            <div className="nft-image">
+            <span style={{ display: 'flex', justifyContent: 'center' }} className="nft-image">
               <Image
                 src={detailsNFTs[item][0]}
                 className={detailsNFTs[item][1]}
-                style={{ borderRadius: '3px' }}
+                style={{ borderRadius: '2px' }}
               />
-            </div>
+            </span>
             <div className="nft-description">
               <h3
                 className="nft-other-h3"
               >
                 {detailsNFTs[item][2]}
               </h3>
-              <span style={{ display: 'flex' }}>
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
                 <p className="nfts-info">{detailsNFTs[item][3]}</p>
               </span>
+
+              <Divider style={{ margin: '9px 0px 12px 0px' }}/>
+
               <p
                 className="nft-other-p"
-                style={{ marginTop: '-12px', paddingTop: '15px' }}
+                style={{ marginTop: '-12px', paddingTop: '15px', textAlign: 'center' }}
               >
                 {detailsNFTs[item][4]}
               </p>
 
-              <span style={{ display: 'flex' }}>
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
                   color="blue"
                   className="nft-button"

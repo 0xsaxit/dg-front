@@ -459,7 +459,8 @@ a.ui.blue.button.how-to-button {
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
 
-.nft-pic {
+.nft-pic,
+.games-pic {
   width: 368px;
 }
 
@@ -498,16 +499,45 @@ a.ui.blue.button.how-to-button {
   }
 }
 
+@media (max-width: 851px) {
+  .nft-container {
+    width: 100%;
+  }
+}
+
+.outter-games-container {
+  display: flex;
+  flex-wrap: wrap !important;
+  justify-content: space-between;
+  margin-top: -15px;
+  margin-bottom: 30px;
+}
+
+.games-container {
+  width: 48.5%;
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  margin-top: 21px;
+  display: flex;
+  flex-direction: column !important;
+  margin-bottom: 6px;
+  background-color: white;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (max-width: 851px) {
+  .nft-container,
+  .games-container {
+    width: 100%;
+  }
+}
+
 @media (min-width: 1252px) {
   .ui.blue.button.nft-button,
   .ui.button.nft-read-button {
     width: 48.5% !important;
-  }
-}
-
-@media (max-width: 851px) {
-  .nft-container {
-    width: 100%;
   }
 }
 
@@ -561,27 +591,8 @@ a.ui.blue.button.how-to-button {
   padding-right: 0px;
 }
 
-.games-container {
-  border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  margin-top: 6px;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
-  background-color: white;
-  padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
 .leaderboard-column {
   min-width: 33.33% !important;
-}
-
-@media (max-width: 991px) {
-  .games-container {
-    flex-direction: column;
-  }
 }
 
 .main-container {
@@ -599,8 +610,7 @@ a.ui.blue.button.how-to-button {
   letter-spacing: 1.5px;
   background-color: #e5e6e8;
   padding: 3px 6px 3px 6px;
-  margin-right: 12px;
-  margin-top: -1px !important;
+  margin-top: -3px !important;
 }
 
 .nfts-info {
@@ -612,6 +622,7 @@ a.ui.blue.button.how-to-button {
 }
 
 .nfts-info-2 {
+  margin-left: 12px;
   margin-bottom: 14px !important;
 }
 
@@ -631,7 +642,8 @@ a.ui.blue.button.how-to-button {
   font-weight: 600;
   padding-bottom: 12px;
   color: black;
-  padding-top: 15px;
+  text-align: center;
+  padding-top: 12px;
 }
 
 .games-other-h3 {
@@ -653,7 +665,7 @@ a.ui.blue.button.how-to-button {
 }
 
 .nft-description {
-  padding-bottom: 45px;
+  padding-bottom: 30px;
 }
 
 a.ui.blue.button.play-button,
@@ -685,56 +697,63 @@ a.ui.blue.button.play-button,
 }
 
 .ui.blue.button.nft-button {
-  background-color: #2085f4;
   color: white;
-  width: 150px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
   border-radius: 2px;
-  margin-top: 0px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 150px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+  margin-right: 18px;
 }
 
 .ui.button.nft-read-button {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;
-  width: 150px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  font-size: 12px;
+  font-weight: bold !important;
   border-radius: 2px;
-  margin-left: 18px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 150px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
 }
 
 .ui.button.games-read-button {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;
-  width: 150px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  font-size: 12px;
+  font-weight: bold !important;
   border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 150px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
   margin-left: 18px;
 }
 
 .ui.blue.button.games-button {
-  background-color: #2085f4;
   color: white;
-  width: 150px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
   border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 150px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
 }
 
 .ui.blue.button.my-nft-button {
