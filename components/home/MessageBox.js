@@ -42,6 +42,24 @@ const MessageBox = (props) => {
                 Your Matic balances have been updated
               </p>
             </Aux>
+          ) : state.tokenPings === 4 ? (
+            <Aux>
+              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                Pause Transaction Confirmed
+              </p>
+              <p style={{ fontSize: '16px' }}>
+                All treasury contract games have been UNPAUSED
+              </p>
+            </Aux>
+          ) : state.tokenPings === 5 ? (
+            <Aux>
+              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                Pause Transaction Confirmed
+              </p>
+              <p style={{ fontSize: '16px' }}>
+                All treasury contract games have been PAUSED
+              </p>
+            </Aux>
           ) : null}
         </Message>
       </div>

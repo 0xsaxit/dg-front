@@ -61,7 +61,7 @@ const Admin = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // ping the treasury contract for pause status
-  function dataInterval(currentStatus) {
+  function dataInterval() {
     maticWeb3 = new Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     ); // pass Matic provider to maticWeb3 object
@@ -71,10 +71,24 @@ const Admin = () => {
     async function fetchData() {
       const response = await treasuryContract.methods.paused().call();
 
-      // as soon as the balance updates on Matic display deposit confirmation
-      if (response !== currentStatus) {
-        console.log('Treasury contract pause status: ' + response);
+      console.log('Response status: ' + response);
+      console.log('Current status: ' + isPaused);
 
+      if (response !== isPaused) {
+        // display the pause status confirmation
+        if (!response) {
+          dispatch({
+            type: 'token_pings',
+            data: 4,
+          });
+        } else {
+          dispatch({
+            type: 'token_pings',
+            data: 5,
+          });
+        }
+
+        // change the button type (pause or unpause)
         setIsPaused(response);
 
         clearInterval(interval);
@@ -84,7 +98,7 @@ const Admin = () => {
     // call token contract every 3 seconds to get new pause status
     const interval = setInterval(() => {
       fetchData();
-    }, 3000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }
@@ -125,7 +139,7 @@ const Admin = () => {
                 <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <ButtonPause
                     isPaused={isPaused}
-                    dataInterval={() => dataInterval()}
+                    dataInterval={dataInterval}
                   />
                 </span>
               </Grid.Column>
