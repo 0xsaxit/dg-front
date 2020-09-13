@@ -18,8 +18,10 @@ const Admin = () => {
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
   const [dataType, setDataType] = useState('balances');
+
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -46,8 +48,6 @@ const Admin = () => {
 
       const treasuryContract = Global.getTreasuryContract(maticWeb3);
 
-      setUserData('balances', 1); // ******************************************
-
       // get treasury contract's paused status (true or false)
       (async function () {
         const pauseStatus = await treasuryContract.methods.paused().call();
@@ -56,7 +56,7 @@ const Admin = () => {
         console.log('Pause status: ' + pauseStatus);
       })();
     }
-  }, [state.userStatus, isPaused]);
+  }, [state.userStatus]); // isPaused // ***************************************
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +90,7 @@ const Admin = () => {
 
         // change the button type (pause or unpause)
         setIsPaused(response);
+        console.log('Pause status (updated): ' + response);
 
         clearInterval(interval);
       }
@@ -193,20 +194,24 @@ const Admin = () => {
     let result = [];
     const indexStart = (page - 1) * maximumCount;
     const indexEnd = indexStart + maximumCount;
-    let overlay = 0;
+
+    // let overlay = 0;
 
     if (type === 'balances') {
       result = true;
-      overlay = 2;
+
+      // overlay = 2;
     } else if (type === 'history') {
       result = dataHistory.slice(indexStart, indexEnd);
-      overlay = 0;
+
+      // overlay = 0;
     } else if (type === 'machines') {
       result = dataMachines.slice(indexStart, indexEnd);
-      overlay = 0;
+
+      // overlay = 0;
     }
 
-    setDataPage(result);
+    setDataPage(result); // *************************
     setCurrentPage(page);
   }
 

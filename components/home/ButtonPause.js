@@ -25,24 +25,18 @@ function ButtonPause(props) {
         if (!isPaused) {
           if (pauseContract === 'pause') {
             const txHash = await Global.pauseContract(true, web3);
+            console.log('Pause tx hash: ' + txHash);
 
-            if (txHash) {
-              console.log('Pause tx hash: ' + txHash);
-
-              // start querying the treasury contract for paused status
-              props.dataInterval();
-            }
+            // start querying the treasury contract for paused status
+            if (txHash) props.dataInterval();
           }
         } else {
           if (pauseContract === 'unpause') {
             const txHash = await Global.pauseContract(false, web3);
+            console.log('Unpause tx hash: ' + txHash);
 
-            if (txHash) {
-              console.log('Unpause tx hash: ' + txHash);
-
-              // start querying the treasury contract for paused status
-              props.dataInterval();
-            }
+            // start querying the treasury contract for paused status
+            if (txHash) props.dataInterval();
           }
         }
       })();
