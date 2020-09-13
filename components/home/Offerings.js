@@ -1,8 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from './ContentGames';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner';
 import Global from '../Constants';
 
 const options = [
@@ -70,14 +70,13 @@ const detailsGames = {
 };
 
 const Offerings = () => {
-
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
-  const [timePeriod, setTimePeriod] = useState('ALL TIME')
-  const [isLoading, setIsLoading] = useState(true);
+  const [timePeriod, setTimePeriod] = useState('ALL TIME');
+  // const [isLoading, setIsLoading] = useState(true);
   const [gameState, setGameState] = useState('0');
 
   function handleChange(value) {
@@ -90,11 +89,11 @@ const Offerings = () => {
       gameSelect = 'dai';
     }
     setGameSelect(gameSelect);
-  };
+  }
 
   function timeChange(event, data) {
     setTimePeriod(data.value);
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +103,10 @@ const Offerings = () => {
       <div className="outter-games-container">
         {Object.keys(detailsGames).map((item, i) => (
           <div className="games-container">
-            <span style={{ display: 'flex', justifyContent: 'center' }} className="nft-image">
+            <span
+              style={{ display: 'flex', justifyContent: 'center' }}
+              className="nft-image"
+            >
               <Image
                 src={detailsGames[item][0]}
                 className={detailsGames[item][1]}
@@ -112,21 +114,21 @@ const Offerings = () => {
               />
             </span>
             <div className="nft-description">
-              <h3
-                className="nft-other-h3"
-              >
-                {detailsGames[item][2]}
-              </h3>
+              <h3 className="nft-other-h3">{detailsGames[item][2]}</h3>
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 <p className="nfts-info">{detailsGames[item][4]}</p>
                 <p className="nfts-info-2">{detailsGames[item][5]}</p>
               </span>
 
-              <Divider style={{ margin: '9px 0px 12px 0px' }}/>
+              <Divider style={{ margin: '9px 0px 12px 0px' }} />
 
               <p
                 className="nft-other-p"
-                style={{ marginTop: '-12px', paddingTop: '15px', textAlign: 'center' }}
+                style={{
+                  marginTop: '-12px',
+                  paddingTop: '15px',
+                  textAlign: 'center',
+                }}
               >
                 {detailsGames[item][3]}
               </p>
@@ -148,7 +150,6 @@ const Offerings = () => {
                   READ MORE
                 </Button>
               </span>
-
             </div>
           </div>
         ))}
@@ -156,21 +157,17 @@ const Offerings = () => {
     );
   }
 
-
   function Leaderboard() {
     return (
       <div>
-        <ContentGames
-          gameSelect={gameSelect}
-          timePeriod={timePeriod}
-        />
+        <ContentGames gameSelect={gameSelect} timePeriod={timePeriod} />
       </div>
     );
-  };
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // tab select and coin select area 
+  // tab select and coin select area
   function submenu() {
     return (
       <div className="account-other-tabs">
@@ -201,7 +198,7 @@ const Offerings = () => {
               </p>
             </span>
 
-        {/* ////////////////////////////////////////////////////////////////////////////////
+            {/* ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////
             ///////////////////////////  desktop coin select  ////////////////////////////// */}
 
@@ -257,9 +254,7 @@ const Offerings = () => {
               </span>
               <span
                 className={
-                  gameSelect === 'dai'
-                    ? 'account-select dai'
-                    : 'account-select'
+                  gameSelect === 'dai' ? 'account-select dai' : 'account-select'
                 }
                 onClick={() => handleChange('dai')}
               >
@@ -296,7 +291,7 @@ const Offerings = () => {
 
             <Divider className="coin-select-divider" />
 
-        {/* ////////////////////////////////////////////////////////////////////////////////
+            {/* ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////  mobile coin select  ////////////////////////////// */}
 
@@ -374,7 +369,7 @@ const Offerings = () => {
                 </span>
               </span>
 
-            {/* ////////////////////////////////////////////////////////////////////////////////
+              {/* ////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////  send time select to own row  ///////////////////////// */}
 
@@ -420,24 +415,23 @@ const Offerings = () => {
         )}
       </div>
     );
-  };
+  }
 
   function setPage(number) {
     setGameState(number);
-  };
+  }
 
+  return (
+    <div className="main-container">
+      <div className="page-container">
+        <div className="account-other-inner-container">
+          {submenu()}
 
-    return (
-      <div className="main-container">
-        <div className="page-container">
-          <div className="account-other-inner-container">
-            {submenu()}
-
-            {gameState == 1 ? Leaderboard() : Games()}
-          </div>
+          {gameState == 1 ? Leaderboard() : Games()}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+};
 
 export default Offerings;

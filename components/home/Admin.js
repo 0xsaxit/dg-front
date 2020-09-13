@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Divider, Grid, Button } from 'semantic-ui-react';
+import { Table, Divider, Grid } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Spinner from '../Spinner';
 import ButtonPause from './ButtonPause';

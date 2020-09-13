@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
-import DepositFunds from './DepositFunds';
-import WithdrawFunds from './WithdrawFunds';
+// import DepositFunds from './DepositFunds';
+// import WithdrawFunds from './WithdrawFunds';
+import ContentModal from './ContentModal';
 
 const ModalFunds = (props) => {
   // define local variables
   const [gameTypeInt, setGameTypeInt] = useState(0);
   const [modalState, setModalState] = useState(false);
+  const [gameSelect, setGameSelect] = useState('mana');
 
   useEffect(() => {
     if (props.gameType == 'slots') {
@@ -22,6 +24,18 @@ const ModalFunds = (props) => {
 
   function showModal(toggle) {
     setModalState(toggle);
+  }
+
+  function handleChange(value) {
+    var gameSelect = '';
+    if (value === 'play') {
+      gameSelect = 'play';
+    } else if (value === 'mana') {
+      gameSelect = 'mana';
+    } else {
+      gameSelect = 'dai';
+    }
+    setGameSelect(gameSelect);
   }
 
   return (
@@ -41,9 +55,21 @@ const ModalFunds = (props) => {
     >
       <Modal.Content>
         {props.modalType === 'deposit' ? (
-          <DepositFunds gameTypeInt={gameTypeInt} showModal={showModal} />
+          <ContentModal
+            gameTypeInt={gameTypeInt}
+            showModal={showModal}
+            gameSelect={gameSelect}
+            handleChange={handleChange}
+            type={'deposit'}
+          />
         ) : (
-          <WithdrawFunds gameTypeInt={gameTypeInt} showModal={showModal} />
+          <ContentModal
+            gameTypeInt={gameTypeInt}
+            showModal={showModal}
+            gameSelect={gameSelect}
+            handleChange={handleChange}
+            type={'withdraw'}
+          />
         )}
       </Modal.Content>
     </Modal>

@@ -12,7 +12,6 @@ function ButtonPause(props) {
   const [pauseContract, setPauseContract] = useState('');
 
   let web3 = {};
-  let maticWeb3 = {};
 
   useEffect(() => {
     setIsPaused(props.isPaused);

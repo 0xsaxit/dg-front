@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Form, Input } from 'semantic-ui-react';
+// import { Form, Input } from 'semantic-ui-react';
+import ContentModal from './ContentModal';
 import Global from '../Constants';
 
 const DepositFunds = (props) => {
@@ -27,10 +28,10 @@ const DepositFunds = (props) => {
     }
   }, [state.userStatus, transaction, amount]);
 
-  function inputChange(e) {
-    const valueWei = e.target.value * Global.FACTOR;
-    setAmount(valueWei);
-  }
+  // function inputChange(e) {
+  //   const valueWei = e.target.value * Global.FACTOR;
+  //   setAmount(valueWei);
+  // }
 
   async function depositFunds() {
     props.showModal(false); // close the modal
@@ -57,22 +58,7 @@ const DepositFunds = (props) => {
     });
   }
 
-  return (
-    <Form.Field>
-      <Input
-        className="admin-modal-input"
-        placeholder={'ENTER AMOUNT'}
-        action={{
-          color: 'blue',
-          labelPosition: 'right',
-          content: 'DEPOSIT',
-          icon: 'ethereum',
-          onClick: () => setTransaction(true),
-        }}
-        onChange={inputChange}
-      />
-    </Form.Field>
-  );
+  return <ContentModal type={'DEPOSIT'} />;
 };
 
 export default DepositFunds;
