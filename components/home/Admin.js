@@ -18,10 +18,8 @@ const Admin = () => {
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
   const [dataType, setDataType] = useState('balances');
-
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -56,7 +54,7 @@ const Admin = () => {
         console.log('Pause status: ' + pauseStatus);
       })();
     }
-  }, [state.userStatus]); // isPaused // ***************************************
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +94,7 @@ const Admin = () => {
       }
     }
 
-    // call token contract every 3 seconds to get new pause status
+    // call token contract every 1 second to get new pause status
     const interval = setInterval(() => {
       fetchData();
     }, 1000);
@@ -195,23 +193,15 @@ const Admin = () => {
     const indexStart = (page - 1) * maximumCount;
     const indexEnd = indexStart + maximumCount;
 
-    // let overlay = 0;
-
     if (type === 'balances') {
       result = true;
-
-      // overlay = 2;
     } else if (type === 'history') {
       result = dataHistory.slice(indexStart, indexEnd);
-
-      // overlay = 0;
     } else if (type === 'machines') {
       result = dataMachines.slice(indexStart, indexEnd);
-
-      // overlay = 0;
     }
 
-    setDataPage(result); // *************************
+    setDataPage(result);
     setCurrentPage(page);
   }
 

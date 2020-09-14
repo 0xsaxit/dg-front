@@ -69,7 +69,8 @@ function UserBalances() {
           type: 'token_pings',
           data: 2,
         });
-        const amount = response[1][1] - balances[1][1];
+        let amount = response[1][1] - balances[1][1];
+        if (!amount) amount = 99999; // for admin treasury deposits/withdrawals (until we can use Matic/Transak event data instead)
         updateHistory(amount, 'Deposit', 'Confirmed', ''); // add tx hash later
 
         clearInterval(interval);
@@ -83,7 +84,8 @@ function UserBalances() {
           type: 'token_pings',
           data: 3,
         });
-        const amount = balances[1][1] - response[1][1];
+        let amount = balances[1][1] - response[1][1];
+        if (!amount) amount = 99999; // for admin treasury deposits/withdrawals (until we can use Matic/Transak event data instead)
         updateHistory(amount, 'Withdraw', 'Confirmed', ''); // add tx hash later
 
         clearInterval(interval);

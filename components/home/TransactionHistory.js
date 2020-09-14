@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Icon, Divider, Grid, Button } from 'semantic-ui-react';
+import { Table, Divider, Grid, Button } from 'semantic-ui-react';
 import ButtonAuthorize from './ButtonAuthorize';
 import ButtonEnable from './ButtonEnable';
 import Spinner from '../Spinner';
@@ -117,7 +117,6 @@ const History = () => {
                     </Button>
                   )}
                 </span>
-                  
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -164,49 +163,6 @@ const History = () => {
       </Aux>
     );
   }
-
-  // function pagination() {
-  //   const previousPage = currentPage - 1;
-  //   const nextPage = currentPage + 1;
-
-  //   let totalRows = 0;
-  //   if (dataType === 'history') {
-  //     totalRows = dataHistory.length;
-  //   } else if (dataType === 'play') {
-  //     totalRows = dataPlay.length;
-  //   }
-
-  //   return (
-  //     <div className="pagination" style={{ paddingTop: '12px' }}>
-  //       {currentPage > 1 ? (
-  //         <Icon
-  //           name="caret left"
-  //           style={{ cursor: 'pointer', color: '#2085F4' }}
-  //           onClick={() => setUserData(dataType, previousPage)}
-  //         />
-  //       ) : (
-  //         <Icon name="caret left" style={{ color: '#aaaaaa' }} />
-  //       )}
-
-  //       <span
-  //         className="spanbox"
-  //         style={{ padding: '6px 15px', display: 'inline-block' }}
-  //       >
-  //         Page {currentPage}
-  //       </span>
-
-  //       {totalRows > maximumCount * currentPage ? (
-  //         <Icon
-  //           name="caret right"
-  //           style={{ cursor: 'pointer', color: '#2085F4' }}
-  //           onClick={() => setUserData(dataType, nextPage)}
-  //         />
-  //       ) : (
-  //         <Icon name="caret right" style={{ color: '#aaaaaa' }} />
-  //       )}
-  //     </div>
-  //   );
-  // }
 
   function setUserData(type, page) {
     let result = [];

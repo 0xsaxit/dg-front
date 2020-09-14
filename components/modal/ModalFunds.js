@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
-// import DepositFunds from './DepositFunds';
-// import WithdrawFunds from './WithdrawFunds';
 import ContentModal from './ContentModal';
 
 const ModalFunds = (props) => {
@@ -27,15 +25,7 @@ const ModalFunds = (props) => {
   }
 
   function handleChange(value) {
-    var gameSelect = '';
-    if (value === 'play') {
-      gameSelect = 'play';
-    } else if (value === 'mana') {
-      gameSelect = 'mana';
-    } else {
-      gameSelect = 'dai';
-    }
-    setGameSelect(gameSelect);
+    setGameSelect(value);
   }
 
   return (
@@ -54,23 +44,13 @@ const ModalFunds = (props) => {
       onClose={() => showModal(false)}
     >
       <Modal.Content>
-        {props.modalType === 'deposit' ? (
-          <ContentModal
-            gameTypeInt={gameTypeInt}
-            showModal={showModal}
-            gameSelect={gameSelect}
-            handleChange={handleChange}
-            type={'deposit'}
-          />
-        ) : (
-          <ContentModal
-            gameTypeInt={gameTypeInt}
-            showModal={showModal}
-            gameSelect={gameSelect}
-            handleChange={handleChange}
-            type={'withdraw'}
-          />
-        )}
+        <ContentModal
+          gameTypeInt={gameTypeInt}
+          showModal={showModal}
+          gameSelect={gameSelect}
+          handleChange={handleChange}
+          type={props.modalType}
+        />
       </Modal.Content>
     </Modal>
   );

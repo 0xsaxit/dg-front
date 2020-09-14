@@ -11,6 +11,8 @@ const ContentAdmin = (props) => {
   // define local variables
   const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
 
+  let game = '';
+
   function contentLabels() {
     if (props.type === 'balances') {
       return null;
@@ -143,20 +145,70 @@ const ContentAdmin = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  function contentMachines() {
+    return (
+      <tbody>
+        {props.dataPage.map((row, i) => {
+          let bets = (Number(row.totalBetAmount) / Global.FACTOR).toFixed(0);
+          let payouts = (Number(row.totalAmountWin) / Global.FACTOR).toFixed(0);
+          let machine_id = row.globalID.substr(row.globalID.length - 3, 3);
+          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
+
+          let date = new Date(row.latestSessionDate);
+          let timestamp = date.toLocaleString();
+          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
+
+          if (row_type === '002') game = 'MANA Roulette';
+          else game = 'MANA Slots';
+
+          return (
+            <Table.Row>
+              <Table.Cell style={{ paddingLeft: '20px' }}>
+                <img
+                  style={{ verticalAlign: 'middle' }}
+                  className="image inline"
+                  width="20px"
+                  height="20px"
+                  src={Global.IMAGES.ICON_MANA}
+                />
+                <span style={{ textAlign: 'left', marginLeft: '10px' }}>
+                  {game}
+                </span>
+              </Table.Cell>
+
+              <Table.Cell>{machine_id}</Table.Cell>
+
+              <Table.Cell>{bets} MANA</Table.Cell>
+
+              <Table.Cell>{payouts} MANA</Table.Cell>
+
+              <Table.Cell>
+                {timestamp}
+                <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
+              </Table.Cell>
+            </Table.Row>
+          );
+        })}
+      </tbody>
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentHistory() {
     return (
       <tbody>
         {props.dataPage.map((row, i) => {
-          var date = new Date(row.createdAt);
-          var timestamp = date.toLocaleString();
+          let date = new Date(row.createdAt);
+          let timestamp = date.toLocaleString();
           timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-          var game;
 
           if (row.betAmount) {
-            var amount = Number(row.betAmount) / Global.FACTOR;
-            var payout = Number(row.amountWin) / Global.FACTOR;
-            var machine_id = row.globalID.substr(row.globalID.length - 3, 3);
-            var row_type = row.globalID.substr(row.globalID.length - 6, 3);
+            let amount = Number(row.betAmount) / Global.FACTOR;
+            let payout = Number(row.amountWin) / Global.FACTOR;
+            let machine_id = row.globalID.substr(row.globalID.length - 3, 3);
+            let row_type = row.globalID.substr(row.globalID.length - 6, 3);
+
             if (row_type === '002') game = 'MANA Roulette';
             else game = 'MANA Slots';
 
@@ -179,7 +231,9 @@ const ContentAdmin = (props) => {
                     {game}
                   </span>
                 </Table.Cell>
+
                 <Table.Cell>{machine_id}</Table.Cell>
+
                 <Table.Cell>
                   <a
                     style={{ color: 'gray' }}
@@ -189,12 +243,15 @@ const ContentAdmin = (props) => {
                     {row.address.substr(0, 6) + '...' + row.address.substr(-4)}
                   </a>
                 </Table.Cell>
+
                 <Table.Cell className="admin-tx-table-padding">
                   {amount} MANA
                 </Table.Cell>
+
                 <Table.Cell className="admin-tx-table-padding2">
                   {payout} MANA
                 </Table.Cell>
+
                 <Table.Cell>
                   {timestamp} <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
                 </Table.Cell>
@@ -206,58 +263,14 @@ const ContentAdmin = (props) => {
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentMachines() {
-    return (
-      <tbody>
-        {props.dataPage.map((row, i) => {
-          var bets = (Number(row.totalBetAmount) / Global.FACTOR).toFixed(0);
-          var payouts = (Number(row.totalAmountWin) / Global.FACTOR).toFixed(0);
-          var date = new Date(row.latestSessionDate);
-          var timestamp = date.toLocaleString();
-          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-          var game;
-          var machine_id = row.globalID.substr(row.globalID.length - 3, 3);
-          var row_type = row.globalID.substr(row.globalID.length - 6, 3);
-          if (row_type === '002') game = 'MANA Roulette';
-          else game = 'MANA Slots';
-          return (
-            <Table.Row>
-              <Table.Cell style={{ paddingLeft: '20px' }}>
-                <img
-                  style={{ verticalAlign: 'middle' }}
-                  className="image inline"
-                  width="20px"
-                  height="20px"
-                  src={Global.ICON_MANA}
-                />
-                <span style={{ textAlign: 'left', marginLeft: '10px' }}>
-                  {game}
-                </span>
-              </Table.Cell>
-              <Table.Cell>{machine_id}</Table.Cell>
-              <Table.Cell>{bets} MANA</Table.Cell>
-              <Table.Cell>{payouts} MANA</Table.Cell>
-              <Table.Cell>
-                {timestamp}
-                <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
-              </Table.Cell>
-            </Table.Row>
-          );
-        })}
-      </tbody>
-    );
-  }
-
   if (props.content === 'labels') {
     return contentLabels();
   } else if (props.content === 'balances') {
     return contentBalances();
-  } else if (props.content === 'history') {
-    return contentHistory();
   } else if (props.content === 'machines') {
     return contentMachines();
+  } else if (props.content === 'history') {
+    return contentHistory();
   }
 };
 
