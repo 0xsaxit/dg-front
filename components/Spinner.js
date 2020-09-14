@@ -12,9 +12,13 @@ const Spinner = (props) => {
   } else if (props.background == 2) {
     return (
       <div className="black">
-        <span className="dg-presents-span">
-          <img src={Global.IMAGES.LOADING_SPINNER} className="spinner" />
-        </span>
+        <img src={Global.IMAGES.LOADING_SPINNER} className="spinner" />
+      </div>
+    );
+  } else if (props.background == 3) {
+    return (
+      <div className="bug-fix">
+        <img src={Global.IMAGES.LOADING_SPINNER} className="spinner" />
       </div>
     );
   } else {

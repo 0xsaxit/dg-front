@@ -14,7 +14,6 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [isLoading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
@@ -57,9 +56,6 @@ const MenuTop = () => {
         'sidebar-menu-text-2 blog',
         'sidebar-menu-text-3 blog',
       ]);
-    }
-    if(document.readyState === 'complete') {
-      setLoading(false);
     }
   }, []);
 
@@ -221,9 +217,7 @@ const MenuTop = () => {
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
-            {state.isLoading ? (
-              null
-            ) : <Segment className="transparent-menu-segment"></Segment>}
+            <Segment className="transparent-menu-segment"></Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>

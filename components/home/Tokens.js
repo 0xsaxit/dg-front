@@ -3,6 +3,7 @@ import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Grid, Breadcrumb } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
 import Aux from '../_Aux';
+import Spinner from '../Spinner';
 
 const detailsNFTs = {
   tominoya: [
@@ -68,6 +69,13 @@ const Tokens = () => {
   // define local variables
   const [NFTstate, setNFTState] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [Loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if(document.readyState === 'complete') {
+      setLoading(false);
+    }
+  });
 
   useEffect(() => {
     if (Object.keys(state.parcelData).length !== 0) {
@@ -190,6 +198,9 @@ const Tokens = () => {
 
   return (
     <div className="main-container">
+
+      {Loading ? <Spinner background={3} />
+      :
       <div className="page-container">
         <div className="account-other-inner-container ">
           {submenu()}
@@ -198,7 +209,7 @@ const Tokens = () => {
 
           {NFTstate == 1 ? myNFTs() : buyNFTs()}
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
