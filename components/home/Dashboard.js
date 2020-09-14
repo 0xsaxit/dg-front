@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Global from '../Constants';
@@ -160,13 +160,21 @@ const Dashboard = () => {
                 playable with crypto in Decentraland
               </h2>
               <span className="logged-out-button-span">
-                <Button
-                  color="blue"
-                  className="demo-button"
-                  style={{ marginRight: '30px' }}
+                <Modal
+                  trigger={<Button color="blue" className="demo-button" style={{ marginRight: '18px' }}> DEMO </Button>}
+                  basic
+                  size="small"
                 >
-                  DEMO
-                </Button>
+                  <Modal.Content>
+                    <iframe
+                      className="mobile-demo-video"
+                      src="https://www.youtube.com/embed/a1DoWiNW0oU?&autoplay=1&loop=1&playlist=a1DoWiNW0oU"
+                      frameborder="0"
+                      allowfullscreen
+                      allow='autoplay'
+                    ></iframe>
+                  </Modal.Content>
+                </Modal>
                 <Button
                   color="blue"
                   className="play-shimmer"
