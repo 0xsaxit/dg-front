@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-// import { isChrome, isFirefox } from 'react-device-detect'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
@@ -15,6 +14,7 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [isLoaading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
@@ -58,6 +58,7 @@ const MenuTop = () => {
         'sidebar-menu-text-3 blog',
       ]);
     }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -218,7 +219,9 @@ const MenuTop = () => {
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
-            <Segment className="transparent-menu-segment"></Segment>
+            {state.isLoading ? (
+              null
+            ) : <Segment className="transparent-menu-segment"></Segment>}
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
