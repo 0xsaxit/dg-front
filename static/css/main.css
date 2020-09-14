@@ -1342,7 +1342,7 @@ span.matic-icon-background-2 {
 }
 
 div.ui.grid.balances-container {
-  padding-top: 205px;
+  padding-top: 130px;
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1373,9 +1373,15 @@ div.ui.grid.balances-container {
   padding: 12px 18px 39px 18px !important;
 }
 
-.balances-column.zero {
+.top-balances-column {
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  max-width: 48.5%;
+  padding: 12px 18px 39px 18px !important;
+}
+
+.top-balances-column.zero {
   height: 100px;
-  padding: 12px 17px 39px 18px !important;
 }
 
 .avatar-picture .avatar-edit {
