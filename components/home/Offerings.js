@@ -120,7 +120,7 @@ const Offerings = () => {
                 <p className="nfts-info-2">{detailsGames[item][5]}</p>
               </span>
 
-              <Divider style={{ margin: '9px 0px 12px 0px' }} />
+              <Divider style={{ margin: '10px 0px 15px 0px', width: 'calc(100% + 60px)', marginLeft: '-30px' }}/>
 
               <p
                 className="nft-other-p"
