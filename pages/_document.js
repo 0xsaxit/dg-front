@@ -50,7 +50,7 @@ export default class MyDocument extends Document {
             name="google-site-verification"
             content="9aU-7WbT0IK2q6vq2v6jciIc8At4qeagmjmKNhVUhFE"
           />
-          <link rel="manifest" href="/static/js/manifest.json" />
+          <link rel="manifest" href="/static/js/manifest.json" crossorigin="use-credentials" />
           <link rel="stylesheet" href="/static/css/blog.css" />
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
