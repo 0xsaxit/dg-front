@@ -14,7 +14,7 @@ const MenuTop = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [isLoaading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
@@ -58,7 +58,9 @@ const MenuTop = () => {
         'sidebar-menu-text-3 blog',
       ]);
     }
-    setLoading(false);
+    if(document.readyState === 'complete') {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
