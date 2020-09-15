@@ -157,10 +157,10 @@ const ContentAdmin = (props) => {
               game = 'Roulette';
               break;
             case '003':
-              game = 'Blackjack';
+              game = 'Backgammon';
               break;
             case '004':
-              game = 'Backgammon';
+              game = 'Blackjack';
               break;
             case '005':
               game = 'Poker';
@@ -231,10 +231,10 @@ const ContentAdmin = (props) => {
                 game = 'Roulette';
                 break;
               case '003':
-                game = 'Blackjack';
+                game = 'Backgammon';
                 break;
               case '004':
-                game = 'Backgammon';
+                game = 'Blackjack';
                 break;
               case '005':
                 game = 'Poker';
