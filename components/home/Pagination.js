@@ -8,7 +8,7 @@ const Pagination = (props) => {
     let totalRows = 0;
     if (props.dataType === 'history') {
       totalRows = props.data1.length;
-    } else if (props.dataType === 'play') {
+    } else if (props.dataType === 'play' || 'machines') {
       totalRows = props.data2.length;
     }
 
