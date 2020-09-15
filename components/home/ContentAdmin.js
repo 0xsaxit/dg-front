@@ -10,7 +10,6 @@ const ContentAdmin = (props) => {
 
   // define local variables
   const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
-
   let game = '';
 
   function contentLabels() {
@@ -21,10 +20,10 @@ const ContentAdmin = (props) => {
         <tbody>
           <tr className="table-header">
             <td className="table-header-text account">GAME</td>
-            <td className="table-header-text-1 bet">MACHINE ID</td>
-            <td className="table-header-text-1 date">BET</td>
-            <td className="table-header-text-1">PAYOUT</td>
-            <td className="table-header-text-1 date">TIMESTAMP</td>
+            <td className="table-header-text-1 bet">GLOBAL ID</td>
+            <td className="table-header-text-1 date">TOTAL BETS</td>
+            <td className="table-header-text-1">TOTAL PAYOUTS</td>
+            <td className="table-header-text-1 date">LAST SESSION</td>
           </tr>
         </tbody>
       );
@@ -33,7 +32,7 @@ const ContentAdmin = (props) => {
         <tbody>
           <tr className="table-header">
             <td className="table-header-text account">GAME</td>
-            <td className="table-header-text-1 bet">MACHINE ID</td>
+            <td className="table-header-text-1 bet">GLOBAL ID</td>
             <td className="table-header-text-1">PLAYER</td>
             <td className="table-header-text-1 date">BET</td>
             <td className="table-header-text-1">PAYOUT</td>
@@ -149,17 +148,32 @@ const ContentAdmin = (props) => {
     return (
       <tbody>
         {props.dataPage.map((row, i) => {
+          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
+          switch (row_type) {
+            case '001':
+              game = 'Slots';
+              break;
+            case '002':
+              game = 'Roulette';
+              break;
+            case '003':
+              game = 'Blackjack';
+              break;
+            case '004':
+              game = 'Backgammon';
+              break;
+            case '005':
+              game = 'Poker';
+              break;
+            default:
+              game = 'Slots';
+          }
           let bets = (Number(row.totalBetAmount) / Global.FACTOR).toFixed(0);
           let payouts = (Number(row.totalAmountWin) / Global.FACTOR).toFixed(0);
-          let machine_id = row.globalID.substr(row.globalID.length - 3, 3);
-          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
 
           let date = new Date(row.latestSessionDate);
           let timestamp = date.toLocaleString();
           timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-
-          if (row_type === '002') game = 'MANA Roulette';
-          else game = 'MANA Slots';
 
           return (
             <Table.Row>
@@ -176,16 +190,13 @@ const ContentAdmin = (props) => {
                 </span>
               </Table.Cell>
 
-              <Table.Cell>{machine_id}</Table.Cell>
+              <Table.Cell>{row.globalID}</Table.Cell>
 
               <Table.Cell>{bets} MANA</Table.Cell>
 
               <Table.Cell>{payouts} MANA</Table.Cell>
 
-              <Table.Cell>
-                {timestamp}
-                <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
-              </Table.Cell>
+              <Table.Cell>{timestamp}</Table.Cell>
             </Table.Row>
           );
         })}
@@ -199,18 +210,33 @@ const ContentAdmin = (props) => {
     return (
       <tbody>
         {props.dataPage.map((row, i) => {
-          let date = new Date(row.createdAt);
-          let timestamp = date.toLocaleString();
-          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-
+          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
           if (row.betAmount) {
+            switch (row_type) {
+              case '001':
+                game = 'Slots';
+                break;
+              case '002':
+                game = 'Roulette';
+                break;
+              case '003':
+                game = 'Blackjack';
+                break;
+              case '004':
+                game = 'Backgammon';
+                break;
+              case '005':
+                game = 'Poker';
+                break;
+              default:
+                game = 'Slots';
+            }
             let amount = Number(row.betAmount) / Global.FACTOR;
             let payout = Number(row.amountWin) / Global.FACTOR;
-            let machine_id = row.globalID.substr(row.globalID.length - 3, 3);
-            let row_type = row.globalID.substr(row.globalID.length - 6, 3);
 
-            if (row_type === '002') game = 'MANA Roulette';
-            else game = 'MANA Slots';
+            let date = new Date(row.createdAt);
+            let timestamp = date.toLocaleString();
+            timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
 
             return (
               <Table.Row>
@@ -232,7 +258,7 @@ const ContentAdmin = (props) => {
                   </span>
                 </Table.Cell>
 
-                <Table.Cell>{machine_id}</Table.Cell>
+                <Table.Cell>{row.globalID}</Table.Cell>
 
                 <Table.Cell>
                   <a
@@ -252,9 +278,7 @@ const ContentAdmin = (props) => {
                   {payout} MANA
                 </Table.Cell>
 
-                <Table.Cell>
-                  {timestamp} <i style={{ marginLeft: '5px' }}>&#x25B8;</i>
-                </Table.Cell>
+                <Table.Cell>{timestamp}</Table.Cell>
               </Table.Row>
             );
           }
