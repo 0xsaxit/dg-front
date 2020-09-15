@@ -171,6 +171,17 @@ const ContentAdmin = (props) => {
           let bets = (Number(row.totalBetAmount) / Global.FACTOR).toFixed(0);
           let payouts = (Number(row.totalAmountWin) / Global.FACTOR).toFixed(0);
 
+          // later we should provide the coinName property in the data
+          let coinName = 'MANA';
+          let coinImage = '';
+          if (coinName === 'PLAY') {
+            coinImage = Global.IMAGES.PLAY_CIRCLE;
+          } else if (coinName === 'MANA') {
+            coinImage = Global.IMAGES.ICON_MANA;
+          } else if (coinName === 'DAI') {
+            coinImage = Global.IMAGES.ICON_DAI;
+          }
+
           let date = new Date(row.latestSessionDate);
           let timestamp = date.toLocaleString();
           timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
@@ -183,7 +194,7 @@ const ContentAdmin = (props) => {
                   className="image inline"
                   width="20px"
                   height="20px"
-                  src={Global.IMAGES.ICON_MANA}
+                  src={coinImage}
                 />
                 <span style={{ textAlign: 'left', marginLeft: '10px' }}>
                   {game}
@@ -233,6 +244,16 @@ const ContentAdmin = (props) => {
             }
             let amount = Number(row.betAmount) / Global.FACTOR;
             let payout = Number(row.amountWin) / Global.FACTOR;
+            let coinName = row.coinName;
+
+            let coinImage = '';
+            if (coinName === 'PLAY') {
+              coinImage = Global.IMAGES.PLAY_CIRCLE;
+            } else if (coinName === 'MANA') {
+              coinImage = Global.IMAGES.ICON_MANA;
+            } else if (coinName === 'DAI') {
+              coinImage = Global.IMAGES.ICON_DAI;
+            }
 
             let date = new Date(row.createdAt);
             let timestamp = date.toLocaleString();
@@ -246,7 +267,7 @@ const ContentAdmin = (props) => {
                     className="image inline"
                     width="20px"
                     height="20px"
-                    src={Global.IMAGES.ICON_MANA}
+                    src={coinImage}
                   />
                   <span
                     style={{
@@ -271,11 +292,11 @@ const ContentAdmin = (props) => {
                 </Table.Cell>
 
                 <Table.Cell className="admin-tx-table-padding">
-                  {amount} MANA
+                  {amount} {coinName}
                 </Table.Cell>
 
                 <Table.Cell className="admin-tx-table-padding2">
-                  {payout} MANA
+                  {payout} {coinName}
                 </Table.Cell>
 
                 <Table.Cell>{timestamp}</Table.Cell>
