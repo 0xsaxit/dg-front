@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Button, Icon } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
 import MessageBar from './MessageBar';
 import Verify from './Verify';
 import MessageBox from './MessageBox';
@@ -305,7 +305,9 @@ const MenuTop = () => {
             className="modal-deposit-button"
             onClick={() => balancesModal()}
           >
-            <Icon name="plus" />
+            <span class="material-icons">
+            add
+            </span>
           </Button>
         </span>
       );

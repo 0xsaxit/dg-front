@@ -42,7 +42,7 @@ const Farming = () => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture" style={{ display: 'flex' }}>
                 <img
-                  src={Global.IMAGES.LOGO}
+                  src={Global.IMAGES.MANA_CIRCLE}
                   style={{
                     width: '60px',
                     display: 'flex',
@@ -54,7 +54,7 @@ const Farming = () => {
                   }}
                 />
                 <img
-                  src={Global.IMAGES.MANA_CIRCLE}
+                  src={Global.IMAGES.LOGO}
                   style={{
                     width: '60px',
                     display: 'flex',
@@ -74,7 +74,7 @@ const Farming = () => {
                 }}
               >
                 <p className="welcome-text"> Pool Name </p>
-                <p className="account-name">DG-MANA</p>
+                <p className="account-name">MANA-DG</p>
               </span>
             </span>
 
@@ -104,6 +104,15 @@ const Farming = () => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture" style={{ display: 'flex' }}>
                 <img
+                  src={Global.IMAGES.DAI_CIRCLE}
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
+                />
+                <img
                   src={Global.IMAGES.LOGO}
                   style={{
                     width: '60px',
@@ -115,15 +124,6 @@ const Farming = () => {
                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                   }}
                 />
-                <img
-                  src={Global.IMAGES.DAI_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
-                />
               </span>
               <span
                 style={{
@@ -133,7 +133,7 @@ const Farming = () => {
                 }}
               >
                 <p className="welcome-text"> Pool Name </p>
-                <p className="account-name">DG-DAI</p>
+                <p className="account-name">DAI-DG</p>
               </span>
             </span>
 
