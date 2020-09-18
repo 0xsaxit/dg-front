@@ -27,7 +27,8 @@ const MenuTop = () => {
       router.pathname === '/games' ||
       router.pathname === '/account' ||
       router.pathname === '/nfts' ||
-      router.pathname === '/admin'
+      router.pathname === '/admin' ||
+      router.pathname === '/dg'
     ) {
       setMenuStyle([
         'other-menu-container',
@@ -203,6 +204,10 @@ const MenuTop = () => {
               <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
             </Link>
 
+            {/*<Link href="/dg">
+              <Menu.Item className={getLinkStyles('/dg')}>DG</Menu.Item>
+            </Link>*/}
+
             <Link href="/blog">
               <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
             </Link>
@@ -245,6 +250,10 @@ const MenuTop = () => {
         <Link href="/nfts">
           <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
+
+        {/*<Link href="/dg">
+          <Menu.Item className={getLinkStyles('/dg')}>DG</Menu.Item>
+        </Link>*/}
 
         <Link href="/blog">
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>

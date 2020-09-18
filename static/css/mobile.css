@@ -46,13 +46,13 @@
   }
 }
 
-@media (min-width: 1070px) {
+@media (min-width: 1090px) {
   .dropdown-menu {
     display: none;
   }
 }
 
-@media (max-width: 1069px) {
+@media (max-width: 1089px) {
   .menu-items-to-hide {
     display: none;
   }
