@@ -295,6 +295,7 @@ const MenuTop = () => {
                   marginTop: '5px',
                   borderRadius: '100%',
                   boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                  backgroundColor: 'white',
                 }}
               />
             </span>
