@@ -377,14 +377,13 @@ a.ui.blue.button.how-to-button {
 }
 
 .home-dashboard-content {
-  position: absolute;
-  bottom: 90px !important;
+  position: relative;
+  margin-top: calc(100vh - 660px);
 }
 
-@media (max-height: 500px) {
+@media (max-height: 510px) {
   .home-dashboard-content {
-    position: absolute;
-    top: 150px !important;
+    margin-top: -150px !important;
   } 
 }
 
