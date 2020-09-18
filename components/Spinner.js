@@ -17,7 +17,7 @@ const Spinner = (props) => {
     );
   } else if (props.background == 3) {
     return (
-      <div className="bug-fix">
+      <div className="full-white">
         <img src={Global.IMAGES.LOADING_SPINNER} className="spinner" />
       </div>
     );

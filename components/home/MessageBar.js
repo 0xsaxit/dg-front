@@ -96,7 +96,7 @@ const MessageBar = () => {
           fontSize: '14px',
           letterSpacing: '0.5px',
           fontWeight: 500,
-          backgroundColor: '#2185f4',
+          backgroundColor: '#2085f4',
           minHeight: '38px',
         }}
       >

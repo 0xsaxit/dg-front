@@ -20,6 +20,13 @@ const History = () => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [doneLoading, setDoneLoading] = useState(true);
+
+  useEffect(() => {
+    if(document.readyState === 'complete') {
+      setDoneLoading(false);
+    }
+  });
 
   useEffect(() => {
     if (state.userStatus) {
@@ -202,34 +209,35 @@ const History = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? <Spinner background={0} /> : null}
+    
+      {doneLoading ? <Spinner background={3} /> :
+        <div className="page-container">
+          <div className="account-other-inner-container">
+            {topLinks()}
 
-      <div className="page-container">
-        <div className="account-other-inner-container">
-          {topLinks()}
+            <div id="tx-box-history-2">
+              <table className="account-table">
+                <ContentTransactions content={'labels'} type={dataType} />
 
-          <div id="tx-box-history-2">
-            <table className="account-table">
-              <ContentTransactions content={'labels'} type={dataType} />
+                {dataPage !== 'false' ? (
+                  <ContentTransactions content={dataType} dataPage={dataPage} />
+                ) : (
+                  noTxHistory()
+                )}
+              </table>
+            </div>
 
-              {dataPage !== 'false' ? (
-                <ContentTransactions content={dataType} dataPage={dataPage} />
-              ) : (
-                noTxHistory()
-              )}
-            </table>
+            <Pagination
+              currentPage={currentPage}
+              dataType={dataType}
+              data1={dataHistory}
+              data2={dataPlay}
+              maximumCount={maximumCount}
+              setUserData={setUserData}
+            />
           </div>
-
-          <Pagination
-            currentPage={currentPage}
-            dataType={dataType}
-            data1={dataHistory}
-            data2={dataPlay}
-            maximumCount={maximumCount}
-            setUserData={setUserData}
-          />
         </div>
-      </div>
+      }
     </div>
   );
 };
