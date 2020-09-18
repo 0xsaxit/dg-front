@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Button, Icon } from 'semantic-ui-react';
 import MessageBar from './MessageBar';
 import Verify from './Verify';
 import MessageBox from './MessageBox';
@@ -38,10 +38,7 @@ const MenuTop = () => {
         'dropdown-menu',
         '',
         'rgba(10, 10, 10, 1)',
-        'sidebar-menu-text',
-        'sidebar-menu-text',
-        'sidebar-menu-text-2',
-        'sidebar-menu-text-3',
+        'right-menu-text',
       ]);
     } else {
       setMenuStyle([
@@ -52,10 +49,7 @@ const MenuTop = () => {
         'dropdown-menu blog',
         'rgb(10, 10, 10)',
         'white',
-        'sidebar-menu-text blog',
-        'sidebar-menu-text blog',
-        'sidebar-menu-text-2 blog',
-        'sidebar-menu-text-3 blog',
+        'right-menu-text blog',
       ]);
     }
   }, []);
@@ -212,19 +206,15 @@ const MenuTop = () => {
               <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
             </Link>
 
-            <Menu.Item
-              href="https://docs.decentral.games/"
-              target="_blank"
-              className={menuStyle[7]}
-              style={{ paddingBottom: '27px' }}
-            >
-              DOCS
-            </Menu.Item>
+            <Menu.Item style={{ paddingBottom: '27px' }} href="https://docs.decentral.games/" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
+
           </Sidebar>
+
           <Sidebar.Pusher>
             <Segment className="transparent-menu-segment"></Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+
       </div>
     );
   }
@@ -259,13 +249,8 @@ const MenuTop = () => {
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
         </Link>
 
-        <Menu.Item
-          href="https://docs.decentral.games/"
-          target="_blank"
-          className={menuStyle[8]}
-        >
-          DOCS
-        </Menu.Item>
+        <Menu.Item href="https://docs.decentral.games/" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
+
       </div>
     );
   }
@@ -275,35 +260,44 @@ const MenuTop = () => {
     if (state.userStatus) {
       return (
         <span className="right-menu-items">
-          <span className={menuStyle[9]}>
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-4px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Global.IMAGES.DAI_CIRCLE}
-            />
-            {state.userBalances[0][1]} DAI
-          </span>
-          <span className={menuStyle[10]}>
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-4px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Global.IMAGES.MANA_CIRCLE}
-            />
-            {state.userBalances[1][1]} MANA
+
+          <span className="menu-account-info">
+            <span>
+              <Menu.Item className={menuStyle[7]}>
+                {state.userBalances[0][1]} DAI
+              </Menu.Item>
+            </span>
+            <span>
+              <Menu.Item className={menuStyle[7]}>
+                {state.userBalances[1][1]} MANA
+              </Menu.Item>
+            </span>
+
+            <span className="menu-avatar-background">
+              {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                <Menu.Item className={menuStyle[7]} style={{ marginTop: '-1px' }}>
+                  {state.userInfo[1].substr(0, 4) +
+                    '...' +
+                    state.userInfo[1].substr(-4)}
+                </Menu.Item>
+              ) : (
+                <Menu.Item style={{ marginTop: '-1px' }} className={menuStyle[7]}>{state.userInfo[0]}</Menu.Item>
+              )}
+
+              <img
+                className="avatar-picture"
+                src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                style={{
+                  width: '21px',
+                  height: '21px',
+                  display: 'flex',
+                  border: '1px solid rgb(227, 232, 238)',
+                  marginTop: '5px',
+                  borderRadius: '100%',
+                  boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                }}
+              />
+            </span>
           </span>
 
           <Button
@@ -311,7 +305,7 @@ const MenuTop = () => {
             className="modal-deposit-button"
             onClick={() => balancesModal()}
           >
-            ADD TOKENS
+            <Icon name="plus" />
           </Button>
         </span>
       );

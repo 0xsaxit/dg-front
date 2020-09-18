@@ -47,6 +47,10 @@ p {
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
+.menu-account-info {
+  display: flex;
+}
+
 .ui.blue.button.metamask-button {
   background-color: #2085f4;
   color: white;
@@ -64,15 +68,21 @@ p {
 .ui.button.modal-deposit-button {
   background-color: #2085f4;
   color: white;
-  width: 180px;
   font-size: 14px !important;
   font-weight: 600;
-  margin-top: 15px;
-  padding: 9px;
-  height: 39px;
+  margin-top: 18px;
+  height: 33px;
   letter-spacing: 1.25px;
   border-radius: 2px;
   margin-right: 30px;
+  min-width: 15px !important;
+  padding: 0px 3px 0px 12px;
+}
+
+.ui.button.modal-deposit-button:hover,
+.ui.blue.button:hover, .ui.blue.buttons .button:hover {
+  background-color: #2085f4;
+  filter: brightness(90%) !important;
 }
   
 @media (min-width: 1400px) {
@@ -209,6 +219,18 @@ div.ui.segment.transparent-menu-segment {
   padding-right: 12px !important;
 }
 
+.right-menu-text {
+  color: white !important;
+  border: none;
+  box-shadow: none;
+  letter-spacing: 1.25px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding-right: 6px !important;
+  padding-left: 6px !important;
+  padding-top: 10px !important;
+}
+
 .right-menu-items {
   width: calc(100% - 60px);
   margin-left: 60px;
@@ -218,28 +240,27 @@ div.ui.segment.transparent-menu-segment {
   z-index: 2;
 }
 
-.sidebar-menu-text-2 {
-  color: rgba(225, 225, 225, 1) !important;
-  margin-top: 25px;
-  border: none;
-  box-shadow: none;
-  letter-spacing: 1.25px;
-  font-size: 16px;
-}
-
-.sidebar-menu-text-3 {
-  color: rgba(225, 225, 225, 1) !important;
-  margin-top: 25px;
-  border: none;
-  box-shadow: none;
-  letter-spacing: 1.25px;
-  font-size: 16px;
-  padding-left: 30px !important;
-  padding-right: 30px !important;
-}
-
 .ui.menu .item:before {
   background: none !important;
+}
+
+.menu-account-info {
+  margin-right: 15px;
+  background-color: #2085f4;
+  border-radius: 2px;
+  margin-top: 18px;
+  height: 33px !important;
+  padding-left: 9px;
+}
+
+.menu-avatar-background {
+  display: flex;
+  background-color: #165daa;
+  padding-right: 15px;
+  border-radius: 2px;
+  border: 1px solid #2085f4;
+  padding-left: 9px;
+  margin-left: 3px;
 }
 
 /* ----------------------------------------- */
@@ -353,6 +374,18 @@ a.ui.blue.button.how-to-button {
 
 .dashboard-image:hover {
   filter: brightness(80%);
+}
+
+.home-dashboard-content {
+  position: absolute;
+  bottom: 90px !important;
+}
+
+@media (max-height: 500px) {
+  .home-dashboard-content {
+    position: absolute;
+    top: 150px !important;
+  } 
 }
 
 .home-dashboard-description {
