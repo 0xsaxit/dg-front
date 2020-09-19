@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Button, Modal, Icon } from 'semantic-ui-react';
 import MessageBar from './MessageBar';
 import Verify from './Verify';
 import MessageBox from './MessageBox';
@@ -17,6 +17,7 @@ const MenuTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
+  const [open, setOpen] = React.useState(false)
 
   const router = useRouter();
 
@@ -262,12 +263,12 @@ const MenuTop = () => {
         <span className="right-menu-items">
 
           <span className="menu-account-info">
-            <span>
+            <span className="menu-info-to-hide">
               <Menu.Item className={menuStyle[7]}>
                 {state.userBalances[0][1]} DAI
               </Menu.Item>
             </span>
-            <span>
+            <span className="menu-info-to-hide">
               <Menu.Item className={menuStyle[7]}>
                 {state.userBalances[1][1]} MANA
               </Menu.Item>
@@ -310,6 +311,63 @@ const MenuTop = () => {
             add
             </span>
           </Button>
+
+          <Modal
+            className="menu-info-modal"
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            open={open}
+            close
+            trigger={
+              <Button
+                color="blue"
+                className="modal-info-button"
+              >
+                <span class="material-icons">
+                  settings
+                </span>
+              </Button>
+            }
+          >
+            <span className="menu-info-close" onClick={() => setOpen(false)}>
+              <span className="material-icons" style={{ fontSize: '29px' }}>
+                close
+              </span>
+            </span>
+
+            <p className="matic-header-text" style={{ paddingTop: '72px' }}> About </p>
+
+            <span style={{ display: 'flex', justifyContent: 'center', marginTop: '-9px' }}>
+              <a href="https://twitter.com/decentralgames">
+                <Icon style={{ fontSize: '34px' }} name="twitter" />
+              </a>
+              <a href="https://discord.com/invite/cvbSNzY">
+                <Icon style={{ fontSize: '34px', marginRight: '12px', marginLeft: '12px' }} name="discord" />
+              </a>
+              <a href="https://github.com/decentralgames">
+                <Icon style={{ fontSize: '34px' }} name="github" />
+              </a>
+            </span>
+            <div className="menu-info-container">
+              <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+                <p className="menu-info-label"> Version </p>
+                <p className="menu-info-text"> 0.0.9 </p>
+              </span>
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label"> Network </p>
+                <p className="menu-info-text"> Goerli </p>
+              </span>
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label"> Decentraland Node </p>
+                <a href="https://catalyst-monitor.now.sh/" className="menu-info-text"> https://catalyst-monitor.now.sh/</a>
+              </span>
+              <span className="menu-info-inner-span" >
+                <p className="menu-info-label"> Matic Node </p>
+                <a href="https://wallet.matic.today/staking/" className="menu-info-text">https://wallet.matic.today/staking/</a>
+              </span>
+            </div>
+          </Modal>
+
         </span>
       );
     } else {
