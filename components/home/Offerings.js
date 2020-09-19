@@ -230,6 +230,7 @@ const Offerings = () => {
                     verticalAlign: 'middle',
                     marginRight: '6px',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                   className="image inline"
                   width="21px"
@@ -252,6 +253,7 @@ const Offerings = () => {
                     verticalAlign: 'middle',
                     marginRight: '6px',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                   className="image inline"
                   width="21px"
@@ -271,6 +273,7 @@ const Offerings = () => {
                     verticalAlign: 'middle',
                     marginRight: '6px',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                   className="image inline"
                   width="21px"
