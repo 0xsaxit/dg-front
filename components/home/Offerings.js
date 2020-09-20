@@ -146,14 +146,14 @@ const Offerings = () => {
                   color="blue"
                   className="nft-button"
                   target="_blank"
-                  href={detailsGames[item][5]}
+                  href={detailsGames[item][6]}
                 >
-                  PURCHASE NFT
+                  PLAY NOW
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
-                  href={detailsGames[item][6]}
+                  href={detailsGames[item][7]}
                 >
                   READ MORE
                 </Button>

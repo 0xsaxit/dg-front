@@ -207,7 +207,7 @@ const MenuTop = () => {
               <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
             </Link>
 
-            <Menu.Item style={{ paddingBottom: '27px' }} href="https://docs.decentral.games/" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
+            <Menu.Item style={{ paddingBottom: '27px' }} href="https://docs.decentral.games/" target="_blank" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
 
           </Sidebar>
 
@@ -250,7 +250,7 @@ const MenuTop = () => {
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
         </Link>
 
-        <Menu.Item href="https://docs.decentral.games/" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
+        <Menu.Item href="https://docs.decentral.games/" target="_blank" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
 
       </div>
     );
