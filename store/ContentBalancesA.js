@@ -28,45 +28,18 @@ const ContentBalances = (props) => {
   useEffect(() => {
     // get all the events
     transak.on(transak.ALL_EVENTS, (data) => {
-      console.log('Transak: all data');
       console.log(data);
     });
-
-    // order created
-    transak.on(transak.EVENTS.ORDER_CREATED, (data) => {
-      console.log('Transak: order created');
-      console.log(data);
-    });
-
-    // order processing
-    transak.on(transak.EVENTS.ORDER_PROCESSING, (data) => {
-      console.log('Transak: order processing');
-      console.log(data);
-    });
-
-    // order verifying
-    transak.on(transak.EVENTS.ORDER_PAYMENT_VERIFYING, (data) => {
-      console.log('Transak: order verifying');
-      console.log(data);
-    });
-
-    // order completed
-    transak.on(transak.EVENTS.ORDER_COMPLETED, (data) => {
-      console.log('Transak: order completed');
-      console.log(data);
-    });
-
     // triggers when the user closes the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, () => {
+    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
       transak.close();
     });
-
     // triggers when the payment is complete
     transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
       console.log(orderData);
       transak.close();
     });
-  });
+  }, []);
 
   // get user address
   useEffect(() => {
@@ -95,40 +68,20 @@ const ContentBalances = (props) => {
   function show_transak() {
     transak.init();
 
-    // initializePings();
+    initializePings();
   }
 
   // initialize token contract pings
-  // function initializePings() {
-  //   if (state.userStatus >= 5) {
-  //     console.log('Ping token contract');
+  function initializePings() {
+    if (state.userStatus >= 5) {
+      console.log('Ping token contract');
 
-  //     // start pinging the token contract for deposit confirmation
-  //     dispatch({
-  //       type: 'token_pings',
-  //       data: 1,
-  //     });
-  //   }
-  // }
-
-  // Listen to the events from widget
-  // function maticWidgetEventsListener(event) {
-  //   console.log('matic event listener...');
-
-  //   console.log(event.data.type, event);
-  //   if (event.data && event.data.type === event.eventTypes.TRANSFER.onReceipt) {
-  //     // ...TODO
-  //   }
-  // }
-
-  // close widget
-  function closeWidgetOnTransaction(event) {
-    console.log('close matic widget...');
-
-    // this is not an event listener
-    const iframeId = event.data.iframeId;
-    document.body.removeChild(document.getElementById(iframeId));
-    document.body.removeChild(document.getElementById('matic-iframe-backdrop'));
+      // start pinging the token contract for deposit confirmation
+      dispatch({
+        type: 'token_pings',
+        data: 1,
+      });
+    }
   }
 
   // close function
@@ -172,6 +125,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
               >
                 <span className="matic-icon-background">
                   <span
@@ -404,6 +358,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
               >
                 DEPOSIT
               </Button>
@@ -412,6 +367,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                onClick={() => initializePings()}
               >
                 WITHDRAW
               </Button>

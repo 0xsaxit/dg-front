@@ -11,7 +11,8 @@ const initialState = {
   userInfo: [],
   userBalances: [[], []],
   transactions: [[], []],
-  tokenPings: 0,
+  messageBox: 0,
+  tokenPings: false,
   parcelData: {},
   gameRecords: {},
   balancesOverlay: 0,
@@ -59,6 +60,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         transactions: action.data,
+      };
+
+    case 'message_box':
+      return {
+        ...state,
+        messageBox: action.data,
       };
 
     case 'token_pings':

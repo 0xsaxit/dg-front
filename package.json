@@ -26,6 +26,7 @@
     "decentraland-ui": "^2.23.0",
     "eth-sig-util": "^2.5.3",
     "html-to-react": "^1.4.3",
+    "jsonwebtoken": "^8.5.1",
     "next": "^9.5.2",
     "next-seo": "^4.7.3",
     "react": "^16.8.1",

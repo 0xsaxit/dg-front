@@ -30,7 +30,7 @@ function AdminBalances() {
         });
 
         // if deposit or withdrawal start pinging the token contract for changed balances
-        if (state.tokenPings === 1) dataInterval();
+        if (state.tokenPings) dataInterval();
       }
       fetchData();
     }
@@ -40,28 +40,41 @@ function AdminBalances() {
     async function fetchData() {
       const response = await getTokenBalances();
 
-      // as soon as the balance updates on Matic display deposit confirmation
-      if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
-        console.log('Matic balances have updated: deposit');
-
-        dispatch({
-          type: 'token_pings',
-          data: 2,
-        });
-
-        clearInterval(interval);
-      } else if (
-        response[0][1] < balances[0][1] ||
-        response[1][1] < balances[1][1]
+      // as soon as the balance updates on Matic display confirmation & stop pings
+      if (
+        response[0][1] !== balances[0][1] ||
+        response[1][1] !== balances[1][1]
       ) {
-        console.log('Matic balances have updated: withdrawal');
+        if (
+          response[0][1] > balances[0][1] ||
+          response[1][1] > balances[1][1]
+        ) {
+          console.log('Matic balances have updated: deposit');
+
+          dispatch({
+            type: 'message_box',
+            data: 2,
+          });
+
+          clearInterval(interval);
+        } else if (
+          response[0][1] < balances[0][1] ||
+          response[1][1] < balances[1][1]
+        ) {
+          console.log('Matic balances have updated: withdrawal');
+
+          dispatch({
+            type: 'message_box',
+            data: 3,
+          });
+
+          clearInterval(interval);
+        }
 
         dispatch({
           type: 'token_pings',
-          data: 3,
+          data: false,
         });
-
-        clearInterval(interval);
       }
     }
 

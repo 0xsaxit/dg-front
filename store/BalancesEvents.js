@@ -1,214 +1,136 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import { Message } from 'semantic-ui-react';
 import Web3 from 'web3';
-import Aux from '../_Aux';
 import Global from '../components/Constants';
 
-const MessageBox = (props) => {
-  // get token balances from the Context API store
+const BalancesEvents = () => {
+  // dispatch message box status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [amounts, setAmount] = useState([]);
+  const [historyParams, setHistoryParams] = useState([]);
 
-  let addressMetaMask = '';
-  let ws = {};
-  let maticWeb3 = {};
+  let userAddress = '';
+  let txHash = '';
   const web3 = new Web3();
   const abiCoder = web3.eth.abi;
-  const data = {
-    id: 1,
-    method: 'eth_subscribe',
-    params: [
-      'newDeposits',
-      { Contract: '0xb5505a6d998549090530911180f38aC5130101c6' },
-    ],
-  };
 
   useEffect(() => {
     if (state.userStatus) {
-      addressMetaMask = window.web3.currentProvider.selectedAddress;
+      userAddress = window.web3.currentProvider.selectedAddress;
 
-      maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
-      );
+      // write transaction to database
+      if (historyParams.length) updateHistory(historyParams);
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, historyParams]);
 
   useEffect(() => {
-    if (state.userStatus) {
-      initWebSocket();
-
-      // cleanup method called before unmount
-      return () => {
-        ws.close;
-      };
+    if (window) {
+      window.maticWidgetEventsListener = maticWidgetEventsListener;
     }
-  }, [state.userStatus]);
+  }, []);
 
-  const initWebSocket = () => {
-    ws = new WebSocket('wss://ws-mumbai.matic.today');
+  // Listen to the events from widget
+  function maticWidgetEventsListener(event) {
+    console.log('Matic Widget event listener');
 
-    ws.onopen = () => {
-      console.log('Open WebSocket connection');
+    // 'onDepositTxHash' event
+    if (event.data.type === 'onDepositTxHash') {
+      txHash = event.data.data;
+      console.log('Received transaction hash: ' + txHash);
 
-      ws.send(JSON.stringify(data));
-    };
+      dispatchToStore(1); // message box pending transaction
 
-    ws.onmessage = (event) => {
-      const parsedData = JSON.parse(event.data);
-      if (parsedData.result) console.log('Listening for events');
+      // close the widget
+      // closeWidgetOnTransaction(event);
+    }
 
-      /////////////////////////////////////////////////////////////////////////////////////////
-      /////////////////////////////////////////////////////////////////////////////////////////
-      // if this is a deposit/withdraw event let's parse and decode the data
-      if (
-        parsedData &&
-        parsedData.params &&
-        parsedData.params.result &&
-        parsedData.params.result.Data
-      ) {
-        const fullData = parsedData.params.result.Data;
-        const { 0: syncType, 1: syncData } = abiCoder.decodeParameters(
-          ['bytes32', 'bytes'],
-          fullData
-        );
+    // 'onDeposit' event
+    if (event.data.type === 'onDeposit') {
+      const blockHash = event.data.data.blockHash;
+      console.log('Received block hash: ' + blockHash);
 
-        /////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////
-        // check if sync is of deposit type (keccak256("DEPOSIT")) and filter the data
-        const depositType =
-          '0x87a7811f4bfedea3d341ad165680ae306b01aaeacc205d227629cf157dd9f821';
-        if (syncType.toLowerCase() === depositType.toLowerCase()) {
-          const {
-            0: userAddress,
-            1: rootTokenAddress,
-            2: depositData,
-          } = abiCoder.decodeParameters(
-            ['address', 'address', 'bytes'],
-            syncData
-          );
+      dispatchToStore(2); // message box deposit confirmed
 
-          // const addressMetaMask = window.web3.currentProvider.selectedAddress;
+      // set amount parameter for database insert
+      const { 0: amount } = abiCoder.decodeParameters(['uint256'], blockHash);
+      setHistoryParams([amount, 'Deposit', 'Confirmed', txHash]);
+    }
 
-          console.log('User address (MetaMask): ' + addressMetaMask);
-          console.log('User address (return data): ' + userAddress);
-          console.log('Root token address: ' + rootTokenAddress);
+    // 'onWithdrawExitTxHash' event
+    if (event.data.type === 'onWithdrawExitTxHash') {
+      txHash = event.data.data;
+      console.log('Received transaction hash: ' + txHash);
 
-          // decode depositData to get amount
-          if (userAddress.toLowerCase() === addressMetaMask) {
-            const { 0: amount } = abiCoder.decodeParameters(
-              ['uint256'],
-              depositData
-            );
+      dispatchToStore(1); // message box pending transaction
 
-            const amountAdjusted = amount / Global.FACTOR;
-            console.log('Amount: ' + amountAdjusted);
+      // close the widget
+      // closeWidgetOnTransaction(event);
+    }
 
-            // setAmount([...amounts, amountAdjusted]);
+    // 'onWithdrawExit' event
+    if (event.data.type === 'onWithdrawExit') {
+      const blockHash = event.data.data.blockHash;
+      console.log('Received block hash: ' + blockHash);
 
-            // display the message box with updated deposit amount
-            dispatch({
-              type: 'message_box',
-              data: [...state.messageBox, amountAdjusted],
-            });
+      dispatchToStore(3); // message box withdrawal confirmed
 
-            // update global state token balances
-            (async function () {
-              const response = await getTokenBalances();
+      // set amount parameter for database insert
+      const { 0: amount } = abiCoder.decodeParameters(['uint256'], blockHash);
+      setHistoryParams([amount, 'Withdraw', 'Confirmed', txHash]);
+    }
+  }
 
-              dispatch({
-                type: 'update_balances',
-                data: response,
-              });
-            })();
-          }
-        }
-      }
-    };
+  // update message box
+  function dispatchToStore(value) {
+    dispatch({
+      type: 'message_box',
+      data: value,
+    });
+  }
 
-    ws.onclose = () => {
-      console.log('Close WebSocket connection');
+  // update transaction history in the database
+  async function updateHistory(params) {
+    console.log('Writing to database: ' + params[1]);
 
-      initWebSocket();
-    };
-  };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get balances on mainnet and Matic networks
-  async function getTokenBalances() {
-    const addresses = await Global.API_ADDRESSES;
-
-    const TOKEN_CONTRACT_ROOT = window.web3.eth
-      .contract(Global.ABIs.ROOT_TOKEN)
-      .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
-
-    // const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
-    //   Global.ABIs.ROOT_TOKEN,
-    //   addresses.ROOT_TOKEN_ADDRESS_MANA
-    // );
-
-    const TOKEN_CONTRACT_CHILD = maticWeb3.eth
-      .contract(Global.ABIs.CHILD_TOKEN)
-      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+    console.log('user address: ' + userAddress);
+    console.log('amount: ' + params[0]);
+    console.log('type: ' + params[1]);
+    console.log('state: ' + params[2]);
+    console.log('tx hash: ' + params[3]);
+    console.log('user status: ' + state.userStatus);
 
     try {
-      const amount1 = await Global.balanceOfToken(
-        TOKEN_CONTRACT_ROOT,
-        addressMetaMask
-      );
-      const amount2 = await Global.balanceOfToken(
-        TOKEN_CONTRACT_CHILD,
-        addressMetaMask
+      const response = await Global.FETCH.POST_HISTORY(
+        userAddress,
+        params[0],
+        params[1],
+        params[2],
+        params[3],
+        state.userStatus
       );
 
-      return [
-        [amount1, amount2],
-        [0, 0],
-      ];
+      const json = await response.json();
+      console.log('Update history complete: ' + json.status);
     } catch (error) {
-      console.log(error);
+      console.log('Update history error: ' + error);
     }
   }
 
-  if (state.messageBox.length) {
-    return (
-      <Message
-        className="deposit-notification-box"
-        onDismiss={props.handleDismiss}
-      >
-        {
-          // state.messageBox.length === 1 ? (
-          //   <Aux>
-          //     <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
-          //       Deposit Confirming on Matic
-          //     </p>
-          //     <p style={{ fontSize: '16px' }}>
-          //       Matic balances will update once deposit is confirmed
-          //     </p>
-          //     <p style={{ fontSize: '16px' }}>(Normally 2 - 3 minutes)</p>
-          //   </Aux>
-          // ) :
-          state.messageBox.length ? (
-            <Aux>
-              <p style={{ fontSize: '16px' }}>
-                {state.messageBox.map((amount, i) => (
-                  <li key={i}>{amount} MANA Deposit Confirmed</li>
-                ))}
-              </p>
-              <p style={{ fontSize: '16px' }}>
-                Your Matic balances have been updated
-              </p>
-            </Aux>
-          ) : null
-        }
-      </Message>
-    );
-  } else {
-    return null;
+  function closeWidgetOnTransaction(event) {
+    const iframeId = event.data.iframeId;
+
+    try {
+      document.body.removeChild(document.getElementById(iframeId));
+      document.body.removeChild(
+        document.getElementById('matic-iframe-backdrop')
+      );
+    } catch (error) {
+      console.log('Matic Widget is already closed');
+    }
   }
+
+  return null;
 };
 
-export default MessageBox;
+export default BalancesEvents;

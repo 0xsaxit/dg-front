@@ -114,7 +114,7 @@ const MenuTop = () => {
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
     dispatch({
-      type: 'token_pings',
+      type: 'message_box',
       data: 0,
     });
   }

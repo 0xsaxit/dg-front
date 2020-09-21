@@ -76,12 +76,12 @@ const Admin = () => {
         // display the pause status confirmation
         if (!response) {
           dispatch({
-            type: 'token_pings',
+            type: 'message_box',
             data: 4,
           });
         } else {
           dispatch({
-            type: 'token_pings',
+            type: 'message_box',
             data: 5,
           });
         }

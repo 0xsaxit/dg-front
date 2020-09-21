@@ -66,12 +66,18 @@ const ContentModal = (props) => {
     initializePings();
   }
 
-  // start pinging the token contract for withdraw confirmation
   function initializePings() {
     console.log('Ping token contract');
 
+    // ping token contract for transaction confirmation
     dispatch({
       type: 'token_pings',
+      data: true,
+    });
+
+    // display message box pending message
+    dispatch({
+      type: 'message_box',
       data: 1,
     });
   }

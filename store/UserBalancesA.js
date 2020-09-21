@@ -31,15 +31,19 @@ function UserBalances() {
         });
 
         // if user has deposited tokens to Matic Network already adjust their status
+        // if new deposit start pinging the token contract for changed balances
         const nonZeroMANA = balances[0][1] !== '0' && balances[0][1] !== 0;
         const nonZeroDAI = balances[1][1] !== '0' && balances[1][1] !== 0;
 
-        if (state.userStatus === 5 && (nonZeroMANA || nonZeroDAI))
+        if (state.userStatus === 5 && (nonZeroMANA || nonZeroDAI)) {
           updateStatus();
+        } else if (state.tokenPings === 1) {
+          dataInterval();
+        }
       }
       fetchData();
     }
-  }, [state.userStatus, state.messageBox]);
+  }, [state.userStatus, state.tokenPings]);
 
   function updateStatus() {
     // update global state user status
@@ -51,6 +55,72 @@ function UserBalances() {
     // update user status in database
     console.log('Posting user status to db: ' + value);
     Global.FETCH.USER_VERIFY(userAddress, value);
+  }
+
+  function dataInterval() {
+    async function fetchData() {
+      const response = await getTokenBalances();
+
+      // as soon as the balance updates on Matic display deposit confirmation
+      if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
+        console.log('Matic balances have updated: deposit');
+
+        dispatch({
+          type: 'token_pings',
+          data: 2,
+        });
+        let amount = response[1][1] - balances[1][1];
+        if (!amount) amount = 99999; // for admin treasury deposits/withdrawals (until we can use Matic/Transak event data instead)
+        updateHistory(amount, 'Deposit', 'Confirmed', ''); // add tx hash later
+
+        clearInterval(interval);
+      } else if (
+        response[0][1] < balances[0][1] ||
+        response[1][1] < balances[1][1]
+      ) {
+        console.log('Matic balances have updated: withdrawal');
+
+        dispatch({
+          type: 'token_pings',
+          data: 3,
+        });
+        let amount = balances[1][1] - response[1][1];
+        if (!amount) amount = 99999; // for admin treasury deposits/withdrawals (until we can use Matic/Transak event data instead)
+        updateHistory(amount, 'Withdraw', 'Confirmed', ''); // add tx hash later
+
+        clearInterval(interval);
+      }
+    }
+
+    // call token contract every 10 seconds to get new balances
+    const interval = setInterval(() => {
+      fetchData();
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }
+
+  // update transaction history in the database
+  async function updateHistory(_amount, type, state, txHash) {
+    console.log('Writing to database: ' + type);
+
+    const txHashRandom = Math.floor(Math.random() * 1000000);
+
+    try {
+      const response = await Global.FETCH.POST_HISTORY(
+        userAddress,
+        _amount,
+        type,
+        state,
+        txHashRandom,
+        state.userStatus
+      );
+
+      const json = await response.json();
+      console.log('Update history complete: ' + json.status);
+    } catch (error) {
+      console.log('Update history error: ' + error);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
