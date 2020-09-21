@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import ContentBalances from './ContentBalances';
-import { Modal } from 'semantic-ui-react';
 import Aux from '../components/_Aux';
 
 const BalancesOverlay = () => {

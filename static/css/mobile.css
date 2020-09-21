@@ -3,13 +3,34 @@
 /* ----------------------------------------- */
 
 @media (min-width: 500px) {
-  .page-header-text,
-  .metamask-mobile-verify {
-    display: none;
+  .page-header-text {
+    display: none !important;
   }
 }
 
 @media (max-width: 499px) {
+  .ui.blue.button.metamask-button {
+    background-color: #2085f4;
+    color: white;
+    min-width: 210px !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    margin-top: 15px;
+    padding: 9px;
+    height: 39px;
+    letter-spacing: 1.25px;
+    border-radius: 2px;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .right-menu-items.outter {
+    position: absolute;
+    width: 50vw;
+    right: calc(50vw - 105px);
+  }
+  #mobile-menu-icon {
+    left: calc(100% - 42px);
+  }
   .page-header-text {
     font-size: 24px;
     font-weight: 800;
@@ -210,12 +231,6 @@
     padding-left: 21px !important;
     padding-right: 21px !important;
   }
-  .right-menu-items {
-    width: 0px !important;
-  }
-  #mobile-menu-icon {
-    left: calc(100% - 42px);
-  }
   .home-dashboard-content {
     margin-right: 30px;
     margin-top: 120px;
@@ -253,9 +268,6 @@
     width: 60px;
     margin-left: calc((100vw - 60px) / 2);
     margin-top: calc((100vh - 180px) / 2);
-  }
-  .metamask-button {
-    display: none !important;
   }
   .account-other-inner-container {
     width: calc(100% - 42px);

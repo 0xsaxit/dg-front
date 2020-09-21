@@ -387,8 +387,6 @@ const MenuTop = () => {
             {DGLogo()}
             {shownOrHiddenItems()}
             {balancesAndButtons()}
-
-            <Verify className="metamask-mobile-verify" />
           </Menu>
 
           <MessageBox handleDismiss={handleDismiss} />
