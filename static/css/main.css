@@ -1223,6 +1223,16 @@ svg.spanbox.disable {
 /*             DEPOSIT MODAL CSS             */
 /* ----------------------------------------- */
 
+.matic-overlay-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(6, 16, 36, 0.5) !important;
+  position: fixed;
+  z-index: -3 !important;
+  top: 0;
+  left: 0;
+}
+
 .ui.button:hover,
 button.ui.button.matic-widget-button.balances-play-button-2:hover,
 button.ui.button.matic-widget-button.balances-play-button:hover {
@@ -1232,6 +1242,10 @@ button.ui.button.matic-widget-button.balances-play-button:hover {
 
 .matic-overlay {
   margin-top: -21px;
+  background-color: white;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 9;
 }
 
 .matic-top-bar {

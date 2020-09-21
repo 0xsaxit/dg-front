@@ -101,71 +101,74 @@ const ContentBalances = (props) => {
 
   function contentModal() {
     return (
-      <div className="matic-overlay">
-        <div className="matic-top-bar">
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ display: 'flex' }}>
-              <img src={Global.IMAGES.MATIC_TOP} className="matic-top-image" />
-              <p className="matic-top-text-1"> Account Connected </p>
+      <span>
+        <div className="matic-overlay-container" onClick={close}/>
+        <div className="matic-overlay">
+          <div className="matic-top-bar">
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ display: 'flex' }}>
+                <img src={Global.IMAGES.MATIC_TOP} className="matic-top-image" />
+                <p className="matic-top-text-1"> Account Connected </p>
+              </span>
+              <span style={{ display: 'flex' }}>
+                <p className="matic-top-text-2">
+                  {' '}
+                  Matic Testnet Mumbai • Metamask{' '}
+                </p>
+              </span>
             </span>
-            <span style={{ display: 'flex' }}>
-              <p className="matic-top-text-2">
-                {' '}
-                Matic Testnet Mumbai • Metamask{' '}
-              </p>
-            </span>
-          </span>
-        </div>
-        <div>
-          <p className="matic-header-text"> Add Tokens </p>
-          <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
-          <div className="matic-widget-button-container">
-            <div onClick={close}>
-              <Button
-                className="matic-widget-button"
-                data-default-page="deposit"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
-              >
-                <span className="matic-icon-background">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-1"
-                  >
-                    add
+          </div>
+          <div>
+            <p className="matic-header-text"> Add Tokens </p>
+            <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
+            <div className="matic-widget-button-container">
+              <div onClick={close}>
+                <Button
+                  className="matic-widget-button"
+                  data-default-page="deposit"
+                  data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                  onClick={() => initializePings()}
+                >
+                  <span className="matic-icon-background">
+                    <span
+                      className="material-icons"
+                      id="matic-widget-icon-left-1"
+                    >
+                      add
+                    </span>
                   </span>
-                </span>
-                Deposit from Metamask
-                <span className="material-icons" id="matic-widget-icon-right-1">
-                  keyboard_arrow_right
-                </span>
-              </Button>
-
-              <script
-                src="https://wallet.matic.today/embeds/widget-button.js"
-                data-script-name="matic-embeds"
-              ></script>
-            </div>
-
-            <div onClick={close}>
-              <Button className="matic-widget-button-2" onClick={show_transak}>
-                <span className="matic-icon-background-2">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-2"
-                  >
-                    add
+                  Deposit from Metamask
+                  <span className="material-icons" id="matic-widget-icon-right-1">
+                    keyboard_arrow_right
                   </span>
-                </span>
-                Purchase with Debit Card
-                <span className="material-icons" id="matic-widget-icon-right-2">
-                  keyboard_arrow_right
-                </span>
-              </Button>
+                </Button>
+
+                <script
+                  src="https://wallet.matic.today/embeds/widget-button.js"
+                  data-script-name="matic-embeds"
+                ></script>
+              </div>
+
+              <div onClick={close}>
+                <Button className="matic-widget-button-2" onClick={show_transak}>
+                  <span className="matic-icon-background-2">
+                    <span
+                      className="material-icons"
+                      id="matic-widget-icon-left-2"
+                    >
+                      add
+                    </span>
+                  </span>
+                  Purchase with Debit Card
+                  <span className="material-icons" id="matic-widget-icon-right-2">
+                    keyboard_arrow_right
+                  </span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </span>
     );
   }
 

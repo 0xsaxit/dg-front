@@ -3,7 +3,8 @@
 /* ----------------------------------------- */
 
 @media (min-width: 500px) {
-  .page-header-text {
+  .page-header-text,
+  .metamask-mobile-verify {
     display: none;
   }
 }

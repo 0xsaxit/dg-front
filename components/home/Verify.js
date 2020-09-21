@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
@@ -6,12 +6,14 @@ import Global from '../Constants';
 const Verify = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const [metamaskEnabled, setMetamaskEnabled] = useState(false);
 
   // define local variables
   let userAddress = '';
 
   async function openMetaMask() {
     if (window.web3) {
+      setMetamaskEnabled(true);
       // open MataMask for login then get the user's wallet address
       await window.ethereum.enable();
       userAddress = window.web3.currentProvider.selectedAddress;
@@ -58,14 +60,18 @@ const Verify = () => {
   }
 
   return (
-    <span className="right-menu-items">
-      <Button
-        content="CONNECT METAMASK"
-        color="blue"
-        className="metamask-button"
-        onClick={() => openMetaMask()}
-      />
-    </span>
+    <div>
+      {metamaskEnabled ? 
+        <span className="right-menu-items">
+          <Button
+            content="CONNECT METAMASK"
+            color="blue"
+            className="metamask-button"
+            onClick={() => openMetaMask()}
+          />
+        </span>
+      : null}
+    </div>
   );
 };
 
