@@ -1,8 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from './ContentGames';
-// import Spinner from '../Spinner';
+import Spinner from '../Spinner';
 import Global from '../Constants';
 
 const options = [
@@ -76,7 +76,15 @@ const Offerings = () => {
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [doneLoading, setDoneLoading] = useState(true);
+
+  useEffect(() => {
+    if(document.readyState === 'complete') {
+      setDoneLoading(false);
+    }
+  });
+
   const [gameState, setGameState] = useState('0');
 
   function handleChange(value) {
@@ -138,14 +146,14 @@ const Offerings = () => {
                   color="blue"
                   className="nft-button"
                   target="_blank"
-                  href={detailsGames[item][5]}
+                  href={detailsGames[item][6]}
                 >
-                  PURCHASE NFT
+                  PLAY NOW
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
-                  href={detailsGames[item][6]}
+                  href={detailsGames[item][7]}
                 >
                   READ MORE
                 </Button>
@@ -222,6 +230,7 @@ const Offerings = () => {
                     verticalAlign: 'middle',
                     marginRight: '6px',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                   className="image inline"
                   width="21px"
@@ -244,6 +253,7 @@ const Offerings = () => {
                     verticalAlign: 'middle',
                     marginRight: '6px',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                   className="image inline"
                   width="21px"
@@ -263,6 +273,7 @@ const Offerings = () => {
                     verticalAlign: 'middle',
                     marginRight: '6px',
                     marginTop: '-3px',
+                    borderRadius: '100%',
                   }}
                   className="image inline"
                   width="21px"
@@ -423,13 +434,16 @@ const Offerings = () => {
 
   return (
     <div className="main-container">
-      <div className="page-container">
-        <div className="account-other-inner-container">
-          {submenu()}
 
-          {gameState == 1 ? Leaderboard() : Games()}
+      {doneLoading ? <Spinner background={3} /> :
+        <div className="page-container">
+          <div className="account-other-inner-container">
+            {submenu()}
+
+            {gameState == 1 ? Leaderboard() : Games()}
+          </div>
         </div>
-      </div>
+      }
     </div>
   );
 };

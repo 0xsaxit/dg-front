@@ -87,12 +87,14 @@ const BalancesOverlay = () => {
         </span>
       ) : null}
 
+        
       <div style={styles.balancesModal}>
         <div className="page-container">
           <div className="account-other-inner-container"></div>
           <ContentBalances balancesOverlay={1} />
         </div>
       </div>
+
 
       <div style={styles.balancesAccountPage}>
         <div className="page-container">
