@@ -52,15 +52,17 @@ p {
 }
 
 .ui.blue.button.metamask-button {
-  background-color: #2085f4;
+  position: relative;
+  background-color: #2085f4 !important;
   color: white;
-  width: 240px;
-  font-size: 14px !important;
   font-weight: 600;
-  margin-top: 15px;
-  padding: 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
+  margin-top: 18px;
+  padding-top: 8px;
+  width: 210px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
   margin-right: 30px;
 }
@@ -132,19 +134,6 @@ div.ui.segment.transparent-menu-segment {
 #pushable-two {
   position: relative;
   z-index: 6;
-}
-
-#mobile-menu-icon {
-  position: absolute;
-  color: white;
-  top: 23px;
-  left: 81px;
-  z-index: 2;
-  font-size: 23px !important;
-}
-
-#mobile-menu-icon:hover {
-  cursor: pointer;
 }
 
 .menu-items-to-hide {
@@ -258,15 +247,6 @@ div.ui.segment.transparent-menu-segment {
   background: none !important;
 }
 
-@media (max-width: 600px) {
-  .menu-info-to-hide {
-    display: none;
-  }
-  .menu-avatar-background {
-    margin-left: -9px !important;
-  }
-}
-
 .menu-account-info {
   margin-right: 15px;
   background-color: #2085f4;
@@ -370,68 +350,35 @@ video.home-dashboard-video {
   margin-top: calc(100vh - 660px);
 }
 
-@media (max-height: 510px) {
-  .home-dashboard-content {
-    margin-top: -150px !important;
-  } 
-}
-
-@media (max-width: 708px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 688px);
-  }
-}
-
-@media (max-width: 603px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 707px);
-  }
-}
-
-@media (max-width: 529px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 735px);
-  }
-}
-
-a.ui.blue.button.play-shimmer {
-  background-color: white;
-  color: black;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-}
-
 a.ui.blue.button.how-to-button {
   background-color: white;
   color: black;
   width: 180px;
-  font-size: 14px;
   font-weight: 600;
-  margin-top: 30px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  position: relative;
+  font-weight: 600;
+  margin-top: 20px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
-  margin-left: calc(50% - 90px);
 }
 
 .ui.blue.button.demo-button {
   position: relative;
   background-color: #2085f4 !important;
   color: white;
-  width: 180px;
-  font-size: 14px;
   font-weight: 600;
   margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
 }
 
@@ -609,18 +556,6 @@ a.ui.blue.button.how-to-button {
   padding-right: 30px;
 }
 
-@media (max-width: 1251px) {
-  .nft-container {
-    width: 48.5%;
-  }
-}
-
-@media (max-width: 851px) {
-  .nft-container {
-    width: 100%;
-  }
-}
-
 .outter-games-container {
   display: flex;
   flex-wrap: wrap !important;
@@ -641,20 +576,6 @@ a.ui.blue.button.how-to-button {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
-}
-
-@media (max-width: 851px) {
-  .nft-container,
-  .games-container {
-    width: 100%;
-  }
-}
-
-@media (min-width: 1252px) {
-  .ui.blue.button.nft-button,
-  .ui.button.nft-read-button {
-    width: 48.5% !important;
-  }
 }
 
 .ui.dropdown > .dropdown.icon {
@@ -770,31 +691,23 @@ a.ui.blue.button.how-to-button {
   margin-top: 0px;
 }
 
-@media (max-width: 991px) {
-  .games-other-h3 {
-    font-size: 28px;
-    font-weight: 600;
-    padding-bottom: 12px;
-    color: black;
-    margin-top: -30px !important;
-  }
-}
-
 .nft-description {
   padding-bottom: 30px;
 }
 
 a.ui.blue.button.play-button,
 .ui.blue.button.play-button {
+  position: relative;
   background-color: #2085f4 !important;
   color: white;
-  width: 180px;
-  font-size: 14px;
   font-weight: 600;
   margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
 }
 
@@ -914,17 +827,6 @@ table {
   font-weight: bold;
   letter-spacing: 1.5px;
   color: black;
-}
-
-@media (min-width: 992px) {
-  .table-header-text-1,
-  .table-body-text-1 {
-    padding-left: 75px !important;
-  }
-  .table-header-text-1.games,
-  .table-body-text-1.games {
-    padding-left: 9px !important;
-  }
 }
 
 .table-header-text.account {
@@ -1259,6 +1161,7 @@ button.ui.button.matic-widget-button.balances-play-button:hover {
 
 .matic-top-image {
   width: 30px;
+  height: 30px;
   padding-right: 6px;
 }
 
@@ -1793,18 +1696,6 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   width: 100%;
   padding: 12px 18px 18px 18px !important;
   max-width: 48.5%;  
-}
-
-@media (max-width: 1061px) {
-  .DG-liquidity-container {
-    flex-direction: column;
-  }
-  .DG-column {
-    max-width: 100%;
-  }
-  .DG-column.one {
-    margin-bottom: 30px;
-  }
 }
 
 .ui.button.DG-deposit-button {

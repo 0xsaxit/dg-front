@@ -177,7 +177,7 @@ const Dashboard = () => {
                 </Modal>
                 <Button
                   color="blue"
-                  className="play-shimmer"
+                  className="how-to-button"
                   target="_blank"
                   href="https://docs.decentral.games/getting-started"
                 >
@@ -235,7 +235,7 @@ const Dashboard = () => {
             </Button>
             <Button
               color="blue"
-              className="play-shimmer"
+              className="how-to-button"
               target="_blank"
               href="https://docs.decentral.games/getting-started"
             >

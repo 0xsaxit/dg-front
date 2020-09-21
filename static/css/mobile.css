@@ -2,34 +2,70 @@
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
+#mobile-menu-icon {
+  position: absolute;
+  color: white;
+  top: 23px;
+  left: 81px;
+  z-index: 2;
+  font-size: 23px !important;
+}
+
+@media (max-width: 600px) {
+  .menu-info-to-hide {
+    display: none;
+  }
+  .menu-avatar-background {
+    margin-left: -9px !important;
+  }
+}
+
+#mobile-menu-icon:hover {
+  cursor: pointer;
+}
+
 @media (min-width: 500px) {
   .page-header-text {
     display: none !important;
   }
+  .ui.blue.button.metamask-mobile-button {
+    display: none;
+  }
 }
 
 @media (max-width: 499px) {
+  .menu-info-modal {
+    display: none;
+  }
+  #menu-logo {
+    margin-left: 14px !important;
+  }
   .ui.blue.button.metamask-button {
+    display: none;
+  }
+  .ui.blue.button.metamask-mobile-button {
     background-color: #2085f4;
+    position: relative;
+    background-color: #2085f4 !important;
     color: white;
-    min-width: 210px !important;
-    font-size: 14px !important;
     font-weight: 600;
-    margin-top: 15px;
-    padding: 9px;
-    height: 39px;
-    letter-spacing: 1.25px;
+    margin-top: 18px;
+    padding-top: 8px;
+    min-width: 150px !important;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 34px;
+    letter-spacing: 0.5px;
     border-radius: 2px;
-    margin-right: 0px;
-    margin-left: 0px;
+    margin-right: 0px !important;
   }
   .right-menu-items.outter {
     position: absolute;
     width: 50vw;
-    right: calc(50vw - 105px);
+    right: 21px;
   }
   #mobile-menu-icon {
-    left: calc(100% - 42px);
+    left: 72px;
   }
   .page-header-text {
     font-size: 24px;
@@ -58,6 +94,12 @@
   .user-numbers-container-3,
   .online-pics-mobile {
     display: none !important;
+  }
+  .mobile-message-bar {
+    position: relative;
+    z-index: 999 !important;
+    padding-left: 21px !important;
+    padding-right: 21px !important;
   }
 }
 
@@ -88,6 +130,111 @@
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
+@media (max-height: 510px) {
+  .home-dashboard-content {
+    margin-top: -150px !important;
+  } 
+}
+
+@media (max-width: 708px) {
+  .home-dashboard-content {
+    margin-top: calc(100vh - 688px);
+  }
+}
+
+@media (max-width: 603px) {
+  .home-dashboard-content {
+    margin-top: calc(100vh - 707px);
+  }
+}
+
+@media (max-width: 529px) {
+  .home-dashboard-content {
+    margin-top: calc(100vh - 735px);
+  }
+}
+
+@media (min-width: 500px) {
+  .mobile-menu-image,
+  .mobile-menu-words,
+  .mobile-footer,
+  .demo-button-container {
+    display: none !important;
+  }
+}
+
+.mobile-demo-video {
+  width: 100%;
+  border-radius: 2px;
+  height: 500px;
+}
+
+@media (max-width: 499px) {
+  .dashboard-image-container,
+  #mobile-casino-text,
+  video#myVideo.home-dashboard-video {
+    display: none !important;
+  }
+  .home-dashboard-content {
+    position: absolute;
+    left: 21px;
+    bottom: 90px;
+  }
+  .home-dashboard-p {
+    width: 100%;
+  }
+  div.ui.vertical.segment {
+    top: 0px !important;
+  }
+  .home-dashboard {
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
+    background-position: 75% !important;
+    background-color: transparent;
+    background-size: cover !important;
+    height: calc(100% - 27px) !important;
+    width: 100vw;
+    position: absolute;
+    overflow: hidden !important;
+    margin-top: -260px;
+  }
+  .dashboard-menu-container {
+    margin-top: -360px !important;
+  }
+  .home-mission-content {
+    padding-top: 210px;
+  }
+}
+
+@media (max-width: 399px) {
+  .home-dashboard-content {
+    margin-left: -9px !important;
+    margin-right: 30px;
+    margin-top: 90px;
+  }
+  .featured-casino-text {
+    font-size: 12px !important;
+  }
+  .home-dashboard-p {
+    font-size: 18px !important;
+  }
+  .home-dashboard-h1 {
+    font-size: 48px !important;
+  }
+  .home-mission-content {
+    padding-top: 190px;
+  }
+}
+
+@media (max-width: 350px) {
+  .home-mission-content {
+    padding-top: calc(50vh - 40px);
+  }
+}
 
 @media (min-height: 600px) {
   .home-dashboard-mission {
@@ -107,11 +254,101 @@
     margin-left: calc(50% - 90px);
     flex-direction: column;
   }
+  .home-dashboard-mission {
+    margin-top: -60px !important;
+  }
 }
 
 /* ----------------------------------------- */
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
+
+@media (max-width: 1251px) {
+  .nft-container {
+    width: 48.5%;
+  }
+}
+
+@media (max-width: 851px) {
+  .nft-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 851px) {
+  .nft-container,
+  .games-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1252px) {
+  .ui.blue.button.nft-button,
+  .ui.button.nft-read-button {
+    width: 48.5% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .games-other-h3 {
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    color: black;
+    margin-top: -30px !important;
+  }
+}
+
+@media (min-width: 801px) {
+  span.leaderboard-coin-select-mobile,
+  #intermediate-time-select {
+    display: none !important;
+  }
+  span.leaderboard-coin-select {
+    margin-top: -21px !important;
+  }
+  .coin-select-divider {
+    margin-top: -2px !important;
+    padding-bottom: 21px;
+  }
+}
+
+@media (max-width: 800px) {
+  .grid-margin {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+  }
+  span.leaderboard-coin-select {
+    display: none !important;
+  }
+  #mobile-time-select {
+    margin-left: 0px !important;
+  }
+  .ui.dropdown {
+    margin-bottom: 30px !important;
+  }
+  .coin-select-divider {
+    margin-top: 18px !important;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 600px) {
+  #mobile-time-select {
+    display: none !important;
+  }
+}
+
+@media (max-width: 599px) {
+  #intermediate-time-select {
+    display: none;
+  }
+}
+
+#intermediate-time-select {
+  position: absolute;
+  right: 0;
+}
 
 @media (max-width: 590px) {
   .games-pic,
@@ -161,6 +398,17 @@
 /* ----------------------------------------- */
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
+
+@media (min-width: 992px) {
+  .table-header-text-1,
+  .table-body-text-1 {
+    padding-left: 75px !important;
+  }
+  .table-header-text-1.games,
+  .table-body-text-1.games {
+    padding-left: 9px !important;
+  }
+}
 
 @media (max-width: 991px) {
   .table-header-text-1.date,
@@ -212,56 +460,27 @@
   }
 }
 
+/* ----------------------------------------- */
+/*            DG PAGE MOBILE CSS             */
+/* ----------------------------------------- */
+
+@media (max-width: 1061px) {
+  .DG-liquidity-container {
+    flex-direction: column;
+  }
+  .DG-column {
+    max-width: 100%;
+  }
+  .DG-column.one {
+    margin-bottom: 30px;
+  }
+}
 
 /* ----------------------------------------- */
-/*         CLEAN THIS UP MOBILE CSS          */
+/*              MISC MOBILE CSS              */
 /* ----------------------------------------- */
 
 @media (max-width: 499px) {
-  .wallet_board,
-  .wallet_board_overlay,
-  .dashboard-image-container,
-  #mobile-casino-text,
-  video#myVideo.home-dashboard-video {
-    display: none !important;
-  }
-  .mobile-message-bar {
-    position: relative;
-    z-index: 999 !important;
-    padding-left: 21px !important;
-    padding-right: 21px !important;
-  }
-  .home-dashboard-content {
-    margin-right: 30px;
-    margin-top: 120px;
-  }
-  .home-dashboard-p {
-    width: 100%;
-  }
-  div.ui.vertical.segment {
-    top: 0px !important;
-  }
-  .mobile-footer {
-    color: white;
-    position: fixed;
-    display: none;
-  }
-  .home-dashboard {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.5)
-      ),
-      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
-    background-position: 75% !important;
-    background-color: transparent;
-    background-size: cover !important;
-    height: calc(100% - 27px) !important;
-    width: 100vw;
-    position: absolute;
-    overflow: hidden !important;
-    margin-top: -260px;
-  }
   .logospin {
     position: fixed;
     display: block;
@@ -274,112 +493,5 @@
     margin-left: 21px;
     margin-right: 21px;
   }
-  #menu-logo {
-    margin-left: 14px !important;
-  }
-  .dashboard-menu-container {
-    margin-top: -360px !important;
-  }
-  .home-mission-content {
-    padding-top: 210px;
-  }
 }
 
-@media (max-width: 599px) {
-  #intermediate-time-select {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .home-dashboard-mission {
-    margin-top: -60px !important;
-  }
-}
-
-#intermediate-time-select {
-  position: absolute;
-  right: 0;
-}
-
-@media (max-width: 399px) {
-  .home-dashboard-content {
-    margin-left: -9px !important;
-    margin-right: 30px;
-    margin-top: 90px;
-  }
-  .featured-casino-text {
-    font-size: 12px !important;
-  }
-  .home-dashboard-p {
-    font-size: 18px !important;
-  }
-  .home-dashboard-h1 {
-    font-size: 48px !important;
-  }
-  .home-mission-content {
-    padding-top: 190px;
-  }
-}
-
-@media (max-width: 350px) {
-  .home-mission-content {
-    padding-top: calc(50vh - 40px);
-  }
-}
-
-@media (min-width: 600px) {
-  #mobile-time-select {
-    display: none !important;
-  }
-}
-
-@media (min-width: 500px) {
-  .mobile-menu-image,
-  .mobile-menu-words,
-  .mobile-footer,
-  .demo-button-container {
-    display: none !important;
-  }
-}
-
-.mobile-demo-video {
-  width: 100%;
-  border-radius: 2px;
-  height: 500px;
-}
-
-
-@media (max-width: 800px) {
-  .grid-margin {
-    margin-left: 0em !important;
-    margin-right: 0em !important;
-  }
-  span.leaderboard-coin-select {
-    display: none !important;
-  }
-  #mobile-time-select {
-    margin-left: 0px !important;
-  }
-  .ui.dropdown {
-    margin-bottom: 30px !important;
-  }
-  .coin-select-divider {
-    margin-top: 18px !important;
-    padding-bottom: 15px;
-  }
-}
-
-@media (min-width: 801px) {
-  span.leaderboard-coin-select-mobile,
-  #intermediate-time-select {
-    display: none !important;
-  }
-  span.leaderboard-coin-select {
-    margin-top: -21px !important;
-  }
-  .coin-select-divider {
-    margin-top: -2px !important;
-    padding-bottom: 21px;
-  }
-}
