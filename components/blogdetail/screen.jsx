@@ -74,6 +74,9 @@ const Screen = ({
 
   return (
     <div>
+      <div>
+        <p className="page-header-text dark detail">Blog</p>
+      </div>
       <div className="coverimg">
         <div className="image main-image" style={{ marginTop: '-60px' }}>
           <img className="blog-hero-img" src={image || Global.IMAGES.SOCIAL_SHARE} alt="" />

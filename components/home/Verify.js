@@ -76,12 +76,6 @@ const Verify = () => {
             className="metamask-button"
             onClick={() => openMetaMask()}
           />
-          <Button
-            content="CONNECT"
-            color="blue"
-            className="metamask-mobile-button"
-            onClick={() => openMetaMask()}
-          />
         </span>
       : null }
     </span>

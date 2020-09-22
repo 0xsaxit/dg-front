@@ -113,7 +113,7 @@ const History = () => {
                   </span>
                 </span>
 
-                <span style={{ display: 'flex', justifyContent: 'flex-end' }} className="account-authorize-span">
+                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {state.userStatus === 6 ? (
                     <ButtonAuthorize />
                   ) : state.userStatus === 7 ? (
@@ -124,21 +124,6 @@ const History = () => {
                     </Button>
                   )}
                 </span>
-
-                <Divider className="DG-mobile-divider"/>
-
-                <span className="account-authorize-span-mobile">
-                  {state.userStatus === 6 ? (
-                    <ButtonAuthorize />
-                  ) : state.userStatus === 7 ? (
-                    <ButtonEnable />
-                  ) : (
-                    <Button disabled className="account-connected-play-button-mobile">
-                      AUTHORIZE
-                    </Button>
-                  )}
-                </span>
-
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -168,27 +153,14 @@ const History = () => {
               )}
 
               {dataType == 'history' ? (
-                <span>
-                  <b className="account-hover active" id="account-txs-tab">TRANSACTIONS</b>
-                  <b className="account-hover active" id="account-txs-tab-mobile">TXS</b>
-                </span>
+                <b className="account-hover active">TRANSACTIONS</b>
               ) : (
-                <span>
-                  <abbr
-                    className="account-hover"
-                    id="account-txs-tab"
-                    onClick={() => setPageData('history')}
-                  >
-                    TRANSACTIONS
-                  </abbr>
-                  <abbr
-                    className="account-hover"
-                    id="account-txs-tab-mobile"
-                    onClick={() => setPageData('history')}
-                  >
-                    TXS
-                  </abbr>
-                </span>
+                <abbr
+                  className="account-hover"
+                  onClick={() => setPageData('history')}
+                >
+                  TRANSACTIONS
+                </abbr>
               )}
             </p>
           </div>

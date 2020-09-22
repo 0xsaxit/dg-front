@@ -34,11 +34,8 @@
 }
 
 @media (max-width: 499px) {
-  .ui.button.modal-info-button {
+  .menu-info-modal {
     display: none;
-  }
-  .ui.button.modal-deposit-button {
-    margin-right: 21px;
   }
   #menu-logo {
     margin-left: 14px !important;
@@ -130,17 +127,6 @@
 }
 
 /* ----------------------------------------- */
-/*         DEPOSIT MODAL MOBILE CSS          */
-/* ----------------------------------------- */
-
-@media (max-width: 499px) { 
-  .matic-overlay {
-    width: 100vw;
-    margin-left: 15px;
-  }
-}
-
-/* ----------------------------------------- */
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
@@ -191,7 +177,7 @@
   }
   .home-dashboard-content {
     position: absolute;
-    left: -9px;
+    left: 21px;
     bottom: 90px;
   }
   .home-dashboard-p {
@@ -474,50 +460,6 @@
   }
 }
 
-@media (max-width: 499px) {
-  #account-txs-tab {
-    display: none !important;
-  }
-}
-
-@media (min-width: 500px) {
-  #account-txs-tab-mobile {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .ui.button.account-connected-play-button {
-    display: none;
-  }
-  .ui.button.account-connected-play-button-mobile {
-    color: white;
-    background-color: #2085f4;
-    margin-top: 3px;
-    margin-bottom: 6px;
-    font-size: 12px;
-    font-weight: bold !important;
-    border-radius: 2px;
-    height: 34px;
-    padding-top: 8px;
-    min-width: 100% !important;
-    padding-left: 0px;
-    padding-right: 0px;
-    letter-spacing: 0.5px;
-  }
-  div.ui.grid.balances-container {
-    padding-top: 197px;
-    margin-left: -9px !important;
-    margin-right: -9px !important;
-  }
-}
-
-@media (min-width: 601px) {
-  .ui.button.account-connected-play-button-mobile {
-    display: none;
-  } 
-}
-
 /* ----------------------------------------- */
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
@@ -531,53 +473,6 @@
   }
   .DG-column.one {
     margin-bottom: 30px;
-  }
-}
-
-@media (min-width: 601px) {
-  .ui.button.DG-deposit-button-mobile,
-  .DG-mobile-divider {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .ui.button.DG-deposit-button {
-    display: none !important;
-  }
-  .ui.button.DG-deposit-button-mobile {
-    color: white;
-    background-color: #2085f4;
-    margin-top: 6px !important;
-    margin-bottom: 6px !important;
-    font-size: 12px;
-    font-weight: bold !important;
-    border-radius: 2px;
-    height: 34px;
-    padding-top: 8px;
-    min-width: 100% !important;
-    padding-left: 0px;
-    padding-right: 0px;
-    letter-spacing: 0.5px;
-    margin-top: -79px;
-  }
-}
-
-@media (max-width: 499px) {
-  .account-name {
-    font-size: 28px;
-    min-width: 100% !important;
-    padding-left: 15px;
-  }
-  .welcome-text {
-    padding-left: 16px;
-  }
-  .farming-logo {
-    width: 52px;
-    height: 52px;
-  }
-  .farming-pool-span {
-    margin-top: 6px;
   }
 }
 
