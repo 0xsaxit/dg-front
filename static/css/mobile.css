@@ -553,8 +553,8 @@
   .ui.button.DG-deposit-button-mobile {
     color: white;
     background-color: #2085f4;
-    margin-top: 6px !important;
-    margin-bottom: 6px !important;
+    margin-top: 3px !important;
+    margin-bottom: 0px !important;
     font-size: 12px;
     font-weight: bold !important;
     border-radius: 2px;
@@ -564,7 +564,6 @@
     padding-left: 0px;
     padding-right: 0px;
     letter-spacing: 0.5px;
-    margin-top: -79px;
   }
 }
 
