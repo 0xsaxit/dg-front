@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Image, Button, Divider, Grid, Breadcrumb } from 'semantic-ui-react';
+import { Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from './ContentNFTs';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
@@ -37,45 +37,22 @@ const Farming = () => {
           </span>
         </span>
 
-        <span className="DG-liquidity-container">
+        <div className="DG-liquidity-container">
           <div className="DG-column one">
             <span style={{ display: 'flex' }}>
-              <span className="avatar-picture" style={{ display: 'flex' }}>
-                <img
-                  src={Global.IMAGES.MANA_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    marginTop: '12px',
-                    marginBottom: '9px',
-                    border: '1px solid rgb(227, 232, 238)',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                  }}
-                />
-                <img
-                  src={Global.IMAGES.LOGO}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    marginTop: '12px',
-                    marginBottom: '9px',
-                    border: '1px solid rgb(227, 232, 238)',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
+              <img
+                src={Global.IMAGES.MANA_CIRCLE}
+                className="farming-logo"
+              />
+              <img
+                src={Global.IMAGES.LOGO}
+                className="farming-logo"
+              />
+              <span className="farming-pool-span">
                 <p className="welcome-text"> Pool Name </p>
                 <p className="account-name">MANA-DG</p>
               </span>
+
             </span>
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -97,44 +74,30 @@ const Farming = () => {
               <p className="earned-text"> Pool Rate </p>
               <p className="earned-amount"> 0 / week </p>
             </span>
+
+            <Divider className="DG-mobile-divider"/>
+
+            <Button disabled className="DG-deposit-button-mobile">
+              DEPOSIT
+            </Button>
 
           </div>
 
           <div className="DG-column two">
             <span style={{ display: 'flex' }}>
-              <span className="avatar-picture" style={{ display: 'flex' }}>
-                <img
-                  src={Global.IMAGES.DAI_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
-                />
-                <img
-                  src={Global.IMAGES.LOGO}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    marginTop: '12px',
-                    marginBottom: '9px',
-                    border: '1px solid rgb(227, 232, 238)',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
+              <img
+                src={Global.IMAGES.DAI_CIRCLE}
+                className="farming-logo"
+              />
+              <img
+                src={Global.IMAGES.LOGO}
+                className="farming-logo"
+              />
+              <span className="farming-pool-span">
                 <p className="welcome-text"> Pool Name </p>
                 <p className="account-name">DAI-DG</p>
               </span>
+
             </span>
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -156,8 +119,14 @@ const Farming = () => {
               <p className="earned-text"> Pool Rate </p>
               <p className="earned-amount"> 0 / week </p>
             </span>
+
+            <Divider className="DG-mobile-divider"/>
+
+            <Button disabled className="DG-deposit-button-mobile">
+              DEPOSIT
+            </Button>
           </div>
-        </span>
+        </div>
 
       </div>
     );
