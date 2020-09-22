@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Grid } from 'semantic-ui-react';
+import ButtonAuthorize from './ButtonAuthorize';
+import ButtonEnable from './ButtonEnable';
 import ContentNFTs from './ContentNFTs';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
