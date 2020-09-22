@@ -1299,10 +1299,10 @@ span.matic-icon-background-2 {
 }
 
 .deposit-notification-box {
-  width: 270px;
+  width: 300px;
   position: absolute !important;
   z-index: 999 !important;
-  top: 84px;
+  top: 105px;
 }
 
 .ui.message {
@@ -1697,6 +1697,14 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   color: black;
 }
 
+.DG-top-container {
+  padding-top: 30px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
 .DG-liquidity-container {
   padding-top: 30px;
   max-width: 1343px;
@@ -1715,6 +1723,13 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   max-width: 48.5%;  
 }
 
+.DG-button-span {
+  margin-top: 96px;
+  margin-bottom: -45px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .ui.button.DG-deposit-button {
   color: white;
   background-color: #2085f4;
@@ -1724,11 +1739,42 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 120px !important;
+  min-width: 48.5% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
   margin-top: -79px;
+}
+
+.ui.button.DG-stake-button {
+  color: white;
+  background-color: #2085f4;
+  margin-top: 1px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 48.5% !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+  margin-top: -79px;
+}
+
+.ui.button.DG-stake-button-two {
+  color: white;
+  background-color: #2085f4;
+  margin-top: 15px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
 }
 
 .ui.button.DG-liquidity-button {

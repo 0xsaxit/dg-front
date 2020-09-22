@@ -528,7 +528,8 @@
 /* ----------------------------------------- */
 
 @media (max-width: 1061px) {
-  .DG-liquidity-container {
+  .DG-liquidity-container,
+  .DG-top-container {
     flex-direction: column;
   }
   .DG-column {
@@ -539,31 +540,15 @@
   }
 }
 
-@media (min-width: 601px) {
-  .ui.button.DG-deposit-button-mobile,
-  .DG-mobile-divider {
-    display: none;
+@media (min-width: 1062px) {
+  .DG-column.one.top {
+    height: 100px;
   }
 }
 
-@media (max-width: 600px) {
-  .ui.button.DG-deposit-button {
-    display: none !important;
-  }
-  .ui.button.DG-deposit-button-mobile {
-    color: white;
-    background-color: #2085f4;
-    margin-top: 3px !important;
-    margin-bottom: 0px !important;
-    font-size: 12px;
-    font-weight: bold !important;
-    border-radius: 2px;
-    height: 34px;
-    padding-top: 8px;
-    min-width: 100% !important;
-    padding-left: 0px;
-    padding-right: 0px;
-    letter-spacing: 0.5px;
+@media (min-width: 601px) {
+  .DG-mobile-divider {
+    display: none;
   }
 }
 
