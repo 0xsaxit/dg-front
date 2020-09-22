@@ -478,6 +478,11 @@
   #account-txs-tab {
     display: none !important;
   }
+  div.ui.grid.balances-container {
+    margin-left: -9px !important;
+    margin-right: -9px !important;
+    padding-top: 160px;
+  }
 }
 
 @media (min-width: 500px) {
@@ -487,8 +492,12 @@
 }
 
 @media (max-width: 600px) {
-  .ui.button.account-connected-play-button {
+  .ui.button.account-connected-play-button,
+  .account-authorize-span {
     display: none;
+  }
+  div.ui.grid.balances-container {
+    padding-top: 160px;
   }
   .ui.button.account-connected-play-button-mobile {
     color: white;
@@ -505,15 +514,11 @@
     padding-right: 0px;
     letter-spacing: 0.5px;
   }
-  div.ui.grid.balances-container {
-    padding-top: 197px;
-    margin-left: -9px !important;
-    margin-right: -9px !important;
-  }
 }
 
 @media (min-width: 601px) {
-  .ui.button.account-connected-play-button-mobile {
+  .ui.button.account-connected-play-button-mobile,
+  .account-authorize-span-mobile {
     display: none;
   } 
 }
