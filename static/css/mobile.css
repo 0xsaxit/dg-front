@@ -481,7 +481,7 @@
   div.ui.grid.balances-container {
     margin-left: -9px !important;
     margin-right: -9px !important;
-    padding-top: 160px;
+    margin-top: 43px;
   }
 }
 
@@ -497,7 +497,7 @@
     display: none;
   }
   div.ui.grid.balances-container {
-    padding-top: 160px;
+    padding-top: 160px !important;
   }
   .ui.button.account-connected-play-button-mobile {
     color: white;
