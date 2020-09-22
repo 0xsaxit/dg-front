@@ -31,9 +31,10 @@ const Farming = () => {
               Decentral Games Farming
             </h3>
             <p>
-              Users are able to farm DG in two ways, through gameplay and by providing liquidity. 
-              After depositing to a liquidity pool, users will recieve LP tokens they can then stake
-              in order to farm DG. Read more about DG rewards by visiting our <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}>documentation</a>.
+              Users can farm DG in two ways, through gameplay and by providing liquidity. 
+              After depositing to a liquidity pool, you'll recieve LP tokens - stake
+              these as another way to earn DG rewards. Read more about DG rewards by visiting our 
+              <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}>documentation</a>.
             </p>
           </span>
         </span>
@@ -142,8 +143,8 @@ const Farming = () => {
                 Decentral Games Governance
               </h3>
               <p>
-                DG tokens represent voting shares in Decentral Games governance. Users can vote on each proposal yourself or delegate your votes to a third party.
-                Proposals can be found <a href="" style={{ color: '#2085f4' }}> here</a>. Read more about our governance model in our <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}>documentation</a>.
+                DG tokens represent voting shares in Decentral Games governance. Users can vote on each proposal or delegate votes to a third party.
+                Proposals can be submitted and voted on <a href="" style={{ color: '#2085f4' }}> here</a>. Read more about our governance model in our <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}>documentation</a>.
               </p>
             </span>
           </span>
