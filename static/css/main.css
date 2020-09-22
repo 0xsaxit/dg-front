@@ -268,7 +268,7 @@ div.ui.segment.transparent-menu-segment {
 
 .menu-info-modal {
   top: 131px;
-  width: 460px !important;
+  max-width: 400px !important;
   border-radius: 2px !important;
 }
 
@@ -297,6 +297,7 @@ div.ui.segment.transparent-menu-segment {
   font-weight: 700;
   letter-spacing: 0.5px;
   color: black;
+  padding-top: 2px;
 }
 
 .menu-info-close {
@@ -525,6 +526,7 @@ a.ui.blue.button.how-to-button {
 .nft-pic,
 .games-pic {
   width: 368px;
+  height: 100%;
 }
 
 .my-nft-pic {

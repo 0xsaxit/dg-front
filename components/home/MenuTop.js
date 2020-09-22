@@ -358,12 +358,12 @@ const MenuTop = () => {
                 <p className="menu-info-text"> Goerli </p>
               </span>
               <span className="menu-info-inner-span">
-                <p className="menu-info-label"> Decentraland Node </p>
-                <a href="https://catalyst-monitor.now.sh/" className="menu-info-text"> https://catalyst-monitor.now.sh/</a>
+                <p className="menu-info-label"> DCL Node </p>
+                <a href="https://catalyst-monitor.now.sh/" className="menu-info-text"> https://catalyst-monitor.now.sh</a>
               </span>
               <span className="menu-info-inner-span" >
                 <p className="menu-info-label"> Matic Node </p>
-                <a href="https://wallet.matic.today/staking/" className="menu-info-text">https://wallet.matic.today/staking/</a>
+                <a href="https://wallet.matic.today/staking/" className="menu-info-text">https://wallet.matic.today</a>
               </span>
             </div>
           </Modal>

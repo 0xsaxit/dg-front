@@ -34,13 +34,13 @@
 }
 
 @media (max-width: 499px) {
-  .ui.button.modal-info-button {
+  .ui.button.modal-deposit-button {
     display: none;
   }
   #menu-logo {
     margin-left: 14px !important;
   }
-  .ui.button.modal-deposit-button {
+  .ui.button.modal-info-button {
     margin-right: 21px;
   }
   .ui.blue.button.metamask-button {
@@ -220,7 +220,7 @@
     margin-top: -360px !important;
   }
   .home-mission-content {
-    padding-top: 210px;
+    padding-top: 230px;
   }
 }
 

@@ -170,9 +170,6 @@ const Tokens = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        <div>
-          <p className="page-header-text">NFTs</p>
-        </div>
         {NFTstate == 0 ? (
           <p className="account-other-p">
             <b className="account-hover active">BUY NFTS</b>{' '}

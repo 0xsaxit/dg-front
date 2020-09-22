@@ -59,7 +59,7 @@ const MessageBar = () => {
       );
     } else if (state.networkID !== Global.PARENT_NETWORK_ID) {
       setMessage(
-        'Decentral Games is currently in beta. Please switch MetaMask to Goerli Network.'
+        'Please switch MetaMask to Goerli Network'
       );
     } else if (!state.userStatus === 4) {
       setMessage(
