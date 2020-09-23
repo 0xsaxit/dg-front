@@ -61,9 +61,6 @@ function blog() {
 
   return (
     <div className="blog-home-container">
-      <div>
-        <p className="page-header-text dark">Blog</p>
-      </div>
       <div className="featured-blog-container">
         <p className="featured-text"> FEATURED POST</p>
         <Divider id="blog-divider" style={{ paddingBottom: '15px' }} />

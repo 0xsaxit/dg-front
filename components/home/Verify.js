@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
@@ -6,9 +6,18 @@ import Global from '../Constants';
 const Verify = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const [metamaskEnabled, setMetamaskEnabled] = useState(false);
 
   // define local variables
   let userAddress = '';
+
+  useEffect(() => {
+    if (window.web3) {
+      setMetamaskEnabled(true);
+    } else {
+      setMetamaskEnabled(false); 
+    }
+  })
 
   async function openMetaMask() {
     if (window.web3) {
@@ -58,13 +67,23 @@ const Verify = () => {
   }
 
   return (
-    <span className="right-menu-items">
-      <Button
-        content="CONNECT METAMASK"
-        color="blue"
-        className="metamask-button"
-        onClick={() => openMetaMask()}
-      />
+    <span className="right-menu-items outter">
+      {metamaskEnabled ? 
+        <span className="right-menu-items">
+          <Button
+            content="CONNECT METAMASK"
+            color="blue"
+            className="metamask-button"
+            onClick={() => openMetaMask()}
+          />
+          <Button
+            content="CONNECT"
+            color="blue"
+            className="metamask-mobile-button"
+            onClick={() => openMetaMask()}
+          />
+        </span>
+      : null }
     </span>
   );
 };

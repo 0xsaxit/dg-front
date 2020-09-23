@@ -9,7 +9,7 @@
         },
         {
             "src": "https://res.cloudinary.com/dnzambf4m/image/upload/v1600119622/site-manifest-512x512.png",
-            "sizes": "512x512,
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],

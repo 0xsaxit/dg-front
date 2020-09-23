@@ -179,9 +179,6 @@ const Offerings = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        <div>
-          <p className="page-header-text">Games</p>
-        </div>
 
         {/* ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////

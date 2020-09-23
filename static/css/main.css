@@ -52,15 +52,17 @@ p {
 }
 
 .ui.blue.button.metamask-button {
-  background-color: #2085f4;
+  position: relative;
+  background-color: #2085f4 !important;
   color: white;
-  width: 240px;
-  font-size: 14px !important;
   font-weight: 600;
-  margin-top: 15px;
-  padding: 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
+  margin-top: 18px;
+  padding-top: 8px;
+  width: 210px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
   margin-right: 30px;
 }
@@ -132,19 +134,6 @@ div.ui.segment.transparent-menu-segment {
 #pushable-two {
   position: relative;
   z-index: 6;
-}
-
-#mobile-menu-icon {
-  position: absolute;
-  color: white;
-  top: 23px;
-  left: 81px;
-  z-index: 2;
-  font-size: 23px !important;
-}
-
-#mobile-menu-icon:hover {
-  cursor: pointer;
 }
 
 .menu-items-to-hide {
@@ -258,15 +247,6 @@ div.ui.segment.transparent-menu-segment {
   background: none !important;
 }
 
-@media (max-width: 600px) {
-  .menu-info-to-hide {
-    display: none;
-  }
-  .menu-avatar-background {
-    margin-left: -9px !important;
-  }
-}
-
 .menu-account-info {
   margin-right: 15px;
   background-color: #2085f4;
@@ -288,7 +268,7 @@ div.ui.segment.transparent-menu-segment {
 
 .menu-info-modal {
   top: 131px;
-  width: 460px !important;
+  max-width: 400px !important;
   border-radius: 2px !important;
 }
 
@@ -317,6 +297,7 @@ div.ui.segment.transparent-menu-segment {
   font-weight: 700;
   letter-spacing: 0.5px;
   color: black;
+  padding-top: 2px;
 }
 
 .menu-info-close {
@@ -370,68 +351,35 @@ video.home-dashboard-video {
   margin-top: calc(100vh - 660px);
 }
 
-@media (max-height: 510px) {
-  .home-dashboard-content {
-    margin-top: -150px !important;
-  } 
-}
-
-@media (max-width: 708px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 688px);
-  }
-}
-
-@media (max-width: 603px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 707px);
-  }
-}
-
-@media (max-width: 529px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 735px);
-  }
-}
-
-a.ui.blue.button.play-shimmer {
-  background-color: white;
-  color: black;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 2px;
-}
-
 a.ui.blue.button.how-to-button {
   background-color: white;
   color: black;
   width: 180px;
-  font-size: 14px;
   font-weight: 600;
-  margin-top: 30px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  position: relative;
+  font-weight: 600;
+  margin-top: 20px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
-  margin-left: calc(50% - 90px);
 }
 
 .ui.blue.button.demo-button {
   position: relative;
   background-color: #2085f4 !important;
   color: white;
-  width: 180px;
-  font-size: 14px;
   font-weight: 600;
   margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
 }
 
@@ -578,6 +526,7 @@ a.ui.blue.button.how-to-button {
 .nft-pic,
 .games-pic {
   width: 368px;
+  height: 100%;
 }
 
 .my-nft-pic {
@@ -609,18 +558,6 @@ a.ui.blue.button.how-to-button {
   padding-right: 30px;
 }
 
-@media (max-width: 1251px) {
-  .nft-container {
-    width: 48.5%;
-  }
-}
-
-@media (max-width: 851px) {
-  .nft-container {
-    width: 100%;
-  }
-}
-
 .outter-games-container {
   display: flex;
   flex-wrap: wrap !important;
@@ -641,20 +578,6 @@ a.ui.blue.button.how-to-button {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
-}
-
-@media (max-width: 851px) {
-  .nft-container,
-  .games-container {
-    width: 100%;
-  }
-}
-
-@media (min-width: 1252px) {
-  .ui.blue.button.nft-button,
-  .ui.button.nft-read-button {
-    width: 48.5% !important;
-  }
 }
 
 .ui.dropdown > .dropdown.icon {
@@ -770,31 +693,23 @@ a.ui.blue.button.how-to-button {
   margin-top: 0px;
 }
 
-@media (max-width: 991px) {
-  .games-other-h3 {
-    font-size: 28px;
-    font-weight: 600;
-    padding-bottom: 12px;
-    color: black;
-    margin-top: -30px !important;
-  }
-}
-
 .nft-description {
   padding-bottom: 30px;
 }
 
 a.ui.blue.button.play-button,
 .ui.blue.button.play-button {
+  position: relative;
   background-color: #2085f4 !important;
   color: white;
-  width: 180px;
-  font-size: 14px;
   font-weight: 600;
   margin-top: 20px;
-  padding: 13px;
-  height: 42px;
-  letter-spacing: 1.25px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
   border-radius: 2px;
 }
 
@@ -914,17 +829,6 @@ table {
   font-weight: bold;
   letter-spacing: 1.5px;
   color: black;
-}
-
-@media (min-width: 992px) {
-  .table-header-text-1,
-  .table-body-text-1 {
-    padding-left: 75px !important;
-  }
-  .table-header-text-1.games,
-  .table-body-text-1.games {
-    padding-left: 9px !important;
-  }
 }
 
 .table-header-text.account {
@@ -1223,6 +1127,16 @@ svg.spanbox.disable {
 /*             DEPOSIT MODAL CSS             */
 /* ----------------------------------------- */
 
+.matic-overlay-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(6, 16, 36, 0.5) !important;
+  position: fixed;
+  z-index: -3 !important;
+  top: 0;
+  left: 0;
+}
+
 .ui.button:hover,
 button.ui.button.matic-widget-button.balances-play-button-2:hover,
 button.ui.button.matic-widget-button.balances-play-button:hover {
@@ -1232,6 +1146,10 @@ button.ui.button.matic-widget-button.balances-play-button:hover {
 
 .matic-overlay {
   margin-top: -21px;
+  background-color: white;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 9;
 }
 
 .matic-top-bar {
@@ -1245,6 +1163,7 @@ button.ui.button.matic-widget-button.balances-play-button:hover {
 
 .matic-top-image {
   width: 30px;
+  height: 22px;
   padding-right: 6px;
 }
 
@@ -1380,10 +1299,10 @@ span.matic-icon-background-2 {
 }
 
 .deposit-notification-box {
-  width: 270px;
+  width: 300px;
   position: absolute !important;
   z-index: 999 !important;
-  top: 84px;
+  top: 105px;
 }
 
 .ui.message {
@@ -1441,8 +1360,8 @@ span.matic-icon-background-2 {
   letter-spacing: 0.5px;
   color: rgb(97, 97, 97);
   text-transform: uppercase;
-  padding-top: 9px !important;
-  margin-bottom: 7px;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
 }
 
 .earned-amount {
@@ -1450,11 +1369,12 @@ span.matic-icon-background-2 {
   font-weight: 700;
   letter-spacing: 0.5px;
   color: black;
-  padding-top: 4px !important;
+  padding-top: 2px !important;
 }
 
 div.ui.grid.balances-container {
-  padding-top: 88px;
+  padding-top: 88px !important;
+  margin-top: 43px;
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1616,7 +1536,8 @@ div.ui.grid.balances-container {
 }
 
 .balances-button-span {
-  margin-top: 30px;
+  margin-bottom: 6px;
+  margin-top: 17px;
   display: flex;
   justify-content: space-between;
 }
@@ -1649,7 +1570,7 @@ div.ui.grid.balances-container {
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 46.5% !important;
+  min-width: 48.5% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
@@ -1749,6 +1670,20 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 /*            FARMING SECTION CSS            */
 /* ----------------------------------------- */
 
+.farming-pool-span {
+  margin-top: 9px;
+}
+
+.farming-logo {
+  max-width: 60px;
+  max-height: 60px;
+  margin-top: 12px;
+  margin-bottom: 9px;
+  border-radius: 100%;
+  border: 1px solid rgb(227, 232, 238);
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+}
+
 .outter-DG-container {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -1761,6 +1696,14 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   font-weight: 800;
   padding-bottom: 9px;
   color: black;
+}
+
+.DG-top-container {
+  padding-top: 30px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .DG-liquidity-container {
@@ -1781,16 +1724,11 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   max-width: 48.5%;  
 }
 
-@media (max-width: 1061px) {
-  .DG-liquidity-container {
-    flex-direction: column;
-  }
-  .DG-column {
-    max-width: 100%;
-  }
-  .DG-column.one {
-    margin-bottom: 30px;
-  }
+.DG-button-span {
+  margin-top: 96px;
+  margin-bottom: -45px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .ui.button.DG-deposit-button {
@@ -1802,11 +1740,41 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 120px !important;
+  min-width: 100% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
   margin-top: -79px;
+}
+
+.ui.button.DG-stake-button {
+  color: white;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 100% !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+}
+
+.ui.button.DG-stake-button-two {
+  color: white;
+  background-color: #2085f4;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 210px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
 }
 
 .ui.button.DG-liquidity-button {

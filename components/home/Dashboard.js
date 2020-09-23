@@ -128,6 +128,7 @@ const Dashboard = () => {
                     border: '1px solid rgb(227, 232, 238)',
                     borderRadius: '100%',
                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                    backgroundColor: 'white',
                   }}
                 />
               )
@@ -177,7 +178,7 @@ const Dashboard = () => {
                 </Modal>
                 <Button
                   color="blue"
-                  className="play-shimmer"
+                  className="how-to-button"
                   target="_blank"
                   href="https://docs.decentral.games/getting-started"
                 >
@@ -235,7 +236,7 @@ const Dashboard = () => {
             </Button>
             <Button
               color="blue"
-              className="play-shimmer"
+              className="how-to-button"
               target="_blank"
               href="https://docs.decentral.games/getting-started"
             >
