@@ -56,8 +56,8 @@ const Farming = () => {
                 className="farming-logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Pool Name </p>
-                <p className="account-name">MANA-DG</p>
+                <p className="welcome-text"> Coin </p>
+                <p className="account-name">MANA</p>
               </span>
 
             </span>
