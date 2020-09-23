@@ -153,7 +153,7 @@ const Farming = () => {
                 Decentral Games Governance
               </h3>
               <p>
-                DG tokens represent voting shares in Decentral Games governance. Users can vote on each proposal or delegate votes to a third party.
+                $DG tokens represent voting shares in Decentral Games governance. Users can vote on each proposal or delegate votes to a third party.
                 Proposals can be submitted and voted on <a href="" style={{ color: '#2085f4' }}> here</a>. Read more about our governance model in our <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}>documentation</a>.
               </p>
             </span>
@@ -178,69 +178,8 @@ const Farming = () => {
       <div className="account-other-tabs">
 
         <div className="DG-top-container">
-          <div className="DG-column one top">
-            <span style={{ display: 'flex' }}>
-              <span className="avatar-picture">
-                <a
-                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                  target="_blank"
-                >
-                  <img
-                    className="avatar-picture"
-                    src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
-                    style={{
-                      width: '72px',
-                      display: 'flex',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                    }}
-                  />
-                  <span className="avatar-edit"> edit </span>
-                </a>
-              </span>
-              <span style={{ display: 'flex', flexDirection: 'column' }}>
-                <p className="welcome-text"> Account Connected </p>
-                {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                  <p className="account-name">
-                    {state.userInfo[1].substr(0, 4) +
-                      '...' +
-                      state.userInfo[1].substr(-4)}
-                  </p>
-                ) : (
-                  <p className="account-name">{state.userInfo[0]}</p>
-                )}
-              </span>
-            </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }} className="account-authorize-span">
-              {state.userStatus === 6 ? (
-                <ButtonAuthorize />
-              ) : state.userStatus === 7 ? (
-                <ButtonEnable />
-              ) : (
-                <Button disabled className="account-connected-play-button">
-                  AUTHORIZE
-                </Button>
-              )}
-            </span>
-
-            <Divider className="DG-mobile-divider"/>
-
-            <span className="account-authorize-span-mobile">
-              {state.userStatus === 6 ? (
-                <ButtonAuthorize />
-              ) : state.userStatus === 7 ? (
-                <ButtonEnable />
-              ) : (
-                <Button disabled className="account-connected-play-button-mobile">
-                  AUTHORIZE
-                </Button>
-              )}
-            </span>
-          </div>
-
-          <div className="DG-column two">
+          <div className="DG-column zero">
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
@@ -270,20 +209,13 @@ const Farming = () => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> DG rewards </p>
+              <p className="earned-text"> Unclaimed $DG </p>
               <p className="earned-amount"> 0 </p>
             </span>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Button disabled className="DG-stake-button">
-                STAKE BALANCER LP
-              </Button>
-              <Button disabled className="account-connected-play-button-mobile redeem">
-                REDEEM
-              </Button>
-            </span>
+            <Button disabled className="account-connected-play-button-mobile redeem">
+              REDEEM
+            </Button>
           </div>
         </div>
         {

@@ -280,9 +280,8 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
-                disabled
                 className="balances-top-button two"
-                target="_blank"
+                onClick={() => show_transak()}
                 style={{ marginTop: '-80px' }}
               >
                 PURCHASE

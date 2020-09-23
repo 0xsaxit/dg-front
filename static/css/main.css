@@ -594,6 +594,7 @@ a.ui.blue.button.how-to-button {
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 0px;
   border-radius: 2px;
+  left: calc(-100% - 21px);
 }
 
 .account-select {
@@ -1299,10 +1300,13 @@ span.matic-icon-background-2 {
 }
 
 .deposit-notification-box {
-  width: 300px;
   position: absolute !important;
   z-index: 999 !important;
-  top: 105px;
+  top: 90px;
+}
+
+deposit-notification-box-hidden {
+  display: none !important;
 }
 
 .ui.message {
@@ -1722,6 +1726,10 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   width: 100%;
   padding: 12px 18px 18px 18px !important;
   max-width: 48.5%;  
+}
+
+.DG-column.zero {
+  min-width: 100% !important;
 }
 
 .DG-button-span {

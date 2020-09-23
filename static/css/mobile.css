@@ -357,6 +357,9 @@
   #intermediate-time-select {
     display: none;
   }
+  .ui.dropdown .menu {
+    left: 0;
+  }
 }
 
 #intermediate-time-select {
