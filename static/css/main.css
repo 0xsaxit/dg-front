@@ -1505,6 +1505,11 @@ div.ui.grid.balances-container {
   margin-right: -3px;
 }
 
+.account-authorize-span {
+  margin-top: -72px;
+  margin-bottom: 36px;
+}
+
 .ui.button.account-connected-play-button {
   color: white;
   background-color: #2085f4;
@@ -1518,7 +1523,6 @@ div.ui.grid.balances-container {
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-top: -72px;
 }
 
 .balances-divider {

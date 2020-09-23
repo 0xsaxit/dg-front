@@ -117,12 +117,23 @@ function ButtonAuthorize() {
   }
 
   return (
-    <Button
-      className="account-connected-play-button"
-      onClick={() => setTransaction(true)}
-    >
-      AUTHORIZE
-    </Button>
+    <div>
+      <span>
+        <Button
+          className="account-connected-play-button"
+          onClick={() => setTransaction(true)}
+        >
+          AUTHORIZE
+        </Button>
+      </span>
+
+      <Button
+        className="account-connected-play-button-mobile"
+        onClick={() => setTransaction(true)}
+      >
+        AUTHORIZE
+      </Button>
+    </div>
   );
 }
 

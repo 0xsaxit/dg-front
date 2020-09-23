@@ -497,7 +497,7 @@
 @media (max-width: 600px) {
   .ui.button.account-connected-play-button,
   .account-authorize-span {
-    display: none;
+    display: none !important;
   }
   div.ui.grid.balances-container {
     padding-top: 160px !important;
