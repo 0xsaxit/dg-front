@@ -149,12 +149,15 @@ const ContentBalances = (props) => {
   function contentModal() {
     return (
       <span>
-        <div className="matic-overlay-container" onClick={close}/>
+        <div className="matic-overlay-container" onClick={close} />
         <div className="matic-overlay">
           <div className="matic-top-bar">
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ display: 'flex' }}>
-                <img src={Global.IMAGES.MATIC_TOP} className="matic-top-image" />
+                <img
+                  src={Global.IMAGES.MATIC_TOP}
+                  className="matic-top-image"
+                />
                 <p className="matic-top-text-1"> Account Connected </p>
               </span>
               <span style={{ display: 'flex' }}>
@@ -164,26 +167,6 @@ const ContentBalances = (props) => {
                 </p>
               </span>
             </span>
-<<<<<<< HEAD
-          </span>
-        </div>
-        <div>
-          <p className="matic-header-text"> Add Tokens </p>
-          <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
-          <div className="matic-widget-button-container">
-            <div onClick={close}>
-              <Button
-                className="matic-widget-button"
-                data-default-page="deposit"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-              >
-                <span className="matic-icon-background">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-1"
-                  >
-                    add
-=======
           </div>
           <div>
             <p className="matic-header-text"> Add Tokens </p>
@@ -203,10 +186,12 @@ const ContentBalances = (props) => {
                     >
                       add
                     </span>
->>>>>>> 1ae84ac9091a2d73fdb8f0f6cee497331bbc3f00
                   </span>
                   Deposit from Metamask
-                  <span className="material-icons" id="matic-widget-icon-right-1">
+                  <span
+                    className="material-icons"
+                    id="matic-widget-icon-right-1"
+                  >
                     keyboard_arrow_right
                   </span>
                 </Button>
@@ -218,7 +203,10 @@ const ContentBalances = (props) => {
               </div>
 
               <div onClick={close}>
-                <Button className="matic-widget-button-2" onClick={show_transak}>
+                <Button
+                  className="matic-widget-button-2"
+                  onClick={show_transak}
+                >
                   <span className="matic-icon-background-2">
                     <span
                       className="material-icons"
@@ -228,7 +216,10 @@ const ContentBalances = (props) => {
                     </span>
                   </span>
                   Purchase with Debit Card
-                  <span className="material-icons" id="matic-widget-icon-right-2">
+                  <span
+                    className="material-icons"
+                    id="matic-widget-icon-right-2"
+                  >
                     keyboard_arrow_right
                   </span>
                 </Button>
