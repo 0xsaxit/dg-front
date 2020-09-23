@@ -1733,8 +1733,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 }
 
 .DG-button-span {
-  margin-top: 96px;
-  margin-bottom: -45px;
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
 }
@@ -1742,17 +1741,15 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .ui.button.DG-deposit-button {
   color: white;
   background-color: #2085f4;
-  margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 100% !important;
+  min-width: 48.5% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-top: -79px;
 }
 
 .ui.button.DG-stake-button {
@@ -1763,7 +1760,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 100% !important;
+  min-width: 48.5% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
