@@ -30,13 +30,13 @@ const Farming = () => {
         <span style={{ display: 'flex' }} className="outter-DG-container">
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h3 className="DG-h3">
-              Decentral Games Farming
+              $DG Liquidity Farming
             </h3>
             <p>
-              Users can farm DG in two ways, through gameplay and by providing liquidity. 
-              After depositing to a liquidity pool, you'll recieve LP tokens - stake
-              these as another way to earn DG rewards. Read more about DG rewards by visiting our 
-              <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}>documentation</a>.
+              Users can farm DG in two ways, through gameplay and by providing liquidity.
+              You can farm $DG by staking $MANA/$DG and $DAI/$DG balancer pool tokens here. 
+              Read more about DG rewards by visiting our  
+              <a href="https://decentral-games-1.gitbook.io/dg/governance-1" style={{ color: '#2085f4' }}> documentation</a>.
             </p>
           </span>
         </span>
@@ -69,6 +69,13 @@ const Farming = () => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> % share of pool </p>
+              <p className="earned-amount"> 0% </p>
+            </span>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Pool Rate </p>
               <p className="earned-amount"> 0 / week </p>
             </span>
@@ -77,10 +84,7 @@ const Farming = () => {
 
             <span className="DG-button-span">
               <Button disabled className="DG-deposit-button">
-                DEPOSIT
-              </Button>
-              <Button disabled className="DG-stake-button">
-                STAKE LP
+                DEPOSIT TO BALANCER POOL
               </Button>
             </span>
 
@@ -113,6 +117,13 @@ const Farming = () => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> % share of pool </p>
+              <p className="earned-amount"> 0% </p>
+            </span>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Pool Rate </p>
               <p className="earned-amount"> 0 / week </p>
             </span>
@@ -121,10 +132,7 @@ const Farming = () => {
 
             <span className="DG-button-span">
               <Button disabled className="DG-deposit-button">
-                DEPOSIT
-              </Button>
-              <Button disabled className="DG-stake-button">
-                STAKE LP
+                DEPOSIT TO BALANCER POOL
               </Button>
             </span>
 
@@ -153,7 +161,7 @@ const Farming = () => {
 
           <div>
             <Button disabled className="DG-stake-button-two">
-              STAKE DG
+              STAKE $DG
             </Button>
           </div>
 
@@ -266,10 +274,13 @@ const Farming = () => {
               <p className="earned-amount"> 0 </p>
             </span>
 
-            <Divider className="DG-mobile-divider"/>
+            <Divider />
 
-            <span>
-              <Button disabled className="account-connected-play-button-mobile">
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button disabled className="DG-stake-button">
+                STAKE BALANCER LP
+              </Button>
+              <Button disabled className="account-connected-play-button-mobile redeem">
                 REDEEM
               </Button>
             </span>
@@ -279,7 +290,7 @@ const Farming = () => {
           (() => {
             if (DGstate == 0) return (
               <p className="account-other-p">
-                <b className="account-hover active">FARMING</b>{' '}
+                <b className="account-hover active">LIQUIDITY FARMING</b>{' '}
                 <abbr className="account-hover" onClick={() => setPage(1)}>
                   GOVERNANCE
                 </abbr>
@@ -288,7 +299,7 @@ const Farming = () => {
             else return (
               <p className="account-other-p">
                 <abbr className="account-hover" onClick={() => setPage(0)}>
-                  FARMING
+                  LIQUIDITY FARMING
                 </abbr>{' '}
                 <b className="account-hover active">GOVERNANCE</b>
               </p> 
