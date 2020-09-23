@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Message } from 'semantic-ui-react';
 import Aux from '../_Aux';
@@ -6,12 +6,21 @@ import Aux from '../_Aux';
 const MessageBox = (props) => {
   // get token ping state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const [visible, setVisible] = useState(true);
+  const [menuStyle, setMenuStyle] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMenuStyle(['deposit-notification-box-hidden']);
+    }, 10000)
+    setMenuStyle(['deposit-notification-box']); 
+  });
 
   if (state.tokenPings >= 2) {
     return (
       <div className="deposit-notification-container">
         <Message
-          className="deposit-notification-box"
+          className={menuStyle[0]}
           onDismiss={props.handleDismiss}
         >
           {state.tokenPings === 1 ? (
@@ -68,3 +77,4 @@ const MessageBox = (props) => {
 };
 
 export default MessageBox;
+
