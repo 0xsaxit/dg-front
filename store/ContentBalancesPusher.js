@@ -2,10 +2,16 @@ import { useEffect, useContext } from 'react'
 import { GlobalContext } from './index'
 import { Button, Divider, Grid } from 'semantic-ui-react'
 import transakSDK from '@transak/transak-sdk'
+import Pusher from 'pusher-js'
 import Global from '../components/Constants'
+
+// let apiKey = "YOUR_TRANSAK_API_KEY"
+// let partnerOrderId = "YOUR_UNIQUE_ORDER_ID"
+// let channelName = `${apiKey}_${partnerOrderId}`
 
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
+  partnerOrderId: 123, // unique customer identifier
   environment: 'STAGING', // STAGING/PRODUCTION
   defaultCryptoCurrency: 'DAI',
   walletAddress: '', // customer wallet address
@@ -13,7 +19,7 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  hostURL: 'https://decentral.games',
+  hostURL: Global.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '450px',
 })
@@ -25,21 +31,27 @@ const ContentBalances = (props) => {
   // define local variables
   let userAddress = ''
 
+  let pusher = {}
+  let channel = {}
+
   useEffect(() => {
-    // get all the events
-    transak.on(transak.ALL_EVENTS, (data) => {
-      console.log(data)
-    })
-    // triggers when the user closes the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak.close()
-    })
-    // triggers when the payment is complete
-    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData)
-      transak.close()
-    })
+    if (state.userStatus) {
+      channel.bind(`ORDER_COMPLETED`, (orderData) => {
+        console.log(orderData)
+      })
+    }
   }, [])
+
+  useEffect(() => {
+    if (state.userStatus) {
+      initWebSocket()
+
+      // cleanup method called before unmount
+      // return () => {
+      //   pusher.unsubscribe(orderId)
+      // }
+    }
+  }, [state.userStatus])
 
   // get user address
   useEffect(() => {
@@ -47,6 +59,43 @@ const ContentBalances = (props) => {
       userAddress = window.web3.currentProvider.selectedAddress
     }
   }, [state.userStatus])
+
+  const initWebSocket = () => {
+    console.log('Initialize WebSocket')
+
+    // ws = new WebSocket('wss://ws-mumbai.matic.today');
+
+    pusher = new Pusher('1d9ffac87de599c61283', { cluster: 'ap2' })
+    channel = pusher.subscribe(`${transak.apiKey}_${transak.partnerOrderId}`)
+
+    pusher.onopen = () => {
+      console.log('Open WebSocket connection')
+
+      pusher.send(JSON.stringify(data))
+    }
+
+    // ws.onopen = () => {
+    // };
+
+    // ws.onmessage = (event) => {
+    // };
+
+    // receive updates of all the events
+    pusher.bind_global((eventId, orderData) => {
+      console.log(`${eventId} ${orderData}`)
+    })
+
+    //receive updates of a specific event
+    channel.bind(`ORDER_COMPLETED`, (orderData) => {
+      console.log(orderData)
+    })
+
+    // ws.onclose = () => {
+    // };
+
+    //to unsubscribe
+    pusher.unsubscribe(transak.partnerOrderId)
+  }
 
   // top up user to 5000 play tokens
   async function topUp() {
@@ -67,21 +116,16 @@ const ContentBalances = (props) => {
   // initialize transak modal
   function show_transak() {
     transak.init()
-
-    initializePings()
   }
 
-  // initialize token contract pings
-  function initializePings() {
-    if (state.userStatus >= 5) {
-      console.log('Ping token contract')
+  // close widget
+  function closeWidgetOnTransaction(event) {
+    console.log('close matic widget...')
 
-      // start pinging the token contract for deposit confirmation
-      dispatch({
-        type: 'token_pings',
-        data: 1,
-      })
-    }
+    // this is not an event listener
+    const iframeId = event.data.iframeId
+    document.body.removeChild(document.getElementById(iframeId))
+    document.body.removeChild(document.getElementById('matic-iframe-backdrop'))
   }
 
   // close function
@@ -130,7 +174,6 @@ const ContentBalances = (props) => {
                   className="matic-widget-button"
                   data-default-page="deposit"
                   data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                  onClick={() => initializePings()}
                 >
                   <span className="matic-icon-background">
                     <span
@@ -292,8 +335,9 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
+                disabled
                 className="balances-top-button two"
-                onClick={() => show_transak()}
+                target="_blank"
                 style={{ marginTop: '-80px' }}
               >
                 PURCHASE
@@ -372,7 +416,6 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
               >
                 DEPOSIT
               </Button>
@@ -381,7 +424,6 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
               >
                 WITHDRAW
               </Button>

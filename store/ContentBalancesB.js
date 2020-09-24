@@ -2,10 +2,16 @@ import { useEffect, useContext } from 'react'
 import { GlobalContext } from './index'
 import { Button, Divider, Grid } from 'semantic-ui-react'
 import transakSDK from '@transak/transak-sdk'
+// import Pusher from 'pusher-js'
 import Global from '../components/Constants'
+
+// let apiKey = "YOUR_TRANSAK_API_KEY"
+// let partnerOrderId = "YOUR_UNIQUE_ORDER_ID"
+// let channelName = `${apiKey}_${partnerOrderId}`
 
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
+  partnerOrderId: 123, // unique customer identifier
   environment: 'STAGING', // STAGING/PRODUCTION
   defaultCryptoCurrency: 'DAI',
   walletAddress: '', // customer wallet address
@@ -13,7 +19,7 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  hostURL: 'https://decentral.games',
+  hostURL: Global.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '450px',
 })
@@ -25,21 +31,64 @@ const ContentBalances = (props) => {
   // define local variables
   let userAddress = ''
 
+  // let pusher = new Pusher('1d9ffac87de599c61283', { cluster: 'ap2' })
+  // let channel = pusher.subscribe(`${transak.apiKey}_${transak.partnerOrderId}`)
+
+  // useEffect(() => {
+  //   if (state.userStatus) {
+  //     // receive updates of all the events
+  //     pusher.bind_global((eventId, orderData) => {
+  //       console.log(`${eventId} ${orderData}`)
+  //     })
+
+  //     channel.bind(`ORDER_COMPLETED`, (orderData) => {
+  //       console.log(orderData)
+  //     })
+  //   }
+  // }, [])
+
   useEffect(() => {
     // get all the events
     transak.on(transak.ALL_EVENTS, (data) => {
+      console.log('Transak: all data')
       console.log(data)
     })
+
+    // order created
+    // transak.on(transak.EVENTS.ORDER_CREATED, (data) => {
+    //   console.log('Transak: order created');
+    //   console.log(data);
+    // });
+
+    // // order processing
+    // transak.on(transak.EVENTS.ORDER_PROCESSING, (data) => {
+    //   console.log('Transak: order processing');
+    //   console.log(data);
+    // });
+
+    // // order verifying
+    // transak.on(transak.EVENTS.ORDER_PAYMENT_VERIFYING, (data) => {
+    //   console.log('Transak: order verifying');
+    //   console.log(data);
+    // });
+
+    // // order completed
+    // transak.on(transak.EVENTS.ORDER_COMPLETED, (data) => {
+    //   console.log('Transak: order completed');
+    //   console.log(data);
+    // });
+
     // triggers when the user closes the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, () => {
       transak.close()
     })
+
     // triggers when the payment is complete
     transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
       console.log(orderData)
       transak.close()
     })
-  }, [])
+  })
 
   // get user address
   useEffect(() => {
@@ -68,21 +117,41 @@ const ContentBalances = (props) => {
   function show_transak() {
     transak.init()
 
-    initializePings()
+    // initializePings();
   }
 
   // initialize token contract pings
-  function initializePings() {
-    if (state.userStatus >= 5) {
-      console.log('Ping token contract')
+  // function initializePings() {
+  //   if (state.userStatus >= 5) {
+  //     console.log('Ping token contract');
 
-      // start pinging the token contract for deposit confirmation
-      dispatch({
-        type: 'token_pings',
-        data: 1,
-      })
-    }
-  }
+  //     // start pinging the token contract for deposit confirmation
+  //     dispatch({
+  //       type: 'token_pings',
+  //       data: 1,
+  //     });
+  //   }
+  // }
+
+  // Listen to the events from widget
+  // function maticWidgetEventsListener(event) {
+  //   console.log('matic event listener...');
+
+  //   console.log(event.data.type, event);
+  //   if (event.data && event.data.type === event.eventTypes.TRANSFER.onReceipt) {
+  //     // ...TODO
+  //   }
+  // }
+
+  // close widget
+  // function closeWidgetOnTransaction(event) {
+  //   console.log('close matic widget...')
+
+  //   // this is not an event listener
+  //   const iframeId = event.data.iframeId
+  //   document.body.removeChild(document.getElementById(iframeId))
+  //   document.body.removeChild(document.getElementById('matic-iframe-backdrop'))
+  // }
 
   // close function
   function close() {
@@ -130,7 +199,6 @@ const ContentBalances = (props) => {
                   className="matic-widget-button"
                   data-default-page="deposit"
                   data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                  onClick={() => initializePings()}
                 >
                   <span className="matic-icon-background">
                     <span
@@ -292,8 +360,9 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
+                disabled
                 className="balances-top-button two"
-                onClick={() => show_transak()}
+                target="_blank"
                 style={{ marginTop: '-80px' }}
               >
                 PURCHASE
@@ -372,7 +441,6 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
               >
                 DEPOSIT
               </Button>
@@ -381,7 +449,6 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
               >
                 WITHDRAW
               </Button>
