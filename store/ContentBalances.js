@@ -13,7 +13,7 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  hostURL: 'https://decentral.games',
+  hostURL: Global.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '450px',
 })
@@ -68,21 +68,21 @@ const ContentBalances = (props) => {
   function show_transak() {
     transak.init()
 
-    initializePings()
+    // initializePings()
   }
 
   // initialize token contract pings
-  function initializePings() {
-    if (state.userStatus >= 5) {
-      console.log('Ping token contract')
+  // function initializePings() {
+  //   if (state.userStatus >= 5) {
+  //     console.log('Ping token contract')
 
-      // start pinging the token contract for deposit confirmation
-      dispatch({
-        type: 'token_pings',
-        data: 1,
-      })
-    }
-  }
+  //     // start pinging the token contract for deposit confirmation
+  //     dispatch({
+  //       type: 'token_pings',
+  //       data: 1,
+  //     })
+  //   }
+  // }
 
   // close function
   function close() {
@@ -130,7 +130,7 @@ const ContentBalances = (props) => {
                   className="matic-widget-button"
                   data-default-page="deposit"
                   data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                  onClick={() => initializePings()}
+                  // onClick={() => initializePings()}
                 >
                   <span className="matic-icon-background">
                     <span
@@ -372,7 +372,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
+                // onClick={() => initializePings()}
               >
                 DEPOSIT
               </Button>
@@ -381,7 +381,7 @@ const ContentBalances = (props) => {
                 className="matic-widget-button balances-play-button"
                 data-default-page="withdraw"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                onClick={() => initializePings()}
+                //onClick={() => initializePings()}
               >
                 WITHDRAW
               </Button>

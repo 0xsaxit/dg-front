@@ -1,25 +1,25 @@
-import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { Menu, Sidebar, Segment, Button, Modal, Icon } from 'semantic-ui-react';
-import MessageBar from './MessageBar';
-import Verify from './Verify';
-import MessageBox from './MessageBox';
-import Aux from '../_Aux';
-import Global from '../Constants';
+import { useState, useEffect, useContext } from 'react'
+import { GlobalContext } from '../../store'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { Menu, Sidebar, Segment, Button, Modal, Icon } from 'semantic-ui-react'
+import MessageBar from './MessageBar'
+import Verify from './Verify'
+import MessageBox from './MessageBox'
+import Aux from '../_Aux'
+import Global from '../Constants'
 
 const MenuTop = () => {
   // get token balances from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext)
 
   // define local variables
-  const [isVisible, setIsVisible] = useState(false);
-  const [zIndexMobile, setZIndexMobile] = useState(1);
-  const [menuStyle, setMenuStyle] = useState([]);
+  const [isVisible, setIsVisible] = useState(false)
+  const [zIndexMobile, setZIndexMobile] = useState(1)
+  const [menuStyle, setMenuStyle] = useState([])
   const [open, setOpen] = React.useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   // set menu styles
   useEffect(() => {
@@ -40,7 +40,7 @@ const MenuTop = () => {
         '',
         'rgba(10, 10, 10, 1)',
         'right-menu-text',
-      ]);
+      ])
     } else {
       setMenuStyle([
         'other-menu-container blog',
@@ -51,15 +51,15 @@ const MenuTop = () => {
         'rgb(10, 10, 10)',
         'white',
         'right-menu-text blog',
-      ]);
+      ])
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (state.userStatus !== 0) {
-      console.log('User status: ' + state.userStatus);
+      console.log('User status: ' + state.userStatus)
     }
-  }, [state.userStatus]);
+  }, [state.userStatus])
 
   // display the 'ADD TOKENS' popup
   function balancesModal() {
@@ -67,12 +67,12 @@ const MenuTop = () => {
       dispatch({
         type: 'balances_overlay',
         data: 1,
-      });
+      })
     } else {
       dispatch({
         type: 'balances_overlay',
         data: 3,
-      });
+      })
     }
   }
 
@@ -82,9 +82,9 @@ const MenuTop = () => {
   function getContainerStyles(path) {
     if (path === 'container') {
       if ('/' === router.pathname) {
-        return 'dashboard-menu-container';
+        return 'dashboard-menu-container'
       } else {
-        return menuStyle[0];
+        return menuStyle[0]
       }
     }
   }
@@ -92,15 +92,15 @@ const MenuTop = () => {
   function getLinkStyles(path) {
     if (path === 'menu') {
       if ('/' === router.pathname) {
-        return 'menu-container';
+        return 'menu-container'
       } else {
-        return menuStyle[1];
+        return menuStyle[1]
       }
     } else {
       if (path === router.pathname) {
-        return menuStyle[2] + ' active';
+        return menuStyle[2] + ' active'
       } else {
-        return menuStyle[2];
+        return menuStyle[2]
       }
     }
   }
@@ -110,20 +110,20 @@ const MenuTop = () => {
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
     dispatch({
-      type: 'message_box',
+      type: 'token_pings',
       data: 0,
-    });
+    })
   }
 
   function handleDimmedChange() {
     if (!isVisible) {
-      setIsVisible(true);
-      setZIndexMobile(7);
+      setIsVisible(true)
+      setZIndexMobile(7)
     } else {
       const timer = setTimeout(() => {
-        setZIndexMobile(1);
-      }, 500);
-      setIsVisible(false);
+        setZIndexMobile(1)
+      }, 500)
+      setIsVisible(false)
     }
   }
 
@@ -149,7 +149,7 @@ const MenuTop = () => {
           }}
         />
       </Link>
-    );
+    )
   }
 
   // dropdown menu for mobile
@@ -207,17 +207,22 @@ const MenuTop = () => {
               <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
             </Link>
 
-            <Menu.Item style={{ paddingBottom: '27px' }} href="https://docs.decentral.games/" target="_blank" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
-
+            <Menu.Item
+              style={{ paddingBottom: '27px' }}
+              href="https://docs.decentral.games/"
+              target="_blank"
+              className={getLinkStyles('/docs')}
+            >
+              DOCS
+            </Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher>
             <Segment className="transparent-menu-segment"></Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-
       </div>
-    );
+    )
   }
 
   // links are shown or hidden based on user's display resolution
@@ -250,10 +255,15 @@ const MenuTop = () => {
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
         </Link>
 
-        <Menu.Item href="https://docs.decentral.games/" target="_blank" className={getLinkStyles('/docs')}>DOCS</Menu.Item>
-
+        <Menu.Item
+          href="https://docs.decentral.games/"
+          target="_blank"
+          className={getLinkStyles('/docs')}
+        >
+          DOCS
+        </Menu.Item>
       </div>
-    );
+    )
   }
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
@@ -261,7 +271,6 @@ const MenuTop = () => {
     if (state.userStatus) {
       return (
         <span className="right-menu-items">
-
           <span className="menu-account-info">
             <span className="menu-info-to-hide">
               <Menu.Item className={menuStyle[7]}>
@@ -276,13 +285,21 @@ const MenuTop = () => {
 
             <span className="menu-avatar-background">
               {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                <Menu.Item className={menuStyle[7]} style={{ marginTop: '-1px' }}>
+                <Menu.Item
+                  className={menuStyle[7]}
+                  style={{ marginTop: '-1px' }}
+                >
                   {state.userInfo[1].substr(0, 4) +
                     '...' +
                     state.userInfo[1].substr(-4)}
                 </Menu.Item>
               ) : (
-                <Menu.Item style={{ marginTop: '-1px' }} className={menuStyle[7]}>{state.userInfo[0]}</Menu.Item>
+                <Menu.Item
+                  style={{ marginTop: '-1px' }}
+                  className={menuStyle[7]}
+                >
+                  {state.userInfo[0]}
+                </Menu.Item>
               )}
 
               <img
@@ -307,9 +324,7 @@ const MenuTop = () => {
             className="modal-deposit-button"
             onClick={() => balancesModal()}
           >
-            <span class="material-icons">
-            add
-            </span>
+            <span class="material-icons">add</span>
           </Button>
 
           <Modal
@@ -319,13 +334,8 @@ const MenuTop = () => {
             open={open}
             close
             trigger={
-              <Button
-                color="blue"
-                className="modal-info-button"
-              >
-                <span class="material-icons">
-                  settings
-                </span>
+              <Button color="blue" className="modal-info-button">
+                <span class="material-icons">settings</span>
               </Button>
             }
           >
@@ -335,21 +345,40 @@ const MenuTop = () => {
               </span>
             </span>
 
-            <p className="matic-header-text" style={{ paddingTop: '72px' }}> About </p>
+            <p className="matic-header-text" style={{ paddingTop: '72px' }}>
+              {' '}
+              About{' '}
+            </p>
 
-            <span style={{ display: 'flex', justifyContent: 'center', marginTop: '-9px' }}>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '-9px',
+              }}
+            >
               <a href="https://twitter.com/decentralgames">
                 <Icon style={{ fontSize: '34px' }} name="twitter" />
               </a>
               <a href="https://discord.com/invite/cvbSNzY">
-                <Icon style={{ fontSize: '34px', marginRight: '12px', marginLeft: '12px' }} name="discord" />
+                <Icon
+                  style={{
+                    fontSize: '34px',
+                    marginRight: '12px',
+                    marginLeft: '12px',
+                  }}
+                  name="discord"
+                />
               </a>
               <a href="https://github.com/decentralgames">
                 <Icon style={{ fontSize: '34px' }} name="github" />
               </a>
             </span>
             <div className="menu-info-container">
-              <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+              <span
+                className="menu-info-inner-span"
+                style={{ paddingTop: '12px' }}
+              >
                 <p className="menu-info-label"> Version </p>
                 <p className="menu-info-text"> 0.0.9 </p>
               </span>
@@ -359,19 +388,29 @@ const MenuTop = () => {
               </span>
               <span className="menu-info-inner-span">
                 <p className="menu-info-label"> DCL Node </p>
-                <a href="https://catalyst-monitor.now.sh/" className="menu-info-text"> https://catalyst-monitor.now.sh</a>
+                <a
+                  href="https://catalyst-monitor.now.sh/"
+                  className="menu-info-text"
+                >
+                  {' '}
+                  https://catalyst-monitor.now.sh
+                </a>
               </span>
-              <span className="menu-info-inner-span" >
+              <span className="menu-info-inner-span">
                 <p className="menu-info-label"> Matic Node </p>
-                <a href="https://wallet.matic.today/staking/" className="menu-info-text">https://wallet.matic.today</a>
+                <a
+                  href="https://wallet.matic.today/staking/"
+                  className="menu-info-text"
+                >
+                  https://wallet.matic.today
+                </a>
               </span>
             </div>
           </Modal>
-
         </span>
-      );
+      )
     } else {
-      return <Verify />;
+      return <Verify />
     }
   }
 
@@ -393,7 +432,7 @@ const MenuTop = () => {
         </div>
       </div>
     </Aux>
-  );
-};
+  )
+}
 
-export default MenuTop;
+export default MenuTop

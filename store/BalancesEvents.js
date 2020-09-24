@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from './index'
-import Web3 from 'web3'
 import Global from '../components/Constants'
 
 const BalancesEvents = () => {
@@ -11,9 +10,6 @@ const BalancesEvents = () => {
   const [historyParams, setHistoryParams] = useState([])
 
   let userAddress = ''
-  let txHash = ''
-  const web3 = new Web3()
-  const abiCoder = web3.eth.abi
 
   useEffect(() => {
     if (state.userStatus) {
@@ -34,96 +30,69 @@ const BalancesEvents = () => {
   function maticWidgetEventsListener(event) {
     console.log('Matic Widget event listener')
 
-    console.log(event.eventTypes)
-    console.log(event.data.type, event)
-
-    // console.log('onReceipt')
-    // if (event.data && event.data.type === event.eventTypes.TRANSFER.onReceipt) {
-    //   console.log('event data')
-    //   console.log(event.data)
-    // }
-
-    console.log('Start condition handling...')
-
-    // 'onReceipt' event
-    if (event.data.type === 'onReceipt') {
-      console.log('Received receipt amount')
-      console.log(event.data)
-    }
-
     // 'onDepositTxHash' event
     if (event.data.type === 'onDepositTxHash') {
-      txHash = event.data.data
+      const txHash = event.data.data
       console.log('Received transaction hash: ' + txHash)
 
-      dispatchToStore(1) // message box pending transaction
+      // write to database and message box pending message
+      setHistoryParams(['Deposit', txHash])
+      dispatchToStore(txHash)
 
       // close the widget
-      // closeWidgetOnTransaction(event);
-    }
-
-    // 'onDeposit' event
-    if (event.data.type === 'onDeposit') {
-      const blockHash = event.data.data.blockHash
-      console.log('Received block hash: ' + blockHash)
-
-      dispatchToStore(2) // message box deposit confirmed
-
-      // set amount parameter for database insert
-      const { 0: amount } = abiCoder.decodeParameters(['uint256'], blockHash)
-      setHistoryParams([amount, 'Deposit', 'Confirmed', txHash])
+      closeWidgetOnTransaction(event)
     }
 
     // 'onWithdrawExitTxHash' event
     if (event.data.type === 'onWithdrawExitTxHash') {
-      txHash = event.data.data
+      const txHash = event.data.data
       console.log('Received transaction hash: ' + txHash)
 
-      dispatchToStore(1) // message box pending transaction
+      // write to database and message box pending message
+      setHistoryParams(['Withdraw', txHash])
+      dispatchToStore(txHash)
 
       // close the widget
-      // closeWidgetOnTransaction(event);
-    }
-
-    // 'onWithdrawExit' event
-    if (event.data.type === 'onWithdrawExit') {
-      const blockHash = event.data.data.blockHash
-      console.log('Received block hash: ' + blockHash)
-
-      dispatchToStore(3) // message box withdrawal confirmed
-
-      // set amount parameter for database insert
-      const { 0: amount } = abiCoder.decodeParameters(['uint256'], blockHash)
-      setHistoryParams([amount, 'Withdraw', 'Confirmed', txHash])
+      closeWidgetOnTransaction(event)
     }
   }
 
-  // update message box
-  function dispatchToStore(value) {
+  function dispatchToStore(txHash) {
+    // update message box
+    // dispatch({
+    //   type: 'message_box',
+    //   data: value,
+    // })
+
+    // dispatch transaction hash
     dispatch({
-      type: 'message_box',
-      data: value,
+      type: 'tx_hash',
+      data: txHash,
+    })
+
+    // start pinging token contract for updated balances
+    dispatch({
+      type: 'token_pings',
+      data: 1,
     })
   }
 
   // update transaction history in the database
   async function updateHistory(params) {
-    console.log('Writing to database: ' + params[1])
+    console.log('Writing to database: ' + params[0])
 
-    console.log('user address: ' + userAddress)
-    console.log('amount: ' + params[0])
-    console.log('type: ' + params[1])
-    console.log('state: ' + params[2])
-    console.log('tx hash: ' + params[3])
-    console.log('user status: ' + state.userStatus)
+    // console.log('user address: ' + userAddress)
+    // console.log('type: ' + params[0])
+    // console.log('tx hash: ' + params[1])
+    // console.log('user status: ' + state.userStatus)
 
     try {
       const response = await Global.FETCH.POST_HISTORY(
         userAddress,
+        0,
         params[0],
+        'Pending',
         params[1],
-        params[2],
-        params[3],
         state.userStatus,
       )
 

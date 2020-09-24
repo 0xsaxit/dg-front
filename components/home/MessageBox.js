@@ -1,20 +1,20 @@
-import { useContext } from 'react';
-import { GlobalContext } from '../../store';
-import { Message } from 'semantic-ui-react';
-import Aux from '../_Aux';
+import { useContext } from 'react'
+import { GlobalContext } from '../../store'
+import { Message } from 'semantic-ui-react'
+import Aux from '../_Aux'
 
 const MessageBox = (props) => {
   // get token ping state from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext)
 
-  if (state.messageBox) {
+  if (state.tokenPings) {
     return (
       <div className="deposit-notification-container">
         <Message
           className="deposit-notification-box"
           onDismiss={props.handleDismiss}
         >
-          {state.messageBox === 1 ? (
+          {state.tokenPings === 1 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Transaction Pending on Matic
@@ -22,9 +22,18 @@ const MessageBox = (props) => {
               <p style={{ fontSize: '16px' }}>
                 Matic balances will update once transaction is confirmed
               </p>
-              {/* <p style={{ fontSize: '16px' }}>(Normally 7 - 8 minutes)</p> */}
+              <p style={{ fontSize: '16px' }}>(Normally 7 - 8 minutes)</p>
             </Aux>
-          ) : state.messageBox === 2 ? (
+          ) : state.tokenPings === 2 ? (
+            <Aux>
+              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                Transaction Pending on Matic
+              </p>
+              <p style={{ fontSize: '16px' }}>
+                Treasury balances will update once transaction is confirmed
+              </p>
+            </Aux>
+          ) : state.tokenPings === 3 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Deposit Confirmed on Matic
@@ -33,7 +42,7 @@ const MessageBox = (props) => {
                 Your Matic balances have been updated
               </p>
             </Aux>
-          ) : state.messageBox === 3 ? (
+          ) : state.tokenPings === 4 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Withdrawal Confirmed on Matic
@@ -42,7 +51,7 @@ const MessageBox = (props) => {
                 Your Matic balances have been updated
               </p>
             </Aux>
-          ) : state.messageBox === 4 ? (
+          ) : state.tokenPings === 5 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Pause Transaction Confirmed
@@ -51,7 +60,7 @@ const MessageBox = (props) => {
                 All treasury contract games have been UNPAUSED
               </p>
             </Aux>
-          ) : state.messageBox === 5 ? (
+          ) : state.tokenPings === 6 ? (
             <Aux>
               <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 Pause Transaction Confirmed
@@ -63,8 +72,8 @@ const MessageBox = (props) => {
           ) : null}
         </Message>
       </div>
-    );
-  } else return null;
-};
+    )
+  } else return null
+}
 
-export default MessageBox;
+export default MessageBox

@@ -8,10 +8,7 @@ import '../static/css/spinner.css'
 import '../static/css/mobile.css'
 import UserStatus from '../store/UserStatus'
 import UserBalances from '../store/UserBalances'
-
 import BalancesEvents from '../store/BalancesEvents'
-// import EventsTransak from '../store/EventsTransak';
-
 import Transactions from '../store/Transactions'
 import ParcelData from '../store/ParcelData'
 import GameRecords from '../store/GameRecords'
@@ -30,9 +27,7 @@ class Application extends App {
       <Provider store={store}>
         <UserStatus />
         <UserBalances />
-
         <BalancesEvents />
-
         <Transactions />
         <ParcelData />
         <GameRecords />
