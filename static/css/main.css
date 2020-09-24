@@ -594,6 +594,7 @@ a.ui.blue.button.how-to-button {
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 0px;
   border-radius: 2px;
+  left: calc(-100% - 21px);
 }
 
 .account-select {
@@ -1299,10 +1300,13 @@ span.matic-icon-background-2 {
 }
 
 .deposit-notification-box {
-  width: 300px;
   position: absolute !important;
   z-index: 999 !important;
-  top: 105px;
+  top: 90px;
+}
+
+deposit-notification-box-hidden {
+  display: none !important;
 }
 
 .ui.message {
@@ -1501,6 +1505,11 @@ div.ui.grid.balances-container {
   margin-right: -3px;
 }
 
+.account-authorize-span {
+  margin-top: -72px;
+  margin-bottom: 36px;
+}
+
 .ui.button.account-connected-play-button {
   color: white;
   background-color: #2085f4;
@@ -1514,7 +1523,6 @@ div.ui.grid.balances-container {
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-top: -72px;
 }
 
 .balances-divider {
@@ -1671,7 +1679,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 /* ----------------------------------------- */
 
 .farming-pool-span {
-  margin-top: 9px;
+  margin-top: 6px;
 }
 
 .farming-logo {
@@ -1724,9 +1732,12 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   max-width: 48.5%;  
 }
 
+.DG-column.zero {
+  min-width: 100% !important;
+}
+
 .DG-button-span {
-  margin-top: 96px;
-  margin-bottom: -45px;
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
 }
@@ -1734,17 +1745,15 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .ui.button.DG-deposit-button {
   color: white;
   background-color: #2085f4;
-  margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 100% !important;
+  min-width: 48.5% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
-  margin-top: -79px;
 }
 
 .ui.button.DG-stake-button {
@@ -1755,7 +1764,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   border-radius: 2px;
   height: 34px;
   padding-top: 8px;
-  min-width: 100% !important;
+  min-width: 48.5% !important;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
