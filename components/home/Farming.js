@@ -40,11 +40,42 @@ const Farming = () => {
             </span>
           </span>
 
-          <div>
-            <Button disabled className="DG-stake-button-two">
-              CLAIM $DG
-            </Button>
-          </div>
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> Multiplayer bonuses </p>
+            <p className="earned-amount"> 0 </p>
+          </span>
+
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> Wearable NFT bonuses </p>
+            <p className="earned-amount"> 0 </p>
+          </span>
+
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> Affiliate Bonuses </p>
+            <p className="earned-amount"> 0 </p>
+          </span>
+
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> Unclaimed $DG </p>
+            <span style={{ display: 'flex' }}>
+              <Button
+                disabled
+                className="balances-top-button"
+                style={{ marginRight: '15px' }}
+              >
+                CLAIM
+              </Button>
+              <p className="earned-amount"> 0 </p>
+            </span>
+          </span>
 
         </div>
 
@@ -76,6 +107,13 @@ const Farming = () => {
               <p className="earned-amount"> 0 </p>
             </span>
 
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Play-to-farm Rate </p>
+              <p className="earned-amount"> 0 </p>
+            </span>
+
           </div>
 
           <div className="DG-column two">
@@ -102,6 +140,13 @@ const Farming = () => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Total Earned </p>
+              <p className="earned-amount"> 0 </p>
+            </span>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Play-to-farm Rate </p>
               <p className="earned-amount"> 0 </p>
             </span>
 
@@ -171,7 +216,16 @@ const Farming = () => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Unclaimed $DG </p>
-              <p className="earned-amount"> 0 <a href="" style={{ color: '#2085f4' }}> (Claim) </a></p>
+              <span style={{ display: 'flex' }}>
+                <Button
+                  disabled
+                  className="balances-top-button"
+                  style={{ marginRight: '15px' }}
+                >
+                  CLAIM
+                </Button>
+                <p className="earned-amount"> 0 </p>
+              </span>
             </span>
 
             <Divider/>
@@ -229,7 +283,16 @@ const Farming = () => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Unclaimed $DG </p>
-              <p className="earned-amount"> 0 <a href="" style={{ color: '#2085f4' }}> (Claim) </a></p>
+              <span style={{ display: 'flex' }}>
+                <Button
+                  disabled
+                  className="balances-top-button"
+                  style={{ marginRight: '15px' }}
+                >
+                  CLAIM
+                </Button>
+                <p className="earned-amount"> 0 </p>
+              </span>
             </span>
 
             <Divider/>
@@ -266,11 +329,35 @@ const Farming = () => {
             </span>
           </span>
 
-          <div>
-            <Button disabled className="DG-stake-button-two">
-              STAKE $DG
-            </Button>
-          </div>
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> $DG farmed </p>
+            <p className="earned-amount"> 0 </p>
+          </span>
+
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> $DG staked </p>
+            <p className="earned-amount"> 0 </p>
+          </span>
+
+          <Divider />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text"> Unclaimed $DG </p>
+            <span style={{ display: 'flex' }}>
+              <Button
+                disabled
+                className="balances-top-button"
+                style={{ marginRight: '15px' }}
+              >
+                CLAIM
+              </Button>
+              <p className="earned-amount"> 0 </p>
+            </span>
+          </span>
 
         </div>
       </div>
