@@ -42,7 +42,7 @@ const Farming = () => {
 
           <div>
             <Button disabled className="DG-stake-button-two">
-              REDEEM $DG
+              CLAIM $DG
             </Button>
           </div>
 
@@ -169,6 +169,13 @@ const Farming = () => {
 
             <Divider/>
 
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Unclaimed $DG </p>
+              <p className="earned-amount"> 0 <a href="" style={{ color: '#2085f4' }}> (Claim) </a></p>
+            </span>
+
+            <Divider/>
+
             <span className="DG-button-span">
               <Button disabled className="DG-deposit-button">
                 DEPOSIT TO BALANCER
@@ -216,6 +223,13 @@ const Farming = () => {
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Pool Rate </p>
               <p className="earned-amount"> 0 / week </p>
+            </span>
+
+            <Divider/>
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Unclaimed $DG </p>
+              <p className="earned-amount"> 0 <a href="" style={{ color: '#2085f4' }}> (Claim) </a></p>
             </span>
 
             <Divider/>

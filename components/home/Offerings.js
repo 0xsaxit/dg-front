@@ -24,6 +24,12 @@ const options = [
     value: 'DAY',
     content: 'DAY',
   },
+  {
+    key: 'COMPETITION',
+    text: 'COMPETITION',
+    value: 'COMPETITION',
+    content: 'COMPETITION',
+  },
 ];
 
 const detailsGames = {

@@ -33,6 +33,8 @@ const ContentGames = (props) => {
         gameData = state.gameRecords.weekly;
       } else if (props.timePeriod == 'DAY') {
         gameData = state.gameRecords.daily;
+      } else if (props.timePeriod == 'COMPETITION') {
+        gameData = state.gameRecords.competition;
       }
 
       // parse game scores based on token type
