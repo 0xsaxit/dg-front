@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+import { useState, useEffect, useContext } from 'react'
 
 export default class MyDocument extends Document {
   static async getServerSideProps(ctx) {

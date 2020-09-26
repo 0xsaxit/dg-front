@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { GlobalContext } from '../../store'
-import { Button, Divider } from 'semantic-ui-react'
+import { Button, Divider, Radio  } from 'semantic-ui-react'
 // import ButtonAuthorize from './ButtonAuthorize'
 // import ButtonEnable from './ButtonEnable'
 // import ContentNFTs from './ContentNFTs'
@@ -15,6 +15,8 @@ const Farming = () => {
   // define local variables
   const [DGstate, setDGState] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [theme, setTheme] = useState('light')
+  const [themeStyle, setThemeStyle] = useState([])
 
   useEffect(() => {
     if (document.readyState === 'complete') {
@@ -22,16 +24,32 @@ const Farming = () => {
     }
   })
 
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+      setThemeStyle([
+        'dark',
+        'divider-dark'
+      ])
+    } else {
+      setTheme('light');
+      setThemeStyle([
+        '',
+        ''
+      ])
+    }
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function gameplayFarming() {
     return (
       <Aux>
-        <div className="outter-DG-container">
+        <div className="outter-DG-container" id={themeStyle[0]}>
           <span style={{ display: 'flex' }}>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Gameplay Farming</h3>
-              <p>
+              <h3 className="DG-h3" id={themeStyle[0]}>$DG Gameplay Farming</h3>
+              <p id={themeStyle[0]}>
                 You can farm $DG by playing games in our virtual casinos. Earn
                 multipliers when sporting Decentral Games wearables and playing
                 with friends. Read more about $DG rewards by visiting our{' '}
@@ -42,35 +60,18 @@ const Farming = () => {
                   documentation
                 </a>
                 .
+                Playing with two, three, or four users at a time earns you 1.2x, 1.3x,
+                and 1.4x multipliers respectively. Earn an extra 10% $DG when repping a
+                Decentral Games wearable NFT and 20% more when a new user joins via your
+                unique affiliate link.
               </p>
             </span>
           </span>
 
-          <Divider />
+          <Divider style={{ marginTop: '1rem' }} className={themeStyle[1]}/>
 
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> Multiplayer bonuses </p>
-            <p className="earned-amount"> 0 </p>
-          </span>
-
-          <Divider />
-
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> Wearable NFT bonuses </p>
-            <p className="earned-amount"> 0 </p>
-          </span>
-
-          <Divider />
-
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> Affiliate Bonuses </p>
-            <p className="earned-amount"> 0 </p>
-          </span>
-
-          <Divider />
-
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> Unclaimed $DG </p>
+          <span style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '-3px' }}>
+            <p className="earned-text" id={themeStyle[0]}> Unclaimed $DG </p>
             <span style={{ display: 'flex' }}>
               <Button
                 disabled
@@ -79,71 +80,71 @@ const Farming = () => {
               >
                 CLAIM
               </Button>
-              <p className="earned-amount">{state.DGPoints}</p>
+              <p className="earned-amount" id={themeStyle[0]}>{state.DGPoints}</p>
             </span>
           </span>
         </div>
 
         <div className="DG-liquidity-container">
-          <div className="DG-column one">
+          <div className="DG-column one" id={themeStyle[0]}>
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.MANA_CIRCLE} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Coin </p>
-                <p className="account-name">MANA</p>
+                <p className="welcome-text" id={themeStyle[0]}> Coin </p>
+                <p className="account-name" id={themeStyle[0]}>MANA</p>
               </span>
             </span>
 
-            <Divider />
+            <Divider className={themeStyle[1]}/>
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Spent </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text" id={themeStyle[0]}> Total Bet </p>
+              <p className="earned-amount" id={themeStyle[0]}> 0 </p>
             </span>
 
-            <Divider />
+            <Divider className={themeStyle[1]}/>
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text" id={themeStyle[0]}> $DG Farmed </p>
+              <p className="earned-amount" id={themeStyle[0]}> 0 </p>
             </span>
 
-            <Divider />
+            <Divider className={themeStyle[1]}/>
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Play-to-farm Rate </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text" id={themeStyle[0]}> Play-to-farm Rate </p>
+              <p className="earned-amount" id={themeStyle[0]}> 0 </p>
             </span>
           </div>
 
-          <div className="DG-column two">
+          <div className="DG-column two" id={themeStyle[0]}>
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.DAI_CIRCLE} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Coin </p>
-                <p className="account-name">DAI</p>
+                <p className="welcome-text" id={themeStyle[0]}> Coin </p>
+                <p className="account-name" id={themeStyle[0]}>DAI</p>
               </span>
             </span>
 
-            <Divider />
+            <Divider className={themeStyle[1]}/>
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Spent </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text" id={themeStyle[0]}> Total Bet </p>
+              <p className="earned-amount" id={themeStyle[0]}> 0 </p>
             </span>
 
-            <Divider />
+            <Divider className={themeStyle[1]}/>
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text" id={themeStyle[0]}> $DG Farmed </p>
+              <p className="earned-amount" id={themeStyle[0]}> 0 </p>
             </span>
 
-            <Divider />
+            <Divider className={themeStyle[1]}/>
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Play-to-farm Rate </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text" id={themeStyle[0]}> Play-to-farm Rate </p>
+              <p className="earned-amount" id={themeStyle[0]}> 0 </p>
             </span>
           </div>
         </div>
@@ -329,13 +330,6 @@ const Farming = () => {
           <Divider />
 
           <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> $DG farmed </p>
-            <p className="earned-amount"> 0 </p>
-          </span>
-
-          <Divider />
-
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
             <p className="earned-text"> $DG staked </p>
             <p className="earned-amount"> 0 </p>
           </span>
@@ -370,11 +364,11 @@ const Farming = () => {
           if (DGstate == 0)
             return (
               <p className="account-other-p">
-                <b className="account-hover active">GAMEPLAY</b>{' '}
-                <abbr className="account-hover" onClick={() => setPage(1)}>
+                <b className="account-hover active" id={themeStyle[0]}>GAMEPLAY</b>{' '}
+                <abbr className="account-hover" id={themeStyle[0]} onClick={() => setPage(1)}>
                   LIQUIDITY
                 </abbr>
-                <abbr className="account-hover" onClick={() => setPage(2)}>
+                <abbr className="account-hover" id={themeStyle[0]} onClick={() => setPage(2)}>
                   GOVERNANCE
                 </abbr>
               </p>
@@ -382,11 +376,11 @@ const Farming = () => {
           else if (DGstate == 1)
             return (
               <p className="account-other-p">
-                <abbr className="account-hover" onClick={() => setPage(0)}>
+                <abbr className="account-hover" id={themeStyle[0]} onClick={() => setPage(0)}>
                   GAMEPLAY
                 </abbr>{' '}
-                <b className="account-hover active">LIQUIDITY</b>
-                <abbr className="account-hover" onClick={() => setPage(2)}>
+                <b className="account-hover active" id={themeStyle[0]}>LIQUIDITY</b>
+                <abbr className="account-hover" id={themeStyle[0]} onClick={() => setPage(2)}>
                   GOVERNANCE
                 </abbr>{' '}
               </p>
@@ -394,13 +388,13 @@ const Farming = () => {
           else
             return (
               <p className="account-other-p">
-                <abbr className="account-hover" onClick={() => setPage(0)}>
+                <abbr className="account-hover" id={themeStyle[0]} onClick={() => setPage(0)}>
                   GAMEPLAY
                 </abbr>{' '}
-                <abbr className="account-hover" onClick={() => setPage(1)}>
+                <abbr className="account-hover" id={themeStyle[0]} onClick={() => setPage(1)}>
                   LIQUIDITY
                 </abbr>
-                <b className="account-hover active">GOVERNANCE</b>
+                <b className="account-hover active" id={themeStyle[0]}>GOVERNANCE</b>
               </p>
             )
         })()}
@@ -413,15 +407,19 @@ const Farming = () => {
   }
 
   return (
-    <div className="main-container">
+    <div className="main-container" id={themeStyle[0]}>
       {isLoading ? (
         <Spinner background={3} />
       ) : (
         <div className="page-container">
           <div className="account-other-inner-container ">
-            {submenu()}
 
-            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
+            {submenu()}
+            <span style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '-60px', marginBottom: '60px' }}>
+              <Radio toggle onClick={toggleTheme} />
+            </span>
+
+            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} className={themeStyle[1]}/>
 
             {(() => {
               if (DGstate == 0) return gameplayFarming()

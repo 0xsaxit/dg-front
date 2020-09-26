@@ -1,0 +1,33 @@
+.main-container#dark {
+	background-color: rgb(33, 37, 41);
+}
+
+.outter-DG-container#dark,
+.DG-column.one#dark,
+.DG-column.two#dark {
+	background-color: rgb(33, 37, 41);
+  border: 1px solid rgb(44, 48, 54);
+  box-shadow: 0 0.75rem 1.5rem rgba(10, 10, 10, 0.3) !important;
+}
+
+.DG-h3#dark,
+p#dark,
+.earned-text#dark,
+.earned-amount#dark {
+	color: white;
+}
+
+.ui.divider.divider-dark {
+	border: 1px solid rgb(44, 48, 54) !important;
+	border-bottom-width: 0px !important;
+	border-left-width: 0px !important;
+	border-right-width: 0px !important;
+}
+
+.account-hover#dark {
+	color: rgb(197, 197, 197);
+}
+
+.account-hover.active#dark {
+	color: white;
+}
