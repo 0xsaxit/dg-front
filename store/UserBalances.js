@@ -165,7 +165,7 @@ function UserBalances() {
         [amount1, amount2],
       ]
     } catch (error) {
-      console.log('Get balances error: ' + error)
+      console.log('Get user balances error: ' + error)
     }
   }
 

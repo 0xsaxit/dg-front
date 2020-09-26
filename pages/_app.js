@@ -18,6 +18,7 @@ import ActiveStatus from '../store/ActiveStatus'
 import UserInfo from '../store/UserInfo'
 import AdminBalances from '../store/AdminBalances'
 import AdminData from '../store/AdminData'
+import DGBalance from '../store/DGBalance'
 
 class Application extends App {
   render() {
@@ -37,6 +38,7 @@ class Application extends App {
         <UserInfo />
         <AdminBalances />
         <AdminData />
+        <DGBalance />
 
         <Component {...pageProps} />
       </Provider>

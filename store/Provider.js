@@ -28,6 +28,7 @@ const initialState = {
     ],
   ],
   adminHistory: [[], []],
+  DGPoints: 0,
 }
 
 const reducer = (state, action) => {
@@ -114,6 +115,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         adminHistory: action.data,
+      }
+
+    case 'dg_points':
+      return {
+        ...state,
+        DGPoints: action.data,
       }
 
     default:

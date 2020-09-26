@@ -123,7 +123,7 @@ function AdminBalances() {
 
       return arrayAmounts
     } catch (error) {
-      console.log('Get balances error: ' + error)
+      console.log('Get admin balances error: ' + error)
     }
   }
 
