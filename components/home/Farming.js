@@ -50,9 +50,7 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3" id={themeStyle[0]}>$DG Gameplay Farming</h3>
               <p id={themeStyle[0]}>
-                You can farm $DG by playing games in our virtual casinos. Earn
-                multipliers when sporting Decentral Games wearables and playing
-                with friends. Read more about $DG rewards by visiting our{' '}
+                You can farm $DG by playing games with $MANA or $DAI. For more details see our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -60,10 +58,10 @@ const Farming = () => {
                   documentation
                 </a>
                 .
-                Playing with two, three, or four users at a time earns you 1.2x, 1.3x,
-                and 1.4x multipliers respectively. Earn an extra 10% $DG when repping a
-                Decentral Games wearable NFT and 20% more when a new user joins via your
-                unique affiliate link.
+                Playing with two, three, or four users at the same table earns you 1.2x, 1.3x,
+                and 1.4x multipliers respectively, and repping a Decentral Games wearable earns 
+                you an extra 10% $DG when playing. Refer any friends and get an additional 20% 
+                bonus of all the $DG they farm.
               </p>
             </span>
           </span>
