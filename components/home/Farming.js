@@ -159,14 +159,15 @@ const Farming = () => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h3 className="DG-h3">$DG Liquidity Farming</h3>
             <p>
-              You can farm $DG by staking $MANA/$DG and $DAI/$DG balancer pool
-              tokens here. Read more about $DG rewards by visiting our
+              You can farm $DG by providing liquidity in $MANA-$DG and $DAI-$DG balancer pools
+              weighted 98-2, and staking your balancer pool tokens on this dashboard. 
+              Read more about $DG liquidity farming in our
               <a
                 href="https://decentral-games-1.gitbook.io/dg/governance-1"
                 style={{ color: '#2085f4' }}
               >
                 {' '}
-                documentation
+                docs
               </a>
               .
             </p>
@@ -306,19 +307,20 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
-                $DG tokens represent voting shares in Decentral Games
-                governance. Users can vote on each proposal or delegate votes to
-                a third party. Proposals can be submitted and voted on{' '}
+                Staked $DG tokens are used to vote in decentral.games
+                governance. To incentivize participation, for the first year
+                there will be farming rewards distributed to stakers in the $DG 
+                governance contract. Proposals can be submitted and voted on{' '}
                 <a href="" style={{ color: '#2085f4' }}>
                   {' '}
                   here
                 </a>
-                . Read more about our governance model in our{' '}
+                . Read more about decentral.games governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
                 >
-                  documentation
+                  docs
                 </a>
                 .
               </p>
