@@ -163,8 +163,8 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
-                You can farm $DG by providing liquidity in $MANA-$DG and $DAI-$DG balancer pools
-                (weighted 98-2) and staking your balancer pool tokens on this dashboard.
+                You can farm $DG by providing liquidity in 98% MANA • 2% DG and 98% DAI • 2% DG Balancer pools
+                and staking the balancer pool tokens on this dashboard.
                  Read more about $DG liquidity farming rewards in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
