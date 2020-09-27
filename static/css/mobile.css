@@ -530,16 +530,47 @@
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
-@media (max-width: 1061px) {
+@media (max-width: 1030px) {
   .DG-liquidity-container,
   .DG-top-container {
     flex-direction: column;
   }
-  .DG-column {
-    max-width: 100%;
+  .DG-liquidity-container.top {
+    flex-direction: row;
   }
+  .DG-column{
+    max-width: 100% !important;
+  }
+  .DG-column.unclaimed,
   .DG-column.one {
+    max-width: 100% !important;
     margin-bottom: 30px;
+  }
+  .DG-liquidity-container.gov {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .DG-liquidity-container.top {
+    flex-direction: column;
+  }
+  .DG-column.three {
+    max-width: 100% !important;  
+  }
+  .DG-column.four {
+    max-width: 100% !important;
+    margin-top: 30px;
+  }
+  .DG-liquidity-container.gov {
+    flex-direction: column;
+  }
+  .DG-column.stake,
+  .DG-column.gov {
+    max-width: 100% !important;
+  }
+  .DG-column.stake {
+    margin-top: 30px;
   }
 }
 

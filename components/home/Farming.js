@@ -45,47 +45,49 @@ const Farming = () => {
   function gameplayFarming() {
     return (
       <Aux>
-        <div className="outter-DG-container" id={themeStyle[0]}>
-          <span style={{ display: 'flex' }}>
+
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3" id={themeStyle[0]}>$DG Gameplay Farming</h3>
               <p id={themeStyle[0]}>
-                You can farm $DG by playing games in our virtual casinos. Earn
-                multipliers when sporting Decentral Games wearables and playing
-                with friends. Read more about $DG rewards by visiting our{' '}
+                You can farm $DG by playing games with $MANA or $DAI. 
+                Playing with two, three, or four players at the same table earns you 1.2x, 1.3x,
+                and 1.4x multipliers respectively, and repping a
+                Decentral Games wearable earns you an extra 10% $DG when playing. Refer any friends and get 
+                an additional 20% bonus on all $DG they farm. For more details see our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
                 >
+                  {' '}
                   documentation
                 </a>
                 .
-                Playing with two, three, or four users at a time earns you 1.2x, 1.3x,
-                and 1.4x multipliers respectively. Earn an extra 10% $DG when repping a
-                Decentral Games wearable NFT and 20% more when a new user joins via your
-                unique affiliate link.
               </p>
             </span>
-          </span>
-
-          <Divider style={{ marginTop: '1rem' }} className={themeStyle[1]}/>
-
-          <span style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '-3px' }}>
-            <p className="earned-text" id={themeStyle[0]}> Unclaimed $DG </p>
-            <span style={{ display: 'flex' }}>
-              <Button
-                disabled
-                className="balances-top-button"
-                style={{ marginRight: '15px' }}
-              >
-                CLAIM
-              </Button>
-              <p className="earned-amount" id={themeStyle[0]}>{state.DGPoints}</p>
-            </span>
-          </span>
+          </div>
         </div>
 
         <div className="DG-liquidity-container">
+          <div className="DG-column unclaimed">
+            <span style={{ display: 'flex' }}>
+              <img src={Global.IMAGES.LOGO} className="farming-logo" />
+              <span className="farming-pool-span">
+                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="account-name">0</p>
+              </span>
+            </span>
+
+            <Divider />
+
+            <span className="DG-button-span">
+              <Button disabled className="DG-claim-button">
+                CLAIM
+              </Button>
+            </span>
+          </div>
+
           <div className="DG-column one" id={themeStyle[0]}>
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.MANA_CIRCLE} className="farming-logo" />
@@ -157,31 +159,52 @@ const Farming = () => {
   function liquidityFarming() {
     return (
       <Aux>
-        <span style={{ display: 'flex' }} className="outter-DG-container">
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <h3 className="DG-h3">$DG Liquidity Farming</h3>
-            <p>
-              You can farm $DG by staking $MANA/$DG and $DAI/$DG balancer pool
-              tokens here. Read more about $DG rewards by visiting our
-              <a
-                href="https://decentral-games-1.gitbook.io/dg/governance-1"
-                style={{ color: '#2085f4' }}
-              >
-                {' '}
-                documentation
-              </a>
-              .
-            </p>
-          </span>
-        </span>
+
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top">
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 className="DG-h3">$DG Liquidity Farming</h3>
+              <p>
+                You can farm $DG by staking $MANA/$DG and $DAI/$DG balancer pool
+                tokens here. Read more about $DG liquidity farming rewards
+                <a
+                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  style={{ color: '#2085f4' }}
+                >
+                  {' '}
+                  here
+                </a>
+                .
+              </p>
+            </span>
+          </div>
+        </div>
 
         <div className="DG-liquidity-container">
+          <div className="DG-column unclaimed">
+            <span style={{ display: 'flex' }}>
+              <img src={Global.IMAGES.LOGO} className="farming-logo" />
+              <span className="farming-pool-span">
+                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="account-name">0</p>
+              </span>
+            </span>
+
+            <Divider />
+
+            <span className="DG-button-span">
+              <Button disabled className="DG-claim-button">
+                CLAIM
+              </Button>
+            </span>
+          </div>
+
           <div className="DG-column one">
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.MANA_CIRCLE} className="farming-logo" />
               <img src={Global.IMAGES.LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Pool Name </p>
+                <p className="welcome-text"> Balancer Pool </p>
                 <p className="account-name">MANA-DG</p>
               </span>
             </span>
@@ -209,25 +232,9 @@ const Farming = () => {
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Unclaimed $DG </p>
-              <span style={{ display: 'flex' }}>
-                <Button
-                  disabled
-                  className="balances-top-button"
-                  style={{ marginRight: '15px' }}
-                >
-                  CLAIM
-                </Button>
-                <p className="earned-amount">{state.DGPoints}</p>
-              </span>
-            </span>
-
-            <Divider />
-
             <span className="DG-button-span">
               <Button disabled className="DG-deposit-button">
-                DEPOSIT TO BALANCER
+                DEPOSIT
               </Button>
               <Button disabled className="DG-stake-button">
                 STAKE LP
@@ -240,7 +247,7 @@ const Farming = () => {
               <img src={Global.IMAGES.DAI_CIRCLE} className="farming-logo" />
               <img src={Global.IMAGES.LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Pool Name </p>
+                <p className="welcome-text"> Balancer Pool </p>
                 <p className="account-name">DAI-DG</p>
               </span>
             </span>
@@ -268,25 +275,9 @@ const Farming = () => {
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Unclaimed $DG </p>
-              <span style={{ display: 'flex' }}>
-                <Button
-                  disabled
-                  className="balances-top-button"
-                  style={{ marginRight: '15px' }}
-                >
-                  CLAIM
-                </Button>
-                <p className="earned-amount">{state.DGPoints}</p>
-              </span>
-            </span>
-
-            <Divider />
-
             <span className="DG-button-span">
               <Button disabled className="DG-deposit-button">
-                DEPOSIT TO BALANCER
+                DEPOSIT
               </Button>
               <Button disabled className="DG-stake-button">
                 STAKE LP
@@ -326,30 +317,47 @@ const Farming = () => {
               </p>
             </span>
           </span>
+        </div>
 
-          <Divider />
-
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> $DG staked </p>
-            <p className="earned-amount"> 0 </p>
-          </span>
-
-          <Divider />
-
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p className="earned-text"> Unclaimed $DG </p>
+        <div className="DG-liquidity-container gov">
+          <div className="DG-column gov">
             <span style={{ display: 'flex' }}>
-              <Button
-                disabled
-                className="balances-top-button"
-                style={{ marginRight: '15px' }}
-              >
+              <img src={Global.IMAGES.LOGO} className="farming-logo" />
+              <span className="farming-pool-span">
+                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="account-name">0</p>
+              </span>
+            </span>
+
+            <Divider />
+
+            <span className="DG-button-span">
+              <Button disabled className="DG-claim-button">
                 CLAIM
               </Button>
-              <p className="earned-amount">{state.DGPoints}</p>
             </span>
-          </span>
+          </div>
+
+          <div className="DG-column stake">
+            <span style={{ display: 'flex' }}>
+              <img src={Global.IMAGES.LOGO} className="farming-logo" />
+              <span className="farming-pool-span">
+                <p className="welcome-text"> Staked DG</p>
+                <p className="account-name">0</p>
+              </span>
+            </span>
+
+            <Divider />
+
+            <span className="DG-button-span">
+              <Button disabled className="DG-claim-button">
+                Stake
+              </Button>
+            </span>
+          </div>
+
         </div>
+
       </Aux>
     )
   }
@@ -415,9 +423,9 @@ const Farming = () => {
           <div className="account-other-inner-container ">
 
             {submenu()}
-            <span style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '-60px', marginBottom: '60px' }}>
+            {/*<span style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '-60px', marginBottom: '60px' }}>
               <Radio toggle onClick={toggleTheme} />
-            </span>
+            </span>*/}
 
             <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} className={themeStyle[1]}/>
 
