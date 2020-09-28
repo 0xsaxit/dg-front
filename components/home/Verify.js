@@ -15,9 +15,9 @@ const Verify = () => {
     if (window.web3) {
       setMetamaskEnabled(true);
     } else {
-      setMetamaskEnabled(false); 
+      setMetamaskEnabled(false);
     }
-  })
+  });
 
   async function openMetaMask() {
     if (window.web3) {
@@ -48,7 +48,7 @@ const Verify = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      Global.FETCH.USER_VERIFY(userAddress, value);
+      Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
     }
   }
 
@@ -68,7 +68,7 @@ const Verify = () => {
 
   return (
     <span className="right-menu-items outter">
-      {metamaskEnabled ? 
+      {metamaskEnabled ? (
         <span className="right-menu-items">
           <Button
             content="CONNECT METAMASK"
@@ -83,7 +83,7 @@ const Verify = () => {
             onClick={() => openMetaMask()}
           />
         </span>
-      : null }
+      ) : null}
     </span>
   );
 };

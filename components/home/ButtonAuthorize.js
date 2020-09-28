@@ -70,7 +70,7 @@ function ButtonAuthorize() {
 
     // update user status in database
     console.log('Posting user status to db: ' + value);
-    Global.FETCH.USER_VERIFY(userAddress, value);
+    Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
 
     // post authorization to database
     console.log('Posting authorization transaction to db: MAX_AMOUNT');

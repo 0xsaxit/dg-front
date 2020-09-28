@@ -2,8 +2,8 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Global from '../components/Constants';
 
-function AdminHistory() {
-  // dispatch users transaction history data to the Context API store
+function AdminData() {
+  // dispatch user's transaction history data to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -35,4 +35,4 @@ function AdminHistory() {
   return null;
 }
 
-export default AdminHistory;
+export default AdminData;

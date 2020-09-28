@@ -1,25 +1,25 @@
-import { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../store'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { Menu, Sidebar, Segment, Button, Modal, Icon } from 'semantic-ui-react'
-import MessageBar from './MessageBar'
-import Verify from './Verify'
-import MessageBox from './MessageBox'
-import Aux from '../_Aux'
-import Global from '../Constants'
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { Menu, Sidebar, Segment, Button, Modal, Icon } from 'semantic-ui-react';
+import MessageBar from './MessageBar';
+import Verify from './Verify';
+import MessageBox from './MessageBox';
+import Aux from '../_Aux';
+import Global from '../Constants';
 
 const MenuTop = () => {
   // get token balances from the Context API store
-  const [state, dispatch] = useContext(GlobalContext)
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [isVisible, setIsVisible] = useState(false)
-  const [zIndexMobile, setZIndexMobile] = useState(1)
-  const [menuStyle, setMenuStyle] = useState([])
-  const [open, setOpen] = React.useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+  const [zIndexMobile, setZIndexMobile] = useState(1);
+  const [menuStyle, setMenuStyle] = useState([]);
+  const [open, setOpen] = React.useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   // set menu styles
   useEffect(() => {
@@ -29,7 +29,8 @@ const MenuTop = () => {
       router.pathname === '/account' ||
       router.pathname === '/nfts' ||
       router.pathname === '/admin' ||
-      router.pathname === '/dg'
+      router.pathname === '/dg' ||
+      router.pathname === '/[...param]'
     ) {
       setMenuStyle([
         'other-menu-container',
@@ -40,7 +41,7 @@ const MenuTop = () => {
         '',
         'rgba(10, 10, 10, 1)',
         'right-menu-text',
-      ])
+      ]);
     } else {
       setMenuStyle([
         'other-menu-container blog',
@@ -51,15 +52,15 @@ const MenuTop = () => {
         'rgb(10, 10, 10)',
         'white',
         'right-menu-text blog',
-      ])
+      ]);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (state.userStatus !== 0) {
-      console.log('User status: ' + state.userStatus)
+      console.log('User status: ' + state.userStatus);
     }
-  }, [state.userStatus])
+  }, [state.userStatus]);
 
   // display the 'ADD TOKENS' popup
   function balancesModal() {
@@ -67,12 +68,12 @@ const MenuTop = () => {
       dispatch({
         type: 'balances_overlay',
         data: 1,
-      })
+      });
     } else {
       dispatch({
         type: 'balances_overlay',
         data: 3,
-      })
+      });
     }
   }
 
@@ -82,9 +83,9 @@ const MenuTop = () => {
   function getContainerStyles(path) {
     if (path === 'container') {
       if ('/' === router.pathname) {
-        return 'dashboard-menu-container'
+        return 'dashboard-menu-container';
       } else {
-        return menuStyle[0]
+        return menuStyle[0];
       }
     }
   }
@@ -92,15 +93,15 @@ const MenuTop = () => {
   function getLinkStyles(path) {
     if (path === 'menu') {
       if ('/' === router.pathname) {
-        return 'menu-container'
+        return 'menu-container';
       } else {
-        return menuStyle[1]
+        return menuStyle[1];
       }
     } else {
       if (path === router.pathname) {
-        return menuStyle[2] + ' active'
+        return menuStyle[2] + ' active';
       } else {
-        return menuStyle[2]
+        return menuStyle[2];
       }
     }
   }
@@ -112,18 +113,18 @@ const MenuTop = () => {
     dispatch({
       type: 'token_pings',
       data: 0,
-    })
+    });
   }
 
   function handleDimmedChange() {
     if (!isVisible) {
-      setIsVisible(true)
-      setZIndexMobile(7)
+      setIsVisible(true);
+      setZIndexMobile(7);
     } else {
       const timer = setTimeout(() => {
-        setZIndexMobile(1)
-      }, 500)
-      setIsVisible(false)
+        setZIndexMobile(1);
+      }, 500);
+      setIsVisible(false);
     }
   }
 
@@ -149,7 +150,7 @@ const MenuTop = () => {
           }}
         />
       </Link>
-    )
+    );
   }
 
   // dropdown menu for mobile
@@ -222,7 +223,7 @@ const MenuTop = () => {
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
-    )
+    );
   }
 
   // links are shown or hidden based on user's display resolution
@@ -263,7 +264,7 @@ const MenuTop = () => {
           DOCS
         </Menu.Item>
       </div>
-    )
+    );
   }
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
@@ -408,9 +409,9 @@ const MenuTop = () => {
             </div>
           </Modal>
         </span>
-      )
+      );
     } else {
-      return <Verify />
+      return <Verify />;
     }
   }
 
@@ -432,7 +433,7 @@ const MenuTop = () => {
         </div>
       </div>
     </Aux>
-  )
-}
+  );
+};
 
-export default MenuTop
+export default MenuTop;

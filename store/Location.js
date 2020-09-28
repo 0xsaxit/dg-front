@@ -29,7 +29,7 @@ function Location() {
 
           // update user status in database
           console.log('Posting user status to db: ' + value);
-          Global.FETCH.USER_VERIFY(userAddress, value);
+          Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
         }
       }
       fetchData();
