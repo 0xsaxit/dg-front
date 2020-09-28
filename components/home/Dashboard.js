@@ -55,7 +55,6 @@ const Dashboard = () => {
       }
 
       setOnlineUsers(temp);
-      console.log('test: ' + onlineUsers);
       console.log('Total players: ' + json.totalPlayers);
 
       setLoading(false);

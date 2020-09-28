@@ -18,6 +18,7 @@ const Screen = ({
   body,
   filteredPages,
   unfilteredPages,
+  category: { name = '' }
 }) => {
 
   const [randomfilteredPages, setFilteredPages] = useState();
@@ -74,55 +75,81 @@ const Screen = ({
 
   return (
     <div>
-      <div className="coverimg">
-        <div className="image main-image" style={{ marginTop: '-60px' }}>
-          <img className="blog-hero-img" src={image || Global.IMAGES.SOCIAL_SHARE} alt="" />
-        </div>
+
+      <div className="blog-share-div" style={{ maxWidth: '1400px', paddingLeft: '27px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <span
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            position: 'fixed',
+            marginTop: '14px',
+          }}
+        >
+          <a className="twitter-share-button" href="https://twitter.com/share?url=" target="_blank">
+            <Icon className="share-icon" style={{ fontSize: '34px' }} name="twitter square" />
+          </a>
+          <a href="http://www.facebook.com/share.php?url=">
+            <Icon
+              style={{
+                fontSize: '34px',
+                margin: '15px 0px 15px 0px'
+              }}
+              name="facebook"
+            />
+          </a>
+          <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=">
+            <Icon style={{ fontSize: '34px' }} name="linkedin" />
+          </a>
+        </span>
       </div>
 
       <div className="blogdetail-page-container">
         <div className="blogdetails">
           <div className="bloginfo">
+            <p> Blog » {`${name}`} » {title} </p>
             <div className="title">
               <h1>{title}</h1>
             </div>
 
-            <Divider style={{ color: 'rgb(241, 241, 241)', marginTop: '30px' }} />
-
             <div className="info">
               <div className="post-author" style={{ marginBottom: '90px' }}>
-                <span style={{ display: 'flex' }}>
-                  <div className="image">
-                    <img
-                      className="logo-image"
-                      src={profile_image || Global.IMAGES.ICON_MANA}
-                      alt=""
-                    />
+                <span style={{ display: 'flex', marginTop: '45px' }}>
+
+                  <div className="post-date-blogdetail" style={{ marginRight: '13px' }}>
+                    <span>
+                      {new Date(created).toLocaleDateString(
+                        'en-DE',
+                        {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        }
+                      )}
+                    </span>
                   </div>
-                  <div className="name">
-                    <span> {`${first_name || ''} ${last_name || ''}`} </span>
+                  <div className="post-date-blogdetail">
+                    <span>
+                      {Math.ceil(body.split(' ').length / 300)} min read
+                    </span>
                   </div>
                 </span>
-                <div className="post-date-blogdetail">
-                  <span>
-                    {new Date(created).toLocaleDateString(
-                      'en-DE',
-                      {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                      }
-                    )}
-                  </span>
-                </div>
+
               </div>
             </div>
           </div>
         </div>
 
-        <div style={{ backgroundColor: 'white' }}>
+        <span style={{ marginTop: '-60px', display: 'flex', justifyContent: 'space-around' }}>   
+          <div className="coverimg">
+            <div className="image main-image">
+              <img className="blog-hero-img" src={image || Global.IMAGES.SOCIAL_SHARE} alt="" />
+            </div>
+          </div>
+        </span>
+
+        <div style={{ backgroundColor: 'white', marginTop: '45px' }}>
           <div>
-            <div className="post__content" style={{ marginTop: '-60px' }}>
+            <div className="post__content">
               {HtmlParser(body)}
             </div>
 
@@ -141,12 +168,6 @@ const Screen = ({
             <div
               style={{ marginBottom: '150px' }}
             >
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <p className="date2"> TWEET </p>
-                <Icon className="date3" name="twitter" />
-                <p className="date2"> SHARE </p>
-                <Icon className="date3" name="facebook" />
-              </span>
             </div>
           </div>
 

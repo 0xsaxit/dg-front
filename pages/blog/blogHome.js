@@ -13,7 +13,7 @@ function blog() {
   // const [category, setCategory] = useState("All");
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await Global.BUTTER.post.list({ page_size: 25 });
+      const { data } = await Global.BUTTER.post.list({ page_size: 30 });
       dispatch({
         type: 'update_pages',
         data,
@@ -61,13 +61,13 @@ function blog() {
 
   return (
     <div className="blog-home-container">
+      <p className="featured-text"> FEATURED POST</p>
+      <Divider id="blog-divider" style={{ paddingBottom: '15px' }} />
+
       <div className="featured-blog-container">
-        <p className="featured-text"> FEATURED POST</p>
-        <Divider id="blog-divider" style={{ paddingBottom: '15px' }} />
         <Link href="/blog/[id]" as="/blog/decentralgames-secures-investment">
           <a>
             <Grid
-              style={{ paddingBottom: '90px' }}
               className="featured-blog-grid"
             >
               <Grid.Row>
@@ -214,7 +214,7 @@ function blog() {
                   <img src={page.featured_image || page.banner} alt="" />
                 </div>
                 <div className="post-info">
-                  <span className="top" style={{ display: 'flex' }}>
+                  <span className="bottom-info" style={{ display: 'flex' }}>
                     <div className="post-date">
                       <span>
                         {new Date(page.created).toLocaleDateString(

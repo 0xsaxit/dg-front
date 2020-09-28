@@ -246,7 +246,6 @@ a:hover {
   color: black;
 }
 
-.post-image img:hover,
 .featured-image:hover {
   -webkit-filter: brightness(85%);
 }
@@ -268,10 +267,39 @@ a:hover {
   margin-bottom: 7px;
 }
 
+.share-icon {
+
+}
+
+.posts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.post:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease 0s;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.09);
+}
+
 .post {
   width: 32%;
-  margin-bottom: 45px;
+  margin-bottom: 30px;
+  border: 1px solid #edf2f9;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  transition: transform 0.25s ease 0s;
 }
+
+.featured-blog-container {
+
+  margin-bottom: 90px;
+}
+
+.post-info {
+  padding: 6px 18px 18px 18px;
+}
+
 
 @media (max-width: 991px) {
   .post {
@@ -289,12 +317,6 @@ a:hover {
   .featured-blog-grid {
     margin-bottom: -60px !important;
   }
-}
-
-.posts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .posts .post .post-image {
@@ -348,13 +370,17 @@ a:hover {
 img.blog-hero-img {
   width: 100vw;
   object-fit: cover;
-  max-height: 480px;
+  max-height: 420px;
+  position: relative;
+  z-index: 9;
 }
 
 .blogdetail-page-container h1 {
   font-size: 48px;
-  font-weight: 100 !important;
-  margin-top: 45px;
+  font-weight: 600 !important;
+  line-height: 1.15;
+  margin-top: -6px;
+  margin-bottom: 57px !important;
 }
 
 img.logo-image {
