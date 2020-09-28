@@ -1,7 +1,5 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import Link from 'next/link';
-// import banner from "../assets/images/banner.png";
 import { Container } from 'semantic-ui-react';
 import Global from '../Constants';
 
@@ -11,7 +9,7 @@ const PostPreview = ({
   categories,
   created,
   featured_image,
-  // url, todo: use it when it will ready for production
+  // url, 
   slug,
 }) => {
   return (

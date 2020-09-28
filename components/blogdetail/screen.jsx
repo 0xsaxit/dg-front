@@ -71,8 +71,6 @@ const Screen = ({
     setFilteredPages(shuffle(filteredPages));
   }, []);
 
-  window.scrollTo(0, 0);
-
   return (
     <div>
 
@@ -106,7 +104,7 @@ const Screen = ({
       <div className="blogdetail-page-container">
         <div className="blogdetails">
           <div className="bloginfo">
-            <p> Blog » {`${name}`} » {title} </p>
+            <p> <a style={{ color: '#2085f4' }} href="/blog/">Blog</a> » <a style={{ color: '#2085f4' }} href={`/blog/category/${name.toLowerCase()}/`}>{`${name}`}</a> » {title} </p>
             <div className="title">
               <h1>{title}</h1>
             </div>
