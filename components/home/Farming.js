@@ -51,14 +51,15 @@ const Farming = () => {
                 1.2x, 1.3x, and 1.4x multipliers respectively, and repping a
                 Decentral Games wearable earns you an extra 10% $DG when
                 playing. Refer any friends and get an additional 20% bonus on
-                all $DG they mine. For more details see our
+                all $DG they mine. For more details, see our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
                 >
                   {' '}
-                  documentation
+                  docs
                 </a>
+                .
               </p>
             </span>
           </div>
