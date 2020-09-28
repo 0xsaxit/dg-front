@@ -43,15 +43,15 @@ const Farming = () => {
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3" id={themeStyle[0]}>
-                $DG Gameplay Farming
+                $DG Gameplay Mining
               </h3>
               <p id={themeStyle[0]}>
-                You can farm $DG by playing games with $MANA or $DAI. Playing
+                You can mine $DG by playing games with $MANA or $DAI. Playing
                 with two, three, or four players at the same table earns you
                 1.2x, 1.3x, and 1.4x multipliers respectively, and repping a
                 Decentral Games wearable earns you an extra 10% $DG when
                 playing. Refer any friends and get an additional 20% bonus on
-                all $DG they farm. For more details see our
+                all $DG they mine. For more details see our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -115,7 +115,7 @@ const Farming = () => {
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text" id={themeStyle[0]}>
                 {' '}
-                $DG Farmed{' '}
+                $DG Mined{' '}
               </p>
               <p className="earned-amount" id={themeStyle[0]}>
                 {' '}
@@ -128,7 +128,7 @@ const Farming = () => {
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text" id={themeStyle[0]}>
                 {' '}
-                Play-to-farm Rate{' '}
+                Play-to-mine Rate{' '}
               </p>
               <p className="earned-amount" id={themeStyle[0]}>
                 {' '}
@@ -169,7 +169,7 @@ const Farming = () => {
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text" id={themeStyle[0]}>
                 {' '}
-                $DG Farmed{' '}
+                $DG Mined{' '}
               </p>
               <p className="earned-amount" id={themeStyle[0]}>
                 {' '}
@@ -182,7 +182,7 @@ const Farming = () => {
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text" id={themeStyle[0]}>
                 {' '}
-                Play-to-farm Rate{' '}
+                Play-to-mine Rate{' '}
               </p>
               <p className="earned-amount" id={themeStyle[0]}>
                 {' '}
@@ -203,11 +203,11 @@ const Farming = () => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Liquidity Farming</h3>
+              <h3 className="DG-h3">$DG Liquidity Mining</h3>
               <p>
-                You can farm $DG by providing liquidity in 98% MANA • 2% DG and
+                You can mine $DG by providing liquidity in 98% MANA • 2% DG and
                 98% DAI • 2% DG Balancer pools and staking the balancer pool
-                tokens on this dashboard. Read more about $DG liquidity farming
+                tokens on this dashboard. Read more about $DG liquidity mining
                 rewards in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
@@ -343,7 +343,7 @@ const Farming = () => {
               <p>
                 Staked $DG tokens are used to vote in decentral.games
                 governance. To incentivize participation, for the first year
-                there will be farming rewards distributed to stakers in the $DG
+                there will be mining rewards distributed to stakers in the $DG
                 governance contract. Proposals can be submitted and voted on{' '}
                 <a href="" style={{ color: '#2085f4' }}>
                   {' '}
