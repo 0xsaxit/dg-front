@@ -446,14 +446,6 @@ function getDGPoints(dgPointerContract, userAddress) {
     console.log("Get user's DG points balance from smart contract");
 
     try {
-      // const DGPoints = await dgPointerContract.pointsBalancer(userAddress).call()
-
-      // const pointsAdjusted = (DGPoints / FACTOR)
-      //   .toFixed(DECIMAL_PLACES)
-      //   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-      // return pointsAdjusted
-
       dgPointerContract.pointsBalancer(userAddress, async function (
         err,
         amount
@@ -464,7 +456,7 @@ function getDGPoints(dgPointerContract, userAddress) {
         }
 
         const pointsAdjusted = (amount / FACTOR)
-          .toFixed(DECIMAL_PLACES)
+          .toFixed(4)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         resolve(pointsAdjusted);
