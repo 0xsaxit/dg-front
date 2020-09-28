@@ -300,6 +300,11 @@ a:hover {
   padding: 6px 18px 18px 18px;
 }
 
+@media (max-width: 1030px) {
+  .blog-share-div {
+    display: none !important;
+  }
+}
 
 @media (max-width: 991px) {
   .post {
