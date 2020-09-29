@@ -20,7 +20,6 @@ import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
 import AdminData from '../store/AdminData';
 import DGBalance from '../store/DGBalance';
-import Affiliate from '../store/Affiliate';
 
 class Application extends App {
   render() {
@@ -41,7 +40,6 @@ class Application extends App {
         <AdminBalances />
         <AdminData />
         <DGBalance />
-        <Affiliate />
 
         <Component {...pageProps} />
       </Provider>
