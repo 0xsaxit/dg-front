@@ -26,7 +26,6 @@ const MAX_AMOUNT =
 const GAS_LIMIT = '3000000'; // was '900000'
 const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
-const DECIMAL_PLACES = 0;
 const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
 const ACTIVE_PERIOD = 43200; // user account active period: 3600 == 1 hour
 const MATIC_NETWORK_ID = 80001;
@@ -426,7 +425,7 @@ function balanceOfToken(tokenContract, userOrContractAddress) {
         }
 
         const amountAdjusted = (amount / FACTOR)
-          .toFixed(DECIMAL_PLACES)
+          .toFixed(0)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         resolve(amountAdjusted);
@@ -456,7 +455,7 @@ function getDGPoints(dgPointerContract, userAddress) {
         }
 
         const pointsAdjusted = (amount / FACTOR)
-          .toFixed(4)
+          .toFixed(3)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         resolve(pointsAdjusted);
@@ -497,7 +496,7 @@ function getTokensGame(gameIndex, tokenIndex, web3Default) {
         }
 
         const amountAdjusted = (amount / FACTOR)
-          .toFixed(DECIMAL_PLACES)
+          .toFixed(0)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         resolve(amountAdjusted);

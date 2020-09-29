@@ -13,19 +13,23 @@ const Wildcard = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const router = useRouter();
   const [affiliateAddress, setAffiliateAddress] = useState(false);
+
+  const router = useRouter();
+  let parameter = '';
 
   useEffect(() => {
     if (router.query.param) {
-      if (router.query.param[0].slice(0, 2) === '0x') {
+      parameter = router.query.param[0];
+
+      if (parameter.slice(0, 2) === '0x') {
         setAffiliateAddress(true);
 
-        console.log('Affiliate address received: ' + router.query.param[0]);
+        console.log('Affiliate address received: ' + parameter);
 
         dispatch({
           type: 'affiliate_address',
-          data: router.query.param[0],
+          data: parameter,
         });
       }
     }
