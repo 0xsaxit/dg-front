@@ -463,14 +463,14 @@ const Farming = () => {
                   id={themeStyle[0]}
                   onClick={() => setPage(0)}
                 >
-                  GAMEPLAY
+                  GAMEPLAY MINING
                 </abbr>{' '}
                 <abbr
                   className="account-hover"
                   id={themeStyle[0]}
                   onClick={() => setPage(1)}
                 >
-                  LIQUIDITY
+                  LIQUIDITY FARMING
                 </abbr>
                 <b className="account-hover active" id={themeStyle[0]}>
                   GOVERNANCE
