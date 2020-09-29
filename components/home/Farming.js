@@ -415,14 +415,14 @@ const Farming = () => {
             return (
               <p className="account-other-p">
                 <b className="account-hover active" id={themeStyle[0]}>
-                  GAMEPLAY
+                  GAMEPLAY MINING
                 </b>{' '}
                 <abbr
                   className="account-hover"
                   id={themeStyle[0]}
                   onClick={() => setPage(1)}
                 >
-                  LIQUIDITY
+                  LIQUIDITY FARMING
                 </abbr>
                 <abbr
                   className="account-hover"
@@ -441,10 +441,10 @@ const Farming = () => {
                   id={themeStyle[0]}
                   onClick={() => setPage(0)}
                 >
-                  GAMEPLAY
+                  GAMEPLAY MINING
                 </abbr>{' '}
                 <b className="account-hover active" id={themeStyle[0]}>
-                  LIQUIDITY
+                  LIQUIDITY FARMING
                 </b>
                 <abbr
                   className="account-hover"
