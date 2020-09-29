@@ -714,6 +714,10 @@ a.ui.blue.button.play-button,
   border-radius: 2px;
 }
 
+.ui.button.medium, .ui.button {
+  font-size: 12px !important;
+}
+
 .games-pic {
   padding-right: 45px;
   padding-bottom: 30px;
@@ -751,7 +755,7 @@ a.ui.blue.button.play-button,
   font-weight: bold !important;
   border-radius: 2px;
   height: 34px;
-  padding-top: 8px;
+  padding-top: 7px;
   min-width: 150px !important;
   padding-left: 0px;
   padding-right: 0px;
@@ -1210,7 +1214,7 @@ button.ui.button.matic-widget-button.balances-play-button:hover {
   padding: 16px 2px 12px 13px;
   background-color: white;
   text-transform: capitalize;
-  font-size: 16px;
+  font-size: 16px !important;
   font-weight: 600;
   font-family: Graphik, sans-serif !important;
 }
@@ -1228,7 +1232,7 @@ button.ui.button.matic-widget-button.balances-play-button:hover {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   text-transform: capitalize;
-  font-size: 16px;
+  font-size: 16px !important;
   font-weight: 600;
   font-family: Graphik, sans-serif !important;
 }
@@ -2244,4 +2248,46 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .Discord:hover .Discord-text {
   opacity: 1;
 }
+
+/* ----------------------------------------- */
+/*                404 PAGE CSS               */
+/* ----------------------------------------- */
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20vh;
+}
+
+.not-found-header-text {
+  font-size: 80px;
+  font-weight: 800 !important;
+  letter-spacing: 0.25px;
+  margin-bottom: 0px;
+}
+
+.not-found-middle-text {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 9px;
+}
+
+.ui.button.not-found-button {
+  color: white;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  min-width: 180px;
+  padding-top: 8px;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+  margin-top: 12px;
+}
+
+
 
