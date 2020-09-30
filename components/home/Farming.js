@@ -83,7 +83,7 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              {state.DGPoints > 0 ? (
+              {Number(state.DGPoints) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => setGetTokens(true)}
@@ -256,7 +256,7 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              {state.DGPoints > 0 ? (
+              {Number(state.DGPoints) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => setGetTokens(true)}
@@ -416,7 +416,7 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              {state.DGPoints > 0 ? (
+              {Number(state.DGPoints) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => setGetTokens(true)}
