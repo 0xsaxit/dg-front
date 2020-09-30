@@ -223,7 +223,7 @@ const ContentBalances = (props) => {
                 disabled
                 className="balances-top-button"
                 target="_blank"
-                style={{ marginTop: '-80px' }}
+                style={{ marginTop: '-75px' }}
               >
                 FREE
               </Button>
@@ -294,7 +294,7 @@ const ContentBalances = (props) => {
               <Button
                 className="balances-top-button two"
                 onClick={() => show_transak()}
-                style={{ marginTop: '-80px' }}
+                style={{ marginTop: '-75px' }}
               >
                 PURCHASE
               </Button>
@@ -352,7 +352,7 @@ const ContentBalances = (props) => {
               <Button
                 className="balances-top-button"
                 onClick={() => show_transak()}
-                style={{ marginTop: '-80px' }}
+                style={{ marginTop: '-75px' }}
               >
                 PURCHASE
               </Button>

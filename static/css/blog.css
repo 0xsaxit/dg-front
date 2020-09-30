@@ -96,8 +96,8 @@ p {
 
 .blog-home-container {
   max-width: 1400px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   margin-top: 60px;
@@ -197,6 +197,7 @@ a:hover {
 }
 
 .post {
+  background-color: white;
   margin-bottom: 45px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);

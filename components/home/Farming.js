@@ -58,7 +58,7 @@ const Farming = () => {
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
               </span>
             </span>
@@ -67,7 +67,7 @@ const Farming = () => {
 
             <span className="DG-button-span">
               <Button disabled className="DG-claim-button">
-                CLAIM
+                CLAIM $DG
               </Button>
             </span>
           </div>
@@ -88,47 +88,38 @@ const Farming = () => {
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">
-                {' '}
-                Total Bet{' '}
-              </p>
-              <p className="earned-amount">
-                {' '}
-                ...{' '}
-              </p>
-            </span>
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <p className="earned-text">
+                    {' '}
+                    Total Bet{' '}
+                  </p>
+                  <p className="earned-amount">
+                    {' '}
+                    ...{' '}
+                  </p>
+                </span>
+              </span>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">
-                {' '}
-                $DG Mined{' '}
-              </p>
-              <p className="earned-amount">
-                {' '}
-                ...{' '}
-              </p>
-            </span>
-
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">
-                {' '}
-                Play-to-mine Rate{' '}
-              </p>
-              <p className="earned-amount">
-                {' '}
-                ...{' '}
-              </p>
-            </span>
+              <span style={{ display: 'flex', justifyContent: 'center', width: '50%' }}>
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <p className="earned-text">
+                    {' '}
+                    Mining Rate{' '}
+                  </p>
+                  <p className="earned-amount">
+                    {' '}
+                    ...{' '}
+                  </p>
+                </span>
+              </span>
+            </div>
 
             <Divider />
 
             <span className="DG-button-span">
-              <Button href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber" dedisabled className="DG-claim-button">
+              <Button href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber" className="DG-play-now-button">
                 PLAY NOW
               </Button>
             </span>
@@ -150,47 +141,38 @@ const Farming = () => {
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">
-                {' '}
-                Total Bet{' '}
-              </p>
-              <p className="earned-amount">
-                {' '}
-                ...{' '}
-              </p>
-            </span>
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <p className="earned-text">
+                    {' '}
+                    Total Bet{' '}
+                  </p>
+                  <p className="earned-amount">
+                    {' '}
+                    ...{' '}
+                  </p>
+                </span>
+              </span>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">
-                {' '}
-                $DG Mined{' '}
-              </p>
-              <p className="earned-amount">
-                {' '}
-                ...{' '}
-              </p>
-            </span>
-
-            <Divider/>
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">
-                {' '}
-                Play-to-mine Rate{' '}
-              </p>
-              <p className="earned-amount">
-                {' '}
-                ...{' '}
-              </p>
-            </span>
+              <span style={{ display: 'flex', justifyContent: 'center', width: '50%' }}>
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <p className="earned-text">
+                    {' '}
+                    Mining Rate{' '}
+                  </p>
+                  <p className="earned-amount">
+                    {' '}
+                    ...{' '}
+                  </p>
+                </span>
+              </span>
+            </div>
 
             <Divider />
 
             <span className="DG-button-span">
-              <Button href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber" dedisabled className="DG-claim-button">
+              <Button href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber" className="DG-play-now-button">
                 PLAY NOW
               </Button>
             </span>
