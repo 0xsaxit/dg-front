@@ -43,9 +43,9 @@ p {
   border: none !important;
 }
 
-/*body {
+body {
   background-color: #f9fbfd;
-}*/
+}
 
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
@@ -100,7 +100,8 @@ p {
 }
 
 .ui.button.modal-deposit-button:hover,
-.ui.blue.button:hover, .ui.blue.buttons .button:hover {
+.ui.blue.button:hover, 
+.ui.blue.buttons .button:hover {
   background-color: #2085f4;
   filter: brightness(90%) !important;
 }
@@ -112,9 +113,15 @@ p {
 
 .animating.ui.overlay.sidebar,
 .ui.visible.overlay.sidebar {
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease !important;
+  transition: transform 0.5s ease, 
+  -webkit-transform 0.5s ease !important;
   position: absolute !important;
   z-index: 999 !important;
+}
+
+.ui.visible.top.overlay.sidebar {
+  box-shadow: 0 9px 6px rgba(18, 38, 63, 0.03) !important;
+  border-bottom: 1px solid #edf2f9 !important;
 }
 
 div.ui.segment.transparent-menu-segment {
@@ -286,7 +293,7 @@ div.ui.segment.transparent-menu-segment {
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   text-transform: uppercase;
 }
 
@@ -556,6 +563,12 @@ a.ui.blue.button.how-to-button {
   padding-right: 30px;
 }
 
+.nft-container:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease 0s;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.09);
+}
+
 .outter-games-container {
   display: flex;
   flex-wrap: wrap !important;
@@ -576,6 +589,12 @@ a.ui.blue.button.how-to-button {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.games-container:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease 0s;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.09);
 }
 
 .ui.dropdown > .dropdown.icon {
@@ -606,7 +625,7 @@ a.ui.blue.button.how-to-button {
 }
 
 .account-select.play {
-  background-color: #f5f6f8;
+  background-color: rgba(235, 238, 240, 1);
   padding: 6px 9px 6px 9px;
   margin-bottom: 15px;
   margin-top: -6px;
@@ -614,9 +633,13 @@ a.ui.blue.button.how-to-button {
   margin-right: 21px;
 }
 
+.ui.dropdown .menu .active.item {
+  background-color: rgba(235, 238, 240, 1);
+}
+
 .account-select.mana,
 .account-select.dai {
-  background-color: #f5f6f8;
+  background-color: rgba(235, 238, 240, 1);
   padding: 6px 9px 6px 9px;
   margin-bottom: 15px;
   margin-top: -6px;
@@ -820,7 +843,7 @@ table {
 }
 
 .table-header {
-  background-color: #f5f6f8;
+  background-color: rgba(240, 242, 245, 1);
 }
 
 .table-header-text,
@@ -850,6 +873,7 @@ table {
 .table-body {
   font-size: 16px;
   letter-spacing: 0.25px;
+  background-color: white;
 }
 
 .table-body-text-1,
@@ -1062,7 +1086,7 @@ table.ui.fixed.single.line.table {
   font-weight: 700;
   letter-spacing: 0.5px !important;
   margin-right: 30px;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
 }
 
 .account-hover.active {
@@ -1353,7 +1377,7 @@ deposit-notification-box-hidden {
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   text-transform: uppercase;
   padding-left: 22px;
   padding-top: 9px !important;
@@ -1378,7 +1402,7 @@ deposit-notification-box-hidden {
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   text-transform: uppercase;
   padding-top: 6px !important;
   margin-bottom: 0px;
@@ -1403,8 +1427,8 @@ deposit-notification-box-hidden {
 }
 
 div.ui.grid.balances-container {
-  padding-top: 88px !important;
-  margin-top: 43px;
+  background-color: #f9fbfd;
+  padding-top: 125px !important;
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1429,10 +1453,19 @@ div.ui.grid.balances-container {
 }
 
 .balances-column {
+  background-color: white;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   width: 100%;
   padding: 12px 18px 12px 18px !important;
+}
+
+.balances-column.one:hover,
+.balances-column.two:hover,
+.balances-column.three:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease 0s;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.09);
 }
 
 .top-balances-column {
@@ -1451,7 +1484,7 @@ div.ui.grid.balances-container {
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.4px;
-  background-color: rgba(97, 97, 97, 0.75);
+  background-color: rgba(92, 95, 97, 0.75);
   color: white;
   width: 72px;
   height: 36px;
@@ -1489,7 +1522,7 @@ div.ui.grid.balances-container {
 .balances-token-name.avatar {
   font-weight: bold;
   padding-left: 21px;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
 }
 
 .ui.button.balances-purchase-button {

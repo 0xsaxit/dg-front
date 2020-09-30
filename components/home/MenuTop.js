@@ -24,13 +24,7 @@ const MenuTop = () => {
   // set menu styles
   useEffect(() => {
     if (
-      router.pathname === '/' ||
-      router.pathname === '/games' ||
-      router.pathname === '/account' ||
-      router.pathname === '/nfts' ||
-      router.pathname === '/admin' ||
-      router.pathname === '/dg' ||
-      router.pathname === '/[...param]'
+      router.pathname === '/'
     ) {
       setMenuStyle([
         'other-menu-container',

@@ -116,56 +116,58 @@ const Offerings = () => {
     return (
       <div className="outter-games-container">
         {Object.keys(detailsGames).map((item, i) => (
-          <div className="games-container">
-            <span
-              style={{ display: 'flex', justifyContent: 'center' }}
-              className="nft-image"
-            >
-              <Image
-                src={detailsGames[item][0]}
-                className={detailsGames[item][1]}
-                style={{ borderRadius: '2px' }}
-              />
-            </span>
-            <div className="nft-description">
-              <h3 className="nft-other-h3">{detailsGames[item][2]}</h3>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <p className="nfts-info">{detailsGames[item][4]}</p>
-                <p className="nfts-info-2">{detailsGames[item][5]}</p>
-              </span>
-
-              <Divider style={{ margin: '10px 0px 15px 0px', width: 'calc(100% + 60px)', marginLeft: '-30px' }}/>
-
-              <p
-                className="nft-other-p"
-                style={{
-                  marginTop: '-12px',
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                }}
+          <a href="https://play.decentraland.org/?position=-120%2C135" target="_blank" className="games-container">
+            <div>
+              <span
+                style={{ display: 'flex', justifyContent: 'center' }}
+                className="nft-image"
               >
-                {detailsGames[item][3]}
-              </p>
-
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button
-                  color="blue"
-                  className="nft-button"
-                  target="_blank"
-                  href={detailsGames[item][6]}
-                >
-                  PLAY NOW
-                </Button>
-                <Button
-                  className="nft-read-button two"
-                  target="_blank"
-                  href={detailsGames[item][7]}
-                >
-                  READ MORE
-                </Button>
+                <Image
+                  src={detailsGames[item][0]}
+                  className={detailsGames[item][1]}
+                  style={{ borderRadius: '2px' }}
+                />
               </span>
+              <div className="nft-description">
+                <h3 className="nft-other-h3">{detailsGames[item][2]}</h3>
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <p className="nfts-info">{detailsGames[item][4]}</p>
+                  <p className="nfts-info-2">{detailsGames[item][5]}</p>
+                </span>
+
+                <Divider style={{ margin: '10px 0px 15px 0px', width: 'calc(100% + 60px)', marginLeft: '-30px' }}/>
+
+                <p
+                  className="nft-other-p"
+                  style={{
+                    marginTop: '-12px',
+                    paddingTop: '15px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {detailsGames[item][3]}
+                </p>
+
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Button
+                    color="blue"
+                    className="nft-button"
+                    target="_blank"
+                    href={detailsGames[item][6]}
+                  >
+                    PLAY NOW
+                  </Button>
+                  <Button
+                    className="nft-read-button two"
+                    target="_blank"
+                    href={detailsGames[item][7]}
+                  >
+                    READ MORE
+                  </Button>
+                </span>
+              </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     );
