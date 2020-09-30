@@ -71,23 +71,24 @@ p {
 }
 
 .sidebar-menu-text.blog:hover {
-  background-color: white !important;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0) !important;
   color: rgba(0, 0, 0, 1) !important;
   font-weight: 800 !important;
 }
 
 .sidebar-menu-text.blog.active {
+  background-color: rgba(0, 0, 0, 0) !important;
   color: rgba(0, 0, 0, 1) !important;
-  background-color: white !important;
 }
 
 .sidebar-menu-text.blog {
-  color: rgba(97, 97, 97, 1) !important;
+  color: rgba(92, 95, 97, 1) !important;
 }
 
 .sidebar-menu-text-2.blog,
 .sidebar-menu-text-3.blog {
-  color: rgba(97, 97, 97, 1) !important;
+  color: rgba(92, 95, 97, 1) !important;
 }
 
 /* ----------------------------------------- */
@@ -117,7 +118,7 @@ p {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.5px !important;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   text-transform: uppercase;
 }
 
@@ -148,6 +149,7 @@ a:hover {
 }
 
 .featured-blog-grid {
+  background-color: white;
   display: flex;
   flex-direction: row;
 }
@@ -172,7 +174,7 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.5px !important;
   margin-right: 30px;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   margin-bottom: -21px;
   margin-top: 21px;
 }
@@ -336,12 +338,12 @@ img.logo-image {
   margin-left: 18px;
   margin-right: 6px;
   text-transform: uppercase !important;
-  color: rgb(97, 97, 97) !important;
+  color: rgb(92, 95, 97) !important;
 }
 
 .date3 {
   font-size: 16px !important;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
 }
 
 .blogdetail-page-container .post__content p,
@@ -493,14 +495,14 @@ img.logo-image {
 .read-next-button:first-child:before {
   content: 'Previous     ' !important;
   margin-left: calc(100% - 82px);
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   font-size: 14px;
 }
 
 .read-next-button:last-child:before {
   content: 'Next    ' !important;
   margin-right: 100%;
-  color: rgb(97, 97, 97);
+  color: rgb(92, 95, 97);
   font-size: 14px;
 }
 
