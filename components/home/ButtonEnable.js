@@ -103,6 +103,8 @@ function ButtonEnable() {
     } catch (error) {
       console.log(error);
     }
+
+    setTransaction(false);
   }
 
   return (

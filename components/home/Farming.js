@@ -15,12 +15,31 @@ const Farming = () => {
   // define local variables
   const [DGstate, setDGState] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [getTokens, setGetTokens] = useState(false);
+
+  let userAddress = '';
 
   useEffect(() => {
     if (document.readyState === 'complete') {
       setIsLoading(false);
     }
   });
+
+  useEffect(() => {
+    if (state.userStatus) {
+      userAddress = window.web3.currentProvider.selectedAddress;
+
+      if (getTokens) claimDG();
+    }
+  }, [state.userStatus, getTokens]);
+
+  // dispatch DG tokens to user
+  function claimDG() {
+    console.log('Dispatching DG tokens to user: ' + userAddress);
+    Global.FETCH.GET_TOKENS(userAddress);
+
+    setGetTokens(false);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -30,16 +49,14 @@ const Farming = () => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">
-                $DG Gameplay Mining
-              </h3>
+              <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
                 You can mine $DG by playing games with $MANA or $DAI. Playing
-                with two, three, or four players at a table earns you
-                +20%, +30%, and +40% bonuses respectively, and each
-                Decentral Games wearable you wear earns you a +10% bonus when
-                playing. Refer any friends and get an additional 20% of
-                all $DG they mine. For more details, see our
+                with two, three, or four players at a table earns you +20%,
+                +30%, and +40% bonuses respectively, and each Decentral Games
+                wearable you wear earns you a +10% bonus when playing. Refer any
+                friends and get an additional 20% of all $DG they mine. For more
+                details, see our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -66,9 +83,18 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              <Button disabled className="DG-claim-button">
-                CLAIM $DG
-              </Button>
+              {state.DGPoints > 0 ? (
+                <Button
+                  className="DG-claim-button"
+                  onClick={() => setGetTokens(true)}
+                >
+                  CLAIM $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM $DG
+                </Button>
+              )}
             </span>
           </div>
 
@@ -76,13 +102,8 @@ const Farming = () => {
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.MANA_CIRCLE} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text">
-                  {' '}
-                  Coin{' '}
-                </p>
-                <p className="account-name">
-                  MANA
-                </p>
+                <p className="welcome-text"> Coin </p>
+                <p className="account-name">MANA</p>
               </span>
             </span>
 
@@ -90,28 +111,34 @@ const Farming = () => {
 
             <div style={{ display: 'flex' }}>
               <span className="gameplay-left-column">
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <p className="earned-text">
-                    {' '}
-                    Total Bet{' '}
-                  </p>
-                  <p className="earned-amount">
-                    {' '}
-                    ...{' '}
-                  </p>
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> Total Bet </p>
+                  <p className="earned-amount"> ... </p>
                 </span>
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'center', width: '50%' }}>
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <p className="earned-text">
-                    {' '}
-                    Mining Rate{' '}
-                  </p>
-                  <p className="earned-amount">
-                    {' '}
-                    ...{' '}
-                  </p>
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> Mining Rate </p>
+                  <p className="earned-amount"> ... </p>
                 </span>
               </span>
             </div>
@@ -119,7 +146,10 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              <Button href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber" className="DG-play-now-button">
+              <Button
+                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                className="DG-play-now-button"
+              >
                 PLAY NOW
               </Button>
             </span>
@@ -129,13 +159,8 @@ const Farming = () => {
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.DAI_CIRCLE} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text">
-                  {' '}
-                  Coin{' '}
-                </p>
-                <p className="account-name">
-                  DAI
-                </p>
+                <p className="welcome-text"> Coin </p>
+                <p className="account-name">DAI</p>
               </span>
             </span>
 
@@ -143,28 +168,34 @@ const Farming = () => {
 
             <div style={{ display: 'flex' }}>
               <span className="gameplay-left-column">
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <p className="earned-text">
-                    {' '}
-                    Total Bet{' '}
-                  </p>
-                  <p className="earned-amount">
-                    {' '}
-                    ...{' '}
-                  </p>
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> Total Bet </p>
+                  <p className="earned-amount"> ... </p>
                 </span>
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'center', width: '50%' }}>
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <p className="earned-text">
-                    {' '}
-                    Mining Rate{' '}
-                  </p>
-                  <p className="earned-amount">
-                    {' '}
-                    ...{' '}
-                  </p>
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> Mining Rate </p>
+                  <p className="earned-amount"> ... </p>
                 </span>
               </span>
             </div>
@@ -172,7 +203,10 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              <Button href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber" className="DG-play-now-button">
+              <Button
+                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                className="DG-play-now-button"
+              >
                 PLAY NOW
               </Button>
             </span>
@@ -222,9 +256,18 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              <Button disabled className="DG-claim-button">
-                CLAIM
-              </Button>
+              {state.DGPoints > 0 ? (
+                <Button
+                  className="DG-claim-button"
+                  onClick={() => setGetTokens(true)}
+                >
+                  CLAIM $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM $DG
+                </Button>
+              )}
             </span>
           </div>
 
@@ -320,7 +363,6 @@ const Farming = () => {
                 UNSTAKE LP
               </Button>
             </span>
-
           </div>
         </div>
       </Aux>
@@ -338,9 +380,9 @@ const Farming = () => {
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
                 Staked $DG tokens are used to vote in decentral.games
-                governance. For the first year
-                there will be governance rewards distributed to stakers in the $DG
-                governance contract. Proposals can be submitted and voted on{' '}
+                governance. For the first year there will be governance rewards
+                distributed to stakers in the $DG governance contract. Proposals
+                can be submitted and voted on{' '}
                 <a href="" style={{ color: '#2085f4' }}>
                   {' '}
                   here
@@ -358,8 +400,11 @@ const Farming = () => {
           </div>
         </div>
 
-        <div className="DG-liquidity-container gov" >
-          <div className="DG-column gov" style={{ position: 'relative', height: '100%' }}>
+        <div className="DG-liquidity-container gov">
+          <div
+            className="DG-column gov"
+            style={{ position: 'relative', height: '100%' }}
+          >
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.LOGO} className="farming-logo" />
               <span className="farming-pool-span">
@@ -371,9 +416,18 @@ const Farming = () => {
             <Divider />
 
             <span className="DG-button-span">
-              <Button disabled className="DG-claim-button">
-                CLAIM
-              </Button>
+              {state.DGPoints > 0 ? (
+                <Button
+                  className="DG-claim-button"
+                  onClick={() => setGetTokens(true)}
+                >
+                  CLAIM $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM $DG
+                </Button>
+              )}
             </span>
           </div>
 
@@ -430,19 +484,11 @@ const Farming = () => {
           if (DGstate == 0)
             return (
               <p className="account-other-p">
-                <b className="account-hover active">
-                  GAMEPLAY MINING
-                </b>{' '}
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPage(1)}
-                >
+                <b className="account-hover active">GAMEPLAY MINING</b>{' '}
+                <abbr className="account-hover" onClick={() => setPage(1)}>
                   LIQUIDITY FARMING
                 </abbr>
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPage(2)}
-                >
+                <abbr className="account-hover" onClick={() => setPage(2)}>
                   GOVERNANCE
                 </abbr>
               </p>
@@ -450,19 +496,11 @@ const Farming = () => {
           else if (DGstate == 1)
             return (
               <p className="account-other-p">
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPage(0)}
-                >
+                <abbr className="account-hover" onClick={() => setPage(0)}>
                   GAMEPLAY MINING
                 </abbr>{' '}
-                <b className="account-hover active">
-                  LIQUIDITY FARMING
-                </b>
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPage(2)}
-                >
+                <b className="account-hover active">LIQUIDITY FARMING</b>
+                <abbr className="account-hover" onClick={() => setPage(2)}>
                   GOVERNANCE
                 </abbr>{' '}
               </p>
@@ -470,21 +508,13 @@ const Farming = () => {
           else
             return (
               <p className="account-other-p">
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPage(0)}
-                >
+                <abbr className="account-hover" onClick={() => setPage(0)}>
                   GAMEPLAY MINING
                 </abbr>{' '}
-                <abbr
-                  className="account-hover"
-                  onClick={() => setPage(1)}
-                >
+                <abbr className="account-hover" onClick={() => setPage(1)}>
                   LIQUIDITY FARMING
                 </abbr>
-                <b className="account-hover active">
-                  GOVERNANCE
-                </b>
+                <b className="account-hover active">GOVERNANCE</b>
               </p>
             );
         })()}
@@ -508,9 +538,7 @@ const Farming = () => {
               <Radio toggle onClick={toggleTheme} />
             </span>*/}
 
-            <Divider
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
+            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
             {(() => {
               if (DGstate == 0) return gameplayFarming();

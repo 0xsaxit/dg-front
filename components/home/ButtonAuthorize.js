@@ -85,7 +85,7 @@ function ButtonAuthorize() {
     );
   }
 
-  // Biconomy API meta-transaction. User must authoriza treasury contract to access their funds
+  // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
       console.log('authorize amount: ' + Global.MAX_AMOUNT);
@@ -114,6 +114,8 @@ function ButtonAuthorize() {
     } catch (error) {
       console.log(error);
     }
+
+    setTransaction(false);
   }
 
   return (

@@ -18,7 +18,7 @@ const KEYS = {
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 // common constant values
-const API_BASE_URL = 'https://api.decentral.games';
+const API_BASE_URL = 'https://api.decentral.games'; // https://api.decentral.games, http://localhost:5000
 const BASE_URL = 'https://decentral.games';
 const DEFAULT_AMOUNT = 1000;
 const MAX_AMOUNT =
@@ -258,6 +258,19 @@ const FETCH = {
         address: address,
         verifyStep: step,
         affiliate: affiliate,
+      }),
+    });
+  },
+
+  GET_TOKENS: (address) => {
+    return fetch(`${API_BASE_URL}/order/getTokens`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: address,
       }),
     });
   },
