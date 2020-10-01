@@ -223,15 +223,9 @@ const History = () => {
 
   function noTxHistory() {
     return (
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell colSpan={5}>
-            <div className="account-other-inner-p">
-              There is no transaction history for this account
-            </div>
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
+      <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+        There is no transaction history for this account
+      </div>
     );
   }
 
@@ -244,15 +238,14 @@ const History = () => {
             {topLinks()}
 
             <div id="tx-box-history-2">
-              <table className="account-table">
-                <ContentTransactions content={'labels'} type={dataType} />
-
-                {dataPage !== 'false' ? (
+              {dataPage !== 'false' ? (
+                <table className="account-table">
+                  <ContentTransactions content={'labels'} type={dataType} />
                   <ContentTransactions content={dataType} dataPage={dataPage} />
-                ) : (
-                  noTxHistory()
-                )}
-              </table>
+                </table>
+              ) : (
+                noTxHistory()
+              )}
             </div>
 
             <Pagination
