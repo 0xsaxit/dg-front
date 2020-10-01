@@ -226,8 +226,8 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
-                You can farm $DG by providing liquidity in 98% MANA • 2% DG and
-                98% DAI • 2% DG Balancer pools and staking the balancer pool
+                You can farm $DG by providing liquidity in 98/2 MANA/DG and
+                DAI/DG Balancer pools and staking the LP
                 tokens on this dashboard. Read more about $DG liquidity farming
                 rewards in our
                 <a
@@ -424,8 +424,7 @@ const Farming = () => {
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
                 Staked $DG tokens are used to vote in decentral.games
-                governance. For the first year there will be governance rewards
-                distributed to stakers in the $DG governance contract. Proposals
+                governance and to receive $DG governance rewards. Proposals
                 can be submitted and voted on{' '}
                 <a href="" style={{ color: '#2085f4' }}>
                   {' '}
