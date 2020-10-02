@@ -131,6 +131,8 @@ const IMAGES = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   MATIC_TOP:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png',
+  SNAPSHOT_ICON: 
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

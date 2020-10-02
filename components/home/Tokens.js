@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 
 const detailsNFTs = {
   tominoya: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-04-29_at_9.22.15_AM_xjm41j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_n439sj.png',
     'nft-pic',
     'Tominoya, Vegas City',
     'LOCATION: -120, 135',
@@ -16,25 +16,25 @@ const detailsNFTs = {
     'https://decentral.games/blog/tominoya-casino-nft-sale',
   ],
   flamingos: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1592519040/Screen_Shot_2020-06-18_at_12.27.19_PM_zoutwy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_9_yxm85s.png',
     'nft-pic',
     'Flamingos, Vegas City',
     'LOCATION: -126, 118',
-    'Flamingos is a casino built by the Vegas City team.',
+    'Flamingos is a classically inspired casino built by Vegas City.',
     'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
     'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
   ],
   mink_coat: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599685013/Screen_Shot_2020-09-09_at_1.53.25_PM_2_kyhwea.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_3_ywc2cq.png',
     'nft-pic',
-    'Mink Fur Coat',
+    '$DG Mink',
     'LEGENDARY',
-    'An opulent fur coat made from minks. #extrasaus',
+    'An opulent fur coat made and produced using only the finest of mink furs. #extrasaus',
     'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/66',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_top: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599685111/Screen_Shot_2020-09-09_at_1.53.25_PM_2_2_tiipu1.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_2_lu5fwe.png',
     'nft-pic',
     'Tracksuit Top',
     'LEGENDARY',
@@ -43,7 +43,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_bottom: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599684842/Screen_Shot_2020-09-09_at_1.53.25_PM_grwibw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_4_meqpkq.png',
     'nft-pic',
     'Tracksuit Bottom',
     'LEGENDARY',
@@ -52,12 +52,30 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   shades: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599685234/Screen_Shot_2020-09-09_at_1.53.25_PM_2_3_e3lcg7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
     'nft-pic',
-    'Shades Glasses',
+    'Spectacles',
     'LEGENDARY',
-    'Swaggy flip up shades for any occasion, inside or outside, featuring a chain to keep them secure. #ice',
+    'Swaggy flip up shades designed to be wearable at any occassion. #ice',
     'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/81',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  yeezies: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_5_lijr1y.png',
+    'nft-pic',
+    'Deezys',
+    'LEGENDARY',
+    'street wear inspired comfy kicks inspired by the latest fashion. #ye',
+    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/35Shoes',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  slides: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_6_iujl4o.png',
+    'nft-pic',
+    '$DG Slides',
+    'LEGENDARY',
+    'Lazy day but designer slides complete with socks to keep your toes warm.',
+    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/25Slides',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ]
 };
@@ -90,53 +108,55 @@ const Tokens = () => {
     return (
       <div className="outter-nft-container">
         {Object.keys(detailsNFTs).map((item, i) => (
-          <div className="nft-container" key={i}>
-            <span style={{ display: 'flex', justifyContent: 'center' }} className="nft-image">
-              <Image
-                src={detailsNFTs[item][0]}
-                className={detailsNFTs[item][1]}
-                style={{ borderRadius: '2px' }}
-              />
-            </span>
-            <div className="nft-description">
-              <h3
-                className="nft-other-h3"
-              >
-                {detailsNFTs[item][2]}
-              </h3>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <p className="nfts-info">{detailsNFTs[item][3]}</p>
+          <a href={detailsNFTs[item][5]} className="nft-container">
+            <div key={i}>
+              <span style={{ display: 'flex', justifyContent: 'center' }} className="nft-image">
+                <Image
+                  src={detailsNFTs[item][0]}
+                  className={detailsNFTs[item][1]}
+                  style={{ borderRadius: '2px' }}
+                />
               </span>
-
-              <Divider style={{ margin: '10px 0px 15px 0px', width: 'calc(100% + 60px)', marginLeft: '-30px' }}/>
-
-              <p
-                className="nft-other-p"
-                style={{ marginTop: '-12px', paddingTop: '15px', textAlign: 'center' }}
-              >
-                {detailsNFTs[item][4]}
-              </p>
-
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button
-                  color="blue"
-                  className="nft-button"
-                  target="_blank"
-                  href={detailsNFTs[item][5]}
+              <div className="nft-description">
+                <h3
+                  className="nft-other-h3"
                 >
-                  PURCHASE NFT
-                </Button>
-                <Button
-                  className="nft-read-button two"
-                  target="_blank"
-                  href={detailsNFTs[item][6]}
-                >
-                  READ MORE
-                </Button>
-              </span>
+                  {detailsNFTs[item][2]}
+                </h3>
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <p className="nfts-info">{detailsNFTs[item][3]}</p>
+                </span>
 
+                <Divider style={{ margin: '10px 0px 15px 0px', width: 'calc(100% + 60px)', marginLeft: '-30px' }}/>
+
+                <p
+                  className="nft-other-p"
+                  style={{ marginTop: '-12px', paddingTop: '15px', textAlign: 'center' }}
+                >
+                  {detailsNFTs[item][4]}
+                </p>
+
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Button
+                    color="blue"
+                    className="nft-button"
+                    target="_blank"
+                    href={detailsNFTs[item][5]}
+                  >
+                    PURCHASE NFT
+                  </Button>
+                  <Button
+                    className="nft-read-button two"
+                    target="_blank"
+                    href={detailsNFTs[item][6]}
+                  >
+                    READ MORE
+                  </Button>
+                </span>
+
+              </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     );

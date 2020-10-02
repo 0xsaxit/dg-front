@@ -283,14 +283,15 @@
   }
 }
 
-@media (max-width: 851px) {
-  .nft-container {
-    width: 100%;
+@media (max-width: 767px) {
+  .nft-container,
+  .nft-container:nth-child(1),
+  .nft-container:nth-child(2) {
+    width: 100% !important;
   }
 }
 
 @media (max-width: 851px) {
-  .nft-container,
   .games-container {
     width: 100%;
   }

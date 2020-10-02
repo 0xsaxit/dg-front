@@ -280,8 +280,8 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
-                You can farm $DG by providing liquidity in 98% MANA • 2% DG and
-                98% DAI • 2% DG Balancer pools and staking the balancer pool
+                You can farm $DG by providing liquidity in 98/2 MANA/DG and
+                DAI/DG Balancer pools and staking the LP
                 tokens on this dashboard. Read more about $DG liquidity farming
                 rewards in our
                 <a
@@ -330,37 +330,59 @@ const Farming = () => {
               <img src={Global.IMAGES.MANA_CIRCLE} className="farming-logo" />
               <img src={Global.IMAGES.LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Balancer Pool </p>
-                <p className="account-name">MANA-DG</p>
+                <p className="welcome-text"> MANA-DG </p>
+                <p className="account-name">0</p>
               </span>
             </span>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Deposited </p>
-              <p className="earned-amount"> ... </p>
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                disabled
+                className="balancer-top-button"
+                target="_blank"
+                style={{ marginTop: '-75px' }}
+              >
+                Balancer
+              </Button>
             </span>
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> % share of pool </p>
-              <p className="earned-amount"> ... </p>
-            </span>
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> % of pool </p>
+                  <p className="earned-amount"> ... </p>
+                </span>
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> pool rate </p>
+                  <p className="earned-amount"> ... </p>
+                </span>
+              </span>
+            </div>
 
             <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Pool Rate </p>
-              <p className="earned-amount"> ... </p>
-            </span>
-
-            <Divider />
-
-            <Button disabled className="DG-deposit-button">
-              GO TO BALANCER
-            </Button>
 
             <span className="DG-button-span">
               <Button disabled className="DG-stake-button">
@@ -377,37 +399,59 @@ const Farming = () => {
               <img src={Global.IMAGES.DAI_CIRCLE} className="farming-logo" />
               <img src={Global.IMAGES.LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Balancer Pool </p>
-                <p className="account-name">DAI-DG</p>
+                <p className="welcome-text"> DAI-DG </p>
+                <p className="account-name">0</p>
               </span>
             </span>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Deposited </p>
-              <p className="earned-amount"> ... </p>
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                disabled
+                className="balancer-top-button"
+                target="_blank"
+                style={{ marginTop: '-75px' }}
+              >
+                Balancer
+              </Button>
             </span>
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> % share of pool </p>
-              <p className="earned-amount"> ... </p>
-            </span>
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> % of pool </p>
+                  <p className="earned-amount"> ... </p>
+                </span>
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> pool rate </p>
+                  <p className="earned-amount"> ... </p>
+                </span>
+              </span>
+            </div>
 
             <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Pool Rate </p>
-              <p className="earned-amount"> ... </p>
-            </span>
-
-            <Divider />
-
-            <Button disabled className="DG-deposit-button">
-              GO TO BALANCER
-            </Button>
 
             <span className="DG-button-span">
               <Button disabled className="DG-stake-button">
@@ -434,8 +478,7 @@ const Farming = () => {
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
                 Staked $DG tokens are used to vote in decentral.games
-                governance. For the first year there will be governance rewards
-                distributed to stakers in the $DG governance contract. Proposals
+                governance and to receive $DG governance rewards. Proposals
                 can be submitted and voted on{' '}
                 <a href="" style={{ color: '#2085f4' }}>
                   {' '}
@@ -456,7 +499,7 @@ const Farming = () => {
 
         <div className="DG-liquidity-container gov">
           <div
-            className="DG-column gov"
+            className="DG-column unclaimed"
             style={{ position: 'relative', height: '100%' }}
           >
             <span style={{ display: 'flex' }}>
@@ -496,30 +539,69 @@ const Farming = () => {
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> $DG staked in governance </p>
-              <p className="earned-amount"> ... </p>
-            </span>
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> % of gov pool </p>
+                  <p className="earned-amount"> ... </p>
+                </span>
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text"> Treasury </p>
+                  <p className="earned-amount"> ... </p>
+                </span>
+              </span>
+            </div>
 
             <Divider />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> % of governance pool</p>
-              <p className="earned-amount"> ... </p>
+            <span className="DG-button-span">
+              <Button disabled className="DG-stake-button">
+                STAKE $DG
+              </Button>
+              <Button disabled className="DG-stake-button">
+                UNSTAKE $DG
+              </Button>
             </span>
+          </div>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> treasury balance </p>
-              <p className="earned-amount"> ... </p>
+          <div className="DG-column stake" style={{ position: 'relative', height: '100%' }}>
+            <span style={{ display: 'flex' }}>
+              <img src={Global.IMAGES.SNAPSHOT_ICON} className="farming-logo" />
+              <span className="farming-pool-span">
+                <p className="welcome-text"> Proposals</p>
+                <p className="account-name">0</p>
+              </span>
             </span>
 
             <Divider />
 
             <span className="DG-button-span">
-              <Button disabled className="DG-claim-button">
-                Stake
+              <Button disabled className="DG-stake-button">
+                DISCUSSION
+              </Button>
+              <Button disabled className="DG-stake-button">
+                VOTING
               </Button>
             </span>
           </div>
