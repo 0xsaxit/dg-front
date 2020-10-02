@@ -27,7 +27,7 @@ const detailsNFTs = {
   mink_coat: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_3_ywc2cq.png',
     'nft-pic',
-    'Mink Fur Coat',
+    'Mink',
     'LEGENDARY',
     'An opulent fur coat made and produced using only the finest of mink furs. #extrasaus',
     'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/66',
@@ -54,7 +54,7 @@ const detailsNFTs = {
   shades: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
     'nft-pic',
-    'Shades Glasses',
+    'Spectacles',
     'LEGENDARY',
     'Swaggy flip up shades designed to be wearable at any occassion. #ice',
     'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/81',
@@ -63,7 +63,7 @@ const detailsNFTs = {
   yeezies: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_5_lijr1y.png',
     'nft-pic',
-    'Deezies',
+    'Deezeys',
     'LEGENDARY',
     'street wear inspired comfy kicks inspired by the latest fashion. #ye',
     'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/35Shoes',
