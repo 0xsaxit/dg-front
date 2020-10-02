@@ -1,76 +1,76 @@
-import { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../store'
-import { Table, Divider, Grid } from 'semantic-ui-react'
-import Web3 from 'web3'
-import Spinner from '../Spinner'
-import ButtonPause from './ButtonPause'
-import ContentAdmin from './ContentAdmin'
-import Pagination from './Pagination'
-import Aux from '../_Aux'
-import Global from '../Constants'
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
+import { Table, Divider, Grid } from 'semantic-ui-react';
+import Web3 from 'web3';
+import Spinner from '../Spinner';
+import ButtonPause from './button/ButtonPause';
+import ContentAdmin from './ContentAdmin';
+import Pagination from './Pagination';
+import Aux from '../_Aux';
+import Global from '../Constants';
 
 const Admin = () => {
   // get player/machine transaction history from the Context API store
-  const [state, dispatch] = useContext(GlobalContext)
-  const dataHistory = state.adminHistory[0]
-  const dataMachines = state.adminHistory[1]
+  const [state, dispatch] = useContext(GlobalContext);
+  const dataHistory = state.adminHistory[0];
+  const dataMachines = state.adminHistory[1];
 
   // define local variables
-  const [maximumCount, setMaximumCount] = useState(0)
-  const [dataType, setDataType] = useState('balances')
-  const [dataPage, setDataPage] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isPaused, setIsPaused] = useState(false)
+  const [maximumCount, setMaximumCount] = useState(0);
+  const [dataType, setDataType] = useState('balances');
+  const [dataPage, setDataPage] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
-  let maticWeb3 = {}
+  let maticWeb3 = {};
 
   useEffect(() => {
     if (state.userStatus) {
-      const frameHeight = window.innerHeight
-      setMaximumCount(Math.floor(frameHeight * 0.01575))
+      const frameHeight = window.innerHeight;
+      setMaximumCount(Math.floor(frameHeight * 0.01575));
     }
-  }, [state.userStatus])
+  }, [state.userStatus]);
 
   useEffect(() => {
     if (state.transactions[0].length) {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [state.transactions])
+  }, [state.transactions]);
 
   useEffect(() => {
     if (state.userStatus) {
       maticWeb3 = new Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL),
-      ) // pass Matic provider to maticWeb3 object
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      ); // pass Matic provider to maticWeb3 object
 
-      const treasuryContract = Global.getTreasuryContract(maticWeb3)
+      const treasuryContract = Global.getTreasuryContract(maticWeb3);
 
       // get treasury contract's paused status (true or false)
-      ;(async function () {
-        const pauseStatus = await treasuryContract.methods.paused().call()
-        setIsPaused(pauseStatus)
+      (async function () {
+        const pauseStatus = await treasuryContract.methods.paused().call();
+        setIsPaused(pauseStatus);
 
-        console.log('Pause status: ' + pauseStatus)
-      })()
+        console.log('Pause status: ' + pauseStatus);
+      })();
     }
-  }, [state.userStatus])
+  }, [state.userStatus]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // ping the treasury contract for pause status
   function dataInterval() {
     maticWeb3 = new Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL),
-    ) // pass Matic provider to maticWeb3 object
+      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+    ); // pass Matic provider to maticWeb3 object
 
-    const treasuryContract = Global.getTreasuryContract(maticWeb3)
+    const treasuryContract = Global.getTreasuryContract(maticWeb3);
 
     async function fetchData() {
-      const response = await treasuryContract.methods.paused().call()
+      const response = await treasuryContract.methods.paused().call();
 
-      console.log('Response status: ' + response)
-      console.log('Current status: ' + isPaused)
+      console.log('Response status: ' + response);
+      console.log('Current status: ' + isPaused);
 
       if (response !== isPaused) {
         // display the pause status confirmation
@@ -78,36 +78,36 @@ const Admin = () => {
           dispatch({
             type: 'token_pings',
             data: 5,
-          })
+          });
         } else {
           dispatch({
             type: 'token_pings',
             data: 6,
-          })
+          });
         }
 
         // change the button type (pause or unpause)
-        setIsPaused(response)
-        console.log('Pause status (updated): ' + response)
+        setIsPaused(response);
+        console.log('Pause status (updated): ' + response);
 
-        clearInterval(interval)
+        clearInterval(interval);
       }
     }
 
     // call token contract every 1 second to get new pause status
     const interval = setInterval(() => {
-      fetchData()
-    }, 1000)
+      fetchData();
+    }, 1000);
 
-    return () => clearInterval(interval)
+    return () => clearInterval(interval);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function setPageData(type) {
-    setDataType(type)
-    setUserData(type, 1)
+    setDataType(type);
+    setUserData(type, 1);
   }
 
   function topLinks() {
@@ -185,24 +185,24 @@ const Admin = () => {
 
         <Divider className="tab-divider" />
       </Aux>
-    )
+    );
   }
 
   function setUserData(type, page) {
-    let result = []
-    const indexStart = (page - 1) * maximumCount
-    const indexEnd = indexStart + maximumCount
+    let result = [];
+    const indexStart = (page - 1) * maximumCount;
+    const indexEnd = indexStart + maximumCount;
 
     if (type === 'balances') {
-      result = true
+      result = true;
     } else if (type === 'history') {
-      result = dataHistory.slice(indexStart, indexEnd)
+      result = dataHistory.slice(indexStart, indexEnd);
     } else if (type === 'machines') {
-      result = dataMachines.slice(indexStart, indexEnd)
+      result = dataMachines.slice(indexStart, indexEnd);
     }
 
-    setDataPage(result)
-    setCurrentPage(page)
+    setDataPage(result);
+    setCurrentPage(page);
   }
 
   function noTxHistory() {
@@ -216,7 +216,7 @@ const Admin = () => {
           </Table.Cell>
         </Table.Row>
       </Table.Body>
-    )
+    );
   }
 
   return (
@@ -260,7 +260,7 @@ const Admin = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

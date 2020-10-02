@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider, Radio } from 'semantic-ui-react';
-// import ButtonAuthorize from './ButtonAuthorize'
-// import ButtonEnable from './ButtonEnable'
-// import ContentNFTs from './ContentNFTs'
+import Biconomy from '@biconomy/mexa';
+import Web3 from 'web3';
+import { Button, Divider } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
 import Global from '../Constants';
@@ -18,6 +17,8 @@ const Farming = () => {
   const [getTokens, setGetTokens] = useState(false);
 
   let userAddress = '';
+  let tokenContract = {};
+  let web3 = {};
 
   useEffect(() => {
     if (document.readyState === 'complete') {
@@ -29,14 +30,67 @@ const Farming = () => {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
-      if (getTokens) claimDG();
+      // initialize Web3 providers and create token contract instance
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const biconomy = new Biconomy(
+        new Web3.providers.HttpProvider(Global.MATIC_URL),
+        {
+          apiKey: Global.KEYS.BICONOMY_API,
+          debug: true,
+        }
+      );
+      const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
+      tokenContract = Global.getTokenContract('child', getWeb3);
+
+      biconomy
+        .onEvent(biconomy.READY, () => {
+          console.log('Mexa is Ready: Active Status');
+        })
+        .onEvent(biconomy.ERROR, (error, message) => {
+          console.error(error);
+        });
+
+      if (getTokens) metaTransaction();
     }
   }, [state.userStatus, getTokens]);
 
   // dispatch DG tokens to user
-  function claimDG() {
-    console.log('Dispatching DG tokens to user: ' + userAddress);
-    Global.FETCH.GET_TOKENS(userAddress);
+  // function claimDG() {
+  //   console.log('Dispatching DG tokens to user: ' + userAddress);
+  //   Global.FETCH.GET_TOKENS(userAddress);
+
+  //   setGetTokens(false);
+  // }
+
+  // Biconomy API meta-transaction. Dispatch DG tokens to player
+  async function metaTransaction() {
+    try {
+      console.log('Dispatching DG tokens to address: ' + userAddress);
+
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = tokenContract.methods
+        .getMyTokens(userAddress)
+        .encodeABI();
+
+      const txHash = await Global.executeMetaTransaction(
+        0,
+        functionSignature,
+        '',
+        tokenContract,
+        userAddress,
+        web3
+      );
+
+      if (txHash == false) {
+        console.log('Biconomy meta-transaction failed');
+      } else {
+        console.log('Biconomy meta-transaction hash: ' + txHash);
+
+        dispatchActiveStatus(txHash);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
     setGetTokens(false);
   }

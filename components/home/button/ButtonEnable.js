@@ -1,19 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import Global from '../Constants';
+import Global from '../../Constants';
 
-let spenderAddress = '';
-
-async function getAddresses() {
-  const addresses = await Global.API_ADDRESSES;
-  spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-}
-getAddresses();
-
-function ButtonAuthorize() {
+function ButtonEnable() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -21,9 +13,10 @@ function ButtonAuthorize() {
   const [transaction, setTransaction] = useState(false);
 
   let userAddress = '';
-  let tokenContract = {};
+  let treasuryContract = {};
   let web3 = {};
-  const value = 7;
+  let maticWeb3 = {};
+  const sessionDuration = Global.ACTIVE_PERIOD;
 
   useEffect(() => {
     if (state.userStatus) {
@@ -31,6 +24,9 @@ function ButtonAuthorize() {
 
       // initialize Web3 providers and create token contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      maticWeb3 = new Web3(
+        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      ); // pass Matic provider to maticWeb3 object
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.MATIC_URL),
         {
@@ -39,7 +35,7 @@ function ButtonAuthorize() {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-      tokenContract = Global.getTokenContract('child', getWeb3);
+      treasuryContract = Global.getTreasuryContract(getWeb3);
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -53,53 +49,41 @@ function ButtonAuthorize() {
     }
   }, [state.userStatus, transaction]);
 
-  function dispatchActiveStatus(txHash) {
-    console.log('Updating user status to: ' + value);
-
+  function dispatchActiveStatus(status, txHash) {
     // update global state active status
     dispatch({
       type: 'active_status',
-      data: true,
+      data: status,
     });
 
-    // update global state user status
-    dispatch({
-      type: 'update_status',
-      data: value,
-    });
-
-    // update user status in database
-    console.log('Posting user status to db: ' + value);
-    Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
-
-    // post authorization to database
-    console.log('Posting authorization transaction to db: MAX_AMOUNT');
+    // post reauthorization to database
+    console.log('Posting reauthorization transaction to db');
 
     Global.FETCH.POST_HISTORY(
       userAddress,
       Global.MAX_AMOUNT,
-      'Authorization',
+      'Reauthorization',
       'Confirmed',
       txHash,
       state.userStatus
     );
   }
 
-  // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
+  // Biconomy API meta-transaction. User must re-authorize treasury contract after dormant period
   async function metaTransaction() {
     try {
-      console.log('authorize amount: ' + Global.MAX_AMOUNT);
+      console.log('Session Duration: ' + sessionDuration);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = tokenContract.methods
-        .approve(spenderAddress, Global.MAX_AMOUNT)
+      let functionSignature = treasuryContract.methods
+        .enableAccount(sessionDuration)
         .encodeABI();
 
       const txHash = await Global.executeMetaTransaction(
-        0,
+        1,
         functionSignature,
-        '',
-        tokenContract,
+        sessionDuration,
+        treasuryContract,
         userAddress,
         web3
       );
@@ -109,7 +93,12 @@ function ButtonAuthorize() {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        dispatchActiveStatus(txHash);
+        const activeStatus = await Global.getActiveStatus(
+          userAddress,
+          maticWeb3
+        );
+        console.log('Active status (updated): ' + activeStatus);
+        dispatchActiveStatus(activeStatus, txHash);
       }
     } catch (error) {
       console.log(error);
@@ -119,24 +108,13 @@ function ButtonAuthorize() {
   }
 
   return (
-    <div>
-      <span>
-        <Button
-          className="account-connected-play-button"
-          onClick={() => setTransaction(true)}
-        >
-          AUTHORIZE
-        </Button>
-      </span>
-
-      <Button
-        className="account-connected-play-button-mobile"
-        onClick={() => setTransaction(true)}
-      >
-        AUTHORIZE
-      </Button>
-    </div>
+    <Button
+      className="account-connected-play-button"
+      onClick={() => setTransaction(true)}
+    >
+      AUTHORIZE
+    </Button>
   );
 }
 
-export default ButtonAuthorize;
+export default ButtonEnable;

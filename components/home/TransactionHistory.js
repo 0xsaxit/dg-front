@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Table, Divider, Grid, Button } from 'semantic-ui-react';
-import ButtonAuthorize from './ButtonAuthorize';
-import ButtonEnable from './ButtonEnable';
+import ButtonAuthorize from './button/ButtonAuthorize';
+import ButtonEnable from './button/ButtonEnable';
 import Spinner from '../Spinner';
 import ContentTransactions from './ContentTransactions';
 import Pagination from './Pagination';
@@ -23,7 +23,7 @@ const History = () => {
   const [doneLoading, setDoneLoading] = useState(true);
 
   useEffect(() => {
-    if(document.readyState === 'complete') {
+    if (document.readyState === 'complete') {
       setDoneLoading(false);
     }
   });
@@ -113,7 +113,10 @@ const History = () => {
                   </span>
                 </span>
 
-                <span style={{ display: 'flex', justifyContent: 'flex-end' }} className="account-authorize-span">
+                <span
+                  style={{ display: 'flex', justifyContent: 'flex-end' }}
+                  className="account-authorize-span"
+                >
                   {state.userStatus === 6 ? (
                     <ButtonAuthorize />
                   ) : state.userStatus === 7 ? (
@@ -125,7 +128,7 @@ const History = () => {
                   )}
                 </span>
 
-                <Divider className="DG-mobile-divider"/>
+                <Divider className="DG-mobile-divider" />
 
                 <span className="account-authorize-span-mobile">
                   {state.userStatus === 6 ? (
@@ -133,12 +136,14 @@ const History = () => {
                   ) : state.userStatus === 7 ? (
                     <ButtonEnable />
                   ) : (
-                    <Button disabled className="account-connected-play-button-mobile">
+                    <Button
+                      disabled
+                      className="account-connected-play-button-mobile"
+                    >
                       AUTHORIZE
                     </Button>
                   )}
                 </span>
-
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -169,8 +174,15 @@ const History = () => {
 
               {dataType == 'history' ? (
                 <span>
-                  <b className="account-hover active" id="account-txs-tab">TRANSACTIONS</b>
-                  <b className="account-hover active" id="account-txs-tab-mobile">TXS</b>
+                  <b className="account-hover active" id="account-txs-tab">
+                    TRANSACTIONS
+                  </b>
+                  <b
+                    className="account-hover active"
+                    id="account-txs-tab-mobile"
+                  >
+                    TXS
+                  </b>
                 </span>
               ) : (
                 <span>
@@ -237,8 +249,9 @@ const History = () => {
 
   return (
     <div className="main-container">
-    
-      {doneLoading ? <Spinner background={3} /> :
+      {doneLoading ? (
+        <Spinner background={3} />
+      ) : (
         <div className="page-container">
           <div className="account-other-inner-container">
             {topLinks()}
@@ -265,7 +278,7 @@ const History = () => {
             />
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

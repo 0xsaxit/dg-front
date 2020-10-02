@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import { Button } from 'semantic-ui-react';
-import Global from '../Constants';
+import Global from '../../Constants';
 
 function ButtonPause(props) {
   // get user's status from the Context API store
