@@ -322,6 +322,10 @@ img.logo-image {
   color: black !important;
 }
 
+.post__content {
+  background-color: #f9fbfd;
+}
+
 .blogdetail-page-container .post__content img {
   display: block;
   margin-top: 30px;
@@ -458,6 +462,7 @@ img.logo-image {
   margin-bottom: -30px;
   display: flex;
   justify-content: space-between;
+  background-color: #f9fbfd !important;
 }
 
 .read-next-button:first-child {

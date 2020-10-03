@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 
 const detailsNFTs = {
   tominoya: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_n439sj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_9_yxm85s.png',
     'nft-pic',
     'Tominoya, Vegas City',
     'LOCATION: -120, 135',
@@ -16,7 +16,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/tominoya-casino-nft-sale',
   ],
   flamingos: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_9_yxm85s.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_n439sj.png',
     'nft-pic',
     'Flamingos, Vegas City',
     'LOCATION: -126, 118',
