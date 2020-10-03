@@ -33,15 +33,15 @@ const options = [
 ];
 
 const detailsGames = {
-  Slots: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/slots-1_qa9ced_a8rqpc_lcvhua.jpg',
+  BlackJack: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/blackjack_haiuyl_pnpdet_nolik4.jpg',
     'nft-pic',
-    'Slots',
-    'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
-    '1 PLAYER',
+    'Blackjack',
+    'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
+    '1-4 PLAYERS',
     'PLAY, MANA, DAI',
     'https://play.decentral.games',
-    'https://docs.decentral.games/games/slots',
+    'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058162/roulette-1_rmgcgr_evcxkj_rwjlcw.jpg',
@@ -53,6 +53,16 @@ const detailsGames = {
     'https://play.decentral.games',
     'https://docs.decentral.games/games/roulette',
   ],
+  Slots: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058163/slots-1_qa9ced_a8rqpc_lcvhua.jpg',
+    'nft-pic',
+    'Slots',
+    'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
+    '1 PLAYER',
+    'PLAY, MANA, DAI',
+    'https://play.decentral.games',
+    'https://docs.decentral.games/games/slots',
+  ],
   Backgammon: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/dice_fheuwk_t8hjf6_ydjuva.jpg',
     'nft-pic',
@@ -62,16 +72,6 @@ const detailsGames = {
     'PLAY, MANA, DAI',
     'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold',
     'https://docs.decentral.games/games/backgammon',
-  ],
-  BlackJack: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058160/blackjack_haiuyl_pnpdet_nolik4.jpg',
-    'nft-pic',
-    'Blackjack',
-    'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
-    '1-4 PLAYERS',
-    'PLAY, MANA, DAI',
-    'https://play.decentral.games',
-    'https://docs.decentral.games/games/blackjack',
   ],
 };
 

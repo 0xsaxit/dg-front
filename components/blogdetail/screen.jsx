@@ -145,7 +145,7 @@ const Screen = ({
           </div>
         </span>
 
-        <div style={{ backgroundColor: 'white', marginTop: '45px' }}>
+        <div style={{ marginTop: '45px' }}>
           <div>
             <div className="post__content">
               {HtmlParser(body)}

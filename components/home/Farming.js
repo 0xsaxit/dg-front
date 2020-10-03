@@ -342,7 +342,7 @@ const Farming = () => {
                 target="_blank"
                 style={{ marginTop: '-75px' }}
               >
-                Balancer
+                Go To Pool
               </Button>
             </span>
 
@@ -411,7 +411,7 @@ const Farming = () => {
                 target="_blank"
                 style={{ marginTop: '-75px' }}
               >
-                Balancer
+                Go To Pool
               </Button>
             </span>
 
