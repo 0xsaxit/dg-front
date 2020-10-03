@@ -3,7 +3,8 @@ import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
-import Global from '../Constants';
+// import Global from '../Constants';
+import Images from '../../common/Images';
 
 const options = [
   {
@@ -243,7 +244,7 @@ const Offerings = () => {
                   className="image inline"
                   width="21px"
                   height="21px"
-                  src={Global.IMAGES.PLAY_CIRCLE}
+                  src={Images.PLAY_CIRCLE}
                 />
                 PLAY
               </span>
@@ -266,7 +267,7 @@ const Offerings = () => {
                   className="image inline"
                   width="21px"
                   height="21px"
-                  src={Global.IMAGES.MANA_CIRCLE}
+                  src={Images.MANA_CIRCLE}
                 />
                 MANA
               </span>
@@ -286,7 +287,7 @@ const Offerings = () => {
                   className="image inline"
                   width="21px"
                   height="21px"
-                  src={Global.IMAGES.DAI_CIRCLE}
+                  src={Images.DAI_CIRCLE}
                 />
                 DAI
               </span>
@@ -340,7 +341,7 @@ const Offerings = () => {
                     className="image inline"
                     width="21px"
                     height="21px"
-                    src={Global.IMAGES.PLAY_CIRCLE}
+                    src={Images.PLAY_CIRCLE}
                   />
                   PLAY
                 </span>
@@ -361,7 +362,7 @@ const Offerings = () => {
                     className="image inline"
                     width="21px"
                     height="21px"
-                    src={Global.IMAGES.MANA_CIRCLE}
+                    src={Images.MANA_CIRCLE}
                   />
                   MANA
                 </span>
@@ -382,7 +383,7 @@ const Offerings = () => {
                     className="image inline"
                     width="21px"
                     height="21px"
-                    src={Global.IMAGES.DAI_CIRCLE}
+                    src={Images.DAI_CIRCLE}
                   />
                   DAI
                 </span>

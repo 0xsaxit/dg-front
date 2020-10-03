@@ -2,6 +2,7 @@ import Tokens from '../components/home/Tokens';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
+import Images from '../common/Images';
 
 const NFTs = () => {
   return (
@@ -9,7 +10,7 @@ const NFTs = () => {
       <Header
         title={Global.TITLE + ' | NFTs'}
         description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE}
+        image={Images.SOCIAL_SHARE}
       />
 
       <Tokens />

@@ -8,7 +8,8 @@ import MessageBar from './MessageBar';
 import Verify from './Verify';
 import MessageBox from './MessageBox';
 import Aux from '../_Aux';
-import Global from '../Constants';
+// import Global from '../Constants';
+import Images from '../../common/Images';
 
 const MenuTop = () => {
   // get token balances from the Context API store
@@ -130,7 +131,7 @@ const MenuTop = () => {
         <img
           className="image inline pointer"
           id="menu-logo"
-          src={Global.IMAGES.LOGO}
+          src={Images.LOGO}
           style={{
             width: '39px',
             paddingTop: '15px',

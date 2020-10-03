@@ -1,5 +1,6 @@
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
+import Images from '../../common/Images';
 
 const ContentTransactions = (props) => {
   function contentLabels() {
@@ -53,7 +54,7 @@ const ContentTransactions = (props) => {
             <tr className="table-body" key={i}>
               <td className="table-body-text-1 first">
                 <img
-                  src={Global.IMAGES.ICON_MANA}
+                  src={Images.ICON_MANA}
                   style={{
                     width: '21px',
                     marginRight: '6px',
@@ -122,7 +123,7 @@ const ContentTransactions = (props) => {
               <td className="table-body-text-1 first">
                 {row.coinName === 'play' ? (
                   <img
-                    src={Global.IMAGES.ICON_MANA}
+                    src={Images.ICON_MANA}
                     style={{
                       width: '21px',
                       marginRight: '6px',
@@ -133,7 +134,7 @@ const ContentTransactions = (props) => {
                   />
                 ) : (
                   <img
-                    src={Global.IMAGES.ICON_PLAY}
+                    src={Images.ICON_PLAY}
                     style={{
                       width: '21px',
                       marginRight: '6px',

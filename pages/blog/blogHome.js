@@ -6,6 +6,7 @@ import Link from 'next/link';
 // import $ from 'jquery';
 import Aux from '../../components/_Aux';
 import Global from '../../components/Constants';
+import Images from '../../common/Images';
 
 function blog() {
   const [state, dispatch] = useContext(GlobalContext);
@@ -57,10 +58,7 @@ function blog() {
         <Link href="/blog/[id]" as="/blog/decentralgames-secures-investment">
           <a>
             <span className="featured-blog-grid">
-              <Image
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1599777537/Group_6_vj1jdx.png"
-                className="featured-image"
-              />
+              <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">

@@ -1,85 +1,80 @@
-import { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../store'
-import { Form, Input } from 'semantic-ui-react'
-import Global from '../Constants'
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
+import { Form, Input } from 'semantic-ui-react';
+import Global from '../Constants';
+import Images from '../../common/Images';
 
 const ContentModal = (props) => {
   // get user's status from the Context API store
-  const [state, dispatch] = useContext(GlobalContext)
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [amount, setAmount] = useState(0)
-  const [transaction, setTransaction] = useState(false)
+  const [amount, setAmount] = useState(0);
+  const [transaction, setTransaction] = useState(false);
 
-  let userAddress = ''
-  let web3 = {}
+  let userAddress = '';
+  let web3 = {};
 
   useEffect(() => {
     if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress
-      web3 = new Web3(window.ethereum) // pass MetaMask provider to Web3 constructor
+      userAddress = window.web3.currentProvider.selectedAddress;
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       if (transaction && amount) {
         if (props.type === 'deposit') {
-          depositFunds() // MetaMask popup window
+          depositFunds(); // MetaMask popup window
         } else {
-          withdrawFunds() // MetaMask popup window
+          withdrawFunds(); // MetaMask popup window
         }
       } else {
-        setTransaction(false)
+        setTransaction(false);
       }
     }
-  }, [state.userStatus, transaction, amount])
+  }, [state.userStatus, transaction, amount]);
 
   function inputChange(e) {
-    const valueWei = e.target.value * Global.FACTOR
-    setAmount(valueWei)
+    const valueWei = e.target.value * Global.FACTOR;
+    setAmount(valueWei);
   }
 
   async function depositFunds() {
-    props.showModal(false) // close the modal
+    props.showModal(false); // close the modal
 
     const txHash = await Global.depositToParent(
       props.gameTypeInt,
       0,
       amount,
       userAddress,
-      web3,
-    )
-    console.log('Tx Hash: ' + txHash)
+      web3
+    );
+    console.log('Tx Hash: ' + txHash);
 
-    initializePings()
+    initializePings();
   }
 
   async function withdrawFunds() {
-    props.showModal(false) // close the modal
+    props.showModal(false); // close the modal
 
     const txHash = await Global.withdrawFromParent(
       props.gameTypeInt,
       0,
       amount,
       userAddress,
-      web3,
-    )
-    console.log('Tx Hash: ' + txHash)
+      web3
+    );
+    console.log('Tx Hash: ' + txHash);
 
-    initializePings()
+    initializePings();
   }
 
   function initializePings() {
-    console.log('Ping token contract')
+    console.log('Ping token contract');
 
     // ping token contract for transaction confirmation
     dispatch({
       type: 'token_pings',
       data: 2,
-    })
-
-    // display message box pending message
-    // dispatch({
-    //   type: 'message_box',
-    //   data: 1,
-    // });
+    });
   }
 
   return (
@@ -113,7 +108,7 @@ const ContentModal = (props) => {
           className="image inline"
           width="21px"
           height="21px"
-          src={Global.IMAGES.DAI_CIRCLE}
+          src={Images.DAI_CIRCLE}
         />
         DAI
       </span>
@@ -132,12 +127,12 @@ const ContentModal = (props) => {
           className="image inline"
           width="21px"
           height="21px"
-          src={Global.IMAGES.MANA_CIRCLE}
+          src={Images.MANA_CIRCLE}
         />
         MANA
       </span>
     </span>
-  )
-}
+  );
+};
 
-export default ContentModal
+export default ContentModal;

@@ -7,6 +7,7 @@ import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
 import Global from '../components/Constants';
+import Images from '../common/Images';
 
 const Wildcard = () => {
   // dispatch affiliate referral address to the Context API store
@@ -42,7 +43,7 @@ const Wildcard = () => {
           <Header
             title={Global.TITLE + ' | Account'}
             description={Global.DESCRIPTION}
-            image={Global.IMAGES.SOCIAL_SHARE}
+            image={Images.SOCIAL_SHARE}
           />
 
           <TransactionHistory />
@@ -52,7 +53,7 @@ const Wildcard = () => {
           <Header
             title={Global.TITLE + ' | Page Not Found'}
             description={Global.DESCRIPTION}
-            image={Global.IMAGES.SOCIAL_SHARE}
+            image={Images.SOCIAL_SHARE}
           />
 
           <Content404 />

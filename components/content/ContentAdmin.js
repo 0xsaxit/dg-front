@@ -3,6 +3,7 @@ import { GlobalContext } from '../../store';
 import { Table, Divider, Grid } from 'semantic-ui-react';
 import ModalFunds from '../modal/ModalFunds';
 import Global from '../Constants';
+import Images from '../../common/Images';
 
 const ContentAdmin = (props) => {
   // get token balances from the Context API store
@@ -89,7 +90,7 @@ const ContentAdmin = (props) => {
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img
-              src={Global.IMAGES.DAI_CIRCLE}
+              src={Images.DAI_CIRCLE}
               style={{
                 width: '60px',
                 display: 'flex',
@@ -113,7 +114,7 @@ const ContentAdmin = (props) => {
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img
-              src={Global.IMAGES.MANA_CIRCLE}
+              src={Images.MANA_CIRCLE}
               style={{
                 width: '60px',
                 display: 'flex',
@@ -175,11 +176,11 @@ const ContentAdmin = (props) => {
           let coinName = 'MANA';
           let coinImage = '';
           if (coinName === 'PLAY') {
-            coinImage = Global.IMAGES.PLAY_CIRCLE;
+            coinImage = Images.PLAY_CIRCLE;
           } else if (coinName === 'MANA') {
-            coinImage = Global.IMAGES.ICON_MANA;
+            coinImage = Images.ICON_MANA;
           } else if (coinName === 'DAI') {
-            coinImage = Global.IMAGES.ICON_DAI;
+            coinImage = Images.ICON_DAI;
           }
 
           let date = new Date(row.latestSessionDate);
@@ -248,11 +249,11 @@ const ContentAdmin = (props) => {
 
             let coinImage = '';
             if (coinName === 'PLAY') {
-              coinImage = Global.IMAGES.PLAY_CIRCLE;
+              coinImage = Images.PLAY_CIRCLE;
             } else if (coinName === 'MANA') {
-              coinImage = Global.IMAGES.ICON_MANA;
+              coinImage = Images.ICON_MANA;
             } else if (coinName === 'DAI') {
-              coinImage = Global.IMAGES.ICON_DAI;
+              coinImage = Images.ICON_DAI;
             }
 
             let date = new Date(row.createdAt);

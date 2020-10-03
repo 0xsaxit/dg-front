@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import PostPreview from '../blog/PostPreview';
+// import PostPreview from '../blog/PostPreview';
 import { Divider, Icon, Button } from 'semantic-ui-react';
-import { Menu, Navbar } from 'semantic-ui-react';
+// import { Menu, Navbar } from 'semantic-ui-react';
 import HtmlParser from './HtmlParser';
-import Link from 'next/link';
-import Global from '../Constants';
+// import Link from 'next/link';
+// import Global from '../Constants';
+import Images from '../../common/Images';
 
 const Screen = ({
   slug,
@@ -18,9 +19,8 @@ const Screen = ({
   body,
   filteredPages,
   unfilteredPages,
-  category: { name = '' }
+  category: { name = '' },
 }) => {
-
   const [randomfilteredPages, setFilteredPages] = useState();
 
   useEffect(() => {
@@ -73,8 +73,15 @@ const Screen = ({
 
   return (
     <div>
-
-      <div className="blog-share-div" style={{ maxWidth: '1400px', paddingLeft: '27px', marginLeft: 'auto', marginRight: 'auto' }}>
+      <div
+        className="blog-share-div"
+        style={{
+          maxWidth: '1400px',
+          paddingLeft: '27px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}
+      >
         <span
           style={{
             display: 'flex',
@@ -83,14 +90,22 @@ const Screen = ({
             marginTop: '14px',
           }}
         >
-          <a className="twitter-share-button" href="https://twitter.com/share?url=" target="_blank">
-            <Icon className="share-icon" style={{ fontSize: '34px' }} name="twitter square" />
+          <a
+            className="twitter-share-button"
+            href="https://twitter.com/share?url="
+            target="_blank"
+          >
+            <Icon
+              className="share-icon"
+              style={{ fontSize: '34px' }}
+              name="twitter square"
+            />
           </a>
           <a href="http://www.facebook.com/share.php?url=">
             <Icon
               style={{
                 fontSize: '34px',
-                margin: '15px 0px 15px 0px'
+                margin: '15px 0px 15px 0px',
               }}
               name="facebook"
             />
@@ -104,7 +119,21 @@ const Screen = ({
       <div className="blogdetail-page-container">
         <div className="blogdetails">
           <div className="bloginfo">
-            <p> <a style={{ color: '#2085f4', position: 'relative', zIndex: '10' }} href="/blog/">Blog</a> » <a style={{ color: '#2085f4', position: 'relative', zIndex: '10' }} href={`/blog/category/${name.toLowerCase()}/`}>{`${name}`}</a> » {title} </p>
+            <p>
+              {' '}
+              <a
+                style={{ color: '#2085f4', position: 'relative', zIndex: '10' }}
+                href="/blog/"
+              >
+                Blog
+              </a>{' '}
+              »{' '}
+              <a
+                style={{ color: '#2085f4', position: 'relative', zIndex: '10' }}
+                href={`/blog/category/${name.toLowerCase()}/`}
+              >{`${name}`}</a>{' '}
+              » {title}{' '}
+            </p>
             <div className="title">
               <h1>{title}</h1>
             </div>
@@ -112,17 +141,16 @@ const Screen = ({
             <div className="info">
               <div className="post-author" style={{ marginBottom: '90px' }}>
                 <span style={{ display: 'flex', marginTop: '45px' }}>
-
-                  <div className="post-date-blogdetail" style={{ marginRight: '13px' }}>
+                  <div
+                    className="post-date-blogdetail"
+                    style={{ marginRight: '13px' }}
+                  >
                     <span>
-                      {new Date(created).toLocaleDateString(
-                        'en-DE',
-                        {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                        }
-                      )}
+                      {new Date(created).toLocaleDateString('en-DE', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
                     </span>
                   </div>
                   <div className="post-date-blogdetail">
@@ -131,25 +159,32 @@ const Screen = ({
                     </span>
                   </div>
                 </span>
-
               </div>
             </div>
           </div>
         </div>
 
-        <span style={{ marginTop: '-60px', display: 'flex', justifyContent: 'space-around' }}>   
+        <span
+          style={{
+            marginTop: '-60px',
+            display: 'flex',
+            justifyContent: 'space-around',
+          }}
+        >
           <div className="coverimg">
             <div className="image main-image">
-              <img className="blog-hero-img" src={image || Global.IMAGES.SOCIAL_SHARE} alt="" />
+              <img
+                className="blog-hero-img"
+                src={image || Images.SOCIAL_SHARE}
+                alt=""
+              />
             </div>
           </div>
         </span>
 
         <div style={{ marginTop: '45px' }}>
           <div>
-            <div className="post__content">
-              {HtmlParser(body)}
-            </div>
+            <div className="post__content">{HtmlParser(body)}</div>
 
             <div className="read-next-div">
               {randomfilteredPages &&
@@ -163,12 +198,8 @@ const Screen = ({
             <Divider
               style={{ color: 'rgb(241, 241, 241)', marginTop: '60px' }}
             />
-            <div
-              style={{ marginBottom: '150px' }}
-            >
-            </div>
+            <div style={{ marginBottom: '150px' }}></div>
           </div>
-
         </div>
       </div>
     </div>

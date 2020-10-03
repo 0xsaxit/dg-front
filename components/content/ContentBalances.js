@@ -3,6 +3,7 @@ import { GlobalContext } from '../../store/index';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
 import Global from '../Constants';
+import Images from '../../common/Images';
 
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -107,10 +108,7 @@ const ContentBalances = (props) => {
           <div className="matic-top-bar">
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ display: 'flex' }}>
-                <img
-                  src={Global.IMAGES.MATIC_TOP}
-                  className="matic-top-image"
-                />
+                <img src={Images.MATIC_TOP} className="matic-top-image" />
                 <p className="matic-top-text-1"> Account Connected </p>
               </span>
               <span style={{ display: 'flex' }}>
@@ -189,7 +187,7 @@ const ContentBalances = (props) => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
-                  src={Global.IMAGES.PLAY_CIRCLE}
+                  src={Images.PLAY_CIRCLE}
                   style={{
                     width: '60px',
                     display: 'flex',
@@ -261,7 +259,7 @@ const ContentBalances = (props) => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
-                  src={Global.IMAGES.DAI_CIRCLE}
+                  src={Images.DAI_CIRCLE}
                   style={{
                     width: '60px',
                     display: 'flex',
@@ -319,7 +317,7 @@ const ContentBalances = (props) => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
-                  src={Global.IMAGES.MANA_CIRCLE}
+                  src={Images.MANA_CIRCLE}
                   style={{
                     width: '60px',
                     display: 'flex',

@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container } from 'semantic-ui-react';
-import Global from '../Constants';
+// import Global from '../Constants';
+import Images from '../../common/Images';
 
 const PostPreview = ({
   title,
@@ -9,7 +10,7 @@ const PostPreview = ({
   categories,
   created,
   featured_image,
-  // url, 
+  // url,
   slug,
 }) => {
   return (
@@ -17,7 +18,7 @@ const PostPreview = ({
       <a className="post">
         <Container className="post-container">
           <div className="post-image">
-            <img src={featured_image || Global.IMAGES.SOCIAL_SHARE} alt="" />
+            <img src={featured_image || Images.SOCIAL_SHARE} alt="" />
           </div>
           <div className="post-info">
             <div className="top">

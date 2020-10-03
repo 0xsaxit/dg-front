@@ -2,6 +2,7 @@ import Farming from '../components/home/Farming';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
+import Images from '../common/Images';
 
 const dg = () => {
   return (
@@ -9,7 +10,7 @@ const dg = () => {
       <Header
         title={Global.TITLE + ' | DG'}
         description={Global.DESCRIPTION}
-        image={Global.IMAGES.SOCIAL_SHARE}
+        image={Images.SOCIAL_SHARE}
       />
 
       <Farming />
