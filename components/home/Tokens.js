@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Image, Button, Divider, Grid, Breadcrumb } from 'semantic-ui-react';
-import ContentNFTs from './ContentNFTs';
+import { Image, Button, Divider } from 'semantic-ui-react';
+import ContentNFTs from '../content/ContentNFTs';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
 
@@ -77,7 +77,7 @@ const detailsNFTs = {
     'Lazy day but designer slides complete with socks to keep your toes warm.',
     'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/25Slides',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ]
+  ],
 };
 
 const Tokens = () => {
@@ -90,7 +90,7 @@ const Tokens = () => {
   const [doneLoading, setDoneLoading] = useState(true);
 
   useEffect(() => {
-    if(document.readyState === 'complete') {
+    if (document.readyState === 'complete') {
       setDoneLoading(false);
     }
   });
@@ -110,7 +110,10 @@ const Tokens = () => {
         {Object.keys(detailsNFTs).map((item, i) => (
           <a href={detailsNFTs[item][5]} className="nft-container">
             <div key={i}>
-              <span style={{ display: 'flex', justifyContent: 'center' }} className="nft-image">
+              <span
+                style={{ display: 'flex', justifyContent: 'center' }}
+                className="nft-image"
+              >
                 <Image
                   src={detailsNFTs[item][0]}
                   className={detailsNFTs[item][1]}
@@ -118,20 +121,26 @@ const Tokens = () => {
                 />
               </span>
               <div className="nft-description">
-                <h3
-                  className="nft-other-h3"
-                >
-                  {detailsNFTs[item][2]}
-                </h3>
+                <h3 className="nft-other-h3">{detailsNFTs[item][2]}</h3>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <p className="nfts-info">{detailsNFTs[item][3]}</p>
                 </span>
 
-                <Divider style={{ margin: '10px 0px 15px 0px', width: 'calc(100% + 60px)', marginLeft: '-30px' }}/>
+                <Divider
+                  style={{
+                    margin: '10px 0px 15px 0px',
+                    width: 'calc(100% + 60px)',
+                    marginLeft: '-30px',
+                  }}
+                />
 
                 <p
                   className="nft-other-p"
-                  style={{ marginTop: '-12px', paddingTop: '15px', textAlign: 'center' }}
+                  style={{
+                    marginTop: '-12px',
+                    paddingTop: '15px',
+                    textAlign: 'center',
+                  }}
                 >
                   {detailsNFTs[item][4]}
                 </p>
@@ -153,7 +162,6 @@ const Tokens = () => {
                     READ MORE
                   </Button>
                 </span>
-
               </div>
             </div>
           </a>
@@ -215,8 +223,9 @@ const Tokens = () => {
 
   return (
     <div className="main-container">
-
-      {doneLoading ? <Spinner background={3} /> :
+      {doneLoading ? (
+        <Spinner background={3} />
+      ) : (
         <div className="page-container">
           <div className="account-other-inner-container ">
             {submenu()}
@@ -226,7 +235,7 @@ const Tokens = () => {
             {NFTstate == 1 ? myNFTs() : buyNFTs()}
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

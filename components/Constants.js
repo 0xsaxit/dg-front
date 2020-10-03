@@ -20,7 +20,6 @@ const KEYS = {
 // common constant values
 const API_BASE_URL = 'https://api.decentral.games'; // https://api.decentral.games, http://localhost:5000
 const BASE_URL = 'https://decentral.games';
-// const DEFAULT_AMOUNT = 1000;
 const MAX_AMOUNT =
   '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 const GAS_LIMIT = '3000000'; // was '900000'
@@ -42,7 +41,7 @@ const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
 const BUTTER = Butter(KEYS.BUTTER_TOKEN);
 const DISCORD_URL = 'https://discord.gg/cvbSNzY';
-const SOCIAL_HANDLE = '@decentralgames';
+const SOCIAL_HANDLE = 'decentralgames';
 const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -383,6 +382,20 @@ function getTokenContract(network, web3Default) {
   }
 
   return tokenContract;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// return dgPointer contract for Biconomy API meta-transaction calls
+function getDGPointerContract(web3Default) {
+  let dgPointerContract;
+
+  dgPointerContract = new web3Default.eth.Contract(
+    ABIs.DG_POINTER,
+    DG_POINTER_ADDRESS
+  );
+
+  return dgPointerContract;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -791,7 +804,6 @@ export default {
   ADDRESS_TOMINOYA,
   API_BASE_URL,
   BASE_URL,
-  // DEFAULT_AMOUNT,
   MAX_AMOUNT,
   FACTOR,
   PARENT_NETWORK_ID,
@@ -809,6 +821,7 @@ export default {
   IMAGES,
   FETCH,
   getTokenContract,
+  getDGPointerContract,
   getTreasuryContract,
   getActiveStatus,
   balanceOfToken,

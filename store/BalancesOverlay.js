@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import ContentBalances from './ContentBalances';
+import ContentBalances from '../components/content/ContentBalances';
 import Aux from '../components/_Aux';
 
 const BalancesOverlay = () => {
@@ -86,7 +86,7 @@ const BalancesOverlay = () => {
           </span>
         </span>
       ) : null}
-   
+
       <div style={styles.balancesModal}>
         <div className="page-container">
           <div className="account-other-inner-container"></div>

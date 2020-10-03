@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
-import ContentModal from './ContentModal';
+import ContentModal from '../content/ContentModal';
 
 const ModalFunds = (props) => {
   // define local variables

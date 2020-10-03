@@ -1,5 +1,5 @@
 import { Button, Divider } from 'semantic-ui-react';
-import Global from '../Constants';
+import Aux from '../_Aux';
 
 const ContentNFTs = (props) => {
   // define local variables
@@ -19,10 +19,7 @@ const ContentNFTs = (props) => {
   ];
 
   const d = new Date();
-  const months = [
-    monthNames[d.getMonth()],
-    'TOTAL',
-  ];
+  const months = [monthNames[d.getMonth()], 'TOTAL'];
 
   return (
     <div className="nft-container">
@@ -30,24 +27,31 @@ const ContentNFTs = (props) => {
         src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelData.parcelLocation[0]},${props.parcelData.parcelLocation[2]},1.png`}
         className="my-nft-pic"
       />
-      <div className="nft-description" style={{ paddingLeft: '1px', paddingRight: '1px' }}>
-        <div>
-          <p className="nfts-info mine" style={{ width: '158px' }}>LOCATION:{' '}
-            {props.parcelData.parcelLocation[0]},{' '}
+      <div
+        className="nft-description"
+        style={{ paddingLeft: '1px', paddingRight: '1px' }}
+      >
+        <Aux>
+          <p className="nfts-info mine" style={{ width: '158px' }}>
+            LOCATION: {props.parcelData.parcelLocation[0]},{' '}
             {props.parcelData.parcelLocation[2]}
           </p>
 
-          <Divider style={{ marginTop: '18px' }}/>
+          <Divider style={{ marginTop: '18px' }} />
 
           {months.map((item, i) => {
             return (
-              <div>
-                <span style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+              <Aux>
+                <span
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <p className="nft-bold-content">VOLUME ({item})</p>
                   <span>
-                    <abbr
-                      className="nft-number-content"
-                    >
+                    <abbr className="nft-number-content">
                       {props.parcelData.parcelVolume[i]} MANA
                     </abbr>
                   </span>
@@ -55,24 +59,26 @@ const ContentNFTs = (props) => {
 
                 <Divider />
 
-                <span style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+                <span
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <p className="nft-bold-content">PROFIT ({item})</p>
                   <span>
-                    <abbr
-                      className="nft-number-content"
-                    >
+                    <abbr className="nft-number-content">
                       {props.parcelData.parcelRevenue[i]} MANA
                     </abbr>
                   </span>
-                </span>  
+                </span>
 
                 <Divider />
-
-              </div>
+              </Aux>
             );
           })}
-        </div>
-
+        </Aux>
 
         <Button
           color="blue"

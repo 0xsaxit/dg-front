@@ -17,7 +17,7 @@ const Farming = () => {
   const [getTokens, setGetTokens] = useState(false);
 
   let userAddress = '';
-  let tokenContract = {};
+  let pointerContract = {};
   let web3 = {};
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Farming = () => {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-      tokenContract = Global.getTokenContract('child', getWeb3);
+      pointerContract = Global.getDGPointerContract(getWeb3);
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -68,15 +68,13 @@ const Farming = () => {
       console.log('Dispatching DG tokens to address: ' + userAddress);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = tokenContract.methods
-        .getMyTokens(userAddress)
-        .encodeABI();
+      let functionSignature = pointerContract.methods.getMyTokens().encodeABI();
 
       const txHash = await Global.executeMetaTransaction(
         0,
         functionSignature,
         '',
-        tokenContract,
+        pointerContract,
         userAddress,
         web3
       );
@@ -281,9 +279,8 @@ const Farming = () => {
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
                 You can farm $DG by providing liquidity in 98/2 MANA/DG and
-                DAI/DG Balancer pools and staking the LP
-                tokens on this dashboard. Read more about $DG liquidity farming
-                rewards in our
+                DAI/DG Balancer pools and staking the LP tokens on this
+                dashboard. Read more about $DG liquidity farming rewards in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -477,9 +474,9 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
-                Staked $DG tokens are used to vote in decentral.games
-                governance and to receive $DG governance rewards. Proposals
-                can be submitted and voted on{' '}
+                Staked $DG tokens are used to vote in decentral.games governance
+                and to receive $DG governance rewards. Proposals can be
+                submitted and voted on{' '}
                 <a href="" style={{ color: '#2085f4' }}>
                   {' '}
                   here
@@ -585,7 +582,10 @@ const Farming = () => {
             </span>
           </div>
 
-          <div className="DG-column stake" style={{ position: 'relative', height: '100%' }}>
+          <div
+            className="DG-column stake"
+            style={{ position: 'relative', height: '100%' }}
+          >
             <span style={{ display: 'flex' }}>
               <img src={Global.IMAGES.SNAPSHOT_ICON} className="farming-logo" />
               <span className="farming-pool-span">

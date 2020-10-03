@@ -1,8 +1,8 @@
-import { useEffect, useContext } from 'react'
-import { GlobalContext } from './index'
-import { Button, Divider, Grid } from 'semantic-ui-react'
-import transakSDK from '@transak/transak-sdk'
-import Global from '../components/Constants'
+import { useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store/index';
+import { Button, Divider, Grid } from 'semantic-ui-react';
+import transakSDK from '@transak/transak-sdk';
+import Global from '../Constants';
 
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -16,57 +16,57 @@ let transak = new transakSDK({
   hostURL: Global.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '450px',
-})
+});
 
 const ContentBalances = (props) => {
   // get token balances from the Context API store
-  const [state, dispatch] = useContext(GlobalContext)
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = ''
+  let userAddress = '';
 
   useEffect(() => {
     // get all the events
     transak.on(transak.ALL_EVENTS, (data) => {
-      console.log(data)
-    })
+      console.log(data);
+    });
     // triggers when the user closes the widget
     transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak.close()
-    })
+      transak.close();
+    });
     // triggers when the payment is complete
     transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData)
-      transak.close()
-    })
-  }, [])
+      console.log(orderData);
+      transak.close();
+    });
+  }, []);
 
   // get user address
   useEffect(() => {
     if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress
+      userAddress = window.web3.currentProvider.selectedAddress;
     }
-  }, [state.userStatus])
+  }, [state.userStatus]);
 
   // top up user to 5000 play tokens
   async function topUp() {
-    await Global.FETCH.TOP_UP_USER(userAddress)
+    await Global.FETCH.TOP_UP_USER(userAddress);
 
-    let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress)
-    let json = await responseInfo.json()
+    let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress);
+    let json = await responseInfo.json();
 
-    let arrayInfo = state.userInfo
-    arrayInfo[3] = json.callCount
+    let arrayInfo = state.userInfo;
+    arrayInfo[3] = json.callCount;
 
     dispatch({
       type: 'user_info',
       data: arrayInfo,
-    })
+    });
   }
 
   // initialize transak modal
   function show_transak() {
-    transak.init()
+    transak.init();
 
     // initializePings()
   }
@@ -90,12 +90,12 @@ const ContentBalances = (props) => {
       dispatch({
         type: 'balances_overlay',
         data: 2,
-      })
+      });
     } else {
       dispatch({
         type: 'balances_overlay',
         data: 0,
-      })
+      });
     }
   }
 
@@ -121,67 +121,59 @@ const ContentBalances = (props) => {
               </span>
             </span>
           </div>
-          <div>
-            <p className="matic-header-text"> Add Tokens </p>
-            <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
-            <div className="matic-widget-button-container">
-              <div onClick={close}>
-                <Button
-                  className="matic-widget-button"
-                  data-default-page="deposit"
-                  data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                  // onClick={() => initializePings()}
-                >
-                  <span className="matic-icon-background">
-                    <span
-                      className="material-icons"
-                      id="matic-widget-icon-left-1"
-                    >
-                      add
-                    </span>
-                  </span>
-                  Deposit from Metamask
+
+          <p className="matic-header-text"> Add Tokens </p>
+
+          <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
+
+          <div className="matic-widget-button-container">
+            <div onClick={close}>
+              <Button
+                className="matic-widget-button"
+                data-default-page="deposit"
+                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                // onClick={() => initializePings()}
+              >
+                <span className="matic-icon-background">
                   <span
                     className="material-icons"
-                    id="matic-widget-icon-right-1"
+                    id="matic-widget-icon-left-1"
                   >
-                    keyboard_arrow_right
+                    add
                   </span>
-                </Button>
+                </span>
+                Deposit from Metamask
+                <span className="material-icons" id="matic-widget-icon-right-1">
+                  keyboard_arrow_right
+                </span>
+              </Button>
 
-                <script
-                  src="https://wallet.matic.today/embeds/widget-button.js"
-                  data-script-name="matic-embeds"
-                ></script>
-              </div>
+              <script
+                src="https://wallet.matic.today/embeds/widget-button.js"
+                data-script-name="matic-embeds"
+              ></script>
+            </div>
 
-              <div onClick={close}>
-                <Button
-                  className="matic-widget-button-2"
-                  onClick={show_transak}
-                >
-                  <span className="matic-icon-background-2">
-                    <span
-                      className="material-icons"
-                      id="matic-widget-icon-left-2"
-                    >
-                      add
-                    </span>
-                  </span>
-                  Purchase with Debit Card
+            <div onClick={close}>
+              <Button className="matic-widget-button-2" onClick={show_transak}>
+                <span className="matic-icon-background-2">
                   <span
                     className="material-icons"
-                    id="matic-widget-icon-right-2"
+                    id="matic-widget-icon-left-2"
                   >
-                    keyboard_arrow_right
+                    add
                   </span>
-                </Button>
-              </div>
+                </span>
+                Purchase with Debit Card
+                <span className="material-icons" id="matic-widget-icon-right-2">
+                  keyboard_arrow_right
+                </span>
+              </Button>
             </div>
           </div>
         </div>
       </span>
-    )
+    );
   }
 
   function contentAccountPage() {
@@ -394,14 +386,14 @@ const ContentBalances = (props) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    )
+    );
   }
 
   if (props.balancesOverlay === 1) {
-    return contentModal()
+    return contentModal();
   } else if (props.balancesOverlay === 2) {
-    return contentAccountPage()
+    return contentAccountPage();
   }
-}
+};
 
-export default ContentBalances
+export default ContentBalances;

@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import Global from '../../Constants';
+import Aux from '../_Aux';
+import Global from '../Constants';
 
 let spenderAddress = '';
 
@@ -119,7 +120,7 @@ function ButtonAuthorize() {
   }
 
   return (
-    <div>
+    <Aux>
       <span>
         <Button
           className="account-connected-play-button"
@@ -135,7 +136,7 @@ function ButtonAuthorize() {
       >
         AUTHORIZE
       </Button>
-    </div>
+    </Aux>
   );
 }
 

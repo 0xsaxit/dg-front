@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import Global from '../../Constants';
+import Global from '../Constants';
 
 function ButtonEnable() {
   // dispatch user's treasury contract active status to the Context API store

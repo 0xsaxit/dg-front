@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Divider, Grid, Button } from 'semantic-ui-react';
-import ButtonAuthorize from './button/ButtonAuthorize';
-import ButtonEnable from './button/ButtonEnable';
+import { Divider, Grid, Button } from 'semantic-ui-react';
+import ButtonAuthorize from '../button/ButtonAuthorize';
+import ButtonEnable from '../button/ButtonEnable';
 import Spinner from '../Spinner';
-import ContentTransactions from './ContentTransactions';
+import ContentTransactions from '../content/ContentTransactions';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 
@@ -19,7 +19,7 @@ const History = () => {
   const [dataType, setDataType] = useState('balances');
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [doneLoading, setDoneLoading] = useState(true);
 
   useEffect(() => {
@@ -35,11 +35,11 @@ const History = () => {
     }
   }, [state.userStatus]);
 
-  useEffect(() => {
-    if (state.transactions[0].length) {
-      setIsLoading(false);
-    }
-  }, [state.transactions]);
+  // useEffect(() => {
+  //   if (state.transactions[0].length) {
+  //     setIsLoading(false);
+  //   }
+  // }, [state.transactions]);
 
   useEffect(() => {
     setUserData('balances', 1);

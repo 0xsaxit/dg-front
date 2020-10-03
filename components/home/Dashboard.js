@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Modal } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
+import ModalVideo from '../modal/ModalVideo';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Global from '../Constants';
@@ -103,7 +104,7 @@ const Dashboard = () => {
 
   function playerNumbers() {
     return (
-      <div>
+      <Aux>
         <span className="user-numbers-container-1" style={{ display: 'flex' }}>
           <div className="online-dot"></div>
 
@@ -113,6 +114,7 @@ const Dashboard = () => {
             </p>
           ) : null}
         </span>
+
         <span style={{ display: 'flex' }}>
           {onlineUsers.map((onlineUser) => {
             return (
@@ -120,22 +122,21 @@ const Dashboard = () => {
                 className="avatar-picture"
                 src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
                 style={{
-                    marginTop: '15px',
-                    marginRight: '12px',
-                    width: '3rem',
-                    height: '3rem',
-                    display: 'flex',
-                    border: '1px solid rgb(227, 232, 238)',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                    backgroundColor: 'white',
-                  }}
-                />
-              )
-            })
-          }
+                  marginTop: '15px',
+                  marginRight: '12px',
+                  width: '3rem',
+                  height: '3rem',
+                  display: 'flex',
+                  border: '1px solid rgb(227, 232, 238)',
+                  borderRadius: '100%',
+                  boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                  backgroundColor: 'white',
+                }}
+              />
+            );
+          })}
         </span>
-      </div>
+      </Aux>
     );
   }
 
@@ -157,25 +158,12 @@ const Dashboard = () => {
                 Non-custodial. Provably fair.
               </h2>*/}
               <h2 className="home-dashboard-h2">
-                Non-custodial, provably fair slots, roulette, blackjack, and backgammon
-                playable with crypto in Decentraland
+                Non-custodial, provably fair slots, roulette, blackjack, and
+                backgammon playable with crypto in Decentraland
               </h2>
               <span className="logged-out-button-span">
-                <Modal
-                  trigger={<Button color="blue" className="demo-button" style={{ marginRight: '18px' }}> DEMO </Button>}
-                  basic
-                  size="small"
-                >
-                  <Modal.Content>
-                    <iframe
-                      className="mobile-demo-video"
-                      src="https://www.youtube.com/embed/a1DoWiNW0oU?&autoplay=1&loop=1&playlist=a1DoWiNW0oU"
-                      frameborder="0"
-                      allowfullscreen
-                      allow='autoplay'
-                    ></iframe>
-                  </Modal.Content>
-                </Modal>
+                <ModalVideo />
+
                 <Button
                   color="blue"
                   className="how-to-button"
@@ -186,7 +174,10 @@ const Dashboard = () => {
                 </Button>
               </span>
 
-              <span className="user-numbers-container-3" style={{ display: 'flex' }}>
+              <span
+                className="user-numbers-container-3"
+                style={{ display: 'flex' }}
+              >
                 <div className="online-dot"></div>
                 {!isLoading ? (
                   <p className="home-dashboard-p">
@@ -195,29 +186,30 @@ const Dashboard = () => {
                 ) : null}
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'center' }} className="online-pics-mobile">
+              <span
+                style={{ display: 'flex', justifyContent: 'center' }}
+                className="online-pics-mobile"
+              >
                 {onlineUsers.map((onlineUser) => {
                   return (
                     <img
                       className="avatar-picture"
                       src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
                       style={{
-                          marginTop: '15px',
-                          marginRight: '12px',
-                          width: '3rem',
-                          height: '3rem',
-                          display: 'flex',
-                          border: '1px solid rgb(227, 232, 238)',
-                          borderRadius: '100%',
-                          boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                          backgroundColor: 'white',
-                        }}
-                      />
-                    )
-                  })
-                }
+                        marginTop: '15px',
+                        marginRight: '12px',
+                        width: '3rem',
+                        height: '3rem',
+                        display: 'flex',
+                        border: '1px solid rgb(227, 232, 238)',
+                        borderRadius: '100%',
+                        boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                        backgroundColor: 'white',
+                      }}
+                    />
+                  );
+                })}
               </span>
-
             </div>
           </div>
         ) : (
