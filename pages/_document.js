@@ -11,6 +11,21 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <script type="application/ld+json">
+          {
+            "@context" : "http://schema.org",
+            "@type" : "SoftwareApplication",
+            "name" : "Decentral Games",
+            "image" : "https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png",
+            "url" : "https://decentral.games/",
+            "publisher" : {
+              "@type" : "Organization",
+              "name" : "Decentral Games"
+            },
+            "applicationCategory" : "Cryptocurrency",
+            "downloadUrl" : "https://decentral.games/"
+          }
+          </script>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content="3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!" />
