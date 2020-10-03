@@ -131,7 +131,7 @@ const IMAGES = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   MATIC_TOP:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1597255979/Screen_Shot_2020-08-12_at_11.12.47_AM_dbmtla.png',
-  SNAPSHOT_ICON: 
+  SNAPSHOT_ICON:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
 };
 
@@ -337,7 +337,7 @@ const API_ADDRESSES = (async () => {
   CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
   CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
   TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
-  DG_POINTER_ADDRESS = '0xad97a986e76F4b6322e48F5A8F3CCDC892c1EDD0'; // json.DG_POINTER_ADDRESS;
+  DG_POINTER_ADDRESS = json.DG_POINTER_ADDRESS;
 
   console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
