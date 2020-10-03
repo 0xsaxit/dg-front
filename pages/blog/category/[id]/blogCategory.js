@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Menu, Image, Divider, Grid, Icon } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import $ from 'jquery';
+// import $ from 'jquery';
 import Global from '../../../../components/Constants';
 
 function blogCategory() {
@@ -27,70 +27,80 @@ function blogCategory() {
 
   return (
     <div className="blog-home-container">
-       <span style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0px' }}>
-          <span style={{ borderBottom: '1px solid #2085f4' }}>
-            <p className="featured-text" style={{ marginBottom: '15px' }}>{category}</p>
-          </span>
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingTop: '0px',
+        }}
+      >
+        <span style={{ borderBottom: '1px solid #2085f4' }}>
+          <p className="featured-text" style={{ marginBottom: '15px' }}>
+            {category}
+          </p>
         </span>
+      </span>
 
-        <Divider id="blog-divider" style={{ paddingBottom: '15px', marginTop: '-1px' }} />
-        
-        <div className="posts">
-            { filteredPages.map((page) => ( page.categories[0].name.toLowerCase() == category ?
+      <Divider
+        id="blog-divider"
+        style={{ paddingBottom: '15px', marginTop: '-1px' }}
+      />
+
+      <div className="posts">
+        {filteredPages.map((page) =>
+          page.categories[0].name.toLowerCase() == category ? (
             <Link
-                href="/blog/[id]"
-                key={page.created}
-                as={`/blog/${page.slug}`}
+              href="/blog/[id]"
+              key={page.created}
+              as={`/blog/${page.slug}`}
             >
-                <a className="post">
+              <a className="post">
                 <div className="post-div">
-                    <div className="post-image">
+                  <div className="post-image">
                     <img src={page.featured_image || page.banner} alt="" />
-                    </div>
-                    <div className="post-info">
+                  </div>
+                  <div className="post-info">
                     <span className="bottom-info" style={{ display: 'flex' }}>
-                        <div className="post-date">
+                      <div className="post-date">
                         <span>
-                            {new Date(page.created).toLocaleDateString(
-                            'en-DE',
-                            {
-                                day: 'numeric',
-                                month: 'short',
-                                year: 'numeric',
-                            }
-                            )}
+                          {new Date(page.created).toLocaleDateString('en-DE', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })}
                         </span>
-                        </div>
-                        <div
+                      </div>
+                      <div
                         className="post-category"
                         style={{ color: 'rgb(97, 97, 97)' }}
-                        >
+                      >
                         <span>
-                            {page.categories &&
+                          {page.categories &&
                             page.categories[0] &&
                             page.categories[0].name}
                         </span>
-                        </div>
+                      </div>
                     </span>
                     <div className="bottom">
-                        <div className="blog-title">
+                      <div className="blog-title">
                         <h4 style={{ paddingBottom: '9px' }}>{page.title}</h4>
                         <p
-                            style={{
+                          style={{
                             color: 'rgb(97, 97, 97)',
                             fontSize: '18px',
-                            }}
+                          }}
                         >
-                            {page.summary.split('.', 1)[0]}
+                          {page.summary.split('.', 1)[0]}
                         </p>
-                        </div>
+                      </div>
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </a>
-            </Link> : null
-            ))}
-        </div>
+              </a>
+            </Link>
+          ) : null
+        )}
+      </div>
     </div>
   );
 }
