@@ -4,6 +4,7 @@ import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
 import Global from '../Constants';
 import Images from '../../common/Images';
+import Fetch from '../../common/Fetch';
 
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -51,9 +52,9 @@ const ContentBalances = (props) => {
 
   // top up user to 5000 play tokens
   async function topUp() {
-    await Global.FETCH.TOP_UP_USER(userAddress);
+    await Fetch.TOP_UP_USER(userAddress);
 
-    let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress);
+    let responseInfo = await Fetch.PLAYER_INFO(userAddress);
     let json = await responseInfo.json();
 
     let arrayInfo = state.userInfo;

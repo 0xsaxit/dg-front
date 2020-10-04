@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function Location() {
   // verify user's location and update userStatus in the Context API store
@@ -29,7 +29,7 @@ function Location() {
 
           // update user status in database
           console.log('Posting user status to db: ' + value);
-          Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
+          Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
         }
       }
       fetchData();
@@ -37,7 +37,7 @@ function Location() {
   }, [state.userStatus]);
 
   async function getCountryCode() {
-    const response = await Global.FETCH.COUNTRY_CODE();
+    const response = await Fetch.COUNTRY_CODE();
     const json = await response.json();
 
     return json.country_code;

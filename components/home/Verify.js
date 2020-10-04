@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
-import Global from '../Constants';
+import Fetch from '../../common/Fetch';
 
 const Verify = () => {
   // dispatch new user status to Context API store
@@ -48,12 +48,12 @@ const Verify = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
+      Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
     }
   }
 
   async function getUserStatus() {
-    const response = await Global.FETCH.USER_STATUS(userAddress);
+    const response = await Fetch.USER_STATUS(userAddress);
     const json = await response.json();
 
     if (json.status === 'ok') {

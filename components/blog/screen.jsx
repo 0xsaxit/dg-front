@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import PostPreview from './PostPreview';
 import { Container, Menu } from 'semantic-ui-react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';

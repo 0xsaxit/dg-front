@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function AdminData() {
   // dispatch user's transaction history data to the Context API store
@@ -14,11 +14,11 @@ function AdminData() {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       (async function () {
-        const responseHistory = await Global.FETCH.ADMIN_HISTORY(userAddress);
+        const responseHistory = await Fetch.ADMIN_HISTORY(userAddress);
         const jsonHistory = await responseHistory.json();
         const dataHistory = jsonHistory.result;
 
-        const responsePlay = await Global.FETCH.MACHINE_DATA(userAddress);
+        const responsePlay = await Fetch.MACHINE_DATA(userAddress);
         const jsonPlay = await responsePlay.json();
         const dataMachines = jsonPlay.result;
 

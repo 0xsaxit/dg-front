@@ -4,6 +4,7 @@ import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
+import Fetch from '../../common/Fetch';
 
 function ButtonEnable() {
   // dispatch user's treasury contract active status to the Context API store
@@ -59,7 +60,7 @@ function ButtonEnable() {
     // post reauthorization to database
     console.log('Posting reauthorization transaction to db');
 
-    Global.FETCH.POST_HISTORY(
+    Fetch.POST_HISTORY(
       userAddress,
       Global.MAX_AMOUNT,
       'Reauthorization',

@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function UserStatus() {
   // dispatch user's status value to the Context API store
@@ -28,7 +28,7 @@ function UserStatus() {
   }, []);
 
   async function getUserStatus() {
-    const response = await Global.FETCH.USER_STATUS(userAddress);
+    const response = await Fetch.USER_STATUS(userAddress);
     const json = await response.json();
 
     if (json.status === 'ok') {

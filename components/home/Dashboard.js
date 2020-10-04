@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
-import Global from '../Constants';
+import Fetch from '../../common/Fetch';
 
 const Dashboard = () => {
   // get user's onboard status the Context API store
@@ -42,7 +42,7 @@ const Dashboard = () => {
     setLoading(true);
 
     (async function () {
-      let response = await Global.FETCH.USER_NUMBERS();
+      let response = await Fetch.USER_NUMBERS();
       let json = await response.json();
       let temp = [];
 

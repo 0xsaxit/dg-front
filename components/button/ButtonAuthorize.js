@@ -5,6 +5,7 @@ import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Global from '../Constants';
+import Fetch from '../../common/Fetch';
 
 let spenderAddress = '';
 
@@ -71,12 +72,12 @@ function ButtonAuthorize() {
 
     // update user status in database
     console.log('Posting user status to db: ' + value);
-    Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
+    Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
 
     // post authorization to database
     console.log('Posting authorization transaction to db: MAX_AMOUNT');
 
-    Global.FETCH.POST_HISTORY(
+    Fetch.POST_HISTORY(
       userAddress,
       Global.MAX_AMOUNT,
       'Authorization',

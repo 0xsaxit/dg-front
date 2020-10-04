@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 // 0x968ba97EC67b5F8017419e640e19D2a0c95Bd6E2 // test account
 
@@ -24,7 +25,7 @@ function ParcelData() {
 
         // if user owns an NFT fetch parcel data for this particular token ID
         if (tokenID) {
-          const response = await Global.FETCH.PARCEL_DATA(landID, tokenID);
+          const response = await Fetch.PARCEL_DATA(landID, tokenID);
           const jsonData = await response.json();
 
           dispatch({

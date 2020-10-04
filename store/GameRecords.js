@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function GameRecords() {
   // dispatch user's game records to the Context API store
@@ -8,7 +8,7 @@ function GameRecords() {
 
   useEffect(() => {
     (async function () {
-      const response = await Global.FETCH.GAME_RECORDS();
+      const response = await Fetch.GAME_RECORDS();
       const jsonRecords = await response.json();
 
       dispatch({

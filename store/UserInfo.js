@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function UserInfo() {
   // dispatch user's information to the Context API store
@@ -15,7 +15,7 @@ function UserInfo() {
 
       // get user's play name, wallet address, and avatar balance
       (async function () {
-        let responseInfo = await Global.FETCH.PLAYER_INFO(userAddress);
+        let responseInfo = await Fetch.PLAYER_INFO(userAddress);
         let json = await responseInfo.json();
 
         const name = json.avatarName;

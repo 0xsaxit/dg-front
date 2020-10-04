@@ -3,6 +3,7 @@ import { GlobalContext } from './index';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function ActiveStatus() {
   // dispatch user's treasury contract active status to the Context API store
@@ -70,7 +71,7 @@ function ActiveStatus() {
   function postAuthorization(txHash) {
     console.log('Posting reauthorization transaction to db');
 
-    Global.FETCH.POST_HISTORY(
+    Fetch.POST_HISTORY(
       userAddress,
       Global.MAX_AMOUNT,
       'Reauthorization',

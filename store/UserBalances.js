@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import Global from '../components/Constants';
+import Fetch from '../common/Fetch';
 
 function UserBalances() {
   // dispatch user's token balances to the Context API store
@@ -53,7 +54,7 @@ function UserBalances() {
 
     // update user status in database
     console.log('Posting user status to db: ' + value);
-    Global.FETCH.USER_VERIFY(userAddress, value, state.affiliateAddress);
+    Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +112,7 @@ function UserBalances() {
     // console.log('user status: ' + state.userStatus)
 
     try {
-      const response = await Global.FETCH.POST_HISTORY(
+      const response = await Fetch.POST_HISTORY(
         userAddress,
         amount,
         type,
