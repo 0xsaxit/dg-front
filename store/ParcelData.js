@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
+import ABI_TOMINOYA_TOKEN from '../components/ABI/ABITominoya';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
 
@@ -41,7 +42,7 @@ function ParcelData() {
   async function getTokenID() {
     try {
       const NFT_CONTRACT = new web3.eth.Contract(
-        Global.ABIs.TOMINOYA_TOKEN,
+        ABI_TOMINOYA_TOKEN,
         Global.ADDRESS_TOMINOYA
       );
 

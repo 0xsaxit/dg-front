@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Aux from '../../components/_Aux';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
+// import Butter from '../../common/Butter';
 
 function blog() {
   const [state, dispatch] = useContext(GlobalContext);

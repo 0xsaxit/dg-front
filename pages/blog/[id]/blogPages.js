@@ -4,25 +4,24 @@ import { GlobalContext } from '../../../store';
 import { Segment, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import Global from '../../../components/Constants';
-
+// import { Butter } from '../../../common/Butter';
 
 const BlogDetail = ({ page_title, featured_image, page_summary }) => {
-  
   const router = useRouter();
   const [state, dispatch] = useContext(GlobalContext);
   const slug = router.query.id;
   const currentPage = state.pages.data.find((page) => page.slug === slug);
   const category = currentPage ? currentPage.categories[0].name : '';
-  
+
   const filteredPages = state.pages.data.filter(
     (page) =>
       page.categories[0].name === category && page.slug !== currentPage.slug
   );
-  
+
   const unfilteredPages = state.pages.data.filter(
     (page) => page.categories[0].name !== category
   );
-  
+
   useEffect(() => {
     const getPages = async () => {
       const { data } = await Global.BUTTER.post.list({ page_size: 25 });
@@ -56,7 +55,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 
 BlogDetail.getInitialProps = async ({ query }) => {
   const slug = query.id;
-  const { data } = await Global.BUTTER.post.list({ page_size: 25 });
+  const { data } = await Butter.instance.post.list({ page_size: 25 });
   const currentPage = data.data.find((page) => page.slug === slug);
   var currentPage_title = currentPage.title;
   currentPage_title = currentPage_title.replace(': ', ':');

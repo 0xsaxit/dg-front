@@ -8,6 +8,7 @@ import ContentAdmin from '../content/ContentAdmin';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 import Global from '../Constants';
+import Transactions from '../../common/Transactions';
 
 const Admin = () => {
   // get player/machine transaction history from the Context API store
@@ -24,6 +25,7 @@ const Admin = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   let maticWeb3 = {};
+  let treasuryContract = {};
 
   useEffect(() => {
     if (state.userStatus) {
@@ -44,10 +46,13 @@ const Admin = () => {
         new window.Web3.providers.HttpProvider(Global.MATIC_URL)
       ); // pass Matic provider to maticWeb3 object
 
-      const treasuryContract = Global.getTreasuryContract(maticWeb3);
-
       // get treasury contract's paused status (true or false)
       (async function () {
+        treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
+
+        // console.log('treasury instance 1...');
+        // console.log(treasuryContract);
+
         const pauseStatus = await treasuryContract.methods.paused().call();
         setIsPaused(pauseStatus);
 
@@ -59,12 +64,19 @@ const Admin = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // ping the treasury contract for pause status
-  function dataInterval() {
+  async function dataInterval() {
     maticWeb3 = new Web3(
       new window.Web3.providers.HttpProvider(Global.MATIC_URL)
     ); // pass Matic provider to maticWeb3 object
 
-    const treasuryContract = Global.getTreasuryContract(maticWeb3);
+    // const treasuryContract = Transactions.getTreasuryContract(maticWeb3);
+
+    // console.log('treasury instance 2...');
+    // console.log(treasuryContract);
+
+    // (async function () {
+    treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
+    // })();
 
     async function fetchData() {
       const response = await treasuryContract.methods.paused().call();

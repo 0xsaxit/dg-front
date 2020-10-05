@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Form, Input } from 'semantic-ui-react';
+import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
 import Global from '../Constants';
 import Images from '../../common/Images';
 
@@ -14,21 +15,27 @@ const ContentModal = (props) => {
 
   let userAddress = '';
   let web3 = {};
+  let contractAddress = {};
 
   useEffect(() => {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-      if (transaction && amount) {
-        if (props.type === 'deposit') {
-          depositFunds(); // MetaMask popup window
+      (async function () {
+        const addresses = await Global.API_ADDRESSES;
+        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+
+        if (transaction && amount) {
+          if (props.type === 'deposit') {
+            depositFunds(); // MetaMask popup window
+          } else {
+            withdrawFunds(); // MetaMask popup window
+          }
         } else {
-          withdrawFunds(); // MetaMask popup window
+          setTransaction(false);
         }
-      } else {
-        setTransaction(false);
-      }
+      })();
     }
   }, [state.userStatus, transaction, amount]);
 
@@ -40,7 +47,7 @@ const ContentModal = (props) => {
   async function depositFunds() {
     props.showModal(false); // close the modal
 
-    const txHash = await Global.depositToParent(
+    const txHash = await depositToParent(
       props.gameTypeInt,
       0,
       amount,
@@ -52,10 +59,45 @@ const ContentModal = (props) => {
     initializePings();
   }
 
+  function depositToParent(gameID, tokenID, amount, userAddress, web3Default) {
+    return new Promise(async (resolve, reject) => {
+      console.log('Deposit start: ' + amount);
+
+      try {
+        const PARENT_CONTRACT = web3Default.eth
+          .contract(ABI_TREASURY_CONTRACT)
+          .at(contractAddress);
+
+        PARENT_CONTRACT.addFunds(
+          gameID,
+          tokenID,
+          amount,
+          {
+            from: userAddress,
+            gasLimit: web3Default.toHex(Global.GAS_LIMIT),
+            gasPrice: web3Default.toHex(Global.GAS_AMOUNT),
+          },
+          async function (err, hash) {
+            if (err) {
+              console.log('Deposit failed', err);
+              reject(false);
+            }
+
+            console.log('Deposit done');
+            resolve(hash);
+          }
+        );
+      } catch (error) {
+        console.log('Deposit failed', error);
+        reject(false);
+      }
+    });
+  }
+
   async function withdrawFunds() {
     props.showModal(false); // close the modal
 
-    const txHash = await Global.withdrawFromParent(
+    const txHash = await withdrawFromParent(
       props.gameTypeInt,
       0,
       amount,
@@ -65,6 +107,47 @@ const ContentModal = (props) => {
     console.log('Tx Hash: ' + txHash);
 
     initializePings();
+  }
+
+  function withdrawFromParent(
+    gameID,
+    tokenID,
+    amount,
+    userAddress,
+    web3Default
+  ) {
+    return new Promise(async (resolve, reject) => {
+      console.log('Withdraw start: ' + amount);
+
+      try {
+        const PARENT_CONTRACT = web3Default.eth
+          .contract(ABI_TREASURY_CONTRACT)
+          .at(contractAddress);
+
+        PARENT_CONTRACT.withdrawGameTokens(
+          gameID,
+          tokenID,
+          amount,
+          {
+            from: userAddress,
+            gasLimit: web3Default.toHex(Global.GAS_LIMIT),
+            gasPrice: web3Default.toHex(Global.GAS_AMOUNT),
+          },
+          async function (err, hash) {
+            if (err) {
+              console.log('Withdraw failed', err);
+              reject(false);
+            }
+
+            console.log('Withdraw done');
+            resolve(hash);
+          }
+        );
+      } catch (error) {
+        console.log('Withdraw failed', error);
+        reject(false);
+      }
+    });
   }
 
   function initializePings() {

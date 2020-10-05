@@ -4,6 +4,8 @@ import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
+import MetaTx from '../common/MetaTx';
+import Transactions from '../common/Transactions';
 
 function ActiveStatus() {
   // dispatch user's treasury contract active status to the Context API store
@@ -36,7 +38,10 @@ function ActiveStatus() {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-      treasuryContract = Global.getTreasuryContract(getWeb3);
+
+      (async function () {
+        treasuryContract = await Transactions.getTreasuryContract(getWeb3);
+      })();
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -47,7 +52,7 @@ function ActiveStatus() {
         });
 
       (async function () {
-        const activeStatus = await Global.getActiveStatus(
+        const activeStatus = await Transactions.getActiveStatus(
           userAddress,
           maticWeb3
         );
@@ -86,12 +91,14 @@ function ActiveStatus() {
     try {
       console.log('Session Duration: ' + sessionDuration);
 
+      // const treasuryContract = await Transactions.getTreasuryContract(getWeb3);
+
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = treasuryContract.methods
         .enableAccount(sessionDuration)
         .encodeABI();
 
-      const txHash = await Global.executeMetaTransaction(
+      const txHash = await MetaTx.executeMetaTransaction(
         1,
         functionSignature,
         sessionDuration,
@@ -105,7 +112,7 @@ function ActiveStatus() {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        const activeStatus = await Global.getActiveStatus(
+        const activeStatus = await Transactions.getActiveStatus(
           userAddress,
           maticWeb3
         );

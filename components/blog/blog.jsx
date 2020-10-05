@@ -3,6 +3,7 @@ import { Segment } from 'semantic-ui-react';
 import Screen from './screen';
 import { GlobalContext } from '../../store';
 import Global from '../Constants';
+// import { Butter } from '../../common/Butter';
 
 const Blog = (Paths) => {
   const [state, dispatch] = useContext(GlobalContext);

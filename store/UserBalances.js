@@ -1,8 +1,11 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
+import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
+import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
+import Transactions from '../common/Transactions';
 
 function UserBalances() {
   // dispatch user's token balances to the Context API store
@@ -135,7 +138,7 @@ function UserBalances() {
     const addresses = await Global.API_ADDRESSES;
 
     const TOKEN_CONTRACT_ROOT = window.web3.eth
-      .contract(Global.ABIs.ROOT_TOKEN)
+      .contract(ABI_ROOT_TOKEN)
       .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
 
     // const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
@@ -148,15 +151,15 @@ function UserBalances() {
     //   .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
 
     const TOKEN_CONTRACT_CHILD = maticWeb3.eth
-      .contract(Global.ABIs.CHILD_TOKEN)
+      .contract(ABI_CHILD_TOKEN)
       .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
 
     try {
-      const amount1 = await Global.balanceOfToken(
+      const amount1 = await Transactions.balanceOfToken(
         TOKEN_CONTRACT_ROOT,
         userAddress
       );
-      const amount2 = await Global.balanceOfToken(
+      const amount2 = await Transactions.balanceOfToken(
         TOKEN_CONTRACT_CHILD,
         userAddress
       );

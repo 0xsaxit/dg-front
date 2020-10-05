@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 // import $ from 'jquery';
 import Global from '../../../../components/Constants';
+// import { Butter } from '../../../../common/Butter';
 
 function blogCategory() {
   const router = useRouter();

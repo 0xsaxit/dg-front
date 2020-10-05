@@ -4,8 +4,10 @@ import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Aux from '../_Aux';
+import ABI_CHILD_TOKEN from '../ABI/ABIChildToken';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
+import MetaTx from '../../common/MetaTx';
 
 let spenderAddress = '';
 
@@ -41,7 +43,17 @@ function ButtonAuthorize() {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-      tokenContract = Global.getTokenContract('child', getWeb3);
+
+      // tokenContract = Global.getTokenContract('child', getWeb3);
+
+      (async function () {
+        const addresses = await Global.API_ADDRESSES;
+
+        tokenContract = new getWeb3.eth.Contract(
+          ABI_CHILD_TOKEN,
+          addresses.CHILD_TOKEN_ADDRESS_MANA
+        );
+      })();
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -97,7 +109,7 @@ function ButtonAuthorize() {
         .approve(spenderAddress, Global.MAX_AMOUNT)
         .encodeABI();
 
-      const txHash = await Global.executeMetaTransaction(
+      const txHash = await MetaTx.executeMetaTransaction(
         0,
         functionSignature,
         '',

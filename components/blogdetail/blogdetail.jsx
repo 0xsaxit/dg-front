@@ -4,6 +4,7 @@ import { GlobalContext } from '../../store';
 import { Segment } from 'semantic-ui-react';
 import ScrollToTop from '../Scroll';
 import Global from '../Constants';
+// import { Butter } from '../../common/Butter';
 
 const BlogDetail = ({ match }) => {
   const [state, dispatch] = useContext(GlobalContext);
@@ -21,7 +22,7 @@ const BlogDetail = ({ match }) => {
     : null;
 
   const category = currentPage.categories[0].name;
-  
+
   const filteredPages = state.pages.data.filter(
     (page) =>
       page.categories[0].name === category && page.slug !== currentPage.slug
@@ -69,4 +70,3 @@ const BlogDetail = ({ match }) => {
 };
 
 export default BlogDetail;
-

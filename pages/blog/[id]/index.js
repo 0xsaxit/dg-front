@@ -2,6 +2,7 @@ import BlogPages from './blogPages';
 import Layout from '../../../components/Layout.js';
 import Header from '../../../components/Header';
 import Global from '../../../components/Constants';
+// import { Butter } from '../../../common/Butter';
 
 const Index = ({ page_title, featured_image, page_summary }) => {
   return (

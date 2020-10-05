@@ -15,7 +15,7 @@ const ModalInfo = () => {
       close
       trigger={
         <Button color="blue" className="modal-info-button">
-          <span class="material-icons">settings</span>
+          <span className="material-icons">settings</span>
         </Button>
       }
     >

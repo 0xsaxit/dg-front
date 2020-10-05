@@ -319,7 +319,7 @@ const MenuTop = () => {
             className="modal-deposit-button"
             onClick={() => balancesModal()}
           >
-            <span class="material-icons">add</span>
+            <span className="material-icons">add</span>
           </Button>
 
           <ModalInfo />

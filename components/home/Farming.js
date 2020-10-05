@@ -5,8 +5,10 @@ import Web3 from 'web3';
 import { Button, Divider } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
+import ABI_DG_POINTER from '../ABI/ABIDGPointer';
 import Global from '../Constants';
 import Images from '../../common/Images';
+import MetaTx from '../../common/MetaTx';
 
 const Farming = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -41,7 +43,17 @@ const Farming = () => {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-      pointerContract = Global.getDGPointerContract(getWeb3);
+
+      // pointerContract = Global.getDGPointerContract(getWeb3);
+
+      (async function () {
+        const addresses = await Global.API_ADDRESSES;
+
+        pointerContract = new getWeb3.eth.Contract(
+          ABI_DG_POINTER,
+          addresses.DG_POINTER_ADDRESS
+        );
+      })();
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -71,7 +83,7 @@ const Farming = () => {
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = pointerContract.methods.getMyTokens().encodeABI();
 
-      const txHash = await Global.executeMetaTransaction(
+      const txHash = await MetaTx.executeMetaTransaction(
         0,
         functionSignature,
         '',
