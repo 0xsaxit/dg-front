@@ -41,6 +41,8 @@ function ButtonEnable() {
 
       (async function () {
         treasuryContract = await Transactions.getTreasuryContract(getWeb3);
+
+        if (transaction) metaTransaction(); // MetaMask popup window
       })();
 
       biconomy
@@ -50,8 +52,6 @@ function ButtonEnable() {
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
         });
-
-      if (transaction) metaTransaction(); // MetaMask popup window
     }
   }, [state.userStatus, transaction]);
 

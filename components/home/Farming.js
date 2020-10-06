@@ -44,8 +44,6 @@ const Farming = () => {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      // pointerContract = Global.getDGPointerContract(getWeb3);
-
       (async function () {
         const addresses = await Global.API_ADDRESSES;
 
@@ -53,6 +51,8 @@ const Farming = () => {
           ABI_DG_POINTER,
           addresses.DG_POINTER_ADDRESS
         );
+
+        if (getTokens) metaTransaction();
       })();
 
       biconomy
@@ -62,18 +62,8 @@ const Farming = () => {
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
         });
-
-      if (getTokens) metaTransaction();
     }
   }, [state.userStatus, getTokens]);
-
-  // dispatch DG tokens to user
-  // function claimDG() {
-  //   console.log('Dispatching DG tokens to user: ' + userAddress);
-  //   Global.FETCH.GET_TOKENS(userAddress);
-
-  //   setGetTokens(false);
-  // }
 
   // Biconomy API meta-transaction. Dispatch DG tokens to player
   async function metaTransaction() {
@@ -84,7 +74,7 @@ const Farming = () => {
       let functionSignature = pointerContract.methods.getMyTokens().encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        0,
+        2,
         functionSignature,
         '',
         pointerContract,
@@ -97,7 +87,11 @@ const Farming = () => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        dispatchActiveStatus(txHash);
+        // update global state unclaimed DG balance to 0
+        dispatch({
+          type: 'dg_points',
+          data: 0,
+        });
       }
     } catch (error) {
       console.log(error);

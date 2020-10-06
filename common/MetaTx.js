@@ -5,7 +5,8 @@ import Global from '../components/Constants';
 // EIP712 domain params for Biconomy API
 const sigUtil = require('eth-sig-util');
 let childTokenAddress = '';
-let contractAddress = '';
+let treasuryAddress = '';
+let dgPointerAddress = '';
 let domainArray = [];
 let domainType = [];
 let metaTransactionType = [];
@@ -14,7 +15,8 @@ let metaTransactionType = [];
   const addresses = await Global.API_ADDRESSES;
 
   childTokenAddress = addresses.CHILD_TOKEN_ADDRESS_MANA;
-  contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+  treasuryAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+  dgPointerAddress = addresses.DG_POINTER_ADDRESS;
 
   domainType.push(
     { name: 'name', type: 'string' },
@@ -40,11 +42,19 @@ let metaTransactionType = [];
     name: 'Treasury',
     version: 'v3.0',
     chainId: Global.PARENT_NETWORK_ID,
-    verifyingContract: contractAddress,
+    verifyingContract: treasuryAddress,
+  };
+
+  const domainDataDGPointer = {
+    name: 'TEST',
+    version: 'A',
+    chainId: Global.PARENT_NETWORK_ID,
+    verifyingContract: dgPointerAddress,
   };
 
   domainArray.push(domainDataToken);
   domainArray.push(domainDataTreasury);
+  domainArray.push(domainDataDGPointer);
 })();
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +124,7 @@ function executeMetaTransaction(
           let ret;
 
           try {
-            if (i === 0) {
+            if (i === 0 || i === 2) {
               ret = await tokenContract.methods
                 .executeMetaTransaction(userAddress, functionSignature, r, s, v)
                 .send({

@@ -1,8 +1,6 @@
 import Butter from 'buttercms'; // *************************
 import Fetch from '../common/Fetch';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // third-party public API keys
 const KEYS = {
   BICONOMY_API: 'spWcIKmce.df09f12f-b278-4093-8ca5-0dfafd5b37a7',
@@ -11,8 +9,14 @@ const KEYS = {
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
+// admin area access accounts
+const ADMIN_ADDRESSES = [
+  '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0',
+  '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28',
+  '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45',
+  '0x503aaA04A19e0c4b04d1E109F1369C1f2e85fDF0',
+];
+
 // common constant values
 const BASE_URL = 'https://decentral.games';
 const MAX_AMOUNT =
@@ -21,16 +25,10 @@ const GAS_LIMIT = '3000000'; // was '900000'
 const GAS_AMOUNT = '80000000000'; // was '20000000000'
 const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
 const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
-const ACTIVE_PERIOD = 43200; // user account active period: 3600 == 1 hour
+const ACTIVE_PERIOD = 43200; // user account active period: 3600 == 1 hour // 43200
 const MATIC_NETWORK_ID = 80001;
 const MATIC_URL = 'https://rpc-mumbai.matic.today';
 const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today';
-const ADMIN_ADDRESSES = [
-  '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toLowerCase(),
-  '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toLowerCase(),
-  '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toLowerCase(),
-  '0x503aaA04A19e0c4b04d1E109F1369C1f2e85fDF0'.toLowerCase(),
-];
 const TITLE = 'Decentral Games';
 const DESCRIPTION =
   '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
@@ -39,8 +37,6 @@ const DISCORD_URL = 'https://discord.gg/cvbSNzY';
 const SOCIAL_HANDLE = 'decentralgames';
 const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // fetch wallet and contract addresses from server API
 const API_ADDRESSES = (async () => {
   const response = await Fetch.GET_ADDRESSES();
@@ -75,6 +71,7 @@ const API_ADDRESSES = (async () => {
 
 export default {
   KEYS,
+  ADMIN_ADDRESSES,
   API_ADDRESSES,
   BASE_URL,
   MAX_AMOUNT,
@@ -86,7 +83,6 @@ export default {
   MATIC_NETWORK_ID,
   MATIC_URL,
   MATIC_EXPLORER,
-  ADMIN_ADDRESSES,
   TITLE,
   DESCRIPTION,
   BUTTER,
