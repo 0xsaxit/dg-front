@@ -29,6 +29,8 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
   FEATURED_IMAGE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599777537/Group_6_vj1jdx.png',
+  DG_COIN_LOGO: 
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601945046/dg-coin-logo_az3dmx.png',
 };
 
 export default Images;

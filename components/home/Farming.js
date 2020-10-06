@@ -139,7 +139,7 @@ const Farming = () => {
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
@@ -311,9 +311,9 @@ const Farming = () => {
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
               </span>
             </span>
@@ -340,7 +340,7 @@ const Farming = () => {
                style={{ position: 'relative', height: '100%' }}>
             <span style={{ display: 'flex' }}>
               <img src={Images.MANA_CIRCLE} className="farming-logo" />
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> MANA-DG </p>
                 <p className="account-name">0</p>
@@ -410,7 +410,7 @@ const Farming = () => {
             style={{ position: 'relative', height: '100%' }}>
             <span style={{ display: 'flex' }}>
               <img src={Images.DAI_CIRCLE} className="farming-logo" />
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> DAI-DG </p>
                 <p className="account-name">0</p>
@@ -516,9 +516,9 @@ const Farming = () => {
             style={{ position: 'relative', height: '100%' }}
           >
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
               </span>
             </span>
@@ -543,7 +543,7 @@ const Farming = () => {
 
           <div className="DG-column stake">
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Staked DG</p>
                 <p className="account-name">0</p>
