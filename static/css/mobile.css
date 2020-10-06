@@ -531,6 +531,12 @@
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
+@media (min-width: 768px) {
+  .dg-tabs-mobile {
+    display: none;
+  }
+}
+
 @media (max-width: 1030px) {
   .DG-liquidity-container,
   .DG-top-container {
@@ -539,20 +545,24 @@
   .DG-liquidity-container.top {
     flex-direction: row;
   }
-  .DG-column{
+  .DG-column {
     max-width: 100% !important;
   }
   .DG-column.unclaimed,
-  .DG-column.one {
+  .DG-column.one,
+  .DG-column.stake {
     max-width: 100% !important;
     margin-bottom: 30px;
   }
   .DG-liquidity-container.gov {
-    flex-direction: row;
+    flex-direction: column;
   }
 }
 
 @media (max-width: 767px) {
+  .dg-tabs-desktop {
+    display: none;
+  }
   .DG-liquidity-container.top {
     flex-direction: column;
   }
@@ -612,6 +622,10 @@
   }
   .farming-pool-span {
     margin-top: 6px;
+  }
+  .ui.button.affiliate-copy-button,
+  .ui.button.affiliate-copied-button { 
+    display: none;
   }
 }
 

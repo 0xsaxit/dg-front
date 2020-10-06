@@ -38,20 +38,34 @@ const ModalInfo = () => {
         }}
       >
         <a href={`https://twitter.com/${Global.SOCIAL_HANDLE}`}>
-          <Icon style={{ fontSize: '34px' }} name="twitter" />
+          <Icon 
+            style={{ fontSize: '34px', paddingLeft: '3px', paddingRight: '3px' }} 
+            name="twitter" 
+          />
         </a>
         <a href={Global.DISCORD_URL}>
           <Icon
-            style={{
-              fontSize: '34px',
-              marginRight: '12px',
-              marginLeft: '12px',
-            }}
+            style={{ fontSize: '32px', paddingLeft: '3px', paddingRight: '3px', paddingTop: '2px'}}
             name="discord"
           />
         </a>
         <a href={`https://github.com/${Global.SOCIAL_HANDLE}`}>
-          <Icon style={{ fontSize: '34px' }} name="github" />
+          <Icon 
+            style={{ fontSize: '34px', paddingLeft: '6px', paddingRight: '3px' }}  
+            name="github"
+           />
+        </a>
+        <a href=''>
+          <Icon 
+            style={{ fontSize: '34px', paddingLeft: '3px', paddingRight: '3px' }}  
+            name="telegram plane"
+           />
+        </a>
+        <a href='https://gitcoin.co/grants/993/decentral-games'>
+          <Icon 
+            style={{ fontSize: '33px', paddingLeft: '3px', paddingRight: '3px' }}  
+            name="heart"
+           />
         </a>
       </span>
       <div className="menu-info-container">

@@ -5,6 +5,7 @@ import Web3 from 'web3';
 import { Button, Divider } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
+import ButtonAffiliates from '../button/ButtonAffiliates';
 import ABI_DG_POINTER from '../ABI/ABIDGPointer';
 import Global from '../Constants';
 import Images from '../../common/Images';
@@ -110,14 +111,13 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                You can mine $DG by playing games with $MANA or $DAI. Playing
-                with two, three, or four players at a table earns you +20%,
-                +30%, and +40% bonuses respectively, and each Decentral Games
-                wearable you wear earns you a +10% bonus when playing. Refer any
-                friends and get an additional 20% of all $DG they mine. For more
+                You can mine $DG by playing games with $MANA or $DAI. Earn multipliers
+                by playing with friends or wearing Decentral Games
+                NFTs. Refer any friends and get an additional 20% of all $DG they mine. For more
                 details, see our
                 <a
-                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  href="https://decentral-games-1.gitbook.io/dg/allocation"
+                  target="_blank"
                   style={{ color: '#2085f4' }}
                 >
                   {' '}
@@ -129,10 +129,11 @@ const Farming = () => {
           </div>
         </div>
 
+
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
@@ -304,9 +305,9 @@ const Farming = () => {
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
               </span>
             </span>
@@ -329,10 +330,11 @@ const Farming = () => {
             </span>
           </div>
 
-          <div className="DG-column one">
+          <div className="DG-column one"
+               style={{ position: 'relative', height: '100%' }}>
             <span style={{ display: 'flex' }}>
               <img src={Images.MANA_CIRCLE} className="farming-logo" />
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> MANA-DG </p>
                 <p className="account-name">0</p>
@@ -398,10 +400,11 @@ const Farming = () => {
             </span>
           </div>
 
-          <div className="DG-column two">
+          <div className="DG-column two"
+            style={{ position: 'relative', height: '100%' }}>
             <span style={{ display: 'flex' }}>
               <img src={Images.DAI_CIRCLE} className="farming-logo" />
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> DAI-DG </p>
                 <p className="account-name">0</p>
@@ -507,9 +510,9 @@ const Farming = () => {
             style={{ position: 'relative', height: '100%' }}
           >
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed DG</p>
+                <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGPoints}</p>
               </span>
             </span>
@@ -534,7 +537,7 @@ const Farming = () => {
 
           <div className="DG-column stake">
             <span style={{ display: 'flex' }}>
-              <img src={Images.LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Staked DG</p>
                 <p className="account-name">0</p>
@@ -626,39 +629,91 @@ const Farming = () => {
         {(() => {
           if (DGstate == 0)
             return (
-              <p className="account-other-p">
-                <b className="account-hover active">GAMEPLAY MINING</b>{' '}
-                <abbr className="account-hover" onClick={() => setPage(1)}>
-                  LIQUIDITY FARMING
-                </abbr>
-                <abbr className="account-hover" onClick={() => setPage(2)}>
-                  GOVERNANCE
-                </abbr>
-              </p>
+              <div>
+                <span className="dg-tabs-desktop">
+                  <p className="account-other-p">
+                    <b className="account-hover active">GAMEPLAY MINING</b>{' '}
+                    <abbr className="account-hover" onClick={() => setPage(1)}>
+                      LIQUIDITY FARMING
+                    </abbr>
+                    <abbr className="account-hover" onClick={() => setPage(2)}>
+                      GOVERNANCE
+                    </abbr>
+                  </p>
+
+                  <ButtonAffiliates />
+                </span>
+
+                <span className="dg-tabs-mobile">
+                  <p className="account-other-p">
+                    <b className="account-hover active">MINING</b>{' '}
+                    <abbr className="account-hover" onClick={() => setPage(1)}>
+                      FARMING
+                    </abbr>
+                    <abbr className="account-hover" onClick={() => setPage(2)}>
+                      GOV
+                    </abbr>
+                  </p>
+
+                  <ButtonAffiliates />
+                </span>
+              </div>
             );
           else if (DGstate == 1)
             return (
-              <p className="account-other-p">
-                <abbr className="account-hover" onClick={() => setPage(0)}>
-                  GAMEPLAY MINING
-                </abbr>{' '}
-                <b className="account-hover active">LIQUIDITY FARMING</b>
-                <abbr className="account-hover" onClick={() => setPage(2)}>
-                  GOVERNANCE
-                </abbr>{' '}
-              </p>
+              <div>
+                <span className="dg-tabs-desktop">
+                  <p className="account-other-p">
+                    <abbr className="account-hover" onClick={() => setPage(0)}>
+                      GAMEPLAY MINING
+                    </abbr>{' '}
+                    <b className="account-hover active">LIQUIDITY FARMING</b>
+                    <abbr className="account-hover" onClick={() => setPage(2)}>
+                      GOVERNANCE
+                    </abbr>{' '}
+                  </p>
+                </span>
+
+                <span className="dg-tabs-mobile">
+                  <p className="account-other-p">
+                    <abbr className="account-hover" onClick={() => setPage(0)}>
+                      MINING
+                    </abbr>{' '}
+                    <b className="account-hover active">FARMING</b>
+                    <abbr className="account-hover" onClick={() => setPage(2)}>
+                      GOV
+                    </abbr>{' '}
+                  </p>
+                </span>
+              </div>
             );
           else
             return (
-              <p className="account-other-p">
-                <abbr className="account-hover" onClick={() => setPage(0)}>
-                  GAMEPLAY MINING
-                </abbr>{' '}
-                <abbr className="account-hover" onClick={() => setPage(1)}>
-                  LIQUIDITY FARMING
-                </abbr>
-                <b className="account-hover active">GOVERNANCE</b>
-              </p>
+              <div>
+                <span className="dg-tabs-desktop">
+                  <p className="account-other-p">
+                    <abbr className="account-hover" onClick={() => setPage(0)}>
+                      GAMEPLAY MINING
+                    </abbr>{' '}
+                    <abbr className="account-hover" onClick={() => setPage(1)}>
+                      LIQUIDITY FARMING
+                    </abbr>
+                    <b className="account-hover active">GOVERNANCE</b>
+                  </p>
+                </span>
+
+                <span className="dg-tabs-mobile">
+                  <p className="account-other-p">
+                    <abbr className="account-hover" onClick={() => setPage(0)}>
+                      MINING
+                    </abbr>{' '}
+                    <abbr className="account-hover" onClick={() => setPage(1)}>
+                      FARMING
+                    </abbr>
+                    <b className="account-hover active">GOV</b>
+                  </p>
+                </span>
+              </div>
             );
         })()}
       </div>
