@@ -47,7 +47,7 @@ function blogCategory() {
 
       <div className="posts">
         {filteredPages.map((page) =>
-          page.categories[0].name.toLowerCase() == category ? (
+          page.categories[0].name.toLowerCase() === category ? (
             <Link
               href="/blog/[id]"
               key={page.created}

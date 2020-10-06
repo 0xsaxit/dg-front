@@ -31,9 +31,9 @@ const ContentGames = (props) => {
         gameData = state.gameRecords.all;
       } else if (props.timePeriod === 'WEEK') {
         gameData = state.gameRecords.weekly;
-      } else if (props.timePeriod == 'DAY') {
+      } else if (props.timePeriod === 'DAY') {
         gameData = state.gameRecords.daily;
-      } else if (props.timePeriod == 'COMPETITION') {
+      } else if (props.timePeriod === 'COMPETITION') {
         gameData = state.gameRecords.competition;
       }
 
@@ -54,7 +54,7 @@ const ContentGames = (props) => {
           gameData.slot.dai,
           gameData.backgammon.dai,
         ];
-      } else if (props.gameSelect == 'mana') {
+      } else if (props.gameSelect === 'mana') {
         selected = [
           gameData.all.mana,
           gameData.blackjack.mana,

@@ -96,7 +96,7 @@ function ButtonEnable() {
         web3
       );
 
-      if (txHash == false) {
+      if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);

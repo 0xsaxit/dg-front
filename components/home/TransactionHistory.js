@@ -150,7 +150,7 @@ const History = () => {
 
           <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
-              {dataType == 'balances' ? (
+              {dataType === 'balances' ? (
                 <b className="account-hover active">BALANCES</b>
               ) : (
                 <abbr
@@ -161,7 +161,7 @@ const History = () => {
                 </abbr>
               )}
 
-              {dataType == 'play' ? (
+              {dataType === 'play' ? (
                 <b className="account-hover active">GAME HISTORY</b>
               ) : (
                 <abbr
@@ -172,7 +172,7 @@ const History = () => {
                 </abbr>
               )}
 
-              {dataType == 'history' ? (
+              {dataType === 'history' ? (
                 <span>
                   <b className="account-hover active" id="account-txs-tab">
                     TRANSACTIONS

@@ -159,7 +159,7 @@ const Admin = () => {
 
           <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
-              {dataType == 'balances' ? (
+              {dataType === 'balances' ? (
                 <b className="account-hover active">BALANCES</b>
               ) : (
                 <abbr
@@ -170,7 +170,7 @@ const Admin = () => {
                 </abbr>
               )}
 
-              {dataType == 'machines' ? (
+              {dataType === 'machines' ? (
                 <b className="account-hover active">MACHINE HISTORY</b>
               ) : (
                 <abbr
@@ -181,7 +181,7 @@ const Admin = () => {
                 </abbr>
               )}
 
-              {dataType == 'history' ? (
+              {dataType === 'history' ? (
                 <b className="account-hover active">TRANSACTIONS</b>
               ) : (
                 <abbr

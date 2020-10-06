@@ -83,7 +83,7 @@ const Farming = () => {
         web3
       );
 
-      if (txHash == false) {
+      if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
@@ -111,10 +111,10 @@ const Farming = () => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                You can mine $DG by playing games with $MANA or $DAI. Earn multipliers
-                by playing with friends or wearing Decentral Games
-                NFTs. Refer any friends and get an additional 20% of all $DG they mine. For more
-                details, see our
+                You can mine $DG by playing games with $MANA or $DAI. Earn
+                multipliers by playing with friends or wearing Decentral Games
+                NFTs. Refer any friends and get an additional 20% of all $DG
+                they mine. For more details, see our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
@@ -128,7 +128,6 @@ const Farming = () => {
             </span>
           </div>
         </div>
-
 
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
@@ -330,8 +329,10 @@ const Farming = () => {
             </span>
           </div>
 
-          <div className="DG-column one"
-               style={{ position: 'relative', height: '100%' }}>
+          <div
+            className="DG-column one"
+            style={{ position: 'relative', height: '100%' }}
+          >
             <span style={{ display: 'flex' }}>
               <img src={Images.MANA_CIRCLE} className="farming-logo" />
               <img src={Images.DG_COIN_LOGO} className="farming-logo" />
@@ -400,8 +401,10 @@ const Farming = () => {
             </span>
           </div>
 
-          <div className="DG-column two"
-            style={{ position: 'relative', height: '100%' }}>
+          <div
+            className="DG-column two"
+            style={{ position: 'relative', height: '100%' }}
+          >
             <span style={{ display: 'flex' }}>
               <img src={Images.DAI_CIRCLE} className="farming-logo" />
               <img src={Images.DG_COIN_LOGO} className="farming-logo" />
@@ -627,7 +630,7 @@ const Farming = () => {
     return (
       <div className="account-other-tabs">
         {(() => {
-          if (DGstate == 0)
+          if (DGstate === 0)
             return (
               <div>
                 <span className="dg-tabs-desktop">
@@ -659,7 +662,7 @@ const Farming = () => {
                 </span>
               </div>
             );
-          else if (DGstate == 1)
+          else if (DGstate === 1)
             return (
               <div>
                 <span className="dg-tabs-desktop">
@@ -739,8 +742,8 @@ const Farming = () => {
             <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
             {(() => {
-              if (DGstate == 0) return gameplayFarming();
-              else if (DGstate == 1) return liquidityFarming();
+              if (DGstate === 0) return gameplayFarming();
+              else if (DGstate === 1) return liquidityFarming();
               else return Governance();
             })()}
           </div>

@@ -198,7 +198,7 @@ const Tokens = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        {NFTstate == 0 ? (
+        {NFTstate === 0 ? (
           <p className="account-other-p">
             <b className="account-hover active">BUY NFTS</b>{' '}
             <abbr className="account-hover" onClick={() => setPage(1)}>
@@ -232,7 +232,7 @@ const Tokens = () => {
 
             <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
-            {NFTstate == 1 ? myNFTs() : buyNFTs()}
+            {NFTstate === 1 ? myNFTs() : buyNFTs()}
           </div>
         </div>
       )}

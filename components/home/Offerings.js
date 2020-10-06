@@ -3,7 +3,6 @@ import { GlobalContext } from '../../store';
 import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
-// import Global from '../Constants';
 import Images from '../../common/Images';
 
 const options = [
@@ -83,7 +82,7 @@ const Offerings = () => {
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
-  // const [isLoading, setIsLoading] = useState(true);
+  const [gameState, setGameState] = useState(0);
   const [doneLoading, setDoneLoading] = useState(true);
 
   useEffect(() => {
@@ -91,8 +90,6 @@ const Offerings = () => {
       setDoneLoading(false);
     }
   });
-
-  const [gameState, setGameState] = useState('0');
 
   function handleChange(value) {
     var gameSelect = '';
@@ -196,7 +193,7 @@ const Offerings = () => {
             ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////  tab select area   //////////////////////////////// */}
 
-        {gameState == 0 ? (
+        {gameState === 0 ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
             <abbr className="account-hover" onClick={() => setPage(1)}>
@@ -450,7 +447,7 @@ const Offerings = () => {
           <div className="account-other-inner-container">
             {submenu()}
 
-            {gameState == 1 ? Leaderboard() : Games()}
+            {gameState === 1 ? Leaderboard() : Games()}
           </div>
         </div>
       )}
