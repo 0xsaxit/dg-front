@@ -1638,6 +1638,42 @@ div.ui.grid.balances-container {
   opacity: 100% !important;
 }
 
+.ui.button.affiliate-copy-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -45px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 27px;
+  padding-top: 4px;
+  max-width: 150px !important;
+  min-width: 150px;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+  opacity: 100% !important;
+}
+
+.ui.button.affiliate-copied-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -45px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 27px;
+  padding-top: 4px;
+  max-width: 90px !important;
+  min-width: 90px;
+  padding-left: 0px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
+  opacity: 100% !important;
+}
+
 .ui.button.balancer-top-button {
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid #2085f4;
@@ -1812,6 +1848,8 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 
 .DG-column.stake {
   max-width: 36% !important;
+  position: relative;
+  height: 100%;
 }
 
 .DG-liquidity-container.top {
@@ -1825,6 +1863,15 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .DG-column.unclaimed {
   max-width: 23% !important;  
   max-height: 183px;
+}
+
+.DG-column.liquidity-unclaimed {
+  max-width: 100% !important;  
+  max-height: 183px;
+}
+
+.DG-column.liquidity-unclaimed.two {
+  margin-top: 30px;
 }
 
 .DG-column {
