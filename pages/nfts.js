@@ -8,8 +8,8 @@ const NFTs = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | NFTs'}
-        description={Global.DESCRIPTION}
+        title={Global.CONSTANTS.TITLE + ' | NFTs'}
+        description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 

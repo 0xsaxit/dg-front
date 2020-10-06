@@ -1,30 +1,19 @@
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import Global from '../components/Constants';
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // return treasury contract for Biconomy API meta-transaction calls
 async function getTreasuryContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
   const treasuryContractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-
-  //   console.log('foo foo foo...');
-  //   console.log(addresses);
-  //   console.log(treasuryContractAddress);
-  //   console.log(ABI_TREASURY_CONTRACT);
 
   const treasuryContract = new web3Default.eth.Contract(
     ABI_TREASURY_CONTRACT,
     treasuryContractAddress
   );
 
-  // console.log(treasuryContract);
-
   return treasuryContract;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // get user's active status (true or false) from smart contract
 async function getActiveStatus(userAddress, web3Default) {
   console.log("Get user's active status from smart contract");
@@ -42,8 +31,6 @@ async function getActiveStatus(userAddress, web3Default) {
   }
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////
 // get user or contract token balance from MetaMask
 function balanceOfToken(tokenContract, userOrContractAddress) {
   return new Promise(async (resolve, reject) => {
@@ -59,7 +46,7 @@ function balanceOfToken(tokenContract, userOrContractAddress) {
           reject(false);
         }
 
-        const amountAdjusted = (amount / Global.FACTOR)
+        const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
           .toFixed(0)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 

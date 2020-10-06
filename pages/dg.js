@@ -8,8 +8,8 @@ const dg = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | DG'}
-        description={Global.DESCRIPTION}
+        title={Global.CONSTANTS.TITLE + ' | DG'}
+        description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 

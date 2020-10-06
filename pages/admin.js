@@ -8,8 +8,8 @@ const Administration = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Admin'}
-        description={Global.DESCRIPTION}
+        title={Global.CONSTANTS.TITLE + ' | Admin'}
+        description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 

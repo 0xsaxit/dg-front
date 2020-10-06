@@ -34,21 +34,21 @@ let metaTransactionType = [];
   const domainDataToken = {
     name: 'Dummy ERC20',
     version: '1',
-    chainId: Global.PARENT_NETWORK_ID,
+    chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: childTokenAddress,
   };
 
   const domainDataTreasury = {
     name: 'Treasury',
     version: 'v3.0',
-    chainId: Global.PARENT_NETWORK_ID,
+    chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: treasuryAddress,
   };
 
   const domainDataDGPointer = {
     name: 'TEST',
     version: 'A',
-    chainId: Global.PARENT_NETWORK_ID,
+    chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: dgPointerAddress,
   };
 

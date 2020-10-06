@@ -8,8 +8,8 @@ const Account = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Account'}
-        description={Global.DESCRIPTION}
+        title={Global.CONSTANTS.TITLE + ' | Account'}
+        description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 

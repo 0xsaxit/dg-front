@@ -64,8 +64,8 @@ function ButtonPause(props) {
         if (toggle) {
           PARENT_CONTRACT.pause(
             {
-              gasLimit: web3Default.toHex(Global.GAS_LIMIT),
-              gasPrice: web3Default.toHex(Global.GAS_AMOUNT),
+              gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
+              gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
             },
             async function (err, hash) {
               if (err) {
@@ -79,8 +79,8 @@ function ButtonPause(props) {
         } else {
           PARENT_CONTRACT.unpause(
             {
-              gasLimit: web3Default.toHex(Global.GAS_LIMIT),
-              gasPrice: web3Default.toHex(Global.GAS_AMOUNT),
+              gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
+              gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
             },
             async function (err, hash) {
               if (err) {

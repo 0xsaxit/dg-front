@@ -43,7 +43,7 @@ const Admin = () => {
   useEffect(() => {
     if (state.userStatus) {
       maticWeb3 = new Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       ); // pass Matic provider to maticWeb3 object
 
       // get treasury contract's paused status (true or false)
@@ -66,7 +66,7 @@ const Admin = () => {
   // ping the treasury contract for pause status
   async function dataInterval() {
     maticWeb3 = new Web3(
-      new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+      new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
     ); // pass Matic provider to maticWeb3 object
 
     // const treasuryContract = Transactions.getTreasuryContract(maticWeb3);

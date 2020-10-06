@@ -40,7 +40,7 @@ const ContentModal = (props) => {
   }, [state.userStatus, transaction, amount]);
 
   function inputChange(e) {
-    const valueWei = e.target.value * Global.FACTOR;
+    const valueWei = e.target.value * Global.CONSTANTS.FACTOR;
     setAmount(valueWei);
   }
 
@@ -74,8 +74,8 @@ const ContentModal = (props) => {
           amount,
           {
             from: userAddress,
-            gasLimit: web3Default.toHex(Global.GAS_LIMIT),
-            gasPrice: web3Default.toHex(Global.GAS_AMOUNT),
+            gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
+            gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
           },
           async function (err, hash) {
             if (err) {
@@ -130,8 +130,8 @@ const ContentModal = (props) => {
           amount,
           {
             from: userAddress,
-            gasLimit: web3Default.toHex(Global.GAS_LIMIT),
-            gasPrice: web3Default.toHex(Global.GAS_AMOUNT),
+            gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
+            gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
           },
           async function (err, hash) {
             if (err) {

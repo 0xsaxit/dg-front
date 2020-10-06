@@ -9,10 +9,10 @@ const Index = () => {
     <Layout>
       <Header
         title={
-          Global.TITLE +
+          Global.CONSTANTS.TITLE +
           ' | Slots, Roulette, Blackjack and Backgammon Playable with Crypto'
         }
-        description={Global.DESCRIPTION}
+        description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 

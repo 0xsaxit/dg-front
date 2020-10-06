@@ -5,11 +5,11 @@ export default class extends React.Component {
   static async getInitialProps({ res }) {
     if (res) {
       res.writeHead(301, {
-        Location: Global.DISCORD_URL,
+        Location: Global.CONSTANTS.DISCORD_URL,
       });
       res.end();
     } else {
-      window.location = Global.DISCORD_URL;
+      window.location = Global.CONSTANTS.DISCORD_URL;
     }
     return {};
   }

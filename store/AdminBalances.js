@@ -18,7 +18,7 @@ function AdminBalances() {
   useEffect(() => {
     if (state.userStatus) {
       maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       );
 
       async function fetchData() {
@@ -152,7 +152,7 @@ function AdminBalances() {
             reject(false);
           }
 
-          const amountAdjusted = (amount / Global.FACTOR)
+          const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
             .toFixed(0)
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 

@@ -169,8 +169,12 @@ const ContentAdmin = (props) => {
             default:
               game = 'Slots';
           }
-          let bets = (Number(row.totalBetAmount) / Global.FACTOR).toFixed(0);
-          let payouts = (Number(row.totalAmountWin) / Global.FACTOR).toFixed(0);
+          let bets = (
+            Number(row.totalBetAmount) / Global.CONSTANTS.FACTOR
+          ).toFixed(0);
+          let payouts = (
+            Number(row.totalAmountWin) / Global.CONSTANTS.FACTOR
+          ).toFixed(0);
 
           // later we should provide the coinName property in the data
           let coinName = 'MANA';
@@ -243,8 +247,8 @@ const ContentAdmin = (props) => {
               default:
                 game = 'Slots';
             }
-            let amount = Number(row.betAmount) / Global.FACTOR;
-            let payout = Number(row.amountWin) / Global.FACTOR;
+            let amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
+            let payout = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
             let coinName = row.coinName;
 
             let coinImage = '';
@@ -286,7 +290,10 @@ const ContentAdmin = (props) => {
                   <a
                     style={{ color: 'gray' }}
                     target="_blank"
-                    href={Global.MATIC_EXPLORER + `/address/${row.address}`}
+                    href={
+                      Global.CONSTANTS.MATIC_EXPLORER +
+                      `/address/${row.address}`
+                    }
                   >
                     {row.address.substr(0, 6) + '...' + row.address.substr(-4)}
                   </a>

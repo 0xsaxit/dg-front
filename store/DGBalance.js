@@ -16,7 +16,7 @@ function DGBalance() {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       ); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
@@ -82,7 +82,7 @@ function DGBalance() {
             reject(false);
           }
 
-          const pointsAdjusted = (amount / Global.FACTOR)
+          const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR)
             .toFixed(3)
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 

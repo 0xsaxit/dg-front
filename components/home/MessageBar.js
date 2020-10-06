@@ -38,7 +38,7 @@ const MessageBar = () => {
   // notify admins to switch to Matic Network
   useEffect(() => {
     if (router.pathname === '/admin') {
-      if (state.networkID !== Global.MATIC_NETWORK_ID) {
+      if (state.networkID !== Global.CONSTANTS.MATIC_NETWORK_ID) {
         setAdminError(true);
       } else {
         setAdminError(false);
@@ -57,10 +57,8 @@ const MessageBar = () => {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
       );
-    } else if (state.networkID !== Global.PARENT_NETWORK_ID) {
-      setMessage(
-        'Please switch MetaMask to Goerli Network'
-      );
+    } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+      setMessage('Please switch MetaMask to Goerli Network');
     } else if (!state.userStatus === 4) {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play our free play games'

@@ -3,8 +3,7 @@ import Screen from './screen';
 import { GlobalContext } from '../../store';
 import { Segment } from 'semantic-ui-react';
 import ScrollToTop from '../Scroll';
-import Global from '../Constants';
-// import { Butter } from '../../common/Butter';
+import ButterCMS from '../../common/ButterCMS';
 
 const BlogDetail = ({ match }) => {
   const [state, dispatch] = useContext(GlobalContext);
@@ -34,7 +33,7 @@ const BlogDetail = ({ match }) => {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await Global.BUTTER.post.list({ page_size: 25 });
+      const { data } = await ButterCMS.post.list({ page_size: 25 });
 
       dispatch({
         type: 'update_pages',

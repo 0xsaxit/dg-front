@@ -79,7 +79,7 @@ const ContentTransactions = (props) => {
               <td className="table-body-text-1 hash">
                 <span style={{ float: 'right', paddingRight: '12px' }}>
                   <Button
-                    href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
+                    href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
                     target="_blank"
                     className="etherscan-button"
                   >
@@ -105,8 +105,8 @@ const ContentTransactions = (props) => {
         {props.dataPage.map((row, i) => {
           const date = new Date(row.createdAt);
           const timestamp = date.toLocaleString();
-          const amount = Number(row.betAmount) / Global.FACTOR;
-          const result = Number(row.amountWin) / Global.FACTOR;
+          const amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
+          const result = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
           let action;
           if (row.gameType === 1) {
             action = 'Slots';
@@ -159,7 +159,7 @@ const ContentTransactions = (props) => {
                 <span style={{ float: 'right', paddingRight: '12px' }}>
                   {row.coinName === 'play' ? (
                     <Button
-                      href={Global.MATIC_EXPLORER + `/tx/${row.txid}`}
+                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
                       target="_blank"
                       className="etherscan-button"
                     >

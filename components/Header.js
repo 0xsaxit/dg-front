@@ -11,15 +11,18 @@ const Header = (props) => {
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
         <meta property="og:image" content={props.image} />
-        <meta property="og:url" content={Global.BASE_URL} />
-        <meta name="twitter:site" content={'@' + Global.SOCIAL_HANDLE} />
+        <meta property="og:url" content={Global.CONSTANTS.BASE_URL} />
+        <meta
+          name="twitter:site"
+          content={'@' + Global.CONSTANTS.SOCIAL_HANDLE}
+        />
         <meta name="robots" content="index, follow" />
       </Head>
 
       <NextSeo
         openGraph={{
           type: 'website',
-          url: Global.BASE_URL,
+          url: Global.CONSTANTS.BASE_URL,
           title: props.title,
           description: props.description,
           images: [

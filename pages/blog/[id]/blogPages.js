@@ -3,8 +3,7 @@ import Screen from '../../../components/blogdetail/screen';
 import { GlobalContext } from '../../../store';
 import { Segment, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
-import Global from '../../../components/Constants';
-// import { Butter } from '../../../common/Butter';
+import ButterCMS from '../../../common/ButterCMS';
 
 const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   const router = useRouter();
@@ -24,7 +23,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await Global.BUTTER.post.list({ page_size: 25 });
+      const { data } = await ButterCMS.post.list({ page_size: 25 });
       dispatch({
         type: 'update_pages',
         data,

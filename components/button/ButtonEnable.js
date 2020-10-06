@@ -19,7 +19,7 @@ function ButtonEnable() {
   let treasuryContract = {};
   let web3 = {};
   let maticWeb3 = {};
-  const sessionDuration = Global.ACTIVE_PERIOD;
+  const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
 
   useEffect(() => {
     if (state.userStatus) {
@@ -28,10 +28,10 @@ function ButtonEnable() {
       // initialize Web3 providers and create token contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       ); // pass Matic provider to maticWeb3 object
       const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.MATIC_URL),
+        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
           apiKey: Global.KEYS.BICONOMY_API,
           debug: true,
@@ -67,7 +67,7 @@ function ButtonEnable() {
 
     Fetch.POST_HISTORY(
       userAddress,
-      Global.MAX_AMOUNT,
+      Global.CONSTANTS.MAX_AMOUNT,
       'Reauthorization',
       'Confirmed',
       txHash,

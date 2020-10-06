@@ -36,7 +36,7 @@ function ButtonAuthorize() {
       // initialize Web3 providers and create token contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.MATIC_URL),
+        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
           apiKey: Global.KEYS.BICONOMY_API,
           debug: true,
@@ -91,7 +91,7 @@ function ButtonAuthorize() {
 
     Fetch.POST_HISTORY(
       userAddress,
-      Global.MAX_AMOUNT,
+      Global.CONSTANTS.MAX_AMOUNT,
       'Authorization',
       'Confirmed',
       txHash,
@@ -102,11 +102,11 @@ function ButtonAuthorize() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
-      console.log('authorize amount: ' + Global.MAX_AMOUNT);
+      console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
-        .approve(spenderAddress, Global.MAX_AMOUNT)
+        .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(

@@ -15,7 +15,7 @@ let transak = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  hostURL: Global.BASE_URL,
+  hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '450px',
 });

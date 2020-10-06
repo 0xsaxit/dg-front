@@ -4,9 +4,7 @@ import { Divider } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-// import $ from 'jquery';
-import Global from '../../../../components/Constants';
-// import { Butter } from '../../../../common/Butter';
+import ButterCMS from '../../../../common/ButterCMS';
 
 function blogCategory() {
   const router = useRouter();
@@ -16,7 +14,7 @@ function blogCategory() {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await Global.BUTTER.post.list({ page_size: 30 });
+      const { data } = await ButterCMS.post.list({ page_size: 30 });
       dispatch({
         type: 'update_pages',
         data,

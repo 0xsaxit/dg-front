@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-          <meta name="description" content={Global.DESCRIPTION} />
+          <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
           <link
             rel="shortcut icon"
             href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691630/favicon_ofugym.ico"

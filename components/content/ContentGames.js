@@ -131,7 +131,9 @@ const ContentGames = (props) => {
 
               <tbody>
                 {dataGames[index].map((row, index) => {
-                  var num = parseInt(Number(row.winnings) / Global.FACTOR);
+                  var num = parseInt(
+                    Number(row.winnings) / Global.CONSTANTS.FACTOR
+                  );
                   var amount = Number(num.toFixed(0))
                     .toLocaleString()
                     .split(/\s/)

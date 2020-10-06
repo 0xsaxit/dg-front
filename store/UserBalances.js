@@ -23,7 +23,7 @@ function UserBalances() {
       userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window['ethereum']); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.MATIC_URL)
+        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       );
 
       async function fetchData() {

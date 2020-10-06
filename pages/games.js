@@ -8,8 +8,8 @@ const Games = () => {
   return (
     <Layout>
       <Header
-        title={Global.TITLE + ' | Games'}
-        description={Global.DESCRIPTION}
+        title={Global.CONSTANTS.TITLE + ' | Games'}
+        description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 

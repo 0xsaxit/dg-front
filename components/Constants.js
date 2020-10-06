@@ -1,4 +1,3 @@
-import Butter from 'buttercms'; // *************************
 import Fetch from '../common/Fetch';
 
 // third-party public API keys
@@ -18,24 +17,25 @@ const ADMIN_ADDRESSES = [
 ];
 
 // common constant values
-const BASE_URL = 'https://decentral.games';
-const MAX_AMOUNT =
-  '115792089237316195423570985008687907853269984665640564039457584007913129639935';
-const GAS_LIMIT = '3000000'; // was '900000'
-const GAS_AMOUNT = '80000000000'; // was '20000000000'
-const FACTOR = 1000000000000000000; // ETH-to-WEI multiplication factor
-const PARENT_NETWORK_ID = 5; // 1: Mainnet, 3: Ropsten, 5: Goerli
-const ACTIVE_PERIOD = 43200; // user account active period: 3600 == 1 hour // 43200
-const MATIC_NETWORK_ID = 80001;
-const MATIC_URL = 'https://rpc-mumbai.matic.today';
-const MATIC_EXPLORER = 'https://mumbai-explorer.matic.today';
-const TITLE = 'Decentral Games';
-const DESCRIPTION =
-  '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!';
-const BUTTER = Butter(KEYS.BUTTER_TOKEN);
-const DISCORD_URL = 'https://discord.gg/cvbSNzY';
-const SOCIAL_HANDLE = 'decentralgames';
-const ADDRESS_TOMINOYA = '0xF4618abb5E8031454238696A0F013DcD1476dc33';
+const CONSTANTS = {
+  BASE_URL: 'https://decentral.games',
+  MAX_AMOUNT:
+    '115792089237316195423570985008687907853269984665640564039457584007913129639935',
+  GAS_LIMIT: '3000000', // was '900000'
+  GAS_AMOUNT: '80000000000', // was '20000000000'
+  FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
+  PARENT_NETWORK_ID: 5, // 1: Mainnet, 3: Ropsten, 5: Goerli
+  ACTIVE_PERIOD: 43200, // user account active period: 3600 == 1 hour // 43200
+  MATIC_NETWORK_ID: 80001,
+  MATIC_URL: 'https://rpc-mumbai.matic.today',
+  MATIC_EXPLORER: 'https://mumbai-explorer.matic.today',
+  TITLE: 'Decentral Games',
+  DESCRIPTION:
+    '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!',
+  DISCORD_URL: 'https://discord.gg/cvbSNzY',
+  SOCIAL_HANDLE: 'decentralgames',
+  ADDRESS_TOMINOYA: '0xF4618abb5E8031454238696A0F013DcD1476dc33',
+};
 
 // fetch wallet and contract addresses from server API
 const API_ADDRESSES = (async () => {
@@ -72,21 +72,6 @@ const API_ADDRESSES = (async () => {
 export default {
   KEYS,
   ADMIN_ADDRESSES,
+  CONSTANTS,
   API_ADDRESSES,
-  BASE_URL,
-  MAX_AMOUNT,
-  GAS_LIMIT,
-  GAS_AMOUNT,
-  FACTOR,
-  PARENT_NETWORK_ID,
-  ACTIVE_PERIOD,
-  MATIC_NETWORK_ID,
-  MATIC_URL,
-  MATIC_EXPLORER,
-  TITLE,
-  DESCRIPTION,
-  BUTTER,
-  DISCORD_URL,
-  SOCIAL_HANDLE,
-  ADDRESS_TOMINOYA,
 };

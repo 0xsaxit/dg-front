@@ -3,11 +3,9 @@ import { GlobalContext } from '../../store';
 import { Menu, Image, Divider, Grid, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';
-// import $ from 'jquery';
 import Aux from '../../components/_Aux';
-import Global from '../../components/Constants';
 import Images from '../../common/Images';
-// import Butter from '../../common/Butter';
+import ButterCMS from '../../common/ButterCMS';
 
 function blog() {
   const [state, dispatch] = useContext(GlobalContext);
@@ -24,7 +22,7 @@ function blog() {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await Global.BUTTER.post.list({ page_size: 30 });
+      const { data } = await ButterCMS.post.list({ page_size: 30 });
       dispatch({
         type: 'update_pages',
         data,

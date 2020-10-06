@@ -41,8 +41,8 @@ const Wildcard = () => {
       {affiliateAddress ? (
         <Aux>
           <Header
-            title={Global.TITLE + ' | Account'}
-            description={Global.DESCRIPTION}
+            title={Global.CONSTANTS.TITLE + ' | Account'}
+            description={Global.CONSTANTS.DESCRIPTION}
             image={Images.SOCIAL_SHARE}
           />
 
@@ -51,8 +51,8 @@ const Wildcard = () => {
       ) : (
         <Aux>
           <Header
-            title={Global.TITLE + ' | Page Not Found'}
-            description={Global.DESCRIPTION}
+            title={Global.CONSTANTS.TITLE + ' | Page Not Found'}
+            description={Global.CONSTANTS.DESCRIPTION}
             image={Images.SOCIAL_SHARE}
           />
 
