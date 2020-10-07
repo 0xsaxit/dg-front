@@ -37,7 +37,7 @@ const Farming = () => {
       // initialize Web3 providers and create token contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       const biconomy = new Biconomy(
-        new Web3.providers.HttpProvider(Global.MATIC_URL),
+        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
           apiKey: Global.KEYS.BICONOMY_API,
           debug: true,
