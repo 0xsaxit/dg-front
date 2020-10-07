@@ -10,9 +10,9 @@ function AdminBalances() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-
   let maticWeb3 = {};
   let balances = [];
+  let workerAddress = '';
   let contractAddress = '';
 
   useEffect(() => {
@@ -23,11 +23,18 @@ function AdminBalances() {
 
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
+        workerAddress = addresses.WORKER_ADDRESS;
         contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
+        const balance = await getEthBalance();
         balances = await getTokenBalances();
 
-        // update global state user status
+        // update global state eth balance and treasury token balances
+        dispatch({
+          type: 'eth_balance',
+          data: balance,
+        });
+
         dispatch({
           type: 'admin_balances',
           data: balances,
@@ -39,6 +46,22 @@ function AdminBalances() {
       fetchData();
     }
   }, [state.userStatus, state.tokenPings]);
+
+  // get worker address ETH balance on Matic Network
+  async function getEthBalance() {
+    return new Promise(async (resolve, reject) => {
+      maticWeb3.eth.getBalance(workerAddress, function (err, result) {
+        if (err) {
+          console.log('Get ETH balance error: ' + err);
+        } else {
+          const amountEth = web3.fromWei(result, 'ether') + ' ETH';
+          const amountNumber = parseFloat(amountEth).toFixed(4);
+
+          resolve(amountNumber);
+        }
+      });
+    });
+  }
 
   function dataInterval() {
     async function fetchData() {
@@ -74,11 +97,6 @@ function AdminBalances() {
 
           clearInterval(interval);
         }
-
-        // dispatch({
-        //   type: 'token_pings',
-        //   data: false,
-        // })
       }
     }
 
@@ -99,9 +117,6 @@ function AdminBalances() {
     const tokenContract = maticWeb3.eth
       .contract(ABI_CHILD_TOKEN)
       .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
-
-    // const addresses = await Global.API_ADDRESSES;
-    // const contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
     try {
       let arrayAmounts = [];

@@ -18,6 +18,7 @@ const initialState = {
   balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
+  ethBalance: 0,
   adminBalances: [
     [0, 0],
     [
@@ -104,6 +105,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         activeStatus: action.data,
+      };
+
+    case 'eth_balance':
+      return {
+        ...state,
+        ethBalance: action.data,
       };
 
     case 'admin_balances':

@@ -135,6 +135,11 @@ const Admin = () => {
               >
                 <span style={{ display: 'flex' }}>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
+                    <p className="welcome-text">Matic ETH balance</p>
+                    <div style={{ color: 'red' }}>{state.ethBalance}</div> ETH
+                  </span>
+
+                  <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text">Treasury Ballances</p>
                     <div style={{ color: 'red' }}>
                       {state.adminBalances[0][0]}

@@ -107,13 +107,6 @@ function UserBalances() {
   async function updateHistory(amount, type, _state) {
     console.log('Writing to database: ' + type);
 
-    // console.log('user address: ' + userAddress)
-    // console.log('amount: ' + amount)
-    // console.log('type: ' + type)
-    // console.log('state: ' + _state)
-    // console.log('tx hash: ' + state.txHash)
-    // console.log('user status: ' + state.userStatus)
-
     try {
       const response = await Fetch.POST_HISTORY(
         userAddress,
