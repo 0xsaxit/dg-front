@@ -41,7 +41,7 @@ function blog() {
           paddingTop: '0px',
         }}
       >
-        <span style={{ borderBottom: '1px solid #2085f4' }}>
+        <span>
           <p className="featured-text" style={{ marginBottom: '15px' }}>
             FEATURED POST
           </p>
@@ -69,8 +69,7 @@ function blog() {
                     <h4
                       style={{
                         paddingBottom: '9px',
-                        paddingTop: '8px',
-                        color: 'black',
+                        paddingTop: '8px'
                       }}
                     >
                       Decentral Games Secures Investment to Accelerate
@@ -78,8 +77,7 @@ function blog() {
                     </h4>
                     <p
                       style={{
-                        color: 'rgb(97, 97, 97)',
-                        lineHeight: '1.3',
+                        lineHeight: '1.3'
                       }}
                     >
                       We are pleased to announce we’ve closed our pre-seed

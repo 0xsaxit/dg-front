@@ -1,8 +1,12 @@
-import { useState } from 'react';
-import { Modal, Button, Icon } from 'semantic-ui-react';
+import { useState, useContext } from 'react';
+import { Modal, Button, Icon, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
+import { GlobalContext } from '../../store';
+import Images from '../../common/Images';
 
 const ModalInfo = () => {
+
+  const [state, dispatch] = useContext(GlobalContext);
   // define local variables
   const [open, setOpen] = useState(false);
 
@@ -27,93 +31,57 @@ const ModalInfo = () => {
 
       <p className="matic-header-text" style={{ paddingTop: '72px' }}>
         {' '}
-        About{' '}
+        Your DG Breakdown{' '}
       </p>
 
-      <span
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: '-9px',
-        }}
-      >
-        <a href={`https://twitter.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}>
-          <Icon
-            style={{
-              fontSize: '34px',
-              paddingLeft: '3px',
-              paddingRight: '3px',
-            }}
-            name="twitter"
-          />
-        </a>
-        <a href={Global.CONSTANTS.DISCORD_URL}>
-          <Icon
-            style={{
-              fontSize: '32px',
-              paddingLeft: '3px',
-              paddingRight: '3px',
-              paddingTop: '2px',
-            }}
-            name="discord"
-          />
-        </a>
-        <a href={`https://github.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}>
-          <Icon
-            style={{
-              fontSize: '34px',
-              paddingLeft: '6px',
-              paddingRight: '3px',
-            }}
-            name="github"
-          />
-        </a>
-        <a href="">
-          <Icon
-            style={{
-              fontSize: '34px',
-              paddingLeft: '3px',
-              paddingRight: '3px',
-            }}
-            name="telegram plane"
-          />
-        </a>
-        <a href="https://gitcoin.co/grants/993/decentral-games">
-          <Icon
-            style={{
-              fontSize: '33px',
-              paddingLeft: '3px',
-              paddingRight: '3px',
-            }}
-            name="heart"
-          />
-        </a>
-      </span>
+      <Divider style={{ marginTop: '-9px' }}/> 
+
+      <div>
+        <span style={{ display: 'flex', justifyContent: 'center' }}>
+          <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+        </span>
+
+          <span style={{ display: 'flex', justifyContent: 'center' }}>
+            <p className="account-name" style={{ marginLeft: '0px', paddingLeft: '0px', textAlign: 'center' }}>{state.DGPoints}</p>
+          </span>
+      </div>
+
+
       <div className="menu-info-container">
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label"> Version </p>
-          <p className="menu-info-text"> 0.0.9 </p>
+          <p className="menu-info-label"> balance </p>
+          <p className="menu-info-text"> 0.000</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> Network </p>
-          <p className="menu-info-text"> Goerli </p>
+          <p className="menu-info-label"> unclaimed </p>
+          <p className="menu-info-text"> 0.000 </p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> DCL Node </p>
+          <p className="menu-info-label"> DG price </p>
           <a href="https://catalyst-monitor.now.sh/" className="menu-info-text">
             {' '}
-            https://catalyst-monitor.now.sh
+            ...
           </a>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> Matic Node </p>
+          <p className="menu-info-label"> DG in circulation</p>
           <a
             href="https://wallet.matic.today/staking/"
             className="menu-info-text"
           >
-            https://wallet.matic.today
+            ...
           </a>
         </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label"> total supply</p>
+          <a
+            href="https://wallet.matic.today/staking/"
+            className="menu-info-text"
+          >
+            ...
+          </a>
+        </span>
+
       </div>
     </Modal>
   );

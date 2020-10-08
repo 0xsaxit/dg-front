@@ -8,18 +8,18 @@ import MessageBar from './MessageBar';
 import Verify from './Verify';
 import MessageBox from './MessageBox';
 import Aux from '../_Aux';
-// import Global from '../Constants';
 import Images from '../../common/Images';
 
-const MenuTop = () => {
+
+const MenuTop = ({toggleTheme}) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [isVisible, setIsVisible] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
-  // const [open, setOpen] = React.useState(false);
 
   const router = useRouter();
 
@@ -35,6 +35,8 @@ const MenuTop = () => {
         '',
         'rgba(10, 10, 10, 1)',
         'right-menu-text',
+        'home-menu-icon',
+        'home-mobile-background',
       ]);
     } else {
       setMenuStyle([
@@ -46,6 +48,8 @@ const MenuTop = () => {
         'rgb(10, 10, 10)',
         'white',
         'right-menu-text blog',
+        'mobile-menu-icon',
+        '',
       ]);
     }
   }, []);
@@ -55,6 +59,15 @@ const MenuTop = () => {
       console.log('User status: ' + state.userStatus);
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    if (localTheme === 'dark') {
+      setDarkMode(true);
+    } else {
+      setDarkMode(false);
+    }
+  })
 
   // display the 'ADD TOKENS' popup
   function balancesModal() {
@@ -158,7 +171,7 @@ const MenuTop = () => {
         <span
           className="material-icons"
           onClick={() => handleDimmedChange()}
-          id="mobile-menu-icon"
+          id={menuStyle[8]}
           style={{ color: menuStyle[5] }}
         >
           {isVisible === false ? 'menu' : 'close'}
@@ -172,7 +185,7 @@ const MenuTop = () => {
             icon="labeled"
             vertical
             visible={isVisible}
-            style={{ backgroundColor: menuStyle[6] }}
+            id={menuStyle[9]}
           >
             <Link href="/">
               <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
@@ -266,6 +279,9 @@ const MenuTop = () => {
     if (state.userStatus) {
       return (
         <span className="right-menu-items">
+
+          {/*<ModalInfo />*/}
+
           <span className="menu-account-info">
             <span className="menu-info-to-hide">
               <Menu.Item className={menuStyle[7]}>
@@ -322,7 +338,16 @@ const MenuTop = () => {
             <span className="material-icons">add</span>
           </Button>
 
-          <ModalInfo />
+          {isDarkMode ? 
+            <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
+              <span className="material-icons">brightness_4</span>
+            </Button>
+          :
+            <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
+              <span className="material-icons">brightness_7</span>
+            </Button>
+          }
+
         </span>
       );
     } else {

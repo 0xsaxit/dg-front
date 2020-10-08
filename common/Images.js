@@ -30,7 +30,7 @@ const Images = {
   FEATURED_IMAGE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599777537/Group_6_vj1jdx.png',
   DG_COIN_LOGO: 
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601945046/dg-coin-logo_az3dmx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
 };
 
 export default Images;

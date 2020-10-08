@@ -2,7 +2,8 @@
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
-#mobile-menu-icon {
+#mobile-menu-icon,
+#home-menu-icon {
   position: absolute;
   color: white;
   top: 23px;
@@ -20,7 +21,8 @@
   }
 }
 
-#mobile-menu-icon:hover {
+#mobile-menu-icon:hover,
+#home-menu-icon:hover {
   cursor: pointer;
 }
 

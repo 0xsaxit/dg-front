@@ -22,10 +22,8 @@ pre {
 }
 
 code strong, kbd, samp {
-  background-color: rgb(244, 246, 250) !important;
-  font-size: 18px !important;
+  font-size: 17px !important;
   padding: 1px 5px 2px 5px;
-  border: 1px solid #e8e8e8;
   border-radius: 2px;
   font-weight: 500;
 }

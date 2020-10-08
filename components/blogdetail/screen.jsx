@@ -103,6 +103,7 @@ const Screen = ({
           </a>
           <a href="http://www.facebook.com/share.php?url=">
             <Icon
+              className="share-icon"
               style={{
                 fontSize: '34px',
                 margin: '15px 0px 15px 0px',
@@ -111,7 +112,7 @@ const Screen = ({
             />
           </a>
           <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=">
-            <Icon style={{ fontSize: '34px' }} name="linkedin" />
+            <Icon className="share-icon"style={{ fontSize: '34px' }} name="linkedin" />
           </a>
         </span>
       </div>

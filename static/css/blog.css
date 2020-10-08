@@ -48,49 +48,6 @@ p {
   line-height: 1.4;
 }
 
-.dcl.navbar {
-  border-bottom: 1px solid rgb(241, 241, 241) !important;
-  height: 60px;
-}
-
-#blog-divider {
- color: rgb(241, 241, 241) !important;
-}
-
-/* ----------------------------------------- */
-/*             BLOG PAGE MENU CSS            */
-/* ----------------------------------------- */
-
-.menu-container-dark.blog {
-  background-color: white !important;
-}
-
-.other-menu-container.blog {
-  background-color: white !important;
-  border-bottom: 1px solid rgb(241, 241, 241) !important;
-}
-
-.sidebar-menu-text.blog:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0) !important;
-  color: rgba(0, 0, 0, 1) !important;
-  font-weight: 800 !important;
-}
-
-.sidebar-menu-text.blog.active {
-  background-color: rgba(0, 0, 0, 0) !important;
-  color: rgba(0, 0, 0, 1) !important;
-}
-
-.sidebar-menu-text.blog {
-  color: rgba(92, 95, 97, 1) !important;
-}
-
-.sidebar-menu-text-2.blog,
-.sidebar-menu-text-3.blog {
-  color: rgba(92, 95, 97, 1) !important;
-}
-
 /* ----------------------------------------- */
 /*             MAIN BLOG PAGE CSS            */
 /* ----------------------------------------- */
@@ -118,7 +75,6 @@ p {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.5px !important;
-  color: rgb(92, 95, 97);
   text-transform: uppercase;
 }
 
@@ -129,12 +85,10 @@ p {
   font-size: 12px !important;
   font-weight: bold;
   letter-spacing: 1.5px;
-  background-color: #e5e6e8;
   padding: 3px 6px 3px 6px;
   margin-right: 12px;
   margin-top: -1px !important;
   text-transform: uppercase !important;
-  color: black !important;
 }
 
 a:hover {
@@ -195,21 +149,17 @@ a:hover {
 .featured-blog-container:hover {
   transform: translateY(-2px);
   transition: transform 0.25s ease 0s;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.09);
 }
 
 .post {
   background-color: white;
   margin-bottom: 45px;
   border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   transition: transform 0.25s ease 0s;
 }
 
 .featured-blog-container {
   margin-bottom: 45px;
-  border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   transition: transform 0.25s ease 0s;
 }
 
@@ -359,7 +309,6 @@ img.logo-image {
   line-height: 1.7 !important;
   font-size: 20px !important;
   margin-bottom: 0;
-  color: #16141a;
   font-weight: normal !important;
 }
 
@@ -371,7 +320,6 @@ img.logo-image {
   line-height: 1.7 !important;
   font-size: 20px !important;
   margin-bottom: 0;
-  color: #16141a;
   font-weight: normal !important;
 }
 
@@ -422,7 +370,7 @@ img.logo-image {
 .blogdetail-page-container .post__content ul,
 .blogdetail-page-container .post__content ol {
   padding: 0;
-  margin: 20px 0;
+  margin: 20px 20px;
   list-style: none;
 }
 
@@ -462,52 +410,42 @@ img.logo-image {
   margin-bottom: -30px;
   display: flex;
   justify-content: space-between;
-  background-color: #f9fbfd !important;
 }
 
 .read-next-button:first-child {
   padding: 12px 18px 18px 18px;
   text-align: right;
-  background-color: white !important;
-  border: 1px solid rgb(229, 229, 230) !important;
   width: 48%;
   font-size: 18px !important;
   letter-spacing: 0.5px;
   line-height: 1.5 !important;
-  color: rgb(10, 10, 10) !important;
   text-transform: capitalize;
 }
 
 .read-next-button:last-child {
   padding: 12px 18px 18px 18px;
   text-align: left;
-  background-color: white !important;
-  border: 1px solid rgb(229, 229, 230) !important;
   width: 48%;
   font-size: 18px !important;
   letter-spacing: 0.5px;
   line-height: 1.5 !important;
-  color: rgb(10, 10, 10) !important;
   text-transform: capitalize;
 }
 
 .read-next-button:hover {
-  border: 1px solid #4c9df6 !important;
-  transform: translateY(0px) !important;
-  color: #4c9df6 !important;
+  transform: translateY(-2px) !important;
+  transition: all .0.25s ease 0s !important;
 }
 
 .read-next-button:first-child:before {
   content: 'Previous     ' !important;
   margin-left: calc(100% - 82px);
-  color: rgb(92, 95, 97);
   font-size: 14px;
 }
 
 .read-next-button:last-child:before {
   content: 'Next    ' !important;
   margin-right: 100%;
-  color: rgb(92, 95, 97);
   font-size: 14px;
 }
 
