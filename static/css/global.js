@@ -39,7 +39,8 @@ export const GlobalStyles = createGlobalStyle`
   .post,
   .DG-column,
   .read-next-button:first-child,
-  .read-next-button:last-child {
+  .read-next-button:last-child,
+  .admin-balances-column {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};

@@ -1426,8 +1426,6 @@ div.ui.grid.balances-container {
 
 .balances-column {
   background-color: white;
-  border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   width: 100%;
   padding: 12px 18px 12px 18px !important;
 }
@@ -2180,6 +2178,32 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 /*                 ADMIN CSS                 */
 /* ----------------------------------------- */
 
+div.ui.grid.admin-balances-container {
+  max-width: 1343px;
+  margin-top: -2px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.admin-balances-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-bottom: 90px !important;
+}
+
+.admin-balances-column {
+  width: 48.5%;
+  background-color: white;
+  padding: 12px 18px 12px 18px !important;
+}
+
+.admin-balances-column.two,
+.admin-balances-column.three {
+  margin-top: 30px;
+}
+
 .admin-button2 {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -2197,28 +2221,6 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .admin-treasury-2 {
   display: flex;
   margin-top: -12px;
-}
-
-.admin-modal-h3 {
-  color: black;
-  font-size: 24px;
-  font-weight: 600;
-  padding-bottom: 21px;
-}
-
-.admin-modal-p {
-  color: black;
-  margin-top: -21px !important;
-}
-
-.admin-modal-p-error {
-  color: red;
-  padding-bottom: 21px;
-}
-
-.admin-modal-input {
-  margin-top: 9px;
-  height: 45px;
 }
 
 .ui.action.input > .button,

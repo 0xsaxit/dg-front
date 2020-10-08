@@ -1,10 +1,16 @@
+import { GlobalContext } from '../store';
+import { useContext } from 'react';
 import Farming from '../components/home/Farming';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 
+
 const dg = () => {
+  // get user's transaction history from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   return (
     <Layout>
       <Header
@@ -13,7 +19,13 @@ const dg = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Farming />
+      {state.userInfo[1] === undefined ? (
+        <div className="account-other-inner-p">
+          Please connect Metask to view this page
+        </div>
+      ) : ( 
+        <Farming />
+      )}
     </Layout>
   );
 };
