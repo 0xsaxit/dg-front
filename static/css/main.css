@@ -615,7 +615,10 @@ a.ui.blue.button.how-to-button {
 .ui.dropdown .menu {
   padding: 0px;
   border-radius: 2px;
-  left: calc(-100% - 21px);
+}
+
+.ui.dropdown .menu > .item {
+  min-width: 100%;
 }
 
 .account-select {
@@ -1145,6 +1148,7 @@ svg.spanbox.disable {
 
 .matic-overlay {
   margin-top: -46px;
+  background-color: white;
   border-radius: 12px;
   position: absolute;
   z-index: 9;
