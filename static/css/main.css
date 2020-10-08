@@ -613,8 +613,6 @@ a.ui.blue.button.how-to-button {
 }
 
 .ui.dropdown .menu {
-  border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 0px;
   border-radius: 2px;
   left: calc(-100% - 21px);
@@ -631,7 +629,6 @@ a.ui.blue.button.how-to-button {
 }
 
 .account-select.play {
-  background-color: rgba(235, 238, 240, 1);
   padding: 6px 9px 6px 9px;
   margin-bottom: 15px;
   margin-top: -6px;
@@ -639,13 +636,8 @@ a.ui.blue.button.how-to-button {
   margin-right: 21px;
 }
 
-.ui.dropdown .menu .active.item {
-  background-color: rgba(235, 238, 240, 1);
-}
-
 .account-select.mana,
 .account-select.dai {
-  background-color: rgba(235, 238, 240, 1);
   padding: 6px 9px 6px 9px;
   margin-bottom: 15px;
   margin-top: -6px;
@@ -1050,7 +1042,7 @@ table.ui.fixed.single.line.table {
 }
 
 .ui.button.reload-button {
-  background-color: white;
+  background-color: transparent;
   border: 1px solid #2085f4;
   color: #2085f4;
   margin-top: -5px;

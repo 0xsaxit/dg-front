@@ -69,7 +69,8 @@
     width: 50vw;
     right: 21px;
   }
-  #mobile-menu-icon {
+  #mobile-menu-icon,
+  #home-menu-icon {
     left: 72px;
   }
   .page-header-text {

@@ -115,7 +115,7 @@ function blog() {
                     key={index}
                     as={`/blog/category/${categoryURL}`}
                   >
-                    More »
+                    <p style={{ fontSize: '14px' }} className="morer-text"> More » </p>
                   </Link>
                 ) : null}
               </span>
