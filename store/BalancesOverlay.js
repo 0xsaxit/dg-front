@@ -61,7 +61,6 @@ const BalancesOverlay = () => {
       top: '215px',
       right: '30px',
       left: '30px',
-      background: '#f9fbfd',
       zIndex: 5,
       display: visibilityAccountPage || 'none',
     },

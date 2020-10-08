@@ -12,7 +12,7 @@ const detailsNFTs = {
     'Tominoya, Vegas City',
     'LOCATION: -120, 135',
     'Tominoya is a Japanese themed casino built by Decentral Games.',
-    'https://opensea.io/assets?query=tominoya',
+    'https://opensea.io/assets/vegas-city-land-lease?search=%7B%22query%22%3A%22tominoya%22%7D',
     'https://decentral.games/blog/tominoya-casino-nft-sale',
   ],
   flamingos: [
@@ -21,7 +21,7 @@ const detailsNFTs = {
     'Flamingos, Vegas City',
     'LOCATION: -126, 118',
     'Flamingos is a classically inspired casino built by Vegas City.',
-    'https://opensea.io/assets/vegas-city-land-lease?query=flamingos',
+    'https://opensea.io/assets/vegas-city-land-lease?search=%7B%22query%22%3A%22flamingos%22%7D',
     'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
   ],
   mink_coat: [
