@@ -27,6 +27,14 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text} !important;
   }
 
+  .ui.divider.widget-divider {
+    border-top: ${({ theme }) => theme.widgetDivider} !important;  
+  }
+
+  .matic-header-text {
+    color: ${({ theme }) => theme.widgetText} !important;
+  }
+
   .home-dashboard-p,
   .home-dashboard-mission,
   .home-dashboard-h2,

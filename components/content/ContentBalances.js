@@ -106,24 +106,16 @@ const ContentBalances = (props) => {
       <span>
         <div className="matic-overlay-container" onClick={close} />
         <div className="matic-overlay">
-          <div className="matic-top-bar">
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ display: 'flex' }}>
-                <img src={Images.MATIC_TOP} className="matic-top-image" />
-                <p className="matic-top-text-1"> Account Connected </p>
-              </span>
-              <span style={{ display: 'flex' }}>
-                <p className="matic-top-text-2">
-                  {' '}
-                  Matic Testnet Mumbai • Metamask{' '}
-                </p>
-              </span>
-            </span>
-          </div>
+          <span style={{ display: 'flex', justifyContent: 'center' }}>
+            <img 
+              src={Images.LOGO} 
+              style={{ width: '54px', height: '54px', margin: '32px' }}
+            />
+          </span>
+
+          <Divider className="widget-divider" style={{ marginTop: '0px' }} />
 
           <p className="matic-header-text"> Add Tokens </p>
-
-          <Divider style={{ borderTop: '1px solid #f3f4f7' }} />
 
           <div className="matic-widget-button-container">
             <div onClick={close}>
@@ -141,7 +133,7 @@ const ContentBalances = (props) => {
                     add
                   </span>
                 </span>
-                Deposit from Metamask
+                Metamask
                 <span className="material-icons" id="matic-widget-icon-right-1">
                   keyboard_arrow_right
                 </span>
@@ -163,7 +155,7 @@ const ContentBalances = (props) => {
                     add
                   </span>
                 </span>
-                Purchase with Debit Card
+                Debit Card
                 <span className="material-icons" id="matic-widget-icon-right-2">
                   keyboard_arrow_right
                 </span>
