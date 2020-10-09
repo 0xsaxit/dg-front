@@ -53,6 +53,8 @@ function ButtonAuthorize() {
           ABI_CHILD_TOKEN,
           addresses.CHILD_TOKEN_ADDRESS_MANA
         );
+
+        if (transaction) metaTransaction(); // MetaMask popup window
       })();
 
       biconomy
@@ -62,8 +64,6 @@ function ButtonAuthorize() {
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
         });
-
-      if (transaction) metaTransaction(); // MetaMask popup window
     }
   }, [state.userStatus, transaction]);
 

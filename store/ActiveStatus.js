@@ -43,14 +43,6 @@ function ActiveStatus() {
       //   treasuryContract = await Transactions.getTreasuryContract(getWeb3);
       // })();
 
-      biconomy
-        .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Active Status');
-        })
-        .onEvent(biconomy.ERROR, (error, message) => {
-          console.error(error);
-        });
-
       (async function () {
         const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
         treasuryContract = await Transactions.getTreasuryContract(getWeb3);
@@ -64,6 +56,14 @@ function ActiveStatus() {
 
         if (!activeStatus) metaTransaction(); // MetaMask popup window
       })();
+
+      biconomy
+        .onEvent(biconomy.READY, () => {
+          console.log('Mexa is Ready: Active Status');
+        })
+        .onEvent(biconomy.ERROR, (error, message) => {
+          console.error(error);
+        });
     }
   }, [state.userStatus]);
 

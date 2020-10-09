@@ -316,6 +316,24 @@ const ContentAdmin = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentNFTs() {
+    return (
+      <tbody>
+        {props.dataPage.map((row, i) => {
+          return (
+            <Table.Row>
+              <Table.Cell style={{ paddingLeft: '20px' }}>
+                {row.dataPage[i]}
+              </Table.Cell>
+            </Table.Row>
+          );
+        })}
+      </tbody>
+    );
+  }
+
   if (props.content === 'labels') {
     return contentLabels();
   } else if (props.content === 'balances') {
@@ -324,6 +342,8 @@ const ContentAdmin = (props) => {
     return contentMachines();
   } else if (props.content === 'history') {
     return contentHistory();
+  } else if (props.content === 'nft') {
+    return contentNFTs();
   }
 };
 

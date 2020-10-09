@@ -15,6 +15,7 @@ const Admin = () => {
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.adminHistory[0];
   const dataMachines = state.adminHistory[1];
+  const dataNFTs = state.parcelData;
 
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
@@ -35,10 +36,26 @@ const Admin = () => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.transactions[0].length) {
+    // if (state.transactions[0].length) {
+    //   setIsLoading(false);
+    // }
+
+    // if (Object.keys(state.parcelData).length !== 0) {
+    //   setIsLoading(false);
+    // }
+
+    const transactions = state.transactions[0].length;
+    const parcelData = Object.keys(state.parcelData).length;
+
+    console.log('transactions...');
+    console.log(transactions);
+    console.log('parcel data...');
+    console.log(parcelData);
+
+    if (transactions && parcelData !== 0) {
       setIsLoading(false);
     }
-  }, [state.transactions]);
+  }, [state.transactions, state.parcelData]);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -196,6 +213,17 @@ const Admin = () => {
                   TRANSACTIONS
                 </abbr>
               )}
+
+              {dataType === 'nft' ? (
+                <b className="account-hover active">NFT HOLDERS</b>
+              ) : (
+                <abbr
+                  className="account-hover"
+                  onClick={() => setPageData('nft')}
+                >
+                  NFT HOLDERS
+                </abbr>
+              )}
             </p>
           </div>
         </div>
@@ -216,6 +244,8 @@ const Admin = () => {
       result = dataHistory.slice(indexStart, indexEnd);
     } else if (type === 'machines') {
       result = dataMachines.slice(indexStart, indexEnd);
+    } else if (type === 'nft') {
+      result = dataNFTs.slice(indexStart, indexEnd);
     }
 
     setDataPage(result);
