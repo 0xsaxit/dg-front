@@ -8,15 +8,6 @@ const KEYS = {
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
 };
 
-// admin area access accounts
-const ADMIN_ADDRESSES = [
-  '0xE2be94B59a3A4Aef2F66Eb0dD73079da00315BF0'.toUpperCase(),
-  '0xDd2d884Cf91ad8b72A78dCD5a25a8a2b29D78f28'.toUpperCase(),
-  '0xDf4eC4dAdCCAbBE4bC44C5D3597abBA54B18Df45'.toUpperCase(),
-  '0x503aaA04A19e0c4b04d1E109F1369C1f2e85fDF0'.toUpperCase(),
-  '0x47e721e5cf400C83AECB78000ca0687Ab79CEB47'.toUpperCase(),
-];
-
 // common constant values
 const CONSTANTS = {
   BASE_URL: 'https://decentral.games',
@@ -72,7 +63,6 @@ const API_ADDRESSES = (async () => {
 
 export default {
   KEYS,
-  ADMIN_ADDRESSES,
   CONSTANTS,
   API_ADDRESSES,
 };

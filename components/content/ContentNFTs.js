@@ -24,7 +24,7 @@ const ContentNFTs = (props) => {
   return (
     <div className="nft-container">
       <img
-        src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelData.parcelLocation[0]},${props.parcelData.parcelLocation[2]},1.png`}
+        src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelDataUser.parcelLocation[0]},${props.parcelDataUser.parcelLocation[2]},1.png`}
         className="my-nft-pic"
       />
       <div
@@ -33,8 +33,8 @@ const ContentNFTs = (props) => {
       >
         <Aux>
           <p className="nfts-info mine" style={{ width: '158px' }}>
-            LOCATION: {props.parcelData.parcelLocation[0]},{' '}
-            {props.parcelData.parcelLocation[2]}
+            LOCATION: {props.parcelDataUser.parcelLocation[0]},{' '}
+            {props.parcelDataUser.parcelLocation[2]}
           </p>
 
           <Divider style={{ marginTop: '18px' }} />
@@ -52,7 +52,7 @@ const ContentNFTs = (props) => {
                   <p className="nft-bold-content">VOLUME ({item})</p>
                   <span>
                     <abbr className="nft-number-content">
-                      {props.parcelData.parcelVolume[i]} MANA
+                      {props.parcelDataUser.parcelVolume[i]} MANA
                     </abbr>
                   </span>
                 </span>
@@ -69,7 +69,7 @@ const ContentNFTs = (props) => {
                   <p className="nft-bold-content">PROFIT ({item})</p>
                   <span>
                     <abbr className="nft-number-content">
-                      {props.parcelData.parcelRevenue[i]} MANA
+                      {props.parcelDataUser.parcelRevenue[i]} MANA
                     </abbr>
                   </span>
                 </span>
@@ -83,7 +83,7 @@ const ContentNFTs = (props) => {
         <Button
           color="blue"
           className="my-nft-button"
-          href={`https://play.decentraland.org/?position=${props.parcelData.parcelLocation[0]}%2C${props.parcelData.parcelLocation[2]}&realm=fenrir-gold`}
+          href={`https://play.decentraland.org/?position=${props.parcelDataUser.parcelLocation[0]}%2C${props.parcelDataUser.parcelLocation[2]}&realm=fenrir-gold`}
           target="_blank"
           style={{ marginTop: '18px' }}
         >

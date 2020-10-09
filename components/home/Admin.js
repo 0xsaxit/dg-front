@@ -15,7 +15,8 @@ const Admin = () => {
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.adminHistory[0];
   const dataMachines = state.adminHistory[1];
-  const dataNFTs = state.parcelData;
+
+  const dataNFTs = state.parcelDataAll; // ***************
 
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
@@ -36,26 +37,13 @@ const Admin = () => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    // if (state.transactions[0].length) {
-    //   setIsLoading(false);
-    // }
-
-    // if (Object.keys(state.parcelData).length !== 0) {
-    //   setIsLoading(false);
-    // }
-
     const transactions = state.transactions[0].length;
-    const parcelData = Object.keys(state.parcelData).length;
+    const parcelDataAll = Object.keys(state.parcelDataAll).length;
 
-    console.log('transactions...');
-    console.log(transactions);
-    console.log('parcel data...');
-    console.log(parcelData);
-
-    if (transactions && parcelData !== 0) {
+    if (transactions && parcelDataAll) {
       setIsLoading(false);
     }
-  }, [state.transactions, state.parcelData]);
+  }, [state.transactions, state.parcelDataAll]);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -66,9 +54,6 @@ const Admin = () => {
       // get treasury contract's paused status (true or false)
       (async function () {
         treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
-
-        // console.log('treasury instance 1...');
-        // console.log(treasuryContract);
 
         const pauseStatus = await treasuryContract.methods.paused().call();
         setIsPaused(pauseStatus);
@@ -86,14 +71,7 @@ const Admin = () => {
       new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
     ); // pass Matic provider to maticWeb3 object
 
-    // const treasuryContract = Transactions.getTreasuryContract(maticWeb3);
-
-    // console.log('treasury instance 2...');
-    // console.log(treasuryContract);
-
-    // (async function () {
     treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
-    // })();
 
     async function fetchData() {
       const response = await treasuryContract.methods.paused().call();
@@ -152,22 +130,39 @@ const Admin = () => {
               >
                 <span style={{ display: 'flex' }}>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p className="welcome-text" style={{ paddingLeft: '0px' }}>Matic ETH balance</p>
-                    <p className="earn-text" style={{ paddingTop: '9px' }}>{state.ethBalance}</p>
+                    <p className="welcome-text" style={{ paddingLeft: '0px' }}>
+                      Matic ETH balance
+                    </p>
+                    <p className="earn-text" style={{ paddingTop: '9px' }}>
+                      {state.ethBalance}
+                    </p>
                   </span>
 
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text">Treasury Balances</p>
-                    <p className="earn-text" style={{ paddingLeft: '21px', paddingTop: '9px' }}>
+                    <p
+                      className="earn-text"
+                      style={{ paddingLeft: '21px', paddingTop: '9px' }}
+                    >
                       {state.adminBalances[0][0]} DAI
                     </p>
-                    <p className="earn-text" style={{ paddingLeft: '21px', marginTop: '-21px' }}>
+                    <p
+                      className="earn-text"
+                      style={{ paddingLeft: '21px', marginTop: '-21px' }}
+                    >
                       {state.adminBalances[0][1]} MANA
                     </p>
                   </span>
                 </span>
 
-                <span style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-87px', marginBottom: '60px' }}>
+                <span
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    marginTop: '-87px',
+                    marginBottom: '60px',
+                  }}
+                >
                   <ButtonPause
                     isPaused={isPaused}
                     dataInterval={dataInterval}
@@ -291,6 +286,7 @@ const Admin = () => {
                 dataType={dataType}
                 data1={dataHistory}
                 data2={dataMachines}
+                data3={dataNFTs}
                 maximumCount={maximumCount}
                 setUserData={setUserData}
               />
@@ -298,7 +294,11 @@ const Admin = () => {
           ) : (
             <div id="tx-box-history-2">
               <span>
-                <ContentAdmin content={dataType} dataPage={dataPage} />
+                <ContentAdmin
+                  content={dataType}
+                  dataPage={dataPage}
+                  adminBalances={state.adminBalances}
+                />
               </span>
             </div>
           )}

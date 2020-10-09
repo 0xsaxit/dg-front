@@ -1,14 +1,9 @@
-import { useContext } from 'react';
-import { GlobalContext } from '../../store';
 import { Table, Divider, Grid } from 'semantic-ui-react';
 import ModalFunds from '../modal/ModalFunds';
 import Global from '../Constants';
 import Images from '../../common/Images';
 
 const ContentAdmin = (props) => {
-  // get token balances from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
-
   // define local variables
   const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
   let game = '';
@@ -38,6 +33,19 @@ const ContentAdmin = (props) => {
             <td className="table-header-text-1 date">BET</td>
             <td className="table-header-text-1">PAYOUT</td>
             <td className="table-header-text-1 date">TIMESTAMP</td>
+          </tr>
+        </tbody>
+      );
+    } else if (props.type === 'nft') {
+      return (
+        <tbody>
+          <tr className="table-header">
+            <td className="table-header-text-1 bet">MACHINE IDs</td>
+            <td className="table-header-text-1 date">PARCEL LOCATION</td>
+            <td className="table-header-text-1">PARCEL VOLUME</td>
+            <td className="table-header-text-1 date">
+              REVENUE (CURRENT MONTH) (LAST MONTH) (TOTAL)
+            </td>
           </tr>
         </tbody>
       );
@@ -71,7 +79,16 @@ const ContentAdmin = (props) => {
     return (
       <span className={`admin-balances-column ${number}`}>
         <span className="name-purchase-span">
-          <p className="welcome-text" style={{ paddingLeft: '0px', marginTop: '-12px', marginBottom: '12px' }}>{game}</p>
+          <p
+            className="welcome-text"
+            style={{
+              paddingLeft: '0px',
+              marginTop: '-12px',
+              marginBottom: '12px',
+            }}
+          >
+            {game}
+          </p>
         </span>
 
         <Divider className="balances-divider" />
@@ -96,7 +113,7 @@ const ContentAdmin = (props) => {
             }}
           >
             <p className="welcome-text">dai</p>
-            <p className="account-name">{state.adminBalances[1][i][0]}</p>
+            <p className="account-name">{props.adminBalances[1][i][0]}</p>
           </span>
         </span>
 
@@ -120,7 +137,7 @@ const ContentAdmin = (props) => {
             }}
           >
             <p className="welcome-text">mana</p>
-            <p className="account-name">{state.adminBalances[1][i][1]}</p>
+            <p className="account-name">{props.adminBalances[1][i][1]}</p>
           </span>
         </span>
 
@@ -320,7 +337,25 @@ const ContentAdmin = (props) => {
           return (
             <Table.Row>
               <Table.Cell style={{ paddingLeft: '20px' }}>
-                {row.dataPage[i]}
+                {row.machineIDs.map((machineID, j) =>
+                  j !== row.machineIDs.length - 1 ? machineID + ', ' : machineID
+                )}
+              </Table.Cell>
+
+              <Table.Cell style={{ paddingLeft: '20px' }}>
+                {row.parcelLocation[0]}, {row.parcelLocation[1]},{' '}
+                {row.parcelLocation[2]}
+              </Table.Cell>
+
+              <Table.Cell style={{ paddingLeft: '20px' }}>
+                {row.parcelRevenue[0]}, {row.parcelRevenue[1]},{' '}
+                {row.parcelRevenue[2]}
+              </Table.Cell>
+
+              <Table.Cell style={{ paddingLeft: '20px' }}>
+                {parseFloat(row.parcelVolume[0]).toFixed(3)},{' '}
+                {parseFloat(row.parcelVolume[1]).toFixed(3)},{' '}
+                {parseFloat(row.parcelVolume[2]).toFixed(3)}
               </Table.Cell>
             </Table.Row>
           );

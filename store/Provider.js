@@ -13,7 +13,8 @@ const initialState = {
   transactions: [[], []],
   txHash: '',
   tokenPings: 0,
-  parcelData: {},
+  parcelDataAll: {},
+  parcelDataUser: {},
   gameRecords: {},
   balancesOverlay: 0,
   networkID: 0,
@@ -77,10 +78,16 @@ const reducer = (state, action) => {
         tokenPings: action.data,
       };
 
-    case 'parcel_data':
+    case 'parcel_data_all':
       return {
         ...state,
-        parcelData: action.data,
+        parcelDataAll: action.data,
+      };
+
+    case 'parcel_data_user':
+      return {
+        ...state,
+        parcelDataUser: action.data,
       };
 
     case 'update_records':

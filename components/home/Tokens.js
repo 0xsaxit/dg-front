@@ -96,10 +96,10 @@ const Tokens = () => {
   });
 
   useEffect(() => {
-    if (Object.keys(state.parcelData).length !== 0) {
+    if (Object.keys(state.parcelDataUser).length !== 0) {
       setIsLoading(false);
     }
-  }, [state.parcelData]);
+  }, [state.parcelDataUser]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -186,7 +186,7 @@ const Tokens = () => {
             You do not own any Tominoya NFTs
           </div>
         ) : (
-          <ContentNFTs parcelData={state.parcelData} />
+          <ContentNFTs parcelDataUser={state.parcelDataUser} />
         )}
       </Aux>
     );

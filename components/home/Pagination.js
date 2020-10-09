@@ -10,6 +10,8 @@ const Pagination = (props) => {
       totalRows = props.data1.length;
     } else if (props.dataType === 'play' || 'machines') {
       totalRows = props.data2.length;
+    } else if (props.dataType === 'nft') {
+      totalRows = props.data3.length;
     }
 
     return (

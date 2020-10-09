@@ -22,18 +22,26 @@ function ParcelData() {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       (async function () {
-        const tokenID = await getTokenID();
-
         // if user owns an NFT fetch parcel data for this particular token ID
+        const tokenID = await getTokenID();
         if (tokenID) {
           const response = await Fetch.PARCEL_DATA(landID, tokenID);
           const jsonData = await response.json();
 
           dispatch({
-            type: 'parcel_data',
+            type: 'parcel_data_user',
             data: jsonData,
           });
         }
+
+        // get all token data for the /admin area
+        const response = await Fetch.PARCEL_DATA(landID, '*');
+        const jsonData = await response.json();
+
+        dispatch({
+          type: 'parcel_data_all',
+          data: jsonData,
+        });
       })();
     }
   }, [state.userStatus]);
