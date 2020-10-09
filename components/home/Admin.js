@@ -152,24 +152,22 @@ const Admin = () => {
               >
                 <span style={{ display: 'flex' }}>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p className="welcome-text">Matic ETH balance</p>
-                    <div style={{ color: 'red' }}>{state.ethBalance}</div> ETH
+                    <p className="welcome-text" style={{ paddingLeft: '0px' }}>Matic ETH balance</p>
+                    <p className="earn-text" style={{ paddingTop: '9px' }}>{state.ethBalance}</p>
                   </span>
 
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p className="welcome-text">Treasury Ballances</p>
-                    <div style={{ color: 'red' }}>
-                      {state.adminBalances[0][0]}
-                    </div>{' '}
-                    DAI
-                    <div style={{ color: 'red' }}>
-                      {state.adminBalances[0][1]}
-                    </div>{' '}
-                    MANA{' '}
+                    <p className="welcome-text">Treasury Balances</p>
+                    <p className="earn-text" style={{ paddingLeft: '21px', paddingTop: '9px' }}>
+                      {state.adminBalances[0][0]} DAI
+                    </p>
+                    <p className="earn-text" style={{ paddingLeft: '21px', marginTop: '-21px' }}>
+                      {state.adminBalances[0][1]} MANA
+                    </p>
                   </span>
                 </span>
 
-                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <span style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-87px', marginBottom: '60px' }}>
                   <ButtonPause
                     isPaused={isPaused}
                     dataInterval={dataInterval}
@@ -299,9 +297,9 @@ const Admin = () => {
             </Aux>
           ) : (
             <div id="tx-box-history-2">
-              <table className="account-table">
+              <span>
                 <ContentAdmin content={dataType} dataPage={dataPage} />
-              </table>
+              </span>
             </div>
           )}
         </div>

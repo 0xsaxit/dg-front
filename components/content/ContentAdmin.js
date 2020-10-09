@@ -48,16 +48,10 @@ const ContentAdmin = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentBalances() {
     return (
-      <Grid className="balances-container">
+      <Grid className="admin-balances-container">
         <Grid.Row>
-          {games.slice(0, 3).map((game, i) => {
+          {games.slice(0, 4).map((game, i) => {
             return balanceBox(game, i);
-          })}
-        </Grid.Row>
-
-        <Grid.Row>
-          {games.slice(3, 6).map((game, i) => {
-            return balanceBox(game, i + 3);
           })}
         </Grid.Row>
       </Grid>
@@ -75,14 +69,9 @@ const ContentAdmin = (props) => {
     }
 
     return (
-      <Grid.Column
-        computer={5}
-        tablet={16}
-        mobile={16}
-        className={`balances-column ${number}`}
-      >
+      <span className={`admin-balances-column ${number}`}>
         <span className="name-purchase-span">
-          <p className="welcome-text">{game}</p>
+          <p className="welcome-text" style={{ paddingLeft: '0px', marginTop: '-12px', marginBottom: '12px' }}>{game}</p>
         </span>
 
         <Divider className="balances-divider" />
@@ -139,7 +128,7 @@ const ContentAdmin = (props) => {
           <ModalFunds modalType={'deposit'} gameType={game} />
           <ModalFunds modalType={'withdraw'} gameType={game} />
         </span>
-      </Grid.Column>
+      </span>
     );
   }
 
@@ -192,28 +181,31 @@ const ContentAdmin = (props) => {
           timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
 
           return (
-            <Table.Row>
-              <Table.Cell style={{ paddingLeft: '20px' }}>
+            <tr className="table-body">
+              <td className="table-body-text-1 first">
                 <img
-                  style={{ verticalAlign: 'middle' }}
-                  className="image inline"
-                  width="20px"
-                  height="20px"
+                  style={{
+                    width: '21px',
+                    marginRight: '6px',
+                    verticalAlign: 'middle',
+                    marginTop: '-3px',
+                    borderRadius: '100%',
+                  }}
                   src={coinImage}
                 />
                 <span style={{ textAlign: 'left', marginLeft: '10px' }}>
                   {game}
                 </span>
-              </Table.Cell>
+              </td>
 
-              <Table.Cell>{row.globalID}</Table.Cell>
+              <td className="table-body-text-1">{row.globalID}</td>
 
-              <Table.Cell>{bets} MANA</Table.Cell>
+              <td className="table-body-text-1">{bets} MANA</td>
 
-              <Table.Cell>{payouts} MANA</Table.Cell>
+              <td className="table-body-text-1">{payouts} MANA</td>
 
-              <Table.Cell>{timestamp}</Table.Cell>
-            </Table.Row>
+              <td className="table-body-text-1">{timestamp}</td>
+            </tr>
           );
         })}
       </tbody>
@@ -265,13 +257,16 @@ const ContentAdmin = (props) => {
             timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
 
             return (
-              <Table.Row>
-                <Table.Cell style={{ paddingLeft: '20px' }}>
+              <tr className="table-body">
+                <td className="table-body-text-1 first">
                   <img
-                    style={{ verticalAlign: 'middle' }}
-                    className="image inline"
-                    width="20px"
-                    height="20px"
+                    style={{
+                      width: '21px',
+                      marginRight: '6px',
+                      verticalAlign: 'middle',
+                      marginTop: '-3px',
+                      borderRadius: '100%',
+                    }}
                     src={coinImage}
                   />
                   <span
@@ -282,13 +277,13 @@ const ContentAdmin = (props) => {
                   >
                     {game}
                   </span>
-                </Table.Cell>
+                </td>
 
-                <Table.Cell>{row.globalID}</Table.Cell>
+                <td className="table-body-text-1">{row.globalID}</td>
 
-                <Table.Cell>
+                <td className="table-body-text-1">
                   <a
-                    style={{ color: 'gray' }}
+                    style={{ color: '#2085f4' }}
                     target="_blank"
                     href={
                       Global.CONSTANTS.MATIC_EXPLORER +
@@ -297,18 +292,18 @@ const ContentAdmin = (props) => {
                   >
                     {row.address.substr(0, 6) + '...' + row.address.substr(-4)}
                   </a>
-                </Table.Cell>
+                </td>
 
-                <Table.Cell className="admin-tx-table-padding">
+                <td className="table-body-text-1">
                   {amount} {coinName}
-                </Table.Cell>
+                </td>
 
-                <Table.Cell className="admin-tx-table-padding2">
+                <td className="table-body-text-1">
                   {payout} {coinName}
-                </Table.Cell>
+                </td>
 
-                <Table.Cell>{timestamp}</Table.Cell>
-              </Table.Row>
+                <td className="table-body-text-1">{timestamp}</td>
+              </tr>
             );
           }
         })}

@@ -14,13 +14,25 @@ export const GlobalStyles = createGlobalStyle`
   .table-header-text-1,
   .table-header-text-2,
   .table-body-text-1,
-  .table-body-text-2.games
+  .table-body-text-2.games,
   .blogdetail-page-container .post__content li,
   i.twitter.square.icon.share-icon,
   i.facebook.icon.share-icon,
   i.linkedin.icon.share-icon,
-  #mobile-menu-icon {
+  #mobile-menu-icon,
+  .account-select,
+  div.divider.text,
+  .more-text,
+  .spanbox {
     color: ${({ theme }) => theme.text} !important;
+  }
+
+  .ui.divider.widget-divider {
+    border-top: ${({ theme }) => theme.widgetDivider} !important;  
+  }
+
+  .matic-header-text {
+    color: ${({ theme }) => theme.widgetText} !important;
   }
 
   .home-dashboard-p,
@@ -39,10 +51,16 @@ export const GlobalStyles = createGlobalStyle`
   .post,
   .DG-column,
   .read-next-button:first-child,
-  .read-next-button:last-child {
+  .read-next-button:last-child,
+  .admin-balances-column,
+  div.visible.menu.transition {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
+  .ui.dropdown .menu > .item:hover {
+    background: ${({ theme }) => theme.card};
   }
 
   a.ui.button.read-next-button {
@@ -57,8 +75,9 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.offColorText} !important;   
   }
 
-  .featured-blog-grid {
-    background: ${({ theme }) => theme.card};
+  .featured-blog-grid,
+  .ui.dropdown .menu > .active.item {
+    background: ${({ theme }) => theme.card} !important;
   }
 
   .menu-container-dark.blog,
@@ -83,12 +102,15 @@ export const GlobalStyles = createGlobalStyle`
   .sidebar-menu-text.blog.active,
   .sidebar-menu-text.blog:hover,
   .account-hover.active,
-  .account-hover:hover {
+  .account-hover:hover,
+  .ui.dropdown .menu > .active.item span.text,
+  .ui.dropdown .menu > .item:hover span.text {
     color: ${({ theme }) => theme.text} !important;
   }
 
   .sidebar-menu-text.blog,
-  .account-hover {
+  .account-hover,
+  .ui.dropdown .menu > .item span.text {
     color: ${({ theme }) => theme.menuText} !important;
   }
 
@@ -119,7 +141,10 @@ export const GlobalStyles = createGlobalStyle`
   .blog-category,
   .post-date,
   .post-category,
-  .post-date-blogdetail{
+  .post-date-blogdetail,
+  .account-select.play,
+  .account-select.mana,
+  .account-select.dai {
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;
   }

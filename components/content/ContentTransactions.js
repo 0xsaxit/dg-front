@@ -121,7 +121,7 @@ const ContentTransactions = (props) => {
           return (
             <tr className="table-body" key={i}>
               <td className="table-body-text-1 first">
-                {row.coinName === 'play' ? (
+                {row.coinName === 'MANA' ? (
                   <img
                     src={Images.ICON_MANA}
                     style={{
@@ -157,7 +157,7 @@ const ContentTransactions = (props) => {
 
               <td className="table-body-text-1 hash">
                 <span style={{ float: 'right', paddingRight: '12px' }}>
-                  {row.coinName === 'play' ? (
+                  {row.coinName === 'MANA' ? (
                     <Button
                       href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
                       target="_blank"

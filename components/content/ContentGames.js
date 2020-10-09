@@ -29,9 +29,9 @@ const ContentGames = (props) => {
       // parse game scores based on time period
       if (props.timePeriod === 'ALL TIME') {
         gameData = state.gameRecords.all;
-      } else if (props.timePeriod === 'WEEK') {
+      } else if (props.timePeriod === 'WEEKLY') {
         gameData = state.gameRecords.weekly;
-      } else if (props.timePeriod === 'DAY') {
+      } else if (props.timePeriod === 'DAILY') {
         gameData = state.gameRecords.daily;
       } else if (props.timePeriod === 'COMPETITION') {
         gameData = state.gameRecords.competition;
