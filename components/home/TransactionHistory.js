@@ -19,14 +19,14 @@ const History = () => {
   const [dataType, setDataType] = useState('balances');
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [isLoading, setIsLoading] = useState(true);
-  const [doneLoading, setDoneLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  // const [doneLoading, setDoneLoading] = useState(true);
 
-  useEffect(() => {
-    if (document.readyState === 'complete') {
-      setDoneLoading(false);
-    }
-  });
+  // useEffect(() => {
+  //   if (document.readyState === 'complete') {
+  //     setDoneLoading(false);
+  //   }
+  // });
 
   useEffect(() => {
     if (state.userStatus) {
@@ -35,11 +35,11 @@ const History = () => {
     }
   }, [state.userStatus]);
 
-  // useEffect(() => {
-  //   if (state.transactions[0].length) {
-  //     setIsLoading(false);
-  //   }
-  // }, [state.transactions]);
+  useEffect(() => {
+    if (state.transactions[0].length) {
+      setIsLoading(false);
+    }
+  }, [state.transactions]);
 
   useEffect(() => {
     setUserData('balances', 1);
@@ -64,8 +64,10 @@ const History = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function setPageData(type) {
-    setDataType(type);
-    setUserData(type, 1);
+    if (!isLoading) {
+      setDataType(type);
+      setUserData(type, 1);
+    }
   }
 
   function topLinks() {
@@ -243,7 +245,7 @@ const History = () => {
 
   return (
     <div className="main-container">
-      {doneLoading ? (
+      {isLoading ? (
         <Spinner background={3} />
       ) : (
         <div className="page-container">

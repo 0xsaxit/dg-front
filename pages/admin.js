@@ -20,7 +20,7 @@ const Administration = () => {
       console.log('Fetching admin addresses...');
 
       const response = await Fetch.GET_ADDRESSES();
-      let json = await response.json();
+      const json = await response.json();
       const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
 
       setAdminAddresses(arrayUpperCase);

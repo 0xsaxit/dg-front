@@ -96,7 +96,7 @@ const Tokens = () => {
   });
 
   useEffect(() => {
-    if (Object.keys(state.parcelDataUser).length !== 0) {
+    if (Object.keys(state.parcelDataUser).length) {
       setIsLoading(false);
     }
   }, [state.parcelDataUser]);

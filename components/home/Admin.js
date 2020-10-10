@@ -16,8 +16,6 @@ const Admin = () => {
   const dataHistory = state.adminHistory[0];
   const dataMachines = state.adminHistory[1];
 
-  const dataNFTs = state.parcelDataAll; // ***************
-
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
   const [dataType, setDataType] = useState('balances');
@@ -37,10 +35,10 @@ const Admin = () => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    const transactions = state.transactions[0].length;
-    const parcelDataAll = Object.keys(state.parcelDataAll).length;
+    const allTransactions = state.transactions[0].length;
+    const allParcelData = Object.keys(state.parcelDataAll).length;
 
-    if (transactions && parcelDataAll) {
+    if (allTransactions && allParcelData) {
       setIsLoading(false);
     }
   }, [state.transactions, state.parcelDataAll]);
@@ -113,8 +111,10 @@ const Admin = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function setPageData(type) {
-    setDataType(type);
-    setUserData(type, 1);
+    if (!isLoading) {
+      setDataType(type);
+      setUserData(type, 1);
+    }
   }
 
   function topLinks() {
@@ -238,7 +238,7 @@ const Admin = () => {
     } else if (type === 'machines') {
       result = dataMachines.slice(indexStart, indexEnd);
     } else if (type === 'nft') {
-      result = dataNFTs.slice(indexStart, indexEnd);
+      result = state.parcelDataAll.slice(indexStart, indexEnd);
     }
 
     setDataPage(result);
@@ -286,7 +286,7 @@ const Admin = () => {
                 dataType={dataType}
                 data1={dataHistory}
                 data2={dataMachines}
-                data3={dataNFTs}
+                data3={state.parcelDataAll}
                 maximumCount={maximumCount}
                 setUserData={setUserData}
               />

@@ -44,7 +44,7 @@ const ContentAdmin = (props) => {
             <td className="table-header-text-1 date">PARCEL LOCATION</td>
             <td className="table-header-text-1">PARCEL VOLUME</td>
             <td className="table-header-text-1 date">
-              REVENUE (CURRENT MONTH) (LAST MONTH) (TOTAL)
+              REVENUE (C. MONTH) (L. MONTH) (TOTAL)
             </td>
           </tr>
         </tbody>
