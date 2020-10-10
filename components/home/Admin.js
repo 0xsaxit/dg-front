@@ -19,6 +19,7 @@ const Admin = () => {
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
   const [dataType, setDataType] = useState('balances');
+  const [dataLength, setDataLength] = useState(0);
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -110,12 +111,11 @@ const Admin = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function setPageData(type) {
-    if (!isLoading) {
-      setDataType(type);
-      setUserData(type, 1);
-    }
-  }
+  // function setPageData(type) {
+  //   if (!isLoading) {
+  //     setUserData(type, 1);
+  //   }
+  // }
 
   function topLinks() {
     return (
@@ -179,7 +179,7 @@ const Admin = () => {
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('balances')}
+                  onClick={() => setUserData('balances', 1)}
                 >
                   BALANCES
                 </abbr>
@@ -190,7 +190,7 @@ const Admin = () => {
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('machines')}
+                  onClick={() => setUserData('machines', 1)}
                 >
                   MACHINE HISTORY
                 </abbr>
@@ -201,7 +201,7 @@ const Admin = () => {
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('history')}
+                  onClick={() => setUserData('history', 1)}
                 >
                   TRANSACTIONS
                 </abbr>
@@ -212,7 +212,7 @@ const Admin = () => {
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('nft')}
+                  onClick={() => setUserData('nft', 1)}
                 >
                   NFT HOLDERS
                 </abbr>
@@ -227,22 +227,31 @@ const Admin = () => {
   }
 
   function setUserData(type, page) {
-    let result = [];
-    const indexStart = (page - 1) * maximumCount;
-    const indexEnd = indexStart + maximumCount;
+    if (!isLoading) {
+      let result = [];
+      const indexStart = (page - 1) * maximumCount;
+      const indexEnd = indexStart + maximumCount;
+      let dataLength = 0;
 
-    if (type === 'balances') {
-      result = true;
-    } else if (type === 'history') {
-      result = dataHistory.slice(indexStart, indexEnd);
-    } else if (type === 'machines') {
-      result = dataMachines.slice(indexStart, indexEnd);
-    } else if (type === 'nft') {
-      result = state.parcelDataAll.slice(indexStart, indexEnd);
+      if (type === 'balances') {
+        result = true;
+        dataLength = 0;
+      } else if (type === 'history') {
+        result = dataHistory.slice(indexStart, indexEnd);
+        dataLength = dataHistory.length;
+      } else if (type === 'machines') {
+        result = dataMachines.slice(indexStart, indexEnd);
+        dataLength = dataMachines.length;
+      } else if (type === 'nft') {
+        result = state.parcelDataAll.slice(indexStart, indexEnd);
+        dataLength = state.parcelDataAll.length;
+      }
+
+      setDataType(type);
+      setDataPage(result);
+      setDataLength(dataLength);
+      setCurrentPage(page);
     }
-
-    setDataPage(result);
-    setCurrentPage(page);
   }
 
   function noTxHistory() {
@@ -267,41 +276,30 @@ const Admin = () => {
         <div className="account-other-inner-container">
           {topLinks()}
 
-          {dataType !== 'balances' ? (
-            <Aux>
-              <div id="tx-box-history-2">
-                <table className="account-table">
-                  <ContentAdmin content={'labels'} type={dataType} />
-
-                  {dataPage !== 'false' ? (
-                    <ContentAdmin content={dataType} dataPage={dataPage} />
-                  ) : (
-                    noTxHistory()
-                  )}
-                </table>
-              </div>
-
-              <Pagination
-                currentPage={currentPage}
-                dataType={dataType}
-                data1={dataHistory}
-                data2={dataMachines}
-                data3={state.parcelDataAll}
-                maximumCount={maximumCount}
-                setUserData={setUserData}
-              />
-            </Aux>
-          ) : (
-            <div id="tx-box-history-2">
-              <span>
+          <div id="tx-box-history-2">
+            {dataPage !== 'false' ? (
+              <table className="account-table">
+                <ContentAdmin content={'labels'} type={dataType} />
                 <ContentAdmin
                   content={dataType}
                   dataPage={dataPage}
                   adminBalances={state.adminBalances}
                 />
-              </span>
-            </div>
-          )}
+              </table>
+            ) : (
+              noTxHistory()
+            )}
+          </div>
+
+          {dataType !== 'balances' ? (
+            <Pagination
+              currentPage={currentPage}
+              dataType={dataType}
+              dataLength={dataLength}
+              maximumCount={maximumCount}
+              setUserData={setUserData}
+            />
+          ) : null}
         </div>
       </div>
     </div>

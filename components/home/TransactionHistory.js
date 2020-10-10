@@ -17,6 +17,7 @@ const History = () => {
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
   const [dataType, setDataType] = useState('balances');
+  const [dataLength, setDataLength] = useState(0);
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +43,7 @@ const History = () => {
   }, [state.transactions]);
 
   useEffect(() => {
-    setUserData('balances', 1);
+    balancesOverlay(2);
   }, []);
 
   // close balances overlay on leaving page
@@ -63,12 +64,11 @@ const History = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function setPageData(type) {
-    if (!isLoading) {
-      setDataType(type);
-      setUserData(type, 1);
-    }
-  }
+  // function setPageData(type) {
+  //   if (!isLoading) {
+  //     setUserData(type, 1);
+  //   }
+  // }
 
   function topLinks() {
     return (
@@ -157,7 +157,7 @@ const History = () => {
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('balances')}
+                  onClick={() => setUserData('balances', 1)}
                 >
                   BALANCES
                 </abbr>
@@ -168,7 +168,7 @@ const History = () => {
               ) : (
                 <abbr
                   className="account-hover"
-                  onClick={() => setPageData('play')}
+                  onClick={() => setUserData('play', 1)}
                 >
                   GAME HISTORY
                 </abbr>
@@ -191,14 +191,14 @@ const History = () => {
                   <abbr
                     className="account-hover"
                     id="account-txs-tab"
-                    onClick={() => setPageData('history')}
+                    onClick={() => setUserData('history', 1)}
                   >
                     TRANSACTIONS
                   </abbr>
                   <abbr
                     className="account-hover"
                     id="account-txs-tab-mobile"
-                    onClick={() => setPageData('history')}
+                    onClick={() => setUserData('history', 1)}
                   >
                     TXS
                   </abbr>
@@ -214,25 +214,33 @@ const History = () => {
   }
 
   function setUserData(type, page) {
-    let result = [];
-    const indexStart = (page - 1) * maximumCount;
-    const indexEnd = indexStart + maximumCount;
-    let overlay = 0;
+    if (!isLoading) {
+      let result = [];
+      const indexStart = (page - 1) * maximumCount;
+      const indexEnd = indexStart + maximumCount;
+      let overlay = 0;
+      let dataLength = 0;
 
-    if (type === 'balances') {
-      result = true;
-      overlay = 2;
-    } else if (type === 'history') {
-      result = dataHistory.slice(indexStart, indexEnd);
-      overlay = 0;
-    } else if (type === 'play') {
-      result = dataPlay.slice(indexStart, indexEnd);
-      overlay = 0;
+      if (type === 'balances') {
+        result = true;
+        overlay = 2;
+        dataLength = 0;
+      } else if (type === 'history') {
+        result = dataHistory.slice(indexStart, indexEnd);
+        overlay = 0;
+        dataLength = dataHistory.length;
+      } else if (type === 'play') {
+        result = dataPlay.slice(indexStart, indexEnd);
+        overlay = 0;
+        dataLength = dataPlay.length;
+      }
+
+      setDataType(type);
+      setDataPage(result);
+      setDataLength(dataLength);
+      setCurrentPage(page);
+      balancesOverlay(overlay);
     }
-
-    setDataPage(result);
-    setCurrentPage(page);
-    balancesOverlay(overlay);
   }
 
   function noTxHistory() {
@@ -245,35 +253,32 @@ const History = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? (
-        <Spinner background={3} />
-      ) : (
-        <div className="page-container">
-          <div className="account-other-inner-container">
-            {topLinks()}
+      {isLoading ? <Spinner background={3} /> : null}
 
-            <div id="tx-box-history-2">
-              {dataPage !== 'false' ? (
-                <table className="account-table">
-                  <ContentTransactions content={'labels'} type={dataType} />
-                  <ContentTransactions content={dataType} dataPage={dataPage} />
-                </table>
-              ) : (
-                noTxHistory()
-              )}
-            </div>
+      <div className="page-container">
+        <div className="account-other-inner-container">
+          {topLinks()}
 
-            <Pagination
-              currentPage={currentPage}
-              dataType={dataType}
-              data1={dataHistory}
-              data2={dataPlay}
-              maximumCount={maximumCount}
-              setUserData={setUserData}
-            />
+          <div id="tx-box-history-2">
+            {dataPage !== 'false' ? (
+              <table className="account-table">
+                <ContentTransactions content={'labels'} type={dataType} />
+                <ContentTransactions content={dataType} dataPage={dataPage} />
+              </table>
+            ) : (
+              noTxHistory()
+            )}
           </div>
+
+          <Pagination
+            currentPage={currentPage}
+            dataType={dataType}
+            dataLength={dataLength}
+            maximumCount={maximumCount}
+            setUserData={setUserData}
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };

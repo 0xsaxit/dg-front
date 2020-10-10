@@ -5,15 +5,6 @@ const Pagination = (props) => {
     const previousPage = props.currentPage - 1;
     const nextPage = props.currentPage + 1;
 
-    let totalRows = 0;
-    if (props.dataType === 'history') {
-      totalRows = props.data1.length;
-    } else if (props.dataType === 'play' || 'machines') {
-      totalRows = props.data2.length;
-    } else if (props.dataType === 'nft') {
-      totalRows = props.data3.length;
-    }
-
     return (
       <div className="pagination" style={{ paddingTop: '12px' }}>
         {props.currentPage > 1 ? (
@@ -33,7 +24,7 @@ const Pagination = (props) => {
           Page {props.currentPage}
         </span>
 
-        {totalRows > props.maximumCount * props.currentPage ? (
+        {props.dataLength > props.maximumCount * props.currentPage ? (
           <Icon
             name="caret right"
             style={{ cursor: 'pointer', color: '#2085F4' }}
