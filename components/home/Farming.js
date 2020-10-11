@@ -105,132 +105,83 @@ const Farming = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        {(() => {
-          if (DGstate === 'mining')
-            return (
-              <div>
-                <span className="dg-tabs-desktop">
-                  <p className="account-other-p">
-                    <b className="account-hover active">GAMEPLAY MINING</b>{' '}
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('liquidity')}
-                    >
-                      LIQUIDITY FARMING
-                    </abbr>
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('governance')}
-                    >
-                      GOVERNANCE
-                    </abbr>
-                  </p>
+        <span className="dg-tabs-desktop">
+          <p className="account-other-p">
+            {DGstate === 'mining' ? (
+              <b className="account-hover active">GAMEPLAY MINING</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('mining')}
+              >
+                GAMEPLAY MINING
+              </abbr>
+            )}
 
-                  <ButtonAffiliates />
-                </span>
+            {DGstate === 'liquidity' ? (
+              <b className="account-hover active">LIQUIDITY FARMING</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('liquidity')}
+              >
+                LIQUIDITY FARMING
+              </abbr>
+            )}
 
-                <span className="dg-tabs-mobile">
-                  <p className="account-other-p">
-                    <b className="account-hover active">MINING</b>{' '}
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('liquidity')}
-                    >
-                      FARMING
-                    </abbr>
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('governance')}
-                    >
-                      GOV
-                    </abbr>
-                  </p>
+            {DGstate === 'governance' ? (
+              <b className="account-hover active">GOVERNANCE</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('governance')}
+              >
+                GOVERNANCE
+              </abbr>
+            )}
+          </p>
 
-                  <ButtonAffiliates />
-                </span>
-              </div>
-            );
-          else if (DGstate === 'liquidity')
-            return (
-              <div>
-                <span className="dg-tabs-desktop">
-                  <p className="account-other-p">
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('mining')}
-                    >
-                      GAMEPLAY MINING
-                    </abbr>{' '}
-                    <b className="account-hover active">LIQUIDITY FARMING</b>
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('governance')}
-                    >
-                      GOVERNANCE
-                    </abbr>{' '}
-                  </p>
-                </span>
+          <ButtonAffiliates />
+        </span>
 
-                <span className="dg-tabs-mobile">
-                  <p className="account-other-p">
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('mining')}
-                    >
-                      MINING
-                    </abbr>{' '}
-                    <b className="account-hover active">FARMING</b>
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('governance')}
-                    >
-                      GOV
-                    </abbr>{' '}
-                  </p>
-                </span>
-              </div>
-            );
-          else if (DGstate === 'governance')
-            return (
-              <div>
-                <span className="dg-tabs-desktop">
-                  <p className="account-other-p">
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('mining')}
-                    >
-                      GAMEPLAY MINING
-                    </abbr>{' '}
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('liquidity')}
-                    >
-                      LIQUIDITY FARMING
-                    </abbr>
-                    <b className="account-hover active">GOVERNANCE</b>
-                  </p>
-                </span>
+        <span className="dg-tabs-mobile">
+          <p className="account-other-p">
+            {DGstate === 'mining' ? (
+              <b className="account-hover active">MINING</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('mining')}
+              >
+                MINING
+              </abbr>
+            )}
 
-                <span className="dg-tabs-mobile">
-                  <p className="account-other-p">
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('mining')}
-                    >
-                      MINING
-                    </abbr>{' '}
-                    <abbr
-                      className="account-hover"
-                      onClick={() => setDGState('liquidity')}
-                    >
-                      FARMING
-                    </abbr>
-                    <b className="account-hover active">GOV</b>
-                  </p>
-                </span>
-              </div>
-            );
-        })()}
+            {DGstate === 'liquidity' ? (
+              <b className="account-hover active">FARMING</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('liquidity')}
+              >
+                FARMING
+              </abbr>
+            )}
+
+            {DGstate === 'governance' ? (
+              <b className="account-hover active">GOV</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('governance')}
+              >
+                GOV
+              </abbr>
+            )}
+          </p>
+
+          <ButtonAffiliates />
+        </span>
       </div>
     );
   }
