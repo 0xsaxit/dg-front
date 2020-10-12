@@ -22,19 +22,25 @@ function ButtonAuthorize() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [transaction, setTransaction] = useState(false);
+  // const [transaction, setTransaction] = useState(false);
+  const [userAddress, setUserAddress] = useState('');
+  const [tokenContract, setTokenContract] = useState({});
+  const [web3, setWeb3] = useState({});
 
-  let userAddress = '';
-  let tokenContract = {};
-  let web3 = {};
+  // let userAddress = '';
+  // let tokenContract = {};
+  // let web3 = {};
   const value = 7;
 
   useEffect(() => {
     if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+      const userAddress = window.web3.currentProvider.selectedAddress;
+      setUserAddress(userAddress);
 
       // initialize Web3 providers and create token contract instance
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
+
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -49,12 +55,13 @@ function ButtonAuthorize() {
       (async function () {
         const addresses = await Global.API_ADDRESSES;
 
-        tokenContract = new getWeb3.eth.Contract(
+        const tokenContract = new getWeb3.eth.Contract(
           ABI_CHILD_TOKEN,
           addresses.CHILD_TOKEN_ADDRESS_MANA
         );
 
-        if (transaction) metaTransaction(); // MetaMask popup window
+        // if (transaction) metaTransaction(); // MetaMask popup window
+        setTokenContract(tokenContract);
       })();
 
       biconomy
@@ -65,7 +72,7 @@ function ButtonAuthorize() {
           console.error(error);
         });
     }
-  }, [state.userStatus, transaction]);
+  }, [state.userStatus]);
 
   function dispatchActiveStatus(txHash) {
     console.log('Updating user status to: ' + value);
@@ -129,7 +136,7 @@ function ButtonAuthorize() {
       console.log(error);
     }
 
-    setTransaction(false);
+    // setTransaction(false);
   }
 
   return (
@@ -137,7 +144,7 @@ function ButtonAuthorize() {
       <span>
         <Button
           className="account-connected-play-button"
-          onClick={() => setTransaction(true)}
+          onClick={() => metaTransaction()}
         >
           AUTHORIZE
         </Button>
@@ -145,7 +152,7 @@ function ButtonAuthorize() {
 
       <Button
         className="account-connected-play-button-mobile"
-        onClick={() => setTransaction(true)}
+        onClick={() => metaTransaction()}
       >
         AUTHORIZE
       </Button>

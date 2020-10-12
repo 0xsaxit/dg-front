@@ -270,38 +270,40 @@ const Admin = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? <Spinner background={0} /> : null}
+      {isLoading ? (
+        <Spinner background={0} />
+      ) : (
+        <div className="page-container">
+          <div className="account-other-inner-container">
+            {topLinks()}
 
-      <div className="page-container">
-        <div className="account-other-inner-container">
-          {topLinks()}
+            <div id="tx-box-history-2">
+              {dataPage !== 'false' ? (
+                <table className="account-table">
+                  <ContentAdmin content={'labels'} type={dataType} />
+                  <ContentAdmin
+                    content={dataType}
+                    dataPage={dataPage}
+                    adminBalances={state.adminBalances}
+                  />
+                </table>
+              ) : (
+                noTxHistory()
+              )}
+            </div>
 
-          <div id="tx-box-history-2">
-            {dataPage !== 'false' ? (
-              <table className="account-table">
-                <ContentAdmin content={'labels'} type={dataType} />
-                <ContentAdmin
-                  content={dataType}
-                  dataPage={dataPage}
-                  adminBalances={state.adminBalances}
-                />
-              </table>
-            ) : (
-              noTxHistory()
-            )}
+            {dataType !== 'balances' ? (
+              <Pagination
+                currentPage={currentPage}
+                dataType={dataType}
+                dataLength={dataLength}
+                maximumCount={maximumCount}
+                setUserData={setUserData}
+              />
+            ) : null}
           </div>
-
-          {dataType !== 'balances' ? (
-            <Pagination
-              currentPage={currentPage}
-              dataType={dataType}
-              dataLength={dataLength}
-              maximumCount={maximumCount}
-              setUserData={setUserData}
-            />
-          ) : null}
         </div>
-      </div>
+      )}
     </div>
   );
 };

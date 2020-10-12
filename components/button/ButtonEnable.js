@@ -13,23 +13,32 @@ function ButtonEnable() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [transaction, setTransaction] = useState(false);
+  // const [transaction, setTransaction] = useState(false);
+  const [userAddress, setUserAddress] = useState('');
+  const [treasuryContract, setTreasuryContract] = useState({});
+  const [web3, setWeb3] = useState({});
+  const [maticWeb3, setMaticWeb3] = useState({});
 
-  let userAddress = '';
-  let treasuryContract = {};
-  let web3 = {};
-  let maticWeb3 = {};
+  // let userAddress = '';
+  // let treasuryContract = {};
+  // let web3 = {};
+  // let maticWeb3 = {};
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
 
   useEffect(() => {
     if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+      const userAddress = window.web3.currentProvider.selectedAddress;
+      setUserAddress(userAddress);
 
       // initialize Web3 providers and create token contract instance
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      maticWeb3 = new Web3(
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
+
+      const maticWeb3 = new Web3(
         new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       ); // pass Matic provider to maticWeb3 object
+      setMaticWeb3(maticWeb3);
+
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -40,9 +49,12 @@ function ButtonEnable() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        treasuryContract = await Transactions.getTreasuryContract(getWeb3);
+        const treasuryContract = await Transactions.getTreasuryContract(
+          getWeb3
+        );
 
-        if (transaction) metaTransaction(); // MetaMask popup window
+        // if (transaction) metaTransaction(); // MetaMask popup window
+        setTreasuryContract(treasuryContract);
       })();
 
       biconomy
@@ -53,7 +65,7 @@ function ButtonEnable() {
           console.error(error);
         });
     }
-  }, [state.userStatus, transaction]);
+  }, [state.userStatus]);
 
   function dispatchActiveStatus(status, txHash) {
     // update global state active status
@@ -112,13 +124,13 @@ function ButtonEnable() {
       console.log(error);
     }
 
-    setTransaction(false);
+    // setTransaction(false);
   }
 
   return (
     <Button
       className="account-connected-play-button"
-      onClick={() => setTransaction(true)}
+      onClick={() => metaTransaction()}
     >
       AUTHORIZE
     </Button>

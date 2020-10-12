@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Modal, Button, Icon } from 'semantic-ui-react';
-import Global from '../Constants';
+import { Button } from 'semantic-ui-react';
 
 const ButtonAffiliates = () => {
   // get token balances from the Context API store
@@ -11,16 +10,22 @@ const ButtonAffiliates = () => {
   const [copied, setCopied] = useState(false);
 
   const onCopy = () => {
-    navigator.clipboard.writeText(`https://decentral.games/${state.userInfo[1]}`);
+    navigator.clipboard.writeText(
+      `https://decentral.games/${state.userInfo[1]}`
+    );
     setCopied(true);
   };
 
   if (copied) {
     return (
-      <span style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '-20px' }}>
-        <Button
-          className="affiliate-copied-button"
-        >
+      <span
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          marginBottom: '-20px',
+        }}
+      >
+        <Button className="affiliate-copied-button">
           Copied
           <span class="material-icons" id="etherscan-button-icon">
             check
@@ -30,11 +35,14 @@ const ButtonAffiliates = () => {
     );
   }
   return (
-    <span style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '-20px' }}>
-      <Button
-        className="affiliate-copy-button"
-        onClick={() => onCopy()}
-      >
+    <span
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        marginBottom: '-20px',
+      }}
+    >
+      <Button className="affiliate-copy-button" onClick={() => onCopy()}>
         affiliate link
         <span class="material-icons" id="etherscan-button-icon">
           content_copy
@@ -44,4 +52,4 @@ const ButtonAffiliates = () => {
   );
 };
 
-export default ButtonAffiliates
+export default ButtonAffiliates;

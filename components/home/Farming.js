@@ -188,17 +188,22 @@ const Farming = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? <Spinner background={3} /> : null}
+      {isLoading ? (
+        <Spinner background={3} />
+      ) : (
+        <div className="page-container">
+          <div className="account-other-inner-container ">
+            {submenu()}
 
-      <div className="page-container">
-        <div className="account-other-inner-container ">
-          {submenu()}
+            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
-          <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
-
-          <ContentFarming content={DGstate} metaTransaction={metaTransaction} />
+            <ContentFarming
+              content={DGstate}
+              metaTransaction={metaTransaction}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -253,32 +253,34 @@ const History = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? <Spinner background={3} /> : null}
+      {isLoading ? (
+        <Spinner background={3} />
+      ) : (
+        <div className="page-container">
+          <div className="account-other-inner-container">
+            {topLinks()}
 
-      <div className="page-container">
-        <div className="account-other-inner-container">
-          {topLinks()}
+            <div id="tx-box-history-2">
+              {dataPage !== 'false' ? (
+                <table className="account-table">
+                  <ContentTransactions content={'labels'} type={dataType} />
+                  <ContentTransactions content={dataType} dataPage={dataPage} />
+                </table>
+              ) : (
+                noTxHistory()
+              )}
+            </div>
 
-          <div id="tx-box-history-2">
-            {dataPage !== 'false' ? (
-              <table className="account-table">
-                <ContentTransactions content={'labels'} type={dataType} />
-                <ContentTransactions content={dataType} dataPage={dataPage} />
-              </table>
-            ) : (
-              noTxHistory()
-            )}
+            <Pagination
+              currentPage={currentPage}
+              dataType={dataType}
+              dataLength={dataLength}
+              maximumCount={maximumCount}
+              setUserData={setUserData}
+            />
           </div>
-
-          <Pagination
-            currentPage={currentPage}
-            dataType={dataType}
-            dataLength={dataLength}
-            maximumCount={maximumCount}
-            setUserData={setUserData}
-          />
         </div>
-      </div>
+      )}
     </div>
   );
 };
