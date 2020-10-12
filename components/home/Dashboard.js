@@ -115,27 +115,56 @@ const Dashboard = () => {
           ) : null}
         </span>
 
-        <span style={{ display: 'flex' }}>
-          {onlineUsers.map((onlineUser) => {
-            return (
-              <img
-                className="avatar-picture"
-                src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
-                style={{
-                  marginTop: '15px',
-                  marginRight: '12px',
-                  width: '3rem',
-                  height: '3rem',
-                  display: 'flex',
-                  border: '1px solid rgb(227, 232, 238)',
-                  borderRadius: '100%',
-                  boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                  backgroundColor: 'white',
-                }}
-              />
-            );
-          })}
-        </span>
+        {onlineUsers.length > 10 ? (
+          <span style={{ display: 'flex' }}>
+            {onlineUsers.slice(0, 10).map((onlineUser) => {
+              return (
+                <span style={{ display: 'flex' }}>
+                  <img
+                    className="avatar-picture"
+                    src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+                    style={{
+                      marginTop: '15px',
+                      marginRight: '12px',
+                      width: '3rem',
+                      height: '3rem',
+                      display: 'flex',
+                      border: '1px solid rgb(227, 232, 238)',
+                      borderRadius: '100%',
+                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                      backgroundColor: 'white',
+                    }}
+                  />
+                  <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
+                </span>
+              );
+            })}
+          </span>
+        ) : (
+          <span style={{ display: 'flex' }}>
+            {onlineUsers.map((onlineUser) => {
+              return (
+                <div>
+                  <img
+                    className="avatar-picture"
+                    src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+                    style={{
+                      marginTop: '15px',
+                      marginRight: '12px',
+                      width: '3rem',
+                      height: '3rem',
+                      display: 'flex',
+                      border: '1px solid rgb(227, 232, 238)',
+                      borderRadius: '100%',
+                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                      backgroundColor: 'white',
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </span>
+        )}
       </Aux>
     );
   }
@@ -186,30 +215,54 @@ const Dashboard = () => {
                 ) : null}
               </span>
 
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="online-pics-mobile"
-              >
-                {onlineUsers.map((onlineUser) => {
-                  return (
-                    <img
-                      className="avatar-picture"
-                      src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
-                      style={{
-                        marginTop: '15px',
-                        marginRight: '12px',
-                        width: '3rem',
-                        height: '3rem',
-                        display: 'flex',
-                        border: '1px solid rgb(227, 232, 238)',
-                        borderRadius: '100%',
-                        boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                        backgroundColor: 'white',
-                      }}
-                    />
-                  );
-                })}
-              </span>
+              {onlineUsers.length > 10 ? (
+                <span style={{ display: 'flex', justifyContent: 'center' }} className="online-pics-mobile">
+                  {onlineUsers.slice(0, 10).map((onlineUser) => {
+                    return (
+                      <span style={{ display: 'flex' }}>
+                        <img
+                          className="avatar-picture"
+                          src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+                          style={{
+                            marginTop: '15px',
+                            marginRight: '12px',
+                            width: '3rem',
+                            height: '3rem',
+                            display: 'flex',
+                            border: '1px solid rgb(227, 232, 238)',
+                            borderRadius: '100%',
+                            boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                            backgroundColor: 'white',
+                          }}
+                        />
+                        <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
+                      </span>
+                    );
+                  })}
+                </span>
+              ) : (
+                <span style={{ display: 'flex', justifyContent: 'center' }} className="online-pics-mobile">
+                  {onlineUsers.map((onlineUser) => {
+                    return (
+                      <img
+                        className="avatar-picture"
+                        src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+                        style={{
+                          marginTop: '15px',
+                          marginRight: '12px',
+                          width: '3rem',
+                          height: '3rem',
+                          display: 'flex',
+                          border: '1px solid rgb(227, 232, 238)',
+                          borderRadius: '100%',
+                          boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                          backgroundColor: 'white',
+                        }}
+                      />
+                    );
+                  })}
+                </span>
+              )}
             </div>
           </div>
         ) : (
