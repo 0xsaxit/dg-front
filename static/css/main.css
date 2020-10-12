@@ -1379,7 +1379,6 @@ deposit-notification-box-hidden {
 
 div.ui.grid.balances-container {
   background-color: #f9fbfd;
-  padding-top: 125px !important;
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1669,6 +1668,10 @@ button.ui.button.matic-widget-button.balances-play-button {
   font-family: Lato, sans-serif !important;
 }
 
+.ui.button {
+  transition: none !important;
+}
+
 button.ui.button.matic-widget-button.balances-play-button-2 {
   border: 0px !important;
   border-top-left-radius: 2px;
@@ -1734,14 +1737,17 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .ui.input>input {
   border-radius: 2px 0px 0px 2px;
   height: 39px;
+  transition: none;
 }
 
-.ui.action.input > .button, .ui.action.input > .buttons {
-  color: white;
+.ui.action.input > .button, 
+.ui.action.input > .buttons {
   min-width: 12px;
   border-radius: 0px 2px 2px 0px !important;
   height: 39px;
-  padding: 0px 12px 12px 12px;
+  padding: 12px 12px 12px 12px;
+  letter-spacing: 1.25px;
+  font-size: 14px;
 }
 
 .ui.action.input:not([class*='left action']) > input:focus {
@@ -2209,14 +2215,6 @@ div.ui.grid.admin-balances-container {
 .admin-treasury-2 {
   display: flex;
   margin-top: -12px;
-}
-
-.ui.action.input > .button,
-.ui.action.input > .buttons {
-  background-color: #2185f4 !important;
-  letter-spacing: 1.25px;
-  font-size: 14px;
-  padding-top: 12px;
 }
 
 .ui.action.input > .button:hover,

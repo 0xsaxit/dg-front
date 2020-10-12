@@ -12,6 +12,14 @@ export const GlobalStyles = createGlobalStyle`
 
   .ui.input>input {
     background: ${({ theme }) => theme.input} !important;
+    border: ${({ theme }) => theme.globalDividers} !important;
+  }
+
+  .ui.action.input > .button, 
+  .ui.action.input > .buttons {
+    background-color: ${({ theme }) => theme.body} !important;
+    color: ${({ theme }) => theme.text} !important;
+    border: ${({ theme }) => theme.globalDividers} !important;
   }
 
   h1, h2, h3, h4, h5, p, 

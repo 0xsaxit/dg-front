@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
@@ -23,6 +23,12 @@ let transak = new transakSDK({
 const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  
+  // set top padding of balancees container dependent 
+  // on top bar message height 
+  const test = {
+    marginTop: '125px',
+  };   
 
   // define local variables
   let userAddress = '';
@@ -169,7 +175,7 @@ const ContentBalances = (props) => {
 
   function contentAccountPage() {
     return (
-      <Grid className="balances-container">
+      <Grid className="balances-container" style={test}>
         <Grid.Row>
           <Grid.Column
             computer={5}

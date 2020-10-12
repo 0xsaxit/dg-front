@@ -496,6 +496,8 @@ const ContentFarming = (props) => {
 
             <Divider />
 
+            <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+
             <span className="DG-button-span">
               <Button disabled className="DG-stake-button">
                 STAKE $DG
