@@ -5,7 +5,9 @@ export const GlobalStyles = createGlobalStyle`
   body,
   div.ui.grid.balances-container,
   .post__content,
-  .read-next-div {
+  .read-next-div,
+  .ui.input>input,
+  .ui.input.down input, .ui.input>input:active {
     background: ${({ theme }) => theme.body};
   }
 
@@ -23,7 +25,8 @@ export const GlobalStyles = createGlobalStyle`
   .account-select,
   div.divider.text,
   .more-text,
-  .spanbox {
+  .spanbox,
+  .ui.input.down input, .ui.input>input:active {
     color: ${({ theme }) => theme.text} !important;
   }
 

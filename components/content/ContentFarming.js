@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider } from 'semantic-ui-react';
+import { Button, Divider, Input, Label } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 
@@ -298,6 +298,8 @@ const ContentFarming = (props) => {
 
             <Divider />
 
+            <Input disabled className="liquidity-input" fluid action='All' placeholder='Amount' />
+
             <span className="DG-button-span">
               <Button disabled className="DG-stake-button">
                 STAKE LP
@@ -369,6 +371,8 @@ const ContentFarming = (props) => {
             </div>
 
             <Divider />
+
+            <Input disabled className="liquidity-input" fluid action='All' placeholder='Amount' />
 
             <span className="DG-button-span">
               <Button disabled className="DG-stake-button">

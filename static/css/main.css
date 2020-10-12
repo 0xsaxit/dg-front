@@ -1409,18 +1409,6 @@ div.ui.grid.balances-container {
   padding: 12px 18px 12px 18px !important;
 }
 
-.balances-column.one:hover,
-.balances-column.two:hover,
-.balances-column.three:hover,
-.DG-column.unclaimed:hover,
-.DG-column.one:hover,
-.DG-column.two:hover,
-.DG-column.stake:hover {
-  transform: translateY(-2px);
-  transition: transform 0.25s ease 0s;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.09);
-}
-
 .top-balances-column {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -1738,6 +1726,27 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 /* ----------------------------------------- */
 /*            FARMING SECTION CSS            */
 /* ----------------------------------------- */
+
+.liquidity-input {
+  padding-top: 6px;
+}
+
+.ui.input>input {
+  border-radius: 2px 0px 0px 2px;
+  height: 39px;
+}
+
+.ui.action.input > .button, .ui.action.input > .buttons {
+  color: white;
+  min-width: 12px;
+  border-radius: 0px 2px 2px 0px !important;
+  height: 39px;
+  padding: 0px 12px 12px 12px;
+}
+
+.ui.action.input:not([class*='left action']) > input:focus {
+  border-right: 0px solid transparent !important;
+}
 
 .farming-pool-span {
   margin-top: 6px;
