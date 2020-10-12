@@ -6,9 +6,12 @@ export const GlobalStyles = createGlobalStyle`
   div.ui.grid.balances-container,
   .post__content,
   .read-next-div,
-  .ui.input>input,
-  .ui.input.down input, .ui.input>input:active {
+  .ui.input>input {
     background: ${({ theme }) => theme.body};
+  }
+
+  .ui.input>input {
+    background: ${({ theme }) => theme.input} !important;
   }
 
   h1, h2, h3, h4, h5, p, 
@@ -26,7 +29,7 @@ export const GlobalStyles = createGlobalStyle`
   div.divider.text,
   .more-text,
   .spanbox,
-  .ui.input.down input, .ui.input>input:active {
+  .ui.input>input {
     color: ${({ theme }) => theme.text} !important;
   }
 

@@ -17,6 +17,7 @@ export const lightTheme = {
   homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.3)',
   homeMenuColor: '#191919',
   homeDivider: '1px solid #120d06',
+  input: '#f9fbfd',
 }
 
 export const darkTheme = {
@@ -38,4 +39,5 @@ export const darkTheme = {
   homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.3)',
   homeMenuColor: '#191919',
 	homeDivider: '1px solid #120d06',
+  input: '#101010',
 }
