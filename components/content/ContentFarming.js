@@ -229,14 +229,14 @@ const ContentFarming = (props) => {
                 {poolSelect === 1 ? (
                   <span style={{ display: 'flex' }}>
                     <p className="welcome-text"> Unclaimed Pool 1</p>
-                    <span onClick={onPool} style={{ cursor: 'pointer', fontSize: '14px', marginLeft: '3px', marginTop: '9px', marginBottom: '-9px' }}class="material-icons">
+                    <span onClick={onPool} id="pool-select-icon" class="material-icons">
                       unfold_more
                     </span>
                   </span>
                 ) : (
                   <span style={{ display: 'flex' }}>
                     <p className="welcome-text"> Unclaimed Pool 2</p>
-                    <span onClick={onPool} style={{ cursor: 'pointer', fontSize: '14px', marginLeft: '3px', marginTop: '9px', marginBottom: '-9px' }}class="material-icons">
+                    <span onClick={onPool} id="pool-select-icon" class="material-icons">
                       unfold_more
                     </span>
                   </span>

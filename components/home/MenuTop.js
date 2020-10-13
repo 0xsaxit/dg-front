@@ -33,6 +33,7 @@ const MenuTop = ({toggleTheme}) => {
   }
 
   const displayedBalances = state.userBalances[1].filter(isGreaterThanZero);
+  console.log(displayedBalances);
 
   // set menu styles
   useEffect(() => {
@@ -302,18 +303,18 @@ const MenuTop = ({toggleTheme}) => {
             {displayedBalances && displayedBalances.length ? (
               <span style={{ display: 'flex' }}>
                 <span className="menu-info-to-hide">
-                  {displayedBalances[0] > 0 ? (
+                  {state.userBalances[1][0] > 0 ? (
                     <p className={menuStyle[7]}>
-                      {displayedBalances[0]} DAI
+                      {state.userBalances[1][0]} DAI
                     </p>
                   ) : ( 
                     null
                   )}
                 </span>
                 <span className="menu-info-to-hide">
-                  {displayedBalances[1] > 0 ? (
+                  {state.userBalances[1][1] > 0 ? (
                     <p className={menuStyle[7]}>
-                      {displayedBalances[1]} MANA
+                      {state.userBalances[1][1]} MANA
                     </p>
                   ) : ( 
                     null

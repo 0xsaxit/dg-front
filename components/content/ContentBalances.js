@@ -119,23 +119,20 @@ const ContentBalances = (props) => {
 
           <Divider style={{ marginTop: '-15px' }}/> 
 
-          <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <img src={Images.LOGO} className="farming-logo" />
-          </span>
-
           <div className="matic-widget-button-container">
             <div onClick={close}>
-              <Button
+              <div
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
                 // onClick={() => initializePings()}
               >
-                Deposit From Metamask
-                <span className="material-icons" id="matic-widget-icon-right-1">
-                  keyboard_arrow_right
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '7px' }}>
+                  <img src={Images.METAMASK} className="deposit-modal-image 1" />
+                  <p className="deposit-type-text"> Metamask </p>
                 </span>
-              </Button>
+                
+              </div>
 
               <script
                 src="https://wallet.matic.today/embeds/widget-button.js"
@@ -144,12 +141,14 @@ const ContentBalances = (props) => {
             </div>
 
             <div onClick={close}>
-              <Button className="matic-widget-button-2" onClick={show_transak}>
-                Purchase with Debit Card
-                <span className="material-icons" id="matic-widget-icon-right-2">
-                  keyboard_arrow_right
+              <div className="matic-widget-button-2" onClick={show_transak}>
+
+                <span style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                  <img src={Images.TRANSAK} className="deposit-modal-image 2" />
+                  <p className="deposit-type-text"> Debit Card </p>
                 </span>
-              </Button>
+
+              </div>
             </div>
           </div>
         </div>

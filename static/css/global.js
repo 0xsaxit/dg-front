@@ -95,8 +95,16 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .menu-info-container {
+    background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
-    box-shadow: ${({ theme }) => theme.boxShadow}; 
+    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
+  }
+
+  .matic-widget-button,
+  .matic-widget-button-2 {
+    background: ${({ theme }) => theme.modalCard};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
   }
 
   .ui.dropdown .menu > .item:hover {
@@ -111,7 +119,9 @@ export const GlobalStyles = createGlobalStyle`
   .welcome-text,
   .earned-text,
   .read-next-button:first-child:before,
-  .read-next-button:last-child:before {
+  .read-next-button:last-child:before,
+  #pool-select-icon,
+  .menu-info-label {
     color: ${({ theme }) => theme.offColorText} !important;   
   }
 

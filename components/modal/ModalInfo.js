@@ -20,7 +20,7 @@ const ModalInfo = () => {
       trigger={
         <Button color="blue" className="modal-info-button">
           <p className="right-menu-text dg">
-            0 DG
+            {state.DGPoints} DG
           </p>
         </Button>
       }
@@ -57,6 +57,10 @@ const ModalInfo = () => {
         <span className="menu-info-inner-span">
           <p className="menu-info-label"> matic balance </p>
           <p className="menu-info-text"> 0.000</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label"> aidrop balance </p>
+          <p className="menu-info-text"> <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000 </p>
         </span>
       </div>
 

@@ -19,6 +19,7 @@ export const lightTheme = {
   loader: 'white',
   zoom: '150em solid white',
   modal: 'white',
+  modalCard: 'white',
 }
 
 export const darkTheme = {
@@ -42,4 +43,5 @@ export const darkTheme = {
   loader: 'rgb(10, 10, 10)',
   zoom: '150em solid rgb(10, 10, 10)',
   modal: '#101B24',
+  modalCard: '#121212',
 }

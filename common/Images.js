@@ -31,6 +31,10 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599777537/Group_6_vj1jdx.png',
   DG_COIN_LOGO: 
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
+  METAMASK:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png',
+  TRANSAK: 
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/transak_lzhhwn.png',
 };
 
 export default Images;
