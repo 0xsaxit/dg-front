@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Modal, Button, Icon, Divider } from 'semantic-ui-react';
+import { Modal, Button, Icon, Divider, Menu } from 'semantic-ui-react';
 import Global from '../Constants';
 import { GlobalContext } from '../../store';
 import Images from '../../common/Images';
@@ -19,7 +19,9 @@ const ModalInfo = () => {
       close
       trigger={
         <Button color="blue" className="modal-info-button">
-          <span className="material-icons">settings</span>
+          <p className="right-menu-text dg">
+            0 DG
+          </p>
         </Button>
       }
     >
@@ -29,60 +31,65 @@ const ModalInfo = () => {
         </span>
       </span>
 
-      <p className="matic-header-text" style={{ paddingTop: '72px' }}>
+      <p className="matic-header-text">
         {' '}
         Your DG Breakdown{' '}
       </p>
 
-      <Divider style={{ marginTop: '-9px' }}/> 
+      <Divider style={{ marginTop: '-15px' }}/> 
 
       <div>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
           <img src={Images.DG_COIN_LOGO} className="farming-logo" />
         </span>
 
-          <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <p className="account-name" style={{ marginLeft: '0px', paddingLeft: '0px', textAlign: 'center' }}>{state.DGPoints}</p>
-          </span>
+        <span style={{ display: 'flex', justifyContent: 'center' }}>
+          <p className="account-name" style={{ marginLeft: '0px', paddingLeft: '0px', textAlign: 'center' }}>{state.DGPoints}</p>
+        </span>
       </div>
 
 
-      <div className="menu-info-container">
+      <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label"> balance </p>
+          <p className="menu-info-label"> mainchain balance </p>
           <p className="menu-info-text"> 0.000</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> unclaimed </p>
+          <p className="menu-info-label"> matic balance </p>
+          <p className="menu-info-text"> 0.000</p>
+        </span>
+      </div>
+
+      <div className="menu-info-container" style={{ marginTop: '12px', marginBottom: '12px' }}>  
+        <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+          <p className="menu-info-label"> unclaimed - gameplay</p>
           <p className="menu-info-text"> 0.000 </p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> DG price </p>
-          <a href="https://catalyst-monitor.now.sh/" className="menu-info-text">
-            {' '}
-            ...
-          </a>
+          <p className="menu-info-label"> unclaimed - liquidity</p>
+          <p className="menu-info-text"> 0.000 </p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> DG in circulation</p>
-          <a
-            href="https://wallet.matic.today/staking/"
-            className="menu-info-text"
-          >
-            ...
-          </a>
+          <p className="menu-info-label"> unclaimed - gov</p>
+          <p className="menu-info-text"> 0.000 </p>
+        </span>
+      </div>
+
+      <div className="menu-info-container" style={{ marginBottom: '30px' }}>  
+        <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+          <p className="menu-info-label"> dg price</p>
+          <p className="menu-info-text"> 0.000 </p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label"> dg in circulation</p>
+          <p className="menu-info-text"> 0.000 </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label"> total supply</p>
-          <a
-            href="https://wallet.matic.today/staking/"
-            className="menu-info-text"
-          >
-            ...
-          </a>
+          <p className="menu-info-text"> 0.000 </p>
         </span>
-
       </div>
+
     </Modal>
   );
 };

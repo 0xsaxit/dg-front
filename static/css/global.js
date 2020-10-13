@@ -52,7 +52,9 @@ export const GlobalStyles = createGlobalStyle`
   div.divider.text,
   .more-text,
   .spanbox,
-  .ui.input>input {
+  .ui.input>input,
+  .matic-header-text,
+  .menu-info-close {
     color: ${({ theme }) => theme.text} !important;
   }
 
@@ -60,15 +62,12 @@ export const GlobalStyles = createGlobalStyle`
     border-top: ${({ theme }) => theme.widgetDivider} !important;  
   }
 
-  .matic-header-text {
-    color: ${({ theme }) => theme.widgetText} !important;
-  }
-
   .home-dashboard-p,
   .home-dashboard-mission,
   .home-dashboard-h2,
   .featured-casino-text,
-  .home-dashboard-h1 {
+  .home-dashboard-h1,
+  .right-menu-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
 
@@ -86,6 +85,18 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
+  .ui.modal,
+  .matic-overlay {
+    background: ${({ theme }) => theme.card};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: none !important;  
+  }
+
+  .menu-info-container {
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow}; 
   }
 
   .ui.dropdown .menu > .item:hover {

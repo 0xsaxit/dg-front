@@ -112,16 +112,16 @@ const ContentBalances = (props) => {
       <span>
         <div className="matic-overlay-container" onClick={close} />
         <div className="matic-overlay">
+          <p className="matic-header-text">
+            {' '}
+            Add Tokens{' '}
+          </p>
+
+          <Divider style={{ marginTop: '-15px' }}/> 
+
           <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <img 
-              src={Images.LOGO} 
-              style={{ width: '54px', height: '54px', margin: '32px' }}
-            />
+            <img src={Images.LOGO} className="farming-logo" />
           </span>
-
-          <Divider className="widget-divider" style={{ marginTop: '0px' }} />
-
-          <p className="matic-header-text"> Add Tokens </p>
 
           <div className="matic-widget-button-container">
             <div onClick={close}>
@@ -131,15 +131,7 @@ const ContentBalances = (props) => {
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
                 // onClick={() => initializePings()}
               >
-                <span className="matic-icon-background">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-1"
-                  >
-                    add
-                  </span>
-                </span>
-                Metamask
+                Deposit From Metamask
                 <span className="material-icons" id="matic-widget-icon-right-1">
                   keyboard_arrow_right
                 </span>
@@ -153,15 +145,7 @@ const ContentBalances = (props) => {
 
             <div onClick={close}>
               <Button className="matic-widget-button-2" onClick={show_transak}>
-                <span className="matic-icon-background-2">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-2"
-                  >
-                    add
-                  </span>
-                </span>
-                Debit Card
+                Purchase with Debit Card
                 <span className="material-icons" id="matic-widget-icon-right-2">
                   keyboard_arrow_right
                 </span>

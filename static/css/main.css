@@ -45,15 +45,35 @@ p {
 
 .ui.button:hover {
   transform: translateY(0px);
-  filter: brightness(0.9);
+  filter: brightness(0.9) !important;
 }
 
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
+.menu-add-funds {
+  color: white !important;
+  border: none;
+  box-shadow: none;
+  letter-spacing: 1.25px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 7px 6px 0px 6px;
+}
+
 .menu-account-info {
+  cursor: pointer;
   display: flex;
+}
+
+.menu-account-info:hover {
+  filter: brightness(0.9);
+}
+
+.ui.button.modal-info-button:hover,
+.ui.button.theme-mode-button:hover {
+  background-color: #2085f4 !important; 
 }
 
 .ui.blue.button.metamask-button {
@@ -90,14 +110,14 @@ p {
   background-color: #2085f4;
   color: white;
   font-size: 14px !important;
-  font-weight: 600;
+  font-weight: 800 !important;
   margin-top: 18px;
   height: 33px;
   letter-spacing: 1.25px;
   border-radius: 2px;
-  margin-right: 30px;
+  margin-right: 15px;
   min-width: 15px !important;
-  padding: 3px 4px 0px 5px;
+  padding: 0px 6px 7px 6px;
 }
 
 .ui.button.theme-mode-button {
@@ -237,15 +257,12 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .right-menu-text {
-  color: white !important;
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  padding-right: 6px !important;
-  padding-left: 6px !important;
-  padding-top: 10px !important;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 6px 0px 6px;
 }
 
 .right-menu-items {
@@ -271,25 +288,23 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .menu-avatar-background {
+  border: 1px solid #2085f4;
   display: flex;
   background-color: #165daa;
   padding-right: 15px;
   border-radius: 2px;
-  border: 1px solid #2085f4;
   padding-left: 9px;
   margin-left: 6px;
 }
 
 .menu-info-modal {
-  top: 131px;
+  top: 106px;
   max-width: 400px !important;
   border-radius: 2px !important;
 }
 
 .menu-info-container {
-  margin: 30px 30px 30px 30px;
-  border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  margin: 0px 30px 0px 30px;
 }
 
 .menu-info-inner-span {
@@ -413,21 +428,6 @@ a.ui.blue.button.how-to-button {
   margin-right: auto !important;
 }
 
-.dashboard-image-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.dashboard-image {
-  height: 180px;
-  margin-right: 18px;
-  border-radius: 2px;
-}
-
-.dashboard-image:hover {
-  filter: brightness(80%);
-}
-
 .home-dashboard-description {
   max-width: 700px;
   margin-left: auto !important;
@@ -466,7 +466,7 @@ a.ui.blue.button.how-to-button {
 
 .ui.dimmer, 
 .transak_modal-overlay {
-  background-color: rgba(6, 16, 36, 0.5) !important;
+  background-color: rgba(13, 13, 13, 0.5) !important;
 }
 
 .logged-out-button-span {
@@ -1139,7 +1139,7 @@ svg.spanbox.disable {
 .matic-overlay-container {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(6, 16, 36, 0.5) !important;
+  background-color: rgba(13, 13, 13, 0.5) !important;
   position: fixed;
   z-index: -3 !important;
   top: 0;
@@ -1149,111 +1149,63 @@ svg.spanbox.disable {
 .matic-overlay {
   margin-top: -46px;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 2px;
   position: absolute;
   z-index: 9;
-  height: 381px;
-}
-
-.matic-top-text-1 {
-  opacity: 0.6;
-  font-family: Graphik, sans-serif !important;
-  text-align: left;
-  font-size: 12px;
-  padding-top: 3px;
-}
-
-.matic-top-text-2 {
-  opacity: 0.6;
-  font-family: Graphik, sans-serif !important;
-  padding-top: 3px;
-  font-size: 12px;
-  line-height: 16px;
+  height: 330px;
+  width: 400px !important;
 }
 
 .matic-header-text {
   padding: 24px;
   font-family: Graphik, sans-serif !important;
   font-size: 16px;
-  line-height: 1.5rem;
   font-weight: 800 !important;
   text-align: center;
 }
 
 .matic-widget-button-container {
-  padding: 00px 40px 40px 40px;
+  padding: 30px;
 }
 
 .button.matic-widget-button {
-  text-align: left;
-  border: 1px solid rgb(231, 233, 238);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  width: 364px;
-  height: 56px;
-  padding: 16px 2px 12px 13px;
-  background-color: white;
-  text-transform: capitalize;
-  font-size: 15px !important;
-  font-weight: 600;
-  font-family: Graphik, sans-serif !important;
+  margin-bottom: 18px !important;
+  border-radius: 2px;
+  width: 100%;
+  text-transform: uppercase;
+  color: white;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  padding-left: 12px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
 }
 
 .button.matic-widget-button-2 {
-  text-align: left;
-  margin-top: -1px;
-  width: 364px;
-  height: 56px;
-  padding: 16px 2px 12px 13px;
-  background-color: white;
-  border: 1px solid rgb(231, 233, 238);
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  text-transform: capitalize;
-  font-size: 15px !important;
-  font-weight: 600;
-  font-family: Graphik, sans-serif !important;
-}
-
-span.matic-icon-background {
-  padding: 5px 5px 5px 5px;
-  background-color: #d5e2fc;
-  border-radius: 50%;
-  margin-right: 12px;
-}
-
-span.matic-icon-background-2 {
-  padding: 5px 5px 5px 5px;
-  background-color: #d5e2fc;
-  border-radius: 50%;
-  margin-right: 12px;
-}
-
-#matic-widget-icon-left-1 {
-  padding-left: 1px;
-  vertical-align: top;
-  color: #003cb2;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-#matic-widget-icon-left-2 {
-  padding-left: 1px;
-  vertical-align: top;
-  color: #003cb2;
-  font-weight: 600;
-  font-size: 16px;
+  border-radius: 2px;
+  width: 100%;
+  text-transform: uppercase;
+  color: white;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 2px;
+  height: 34px;
+  padding-top: 8px;
+  padding-left: 12px;
+  padding-right: 0px;
+  letter-spacing: 0.5px;
 }
 
 #matic-widget-icon-right-1 {
   float: right;
   font-size: 27px;
   font-weight: 100 !important;
-  opacity: 0.3;
+  color: white;
   margin-top: -5px;
 }
 
@@ -1261,7 +1213,7 @@ span.matic-icon-background-2 {
   float: right;
   font-size: 27px;
   font-weight: 100 !important;
-  opacity: 0.3;
+  color: white;
   margin-top: -5px;
 }
 
