@@ -334,7 +334,7 @@ const MenuTop = ({toggleTheme}) => {
                   style={{ marginTop: '-1px' }}
                 >
                   {state.userInfo[1].substr(0, 4) +
-                    '...' +
+                    '...' + 
                     state.userInfo[1].substr(-4)}
                 </p>
               ) : (
