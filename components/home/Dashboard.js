@@ -109,9 +109,17 @@ const Dashboard = () => {
           <div className="online-dot"></div>
 
           {!isLoading ? (
-            <p className="home-dashboard-p">
-              {playerCount} online in {realm}
-            </p>
+            <span>
+              {playerCount > 0 ? (
+                <p className="home-dashboard-p">
+                  {playerCount} online in {realm}
+                </p>
+              ) : (
+                <p className="home-dashboard-p">
+                  {playerCount} players online
+                </p>
+              )}
+            </span>
           ) : null}
         </span>
 
@@ -209,9 +217,17 @@ const Dashboard = () => {
               >
                 <div className="online-dot"></div>
                 {!isLoading ? (
-                  <p className="home-dashboard-p">
-                    {playerCount} online in {realm}
-                  </p>
+                  <span>
+                    {playerCount > 0 ? (
+                      <p className="home-dashboard-p">
+                        {playerCount} online in {realm}
+                      </p>
+                    ) : (
+                      <p className="home-dashboard-p">
+                        {playerCount} players online
+                      </p>
+                    )}
+                  </span>
                 ) : null}
               </span>
 
