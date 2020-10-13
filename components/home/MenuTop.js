@@ -33,7 +33,6 @@ const MenuTop = ({toggleTheme}) => {
   }
 
   const displayedBalances = state.userBalances[1].filter(isGreaterThanZero);
-  console.log(displayedBalances);
 
   // set menu styles
   useEffect(() => {
