@@ -1319,7 +1319,7 @@ deposit-notification-box-hidden {
   font-size: 34px;
   font-weight: 600;
   letter-spacing: 0.25px;
-  padding-left: 21px;
+  padding-left: 15px;
   font-weight: bold;
   min-width: 300px !important;
 }
@@ -1330,7 +1330,7 @@ deposit-notification-box-hidden {
   letter-spacing: 0.5px;
   color: rgb(92, 95, 97);
   text-transform: uppercase;
-  padding-left: 22px;
+  padding-left: 16px;
   padding-top: 9px !important;
   margin-bottom: -3px;
 }
@@ -1613,8 +1613,8 @@ div.ui.grid.balances-container {
   border-radius: 2px;
   height: 27px;
   padding-top: 4px;
-  max-width: 100px !important;
-  min-width: 100px;
+  max-width: 81px !important;
+  min-width: 81px;
   padding-left: 0px;
   padding-right: 0px;
   letter-spacing: 0.5px;
@@ -1798,14 +1798,15 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   flex-direction: row;
 }
 
-.DG-column.stake {
-  max-width: 36% !important;
-  position: relative;
-  height: 100%;
-}
-
 .DG-liquidity-container.top {
   padding-top: 0px;
+}
+
+.DG-tablet-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row !important;
+  width: 75%;
 }
 
 .DG-column.top {
@@ -1813,7 +1814,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 }
 
 .DG-column.unclaimed {
-  max-width: 23% !important;  
+  max-width: 22.75% !important;  
   max-height: 183px;
 }
 
@@ -1826,12 +1827,14 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   margin-top: 30px;
 }
 
+.DG-column.one,
+.DG-column.two {
+  width: 48.5%;
+}
 .DG-column {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  width: 100%;
   padding: 12px 18px 18px 18px !important;
-  max-width: 36%;  
   background-color: white;
 }
 

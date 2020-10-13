@@ -64,119 +64,122 @@ const ContentFarming = (props) => {
             </span>
           </div>
 
-          <div className="DG-column one">
-            <span style={{ display: 'flex' }}>
-              <img src={Images.MANA_CIRCLE} className="farming-logo" />
-              <span className="farming-pool-span">
-                <p className="welcome-text"> Coin </p>
-                <p className="account-name">MANA</p>
-              </span>
-            </span>
-
-            <Divider />
-
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text"> Total Bet </p>
-                  <p className="earned-amount"> ... </p>
+          <span className="DG-tablet-container">
+            <div className="DG-column one">
+              <span style={{ display: 'flex' }}>
+                <img src={Images.MANA_CIRCLE} className="farming-logo" />
+                <span className="farming-pool-span">
+                  <p className="welcome-text"> Coin </p>
+                  <p className="account-name">MANA</p>
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> Total Bet </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
+                </span>
+
                 <span
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '50%',
                   }}
                 >
-                  <p className="earned-text"> Mining Rate </p>
-                  <p className="earned-amount"> ... </p>
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> Mining Rate </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
                 </span>
+              </div>
+
+              <Divider />
+
+              <span className="DG-button-span">
+                <Button
+                  href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                  className="DG-play-now-button"
+                >
+                  PLAY NOW
+                </Button>
               </span>
             </div>
 
-            <Divider />
-
-            <span className="DG-button-span">
-              <Button
-                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
-                className="DG-play-now-button"
-              >
-                PLAY NOW
-              </Button>
-            </span>
-          </div>
-
-          <div className="DG-column two">
-            <span style={{ display: 'flex' }}>
-              <img src={Images.DAI_CIRCLE} className="farming-logo" />
-              <span className="farming-pool-span">
-                <p className="welcome-text"> Coin </p>
-                <p className="account-name">DAI</p>
-              </span>
-            </span>
-
-            <Divider />
-
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text"> Total Bet </p>
-                  <p className="earned-amount"> ... </p>
+            <div className="DG-column two">
+              <span style={{ display: 'flex' }}>
+                <img src={Images.DAI_CIRCLE} className="farming-logo" />
+                <span className="farming-pool-span">
+                  <p className="welcome-text"> Coin </p>
+                  <p className="account-name">DAI</p>
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> Total Bet </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
+                </span>
+
                 <span
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '50%',
                   }}
                 >
-                  <p className="earned-text"> Mining Rate </p>
-                  <p className="earned-amount"> ... </p>
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> Mining Rate </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
                 </span>
+              </div>
+
+              <Divider />
+
+              <span className="DG-button-span">
+                <Button
+                  href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                  className="DG-play-now-button"
+                >
+                  PLAY NOW
+                </Button>
               </span>
             </div>
+          </span>
 
-            <Divider />
-
-            <span className="DG-button-span">
-              <Button
-                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
-                className="DG-play-now-button"
-              >
-                PLAY NOW
-              </Button>
-            </span>
-          </div>
         </div>
       </Aux>
     );
@@ -236,153 +239,156 @@ const ContentFarming = (props) => {
             </span>
           </div>
 
-          <div
-            className="DG-column one"
-            style={{ position: 'relative', height: '100%' }}
-          >
-            <span style={{ display: 'flex' }}>
-              <img src={Images.MANA_CIRCLE} className="farming-logo" />
-              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
-              <span className="farming-pool-span">
-                <p className="welcome-text"> MANA-DG </p>
-                <p className="account-name">0</p>
-              </span>
-            </span>
-
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                disabled
-                className="balancer-top-button"
-                target="_blank"
-                style={{ marginTop: '-75px' }}
-              >
-                Go To Pool
-              </Button>
-            </span>
-
-            <Divider />
-
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text"> % of pool </p>
-                  <p className="earned-amount"> ... </p>
+          <span className="DG-tablet-container">
+            <div
+              className="DG-column one"
+              style={{ position: 'relative', height: '100%' }}
+            >
+              <span style={{ display: 'flex' }}>
+                <img src={Images.MANA_CIRCLE} className="farming-logo" />
+                <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+                <span className="farming-pool-span">
+                  <p className="welcome-text"> MANA-DG </p>
+                  <p className="account-name">0</p>
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  disabled
+                  className="balancer-top-button"
+                  target="_blank"
+                  style={{ marginTop: '-75px' }}
+                >
+                  Pool 1 »
+                </Button>
+              </span>
+
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> % of pool 1</p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
+                </span>
+
                 <span
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '50%',
                   }}
                 >
-                  <p className="earned-text"> pool rate </p>
-                  <p className="earned-amount"> ... </p>
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> pool 1 rate </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
                 </span>
+              </div>
+
+              <Divider />
+
+              <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+
+              <span className="DG-button-span">
+                <Button disabled className="DG-stake-button">
+                  STAKE LP
+                </Button>
+                <Button disabled className="DG-stake-button">
+                  UNSTAKE LP
+                </Button>
               </span>
             </div>
 
-            <Divider />
-
-            <Input disabled className="liquidity-input" fluid action='All' placeholder='Amount' />
-
-            <span className="DG-button-span">
-              <Button disabled className="DG-stake-button">
-                STAKE LP
-              </Button>
-              <Button disabled className="DG-stake-button">
-                UNSTAKE LP
-              </Button>
-            </span>
-          </div>
-
-          <div
-            className="DG-column two"
-            style={{ position: 'relative', height: '100%' }}
-          >
-            <span style={{ display: 'flex' }}>
-              <img src={Images.DAI_CIRCLE} className="farming-logo" />
-              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
-              <span className="farming-pool-span">
-                <p className="welcome-text"> DAI-DG </p>
-                <p className="account-name">0</p>
-              </span>
-            </span>
-
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                disabled
-                className="balancer-top-button"
-                target="_blank"
-                style={{ marginTop: '-75px' }}
-              >
-                Go To Pool
-              </Button>
-            </span>
-
-            <Divider />
-
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text"> % of pool </p>
-                  <p className="earned-amount"> ... </p>
+            <div
+              className="DG-column two"
+              style={{ position: 'relative', height: '100%' }}
+            >
+              <span style={{ display: 'flex' }}>
+                <img src={Images.DAI_CIRCLE} className="farming-logo" />
+                <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+                <span className="farming-pool-span">
+                  <p className="welcome-text"> DAI-DG </p>
+                  <p className="account-name">0</p>
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  disabled
+                  className="balancer-top-button"
+                  target="_blank"
+                  style={{ marginTop: '-75px' }}
+                >
+                 Pool 2 »
+                </Button>
+              </span>
+
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> % of pool 2</p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
+                </span>
+
                 <span
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '50%',
                   }}
                 >
-                  <p className="earned-text"> pool rate </p>
-                  <p className="earned-amount"> ... </p>
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> pool 2 rate </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
                 </span>
+              </div>
+
+              <Divider />
+
+              <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+
+              <span className="DG-button-span">
+                <Button disabled className="DG-stake-button">
+                  STAKE LP
+                </Button>
+                <Button disabled className="DG-stake-button">
+                  UNSTAKE LP
+                </Button>
               </span>
             </div>
+          </span>
 
-            <Divider />
-
-            <Input disabled className="liquidity-input" fluid action='All' placeholder='Amount' />
-
-            <span className="DG-button-span">
-              <Button disabled className="DG-stake-button">
-                STAKE LP
-              </Button>
-              <Button disabled className="DG-stake-button">
-                UNSTAKE LP
-              </Button>
-            </span>
-          </div>
         </div>
       </Aux>
     );
@@ -449,88 +455,91 @@ const ContentFarming = (props) => {
             </span>
           </div>
 
-          <div className="DG-column stake">
-            <span style={{ display: 'flex' }}>
-              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
-              <span className="farming-pool-span">
-                <p className="welcome-text"> Staked DG</p>
-                <p className="account-name">0</p>
-              </span>
-            </span>
-
-            <Divider />
-
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text"> % of gov pool </p>
-                  <p className="earned-amount"> ... </p>
+          <span className="DG-tablet-container">
+            <div className="DG-column one">
+              <span style={{ display: 'flex' }}>
+                <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+                <span className="farming-pool-span">
+                  <p className="welcome-text"> Staked DG</p>
+                  <p className="account-name">0</p>
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> % of gov pool </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
+                </span>
+
                 <span
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '50%',
                   }}
                 >
-                  <p className="earned-text"> Treasury </p>
-                  <p className="earned-amount"> ... </p>
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text"> Treasury </p>
+                    <p className="earned-amount"> ... </p>
+                  </span>
                 </span>
+              </div>
+
+              <Divider />
+
+              <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+
+              <span className="DG-button-span">
+                <Button disabled className="DG-stake-button">
+                  STAKE $DG
+                </Button>
+                <Button disabled className="DG-stake-button">
+                  UNSTAKE $DG
+                </Button>
               </span>
             </div>
 
-            <Divider />
-
-            <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
-
-            <span className="DG-button-span">
-              <Button disabled className="DG-stake-button">
-                STAKE $DG
-              </Button>
-              <Button disabled className="DG-stake-button">
-                UNSTAKE $DG
-              </Button>
-            </span>
-          </div>
-
-          <div
-            className="DG-column stake"
-            style={{ position: 'relative', height: '100%' }}
-          >
-            <span style={{ display: 'flex' }}>
-              <img src={Images.SNAPSHOT_ICON} className="farming-logo" />
-              <span className="farming-pool-span">
-                <p className="welcome-text"> Proposals</p>
-                <p className="account-name">0</p>
+            <div
+              className="DG-column two"
+              style={{ position: 'relative', height: '100%', maxHeight: '183px' }}
+            >
+              <span style={{ display: 'flex' }}>
+                <img src={Images.SNAPSHOT_ICON} className="farming-logo" />
+                <span className="farming-pool-span">
+                  <p className="welcome-text"> Proposals</p>
+                  <p className="account-name">0</p>
+                </span>
               </span>
-            </span>
 
-            <Divider />
+              <Divider />
 
-            <span className="DG-button-span">
-              <Button disabled className="DG-stake-button">
-                DISCUSSION
-              </Button>
-              <Button disabled className="DG-stake-button">
-                VOTING
-              </Button>
-            </span>
-          </div>
+              <span className="DG-button-span">
+                <Button disabled className="DG-stake-button">
+                  DISCUSSION
+                </Button>
+                <Button disabled className="DG-stake-button">
+                  VOTING
+                </Button>
+              </span>
+            </div>
+          </span>
+
         </div>
       </Aux>
     );

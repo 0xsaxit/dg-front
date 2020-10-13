@@ -18,6 +18,8 @@ export const lightTheme = {
   homeMenuColor: '#191919',
   homeDivider: '1px solid #120d06',
   input: 'white',
+  loader: 'white',
+  zoom: '150em solid white',
 }
 
 export const darkTheme = {
@@ -29,15 +31,17 @@ export const darkTheme = {
   card: '#191919',
   menuColor: '#191919',
   cardBorder: '1px solid #121212',
-  boxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.3)',
+  boxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.1)',
  	globalDividers: '1px solid #120d06',
   widgetDivider: '1px solid #edf2f9',
   infoColor: '#0f0d0a',
   offColorText: 'rgba(255, 255, 255, .55)',
   codeHighlight: '#0f0d0a',
   codeHighlightBorder: '#0f0d0a', 
-  homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.3)',
+  homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.1)',
   homeMenuColor: '#191919',
 	homeDivider: '1px solid #120d06',
   input: '#191919',
+  loader: 'rgb(10, 10, 10)',
+  zoom: '150em solid rgb(10, 10, 10)',
 }

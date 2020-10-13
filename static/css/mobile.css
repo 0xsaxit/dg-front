@@ -542,15 +542,23 @@
   .DG-top-container {
     flex-direction: column;
   }
+  .DG-tablet-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row !important;
+    width: 100%;
+  }
   .DG-liquidity-container.top {
     flex-direction: row;
   }
-  .DG-column {
+  .DG-column.unclaimed {
     max-width: 100% !important;
   }
-  .DG-column.unclaimed,
   .DG-column.one,
-  .DG-column.stake {
+  .DG-column.two {
+    max-width: 48.5% !important;
+  }
+  .DG-column.unclaimed {
     max-width: 100% !important;
     margin-bottom: 30px;
   }
@@ -562,6 +570,19 @@
 @media (max-width: 767px) {
   .dg-tabs-desktop {
     display: none;
+  }
+  .DG-tablet-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column !important;
+    width: 100%;
+  }
+  .DG-column.one {
+    min-width: 100%;
+    margin-bottom: 30px;
+  }
+  .DG-column.two {
+    min-width: 100%;
   }
   .DG-liquidity-container.top {
     flex-direction: column;

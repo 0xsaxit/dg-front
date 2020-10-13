@@ -15,6 +15,21 @@ export const GlobalStyles = createGlobalStyle`
     border: ${({ theme }) => theme.globalDividers} !important;
   }
 
+  .avatar-picture.main {
+    border: ${({ theme }) => theme.globalDividers};
+    border-radius: 100%;
+  }
+
+  .snow,
+  .black,
+  .full-white {
+    background: ${({ theme }) => theme.loader} !important;
+  }
+
+  .zoom-animation {
+    border: ${({ theme }) => theme.zoom};
+  }
+
   .ui.action.input > .button, 
   .ui.action.input > .buttons {
     background-color: ${({ theme }) => theme.body} !important;

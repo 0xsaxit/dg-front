@@ -88,14 +88,11 @@ const History = () => {
                       target="_blank"
                     >
                       <img
-                        className="avatar-picture"
+                        className="avatar-picture main"
                         src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
                         style={{
                           width: '72px',
                           display: 'flex',
-                          border: '1px solid rgb(227, 232, 238)',
-                          borderRadius: '100%',
-                          boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                         }}
                       />
                       <span className="avatar-edit"> edit </span>
