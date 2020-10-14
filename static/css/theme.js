@@ -3,13 +3,11 @@ export const lightTheme = {
   text: 'black',
   menuText: 'rgba(92, 95, 97, 1)',
   homeText: 'white',
-  widgetText: 'black',
   card: 'white',
   menuColor: 'white',
   cardBorder: '1px solid #edf2f9',
   boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
   globalDividers: '1px solid #edf2f9',
-  widgetDivider: '1px solid #edf2f9',
   infoColor: '#f0f2f5',
   offColorText: 'rgb(92, 95, 97)',
   codeHighlight: '#f0f2f5',
@@ -20,6 +18,8 @@ export const lightTheme = {
   input: 'white',
   loader: 'white',
   zoom: '150em solid white',
+  modal: 'white',
+  modalCard: 'white',
 }
 
 export const darkTheme = {
@@ -27,13 +27,11 @@ export const darkTheme = {
   text: 'rgba(255, 255, 255, .87)',
   menuText: 'rgba(255, 255, 255, .55)',
   homeText: 'white',
-  widgetText: 'black',
   card: '#191919',
   menuColor: '#191919',
   cardBorder: '1px solid #121212',
   boxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.1)',
  	globalDividers: '1px solid #120d06',
-  widgetDivider: '1px solid #edf2f9',
   infoColor: '#0f0d0a',
   offColorText: 'rgba(255, 255, 255, .55)',
   codeHighlight: '#0f0d0a',
@@ -44,4 +42,6 @@ export const darkTheme = {
   input: '#191919',
   loader: 'rgb(10, 10, 10)',
   zoom: '150em solid rgb(10, 10, 10)',
+  modal: '#101B24',
+  modalCard: '#121212',
 }

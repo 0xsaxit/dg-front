@@ -52,7 +52,9 @@ export const GlobalStyles = createGlobalStyle`
   div.divider.text,
   .more-text,
   .spanbox,
-  .ui.input>input {
+  .ui.input>input,
+  .matic-header-text,
+  .menu-info-close {
     color: ${({ theme }) => theme.text} !important;
   }
 
@@ -60,15 +62,12 @@ export const GlobalStyles = createGlobalStyle`
     border-top: ${({ theme }) => theme.widgetDivider} !important;  
   }
 
-  .matic-header-text {
-    color: ${({ theme }) => theme.widgetText} !important;
-  }
-
   .home-dashboard-p,
   .home-dashboard-mission,
   .home-dashboard-h2,
   .featured-casino-text,
-  .home-dashboard-h1 {
+  .home-dashboard-h1,
+  .right-menu-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
 
@@ -88,6 +87,26 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
+  .ui.modal,
+  .matic-overlay {
+    background: ${({ theme }) => theme.card};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: none !important;  
+  }
+
+  .menu-info-container {
+    background: ${({ theme }) => theme.card};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
+  }
+
+  .matic-widget-button,
+  .matic-widget-button-2 {
+    background: ${({ theme }) => theme.modalCard};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
+  }
+
   .ui.dropdown .menu > .item:hover {
     background: ${({ theme }) => theme.card};
   }
@@ -100,7 +119,9 @@ export const GlobalStyles = createGlobalStyle`
   .welcome-text,
   .earned-text,
   .read-next-button:first-child:before,
-  .read-next-button:last-child:before {
+  .read-next-button:last-child:before,
+  #pool-select-icon,
+  .menu-info-label {
     color: ${({ theme }) => theme.offColorText} !important;   
   }
 

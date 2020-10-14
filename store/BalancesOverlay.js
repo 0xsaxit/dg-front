@@ -46,14 +46,11 @@ const BalancesOverlay = () => {
     balancesModal: {
       position: 'absolute',
       top: '132px',
-      minWidth: '446px',
-      marginLeft: 'calc(50% - 223px)',
+      minWidth: '400px',
+      marginLeft: 'calc(50% - 200px)',
       marginRight: 'auto',
-      background: '#ffffff',
-      borderRadius: '12px',
+      borderRadius: '2px',
       zIndex: 9,
-      border: '1px solid #edf2f9',
-      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
       display: visibilityModal || 'none',
     },
     balancesAccountPage: {
@@ -69,17 +66,18 @@ const BalancesOverlay = () => {
       position: 'absolute',
       fontSize: '12px',
       fontWeight: '100',
-      marginLeft: 'calc(50% - 218px)',
-      marginTop: '112px',
-      color: 'rgb(125, 125, 125)',
+      marginLeft: 'calc(50% - 174px)',
+      marginTop: '127px',
+      color: 'black',
       zIndex: 10,
+      backgroundColor: 'rgba(0, 0, 0, 0)',
     },
   };
 
   return (
     <Aux>
       {state.balancesOverlay === 1 || state.balancesOverlay === 3 ? (
-        <span style={styles.close} onClick={() => close()}>
+        <span className="menu-info-close" style={styles.close} onClick={() => close()}>
           <span className="material-icons" style={{ fontSize: '29px' }}>
             close
           </span>

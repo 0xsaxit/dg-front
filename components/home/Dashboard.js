@@ -16,6 +16,7 @@ const Dashboard = () => {
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [total, setTotal] = useState('');
   const [visited, setVisited] = useState(false);
   const [videoPlay, setVideoPlay] = useState(true);
 
@@ -50,13 +51,14 @@ const Dashboard = () => {
       setRealm(json.topServerRealm.realm);
       setPlayerCount(json.topServerRealm.playerCount);
       setOnlineUsers(json.totalAddresses);
+      setTotal(json.totalPlayers);
 
       for (const [index, value] of json.totalAddresses.entries()) {
         temp.push(json.totalAddresses[index]);
       }
 
       setOnlineUsers(temp);
-      console.log('Total players: ' + json.totalPlayers);
+      console.log('Total players: ' + total);
 
       setLoading(false);
 
@@ -109,9 +111,17 @@ const Dashboard = () => {
           <div className="online-dot"></div>
 
           {!isLoading ? (
-            <p className="home-dashboard-p">
-              {playerCount} online in {realm}
-            </p>
+            <span>
+              {total === 1 ? (
+                <p className="home-dashboard-p">
+                  {total} player online
+                </p>
+              ) : (
+                <p className="home-dashboard-p">
+                  {total} players online
+                </p>
+              )}
+            </span>
           ) : null}
         </span>
 
@@ -209,9 +219,17 @@ const Dashboard = () => {
               >
                 <div className="online-dot"></div>
                 {!isLoading ? (
-                  <p className="home-dashboard-p">
-                    {playerCount} online in {realm}
-                  </p>
+                  <span>
+                    {total === 1 ? (
+                      <p className="home-dashboard-p">
+                        {total} player online
+                      </p>
+                    ) : (
+                      <p className="home-dashboard-p">
+                        {total} players online
+                      </p>
+                    )}
+                  </span>
                 ) : null}
               </span>
 

@@ -8,7 +8,7 @@ import ContentTransactions from '../content/ContentTransactions';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 
-const History = () => {
+const History = (props) => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
@@ -21,13 +21,8 @@ const History = () => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  // const [doneLoading, setDoneLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (document.readyState === 'complete') {
-  //     setDoneLoading(false);
-  //   }
-  // });
+  console.log(props.message);
 
   useEffect(() => {
     if (state.userStatus) {

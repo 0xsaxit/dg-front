@@ -20,8 +20,19 @@ const MenuTop = ({toggleTheme}) => {
   const [isDarkMode, setDarkMode] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
+  const [showItems, setShowItems] = React.useState(false)
+
+  const onShow = () => setShowItems(true);
+  const onClose = () => setShowItems(false);
 
   const router = useRouter();
+
+  // helper function  and array to display on non zero balances
+  function isGreaterThanZero(value) {
+    return value > 0;
+  }
+
+  const displayedBalances = state.userBalances[1].filter(isGreaterThanZero);
 
   // set menu styles
   useEffect(() => {
@@ -280,37 +291,58 @@ const MenuTop = ({toggleTheme}) => {
       return (
         <span className="right-menu-items">
 
-          {/*<ModalInfo />*/}
+          {router.pathname === '/dg' ? (
+            <ModalInfo />
+          ) : ( 
+            null
+          )}
 
-          <span className="menu-account-info">
-            <span className="menu-info-to-hide">
-              <Menu.Item className={menuStyle[7]}>
-                {state.userBalances[0][1]} DAI
-              </Menu.Item>
-            </span>
-            <span className="menu-info-to-hide">
-              <Menu.Item className={menuStyle[7]}>
-                {state.userBalances[1][1]} MANA
-              </Menu.Item>
-            </span>
+          <span className="menu-account-info" onClick={() => balancesModal()}>
+
+            {displayedBalances && displayedBalances.length ? (
+              <span style={{ display: 'flex' }}>
+                <span className="menu-info-to-hide">
+                  {state.userBalances[1][0] > 0 ? (
+                    <p className={menuStyle[7]}>
+                      {state.userBalances[1][0]} DAI
+                    </p>
+                  ) : ( 
+                    null
+                  )}
+                </span>
+                <span className="menu-info-to-hide">
+                  {state.userBalances[1][1] > 0 ? (
+                    <p className={menuStyle[7]}>
+                      {state.userBalances[1][1]} MANA
+                    </p>
+                  ) : ( 
+                    null
+                  )}
+                </span>
+              </span>
+            ) : (
+              <p className={menuStyle[7]}>
+                ADD FUNDS
+              </p>
+            )}
 
             <span className="menu-avatar-background">
               {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                <Menu.Item
+                <p
                   className={menuStyle[7]}
                   style={{ marginTop: '-1px' }}
                 >
                   {state.userInfo[1].substr(0, 4) +
-                    '...' +
+                    '...' + 
                     state.userInfo[1].substr(-4)}
-                </Menu.Item>
+                </p>
               ) : (
-                <Menu.Item
+                <p
                   style={{ marginTop: '-1px' }}
                   className={menuStyle[7]}
                 >
                   {state.userInfo[0]}
-                </Menu.Item>
+                </p>
               )}
 
               <img
@@ -329,14 +361,6 @@ const MenuTop = ({toggleTheme}) => {
               />
             </span>
           </span>
-
-          <Button
-            color="blue"
-            className="modal-deposit-button"
-            onClick={() => balancesModal()}
-          >
-            <span className="material-icons">add</span>
-          </Button>
 
           {isDarkMode ? 
             <Button onClick={toggleTheme} color="blue" className="theme-mode-button">

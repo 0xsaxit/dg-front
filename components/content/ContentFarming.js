@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Label } from 'semantic-ui-react';
 import Aux from '../_Aux';
@@ -7,6 +7,16 @@ import Images from '../../common/Images';
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
+  const [poolSelect, setPoolSelect] = useState(1);
+
+  var onPool;
+  if (poolSelect === 1) {
+    onPool = () => setPoolSelect(2);
+  } else {
+    onPool = () => setPoolSelect(1);
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +226,21 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex' }}>
               <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed</p>
+                {poolSelect === 1 ? (
+                  <span style={{ display: 'flex' }}>
+                    <p className="welcome-text"> Pool 1</p>
+                    <span onClick={onPool} id="pool-select-icon" class="material-icons">
+                      unfold_more
+                    </span>
+                  </span>
+                ) : (
+                  <span style={{ display: 'flex' }}>
+                    <p className="welcome-text"> Pool 2</p>
+                    <span onClick={onPool} id="pool-select-icon" class="material-icons">
+                      unfold_more
+                    </span>
+                  </span>
+                )}
                 <p className="account-name">{state.DGPoints}</p>
               </span>
             </span>

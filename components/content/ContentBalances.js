@@ -112,38 +112,27 @@ const ContentBalances = (props) => {
       <span>
         <div className="matic-overlay-container" onClick={close} />
         <div className="matic-overlay">
-          <span style={{ display: 'flex', justifyContent: 'center' }}>
-            <img 
-              src={Images.LOGO} 
-              style={{ width: '54px', height: '54px', margin: '32px' }}
-            />
-          </span>
+          <p className="matic-header-text">
+            {' '}
+            Add Tokens{' '}
+          </p>
 
-          <Divider className="widget-divider" style={{ marginTop: '0px' }} />
-
-          <p className="matic-header-text"> Add Tokens </p>
+          <Divider style={{ marginTop: '-15px' }}/> 
 
           <div className="matic-widget-button-container">
             <div onClick={close}>
-              <Button
+              <div
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
                 // onClick={() => initializePings()}
               >
-                <span className="matic-icon-background">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-1"
-                  >
-                    add
-                  </span>
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '7px' }}>
+                  <img src={Images.METAMASK} className="deposit-modal-image 1" />
+                  <p className="deposit-type-text"> Metamask </p>
                 </span>
-                Metamask
-                <span className="material-icons" id="matic-widget-icon-right-1">
-                  keyboard_arrow_right
-                </span>
-              </Button>
+                
+              </div>
 
               <script
                 src="https://wallet.matic.today/embeds/widget-button.js"
@@ -152,20 +141,14 @@ const ContentBalances = (props) => {
             </div>
 
             <div onClick={close}>
-              <Button className="matic-widget-button-2" onClick={show_transak}>
-                <span className="matic-icon-background-2">
-                  <span
-                    className="material-icons"
-                    id="matic-widget-icon-left-2"
-                  >
-                    add
-                  </span>
+              <div className="matic-widget-button-2" onClick={show_transak}>
+
+                <span style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                  <img src={Images.TRANSAK} className="deposit-modal-image 2" />
+                  <p className="deposit-type-text"> Debit Card </p>
                 </span>
-                Debit Card
-                <span className="material-icons" id="matic-widget-icon-right-2">
-                  keyboard_arrow_right
-                </span>
-              </Button>
+
+              </div>
             </div>
           </div>
         </div>
