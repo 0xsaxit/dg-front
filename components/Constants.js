@@ -26,7 +26,6 @@ const CONSTANTS = {
     '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
-  ADDRESS_TOMINOYA: '0xF4618abb5E8031454238696A0F013DcD1476dc33',
 };
 
 // fetch wallet and contract addresses from server API
@@ -41,6 +40,9 @@ const API_ADDRESSES = (async () => {
   const CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
   const TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
   const DG_POINTER_ADDRESS = json.DG_POINTER_ADDRESS;
+  const DG_STAKING = json.DG_STAKING;
+  const BALANCER_POOL_TOKEN = json.BALANCER_POOL_TOKEN;
+  const ADDRESS_TOMINOYA = json.ADDRESS_TOMINOYA;
 
   console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
@@ -49,6 +51,9 @@ const API_ADDRESSES = (async () => {
   console.log('CHILD_TOKEN_ADDRESS_MANA: ' + CHILD_TOKEN_ADDRESS_MANA);
   console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);
   console.log('DG_POINTER_ADDRESS: ' + DG_POINTER_ADDRESS);
+  console.log('DG_STAKING: ' + DG_STAKING);
+  console.log('BALANCER_POOL_TOKEN: ' + BALANCER_POOL_TOKEN);
+  console.log('ADDRESS_TOMINOYA: ' + ADDRESS_TOMINOYA);
 
   return {
     WORKER_ADDRESS,
@@ -58,6 +63,9 @@ const API_ADDRESSES = (async () => {
     CHILD_TOKEN_ADDRESS_MANA,
     TREASURY_CONTRACT_ADDRESS,
     DG_POINTER_ADDRESS,
+    DG_STAKING,
+    BALANCER_POOL_TOKEN,
+    ADDRESS_TOMINOYA,
   };
 })();
 

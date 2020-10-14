@@ -139,6 +139,17 @@ const Farming = () => {
                 GOVERNANCE
               </abbr>
             )}
+
+            {DGstate === 'admin' ? (
+              <b className="account-hover active">DG ADMIN</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('admin')}
+              >
+                DG ADMIN
+              </abbr>
+            )}
           </p>
 
           <ButtonAffiliates />
@@ -176,6 +187,17 @@ const Farming = () => {
                 onClick={() => setDGState('governance')}
               >
                 GOV
+              </abbr>
+            )}
+
+            {DGstate === 'admin' ? (
+              <b className="account-hover active">ADMIN</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('admin')}
+              >
+                ADMIN
               </abbr>
             )}
           </p>

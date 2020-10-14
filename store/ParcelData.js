@@ -51,7 +51,7 @@ function ParcelData() {
     try {
       const NFT_CONTRACT = new web3.eth.Contract(
         ABI_TOMINOYA_TOKEN,
-        Global.CONSTANTS.ADDRESS_TOMINOYA
+        Global.API_ADDRESSES.ADDRESS_TOMINOYA
       );
 
       const tokenID = await NFT_CONTRACT.methods
