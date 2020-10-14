@@ -54,9 +54,7 @@ export const GlobalStyles = createGlobalStyle`
   .spanbox,
   .ui.input>input,
   .matic-header-text,
-  .menu-info-close,
-  .dropdown-icon,
-  #dropdown-more-items {
+  .menu-info-close {
     color: ${({ theme }) => theme.text} !important;
   }
 
@@ -166,6 +164,7 @@ export const GlobalStyles = createGlobalStyle`
   .sidebar-menu-text.blog:hover,
   .account-hover.active,
   .account-hover:hover,
+  #dropdown-more-items:hover,
   .ui.dropdown .menu > .active.item span.text,
   .ui.dropdown .menu > .item:hover span.text {
     color: ${({ theme }) => theme.text} !important;
@@ -173,7 +172,9 @@ export const GlobalStyles = createGlobalStyle`
 
   .sidebar-menu-text.blog,
   .account-hover,
-  .ui.dropdown .menu > .item span.text {
+  .ui.dropdown .menu > .item span.text,
+  .dropdown-icon,
+  #dropdown-more-items {
     color: ${({ theme }) => theme.menuText} !important;
   }
 

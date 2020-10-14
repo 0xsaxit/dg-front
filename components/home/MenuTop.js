@@ -376,29 +376,37 @@ const MenuTop = ({toggleTheme}) => {
 
               <a href="https://docs.decentral.games" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='file outline' />
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">DOCS</Menu.Item>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-6px', marginRight: '11px' }} name='file outline' />
+                    DOCS
+                  </Menu.Item>
                 </span>
               </a>
 
               <a href="https://github.com/decentralgames" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='code' />
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">CODE</Menu.Item>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-6px', marginRight: '11px' }} name='code' />
+                    CODE
+                  </Menu.Item>
                 </span>
               </a>
 
               <a href="https://discord.com/invite/cvbSNzY" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='discord' />
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">DISCORD</Menu.Item>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-5px', marginRight: '10px' }} name='discord' />
+                    DISCORD
+                  </Menu.Item>
                 </span>
               </a>
 
               <a href="https://twitter.com/decentralgames" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='twitter' />
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">TWITTER</Menu.Item>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-5px', marginRight: '10px' }} name='twitter' />
+                    TWITTER
+                  </Menu.Item>
                 </span>
               </a>
 
