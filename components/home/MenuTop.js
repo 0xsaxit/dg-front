@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Button } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Button, Popup, Icon } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import Verify from './Verify';
@@ -362,15 +362,58 @@ const MenuTop = ({toggleTheme}) => {
             </span>
           </span>
 
-          {isDarkMode ? 
-            <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
-              <span className="material-icons">brightness_4</span>
-            </Button>
-          :
-            <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
-              <span className="material-icons">brightness_7</span>
-            </Button>
-          }
+          <Popup
+            on='click'
+            pinned
+            position='bottom right'
+            trigger={
+              <Button color="blue" className="more-dropdown-button">
+                <span className="material-icons">more_horiz</span>
+              </Button>
+            }
+          >
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+
+              <a href="https://docs.decentral.games" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='file outline' />
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">DOCS</Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://github.com/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='code' />
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">CODE</Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://discord.com/invite/cvbSNzY" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='discord' />
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">DISCORD</Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://twitter.com/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Icon style={{ paddingTop: '8px' }} className="dropdown-icon" name='twitter' />
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">TWITTER</Menu.Item>
+                </span>
+              </a>
+
+              {isDarkMode ? 
+                <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
+                  <span className="material-icons">brightness_4</span>
+                </Button>
+              :
+                <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
+                  <span className="material-icons">brightness_7</span>
+                </Button>
+              }
+
+            </span>
+          </Popup>
 
         </span>
       );

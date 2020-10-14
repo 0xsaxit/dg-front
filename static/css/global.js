@@ -54,7 +54,9 @@ export const GlobalStyles = createGlobalStyle`
   .spanbox,
   .ui.input>input,
   .matic-header-text,
-  .menu-info-close {
+  .menu-info-close,
+  .dropdown-icon,
+  #dropdown-more-items {
     color: ${({ theme }) => theme.text} !important;
   }
 
@@ -92,6 +94,17 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: none !important;  
+  }
+
+  .ui.bottom.right.popup {
+    background: ${({ theme }) => theme.card};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
+  }
+
+  .ui.bottom.right.popup:before {
+    background: ${({ theme }) => theme.card};
+    box-shadow: none !important; 
   }
 
   .menu-info-container {

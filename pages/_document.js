@@ -68,36 +68,12 @@ export default class MyDocument extends Document {
             disabled
           />
         </Head>
+
         <body>
           <Main />
           <NextScript />
-
-          {/* ----------------------------------------------------------- */}
-          {/*                        DISCORD CHAT                         */}
-          {/* ----------------------------------------------------------- */}
-
-          <div className="discord-outter-container">
-            <div className="discord-container">
-              <a className="Discord" target="_blank" href="/discord">
-                <i className="Discord-icon Discord-icon--message material-icons">
-                  chat
-                </i>
-
-                <img
-                  className="Discord-icon Discord-icon--plane"
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1593959829/discord-brand_swndx8.svg"
-                ></img>
-                <div className="Discord-text">
-                  <span>
-                    Talk to us on
-                    <br />
-                    <strong>Discord</strong>
-                  </span>
-                </div>
-              </a>
-            </div>
-          </div>
         </body>
+        
       </html>
     );
   }
