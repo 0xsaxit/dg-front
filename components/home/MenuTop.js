@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Sidebar, Segment, Button, Popup, Icon } from 'semantic-ui-react';
+import { Menu, Sidebar, Segment, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import Verify from './Verify';
@@ -225,15 +225,6 @@ const MenuTop = ({toggleTheme}) => {
             <Link href="/blog">
               <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
             </Link>
-
-            <Menu.Item
-              style={{ paddingBottom: '27px' }}
-              href="https://docs.decentral.games/"
-              target="_blank"
-              className={getLinkStyles('/docs')}
-            >
-              DOCS
-            </Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher>
@@ -273,14 +264,6 @@ const MenuTop = ({toggleTheme}) => {
         <Link href="/blog">
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
         </Link>
-
-        <Menu.Item
-          href="https://docs.decentral.games/"
-          target="_blank"
-          className={getLinkStyles('/docs')}
-        >
-          DOCS
-        </Menu.Item>
       </div>
     );
   }
@@ -410,15 +393,15 @@ const MenuTop = ({toggleTheme}) => {
                 </span>
               </a>
 
-              {isDarkMode ? 
-                <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
-                  <span className="material-icons">brightness_4</span>
-                </Button>
-              :
-                <Button onClick={toggleTheme} color="blue" className="theme-mode-button">
-                  <span className="material-icons">brightness_7</span>
-                </Button>
-              }
+              <span style={{ display: 'flex', paddingTop: '8px' }}>
+                {isDarkMode ? 
+                  <span id="moon-icon" className="material-icons">brightness_4</span>
+                :
+                  <span id="sun-icon" className="material-icons">brightness_7</span>
+                }
+
+                <Checkbox className="radio-theme-toggle" onChange={toggleTheme} toggle />
+              </span>
 
             </span>
           </Popup>

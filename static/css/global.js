@@ -174,7 +174,9 @@ export const GlobalStyles = createGlobalStyle`
   .account-hover,
   .ui.dropdown .menu > .item span.text,
   .dropdown-icon,
-  #dropdown-more-items {
+  #dropdown-more-items,
+  #sun-icon,
+  #moon-icon {
     color: ${({ theme }) => theme.menuText} !important;
   }
 
