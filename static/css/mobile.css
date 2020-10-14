@@ -19,6 +19,12 @@
   .menu-avatar-background {
     margin-left: -9px !important;
   }
+  #add-funds-mobile {
+    display: none;
+  }
+  #add-funds-mobile-padding {
+    padding-right: 15px !important;
+  }
 }
 
 #mobile-menu-icon:hover,
@@ -195,7 +201,7 @@
   .home-dashboard-content {
     position: absolute;
     left: -9px;
-    bottom: 90px;
+    bottom: 75px;
   }
   .home-dashboard-p {
     width: 100%;

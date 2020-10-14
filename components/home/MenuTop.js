@@ -223,7 +223,7 @@ const MenuTop = ({toggleTheme}) => {
             </Link>*/}
 
             <Link href="/blog">
-              <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
+              <Menu.Item style={{ marginBottom: '15px' }} className={getLinkStyles('/blog')}>BLOG</Menu.Item>
             </Link>
           </Sidebar>
 
@@ -304,12 +304,12 @@ const MenuTop = ({toggleTheme}) => {
                 </span>
               </span>
             ) : (
-              <p className={menuStyle[7]}>
+              <p className={menuStyle[7]} id="add-funds-mobile-padding">
                 ADD FUNDS
               </p>
             )}
 
-            <span className="menu-avatar-background">
+            <span className="menu-avatar-background" id="add-funds-mobile">
               {state.userInfo[0] === null || state.userInfo[0] === '' ? (
                 <p
                   className={menuStyle[7]}
@@ -409,7 +409,74 @@ const MenuTop = ({toggleTheme}) => {
         </span>
       );
     } else {
-      return <Verify />;
+      return (
+        <span className="right-menu-items">
+
+          <Verify /> 
+          
+          <Popup
+            on='click'
+            pinned
+            position='bottom right'
+            trigger={
+              <Button color="blue" className="more-dropdown-button">
+                <span className="material-icons">more_horiz</span>
+              </Button>
+            }
+          >
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+
+              <a href="https://docs.decentral.games" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-6px', marginRight: '11px' }} name='file outline' />
+                    DOCS
+                  </Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://github.com/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-6px', marginRight: '11px' }} name='code' />
+                    CODE
+                  </Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://discord.com/invite/cvbSNzY" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-5px', marginRight: '10px' }} name='discord' />
+                    DISCORD
+                  </Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://twitter.com/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon style={{ marginLeft: '-5px', marginRight: '10px' }} name='twitter' />
+                    TWITTER
+                  </Menu.Item>
+                </span>
+              </a>
+
+              <span style={{ display: 'flex', paddingTop: '8px' }}>
+                {isDarkMode ? 
+                  <span id="moon-icon" className="material-icons">brightness_4</span>
+                :
+                  <span id="sun-icon" className="material-icons">brightness_7</span>
+                }
+
+                <Checkbox className="radio-theme-toggle" onChange={toggleTheme} toggle />
+              </span>
+
+            </span>
+          </Popup>
+
+        </span>
+      );
     }
   }
 
