@@ -31,6 +31,7 @@ const initialState = {
   ],
   adminHistory: [[], []],
   DGPoints: 0,
+  staking: [[0], [0]],
   affiliateAddress: '',
 };
 
@@ -136,6 +137,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         DGPoints: action.data,
+      };
+
+    case 'staking':
+      return {
+        ...state,
+        staking: action.data,
       };
 
     case 'affiliate_address':

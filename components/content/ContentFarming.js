@@ -3,6 +3,7 @@ import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Label } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
+import ButtonReward from '../button/ButtonReward';
 
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
@@ -189,7 +190,6 @@ const ContentFarming = (props) => {
               </span>
             </div>
           </span>
-
         </div>
       </Aux>
     );
@@ -229,14 +229,22 @@ const ContentFarming = (props) => {
                 {poolSelect === 1 ? (
                   <span style={{ display: 'flex' }}>
                     <p className="welcome-text"> Pool 1</p>
-                    <span onClick={onPool} id="pool-select-icon" class="material-icons">
+                    <span
+                      onClick={onPool}
+                      id="pool-select-icon"
+                      class="material-icons"
+                    >
                       unfold_more
                     </span>
                   </span>
                 ) : (
                   <span style={{ display: 'flex' }}>
                     <p className="welcome-text"> Pool 2</p>
-                    <span onClick={onPool} id="pool-select-icon" class="material-icons">
+                    <span
+                      onClick={onPool}
+                      id="pool-select-icon"
+                      class="material-icons"
+                    >
                       unfold_more
                     </span>
                   </span>
@@ -326,7 +334,12 @@ const ContentFarming = (props) => {
 
               <Divider />
 
-              <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+              <Input
+                className="liquidity-input"
+                fluid
+                action="All"
+                placeholder="Amount"
+              />
 
               <span className="DG-button-span">
                 <Button disabled className="DG-stake-button">
@@ -358,7 +371,7 @@ const ContentFarming = (props) => {
                   target="_blank"
                   style={{ marginTop: '-75px' }}
                 >
-                 Pool 2 »
+                  Pool 2 »
                 </Button>
               </span>
 
@@ -400,7 +413,12 @@ const ContentFarming = (props) => {
 
               <Divider />
 
-              <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+              <Input
+                className="liquidity-input"
+                fluid
+                action="All"
+                placeholder="Amount"
+              />
 
               <span className="DG-button-span">
                 <Button disabled className="DG-stake-button">
@@ -412,7 +430,6 @@ const ContentFarming = (props) => {
               </span>
             </div>
           </span>
-
         </div>
       </Aux>
     );
@@ -527,7 +544,12 @@ const ContentFarming = (props) => {
 
               <Divider />
 
-              <Input className="liquidity-input" fluid action='All' placeholder='Amount' />
+              <Input
+                className="liquidity-input"
+                fluid
+                action="All"
+                placeholder="Amount"
+              />
 
               <span className="DG-button-span">
                 <Button disabled className="DG-stake-button">
@@ -541,7 +563,11 @@ const ContentFarming = (props) => {
 
             <div
               className="DG-column two"
-              style={{ position: 'relative', height: '100%', maxHeight: '183px' }}
+              style={{
+                position: 'relative',
+                height: '100%',
+                maxHeight: '183px',
+              }}
             >
               <span style={{ display: 'flex' }}>
                 <img src={Images.SNAPSHOT_ICON} className="farming-logo" />
@@ -563,7 +589,29 @@ const ContentFarming = (props) => {
               </span>
             </div>
           </span>
+        </div>
+      </Aux>
+    );
+  }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentAdmin() {
+    return (
+      <Aux>
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top">
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 className="DG-h3">Liquidity Farming Administration</h3>
+              <p>DG Balance: {state.staking[0]}</p>
+              <p>BPT Balance: {state.staking[1]}</p>
+              <p>
+                <a href="" style={{ color: '#2085f4' }}>
+                  <ButtonReward />
+                </a>
+              </p>
+            </span>
+          </div>
         </div>
       </Aux>
     );
@@ -575,6 +623,8 @@ const ContentFarming = (props) => {
     return contentLiquidity();
   } else if (props.content === 'governance') {
     return contentGovernance();
+  } else if (props.content === 'admin') {
+    return contentAdmin();
   }
 };
 

@@ -124,7 +124,8 @@ function AdminBalances() {
       // get treasury balances from token contracts
       const amountTreasury1 = await Transactions.balanceOfToken(
         tokenContract,
-        contractAddress
+        contractAddress,
+        0
       );
       arrayAmounts.push([0, amountTreasury1]);
 

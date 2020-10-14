@@ -32,7 +32,7 @@ async function getActiveStatus(userAddress, web3Default) {
 }
 
 // get user or contract token balance from MetaMask
-function balanceOfToken(tokenContract, userOrContractAddress) {
+function balanceOfToken(tokenContract, userOrContractAddress, units) {
   return new Promise(async (resolve, reject) => {
     console.log('Get balance of token');
 
@@ -47,7 +47,7 @@ function balanceOfToken(tokenContract, userOrContractAddress) {
         }
 
         const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
-          .toFixed(0)
+          .toFixed(units)
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         resolve(amountAdjusted);
