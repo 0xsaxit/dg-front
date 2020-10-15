@@ -9,6 +9,7 @@ import ABI_DG_POINTER from '../ABI/ABIDGPointer';
 import Global from '../Constants';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
+import Whitelist from '../Whitelist';
 
 const Farming = () => {
   // dispatch user's unclaimed DG balance from the Context API store
@@ -20,6 +21,8 @@ const Farming = () => {
   const [pointerContract, setPointerContract] = useState({});
   const [userAddress, setUserAddress] = useState({});
   const [web3, setWeb3] = useState({});
+
+  const whitelisted = Whitelist();
 
   useEffect(() => {
     if (document.readyState === 'complete') {
@@ -140,16 +143,18 @@ const Farming = () => {
               </abbr>
             )}
 
-            {DGstate === 'admin' ? (
-              <b className="account-hover active">DG ADMIN</b>
-            ) : (
-              <abbr
-                className="account-hover"
-                onClick={() => setDGState('admin')}
-              >
-                DG ADMIN
-              </abbr>
-            )}
+            {whitelisted ? (
+              DGstate === 'admin' ? (
+                <b className="account-hover active">DG ADMIN</b>
+              ) : (
+                <abbr
+                  className="account-hover"
+                  onClick={() => setDGState('admin')}
+                >
+                  DG ADMIN
+                </abbr>
+              )
+            ) : null}
           </p>
 
           <ButtonAffiliates />
@@ -190,16 +195,18 @@ const Farming = () => {
               </abbr>
             )}
 
-            {DGstate === 'admin' ? (
-              <b className="account-hover active">ADMIN</b>
-            ) : (
-              <abbr
-                className="account-hover"
-                onClick={() => setDGState('admin')}
-              >
-                ADMIN
-              </abbr>
-            )}
+            {whitelisted ? (
+              DGstate === 'admin' ? (
+                <b className="account-hover active">ADMIN</b>
+              ) : (
+                <abbr
+                  className="account-hover"
+                  onClick={() => setDGState('admin')}
+                >
+                  ADMIN
+                </abbr>
+              )
+            ) : null}
           </p>
 
           <ButtonAffiliates />

@@ -1,44 +1,47 @@
-import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../store';
+// import { useState, useEffect, useContext } from 'react';
+// import { GlobalContext } from '../store';
 import Admin from '../components/home/Admin';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
-import Fetch from '../common/Fetch';
+// import Fetch from '../common/Fetch';
+import Whitelist from '../components/Whitelist';
 
 const Administration = () => {
   // get user's status from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  // const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [adminAddresses, setAdminAddresses] = useState([]);
-  const [userAddress, setUserAddress] = useState('');
+  // const [adminAddresses, setAdminAddresses] = useState([]);
+  // const [userAddress, setUserAddress] = useState('');
 
-  useEffect(() => {
-    async function fetchData() {
-      console.log('Fetching admin addresses...');
+  const whitelisted = Whitelist();
 
-      const response = await Fetch.GET_ADDRESSES();
-      const json = await response.json();
-      const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     console.log('Fetching admin addresses...');
 
-      setAdminAddresses(arrayUpperCase);
-    }
+  //     const response = await Fetch.GET_ADDRESSES();
+  //     const json = await response.json();
+  //     const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
 
-    // check every 1000ms
-    const interval = setInterval(() => {
-      fetchData();
-    }, 1000);
+  //     setAdminAddresses(arrayUpperCase);
+  //   }
 
-    return () => clearInterval(interval);
-  }, []);
+  //   // check every 1000ms
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 1000);
 
-  useEffect(() => {
-    if (state.userStatus) {
-      setUserAddress(window.web3.currentProvider.selectedAddress.toUpperCase());
-    }
-  }, [state.userStatus]);
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  // useEffect(() => {
+  //   if (state.userStatus) {
+  //     setUserAddress(window.web3.currentProvider.selectedAddress.toUpperCase());
+  //   }
+  // }, [state.userStatus]);
 
   return (
     <Layout>
@@ -48,7 +51,7 @@ const Administration = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {adminAddresses.includes(userAddress) ? (
+      {whitelisted ? (
         <Admin />
       ) : (
         <div className="account-other-inner-p">
