@@ -47,7 +47,7 @@ function DGBalances() {
 
         DG_TOKEN_CONTRACT = window.web3.eth
           .contract(ABI_DG_TOKEN)
-          .at('0x2E43E6b58b3F20541CFab83e6237bbEDf52416A8'); // addresses.DG_TOKEN_ADDRESS // ****************************
+          .at(addresses.DG_TOKEN_ADDRESS);
 
         DG_STAKING_CONTRACT = window.web3.eth
           .contract(ABI_DG_STAKING)
