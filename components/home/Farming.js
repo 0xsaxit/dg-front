@@ -91,10 +91,13 @@ const Farming = () => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
+        const ret = array.slice(0);
+        ret[0] = 0;
+
         // update global state unclaimed DG balance to 0
         dispatch({
-          type: 'dg_points',
-          data: 0,
+          type: 'dg_balances',
+          data: ret,
         });
       }
     } catch (error) {

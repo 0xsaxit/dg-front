@@ -1,14 +1,11 @@
-import { useState } from 'react';
 import { Provider } from '../store';
 import App from 'next/app';
-
 import 'decentraland-ui/lib/styles.css';
 import '../static/css/main.css';
 import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
 import '../static/css/mobile.css';
-
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
 import BalancesEvents from '../store/BalancesEvents';
@@ -21,8 +18,7 @@ import ActiveStatus from '../store/ActiveStatus';
 import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
 import AdminData from '../store/AdminData';
-import DGBalance from '../store/DGBalance';
-
+import DGBalances from '../store/DGBalances';
 
 class Application extends App {
   render() {
@@ -30,7 +26,6 @@ class Application extends App {
 
     return (
       <Provider store={store}>
-
         <UserStatus />
         <UserBalances />
         <BalancesEvents />
@@ -43,7 +38,7 @@ class Application extends App {
         <UserInfo />
         <AdminBalances />
         <AdminData />
-        <DGBalance />
+        <DGBalances />
 
         <Component {...pageProps} />
       </Provider>

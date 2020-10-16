@@ -3,13 +3,15 @@ import { GlobalContext } from './index';
 
 // import Web3 from 'web3';
 
+import ABI_DG_TOKEN from '../components/ABI/ABIDGToken.json';
+
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking.json';
 import ABI_BALANCER_POOL_TOKEN from '../components/ABI/ABIBalancerPoolToken.json';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
-function DGBalance() {
+function DGBalances() {
   // dispatch user's unclaimed DG balance to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -19,6 +21,11 @@ function DGBalance() {
   let userAddress = '';
   let maticWeb3 = {};
   // let web3 = {};
+  let addresses = {};
+  let DG_POINTER_CONTRACT = {};
+  let DG_TOKEN_CONTRACT = {};
+  let DG_STAKING_CONTRACT = {};
+  let BPT_CONTRACT = {};
 
   useEffect(() => {
     if (state.userStatus) {
@@ -32,14 +39,36 @@ function DGBalance() {
       ); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        const balancePoints = await getDGBalance();
+        addresses = await Global.API_ADDRESSES;
 
-        console.log('DG points balance: ' + balancePoints);
+        DG_POINTER_CONTRACT = maticWeb3.eth
+          .contract(ABI_DG_POINTER)
+          .at(addresses.DG_POINTER_ADDRESS);
 
-        // update global state unclaimed DG points balance
+        DG_TOKEN_CONTRACT = window.web3.eth
+          .contract(ABI_DG_TOKEN)
+          .at('0x2E43E6b58b3F20541CFab83e6237bbEDf52416A8'); // addresses.DG_TOKEN_ADDRESS // ****************************
+
+        DG_STAKING_CONTRACT = window.web3.eth
+          .contract(ABI_DG_STAKING)
+          .at(addresses.DG_STAKING);
+
+        BPT_CONTRACT = window.web3.eth
+          .contract(ABI_BALANCER_POOL_TOKEN)
+          .at(addresses.BALANCER_POOL_TOKEN);
+        // })();
+
+        // async function fetchData() {
+        const balanceDG1 = await getDGBalanceGameplay();
+        const balanceDG2 = await getDGBalanceStaking();
+
+        console.log('DG points balance 1: ' + balanceDG1);
+        console.log('DG points balance 2: ' + balanceDG2);
+
+        // update global state unclaimed DG points balances
         dispatch({
-          type: 'dg_points',
-          data: balancePoints,
+          type: 'dg_balances',
+          data: [balanceDG1, balanceDG2],
         });
 
         const balanceStaking = await getDGStaking();
@@ -61,55 +90,28 @@ function DGBalance() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's staking contract DG balance
   async function getDGStaking() {
-    const addresses = await Global.API_ADDRESSES;
-
-    // const DG_STAKING_CONTRACT = web3Default.eth
-    //   .contract(ABI_DG_STAKING)
-    //   .at(addresses.DG_STAKING);
-
-    // const DG_STAKING_CONTRACT = new web3Default.eth.Contract(
-    //   ABI_DG_STAKING,
-    //   addresses.DG_STAKING
-    // );
-
-    const DG_STAKING_CONTRACT = window.web3.eth
-      .contract(ABI_DG_STAKING)
-      .at(addresses.DG_STAKING);
-
-    const BPT_CONTRACT = window.web3.eth
-      .contract(ABI_BALANCER_POOL_TOKEN)
-      .at(addresses.BALANCER_POOL_TOKEN);
+    console.log('Get DG staking balances');
 
     try {
-      // const DGStakingBalance = await DG_STAKING_CONTRACT.methods.balanceOf(
-      //   _userAddress
-      // );
+      const contractBalanceDG = await Transactions.balanceOfToken(
+        DG_TOKEN_CONTRACT,
+        addresses.DG_STAKING,
+        3
+      );
 
-      // console.log('userAddress: ' + userAddress);
-
-      const DGStakingBalance = await Transactions.balanceOfToken(
+      const contractBalanceBPT = await Transactions.balanceOfToken(
         DG_STAKING_CONTRACT,
         userAddress,
         3
       );
 
-      const BPTBalance = await Transactions.balanceOfToken(
+      const walletBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
         userAddress,
         3
       );
 
-      // console.log('dg staking balance...');
-      // console.log(DGStakingBalance);
-
-      // console.log('bpt balance...');
-      // console.log(BPTBalance);
-
-      // const pointsAdjusted = (DGStakingBalance / Global.CONSTANTS.FACTOR)
-      //   .toFixed(3)
-      //   .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-      return [DGStakingBalance, BPTBalance];
+      return [contractBalanceDG, contractBalanceBPT, walletBalanceBPT];
     } catch (error) {
       console.log('Get DG staking balance error: ' + error);
     }
@@ -117,19 +119,13 @@ function DGBalance() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get user's DG points balance from smart contract
-  function getDGBalance() {
+  // get user's DG points balance from smart contract for gameplay mining
+  async function getDGBalanceGameplay() {
     return new Promise(async (resolve, reject) => {
       console.log("Get user's DG points balance from smart contract");
 
-      const addresses = await Global.API_ADDRESSES;
-
-      const dgPointerContract = maticWeb3.eth
-        .contract(ABI_DG_POINTER)
-        .at(addresses.DG_POINTER_ADDRESS);
-
       try {
-        dgPointerContract.pointsBalancer(userAddress, async function (
+        DG_POINTER_CONTRACT.pointsBalancer(userAddress, async function (
           err,
           amount
         ) {
@@ -150,7 +146,33 @@ function DGBalance() {
     });
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG points balance from smart contract for liquidity farming
+  async function getDGBalanceStaking() {
+    return new Promise(async (resolve, reject) => {
+      console.log("Get user's DG points balance from smart contract");
+
+      try {
+        DG_STAKING_CONTRACT.earned(userAddress, async function (err, amount) {
+          if (err) {
+            console.log('Get balance failed', err);
+            reject(false);
+          }
+
+          const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR)
+            .toFixed(3)
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+          resolve(pointsAdjusted);
+        });
+      } catch (error) {
+        console.log('No DG points found: ' + error);
+      }
+    });
+  }
+
   return null;
 }
 
-export default DGBalance;
+export default DGBalances;

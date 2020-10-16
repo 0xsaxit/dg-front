@@ -59,8 +59,36 @@ function balanceOfToken(tokenContract, userOrContractAddress, units) {
   });
 }
 
+// function contractBalance(tokenContract, userOrContractAddress, units) {
+//   return new Promise(async (resolve, reject) => {
+//     console.log('Get balance of token');
+
+//     try {
+//       tokenContract.getBalance(userOrContractAddress, async function (
+//         err,
+//         amount
+//       ) {
+//         if (err) {
+//           console.log('Get balance failed', err);
+//           reject(false);
+//         }
+
+//         const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
+//           .toFixed(units)
+//           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+//         resolve(amountAdjusted);
+//       });
+//     } catch (error) {
+//       console.log('Get balance failed', error);
+//       reject(false);
+//     }
+//   });
+// }
+
 export default {
   getTreasuryContract,
   getActiveStatus,
   balanceOfToken,
+  // contractBalance,
 };

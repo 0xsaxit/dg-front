@@ -53,14 +53,14 @@ const ContentFarming = (props) => {
               <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">{state.DGPoints}</p>
+                <p className="account-name">{state.DGBalances[0]}</p>
               </span>
             </span>
 
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGPoints) ? (
+              {Number(state.DGBalances[0]) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => props.metaTransaction()}
@@ -249,14 +249,14 @@ const ContentFarming = (props) => {
                     </span>
                   </span>
                 )}
-                <p className="account-name">{state.DGPoints}</p>
+                <p className="account-name">{state.DGBalances[0]}</p>
               </span>
             </span>
 
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGPoints) ? (
+              {Number(state.DGBalances[0]) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => props.metaTransaction()}
@@ -474,14 +474,14 @@ const ContentFarming = (props) => {
               <img src={Images.DG_COIN_LOGO} className="farming-logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">{state.DGPoints}</p>
+                <p className="account-name">{state.DGBalances[0]}</p>
               </span>
             </span>
 
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGPoints) ? (
+              {Number(state.DGBalances[0]) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => props.metaTransaction()}
@@ -603,8 +603,9 @@ const ContentFarming = (props) => {
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">Liquidity Farming Administration</h3>
-              <p>DG Balance: {state.staking[0]}</p>
-              <p>BPT Balance: {state.staking[1]}</p>
+              <p>DG Balance (contract): {state.staking[0]}</p>
+              <p>BPT Balance (contract): {state.staking[1]}</p>
+              <p>BPT Balance (wallet): {state.staking[2]}</p>
               <p>
                 <a href="" style={{ color: '#2085f4' }}>
                   <ButtonReward />

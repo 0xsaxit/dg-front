@@ -5,7 +5,6 @@ import { GlobalContext } from '../../store';
 import Images from '../../common/Images';
 
 const ModalInfo = () => {
-
   const [state, dispatch] = useContext(GlobalContext);
   // define local variables
   const [open, setOpen] = useState(false);
@@ -19,9 +18,7 @@ const ModalInfo = () => {
       close
       trigger={
         <Button color="blue" className="modal-info-button">
-          <p className="right-menu-text dg">
-            {state.DGPoints} DG
-          </p>
+          <p className="right-menu-text dg">{state.DGBalances[0]} DG</p>
         </Button>
       }
     >
@@ -31,12 +28,9 @@ const ModalInfo = () => {
         </span>
       </span>
 
-      <p className="matic-header-text">
-        {' '}
-        Your DG Breakdown{' '}
-      </p>
+      <p className="matic-header-text"> Your DG Breakdown </p>
 
-      <Divider style={{ marginTop: '-15px' }}/> 
+      <Divider style={{ marginTop: '-15px' }} />
 
       <div>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
@@ -44,27 +38,47 @@ const ModalInfo = () => {
         </span>
 
         <span style={{ display: 'flex', justifyContent: 'center' }}>
-          <p className="account-name" style={{ marginLeft: '0px', paddingLeft: '0px', textAlign: 'center' }}>{state.DGPoints}</p>
+          <p
+            className="account-name"
+            style={{
+              marginLeft: '0px',
+              paddingLeft: '0px',
+              textAlign: 'center',
+            }}
+          >
+            {state.DGBalances[0]}
+          </p>
         </span>
       </div>
-
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label"> mainchain balance </p>
-          <p className="menu-info-text"> <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000</p>
+          <p className="menu-info-text">
+            {' '}
+            <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label"> matic balance </p>
-          <p className="menu-info-text"> <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000</p>
+          <p className="menu-info-text">
+            {' '}
+            <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label"> airdrop balance </p>
-          <p className="menu-info-text"> <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000 </p>
+          <p className="menu-info-text">
+            {' '}
+            <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000{' '}
+          </p>
         </span>
       </div>
 
-      <div className="menu-info-container" style={{ marginTop: '12px', marginBottom: '12px' }}>  
+      <div
+        className="menu-info-container"
+        style={{ marginTop: '12px', marginBottom: '12px' }}
+      >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label"> unclaimed - gameplay</p>
           <p className="menu-info-text"> 0.000 </p>
@@ -79,7 +93,7 @@ const ModalInfo = () => {
         </span>
       </div>
 
-      <div className="menu-info-container" style={{ marginBottom: '30px' }}>  
+      <div className="menu-info-container" style={{ marginBottom: '30px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label"> dg price</p>
           <p className="menu-info-text"> 0.000 </p>
@@ -93,7 +107,6 @@ const ModalInfo = () => {
           <p className="menu-info-text"> 0.000 </p>
         </span>
       </div>
-
     </Modal>
   );
 };
