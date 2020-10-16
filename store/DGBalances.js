@@ -51,11 +51,11 @@ function DGBalances() {
 
         DG_STAKING_CONTRACT = window.web3.eth
           .contract(ABI_DG_STAKING)
-          .at(addresses.DG_STAKING);
+          .at(addresses.DG_STAKING_ADDRESS);
 
         BPT_CONTRACT = window.web3.eth
           .contract(ABI_BALANCER_POOL_TOKEN)
-          .at(addresses.BALANCER_POOL_TOKEN);
+          .at(addresses.BP_TOKEN_ADDRESS);
         // })();
 
         // async function fetchData() {
@@ -95,7 +95,7 @@ function DGBalances() {
     try {
       const contractBalanceDG = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING,
+        addresses.DG_STAKING_ADDRESS,
         3
       );
 
