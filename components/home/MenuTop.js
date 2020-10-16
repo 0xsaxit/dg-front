@@ -307,7 +307,7 @@ const MenuTop = ({ toggleTheme }) => {
               </span>
             ) : (
               <p className={menuStyle[7]} id="add-funds-mobile-padding">
-                ADD FUNDS
+                ADD TOKENS
               </p>
             )}
 
