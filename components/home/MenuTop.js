@@ -33,13 +33,7 @@ const MenuTop = ({ toggleTheme }) => {
   const onClose = () => setShowItems(false);
 
   const router = useRouter();
-
-  // helper function  and array to display on non zero balances
-  function isGreaterThanZero(value) {
-    return value > 0;
-  }
-
-  const displayedBalances = state.userBalances[1].filter(isGreaterThanZero);
+  
 
   // set menu styles
   useEffect(() => {
@@ -288,12 +282,12 @@ const MenuTop = ({ toggleTheme }) => {
           {router.pathname === '/dg' ? <ModalInfo /> : null}
 
           <span className="menu-account-info" onClick={() => balancesModal()}>
-            {displayedBalances && displayedBalances.length ? (
+            {state.userBalances[0][1] || state.userBalances[1][1] > 0 ? (
               <span style={{ display: 'flex' }}>
                 <span className="menu-info-to-hide">
-                  {state.userBalances[1][0] > 0 ? (
+                  {state.userBalances[0][1] > 0 ? (
                     <p className={menuStyle[7]}>
-                      {state.userBalances[1][0]} DAI
+                      {state.userBalances[0][1]} DAI
                     </p>
                   ) : null}
                 </span>
