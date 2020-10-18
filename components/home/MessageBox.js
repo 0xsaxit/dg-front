@@ -8,23 +8,21 @@ const MessageBox = (props) => {
   const [state, dispatch] = useContext(GlobalContext)
 
   // define local loading variable
-  const [showMessage, setShowMessage] = useState(true);
+  // const [showMessage, setShowMessage] = useState(false);
 
-  useEffect(() => {
-    if (state.tokenPings) {
-      setTimeout(() => {
-        setShowMessage(false);
-      }, 9500) 
-    }
-  });
-
-  console.log(showMessage);
-  console.log(state.tokenPings);
+  // useEffect(() => {
+  //   if (state.tokenPings) {
+  //     setShowMessage(true);
+  //     setTimeout(() => {
+  //     setShowMessage(false);
+  //     }, 9500) 
+  //   }
+  // });
 
   if (state.tokenPings) {
     return (
       <span>
-        {showMessage ? (
+
           <div className="deposit-notification-container">
             <Message
               className="deposit-notification-box"
@@ -89,7 +87,7 @@ const MessageBox = (props) => {
               <Progress id="progress-timer" percent={100} active />
             </Message>
           </div>
-        ) : null}
+
       </span>
     )
   } else return null
