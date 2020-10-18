@@ -11,6 +11,8 @@ const ContentFarming = (props) => {
 
   // define local variables
   const [poolSelect, setPoolSelect] = useState(1);
+  const [currenReward, setCurrentReward] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(0);
 
   var onPool;
   if (poolSelect === 1) {
@@ -606,16 +608,27 @@ const ContentFarming = (props) => {
               <p>DG Balance (contract): {state.staking[0]}</p>
               <p>BPT Balance (contract): {state.staking[1]}</p>
               <p>BPT Balance (wallet): {state.staking[2]}</p>
+              <p>Current reward amount: {currenReward}</p>
+              <p>Reward cycle time left: {timeRemaining}</p>
               <p>
-                <a href="" style={{ color: '#2085f4' }}>
-                  <ButtonReward />
-                </a>
+                <ButtonReward
+                  rewardData={(amount1, amount2) =>
+                    rewardData(amount1, amount2)
+                  }
+                />
               </p>
             </span>
           </div>
         </div>
       </Aux>
     );
+  }
+
+  function rewardData(amountReward, amountTime) {
+    // console.log('current reward: ' + amount);
+
+    setCurrentReward(amountReward);
+    setTimeRemaining(amountTime);
   }
 
   if (props.content === 'mining') {

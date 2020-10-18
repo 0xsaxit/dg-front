@@ -1,10 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-
 // import Web3 from 'web3';
-
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken.json';
-
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking.json';
 import ABI_BALANCER_POOL_TOKEN from '../components/ABI/ABIBalancerPoolToken.json';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
@@ -16,8 +13,6 @@ function DGBalances() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [web3, setWeb3] = useState({});
-
   let userAddress = '';
   let maticWeb3 = {};
   // let web3 = {};
@@ -56,27 +51,25 @@ function DGBalances() {
         BPT_CONTRACT = window.web3.eth
           .contract(ABI_BALANCER_POOL_TOKEN)
           .at(addresses.BP_TOKEN_ADDRESS);
-        // })();
 
-        // async function fetchData() {
+        // update global state unclaimed DG points balances
         const balanceDG1 = await getDGBalanceGameplay();
         const balanceDG2 = await getDGBalanceStaking();
 
         console.log('DG points balance 1: ' + balanceDG1);
         console.log('DG points balance 2: ' + balanceDG2);
 
-        // update global state unclaimed DG points balances
         dispatch({
           type: 'dg_balances',
           data: [balanceDG1, balanceDG2],
         });
 
+        // update global state staking DG and balancer pool token
         const balanceStaking = await getDGStaking();
 
         console.log('balance staking DG:  ' + balanceStaking[0]);
         console.log('balance staking BPT:  ' + balanceStaking[1]);
 
-        // update global state staking DG and balancer pool token
         dispatch({
           type: 'staking',
           data: balanceStaking,
