@@ -17,7 +17,7 @@ let transak = new transakSDK({
   redirectURL: '',
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
-  widgetWidth: '450px',
+  widgetWidth: '100%',
 });
 
 const ContentBalances = (props) => {

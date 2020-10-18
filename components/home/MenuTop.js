@@ -33,7 +33,11 @@ const MenuTop = ({ toggleTheme }) => {
   const onClose = () => setShowItems(false);
 
   const router = useRouter();
-  
+
+  console.log("SHOULD SHOW 0: " + state.userBalances[0][0]);
+  console.log("DERC20: " + state.userBalances[1][0]);
+  console.log("DAI: " + state.userBalances[0][1]);
+  console.log("MANA: " + state.userBalances[1][1]); 
 
   // set menu styles
   useEffect(() => {
