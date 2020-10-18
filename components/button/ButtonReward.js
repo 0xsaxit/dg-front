@@ -13,14 +13,20 @@ function ButtonReward(props) {
   // define local variables
   const [stakingContract1, setStakingContract1] = useState({});
   const [stakingContract2, setStakingContract2] = useState({});
-  // const [eventData, setEventData] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [workerAddress, setWorkerAddress] = useState('');
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (state.userStatus) {
+      const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
+      setUserAddress(userAddress);
+
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
+        setWorkerAddress(addresses.WORKER_ADDRESS.toUpperCase());
 
         const DG_STAKING_CONTRACT1 = window.web3.eth
           .contract(ABI_DG_STAKING)
@@ -51,26 +57,40 @@ function ButtonReward(props) {
           }, // Using an array means OR: e.g. 20 or 23
           fromBlock: 0,
         },
-        function (error, event) {
-          // console.log('incoming event data...');
-          // console.log(event.returnValues.reward);
+        async function (error, event) {
+          setDisabled(false);
 
           // return reward amount and cycle time
-          props.rewardData(event.returnValues.reward, 40); // ***************************
+          const timestamp = await getPeriodFinish();
+          props.rewardData(event.returnValues.reward, timestamp);
         }
       );
     }
   }, [stakingContract2]);
 
+  async function getPeriodFinish() {
+    console.log('Return reward period finish time');
+
+    try {
+      const timestamp = await stakingContract2.methods.periodFinish().call();
+
+      return timestamp;
+    } catch (error) {
+      console.log('Return reward period time error: ' + error);
+    }
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG points balance from smart contract for liquidity farming
   async function transactionReward() {
+    setDisabled(true);
+
     return new Promise(async (resolve, reject) => {
       console.log('Notify reward amount: start 40 minute cycle');
 
       try {
-        stakingContract1.notifyRewardAmount(5, async function (err, foo) {
+        stakingContract1.notifyRewardAmount(10, async function (err, foo) {
           if (err) {
             console.log('Get balance failed', err);
             reject(false);
@@ -102,13 +122,26 @@ function ButtonReward(props) {
 
   return (
     <Aux>
-      <Button
-        className="account-connected-play-button"
-        onClick={transactionReward}
-      >
-        NOTIFY REWARD AMOUNT
-      </Button>
-      worker address...
+      {disabled ? (
+        <Button
+          disabled
+          className="account-connected-play-button"
+          onClick={transactionReward}
+        >
+          START REWARD CYCLE
+        </Button>
+      ) : (
+        <Button
+          className="account-connected-play-button"
+          onClick={transactionReward}
+        >
+          START REWARD CYCLE
+        </Button>
+      )}
+
+      {userAddress !== workerAddress
+        ? ' (you must use Worker wallet address)'
+        : null}
     </Aux>
   );
 }

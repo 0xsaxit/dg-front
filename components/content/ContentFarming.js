@@ -12,7 +12,7 @@ const ContentFarming = (props) => {
   // define local variables
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [finishTime, setFinishTime] = useState(0);
 
   var onPool;
   if (poolSelect === 1) {
@@ -609,12 +609,10 @@ const ContentFarming = (props) => {
               <p>BPT Balance (contract): {state.staking[1]}</p>
               <p>BPT Balance (wallet): {state.staking[2]}</p>
               <p>Current reward amount: {currenReward}</p>
-              <p>Reward cycle time left: {timeRemaining}</p>
+              <p>Reward period finish time: {finishTime}</p>
               <p>
                 <ButtonReward
-                  rewardData={(amount1, amount2) =>
-                    rewardData(amount1, amount2)
-                  }
+                  rewardData={(amount, time) => rewardData(amount, time)}
                 />
               </p>
             </span>
@@ -624,11 +622,19 @@ const ContentFarming = (props) => {
     );
   }
 
-  function rewardData(amountReward, amountTime) {
-    // console.log('current reward: ' + amount);
+  function rewardData(amountReward, timestamp) {
+    console.log('current reward: ' + amountReward);
+    console.log('current timestamp: ' + timestamp);
+
+    const date = new Date(timestamp * 1000);
+    const hours = date.getHours(); // hours part from the timestamp
+    const minutes = '0' + date.getMinutes(); // minutes part from the timestamp
+    const seconds = '0' + date.getSeconds(); // seconds part from the timestamp
+    const formattedTime =
+      hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 
     setCurrentReward(amountReward);
-    setTimeRemaining(amountTime);
+    setFinishTime(formattedTime);
   }
 
   if (props.content === 'mining') {
