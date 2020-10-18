@@ -34,9 +34,10 @@ const MenuTop = ({ toggleTheme }) => {
 
   const router = useRouter();
 
-  console.log("SHOULD SHOW 0: " + state.userBalances[0][0]);
+  const MANA_BALANCE = parseInt(state.userBalances[1][1]);
+  const DAI_BALANCE = parseInt(state.userBalances[0][1]);
+
   console.log("DERC20: " + state.userBalances[1][0]);
-  console.log("DAI: " + state.userBalances[0][1]);
   console.log("MANA: " + state.userBalances[1][1]); 
 
   // set menu styles
@@ -286,17 +287,17 @@ const MenuTop = ({ toggleTheme }) => {
           {router.pathname === '/dg' ? <ModalInfo /> : null}
 
           <span className="menu-account-info" onClick={() => balancesModal()}>
-            {state.userBalances[0][1] || state.userBalances[1][1] > 0 ? (
+            {DAI_BALANCE || MANA_BALANCE > 0 ? (
               <span style={{ display: 'flex' }}>
                 <span className="menu-info-to-hide">
-                  {state.userBalances[0][1] > 0 ? (
+                  {DAI_BALANCE > 0 ? (
                     <p className={menuStyle[7]}>
                       {state.userBalances[0][1]} DAI
                     </p>
                   ) : null}
                 </span>
                 <span className="menu-info-to-hide">
-                  {state.userBalances[1][1] > 0 ? (
+                  {MANA_BALANCE > 0 ? (
                     <p className={menuStyle[7]}>
                       {state.userBalances[1][1]} MANA
                     </p>
