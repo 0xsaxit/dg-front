@@ -31,7 +31,6 @@ const CopyButton = ({ data = '' }) => {
       <Button
         id="copy-button"
         content="copied"
-        icon="copy"
         labelPosition="left"
         onClick={() => onCopy()}
       />
@@ -41,7 +40,6 @@ const CopyButton = ({ data = '' }) => {
     <Button
       id="copy-button"
       content="copy code"
-      icon="copy"
       labelPosition="left"
       onClick={() => onCopy()}
     />

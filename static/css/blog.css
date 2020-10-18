@@ -315,10 +315,10 @@ img.logo-image {
 .blogdetail-page-container .post__content li {
   font-family: Lato, sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
-  margin-top: 15px;
+  margin-top: 12px;
   word-break: break-word;
   line-height: 1.7 !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
   margin-bottom: 0;
   font-weight: normal !important;
 }
@@ -369,8 +369,8 @@ img.logo-image {
 
 .blogdetail-page-container .post__content ul,
 .blogdetail-page-container .post__content ol {
-  padding: 0;
-  margin: 20px 20px;
+  padding: 0px 0px 0px 12px !important;
+  margin: 0px 0px 0px 0px !important;
   list-style: none;
 }
 

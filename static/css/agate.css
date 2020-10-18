@@ -7,23 +7,24 @@ pre {
 }
 
 #copy-button {
-  background-color: rgb(244, 246, 250);
-  margin-top: 6px !important;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4 !important;
+  color: #2085f4;
+  margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
   border-radius: 2px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 150px !important;
-  padding-left: 0px;
-  padding-right: 0px;
+  height: 27px;
+  padding: 4px 12px 3px 12px !important;
+  min-width: 95px;
   letter-spacing: 0.5px;
-  margin-right: 30px;
+  opacity: 100% !important;
+  display: none;
 }
 
 code strong, kbd, samp {
-  font-size: 17px !important;
-  padding: 1px 5px 2px 5px;
+  font-size: 16px !important;
+  padding: 3px 6px 3px 6px;
   border-radius: 2px;
   font-weight: 500;
 }
@@ -41,13 +42,7 @@ b, strong {
   display: block;
   overflow-x: auto;
   padding: 15px;
-  background: rgb(244, 246, 250);
   border-radius: 2px;
-  border-left: 5px solid rgb(234, 236, 240) !important;
-}
-
-.hljs {
-  color: #00193a;
 }
 
 .hljs-keyword,
@@ -56,7 +51,9 @@ b, strong {
 .hljs-section,
 .hljs-doctag,
 .hljs-name,
-.hljs-strong {
+.hljs-strong,
+.hljs-built_in,
+.hljs-attr {
   font-weight: bold;
 }
 
@@ -67,7 +64,6 @@ b, strong {
 .hljs-string,
 .hljs-title,
 .hljs-section,
-.hljs-built_in,
 .hljs-literal,
 .hljs-type,
 .hljs-addition,
@@ -76,7 +72,13 @@ b, strong {
 .hljs-name,
 .hljs-selector-id,
 .hljs-selector-class {
-  color: #0048ab;
+  color: #2085f4;
+}
+
+
+.hljs-number,
+.hljs-params {
+  color: #4c9df6;
 }
 
 .hljs-meta,
@@ -89,7 +91,7 @@ b, strong {
 .hljs-template-variable,
 .hljs-link,
 .hljs-bullet {
-  color: #4c81c9;
+  color: #165daa;
 }
 
 .hljs-emphasis {

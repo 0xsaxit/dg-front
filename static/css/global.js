@@ -54,8 +54,13 @@ export const GlobalStyles = createGlobalStyle`
   .spanbox,
   .ui.input>input,
   .matic-header-text,
-  .menu-info-close {
+  .menu-info-close,
+  .hljs {
     color: ${({ theme }) => theme.text} !important;
+  }
+
+  .hljs {
+    border-left: ${({ theme }) => theme.codeBorder} !important;
   }
 
   .ui.divider.widget-divider {
@@ -67,7 +72,8 @@ export const GlobalStyles = createGlobalStyle`
   .home-dashboard-h2,
   .featured-casino-text,
   .home-dashboard-h1,
-  .right-menu-text {
+  .right-menu-text,
+  .deposit-message-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
 
@@ -81,7 +87,9 @@ export const GlobalStyles = createGlobalStyle`
   .read-next-button:first-child,
   .read-next-button:last-child,
   .admin-balances-column,
-  div.visible.menu.transition {
+  div.visible.menu.transition,
+  .hljs,
+  code strong, kbd, samp {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
@@ -213,11 +221,5 @@ export const GlobalStyles = createGlobalStyle`
   .account-select.dai {
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;
-  }
-
-  code strong, kbd, samp {
-    background: ${({ theme }) => theme.codeHighlight};
-    color: ${({ theme }) => theme.text} !important;
-    border: ${({ theme }) => theme.codeHighlightBorder};
   }
 `;

@@ -5,6 +5,7 @@ import ModalVideo from '../modal/ModalVideo';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Fetch from '../../common/Fetch';
+import MessageBox from './MessageBox';
 
 const Dashboard = () => {
   // get user's onboard status the Context API store

@@ -1254,14 +1254,31 @@ deposit-notification-box-hidden {
 .ui.message {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
-  padding: 18px;
-  padding-top: 6px;
+  padding: 18px 18px 0px 18px;
+  border-radius: 2px;
 }
 
-.ui.message div.content,
-.ui.message p,
-.ui.message i.close.icon {
-  color: white;
+.deposit-message-text.top {
+  margin-bottom: -6px !important;
+}
+
+.ui.active.progress .bar {
+  margin-top: 18px;
+  margin-left: -18px;
+  width: calc(100% + 36px) !important;
+  height: 6px;
+  border-radius: 0px 0px 2px 2px;
+  margin-bottom: -21px;
+}
+
+.ui.progress .bar {
+  background-color: transparent;
+}
+
+.ui.active.progress .bar::after {
+  animation: progress-active 10s ease infinite;
+  border-radius: 0px;
+  transition: none;
 }
 
 /* ----------------------------------------- */

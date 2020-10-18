@@ -11,7 +11,7 @@ export const lightTheme = {
   infoColor: '#f0f2f5',
   offColorText: 'rgb(92, 95, 97)',
   codeHighlight: '#f0f2f5',
-  codeHighlightBorder: '#f0f2f5', 
+  codeHighlightBorder: '#edf2f9', 
   homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.3)',
   homeMenuColor: '#191919',
   homeDivider: '1px solid #120d06',
@@ -20,6 +20,7 @@ export const lightTheme = {
   zoom: '150em solid white',
   modal: 'white',
   modalCard: 'white',
+  codeBorder: '3px solid #edf2f9',
 }
 
 export const darkTheme = {
@@ -35,7 +36,7 @@ export const darkTheme = {
   infoColor: '#0f0d0a',
   offColorText: 'rgba(255, 255, 255, .55)',
   codeHighlight: '#0f0d0a',
-  codeHighlightBorder: '#0f0d0a', 
+  codeHighlightBorder: '#120d06', 
   homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.1)',
   homeMenuColor: '#191919',
 	homeDivider: '1px solid #120d06',
@@ -44,4 +45,5 @@ export const darkTheme = {
   zoom: '150em solid rgb(10, 10, 10)',
   modal: '#101B24',
   modalCard: '#121212',
+  codeBorder: '3px solid #120d06',
 }
