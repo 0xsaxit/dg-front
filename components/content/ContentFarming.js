@@ -209,7 +209,7 @@ const ContentFarming = (props) => {
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
                 You can farm $DG by providing liquidity in 98/2 MANA/DG and
-                DAI/DG Balancer pools and staking the LP tokens on this
+                DAI/DG Balancer pools and staking the Balancer pool tokens (BPTs) on this
                 dashboard. Read more about $DG liquidity farming rewards in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
@@ -344,17 +344,24 @@ const ContentFarming = (props) => {
                 placeholder="10"
               />
 
-              <span className="DG-button-span">
-                <Button
-                  className="DG-stake-button"
-                  onClick={() => props.staking()}
-                >
-                  STAKE LP
-                </Button>
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE LP
-                </Button>
-              </span>
+              <Button
+                className="DG-stake-button"
+                onClick={() => props.staking()}
+                style={{ marginBottom: '15px' }}
+              >
+                STAKE BPT
+              </Button>
+
+              <Input
+                className="liquidity-input"
+                fluid
+                action="All"
+                placeholder="Amount"
+              />
+
+              <Button disabled className="DG-stake-button">
+                UNSTAKE BPT
+              </Button>
             </div>
 
             <div
@@ -426,14 +433,20 @@ const ContentFarming = (props) => {
                 placeholder="Amount"
               />
 
-              <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
-                  STAKE LP
-                </Button>
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE LP
-                </Button>
-              </span>
+              <Button disabled className="DG-stake-button" style={{ marginBottom: '15px' }}>
+                STAKE BPT
+              </Button>
+
+              <Input
+                className="liquidity-input"
+                fluid
+                action="All"
+                placeholder="Amount"
+              />
+
+              <Button disabled className="DG-stake-button">
+                UNSTAKE BPT
+              </Button>
             </div>
           </span>
         </div>
@@ -557,14 +570,20 @@ const ContentFarming = (props) => {
                 placeholder="Amount"
               />
 
-              <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
-                  STAKE $DG
-                </Button>
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE $DG
-                </Button>
-              </span>
+              <Button disabled className="DG-stake-button" style={{ marginBottom: '15px' }}>
+                STAKE $DG
+              </Button>
+
+              <Input
+                className="liquidity-input"
+                fluid
+                action="All"
+                placeholder="Amount"
+              />
+
+              <Button disabled className="DG-stake-button">
+                UNSTAKE $DG
+              </Button>
             </div>
 
             <div
@@ -586,10 +605,10 @@ const ContentFarming = (props) => {
               <Divider />
 
               <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
+                <Button disabled className="DG-vote-button">
                   DISCUSSION
                 </Button>
-                <Button disabled className="DG-stake-button">
+                <Button disabled className="DG-vote-button">
                   VOTING
                 </Button>
               </span>

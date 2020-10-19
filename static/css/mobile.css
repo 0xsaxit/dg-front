@@ -22,7 +22,8 @@
   #add-funds-mobile {
     display: none;
   }
-  #add-funds-mobile-padding {
+  #add-funds-mobile-padding,
+  #add-funds-mobile-padding-two {
     padding-right: 15px !important;
   }
 }
@@ -145,7 +146,12 @@
 @media (max-width: 499px) { 
   .matic-overlay {
     width: 100vw;
-    margin-left: 15px;
+  }
+}
+
+@media (min-width: 500px) {
+  #add-funds-mobile-padding-two {
+    display: none;
   }
 }
 
