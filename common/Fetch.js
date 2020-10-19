@@ -99,7 +99,7 @@ const Fetch = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }); 
+    });
   },
 
   USER_NUMBERS: () => {

@@ -37,6 +37,8 @@ const MenuTop = ({ toggleTheme }) => {
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
 
+  console.log("DERC20: " + state.userBalances[1][0]);
+  console.log("MANA: " + state.userBalances[1][1]); 
 
   // set menu styles
   useEffect(() => {
@@ -307,10 +309,6 @@ const MenuTop = ({ toggleTheme }) => {
                 ADD TOKENS
               </p>
             )}
-
-            <p className={menuStyle[7]} id="add-funds-mobile-padding-two">
-              ADD TOKENS
-            </p>
 
             <span className="menu-avatar-background" id="add-funds-mobile">
               {state.userInfo[0] === null || state.userInfo[0] === '' ? (
