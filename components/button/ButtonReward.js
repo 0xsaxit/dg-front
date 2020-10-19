@@ -14,8 +14,12 @@ function ButtonReward(props) {
   const [stakingContract1, setStakingContract1] = useState({});
   const [stakingContract2, setStakingContract2] = useState({});
   const [userAddress, setUserAddress] = useState('');
-  const [workerAddress, setWorkerAddress] = useState('');
-  const [disabled, setDisabled] = useState(false);
+  // const [workerAddress, setWorkerAddress] = useState('');
+
+  const [txHash, setTxHash] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
+  const rewardAmount = 10; // hard-coded reward amount
 
   useEffect(() => {
     if (state.userStatus) {
@@ -26,7 +30,13 @@ function ButtonReward(props) {
 
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
-        setWorkerAddress(addresses.WORKER_ADDRESS.toUpperCase());
+        // setWorkerAddress(addresses.WORKER_ADDRESS.toUpperCase());
+
+        const workerAddress = addresses.WORKER_ADDRESS.toUpperCase();
+        if (userAddress === workerAddress) setDisabled(false);
+
+        console.log('userAddress: ' + userAddress);
+        console.log('worker address: ' + workerAddress);
 
         const DG_STAKING_CONTRACT1 = window.web3.eth
           .contract(ABI_DG_STAKING)
@@ -46,9 +56,10 @@ function ButtonReward(props) {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // handle incoming RewardAdded() event
+  // handle incoming RewardAdded() event and return reward and timestamp values
   useEffect(() => {
     if (Object.keys(stakingContract2).length !== 0) {
+      // if (eventHandler) {
       stakingContract2.events.RewardAdded(
         {
           filter: {
@@ -58,11 +69,21 @@ function ButtonReward(props) {
           fromBlock: 0,
         },
         async function (error, event) {
-          setDisabled(false);
+          // console.log('event data');
+          // console.log(event);
 
-          // return reward amount and cycle time
-          const timestamp = await getPeriodFinish();
-          props.rewardData(event.returnValues.reward, timestamp);
+          console.log('event hash: ' + event.transactionHash);
+          console.log('tx hash: ' + txHash);
+
+          if (event.transactionHash === txHash) {
+            setDisabled(false);
+
+            // return reward amount and cycle time
+            const timestamp = await getPeriodFinish();
+
+            // props.rewardData(event.returnValues.reward, timestamp);
+            props.rewardData(rewardAmount, timestamp);
+          }
         }
       );
     }
@@ -83,51 +104,56 @@ function ButtonReward(props) {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG points balance from smart contract for liquidity farming
+  // async function transactionReward() {
+  //   setDisabled(true);
+
+  //   return new Promise(async (resolve, reject) => {
+  //     console.log('Notify reward amount: start 40 minute cycle');
+
+  //     try {
+  //       stakingContract1.notifyRewardAmount(rewardAmount, async function (err, txHash) {
+  //         if (err) {
+  //           setDisabled(false);
+
+  //           console.log('Notify reward amount failed', err);
+  //           // reject(false);
+  //         }
+
+  //         console.log('notify return...');
+  //         console.log(txHash);
+
+  //         resolve(txHash);
+
+  //         // setTxHash(txHash);
+  //       });
+  //     } catch (error) {
+  //       console.log('Notify reward amount error: ' + error);
+  //     }
+  //   });
+  // }
+
   async function transactionReward() {
+    console.log('Notify reward amount: start 40 minute cycle');
     setDisabled(true);
 
-    return new Promise(async (resolve, reject) => {
-      console.log('Notify reward amount: start 40 minute cycle');
+    try {
+      const data = await stakingContract2.methods
+        .notifyRewardAmount(rewardAmount)
+        .send({ from: userAddress });
 
-      try {
-        stakingContract1.notifyRewardAmount(10, async function (err, foo) {
-          if (err) {
-            console.log('Get balance failed', err);
-            reject(false);
-          }
+      console.log('notify return...');
+      console.log(data.transactionHash);
 
-          // console.log('notify return...');
-          // console.log(foo);
-
-          // resolve(foo);
-          // setEventHandler(true)
-        });
-      } catch (error) {
-        console.log('Notify reward amount error: ' + error);
-      }
-    });
+      setTxHash(data.transactionHash);
+    } catch (error) {
+      console.log('Notify reward amount error: ' + error);
+    }
   }
-
-  // async function transactionReward() {
-  //   console.log('Notify reward amount: start 40 minute cycle');
-
-  //   try {
-  //     const foo = await stakingContract.methods.notifyRewardAmount(5).call();
-
-  //     return foo;
-  //   } catch (error) {
-  //     console.log('Notify reward amount error: ' + error);
-  //   }
-  // }
 
   return (
     <Aux>
       {disabled ? (
-        <Button
-          disabled
-          className="account-connected-play-button"
-          onClick={transactionReward}
-        >
+        <Button disabled className="account-connected-play-button">
           START REWARD CYCLE
         </Button>
       ) : (
@@ -138,10 +164,6 @@ function ButtonReward(props) {
           START REWARD CYCLE
         </Button>
       )}
-
-      {userAddress !== workerAddress
-        ? ' (you must use Worker wallet address)'
-        : null}
     </Aux>
   );
 }
