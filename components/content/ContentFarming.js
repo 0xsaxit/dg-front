@@ -262,7 +262,7 @@ const ContentFarming = (props) => {
               {Number(state.DGBalances[1]) ? (
                 <Button
                   className="DG-claim-button"
-                  onClick={() => props.metaTransaction()}
+                  onClick={() => props.getReward()}
                 >
                   CLAIM $DG
                 </Button>

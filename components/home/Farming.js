@@ -149,6 +149,21 @@ const Farming = () => {
     }
   }
 
+  async function getReward() {
+    console.log('Call getReward() function to claim DG tokens');
+
+    try {
+      const data = await stakingContract.methods
+        .getReward()
+        .send({ from: userAddress });
+
+      console.log('getReward() call completed...');
+      console.log(data);
+    } catch (error) {
+      console.log('getReward() function call error: ' + error);
+    }
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -277,6 +292,7 @@ const Farming = () => {
               content={DGstate}
               metaTransaction={metaTransaction}
               staking={staking}
+              getReward={getReward}
             />
           </div>
         </div>
