@@ -59,6 +59,10 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text} !important;
   }
 
+  .bpt-text {
+    color: ${({ theme }) => theme.bptText} !important;
+  }
+
   .hljs {
     border-left: ${({ theme }) => theme.codeBorder} !important;
   }

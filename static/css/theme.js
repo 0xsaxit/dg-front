@@ -21,6 +21,7 @@ export const lightTheme = {
   modal: 'white',
   modalCard: 'white',
   codeBorder: '3px solid #edf2f9',
+  bptText: 'rgb(203, 203, 203)',
 }
 
 export const darkTheme = {
@@ -46,4 +47,5 @@ export const darkTheme = {
   modal: '#101B24',
   modalCard: '#121212',
   codeBorder: '3px solid #120d06',
+  bptText: 'rgb(172, 172, 172)',
 }
