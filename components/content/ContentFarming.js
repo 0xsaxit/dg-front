@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Label } from 'semantic-ui-react';
 import Aux from '../_Aux';
+// import Global from '../Constants';
 import Images from '../../common/Images';
 import ButtonReward from '../button/ButtonReward';
 
@@ -251,14 +252,14 @@ const ContentFarming = (props) => {
                     </span>
                   </span>
                 )}
-                <p className="account-name">{state.DGBalances[0]}</p>
+                <p className="account-name">{state.DGBalances[1]}</p>
               </span>
             </span>
 
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances[0]) ? (
+              {Number(state.DGBalances[1]) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => props.metaTransaction()}
@@ -340,11 +341,14 @@ const ContentFarming = (props) => {
                 className="liquidity-input"
                 fluid
                 action="All"
-                placeholder="Amount"
+                placeholder="10"
               />
 
               <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
+                <Button
+                  className="DG-stake-button"
+                  onClick={() => props.staking()}
+                >
                   STAKE LP
                 </Button>
                 <Button disabled className="DG-stake-button">

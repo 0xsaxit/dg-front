@@ -6,6 +6,7 @@ import { Divider } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ButtonAffiliates from '../button/ButtonAffiliates';
 import ABI_DG_POINTER from '../ABI/ABIDGPointer';
+import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
 import Global from '../Constants';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
@@ -19,7 +20,8 @@ const Farming = () => {
   const [DGstate, setDGState] = useState('mining');
   const [isLoading, setIsLoading] = useState(true);
   const [pointerContract, setPointerContract] = useState({});
-  const [userAddress, setUserAddress] = useState({});
+  const [stakingContract, setStakingContract] = useState({});
+  const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
 
   const whitelisted = Whitelist();
@@ -48,7 +50,7 @@ const Farming = () => {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      (async function () {
+      async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
 
         const pointerContract = new getWeb3.eth.Contract(
@@ -57,7 +59,15 @@ const Farming = () => {
         );
 
         setPointerContract(pointerContract);
-      })();
+
+        const stakingContract = new web3.eth.Contract(
+          ABI_DG_STAKING,
+          addresses.DG_STAKING_ADDRESS
+        );
+
+        setStakingContract(stakingContract);
+      }
+      fetchData();
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -69,6 +79,8 @@ const Farming = () => {
     }
   }, [state.userStatus]);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // Biconomy API meta-transaction. Dispatch DG tokens to player
   async function metaTransaction() {
     try {
@@ -102,6 +114,38 @@ const Farming = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  async function staking() {
+    console.log('Call stake() function on smart contract');
+    // setDisabled(true);
+
+    console.log('staking contract...');
+    console.log(stakingContract);
+    console.log('user address: ' + userAddress);
+
+    try {
+      const data = await stakingContract.methods
+        .stake('10000000000000000000')
+        .send({ from: userAddress });
+
+      console.log('stake() call completed...');
+      console.log(data);
+
+      // setDisabled(false);
+
+      // return reward amount and cycle time
+      // const returnReward = data.events.RewardAdded.returnValues.reward;
+      // const timestamp = await getPeriodFinish();
+
+      // props.rewardData(returnReward, timestamp);
+    } catch (error) {
+      // setDisabled(false);
+
+      console.log('stake() function call error: ' + error);
     }
   }
 
@@ -232,6 +276,7 @@ const Farming = () => {
             <ContentFarming
               content={DGstate}
               metaTransaction={metaTransaction}
+              staking={staking}
             />
           </div>
         </div>
