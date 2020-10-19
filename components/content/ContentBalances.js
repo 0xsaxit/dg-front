@@ -9,7 +9,7 @@ import Fetch from '../../common/Fetch';
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'STAGING', // STAGING/PRODUCTION
-  defaultCryptoCurrency: 'DAI',
+  defaultCryptoCurrency: '',
   walletAddress: '', // customer wallet address
   themeColor: '000000', // theme color
   fiatCurrency: '', // INR/GBP
@@ -141,7 +141,7 @@ const ContentBalances = (props) => {
             </div>
 
             <div onClick={close}>
-              <div className="matic-widget-button-2" onClick={show_transak}>
+              <div className="matic-widget-button-2" onClick={() => show_transak()}>
 
                 <span style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   <img src={Images.TRANSAK} className="deposit-modal-image 2" />
