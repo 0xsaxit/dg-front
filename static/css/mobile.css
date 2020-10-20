@@ -119,13 +119,13 @@
   }
 }
 
-@media (min-width: 1090px) {
+@media (min-width: 992px) {
   .dropdown-menu {
     display: none;
   }
 }
 
-@media (max-width: 1089px) {
+@media (max-width: 991px) {
   .menu-items-to-hide {
     display: none;
   }

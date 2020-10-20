@@ -16,7 +16,7 @@ export const lightTheme = {
   homeMenuColor: '#191919',
   homeDivider: '1px solid #120d06',
   input: 'white',
-  loader: 'white',
+  loader: '#f9fbfd',
   zoom: '150em solid white',
   modal: 'white',
   modalCard: 'white',

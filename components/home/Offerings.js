@@ -445,9 +445,11 @@ const Offerings = () => {
                   defaultValue={options[0].value}
                   onChange={timeChange}
                 />
-                <Button disabled className="reload-button" icon>
+
+                <Button onClick={() => refreshLeaderboard()} className="reload-button" icon>
                   <Icon name="redo" />
                 </Button>
+
               </span>
             </span>
             <span
@@ -466,9 +468,11 @@ const Offerings = () => {
                 defaultValue={options[0].value}
                 onChange={timeChange}
               />
-              <Button disabled className="reload-button" icon>
+
+              <Button onClick={() => refreshLeaderboard()} className="reload-button" icon>
                 <Icon name="redo" />
               </Button>
+              
             </span>
           </div>
         )}
