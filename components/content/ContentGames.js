@@ -1,12 +1,12 @@
-import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
+import { useState, useEffect } from 'react';
+// import { GlobalContext } from '../../store';
 import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 import Spinner from '../Spinner';
 
 const ContentGames = (props) => {
   // get game score records from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  // const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [dataGames, setDataGames] = useState([[], [], [], [], []]);
@@ -15,7 +15,8 @@ const ContentGames = (props) => {
   const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
 
   useEffect(() => {
-    console.log(props.gameRecords);
+    // console.log(props.gameRecords);
+
     if (Object.keys(props.gameRecords).length !== 0) {
       setIsLoading(false);
 

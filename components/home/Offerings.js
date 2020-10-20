@@ -4,7 +4,7 @@ import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
-
+import Fetch from '../../common/Fetch';
 
 const options = [
   {
@@ -85,8 +85,8 @@ const Offerings = () => {
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
   const [gameState, setGameState] = useState(0);
   const [doneLoading, setDoneLoading] = useState(true);
-  const [gameRecords, setGameRecords] = useState([]);
-  const [gameRecordsRefresh, setGameRecordsRefresh] = useState(0);
+  // const [gameRecords, setGameRecords] = useState([]);
+  const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
 
   useEffect(() => {
     if (document.readyState === 'complete') {
@@ -94,15 +94,15 @@ const Offerings = () => {
     }
   });
 
-   useEffect(() => {
-    const fetchData = async () => {
-      const gameRecords = await getGameRecords();
-      let json = await gameRecords.json();
-      setGameRecords(json);
-      setGameRecordsRefresh(1);
-    }
-    fetchData();
-  }, [])
+  //  useEffect(() => {
+  //   const fetchData = async () => {
+  //     const gameRecords = await getGameRecords();
+  //     let json = await gameRecords.json();
+  //     setGameRecords(json);
+  //     setGameRecordsRefresh(1);
+  //   }
+  //   fetchData();
+  // }, [])
 
   function handleChange(value) {
     var gameSelect = '';
@@ -121,14 +121,14 @@ const Offerings = () => {
   }
 
   function getGameRecords() {
-     return fetch(`https://api.decentral.games/admin/getTotalRecords`, {
+    return fetch(`https://api.decentral.games/admin/getTotalRecords`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }); 
-  } 
+    });
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -203,24 +203,42 @@ const Offerings = () => {
   }
 
   function Leaderboard() {
-    console.log(gameRecordsRefresh);
-    if (gameRecordsRefresh === 0) {
-        return <Spinner background={1} />;
-    } else if(gameRecordsRefresh === 1) {
-        return <ContentGames gameRecords={gameRecords} gameSelect={gameSelect} timePeriod={timePeriod} />;
+    // console.log('game record refresh: ' + gameRecordsRefresh);
+
+    if (gameRecordsRefresh) {
+      return <Spinner background={1} />;
+    } else {
+      return (
+        <ContentGames
+          gameRecords={state.gameRecords}
+          gameSelect={gameSelect}
+          timePeriod={timePeriod}
+        />
+      );
     }
   }
 
-  function refreshLeaderboard() {
-    setGameRecordsRefresh(0);
+  async function refreshLeaderboard() {
+    // const fetchData = async () => {
+    //   const gameRecords = await getGameRecords();
+    //   let json = await gameRecords.json();
+    //   setGameRecords(json);
+    //   setGameRecordsRefresh(1);
+    // }
+    // fetchData();
 
-    const fetchData = async () => {
-      const gameRecords = await getGameRecords();
-      let json = await gameRecords.json();
-      setGameRecords(json);
-      setGameRecordsRefresh(1);
-    }
-    fetchData();
+    console.log('Re-fetching game records');
+    setGameRecordsRefresh(true);
+
+    const response = await Fetch.GAME_RECORDS();
+    const jsonRecords = await response.json();
+
+    setGameRecordsRefresh(false);
+
+    dispatch({
+      type: 'update_records',
+      data: jsonRecords,
+    });
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -341,10 +359,13 @@ const Offerings = () => {
                   onChange={timeChange}
                 />
 
-                <Button onClick={() => refreshLeaderboard()} className="reload-button" icon>
+                <Button
+                  onClick={() => refreshLeaderboard()}
+                  className="reload-button"
+                  icon
+                >
                   <Icon name="redo" />
                 </Button>
-
               </span>
             </span>
 
@@ -446,10 +467,13 @@ const Offerings = () => {
                   onChange={timeChange}
                 />
 
-                <Button onClick={() => refreshLeaderboard()} className="reload-button" icon>
+                <Button
+                  onClick={() => refreshLeaderboard()}
+                  className="reload-button"
+                  icon
+                >
                   <Icon name="redo" />
                 </Button>
-
               </span>
             </span>
             <span
@@ -469,10 +493,13 @@ const Offerings = () => {
                 onChange={timeChange}
               />
 
-              <Button onClick={() => refreshLeaderboard()} className="reload-button" icon>
+              <Button
+                onClick={() => refreshLeaderboard()}
+                className="reload-button"
+                icon
+              >
                 <Icon name="redo" />
               </Button>
-              
             </span>
           </div>
         )}
