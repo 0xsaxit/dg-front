@@ -19,9 +19,6 @@
   .menu-avatar-background {
     margin-left: -9px !important;
   }
-  #add-funds-mobile {
-    display: none;
-  }
   #add-funds-mobile-padding {
     padding-right: 15px !important;
   }
@@ -490,7 +487,6 @@
   div.ui.grid.balances-container {
     margin-left: -9px !important;
     margin-right: -9px !important;
-    margin-top: 43px;
   }
 }
 
@@ -506,7 +502,7 @@
     display: none !important;
   }
   div.ui.grid.balances-container {
-    padding-top: 160px !important;
+    padding-top: 75px !important;
   }
   .ui.button.account-connected-play-button-mobile {
     color: white;

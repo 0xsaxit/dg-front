@@ -5,6 +5,7 @@ import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
 
+
 const options = [
   {
     key: 'ALL TIME',
@@ -84,12 +85,24 @@ const Offerings = () => {
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
   const [gameState, setGameState] = useState(0);
   const [doneLoading, setDoneLoading] = useState(true);
+  const [gameRecords, setGameRecords] = useState([]);
+  const [gameRecordsRefresh, setGameRecordsRefresh] = useState(0);
 
   useEffect(() => {
     if (document.readyState === 'complete') {
       setDoneLoading(false);
     }
   });
+
+   useEffect(() => {
+    const fetchData = async () => {
+      const gameRecords = await getGameRecords();
+      let json = await gameRecords.json();
+      setGameRecords(json);
+      setGameRecordsRefresh(1);
+    }
+    fetchData();
+  }, [])
 
   function handleChange(value) {
     var gameSelect = '';
@@ -106,6 +119,16 @@ const Offerings = () => {
   function timeChange(event, data) {
     setTimePeriod(data.value);
   }
+
+  function getGameRecords() {
+     return fetch(`https://api.decentral.games/admin/getTotalRecords`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }); 
+  } 
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -180,7 +203,24 @@ const Offerings = () => {
   }
 
   function Leaderboard() {
-    return <ContentGames gameSelect={gameSelect} timePeriod={timePeriod} />;
+    console.log(gameRecordsRefresh);
+    if (gameRecordsRefresh === 0) {
+        return <Spinner background={1} />;
+    } else if(gameRecordsRefresh === 1) {
+        return <ContentGames gameRecords={gameRecords} gameSelect={gameSelect} timePeriod={timePeriod} />;
+    }
+  }
+
+  function refreshLeaderboard() {
+    setGameRecordsRefresh(0);
+
+    const fetchData = async () => {
+      const gameRecords = await getGameRecords();
+      let json = await gameRecords.json();
+      setGameRecords(json);
+      setGameRecordsRefresh(1);
+    }
+    fetchData();
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -300,9 +340,11 @@ const Offerings = () => {
                   defaultValue={options[0].value}
                   onChange={timeChange}
                 />
-                <Button disabled className="reload-button" icon>
+
+                <Button onClick={() => refreshLeaderboard()} className="reload-button" icon>
                   <Icon name="redo" />
                 </Button>
+
               </span>
             </span>
 

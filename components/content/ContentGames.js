@@ -15,7 +15,8 @@ const ContentGames = (props) => {
   const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
 
   useEffect(() => {
-    if (Object.keys(state.gameRecords).length !== 0) {
+    console.log(props.gameRecords);
+    if (Object.keys(props.gameRecords).length !== 0) {
       setIsLoading(false);
 
       let gameData = {};
@@ -28,13 +29,13 @@ const ContentGames = (props) => {
 
       // parse game scores based on time period
       if (props.timePeriod === 'ALL TIME') {
-        gameData = state.gameRecords.all;
+        gameData = props.gameRecords.all;
       } else if (props.timePeriod === 'WEEKLY') {
-        gameData = state.gameRecords.weekly;
+        gameData = props.gameRecords.weekly;
       } else if (props.timePeriod === 'DAILY') {
-        gameData = state.gameRecords.daily;
+        gameData = props.gameRecords.daily;
       } else if (props.timePeriod === 'COMPETITION') {
-        gameData = state.gameRecords.competition;
+        gameData = props.gameRecords.competition;
       }
 
       // parse game scores based on token type
@@ -106,7 +107,7 @@ const ContentGames = (props) => {
 
       setDataGames([game1, game2, game3, game4, game5]);
     }
-  }, [state.gameRecords, props.timePeriod, props.gameSelect]);
+  }, [props.gameRecords, props.timePeriod, props.gameSelect]);
 
   if (isLoading) return <Spinner background={0} />;
 

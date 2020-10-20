@@ -6,6 +6,7 @@ import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
+import Aux from '../_Aux';
 import Transactions from '../../common/Transactions';
 
 function ButtonEnable() {
@@ -127,13 +128,24 @@ function ButtonEnable() {
     // setTransaction(false);
   }
 
-  return (
-    <Button
-      className="account-connected-play-button"
-      onClick={() => metaTransaction()}
-    >
-      AUTHORIZE
-    </Button>
+  return (  
+    <Aux>
+      <span>
+        <Button
+          className="account-connected-play-button"
+          onClick={() => metaTransaction()}
+        >
+          AUTHORIZE
+        </Button>
+      </span>
+
+      <Button
+        className="account-connected-play-button-mobile"
+        onClick={() => metaTransaction()}
+      >
+        AUTHORIZE
+      </Button>
+    </Aux>
   );
 }
 

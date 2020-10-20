@@ -20,18 +20,34 @@ let transak = new transakSDK({
   widgetWidth: '100%',
 });
 
+
 const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  
-  // set top padding of balancees container dependent 
-  // on top bar message height 
-  const test = {
-    marginTop: '125px',
-  };   
 
   // define local variables
   let userAddress = '';
+  const [margin, setMargin] = useState('125px');
+
+  // set top padding of balancees container dependent 
+  // on top bar message height 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      var messageBar = document.getElementById('message-bar');
+        if (messageBar) {
+          var height = messageBar.offsetHeight;
+          setMargin(90 + height + "px");
+        } else {
+          setMargin("90px");
+        }
+      }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  const marginTop = {
+    marginTop: margin,
+  };
 
   useEffect(() => {
     // get all the events
@@ -158,7 +174,7 @@ const ContentBalances = (props) => {
 
   function contentAccountPage() {
     return (
-      <Grid className="balances-container" style={test}>
+      <Grid className="balances-container" style={marginTop}>
         <Grid.Row>
           <Grid.Column
             computer={5}

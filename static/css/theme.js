@@ -42,7 +42,7 @@ export const darkTheme = {
   homeMenuColor: '#191919',
 	homeDivider: '1px solid #120d06',
   input: '#191919',
-  loader: 'rgb(10, 10, 10)',
+  loader: '#121212',
   zoom: '150em solid rgb(10, 10, 10)',
   modal: '#101B24',
   modalCard: '#121212',

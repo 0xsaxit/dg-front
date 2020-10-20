@@ -85,6 +85,7 @@ const MessageBar = () => {
   if (message !== '') {
     return (
       <div
+        id="message-bar"
         className="mobile-message-bar"
         style={{
           fontFamily: 'Graphik, sans-serif',
