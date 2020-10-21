@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
-import TransactionHistory from '../components/home/TransactionHistory';
+import Account from '../components/home/Account';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
