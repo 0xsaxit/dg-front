@@ -2,13 +2,13 @@
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
-#mobile-menu-icon,
-#home-menu-icon {
-  position: absolute;
-  color: white;
-  top: 23px;
+#mobile-menu-icon {
+  position: relative;
+  color: black;
+  background-color: transparent;
+  top: 50px;
   left: 81px;
-  z-index: 2;
+  z-index: 10;
   font-size: 23px !important;
 }
 
@@ -42,9 +42,6 @@
   .ui.button.modal-deposit-button {
     display: none;
   }
-  #menu-logo {
-    margin-left: 14px !important;
-  }
   .ui.button.modal-info-button {
     margin-right: 21px;
   }
@@ -71,10 +68,6 @@
     position: absolute;
     width: 50vw;
     right: 21px;
-  }
-  #mobile-menu-icon,
-  #home-menu-icon {
-    left: 72px;
   }
   .page-header-text {
     font-size: 24px;
@@ -120,8 +113,9 @@
 }
 
 @media (min-width: 992px) {
-  .dropdown-menu {
-    display: none;
+  #mobile-menu-icon,
+  div.ui.bottom.right.popup.transition.visible.mobile-menu-popup  {
+    display: none !important;
   }
 }
 
@@ -129,10 +123,27 @@
   .menu-items-to-hide {
     display: none;
   }
-  .dashboard-menu-container,
-  .menu-container-dark {
-    margin-top: -360px !important;
+  .mobile-height-fix {
+    margin-top: -27px;
   }
+}
+
+#dropdown-menu-items {
+  width: 100vw;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 87px;
+}
+
+div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
+  margin-top: 66px;
+  border: none;
+  margin-left: -5px;
+  min-width: 100vw;
+  border-radius: 0px;
+  height: 245px;
+  padding-left: 0px;
+  padding-top: 0px;
 }
 
 /* ----------------------------------------- */
@@ -149,29 +160,6 @@
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
-@media (max-height: 510px) {
-  .home-dashboard-content {
-    margin-top: -150px !important;
-  } 
-}
-
-@media (max-width: 708px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 688px);
-  }
-}
-
-@media (max-width: 603px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 707px);
-  }
-}
-
-@media (max-width: 529px) {
-  .home-dashboard-content {
-    margin-top: calc(100vh - 735px);
-  }
-}
 
 @media (min-width: 500px) {
   .mobile-menu-image,
@@ -215,17 +203,10 @@
     background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
-    height: calc(100% - 27px) !important;
+    height: 100% !important;
     width: 100vw;
     position: absolute;
     overflow: hidden !important;
-    margin-top: -260px;
-  }
-  .dashboard-menu-container {
-    margin-top: -360px !important;
-  }
-  .home-mission-content {
-    padding-top: 230px;
   }
 }
 
@@ -244,26 +225,12 @@
   .home-dashboard-h1 {
     font-size: 48px !important;
   }
-  .home-mission-content {
-    padding-top: 190px;
-  }
-}
-
-@media (max-width: 350px) {
-  .home-mission-content {
-    padding-top: calc(50vh - 40px);
-  }
-}
-
-@media (min-height: 600px) {
-  .home-dashboard-mission {
-    margin-top: calc(50vh - 390px) !important;
-  }
 }
 
 @media (max-height: 599px) {
   .home-dashboard-mission {
-    margin-top: -90px !important;
+    position: relative;
+    padding-top: 0px !important;
   }
 }
 
@@ -272,9 +239,6 @@
     display: flex;
     margin-left: calc(50% - 90px);
     flex-direction: column;
-  }
-  .home-dashboard-mission {
-    margin-top: -60px !important;
   }
 }
 

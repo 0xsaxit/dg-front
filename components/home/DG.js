@@ -12,7 +12,7 @@ import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
 import Whitelist from '../Whitelist';
 
-const Farming = () => {
+const DG = () => {
   // dispatch user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -301,4 +301,4 @@ const Farming = () => {
   );
 };
 
-export default Farming;
+export default DG;

@@ -80,7 +80,7 @@ const detailsNFTs = {
   ],
 };
 
-const Tokens = () => {
+const NFTs = () => {
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -240,4 +240,4 @@ const Tokens = () => {
   );
 };
 
-export default Tokens;
+export default NFTs;
