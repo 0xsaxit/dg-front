@@ -16,6 +16,8 @@ function ButtonReward(props) {
   const [userAddress, setUserAddress] = useState('');
   const [disabled, setDisabled] = useState(true);
 
+  const [instances, setInstances] = useState(false);
+
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
 
   useEffect(() => {
@@ -36,15 +38,17 @@ function ButtonReward(props) {
         //   addresses.DG_STAKING_ADDRESS
         // );
         const stakingContract = await Transactions.stakingContract(web3);
-
         setStakingContract(stakingContract);
+
+        setInstances(true);
       }
       fetchData();
     }
   }, [state.userStatus]);
 
+  // get initial reward and timestamp values
   useEffect(() => {
-    if (stakingContract) {
+    if (instances) {
       (async () => {
         const timestamp = await getPeriodFinish();
 
@@ -52,7 +56,7 @@ function ButtonReward(props) {
         props.rewardData(rewardAdjusted, timestamp);
       })();
     }
-  }, [stakingContract]);
+  }, [instances]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

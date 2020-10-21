@@ -23,7 +23,7 @@ function DGBalances() {
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
 
-  const [defined, setDefined] = useState(false);
+  const [instances, setInstances] = useState(false);
 
   const [userAddress, setUserAddress] = useState('');
 
@@ -90,14 +90,14 @@ function DGBalances() {
         );
         setBPTContract(BPT_CONTRACT);
 
-        setDefined(true);
+        setInstances(true);
       }
       fetchData();
     }
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (defined) {
+    if (instances) {
       (async function () {
         // update global state unclaimed DG points balances
         const balanceDG1 = await getDGBalanceGameplay();
@@ -124,7 +124,7 @@ function DGBalances() {
         });
       })();
     }
-  }, [defined]);
+  }, [instances]);
 
   // get user's DG staking balance every second for the reward period duration
   useEffect(() => {
@@ -139,20 +139,17 @@ function DGBalances() {
           (async () => {
             const balanceDGStaking = await getDGBalanceStaking();
 
-            const ret = state.DGBalances.slice(1);
-            ret[1] = balanceDGStaking;
-
-            console.log('balances dg...');
-            console.log(ret);
+            const arrayNew = state.DGBalances.slice();
+            arrayNew[1] = balanceDGStaking;
 
             dispatch({
               type: 'dg_balances',
-              data: [...ret],
+              data: arrayNew,
             });
           })();
+
+          if (currentTime > state.stakeTime) clearInterval(interval);
         }, 3000);
-      } else {
-        clearInterval(interval);
       }
 
       return () => clearInterval(interval);

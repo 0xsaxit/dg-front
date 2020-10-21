@@ -24,6 +24,7 @@ const Farming = () => {
   const [stakingContract, setStakingContract] = useState({});
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
+  const [instances, setInstances] = useState(false);
 
   const whitelisted = Whitelist();
 
@@ -69,6 +70,8 @@ const Farming = () => {
         const stakingContract = await Transactions.stakingContract(web3);
 
         setStakingContract(stakingContract);
+
+        setInstances(true);
       }
       fetchData();
 
@@ -81,6 +84,33 @@ const Farming = () => {
         });
     }
   }, [state.userStatus]);
+
+  // get timestamp on page load
+  useEffect(() => {
+    if (instances) {
+      (async () => {
+        const timestamp = await getPeriodFinish();
+
+        // dispatch timestamp to the Context API store
+        dispatch({
+          type: 'stake_time',
+          data: timestamp,
+        });
+      })();
+    }
+  }, [instances]);
+
+  async function getPeriodFinish() {
+    console.log('Return reward period finish time');
+
+    try {
+      const timestamp = await stakingContract.methods.periodFinish().call();
+
+      return timestamp;
+    } catch (error) {
+      console.log('Return reward period time error: ' + error);
+    }
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -106,13 +136,13 @@ const Farming = () => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        const ret = state.DGBalances.slice(0);
-        ret[0] = 0;
+        const arrayNew = state.DGBalances.slice();
+        arrayNew[0] = 0;
 
         // update global state unclaimed DG balance to 0
         dispatch({
           type: 'dg_balances',
-          data: ret,
+          data: arrayNew,
         });
       }
     } catch (error) {
