@@ -13,7 +13,7 @@
   height: calc(100% - 210px);
   top: 210px;
   left: 0;
-  z-index: 11;
+  z-index: 9;
 }
 
 .black { 
@@ -23,7 +23,7 @@
   top: 0;
   left: 0;
   background: black;
-  z-index: 11;
+  z-index: 9;
 }
 
 .full-white {
@@ -32,7 +32,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 11;
+  z-index: 9;
   overflow: hidden !important;
 }
 

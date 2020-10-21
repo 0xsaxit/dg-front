@@ -76,7 +76,7 @@ const detailsGames = {
   ],
 };
 
-const Games = () => {
+const Offerings = () => {
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -528,4 +528,4 @@ const Games = () => {
   );
 };
 
-export default Games;
+export default Offerings;

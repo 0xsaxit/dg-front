@@ -187,14 +187,9 @@ export const GlobalStyles = createGlobalStyle`
   .ui.dropdown .menu > .item span.text,
   .dropdown-icon,
   #dropdown-more-items,
-  #dropdown-menu-items,
   #sun-icon,
   #moon-icon {
     color: ${({ theme }) => theme.menuText} !important;
-  }
-
-  #dropdown-menu-items:hover {
-    background: ${({ theme }) => theme.infoColor};
   }
 
   .ui.divider {

@@ -1,13 +1,13 @@
 import { GlobalContext } from '../store';
 import { useContext } from 'react';
-import Account from '../components/home/Account';
+import TransactionHistory from '../components/home/TransactionHistory';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 
 
-const userAccount = () => {
+const Account = () => {
     // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -24,10 +24,10 @@ const userAccount = () => {
           Please connect Metask to view this page
         </div>
       ) : ( 
-        <Account />
+        <TransactionHistory />
       )}
     </Layout>
   );
 };
 
-export default userAccount;
+export default Account;

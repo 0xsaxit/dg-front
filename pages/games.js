@@ -1,10 +1,10 @@
-import Games from '../components/home/Games';
+import Offerings from '../components/home/Offerings';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 
-const ourGames = () => {
+const Games = () => {
   return (
     <Layout>
       <Header
@@ -13,9 +13,9 @@ const ourGames = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Games />
+      <Offerings />
     </Layout>
   );
 };
 
-export default ourGames;
+export default Games;

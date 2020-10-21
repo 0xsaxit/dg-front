@@ -8,7 +8,7 @@ import ContentTransactions from '../content/ContentTransactions';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 
-const Account = (props) => {
+const History = (props) => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
@@ -277,4 +277,4 @@ const Account = (props) => {
   );
 };
 
-export default Account;
+export default History;

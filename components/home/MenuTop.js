@@ -27,12 +27,18 @@ const MenuTop = ({ toggleTheme }) => {
   const [isDarkMode, setDarkMode] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
-  const [open, setOpen] = React.useState(false)
+  const [showItems, setShowItems] = React.useState(false);
+
+  const onShow = () => setShowItems(true);
+  const onClose = () => setShowItems(false);
 
   const router = useRouter();
 
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
+
+  console.log("DERC20: " + state.userBalances[1][0]);
+  console.log("MANA: " + state.userBalances[1][1]); 
 
   // set menu styles
   useEffect(() => {
@@ -80,18 +86,6 @@ const MenuTop = ({ toggleTheme }) => {
     }
   });
 
-  // close menu automatically if left open for 
-  // desktop screen sizes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      var frameWidth = window.innerWidth;
-      if (frameWidth > 991) {
-        setOpen(false);
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
   // display the 'ADD TOKENS' popup
   function balancesModal() {
     if (state.balancesOverlay !== 2) {
@@ -122,10 +116,10 @@ const MenuTop = ({ toggleTheme }) => {
 
   function getLinkStyles(path) {
     if (path === 'menu') {
-      if ('/' === router.pathname && !open ) {
+      if ('/' === router.pathname) {
         return 'menu-container';
       } else {
-        return 'other-menu-container blog';
+        return menuStyle[1];
       }
     } else {
       if (path === router.pathname) {
@@ -146,13 +140,39 @@ const MenuTop = ({ toggleTheme }) => {
     });
   }
 
+  function handleDimmedChange() {
+    if (!isVisible) {
+      setIsVisible(true);
+      setZIndexMobile(7);
+    } else {
+      const timer = setTimeout(() => {
+        setZIndexMobile(1);
+      }, 500);
+      setIsVisible(false);
+    }
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   function DGLogo() {
     return (
       <Link href="/">
-        <img id="menu-logo" src={Images.LOGO} />
+        <img
+          className="image inline pointer"
+          id="menu-logo"
+          src={Images.LOGO}
+          style={{
+            width: '39px',
+            paddingTop: '15px',
+            paddingBottom: '15px',
+            marginRight: '9px',
+            marginLeft: '24px',
+            height: '100%',
+            position: 'relative',
+            zIndex: '7',
+          }}
+        />
       </Link>
     );
   }
@@ -160,60 +180,68 @@ const MenuTop = ({ toggleTheme }) => {
   // dropdown menu for mobile
   function dropdownMenu() {
     return (
-      <div className="mobile-height-fix">
-        <Popup
-          on='click'
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
-          className="mobile-menu-popup"
-          pinned
-          position="bottom right"
-          trigger={
-            <span>
-              {open ? (
-                <span id="mobile-menu-icon" className="material-icons">close</span>
-              ) : (
-                <span id="mobile-menu-icon" className="material-icons">menu</span>
-              )}
-            </span>
-          }
+      <div
+        className={menuStyle[4]}
+        id={isVisible === false ? 'pushable-one' : 'pushable-two'}
+        style={{ zIndex: zIndexMobile }}
+      >
+        <span
+          className="material-icons"
+          onClick={() => handleDimmedChange()}
+          id={menuStyle[8]}
+          style={{ color: menuStyle[5] }}
         >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <a href="/">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  PLAY
+          {isVisible === false ? 'menu' : 'close'}
+        </span>
+
+        <Sidebar.Pushable>
+          <Sidebar
+            as={Menu}
+            direction="top"
+            animation="overlay"
+            icon="labeled"
+            vertical
+            visible={isVisible}
+            id={menuStyle[9]}
+          >
+            <Link href="/">
+              <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
+            </Link>
+
+            {state.userStatus ? (
+              <Link href="/account">
+                <Menu.Item className={getLinkStyles('/account')}>
+                  ACCOUNT
                 </Menu.Item>
-              </a>
+              </Link>
+            ) : null}
 
-              {state.userStatus ? (
-                <a href="/account">
-                  <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                    ACCOUNT
-                  </Menu.Item>
-                </a>
-              ) : null}
+            <Link href="/games">
+              <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
+            </Link>
 
-              <a href="/games">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  GAMES
-                </Menu.Item>
-              </a>
+            <Link href="/nfts">
+              <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
+            </Link>
 
-              <a href="/nfts">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  NFTS
-                </Menu.Item>
-              </a>
+            {/*<Link href="/dg">
+              <Menu.Item className={getLinkStyles('/dg')}>DG</Menu.Item>
+            </Link>*/}
 
-              <a href="/blog">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  BLOG
-                </Menu.Item>
-              </a>
+            <Link href="/blog">
+              <Menu.Item
+                style={{ marginBottom: '15px' }}
+                className={getLinkStyles('/blog')}
+              >
+                BLOG
+              </Menu.Item>
+            </Link>
+          </Sidebar>
 
-            </span>
-          </Popup>
+          <Sidebar.Pusher>
+            <Segment className="transparent-menu-segment"></Segment>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     );
   }
@@ -482,13 +510,12 @@ const MenuTop = ({ toggleTheme }) => {
 
   return (
     <Aux>
+      <MessageBar />
 
       <div className={menuStyle[3]}>
+        {dropdownMenu()}
+
         <div className={getContainerStyles('container')}>
-
-          <MessageBar />
-          {dropdownMenu()}
-
           <Menu className={getLinkStyles('menu')} icon="labeled">
             {DGLogo()}
             {shownOrHiddenItems()}

@@ -1,10 +1,10 @@
-import NFTs from '../components/home/NFTs';
+import Tokens from '../components/home/Tokens';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 
-const nonFungibleTokens = () => {
+const NFTs = () => {
   return (
     <Layout>
       <Header
@@ -13,9 +13,9 @@ const nonFungibleTokens = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <NFTs />
+      <Tokens />
     </Layout>
   );
 };
 
-export default nonFungibleTokens;
+export default NFTs;

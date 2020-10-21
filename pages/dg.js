@@ -1,13 +1,13 @@
 import { GlobalContext } from '../store';
 import { useContext } from 'react';
-import DG from '../components/home/DG';
+import Farming from '../components/home/Farming';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 
 
-const decentralGamesToken = () => {
+const dg = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -24,10 +24,10 @@ const decentralGamesToken = () => {
           Please connect Metask to view this page
         </div>
       ) : ( 
-        <DG />
+        <Farming />
       )}
     </Layout>
   );
 };
 
-export default decentralGamesToken;
+export default dg;
