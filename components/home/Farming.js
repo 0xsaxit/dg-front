@@ -5,9 +5,10 @@ import Web3 from 'web3';
 import { Divider } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ButtonAffiliates from '../button/ButtonAffiliates';
-import ABI_DG_POINTER from '../ABI/ABIDGPointer';
-import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
+// import ABI_DG_POINTER from '../ABI/ABIDGPointer';
+// import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
 import Global from '../Constants';
+import Transactions from '../../common/Transactions';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
 import Whitelist from '../Whitelist';
@@ -53,17 +54,19 @@ const Farming = () => {
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
 
-        const pointerContract = new getWeb3.eth.Contract(
-          ABI_DG_POINTER,
-          addresses.DG_POINTER_ADDRESS
-        );
+        // const pointerContract = new getWeb3.eth.Contract(
+        //   ABI_DG_POINTER,
+        //   addresses.DG_POINTER_ADDRESS
+        // );
+        const pointerContract = await Transactions.pointerContract(getWeb3);
 
         setPointerContract(pointerContract);
 
-        const stakingContract = new web3.eth.Contract(
-          ABI_DG_STAKING,
-          addresses.DG_STAKING_ADDRESS
-        );
+        // const stakingContract = new web3.eth.Contract(
+        //   ABI_DG_STAKING,
+        //   addresses.DG_STAKING_ADDRESS
+        // );
+        const stakingContract = await Transactions.stakingContract(web3);
 
         setStakingContract(stakingContract);
       }
@@ -103,7 +106,7 @@ const Farming = () => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        const ret = array.slice(0);
+        const ret = state.DGBalances.slice(0);
         ret[0] = 0;
 
         // update global state unclaimed DG balance to 0
@@ -123,28 +126,18 @@ const Farming = () => {
     console.log('Call stake() function on smart contract');
     // setDisabled(true);
 
-    console.log('staking contract...');
-    console.log(stakingContract);
-    console.log('user address: ' + userAddress);
+    // console.log('staking contract...');
+    // console.log(stakingContract);
+    // console.log('user address: ' + userAddress);
 
     try {
       const data = await stakingContract.methods
         .stake('10000000000000000000')
         .send({ from: userAddress });
 
-      console.log('stake() call completed...');
-      console.log(data);
-
-      // setDisabled(false);
-
-      // return reward amount and cycle time
-      // const returnReward = data.events.RewardAdded.returnValues.reward;
-      // const timestamp = await getPeriodFinish();
-
-      // props.rewardData(returnReward, timestamp);
+      // console.log('stake() call completed...');
+      // console.log(data);
     } catch (error) {
-      // setDisabled(false);
-
       console.log('stake() function call error: ' + error);
     }
   }

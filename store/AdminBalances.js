@@ -1,5 +1,8 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
+
+import Web3 from 'web3';
+
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
 import Global from '../components/Constants';
@@ -17,9 +20,10 @@ function AdminBalances() {
 
   useEffect(() => {
     if (state.userStatus) {
-      maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      );
+      // maticWeb3 = new window.Web3(
+      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
+      // );
+      maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
@@ -48,19 +52,46 @@ function AdminBalances() {
   }, [state.userStatus, state.tokenPings]);
 
   // get worker address ETH balance on Matic Network
-  async function getEthBalance() {
-    return new Promise(async (resolve, reject) => {
-      maticWeb3.eth.getBalance(workerAddress, function (err, result) {
-        if (err) {
-          console.log('Get ETH balance error: ' + err);
-        } else {
-          const amountEth = web3.fromWei(result, 'ether') + ' ETH';
-          const amountNumber = parseFloat(amountEth).toFixed(4);
+  // async function getEthBalance() {
+  //   return new Promise(async (resolve, reject) => {
+  //     maticWeb3.eth.getBalance(workerAddress, function (err, result) {
+  //       if (err) {
+  //         console.log('Get ETH balance error: ' + err);
+  //       } else {
+  //         const amountEth = web3.fromWei(result, 'ether') + ' ETH';
+  //         const amountNumber = parseFloat(amountEth).toFixed(4);
 
-          resolve(amountNumber);
-        }
-      });
-    });
+  //         resolve(amountNumber);
+  //       }
+  //     });
+  //   });
+  // }
+
+  // get worker address ETH balance on Matic Network
+  async function getEthBalance() {
+    console.log('Worker address ETH balance on Matic Network');
+
+    try {
+      const amount = await maticWeb3.eth.getBalance(workerAddress);
+
+      const amountEth = web3.fromWei(amount, 'ether') + ' ETH';
+      const amountNumber = parseFloat(amountEth).toFixed(4);
+
+      return amountNumber;
+    } catch (error) {
+      console.log('Get ETH balance error', error);
+    }
+
+    // {
+    //   if (err) {
+    //     console.log('Get ETH balance error: ' + err);
+    //   } else {
+    //     const amountEth = web3.fromWei(result, 'ether') + ' ETH';
+    //     const amountNumber = parseFloat(amountEth).toFixed(4);
+
+    //     resolve(amountNumber);
+    //   }
+    // });
   }
 
   function dataInterval() {
@@ -114,26 +145,30 @@ function AdminBalances() {
   async function getTokenBalances() {
     const addresses = await Global.API_ADDRESSES;
 
-    const tokenContract = maticWeb3.eth
-      .contract(ABI_CHILD_TOKEN)
-      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+    // const tokenContract = maticWeb3.eth
+    //   .contract(ABI_CHILD_TOKEN)
+    //   .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+    const tokenContract = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN,
+      addresses.CHILD_TOKEN_ADDRESS_MANA
+    );
 
     try {
       let arrayAmounts = [];
 
       // get treasury balances from token contracts
-      const amountTreasury1 = await Transactions.balanceOfToken(
+      const amountTreasury = await Transactions.balanceOfToken2(
         tokenContract,
         contractAddress,
         0
       );
-      arrayAmounts.push([0, amountTreasury1]);
+      arrayAmounts.push([0, amountTreasury]);
 
       // get game balances by calling checkGameTokens()
-      const amountSlots1 = await getTokensGame(1, 0, maticWeb3);
-      const amountRoulette1 = await getTokensGame(2, 0, maticWeb3);
-      const amountBackgammon1 = await getTokensGame(3, 0, maticWeb3);
-      const amountBlackjack1 = await getTokensGame(4, 0, maticWeb3);
+      const amountSlots1 = await getTokensGame(1, 0);
+      const amountRoulette1 = await getTokensGame(2, 0);
+      const amountBackgammon1 = await getTokensGame(3, 0);
+      const amountBlackjack1 = await getTokensGame(4, 0);
 
       let arrayGameAmounts = [];
 
@@ -150,35 +185,61 @@ function AdminBalances() {
     }
   }
 
-  function getTokensGame(gameIndex, tokenIndex, web3Default) {
-    return new Promise(async (resolve, reject) => {
-      console.log('Get tokens per game');
+  // function getTokensGame(gameIndex, tokenIndex, web3Default) {
+  //   return new Promise(async (resolve, reject) => {
+  //     console.log('Get tokens per game');
 
-      try {
-        const PARENT_CONTRACT = web3Default.eth
-          .contract(ABI_TREASURY_CONTRACT)
-          .at(contractAddress);
+  //     try {
+  //       const PARENT_CONTRACT = web3Default.eth
+  //         .contract(ABI_TREASURY_CONTRACT)
+  //         .at(contractAddress);
 
-        PARENT_CONTRACT.checkGameTokens(gameIndex, tokenIndex, async function (
-          err,
-          amount
-        ) {
-          if (err) {
-            console.log('Get tokens per game failed', err);
-            reject(false);
-          }
+  //       PARENT_CONTRACT.checkGameTokens(gameIndex, tokenIndex, async function (
+  //         err,
+  //         amount
+  //       ) {
+  //         if (err) {
+  //           console.log('Get tokens per game failed', err);
+  //           reject(false);
+  //         }
 
-          const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
-            .toFixed(0)
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  //         const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
+  //           .toFixed(0)
+  //           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-          resolve(amountAdjusted);
-        });
-      } catch (error) {
-        console.log('Get tokens per game failed', error);
-        reject(false);
-      }
-    });
+  //         resolve(amountAdjusted);
+  //       });
+  //     } catch (error) {
+  //       console.log('Get tokens per game failed', error);
+  //       reject(false);
+  //     }
+  //   });
+  // }
+
+  async function getTokensGame(gameIndex, tokenIndex) {
+    console.log('Get tokens per game');
+
+    // const PARENT_CONTRACT = web3Default.eth
+    //   .contract(ABI_TREASURY_CONTRACT)
+    //   .at(contractAddress);
+    const PARENT_CONTRACT = new maticWeb3.eth.Contract(
+      ABI_TREASURY_CONTRACT,
+      contractAddress
+    );
+
+    try {
+      const amount = await PARENT_CONTRACT.methods
+        .checkGameTokens(gameIndex, tokenIndex)
+        .call();
+
+      const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
+        .toFixed(0)
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+      return amountAdjusted;
+    } catch (error) {
+      console.log('Get tokens per game failed', error);
+    }
   }
 
   return null;

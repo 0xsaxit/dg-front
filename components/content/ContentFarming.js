@@ -344,11 +344,12 @@ const ContentFarming = (props) => {
                 placeholder="10"
               />
 
-
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
                 <p className="bpt-text"> 0 BPT </p>
-                <p className="bpt-text"> 0 BPT staked</p>  
-              </span> 
+                <p className="bpt-text"> 0 BPT staked</p>
+              </span>
 
               <span className="DG-button-span">
                 <Button
@@ -432,10 +433,12 @@ const ContentFarming = (props) => {
                 placeholder="Amount"
               />
 
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
                 <p className="bpt-text"> 0 BPT </p>
-                <p className="bpt-text"> 0 BPT staked</p>  
-              </span> 
+                <p className="bpt-text"> 0 BPT staked</p>
+              </span>
 
               <span className="DG-button-span">
                 <Button disabled className="DG-stake-button">
@@ -568,10 +571,12 @@ const ContentFarming = (props) => {
                 placeholder="Amount"
               />
 
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
                 <p className="bpt-text"> 0 DG </p>
-                <p className="bpt-text"> 0 DG staked</p>  
-              </span> 
+                <p className="bpt-text"> 0 DG staked</p>
+              </span>
 
               <span className="DG-button-span">
                 <Button disabled className="DG-stake-button">
@@ -655,6 +660,12 @@ const ContentFarming = (props) => {
 
     setCurrentReward(amountReward);
     setFinishTime(formattedTime);
+
+    // dispatch timestamp to the Context API store
+    dispatch({
+      type: 'stake_time',
+      data: timestamp,
+    });
   }
 
   if (props.content === 'mining') {

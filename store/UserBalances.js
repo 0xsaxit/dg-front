@@ -1,6 +1,8 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-// import Web3 from 'web3';
+
+import Web3 from 'web3';
+
 import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
 import Global from '../components/Constants';
@@ -14,7 +16,9 @@ function UserBalances() {
   // define local variables
   let userAddress = '';
   const value = 6;
-  // let web3 = {};
+
+  let web3 = {};
+
   let maticWeb3 = {};
   let balances = [];
 
@@ -22,11 +26,12 @@ function UserBalances() {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
-      // web3 = new Web3(window['ethereum']); // pass MetaMask provider to Web3 constructor
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-      maticWeb3 = new window.Web3(
-        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      );
+      // maticWeb3 = new window.Web3(
+      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
+      // );
+      maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
         balances = await getTokenBalances();
@@ -132,30 +137,29 @@ function UserBalances() {
   async function getTokenBalances() {
     const addresses = await Global.API_ADDRESSES;
 
-    const TOKEN_CONTRACT_ROOT = window.web3.eth
-      .contract(ABI_ROOT_TOKEN)
-      .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
-
-    // const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
-    //   Global.ABIs.ROOT_TOKEN,
-    //   addresses.ROOT_TOKEN_ADDRESS_MANA
-    // );
-
-    // const TOKEN_CONTRACT_ROOT = web3
-    //   .contract(Global.ABIs.ROOT_TOKEN)
+    // const TOKEN_CONTRACT_ROOT = window.web3.eth
+    //   .contract(ABI_ROOT_TOKEN)
     //   .at(addresses.ROOT_TOKEN_ADDRESS_MANA);
+    const TOKEN_CONTRACT_ROOT = new web3.eth.Contract(
+      ABI_ROOT_TOKEN,
+      addresses.ROOT_TOKEN_ADDRESS_MANA
+    );
 
-    const TOKEN_CONTRACT_CHILD = maticWeb3.eth
-      .contract(ABI_CHILD_TOKEN)
-      .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+    // const TOKEN_CONTRACT_CHILD = maticWeb3.eth
+    //   .contract(ABI_CHILD_TOKEN)
+    //   .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
+    const TOKEN_CONTRACT_CHILD = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN,
+      addresses.CHILD_TOKEN_ADDRESS_MANA
+    );
 
     try {
-      const amount1 = await Transactions.balanceOfToken(
+      const amount1 = await Transactions.balanceOfToken2(
         TOKEN_CONTRACT_ROOT,
         userAddress,
         0
       );
-      const amount2 = await Transactions.balanceOfToken(
+      const amount2 = await Transactions.balanceOfToken2(
         TOKEN_CONTRACT_CHILD,
         userAddress,
         0

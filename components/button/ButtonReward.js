@@ -2,9 +2,10 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Web3 from 'web3';
-import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
+// import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
 import Aux from '../_Aux';
 import Global from '../Constants';
+import Transactions from '../../common/Transactions';
 
 function ButtonReward(props) {
   // get user's status from the Context API store
@@ -30,12 +31,13 @@ function ButtonReward(props) {
         const workerAddress = addresses.WORKER_ADDRESS.toUpperCase();
         if (userAddress === workerAddress) setDisabled(false);
 
-        const DG_STAKING_CONTRACT = new web3.eth.Contract(
-          ABI_DG_STAKING,
-          addresses.DG_STAKING_ADDRESS
-        );
+        // const DG_STAKING_CONTRACT = new web3.eth.Contract(
+        //   ABI_DG_STAKING,
+        //   addresses.DG_STAKING_ADDRESS
+        // );
+        const stakingContract = await Transactions.stakingContract(web3);
 
-        setStakingContract(DG_STAKING_CONTRACT);
+        setStakingContract(stakingContract);
       }
       fetchData();
     }

@@ -120,15 +120,15 @@ const Offerings = () => {
     setTimePeriod(data.value);
   }
 
-  function getGameRecords() {
-    return fetch(`https://api.decentral.games/admin/getTotalRecords`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  }
+  // function getGameRecords() {
+  //   return fetch(`https://api.decentral.games/admin/getTotalRecords`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
