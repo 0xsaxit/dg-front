@@ -127,19 +127,6 @@ const Fetch = {
     });
   },
 
-  //   GET_TOKENS: (address) => {
-  //     return fetch(`${API_BASE_URL}/order/getTokens`, {
-  //       method: 'POST',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         address: address,
-  //       }),
-  //     });
-  //   },
-
   POST_HISTORY: (address, amount, type, state, txHash, step) => {
     return fetch(`${API_BASE_URL}/order/updateHistory`, {
       method: 'POST',

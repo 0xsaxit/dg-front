@@ -22,14 +22,10 @@ function ButtonAuthorize() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [transaction, setTransaction] = useState(false);
   const [userAddress, setUserAddress] = useState('');
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
 
-  // let userAddress = '';
-  // let tokenContract = {};
-  // let web3 = {};
   const value = 7;
 
   useEffect(() => {
@@ -49,8 +45,6 @@ function ButtonAuthorize() {
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-
-      // tokenContract = Global.getTokenContract('child', getWeb3);
 
       (async function () {
         const addresses = await Global.API_ADDRESSES;
@@ -135,8 +129,6 @@ function ButtonAuthorize() {
     } catch (error) {
       console.log(error);
     }
-
-    // setTransaction(false);
   }
 
   return (

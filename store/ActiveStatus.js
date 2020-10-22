@@ -27,9 +27,12 @@ function ActiveStatus() {
 
       // initialize Web3 providers and create token contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-      maticWeb3 = new Web3(
-        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      ); // pass Matic provider to maticWeb3 object
+
+      // maticWeb3 = new Web3(
+      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
+      // ); // pass Matic provider to maticWeb3 object
+      maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -37,11 +40,6 @@ function ActiveStatus() {
           debug: true,
         }
       );
-      // const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-
-      // (async function () {
-      //   treasuryContract = await Transactions.getTreasuryContract(getWeb3);
-      // })();
 
       (async function () {
         const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor

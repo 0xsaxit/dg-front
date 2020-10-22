@@ -14,16 +14,11 @@ function ButtonEnable() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [transaction, setTransaction] = useState(false);
   const [userAddress, setUserAddress] = useState('');
   const [treasuryContract, setTreasuryContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [maticWeb3, setMaticWeb3] = useState({});
 
-  // let userAddress = '';
-  // let treasuryContract = {};
-  // let web3 = {};
-  // let maticWeb3 = {};
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
 
   useEffect(() => {
@@ -35,9 +30,11 @@ function ButtonEnable() {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      const maticWeb3 = new Web3(
-        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      ); // pass Matic provider to maticWeb3 object
+      // const maticWeb3 = new Web3(
+      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
+      // ); // pass Matic provider to maticWeb3 object
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
       setMaticWeb3(maticWeb3);
 
       const biconomy = new Biconomy(
@@ -93,8 +90,6 @@ function ButtonEnable() {
     try {
       console.log('Session Duration: ' + sessionDuration);
 
-      // const treasuryContract = await Transactions.getTreasuryContract(getWeb3);
-
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = treasuryContract.methods
         .enableAccount(sessionDuration)
@@ -124,11 +119,9 @@ function ButtonEnable() {
     } catch (error) {
       console.log(error);
     }
-
-    // setTransaction(false);
   }
 
-  return (  
+  return (
     <Aux>
       <span>
         <Button

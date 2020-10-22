@@ -5,8 +5,6 @@ import Web3 from 'web3';
 import { Divider } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ButtonAffiliates from '../button/ButtonAffiliates';
-// import ABI_DG_POINTER from '../ABI/ABIDGPointer';
-// import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import MetaTx from '../../common/MetaTx';
@@ -53,25 +51,15 @@ const Farming = () => {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
+        // const addresses = await Global.API_ADDRESSES;
 
-        // const pointerContract = new getWeb3.eth.Contract(
-        //   ABI_DG_POINTER,
-        //   addresses.DG_POINTER_ADDRESS
-        // );
         const pointerContract = await Transactions.pointerContract(getWeb3);
-
         setPointerContract(pointerContract);
 
-        // const stakingContract = new web3.eth.Contract(
-        //   ABI_DG_STAKING,
-        //   addresses.DG_STAKING_ADDRESS
-        // );
         const stakingContract = await Transactions.stakingContract(web3);
-
         setStakingContract(stakingContract);
 
-        setInstances(true);
+        setInstances(true); // contract instantiation complete
       }
       fetchData();
 
@@ -154,19 +142,11 @@ const Farming = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   async function staking() {
     console.log('Call stake() function on smart contract');
-    // setDisabled(true);
-
-    // console.log('staking contract...');
-    // console.log(stakingContract);
-    // console.log('user address: ' + userAddress);
 
     try {
       const data = await stakingContract.methods
         .stake('10000000000000000000')
         .send({ from: userAddress });
-
-      // console.log('stake() call completed...');
-      // console.log(data);
     } catch (error) {
       console.log('stake() function call error: ' + error);
     }

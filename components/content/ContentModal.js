@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Form, Input } from 'semantic-ui-react';
-import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
+// import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
 import Global from '../Constants';
 import Images from '../../common/Images';
+import Transactions from '../../common/Transactions';
 
 const ContentModal = (props) => {
   // get user's status from the Context API store
@@ -12,30 +13,33 @@ const ContentModal = (props) => {
   // define local variables
   const [amount, setAmount] = useState(0);
   const [transaction, setTransaction] = useState(false);
+  const [web3, setWeb3] = useState({});
 
   let userAddress = '';
-  let web3 = {};
-  let contractAddress = {};
+  // let web3 = {};
+  // let contractAddress = {};
 
   useEffect(() => {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-      (async function () {
-        const addresses = await Global.API_ADDRESSES;
-        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
 
-        if (transaction && amount) {
-          if (props.type === 'deposit') {
-            depositFunds(); // MetaMask popup window
-          } else {
-            withdrawFunds(); // MetaMask popup window
-          }
+      // (async function () {
+      // const addresses = await Global.API_ADDRESSES;
+      // contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+
+      if (transaction && amount) {
+        if (props.type === 'deposit') {
+          depositFunds(); // MetaMask popup window
         } else {
-          setTransaction(false);
+          withdrawFunds(); // MetaMask popup window
         }
-      })();
+      } else {
+        setTransaction(false);
+      }
+      // })();
     }
   }, [state.userStatus, transaction, amount]);
 
@@ -59,23 +63,24 @@ const ContentModal = (props) => {
     initializePings();
   }
 
-  function depositToParent(gameID, tokenID, amount, userAddress, web3Default) {
+  function depositToParent(gameID, tokenID, amount, userAddress) {
     return new Promise(async (resolve, reject) => {
       console.log('Deposit start: ' + amount);
 
       try {
-        const PARENT_CONTRACT = web3Default.eth
-          .contract(ABI_TREASURY_CONTRACT)
-          .at(contractAddress);
+        // const parentContract = web3Default.eth
+        //   .contract(ABI_TREASURY_CONTRACT)
+        //   .at(contractAddress);
+        const parentContract = await Transactions.getTreasuryContract(web3);
 
-        PARENT_CONTRACT.addFunds(
+        parentContract.addFunds(
           gameID,
           tokenID,
           amount,
           {
             from: userAddress,
-            gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
-            gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
+            gasLimit: web3.toHex(Global.CONSTANTS.GAS_LIMIT),
+            gasPrice: web3.toHex(Global.CONSTANTS.GAS_AMOUNT),
           },
           async function (err, hash) {
             if (err) {
@@ -109,29 +114,24 @@ const ContentModal = (props) => {
     initializePings();
   }
 
-  function withdrawFromParent(
-    gameID,
-    tokenID,
-    amount,
-    userAddress,
-    web3Default
-  ) {
+  function withdrawFromParent(gameID, tokenID, amount, userAddress) {
     return new Promise(async (resolve, reject) => {
       console.log('Withdraw start: ' + amount);
 
       try {
-        const PARENT_CONTRACT = web3Default.eth
-          .contract(ABI_TREASURY_CONTRACT)
-          .at(contractAddress);
+        // const PARENT_CONTRACT = web3Default.eth
+        //   .contract(ABI_TREASURY_CONTRACT)
+        //   .at(contractAddress);
+        const parentContract = await Transactions.getTreasuryContract(web3);
 
-        PARENT_CONTRACT.withdrawGameTokens(
+        parentContract.withdrawGameTokens(
           gameID,
           tokenID,
           amount,
           {
             from: userAddress,
-            gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
-            gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
+            gasLimit: web3.toHex(Global.CONSTANTS.GAS_LIMIT),
+            gasPrice: web3.toHex(Global.CONSTANTS.GAS_AMOUNT),
           },
           async function (err, hash) {
             if (err) {

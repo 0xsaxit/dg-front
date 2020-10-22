@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Web3 from 'web3';
-// import ABI_DG_STAKING from '../ABI/ABIDGStaking.json';
 import Aux from '../_Aux';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
@@ -15,7 +14,6 @@ function ButtonReward(props) {
   const [stakingContract, setStakingContract] = useState({});
   const [userAddress, setUserAddress] = useState('');
   const [disabled, setDisabled] = useState(true);
-
   const [instances, setInstances] = useState(false);
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
@@ -33,14 +31,10 @@ function ButtonReward(props) {
         const workerAddress = addresses.WORKER_ADDRESS.toUpperCase();
         if (userAddress === workerAddress) setDisabled(false);
 
-        // const DG_STAKING_CONTRACT = new web3.eth.Contract(
-        //   ABI_DG_STAKING,
-        //   addresses.DG_STAKING_ADDRESS
-        // );
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
-        setInstances(true);
+        setInstances(true); // contract instantiation complete
       }
       fetchData();
     }

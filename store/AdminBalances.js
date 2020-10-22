@@ -1,9 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-
 import Web3 from 'web3';
-
-import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
+// import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -20,9 +18,6 @@ function AdminBalances() {
 
   useEffect(() => {
     if (state.userStatus) {
-      // maticWeb3 = new window.Web3(
-      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      // );
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
@@ -52,22 +47,6 @@ function AdminBalances() {
   }, [state.userStatus, state.tokenPings]);
 
   // get worker address ETH balance on Matic Network
-  // async function getEthBalance() {
-  //   return new Promise(async (resolve, reject) => {
-  //     maticWeb3.eth.getBalance(workerAddress, function (err, result) {
-  //       if (err) {
-  //         console.log('Get ETH balance error: ' + err);
-  //       } else {
-  //         const amountEth = web3.fromWei(result, 'ether') + ' ETH';
-  //         const amountNumber = parseFloat(amountEth).toFixed(4);
-
-  //         resolve(amountNumber);
-  //       }
-  //     });
-  //   });
-  // }
-
-  // get worker address ETH balance on Matic Network
   async function getEthBalance() {
     console.log('Worker address ETH balance on Matic Network');
 
@@ -81,17 +60,6 @@ function AdminBalances() {
     } catch (error) {
       console.log('Get ETH balance error', error);
     }
-
-    // {
-    //   if (err) {
-    //     console.log('Get ETH balance error: ' + err);
-    //   } else {
-    //     const amountEth = web3.fromWei(result, 'ether') + ' ETH';
-    //     const amountNumber = parseFloat(amountEth).toFixed(4);
-
-    //     resolve(amountNumber);
-    //   }
-    // });
   }
 
   function dataInterval() {
@@ -145,9 +113,6 @@ function AdminBalances() {
   async function getTokenBalances() {
     const addresses = await Global.API_ADDRESSES;
 
-    // const tokenContract = maticWeb3.eth
-    //   .contract(ABI_CHILD_TOKEN)
-    //   .at(addresses.CHILD_TOKEN_ADDRESS_MANA);
     const tokenContract = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN,
       addresses.CHILD_TOKEN_ADDRESS_MANA
@@ -157,7 +122,7 @@ function AdminBalances() {
       let arrayAmounts = [];
 
       // get treasury balances from token contracts
-      const amountTreasury = await Transactions.balanceOfToken2(
+      const amountTreasury = await Transactions.balanceOfToken(
         tokenContract,
         contractAddress,
         0
@@ -185,50 +150,17 @@ function AdminBalances() {
     }
   }
 
-  // function getTokensGame(gameIndex, tokenIndex, web3Default) {
-  //   return new Promise(async (resolve, reject) => {
-  //     console.log('Get tokens per game');
-
-  //     try {
-  //       const PARENT_CONTRACT = web3Default.eth
-  //         .contract(ABI_TREASURY_CONTRACT)
-  //         .at(contractAddress);
-
-  //       PARENT_CONTRACT.checkGameTokens(gameIndex, tokenIndex, async function (
-  //         err,
-  //         amount
-  //       ) {
-  //         if (err) {
-  //           console.log('Get tokens per game failed', err);
-  //           reject(false);
-  //         }
-
-  //         const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
-  //           .toFixed(0)
-  //           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  //         resolve(amountAdjusted);
-  //       });
-  //     } catch (error) {
-  //       console.log('Get tokens per game failed', error);
-  //       reject(false);
-  //     }
-  //   });
-  // }
-
   async function getTokensGame(gameIndex, tokenIndex) {
     console.log('Get tokens per game');
 
-    // const PARENT_CONTRACT = web3Default.eth
-    //   .contract(ABI_TREASURY_CONTRACT)
-    //   .at(contractAddress);
-    const PARENT_CONTRACT = new maticWeb3.eth.Contract(
-      ABI_TREASURY_CONTRACT,
-      contractAddress
-    );
+    // const parentContract = new maticWeb3.eth.Contract(
+    //   ABI_TREASURY_CONTRACT,
+    //   contractAddress
+    // );
+    const parentContract = await Transactions.getTreasuryContract(maticWeb3);
 
     try {
-      const amount = await PARENT_CONTRACT.methods
+      const amount = await parentContract.methods
         .checkGameTokens(gameIndex, tokenIndex)
         .call();
 

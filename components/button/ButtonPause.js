@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
-import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
+// import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
 import Global from '../Constants';
+import Transactions from '../../common/Transactions';
 
 function ButtonPause(props) {
   // get user's status from the Context API store
@@ -11,9 +12,10 @@ function ButtonPause(props) {
   // define local variables
   const [isPaused, setIsPaused] = useState(false);
   const [pauseContract, setPauseContract] = useState('');
+  const [web3, setWeb3] = useState({});
 
-  let web3 = {};
-  let contractAddress = {};
+  // let web3 = {};
+  // let contractAddress = {};
 
   useEffect(() => {
     setIsPaused(props.isPaused);
@@ -21,15 +23,16 @@ function ButtonPause(props) {
 
   useEffect(() => {
     if (state.userStatus) {
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
 
       (async function () {
-        const addresses = await Global.API_ADDRESSES;
-        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+        // const addresses = await Global.API_ADDRESSES;
+        // contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
         if (!isPaused) {
           if (pauseContract === 'pause') {
-            const txHash = await pauseUnpause(true, web3);
+            const txHash = await pauseUnpause(true);
             console.log('Pause tx hash: ' + txHash);
 
             // start querying the treasury contract for paused status
@@ -37,7 +40,7 @@ function ButtonPause(props) {
           }
         } else {
           if (pauseContract === 'unpause') {
-            const txHash = await pauseUnpause(false, web3);
+            const txHash = await pauseUnpause(false);
             console.log('Unpause tx hash: ' + txHash);
 
             // start querying the treasury contract for paused status
@@ -48,7 +51,7 @@ function ButtonPause(props) {
     }
   }, [state.userStatus, isPaused, pauseContract]);
 
-  function pauseUnpause(toggle, web3Default) {
+  function pauseUnpause(toggle) {
     return new Promise(async (resolve, reject) => {
       if (toggle) {
         console.log('Pause all games registered to Treasury contract');
@@ -57,15 +60,16 @@ function ButtonPause(props) {
       }
 
       try {
-        const PARENT_CONTRACT = web3Default.eth
-          .contract(ABI_TREASURY_CONTRACT)
-          .at(contractAddress);
+        // const parentContract = web3Default.eth
+        //   .contract(ABI_TREASURY_CONTRACT)
+        //   .at(contractAddress);
+        const parentContract = await Transactions.getTreasuryContract(web3);
 
         if (toggle) {
-          PARENT_CONTRACT.pause(
+          parentContract.pause(
             {
-              gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
-              gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
+              gasLimit: web3.toHex(Global.CONSTANTS.GAS_LIMIT),
+              gasPrice: web3.toHex(Global.CONSTANTS.GAS_AMOUNT),
             },
             async function (err, hash) {
               if (err) {
@@ -77,10 +81,10 @@ function ButtonPause(props) {
             }
           );
         } else {
-          PARENT_CONTRACT.unpause(
+          parentContract.unpause(
             {
-              gasLimit: web3Default.toHex(Global.CONSTANTS.GAS_LIMIT),
-              gasPrice: web3Default.toHex(Global.CONSTANTS.GAS_AMOUNT),
+              gasLimit: web3.toHex(Global.CONSTANTS.GAS_LIMIT),
+              gasPrice: web3.toHex(Global.CONSTANTS.GAS_AMOUNT),
             },
             async function (err, hash) {
               if (err) {

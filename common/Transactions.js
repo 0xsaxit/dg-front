@@ -1,12 +1,11 @@
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
-import ABI_DG_STAKING from '../components/ABI/ABIDGStaking.json';
+import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import Global from '../components/Constants';
 
-// return treasury contract for Biconomy API meta-transaction calls
+// set treasury contract instance
 async function getTreasuryContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
-  // const treasuryContractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
   const treasuryContract = new web3Default.eth.Contract(
     ABI_TREASURY_CONTRACT,
@@ -37,32 +36,28 @@ async function getActiveStatus(userAddress, web3Default) {
 async function pointerContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
 
-  const DG_POINTER_CONTRACT = new web3Default.eth.Contract(
+  const DGPointerContract = new web3Default.eth.Contract(
     ABI_DG_POINTER,
     addresses.DG_POINTER_ADDRESS
   );
 
-  // const DG_POINTER_CONTRACT = web3Default.eth
-  //   .contract(ABI_DG_POINTER)
-  //   .at(addresses.DG_POINTER_ADDRESS);
-
-  return DG_POINTER_CONTRACT;
+  return DGPointerContract;
 }
 
 // set staking contract instance
 async function stakingContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
 
-  const DG_STAKING_CONTRACT = new web3Default.eth.Contract(
+  const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
     addresses.DG_STAKING_ADDRESS
   );
 
-  return DG_STAKING_CONTRACT;
+  return DGStakingContract;
 }
 
 // get user or contract token balance from MetaMask
-async function balanceOfToken2(tokenContract, userOrContractAddress, units) {
+async function balanceOfToken(tokenContract, userOrContractAddress, units) {
   console.log('Get balance of token 2');
 
   try {
@@ -80,39 +75,10 @@ async function balanceOfToken2(tokenContract, userOrContractAddress, units) {
   }
 }
 
-// get user or contract token balance from MetaMask
-// function balanceOfToken(tokenContract, userOrContractAddress, units) {
-//   return new Promise(async (resolve, reject) => {
-//     console.log('Get balance of token');
-
-//     try {
-//       tokenContract.balanceOf(userOrContractAddress, async function (
-//         err,
-//         amount
-//       ) {
-//         if (err) {
-//           console.log('Get balance failed', err);
-//           reject(false);
-//         }
-
-//         const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
-//           .toFixed(units)
-//           .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-//         resolve(amountAdjusted);
-//       });
-//     } catch (error) {
-//       console.log('Get balance failed', error);
-//       reject(false);
-//     }
-//   });
-// }
-
 export default {
   getTreasuryContract,
   getActiveStatus,
-  balanceOfToken2,
-  // balanceOfToken,
+  balanceOfToken,
   pointerContract,
   stakingContract,
 };

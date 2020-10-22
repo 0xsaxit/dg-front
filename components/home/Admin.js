@@ -24,8 +24,9 @@ const Admin = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const [maticWeb3, setMaticWeb3] = useState({});
 
-  let maticWeb3 = {};
+  // let maticWeb3 = {};
   let treasuryContract = {};
 
   useEffect(() => {
@@ -46,9 +47,11 @@ const Admin = () => {
 
   useEffect(() => {
     if (state.userStatus) {
-      maticWeb3 = new Web3(
-        new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      ); // pass Matic provider to maticWeb3 object
+      // maticWeb3 = new Web3(
+      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
+      // ); // pass Matic provider to maticWeb3 object
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      setMaticWeb3(maticWeb3);
 
       // get treasury contract's paused status (true or false)
       (async function () {
@@ -66,9 +69,9 @@ const Admin = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // ping the treasury contract for pause status
   async function dataInterval() {
-    maticWeb3 = new Web3(
-      new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-    ); // pass Matic provider to maticWeb3 object
+    // maticWeb3 = new Web3(
+    //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
+    // ); // pass Matic provider to maticWeb3 object
 
     treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
 
@@ -169,13 +172,13 @@ const Admin = () => {
           <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
               {dataType === 'balances' ? (
-                <b className="account-hover active">BALANCES</b>
+                <b className="account-hover active">GAME BALANCES</b>
               ) : (
                 <abbr
                   className="account-hover"
                   onClick={() => setUserData('balances', 1)}
                 >
-                  BALANCES
+                  GAME BALANCES
                 </abbr>
               )}
 
