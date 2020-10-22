@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
 import { useDarkMode } from './useDarkMode';
+import MailChimp from './Mailchimp';
 
 const Layout = (props) => {
   const [theme, toggleTheme] = useDarkMode();
@@ -23,6 +24,7 @@ const Layout = (props) => {
       <GlobalStyles />
 
       <MenuTop toggleTheme={toggleTheme} />
+      <MailChimp />
 
       {props.children}
     </ThemeProvider>

@@ -398,6 +398,55 @@ div.ui.segment.transparent-menu-segment {
 }
 
 /* ----------------------------------------- */
+/*               MAILCHIMP CSS               */
+/* ----------------------------------------- */
+
+.ui.button.mailchimp-submit-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  font-weight: 600;
+  margin-top: 20px;
+  padding-top: 8px;
+  width: 100% !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
+  border-radius: 2px;
+}
+
+.mailchimp-outter-container {
+  top: 106px;
+  max-width: 400px !important;
+  border-radius: 2px !important;
+  padding: 21px 30px 30px 30px;
+}
+
+.mailchimp-close {
+  margin-left: -6px;
+  cursor: pointer;
+}
+
+.mailchimp-input {
+  width: 100%;
+  padding-top: 6px;
+}
+
+.mailchimp-header-text {
+  margin-top: -33px;
+  padding-bottom: 20px;
+  font-weight: 800 !important;
+  text-align: center;
+}
+
+.mailchimp-other-inner-p {
+  color: gray;
+  padding-top: 12px;
+  padding-bottom: 21px;
+}
+
+/* ----------------------------------------- */
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 

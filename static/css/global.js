@@ -55,6 +55,7 @@ export const GlobalStyles = createGlobalStyle`
   .ui.input>input,
   .matic-header-text,
   .menu-info-close,
+  .mailchimp-close,
   .hljs {
     color: ${({ theme }) => theme.text} !important;
   }
@@ -100,7 +101,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .ui.modal,
-  .matic-overlay {
+  .matic-overlay,
+  .mailchimp-outter-container {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: none !important;  
@@ -156,7 +158,8 @@ export const GlobalStyles = createGlobalStyle`
   .menu-container-dark.blog,
   .other-menu-container.blog,
   .ui.visible.top.overlay.sidebar,
-  div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu {
+  div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu,
+  .menu-container.blog {
     background: ${({ theme }) => theme.menuColor} !important;
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
