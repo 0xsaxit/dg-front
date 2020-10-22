@@ -166,7 +166,7 @@ const MenuTop = ({ toggleTheme }) => {
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
-          className="mobile-menu-popup"
+          className={state.userStatus ? "mobile-menu-popup" : "mobile-menu-popup-logged-out"}
           pinned
           position="bottom right"
           trigger={

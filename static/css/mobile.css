@@ -141,9 +141,20 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   margin-left: -5px;
   min-width: 100vw;
   border-radius: 0px;
-  height: 245px;
   padding-left: 0px;
   padding-top: 0px;
+  height: 246px;
+}
+
+div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
+  margin-top: 66px;
+  border: none;
+  margin-left: -5px;
+  min-width: 100vw;
+  border-radius: 0px;
+  padding-left: 0px;
+  padding-top: 0px;
+  height: 196px;
 }
 
 /* ----------------------------------------- */
@@ -167,6 +178,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .mobile-footer,
   .demo-button-container {
     display: none !important;
+  }
+  .mobile-no-scroll {
+
   }
 }
 

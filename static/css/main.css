@@ -185,15 +185,6 @@ p {
   padding-left: 0px;
 }
 
-
-.animating.ui.overlay.sidebar,
-.ui.visible.overlay.sidebar {
-  transition: transform 0.5s ease, 
-  -webkit-transform 0.5s ease !important;
-  position: absolute !important;
-  z-index: 999 !important;
-}
-
 div.ui.segment.transparent-menu-segment {
   margin-right: 30px;
   width: 100vw;

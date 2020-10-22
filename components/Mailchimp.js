@@ -64,8 +64,8 @@ class Mailchimp extends Component {
   constructor(props){
     super(props);
     this.state = {
-      viewPopup: true,
-      open: true,
+      viewPopup: false,
+      open: false,
     }
   }
 
@@ -75,8 +75,12 @@ class Mailchimp extends Component {
     if(visited) {
       this.setState({ viewPopup: false })
     } else {
-      localStorage["alreadyVisited"] = true;
-      this.setState({ viewPopup: true});
+      const timer = setTimeout(() => {
+        localStorage["alreadyVisited"] = true;
+        this.setState({ viewPopup: true });
+        this.setState({ open: true });
+      }, 7500);
+      return () => clearTimeout(timer);
     }
   }
 
