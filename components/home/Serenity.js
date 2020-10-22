@@ -290,7 +290,7 @@ const Serenity = () => {
             <Button
               color="blue"
               className="play-button"
-              href={`https://play.decentraland.org/?position=-120%2C135&realm=${realm}`}
+              href={`https://play.decentraland.org/?position=-60%2C138&realm=${realm}`}
               target="_blank"
               style={{ marginRight: '30px' }}
             >

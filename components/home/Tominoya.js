@@ -286,6 +286,7 @@ const Tominoya = () => {
           </div>
         ) : (
           <div className="home-dashboard-content">
+
             <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
               Tominoya

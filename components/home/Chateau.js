@@ -286,6 +286,7 @@ const Chateau = () => {
           </div>
         ) : (
           <div className="home-dashboard-content">
+
             <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
               Chateau Satoshi
@@ -293,7 +294,7 @@ const Chateau = () => {
             <Button
               color="blue"
               className="play-button"
-              href={`https://play.decentraland.org/?position=-120%2C135&realm=${realm}`}
+              href={`https://play.decentraland.org/?position=-75%2C77&realm=${realm}`}
               target="_blank"
               style={{ marginRight: '30px' }}
             >

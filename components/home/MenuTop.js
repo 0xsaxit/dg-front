@@ -125,7 +125,7 @@ const MenuTop = ({ toggleTheme }) => {
       if ('/' === router.pathname && !open ) {
         return 'menu-container';
       } else {
-        return 'other-menu-container blog';
+        return 'menu-container blog';
       }
     } else {
       if (path === router.pathname) {
