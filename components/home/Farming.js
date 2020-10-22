@@ -18,8 +18,10 @@ const Farming = () => {
   // define local variables
   const [DGstate, setDGState] = useState('mining');
   const [isLoading, setIsLoading] = useState(true);
+  const [addresses, setAddresses] = useState({});
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
+  const [BPTContract, setBPTContract] = useState({});
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
   const [instances, setInstances] = useState(false);
@@ -51,13 +53,17 @@ const Farming = () => {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
-        // const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.API_ADDRESSES;
+        setAddresses(addresses);
 
         const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
 
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
+
+        const BPTContract = await Transactions.BPTContract(web3);
+        setBPTContract(BPTContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -141,14 +147,36 @@ const Farming = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   async function staking() {
-    console.log('Call stake() function on smart contract');
-
     try {
+      console.log(
+        'Get amount user has authorized our staking contract to spend'
+      );
+
+      const amount = await BPTContract.methods
+        .allowance(userAddress, addresses.DG_STAKING_ADDRESS)
+        .call();
+
+      console.log('Autorized amount: ' + amount);
+
+      if (amount < '10000000000000000000') {
+        console.log("Approve staking contract to spend user's tokens");
+
+        const data = await BPTContract.methods
+          .approve(addresses.DG_STAKING_ADDRESS, Global.CONSTANTS.MAX_AMOUNT)
+          .send({ from: userAddress });
+
+        console.log('approve() transaction confirmed: ' + data.transactionHash);
+      }
+
+      console.log('Call stake() function on smart contract');
+
       const data = await stakingContract.methods
         .stake('10000000000000000000')
         .send({ from: userAddress });
+
+      console.log('stake() transaction completed: ' + data.transactionHash);
     } catch (error) {
-      console.log('stake() function call error: ' + error);
+      console.log('stake() transaction error: ' + error);
     }
   }
 
@@ -160,10 +188,10 @@ const Farming = () => {
         .getReward()
         .send({ from: userAddress });
 
-      console.log('getReward() call completed...');
+      console.log('getReward() transaction completed: ' + data);
       console.log(data);
     } catch (error) {
-      console.log('getReward() function call error: ' + error);
+      console.log('getReward() transaction error: ' + error);
     }
   }
 

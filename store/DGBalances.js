@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
-import ABI_BALANCER_POOL_TOKEN from '../components/ABI/ABIBalancerPoolToken';
+// import ABI_BALANCER_POOL_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
@@ -45,10 +45,11 @@ function DGBalances() {
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
-        const BPTContract = new web3.eth.Contract(
-          ABI_BALANCER_POOL_TOKEN,
-          addresses.BP_TOKEN_ADDRESS
-        );
+        // const BPTContract = new web3.eth.Contract(
+        //   ABI_BALANCER_POOL_TOKEN,
+        //   addresses.BP_TOKEN_ADDRESS
+        // );
+        const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
         setInstances(true); // contract instantiation complete
