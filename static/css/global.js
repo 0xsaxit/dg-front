@@ -56,7 +56,8 @@ export const GlobalStyles = createGlobalStyle`
   .matic-header-text,
   .menu-info-close,
   .mailchimp-close,
-  .hljs {
+  .hljs,
+  .mailchimp-other-inner-p.subtext {
     color: ${({ theme }) => theme.text} !important;
   }
 
