@@ -112,6 +112,9 @@ class Mailchimp extends Component {
 
             <Divider style={{ marginTop: '-15px', width: 'calc(100% + 60px)', marginLeft: '-30px' }} />
 
+            <div className="mailchimp-other-inner-p subtext">Access Decentral Games before it's open to the public.
+            Register now!</div>
+
             <MailchimpSubscribe
               url={url}
               render={({ subscribe, status, message }) => (
