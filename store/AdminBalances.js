@@ -157,7 +157,7 @@ function AdminBalances() {
     //   ABI_TREASURY_CONTRACT,
     //   contractAddress
     // );
-    const parentContract = await Transactions.getTreasuryContract(maticWeb3);
+    const parentContract = await Transactions.treasuryContract(maticWeb3);
 
     try {
       const amount = await parentContract.methods

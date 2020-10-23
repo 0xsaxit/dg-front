@@ -92,7 +92,7 @@ const Offerings = () => {
     if (document.readyState === 'complete') {
       setDoneLoading(false);
     }
-  });
+  }, []);
 
   //  useEffect(() => {
   //   const fetchData = async () => {

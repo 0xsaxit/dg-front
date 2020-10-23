@@ -5,7 +5,7 @@ import ABI_BALANCER_POOL_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import Global from '../components/Constants';
 
 // set treasury contract instance
-async function getTreasuryContract(web3Default) {
+async function treasuryContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
 
   const treasuryContract = new web3Default.eth.Contract(
@@ -20,7 +20,7 @@ async function getTreasuryContract(web3Default) {
 async function getActiveStatus(userAddress, web3Default) {
   console.log("Get user's active status from smart contract");
 
-  const treasuryContract = await getTreasuryContract(web3Default);
+  const treasuryContract = await treasuryContract(web3Default);
 
   try {
     const activeStatus = await treasuryContract.methods
@@ -94,7 +94,7 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
 }
 
 export default {
-  getTreasuryContract,
+  treasuryContract,
   getActiveStatus,
   balanceOfToken,
   pointerContract,

@@ -43,7 +43,7 @@ function ActiveStatus() {
 
       (async function () {
         const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-        treasuryContract = await Transactions.getTreasuryContract(getWeb3);
+        treasuryContract = await Transactions.treasuryContract(getWeb3);
 
         const activeStatus = await Transactions.getActiveStatus(
           userAddress,
@@ -92,7 +92,7 @@ function ActiveStatus() {
     try {
       console.log('Session Duration: ' + sessionDuration);
 
-      // const treasuryContract = await Transactions.getTreasuryContract(getWeb3);
+      // const treasuryContract = await Transactions.treasuryContract(getWeb3);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = treasuryContract.methods

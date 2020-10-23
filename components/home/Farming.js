@@ -32,14 +32,23 @@ const Farming = () => {
     if (document.readyState === 'complete') {
       setIsLoading(false);
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      (async () => {
+        const addresses = await Global.API_ADDRESSES;
+        setAddresses(addresses);
+      })();
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 
-      // initialize Web3 providers and create token contract instance
+      // initialize Web3 providers and create contract instances
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
@@ -53,8 +62,8 @@ const Farming = () => {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
-        setAddresses(addresses);
+        // const addresses = await Global.API_ADDRESSES;
+        // setAddresses(addresses);
 
         const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
@@ -156,7 +165,7 @@ const Farming = () => {
         .allowance(userAddress, addresses.DG_STAKING_ADDRESS)
         .call();
 
-      console.log('Autorized amount: ' + amount);
+      console.log('Authorized amount: ' + amount);
 
       if (amount < '10000000000000000000') {
         console.log("Approve staking contract to spend user's tokens");
@@ -176,7 +185,7 @@ const Farming = () => {
 
       console.log('stake() transaction completed: ' + data.transactionHash);
     } catch (error) {
-      console.log('stake() transaction error: ' + error);
+      console.log('Staking transactions error: ' + error);
     }
   }
 

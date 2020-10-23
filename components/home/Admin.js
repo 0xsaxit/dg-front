@@ -55,7 +55,7 @@ const Admin = () => {
 
       // get treasury contract's paused status (true or false)
       (async function () {
-        treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
+        treasuryContract = await Transactions.treasuryContract(maticWeb3);
 
         const pauseStatus = await treasuryContract.methods.paused().call();
         setIsPaused(pauseStatus);
@@ -73,7 +73,7 @@ const Admin = () => {
     //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
     // ); // pass Matic provider to maticWeb3 object
 
-    treasuryContract = await Transactions.getTreasuryContract(maticWeb3);
+    treasuryContract = await Transactions.treasuryContract(maticWeb3);
 
     async function fetchData() {
       const response = await treasuryContract.methods.paused().call();

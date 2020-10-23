@@ -93,7 +93,7 @@ const Tokens = () => {
     if (document.readyState === 'complete') {
       setDoneLoading(false);
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (Object.keys(state.parcelDataUser).length) {

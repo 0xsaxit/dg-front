@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Label } from 'semantic-ui-react';
 import Aux from '../_Aux';
-// import Global from '../Constants';
 import Images from '../../common/Images';
 import ButtonReward from '../button/ButtonReward';
 

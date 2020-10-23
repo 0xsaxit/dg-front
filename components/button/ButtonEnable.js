@@ -47,9 +47,7 @@ function ButtonEnable() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        const treasuryContract = await Transactions.getTreasuryContract(
-          getWeb3
-        );
+        const treasuryContract = await Transactions.treasuryContract(getWeb3);
 
         // if (transaction) metaTransaction(); // MetaMask popup window
         setTreasuryContract(treasuryContract);

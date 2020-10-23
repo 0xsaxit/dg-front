@@ -71,7 +71,7 @@ const ContentModal = (props) => {
         // const parentContract = web3Default.eth
         //   .contract(ABI_TREASURY_CONTRACT)
         //   .at(contractAddress);
-        const parentContract = await Transactions.getTreasuryContract(web3);
+        const parentContract = await Transactions.treasuryContract(web3);
 
         parentContract.addFunds(
           gameID,
@@ -122,7 +122,7 @@ const ContentModal = (props) => {
         // const PARENT_CONTRACT = web3Default.eth
         //   .contract(ABI_TREASURY_CONTRACT)
         //   .at(contractAddress);
-        const parentContract = await Transactions.getTreasuryContract(web3);
+        const parentContract = await Transactions.treasuryContract(web3);
 
         parentContract.withdrawGameTokens(
           gameID,

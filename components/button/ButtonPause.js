@@ -63,7 +63,7 @@ function ButtonPause(props) {
         // const parentContract = web3Default.eth
         //   .contract(ABI_TREASURY_CONTRACT)
         //   .at(contractAddress);
-        const parentContract = await Transactions.getTreasuryContract(web3);
+        const parentContract = await Transactions.treasuryContract(web3);
 
         if (toggle) {
           parentContract.pause(

@@ -88,7 +88,7 @@ function DGBalances() {
     }
   }, [instances]);
 
-  // get user's DG staking balance every second for the reward period duration
+  // get user's DG staking balance every few seconds for the reward period duration
   useEffect(() => {
     if (state.stakeTime) {
       const currentTime = Math.round(new Date().getTime() / 1000);
