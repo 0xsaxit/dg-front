@@ -13,7 +13,7 @@ function ActiveStatus() {
 
   // define local variables
   let userAddress = '';
-  let treasuryContract = {};
+  let parentContract = {};
   let web3 = {};
   let maticWeb3 = {};
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
@@ -25,7 +25,7 @@ function ActiveStatus() {
     ) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
-      // initialize Web3 providers and create token contract instance
+      // initialize Web3 providers and create treasury contract instance
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       // maticWeb3 = new Web3(
@@ -43,7 +43,7 @@ function ActiveStatus() {
 
       (async function () {
         const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
-        treasuryContract = await Transactions.treasuryContract(getWeb3);
+        parentContract = await Transactions.treasuryContract(getWeb3);
 
         const activeStatus = await Transactions.getActiveStatus(
           userAddress,
@@ -92,10 +92,8 @@ function ActiveStatus() {
     try {
       console.log('Session Duration: ' + sessionDuration);
 
-      // const treasuryContract = await Transactions.treasuryContract(getWeb3);
-
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = treasuryContract.methods
+      let functionSignature = parentContract.methods
         .enableAccount(sessionDuration)
         .encodeABI();
 
@@ -103,7 +101,7 @@ function ActiveStatus() {
         1,
         functionSignature,
         sessionDuration,
-        treasuryContract,
+        parentContract,
         userAddress,
         web3
       );

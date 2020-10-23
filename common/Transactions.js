@@ -20,10 +20,10 @@ async function treasuryContract(web3Default) {
 async function getActiveStatus(userAddress, web3Default) {
   console.log("Get user's active status from smart contract");
 
-  const treasuryContract = await treasuryContract(web3Default);
+  const treasuryInstance = await treasuryContract(web3Default);
 
   try {
-    const activeStatus = await treasuryContract.methods
+    const activeStatus = await treasuryInstance.methods
       .isEnabled(userAddress)
       .call();
 

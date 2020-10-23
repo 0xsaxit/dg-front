@@ -24,10 +24,12 @@ const Admin = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
-  const [maticWeb3, setMaticWeb3] = useState({});
+  const [parentContract, setParentContract] = useState({});
+  // const [maticWeb3, setMaticWeb3] = useState({});
+  const [instances, setInstances] = useState(false);
 
   // let maticWeb3 = {};
-  let treasuryContract = {};
+  // let treasuryContract = {};
 
   useEffect(() => {
     if (state.userStatus) {
@@ -50,20 +52,31 @@ const Admin = () => {
       // maticWeb3 = new Web3(
       //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       // ); // pass Matic provider to maticWeb3 object
+
+      // initialize maticWeb3 provider and create treasury contract instance
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-      setMaticWeb3(maticWeb3);
+      // setMaticWeb3(maticWeb3);
 
-      // get treasury contract's paused status (true or false)
       (async function () {
-        treasuryContract = await Transactions.treasuryContract(maticWeb3);
+        const parentContract = await Transactions.treasuryContract(maticWeb3);
+        setParentContract(parentContract);
 
-        const pauseStatus = await treasuryContract.methods.paused().call();
+        setInstances(true);
+      })();
+    }
+  }, [state.userStatus]);
+
+  // get treasury contract's paused status (true or false)
+  useEffect(() => {
+    if (instances) {
+      (async () => {
+        const pauseStatus = await parentContract.methods.paused().call();
         setIsPaused(pauseStatus);
 
         console.log('Pause status: ' + pauseStatus);
       })();
     }
-  }, [state.userStatus]);
+  }, [instances]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -73,10 +86,10 @@ const Admin = () => {
     //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
     // ); // pass Matic provider to maticWeb3 object
 
-    treasuryContract = await Transactions.treasuryContract(maticWeb3);
+    // treasuryContract = await Transactions.treasuryContract(maticWeb3);
 
     async function fetchData() {
-      const response = await treasuryContract.methods.paused().call();
+      const response = await parentContract.methods.paused().call();
 
       console.log('Response status: ' + response);
       console.log('Current status: ' + isPaused);

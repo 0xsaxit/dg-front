@@ -15,7 +15,7 @@ function ButtonEnable() {
 
   // define local variables
   const [userAddress, setUserAddress] = useState('');
-  const [treasuryContract, setTreasuryContract] = useState({});
+  const [parentContract, setParentContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [maticWeb3, setMaticWeb3] = useState({});
 
@@ -47,10 +47,10 @@ function ButtonEnable() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        const treasuryContract = await Transactions.treasuryContract(getWeb3);
+        const parentContract = await Transactions.treasuryContract(getWeb3);
 
         // if (transaction) metaTransaction(); // MetaMask popup window
-        setTreasuryContract(treasuryContract);
+        setParentContract(parentContract);
       })();
 
       biconomy
@@ -89,7 +89,7 @@ function ButtonEnable() {
       console.log('Session Duration: ' + sessionDuration);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = treasuryContract.methods
+      let functionSignature = parentContract.methods
         .enableAccount(sessionDuration)
         .encodeABI();
 
@@ -97,7 +97,7 @@ function ButtonEnable() {
         1,
         functionSignature,
         sessionDuration,
-        treasuryContract,
+        parentContract,
         userAddress,
         web3
       );

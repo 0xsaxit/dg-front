@@ -155,7 +155,11 @@ const Farming = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  async function staking() {
+  async function staking(amount) {
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = amountAdjusted.toString();
+    console.log('Staking amount input: ' + amountToString);
+
     try {
       console.log(
         'Get amount user has authorized our staking contract to spend'
@@ -167,7 +171,7 @@ const Farming = () => {
 
       console.log('Authorized amount: ' + amount);
 
-      if (amount < '10000000000000000000') {
+      if (amount < amountToString) {
         console.log("Approve staking contract to spend user's tokens");
 
         const data = await BPTContract.methods
@@ -180,7 +184,7 @@ const Farming = () => {
       console.log('Call stake() function on smart contract');
 
       const data = await stakingContract.methods
-        .stake('10000000000000000000')
+        .stake(amountToString)
         .send({ from: userAddress });
 
       console.log('stake() transaction completed: ' + data.transactionHash);

@@ -11,9 +11,11 @@ const ContentModal = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [parentContract, setParentContract] = useState({});
   const [amount, setAmount] = useState(0);
   const [transaction, setTransaction] = useState(false);
   const [web3, setWeb3] = useState({});
+  const [instances, setInstances] = useState(false);
 
   let userAddress = '';
   // let web3 = {};
@@ -23,13 +25,21 @@ const ContentModal = (props) => {
     if (state.userStatus) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
+      // initialize web3 provider and create treasury contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      // (async function () {
-      // const addresses = await Global.API_ADDRESSES;
-      // contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+      (async function () {
+        const parentContract = await Transactions.treasuryContract(web3);
+        setParentContract(parentContract);
 
+        setInstances(true);
+      })();
+    }
+  }, [state.userStatus, transaction, amount]);
+
+  useEffect(() => {
+    if (instances) {
       if (transaction && amount) {
         if (props.type === 'deposit') {
           depositFunds(); // MetaMask popup window
@@ -39,9 +49,8 @@ const ContentModal = (props) => {
       } else {
         setTransaction(false);
       }
-      // })();
     }
-  }, [state.userStatus, transaction, amount]);
+  }, [instances, transaction, amount]);
 
   function inputChange(e) {
     const valueWei = e.target.value * Global.CONSTANTS.FACTOR;
@@ -68,10 +77,7 @@ const ContentModal = (props) => {
       console.log('Deposit start: ' + amount);
 
       try {
-        // const parentContract = web3Default.eth
-        //   .contract(ABI_TREASURY_CONTRACT)
-        //   .at(contractAddress);
-        const parentContract = await Transactions.treasuryContract(web3);
+        // const parentContract = await Transactions.treasuryContract(web3);
 
         parentContract.addFunds(
           gameID,
@@ -119,10 +125,7 @@ const ContentModal = (props) => {
       console.log('Withdraw start: ' + amount);
 
       try {
-        // const PARENT_CONTRACT = web3Default.eth
-        //   .contract(ABI_TREASURY_CONTRACT)
-        //   .at(contractAddress);
-        const parentContract = await Transactions.treasuryContract(web3);
+        // const parentContract = await Transactions.treasuryContract(web3);
 
         parentContract.withdrawGameTokens(
           gameID,

@@ -22,7 +22,7 @@ const History = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(props.message);
+  // console.log(props.message);
 
   useEffect(() => {
     if (state.userStatus) {

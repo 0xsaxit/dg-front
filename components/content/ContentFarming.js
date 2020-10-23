@@ -13,6 +13,7 @@ const ContentFarming = (props) => {
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
+  const [amountInput, setAmountInput] = useState(0);
 
   var onPool;
   if (poolSelect === 1) {
@@ -340,20 +341,30 @@ const ContentFarming = (props) => {
                 className="liquidity-input"
                 fluid
                 action="All"
-                placeholder="10"
+                placeholder={amountInput}
               />
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <p className="bpt-text"> 0 BPT </p>
-                <p className="bpt-text"> 0 BPT staked</p>
+                <p
+                  className="bpt-text"
+                  onClick={() => setAmountInput(state.staking[2])}
+                >
+                  {state.staking[2]} BPT
+                </p>
+                <p
+                  className="bpt-text"
+                  onClick={() => setAmountInput(state.staking[1])}
+                >
+                  {state.staking[1]} BPT staked
+                </p>
               </span>
 
               <span className="DG-button-span">
                 <Button
                   className="DG-stake-button"
-                  onClick={() => props.staking()}
+                  onClick={() => props.staking(amountInput)}
                 >
                   STAKE LP
                 </Button>

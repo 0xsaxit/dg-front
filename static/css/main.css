@@ -101,7 +101,7 @@ p {
 .ui.button.modal-info-button:hover,
 .ui.button.theme-mode-button:hover,
 .ui.button.more-dropdown-button:hover {
-  background-color: #2085f4 !important; 
+  background-color: #2085f4 !important;
 }
 
 .ui.blue.button.metamask-button {
@@ -227,7 +227,7 @@ div.ui.segment.transparent-menu-segment {
   padding-bottom: 0px !important;
   max-width: 1400px !important;
   margin-left: auto !important;
-  margin-right: auto !important; 
+  margin-right: auto !important;
 }
 
 .dashboard-menu-container {
@@ -240,7 +240,7 @@ div.ui.segment.transparent-menu-segment {
   ) !important;
 }
 
-.menu-container-dark, {
+.menu-container-dark {
   display: flex !important;
   flex-direction: row !important;
   border: none;
@@ -582,7 +582,7 @@ a.ui.blue.button.how-to-button {
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
 }
-  
+
 .home-dashboard-h2 {
   color: white !important;
   float: center;
@@ -605,7 +605,7 @@ a.ui.blue.button.how-to-button {
   margin-top: -12px;
 }
 
-.ui.dimmer, 
+.ui.dimmer,
 .transak_modal-overlay {
   background-color: rgba(13, 13, 13, 0.5) !important;
 }
@@ -717,7 +717,7 @@ a.ui.blue.button.how-to-button {
 
 .nft-container:hover {
   transform: translateY(-2px);
-  transition: all .0.25s ease 0s;
+  transition: all 0.25s ease 0s;
 }
 
 .outter-games-container {
@@ -874,7 +874,8 @@ a.ui.blue.button.play-button,
   border-radius: 2px;
 }
 
-.ui.button.medium, .ui.button {
+.ui.button.medium,
+.ui.button {
   font-size: 12px !important;
 }
 
@@ -1449,12 +1450,14 @@ deposit-notification-box-hidden {
 }
 
 .bpt-text {
+  cursor: pointer;
   font-size: 12px;
   font-weight: bold !important;
+  text-decoration: underline;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 9px 16px 0px 16px;
-  margin-bottom: -9px !important; 
+  margin-bottom: -9px !important;
 }
 
 .earned-amount {
@@ -1838,13 +1841,13 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   padding-top: 6px;
 }
 
-.ui.input>input {
+.ui.input > input {
   border-radius: 2px 0px 0px 2px;
   height: 39px;
   transition: none;
 }
 
-.ui.action.input > .button, 
+.ui.action.input > .button,
 .ui.action.input > .buttons {
   min-width: 12px;
   border-radius: 0px 2px 2px 0px !important;
@@ -1914,16 +1917,16 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 }
 
 .DG-column.top {
-  max-width: 100% !important;  
+  max-width: 100% !important;
 }
 
 .DG-column.unclaimed {
-  max-width: 22.75% !important;  
+  max-width: 22.75% !important;
   max-height: 183px;
 }
 
 .DG-column.liquidity-unclaimed {
-  max-width: 100% !important;  
+  max-width: 100% !important;
   max-height: 183px;
 }
 
@@ -2041,7 +2044,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   letter-spacing: 0.5px;
 }
 
-.ui.toggle.checkbox.checked input.hidden + label:before, 
+.ui.toggle.checkbox.checked input.hidden + label:before,
 .ui.toggle.checkbox.checked input.hidden:focus + label:before {
   background-color: #2085f4 !important;
 }
@@ -2372,7 +2375,3 @@ div.ui.grid.admin-balances-container {
   letter-spacing: 0.5px;
   margin-top: 12px;
 }
-
-
-
-
