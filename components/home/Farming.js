@@ -62,9 +62,6 @@ const Farming = () => {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
-        // const addresses = await Global.API_ADDRESSES;
-        // setAddresses(addresses);
-
         const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
 
@@ -165,13 +162,13 @@ const Farming = () => {
         'Get amount user has authorized our staking contract to spend'
       );
 
-      const amount = await BPTContract.methods
+      const amountAllowance = await BPTContract.methods
         .allowance(userAddress, addresses.DG_STAKING_ADDRESS)
         .call();
 
-      console.log('Authorized amount: ' + amount);
+      console.log('Authorized amount: ' + amountAllowance);
 
-      if (amount < amountToString) {
+      if (Number(amountAllowance) < amountAdjusted) {
         console.log("Approve staking contract to spend user's tokens");
 
         const data = await BPTContract.methods

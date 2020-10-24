@@ -1,19 +1,110 @@
-import { useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider, Input, Label } from 'semantic-ui-react';
+import { Button, Divider, Input } from 'semantic-ui-react';
+import Web3 from 'web3';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import ButtonReward from '../button/ButtonReward';
+import Global from '../Constants';
+import Transactions from '../../common/Transactions';
 
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [stakingContract, setStakingContract] = useState({});
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState(0);
+
+  // const [stakedTotal, setStakedTotal] = useState({});
+
+  const [percentagePool1, setPercentagePool1] = useState(0);
+  const [instances, setInstances] = useState(false);
+
+  const rewardAmount = '10000000000000000000'; // hard-coded reward amount
+
+  useEffect(() => {
+    if (state.userStatus) {
+      // const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
+      // setUserAddress(userAddress);
+
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+      async function fetchData() {
+        // const addresses = await Global.API_ADDRESSES;
+
+        // const workerAddress = addresses.WORKER_ADDRESS.toUpperCase();
+        // if (userAddress === workerAddress) setDisabled(false);
+
+        const stakingContract = await Transactions.stakingContract(web3);
+        setStakingContract(stakingContract);
+
+        setInstances(true); // contract instantiation complete
+      }
+      fetchData();
+    }
+  }, [state.userStatus]);
+
+  // get initial reward and timestamp values
+  useEffect(() => {
+    if (instances) {
+      // (async () => {
+      // const timestamp = await getPeriodFinish();
+
+      const rewardAdjusted = rewardAmount / Global.CONSTANTS.FACTOR;
+      rewardData(rewardAdjusted);
+      // })();
+    }
+  }, [instances]);
+
+  useEffect(() => {
+    if (instances) {
+      (async () => {
+        const addresses = await Global.API_ADDRESSES;
+
+        // const stakedTotal = stakingContract.balanceOf(
+        //   addresses.DG_STAKING_ADDRESS
+        // );
+        const stakedTotal = await Transactions.balanceOfToken(
+          stakingContract,
+          addresses.DG_STAKING_ADDRESS,
+          3
+        );
+
+        console.log('staked balance: ' + state.staking[1]);
+        console.log('total staked: ' + stakedTotal);
+
+        // parseFloat(stakedTotal)
+        const stakedTotalNum = parseFloat(stakedTotal);
+
+        if (state.staking[1] !== 0 && stakedTotalNum !== 0) {
+          const percentagePool1 = state.staking[1] / stakedTotal;
+          setPercentagePool1(percentagePool1);
+        } else {
+          setPercentagePool1(0);
+        }
+
+        console.log('pool 1 percentage: ' + percentagePool1);
+
+        // setStakedTotal(stakedTotal);
+      })();
+    }
+  }, [instances]);
+
+  async function getPeriodFinish() {
+    console.log('Return reward period finish time');
+
+    try {
+      const timestamp = await stakingContract.methods.periodFinish().call();
+
+      return timestamp;
+    } catch (error) {
+      console.log('Return reward period time error: ' + error);
+    }
+  }
 
   var onPool;
   if (poolSelect === 1) {
@@ -235,7 +326,7 @@ const ContentFarming = (props) => {
                     <span
                       onClick={onPool}
                       id="pool-select-icon"
-                      class="material-icons"
+                      className="material-icons"
                     >
                       unfold_more
                     </span>
@@ -246,7 +337,7 @@ const ContentFarming = (props) => {
                     <span
                       onClick={onPool}
                       id="pool-select-icon"
-                      class="material-icons"
+                      className="material-icons"
                     >
                       unfold_more
                     </span>
@@ -310,8 +401,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> % of pool 1</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-text">% of pool 1</p>
+                    <p className="earned-amount">{percentagePool1}</p>
                   </span>
                 </span>
 
@@ -329,8 +420,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> pool 1 rate </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-text">pool 1 rate</p>
+                    <p className="earned-amount">{currenReward / 40}</p>
                   </span>
                 </span>
               </div>
@@ -342,6 +433,7 @@ const ContentFarming = (props) => {
                 fluid
                 action="All"
                 placeholder={amountInput}
+                onChange={handleChange}
               />
 
               <span
@@ -463,6 +555,12 @@ const ContentFarming = (props) => {
         </div>
       </Aux>
     );
+  }
+
+  function handleChange(e) {
+    console.log('New amount: ' + e.target.value);
+
+    setAmountInput(e.target.value);
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -647,7 +745,9 @@ const ContentFarming = (props) => {
               <p>Reward period finish time: {finishTime}</p>
               <p>
                 <ButtonReward
-                  rewardData={(amount, time) => rewardData(amount, time)}
+                  stakingContract={stakingContract}
+                  rewardAmount={rewardAmount}
+                  rewardData={(amount) => rewardData(amount)}
                 />
               </p>
             </span>
@@ -657,8 +757,10 @@ const ContentFarming = (props) => {
     );
   }
 
-  function rewardData(amountReward, timestamp) {
+  async function rewardData(amountReward) {
     console.log('current reward: ' + amountReward);
+
+    const timestamp = await getPeriodFinish();
     console.log('current timestamp: ' + timestamp);
 
     const date = new Date(timestamp * 1000);

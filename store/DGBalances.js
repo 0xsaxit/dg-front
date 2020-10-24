@@ -19,7 +19,10 @@ function DGBalances() {
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
 
+  // const [currentTime, setCurrentTime] = useState(0);
+
   let interval = {};
+  let currentTime = 0;
 
   useEffect(() => {
     if (state.userStatus) {
@@ -91,17 +94,19 @@ function DGBalances() {
   // get user's DG staking balance every few seconds for the reward period duration
   useEffect(() => {
     if (state.stakeTime) {
-      const currentTime = Math.round(new Date().getTime() / 1000);
+      currentTime = Math.round(new Date().getTime() / 1000);
 
-      console.log('curent time: ' + currentTime);
-      console.log('timestamp: ' + state.stakeTime);
+      // console.log('curent time: ' + currentTime);
+      // console.log('timestamp: ' + state.stakeTime);
+
+      // getCurrentTime();
 
       if (currentTime < state.stakeTime) {
         interval = setInterval(() => {
           (async () => {
             const balanceDGStaking = await getDGBalanceStaking();
-
             const arrayNew = state.DGBalances.slice();
+
             arrayNew[1] = balanceDGStaking;
 
             dispatch({
@@ -110,13 +115,39 @@ function DGBalances() {
             });
           })();
 
-          if (currentTime > state.stakeTime) clearInterval(interval);
-        }, 3000);
-      }
+          // getCurrentTime();
 
-      return () => clearInterval(interval);
+          currentTime = Math.round(new Date().getTime() / 1000);
+          if (currentTime >= state.stakeTime) clearInterval(interval);
+        }, 3000);
+
+        // } // else {
+        // clearInterval(interval);
+        // }
+
+        return () => clearInterval(interval);
+      }
     }
   }, [state.stakeTime]);
+
+  // useEffect(() => {
+  //   const time = Math.round(new Date().getTime() / 1000);
+
+  //   if (!currentTime) {
+  //     setCurrentTime(time);
+
+  //     console.log('curent time 1: ' + time);
+  //   } else if (time >= state.stakeTime) {
+  //     setCurrentTime(time);
+
+  //     console.log('curent time 2: ' + time);
+  //   }
+
+  //   // console.log('curent time: ' + currentTime);
+  //   // console.log('timestamp: ' + state.stakeTime);
+
+  //   // return currentTime;
+  // }, [state.arrayNew]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

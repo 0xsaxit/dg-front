@@ -27,7 +27,7 @@ const ButtonAffiliates = () => {
       >
         <Button className="affiliate-copied-button">
           Copied
-          <span class="material-icons" id="etherscan-button-icon">
+          <span className="material-icons" id="etherscan-button-icon">
             check
           </span>
         </Button>
@@ -44,7 +44,7 @@ const ButtonAffiliates = () => {
     >
       <Button className="affiliate-copy-button" onClick={() => onCopy()}>
         affiliate link
-        <span class="material-icons" id="etherscan-button-icon">
+        <span className="material-icons" id="etherscan-button-icon">
           content_copy
         </span>
       </Button>

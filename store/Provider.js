@@ -32,7 +32,7 @@ const initialState = {
   adminHistory: [[], []],
   DGBalances: [0, 0],
   staking: [[0], [0], [0]],
-  stake_time: 0,
+  stakeTime: 0,
   affiliateAddress: '',
 };
 

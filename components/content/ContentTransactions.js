@@ -84,7 +84,7 @@ const ContentTransactions = (props) => {
                     className="etherscan-button"
                   >
                     blockchain tx
-                    <span class="material-icons" id="etherscan-button-icon">
+                    <span className="material-icons" id="etherscan-button-icon">
                       launch
                     </span>
                   </Button>
@@ -164,14 +164,20 @@ const ContentTransactions = (props) => {
                       className="etherscan-button"
                     >
                       blockchain tx
-                      <span class="material-icons" id="etherscan-button-icon">
+                      <span
+                        className="material-icons"
+                        id="etherscan-button-icon"
+                      >
                         launch
                       </span>
                     </Button>
                   ) : (
                     <Button disabled className="etherscan-button">
                       blockchain tx
-                      <span class="material-icons" id="etherscan-button-icon">
+                      <span
+                        className="material-icons"
+                        id="etherscan-button-icon"
+                      >
                         launch
                       </span>
                     </Button>
