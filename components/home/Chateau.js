@@ -49,13 +49,13 @@ const Chateau = () => {
       let temp = [];
 
       // setTotalPlayers(json.totalPlayers);
-      setRealm(json.topServerRealm.realm);
-      setPlayerCount(json.topServerRealm.playerCount);
-      setOnlineUsers(json.totalAddresses);
-      setTotal(json.totalPlayers);
+      setRealm(json.chateau.topServerRealm.realm);
+      setPlayerCount(json.chateau.topServerRealm.playerCount);
+      setOnlineUsers(json.chateau.totalAddresses);
+      setTotal(json.chateau.totalPlayers);
 
-      for (const [index, value] of json.totalAddresses.entries()) {
-        temp.push(json.totalAddresses[index]);
+      for (const [index, value] of json.chateau.totalAddresses.entries()) {
+        temp.push(json.chateau.totalAddresses[index]);
       }
 
       setOnlineUsers(temp);
@@ -115,11 +115,11 @@ const Chateau = () => {
             <span>
               {total === 1 ? (
                 <p className="home-dashboard-p">
-                  {total} player online
+                  {total} player online in Chateau Satoshi
                 </p>
               ) : (
                 <p className="home-dashboard-p">
-                  {total} players online
+                  {total} players online in Chateau Satoshi
                 </p>
               )}
             </span>

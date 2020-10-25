@@ -431,7 +431,6 @@ const ContentFarming = (props) => {
               <Input
                 className="liquidity-input"
                 fluid
-                action="All"
                 placeholder={amountInput}
                 onChange={handleChange}
               />
@@ -531,7 +530,6 @@ const ContentFarming = (props) => {
               <Input
                 className="liquidity-input"
                 fluid
-                action="All"
                 placeholder="Amount"
               />
 
@@ -675,7 +673,6 @@ const ContentFarming = (props) => {
               <Input
                 className="liquidity-input"
                 fluid
-                action="All"
                 placeholder="Amount"
               />
 

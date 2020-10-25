@@ -30,7 +30,7 @@ const detailsNFTs = {
     '$DG Mink',
     'LEGENDARY',
     'An opulent fur coat made and produced using only the finest of mink furs. #extrasaus',
-    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/66',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/97/',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_top: [
@@ -39,7 +39,7 @@ const detailsNFTs = {
     'Tracksuit Top',
     'LEGENDARY',
     'The top portion of the decadent and elegant Decentral Games tracksuit fit. #drip',
-    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/67',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/98/',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_bottom: [
@@ -48,7 +48,7 @@ const detailsNFTs = {
     'Tracksuit Bottom',
     'LEGENDARY',
     'The bottom portion of the decadent and elegant Decentral Games tracksuit fit. #drip',
-    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/65',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/96/',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   shades: [
@@ -57,7 +57,7 @@ const detailsNFTs = {
     'Spectacles',
     'LEGENDARY',
     'Swaggy flip up shades designed to be wearable at any occassion. #ice',
-    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/81',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/93/',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   yeezies: [
@@ -66,7 +66,7 @@ const detailsNFTs = {
     'Deezys',
     'LEGENDARY',
     'street wear inspired comfy kicks inspired by the latest fashion. #ye',
-    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/35Shoes',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/94/',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   slides: [
@@ -75,7 +75,7 @@ const detailsNFTs = {
     '$DG Slides',
     'LEGENDARY',
     'Lazy day but designer slides complete with socks to keep your toes warm.',
-    'https://market.decentraland.org/contracts/0xbf53c33235cbfc22cef5a61a83484b86342679c5/tokens/25Slides',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/95/',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
 };
