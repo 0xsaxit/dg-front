@@ -143,6 +143,7 @@ const Chateau = () => {
                       boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                       backgroundColor: 'white',
                     }}
+                    alt="Decentraland Avatar Image"
                   />
                   <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
                 </span>
@@ -168,6 +169,7 @@ const Chateau = () => {
                       boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                       backgroundColor: 'white',
                     }}
+                    alt="Decentraland Avatar Image"
                   />
                 </div>
               );
@@ -251,6 +253,7 @@ const Chateau = () => {
                             boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                             backgroundColor: 'white',
                           }}
+                          alt="Decentraland Avatar Image"
                         />
                         <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
                       </span>
@@ -275,6 +278,7 @@ const Chateau = () => {
                           boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                           backgroundColor: 'white',
                         }}
+                        alt="Decentraland Avatar Image"
                       />
                     );
                   })}

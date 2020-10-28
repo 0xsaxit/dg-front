@@ -152,7 +152,7 @@ const MenuTop = ({ toggleTheme }) => {
   function DGLogo() {
     return (
       <Link href="/">
-        <img id="menu-logo" src={Images.LOGO} />
+        <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
       </Link>
     );
   }
@@ -308,6 +308,7 @@ const MenuTop = ({ toggleTheme }) => {
                   boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                   backgroundColor: 'white',
                 }}
+                alt="Decentraland Avatar Image"
               />
             </span>
           </span>

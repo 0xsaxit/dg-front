@@ -475,28 +475,26 @@ div.ui.segment.transparent-menu-segment {
   max-width: 1400px !important;
   margin-right: auto !important;
   margin-left: auto !important;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
 }
 
 .pagination-additional-class {
-  displaay: flex;
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: calc(50% - 27px);
+  right: 30px;
 }
 
 .page-indicator-text {
-  text-align: right;
-  color: rgb(192, 195, 197);
-  margin: 9px 0px 0px 0px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin: 12px 0px 0px 0px;
+  height: 8px;
+  width: 8px;
 }
 
 .page-indicator-text.active {
-  color: white;
-  font-size: 16px;
-  transition: all 0.2s ease;
+  background: white;
 }
 
 .home-dashboard-content {

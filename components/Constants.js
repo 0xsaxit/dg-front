@@ -23,7 +23,7 @@ const CONSTANTS = {
   MATIC_EXPLORER: 'https://mumbai-explorer.matic.today',
   TITLE: 'Decentral Games',
   DESCRIPTION:
-    '3D multiplayer games playable with cryptocurrency in Decentraland. Provably fair game logic, non-custodial accounts, immediate payouts. Sign up in seconds to play today!',
+    'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
 };

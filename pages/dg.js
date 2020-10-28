@@ -14,7 +14,7 @@ const dg = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | DG'}
+        title={Global.CONSTANTS.TITLE + ' | $DG'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
