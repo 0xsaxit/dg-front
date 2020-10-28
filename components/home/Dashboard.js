@@ -50,9 +50,9 @@ const Dashboard = () => {
 
           <span className="pagination-container">
             <div className="pagination-additional-class">
-              <div className={ currentPage === 0 ? "page-indicator-dot active" : "page-indicator-dot" } />
-              <div className={ currentPage === 1 ? "page-indicator-dot active" : "page-indicator-dot" } />
-              <div className={ currentPage === 2 ? "page-indicator-dot active" : "page-indicator-dot" } />
+              <div className={ currentPage === 0 ? "page-indicator-text active" : "page-indicator-text" }> Chateau Satoshi </div>
+              <div className={ currentPage === 1 ? "page-indicator-text active" : "page-indicator-text" }> Tominoya </div>
+              <div className={ currentPage === 2 ? "page-indicator-text active" : "page-indicator-text" }> Serenity Island </div>
             </div>
           </span>
 
