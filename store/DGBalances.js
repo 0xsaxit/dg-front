@@ -76,15 +76,15 @@ function DGBalances() {
           data: [balanceDG1, balanceDG2],
         });
 
-        // update global state staking DG and balancer pool token
-        const balanceStaking = await getDGTotalStaking();
+        // update global state staking DG and balancer pool tokens
+        const balanceStaking = await getTokensStaking();
 
         console.log('balance staking DG:  ' + balanceStaking[0]);
         console.log('balance staking BPT (contract):  ' + balanceStaking[1]);
         console.log('balance staking BPT (wallet):  ' + balanceStaking[2]);
 
         dispatch({
-          type: 'staking',
+          type: 'staking_balances',
           data: balanceStaking,
         });
       })();
@@ -152,17 +152,23 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's total staking contract & wallet DG balance
-  async function getDGTotalStaking() {
-    console.log('Get DG contract staking balances');
+  async function getTokensStaking() {
+    console.log('Get staking DG & BPT balances');
 
     try {
+      const contractBalanceBPT = await Transactions.balanceOfToken(
+        BPT_CONTRACT,
+        addresses.DG_STAKING_ADDRESS,
+        3
+      );
+
       const contractBalanceDG = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
         addresses.DG_STAKING_ADDRESS,
         3
       );
 
-      const contractBalanceBPT = await Transactions.balanceOfToken(
+      const stakedBalanceBPT = await Transactions.balanceOfToken(
         stakingContract,
         userAddress,
         3
@@ -174,9 +180,14 @@ function DGBalances() {
         3
       );
 
-      return [contractBalanceDG, contractBalanceBPT, walletBalanceBPT];
+      return [
+        contractBalanceBPT,
+        contractBalanceDG,
+        stakedBalanceBPT,
+        walletBalanceBPT,
+      ];
     } catch (error) {
-      console.log('Get DG staking balance error: ' + error);
+      console.log('Staking DG & BPT balances error: ' + error);
     }
   }
 

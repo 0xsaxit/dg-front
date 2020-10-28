@@ -63,36 +63,39 @@ const ContentFarming = (props) => {
   useEffect(() => {
     if (instances) {
       (async () => {
-        const addresses = await Global.API_ADDRESSES;
+        // const addresses = await Global.API_ADDRESSES;
 
-        // const stakedTotal = stakingContract.balanceOf(
-        //   addresses.DG_STAKING_ADDRESS
+        // const stakedTotal = await Transactions.balanceOfToken(
+        //   stakingContract,
+        //   addresses.DG_STAKING_ADDRESS,
+        //   3
         // );
-        const stakedTotal = await Transactions.balanceOfToken(
-          stakingContract,
-          addresses.DG_STAKING_ADDRESS,
-          3
-        );
+        const stakedTotal = await stakingContract.methods.totalSupply().call();
+        const stakedTotalAdjusted = stakedTotal / Global.CONSTANTS.FACTOR;
 
-        console.log('staked balance: ' + state.staking[1]);
-        console.log('total staked: ' + stakedTotal);
+        // console.log('staked balance: ' + state.stakingBalances[1]);
+        // console.log('total staked: ' + stakedTotalAdjusted);
 
         // parseFloat(stakedTotal)
-        const stakedTotalNum = parseFloat(stakedTotal);
+        // const stakedTotalNum = parseFloat(stakedTotal);
 
-        if (state.staking[1] !== 0 && stakedTotalNum !== 0) {
-          const percentagePool1 = state.staking[1] / stakedTotal;
-          setPercentagePool1(percentagePool1);
+        if (stakedTotal) {
+          const percentagePool1 =
+            state.stakingBalances[2] / stakedTotalAdjusted;
+          const percentageFixed = (percentagePool1 * 100).toFixed(3);
+
+          // console.log('pool 1 percentage: ' + percentagePool1);
+          // console.log('pool 1 percentage (fixed): ' + percentageFixed);
+
+          setPercentagePool1(percentageFixed);
         } else {
           setPercentagePool1(0);
         }
 
-        console.log('pool 1 percentage: ' + percentagePool1);
-
         // setStakedTotal(stakedTotal);
       })();
     }
-  }, [instances]);
+  }, [instances, state.stakingBalances]);
 
   async function getPeriodFinish() {
     console.log('Return reward period finish time');
@@ -440,15 +443,15 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(state.staking[2])}
+                  onClick={() => setAmountInput(state.stakingBalances[3])}
                 >
-                  {state.staking[2]} BPT
+                  {state.stakingBalances[3]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(state.staking[1])}
+                  onClick={() => setAmountInput(state.stakingBalances[2])}
                 >
-                  {state.staking[1]} BPT staked
+                  {state.stakingBalances[2]} BPT staked
                 </p>
               </span>
 
@@ -459,9 +462,16 @@ const ContentFarming = (props) => {
                 >
                   STAKE LP
                 </Button>
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE LP
-                </Button>
+
+                {percentagePool1 ? (
+                  <Button className="DG-stake-button" onClick={props.exit}>
+                    UNSTAKE LP
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    UNSTAKE LP
+                  </Button>
+                )}
               </span>
             </div>
 
@@ -527,11 +537,7 @@ const ContentFarming = (props) => {
 
               <Divider />
 
-              <Input
-                className="liquidity-input"
-                fluid
-                placeholder="Amount"
-              />
+              <Input className="liquidity-input" fluid placeholder="Amount" />
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -670,11 +676,7 @@ const ContentFarming = (props) => {
 
               <Divider />
 
-              <Input
-                className="liquidity-input"
-                fluid
-                placeholder="Amount"
-              />
+              <Input className="liquidity-input" fluid placeholder="Amount" />
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -735,9 +737,8 @@ const ContentFarming = (props) => {
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">Liquidity Farming Administration</h3>
-              <p>DG Balance (contract): {state.staking[0]}</p>
-              <p>BPT Balance (contract): {state.staking[1]}</p>
-              <p>BPT Balance (wallet): {state.staking[2]}</p>
+              <p>BPT Balance in contract: {state.stakingBalances[0]}</p>
+              <p>DG Balance in contract: {state.stakingBalances[1]}</p>
               <p>Current reward amount: {currenReward}</p>
               <p>Reward period finish time: {finishTime}</p>
               <p>

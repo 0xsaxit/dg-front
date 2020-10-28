@@ -190,6 +190,20 @@ const Farming = () => {
     }
   }
 
+  async function exit() {
+    console.log('Call exit() function to unstake BP tokens');
+
+    try {
+      const data = await stakingContract.methods
+        .exit()
+        .send({ from: userAddress });
+
+      console.log('exit() transaction completed: ' + data.transactionHash);
+    } catch (error) {
+      console.log('Unstake BP tokens error: ' + error);
+    }
+  }
+
   async function getReward() {
     console.log('Call getReward() function to claim DG tokens');
 
@@ -333,6 +347,7 @@ const Farming = () => {
               content={DGstate}
               metaTransaction={metaTransaction}
               staking={staking}
+              exit={exit}
               getReward={getReward}
             />
           </div>

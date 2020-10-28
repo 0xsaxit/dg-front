@@ -31,7 +31,7 @@ const initialState = {
   ],
   adminHistory: [[], []],
   DGBalances: [0, 0],
-  staking: [[0], [0], [0]],
+  stakingBalances: [[0], [0], [0], [0]],
   stakeTime: 0,
   affiliateAddress: '',
 };
@@ -140,10 +140,10 @@ const reducer = (state, action) => {
         DGBalances: action.data,
       };
 
-    case 'staking':
+    case 'staking_balances':
       return {
         ...state,
-        staking: action.data,
+        stakingBalances: action.data,
       };
 
     case 'stake_time':
