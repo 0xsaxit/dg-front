@@ -175,7 +175,7 @@ const ContentFarming = (props) => {
           <span className="DG-tablet-container">
             <div className="DG-column one">
               <span style={{ display: 'flex' }}>
-                <img src={Images.MANA_CIRCLE} className="farming-logo" alt="Decentraland Logo">
+                <img src={Images.MANA_CIRCLE} className="farming-logo" alt="Decentraland Logo" />
                 <span className="farming-pool-span">
                   <p className="welcome-text"> Coin </p>
                   <p className="account-name">MANA</p>
