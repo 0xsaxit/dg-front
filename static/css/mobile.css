@@ -20,7 +20,6 @@
   left: 81px;
   z-index: 10;
   font-size: 23px !important; 
-  cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -36,6 +35,7 @@
 }
 
 #mobile-menu-icon:hover,
+#mobile-menu-icon-home:hover,
 #home-menu-icon:hover {
   cursor: pointer;
 }
@@ -59,8 +59,13 @@
   #menu-logo {
     margin-left: 15px;
   }
-  #mobile-menu-icon {
-    left: 66px;
+  #mobile-menu-icon,
+  #mobile-menu-icon-home {
+    position: relative;
+    left: 72px;
+  }
+  #dropdown-menu-items {
+    padding-left: 78px !important;
   }
   .ui.blue.button.metamask-button {
     display: none;
