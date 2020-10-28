@@ -190,8 +190,8 @@ const ContentModal = (props) => {
           style={{
             verticalAlign: 'middle',
             marginTop: '35px',
-            alt="Dai Logo"
           }}
+          alt="Dai Logo"
           className="image inline"
           width="21px"
           height="21px"
@@ -210,8 +210,8 @@ const ContentModal = (props) => {
           style={{
             verticalAlign: 'middle',
             marginTop: '35px',
-            alt="Decentraland Logo"
           }}
+          alt="Decentraland Logo"
           className="image inline"
           width="21px"
           height="21px"
