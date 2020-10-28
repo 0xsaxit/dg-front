@@ -92,14 +92,12 @@ const Chateau = () => {
     return (
       <div className="home-video-container">
         <video
-          id="myVideo"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1603235036/chateau_site_vid_ozjakq.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
           loop
           muted
-          className="home-dashboard-video"
         ></video>
       </div>
     );

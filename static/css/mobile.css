@@ -12,6 +12,17 @@
   font-size: 23px !important;
 }
 
+#mobile-menu-icon-home {
+  position: relative;
+  color: white;
+  background-color: transparent;
+  top: 50px;
+  left: 81px;
+  z-index: 10;
+  font-size: 23px !important; 
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
   .menu-info-to-hide {
     display: none;
@@ -42,8 +53,14 @@
   .ui.button.modal-deposit-button {
     display: none;
   }
-  .ui.button.modal-info-button {
+  .ui.button.more-dropdown-button {
     margin-right: 21px;
+  }
+  #menu-logo {
+    margin-left: 15px;
+  }
+  #mobile-menu-icon {
+    left: 66px;
   }
   .ui.blue.button.metamask-button {
     display: none;
@@ -114,6 +131,7 @@
 
 @media (min-width: 992px) {
   #mobile-menu-icon,
+  #mobile-menu-icon-home,
   div.ui.bottom.right.popup.transition.visible.mobile-menu-popup  {
     display: none !important;
   }

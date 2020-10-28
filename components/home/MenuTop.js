@@ -174,7 +174,7 @@ const MenuTop = ({ toggleTheme }) => {
               {open ? (
                 <span id="mobile-menu-icon" className="material-icons">close</span>
               ) : (
-                <span id="mobile-menu-icon" className="material-icons">menu</span>
+                <span id={'/' === router.pathname ? "mobile-menu-icon-home" : "mobile-menu-icon"} className="material-icons">menu</span>
               )}
             </span>
           }

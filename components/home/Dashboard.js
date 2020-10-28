@@ -39,6 +39,7 @@ const Dashboard = () => {
       {state.userStatus ? (
         <React.Fragment>
           <ReactPageScroller
+            renderAllPagesOnFirstRender="true"
             pageOnChange={handlePageChange}
             customPageNumber={currentPage}
           >

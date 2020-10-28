@@ -87,13 +87,6 @@ const Tokens = () => {
   // define local variables
   const [NFTstate, setNFTState] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [doneLoading, setDoneLoading] = useState(true);
-
-  useEffect(() => {
-    if (document.readyState === 'complete') {
-      setDoneLoading(false);
-    }
-  }, []);
 
   useEffect(() => {
     if (Object.keys(state.parcelDataUser).length) {
@@ -223,19 +216,15 @@ const Tokens = () => {
 
   return (
     <div className="main-container">
-      {doneLoading ? (
-        <Spinner background={3} />
-      ) : (
-        <div className="page-container">
-          <div className="account-other-inner-container ">
-            {submenu()}
+      <div className="page-container">
+        <div className="account-other-inner-container ">
+          {submenu()}
 
-            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
+          <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
-            {NFTstate === 1 ? myNFTs() : buyNFTs()}
-          </div>
+          {NFTstate === 1 ? myNFTs() : buyNFTs()}
         </div>
-      )}
+      </div>
     </div>
   );
 };
