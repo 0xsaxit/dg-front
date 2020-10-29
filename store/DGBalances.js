@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
-// import ABI_BALANCER_POOL_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
@@ -18,8 +17,6 @@ function DGBalances() {
   const [BPT_CONTRACT, setBPTContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
-
-  // const [currentTime, setCurrentTime] = useState(0);
 
   let interval = {};
   let currentTime = 0;
@@ -48,10 +45,6 @@ function DGBalances() {
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
-        // const BPTContract = new web3.eth.Contract(
-        //   ABI_BALANCER_POOL_TOKEN,
-        //   addresses.BP_TOKEN_ADDRESS
-        // );
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
@@ -89,17 +82,12 @@ function DGBalances() {
         });
       })();
     }
-  }, [instances]);
+  }, [instances, state.refreshBalances]);
 
   // get user's DG staking balance every few seconds for the reward period duration
   useEffect(() => {
     if (state.stakeTime) {
       currentTime = Math.round(new Date().getTime() / 1000);
-
-      // console.log('curent time: ' + currentTime);
-      // console.log('timestamp: ' + state.stakeTime);
-
-      // getCurrentTime();
 
       if (currentTime < state.stakeTime) {
         interval = setInterval(() => {
@@ -115,39 +103,14 @@ function DGBalances() {
             });
           })();
 
-          // getCurrentTime();
-
           currentTime = Math.round(new Date().getTime() / 1000);
           if (currentTime >= state.stakeTime) clearInterval(interval);
         }, 3000);
-
-        // } // else {
-        // clearInterval(interval);
-        // }
 
         return () => clearInterval(interval);
       }
     }
   }, [state.stakeTime]);
-
-  // useEffect(() => {
-  //   const time = Math.round(new Date().getTime() / 1000);
-
-  //   if (!currentTime) {
-  //     setCurrentTime(time);
-
-  //     console.log('curent time 1: ' + time);
-  //   } else if (time >= state.stakeTime) {
-  //     setCurrentTime(time);
-
-  //     console.log('curent time 2: ' + time);
-  //   }
-
-  //   // console.log('curent time: ' + currentTime);
-  //   // console.log('timestamp: ' + state.stakeTime);
-
-  //   // return currentTime;
-  // }, [state.arrayNew]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -214,7 +177,7 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get user's DG points balance from smart contract for liquidity farming
+  // get user's DG unclaimed balance from smart contract for liquidity farming
   async function getDGBalanceStaking() {
     console.log("Get user's DG staking balance from smart contract");
 

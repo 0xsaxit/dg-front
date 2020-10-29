@@ -150,8 +150,6 @@ const Farming = () => {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   async function staking(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const amountToString = amountAdjusted.toString();
@@ -185,20 +183,40 @@ const Farming = () => {
         .send({ from: userAddress });
 
       console.log('stake() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
     } catch (error) {
       console.log('Staking transactions error: ' + error);
     }
   }
 
-  async function exit() {
-    console.log('Call exit() function to unstake BP tokens');
+  async function withdraw(amount) {
+    console.log('Call withdraw() function to unstake BP tokens');
+
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = amountAdjusted.toString();
+    console.log('Withdraw amount input: ' + amountToString);
 
     try {
       const data = await stakingContract.methods
-        .exit()
+        .withdraw(amountToString)
         .send({ from: userAddress });
 
-      console.log('exit() transaction completed: ' + data.transactionHash);
+      console.log('withdraw() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
     } catch (error) {
       console.log('Unstake BP tokens error: ' + error);
     }
@@ -214,6 +232,14 @@ const Farming = () => {
 
       console.log('getReward() transaction completed: ' + data);
       console.log(data);
+
+      // update global state unclaimed DG balance
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
     } catch (error) {
       console.log('getReward() transaction error: ' + error);
     }
@@ -347,7 +373,7 @@ const Farming = () => {
               content={DGstate}
               metaTransaction={metaTransaction}
               staking={staking}
-              exit={exit}
+              withdraw={withdraw}
               getReward={getReward}
             />
           </div>

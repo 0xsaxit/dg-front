@@ -18,9 +18,6 @@ const ContentFarming = (props) => {
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState(0);
-
-  // const [stakedTotal, setStakedTotal] = useState({});
-
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [instances, setInstances] = useState(false);
 
@@ -28,17 +25,9 @@ const ContentFarming = (props) => {
 
   useEffect(() => {
     if (state.userStatus) {
-      // const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
-      // setUserAddress(userAddress);
-
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        // const addresses = await Global.API_ADDRESSES;
-
-        // const workerAddress = addresses.WORKER_ADDRESS.toUpperCase();
-        // if (userAddress === workerAddress) setDisabled(false);
-
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
@@ -51,48 +40,26 @@ const ContentFarming = (props) => {
   // get initial reward and timestamp values
   useEffect(() => {
     if (instances) {
-      // (async () => {
-      // const timestamp = await getPeriodFinish();
-
       const rewardAdjusted = rewardAmount / Global.CONSTANTS.FACTOR;
       rewardData(rewardAdjusted);
-      // })();
     }
   }, [instances]);
 
   useEffect(() => {
     if (instances) {
       (async () => {
-        // const addresses = await Global.API_ADDRESSES;
-
-        // const stakedTotal = await Transactions.balanceOfToken(
-        //   stakingContract,
-        //   addresses.DG_STAKING_ADDRESS,
-        //   3
-        // );
         const stakedTotal = await stakingContract.methods.totalSupply().call();
         const stakedTotalAdjusted = stakedTotal / Global.CONSTANTS.FACTOR;
-
-        // console.log('staked balance: ' + state.stakingBalances[1]);
-        // console.log('total staked: ' + stakedTotalAdjusted);
-
-        // parseFloat(stakedTotal)
-        // const stakedTotalNum = parseFloat(stakedTotal);
 
         if (stakedTotal) {
           const percentagePool1 =
             state.stakingBalances[2] / stakedTotalAdjusted;
           const percentageFixed = (percentagePool1 * 100).toFixed(3);
 
-          // console.log('pool 1 percentage: ' + percentagePool1);
-          // console.log('pool 1 percentage (fixed): ' + percentageFixed);
-
           setPercentagePool1(percentageFixed);
         } else {
           setPercentagePool1(0);
         }
-
-        // setStakedTotal(stakedTotal);
       })();
     }
   }, [instances, state.stakingBalances]);
@@ -434,7 +401,7 @@ const ContentFarming = (props) => {
               <Input
                 className="liquidity-input"
                 fluid
-                placeholder={amountInput}
+                value={amountInput}
                 onChange={handleChange}
               />
 
@@ -456,15 +423,24 @@ const ContentFarming = (props) => {
               </span>
 
               <span className="DG-button-span">
-                <Button
-                  className="DG-stake-button"
-                  onClick={() => props.staking(amountInput)}
-                >
-                  STAKE LP
-                </Button>
+                {parseInt(amountInput) ? (
+                  <Button
+                    className="DG-stake-button"
+                    onClick={() => stake('stake', amountInput)}
+                  >
+                    STAKE LP
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    STAKE LP
+                  </Button>
+                )}
 
-                {percentagePool1 ? (
-                  <Button className="DG-stake-button" onClick={props.exit}>
+                {percentagePool1 && parseInt(amountInput) ? (
+                  <Button
+                    className="DG-stake-button"
+                    onClick={() => stake('withdraw', amountInput)}
+                  >
                     UNSTAKE LP
                   </Button>
                 ) : (
@@ -565,6 +541,16 @@ const ContentFarming = (props) => {
     console.log('New amount: ' + e.target.value);
 
     setAmountInput(e.target.value);
+  }
+
+  function stake(type, amount) {
+    if (type === 'stake') {
+      props.staking(amount);
+    } else if (type === 'withdraw') {
+      props.withdraw(amount);
+    }
+
+    setAmountInput('0');
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////

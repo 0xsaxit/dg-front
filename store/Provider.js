@@ -9,7 +9,7 @@ const initialState = {
   },
   userStatus: 0,
   userInfo: [],
-  userBalances: [[], []],
+  userBalances: [[], [], []],
   transactions: [[], []],
   txHash: '',
   tokenPings: 0,
@@ -32,6 +32,7 @@ const initialState = {
   adminHistory: [[], []],
   DGBalances: [0, 0],
   stakingBalances: [[0], [0], [0], [0]],
+  refreshBalances: true,
   stakeTime: 0,
   affiliateAddress: '',
 };
@@ -144,6 +145,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         stakingBalances: action.data,
+      };
+
+    case 'refresh_balances':
+      return {
+        ...state,
+        refreshBalances: action.data,
       };
 
     case 'stake_time':

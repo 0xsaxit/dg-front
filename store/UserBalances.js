@@ -3,6 +3,8 @@ import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
+import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+// import ABI_DG_CHILD_TOKEN from '../components/ABI/ABIDGChildToken';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
 import Transactions from '../common/Transactions';
@@ -133,27 +135,47 @@ function UserBalances() {
       ABI_ROOT_TOKEN,
       addresses.ROOT_TOKEN_ADDRESS_MANA
     );
-
     const tokenContractChild = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN,
       addresses.CHILD_TOKEN_ADDRESS_MANA
     );
 
+    const DGContractRoot = new web3.eth.Contract(
+      ABI_DG_TOKEN,
+      addresses.DG_TOKEN_ADDRESS
+    );
+    // const DGContractChild = new maticWeb3.eth.Contract(
+    //   ABI_CHILD_TOKEN,
+    //   addresses.CHILD_DG_TOKEN_ADDRESS
+    // );
+
     try {
-      const amount1 = await Transactions.balanceOfToken(
+      const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
         userAddress,
         0
       );
-      const amount2 = await Transactions.balanceOfToken(
+      const amountMANA2 = await Transactions.balanceOfToken(
         tokenContractChild,
         userAddress,
         0
       );
 
+      const amountDG1 = await Transactions.balanceOfToken(
+        DGContractRoot,
+        userAddress,
+        3
+      );
+      // const amountDG2 = await Transactions.balanceOfToken(
+      //   DGContractChild,
+      //   userAddress,
+      //   3
+      // );
+
       return [
         [0, 0],
-        [amount1, amount2],
+        [amountMANA1, amountMANA2],
+        [amountDG1, 0],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

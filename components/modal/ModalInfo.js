@@ -1,11 +1,13 @@
 import { useState, useContext } from 'react';
-import { Modal, Button, Icon, Divider, Menu } from 'semantic-ui-react';
-import Global from '../Constants';
+import { Modal, Button, Divider } from 'semantic-ui-react';
+// import Global from '../Constants';
 import { GlobalContext } from '../../store';
 import Images from '../../common/Images';
 
 const ModalInfo = () => {
+  // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
   // define local variables
   const [open, setOpen] = useState(false);
 
@@ -53,17 +55,19 @@ const ModalInfo = () => {
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label"> mainchain balance </p>
+          <p className="menu-info-label">mainchain balance</p>
           <p className="menu-info-text">
             {' '}
-            <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000
+            <a style={{ color: '#2085f4' }}>(Claim) </a>
+            {state.userBalances[2][0]}
           </p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> matic balance </p>
+          <p className="menu-info-label">matic balance</p>
           <p className="menu-info-text">
             {' '}
-            <a style={{ color: '#2085f4' }}> (Claim)</a> 0.000
+            <a style={{ color: '#2085f4' }}>(Claim) </a>
+            {state.userBalances[2][1]}
           </p>
         </span>
         <span className="menu-info-inner-span">
@@ -80,15 +84,15 @@ const ModalInfo = () => {
         style={{ marginTop: '12px', marginBottom: '12px' }}
       >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label"> unclaimed - gameplay</p>
-          <p className="menu-info-text"> 0.000 </p>
+          <p className="menu-info-label">unclaimed - gameplay</p>
+          <p className="menu-info-text">{state.DGBalances[0]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> unclaimed - liquidity</p>
-          <p className="menu-info-text"> 0.000 </p>
+          <p className="menu-info-label">unclaimed - liquidity</p>
+          <p className="menu-info-text">{state.DGBalances[1]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label"> unclaimed - gov</p>
+          <p className="menu-info-label">unclaimed - gov</p>
           <p className="menu-info-text"> 0.000 </p>
         </span>
       </div>
