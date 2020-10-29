@@ -38,7 +38,7 @@ function DGBalances() {
 
         const DGTokenContract = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          addresses.DG_TOKEN_ADDRESS
+          addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDGTokenContract(DGTokenContract);
 
@@ -121,13 +121,13 @@ function DGBalances() {
     try {
       const contractBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
-        addresses.DG_STAKING_ADDRESS,
+        addresses.DG_STAKING_CONTRACT_ADDRESS,
         3
       );
 
       const contractBalanceDG = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_ADDRESS,
+        addresses.DG_STAKING_CONTRACT_ADDRESS,
         3
       );
 

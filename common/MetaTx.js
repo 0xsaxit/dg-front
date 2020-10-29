@@ -16,7 +16,7 @@ let metaTransactionType = [];
 
   childTokenAddress = addresses.CHILD_TOKEN_ADDRESS_MANA;
   treasuryAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-  dgPointerAddress = addresses.DG_POINTER_ADDRESS;
+  dgPointerAddress = addresses.DG_POINTER_CONTRACT_ADDRESS;
 
   domainType.push(
     { name: 'name', type: 'string' },

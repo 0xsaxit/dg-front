@@ -142,11 +142,11 @@ function UserBalances() {
 
     const DGContractRoot = new web3.eth.Contract(
       ABI_DG_TOKEN,
-      addresses.DG_TOKEN_ADDRESS
+      addresses.ROOT_TOKEN_ADDRESS_DG
     );
     // const DGContractChild = new maticWeb3.eth.Contract(
     //   ABI_CHILD_TOKEN,
-    //   addresses.CHILD_DG_TOKEN_ADDRESS
+    //   addresses.CHILD_TOKEN_ADDRESS_DG
     // );
 
     try {

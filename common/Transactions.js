@@ -39,7 +39,7 @@ async function pointerContract(web3Default) {
 
   const DGPointerContract = new web3Default.eth.Contract(
     ABI_DG_POINTER,
-    addresses.DG_POINTER_ADDRESS
+    addresses.DG_POINTER_CONTRACT_ADDRESS
   );
 
   return DGPointerContract;
@@ -51,7 +51,7 @@ async function stakingContract(web3Default) {
 
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_ADDRESS
+    addresses.DG_STAKING_CONTRACT_ADDRESS
   );
 
   return DGStakingContract;
@@ -63,7 +63,7 @@ async function BPTContract(web3Default) {
 
   // const DGStakingContract = new web3Default.eth.Contract(
   //   ABI_DG_STAKING,
-  //   addresses.DG_STAKING_ADDRESS
+  //   addresses.DG_STAKING_CONTRACT_ADDRESS
   // );
 
   const BPTContract = new web3Default.eth.Contract(

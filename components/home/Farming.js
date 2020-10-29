@@ -161,7 +161,7 @@ const Farming = () => {
       );
 
       const amountAllowance = await BPTContract.methods
-        .allowance(userAddress, addresses.DG_STAKING_ADDRESS)
+        .allowance(userAddress, addresses.DG_STAKING_CONTRACT_ADDRESS)
         .call();
 
       console.log('Authorized amount: ' + amountAllowance);
@@ -170,7 +170,10 @@ const Farming = () => {
         console.log("Approve staking contract to spend user's tokens");
 
         const data = await BPTContract.methods
-          .approve(addresses.DG_STAKING_ADDRESS, Global.CONSTANTS.MAX_AMOUNT)
+          .approve(
+            addresses.DG_STAKING_CONTRACT_ADDRESS,
+            Global.CONSTANTS.MAX_AMOUNT
+          )
           .send({ from: userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);

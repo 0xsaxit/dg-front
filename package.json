@@ -24,7 +24,7 @@
     "babel-polyfill": "^6.26.0",
     "buttercms": "^1.2.3",
     "cross-env": "^7.0.2",
-    "decentraland-ui": "^2.23.0",
+    "decentraland-ui": "^2.23.1",
     "eth-sig-util": "^2.5.3",
     "html-to-react": "^1.4.3",
     "jsonwebtoken": "^8.5.1",
