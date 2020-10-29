@@ -131,7 +131,7 @@ const Offerings = () => {
               <Image
                 src={detailsGames[item][0]}
                 className={detailsGames[item][1]}
-                style={{ borderRadius: '2px' }}
+                style={{ borderRadius: '4px' }}
               />
             </span>
             <div className="nft-description">

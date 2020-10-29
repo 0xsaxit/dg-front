@@ -110,7 +110,7 @@ const Tokens = () => {
                 <Image
                   src={detailsNFTs[item][0]}
                   className={detailsNFTs[item][1]}
-                  style={{ borderRadius: '2px' }}
+                  style={{ borderRadius: '4px' }}
                 />
               </span>
               <div className="nft-description">

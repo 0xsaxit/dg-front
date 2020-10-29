@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Placeholder } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
@@ -60,8 +60,8 @@ const Chateau = () => {
 
       setOnlineUsers(temp);
       console.log('Total players: ' + total);
-
       setLoading(false);
+
 
       const timer = setTimeout(() => {
         setZooming(false);
@@ -121,7 +121,7 @@ const Chateau = () => {
                 </p>
               )}
             </span>
-          ) : null}
+          ) : null }
         </span>
 
         {onlineUsers.length > 10 ? (
@@ -194,9 +194,6 @@ const Chateau = () => {
               >
                 Hit the tables in a virtual casino
               </h1>
-              {/*<h2 className="home-dashboard-h2">
-                Non-custodial. Provably fair.
-              </h2>*/}
               <h2 className="home-dashboard-h2">
                 Non-custodial, provably fair slots, roulette, blackjack, and
                 backgammon playable with crypto in Decentraland
