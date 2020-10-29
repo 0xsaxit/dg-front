@@ -1,4 +1,4 @@
-import Home from '../components/home/Dashboard';
+import Home from '../components/home/Chateau';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
@@ -10,7 +10,7 @@ const Index = () => {
       <Header
         title={
           Global.CONSTANTS.TITLE +
-          ' | Slots, Roulette, Blackjack and Backgammon Playable with Crypto'
+          ' | Metavarse Casinos Playable with Crypto'
         }
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}

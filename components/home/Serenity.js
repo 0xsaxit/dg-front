@@ -13,31 +13,12 @@ const Serenity = () => {
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
-  const [isZooming, setZooming] = useState(true);
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [total, setTotal] = useState('');
   const [visited, setVisited] = useState(false);
   const [videoPlay, setVideoPlay] = useState(true);
-
-  useEffect(() => {
-    if (window) {
-      let visited = window.sessionStorage.getItem('visited');
-
-      if (visited) {
-        setVisited(true);
-      } else {
-        window.sessionStorage.setItem('visited', true);
-      }
-
-      if (window.innerWidth < 500) {
-        setVideoPlay(false);
-      } else {
-        setVideoPlay(true);
-      }
-    }
-  }, []);
 
   // fetch user count from the server API
   useEffect(() => {
@@ -59,15 +40,7 @@ const Serenity = () => {
       }
 
       setOnlineUsers(temp);
-      console.log('Total players: ' + total);
-
       setLoading(false);
-
-      const timer = setTimeout(() => {
-        setZooming(false);
-      }, 800);
-
-      return () => clearTimeout(timer);
     })();
   }, []);
 
@@ -77,12 +50,6 @@ const Serenity = () => {
   function getContent() {
     return (
       <div className="home-dashboard">
-        {isZooming ? (
-          !visited ? (
-            <span id="zoom-overlay" className="zoom-animation" />
-          ) : null
-        ) : null}
-
         {mainContent()}
       </div>
     );
@@ -92,14 +59,12 @@ const Serenity = () => {
     return (
       <div className="home-video-container-three">
         <video
-          id="myVideo"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1603235040/serenity_site_vid_izlifb.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
           loop
           muted
-          className="home-dashboard-video"
         ></video>
       </div>
     );
@@ -218,7 +183,7 @@ const Serenity = () => {
     );
   }
 
-  if (isLoading && !visited) {
+  if (isLoading) {
     return <Spinner background={2} />;
   } else {
     return getContent();

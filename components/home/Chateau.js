@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Placeholder } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
@@ -60,8 +60,8 @@ const Chateau = () => {
 
       setOnlineUsers(temp);
       console.log('Total players: ' + total);
-
       setLoading(false);
+
 
       const timer = setTimeout(() => {
         setZooming(false);
@@ -92,14 +92,12 @@ const Chateau = () => {
     return (
       <div className="home-video-container">
         <video
-          id="myVideo"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1603235036/chateau_site_vid_ozjakq.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
           loop
           muted
-          className="home-dashboard-video"
         ></video>
       </div>
     );
@@ -123,7 +121,7 @@ const Chateau = () => {
                 </p>
               )}
             </span>
-          ) : null}
+          ) : null }
         </span>
 
         {onlineUsers.length > 10 ? (
@@ -145,6 +143,7 @@ const Chateau = () => {
                       boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                       backgroundColor: 'white',
                     }}
+                    alt="Decentraland Avatar Image"
                   />
                   <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
                 </span>
@@ -170,6 +169,7 @@ const Chateau = () => {
                       boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                       backgroundColor: 'white',
                     }}
+                    alt="Decentraland Avatar Image"
                   />
                 </div>
               );
@@ -194,9 +194,6 @@ const Chateau = () => {
               >
                 Hit the tables in a virtual casino
               </h1>
-              {/*<h2 className="home-dashboard-h2">
-                Non-custodial. Provably fair.
-              </h2>*/}
               <h2 className="home-dashboard-h2">
                 Non-custodial, provably fair slots, roulette, blackjack, and
                 backgammon playable with crypto in Decentraland
@@ -253,6 +250,7 @@ const Chateau = () => {
                             boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                             backgroundColor: 'white',
                           }}
+                          alt="Decentraland Avatar Image"
                         />
                         <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
                       </span>
@@ -277,6 +275,7 @@ const Chateau = () => {
                           boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                           backgroundColor: 'white',
                         }}
+                        alt="Decentraland Avatar Image"
                       />
                     );
                   })}

@@ -26,6 +26,7 @@ const ContentNFTs = (props) => {
       <img
         src={`https://vegascity.land/vcs/vegas-city-card-tominoya${props.parcelDataUser.parcelLocation[0]},${props.parcelDataUser.parcelLocation[2]},1.png`}
         className="my-nft-pic"
+        alt="Decentraland NFT Parcel Image"
       />
       <div
         className="nft-description"

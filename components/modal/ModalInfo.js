@@ -36,7 +36,7 @@ const ModalInfo = () => {
 
       <div>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+          <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo" />
         </span>
 
         <span style={{ display: 'flex', justifyContent: 'center' }}>

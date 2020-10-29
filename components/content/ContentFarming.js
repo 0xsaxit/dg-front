@@ -114,7 +114,7 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
-              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo"/>
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGBalances[0]}</p>
@@ -142,7 +142,7 @@ const ContentFarming = (props) => {
           <span className="DG-tablet-container">
             <div className="DG-column one">
               <span style={{ display: 'flex' }}>
-                <img src={Images.MANA_CIRCLE} className="farming-logo" />
+                <img src={Images.MANA_CIRCLE} className="farming-logo" alt="Decentraland Logo" />
                 <span className="farming-pool-span">
                   <p className="welcome-text"> Coin </p>
                   <p className="account-name">MANA</p>
@@ -199,7 +199,7 @@ const ContentFarming = (props) => {
 
             <div className="DG-column two">
               <span style={{ display: 'flex' }}>
-                <img src={Images.DAI_CIRCLE} className="farming-logo" />
+                <img src={Images.DAI_CIRCLE} className="farming-logo" alt="Dai Logo" />
                 <span className="farming-pool-span">
                   <p className="welcome-text"> Coin </p>
                   <p className="account-name">DAI</p>
@@ -288,7 +288,7 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
-              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo" />
               <span className="farming-pool-span">
                 {poolSelect === 1 ? (
                   <span style={{ display: 'flex' }}>
@@ -341,8 +341,8 @@ const ContentFarming = (props) => {
               style={{ position: 'relative', height: '100%' }}
             >
               <span style={{ display: 'flex' }}>
-                <img src={Images.MANA_CIRCLE} className="farming-logo" />
-                <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+                <img src={Images.MANA_CIRCLE} className="farming-logo" alt="Decentraland Logo"/>
+                <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo"/>
                 <span className="farming-pool-span">
                   <p className="welcome-text"> MANA-DG </p>
                   <p className="account-name">0</p>
@@ -456,8 +456,8 @@ const ContentFarming = (props) => {
               style={{ position: 'relative', height: '100%' }}
             >
               <span style={{ display: 'flex' }}>
-                <img src={Images.DAI_CIRCLE} className="farming-logo" />
-                <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+                <img src={Images.DAI_CIRCLE} className="farming-logo" alt="Dai Logo" />
+                <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo" />
                 <span className="farming-pool-span">
                   <p className="welcome-text"> DAI-DG </p>
                   <p className="account-name">0</p>
@@ -589,7 +589,7 @@ const ContentFarming = (props) => {
             style={{ position: 'relative', height: '100%' }}
           >
             <span style={{ display: 'flex' }}>
-              <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+              <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo" />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGBalances[0]}</p>
@@ -617,7 +617,7 @@ const ContentFarming = (props) => {
           <span className="DG-tablet-container">
             <div className="DG-column one">
               <span style={{ display: 'flex' }}>
-                <img src={Images.DG_COIN_LOGO} className="farming-logo" />
+                <img src={Images.DG_COIN_LOGO} className="farming-logo" alt="Decentral Games Coin Logo" />
                 <span className="farming-pool-span">
                   <p className="welcome-text"> Staked DG</p>
                   <p className="account-name">0</p>
@@ -690,7 +690,7 @@ const ContentFarming = (props) => {
               }}
             >
               <span style={{ display: 'flex' }}>
-                <img src={Images.SNAPSHOT_ICON} className="farming-logo" />
+                <img src={Images.SNAPSHOT_ICON} className="farming-logo" alt="Snapshot Governance Logo" />
                 <span className="farming-pool-span">
                   <p className="welcome-text"> Proposals</p>
                   <p className="account-name">0</p>

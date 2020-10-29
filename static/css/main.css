@@ -48,6 +48,10 @@ p {
   filter: brightness(0.9) !important;
 }
 
+.ui.column.grid>[class*="sixteen wide"].column, .ui.grid>.column.row>[class*="sixteen wide"].column, .ui.grid>.row>[class*="sixteen wide"].column, .ui.grid>[class*="sixteen wide"].column {
+  border-radius: 4px;
+}
+
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
@@ -116,7 +120,7 @@ p {
   padding-right: 0px;
   height: 34px;
   letter-spacing: 0.5px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-right: 15px;
 }
 
@@ -128,7 +132,7 @@ p {
   margin-top: 18px;
   height: 33px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-right: 15px;
   min-width: 15px !important;
   padding: 3px 4px 0px 5px;
@@ -142,7 +146,7 @@ p {
   margin-top: 18px;
   height: 33px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-right: 15px;
   min-width: 15px !important;
   padding: 0px 6px 7px 6px;
@@ -156,7 +160,7 @@ p {
   margin-top: 18px;
   height: 33px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-right: 30px;
   min-width: 33px !important;
   padding: 3px 4px 0px 5px;
@@ -170,7 +174,7 @@ p {
   margin-top: 12px;
   height: 33px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-right: 30px;
   min-width: 100% !important;
   padding: 3px 4px 0px 5px;
@@ -232,7 +236,7 @@ div.ui.segment.transparent-menu-segment {
 
 .dashboard-menu-container {
   position: absolute;
-  z-index: 9;
+  z-index: 8;
   width: 100vw;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.75),
@@ -330,7 +334,7 @@ div.ui.segment.transparent-menu-segment {
 .menu-account-info {
   margin-right: 15px;
   background-color: #2085f4;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-top: 18px;
   height: 33px !important;
   padding-left: 9px;
@@ -341,7 +345,7 @@ div.ui.segment.transparent-menu-segment {
   display: flex;
   background-color: #165daa;
   padding-right: 15px;
-  border-radius: 2px;
+  border-radius: 4px;
   padding-left: 9px;
   margin-left: 6px;
 }
@@ -404,7 +408,7 @@ div.ui.segment.transparent-menu-segment {
   padding-right: 0px;
   height: 34px;
   letter-spacing: 0.5px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .mailchimp-outter-container {
@@ -442,13 +446,17 @@ div.ui.segment.transparent-menu-segment {
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
-.home-video-container {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -2;
-  overflow: hidden !important;
+.ui.placeholder .line {
+  height: 100%;
+}
+
+.home-video-container { 
+  position: absolute; 
+  top: 0; 
+  width: 100%;  
+  height: 100vh;  
+  z-index: -2;  
+  overflow: hidden !important;  
 }
 
 .home-video-container video {
@@ -457,15 +465,17 @@ div.ui.segment.transparent-menu-segment {
   width: auto;
   height: auto;
   position: absolute;
+  filter: brightness(60%);
 }
 
-.home-video-container-two video {
+/*.home-video-container-two video {
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
   position: absolute;
   border-top: 2px solid white;
+  filter: brightness(60%);
 }
 
 .home-video-container-three video {
@@ -475,12 +485,7 @@ div.ui.segment.transparent-menu-segment {
   height: auto;
   position: absolute;
   border-top: 2px solid white;
-}
-
-video.home-dashboard-video {
   filter: brightness(60%);
-  position: absolute;
-  z-index: -1;
 }
 
 .pagination-container {
@@ -490,24 +495,24 @@ video.home-dashboard-video {
 }
 
 .pagination-additional-class {
+  display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(50% - 12px);
+  top: calc(50% - 27px);
   right: 30px;
 }
 
-.page-indicator-dot {
+.page-indicator-text {
   border: 1px solid white;
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-  margin: 0px 0px 12px 0px;
-  height: 6px;
-  width: 6px;
+  margin: 12px 0px 0px 0px;
+  height: 8px;
+  width: 8px;
 }
 
-.page-indicator-dot.active {
+.page-indicator-text.active {
   background: white;
-}
+}*/
 
 .home-dashboard-content {
   position: relative;
@@ -533,7 +538,7 @@ a.ui.blue.button.how-to-button {
   padding-right: 0px;
   height: 34px;
   letter-spacing: 0.5px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .ui.blue.button.demo-button {
@@ -548,7 +553,7 @@ a.ui.blue.button.how-to-button {
   padding-right: 0px;
   height: 34px;
   letter-spacing: 0.5px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .demo-button-container {
@@ -713,6 +718,7 @@ a.ui.blue.button.how-to-button {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+  border-radius: 4px;
 }
 
 .nft-container:hover {
@@ -737,6 +743,7 @@ a.ui.blue.button.how-to-button {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+  border-radius: 4px;
 }
 
 .games-container:hover {
@@ -755,7 +762,7 @@ a.ui.blue.button.how-to-button {
 
 .ui.dropdown .menu {
   padding: 0px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .ui.dropdown .menu > .item {
@@ -776,7 +783,7 @@ a.ui.blue.button.how-to-button {
   padding: 6px 9px 6px 9px;
   margin-bottom: 15px;
   margin-top: -6px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-right: 21px;
 }
 
@@ -785,7 +792,7 @@ a.ui.blue.button.how-to-button {
   padding: 6px 9px 6px 9px;
   margin-bottom: 15px;
   margin-top: -6px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-left: -9px;
   margin-right: 21px;
 }
@@ -871,7 +878,7 @@ a.ui.blue.button.play-button,
   padding-right: 0px;
   height: 34px;
   letter-spacing: 0.5px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .ui.button.medium,
@@ -898,7 +905,7 @@ a.ui.blue.button.play-button,
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 48.5% !important;
@@ -914,7 +921,7 @@ a.ui.blue.button.play-button,
   color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 7px;
   min-width: 48.5% !important;
@@ -929,7 +936,7 @@ a.ui.blue.button.play-button,
   color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 150px !important;
@@ -944,7 +951,7 @@ a.ui.blue.button.play-button,
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 150px !important;
@@ -962,7 +969,7 @@ a.ui.blue.button.play-button,
   padding: 12px;
   height: 42px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* ----------------------------------------- */
@@ -972,6 +979,7 @@ a.ui.blue.button.play-button,
 table {
   border-spacing: 0px;
   width: 100%;
+  border-radius: 4px;
 }
 
 .account-table {
@@ -1176,7 +1184,7 @@ table.ui.fixed.single.line.table {
 
 #tx-box-history-2 {
   border: 0px;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-top: 30px;
   padding-bottom: 10px;
 }
@@ -1194,7 +1202,7 @@ table.ui.fixed.single.line.table {
   margin-left: 24px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 29px;
   padding-top: 5px;
   max-width: 30px !important;
@@ -1291,7 +1299,7 @@ svg.spanbox.disable {
 .matic-overlay {
   margin-top: -46px;
   background-color: white;
-  border-radius: 2px;
+  border-radius: 4px;
   position: absolute;
   z-index: 9;
   height: 330px;
@@ -1329,7 +1337,7 @@ svg.spanbox.disable {
 .matic-widget-button-2 {
   cursor: pointer;
   padding: 15px 12px 12px 12px;
-  border-radius: 2px;
+  border-radius: 4px;
   width: 125px;
   height: 125px;
 }
@@ -1364,7 +1372,7 @@ deposit-notification-box-hidden {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
   padding: 18px 18px 0px 18px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .deposit-message-text.top {
@@ -1427,7 +1435,7 @@ deposit-notification-box-hidden {
 }
 
 .top-right-gameplay-text {
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: white;
   border: 1px solid #2085f4;
   font-size: 12px;
@@ -1572,7 +1580,7 @@ div.ui.grid.balances-container {
   color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   max-width: 90px !important;
@@ -1588,7 +1596,7 @@ div.ui.grid.balances-container {
   color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   padding-left: 15px;
@@ -1615,7 +1623,7 @@ div.ui.grid.balances-container {
   margin-bottom: -5px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 120px !important;
@@ -1657,7 +1665,7 @@ div.ui.grid.balances-container {
   margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   max-width: 90px !important;
@@ -1681,7 +1689,7 @@ div.ui.grid.balances-container {
   margin-top: -45px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   max-width: 150px !important;
@@ -1699,7 +1707,7 @@ div.ui.grid.balances-container {
   margin-top: -45px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   max-width: 90px !important;
@@ -1717,7 +1725,7 @@ div.ui.grid.balances-container {
   margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   max-width: 81px !important;
@@ -1734,7 +1742,7 @@ div.ui.grid.balances-container {
   margin-top: 1px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 48.5% !important;
@@ -1813,7 +1821,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   padding: 10px 9px 9px 9px;
   height: 39px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .ui.button.balances-deposit-button,
@@ -1828,7 +1836,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   padding: 10px 9px 9px 9px;
   height: 39px;
   letter-spacing: 1.25px;
-  border-radius: 2px;
+  border-radius: 4px;
   position: relative;
   z-index: 5;
 }
@@ -1960,7 +1968,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 100% !important;
@@ -1974,7 +1982,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 100% !important;
@@ -1988,7 +1996,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 100% !important;
@@ -2002,7 +2010,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 48.5% !important;
@@ -2018,7 +2026,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   margin-bottom: 6px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   padding-top: 8px;
   min-width: 210px !important;
@@ -2034,7 +2042,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   margin-top: 27px;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 27px;
   padding-top: 4px;
   max-width: 150px !important;
@@ -2366,7 +2374,7 @@ div.ui.grid.admin-balances-container {
   background-color: #2085f4;
   font-size: 12px;
   font-weight: bold !important;
-  border-radius: 2px;
+  border-radius: 4px;
   height: 34px;
   min-width: 180px;
   padding-top: 8px;

@@ -84,25 +84,7 @@ const Offerings = () => {
   const [gameSelect, setGameSelect] = useState('play');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
   const [gameState, setGameState] = useState(0);
-  const [doneLoading, setDoneLoading] = useState(true);
-  // const [gameRecords, setGameRecords] = useState([]);
   const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
-
-  useEffect(() => {
-    if (document.readyState === 'complete') {
-      setDoneLoading(false);
-    }
-  }, []);
-
-  //  useEffect(() => {
-  //   const fetchData = async () => {
-  //     const gameRecords = await getGameRecords();
-  //     let json = await gameRecords.json();
-  //     setGameRecords(json);
-  //     setGameRecordsRefresh(1);
-  //   }
-  //   fetchData();
-  // }, [])
 
   function handleChange(value) {
     var gameSelect = '';
@@ -149,7 +131,7 @@ const Offerings = () => {
               <Image
                 src={detailsGames[item][0]}
                 className={detailsGames[item][1]}
-                style={{ borderRadius: '2px' }}
+                style={{ borderRadius: '4px' }}
               />
             </span>
             <div className="nft-description">
@@ -513,17 +495,13 @@ const Offerings = () => {
 
   return (
     <div className="main-container">
-      {doneLoading ? (
-        <Spinner background={3} />
-      ) : (
-        <div className="page-container">
-          <div className="account-other-inner-container">
-            {submenu()}
+      <div className="page-container">
+        <div className="account-other-inner-container">
+          {submenu()}
 
-            {gameState === 1 ? Leaderboard() : Games()}
-          </div>
+          {gameState === 1 ? Leaderboard() : Games()}
         </div>
-      )}
+      </div>
     </div>
   );
 };

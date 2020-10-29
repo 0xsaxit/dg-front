@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
-import ModalVideo from '../modal/ModalVideo';
 import Spinner from '../Spinner';
 import Aux from '../_Aux';
 import Fetch from '../../common/Fetch';
@@ -13,31 +12,12 @@ const Tominoya = () => {
 
   // define local loading variable
   const [isLoading, setLoading] = useState(true);
-  const [isZooming, setZooming] = useState(true);
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [total, setTotal] = useState('');
   const [visited, setVisited] = useState(false);
   const [videoPlay, setVideoPlay] = useState(true);
-
-  useEffect(() => {
-    if (window) {
-      let visited = window.sessionStorage.getItem('visited');
-
-      if (visited) {
-        setVisited(true);
-      } else {
-        window.sessionStorage.setItem('visited', true);
-      }
-
-      if (window.innerWidth < 500) {
-        setVideoPlay(false);
-      } else {
-        setVideoPlay(true);
-      }
-    }
-  }, []);
 
   // fetch user count from the server API
   useEffect(() => {
@@ -59,15 +39,7 @@ const Tominoya = () => {
       }
 
       setOnlineUsers(temp);
-      console.log('Total players: ' + total);
-
       setLoading(false);
-
-      const timer = setTimeout(() => {
-        setZooming(false);
-      }, 800);
-
-      return () => clearTimeout(timer);
     })();
   }, []);
 
@@ -77,12 +49,6 @@ const Tominoya = () => {
   function getContent() {
     return (
       <div className="home-dashboard">
-        {isZooming ? (
-          !visited ? (
-            <span id="zoom-overlay" className="zoom-animation" />
-          ) : null
-        ) : null}
-
         {mainContent()}
       </div>
     );
@@ -92,14 +58,12 @@ const Tominoya = () => {
     return (
       <div className="home-video-container-two">
         <video
-          id="myVideo"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1599166597/DG_site_asy69z.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
           loop
           muted
-          className="home-dashboard-video"
         ></video>
       </div>
     );
@@ -219,7 +183,7 @@ const Tominoya = () => {
     );
   }
 
-  if (isLoading && !visited) {
+  if (isLoading) {
     return <Spinner background={2} />;
   } else {
     return getContent();
