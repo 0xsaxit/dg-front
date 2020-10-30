@@ -443,6 +443,79 @@ div.ui.segment.transparent-menu-segment {
 }
 
 /* ----------------------------------------- */
+/*             LANDING PAGE CSS              */
+/* ----------------------------------------- */
+
+.landing-gif-holder {
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
+  background-position: 75% !important;
+  background-color: transparent;
+  background-size: cover !important;
+  height: 100vh !important;
+  width: calc(33vw + 100px);
+  position: absolute;
+  overflow: hidden !important;
+}
+
+.landing-content {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.landing-description {
+  margin-left: calc(33vw + 160px);
+}
+
+.landing-p {
+  color: white;
+  letter-spacing: 0.15px;
+  text-shadow: 1px 1px 5px black;
+  padding-right: 30px;
+}
+
+.landing-i {
+  font-size: 20px;
+  font-style: italic;
+  color: white;
+  letter-spacing: 0.15px;
+  text-shadow: 1px 1px 5px black;
+  padding-right: 30px; 
+}
+
+.display-none-menu {
+  display: none !important;
+}
+
+.daily-leaders-container {
+  position: absolute;
+  z-index: 9;
+  left: 30px;
+  bottom: 30px;
+}
+
+.leader-text-span {
+  display: flex;
+  width: 300px;
+}
+
+.leaders-text {
+  color: white;
+  font-size: 16px;
+  letter-spacing: 0.25px;
+}
+
+.leaders-text.lower {
+  margin-top: -2px;
+  font-weight: bold;
+}
+
+/* ----------------------------------------- */
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
@@ -467,52 +540,6 @@ div.ui.segment.transparent-menu-segment {
   position: absolute;
   filter: brightness(60%);
 }
-
-/*.home-video-container-two video {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  position: absolute;
-  border-top: 2px solid white;
-  filter: brightness(60%);
-}
-
-.home-video-container-three video {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  position: absolute;
-  border-top: 2px solid white;
-  filter: brightness(60%);
-}
-
-.pagination-container {
-  max-width: 1400px !important;
-  margin-right: auto !important;
-  margin-left: auto !important;
-}
-
-.pagination-additional-class {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: calc(50% - 27px);
-  right: 30px;
-}
-
-.page-indicator-text {
-  border: 1px solid white;
-  border-radius: 50%;
-  margin: 12px 0px 0px 0px;
-  height: 8px;
-  width: 8px;
-}
-
-.page-indicator-text.active {
-  background: white;
-}*/
 
 .home-dashboard-content {
   position: relative;

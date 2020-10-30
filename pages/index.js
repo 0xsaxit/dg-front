@@ -1,4 +1,4 @@
-import Home from '../components/home/Chateau';
+import Chateau from '../components/home/Chateau';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
@@ -16,7 +16,7 @@ const Index = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Home />
+      <Chateau />
     </Layout>
   );
 };

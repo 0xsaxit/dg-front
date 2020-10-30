@@ -2,16 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {
-  Menu,
-  Sidebar,
-  Segment,
-  Button,
-  Popup,
-  Icon,
-  Checkbox,
-} from 'semantic-ui-react';
+import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
+import ModalVideoLanding from '../modal/ModalVideoLanding';
 import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
@@ -112,7 +105,7 @@ const MenuTop = ({ toggleTheme }) => {
   // get path and render appropriate styles
   function getContainerStyles(path) {
     if (path === 'container') {
-      if ('/' === router.pathname) {
+      if ('/' === router.pathname || '/landing' === router.pathname) {
         return 'dashboard-menu-container';
       } else {
         return menuStyle[0];
@@ -124,6 +117,8 @@ const MenuTop = ({ toggleTheme }) => {
     if (path === 'menu') {
       if ('/' === router.pathname && !open ) {
         return 'menu-container';
+      } else if ('/landing' === router.pathname) {
+        return '';
       } else {
         return 'menu-container blog';
       }
@@ -481,6 +476,15 @@ const MenuTop = ({ toggleTheme }) => {
     }
   }
 
+  function balancesAndButtonsLanding() {
+    return (
+      <span className="right-menu-items" style={{ marginRight: '15px' }}>
+        <ModalVideoLanding />
+        <ButtonVerify />
+      </span>
+    );
+  }
+
   return (
     <Aux>
 
@@ -488,12 +492,24 @@ const MenuTop = ({ toggleTheme }) => {
         <div className={getContainerStyles('container')}>
 
           <MessageBar />
-          {dropdownMenu()}
+
+          {router.pathname === '/landing' ? (
+            null
+          ) : (
+            dropdownMenu()
+          )}
+  
 
           <Menu className={getLinkStyles('menu')} icon="labeled">
             {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
+
+            {router.pathname === '/landing' ? (
+              balancesAndButtonsLanding()
+            ) : (
+              shownOrHiddenItems(),
+              balancesAndButtons()
+            )}
+
           </Menu>
 
           <MessageBox handleDismiss={handleDismiss} />
