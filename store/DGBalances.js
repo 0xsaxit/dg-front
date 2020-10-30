@@ -66,7 +66,7 @@ function DGBalances() {
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2],
+          data: [balanceDG1, balanceDG2, 0, 0],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -114,6 +114,44 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG points balance from smart contract for gameplay mining
+  async function getDGBalanceGameplay() {
+    console.log("Get user's DG points balance from smart contract");
+
+    try {
+      const amount = await pointerContract.methods
+        .pointsBalancer(userAddress)
+        .call();
+
+      const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+      // .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+      return pointsAdjusted;
+    } catch (error) {
+      console.log('No DG points found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG unclaimed balance from smart contract for liquidity farming
+  async function getDGBalanceStaking() {
+    console.log("Get user's DG staking balance from smart contract");
+
+    try {
+      const amount = await stakingContract.methods.earned(userAddress).call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+      // .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG staking balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // get user's total staking contract & wallet DG balance
   async function getTokensStaking() {
     console.log('Get staking DG & BPT balances');
@@ -151,46 +189,6 @@ function DGBalances() {
       ];
     } catch (error) {
       console.log('Staking DG & BPT balances error: ' + error);
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get user's DG points balance from smart contract for gameplay mining
-  async function getDGBalanceGameplay() {
-    console.log("Get user's DG points balance from smart contract");
-
-    try {
-      const amount = await pointerContract.methods
-        .pointsBalancer(userAddress)
-        .call();
-
-      const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR)
-        .toFixed(3)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-      return pointsAdjusted;
-    } catch (error) {
-      console.log('No DG points found: ' + error);
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get user's DG unclaimed balance from smart contract for liquidity farming
-  async function getDGBalanceStaking() {
-    console.log("Get user's DG staking balance from smart contract");
-
-    try {
-      const amount = await stakingContract.methods.earned(userAddress).call();
-
-      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR)
-        .toFixed(3)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-      return balanceAdjusted;
-    } catch (error) {
-      console.log('No DG staking balance found: ' + error);
     }
   }
 

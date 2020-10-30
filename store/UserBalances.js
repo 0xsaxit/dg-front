@@ -4,7 +4,6 @@ import Web3 from 'web3';
 import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
-// import ABI_DG_CHILD_TOKEN from '../components/ABI/ABIDGChildToken';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
 import Transactions from '../common/Transactions';

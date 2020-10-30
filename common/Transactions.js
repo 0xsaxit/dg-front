@@ -83,9 +83,8 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
       .balanceOf(userOrContractAddress)
       .call();
 
-    const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(units);
+    // .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return amountAdjusted;
   } catch (error) {

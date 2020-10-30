@@ -30,7 +30,7 @@ const initialState = {
     ],
   ],
   adminHistory: [[], []],
-  DGBalances: [0, 0],
+  DGBalances: [0, 0, 0, 0],
   stakingBalances: [[0], [0], [0], [0]],
   refreshBalances: true,
   stakeTime: 0,
