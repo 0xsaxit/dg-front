@@ -28,8 +28,8 @@ const ContentFarming = (props) => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        const stakingContract = await Transactions.stakingContract(web3);
-        setStakingContract(stakingContract);
+        // const stakingContract = await Transactions.stakingContract(web3);
+        // setStakingContract(stakingContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -48,7 +48,10 @@ const ContentFarming = (props) => {
   useEffect(() => {
     if (instances) {
       (async () => {
-        const stakedTotal = await stakingContract.methods.totalSupply().call();
+        // const stakedTotal = await stakingContract.methods.totalSupply().call();
+
+        const stakedTotal = 0;
+
         const stakedTotalAdjusted = stakedTotal / Global.CONSTANTS.FACTOR;
 
         if (stakedTotal) {
@@ -64,17 +67,17 @@ const ContentFarming = (props) => {
     }
   }, [instances, state.stakingBalances]);
 
-  async function getPeriodFinish() {
-    console.log('Return reward period finish time');
+  // async function getPeriodFinish() {
+  //   console.log('Return reward period finish time');
 
-    try {
-      const timestamp = await stakingContract.methods.periodFinish().call();
+  //   try {
+  //     const timestamp = await stakingContract.methods.periodFinish().call();
 
-      return timestamp;
-    } catch (error) {
-      console.log('Return reward period time error: ' + error);
-    }
-  }
+  //     return timestamp;
+  //   } catch (error) {
+  //     console.log('Return reward period time error: ' + error);
+  //   }
+  // }
 
   var onPool;
   if (poolSelect === 1) {
@@ -788,7 +791,7 @@ const ContentFarming = (props) => {
   async function rewardData(amountReward) {
     console.log('current reward: ' + amountReward);
 
-    const timestamp = await getPeriodFinish();
+    const timestamp = await props.getPeriodFinish();
     console.log('current timestamp: ' + timestamp);
 
     const date = new Date(timestamp * 1000);

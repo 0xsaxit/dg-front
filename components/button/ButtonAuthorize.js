@@ -54,7 +54,6 @@ function ButtonAuthorize() {
           addresses.CHILD_TOKEN_ADDRESS_MANA
         );
 
-        // if (transaction) metaTransaction(); // MetaMask popup window
         setTokenContract(tokenContract);
       })();
 
@@ -113,7 +112,6 @@ function ButtonAuthorize() {
       const txHash = await MetaTx.executeMetaTransaction(
         0,
         functionSignature,
-        '',
         tokenContract,
         userAddress,
         web3

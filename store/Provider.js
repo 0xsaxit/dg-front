@@ -9,7 +9,11 @@ const initialState = {
   },
   userStatus: 0,
   userInfo: [],
-  userBalances: [[], [], []],
+  userBalances: [
+    [0, 0],
+    [0, 0],
+    [0, 0],
+  ],
   transactions: [[], []],
   txHash: '',
   tokenPings: 0,

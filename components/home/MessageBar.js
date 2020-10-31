@@ -48,28 +48,28 @@ const MessageBar = () => {
 
   useEffect(() => {
     if (isSafari) {
-      setMessage('Please use a Metamask-enabled browser to play games.');
+      setMessage('Please use a Metamask-enabled browser to play games');
     } else if (!state.networkID) {
-      setMessage('Please enable MetaMask to play games.');
+      setMessage('Please enable MetaMask to play games');
     } else if (!state.userStatus) {
-      setMessage('Please log in to MetaMask to play games.');
+      setMessage('Please log in to MetaMask to play games');
     } else if (adminError) {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
       );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
-      setMessage('Decentral Games is currently in beta. Please switch your MetaMask Network to Goerli.');
+      setMessage('Please switch your MetaMask Network to Ethereum Mainnet');
     } else if (!state.userStatus === 4) {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play free play games.'
       );
     } else if (state.userStatus === 6) {
       setMessage(
-        'You must authorize the Decentral Games smart contract on Matic to play games with crytpo.'
+        'You must authorize the Decentral Games smart contract on Matic to play games with crytpo'
       );
     } else if (!state.activeStatus) {
       setMessage(
-        'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours.'
+        'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
     } else {
       setMessage('');

@@ -42,11 +42,11 @@ function DGBalances() {
         );
         setDGTokenContract(DGTokenContract);
 
-        const stakingContract = await Transactions.stakingContract(web3);
-        setStakingContract(stakingContract);
+        // const stakingContract = await Transactions.stakingContract(web3);
+        // setStakingContract(stakingContract);
 
-        const BPTContract = await Transactions.BPTContract(web3);
-        setBPTContract(BPTContract);
+        // const BPTContract = await Transactions.BPTContract(web3);
+        // setBPTContract(BPTContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -124,7 +124,6 @@ function DGBalances() {
         .call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
-      // .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return pointsAdjusted;
     } catch (error) {
@@ -139,12 +138,11 @@ function DGBalances() {
     console.log("Get user's DG staking balance from smart contract");
 
     try {
-      const amount = await stakingContract.methods.earned(userAddress).call();
+      // const amount = await stakingContract.methods.earned(userAddress).call();
 
-      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
-      // .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      // const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
-      return balanceAdjusted;
+      return 0; // balanceAdjusted;
     } catch (error) {
       console.log('No DG staking balance found: ' + error);
     }
@@ -157,35 +155,35 @@ function DGBalances() {
     console.log('Get staking DG & BPT balances');
 
     try {
-      const contractBalanceBPT = await Transactions.balanceOfToken(
-        BPT_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS,
-        3
-      );
+      // const contractBalanceBPT = await Transactions.balanceOfToken(
+      //   BPT_CONTRACT,
+      //   addresses.DG_STAKING_CONTRACT_ADDRESS,
+      //   3
+      // );
 
-      const contractBalanceDG = await Transactions.balanceOfToken(
-        DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS,
-        3
-      );
+      // const contractBalanceDG = await Transactions.balanceOfToken(
+      //   DG_TOKEN_CONTRACT,
+      //   addresses.DG_STAKING_CONTRACT_ADDRESS,
+      //   3
+      // );
 
-      const stakedBalanceBPT = await Transactions.balanceOfToken(
-        stakingContract,
-        userAddress,
-        3
-      );
+      // const stakedBalanceBPT = await Transactions.balanceOfToken(
+      //   stakingContract,
+      //   userAddress,
+      //   3
+      // );
 
-      const walletBalanceBPT = await Transactions.balanceOfToken(
-        BPT_CONTRACT,
-        userAddress,
-        3
-      );
+      // const walletBalanceBPT = await Transactions.balanceOfToken(
+      //   BPT_CONTRACT,
+      //   userAddress,
+      //   3
+      // );
 
       return [
-        contractBalanceBPT,
-        contractBalanceDG,
-        stakedBalanceBPT,
-        walletBalanceBPT,
+        0, // contractBalanceBPT,
+        0, // contractBalanceDG,
+        0, // stakedBalanceBPT,
+        0, // walletBalanceBPT,
       ];
     } catch (error) {
       console.log('Staking DG & BPT balances error: ' + error);

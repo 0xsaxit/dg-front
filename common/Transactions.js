@@ -46,37 +46,32 @@ async function pointerContract(web3Default) {
 }
 
 // set staking contract instance
-async function stakingContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+// async function stakingContract(web3Default) {
+//   const addresses = await Global.API_ADDRESSES;
 
-  const DGStakingContract = new web3Default.eth.Contract(
-    ABI_DG_STAKING,
-    addresses.DG_STAKING_CONTRACT_ADDRESS
-  );
+//   const DGStakingContract = new web3Default.eth.Contract(
+//     ABI_DG_STAKING,
+//     addresses.DG_STAKING_CONTRACT_ADDRESS
+//   );
 
-  return DGStakingContract;
-}
+//   return DGStakingContract;
+// }
 
-// set balancer pool token contract instance
-async function BPTContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+// // set balancer pool token contract instance
+// async function BPTContract(web3Default) {
+//   const addresses = await Global.API_ADDRESSES;
 
-  // const DGStakingContract = new web3Default.eth.Contract(
-  //   ABI_DG_STAKING,
-  //   addresses.DG_STAKING_CONTRACT_ADDRESS
-  // );
+//   const BPTContract = new web3Default.eth.Contract(
+//     ABI_BALANCER_POOL_TOKEN,
+//     addresses.BP_TOKEN_ADDRESS
+//   );
 
-  const BPTContract = new web3Default.eth.Contract(
-    ABI_BALANCER_POOL_TOKEN,
-    addresses.BP_TOKEN_ADDRESS
-  );
-
-  return BPTContract;
-}
+//   return BPTContract;
+// }
 
 // get user or contract token balance from MetaMask
 async function balanceOfToken(tokenContract, userOrContractAddress, units) {
-  console.log('Get balance of token 2');
+  console.log('Get balance of token');
 
   try {
     const amount = await tokenContract.methods
@@ -97,6 +92,6 @@ export default {
   getActiveStatus,
   balanceOfToken,
   pointerContract,
-  stakingContract,
-  BPTContract,
+  // stakingContract,
+  // BPTContract,
 };

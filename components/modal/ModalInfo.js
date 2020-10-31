@@ -12,8 +12,8 @@ const ModalInfo = () => {
   const [DGTotal, setDGTotal] = useState(0);
 
   useEffect(() => {
-    console.log('initial value: ' + state.userBalances[2][0]);
-    console.log('parse float: ' + parseFloat(state.userBalances[2][0]));
+    // console.log('initial value: ' + state.userBalances[2][0]);
+    // console.log('parse float: ' + parseFloat(state.userBalances[2][0]));
 
     const totalDG =
       parseFloat(state.userBalances[2][0]) +

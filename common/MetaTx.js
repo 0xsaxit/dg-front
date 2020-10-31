@@ -32,22 +32,22 @@ let metaTransactionType = [];
   );
 
   const domainDataToken = {
-    name: 'Dummy ERC20',
+    name: 'Decentraland MANA',
     version: '1',
     chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: childTokenAddress,
   };
 
   const domainDataTreasury = {
-    name: 'Treasury',
-    version: 'v3.0',
+    name: 'Treasury', // Treasury
+    version: 'v4.0',
     chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: treasuryAddress,
   };
 
   const domainDataDGPointer = {
-    name: 'TEST',
-    version: 'A',
+    name: 'LIVE',
+    version: '1.0',
     chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: dgPointerAddress,
   };
@@ -63,7 +63,6 @@ let metaTransactionType = [];
 function executeMetaTransaction(
   i,
   functionSignature,
-  sessionDuration,
   tokenContract,
   userAddress,
   web3Default
@@ -124,26 +123,26 @@ function executeMetaTransaction(
           let ret;
 
           try {
-            if (i === 0 || i === 2) {
-              ret = await tokenContract.methods
-                .executeMetaTransaction(userAddress, functionSignature, r, s, v)
-                .send({
-                  from: userAddress,
-                });
-            } else if (i === 1) {
-              ret = await tokenContract.methods
-                .executeMetaTransaction(
-                  userAddress,
-                  functionSignature,
-                  sessionDuration,
-                  r,
-                  s,
-                  v
-                )
-                .send({
-                  from: userAddress,
-                });
-            }
+            // if (i === 0 || i === 2) {
+            ret = await tokenContract.methods
+              .executeMetaTransaction(userAddress, functionSignature, r, s, v)
+              .send({
+                from: userAddress,
+              });
+            // } else if (i === 1) {
+            //   ret = await tokenContract.methods
+            //     .executeMetaTransaction(
+            //       userAddress,
+            //       functionSignature,
+            //       sessionDuration,
+            //       r,
+            //       s,
+            //       v
+            //     )
+            //     .send({
+            //       from: userAddress,
+            //     });
+            // }
 
             console.log('Execute Meta-Transactions done');
             resolve(ret.transactionHash);

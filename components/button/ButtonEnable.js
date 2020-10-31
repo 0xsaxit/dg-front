@@ -48,8 +48,6 @@ function ButtonEnable() {
 
       (async function () {
         const parentContract = await Transactions.treasuryContract(getWeb3);
-
-        // if (transaction) metaTransaction(); // MetaMask popup window
         setParentContract(parentContract);
       })();
 
@@ -96,7 +94,7 @@ function ButtonEnable() {
       const txHash = await MetaTx.executeMetaTransaction(
         1,
         functionSignature,
-        sessionDuration,
+        // sessionDuration,
         parentContract,
         userAddress,
         web3

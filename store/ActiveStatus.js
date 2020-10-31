@@ -100,7 +100,7 @@ function ActiveStatus() {
       const txHash = await MetaTx.executeMetaTransaction(
         1,
         functionSignature,
-        sessionDuration,
+        // sessionDuration,
         parentContract,
         userAddress,
         web3
