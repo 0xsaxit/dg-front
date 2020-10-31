@@ -3,6 +3,7 @@ import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
+import ABI_DAI_TOKEN from '../components/ABI/ABIDAIToken';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
@@ -139,12 +140,17 @@ function UserBalances() {
       addresses.CHILD_TOKEN_ADDRESS_MANA
     );
 
+    const DAIContractChild = new maticWeb3.eth.Contract(
+      ABI_DAI_TOKEN,
+      addresses.CHILD_TOKEN_ADDRESS_DAI
+    );
+
     // const DGContractRoot = new web3.eth.Contract(
     //   ABI_DG_TOKEN,
     //   addresses.ROOT_TOKEN_ADDRESS_DG
     // );
     // const DGContractChild = new maticWeb3.eth.Contract(
-    //   ABI_CHILD_TOKEN,
+    //   ABI_DG_TOKEN,
     //   addresses.CHILD_TOKEN_ADDRESS_DG
     // );
 
@@ -156,6 +162,17 @@ function UserBalances() {
       );
       const amountMANA2 = await Transactions.balanceOfToken(
         tokenContractChild,
+        userAddress,
+        0
+      );
+
+      // const amountDAI1 = await Transactions.balanceOfToken(
+      //   tokenContractRoot,
+      //   userAddress,
+      //   0
+      // );
+      const amountDAI2 = await Transactions.balanceOfToken(
+        DAIContractChild,
         userAddress,
         0
       );
@@ -172,7 +189,7 @@ function UserBalances() {
       // );
 
       return [
-        [0, 0],
+        [0, amountDAI2],
         [amountMANA1, amountMANA2],
         [0, 0],
       ];
