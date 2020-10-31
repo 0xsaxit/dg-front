@@ -149,16 +149,16 @@ function UserBalances() {
     // );
 
     try {
-      // const amountMANA1 = await Transactions.balanceOfToken(
-      //   tokenContractRoot,
-      //   userAddress,
-      //   0
-      // );
-      // const amountMANA2 = await Transactions.balanceOfToken(
-      //   tokenContractChild,
-      //   userAddress,
-      //   0
-      // );
+      const amountMANA1 = await Transactions.balanceOfToken(
+        tokenContractRoot,
+        userAddress,
+        0
+      );
+      const amountMANA2 = await Transactions.balanceOfToken(
+        tokenContractChild,
+        userAddress,
+        0
+      );
 
       // const amountDG1 = await Transactions.balanceOfToken(
       //   DGContractRoot,
@@ -173,7 +173,7 @@ function UserBalances() {
 
       return [
         [0, 0],
-        [0, 0],
+        [amountMANA1, amountMANA2],
         [0, 0],
       ];
     } catch (error) {

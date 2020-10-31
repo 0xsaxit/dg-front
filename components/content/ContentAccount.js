@@ -2,7 +2,7 @@ import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
 import Images from '../../common/Images';
 
-const ContentTransactions = (props) => {
+const ContentAccount = (props) => {
   function contentLabels() {
     if (props.type === 'balances') {
       return null;
@@ -202,4 +202,4 @@ const ContentTransactions = (props) => {
   }
 };
 
-export default ContentTransactions;
+export default ContentAccount;

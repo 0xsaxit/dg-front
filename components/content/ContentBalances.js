@@ -20,7 +20,6 @@ let transak = new transakSDK({
   widgetWidth: '100%',
 });
 
-
 const ContentBalances = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -29,19 +28,17 @@ const ContentBalances = (props) => {
   let userAddress = '';
   const [margin, setMargin] = useState('125px');
 
-  // set top padding of balancees container dependent 
-  // on top bar message height 
-
+  // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
     const interval = setInterval(() => {
       var messageBar = document.getElementById('message-bar');
-        if (messageBar) {
-          var height = messageBar.offsetHeight;
-          setMargin(90 + height + "px");
-        } else {
-          setMargin("90px");
-        }
-      }, 100);
+      if (messageBar) {
+        var height = messageBar.offsetHeight;
+        setMargin(90 + height + 'px');
+      } else {
+        setMargin('90px');
+      }
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 
@@ -91,22 +88,7 @@ const ContentBalances = (props) => {
   // initialize transak modal
   function show_transak() {
     transak.init();
-
-    // initializePings()
   }
-
-  // initialize token contract pings
-  // function initializePings() {
-  //   if (state.userStatus >= 5) {
-  //     console.log('Ping token contract')
-
-  //     // start pinging the token contract for deposit confirmation
-  //     dispatch({
-  //       type: 'token_pings',
-  //       data: 1,
-  //     })
-  //   }
-  // }
 
   // close function
   function close() {
@@ -128,12 +110,9 @@ const ContentBalances = (props) => {
       <span>
         <div className="matic-overlay-container" onClick={close} />
         <div className="matic-overlay">
-          <p className="matic-header-text">
-            {' '}
-            Add Tokens{' '}
-          </p>
+          <p className="matic-header-text"> Add Tokens </p>
 
-          <Divider style={{ marginTop: '-15px' }}/> 
+          <Divider style={{ marginTop: '-15px' }} />
 
           <div className="matic-widget-button-container">
             <div onClick={close}>
@@ -141,13 +120,21 @@ const ContentBalances = (props) => {
                 className="matic-widget-button"
                 data-default-page="deposit"
                 data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                // onClick={() => initializePings()}
               >
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '7px' }}>
-                  <img src={Images.METAMASK} className="deposit-modal-image 1" />
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: '7px',
+                  }}
+                >
+                  <img
+                    src={Images.METAMASK}
+                    className="deposit-modal-image 1"
+                  />
                   <p className="deposit-type-text"> Metamask </p>
                 </span>
-                
               </div>
 
               <script
@@ -157,13 +144,21 @@ const ContentBalances = (props) => {
             </div>
 
             <div onClick={close}>
-              <div className="matic-widget-button-2" onClick={() => show_transak()}>
-
-                <span style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <div
+                className="matic-widget-button-2"
+                onClick={() => show_transak()}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   <img src={Images.TRANSAK} className="deposit-modal-image 2" />
                   <p className="deposit-type-text"> Debit Card </p>
                 </span>
-
               </div>
             </div>
           </div>

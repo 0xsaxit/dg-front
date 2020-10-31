@@ -4,11 +4,11 @@ import { Divider, Grid, Button } from 'semantic-ui-react';
 import ButtonAuthorize from '../button/ButtonAuthorize';
 import ButtonEnable from '../button/ButtonEnable';
 import Spinner from '../Spinner';
-import ContentTransactions from '../content/ContentTransactions';
+import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 
-const History = (props) => {
+const AccountData = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
@@ -21,8 +21,6 @@ const History = (props) => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-
-  // console.log(props.message);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -255,8 +253,8 @@ const History = (props) => {
             <div id="tx-box-history-2">
               {dataPage !== 'false' ? (
                 <table className="account-table">
-                  <ContentTransactions content={'labels'} type={dataType} />
-                  <ContentTransactions content={dataType} dataPage={dataPage} />
+                  <ContentAccount content={'labels'} type={dataType} />
+                  <ContentAccount content={dataType} dataPage={dataPage} />
                 </table>
               ) : (
                 noTxHistory()
@@ -277,4 +275,4 @@ const History = (props) => {
   );
 };
 
-export default History;
+export default AccountData;

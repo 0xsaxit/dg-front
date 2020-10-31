@@ -10,7 +10,7 @@ import Aux from '../_Aux';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 
-const Admin = () => {
+const Administration = () => {
   // get player/machine transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.adminHistory[0];
@@ -318,4 +318,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Administration;
