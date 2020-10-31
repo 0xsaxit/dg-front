@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
-import TransactionHistory from '../components/home/TransactionHistory';
+import AccountData from '../components/home/AccountData';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
@@ -46,7 +46,7 @@ const Wildcard = () => {
             image={Images.SOCIAL_SHARE}
           />
 
-          <TransactionHistory />
+          <AccountData />
         </Aux>
       ) : (
         <Aux>
