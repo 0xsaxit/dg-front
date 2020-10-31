@@ -504,9 +504,14 @@ const MenuTop = ({ toggleTheme }) => {
             {DGLogo()}
 
             {router.pathname === '/landing' ? (
+              null
+            ) : (
+              shownOrHiddenItems()
+            )}
+
+            {router.pathname === '/landing' ? (
               balancesAndButtonsLanding()
             ) : (
-              shownOrHiddenItems(),
               balancesAndButtons()
             )}
 
