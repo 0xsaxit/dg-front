@@ -43,12 +43,6 @@ const CustomForm = ({ status, message, onValidated }) => {
       )}
       <Input
         className="mailchimp-input"
-        onChange={handleNameChange.bind(this)}
-        type="text"
-        placeholder="Name"
-      />
-      <Input
-        className="mailchimp-input"
         onChange={handleEmailChange.bind(this)}
         type="email"
         placeholder="Email"

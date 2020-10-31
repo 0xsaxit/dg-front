@@ -191,7 +191,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 16K MANA : 1 DG </p>
                   </span>
                 </span>
               </div>
@@ -252,7 +252,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 1K DAI : 1 DG </p>
                   </span>
                 </span>
               </div>

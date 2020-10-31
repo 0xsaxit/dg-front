@@ -67,7 +67,7 @@ const Verify = () => {
   }
 
   return (
-    <span className="right-menu-items outter">
+    <span>
       {metamaskEnabled ? (
         <span className="right-menu-items">
           <Button
