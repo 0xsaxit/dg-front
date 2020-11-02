@@ -259,14 +259,14 @@ const MenuTop = ({ toggleTheme }) => {
                 <span className="menu-info-to-hide">
                   {DAI_BALANCE > 0 ? (
                     <p className={menuStyle[7]}>
-                      {state.userBalances[0][1]} DAI
+                      {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
                     </p>
                   ) : null}
                 </span>
                 <span className="menu-info-to-hide">
                   {MANA_BALANCE > 0 ? (
                     <p className={menuStyle[7]}>
-                      {state.userBalances[1][1]} MANA
+                      {parseInt(state.userBalances[1][1]).toLocaleString()} MANA
                     </p>
                   ) : null}
                 </span>

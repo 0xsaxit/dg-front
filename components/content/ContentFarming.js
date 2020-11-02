@@ -22,6 +22,9 @@ const ContentFarming = (props) => {
   const [instances, setInstances] = useState(false);
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
+  const valueUSD_1 = parseInt(state.DGBalances[0]*15).toLocaleString();
+  const valueUSD_2 = (state.DGBalances[1]*15);
+  const valueUSD_3 = (state.DGBalances[3]*15);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -126,6 +129,19 @@ const ContentFarming = (props) => {
                 <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGBalances[0]}</p>
               </span>
+            </span>
+
+            <Divider />
+
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}
+            >
+              <p className="earned-text"> Value USD </p>
+              <p className="earned-amount"> {valueUSD_1} </p>
             </span>
 
             <Divider />
@@ -334,6 +350,19 @@ const ContentFarming = (props) => {
                 )}
                 <p className="account-name">{state.DGBalances[1]}</p>
               </span>
+            </span>
+
+            <Divider />
+
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}
+            >
+              <p className="earned-text"> Value USD </p>
+              <p className="earned-amount"> {valueUSD_2} </p>
             </span>
 
             <Divider />
@@ -633,6 +662,19 @@ const ContentFarming = (props) => {
                 <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGBalances[3]}</p>
               </span>
+            </span>
+
+            <Divider />
+
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}
+            >
+              <p className="earned-text"> Value USD </p>
+              <p className="earned-amount"> {valueUSD_3} </p>
             </span>
 
             <Divider />
