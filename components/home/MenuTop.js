@@ -355,6 +355,18 @@ const MenuTop = ({ toggleTheme }) => {
                 </span>
               </a>
 
+              <a href="t.me/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon
+                      style={{ marginLeft: '-5px', marginRight: '10px' }}
+                      name="telegram"
+                    />
+                    TELEGRAM
+                  </Menu.Item>
+                </span>
+              </a>
+
               <a href="https://twitter.com/decentralgames" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
                   <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
