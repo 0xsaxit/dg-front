@@ -55,7 +55,7 @@ const ModalInfo = () => {
       <div>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
           <img
-            src={Images.DG_COIN_LOGO}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1604343512/RotateY_04_250x250_Alpha_jkvo2w.gif"
             className="farming-logo"
             alt="Decentral Games Coin Logo"
           />

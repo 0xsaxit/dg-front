@@ -5,8 +5,7 @@ import { Modal, Button, Input, Divider } from 'semantic-ui-react';
 
 
 const CustomForm = ({ status, message, onValidated }) => {
-
-  const [name, setName] = useState('');
+  
   const [email, setEmail] = useState('');
 
   function handleNameChange(e) {
@@ -19,11 +18,9 @@ const CustomForm = ({ status, message, onValidated }) => {
 
   const submit = () =>
     email &&
-    name &&
     email.indexOf("@") > -1 &&
     onValidated({
-      EMAIL: email,
-      NAME: name
+      EMAIL: email
     });
 
   return (
