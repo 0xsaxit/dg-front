@@ -191,62 +191,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 }
 
 /* ----------------------------------------- */
-/*             LANDING MOBILE CSS            */
-/* ----------------------------------------- */
-
-@media (max-width: 910px) {
-  .ui.blue.button.hit-tables-button,
-  .ui.blue.button.learn-dg-button {
-    width: 100% !important;
-  }
-  .landing-gif-holder {
-    width: calc(40vw);
-  }
-  .landing-description {
-    width: calc(60vw - 90px);
-    margin-left: calc(40vw + 45px);
-    margin-right: 45px !important;
-  }
-}
-
-@media (max-width: 734px) {
-  .home-dashboard-h1#landing-h1 {
-    font-size: 44px;
-  }
-}
-
-@media (max-width: 685px) {
-  .landing-gif-holder {
-    display: none;
-  }
-  .landing-description {
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
-    margin-left: 45px;
-  }
-  #landing-h1,
-  .landing-p,
-  .landing-i {
-    text-align: center;
-    padding: 0px;
-    max-width: 100% !important;
-  }
-  .landing-p {
-    margin-top: 18px !important;
-  }
-}
-
-@media (max-width: 499px) {
-  .landing-demo-span {
-    margin-right: 0px;
-  }
-  .landing-description {
-    margin-top: -60px;
-  }
-}
-
-/* ----------------------------------------- */
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
@@ -262,6 +206,18 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   }
 }
 
+@media (max-width: 600px) {
+  .daily-leaders-container {
+    display: none;
+  }
+}
+
+@media (max-height: 750px) {
+  .daily-leaders-container {
+    display: none;
+  }
+}
+
 .mobile-demo-video {
   width: 100%;
   border-radius: 2px;
@@ -273,6 +229,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   #mobile-casino-text,
   video#myVideo.home-dashboard-video {
     display: none !important;
+  }
+  .home-mission-content {
+    margin-top: -30px;
   }
   .home-dashboard-content {
     position: absolute;

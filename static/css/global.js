@@ -80,8 +80,7 @@ export const GlobalStyles = createGlobalStyle`
   .home-dashboard-h1,
   .right-menu-text,
   .deposit-message-text,
-  .landing-p,
-  .landing-i {
+  .leaders-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
 

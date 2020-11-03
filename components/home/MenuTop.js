@@ -117,8 +117,6 @@ const MenuTop = ({ toggleTheme }) => {
     if (path === 'menu') {
       if ('/' === router.pathname && !open ) {
         return 'menu-container';
-      } else if ('/landing' === router.pathname) {
-        return '';
       } else {
         return 'menu-container blog';
       }
@@ -517,27 +515,14 @@ const MenuTop = ({ toggleTheme }) => {
 
           <MessageBar />
 
-          {router.pathname === '/landing' ? (
-            null
-          ) : (
-            dropdownMenu()
-          )}
+          {dropdownMenu()}
   
 
           <Menu className={getLinkStyles('menu')} icon="labeled">
             {DGLogo()}
 
-            {router.pathname === '/landing' ? (
-              null
-            ) : (
-              shownOrHiddenItems()
-            )}
-
-            {router.pathname === '/landing' ? (
-              balancesAndButtonsLanding()
-            ) : (
-              balancesAndButtons()
-            )}
+            {shownOrHiddenItems()}
+            {balancesAndButtons()}
 
           </Menu>
 
