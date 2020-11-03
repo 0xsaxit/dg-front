@@ -65,7 +65,7 @@ const MessageBar = () => {
       );
     } else if (state.userStatus === 6) {
       setMessage(
-        'You must authorize the Decentral Games smart contract on Matic to play games with crytpo'
+        'You must authorize the Decentral Games smart contract on Matic to play games with crypto'
       );
     } else if (!state.activeStatus) {
       setMessage(
