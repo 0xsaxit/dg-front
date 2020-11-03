@@ -1916,7 +1916,7 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 
 .DG-column.unclaimed {
   max-width: 22.75% !important;
-  max-height: 237px;
+  max-height: 258px;
 }
 
 .DG-column.liquidity-unclaimed {
@@ -1932,7 +1932,9 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
 .DG-column.two {
   width: 48.5%;
 }
+
 .DG-column {
+  border-radius: 4px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 12px 18px 18px 18px !important;
@@ -1947,6 +1949,22 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   margin-top: 18px;
   display: flex;
   justify-content: space-between;
+}
+
+.ui.button.learn-dg-button {
+  display: flex;
+  align-self: center;
+  color: white;
+  background-color: #2085f4;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 4px;
+  height: 34px;
+  padding-top: 8px;
+  padding-left: 45px;
+  padding-right: 45px;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
 }
 
 .ui.button.DG-deposit-button {

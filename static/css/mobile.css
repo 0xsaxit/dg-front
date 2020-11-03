@@ -547,7 +547,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
-@media (min-width: 768px) {
+@media (min-width: 882px) {
   .dg-tabs-mobile {
     display: none;
   }
@@ -583,7 +583,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 881px) {
   .dg-tabs-desktop {
     display: none;
   }

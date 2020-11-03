@@ -91,6 +91,28 @@ const ContentFarming = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
+  function contentToken() {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <p className="account-name" style={{ paddingLeft: '0px', textAlign: 'center' }}> Meet DG - Decentral Games Token </p>
+        <p style={{ marginTop: '-21px', textAlign: 'center' }}> We believe the best way to (align user incentives... ) is through (the creation of a token...). Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. 
+        </p>
+        <Button
+          className="learn-dg-button"
+        >
+          LEARN MORE ABOUT $DG
+        </Button>
+
+        <div className="DG-column top" style={{ marginTop: '45px' }}>
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <p> claim content goes here</p>
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   function contentMining() {
     return (
       <Aux>
@@ -137,7 +159,9 @@ const ContentFarming = (props) => {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                paddingTop: '11px',
+                paddingBottom: '11px'
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -358,7 +382,9 @@ const ContentFarming = (props) => {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                paddingTop: '11px',
+                paddingBottom: '11px'
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -670,7 +696,9 @@ const ContentFarming = (props) => {
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                paddingTop: '11px',
+                paddingBottom: '11px'
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -853,7 +881,9 @@ const ContentFarming = (props) => {
     });
   }
 
-  if (props.content === 'mining') {
+  if (props.content === 'token') {
+    return contentToken();
+  } else if (props.content === 'mining') {
     return contentMining();
   } else if (props.content === 'liquidity') {
     return contentLiquidity();
