@@ -19,10 +19,9 @@ const ModalVideo = () => {
       <Modal.Content>
         <iframe
           className="mobile-demo-video"
-          src="https://www.youtube.com/watch?v=FOAxJrfyDIA"
+          src="https://www.youtube.com/embed/FOAxJrfyDIA"
           frameborder="0"
           allowfullscreen
-          allow="autoplay"
         ></iframe>
       </Modal.Content>
     </Modal>
