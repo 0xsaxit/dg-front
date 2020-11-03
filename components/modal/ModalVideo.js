@@ -19,7 +19,7 @@ const ModalVideo = () => {
       <Modal.Content>
         <iframe
           className="mobile-demo-video"
-          src="https://www.youtube.com/embed/a1DoWiNW0oU?&autoplay=1&loop=1&playlist=a1DoWiNW0oU"
+          src="https://www.youtube.com/watch?v=FOAxJrfyDIA"
           frameborder="0"
           allowfullscreen
           allow="autoplay"

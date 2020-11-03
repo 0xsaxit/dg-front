@@ -447,7 +447,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">pool 1 rate</p>
-                    <p className="earned-amount">{currenReward / 40}</p>
+                    <p className="earned-amount">3K DG / Week </p>
                   </span>
                 </span>
               </div>

@@ -355,7 +355,7 @@ const MenuTop = ({ toggleTheme }) => {
                 </span>
               </a>
 
-              <a href="t.me/decentralgames" target="_blank">
+              <a href="https://t.me/decentralgames" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
                   <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
                     <Icon
@@ -448,6 +448,18 @@ const MenuTop = ({ toggleTheme }) => {
                       name="discord"
                     />
                     DISCORD
+                  </Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://t.me/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon
+                      style={{ marginLeft: '-5px', marginRight: '10px' }}
+                      name="telegram"
+                    />
+                    TELEGRAM
                   </Menu.Item>
                 </span>
               </a>
