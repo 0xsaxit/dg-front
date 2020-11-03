@@ -172,7 +172,7 @@ const Serenity = () => {
             <h1 className="home-dashboard-h1" id="landing-h1">
               decentral.games
             </h1>
-            <h2 className="landing-p" style={{ marginTop: '18px', maxWidth: '500px' }}>
+            <h2 className="landing-p" style={{ marginTop: '3px', maxWidth: '500px' }}>
               The first community-owned metaverse casino ecosystem.
             </h2>
             <h2 className="landing-i" style={{ marginTop: '18px', marginBottom: '18px' }}>
