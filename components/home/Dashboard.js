@@ -94,7 +94,7 @@ const Serenity = () => {
                   src={`https://events.decentraland.org/api/profile/${spotOneAddress}/face.png`}
                   style={{
                     width: '24px',
-                    marginRight: '6px',
+                    marginRight: '9px',
                     verticalAlign: 'middle',
                     marginTop: '-2px',
                     border: '1px solid rgb(227, 232, 238)',
@@ -105,9 +105,10 @@ const Serenity = () => {
                   }}
                 />
               </span>
-              <p className="leaders-text lower"> {spotOne} </p>
-              <p style={{ marginLeft: '6px', marginRight: '6px', marginTop: '-7px' }}> | </p>
-              <p className="leaders-text lower" style={{ marginBottom: '18px' }}> {spotOneTotal} MANA</p>
+              <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <p className="leaders-text lower"> {spotOne} </p>
+                <p className="leaders-text lower" style={{ marginBottom: '18px', marginTop: '-9px' }}> {spotOneTotal} MANA</p>
+              </span>
             </span>
 
             <span className="leader-text-span">
@@ -118,7 +119,7 @@ const Serenity = () => {
                   src={`https://events.decentraland.org/api/profile/${spotTwoAddress}/face.png`}
                   style={{
                     width: '24px',
-                    marginRight: '6px',
+                    marginRight: '9px',
                     verticalAlign: 'middle',
                     marginTop: '-2px',
                     border: '1px solid rgb(227, 232, 238)',
@@ -129,9 +130,10 @@ const Serenity = () => {
                   }}
                 />
               </span>
-              <p className="leaders-text lower"> {spotTwo}</p>
-              <p style={{ marginLeft: '6px', marginRight: '6px', marginTop: '-7px' }}> | </p>
-              <p className="leaders-text lower" style={{ marginBottom: '18px' }}> {spotTwoTotal} MANA</p>
+              <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <p className="leaders-text lower"> {spotTwo} </p>
+                <p className="leaders-text lower" style={{ marginBottom: '18px', marginTop: '-9px' }}> {spotTwoTotal} MANA</p>
+              </span>
             </span>
 
             <span className="leader-text-span">
@@ -142,7 +144,7 @@ const Serenity = () => {
                   src={`https://events.decentraland.org/api/profile/${spotThreeAddress}/face.png`}
                   style={{
                     width: '24px',
-                    marginRight: '6px',
+                    marginRight: '9px',
                     verticalAlign: 'middle',
                     marginTop: '-2px',
                     border: '1px solid rgb(227, 232, 238)',
@@ -153,9 +155,10 @@ const Serenity = () => {
                   }}
                 />
               </span>
-              <p className="leaders-text lower"> {spotThree} </p>
-              <p style={{ marginLeft: '6px', marginRight: '6px', marginTop: '-7px' }}> | </p>
-              <p className="leaders-text lower"> {spotThreeTotal} MANA</p>
+              <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <p className="leaders-text lower"> {spotThree} </p>
+                <p className="leaders-text lower" style={{ marginTop: '-9px' }}> {spotThreeTotal} MANA</p>
+              </span>
             </span>
           </span>
         </div>
@@ -163,12 +166,13 @@ const Serenity = () => {
         <div 
           className="landing-content"
           style={{ backgroundColor: 'rgb(10, 10, 10)' }}
+
         >
           <div className="landing-description">
-            <h1 className="home-dashboard-h1" >
+            <h1 className="home-dashboard-h1" id="landing-h1">
               decentral.games
             </h1>
-            <h2 className="landing-p" style={{ marginTop: '3px', maxWidth: '500px' }}>
+            <h2 className="landing-p" style={{ marginTop: '18px', maxWidth: '500px' }}>
               The first community-owned metaverse casino ecosystem.
             </h2>
             <h2 className="landing-i" style={{ marginTop: '18px', marginBottom: '18px' }}>
@@ -176,16 +180,17 @@ const Serenity = () => {
             </h2>
             <Button
               color="blue"
-              className="play-button"
+              className="hit-tables-button"
               style={{ marginRight: '30px' }}
+              href="/"
             >
               HIT THE TABLES
             </Button>
             <Button
               color="blue"
-              className="how-to-button"
+              className="learn-dg-button"
               target="_blank"
-              href="https://docs.decentral.games/getting-started"
+              href=""
             >
               LEARN ABOUT $DG
             </Button>

@@ -79,7 +79,9 @@ export const GlobalStyles = createGlobalStyle`
   .featured-casino-text,
   .home-dashboard-h1,
   .right-menu-text,
-  .deposit-message-text {
+  .deposit-message-text,
+  .landing-p,
+  .landing-i {
     color: ${({ theme }) => theme.homeText} !important;  
   }
 

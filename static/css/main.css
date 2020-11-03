@@ -462,14 +462,25 @@ div.ui.segment.transparent-menu-segment {
   overflow: hidden !important;
 }
 
+.landing-demo-span {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  margin-right: -45px;
+  cursor: pointer;
+}
+
 .landing-content {
   height: 100vh;
   display: flex;
   align-items: center;
+  background-image: url(https://res.cloudinary.com/dnzambf4m/image/upload/v1604424290/Group_32_uybg01.png);
+  background-size: cover;
 }
 
 .landing-description {
-  margin-left: calc(33vw + 160px);
+  margin-left: calc(33vw + 145px);
+  margin-right: 45px;
 }
 
 .landing-p {
@@ -513,6 +524,38 @@ div.ui.segment.transparent-menu-segment {
 .leaders-text.lower {
   margin-top: -2px;
   font-weight: bold;
+}
+
+.ui.blue.button.hit-tables-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  font-weight: 600;
+  margin-top: 20px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+}
+
+.ui.blue.button.learn-dg-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  font-weight: 600;
+  position: relative;
+  font-weight: 600;
+  margin-top: 20px;
+  padding-top: 8px;
+  width: 180px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 34px;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
 }
 
 /* ----------------------------------------- */
@@ -599,6 +642,7 @@ a.ui.blue.button.how-to-button {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  margin-top: -15px !important;
 }
 
 .home-dashboard-description {
