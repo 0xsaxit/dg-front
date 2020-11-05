@@ -3,6 +3,9 @@ import { GlobalContext } from '../../store';
 import { Divider, Grid, Button } from 'semantic-ui-react';
 import ButtonAuthorize from '../button/ButtonAuthorize';
 import ButtonEnable from '../button/ButtonEnable';
+
+import ButtonTesting from '../button/ButtonTesting';
+
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
@@ -136,6 +139,8 @@ const AccountData = () => {
                     </Button>
                   )}
                 </span>
+
+                {/* <ButtonTesting /> */}
               </Grid.Column>
             </Grid.Row>
           </Grid>

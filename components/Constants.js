@@ -16,10 +16,11 @@ const CONSTANTS = {
   GAS_LIMIT: '3000000', // was '900000'
   GAS_AMOUNT: '80000000000', // was '20000000000'
   FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
-  PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
+  PARENT_NETWORK_ID: 5, // 1: Mainnet, 3: Ropsten, 5: Goerli
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // mumbai: 80001, mainnet: 137
-  MATIC_URL: 'https://rpc-mainnet.matic.network', // 'https://rpc-mumbai.matic.today',
+  MATIC_URL:
+    'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9', // 'https://rpc-mumbai.matic.today', 'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9'
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com', // 'https://mumbai-explorer.matic.today',
   TITLE: 'Decentral Games',
   DESCRIPTION:
@@ -40,7 +41,7 @@ const API_ADDRESSES = (async () => {
   const CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
   const CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
   const CHILD_TOKEN_ADDRESS_DG = json.CHILD_TOKEN_ADDRESS_DG;
-  const TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
+  const TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS; // '0x7B4E344870a5717DBd1E4433229ECBDDA167a529'
   const DG_POINTER_CONTRACT_ADDRESS = json.DG_POINTER_CONTRACT_ADDRESS;
   const DG_STAKING_CONTRACT_ADDRESS = json.DG_STAKING_CONTRACT_ADDRESS;
   const BP_TOKEN_ADDRESS = json.BP_TOKEN_ADDRESS;

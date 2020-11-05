@@ -119,7 +119,7 @@ const ContentBalances = (props) => {
               <div
                 className="matic-widget-button"
                 data-default-page="deposit"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
+                data-wapp-id="I8qoM5yxmkAm6tT72vwD"
               >
                 <span
                   style={{
@@ -138,7 +138,7 @@ const ContentBalances = (props) => {
               </div>
 
               <script
-                src="https://wallet.matic.today/embeds/widget-button.js"
+                src="https://wallet.matic.network/embeds/widget-button.js"
                 data-script-name="matic-embeds"
               ></script>
             </div>
@@ -354,8 +354,7 @@ const ContentBalances = (props) => {
                 color="blue"
                 className="matic-widget-button balances-play-button"
                 data-default-page="deposit"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                // onClick={() => initializePings()}
+                data-wapp-id="I8qoM5yxmkAm6tT72vwD"
               >
                 DEPOSIT
               </Button>
@@ -363,14 +362,13 @@ const ContentBalances = (props) => {
                 color="blue"
                 className="matic-widget-button balances-play-button"
                 data-default-page="withdraw"
-                data-wapp-id="xeYvesZxGiEKOMt4gq3s"
-                //onClick={() => initializePings()}
+                data-wapp-id="I8qoM5yxmkAm6tT72vwD"
               >
                 WITHDRAW
               </Button>
 
               <script
-                src="https://wallet.matic.today/embeds/widget-button.js"
+                src="https://wallet.matic.network/embeds/widget-button.js"
                 data-script-name="matic-embeds"
               ></script>
             </span>

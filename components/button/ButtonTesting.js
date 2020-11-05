@@ -1,37 +1,41 @@
-import { useEffect, useContext } from 'react';
-import { GlobalContext } from './index';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import Global from '../components/Constants';
-import Fetch from '../common/Fetch';
-import MetaTx from '../common/MetaTx';
-import Transactions from '../common/Transactions';
+import { Button } from 'semantic-ui-react';
+import Global from '../Constants';
+import Fetch from '../../common/Fetch';
+import MetaTx from '../../common/MetaTx';
+import Aux from '../_Aux';
+import Transactions from '../../common/Transactions';
 
-function ActiveStatus() {
+function ButtonEnable() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = '';
-  let parentContract = {};
-  let web3 = {};
-  let maticWeb3 = {};
+  const [userAddress, setUserAddress] = useState('');
+  const [parentContract, setParentContract] = useState({});
+  const [web3, setWeb3] = useState({});
+  const [maticWeb3, setMaticWeb3] = useState({});
+
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
 
   useEffect(() => {
-    if (
-      state.userStatus === 7 &&
-      state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
-    ) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+    if (state.userStatus) {
+      const userAddress = window.web3.currentProvider.selectedAddress;
+      setUserAddress(userAddress);
 
-      // initialize Web3 providers and create treasury contract instance
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      // initialize Web3 providers and create token contract instance
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
 
-      // maticWeb3 = new Web3(
+      // const maticWeb3 = new Web3(
       //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
       // ); // pass Matic provider to maticWeb3 object
-      maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
+      setMaticWeb3(maticWeb3);
 
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
@@ -43,16 +47,8 @@ function ActiveStatus() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        parentContract = await Transactions.treasuryContract(getWeb3);
-
-        const activeStatus = await Transactions.getActiveStatus(
-          userAddress,
-          maticWeb3
-        );
-        console.log('Active status: ' + activeStatus);
-        dispatchActiveStatus(activeStatus);
-
-        if (!activeStatus) metaTransaction(); // MetaMask popup window
+        const parentContract = await Transactions.treasuryContract(getWeb3);
+        setParentContract(parentContract);
       })();
 
       biconomy
@@ -65,16 +61,14 @@ function ActiveStatus() {
     }
   }, [state.userStatus]);
 
-  // update global state active status
-  function dispatchActiveStatus(status) {
+  function dispatchActiveStatus(status, txHash) {
+    // update global state active status
     dispatch({
       type: 'active_status',
       data: status,
     });
-  }
 
-  // post reauthorization to database
-  function postAuthorization(txHash) {
+    // post reauthorization to database
     console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
@@ -87,14 +81,15 @@ function ActiveStatus() {
     );
   }
 
-  // Biconomy API meta-transaction. User must re-authoriza signature after 12 dormant hours
+  // Biconomy API meta-transaction. User must re-authorize treasury contract after dormant period
   async function metaTransaction() {
     try {
       console.log('Session Duration: ' + sessionDuration);
 
-      // console.log(parentContract);
-      // console.log(userAddress);
-      // console.log(web3);
+      // sending the user address works *********************************************
+      // let functionSignature = parentContract.methods
+      //   .enableAccount(userAddress, sessionDuration)
+      //   .encodeABI();
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = parentContract.methods
@@ -105,6 +100,7 @@ function ActiveStatus() {
         1,
         functionSignature,
         parentContract,
+        // sessionDuration, // *****************************
         userAddress,
         web3
       );
@@ -119,16 +115,32 @@ function ActiveStatus() {
           maticWeb3
         );
         console.log('Active status (updated): ' + activeStatus);
-
-        dispatchActiveStatus(activeStatus);
-        postAuthorization(txHash);
+        dispatchActiveStatus(activeStatus, txHash);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  return null;
+  return (
+    <Aux>
+      <span>
+        <Button
+          className="account-connected-play-button"
+          onClick={() => metaTransaction()}
+        >
+          TEST
+        </Button>
+      </span>
+
+      <Button
+        className="account-connected-play-button-mobile"
+        onClick={() => metaTransaction()}
+      >
+        TEST
+      </Button>
+    </Aux>
+  );
 }
 
-export default ActiveStatus;
+export default ButtonEnable;
