@@ -96,7 +96,8 @@ export const GlobalStyles = createGlobalStyle`
   .admin-balances-column,
   div.visible.menu.transition,
   .hljs,
-  code strong, kbd, samp {
+  code strong, kbd, samp,
+  #airdrop-numbers {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};

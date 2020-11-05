@@ -94,21 +94,93 @@ const ContentFarming = (props) => {
 
   function contentToken() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <p className="account-name" style={{ paddingLeft: '0px', textAlign: 'center' }}> Meet DG - Decentral Games Token </p>
-        <p style={{ marginTop: '-21px', textAlign: 'center' }}> We believe the best way to (align user incentives... ) is through (the creation of a token...). Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. 
-        </p>
-        <Button
-          className="learn-dg-button"
-        >
-          LEARN MORE ABOUT $DG
-        </Button>
+      <div className="outter-airdrop-container">
 
-        <div className="DG-column top" style={{ marginTop: '45px' }}>
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <p> claim content goes here</p>
+        <div className="DG-column unclaimed" id="airdrop-unclaimed" style={{ marginRight: '45px' }}>
+          <span style={{ display: 'flex' }}>
+            <img
+              src={Images.DG_COIN_LOGO}
+              className="farming-logo"
+              alt="Decentral Games Coin Logo"
+            />
+            <span className="farming-pool-span">
+              <p className="welcome-text"> Unclaimed</p>
+              <p className="account-name">{state.DGBalances[0]}</p>
+            </span>
           </span>
-        </div>
+
+          <Divider />
+
+          <span
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              paddingTop: '11px',
+              paddingBottom: '11px'
+            }}
+          >
+            <p className="earned-text"> Value USD </p>
+            <p className="earned-amount"> ${valueUSD_1} </p>
+          </span>
+
+          <Divider />
+
+          <span className="DG-button-span">
+            <Button
+              className="DG-claim-button"
+            >
+              CLAIM AIRDROP
+            </Button>
+          </span>
+        </div> 
+
+        <span className="DG-tablet-container">
+          <span className="airdrop-right-items">
+            <p className="account-name" style={{ paddingLeft: '0px' }}> Decentral Games Token </p>
+            <p style={{ marginTop: '-21px' }}> $DG is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
+
+
+            <div style={{ marginTop: '45px' }}>
+              <p className="account-name" style={{ paddingLeft: '0px' }}> Who is eligible to participate in the airdrop? </p>
+              <span style={{ display: 'flex' }}>
+
+                <p className="account-name" id="airdrop-numbers">
+                  1
+                </p>
+                <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
+                  <h3 className="DG-h3">Existing NFT Holders</h3>
+                  <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
+                  <p style={{ paddingTop: '15px' }}> We are airdropping 120 $DG per NFT to our Tominoya and Flamingos holders that vests linearly over 3 months. </p>
+                </span>
+              </span>
+
+              <span style={{ display: 'flex', paddingTop: '30px' }}>
+                <p className="account-name" id="airdrop-numbers">
+                  2
+                </p>
+                <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
+                  <h3 className="DG-h3">All Players in our Database</h3>
+                  <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
+                  <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every address that has played our free play games. </p>
+                </span>
+              </span>
+            </div>
+
+            <div style={{ marginTop: '45px' }}>
+              <p className="account-name" style={{ paddingLeft: '0px' }}> $DG token distribution </p>
+              <p style={{ marginTop: '-21px' }}> Our token is not an investment and should be earned by active participation on the platform. 75,000 tokens are issued every week, with 50% reserved for buyers, and 50% for sellers </p>
+            </div>
+
+            <div className="DG-column" style={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1604538605/light_mode_bkgsoo.png" 
+                style={{  width: '75%' }}
+              />
+            </div>
+
+          </span>
+        </span>
       </div>
     );
   }

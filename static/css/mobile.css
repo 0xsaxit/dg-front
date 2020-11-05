@@ -568,18 +568,22 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
     flex-direction: row;
   }
   .DG-column.unclaimed {
-    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 30px;
   }
   .DG-column.one,
   .DG-column.two {
     max-width: 48.5% !important;
   }
-  .DG-column.unclaimed {
-    max-width: 100% !important;
-    margin-bottom: 30px;
-  }
   .DG-liquidity-container.gov {
     flex-direction: column;
+  }
+  .outter-airdrop-container {
+    display: flex;
+    flex-direction: column;
+  }
+  #airdrop-unclaimed {
+    margin-bottom: 45px;
   }
 }
 
