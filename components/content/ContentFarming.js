@@ -137,8 +137,27 @@ const ContentFarming = (props) => {
 
         <span className="DG-tablet-container">
           <span className="airdrop-right-items">
-            <p className="account-name" style={{ paddingLeft: '0px' }}> Decentral Games Token </p>
-            <p style={{ marginTop: '-21px' }}> $DG is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
+            <p> Decentral Games Token ($DG) is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
+            <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more about $DG by reading our                 
+              <a
+                href=""
+                target="_blank"
+                style={{ color: '#2085f4' }}
+              >
+                {' '}
+                announcement{' '}
+              </a>
+              or by visiting our 
+              <a
+                href="https://decentral-games-1.gitbook.io/dg/allocation"
+                target="_blank"
+                style={{ color: '#2085f4' }}
+              >
+                {' '}
+                documentation
+              </a>
+              .
+            </p>
 
 
             <div style={{ marginTop: '45px' }}>
@@ -165,18 +184,6 @@ const ContentFarming = (props) => {
                   <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every address that has played our free play games. </p>
                 </span>
               </span>
-            </div>
-
-            <div style={{ marginTop: '45px' }}>
-              <p className="account-name" style={{ paddingLeft: '0px' }}> $DG token distribution </p>
-              <p style={{ marginTop: '-21px' }}> $DG is not an investment and should be earned by active participation in our ecosystem. Tokens are issued every week in return for playing games and providing liquidity. </p>
-            </div>
-
-            <div className="DG-column" style={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
-              <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1604538605/light_mode_bkgsoo.png" 
-                style={{  width: '75%' }}
-              />
             </div>
 
           </span>
