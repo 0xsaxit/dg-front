@@ -52,7 +52,7 @@ function ActiveStatus() {
         console.log('Active status: ' + activeStatus);
         dispatchActiveStatus(activeStatus);
 
-        if (!activeStatus) metaTransaction(); // MetaMask popup window
+        // if (!activeStatus) metaTransaction(); // MetaMask popup window
       })();
 
       biconomy

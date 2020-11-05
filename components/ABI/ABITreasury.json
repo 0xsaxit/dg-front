@@ -21,6 +21,25 @@
 			{
 				"indexed": false,
 				"internalType": "address",
+				"name": "msgSender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "sessionDuration",
+				"type": "uint256"
+			}
+		],
+		"name": "AccountEnabled",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
 				"name": "newCEO",
 				"type": "address"
 			}

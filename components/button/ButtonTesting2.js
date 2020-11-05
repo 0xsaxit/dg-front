@@ -136,7 +136,7 @@ function ButtonAuthorize() {
           className="account-connected-play-button"
           onClick={() => metaTransaction()}
         >
-          AUTHORIZE
+          TEST 2
         </Button>
       </span>
 
@@ -144,7 +144,7 @@ function ButtonAuthorize() {
         className="account-connected-play-button-mobile"
         onClick={() => metaTransaction()}
       >
-        AUTHORIZE
+        TEST 2
       </Button>
     </Aux>
   );

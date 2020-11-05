@@ -4,7 +4,7 @@ import { Divider, Grid, Button } from 'semantic-ui-react';
 import ButtonAuthorize from '../button/ButtonAuthorize';
 import ButtonEnable from '../button/ButtonEnable';
 
-import ButtonTesting from '../button/ButtonTesting';
+// import ButtonTesting2 from '../button/ButtonTesting2';
 
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
@@ -140,7 +140,7 @@ const AccountData = () => {
                   )}
                 </span>
 
-                {/* <ButtonTesting /> */}
+                {/* <ButtonTesting2 /> */}
               </Grid.Column>
             </Grid.Row>
           </Grid>

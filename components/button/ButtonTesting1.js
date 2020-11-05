@@ -129,7 +129,7 @@ function ButtonEnable() {
           className="account-connected-play-button"
           onClick={() => metaTransaction()}
         >
-          TEST
+          TEST 1
         </Button>
       </span>
 
@@ -137,7 +137,7 @@ function ButtonEnable() {
         className="account-connected-play-button-mobile"
         onClick={() => metaTransaction()}
       >
-        TEST
+        TEST 1
       </Button>
     </Aux>
   );
