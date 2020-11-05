@@ -137,7 +137,7 @@ const ContentFarming = (props) => {
 
         <span className="DG-tablet-container">
           <span className="airdrop-right-items">
-            <p> Decentral Games Token ($DG) is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
+            <p> Decentral Games Governance Token ($DG) is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
             <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more about $DG by reading our                 
               <a
                 href=""
@@ -170,7 +170,7 @@ const ContentFarming = (props) => {
                 <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
                   <h3 className="DG-h3">Existing NFT Holders</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
-                  <p style={{ paddingTop: '15px' }}> We are airdropping 120 $DG per NFT to our Tominoya and Flamingos holders that vests linearly over 3 months. </p>
+                  <p style={{ paddingTop: '15px' }}> We are airdropping 120 $DG per NFT to Tominoya and Flamingos holders that vests linearly over 3 months. </p>
                 </span>
               </span>
 
@@ -181,7 +181,7 @@ const ContentFarming = (props) => {
                 <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
                   <h3 className="DG-h3">All Players in Our Database</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
-                  <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every address that has played our free play games. </p>
+                  <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every Ethereum address that has played our free play games within the last 4 months. </p>
                 </span>
               </span>
             </div>
@@ -200,9 +200,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                You can mine $DG by playing games with $MANA or $DAI. Earn
-                multipliers by playing with friends or wearing Decentral Games
-                NFTs. Refer any friends and get an additional 20% of all $DG
+                Mine $DG by playing games with $MANA or $DAI. Earn mining bonuses
+                by playing with friends or wearing Decentral Games wearables
+                NFTs. Refer friends and receive an affiliate bonus of 10% of the $DG
                 they mine. For more details, see our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
@@ -403,9 +403,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
-                You can farm $DG by providing liquidity in 98/2 MANA/DG and
-                DAI/DG Balancer pools and staking the LP tokens on this
-                dashboard. Read more about $DG liquidity farming rewards in our
+                Farm $DG by providing liquidity in 98/2 MANA/DG and
+                DAI/DG Balancer pools and staking LP tokens on this
+                dashboard. Read more about $DG liquidity farming in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -739,7 +739,7 @@ const ContentFarming = (props) => {
                   {' '}
                   here
                 </a>
-                . Read more about decentral.games governance in our{' '}
+                . $DG Governance will go live in Q1 2021. Read more about decentral.games governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
