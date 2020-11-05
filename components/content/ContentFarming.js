@@ -179,7 +179,7 @@ const ContentFarming = (props) => {
                   2
                 </p>
                 <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
-                  <h3 className="DG-h3">All Players in our Database</h3>
+                  <h3 className="DG-h3">All Players in Our Database</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
                   <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every address that has played our free play games. </p>
                 </span>
