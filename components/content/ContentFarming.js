@@ -169,7 +169,7 @@ const ContentFarming = (props) => {
 
             <div style={{ marginTop: '45px' }}>
               <p className="account-name" style={{ paddingLeft: '0px' }}> $DG token distribution </p>
-              <p style={{ marginTop: '-21px' }}> Our token is not an investment and should be earned by active participation on the platform. 75,000 tokens are issued every week, with 50% reserved for buyers, and 50% for sellers </p>
+              <p style={{ marginTop: '-21px' }}> $DG is not an investment and should be earned by active participation in our ecosystem. Tokens are issued every week in return for playing games and providing liquidity. </p>
             </div>
 
             <div className="DG-column" style={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
