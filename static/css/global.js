@@ -79,7 +79,8 @@ export const GlobalStyles = createGlobalStyle`
   .featured-casino-text,
   .home-dashboard-h1,
   .right-menu-text,
-  .deposit-message-text {
+  .deposit-message-text,
+  .leaders-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
 
@@ -95,7 +96,8 @@ export const GlobalStyles = createGlobalStyle`
   .admin-balances-column,
   div.visible.menu.transition,
   .hljs,
-  code strong, kbd, samp {
+  code strong, kbd, samp,
+  #airdrop-numbers {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};

@@ -117,8 +117,6 @@ const MenuTop = ({ toggleTheme }) => {
     if (path === 'menu') {
       if ('/' === router.pathname && !open ) {
         return 'menu-container';
-      } else if ('/landing' === router.pathname) {
-        return '';
       } else {
         return 'menu-container blog';
       }
@@ -259,14 +257,14 @@ const MenuTop = ({ toggleTheme }) => {
                 <span className="menu-info-to-hide">
                   {DAI_BALANCE > 0 ? (
                     <p className={menuStyle[7]}>
-                      {state.userBalances[0][1]} DAI
+                      {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
                     </p>
                   ) : null}
                 </span>
                 <span className="menu-info-to-hide">
                   {MANA_BALANCE > 0 ? (
                     <p className={menuStyle[7]}>
-                      {state.userBalances[1][1]} MANA
+                      {parseInt(state.userBalances[1][1]).toLocaleString()} MANA
                     </p>
                   ) : null}
                 </span>
@@ -351,6 +349,18 @@ const MenuTop = ({ toggleTheme }) => {
                       name="discord"
                     />
                     DISCORD
+                  </Menu.Item>
+                </span>
+              </a>
+
+              <a href="https://t.me/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon
+                      style={{ marginLeft: '-5px', marginRight: '10px' }}
+                      name="telegram"
+                    />
+                    TELEGRAM
                   </Menu.Item>
                 </span>
               </a>
@@ -440,6 +450,18 @@ const MenuTop = ({ toggleTheme }) => {
                 </span>
               </a>
 
+              <a href="https://t.me/decentralgames" target="_blank">
+                <span style={{ display: 'flex', marginBottom: '6px' }}>
+                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
+                    <Icon
+                      style={{ marginLeft: '-5px', marginRight: '10px' }}
+                      name="telegram"
+                    />
+                    TELEGRAM
+                  </Menu.Item>
+                </span>
+              </a>
+
               <a href="https://twitter.com/decentralgames" target="_blank">
                 <span style={{ display: 'flex', marginBottom: '6px' }}>
                   <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
@@ -493,27 +515,14 @@ const MenuTop = ({ toggleTheme }) => {
 
           <MessageBar />
 
-          {router.pathname === '/landing' ? (
-            null
-          ) : (
-            dropdownMenu()
-          )}
+          {dropdownMenu()}
   
 
           <Menu className={getLinkStyles('menu')} icon="labeled">
             {DGLogo()}
 
-            {router.pathname === '/landing' ? (
-              null
-            ) : (
-              shownOrHiddenItems()
-            )}
-
-            {router.pathname === '/landing' ? (
-              balancesAndButtonsLanding()
-            ) : (
-              balancesAndButtons()
-            )}
+            {shownOrHiddenItems()}
+            {balancesAndButtons()}
 
           </Menu>
 

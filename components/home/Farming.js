@@ -16,7 +16,7 @@ const Farming = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [DGstate, setDGState] = useState('mining');
+  const [DGstate, setDGState] = useState('token');
   const [isLoading, setIsLoading] = useState(true);
   const [addresses, setAddresses] = useState({});
   const [pointerContract, setPointerContract] = useState({});
@@ -256,6 +256,18 @@ const Farming = () => {
       <div className="account-other-tabs">
         <span className="dg-tabs-desktop">
           <p className="account-other-p">
+            
+            {DGstate === 'token' ? (
+              <b className="account-hover active">TOKEN</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('token')}
+              >
+                TOKEN
+              </abbr>
+            )}
+
             {DGstate === 'mining' ? (
               <b className="account-hover active">GAMEPLAY MINING</b>
             ) : (
@@ -291,13 +303,13 @@ const Farming = () => {
 
             {whitelisted ? (
               DGstate === 'admin' ? (
-                <b className="account-hover active">DG ADMIN</b>
+                <b className="account-hover active">ADMIN</b>
               ) : (
                 <abbr
                   className="account-hover"
                   onClick={() => setDGState('admin')}
                 >
-                  DG ADMIN
+                  ADMIN
                 </abbr>
               )
             ) : null}
@@ -308,25 +320,37 @@ const Farming = () => {
 
         <span className="dg-tabs-mobile">
           <p className="account-other-p">
+
+            {DGstate === 'token' ? (
+              <b className="account-hover active">TOKEN</b>
+            ) : (
+              <abbr
+                className="account-hover"
+                onClick={() => setDGState('token')}
+              >
+                TOKEN
+              </abbr>
+            )}
+
             {DGstate === 'mining' ? (
-              <b className="account-hover active">MINING</b>
+              <b className="account-hover active">GAMEPLAY</b>
             ) : (
               <abbr
                 className="account-hover"
                 onClick={() => setDGState('mining')}
               >
-                MINING
+                GAMEPLAY
               </abbr>
             )}
 
             {DGstate === 'liquidity' ? (
-              <b className="account-hover active">FARMING</b>
+              <b className="account-hover active">LIQUIDITY</b>
             ) : (
               <abbr
                 className="account-hover"
                 onClick={() => setDGState('liquidity')}
               >
-                FARMING
+                LIQUIDITY
               </abbr>
             )}
 
@@ -340,19 +364,6 @@ const Farming = () => {
                 GOV
               </abbr>
             )}
-
-            {whitelisted ? (
-              DGstate === 'admin' ? (
-                <b className="account-hover active">ADMIN</b>
-              ) : (
-                <abbr
-                  className="account-hover"
-                  onClick={() => setDGState('admin')}
-                >
-                  ADMIN
-                </abbr>
-              )
-            ) : null}
           </p>
 
           <ButtonAffiliates />

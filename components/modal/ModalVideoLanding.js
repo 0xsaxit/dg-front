@@ -4,13 +4,13 @@ const ModalVideoLanding = () => {
   return (
     <Modal
       trigger={
-        <span style={{ display: 'flex', flexDirection: 'column', marginTop: '25px', marginRight: '-45px', cursor: 'pointer' }}>
+        <span className="landing-demo-span">
           <Icon
             style={{ marginLeft: '-9px', marginBottom: '-27px', color: 'white', fontSize: '16px' }}
             name="play circle outline"
           />
           <Menu.Item className="right-menu-text">
-            WATCH DEMO
+            DEMO
           </Menu.Item>
         </span>
       }
@@ -20,7 +20,7 @@ const ModalVideoLanding = () => {
       <Modal.Content>
         <iframe
           className="mobile-demo-video"
-          src="https://www.youtube.com/embed/a1DoWiNW0oU?&autoplay=1&loop=1&playlist=a1DoWiNW0oU"
+          src="https://www.youtube.com/embed/FOAxJrfyDIA"
           frameborder="0"
           allowfullscreen
           allow="autoplay"

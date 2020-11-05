@@ -327,7 +327,7 @@ const ContentBalances = (props) => {
                 }}
               >
                 <p className="welcome-text"> Mana </p>
-                <p className="account-name">{state.userBalances[1][1]}</p>
+                <p className="account-name">{parseInt(state.userBalances[1][1]).toLocaleString()}</p>
               </span>
             </span>
 

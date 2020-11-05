@@ -203,7 +203,18 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
     display: none !important;
   }
   .mobile-no-scroll {
+  }
+}
 
+@media (max-width: 600px) {
+  .daily-leaders-container {
+    display: none;
+  }
+}
+
+@media (max-height: 750px) {
+  .daily-leaders-container {
+    display: none;
   }
 }
 
@@ -218,6 +229,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   #mobile-casino-text,
   video#myVideo.home-dashboard-video {
     display: none !important;
+  }
+  .home-mission-content {
+    margin-top: -30px;
   }
   .home-dashboard-content {
     position: absolute;
@@ -533,7 +547,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
-@media (min-width: 768px) {
+@media (min-width: 882px) {
   .dg-tabs-mobile {
     display: none;
   }
@@ -554,22 +568,26 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
     flex-direction: row;
   }
   .DG-column.unclaimed {
-    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 30px;
   }
   .DG-column.one,
   .DG-column.two {
     max-width: 48.5% !important;
   }
-  .DG-column.unclaimed {
-    max-width: 100% !important;
-    margin-bottom: 30px;
-  }
   .DG-liquidity-container.gov {
     flex-direction: column;
   }
+  .outter-airdrop-container {
+    display: flex;
+    flex-direction: column;
+  }
+  #airdrop-unclaimed {
+    margin-bottom: 45px;
+  }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 881px) {
   .dg-tabs-desktop {
     display: none;
   }
