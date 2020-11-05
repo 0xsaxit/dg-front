@@ -66,7 +66,7 @@ function DGBalances() {
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, 0, 0],
+          data: [balanceDG1, balanceDG2, (0).toFixed(3), (0).toFixed(3)],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -142,7 +142,7 @@ function DGBalances() {
 
       // const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
-      return 0; // balanceAdjusted;
+      return (0).toFixed(3); // balanceAdjusted;
     } catch (error) {
       console.log('No DG staking balance found: ' + error);
     }

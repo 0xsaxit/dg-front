@@ -128,6 +128,7 @@ const ContentFarming = (props) => {
 
           <span className="DG-button-span">
             <Button
+              disabled
               className="DG-claim-button"
             >
               CLAIM AIRDROP

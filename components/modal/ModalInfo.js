@@ -10,10 +10,18 @@ const ModalInfo = () => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [DGTotal, setDGTotal] = useState(0);
+  const [DGTotal_2, setDGTotal_2] = useState(0);
+  const [marketCap, setMarketCap] = useState(0);
 
   useEffect(() => {
     // console.log('initial value: ' + state.userBalances[2][0]);
     // console.log('parse float: ' + parseFloat(state.userBalances[2][0]));
+
+    const temp = parseFloat(15 * 61722);
+    const totalMarketCap = temp
+      .toFixed(2)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    setMarketCap(totalMarketCap);
 
     const totalDG =
       parseFloat(state.userBalances[2][0]) +
@@ -27,6 +35,10 @@ const ModalInfo = () => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     setDGTotal(totalDGAdjusted);
+
+    const totalDGAdjusted_2 = totalDG.toFixed(3);
+    setDGTotal_2(totalDGAdjusted_2);
+
   }, [state.DGBalances, state.userBalances]);
 
   return (
@@ -70,7 +82,7 @@ const ModalInfo = () => {
               textAlign: 'center',
             }}
           >
-            {DGTotal}
+            {DGTotal_2}
           </p>
         </span>
       </div>
@@ -78,11 +90,11 @@ const ModalInfo = () => {
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">mainchain balance</p>
-          <p className="menu-info-text">{state.userBalances[2][0]}</p>
+          <p className="menu-info-text">{state.userBalances[2][0].toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">matic balance</p>
-          <p className="menu-info-text">{state.userBalances[2][1]}</p>
+          <p className="menu-info-text">{state.userBalances[2][1].toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">airdrop balance </p>
@@ -116,6 +128,10 @@ const ModalInfo = () => {
         <span className="menu-info-inner-span">
           <p className="menu-info-label">dg in circulation</p>
           <p className="menu-info-text">61,722</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label">market cap</p>
+          <p className="menu-info-text">${marketCap}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">total supply</p>
