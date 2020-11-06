@@ -7,8 +7,8 @@ const sigUtil = require('eth-sig-util');
 let childTokenAddress = '';
 let treasuryAddress = '';
 let dgPointerAddress = '';
-let domainArray = [];
-let domainType = [];
+let arrayDomainType = [];
+let arrayDomainData = [];
 let metaTransactionType = [];
 
 (async function () {
@@ -18,12 +18,23 @@ let metaTransactionType = [];
   treasuryAddress = addresses.TREASURY_CONTRACT_ADDRESS;
   dgPointerAddress = addresses.DG_POINTER_CONTRACT_ADDRESS;
 
-  domainType.push(
+  const domainTypeToken = [
+    { name: 'name', type: 'string' },
+    { name: 'version', type: 'string' },
+    { name: 'verifyingContract', type: 'address' },
+    { name: 'salt', type: 'bytes32' },
+  ];
+
+  const domeinTypeTreasury = [
     { name: 'name', type: 'string' },
     { name: 'version', type: 'string' },
     { name: 'chainId', type: 'uint256' },
-    { name: 'verifyingContract', type: 'address' }
-  );
+    { name: 'verifyingContract', type: 'address' },
+  ];
+
+  arrayDomainType.push(domainTypeToken);
+  arrayDomainType.push(domeinTypeTreasury);
+  arrayDomainType.push(domeinTypeTreasury);
 
   metaTransactionType.push(
     { name: 'nonce', type: 'uint256' },
@@ -34,13 +45,14 @@ let metaTransactionType = [];
   const domainDataToken = {
     name: '(PoS) Decentraland MANA',
     version: '1',
-    chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: childTokenAddress,
+    salt:
+      '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
   };
 
   const domainDataTreasury = {
-    name: 'Treasury', // Treasury
-    version: 'v4.0', // v3.0, v4.0
+    name: 'Treasury',
+    version: 'v4.0',
     chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: treasuryAddress,
   };
@@ -52,9 +64,9 @@ let metaTransactionType = [];
     verifyingContract: dgPointerAddress,
   };
 
-  domainArray.push(domainDataToken);
-  domainArray.push(domainDataTreasury);
-  domainArray.push(domainDataDGPointer);
+  arrayDomainData.push(domainDataToken);
+  arrayDomainData.push(domainDataTreasury);
+  arrayDomainData.push(domainDataDGPointer);
 })();
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -64,7 +76,6 @@ function executeMetaTransaction(
   i,
   functionSignature,
   contractInstance,
-  // sessionDuration, // *****************************
   userAddress,
   web3Default
 ) {
@@ -72,8 +83,7 @@ function executeMetaTransaction(
     console.log('Execute Biconomy PoS meta-transaction');
     console.log('Function signature: ' + functionSignature);
     console.log('User address: ' + userAddress);
-    console.log('Chain ID: ' + domainArray[i].chainId);
-    console.log('Verify contract: ' + domainArray[i].verifyingContract);
+    console.log('Verify contract: ' + arrayDomainData[i].verifyingContract);
 
     try {
       let nonce = await contractInstance.methods.getNonce(userAddress).call();
@@ -85,16 +95,16 @@ function executeMetaTransaction(
 
       const dataToSign = JSON.stringify({
         types: {
-          EIP712Domain: domainType,
+          EIP712Domain: arrayDomainType[i],
           MetaTransaction: metaTransactionType,
         },
-        domain: domainArray[i],
+        domain: arrayDomainData[i],
         primaryType: 'MetaTransaction',
         message: message,
       });
 
       console.log('Domain data: ');
-      console.log(domainArray[i]);
+      console.log(arrayDomainData[i]);
 
       await web3Default.eth.currentProvider.send(
         {
@@ -121,36 +131,12 @@ function executeMetaTransaction(
           console.log('s: ' + s);
           console.log('v: ' + v);
 
-          // let ret;
-
           try {
-            // if (i === 0 || i === 2) {
             const ret = await contractInstance.methods
-              .executeMetaTransaction(
-                userAddress,
-                functionSignature,
-                // sessionDuration,
-                r,
-                s,
-                v
-              )
+              .executeMetaTransaction(userAddress, functionSignature, r, s, v)
               .send({
                 from: userAddress,
               });
-            // } else if (i === 1) {
-            //   ret = await contractInstance.methods
-            //     .executeMetaTransaction(
-            //       userAddress,
-            //       functionSignature,
-            //       sessionDuration,
-            //       r,
-            //       s,
-            //       v
-            //     )
-            //     .send({
-            //       from: userAddress,
-            //     });
-            // }
 
             console.log('Execute Meta-Transactions done');
             resolve(ret.transactionHash);

@@ -21,13 +21,13 @@
 			{
 				"indexed": false,
 				"internalType": "address",
-				"name": "msgSender",
+				"name": "_user",
 				"type": "address"
 			},
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "sessionDuration",
+				"name": "_sessionDuration",
 				"type": "uint256"
 			}
 		],
@@ -393,7 +393,7 @@
 				"type": "bytes"
 			}
 		],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
