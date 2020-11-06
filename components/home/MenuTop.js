@@ -276,20 +276,23 @@ const MenuTop = ({ toggleTheme }) => {
             )}
 
             <span className="menu-avatar-background" id="add-funds-mobile">
-              {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                <p className={menuStyle[7]} style={{ marginTop: '-1px' }}>
-                  {state.userInfo[1].substr(0, 4) +
-                    '...' +
-                    state.userInfo[1].substr(-4)}
-                </p>
-              ) : (
-                <p style={{ marginTop: '-1px' }} className={menuStyle[7]}>
-                  {state.userInfo[0]}
-                </p>
-              )}
+              <span className="mobile-display-none-name">
+                {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                  <p className={menuStyle[7]} style={{ marginTop: '-1px' }}>
+                    {state.userInfo[1].substr(0, 4) +
+                      '...' +
+                      state.userInfo[1].substr(-4)}
+                  </p>
+                ) : (
+                  <p style={{ marginTop: '-1px' }} className={menuStyle[7]}>
+                    {state.userInfo[0]}
+                  </p>
+                )}
+              </span>
 
               <img
                 className="avatar-picture"
+                id="mobile-avatar-picture"
                 src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
                 style={{
                   width: '21px',

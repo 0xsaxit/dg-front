@@ -458,7 +458,9 @@ div.ui.segment.transparent-menu-segment {
 .daily-leaders-container {
   position: absolute;
   z-index: 999;
-  left: 30px;
+  max-width: 1400px;
+  margin-left: auto !important;
+  margin-right: auto !important;
   bottom: 30px;
 }
 
@@ -1851,8 +1853,15 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   margin-top: -75px;
 }
 
-#airdrop-numbers {
+#airdrop-number-1 {
   padding: 3px 0px 0px 18px;
+  border-radius: 100%;
+  min-width: 60px;
+  height: 60px;
+}
+
+#airdrop-number-2 {
+  padding: 3px 0px 0px 19px;
   border-radius: 100%;
   min-width: 60px;
   height: 60px;

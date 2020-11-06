@@ -165,7 +165,7 @@ const ContentFarming = (props) => {
               <p className="account-name" style={{ paddingLeft: '0px' }}> Who is eligible to participate in the airdrop? </p>
               <span style={{ display: 'flex' }}>
 
-                <p className="account-name" id="airdrop-numbers">
+                <p className="account-name" id="airdrop-number-1">
                   1
                 </p>
                 <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
@@ -176,7 +176,7 @@ const ContentFarming = (props) => {
               </span>
 
               <span style={{ display: 'flex', paddingTop: '30px' }}>
-                <p className="account-name" id="airdrop-numbers">
+                <p className="account-name" id="airdrop-number-2">
                   2
                 </p>
                 <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>

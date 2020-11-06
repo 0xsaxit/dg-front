@@ -97,7 +97,8 @@ export const GlobalStyles = createGlobalStyle`
   div.visible.menu.transition,
   .hljs,
   code strong, kbd, samp,
-  #airdrop-numbers {
+  #airdrop-number-1,
+  #airdrop-number-2 {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
@@ -109,6 +110,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: none !important;  
+    border-radius: 4px !important;
   }
 
   .ui.bottom.right.popup {
