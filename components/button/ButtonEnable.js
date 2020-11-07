@@ -94,7 +94,6 @@ function ButtonEnable() {
       const txHash = await MetaTx.executeMetaTransaction(
         1,
         functionSignature,
-        // sessionDuration,
         parentContract,
         userAddress,
         web3
@@ -124,7 +123,7 @@ function ButtonEnable() {
           className="account-connected-play-button"
           onClick={() => metaTransaction()}
         >
-          AUTHORIZE
+          REAUTHORIZE
         </Button>
       </span>
 
@@ -132,7 +131,7 @@ function ButtonEnable() {
         className="account-connected-play-button-mobile"
         onClick={() => metaTransaction()}
       >
-        AUTHORIZE
+        REAUTHORIZE
       </Button>
     </Aux>
   );

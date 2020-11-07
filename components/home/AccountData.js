@@ -4,7 +4,7 @@ import { Divider, Grid, Button } from 'semantic-ui-react';
 import ButtonAuthorize from '../button/ButtonAuthorize';
 import ButtonEnable from '../button/ButtonEnable';
 
-// import ButtonTesting2 from '../button/ButtonTesting2';
+// import ButtonTesting1 from '../button/ButtonTesting1';
 
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
@@ -60,11 +60,6 @@ const AccountData = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  // function setPageData(type) {
-  //   if (!isLoading) {
-  //     setUserData(type, 1);
-  //   }
-  // }
 
   function topLinks() {
     return (
@@ -112,35 +107,24 @@ const AccountData = () => {
                   style={{ display: 'flex', justifyContent: 'flex-end' }}
                   className="account-authorize-span"
                 >
-                  {state.userStatus === 6 ? (
+                  {state.userStatus <= 6 ? (
                     <ButtonAuthorize />
                   ) : state.userStatus === 7 ? (
                     <ButtonEnable />
-                  ) : (
-                    <Button disabled className="account-connected-play-button">
-                      AUTHORIZE
-                    </Button>
-                  )}
+                  ) : null}
                 </span>
 
                 <Divider className="DG-mobile-divider" />
 
                 <span className="account-authorize-span-mobile">
-                  {state.userStatus === 6 ? (
+                  {state.userStatus <= 6 ? (
                     <ButtonAuthorize />
                   ) : state.userStatus === 7 ? (
                     <ButtonEnable />
-                  ) : (
-                    <Button
-                      disabled
-                      className="account-connected-play-button-mobile"
-                    >
-                      AUTHORIZE
-                    </Button>
-                  )}
+                  ) : null}
                 </span>
 
-                {/* <ButtonTesting2 /> */}
+                {/* <ButtonTesting1 /> */}
               </Grid.Column>
             </Grid.Row>
           </Grid>
