@@ -94,81 +94,83 @@ const ContentFarming = (props) => {
 
   function contentToken() {
     return (
-      <div className="outter-airdrop-container">
+      <Aux>
 
-        <div className="DG-column unclaimed" id="airdrop-unclaimed" style={{ marginRight: '45px' }}>
-          <span style={{ display: 'flex' }}>
-            <img
-              src={Images.DG_COIN_LOGO}
-              className="farming-logo"
-              alt="Decentral Games Coin Logo"
-            />
-            <span className="farming-pool-span">
-              <p className="welcome-text"> Unclaimed</p>
-              <p className="account-name">{state.DGBalances[0]}</p>
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top">
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <p> Decentral Games Governance Token ($DG) is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
+              <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more about $DG by reading our                 
+                <a
+                  href=""
+                  target="_blank"
+                  style={{ color: '#2085f4' }}
+                >
+                  {' '}
+                  announcement{' '}
+                </a>
+                or by visiting our 
+                <a
+                  href="https://decentral-games-1.gitbook.io/dg/allocation"
+                  target="_blank"
+                  style={{ color: '#2085f4' }}
+                >
+                  {' '}
+                  documentation
+                </a>
+                .
+              </p>
             </span>
-          </span>
+          </div>
+        </div>
 
-          <Divider />
+        <div className="DG-liquidity-container">
+          <div className="DG-column unclaimed">
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text"> Unclaimed</p>
+                <p className="account-name">{state.DGBalances[0]}</p>
+              </span>
+            </span>
 
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingTop: '11px',
-              paddingBottom: '11px'
-            }}
-          >
-            <p className="earned-text"> Value USD </p>
-            <p className="earned-amount"> ${valueUSD_1} </p>
-          </span>
+            <Divider />
 
-          <Divider />
-
-          <span className="DG-button-span">
-            <Button
-              disabled
-              className="DG-claim-button"
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingTop: '11px',
+                paddingBottom: '11px'
+              }}
             >
-              CLAIM AIRDROP
-            </Button>
-          </span>
-        </div> 
+              <p className="earned-text"> Value USD </p>
+              <p className="earned-amount"> ${valueUSD_1} </p>
+            </span>
 
-        <span className="DG-tablet-container">
-          <span className="airdrop-right-items">
-            <p> Decentral Games Governance Token ($DG) is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
-            <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more about $DG by reading our                 
-              <a
-                href=""
-                target="_blank"
-                style={{ color: '#2085f4' }}
+            <Divider />
+
+            <span className="DG-button-span">
+              <Button
+                disabled
+                className="DG-claim-button"
+                onClick={() => props.metaTransaction()}
               >
-                {' '}
-                announcement{' '}
-              </a>
-              or by visiting our 
-              <a
-                href="https://decentral-games-1.gitbook.io/dg/allocation"
-                target="_blank"
-                style={{ color: '#2085f4' }}
-              >
-                {' '}
-                documentation
-              </a>
-              .
-            </p>
+                CLAIM $DG
+              </Button>
+            </span>
+          </div>
 
+          <span className="DG-tablet-container">
 
-            <div style={{ marginTop: '45px' }}>
-              <p className="account-name" style={{ paddingLeft: '0px' }}> Who is eligible to participate in the airdrop? </p>
+            <div className="DG-column">
               <span style={{ display: 'flex' }}>
-
-                <p className="account-name" id="airdrop-number-1">
-                  1
-                </p>
-                <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">Existing NFT Holders</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
                   <p style={{ paddingTop: '15px' }}> We are airdropping 120 $DG per NFT to Tominoya and Flamingos holders that vests linearly over 3 months. </p>
@@ -176,10 +178,7 @@ const ContentFarming = (props) => {
               </span>
 
               <span style={{ display: 'flex', paddingTop: '30px' }}>
-                <p className="account-name" id="airdrop-number-2">
-                  2
-                </p>
-                <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '30px' }}>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">All Players in Our Database</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
                   <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every Ethereum address that has played our free play games within the last 4 months. </p>
@@ -188,8 +187,9 @@ const ContentFarming = (props) => {
             </div>
 
           </span>
-        </span>
-      </div>
+        </div>
+
+      </Aux>
     );
   }
 

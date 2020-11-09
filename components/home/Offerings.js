@@ -239,7 +239,7 @@ const Offerings = () => {
             <abbr className="account-hover" onClick={() => setPage(1)}>
               LEADERBOARD
             </abbr>
-            <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
+            <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
           </p>
         ) : (
           <div style={{ width: '100%' }}>

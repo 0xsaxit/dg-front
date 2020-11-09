@@ -220,7 +220,7 @@ const Tokens = () => {
         <div className="account-other-inner-container ">
           {submenu()}
 
-          <Divider style={{ marginTop: '18px', paddingBottom: '21px' }} />
+          <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
           {NFTstate === 1 ? myNFTs() : buyNFTs()}
         </div>
