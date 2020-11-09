@@ -1,4 +1,3 @@
-// import Global from './Constants';
 import Images from '../common/Images';
 
 const Spinner = (props) => {

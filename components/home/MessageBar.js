@@ -63,9 +63,17 @@ const MessageBar = () => {
       setMessage(
         'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play free play games.'
       );
+    } else if (state.userStatus === 5) {
+      setMessage(
+        'You must authorize the DAI and MANA token contracts to play games with DAI and MANA'
+      );
     } else if (state.userStatus === 6) {
       setMessage(
-        'You must authorize the Decentral Games smart contract on Matic to play games with crypto'
+        'You must authorize the MANA token contract to play games with MANA'
+      );
+    } else if (state.userStatus === 7) {
+      setMessage(
+        'You must authorize the DAI token contract to play games with DAI'
       );
     } else if (!state.activeStatus) {
       setMessage(

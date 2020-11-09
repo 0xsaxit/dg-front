@@ -3,23 +3,33 @@ import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
+import Aux from '../_Aux';
+import ABI_CHILD_TOKEN_DAI from '../ABI/ABIChildTokenDAI';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
-import Aux from '../_Aux';
-import Transactions from '../../common/Transactions';
 
-function ButtonEnable() {
+function ButtonApproveMANA() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [userAddress, setUserAddress] = useState('');
-  const [parentContract, setParentContract] = useState({});
+  const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
-  const [maticWeb3, setMaticWeb3] = useState({});
+  const [spenderAddress, setSpenderAddress] = useState('');
+  const [value, setValue] = useState(0);
 
-  const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
+  // if the user has also authorized MANA set status value to 8, otherwise 6
+  useEffect(() => {
+    if (state.userStatus) {
+      if (state.userStatus === 7) {
+        setValue(8);
+      } else {
+        setValue(6);
+      }
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -29,13 +39,6 @@ function ButtonEnable() {
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
-
-      // const maticWeb3 = new Web3(
-      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      // ); // pass Matic provider to maticWeb3 object
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-
-      setMaticWeb3(maticWeb3);
 
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
@@ -47,8 +50,17 @@ function ButtonEnable() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        const parentContract = await Transactions.treasuryContract(getWeb3);
-        setParentContract(parentContract);
+        const addresses = await Global.API_ADDRESSES;
+
+        const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+        setSpenderAddress(spenderAddress);
+
+        const tokenContract = new getWeb3.eth.Contract(
+          ABI_CHILD_TOKEN_DAI,
+          addresses.CHILD_TOKEN_ADDRESS_DAI
+        );
+
+        setTokenContract(tokenContract);
       })();
 
       biconomy
@@ -61,46 +73,52 @@ function ButtonEnable() {
     }
   }, [state.userStatus]);
 
-  function dispatchActiveStatus(status, txHash) {
+  function dispatchActiveStatus(txHash) {
+    console.log('Updating user status to: ' + value);
+
     // update global state active status
     dispatch({
       type: 'active_status',
-      data: status,
+      data: true,
     });
 
-    // post reauthorization to database
-    console.log('Posting reauthorization transaction to db');
+    // update global state user status
+    dispatch({
+      type: 'update_status',
+      data: value,
+    });
+
+    // update user status in database
+    console.log('Posting user status to db: ' + value);
+    Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+
+    // post authorization to database
+    console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'Reauthorization',
+      'Authorization',
       'Confirmed',
       txHash,
       state.userStatus
     );
   }
 
-  // Biconomy API meta-transaction. User must re-authorize treasury contract after dormant period
+  // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
-      console.log('Session Duration: ' + sessionDuration);
-
-      // sending the user address works *********************************************
-      // let functionSignature = parentContract.methods
-      //   .enableAccount(userAddress, sessionDuration)
-      //   .encodeABI();
+      console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = parentContract.methods
-        .enableAccount(sessionDuration)
+      let functionSignature = tokenContract.methods
+        .approve(spenderAddress, Global.CONSTANTS.MAX_AMOUNT)
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        1,
+        3,
         functionSignature,
-        parentContract,
-        // sessionDuration, // *****************************
+        tokenContract,
         userAddress,
         web3
       );
@@ -110,12 +128,7 @@ function ButtonEnable() {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        const activeStatus = await Transactions.getActiveStatus(
-          userAddress,
-          maticWeb3
-        );
-        console.log('Active status (updated): ' + activeStatus);
-        dispatchActiveStatus(activeStatus, txHash);
+        dispatchActiveStatus(txHash);
       }
     } catch (error) {
       console.log(error);
@@ -126,10 +139,10 @@ function ButtonEnable() {
     <Aux>
       <span>
         <Button
-          className="account-connected-play-button"
+          className="balances-play-button"
           onClick={() => metaTransaction()}
         >
-          TEST 1
+          AUTHORIZE DAI TOKEN CONTRACT
         </Button>
       </span>
 
@@ -137,10 +150,10 @@ function ButtonEnable() {
         className="account-connected-play-button-mobile"
         onClick={() => metaTransaction()}
       >
-        TEST 1
+        AUTHORIZE DAI
       </Button>
     </Aux>
   );
 }
 
-export default ButtonEnable;
+export default ButtonApproveMANA;

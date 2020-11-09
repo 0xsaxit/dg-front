@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
-import ModalVideoLanding from '../modal/ModalVideoLanding';
+// import ModalVideoLanding from '../modal/ModalVideoLanding';
 import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
@@ -20,7 +20,7 @@ const MenuTop = ({ toggleTheme }) => {
   const [isDarkMode, setDarkMode] = useState(false);
   const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   const router = useRouter();
 
@@ -73,7 +73,7 @@ const MenuTop = ({ toggleTheme }) => {
     }
   });
 
-  // close menu automatically if left open for 
+  // close menu automatically if left open for
   // desktop screen sizes
   useEffect(() => {
     const interval = setInterval(() => {
@@ -115,7 +115,7 @@ const MenuTop = ({ toggleTheme }) => {
 
   function getLinkStyles(path) {
     if (path === 'menu') {
-      if ('/' === router.pathname && !open ) {
+      if ('/' === router.pathname && !open) {
         return 'menu-container';
       } else {
         return 'menu-container blog';
@@ -155,58 +155,72 @@ const MenuTop = ({ toggleTheme }) => {
     return (
       <div className="mobile-height-fix">
         <Popup
-          on='click'
+          on="click"
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
-          className={state.userStatus ? "mobile-menu-popup" : "mobile-menu-popup-logged-out"}
+          className={
+            state.userStatus
+              ? 'mobile-menu-popup'
+              : 'mobile-menu-popup-logged-out'
+          }
           pinned
           position="bottom right"
           trigger={
             <span>
               {open ? (
-                <span id="mobile-menu-icon" className="material-icons">close</span>
+                <span id="mobile-menu-icon" className="material-icons">
+                  close
+                </span>
               ) : (
-                <span id={'/' === router.pathname ? "mobile-menu-icon-home" : "mobile-menu-icon"} className="material-icons">menu</span>
+                <span
+                  id={
+                    '/' === router.pathname
+                      ? 'mobile-menu-icon-home'
+                      : 'mobile-menu-icon'
+                  }
+                  className="material-icons"
+                >
+                  menu
+                </span>
               )}
             </span>
           }
         >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <a href="/">
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <a href="/">
+              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                PLAY
+              </Menu.Item>
+            </a>
+
+            {state.userStatus ? (
+              <a href="/account">
                 <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  PLAY
+                  ACCOUNT
                 </Menu.Item>
               </a>
+            ) : null}
 
-              {state.userStatus ? (
-                <a href="/account">
-                  <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                    ACCOUNT
-                  </Menu.Item>
-                </a>
-              ) : null}
+            <a href="/games">
+              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                GAMES
+              </Menu.Item>
+            </a>
 
-              <a href="/games">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  GAMES
-                </Menu.Item>
-              </a>
+            <a href="/nfts">
+              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                NFTS
+              </Menu.Item>
+            </a>
 
-              <a href="/nfts">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  NFTS
-                </Menu.Item>
-              </a>
-
-              <a href="/blog">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  BLOG
-                </Menu.Item>
-              </a>
-
-            </span>
-          </Popup>
+            <a href="/blog">
+              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                BLOG
+              </Menu.Item>
+            </a>
+          </span>
+        </Popup>
       </div>
     );
   }
@@ -501,32 +515,28 @@ const MenuTop = ({ toggleTheme }) => {
     }
   }
 
-  function balancesAndButtonsLanding() {
-    return (
-      <span className="right-menu-items" style={{ marginRight: '15px' }}>
-        <ModalVideoLanding />
-        <ButtonVerify />
-      </span>
-    );
-  }
+  // function balancesAndButtonsLanding() {
+  //   return (
+  //     <span className="right-menu-items" style={{ marginRight: '15px' }}>
+  //       <ModalVideoLanding />
+  //       <ButtonVerify />
+  //     </span>
+  //   );
+  // }
 
   return (
     <Aux>
-
       <div className={menuStyle[3]}>
         <div className={getContainerStyles('container')}>
-
           <MessageBar />
 
           {dropdownMenu()}
-  
 
           <Menu className={getLinkStyles('menu')} icon="labeled">
             {DGLogo()}
 
             {shownOrHiddenItems()}
             {balancesAndButtons()}
-
           </Menu>
 
           <MessageBox handleDismiss={handleDismiss} />

@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 // import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
-import ABI_CHILD_TOKEN from '../components/ABI/ABIChildToken';
+import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
@@ -114,7 +114,7 @@ function AdminBalances() {
     const addresses = await Global.API_ADDRESSES;
 
     const tokenContract = new maticWeb3.eth.Contract(
-      ABI_CHILD_TOKEN,
+      ABI_CHILD_TOKEN_MANA,
       addresses.CHILD_TOKEN_ADDRESS_MANA
     );
 

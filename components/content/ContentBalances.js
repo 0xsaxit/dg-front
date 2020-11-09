@@ -2,6 +2,8 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
+import ButtonApproveMANA from '../button/ButtonApproveMANA';
+import ButtonApproveDAI from '../button/ButtonApproveDAI';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
@@ -25,8 +27,13 @@ const ContentBalances = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = '';
   const [margin, setMargin] = useState('125px');
+  const [boxDAI, setBoxDAI] = useState('none');
+  const [boxMANA, setBoxMANA] = useState('none');
+  const [buttonDAI, setButtonDAI] = useState('block');
+  const [buttonMANA, setButtonMANA] = useState('block');
+
+  let userAddress = '';
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -42,9 +49,31 @@ const ContentBalances = (props) => {
     return () => clearInterval(interval);
   }, []);
 
-  const marginTop = {
-    marginTop: margin,
-  };
+  useEffect(() => {
+    if (state.userStatus === 6) {
+      setBoxDAI('block');
+      // setBoxMANA('none');
+      setButtonDAI('none');
+      setButtonMANA('block');
+    } else if (state.userStatus === 7) {
+      // setBoxDAI('none');
+      setBoxMANA('block');
+      setButtonDAI('block');
+      setButtonMANA('none');
+    } else if (state.userStatus === 8) {
+      setBoxDAI('block');
+      setBoxMANA('block');
+      setButtonDAI('none');
+      setButtonMANA('none');
+    }
+
+    // } else {
+    //   setBoxDAI('none');
+    //   setBoxMANA('none');
+    //   setButtonDAI('block');
+    //   setButtonMANA('block');
+    // }
+  }, [state.userStatus]);
 
   useEffect(() => {
     // get all the events
@@ -105,6 +134,27 @@ const ContentBalances = (props) => {
     }
   }
 
+  const marginTop = {
+    marginTop: margin,
+  };
+
+  const styles = {
+    boxDAI: {
+      display: boxDAI || 'none',
+    },
+    buttonDAI: {
+      display: buttonDAI || 'none',
+    },
+    boxMANA: {
+      display: boxMANA || 'none',
+    },
+    buttonMANA: {
+      display: buttonMANA || 'none',
+    },
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentModal() {
     return (
       <span>
@@ -167,6 +217,8 @@ const ContentBalances = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccountPage() {
     return (
       <Grid className="balances-container" style={marginTop}>
@@ -268,20 +320,22 @@ const ContentBalances = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text"> Dai </p>
+                <p className="welcome-text">Dai</p>
                 <p className="account-name">{state.userBalances[0][1]}</p>
               </span>
             </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                className="balances-top-button two"
-                onClick={() => show_transak()}
-                style={{ marginTop: '-75px' }}
-              >
-                PURCHASE
-              </Button>
-            </span>
+            <div style={styles.boxDAI}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  className="balances-top-button two"
+                  onClick={() => show_transak()}
+                  style={{ marginTop: '-75px' }}
+                >
+                  PURCHASE
+                </Button>
+              </span>
+            </div>
 
             <Divider />
 
@@ -291,14 +345,38 @@ const ContentBalances = (props) => {
             </span>
 
             <Divider />
-            <span className="balances-button-span">
-              <Button disabled color="blue" className="balances-play-button">
-                DEPOSIT
-              </Button>
-              <Button disabled color="blue" className="balances-play-button">
-                WITHDRAW
-              </Button>
-            </span>
+
+            <div style={styles.boxDAI}>
+              <span className="balances-button-span">
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="deposit"
+                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                >
+                  DEPOSIT
+                </Button>
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="deposit"
+                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                >
+                  WITHDRAW
+                </Button>
+
+                <script
+                  src="https://wallet.matic.network/embeds/widget-button.js"
+                  data-script-name="matic-embeds"
+                ></script>
+              </span>
+            </div>
+
+            <div style={styles.buttonDAI}>
+              <span className="balances-button-span">
+                <ButtonApproveDAI />
+              </span>
+            </div>
           </Grid.Column>
 
           <Grid.Column
@@ -326,52 +404,65 @@ const ContentBalances = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text"> Mana </p>
-                <p className="account-name">{parseInt(state.userBalances[1][1]).toLocaleString()}</p>
+                <p className="welcome-text">Mana</p>
+                <p className="account-name">
+                  {parseInt(state.userBalances[1][1]).toLocaleString()}
+                </p>
               </span>
             </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                className="balances-top-button"
-                onClick={() => show_transak()}
-                style={{ marginTop: '-75px' }}
-              >
-                PURCHASE
-              </Button>
-            </span>
+            <div style={styles.boxMANA}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  className="balances-top-button"
+                  onClick={() => show_transak()}
+                  style={{ marginTop: '-75px' }}
+                >
+                  PURCHASE
+                </Button>
+              </span>
+            </div>
 
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-text">Total Earned</p>
+              <p className="earned-amount">0</p>
             </span>
 
             <Divider />
-            <span className="balances-button-span">
-              <Button
-                color="blue"
-                className="matic-widget-button balances-play-button"
-                data-default-page="deposit"
-                data-wapp-id="I8qoM5yxmkAm6tT72vwD"
-              >
-                DEPOSIT
-              </Button>
-              <Button
-                color="blue"
-                className="matic-widget-button balances-play-button"
-                data-default-page="withdraw"
-                data-wapp-id="I8qoM5yxmkAm6tT72vwD"
-              >
-                WITHDRAW
-              </Button>
 
-              <script
-                src="https://wallet.matic.network/embeds/widget-button.js"
-                data-script-name="matic-embeds"
-              ></script>
-            </span>
+            <div style={styles.boxMANA}>
+              <span className="balances-button-span">
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="deposit"
+                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                >
+                  DEPOSIT
+                </Button>
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="withdraw"
+                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                >
+                  WITHDRAW
+                </Button>
+
+                <script
+                  src="https://wallet.matic.network/embeds/widget-button.js"
+                  data-script-name="matic-embeds"
+                ></script>
+              </span>
+            </div>
+
+            <div style={styles.buttonMANA}>
+              <span className="balances-button-span">
+                <ButtonApproveMANA />
+              </span>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>

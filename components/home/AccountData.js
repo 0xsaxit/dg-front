@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Divider, Grid, Button } from 'semantic-ui-react';
-import ButtonAuthorize from '../button/ButtonAuthorize';
-import ButtonEnable from '../button/ButtonEnable';
+import { Divider, Grid } from 'semantic-ui-react';
+// import ButtonAuthorize from '../button/ButtonAuthorize';
+// import ButtonEnable from '../button/ButtonEnable';
 
 // import ButtonTesting1 from '../button/ButtonTesting1';
 
@@ -103,7 +103,7 @@ const AccountData = () => {
                   </span>
                 </span>
 
-                <span
+                {/* <span
                   style={{ display: 'flex', justifyContent: 'flex-end' }}
                   className="account-authorize-span"
                 >
@@ -112,9 +112,9 @@ const AccountData = () => {
                   ) : state.userStatus === 7 ? (
                     <ButtonEnable />
                   ) : null}
-                </span>
+                </span> */}
 
-                <Divider className="DG-mobile-divider" />
+                {/* <Divider className="DG-mobile-divider" />
 
                 <span className="account-authorize-span-mobile">
                   {state.userStatus <= 6 ? (
@@ -122,7 +122,7 @@ const AccountData = () => {
                   ) : state.userStatus === 7 ? (
                     <ButtonEnable />
                   ) : null}
-                </span>
+                </span> */}
 
                 {/* <ButtonTesting1 /> */}
               </Grid.Column>

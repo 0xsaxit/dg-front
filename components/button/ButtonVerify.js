@@ -3,7 +3,7 @@ import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
 
-const Verify = () => {
+const ButtonVerify = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
@@ -88,4 +88,4 @@ const Verify = () => {
   );
 };
 
-export default Verify;
+export default ButtonVerify;

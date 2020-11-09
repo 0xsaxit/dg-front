@@ -4,20 +4,20 @@ import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Aux from '../_Aux';
-import ABI_CHILD_TOKEN from '../ABI/ABIChildToken';
+import ABI_CHILD_TOKEN_MANA from '../ABI/ABIChildTokenMANA';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
 
-let spenderAddress = '';
+// let spenderAddress = '';
 
-async function getAddresses() {
-  const addresses = await Global.API_ADDRESSES;
-  spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-}
-getAddresses();
+// async function getAddresses() {
+//   const addresses = await Global.API_ADDRESSES;
+//   spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+// }
+// getAddresses();
 
-function ButtonAuthorize() {
+function ButtonApproveMANA() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -25,8 +25,22 @@ function ButtonAuthorize() {
   const [userAddress, setUserAddress] = useState('');
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
+  const [spenderAddress, setSpenderAddress] = useState('');
+  const [value, setValue] = useState(0);
 
-  const value = 7;
+  // let spenderAddress = '';
+  // let value = 0;
+
+  // if the user has also authorized DAI set status value to 8, otherwise 7
+  useEffect(() => {
+    if (state.userStatus) {
+      if (state.userStatus === 6) {
+        setValue(8);
+      } else {
+        setValue(7);
+      }
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -49,8 +63,11 @@ function ButtonAuthorize() {
       (async function () {
         const addresses = await Global.API_ADDRESSES;
 
+        const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+        setSpenderAddress(spenderAddress);
+
         const tokenContract = new getWeb3.eth.Contract(
-          ABI_CHILD_TOKEN,
+          ABI_CHILD_TOKEN_MANA,
           addresses.CHILD_TOKEN_ADDRESS_MANA
         );
 
@@ -87,7 +104,7 @@ function ButtonAuthorize() {
     Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
 
     // post authorization to database
-    console.log('Posting authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting MANA authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       userAddress,
@@ -133,10 +150,10 @@ function ButtonAuthorize() {
     <Aux>
       <span>
         <Button
-          className="account-connected-play-button"
+          className="balances-play-button"
           onClick={() => metaTransaction()}
         >
-          TEST 2
+          AUTHORIZE MANA TOKEN CONTRACT
         </Button>
       </span>
 
@@ -144,10 +161,10 @@ function ButtonAuthorize() {
         className="account-connected-play-button-mobile"
         onClick={() => metaTransaction()}
       >
-        TEST 2
+        AUTHORIZE MANA
       </Button>
     </Aux>
   );
 }
 
-export default ButtonAuthorize;
+export default ButtonApproveMANA;

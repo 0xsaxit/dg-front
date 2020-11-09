@@ -4,7 +4,8 @@ import Global from '../components/Constants';
 /////////////////////////////////////////////////////////////////////////////////////////
 // EIP712 domain params for Biconomy API
 const sigUtil = require('eth-sig-util');
-let childTokenAddress = '';
+let childTokenAddressMANA = '';
+let childTokenAddressDAI = '';
 let treasuryAddress = '';
 let dgPointerAddress = '';
 let arrayDomainType = [];
@@ -14,7 +15,8 @@ let metaTransactionType = [];
 (async function () {
   const addresses = await Global.API_ADDRESSES;
 
-  childTokenAddress = addresses.CHILD_TOKEN_ADDRESS_MANA;
+  childTokenAddressMANA = addresses.CHILD_TOKEN_ADDRESS_MANA;
+  childTokenAddressDAI = addresses.CHILD_TOKEN_ADDRESS_DAI;
   treasuryAddress = addresses.TREASURY_CONTRACT_ADDRESS;
   dgPointerAddress = addresses.DG_POINTER_CONTRACT_ADDRESS;
 
@@ -35,6 +37,7 @@ let metaTransactionType = [];
   arrayDomainType.push(domainTypeToken);
   arrayDomainType.push(domeinTypeTreasury);
   arrayDomainType.push(domeinTypeTreasury);
+  arrayDomainType.push(domainTypeToken);
 
   metaTransactionType.push(
     { name: 'nonce', type: 'uint256' },
@@ -42,10 +45,10 @@ let metaTransactionType = [];
     { name: 'functionSignature', type: 'bytes' }
   );
 
-  const domainDataToken = {
+  const domainDataTokenMANA = {
     name: '(PoS) Decentraland MANA',
     version: '1',
-    verifyingContract: childTokenAddress,
+    verifyingContract: childTokenAddressMANA,
     salt:
       '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
   };
@@ -64,9 +67,18 @@ let metaTransactionType = [];
     verifyingContract: dgPointerAddress,
   };
 
-  arrayDomainData.push(domainDataToken);
+  const domainDataTokenDAI = {
+    name: '(PoS) Dai Stablecoin',
+    version: '1',
+    verifyingContract: childTokenAddressDAI,
+    salt:
+      '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+  };
+
+  arrayDomainData.push(domainDataTokenMANA);
   arrayDomainData.push(domainDataTreasury);
   arrayDomainData.push(domainDataDGPointer);
+  arrayDomainData.push(domainDataTokenDAI);
 })();
 
 /////////////////////////////////////////////////////////////////////////////////////////
