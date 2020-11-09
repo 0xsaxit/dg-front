@@ -73,6 +73,12 @@ export const GlobalStyles = createGlobalStyle`
     border-top: ${({ theme }) => theme.widgetDivider} !important;  
   }
 
+  .ui.divider.tab-divider,
+  .ui.divider.coin-select-divider,
+  .ui.divider#blog-divider {
+    border-color: ${({ theme }) => theme.darkModeDivider} !important;
+  }
+
   .home-dashboard-p,
   .home-dashboard-mission,
   .home-dashboard-h2,
@@ -151,7 +157,8 @@ export const GlobalStyles = createGlobalStyle`
   .read-next-button:first-child:before,
   .read-next-button:last-child:before,
   #pool-select-icon,
-  .menu-info-label {
+  .menu-info-label,
+  .account-other-inner-p {
     color: ${({ theme }) => theme.offColorText} !important;   
   }
 
