@@ -150,19 +150,12 @@ function ButtonApproveMANA() {
     <Aux>
       <span>
         <Button
-          className="balances-play-button"
+          className="balances-authorize-button"
           onClick={() => metaTransaction()}
         >
-          AUTHORIZE MANA TOKEN CONTRACT
+          AUTHORIZE MANA CONTRACT
         </Button>
       </span>
-
-      <Button
-        className="account-connected-play-button-mobile"
-        onClick={() => metaTransaction()}
-      >
-        AUTHORIZE MANA
-      </Button>
     </Aux>
   );
 }

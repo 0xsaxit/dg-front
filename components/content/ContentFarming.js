@@ -99,8 +99,9 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p> Decentral Games Governance Token ($DG) is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
-              <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more about $DG by reading our                 
+              <h3 className="DG-h3">Decentral Games Governance Token ($DG)</h3>
+              <p> $DG is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
+              <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more by reading our                 
                 <a
                   href=""
                   target="_blank"

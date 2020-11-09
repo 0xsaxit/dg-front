@@ -373,7 +373,7 @@ const ContentBalances = (props) => {
             </div>
 
             <div style={styles.buttonDAI}>
-              <span className="balances-button-span">
+              <span>
                 <ButtonApproveDAI />
               </span>
             </div>
@@ -459,10 +459,11 @@ const ContentBalances = (props) => {
             </div>
 
             <div style={styles.buttonMANA}>
-              <span className="balances-button-span">
+              <span>
                 <ButtonApproveMANA />
               </span>
             </div>
+
           </Grid.Column>
         </Grid.Row>
       </Grid>

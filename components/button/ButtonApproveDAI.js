@@ -139,19 +139,12 @@ function ButtonApproveMANA() {
     <Aux>
       <span>
         <Button
-          className="balances-play-button"
+          className="balances-authorize-button"
           onClick={() => metaTransaction()}
         >
-          AUTHORIZE DAI TOKEN CONTRACT
+          AUTHORIZE DAI CONTRACT
         </Button>
       </span>
-
-      <Button
-        className="account-connected-play-button-mobile"
-        onClick={() => metaTransaction()}
-      >
-        AUTHORIZE DAI
-      </Button>
     </Aux>
   );
 }

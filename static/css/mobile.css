@@ -518,32 +518,15 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 }
 
 @media (max-width: 600px) {
-  .ui.button.account-connected-play-button,
   .account-authorize-span {
     display: none !important;
   }
   div.ui.grid.balances-container {
     padding-top: 75px !important;
   }
-  .ui.button.account-connected-play-button-mobile {
-    color: white;
-    background-color: #2085f4;
-    margin-top: 3px;
-    margin-bottom: 6px;
-    font-size: 12px;
-    font-weight: bold !important;
-    border-radius: 2px;
-    height: 34px;
-    padding-top: 8px;
-    min-width: 100% !important;
-    padding-left: 0px;
-    padding-right: 0px;
-    letter-spacing: 0.5px;
-  }
 }
 
 @media (min-width: 601px) {
-  .ui.button.account-connected-play-button-mobile,
   .account-authorize-span-mobile {
     display: none;
   } 

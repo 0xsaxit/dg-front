@@ -1738,6 +1738,20 @@ div.ui.grid.balances-container {
   letter-spacing: 0.5px;
 }
 
+.ui.button.balances-authorize-button {
+  color: white;
+  background-color: #2085f4;
+  margin-top: 3px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: bold !important;
+  border-radius: 4px;
+  height: 34px;
+  padding-top: 8px;
+  min-width: 100% !important;
+  letter-spacing: 0.5px;
+}
+
 .ui.disabled.button.balances-top-button.two {
   opacity: 45% !important;
 }
