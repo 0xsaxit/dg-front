@@ -67,6 +67,10 @@ const MessageBar = () => {
       setMessage(
         'You must authorize the DAI and MANA token contracts to play games with DAI and MANA'
       );
+    } else if (!state.activeStatus) {
+      setMessage(
+        'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
+      );
     } else if (state.userStatus === 6) {
       setMessage(
         'You must authorize the MANA token contract to play games with MANA'
@@ -74,10 +78,6 @@ const MessageBar = () => {
     } else if (state.userStatus === 7) {
       setMessage(
         'You must authorize the DAI token contract to play games with DAI'
-      );
-    } else if (!state.activeStatus) {
-      setMessage(
-        'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
     } else {
       setMessage('');

@@ -20,7 +20,7 @@ function ActiveStatus() {
 
   useEffect(() => {
     if (
-      state.userStatus === 7 &&
+      state.userStatus >= 6 &&
       state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
     ) {
       userAddress = window.web3.currentProvider.selectedAddress;
