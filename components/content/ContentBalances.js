@@ -11,7 +11,6 @@ import Fetch from '../../common/Fetch';
 let transak = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'STAGING', // STAGING/PRODUCTION
-  defaultCryptoCurrency: 'MANA',
   walletAddress: '', // customer wallet address
   themeColor: '000000', // theme color
   fiatCurrency: '', // INR/GBP

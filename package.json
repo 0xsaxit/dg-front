@@ -20,7 +20,7 @@
   "dependencies": {
     "@biconomy/mexa": "^1.5.13",
     "@next/bundle-analyzer": "^9.5.2",
-    "@transak/transak-sdk": "^1.0.23",
+    "@transak/transak-sdk": "^1.0.26",
     "babel-polyfill": "^6.26.0",
     "buttercms": "^1.2.3",
     "cross-env": "^7.0.2",
