@@ -13,6 +13,7 @@ const ContentFarming = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const dataPlay = state.transactions[1];
   const [stakingContract, setStakingContract] = useState({});
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
@@ -20,6 +21,23 @@ const ContentFarming = (props) => {
   const [amountInput, setAmountInput] = useState(0);
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [instances, setInstances] = useState(false);
+
+  var totalMana = 0;
+  var totalDai = 0;
+  var totalPlay = 0;
+  
+  for (const [index, value] of dataPlay.entries()) {
+    if (dataPlay[index].coinName === 'PLAY') {
+      var temp = (dataPlay.reduce((a, v) => a = a + v.betAmount, 0 ));
+      var totalPlay = (temp / 1000000000000000000).toLocaleString();
+    } else if (dataPlay[index].coinName === 'MANA') {
+      var temp = (dataPlay.reduce((a, v) => a = a + v.betAmount, 0 ));
+      var totalMana = (temp / 1000000000000000000).toLocaleString();
+    } else if (dataPlay[index].coinName === 'DAI') {
+      var temp = (dataPlay.reduce((a, v) => a = a + v.betAmount, 0 ));
+      var totalDai = (temp / 1000000000000000000).toLocaleString();
+    }
+  }
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
   const valueUSD_1 = parseFloat(state.DGBalances[0] * 15)
@@ -310,7 +328,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Total Bet </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> {totalMana} </p>
                   </span>
                 </span>
 
@@ -371,7 +389,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Total Bet </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> {totalDai} </p>
                   </span>
                 </span>
 
@@ -675,7 +693,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> % of pool 2</p>
-                    <p className="earned-amount"> 0 </p>
+                    <p className="earned-amount"> ... </p>
                   </span>
                 </span>
 
