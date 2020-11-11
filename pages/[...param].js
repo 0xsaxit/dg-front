@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
-import AccountData from '../components/home/AccountData';
+import Chateau from '../components/home/Chateau';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
@@ -41,12 +41,15 @@ const Wildcard = () => {
       {affiliateAddress ? (
         <Aux>
           <Header
-            title={Global.CONSTANTS.TITLE + ' | Account'}
+            title={
+              Global.CONSTANTS.TITLE +
+              ' | Metavarse Casinos Playable with Crypto'
+            }
             description={Global.CONSTANTS.DESCRIPTION}
             image={Images.SOCIAL_SHARE}
           />
 
-          <AccountData />
+          <Chateau />
         </Aux>
       ) : (
         <Aux>
