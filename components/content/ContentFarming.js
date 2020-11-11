@@ -113,14 +113,8 @@ const ContentFarming = (props) => {
               <p>
                 {' '}
                 $DG is distributed to active participants that provide value to
-                the decentral.games ecosystem. Players enjoy $DG rewards for
-                playing games, LPs enjoy $DG rewards for providing liquidity in
-                AMM pools, and all $DG holders may enjoy governance rewards for
-                governing the dgTreasury, or "house funds", that accrue from
-                game profits.{' '}
-              </p>
-              <p>
-                {' '}
+                the decentral.games ecosystem: players, liquidity providers, and
+                governance participants.
                 $DG is not an investment and should be earned by active
                 participation in our ecosystem. Learn more by reading our
                 <a href="" target="_blank" style={{ color: '#2085f4' }}>
@@ -198,8 +192,8 @@ const ContentFarming = (props) => {
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    We're airdropping 120 $DG per NFT to Tominoya and Flamingos
-                    holders which vests linearly over 3 months.{' '}
+                    We're airdropping 120 $DG for each Tominoya and Flamingos NFT
+                    with 3 month linear vesting.{' '}
                   </p>
                 </span>
               </span>
@@ -216,8 +210,8 @@ const ContentFarming = (props) => {
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    We're airdropping 10 $DG to every Eth address that's played
-                    our free play games within the last 4 months.{' '}
+                    We're airdropping 10 $DG to every Ethereum address that has played
+                    our free play games within the last 4 months (Cutoff: Nov 1, 2020).{' '}
                   </p>
                 </span>
               </span>
