@@ -5,13 +5,12 @@ import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
-import Spinner from '../Components/Spinner';
+import Spinner from '../components/Spinner';
 
 const Account = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const [isLoading, setLoading] = useState(true);
-
 
   useEffect(() => {
     if (document.readyState === 'complete') {
