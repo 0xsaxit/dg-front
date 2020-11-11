@@ -61,8 +61,8 @@ let metaTransactionType = [];
   };
 
   const domainDataDGPointer = {
-    name: 'LIVE',
-    version: '1.0',
+    name: 'NEW',
+    version: '5.0',
     chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
     verifyingContract: dgPointerAddress,
   };

@@ -1,5 +1,7 @@
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
+import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
+import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import Global from '../components/Constants';
 
 // set treasury contract instance
@@ -43,6 +45,30 @@ async function pointerContract(web3Default) {
   return DGPointerContract;
 }
 
+// set staking contract instance
+async function stakingContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
+
+  const DGStakingContract = new web3Default.eth.Contract(
+    ABI_DG_STAKING,
+    addresses.DG_STAKING_CONTRACT_ADDRESS
+  );
+
+  return DGStakingContract;
+}
+
+// set staking contract instance
+async function BPTContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
+
+  const BPTokenContract = new web3Default.eth.Contract(
+    ABI_BP_TOKEN,
+    addresses.BP_TOKEN_ADDRESS
+  );
+
+  return BPTokenContract;
+}
+
 // get user or contract token balance from MetaMask
 async function balanceOfToken(tokenContract, userOrContractAddress, units) {
   console.log('Get balance of token');
@@ -66,4 +92,6 @@ export default {
   getActiveStatus,
   balanceOfToken,
   pointerContract,
+  stakingContract,
+  BPTContract,
 };

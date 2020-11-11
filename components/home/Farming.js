@@ -125,7 +125,6 @@ const Farming = () => {
       const txHash = await MetaTx.executeMetaTransaction(
         2,
         functionSignature,
-        // '',
         pointerContract,
         userAddress,
         web3
@@ -256,7 +255,6 @@ const Farming = () => {
       <div className="account-other-tabs">
         <span className="dg-tabs-desktop">
           <p className="account-other-p">
-            
             {DGstate === 'token' ? (
               <b className="account-hover active">TOKEN</b>
             ) : (
@@ -320,7 +318,6 @@ const Farming = () => {
 
         <span className="dg-tabs-mobile">
           <p className="account-other-p">
-
             {DGstate === 'token' ? (
               <b className="account-hover active">TOKEN</b>
             ) : (
@@ -381,7 +378,10 @@ const Farming = () => {
           <div className="account-other-inner-container ">
             {submenu()}
 
-            <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
+            <Divider
+              className="tab-divider"
+              style={{ marginTop: '18px', paddingBottom: '21px' }}
+            />
 
             <ContentFarming
               content={DGstate}

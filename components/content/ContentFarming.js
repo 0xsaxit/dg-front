@@ -22,9 +22,15 @@ const ContentFarming = (props) => {
   const [instances, setInstances] = useState(false);
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
-  const valueUSD_1 = parseFloat(state.DGBalances[0]*15).toFixed(2).toLocaleString();
-  const valueUSD_2 = parseFloat(state.DGBalances[1]*15).toFixed(2).toLocaleString();
-  const valueUSD_3 = parseFloat(state.DGBalances[3]*15).toFixed(2).toLocaleString();
+  const valueUSD_1 = parseFloat(state.DGBalances[0] * 15)
+    .toFixed(2)
+    .toLocaleString();
+  const valueUSD_2 = parseFloat(state.DGBalances[1] * 15)
+    .toFixed(2)
+    .toLocaleString();
+  const valueUSD_3 = parseFloat(state.DGBalances[2] * 15)
+    .toFixed(2)
+    .toLocaleString();
 
   useEffect(() => {
     if (state.userStatus) {
@@ -70,18 +76,6 @@ const ContentFarming = (props) => {
     }
   }, [instances, state.stakingBalances]);
 
-  // async function getPeriodFinish() {
-  //   console.log('Return reward period finish time');
-
-  //   try {
-  //     const timestamp = await stakingContract.methods.periodFinish().call();
-
-  //     return timestamp;
-  //   } catch (error) {
-  //     console.log('Return reward period time error: ' + error);
-  //   }
-  // }
-
   var onPool;
   if (poolSelect === 1) {
     onPool = () => setPoolSelect(2);
@@ -91,26 +85,31 @@ const ContentFarming = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
   function contentToken() {
     return (
       <Aux>
-
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">Decentral Games Governance Token ($DG)</h3>
-              <p> $DG is distributed to active participants that provide value to the decentral.games ecosystem. Players enjoy $DG rewards for playing games, LPs enjoy $DG rewards for providing liquidity in AMM pools, and all $DG holders may enjoy governance rewards for governing the dgTreasury, or "house funds", that accrue from game profits. </p>
-              <p> $DG is not an investment and should be earned by active participation in our ecosystem. Learn more by reading our                 
-                <a
-                  href=""
-                  target="_blank"
-                  style={{ color: '#2085f4' }}
-                >
+              <p>
+                {' '}
+                $DG is distributed to active participants that provide value to
+                the decentral.games ecosystem. Players enjoy $DG rewards for
+                playing games, LPs enjoy $DG rewards for providing liquidity in
+                AMM pools, and all $DG holders may enjoy governance rewards for
+                governing the dgTreasury, or "house funds", that accrue from
+                game profits.{' '}
+              </p>
+              <p>
+                {' '}
+                $DG is not an investment and should be earned by active
+                participation in our ecosystem. Learn more by reading our
+                <a href="" target="_blank" style={{ color: '#2085f4' }}>
                   {' '}
                   announcement{' '}
                 </a>
-                or by visiting our 
+                or by visiting our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
@@ -135,7 +134,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">{state.DGBalances[0]}</p>
+                <p className="account-name">{state.DGBalances[3]}</p>
               </span>
             </span>
 
@@ -147,7 +146,7 @@ const ContentFarming = (props) => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingTop: '11px',
-                paddingBottom: '11px'
+                paddingBottom: '11px',
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -168,32 +167,51 @@ const ContentFarming = (props) => {
           </div>
 
           <span className="DG-tablet-container">
-
             <div className="DG-column">
               <span style={{ display: 'flex' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">Existing NFT Holders</h3>
-                  <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
-                  <p style={{ paddingTop: '15px' }}> We are airdropping 120 $DG per NFT to Tominoya and Flamingos holders that vests linearly over 3 months. </p>
+                  <p
+                    className="welcome-text"
+                    style={{ marginTop: '-12px', paddingLeft: '0px' }}
+                  >
+                    {' '}
+                    to be announced{' '}
+                  </p>
+                  <p style={{ paddingTop: '15px' }}>
+                    {' '}
+                    We are airdropping 120 $DG per NFT to Tominoya and Flamingos
+                    holders that vests linearly over 3 months.{' '}
+                  </p>
                 </span>
               </span>
 
               <span style={{ display: 'flex', paddingTop: '30px' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">All Players in Our Database</h3>
-                  <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
-                  <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every Ethereum address that has played our free play games within the last 4 months. </p>
+                  <p
+                    className="welcome-text"
+                    style={{ marginTop: '-12px', paddingLeft: '0px' }}
+                  >
+                    {' '}
+                    to be announced{' '}
+                  </p>
+                  <p style={{ paddingTop: '15px' }}>
+                    {' '}
+                    We are airdropping 10 $DG to every Ethereum address that has
+                    played our free play games within the last 4 months.{' '}
+                  </p>
                 </span>
               </span>
             </div>
-
           </span>
         </div>
-
       </Aux>
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentMining() {
     return (
       <Aux>
@@ -202,16 +220,15 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                Mine $DG by playing games with $MANA or $DAI. Earn mining bonuses
-                by playing with friends or wearing Decentral Games wearables
-                NFTs. Refer friends and receive an affiliate bonus of 10% of the $DG
-                they mine. For more details, see our
+                Mine $DG by playing games with $MANA or $DAI. Earn mining
+                bonuses by playing with friends or wearing Decentral Games
+                wearables NFTs. Refer friends and receive an affiliate bonus of
+                10% of the $DG they mine. For more details, see our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
                   style={{ color: '#2085f4' }}
                 >
-                  {' '}
                   docs
                 </a>
                 .
@@ -242,7 +259,7 @@ const ContentFarming = (props) => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingTop: '11px',
-                paddingBottom: '11px'
+                paddingBottom: '11px',
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -405,9 +422,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
-                Farm $DG by providing liquidity in 98/2 MANA/DG and
-                DAI/DG Balancer pools and staking LP tokens on this
-                dashboard. Read more about $DG liquidity farming in our
+                Farm $DG by providing liquidity in 98/2 MANA/DG and DAI/DG
+                Balancer pools and staking LP tokens on this dashboard. Read
+                more about $DG liquidity farming in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -465,7 +482,7 @@ const ContentFarming = (props) => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingTop: '11px',
-                paddingBottom: '11px'
+                paddingBottom: '11px',
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -741,7 +758,8 @@ const ContentFarming = (props) => {
                   {' '}
                   here
                 </a>
-                . $DG Governance will go live in Q1 2021. Read more about decentral.games governance in our{' '}
+                . $DG Governance will go live in Q1 2021. Read more about
+                decentral.games governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -767,7 +785,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">{state.DGBalances[3]}</p>
+                <p className="account-name">{state.DGBalances[2]}</p>
               </span>
             </span>
 
@@ -779,7 +797,7 @@ const ContentFarming = (props) => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 paddingTop: '11px',
-                paddingBottom: '11px'
+                paddingBottom: '11px',
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -789,7 +807,7 @@ const ContentFarming = (props) => {
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances[3]) ? (
+              {Number(state.DGBalances[2]) ? (
                 <Button
                   className="DG-claim-button"
                   onClick={() => props.metaTransaction()}
