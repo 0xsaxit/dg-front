@@ -168,7 +168,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ${valueUSD_1} </p>
+              <p className="earned-amount"> $0.00 </p>
             </span>
 
             <Divider />
