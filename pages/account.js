@@ -1,14 +1,25 @@
 import { GlobalContext } from '../store';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import AccountData from '../components/home/AccountData';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
+import Spinner from '../Components/Spinner';
 
 const Account = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const [isLoading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    if (document.readyState === 'complete') {
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
   return (
     <Layout>
@@ -18,12 +29,10 @@ const Account = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userInfo[1] === undefined ? (
-        <div className="account-other-inner-p">
-          Please connect Metask to view this page
-        </div>
-      ) : (
+      {isLoading === false ? (
         <AccountData />
+      ) : (
+        <Spinner background={3} />
       )}
     </Layout>
   );

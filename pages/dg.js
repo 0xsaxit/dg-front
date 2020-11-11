@@ -19,13 +19,7 @@ const dg = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userInfo[1] === undefined ? (
-        <div className="account-other-inner-p">
-          Please connect Metask to view this page
-        </div>
-      ) : ( 
-        <Farming />
-      )}
+      <Farming />
     </Layout>
   );
 };
