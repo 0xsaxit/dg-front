@@ -167,6 +167,7 @@ const ContentFarming = (props) => {
           </div>
 
           <span className="DG-tablet-container">
+<<<<<<< HEAD
             <div className="DG-column">
               <span style={{ display: 'flex' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
@@ -183,12 +184,22 @@ const ContentFarming = (props) => {
                     We are airdropping 120 $DG per NFT to Tominoya and Flamingos
                     holders that vests linearly over 3 months.{' '}
                   </p>
+=======
+
+            <div className="DG-column" style={{ width: '100%' }}>
+              <span style={{ display: 'flex' }}>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <h3 className="DG-h3">Existing NFT Holders</h3>
+                  <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
+                  <p style={{ paddingTop: '15px' }}> We're airdropping 120 $DG per NFT to Tominoya and Flamingos holders which vests linearly over 3 months. </p>
+>>>>>>> c303eb4554e3a03d1a7e099e99577688c333e762
                 </span>
               </span>
 
               <span style={{ display: 'flex', paddingTop: '30px' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">All Players in Our Database</h3>
+<<<<<<< HEAD
                   <p
                     className="welcome-text"
                     style={{ marginTop: '-12px', paddingLeft: '0px' }}
@@ -201,6 +212,10 @@ const ContentFarming = (props) => {
                     We are airdropping 10 $DG to every Ethereum address that has
                     played our free play games within the last 4 months.{' '}
                   </p>
+=======
+                  <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
+                  <p style={{ paddingTop: '15px' }}> We're airdropping 10 $DG to every Eth address that's played our free play games within the last 4 months. </p>
+>>>>>>> c303eb4554e3a03d1a7e099e99577688c333e762
                 </span>
               </span>
             </div>
@@ -694,7 +709,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> pool 2 rate </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 3K DG / Week </p>
                   </span>
                 </span>
               </div>

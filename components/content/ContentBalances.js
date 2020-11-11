@@ -304,90 +304,6 @@ const ContentBalances = (props) => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
-                  src={Images.DAI_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
-                <p className="welcome-text">Dai</p>
-                <p className="account-name">{state.userBalances[0][1]}</p>
-              </span>
-            </span>
-
-            <div style={styles.boxDAI}>
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  className="balances-top-button two"
-                  onClick={() => show_transak()}
-                  style={{ marginTop: '-75px' }}
-                >
-                  PURCHASE
-                </Button>
-              </span>
-            </div>
-
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> 0 </p>
-            </span>
-
-            <Divider />
-
-            <div style={styles.boxDAI}>
-              <span className="balances-button-span">
-                <Button
-                  color="blue"
-                  className="matic-widget-button balances-play-button"
-                  data-default-page="deposit"
-                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
-                >
-                  DEPOSIT
-                </Button>
-                <Button
-                  color="blue"
-                  className="matic-widget-button balances-play-button"
-                  data-default-page="deposit"
-                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
-                >
-                  WITHDRAW
-                </Button>
-
-                <script
-                  src="https://wallet.matic.network/embeds/widget-button.js"
-                  data-script-name="matic-embeds"
-                ></script>
-              </span>
-            </div>
-
-            <div style={styles.buttonDAI}>
-              <span>
-                <ButtonApproveDAI />
-              </span>
-            </div>
-          </Grid.Column>
-
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column three"
-          >
-            <span style={{ display: 'flex' }}>
-              <span className="avatar-picture">
-                <img
                   src={Images.MANA_CIRCLE}
                   style={{
                     width: '60px',
@@ -465,6 +381,91 @@ const ContentBalances = (props) => {
             </div>
 
           </Grid.Column>
+
+          <Grid.Column
+            computer={5}
+            tablet={8}
+            mobile={16}
+            className="balances-column three"
+          >
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <img
+                  src={Images.DAI_CIRCLE}
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
+                />
+              </span>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
+                <p className="welcome-text">Dai</p>
+                <p className="account-name">{state.userBalances[0][1]}</p>
+              </span>
+            </span>
+
+            <div style={styles.boxDAI}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  className="balances-top-button two"
+                  onClick={() => show_transak()}
+                  style={{ marginTop: '-75px' }}
+                >
+                  PURCHASE
+                </Button>
+              </span>
+            </div>
+
+            <Divider />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text"> Total Earned </p>
+              <p className="earned-amount"> 0 </p>
+            </span>
+
+            <Divider />
+
+            <div style={styles.boxDAI}>
+              <span className="balances-button-span">
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="deposit"
+                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                >
+                  DEPOSIT
+                </Button>
+                <Button
+                  color="blue"
+                  className="matic-widget-button balances-play-button"
+                  data-default-page="deposit"
+                  data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                >
+                  WITHDRAW
+                </Button>
+
+                <script
+                  src="https://wallet.matic.network/embeds/widget-button.js"
+                  data-script-name="matic-embeds"
+                ></script>
+              </span>
+            </div>
+
+            <div style={styles.buttonDAI}>
+              <span>
+                <ButtonApproveDAI />
+              </span>
+            </div>
+          </Grid.Column>
+
         </Grid.Row>
       </Grid>
     );
