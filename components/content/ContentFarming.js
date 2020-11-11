@@ -151,7 +151,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">$0.00</p>
+                <p className="account-name">0.000</p>
               </span>
             </span>
 

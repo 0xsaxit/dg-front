@@ -27,6 +27,7 @@ const ContentBalances = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const dataPlay = state.transactions[1];
   const [margin, setMargin] = useState('125px');
   const [boxDAI, setBoxDAI] = useState('none');
   const [boxMANA, setBoxMANA] = useState('none');
@@ -34,6 +35,30 @@ const ContentBalances = (props) => {
   const [buttonMANA, setButtonMANA] = useState('block');
 
   let userAddress = '';
+
+  var totalPlay = 0;
+  var totalMana = 0;
+  var totalDai = 0;
+
+  let temp_1 = [];
+  let temp_2 = [];
+  let temp_3 = [];
+  
+  for (const [index, value] of dataPlay.entries()) {
+    if (dataPlay[index].coinName === 'PLAY') {
+      temp_1.push(dataPlay[index]);
+      var x = (temp_1.reduce((a, v) => a = a + v.amountWin, 0 ));
+      var totalPlay = (x / 1000000000000000000).toLocaleString();
+    } else if (dataPlay[index].coinName === 'MANA') {
+      temp_2.push(dataPlay[index]);
+      var y = (temp_2.reduce((a, v) => a = a + v.amountWin, 0 ));
+      var totalMana = (y / 1000000000000000000).toLocaleString();
+    } else if (dataPlay[index].coinName === 'DAI') {
+      temp_3.push(dataPlay[index]);
+      var z = (temp_3.reduce((a, v) => a = a + v.amountWin, 0 ));
+      var totalDai = (z / 1000000000000000000).toLocaleString();
+    }
+  }
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -268,7 +293,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-amount"> {totalPlay} </p>
             </span>
             <Divider />
 
@@ -343,7 +368,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Earned</p>
-              <p className="earned-amount">0</p>
+              <p className="earned-amount"> {totalMana} </p>
             </span>
 
             <Divider />
@@ -428,7 +453,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> 0 </p>
+              <p className="earned-amount"> {totalDai} </p>
             </span>
 
             <Divider />
