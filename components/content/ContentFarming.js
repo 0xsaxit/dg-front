@@ -169,12 +169,12 @@ const ContentFarming = (props) => {
 
           <span className="DG-tablet-container">
 
-            <div className="DG-column">
+            <div className="DG-column" style={{ width: '100%' }}>
               <span style={{ display: 'flex' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">Existing NFT Holders</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
-                  <p style={{ paddingTop: '15px' }}> We are airdropping 120 $DG per NFT to Tominoya and Flamingos holders that vests linearly over 3 months. </p>
+                  <p style={{ paddingTop: '15px' }}> We're airdropping 120 $DG per NFT to Tominoya and Flamingos holders which vests linearly over 3 months. </p>
                 </span>
               </span>
 
@@ -182,7 +182,7 @@ const ContentFarming = (props) => {
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <h3 className="DG-h3">All Players in Our Database</h3>
                   <p className="welcome-text" style={{ marginTop: '-12px', paddingLeft: '0px' }}> to be announced </p>
-                  <p style={{ paddingTop: '15px' }}> We are airdropping 10 $DG to every Ethereum address that has played our free play games within the last 4 months. </p>
+                  <p style={{ paddingTop: '15px' }}> We're airdropping 10 $DG to every Eth address that's played our free play games within the last 4 months. </p>
                 </span>
               </span>
             </div>
@@ -677,7 +677,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> pool 2 rate </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 3K DG / Week </p>
                   </span>
                 </span>
               </div>
