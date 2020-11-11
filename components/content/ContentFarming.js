@@ -134,7 +134,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">{state.DGBalances[3]}</p>
+                <p className="account-name">$0.00</p>
               </span>
             </span>
 
@@ -675,7 +675,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> % of pool 2</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 0 </p>
                   </span>
                 </span>
 
