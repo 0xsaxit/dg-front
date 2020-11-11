@@ -14,7 +14,7 @@ const Wildcard = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [affiliateAddress, setAffiliateAddress] = useState(false);
+  const [affiliateAddress, setAffiliateAddress] = useState(0);
 
   const router = useRouter();
   let parameter = '';
@@ -24,7 +24,7 @@ const Wildcard = () => {
       parameter = router.query.param[0];
 
       if (parameter.slice(0, 2) === '0x') {
-        setAffiliateAddress(true);
+        setAffiliateAddress(1);
 
         console.log('Affiliate address received: ' + parameter);
 
@@ -32,13 +32,15 @@ const Wildcard = () => {
           type: 'affiliate_address',
           data: parameter,
         });
+      } else {
+        setAffiliateAddress(2);
       }
     }
   }, [router]);
 
   return (
     <Layout>
-      {affiliateAddress ? (
+      {affiliateAddress === 1 ? (
         <Aux>
           <Header
             title={
@@ -51,7 +53,7 @@ const Wildcard = () => {
 
           <Chateau />
         </Aux>
-      ) : (
+      ) : affiliateAddress === 2 ? (
         <Aux>
           <Header
             title={Global.CONSTANTS.TITLE + ' | Page Not Found'}
@@ -61,7 +63,7 @@ const Wildcard = () => {
 
           <Content404 />
         </Aux>
-      )}
+      ) : null}
     </Layout>
   );
 };
