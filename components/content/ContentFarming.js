@@ -22,20 +22,27 @@ const ContentFarming = (props) => {
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [instances, setInstances] = useState(false);
 
+  var totalPlay = 0;
   var totalMana = 0;
   var totalDai = 0;
-  var totalPlay = 0;
+
+  let temp_1 = [];
+  let temp_2 = [];
+  let temp_3 = [];
   
   for (const [index, value] of dataPlay.entries()) {
     if (dataPlay[index].coinName === 'PLAY') {
-      var temp = (dataPlay.reduce((a, v) => a = a + v.betAmount, 0 ));
-      var totalPlay = (temp / 1000000000000000000).toLocaleString();
+      temp_1.push(dataPlay[index]);
+      var x = (temp_1.reduce((a, v) => a = a + v.betAmount, 0 ));
+      var totalPlay = (x / 1000000000000000000).toLocaleString();
     } else if (dataPlay[index].coinName === 'MANA') {
-      var temp = (dataPlay.reduce((a, v) => a = a + v.betAmount, 0 ));
-      var totalMana = (temp / 1000000000000000000).toLocaleString();
+      temp_2.push(dataPlay[index]);
+      var y = (temp_2.reduce((a, v) => a = a + v.betAmount, 0 ));
+      var totalMana = (y / 1000000000000000000).toLocaleString();
     } else if (dataPlay[index].coinName === 'DAI') {
-      var temp = (dataPlay.reduce((a, v) => a = a + v.betAmount, 0 ));
-      var totalDai = (temp / 1000000000000000000).toLocaleString();
+      temp_3.push(dataPlay[index]);
+      var z = (temp_3.reduce((a, v) => a = a + v.betAmount, 0 ));
+      var totalDai = (z / 1000000000000000000).toLocaleString();
     }
   }
 
