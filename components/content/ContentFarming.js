@@ -119,11 +119,9 @@ const ContentFarming = (props) => {
               <h3 className="DG-h3">Decentral Games Governance Token ($DG)</h3>
               <p>
                 {' '}
-                $DG is distributed to active participants that provide value to
-                the decentral.games ecosystem: players, liquidity providers, and
-                governance participants.
-                $DG is not an investment and should be earned by active
-                participation in our ecosystem. Learn more by reading our
+                $DG is distributed to active participants who provide value to
+                the decentral.games ecosystem through playing games, providing liquidity, and voting.
+                $DG is not an investment. Learn more by reading our
                 <a href="" target="_blank" style={{ color: '#2085f4' }}>
                   {' '}
                   announcement{' '}
