@@ -132,6 +132,17 @@ const ContentAccount = (props) => {
                       borderRadius: '100%',
                     }}
                   />
+                ) : row.coinName === 'DAI' ? (
+                  <img
+                    src={Images.ICON_DAI}
+                    style={{
+                      width: '21px',
+                      marginRight: '6px',
+                      verticalAlign: 'middle',
+                      marginTop: '-2px',
+                      borderRadius: '100%',
+                    }}
+                  />
                 ) : (
                   <img
                     src={Images.ICON_PLAY}
@@ -144,6 +155,7 @@ const ContentAccount = (props) => {
                     }}
                   />
                 )}
+
                 {action}
               </td>
 
