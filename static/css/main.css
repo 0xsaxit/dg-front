@@ -673,10 +673,16 @@ a.ui.blue.button.how-to-button {
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
 
-.nft-pic,
-.games-pic {
+.nft-pic {
   width: 368px;
   height: 100%;
+  margin-bottom: 4px !important;
+}
+
+.games-pic {
+  minWidth: 100%;
+  margin-bottom: 4px !important;
+  border-radius: 2px !important;
 }
 
 .my-nft-pic {
@@ -874,13 +880,6 @@ a.ui.blue.button.play-button,
 .ui.button.medium,
 .ui.button {
   font-size: 12px !important;
-}
-
-.games-pic {
-  padding-right: 45px;
-  padding-bottom: 30px;
-  min-width: 500px;
-  max-width: 500px !important;
 }
 
 .tominoya-pic {
