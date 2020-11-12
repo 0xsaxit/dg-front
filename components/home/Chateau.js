@@ -33,6 +33,19 @@ const Chateau = () => {
   const [spotThreeTotal, setSpotThreeTotal] = useState('');
   const [spotThreeAddress, setSpotThreeAddress] = useState('');
 
+  // to avoid skips while userStatus is updated
+  const [isCheckingStatus, setIsCheckingStatus] = useState(true);
+
+  useEffect(() => {
+    const loading = localStorage.getItem('loading');
+    console.log(loading);
+    if (loading === 'true') {
+      setIsCheckingStatus(true);
+    } else {
+      setIsCheckingStatus(false);
+    }
+  }, [state.userStatus]);
+
   // fetch daily top 3 from the server API
   useEffect(() => {
 
@@ -354,7 +367,9 @@ const Chateau = () => {
       <Aux>
         {homeVideo()}
 
-        {!state.userStatus ? (
+        {isCheckingStatus === true ? (
+          <div />
+        ) : !state.userStatus ? (
           <div className="home-mission-content">
             <div className="home-dashboard-description">
               <h1
