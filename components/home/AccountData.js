@@ -239,7 +239,7 @@ const AccountData = () => {
   return (
     <div className="main-container">
       {isLoading ? (
-        <Spinner background={3} />
+        <Spinner background={1} />
       ) : (
         <div className="page-container">
           <div className="account-other-inner-container">

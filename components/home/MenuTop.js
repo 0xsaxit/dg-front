@@ -27,6 +27,22 @@ const MenuTop = ({ toggleTheme }) => {
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
 
+  // // to avoid skips while userStatus is updated
+  // const [isCheckingStatus, setIsCheckingStatus] = useState('0');
+
+  // useEffect(() => {
+  //   const loading = localStorage.getItem('loading');
+  //   if (loading === 'true') {
+  //     setIsCheckingStatus('0');
+  //   } else if (state.userStatus === '0') {
+  //     setIsCheckingStatus('1');
+  //   } else {
+  //     setIsCheckingStatus('2');  
+  //   }
+  //   console.log('hello: ' + state.userStatus);
+  //   console.log(isCheckingStatus);
+  // }, [state.userStatus]);
+
   // set menu styles
   useEffect(() => {
     if (router.pathname === '/') {
@@ -526,22 +542,24 @@ const MenuTop = ({ toggleTheme }) => {
 
   return (
     <Aux>
-      <div className={menuStyle[3]}>
-        <div className={getContainerStyles('container')}>
-          <MessageBar />
 
-          {dropdownMenu()}
+        <div className={menuStyle[3]}>
+          <div className={getContainerStyles('container')}>
+            <MessageBar />
 
-          <Menu className={getLinkStyles('menu')} icon="labeled">
-            {DGLogo()}
+            {dropdownMenu()}
 
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
+            <Menu className={getLinkStyles('menu')} icon="labeled">
+              {DGLogo()}
 
-          <MessageBox handleDismiss={handleDismiss} />
+              {shownOrHiddenItems()}
+              {balancesAndButtons()}
+            </Menu>
+
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
         </div>
-      </div>
+
     </Aux>
   );
 };
