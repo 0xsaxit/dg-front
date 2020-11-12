@@ -1,4 +1,4 @@
-FROM node:12.18.3-alpine3.12 as base
+FROM node:14.15.0-alpine3.12 as base
 
 ARG CI=true
 
@@ -13,7 +13,7 @@ COPY package*.json ./
 
 RUN npm install --production --no-fund
 
-# web3 1.2.11 affected https://www.npmjs.com/advisories/877/versions , so we use 1.2.10-rc.0
+# web3 1.3.0 affected https://www.npmjs.com/advisories/877/versions , so we use 1.3.0-rc.0
 RUN npm outdated || true
 
 COPY . .
@@ -25,7 +25,7 @@ RUN npm run build
 
 ################################################################################
 
-FROM node:12.18.3-alpine3.12 as runtime
+FROM node:14.15.0-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 WORKDIR /app
