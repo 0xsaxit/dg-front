@@ -210,14 +210,6 @@ const MenuTop = ({ toggleTheme }) => {
               </Menu.Item>
             </a>
 
-            {state.userStatus ? (
-              <a href="/account">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  ACCOUNT
-                </Menu.Item>
-              </a>
-            ) : null}
-
             <a href="/games">
               <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
                 GAMES
@@ -248,12 +240,6 @@ const MenuTop = ({ toggleTheme }) => {
         <Link href="/">
           <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
-
-        {state.userStatus ? (
-          <Link href="/account">
-            <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
-          </Link>
-        ) : null}
 
         <Link href="/games">
           <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
