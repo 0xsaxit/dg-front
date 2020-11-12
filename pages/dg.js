@@ -21,7 +21,7 @@ const dg = () => {
     console.log(loading);
     if (loading === 'true') {
       setIsLoading(true);
-    } else if (state.userStatus <= 5) {
+    } else if (state.userStatus < 5) {
       setIsErrorMessage(true);
       setIsLoading(false);
     } else {
