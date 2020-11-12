@@ -16,7 +16,7 @@ const Account = () => {
     if (document.readyState === 'complete') {
       setLoading(false);
     } else {
-      setLoading(false);
+      setLoading(true);
     }
   }, []);
 

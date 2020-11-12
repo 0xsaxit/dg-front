@@ -306,6 +306,8 @@ div.ui.segment.transparent-menu-segment {
   font-size: 14px;
   font-weight: bold !important;
   padding-right: 12px !important;
+  position: relative;
+  z-index: 3;
 }
 
 .right-menu-text {
