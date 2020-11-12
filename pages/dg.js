@@ -1,5 +1,5 @@
 import { GlobalContext } from '../store';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Farming from '../components/home/Farming';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';

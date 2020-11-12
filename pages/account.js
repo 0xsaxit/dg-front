@@ -10,15 +10,17 @@ import Spinner from '../components/Spinner';
 const Account = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const [isLoading, setLoading] = useState(true);
+
+  // define local variables 
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
 
   useEffect(() => {
-    if (document.readyState === 'complete') {
-      setLoading(false);
+    if (!state.userStatus) {
+      setIsErrorMessage(true);
     } else {
-      setLoading(true);
+      setIsErrorMessage(false);
     }
-  }, []);
+  }, [state.userStatus]);
 
   return (
     <Layout>
@@ -28,11 +30,14 @@ const Account = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {isLoading === false ? (
-        <AccountData />
+      {isErrorMessage === true ?  (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          You must log in with Metamask to view this page
+        </div>
       ) : (
-        <Spinner background={3} />
+        <AccountData />
       )}
+
     </Layout>
   );
 };

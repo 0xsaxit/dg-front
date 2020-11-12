@@ -39,6 +39,12 @@ const AccountData = () => {
   }, [state.transactions]);
 
   useEffect(() => {
+    if (!state.userStatus) {
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
     balancesOverlay(2);
   }, []);
 
