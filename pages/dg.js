@@ -11,6 +11,24 @@ const dg = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
+  // define local variables 
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loading = localStorage.getItem('loading');
+    console.log(loading);
+    if (loading === 'true') {
+      setIsLoading(true);
+    } else if (state.userStatus <= 5) {
+      setIsErrorMessage(true);
+      setIsLoading(false);
+    } else {
+      setIsErrorMessage(false);
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
+
   return (
     <Layout>
       <Header
@@ -19,7 +37,16 @@ const dg = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Farming />
+      {isLoading === true ? (
+        <Spinner background={3} />
+      ) : isErrorMessage === true ?  (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          You must log in with Metamask to view this page
+        </div>
+      ) : (
+        <Farming />
+      )}
+
     </Layout>
   );
 };
