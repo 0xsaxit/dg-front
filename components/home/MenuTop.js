@@ -210,6 +210,14 @@ const MenuTop = ({ toggleTheme }) => {
               </Menu.Item>
             </a>
 
+            {state.userStatus ? (
+              <a href="/account">
+                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                  ACCOUNT
+                </Menu.Item>
+              </a>
+            ) : null}
+
             <a href="/games">
               <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
                 GAMES
@@ -241,6 +249,12 @@ const MenuTop = ({ toggleTheme }) => {
           <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
 
+        {state.userStatus ? (
+          <Link href="/account">
+            <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
+          </Link>
+        ) : null}
+
         <Link href="/games">
           <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
         </Link>
@@ -267,7 +281,7 @@ const MenuTop = ({ toggleTheme }) => {
         <span className="right-menu-items">
           {router.pathname === '/dg' ? <ModalInfo /> : null}
 
-          <a href="/account">
+          <Link href="/account">
             <span className="menu-account-info">
               {DAI_BALANCE || MANA_BALANCE > 0 ? (
                 <span style={{ display: 'flex' }}>
@@ -277,13 +291,13 @@ const MenuTop = ({ toggleTheme }) => {
                         {parseInt(state.userBalances[1][1]).toLocaleString()} MANA
                       </p>
                     ) : null}
-                    <span className="menu-info-to-hide">
-                      {DAI_BALANCE > 0 ? (
-                        <p className={menuStyle[7]}>
-                          {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
-                        </p>
-                      ) : null}
-                    </span>
+                  </span>
+                  <span className="menu-info-to-hide">
+                    {DAI_BALANCE > 0 ? (
+                      <p className={menuStyle[7]}>
+                        {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
+                      </p>
+                    ) : null}
                   </span>
                 </span>
               ) : (
@@ -325,7 +339,7 @@ const MenuTop = ({ toggleTheme }) => {
                 />
               </span>
             </span>
-          </a>
+          </Link>
 
           <Popup
             on="click"
@@ -519,10 +533,19 @@ const MenuTop = ({ toggleTheme }) => {
     }
   }
 
+  // function balancesAndButtonsLanding() {
+  //   return (
+  //     <span className="right-menu-items" style={{ marginRight: '15px' }}>
+  //       <ModalVideoLanding />
+  //       <ButtonVerify />
+  //     </span>
+  //   );
+  // }
+
   return (
     <Aux>
 
-        <div>
+        <div className={menuStyle[3]}>
           <div className={getContainerStyles('container')}>
             <MessageBar />
 

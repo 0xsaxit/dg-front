@@ -680,7 +680,9 @@ a.ui.blue.button.how-to-button {
 }
 
 .games-pic {
-  minWidth: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   margin-bottom: 4px !important;
   border-radius: 2px !important;
 }
