@@ -103,16 +103,7 @@ const Tokens = () => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top" style={{ marginBottom: '21px', marginTop: '6px' }}>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p> Each Decentral Games Decentraland wearable NFT gives a +10% $DG mining bonus while equipped. A maximum of 4 wearables (+40% bonus) may be equipped at a single time. To read more about $DG wearable mining bonuses, see our
-                <a
-                  href="https://decentral-games-1.gitbook.io/dg/allocation"
-                  target="_blank"
-                  style={{ color: '#2085f4' }}
-                >
-                  {' '}
-                  documentation
-                </a>
-                .
+              <p> Each Decentral Games Decentraland wearable NFT gives a +10% $DG mining bonus while equipped. A maximum of 4 wearables (+40% bonus) may be equipped at a single time. To read more about $DG wearable mining bonuses, see our docs.
               </p>
             </span>
           </div>

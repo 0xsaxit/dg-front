@@ -7,6 +7,7 @@ on:
 
 env:
   CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME_PROD }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   DOCKER_BUILDKIT: 1
 
 jobs:
@@ -68,13 +69,22 @@ jobs:
       - build
       - deploy
     runs-on: ubuntu-latest
-    #runs-on: self-hosted
     steps:
+      - name: 'Setup metadata'
+        id: setup
+        run: |
+          gitref_path="${{ github.ref }}"
+          gitref_path=${gitref_path/refs\/heads/tree} # for refs/heads/my-branch
+          gitref_path=${gitref_path/refs\/tags/tree}  # for refs/tags/v1.0.0
+          gitref_path=${gitref_path#refs\/}           # for refs/pull/123/merge
+          gitref_path=${gitref_path%/merge}           # for refs/pull/123/merge
+          echo "::set-output name=gitref-path::$gitref_path"
       - name: Prepare Slack message
         id: status
-        uses: actions/github-script@0.8.0
+        uses: actions/github-script@v3
         with:
           script: |
+            var gitref_path = "${{ steps.setup.outputs.gitref-path }}"
             ////////////////////////////////////
             // retrieve workflow run data
             ////////////////////////////////////
@@ -136,7 +146,7 @@ jobs:
               pr = "for " + pr.substr(1)
             }
             // build the message
-            var fields = []
+            var job_blocks = []
             var is_wf_success = true
             var is_wf_failure = false
             for (j of jobs_response.data.jobs) {
@@ -151,9 +161,12 @@ jobs:
                 if (j.conclusion == "failure") {
                   is_wf_failure = true
                 }
-                fields.push({
-                    type: "mrkdwn",
-                    text: status_icon_func(j.conclusion) + " <" + j.html_url + "|" + j.name + ">\n  \u21b3 completed in " + date_diff_func(new Date(j.started_at), new Date(j.completed_at))
+                job_blocks.push({
+                    type: "section",
+                    text: {
+                      type: "mrkdwn",
+                      text: status_icon_func(j.conclusion) + " <" + j.html_url + "|" + j.name + "> - " + date_diff_func(new Date(j.started_at), new Date(j.completed_at))
+                    }
                 })
             }
             var workflow_status = "w_cancelled"
@@ -165,34 +178,58 @@ jobs:
               workflow_status = "w_failure"
               msg_status = "failed"
             }
+            var context_elements = [
+              {
+                  "type": "mrkdwn",
+                  "text": "*Repo:* <https://github.com/${{ github.repository }}|${{ github.repository }}>"
+              },
+              {
+                  "type": "mrkdwn",
+                  "text": `*Branch:* <https://github.com/${{ github.repository }}/${gitref_path}|${{ github.ref }}>`
+              },
+              {
+                  "type": "mrkdwn",
+                  "text": `*Event:* ${wf_run.data.event}`
+              },
+              {
+                  "type": "mrkdwn",
+                  "text": `*Commit:* <https://github.com/${{ github.repository }}/commit/${wf_run.data.head_commit.id}|${wf_run.data.head_commit.id.substr(0, 8)}>`
+              },
+              {
+                  "type": "mrkdwn",
+                  "text": `*Author:* ${wf_run.data.head_commit.author.name}`
+              },
+              {
+                  "type": "mrkdwn",
+                  "text": `*Commit title:* ${wf_run.data.head_commit.message}`
+              }
+            ]
+            var header_blocks = [
+                {
+                    type: "section",
+                    text: {
+                        type: "mrkdwn",
+                        text: status_icon_func(workflow_status) + " *${{ github.workflow }}* "
+                    }
+                },
+                {
+                    type: "context",
+                    elements: context_elements,
+                },
+                {
+                    type: "section",
+                    text: {
+                        type: "mrkdwn",
+                        text: "Workflow run <" + wf_run.data.html_url + "|#${{ github.run_number }}> took " + date_diff_func(new Date(wf_run.data.created_at), new Date(wf_run.data.updated_at))
+                    }
+                }
+            ]
             var slack_msg = {
                 text: "Website, Branch: master, " + msg_status ,
-                blocks: [
-                    {
-                        type: "section",
-                        text: {
-                            type: "mrkdwn",
-                            text: status_icon_func(workflow_status) + " *${{ github.workflow }}* " + pr + "\nWorkflow run <" + wf_run.data.html_url + "|#${{ github.run_number }}> completed in " + date_diff_func(new Date(wf_run.data.created_at), new Date(wf_run.data.updated_at))
-                        }
-                    },
-                    {
-                        type: "section",
-                        text: {
-                            type: "mrkdwn",
-                            text: "<https://github.com/${{ github.repository }}|*${{ github.repository }}*>\nfrom *${{ github.ref }}@" + commit + "*"
-                        }
-                    },
-                    {
-                        type: "divider"
-                    },
-                    {
-                        type: "section",
-                        fields: fields
-                    }
-                ]
+                blocks: [].concat(header_blocks, job_blocks)
             }
             return slack_msg
       - name: Send to Slack
         if: success()
         run: |
-          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL}} -H "Content-type: application/json" --data '${{ steps.status.outputs.result }}'
+          curl -X POST $SLACK_WEBHOOK_URL -H "Content-type: application/json" --data '${{ steps.status.outputs.result }}'

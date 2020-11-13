@@ -392,7 +392,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 }
 
 @media (max-width: 590px) {
-  .games-pic,
   .tominoya-pic {
     min-width: calc(100vw - 75px) !important;
     padding-right: 60px !important;
@@ -401,7 +400,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 }
 
 @media (max-width: 499px) {
-  .games-pic,
   .tominoya-pic {
     min-width: calc(100vw - 75px) !important;
     padding-right: 30px !important;
@@ -427,12 +425,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 @media (max-width: 499px) {
   .main-container {
     padding-bottom: 60px !important;
-  }
-}
-
-@media (max-width: 991px) {
-  .games-pic {
-    padding-bottom: 45px !important;
   }
 }
 

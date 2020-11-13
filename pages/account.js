@@ -13,12 +13,19 @@ const Account = () => {
 
   // define local variables 
   const [isErrorMessage, setIsErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!state.userStatus) {
+    const loading = localStorage.getItem('loading');
+    console.log(loading);
+    if (loading === 'true') {
+      setIsLoading(true);
+    } else if (state.userStatus < 5) {
       setIsErrorMessage(true);
+      setIsLoading(false);
     } else {
       setIsErrorMessage(false);
+      setIsLoading(false);
     }
   }, [state.userStatus]);
 
@@ -30,7 +37,9 @@ const Account = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {isErrorMessage === true ?  (
+      {isLoading === true ? (
+        <Spinner background={1} />
+      ) : isErrorMessage === true ?  (
         <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
           You must log in with Metamask to view this page
         </div>
