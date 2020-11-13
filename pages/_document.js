@@ -34,8 +34,6 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          <link rel='stylesheet' href='/_next/static/style.css' />
           <link rel="stylesheet" href="/static/css/blog.css" />
           <link rel="stylesheet" href="/static/css/main.css" />
           <link
@@ -67,10 +65,6 @@ export default class MyDocument extends Document {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
           <meta name="theme-color" content="#000000" />
           <meta
             name="google-site-verification"
