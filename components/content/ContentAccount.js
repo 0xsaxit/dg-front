@@ -183,7 +183,21 @@ const ContentAccount = (props) => {
                         launch
                       </span>
                     </Button>
-                  ) : (
+                  ) : row.coinName === 'DAI' ? (
+                    <Button
+                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                      target="_blank"
+                      className="etherscan-button"
+                    >
+                      blockchain tx
+                      <span
+                        className="material-icons"
+                        id="etherscan-button-icon"
+                      >
+                        launch
+                      </span>
+                    </Button>
+                  ) :  (
                     <Button disabled className="etherscan-button">
                       blockchain tx
                       <span

@@ -588,7 +588,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">pool 1 rate</p>
-                    <p className="earned-amount">3K DG / Week </p>
+                    <p className="earned-amount">2.4K DG / Week </p>
                   </span>
                 </span>
               </div>
@@ -711,7 +711,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> pool 2 rate </p>
-                    <p className="earned-amount"> 3K DG / Week </p>
+                    <p className="earned-amount"> 2.4k DG / Week </p>
                   </span>
                 </span>
               </div>
