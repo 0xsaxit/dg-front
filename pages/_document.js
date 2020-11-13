@@ -1,27 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet } from 'styled-components'
 import Global from '../components/Constants';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
-        })
-
-      const initialProps = await Document.getInitialProps(ctx)
-      return {
-        ...initialProps,
-      };
-    } finally {
-      sheet.seal()
-    }
-  }
 
   static async getServerSideProps(ctx) {
     const initialProps = await Document.getServerSideProps(ctx);
@@ -35,6 +15,8 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
+          <link rel="stylesheet" href="/static/css/blog.css" />
+          <link rel="stylesheet" href="/static/css/main.css" />
           <link
             rel="shortcut icon"
             href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691630/favicon_ofugym.ico"
@@ -78,7 +60,6 @@ export default class MyDocument extends Document {
             href="/static/js/manifest.json"
             crossorigin="use-credentials"
           />
-          <link rel="stylesheet" href="/static/css/blog.css" />
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
