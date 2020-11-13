@@ -12,22 +12,22 @@ const Account = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables 
-  // const [isErrorMessage, setIsErrorMessage] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const loading = localStorage.getItem('loading');
-  //   console.log(loading);
-  //   if (loading === 'true') {
-  //     setIsLoading(true);
-  //   } else if (state.userStatus === 0) {
-  //     setIsErrorMessage(true);
-  //     setIsLoading(false);
-  //   } else {
-  //     setIsErrorMessage(false);
-  //     setIsLoading(false);
-  //   }
-  // }, [state.userStatus]);
+  useEffect(() => {
+    const loading = localStorage.getItem('loading');
+    console.log(loading);
+    if (loading === 'true') {
+      setIsLoading(true);
+    } else if (state.userStatus < 5) {
+      setIsErrorMessage(true);
+      setIsLoading(false);
+    } else {
+      setIsErrorMessage(false);
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
 
   return (
     <Layout>
@@ -37,7 +37,15 @@ const Account = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <AccountData />
+      {isLoading === true ? (
+        <Spinner background={1} />
+      ) : isErrorMessage === true ?  (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          You must log in with Metamask to view this page
+        </div>
+      ) : (
+        <AccountData />
+      )}
 
     </Layout>
   );
