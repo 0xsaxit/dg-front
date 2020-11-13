@@ -14,8 +14,6 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
-          <link rel="stylesheet" href="../static/css/main.css" />
-          <link rel="stylesheet" href="../static/css/blog.css" />
           <link
             rel="shortcut icon"
             href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691630/favicon_ofugym.ico"
@@ -59,6 +57,7 @@ export default class MyDocument extends Document {
             href="/static/js/manifest.json"
             crossorigin="use-credentials"
           />
+          <link rel="stylesheet" href="/static/css/blog.css" />
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
