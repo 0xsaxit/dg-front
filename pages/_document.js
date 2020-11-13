@@ -35,6 +35,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          <link rel='stylesheet' href='/_next/static/style.css' />
           <link rel="stylesheet" href="/static/css/blog.css" />
           <link rel="stylesheet" href="/static/css/main.css" />
           <link

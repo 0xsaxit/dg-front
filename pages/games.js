@@ -5,10 +5,6 @@ import Global from '../components/Constants';
 import Images from '../common/Images';
 import { hydrate } from '@emotion/css';
 
-if (typeof window !== 'undefined') {
-  hydrate(window.__NEXT_DATA__.ids);
-}
-
 const Games = () => {
   return (
     <Layout>
