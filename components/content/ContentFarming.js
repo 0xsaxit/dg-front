@@ -30,21 +30,21 @@ const ContentFarming = (props) => {
   let temp_2 = [];
   let temp_3 = [];
   
-  for (const [index, value] of dataPlay.entries()) {
-    if (dataPlay[index].coinName === 'PLAY') {
-      temp_1.push(dataPlay[index]);
-      var x = (temp_1.reduce((a, v) => a = a + v.betAmount, 0 ));
-      var totalPlay = (x / 1000000000000000000).toLocaleString();
-    } else if (dataPlay[index].coinName === 'MANA') {
-      temp_2.push(dataPlay[index]);
-      var y = (temp_2.reduce((a, v) => a = a + v.betAmount, 0 ));
-      var totalMana = (y / 1000000000000000000).toLocaleString();
-    } else if (dataPlay[index].coinName === 'DAI') {
-      temp_3.push(dataPlay[index]);
-      var z = (temp_3.reduce((a, v) => a = a + v.betAmount, 0 ));
-      var totalDai = (z / 1000000000000000000).toLocaleString();
-    }
-  }
+  // for (const [index, value] of dataPlay.entries()) {
+  //   if (dataPlay[index].coinName === 'PLAY') {
+  //     temp_1.push(dataPlay[index]);
+  //     var x = (temp_1.reduce((a, v) => a = a + v.betAmount, 0 ));
+  //     var totalPlay = (x / 1000000000000000000).toLocaleString();
+  //   } else if (dataPlay[index].coinName === 'MANA') {
+  //     temp_2.push(dataPlay[index]);
+  //     var y = (temp_2.reduce((a, v) => a = a + v.betAmount, 0 ));
+  //     var totalMana = (y / 1000000000000000000).toLocaleString();
+  //   } else if (dataPlay[index].coinName === 'DAI') {
+  //     temp_3.push(dataPlay[index]);
+  //     var z = (temp_3.reduce((a, v) => a = a + v.betAmount, 0 ));
+  //     var totalDai = (z / 1000000000000000000).toLocaleString();
+  //   }
+  // }
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
   const valueUSD_1 = parseFloat(state.DGBalances[0] * 15)

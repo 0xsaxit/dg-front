@@ -12,11 +12,11 @@ function UserStatus() {
   useEffect(() => {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
-      localStorage.setItem('loading', true);
+      // localStorage.setItem('loading', true);
 
       async function fetchData() {
         const response = await getUserStatus();
-        localStorage.setItem('loading', false);
+        // localStorage.setItem('loading', false);
 
         if (response) {
           dispatch({
