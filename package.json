@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@biconomy/mexa": "^1.5.13",
+    "@emotion/css": "^11.0.0",
+    "@emotion/server": "^11.0.0",
     "@next/bundle-analyzer": "^9.5.2",
     "@transak/transak-sdk": "^1.0.26",
     "babel-polyfill": "^6.26.0",
