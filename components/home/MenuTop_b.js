@@ -16,32 +16,24 @@ const MenuTop = ({ toggleTheme }) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [isVisible, setIsVisible] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  // const [isVisible, setIsVisible] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
-  const [zIndexMobile, setZIndexMobile] = useState(1);
+  // const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
-  const [open, setOpen] = React.useState(false);
-
-  const router = useRouter();
-
+  const [open, setOpen] = useState(false);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
 
-  // // to avoid skips while userStatus is updated
-  // const [isCheckingStatus, setIsCheckingStatus] = useState('0');
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   const loading = localStorage.getItem('loading');
-  //   if (loading === 'true') {
-  //     setIsCheckingStatus('0');
-  //   } else if (state.userStatus === '0') {
-  //     setIsCheckingStatus('1');
-  //   } else {
-  //     setIsCheckingStatus('2');
-  //   }
-  //   console.log('hello: ' + state.userStatus);
-  //   console.log(isCheckingStatus);
-  // }, [state.userStatus]);
+  useEffect(() => {
+    if (document.readyState === 'complete') {
+      setIsLoading(false);
+    }
+  }, []);
 
   // set menu styles
   useEffect(() => {
@@ -63,7 +55,7 @@ const MenuTop = ({ toggleTheme }) => {
         'other-menu-container blog',
         'menu-container-dark blog',
         'sidebar-menu-text blog',
-        'blog-menu-background',
+        '',
         '',
         'rgb(10, 10, 10)',
         'white',
@@ -210,6 +202,14 @@ const MenuTop = ({ toggleTheme }) => {
               </Menu.Item>
             </a>
 
+            {state.userStatus ? (
+              <a href="/account">
+                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                  ACCOUNT
+                </Menu.Item>
+              </a>
+            ) : null}
+
             <a href="/games">
               <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
                 GAMES
@@ -241,6 +241,12 @@ const MenuTop = ({ toggleTheme }) => {
           <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
 
+        {state.userStatus ? (
+          <Link href="/account">
+            <Menu.Item className={getLinkStyles('/account')}>ACCOUNT</Menu.Item>
+          </Link>
+        ) : null}
+
         <Link href="/games">
           <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
         </Link>
@@ -267,67 +273,63 @@ const MenuTop = ({ toggleTheme }) => {
         <span className="right-menu-items">
           {router.pathname === '/dg' ? <ModalInfo /> : null}
 
-          <Link href="/account">
-            <span className="menu-account-info">
-              {DAI_BALANCE || MANA_BALANCE > 0 ? (
-                <span style={{ display: 'flex' }}>
-                  <span className="menu-info-to-hide">
-                    {MANA_BALANCE > 0 ? (
-                      <p className={menuStyle[7]}>
-                        {parseInt(state.userBalances[1][1]).toLocaleString()}{' '}
-                        MANA
-                      </p>
-                    ) : null}
-                  </span>
-                  <span className="menu-info-to-hide">
-                    {DAI_BALANCE > 0 ? (
-                      <p className={menuStyle[7]}>
-                        {parseInt(state.userBalances[0][1]).toLocaleString()}{' '}
-                        DAI
-                      </p>
-                    ) : null}
-                  </span>
-                </span>
-              ) : (
-                <p className={menuStyle[7]} id="add-funds-mobile-padding">
-                  ADD TOKENS
-                </p>
-              )}
-
-              <span className="menu-avatar-background" id="add-funds-mobile">
-                <span className="mobile-display-none-name">
-                  {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                    <p className={menuStyle[7]} style={{ marginTop: '-1px' }}>
-                      {state.userInfo[1].substr(0, 4) +
-                        '...' +
-                        state.userInfo[1].substr(-4)}
+          <span className="menu-account-info" onClick={() => balancesModal()}>
+            {DAI_BALANCE || MANA_BALANCE > 0 ? (
+              <span style={{ display: 'flex' }}>
+                <span className="menu-info-to-hide">
+                  {DAI_BALANCE > 0 ? (
+                    <p className={menuStyle[7]}>
+                      {parseInt(state.userBalances[0][1]).toLocaleString()} DAI
                     </p>
-                  ) : (
-                    <p style={{ marginTop: '-1px' }} className={menuStyle[7]}>
-                      {state.userInfo[0]}
-                    </p>
-                  )}
+                  ) : null}
                 </span>
-
-                <img
-                  className="avatar-picture"
-                  id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
-                  style={{
-                    width: '21px',
-                    height: '21px',
-                    display: 'flex',
-                    border: '1px solid rgb(227, 232, 238)',
-                    marginTop: '5px',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                    backgroundColor: 'white',
-                  }}
-                  alt="Decentraland Avatar Image"
-                />
+                <span className="menu-info-to-hide">
+                  {MANA_BALANCE > 0 ? (
+                    <p className={menuStyle[7]}>
+                      {parseInt(state.userBalances[1][1]).toLocaleString()} MANA
+                    </p>
+                  ) : null}
+                </span>
               </span>
+            ) : (
+              <p className={menuStyle[7]} id="add-funds-mobile-padding">
+                ADD TOKENS
+              </p>
+            )}
+
+            <span className="menu-avatar-background" id="add-funds-mobile">
+              <span className="mobile-display-none-name">
+                {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                  <p className={menuStyle[7]} style={{ marginTop: '-1px' }}>
+                    {state.userInfo[1].substr(0, 4) +
+                      '...' +
+                      state.userInfo[1].substr(-4)}
+                  </p>
+                ) : (
+                  <p style={{ marginTop: '-1px' }} className={menuStyle[7]}>
+                    {state.userInfo[0]}
+                  </p>
+                )}
+              </span>
+
+              <img
+                className="avatar-picture"
+                id="mobile-avatar-picture"
+                src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                style={{
+                  width: '21px',
+                  height: '21px',
+                  display: 'flex',
+                  border: '1px solid rgb(227, 232, 238)',
+                  marginTop: '5px',
+                  borderRadius: '100%',
+                  boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                  backgroundColor: 'white',
+                }}
+                alt="Decentraland Avatar Image"
+              />
             </span>
-          </Link>
+          </span>
 
           <Popup
             on="click"
@@ -521,19 +523,10 @@ const MenuTop = ({ toggleTheme }) => {
     }
   }
 
-  // function balancesAndButtonsLanding() {
-  //   return (
-  //     <span className="right-menu-items" style={{ marginRight: '15px' }}>
-  //       <ModalVideoLanding />
-  //       <ButtonVerify />
-  //     </span>
-  //   );
-  // }
-
   return (
-    <Aux>
-      <div className={menuStyle[3]}>
-        <div className={getContainerStyles('container')}>
+    <div className={getContainerStyles('container')}>
+      {!isLoading ? (
+        <Aux>
           <MessageBar />
 
           {dropdownMenu()}
@@ -546,9 +539,9 @@ const MenuTop = ({ toggleTheme }) => {
           </Menu>
 
           <MessageBox handleDismiss={handleDismiss} />
-        </div>
-      </div>
-    </Aux>
+        </Aux>
+      ) : null}
+    </div>
   );
 };
 
