@@ -1,8 +1,9 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import { GlobalContext } from './Context';
 
 const initialState = {
   categories: ['All', 'Announcements', 'Tutorials', 'Technology'],
+  isLoading: false,
   pages: {
     data: [],
     meta: {},
@@ -39,10 +40,17 @@ const initialState = {
   refreshBalances: true,
   stakeTime: 0,
   affiliateAddress: '',
+  toggleTheme: 'light',
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'is_loading':
+      return {
+        ...state,
+        isLoading: action.data,
+      };
+
     case 'update_pages':
       return {
         ...state,
@@ -167,6 +175,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         affiliateAddress: action.data,
+      };
+
+    case 'toggle_theme':
+      return {
+        ...state,
+        theme: action.data,
       };
 
     default:

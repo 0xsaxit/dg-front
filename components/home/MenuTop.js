@@ -2,52 +2,32 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
+import { Menu, Popup } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
-// import ModalVideoLanding from '../modal/ModalVideoLanding';
 import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
-import Aux from '../_Aux';
 import Images from '../../common/Images';
+import PopupLinks from './PopupLinks';
 
-const MenuTop = ({ toggleTheme }) => {
+const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [isVisible, setIsVisible] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
-  const [zIndexMobile, setZIndexMobile] = useState(1);
   const [menuStyle, setMenuStyle] = useState([]);
   const [open, setOpen] = React.useState(false);
 
-  const router = useRouter();
-
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
-
-  // // to avoid skips while userStatus is updated
-  // const [isCheckingStatus, setIsCheckingStatus] = useState('0');
-
-  // useEffect(() => {
-  //   const loading = localStorage.getItem('loading');
-  //   if (loading === 'true') {
-  //     setIsCheckingStatus('0');
-  //   } else if (state.userStatus === '0') {
-  //     setIsCheckingStatus('1');
-  //   } else {
-  //     setIsCheckingStatus('2');
-  //   }
-  //   console.log('hello: ' + state.userStatus);
-  //   console.log(isCheckingStatus);
-  // }, [state.userStatus]);
+  const router = useRouter();
 
   // set menu styles
   useEffect(() => {
     if (router.pathname === '/') {
       setMenuStyle([
-        'other-menu-container',
+        'dashboard-menu-container',
         'menu-container-dark',
         'sidebar-menu-text',
         '',
@@ -63,7 +43,7 @@ const MenuTop = ({ toggleTheme }) => {
         'other-menu-container blog',
         'menu-container-dark blog',
         'sidebar-menu-text blog',
-        'blog-menu-background',
+        '',
         '',
         'rgb(10, 10, 10)',
         'white',
@@ -89,8 +69,7 @@ const MenuTop = ({ toggleTheme }) => {
     }
   });
 
-  // close menu automatically if left open for
-  // desktop screen sizes
+  // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
     const interval = setInterval(() => {
       var frameWidth = window.innerWidth;
@@ -101,34 +80,7 @@ const MenuTop = ({ toggleTheme }) => {
     return () => clearInterval(interval);
   }, []);
 
-  // display the 'ADD TOKENS' popup
-  function balancesModal() {
-    if (state.balancesOverlay !== 2) {
-      dispatch({
-        type: 'balances_overlay',
-        data: 1,
-      });
-    } else {
-      dispatch({
-        type: 'balances_overlay',
-        data: 3,
-      });
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // get path and render appropriate styles
-  function getContainerStyles(path) {
-    if (path === 'container') {
-      if ('/' === router.pathname || '/landing' === router.pathname) {
-        return 'dashboard-menu-container';
-      } else {
-        return menuStyle[0];
-      }
-    }
-  }
-
   function getLinkStyles(path) {
     if (path === 'menu') {
       if ('/' === router.pathname && !open) {
@@ -145,8 +97,6 @@ const MenuTop = ({ toggleTheme }) => {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
     dispatch({
@@ -329,96 +279,7 @@ const MenuTop = ({ toggleTheme }) => {
             </span>
           </Link>
 
-          <Popup
-            on="click"
-            pinned
-            position="bottom right"
-            trigger={
-              <Button color="blue" className="more-dropdown-button">
-                <span className="material-icons">more_horiz</span>
-              </Button>
-            }
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <a href="https://docs.decentral.games" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-6px', marginRight: '11px' }}
-                      name="file outline"
-                    />
-                    DOCS
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://github.com/decentralgames" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-6px', marginRight: '11px' }}
-                      name="code"
-                    />
-                    CODE
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://discord.com/invite/cvbSNzY" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-5px', marginRight: '10px' }}
-                      name="discord"
-                    />
-                    DISCORD
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://t.me/decentralgames" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-5px', marginRight: '10px' }}
-                      name="telegram"
-                    />
-                    TELEGRAM
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://twitter.com/decentralgames" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-5px', marginRight: '10px' }}
-                      name="twitter"
-                    />
-                    TWITTER
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <span style={{ display: 'flex', paddingTop: '8px' }}>
-                {isDarkMode ? (
-                  <span id="moon-icon" className="material-icons">
-                    brightness_4
-                  </span>
-                ) : (
-                  <span id="sun-icon" className="material-icons">
-                    brightness_7
-                  </span>
-                )}
-
-                <Checkbox
-                  className="radio-theme-toggle"
-                  onChange={toggleTheme}
-                  toggle
-                />
-              </span>
-            </span>
-          </Popup>
+          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     } else {
@@ -426,130 +287,32 @@ const MenuTop = ({ toggleTheme }) => {
         <span className="right-menu-items">
           <ButtonVerify />
 
-          <Popup
-            on="click"
-            pinned
-            position="bottom right"
-            trigger={
-              <Button color="blue" className="more-dropdown-button">
-                <span className="material-icons">more_horiz</span>
-              </Button>
-            }
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <a href="https://docs.decentral.games" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-6px', marginRight: '11px' }}
-                      name="file outline"
-                    />
-                    DOCS
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://github.com/decentralgames" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-6px', marginRight: '11px' }}
-                      name="code"
-                    />
-                    CODE
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://discord.com/invite/cvbSNzY" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-5px', marginRight: '10px' }}
-                      name="discord"
-                    />
-                    DISCORD
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://t.me/decentralgames" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-5px', marginRight: '10px' }}
-                      name="telegram"
-                    />
-                    TELEGRAM
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <a href="https://twitter.com/decentralgames" target="_blank">
-                <span style={{ display: 'flex', marginBottom: '6px' }}>
-                  <Menu.Item className={menuStyle[7]} id="dropdown-more-items">
-                    <Icon
-                      style={{ marginLeft: '-5px', marginRight: '10px' }}
-                      name="twitter"
-                    />
-                    TWITTER
-                  </Menu.Item>
-                </span>
-              </a>
-
-              <span style={{ display: 'flex', paddingTop: '8px' }}>
-                {isDarkMode ? (
-                  <span id="moon-icon" className="material-icons">
-                    brightness_4
-                  </span>
-                ) : (
-                  <span id="sun-icon" className="material-icons">
-                    brightness_7
-                  </span>
-                )}
-
-                <Checkbox
-                  className="radio-theme-toggle"
-                  onChange={toggleTheme}
-                  toggle
-                />
-              </span>
-            </span>
-          </Popup>
+          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     }
   }
 
-  // function balancesAndButtonsLanding() {
-  //   return (
-  //     <span className="right-menu-items" style={{ marginRight: '15px' }}>
-  //       <ModalVideoLanding />
-  //       <ButtonVerify />
-  //     </span>
-  //   );
-  // }
+  if (state.isLoading) {
+    return null;
+  } else {
+    return (
+      <div className={menuStyle[0]}>
+        <MessageBar />
 
-  return (
-    <Aux>
-      <div className={menuStyle[3]}>
-        <div className={getContainerStyles('container')}>
-          <MessageBar />
+        {dropdownMenu()}
 
-          {dropdownMenu()}
+        <Menu className={getLinkStyles('menu')} icon="labeled">
+          {DGLogo()}
 
-          <Menu className={getLinkStyles('menu')} icon="labeled">
-            {DGLogo()}
+          {shownOrHiddenItems()}
+          {balancesAndButtons()}
+        </Menu>
 
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
-
-          <MessageBox handleDismiss={handleDismiss} />
-        </div>
+        <MessageBox handleDismiss={handleDismiss} />
       </div>
-    </Aux>
-  );
+    );
+  }
 };
 
 export default MenuTop;
