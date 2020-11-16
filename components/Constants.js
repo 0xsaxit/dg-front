@@ -18,10 +18,10 @@ const CONSTANTS = {
   FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
-  MATIC_NETWORK_ID: 137, // mumbai: 80001, mainnet: 137
+  MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
   MATIC_URL:
-    'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9', // 'https://rpc-mumbai.matic.today', 'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9'
-  MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com', // 'https://mumbai-explorer.matic.today',
+    'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9',
+  MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
   DESCRIPTION:
     'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',

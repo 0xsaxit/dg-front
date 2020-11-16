@@ -17,10 +17,10 @@ const MenuTop = () => {
   // define local variables
   const [isDarkMode, setDarkMode] = useState(false);
   const [menuStyle, setMenuStyle] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
+  const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
 
   // set menu styles
@@ -55,13 +55,14 @@ const MenuTop = () => {
   }, []);
 
   useEffect(() => {
-    if (state.userStatus !== 0) {
+    if (state.userStatus) {
       console.log('User status: ' + state.userStatus);
     }
   }, [state.userStatus]);
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
+
     if (localTheme === 'dark') {
       setDarkMode(true);
     } else {
@@ -299,12 +300,10 @@ const MenuTop = () => {
     return (
       <div className={menuStyle[0]}>
         <MessageBar />
-
         {dropdownMenu()}
 
         <Menu className={getLinkStyles('menu')} icon="labeled">
           {DGLogo()}
-
           {shownOrHiddenItems()}
           {balancesAndButtons()}
         </Menu>
