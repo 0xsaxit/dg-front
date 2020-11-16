@@ -76,10 +76,6 @@ export default class MyDocument extends Document {
             crossorigin="use-credentials"
           />
           <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-          />
-          <link
             href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
             rel="stylesheet"
             disabled

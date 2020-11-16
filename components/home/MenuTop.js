@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Popup } from 'semantic-ui-react';
+import { Menu, Popup, Icon } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
@@ -136,20 +136,16 @@ const MenuTop = () => {
           trigger={
             <span>
               {open ? (
-                <span id="mobile-menu-icon" className="material-icons">
-                  close
-                </span>
+                <Icon name="close" id="mobile-menu-icon" />
               ) : (
-                <span
+                <Icon
+                  name="bars"
                   id={
                     '/' === router.pathname
                       ? 'mobile-menu-icon-home'
                       : 'mobile-menu-icon'
                   }
-                  className="material-icons"
-                >
-                  menu
-                </span>
+                />
               )}
             </span>
           }

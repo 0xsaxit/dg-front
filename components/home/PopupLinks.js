@@ -24,7 +24,7 @@ const PopupLinks = (props) => {
       position="bottom right"
       trigger={
         <Button color="blue" className="more-dropdown-button">
-          <span className="material-icons">more_horiz</span>
+          <Icon name="ellipsis horizontal" style={{ marginRight: '-4px', marginTop: '-2px', fontSize: '16px' }}/>
         </Button>
       }
     >
@@ -91,13 +91,19 @@ const PopupLinks = (props) => {
 
         <span style={{ display: 'flex', paddingTop: '8px' }}>
           {props.isDarkMode ? (
-            <span id="moon-icon" className="material-icons">
-              brightness_4
-            </span>
+            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items-theme" style={{ marginTop: '-8px', fontSize: '14px' }}>
+              <Icon
+                style={{ marginLeft: '-4px', marginRight: '4px' }}
+                name="moon"
+              />
+            </Menu.Item>
           ) : (
-            <span id="sun-icon" className="material-icons">
-              brightness_7
-            </span>
+            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items-theme" style={{ marginTop: '-9px', fontSize: '16px' }}>
+              <Icon
+                style={{ marginLeft: '-5px', marginRight: '3px' }}
+                name="sun"
+              />
+            </Menu.Item>
           )}
 
           <Checkbox

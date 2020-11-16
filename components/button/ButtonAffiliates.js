@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 const ButtonAffiliates = () => {
   // get token balances from the Context API store
@@ -27,9 +27,7 @@ const ButtonAffiliates = () => {
       >
         <Button className="affiliate-copied-button">
           Copied
-          <span className="material-icons" id="etherscan-button-icon">
-            check
-          </span>
+          <Icon name="check square outline" id="etherscan-button-icon" style={{ marginLeft: '0px', marginRight: '3px', marginTop: '-1px' }} />
         </Button>
       </span>
     );
@@ -44,9 +42,7 @@ const ButtonAffiliates = () => {
     >
       <Button className="affiliate-copy-button" onClick={() => onCopy()}>
         affiliate link
-        <span className="material-icons" id="etherscan-button-icon">
-          content_copy
-        </span>
+        <Icon name="copy outline" id="etherscan-button-icon" style={{ marginLeft: '3px', marginTop: '-1px' }} />
       </Button>
     </span>
   );

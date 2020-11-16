@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider, Input } from 'semantic-ui-react';
+import { Button, Divider, Input, Icon } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
@@ -467,24 +467,12 @@ const ContentFarming = (props) => {
                 {poolSelect === 1 ? (
                   <span style={{ display: 'flex' }}>
                     <p className="welcome-text"> Pool 1</p>
-                    <span
-                      onClick={onPool}
-                      id="pool-select-icon"
-                      className="material-icons"
-                    >
-                      unfold_more
-                    </span>
+                    <Icon name="sort" id="pool-select-icon" onClick={onPool} />
                   </span>
                 ) : (
                   <span style={{ display: 'flex' }}>
                     <p className="welcome-text"> Pool 2</p>
-                    <span
-                      onClick={onPool}
-                      id="pool-select-icon"
-                      className="material-icons"
-                    >
-                      unfold_more
-                    </span>
+                    <Icon name="sort" id="pool-select-icon" onClick={onPool} />
                   </span>
                 )}
                 <p className="account-name">{state.DGBalances[1]}</p>
@@ -568,8 +556,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 1</p>
-                    <p className="earned-amount">{percentagePool1}</p>
+                    <p className="earned-text">APY</p>
+                    <p className="earned-amount">...</p>
                   </span>
                 </span>
 
@@ -691,8 +679,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> % of pool 2</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-text">APY</p>
+                    <p className="earned-amount">...</p>
                   </span>
                 </span>
 

@@ -1,4 +1,4 @@
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import Global from '../Constants';
 import Images from '../../common/Images';
 
@@ -84,9 +84,7 @@ const ContentAccount = (props) => {
                     className="etherscan-button"
                   >
                     blockchain tx
-                    <span className="material-icons" id="etherscan-button-icon">
-                      launch
-                    </span>
+                    <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                   </Button>
                 </span>
               </td>
@@ -176,12 +174,7 @@ const ContentAccount = (props) => {
                       className="etherscan-button"
                     >
                       blockchain tx
-                      <span
-                        className="material-icons"
-                        id="etherscan-button-icon"
-                      >
-                        launch
-                      </span>
+                      <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                     </Button>
                   ) : row.coinName === 'DAI' ? (
                     <Button
@@ -190,22 +183,12 @@ const ContentAccount = (props) => {
                       className="etherscan-button"
                     >
                       blockchain tx
-                      <span
-                        className="material-icons"
-                        id="etherscan-button-icon"
-                      >
-                        launch
-                      </span>
+                      <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                     </Button>
                   ) :  (
                     <Button disabled className="etherscan-button">
                       blockchain tx
-                      <span
-                        className="material-icons"
-                        id="etherscan-button-icon"
-                      >
-                        launch
-                      </span>
+                      <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                     </Button>
                   )}
                 </span>

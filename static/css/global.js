@@ -203,6 +203,7 @@ export const GlobalStyles = createGlobalStyle`
   .dropdown-icon,
   #dropdown-more-items,
   #dropdown-menu-items,
+  #dropdown-more-items-theme,
   #sun-icon,
   #moon-icon {
     color: ${({ theme }) => theme.menuText} !important;
