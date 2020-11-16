@@ -8,7 +8,7 @@ import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 
-let transak = new transakSDK({
+let transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'STAGING', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
@@ -17,6 +17,22 @@ let transak = new transakSDK({
   email: '', // customer email address
   redirectURL: '',
   defaultNetwork: 'matic',
+  defaultCryptoCurrency: 'MANA',
+  hostURL: Global.CONSTANTS.BASE_URL,
+  widgetHeight: '633px',
+  widgetWidth: '100%',
+});
+
+let transak_2 = new transakSDK({
+  apiKey: Global.KEYS.TRANSAK_API, // API Key
+  environment: 'STAGING', // STAGING/PRODUCTION
+  walletAddress: '', // customer wallet address
+  themeColor: '000000', // theme color
+  fiatCurrency: '', // INR/GBP
+  email: '', // customer email address
+  redirectURL: '',
+  defaultNetwork: 'matic',
+  defaultCryptoCurrency: 'DAI',
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '100%',
@@ -43,26 +59,6 @@ const ContentBalances = (props) => {
   let temp_1 = [];
   let temp_2 = [];
   let temp_3 = [];
-
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     dataPlay.forEach(function(item, index) {
-  //       if (dataPlay[index].coinName === 'PLAY') {
-  //         temp_1.push(dataPlay[index]);
-  //         var x = (temp_1.reduce((a, v) => a = a + v.amountWin, 0 ));
-  //         var totalPlay = (x / 1000000000000000000).toLocaleString();
-  //       } else if (dataPlay[index].coinName === 'MANA') {
-  //         temp_2.push(dataPlay[index]);
-  //         var y = (temp_2.reduce((a, v) => a = a + v.amountWin, 0 ));
-  //         var totalMana = (y / 1000000000000000000).toLocaleString();
-  //       } else if (dataPlay[index].coinName === 'DAI') {
-  //         temp_3.push(dataPlay[index]);
-  //         var z = (temp_3.reduce((a, v) => a = a + v.amountWin, 0 ));
-  //         var totalDai = (z / 1000000000000000000).toLocaleString();
-  //       }
-  //     });
-  //   }
-  // });
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -106,19 +102,44 @@ const ContentBalances = (props) => {
 
   useEffect(() => {
     // get all the events
-    transak.on(transak.ALL_EVENTS, (data) => {
+    transak_1.on(transak_1.ALL_EVENTS, (data) => {
       console.log(data);
     });
+
+    transak_2.on(transak_2.ALL_EVENTS, (data) => {
+      console.log(data);
+    });
+
     // triggers when the user closes the widget
-    transak.on(transak.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak.close();
+    transak_1.on(transak_1.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak_1.close();
     });
+
+    transak_2.on(transak_2.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak_2.close();
+    });
+
     // triggers when the payment is complete
-    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+    transak_1.on(transak_1.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
       console.log(orderData);
-      transak.close();
+      transak_1.close();
     });
+
+    transak_2.on(transak_2.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+      console.log(orderData);
+      transak_2.close();
+    });
+
   }, []);
+
+  // initialize transak modal
+  function show_transak_1() {
+    transak_1.init();
+  }
+
+  function show_transak_2() {
+    transak_2.init();
+  }
 
   // get user address
   useEffect(() => {
@@ -141,11 +162,6 @@ const ContentBalances = (props) => {
       type: 'user_info',
       data: arrayInfo,
     });
-  }
-
-  // initialize transak modal
-  function show_transak() {
-    transak.init();
   }
 
   // close function
@@ -182,70 +198,7 @@ const ContentBalances = (props) => {
     },
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentModal() {
-    return (
-      <span>
-        <div className="matic-overlay-container" onClick={close} />
-        <div className="matic-overlay">
-          <p className="matic-header-text"> Add Tokens </p>
-
-          <Divider style={{ marginTop: '-15px' }} />
-
-          <div className="matic-widget-button-container">
-            <div onClick={close}>
-              <div
-                className="matic-widget-button"
-                data-default-page="deposit"
-                data-wapp-id="I8qoM5yxmkAm6tT72vwD"
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    marginTop: '7px',
-                  }}
-                >
-                  <img
-                    src={Images.METAMASK}
-                    className="deposit-modal-image 1"
-                  />
-                  <p className="deposit-type-text"> Metamask </p>
-                </span>
-              </div>
-
-              <script
-                src="https://wallet.matic.network/embeds/widget-button.js"
-                data-script-name="matic-embeds"
-              ></script>
-            </div>
-
-            <div onClick={close}>
-              <div
-                className="matic-widget-button-2"
-                onClick={() => show_transak()}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <img src={Images.TRANSAK} className="deposit-modal-image 2" />
-                  <p className="deposit-type-text"> Debit Card </p>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </span>
-    );
-  }
-
+  
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccountPage() {
@@ -360,7 +313,7 @@ const ContentBalances = (props) => {
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   className="balances-top-button"
-                  onClick={() => show_transak()}
+                  onClick={() => show_transak_1()}
                   style={{ marginTop: '-75px' }}
                 >
                   PURCHASE
@@ -445,7 +398,7 @@ const ContentBalances = (props) => {
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   className="balances-top-button two"
-                  onClick={() => show_transak()}
+                  onClick={() => show_transak_2()}
                   style={{ marginTop: '-75px' }}
                 >
                   PURCHASE
@@ -500,11 +453,7 @@ const ContentBalances = (props) => {
     );
   }
 
-  if (props.balancesOverlay === 1) {
-    return contentModal();
-  } else if (props.balancesOverlay === 2) {
-    return contentAccountPage();
-  }
+  return contentAccountPage();
 };
 
 export default ContentBalances;
