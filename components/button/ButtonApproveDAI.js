@@ -140,6 +140,7 @@ function ButtonApproveMANA() {
       <span>
         <Button
           className="balances-authorize-button"
+          id="balances-padding-correct"
           onClick={() => metaTransaction()}
         >
           AUTHORIZE DAI CONTRACT

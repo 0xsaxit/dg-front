@@ -270,6 +270,7 @@ const ContentBalances = (props) => {
                 <Button
                   onClick={() => topUp()}
                   className="balances-play-button"
+                  id="balances-padding-correct"
                 >
                   TOP UP
                 </Button>
@@ -335,6 +336,7 @@ const ContentBalances = (props) => {
                 <Button
                   color="blue"
                   className="matic-widget-button balances-play-button"
+                  id="balances-padding-correct"
                   data-default-page="deposit"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
                 >
@@ -343,6 +345,7 @@ const ContentBalances = (props) => {
                 <Button
                   color="blue"
                   className="matic-widget-button balances-play-button"
+                  id="balances-padding-correct"
                   data-default-page="withdraw"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
                 >
@@ -420,6 +423,7 @@ const ContentBalances = (props) => {
                 <Button
                   color="blue"
                   className="matic-widget-button balances-play-button"
+                  id="balances-padding-correct"
                   data-default-page="deposit"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
                 >
@@ -428,6 +432,7 @@ const ContentBalances = (props) => {
                 <Button
                   color="blue"
                   className="matic-widget-button balances-play-button"
+                  id="balances-padding-correct"
                   data-default-page="deposit"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
                 >

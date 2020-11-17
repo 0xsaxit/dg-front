@@ -22,7 +22,8 @@ export const lightTheme = {
   modalCard: 'white',
   codeBorder: '3px solid #edf2f9',
   bptText: 'rgb(203, 203, 203)',
-  darkModeDivider: '#edf2f9'
+  darkModeDivider: '#edf2f9',
+  toggle: 'rgba(0, 0, 0, 0.1)',
 }
 
 export const darkTheme = {
@@ -50,4 +51,5 @@ export const darkTheme = {
   codeBorder: '3px solid rgb(4, 5, 6)',
   bptText: 'rgb(172, 172, 172)',
   darkModeDivider: 'rgb(21, 24, 28)',
+  toggle: 'rgba(0, 0, 0, 0.5)',
 }

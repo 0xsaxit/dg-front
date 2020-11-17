@@ -1,6 +1,6 @@
 import { Provider } from '../store';
 import App from 'next/app';
-import 'decentraland-ui/lib/styles.css';
+import 'semantic-ui-css/semantic.min.css'
 import '../static/css/main.css';
 import '../static/css/agate.css';
 import '../static/css/blog.css';

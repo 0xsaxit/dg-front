@@ -165,25 +165,27 @@
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
-  margin-top: 64px;
+  margin-top: 70px;
   border: none;
-  margin-left: -5px;
   min-width: 100vw;
   border-radius: 0px;
   padding-left: 0px;
   padding-top: 0px;
   height: 196px;
+  position: absolute !important;
+  left: -25px !important;
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
-  margin-top: 66px;
+  margin-top: 70px;
   border: none;
-  margin-left: -5px;
   min-width: 100vw;
   border-radius: 0px;
   padding-left: 0px;
   padding-top: 0px;
   height: 196px;
+  position: absolute !important;
+  left: -25px !important;
 }
 
 /* ----------------------------------------- */

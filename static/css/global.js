@@ -10,6 +10,10 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.body};
   }
 
+  .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
+    background: ${({ theme }) => theme.toggle};
+  }
+
   .ui.input>input {
     background: ${({ theme }) => theme.input} !important;
     border: ${({ theme }) => theme.globalDividers} !important;
@@ -163,7 +167,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .featured-blog-grid,
-  .ui.dropdown .menu > .active.item {
+  .ui.dropdown .menu > .active.item,
+  .account-select.play,
+  .account-select.mana,
+  .account-select.dai {
     background: ${({ theme }) => theme.card} !important;
   }
 
@@ -240,10 +247,7 @@ export const GlobalStyles = createGlobalStyle`
   .blog-category,
   .post-date,
   .post-category,
-  .post-date-blogdetail,
-  .account-select.play,
-  .account-select.mana,
-  .account-select.dai {
+  .post-date-blogdetail {
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;
   }

@@ -2,10 +2,6 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
-/* ----------------------------------------- */
-/*         UNIVERSAL BLOG PAGE CSS           */
-/* ----------------------------------------- */
-
 h1,
 h2,
 h3,
@@ -44,6 +40,13 @@ h3 {
   line-height: 1.4;
 }
 
+h1 {
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  line-height: 1.4;
+}
+
 p {
   font-size: 20px;
   font-weight: normal;
@@ -51,8 +54,7 @@ p {
   line-height: 1.4;
 }
 
-.ui.divider {
-  border-top: 1px solid #edf2f9 !important;
+.ui.divider:not(.vertical):not(.horizontal) {
   border-bottom: 0px !important;
 }
 
@@ -62,11 +64,6 @@ p {
 
 .ui.segment {
   border: none !important;
-}
-
-.ui.button:hover {
-  transform: translateY(0px);
-  filter: brightness(0.9) !important;
 }
 
 .ui.column.grid>[class*="sixteen wide"].column, .ui.grid>.column.row>[class*="sixteen wide"].column, .ui.grid>.row>[class*="sixteen wide"].column, .ui.grid>[class*="sixteen wide"].column {
@@ -121,90 +118,6 @@ p {
 
 .menu-account-info:hover {
   filter: brightness(0.9);
-}
-
-.ui.button.modal-info-button:hover,
-.ui.button.theme-mode-button:hover,
-.ui.button.more-dropdown-button:hover {
-  background-color: #2085f4 !important;
-}
-
-.ui.blue.button.metamask-button {
-  position: relative;
-  background-color: #2085f4 !important;
-  color: white;
-  font-weight: 600;
-  margin-top: 18px;
-  padding-top: 8px;
-  width: 210px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  height: 34px;
-  letter-spacing: 0.5px;
-  border-radius: 4px;
-  margin-right: 15px;
-}
-
-.ui.button.modal-deposit-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 18px;
-  height: 33px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-  margin-right: 15px;
-  min-width: 15px !important;
-  padding: 3px 4px 0px 5px;
-}
-
-.ui.button.modal-info-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  margin-top: 18px;
-  height: 33px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-  margin-right: 15px;
-  min-width: 15px !important;
-  padding: 0px 6px 7px 6px;
-}
-
-.ui.button.more-dropdown-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 18px;
-  height: 33px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-  margin-right: 30px;
-  max-width: 33px !important;
-  min-width: 33px !important;
-  padding: 0px 0px 0px 0px;
-}
-
-.ui.button.theme-mode-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 12px;
-  height: 33px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-  margin-right: 30px;
-  min-width: 100% !important;
-  padding: 3px 4px 0px 5px;
-}
-
-.ui.button.theme-mode-button:focus,
-.ui.button.more-dropdown-button:focus {
-  background-color: #2085f4 !important;
 }
 
 .other-menu-container.blog {
@@ -420,21 +333,6 @@ div.ui.segment.transparent-menu-segment {
 /*               MAILCHIMP CSS               */
 /* ----------------------------------------- */
 
-.ui.button.mailchimp-submit-button {
-  position: relative;
-  background-color: #2085f4 !important;
-  color: white;
-  font-weight: 600;
-  margin-top: 20px;
-  padding-top: 8px;
-  width: 100% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  height: 34px;
-  letter-spacing: 0.5px;
-  border-radius: 4px;
-}
-
 .mailchimp-outter-container {
   top: 106px;
   max-width: 400px !important;
@@ -453,8 +351,8 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .mailchimp-header-text {
-  margin-top: -33px;
-  padding-bottom: 20px;
+  margin-top: -22px;
+  padding-bottom: 12px;
   font-weight: 800 !important;
   text-align: center;
 }
@@ -534,38 +432,6 @@ div.ui.segment.transparent-menu-segment {
   margin-left: auto !important;
   margin-right: auto !important;
   padding-top: calc(100vh - 375px);
-}
-
-a.ui.blue.button.how-to-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  font-weight: 600;
-  position: relative;
-  font-weight: 600;
-  margin-top: 20px;
-  padding-top: 8px;
-  width: 180px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  height: 34px;
-  letter-spacing: 0.5px;
-  border-radius: 4px;
-}
-
-.ui.blue.button.demo-button {
-  position: relative;
-  background-color: #2085f4 !important;
-  color: white;
-  font-weight: 600;
-  margin-top: 20px;
-  padding-top: 8px;
-  width: 180px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  height: 34px;
-  letter-spacing: 0.5px;
-  border-radius: 4px;
 }
 
 .demo-button-container {
@@ -781,7 +647,8 @@ a.ui.blue.button.how-to-button {
 }
 
 .ui.dropdown .menu {
-  padding: 0px;
+  margin-top: 15px;
+  padding: 9px 0px 9px 0px;
   border-radius: 4px;
 }
 
@@ -885,104 +752,11 @@ a.ui.blue.button.how-to-button {
   padding-bottom: 30px;
 }
 
-a.ui.blue.button.play-button,
-.ui.blue.button.play-button {
-  position: relative;
-  background-color: #2085f4 !important;
-  color: white;
-  font-weight: 600;
-  margin-top: 20px;
-  padding-top: 8px;
-  width: 180px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  height: 34px;
-  letter-spacing: 0.5px;
-  border-radius: 4px;
-}
-
-.ui.button.medium,
-.ui.button {
-  font-size: 12px !important;
-}
-
 .tominoya-pic {
   margin-top: -45px;
   padding-right: 30px;
   padding-bottom: 30px;
   width: 366px;
-}
-
-.ui.blue.button.nft-button {
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 48.5% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-  margin-right: 18px;
-}
-
-.ui.button.nft-read-button {
-  background-color: transparent;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 7px;
-  min-width: 48.5% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.games-read-button {
-  background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 150px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-  margin-left: 18px;
-}
-
-.ui.blue.button.games-button {
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 150px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.blue.button.my-nft-button {
-  background-color: #2085f4;
-  color: white;
-  width: 150px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px;
-  height: 42px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
 }
 
 /* ----------------------------------------- */
@@ -1207,23 +981,6 @@ table.ui.fixed.single.line.table {
   flex-direction: row;
 }
 
-.ui.button.reload-button {
-  background-color: transparent;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  margin-top: -5px;
-  margin-left: 24px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 29px;
-  padding-top: 5px;
-  max-width: 30px !important;
-  min-width: 30px;
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
 .account-hover {
   cursor: pointer;
   letter-spacing: 0.5px;
@@ -1299,44 +1056,6 @@ svg.spanbox.disable {
 /*             DEPOSIT MODAL CSS             */
 /* ----------------------------------------- */
 
-.matic-overlay-container {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(13, 13, 13, 0.5) !important;
-  position: fixed;
-  z-index: -3 !important;
-  top: 0;
-  left: 0;
-}
-
-.matic-overlay {
-  margin-top: -46px;
-  background-color: white;
-  border-radius: 4px;
-  position: absolute;
-  z-index: 9;
-  height: 330px;
-  width: 400px !important;
-}
-
-.matic-header-text {
-  padding: 20px;
-  font-weight: 800 !important;
-  text-align: center;
-}
-
-.matic-widget-button-container {
-  padding: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-content: flex-end;
-}
-
-.deposit-modal-image {
-  width: 64px;
-}
-
 .deposit-type-text {
   font-size: 12px;
   font-weight: bold !important;
@@ -1344,20 +1063,6 @@ svg.spanbox.disable {
   text-transform: uppercase;
   padding-top: 12px !important;
   margin-bottom: 0px;
-}
-
-.matic-widget-button,
-.matic-widget-button-2 {
-  cursor: pointer;
-  padding: 15px 12px 12px 12px;
-  border-radius: 4px;
-  width: 125px;
-  height: 125px;
-}
-
-.matic-widget-button:hover,
-.matic-widget-button-2:hover {
-  filter: brightness(0.9);
 }
 
 .deposit-notification-container {
@@ -1586,36 +1291,6 @@ div.ui.grid.balances-container {
   color: rgb(92, 95, 97);
 }
 
-.ui.button.balances-purchase-button {
-  background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 90px !important;
-  min-width: 90px;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.etherscan-button {
-  background-color: transparent;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  padding-left: 15px;
-  padding-right: 15px;
-  letter-spacing: 0.5px;
-}
-
 #etherscan-button-icon {
   font-size: 16px;
   padding-left: 6px;
@@ -1626,22 +1301,6 @@ div.ui.grid.balances-container {
 .account-authorize-span {
   margin-top: -72px;
   margin-bottom: 36px;
-}
-
-.ui.button.account-connected-play-button {
-  color: white;
-  background-color: #2085f4;
-  margin-top: 6px;
-  margin-bottom: -5px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 120px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
 }
 
 .balances-divider {
@@ -1669,202 +1328,10 @@ div.ui.grid.balances-container {
   justify-content: space-between;
 }
 
-.ui.disabled.button.balances-top-button,
-.ui.button.balances-top-button {
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  margin-top: 1px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 90px !important;
-  min-width: 90px;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-  opacity: 100% !important;
-}
-
 #pool-select-icon {
   font-size: 12px;
   margin: 7px 0px 0px 3px;
   cursor: pointer;
-}
-
-.ui.button.affiliate-copy-button {
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  margin-top: -45px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 150px !important;
-  min-width: 150px;
-  padding-left: 0px;
-  padding-right: 3px;
-  letter-spacing: 0.5px;
-  opacity: 100% !important;
-}
-
-.ui.button.affiliate-copied-button {
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  margin-top: -45px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 90px !important;
-  min-width: 90px;
-  padding-left: 3px;
-  padding-right: 3px;
-  letter-spacing: 0.5px;
-  opacity: 100% !important;
-}
-
-.ui.button.balancer-top-button {
-  background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  margin-top: 1px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 81px !important;
-  min-width: 81px;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-  opacity: 100% !important;
-}
-
-.ui.button.balances-play-button {
-  color: white;
-  background-color: #2085f4;
-  margin-top: 1px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 48.5% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.balances-authorize-button {
-  color: white;
-  background-color: #2085f4;
-  margin-top: 3px;
-  margin-bottom: 6px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 100% !important;
-  letter-spacing: 0.5px;
-}
-
-.ui.disabled.button.balances-top-button.two {
-  opacity: 45% !important;
-}
-
-button.ui.button.matic-widget-button.balances-button {
-  text-align: center !important;
-}
-
-button.ui.button.matic-widget-button.balances-play-button {
-  border: 0px !important;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  text-align: center !important;
-  background-color: #2085f4 !important;
-  color: white !important;
-  margin-top: 1px;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  height: 34px;
-  padding-top: 8px;
-  max-width: 110px !important;
-  min-width: 120px;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px !important;
-  position: relative !important;
-  z-index: 5 !important;
-  font-family: Lato, sans-serif !important;
-}
-
-.ui.button {
-  transition: none !important;
-}
-
-button.ui.button.matic-widget-button.balances-play-button-2 {
-  border: 0px !important;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  text-align: center !important;
-  background-color: #2085f4 !important;
-  color: white !important;
-  width: calc(50% - 30px) !important;
-  min-width: 115px !important;
-  max-width: 180px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  margin-top: 0px !important;
-  padding: 10px 9px 9px 9px !important;
-  height: 39px !important;
-  letter-spacing: 1.25px !important;
-  border-radius: 2px !important;
-  position: relative !important;
-  z-index: 5 !important;
-  font-family: Lato, sans-serif !important;
-}
-
-.ui.blue.button.balances-purchase-button {
-  background-color: #165daa !important;
-  color: white;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 21px;
-  padding: 10px 9px 9px 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-}
-
-.ui.button.balances-deposit-button,
-.ui.button.balances-withdraw-button {
-  background-color: #4c9df6 !important;
-  margin-right: 18px;
-  color: white;
-  width: calc(50% - 9px);
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 0px;
-  padding: 10px 9px 9px 9px;
-  height: 39px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-  position: relative;
-  z-index: 5;
 }
 
 /* ----------------------------------------- */
@@ -1875,21 +1342,6 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   display: flex;
   flex-direction: row;
   margin-bottom: 60px;
-}
-
-.ui.button.DG-airdrop-button {
-  color: white;
-  background-color: #2085f4;
-  margin-top: 1px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  padding-left: 45px;
-  padding-right: 45px;
-  letter-spacing: 0.5px;
-  margin-top: -75px;
 }
 
 #airdrop-number-1 {
@@ -2028,111 +1480,6 @@ button.ui.button.matic-widget-button.balances-play-button-2 {
   margin-top: 18px;
   display: flex;
   justify-content: space-between;
-}
-
-.ui.button.learn-dg-button {
-  display: flex;
-  align-self: flex-start;
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  padding-left: 45px;
-  padding-right: 45px;
-  letter-spacing: 0.5px;
-  margin-top: 6px;
-}
-
-.ui.button.DG-deposit-button {
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 100% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.DG-claim-button {
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 100% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.DG-play-now-button {
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 100% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.DG-stake-button {
-  color: white;
-  background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 48.5% !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.DG-stake-button-two {
-  color: white;
-  background-color: #2085f4;
-  margin-top: 18px;
-  margin-bottom: 6px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 34px;
-  padding-top: 8px;
-  min-width: 210px !important;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
-}
-
-.ui.button.DG-liquidity-button {
-  background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
-  margin-top: 27px;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
-  height: 27px;
-  padding-top: 4px;
-  max-width: 150px !important;
-  min-width: 150px;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
 }
 
 .ui.toggle.checkbox.checked input.hidden + label:before,
@@ -2452,17 +1799,286 @@ div.ui.grid.admin-balances-container {
   margin-bottom: 9px;
 }
 
+/* ----------------------------------------- */
+/*                BUTTON CSS                 */
+/* ----------------------------------------- */
+
+.ui.button:hover {
+  transform: translateY(0px);
+  filter: brightness(0.9) !important;
+}
+
+.ui.button {
+  font-size: 12px !important;
+  padding: 11px 0 0 0;
+  font-weight: bold !important;
+  letter-spacing: 0.5px !important;
+  border-radius: 4px !important;
+  text-transform: uppercase !important;
+  line-height: 12px !important;
+}
+
+.ui.disabled.button {
+  padding: 0px 0 0 0;
+}
+
+.ui.button.modal-info-button:hover,
+.ui.button.theme-mode-button:hover,
+.ui.button.more-dropdown-button:hover {
+  background-color: #2085f4 !important;
+}
+
+.ui.button.DG-claim-button,
+.ui.button.DG-deposit-button,
+.ui.button.DG-play-now-button,
+.ui.button.balances-authorize-button {
+  color: white;
+  background-color: #2085f4;
+  height: 34px;
+  min-width: 100% !important;
+}
+
+.ui.blue.button.metamask-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  padding: 0 0 0 0;
+  margin-top: 18px;
+  width: 210px !important;
+  height: 34px;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.ui.button.modal-info-button {
+  background-color: #2085f4;
+  color: white;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  margin-top: 18px;
+  height: 33px;
+  letter-spacing: 1.25px;
+  border-radius: 4px;
+  margin-right: 15px;
+  min-width: 15px !important;
+  padding: 0px 6px 7px 6px;
+}
+
+.ui.button.more-dropdown-button {
+  background-color: #2085f4;
+  color: white;
+  font-size: 14px !important;
+  margin-top: 18px;
+  height: 33px;
+  margin-right: 30px;
+  max-width: 33px !important;
+  min-width: 33px !important;
+  padding: 1px 0px 0px 0px;
+}
+
+.ui.button.theme-mode-button {
+  background-color: #2085f4;
+  color: white;
+  font-size: 14px !important;
+  font-weight: 600;
+  margin-top: 12px;
+  height: 33px;
+  letter-spacing: 1.25px;
+  border-radius: 4px;
+  margin-right: 30px;
+  min-width: 100% !important;
+  padding: 3px 4px 0px 5px;
+}
+
+.ui.button.theme-mode-button:focus,
+.ui.button.more-dropdown-button:focus {
+  background-color: #2085f4 !important;
+}
+
+.ui.button.mailchimp-submit-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  margin-top: 20px;
+  width: 100% !important;
+  height: 34px;
+  padding: 0 0 0 0;
+}
+
+a.ui.blue.button.how-to-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  position: relative;
+  margin-top: 20px;
+  width: 180px !important;
+  height: 34px;
+}
+
+.ui.blue.button.demo-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  margin-top: 20px;
+  width: 180px !important;
+  height: 34px;
+  padding: 0 0 0 0;
+}
+
+a.ui.blue.button.play-button,
+.ui.blue.button.play-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  margin-top: 20px;
+  width: 180px !important;
+  height: 34px;
+}
+
+.ui.blue.button.nft-button {
+  color: white;
+  background-color: #2085f4;
+  min-width: 48.5% !important;
+  margin-right: 18px;
+}
+
+.ui.button.nft-read-button {
+  background-color: transparent;
+  border: 1px solid #2085f4;
+  padding: 10px 0 0 0;
+  color: #2085f4;
+  height: 34px;
+  min-width: 48.5% !important;
+}
+
+.ui.button.reload-button {
+  background-color: transparent;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -5px;
+  margin-left: 24px;
+  height: 27px;
+  max-width: 27px !important;
+  min-width: 27px;
+  padding: 5px 0 3px 0;
+}
+
+.ui.button.etherscan-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -45px;
+  height: 27px;
+  max-width: 150px !important;
+  min-width: 150px;
+  padding: 7px 6px 0px 6px;
+  opacity: 100% !important;
+}
+
+.ui.disabled.button.balances-top-button,
+.ui.button.balances-top-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 27px;
+  padding: 0 0 0 0;
+  max-width: 90px !important;
+  min-width: 90px;
+  opacity: 100% !important;
+}
+
+.ui.button.balances-play-button {
+  color: white;
+  background-color: #2085f4;
+  height: 34px;
+  min-width: 48.5% !important;
+}
+
+#balances-padding-correct {
+  padding: 0 0 0 0;
+}
+
+.ui.button.DG-stake-button {
+  color: white;
+  background-color: #2085f4;
+  height: 34px;
+  min-width: 48.5% !important;
+}
+
+.ui.disabled.button.balances-top-button.two {
+  opacity: 45% !important;
+}
+
+.ui.button.affiliate-copy-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -45px;
+  height: 27px;
+  max-width: 150px !important;
+  min-width: 150px;
+  padding: 1px 6px 0 6px;
+  opacity: 100% !important;
+}
+
+.ui.button.affiliate-copied-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -45px;
+  height: 27px;
+  max-width: 100px !important;
+  min-width: 100px;
+  padding: 1px 6px 0 6px;
+  opacity: 100% !important;
+}
+
+.ui.button.balancer-top-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: -45px;
+  height: 27px;
+  max-width: 81px !important;
+  min-width: 81px;
+  padding-left: 6px;
+  padding-right: 6px;
+  opacity: 100% !important;
+}
+
+.ui.button.DG-airdrop-button {
+  color: white;
+  background-color: #2085f4;
+  height: 34px;
+  padding-left: 45px;
+  padding-right: 45px;
+  margin-top: -75px;
+}
+
+.ui.button.DG-stake-button-two {
+  color: white;
+  background-color: #2085f4;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  height: 34px;
+  min-width: 210px !important;
+}
+
+.ui.button.DG-liquidity-button {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  margin-top: 27px;
+  height: 27px;
+  max-width: 150px !important;
+  min-width: 150px;
+}
+
 .ui.button.not-found-button {
   color: white;
   background-color: #2085f4;
-  font-size: 12px;
-  font-weight: bold !important;
-  border-radius: 4px;
   height: 34px;
   min-width: 180px;
-  padding-top: 8px;
-  padding-left: 0px;
-  padding-right: 0px;
-  letter-spacing: 0.5px;
   margin-top: 12px;
 }
+

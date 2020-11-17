@@ -28,7 +28,7 @@ const PopupLinks = (props) => {
         </Button>
       }
     >
-      <span style={{ display: 'flex', flexDirection: 'column' }}>
+      <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-5px' }}>
         <a href="https://docs.decentral.games" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
             <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items">
@@ -89,16 +89,16 @@ const PopupLinks = (props) => {
           </span>
         </a>
 
-        <span style={{ display: 'flex', paddingTop: '8px' }}>
+        <span style={{ display: 'flex', paddingTop: '6px' }}>
           {props.isDarkMode ? (
-            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items-theme" style={{ marginTop: '-8px', fontSize: '14px' }}>
+            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items-theme" style={{ marginTop: '-6px', fontSize: '14px' }}>
               <Icon
                 style={{ marginLeft: '-4px', marginRight: '4px' }}
                 name="moon"
               />
             </Menu.Item>
           ) : (
-            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items-theme" style={{ marginTop: '-9px', fontSize: '16px' }}>
+            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items-theme" style={{ marginTop: '-6px', fontSize: '16px' }}>
               <Icon
                 style={{ marginLeft: '-5px', marginRight: '3px' }}
                 name="sun"

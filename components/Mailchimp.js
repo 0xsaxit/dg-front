@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { render } from "react-dom";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
-import { Modal, Button, Input, Divider } from 'semantic-ui-react';
+import { Modal, Button, Input, Icon, Divider } from 'semantic-ui-react';
 
 
 const CustomForm = ({ status, message, onValidated }) => {
@@ -45,7 +45,7 @@ const CustomForm = ({ status, message, onValidated }) => {
         placeholder="Email"
       />
       <Button className="mailchimp-submit-button" onClick={submit}>
-        Submit
+        SUBMIT
       </Button>
     </span>
   );
@@ -94,9 +94,7 @@ class Mailchimp extends Component {
           >
 
             <span className="mailchimp-close" onClick={() => this.setOpen(false)}>
-              <span className="material-icons" style={{ fontSize: '29px' }}>
-                close
-              </span>
+              <Icon name="close" />
             </span>
 
             <p className="mailchimp-header-text"> Sign Up </p>
