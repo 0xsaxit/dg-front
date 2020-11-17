@@ -1325,7 +1325,7 @@ div.ui.grid.balances-container {
   margin-bottom: 6px;
   margin-top: 17px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 
 #pool-select-icon {
@@ -1816,6 +1816,7 @@ div.ui.grid.admin-balances-container {
   border-radius: 4px !important;
   text-transform: uppercase !important;
   line-height: 12px !important;
+  margin: 0 0 0 0;
 }
 
 .ui.disabled.button {
@@ -1830,12 +1831,19 @@ div.ui.grid.admin-balances-container {
 
 .ui.button.DG-claim-button,
 .ui.button.DG-deposit-button,
-.ui.button.DG-play-now-button,
+.ui.button.DG-play-now-button {
+  color: white;
+  background-color: #2085f4;
+  height: 34px;
+  min-width: 100% !important;
+}
+
 .ui.button.balances-authorize-button {
   color: white;
   background-color: #2085f4;
   height: 34px;
   min-width: 100% !important;
+  margin-top: 3px;  
 }
 
 .ui.blue.button.metamask-button {
@@ -1938,8 +1946,7 @@ a.ui.blue.button.play-button,
 .ui.blue.button.nft-button {
   color: white;
   background-color: #2085f4;
-  min-width: 48.5% !important;
-  margin-right: 18px;
+  width: 48.5% !important;
 }
 
 .ui.button.nft-read-button {
@@ -1948,7 +1955,7 @@ a.ui.blue.button.play-button,
   padding: 10px 0 0 0;
   color: #2085f4;
   height: 34px;
-  min-width: 48.5% !important;
+  width: 48.5% !important;
 }
 
 .ui.button.reload-button {

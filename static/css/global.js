@@ -167,10 +167,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .featured-blog-grid,
-  .ui.dropdown .menu > .active.item,
-  .account-select.play,
-  .account-select.mana,
-  .account-select.dai {
+  .ui.dropdown .menu > .active.item {
     background: ${({ theme }) => theme.card} !important;
   }
 
@@ -240,6 +237,12 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: ${({ theme }) => theme.globalDividers};
   }
 
+  .account-select.play,
+  .account-select.mana,
+  .account-select.dai {
+    background: ${({ theme }) => theme.leaderboardSelect};   
+  }
+
   .nfts-info,
   .nfts-info-2,
   .table-header,
@@ -247,7 +250,7 @@ export const GlobalStyles = createGlobalStyle`
   .blog-category,
   .post-date,
   .post-category,
-  .post-date-blogdetail {
+  .post-date-blogdetail{
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;
   }

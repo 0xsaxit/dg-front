@@ -147,7 +147,7 @@ const Tokens = () => {
                   {detailsNFTs[item][4]}
                 </p>
 
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <span style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Button
                     color="blue"
                     className="nft-button"
@@ -157,7 +157,7 @@ const Tokens = () => {
                     PURCHASE NFT
                   </Button>
                   <Button
-                    className="nft-read-button two"
+                    className="nft-read-button"
                     target="_blank"
                     href={detailsNFTs[item][6]}
                   >

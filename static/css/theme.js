@@ -24,6 +24,7 @@ export const lightTheme = {
   bptText: 'rgb(203, 203, 203)',
   darkModeDivider: '#edf2f9',
   toggle: 'rgba(0, 0, 0, 0.1)',
+  leaderboardSelect: '#f0f2f5',
 }
 
 export const darkTheme = {
@@ -52,4 +53,5 @@ export const darkTheme = {
   bptText: 'rgb(172, 172, 172)',
   darkModeDivider: 'rgb(21, 24, 28)',
   toggle: 'rgba(0, 0, 0, 0.5)',
+  leaderboardSelect: 'rgb(21, 24, 28)',
 }

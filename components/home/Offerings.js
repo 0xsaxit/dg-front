@@ -160,7 +160,7 @@ const Offerings = () => {
                 {detailsGames[item][3]}
               </p>
 
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button
                   color="blue"
                   className="nft-button"

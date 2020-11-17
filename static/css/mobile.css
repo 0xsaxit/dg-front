@@ -325,13 +325,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   }
 }
 
-@media (min-width: 1252px) {
-  .ui.blue.button.nft-button,
-  .ui.button.nft-read-button {
-    width: 48.5% !important;
-  }
-}
-
 @media (max-width: 991px) {
   .games-other-h3 {
     font-size: 28px;
