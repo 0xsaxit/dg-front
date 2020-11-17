@@ -2,6 +2,10 @@
 /*             MAIN BLOG PAGE CSS            */
 /* ----------------------------------------- */
 
+.more-text {
+  cursor: pointer;
+}
+
 .blog-home-container {
   max-width: 1400px;
   padding-left: 30px !important;
@@ -374,7 +378,7 @@ img.logo-image {
   font-size: 18px !important;
   letter-spacing: 0.5px;
   line-height: 1.5 !important;
-  text-transform: capitalize;
+  text-transform: capitalize !important;
 }
 
 .read-next-button:last-child {
@@ -384,7 +388,7 @@ img.logo-image {
   font-size: 18px !important;
   letter-spacing: 0.5px;
   line-height: 1.5 !important;
-  text-transform: capitalize;
+  text-transform: capitalize !important;
 }
 
 .read-next-button:hover {

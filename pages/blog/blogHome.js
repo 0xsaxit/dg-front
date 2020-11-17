@@ -41,7 +41,7 @@ function blog() {
           paddingTop: '0px',
         }}
       >
-        <span>
+        <span style={{ borderBottom: '1px solid #2085f4' }}>
           <p className="featured-text" style={{ marginBottom: '15px' }}>
             FEATURED POST
           </p>
@@ -115,7 +115,7 @@ function blog() {
                     key={index}
                     as={`/blog/category/${categoryURL}`}
                   >
-                    <p style={{ fontSize: '14px' }} className="morer-text"> More » </p>
+                    <p style={{ fontSize: '14px' }} className="more-text"> More » </p>
                   </Link>
                 ) : null}
               </span>
