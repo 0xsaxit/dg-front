@@ -65,11 +65,11 @@ const Farming = () => {
         const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
 
-        // const stakingContract = await Transactions.stakingContract(web3);
-        // setStakingContract(stakingContract);
+        const stakingContract = await Transactions.stakingContract(web3);
+        setStakingContract(stakingContract);
 
-        // const BPTContract = await Transactions.BPTContract(web3);
-        // setBPTContract(BPTContract);
+        const BPTContract = await Transactions.BPTContract(web3);
+        setBPTContract(BPTContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -104,9 +104,9 @@ const Farming = () => {
     console.log('Return reward period finish time');
 
     try {
-      // const timestamp = await stakingContract.methods.periodFinish().call();
+      const timestamp = await stakingContract.methods.periodFinish().call();
 
-      return 0; // timestamp;
+      return timestamp;
     } catch (error) {
       console.log('Return reward period time error: ' + error);
     }
@@ -233,7 +233,6 @@ const Farming = () => {
         .send({ from: userAddress });
 
       console.log('getReward() transaction completed: ' + data.transactionHash);
-      // console.log(data);
 
       // update global state unclaimed DG balance
       const refresh = !state.refreshBalances;

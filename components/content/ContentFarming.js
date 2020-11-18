@@ -29,7 +29,7 @@ const ContentFarming = (props) => {
   let temp_1 = [];
   let temp_2 = [];
   let temp_3 = [];
-  
+
   // for (const [index, value] of dataPlay.entries()) {
   //   if (dataPlay[index].coinName === 'PLAY') {
   //     temp_1.push(dataPlay[index]);
@@ -62,8 +62,8 @@ const ContentFarming = (props) => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        // const stakingContract = await Transactions.stakingContract(web3);
-        // setStakingContract(stakingContract);
+        const stakingContract = await Transactions.stakingContract(web3);
+        setStakingContract(stakingContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -82,10 +82,7 @@ const ContentFarming = (props) => {
   useEffect(() => {
     if (instances) {
       (async () => {
-        // const stakedTotal = await stakingContract.methods.totalSupply().call();
-
-        const stakedTotal = 0;
-
+        const stakedTotal = await stakingContract.methods.totalSupply().call();
         const stakedTotalAdjusted = stakedTotal / Global.CONSTANTS.FACTOR;
 
         if (stakedTotal) {
@@ -120,8 +117,9 @@ const ContentFarming = (props) => {
               <p>
                 {' '}
                 $DG is distributed to active participants who provide value to
-                the decentral.games ecosystem through playing games, providing liquidity, and voting.
-                $DG is not an investment. Learn more by reading our
+                the decentral.games ecosystem through playing games, providing
+                liquidity, and voting. $DG is not an investment. Learn more by
+                reading our
                 <a href="" target="_blank" style={{ color: '#2085f4' }}>
                   {' '}
                   announcement{' '}
@@ -197,8 +195,8 @@ const ContentFarming = (props) => {
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    We're airdropping 120 $DG for each Tominoya and Flamingos NFT
-                    with 3 month linear vesting.{' '}
+                    We're airdropping 120 $DG for each Tominoya and Flamingos
+                    NFT with 3 month linear vesting.{' '}
                   </p>
                 </span>
               </span>
@@ -215,8 +213,9 @@ const ContentFarming = (props) => {
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    We're airdropping 10 $DG to every Ethereum address that has played
-                    our free play games within the last 4 months (Cutoff: Nov 1, 2020).{' '}
+                    We're airdropping 10 $DG to every Ethereum address that has
+                    played our free play games within the last 4 months (Cutoff:
+                    Nov 1, 2020).{' '}
                   </p>
                 </span>
               </span>
