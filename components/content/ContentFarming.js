@@ -126,8 +126,8 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">0.000</p>
+                <p className="welcome-text">Unclaimed</p>
+                <p className="account-name">{state.DGBalances[3]}</p>
               </span>
             </span>
 
@@ -142,8 +142,8 @@ const ContentFarming = (props) => {
                 paddingBottom: '11px',
               }}
             >
-              <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> $0.00 </p>
+              <p className="earned-text">Value USD</p>
+              <p className="earned-amount">$0.00</p>
             </span>
 
             <Divider />
@@ -240,7 +240,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed</p>
+                <p className="welcome-text">Unclaimed</p>
                 <p className="account-name">{state.DGBalances[0]}</p>
               </span>
             </span>
@@ -256,8 +256,8 @@ const ContentFarming = (props) => {
                 paddingBottom: '11px',
               }}
             >
-              <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ${valueUSD_1} </p>
+              <p className="earned-text">Value USD</p>
+              <p className="earned-amount">${valueUSD_1}</p>
             </span>
 
             <Divider />
