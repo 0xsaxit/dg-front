@@ -10,7 +10,8 @@ import Transactions from '../../common/Transactions';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
 import Whitelist from '../Whitelist';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+
 
 const Farming = () => {
   const router = useRouter()
@@ -35,10 +36,10 @@ const Farming = () => {
       setIsLoading(false);
       const urlParam = ((window.location.href).split('#')[1]);
       if (urlParam === undefined) {
-        router.push('#token');
+        router.push('?=token');
         setDGState('token');
       } else {
-        router.push(`#${urlParam}`);
+        router.push(`?=${urlParam}`);
         setDGState(urlParam);
       }
     }
@@ -273,7 +274,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('token')
-                  router.push('#token')
+                  router.push('?=token')
                 }}
               >
                 TOKEN
@@ -287,7 +288,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('mining')
-                  router.push('#mining')
+                  router.push('?=mining')
                 }}
               >
                 GAMEPLAY MINING
@@ -301,7 +302,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('liquidity')
-                  router.push('#liquidity')
+                  router.push('?=liquidity')
                 }}
               >
                 LIQUIDITY FARMING
@@ -315,7 +316,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('governance')
-                  router.push('#governance')
+                  router.push('?=governance')
                 }}
               >
                 GOVERNANCE
@@ -330,7 +331,7 @@ const Farming = () => {
                   className="account-hover"
                   onClick={() => {
                     setDGState('admin')
-                    router.push('#admin')
+                    router.push('?=admin')
                 }}
                 >
                   ADMIN
@@ -351,7 +352,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('token')
-                  router.push('#token')
+                  router.push('?=token')
                 }}
               >
                 TOKEN
@@ -365,7 +366,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('mining')
-                  router.push('#mining')
+                  router.push('?=mining')
                 }}
               >
                 GAMEPLAY
@@ -379,7 +380,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('liquidity')
-                  router.push('#liquidity')
+                  router.push('?=liquidity')
                 }}
               >
                 LIQUIDITY
@@ -393,7 +394,7 @@ const Farming = () => {
                 className="account-hover"
                 onClick={() => {
                   setDGState('governance')
-                  router.push('#governance')
+                  router.push('?=governance')
                 }}
               >
                 GOV
