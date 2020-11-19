@@ -34,6 +34,7 @@ const API_ADDRESSES = (async () => {
   const response = await Fetch.GET_ADDRESSES();
   let json = await response.json();
 
+  const OWNER_ADDRESS = json.OWNER_ADDRESS;
   const WORKER_ADDRESS = json.WORKER_WALLET_ADDRESS;
   const ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
   const ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
@@ -49,6 +50,7 @@ const API_ADDRESSES = (async () => {
   const BP_TOKEN_ADDRESS = json.BP_TOKEN_ADDRESS;
   const TOMINOYA_CONTRACT_ADDRESS = json.TOMINOYA_CONTRACT_ADDRESS;
 
+  console.log('OWNER_ADDRESS: ' + OWNER_ADDRESS);
   console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
   console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
   console.log('ROOT_TOKEN_ADDRESS_MANA: ' + ROOT_TOKEN_ADDRESS_MANA);
@@ -67,6 +69,7 @@ const API_ADDRESSES = (async () => {
   console.log('TOMINOYA_CONTRACT_ADDRESS: ' + TOMINOYA_CONTRACT_ADDRESS);
 
   return {
+    OWNER_ADDRESS,
     WORKER_ADDRESS,
     ROOT_TOKEN_ADDRESS_DAI,
     ROOT_TOKEN_ADDRESS_MANA,

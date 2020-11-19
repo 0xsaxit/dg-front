@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Icon } from 'semantic-ui-react';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import ButtonReward from '../button/ButtonReward';
@@ -14,13 +14,13 @@ const ContentFarming = (props) => {
 
   // define local variables
   const dataPlay = state.transactions[1];
-  const [stakingContract, setStakingContract] = useState({});
+  // const [stakingContract, setStakingContract] = useState({});
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState(0);
   const [percentagePool1, setPercentagePool1] = useState(0);
-  const [instances, setInstances] = useState(false);
+  // const [instances, setInstances] = useState(false);
 
   var totalPlay = 0;
   var totalMana = 0;
@@ -57,32 +57,34 @@ const ContentFarming = (props) => {
     .toFixed(2)
     .toLocaleString();
 
-  useEffect(() => {
-    if (state.userStatus) {
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+  // useEffect(() => {
+  // if (state.userStatus) {
+  // const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
-      async function fetchData() {
-        const stakingContract = await Transactions.stakingContract(web3);
-        setStakingContract(stakingContract);
+  // async function fetchData() {
+  //   const stakingContract = await Transactions.stakingContract(web3);
+  //   setStakingContract(stakingContract);
 
-        setInstances(true); // contract instantiation complete
-      }
-      fetchData();
-    }
-  }, [state.userStatus]);
+  //   setInstances(true); // contract instantiation complete
+  // }
+  // fetchData();
+  // }
+  // }, [state.userStatus]);
 
   // get initial reward and timestamp values
   useEffect(() => {
-    if (instances) {
+    if (props.instances) {
       const rewardAdjusted = rewardAmount / Global.CONSTANTS.FACTOR;
       rewardData(rewardAdjusted);
     }
-  }, [instances]);
+  }, [props.instances]);
 
   useEffect(() => {
-    if (instances) {
+    if (props.instances) {
       (async () => {
-        const stakedTotal = await stakingContract.methods.totalSupply().call();
+        const stakedTotal = await props.stakingContract.methods
+          .totalSupply()
+          .call();
         const stakedTotalAdjusted = stakedTotal / Global.CONSTANTS.FACTOR;
 
         if (stakedTotal) {
@@ -96,7 +98,7 @@ const ContentFarming = (props) => {
         }
       })();
     }
-  }, [instances, state.stakingBalances]);
+  }, [props.instances, state.stakingBalances]);
 
   var onPool;
   if (poolSelect === 1) {
@@ -950,7 +952,7 @@ const ContentFarming = (props) => {
               <p>Reward period finish time: {finishTime}</p>
               <p>
                 <ButtonReward
-                  stakingContract={stakingContract}
+                  stakingContract={props.stakingContract}
                   rewardAmount={rewardAmount}
                   rewardData={(amount) => rewardData(amount)}
                 />

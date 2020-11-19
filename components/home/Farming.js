@@ -89,6 +89,8 @@ const Farming = () => {
   useEffect(() => {
     if (instances) {
       (async () => {
+        console.log('here here here...');
+
         const timestamp = await getPeriodFinish();
 
         // dispatch timestamp to the Context API store
@@ -389,6 +391,8 @@ const Farming = () => {
               withdraw={withdraw}
               getReward={getReward}
               getPeriodFinish={getPeriodFinish}
+              stakingContract={stakingContract}
+              instances={instances}
             />
           </div>
         </div>
