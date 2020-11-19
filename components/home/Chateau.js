@@ -235,7 +235,7 @@ const Chateau = () => {
                   <Loader active inline 
                     style={{
                       fontSize: '12px',
-                      marginLeft: '6px',
+                      marginLeft: '3px',
                       marginTop: '2px',
                     }}
                   />
@@ -279,7 +279,7 @@ const Chateau = () => {
                     style={{
                       width: '24px',
                       marginRight: '9px',
-                      marginLeft: '3px',
+                      marginLeft: '1px',
                       verticalAlign: 'middle',
                       marginTop: '-2px',
                       border: '1px solid rgb(227, 232, 238)',
@@ -304,6 +304,7 @@ const Chateau = () => {
                     style={{
                       width: '24px',
                       marginRight: '9px',
+                      marginLeft: '1px',
                       verticalAlign: 'middle',
                       marginTop: '-2px',
                       border: '1px solid rgb(227, 232, 238)',
@@ -328,6 +329,7 @@ const Chateau = () => {
                     style={{
                       width: '24px',
                       marginRight: '9px',
+                      marginLeft: '1px',
                       verticalAlign: 'middle',
                       marginTop: '-2px',
                       border: '1px solid rgb(227, 232, 238)',
