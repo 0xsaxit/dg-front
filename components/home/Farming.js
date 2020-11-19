@@ -34,13 +34,16 @@ const Farming = () => {
   useEffect(() => {
     if (document.readyState === 'complete') {
       setIsLoading(false);
-      const urlParam = ((window.location.href).split('#')[1]);
+      const urlParam = ((window.location.href).split('?=')[1]);
       if (urlParam === undefined) {
         router.push('?=token');
         setDGState('token');
-      } else {
+      } else if (urlParam === 'mining' || urlParam === 'liquidity' || urlParam === 'governance' || urlParam === 'admin') {
         router.push(`?=${urlParam}`);
         setDGState(urlParam);
+      } else {
+        router.push('?=token');
+        setDGState('token');
       }
     }
   }, []);

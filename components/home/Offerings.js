@@ -122,13 +122,14 @@ const Offerings = () => {
   useEffect(() => {
     const urlParam = ((window.location.href).split('?=')[1]);
     if (urlParam === undefined) {
-      router.push('?=our-games');
-      setGameState('our-games');
-    } else if (urlParam === 'our-games' || urlParam === 'our-casinos' || urlParam === 'leaderboard') {
+      router.push('?=games');
+      setGameState('games');
+    } else if (urlParam === 'games' || urlParam === 'casinos' || urlParam === 'leaderboard') {
       router.push(`?=${urlParam}`);
       setGameState(urlParam);
     } else {
-      router.push('/404');
+      router.push('?=games');
+      setNFTState('games');
     }
   }, []);
 
@@ -329,14 +330,14 @@ const Offerings = () => {
             ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////  tab select area   //////////////////////////////// */}
 
-        {gameState === 'our-games' ? (
+        {gameState === 'games' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
             <abbr 
               className="account-hover" 
               onClick={() => {
-                setGameState('our-casinos')
-                router.push('?=our-casinos')
+                setGameState('casinos')
+                router.push('?=casinos')
               }}
             >
               OUR CASINOS
@@ -352,13 +353,13 @@ const Offerings = () => {
             </abbr>
             <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
           </p>
-        ) : gameState === 'our-casinos' ? (
+        ) : gameState === 'casinos' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <abbr 
               className="account-hover" 
               onClick={() => {
-                setGameState('our-games')
-                router.push('?=our-games')
+                setGameState('games')
+                router.push('?=games')
               }}
             >
               OUR GAMES
@@ -382,8 +383,8 @@ const Offerings = () => {
                 <abbr 
                   className="account-hover" 
                   onClick={() => {
-                    setGameState('our-games')
-                    router.push('?=our-games')
+                    setGameState('games')
+                    router.push('?=games')
                   }}
                 >
                   OUR GAMES
@@ -391,8 +392,8 @@ const Offerings = () => {
                 <abbr 
                   className="account-hover" 
                   onClick={() => {
-                    setGameState('our-casinos')
-                    router.push('?=our-casinos')
+                    setGameState('casinos')
+                    router.push('?=casinos')
                   }}
                 >
                   OUR CASINOS
@@ -644,9 +645,9 @@ const Offerings = () => {
         <div className="account-other-inner-container">
           {submenu()}
 
-          {gameState === 'our-games' ? 
+          {gameState === 'games' ? 
             Games() 
-          : gameState === 'our-casinos' ?
+          : gameState === 'casinos' ?
             Casinos()
           :  
             Leaderboard()

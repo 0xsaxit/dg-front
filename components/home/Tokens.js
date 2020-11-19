@@ -94,13 +94,14 @@ const Tokens = () => {
   useEffect(() => {
     const urlParam = ((window.location.href).split('?=')[1]);
     if (urlParam === undefined) {
-      router.push('?=buy-nfts');
-      setNFTState('buy-nfts');
-    } else if (urlParam === 'buy-nfts' || urlParam === 'my-nfts') {
+      router.push('?=buy');
+      setNFTState('buy');
+    } else if (urlParam === 'buy' || urlParam === 'my') {
       router.push(`?=${urlParam}`);
       setNFTState(urlParam);
     } else {
-      router.push(`/404/`);
+      router.push('?=buy');
+      setNFTState('buy');
     }
   }, []);
 
@@ -217,14 +218,14 @@ const Tokens = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        {NFTstate === 'buy-nfts' ? (
+        {NFTstate === 'buy' ? (
           <p className="account-other-p">
             <b className="account-hover active">BUY NFTS</b>{' '}
             <abbr 
               className="account-hover" 
               onClick={() => {
-                setNFTState('my-nfts')
-                router.push('?=my-nfts')
+                setNFTState('my')
+                router.push('?=my')
               }}
               >
                 MY NFTS
@@ -235,8 +236,8 @@ const Tokens = () => {
             <abbr 
               className="account-hover" 
               onClick={() => {
-                setNFTState('buy-nfts')
-                router.push('?=buy-nfts')
+                setNFTState('buy')
+                router.push('?=buy')
               }}
             >
               BUY NFTS
@@ -256,7 +257,7 @@ const Tokens = () => {
 
           <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
-          {NFTstate === 'my-nfts' ? myNFTs() : buyNFTs()}
+          {NFTstate === 'my' ? myNFTs() : buyNFTs()}
         </div>
       </div>
     </div>
