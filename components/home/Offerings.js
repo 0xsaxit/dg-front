@@ -76,6 +76,36 @@ const detailsGames = {
   ],
 };
 
+const detailsCasinos = {
+  Chateau: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741771/chateau_j1g5m7.png',
+    'games-pic',
+    'Chateau Satoshi',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
+    'ROULETTE, BLACKJACK',
+    'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
+    'https://docs.decentral.games/casinos/chateau-satoshi',
+  ],
+  Tominoya: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741770/tominoya_ataapu.png',
+    'games-pic',
+    'Tominoya',
+    'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
+    'ROULETTE, BLACKJACK, SLOTS',
+    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://docs.decentral.games/casinos/tominoya',
+  ],
+  Serenity: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741775/serenity_sqez7j.png',
+    'games-pic',
+    'Serenity Island',
+    'Serenity Island is located in the Vegas City district in Decentraland. The scene features a massive island that players must climb up to enter, and the structure sports a Monte Carlo-inspired architecture. The building is three stories total featuring two levels of games and a basement club.',
+    'ROULETTE, BLACKJACK',
+    'https://play.decentraland.org/?position=-145%2C115&realm=fenrir-amber',
+    'https://docs.decentral.games/casinos/serenity-island',
+  ],
+};
+
 const Offerings = () => {
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -101,16 +131,6 @@ const Offerings = () => {
   function timeChange(event, data) {
     setTimePeriod(data.value);
   }
-
-  // function getGameRecords() {
-  //   return fetch(`https://api.decentral.games/admin/getTotalRecords`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -185,7 +205,6 @@ const Offerings = () => {
   }
 
   function Leaderboard() {
-    // console.log('game record refresh: ' + gameRecordsRefresh);
 
     if (gameRecordsRefresh) {
       return <Spinner background={1} />;
@@ -200,14 +219,75 @@ const Offerings = () => {
     }
   }
 
+  function Casinos() {
+    return (
+      <div className="outter-games-container">
+        {Object.keys(detailsCasinos).map((item, i) => (
+          <a
+            href="https://play.decentraland.org/?position=-120%2C135"
+            target="_blank"
+            className="games-container"
+          >
+            <span
+              style={{ display: 'flex', justifyContent: 'center' }}
+              className="nft-image"
+            >
+              <Image
+                src={detailsCasinos[item][0]}
+                className={detailsCasinos[item][1]}
+                style={{ borderRadius: '4px' }}
+              />
+            </span>
+            <div className="nft-description">
+              <h3 className="nft-other-h3">{detailsCasinos[item][2]}</h3>
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <p className="nfts-info">{detailsCasinos[item][4]}</p>
+              </span>
+
+              <Divider
+                style={{
+                  margin: '10px 0px 15px 0px',
+                  width: 'calc(100% + 60px)',
+                  marginLeft: '-30px',
+                }}
+              />
+
+              <p
+                className="nft-other-p"
+                style={{
+                  marginTop: '-12px',
+                  paddingTop: '15px',
+                  textAlign: 'center',
+                }}
+              >
+                {detailsCasinos[item][3]}
+              </p>
+
+              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Button
+                  color="blue"
+                  className="nft-button"
+                  target="_blank"
+                  href={detailsCasinos[item][5]}
+                >
+                  PLAY NOW
+                </Button>
+                <Button
+                  className="nft-read-button two"
+                  target="_blank"
+                  href={detailsCasinos[item][6]}
+                >
+                  READ MORE
+                </Button>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    );
+  }
+
   async function refreshLeaderboard() {
-    // const fetchData = async () => {
-    //   const gameRecords = await getGameRecords();
-    //   let json = await gameRecords.json();
-    //   setGameRecords(json);
-    //   setGameRecordsRefresh(1);
-    // }
-    // fetchData();
 
     console.log('Re-fetching game records');
     setGameRecordsRefresh(true);
@@ -238,17 +318,23 @@ const Offerings = () => {
             <b className="account-hover active">OUR GAMES</b>{' '}
             <abbr className="account-hover" onClick={() => setPage(1)}>
               LEADERBOARD
+            </abbr>{' '}
+            <abbr className="account-hover" onClick={() => setPage(2)}>
+              OUR CASINOS
             </abbr>
             <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
           </p>
-        ) : (
+        ) : gameState === 1 ? (
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
                 <abbr className="account-hover" onClick={() => setPage(0)}>
                   OUR GAMES
                 </abbr>{' '}
-                <b className="account-hover active">LEADERBOARD</b>
+                <b className="account-hover active">LEADERBOARD</b>{' '}
+                <abbr className="account-hover" onClick={() => setPage(2)}>
+                  OUR CASINOS
+                </abbr>
               </p>
             </span>
 
@@ -484,6 +570,17 @@ const Offerings = () => {
               </Button>
             </span>
           </div>
+        ) : (
+          <p className="account-other-p" style={{ width: '100%' }}>
+            <abbr className="account-hover" onClick={() => setPage(0)}>
+              OUR GAMES
+            </abbr>{' '}
+            <abbr className="account-hover" onClick={() => setPage(1)}>
+              LEADERBOARD
+            </abbr>{' '}
+            <b className="account-hover active">OUR CASINOS</b>
+            <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
+          </p>    
         )}
       </div>
     );
@@ -499,7 +596,14 @@ const Offerings = () => {
         <div className="account-other-inner-container">
           {submenu()}
 
-          {gameState === 1 ? Leaderboard() : Games()}
+          {gameState === 0 ? 
+            Games() 
+          : gameState === 1 ?
+            Leaderboard()
+          :  
+            Casinos()
+          }
+
         </div>
       </div>
     </div>

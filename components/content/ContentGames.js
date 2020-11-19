@@ -147,7 +147,6 @@ const ContentGames = (props) => {
                         <img
                           className="avatar-picture"
                           src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
-                          alt="Decentraland Avatar Logo"
                           style={{
                             width: '24px',
                             marginRight: '6px',

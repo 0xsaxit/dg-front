@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Modal, Button, Divider } from 'semantic-ui-react';
+import { Modal, Button, Divider, Icon } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
 import Images from '../../common/Images';
 
@@ -54,13 +54,14 @@ const ModalInfo = () => {
         </Button>
       }
     >
-      <span className="menu-info-close" onClick={() => setOpen(false)}>
-        <span className="material-icons" style={{ fontSize: '29px' }}>
-          close
-        </span>
-      </span>
 
-      <p className="matic-header-text"> Your DG Breakdown </p>
+      <div style={{ margin: '21px 30px 0px 30px' }}>
+        <span className="mailchimp-close" onClick={() => setOpen(false)}>
+          <Icon name="close" />
+        </span>
+      </div>
+
+      <p className="mailchimp-header-text"> Your DG Breakdown </p>
 
       <Divider style={{ marginTop: '-15px' }} />
 

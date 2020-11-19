@@ -22,30 +22,6 @@ const ContentFarming = (props) => {
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [instances, setInstances] = useState(false);
 
-  var totalPlay = 0;
-  var totalMana = 0;
-  var totalDai = 0;
-
-  let temp_1 = [];
-  let temp_2 = [];
-  let temp_3 = [];
-
-  // for (const [index, value] of dataPlay.entries()) {
-  //   if (dataPlay[index].coinName === 'PLAY') {
-  //     temp_1.push(dataPlay[index]);
-  //     var x = (temp_1.reduce((a, v) => a = a + v.betAmount, 0 ));
-  //     var totalPlay = (x / 1000000000000000000).toLocaleString();
-  //   } else if (dataPlay[index].coinName === 'MANA') {
-  //     temp_2.push(dataPlay[index]);
-  //     var y = (temp_2.reduce((a, v) => a = a + v.betAmount, 0 ));
-  //     var totalMana = (y / 1000000000000000000).toLocaleString();
-  //   } else if (dataPlay[index].coinName === 'DAI') {
-  //     temp_3.push(dataPlay[index]);
-  //     var z = (temp_3.reduce((a, v) => a = a + v.betAmount, 0 ));
-  //     var totalDai = (z / 1000000000000000000).toLocaleString();
-  //   }
-  // }
-
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
   const valueUSD_1 = parseFloat(state.DGBalances[0] * 15)
     .toFixed(2)
@@ -327,7 +303,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Total Bet </p>
-                    <p className="earned-amount"> {totalMana} </p>
+                    <p className="earned-amount"> ... </p>
                   </span>
                 </span>
 
@@ -388,7 +364,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Total Bet </p>
-                    <p className="earned-amount"> {totalDai} </p>
+                    <p className="earned-amount"> ... </p>
                   </span>
                 </span>
 
@@ -611,6 +587,7 @@ const ContentFarming = (props) => {
                 {parseInt(amountInput) ? (
                   <Button
                     className="DG-stake-button"
+                    id="balances-padding-correct"
                     onClick={() => stake('stake', amountInput)}
                   >
                     STAKE LP
@@ -624,6 +601,7 @@ const ContentFarming = (props) => {
                 {percentagePool1 && parseInt(amountInput) ? (
                   <Button
                     className="DG-stake-button"
+                    id="balances-padding-correct"
                     onClick={() => stake('withdraw', amountInput)}
                   >
                     UNSTAKE LP
