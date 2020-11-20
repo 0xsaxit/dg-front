@@ -12,9 +12,8 @@ import ContentFarming from '../content/ContentFarming';
 import Whitelist from '../Whitelist';
 import { useRouter } from 'next/router';
 
-
 const Farming = () => {
-  const router = useRouter()
+  const router = useRouter();
   // dispatch user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -36,11 +35,16 @@ const Farming = () => {
   useEffect(() => {
     if (document.readyState === 'complete') {
       setIsLoading(false);
-      const urlParam = ((window.location.href).split('?=')[1]);
+      const urlParam = window.location.href.split('?=')[1];
       if (urlParam === undefined) {
         router.push('?=token');
         setDGState('token');
-      } else if (urlParam === 'mining' || urlParam === 'liquidity' || urlParam === 'governance' || urlParam === 'admin') {
+      } else if (
+        urlParam === 'mining' ||
+        urlParam === 'liquidity' ||
+        urlParam === 'governance' ||
+        urlParam === 'admin'
+      ) {
         router.push(`?=${urlParam}`);
         setDGState(urlParam);
       } else {
@@ -273,7 +277,7 @@ const Farming = () => {
 
     try {
       const data = await keeperContract.methods
-        .scrapeTokens(userAddress)
+        .scrapeMyTokens()
         .send({ from: userAddress });
 
       // setDisabled(false);
@@ -310,8 +314,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('token')
-                  router.push('?=token')
+                  setDGState('token');
+                  router.push('?=token');
                 }}
               >
                 TOKEN
@@ -324,8 +328,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('mining')
-                  router.push('?=mining')
+                  setDGState('mining');
+                  router.push('?=mining');
                 }}
               >
                 GAMEPLAY MINING
@@ -338,8 +342,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('liquidity')
-                  router.push('?=liquidity')
+                  setDGState('liquidity');
+                  router.push('?=liquidity');
                 }}
               >
                 LIQUIDITY FARMING
@@ -352,8 +356,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('governance')
-                  router.push('?=governance')
+                  setDGState('governance');
+                  router.push('?=governance');
                 }}
               >
                 GOVERNANCE
@@ -367,9 +371,9 @@ const Farming = () => {
                 <abbr
                   className="account-hover"
                   onClick={() => {
-                    setDGState('admin')
-                    router.push('?=admin')
-                }}
+                    setDGState('admin');
+                    router.push('?=admin');
+                  }}
                 >
                   ADMIN
                 </abbr>
@@ -388,8 +392,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('token')
-                  router.push('?=token')
+                  setDGState('token');
+                  router.push('?=token');
                 }}
               >
                 TOKEN
@@ -402,8 +406,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('mining')
-                  router.push('?=mining')
+                  setDGState('mining');
+                  router.push('?=mining');
                 }}
               >
                 GAMEPLAY
@@ -416,8 +420,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('liquidity')
-                  router.push('?=liquidity')
+                  setDGState('liquidity');
+                  router.push('?=liquidity');
                 }}
               >
                 LIQUIDITY
@@ -430,8 +434,8 @@ const Farming = () => {
               <abbr
                 className="account-hover"
                 onClick={() => {
-                  setDGState('governance')
-                  router.push('?=governance')
+                  setDGState('governance');
+                  router.push('?=governance');
                 }}
               >
                 GOV
