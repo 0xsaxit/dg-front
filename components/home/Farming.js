@@ -271,8 +271,8 @@ const Farming = () => {
     }
   }
 
-  async function scrapeTokens() {
-    console.log('Call scrapeTokens() function to claim DG tokens');
+  async function scrapeMyTokens() {
+    console.log('Call scrapeMyTokens() function to claim DG tokens');
     // setDisabled(true);
 
     try {
@@ -283,7 +283,7 @@ const Farming = () => {
       // setDisabled(false);
 
       console.log(
-        'scrapeTokens() transaction completed: ' + data.transactionHash
+        'scrapeMyTokens() transaction completed: ' + data.transactionHash
       );
 
       // update global state unclaimed DG balance
@@ -296,7 +296,7 @@ const Farming = () => {
     } catch (error) {
       // setDisabled(false);
 
-      console.log('scrapeTokens() transaction error: ' + error);
+      console.log('scrapeMyTokens() transaction error: ' + error);
     }
   }
 
@@ -471,7 +471,7 @@ const Farming = () => {
               getReward={getReward}
               getPeriodFinish={getPeriodFinish}
               stakingContract={stakingContract}
-              scrapeTokens={scrapeTokens}
+              scrapeMyTokens={scrapeMyTokens}
               // disabled={disabled}
               instances={instances}
             />

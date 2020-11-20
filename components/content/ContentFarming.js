@@ -151,7 +151,7 @@ const ContentFarming = (props) => {
               <span className="DG-button-span">
                 <Button
                   className="DG-claim-button"
-                  onClick={() => props.scrapeTokens()}
+                  onClick={() => props.scrapeMyTokens()}
                 >
                   CLAIM $DG
                 </Button>
