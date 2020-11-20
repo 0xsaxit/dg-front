@@ -22,9 +22,11 @@ const Farming = () => {
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
   const [BPTContract, setBPTContract] = useState({});
+  const [keeperContract, setKeeperContract] = useState({});
+  const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
-  const [instances, setInstances] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
 
   const whitelisted = Whitelist();
 
@@ -70,6 +72,9 @@ const Farming = () => {
 
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
+
+        const keeperContract = await Transactions.keeperContract(web3);
+        setKeeperContract(keeperContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -248,6 +253,35 @@ const Farming = () => {
     }
   }
 
+  async function scrapeTokens() {
+    console.log('Call scrapeTokens() function to claim DG tokens');
+    // setDisabled(true);
+
+    try {
+      const data = await keeperContract.methods
+        .scrapeTokens(userAddress)
+        .send({ from: userAddress });
+
+      // setDisabled(false);
+
+      console.log(
+        'scrapeTokens() transaction completed: ' + data.transactionHash
+      );
+
+      // update global state unclaimed DG balance
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      // setDisabled(false);
+
+      console.log('scrapeTokens() transaction error: ' + error);
+    }
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -392,6 +426,8 @@ const Farming = () => {
               getReward={getReward}
               getPeriodFinish={getPeriodFinish}
               stakingContract={stakingContract}
+              scrapeTokens={scrapeTokens}
+              // disabled={disabled}
               instances={instances}
             />
           </div>

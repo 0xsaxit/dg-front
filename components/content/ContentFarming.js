@@ -148,15 +148,22 @@ const ContentFarming = (props) => {
 
             <Divider />
 
-            <span className="DG-button-span">
-              <Button
-                disabled
-                className="DG-claim-button"
-                onClick={() => props.metaTransaction()}
-              >
-                CLAIM $DG
-              </Button>
-            </span>
+            {Number(state.DGBalances[3]) ? (
+              <span className="DG-button-span">
+                <Button
+                  className="DG-claim-button"
+                  onClick={() => props.scrapeTokens()}
+                >
+                  CLAIM $DG
+                </Button>
+              </span>
+            ) : (
+              <span className="DG-button-span">
+                <Button disabled className="DG-claim-button">
+                  CLAIM $DG
+                </Button>
+              </span>
+            )}
           </div>
 
           <span className="DG-tablet-container">

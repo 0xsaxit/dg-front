@@ -15,6 +15,7 @@ function DGBalances() {
   const [stakingContract, setStakingContract] = useState({});
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
+  const [keeperContract, setKeeperContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
 
@@ -45,6 +46,9 @@ function DGBalances() {
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
+        const keeperContract = await Transactions.keeperContract(web3);
+        setKeeperContract(keeperContract);
+
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
@@ -60,13 +64,15 @@ function DGBalances() {
         // update global state unclaimed DG points balances
         const balanceDG1 = await getDGBalanceGameplay();
         const balanceDG2 = await getDGBalanceStaking();
+        const balanceDG4 = await getDGBalanceKeeper();
 
         console.log('DG points balance 1: ' + balanceDG1);
         console.log('DG points balance 2: ' + balanceDG2);
+        console.log('DG points balance 4: ' + balanceDG4);
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, (0).toFixed(3), (0).toFixed(3)],
+          data: [balanceDG1, balanceDG2, (0).toFixed(3), balanceDG4],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -144,6 +150,24 @@ function DGBalances() {
       return balanceAdjusted;
     } catch (error) {
       console.log('No DG staking balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG unclaimed balance from smart contract for keeping funds
+  async function getDGBalanceKeeper() {
+    console.log("Get user's DG keeper balance from smart contract");
+
+    try {
+      const amount = await keeperContract.methods
+        .availableBalance(userAddress)
+        .call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
     }
   }
 
