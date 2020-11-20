@@ -52,14 +52,6 @@ const ContentBalances = (props) => {
 
   let userAddress = '';
 
-  var totalPlay = 0;
-  var totalMana = 0;
-  var totalDai = 0;
-
-  let temp_1 = [];
-  let temp_2 = [];
-  let temp_3 = [];
-
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
     const interval = setInterval(() => {
@@ -250,7 +242,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> {totalPlay} </p>
+              <p className="earned-amount"> ... </p>
             </span>
             <Divider />
 
@@ -326,7 +318,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Earned</p>
-              <p className="earned-amount"> {totalMana} </p>
+              <p className="earned-amount"> ... </p>
             </span>
 
             <Divider />
@@ -393,7 +385,7 @@ const ContentBalances = (props) => {
                 }}
               >
                 <p className="welcome-text">Dai</p>
-                <p className="account-name">{state.userBalances[0][1]}</p>
+                <p className="account-name">{parseInt(state.userBalances[0][1]).toLocaleString()}</p>
               </span>
             </span>
 
@@ -413,7 +405,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> {totalDai} </p>
+              <p className="earned-amount"> ... </p>
             </span>
 
             <Divider />

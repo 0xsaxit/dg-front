@@ -4,6 +4,8 @@ import { Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from '../content/ContentNFTs';
 import Aux from '../_Aux';
 import Spinner from '../Spinner';
+import { useRouter } from 'next/router';
+
 
 const detailsNFTs = {
   tominoya: [
@@ -81,12 +83,27 @@ const detailsNFTs = {
 };
 
 const Tokens = () => {
+  const router = useRouter()
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [NFTstate, setNFTState] = useState(0);
+  const [NFTstate, setNFTState] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const urlParam = ((window.location.href).split('?=')[1]);
+    if (urlParam === undefined) {
+      router.push('?=buy');
+      setNFTState('buy');
+    } else if (urlParam === 'buy' || urlParam === 'my') {
+      router.push(`?=${urlParam}`);
+      setNFTState(urlParam);
+    } else {
+      router.push('?=buy');
+      setNFTState('buy');
+    }
+  }, []);
 
   useEffect(() => {
     if (Object.keys(state.parcelDataUser).length) {
@@ -201,16 +218,28 @@ const Tokens = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        {NFTstate === 0 ? (
+        {NFTstate === 'buy' ? (
           <p className="account-other-p">
             <b className="account-hover active">BUY NFTS</b>{' '}
-            <abbr className="account-hover" onClick={() => setPage(1)}>
-              MY NFTS
+            <abbr 
+              className="account-hover" 
+              onClick={() => {
+                setNFTState('my')
+                router.push('?=my')
+              }}
+              >
+                MY NFTS
             </abbr>
           </p>
         ) : (
           <p className="account-other-p">
-            <abbr className="account-hover" onClick={() => setPage(0)}>
+            <abbr 
+              className="account-hover" 
+              onClick={() => {
+                setNFTState('buy')
+                router.push('?=buy')
+              }}
+            >
               BUY NFTS
             </abbr>{' '}
             <b className="account-hover active">MY NFTS</b>
@@ -218,10 +247,6 @@ const Tokens = () => {
         )}
       </div>
     );
-  }
-
-  function setPage(number) {
-    setNFTState(number);
   }
 
   return (
@@ -232,7 +257,7 @@ const Tokens = () => {
 
           <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
 
-          {NFTstate === 1 ? myNFTs() : buyNFTs()}
+          {NFTstate === 'my' ? myNFTs() : buyNFTs()}
         </div>
       </div>
     </div>

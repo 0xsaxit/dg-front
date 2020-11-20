@@ -61,7 +61,7 @@ const ModalInfo = () => {
         </span>
       </div>
 
-      <p className="mailchimp-header-text"> Your DG Breakdown </p>
+      <p className="mailchimp-header-text"> Your $DG Breakdown </p>
 
       <Divider style={{ marginTop: '-15px' }} />
 
@@ -123,11 +123,11 @@ const ModalInfo = () => {
 
       <div className="menu-info-container" style={{ marginBottom: '30px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">dg price</p>
+          <p className="menu-info-label">$dg price</p>
           <p className="menu-info-text">$15.00 USD</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">dg in circulation</p>
+          <p className="menu-info-label">$dg in circulation</p>
           <p className="menu-info-text">61,722</p>
         </span>
         <span className="menu-info-inner-span">

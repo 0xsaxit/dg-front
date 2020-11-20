@@ -1,7 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Icon } from 'semantic-ui-react';
-// import Web3 from 'web3';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import ButtonReward from '../button/ButtonReward';

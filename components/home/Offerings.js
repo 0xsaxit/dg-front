@@ -5,6 +5,8 @@ import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
+import { useRouter } from 'next/router';
+
 
 const options = [
   {
@@ -107,14 +109,29 @@ const detailsCasinos = {
 };
 
 const Offerings = () => {
+  const router = useRouter()
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
-  const [gameState, setGameState] = useState(0);
+  const [gameState, setGameState] = useState('');
   const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
+
+  useEffect(() => {
+    const urlParam = ((window.location.href).split('?=')[1]);
+    if (urlParam === undefined) {
+      router.push('?=games');
+      setGameState('games');
+    } else if (urlParam === 'games' || urlParam === 'casinos' || urlParam === 'leaderboard') {
+      router.push(`?=${urlParam}`);
+      setGameState(urlParam);
+    } else {
+      router.push('?=games');
+      setNFTState('games');
+    }
+  }, []);
 
   function handleChange(value) {
     var gameSelect = '';
@@ -313,28 +330,75 @@ const Offerings = () => {
             ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////  tab select area   //////////////////////////////// */}
 
-        {gameState === 0 ? (
+        {gameState === 'games' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
-            <abbr className="account-hover" onClick={() => setPage(1)}>
-              LEADERBOARD
-            </abbr>{' '}
-            <abbr className="account-hover" onClick={() => setPage(2)}>
+            <abbr 
+              className="account-hover" 
+              onClick={() => {
+                setGameState('casinos')
+                router.push('?=casinos')
+              }}
+            >
               OUR CASINOS
+            </abbr>{' '}
+            <abbr 
+              className="account-hover" 
+              onClick={() => {
+                setGameState('leaderboard')
+                router.push('?=leaderboard')
+              }}
+            >
+              LEADERBOARD
             </abbr>
             <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
           </p>
-        ) : gameState === 1 ? (
+        ) : gameState === 'casinos' ? (
+          <p className="account-other-p" style={{ width: '100%' }}>
+            <abbr 
+              className="account-hover" 
+              onClick={() => {
+                setGameState('games')
+                router.push('?=games')
+              }}
+            >
+              OUR GAMES
+            </abbr>{' '}
+            <b className="account-hover active">OUR CASINOS</b>{' '}
+            <abbr 
+              className="account-hover" 
+              onClick={() => {
+                setGameState('leaderboard')
+                router.push('?=leaderboard')
+              }}
+            >
+              LEADERBOARD
+            </abbr>{' '}
+            <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
+          </p>  
+        ) : (
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
-                <abbr className="account-hover" onClick={() => setPage(0)}>
+                <abbr 
+                  className="account-hover" 
+                  onClick={() => {
+                    setGameState('games')
+                    router.push('?=games')
+                  }}
+                >
                   OUR GAMES
                 </abbr>{' '}
-                <b className="account-hover active">LEADERBOARD</b>{' '}
-                <abbr className="account-hover" onClick={() => setPage(2)}>
+                <abbr 
+                  className="account-hover" 
+                  onClick={() => {
+                    setGameState('casinos')
+                    router.push('?=casinos')
+                  }}
+                >
                   OUR CASINOS
-                </abbr>
+                </abbr>{' '}
+                <b className="account-hover active">LEADERBOARD</b>{' '}
               </p>
             </span>
 
@@ -570,24 +634,9 @@ const Offerings = () => {
               </Button>
             </span>
           </div>
-        ) : (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <abbr className="account-hover" onClick={() => setPage(0)}>
-              OUR GAMES
-            </abbr>{' '}
-            <abbr className="account-hover" onClick={() => setPage(1)}>
-              LEADERBOARD
-            </abbr>{' '}
-            <b className="account-hover active">OUR CASINOS</b>
-            <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
-          </p>    
         )}
       </div>
     );
-  }
-
-  function setPage(number) {
-    setGameState(number);
   }
 
   return (
@@ -596,12 +645,12 @@ const Offerings = () => {
         <div className="account-other-inner-container">
           {submenu()}
 
-          {gameState === 0 ? 
+          {gameState === 'games' ? 
             Games() 
-          : gameState === 1 ?
-            Leaderboard()
-          :  
+          : gameState === 'casinos' ?
             Casinos()
+          :  
+            Leaderboard()
           }
 
         </div>
