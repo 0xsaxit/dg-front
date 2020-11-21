@@ -90,15 +90,15 @@ const ModalInfo = () => {
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">mainchain balance</p>
+          <p className="menu-info-label">mainchain $DG balance</p>
           <p className="menu-info-text">{state.userBalances[2][0].toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">matic balance</p>
+          <p className="menu-info-label">matic $DG balance</p>
           <p className="menu-info-text">{state.userBalances[2][1].toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">airdrop balance </p>
+          <p className="menu-info-label">vested $DG</p>
           <p className="menu-info-text">{state.DGBalances[3]}</p>
         </span>
       </div>
@@ -108,34 +108,34 @@ const ModalInfo = () => {
         style={{ marginTop: '12px', marginBottom: '12px' }}
       >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">unclaimed - gameplay</p>
+          <p className="menu-info-label">unclaimed $dg - gameplay</p>
           <p className="menu-info-text">{state.DGBalances[0]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed - liquidity</p>
+          <p className="menu-info-label">unclaimed $dg - liquidity</p>
           <p className="menu-info-text">{state.DGBalances[1]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed - gov</p>
+          <p className="menu-info-label">unclaimed $dg - gov</p>
           <p className="menu-info-text">{state.DGBalances[2]}</p>
         </span>
       </div>
 
       <div className="menu-info-container" style={{ marginBottom: '30px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">$dg price</p>
+          <p className="menu-info-label">price</p>
           <p className="menu-info-text">$15.00 USD</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">$dg in circulation</p>
+          <p className="menu-info-label">circulating supply</p>
           <p className="menu-info-text">61,722</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">market cap</p>
+          <p className="menu-info-label">market capitalization</p>
           <p className="menu-info-text">${marketCap}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">total supply</p>
+          <p className="menu-info-label">supply cap</p>
           <p className="menu-info-text">1,000,000</p>
         </span>
       </div>
