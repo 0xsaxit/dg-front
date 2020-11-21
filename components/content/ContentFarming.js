@@ -180,7 +180,7 @@ const ContentFarming = (props) => {
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
                     Each Tominoya and Flamingos
-                    NFT Holder gets 120 DG with 3 month linear vesting!{' '}
+                    NFT Holder gets 120 DG with 3 month linear vesting.{' '}
                   </p>
                 </span>
               </span>
@@ -198,8 +198,8 @@ const ContentFarming = (props) => {
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
                     Every Ethereum address that has
-                    played our free play games within the last 4 months (Cutoff:
-                    Nov 1, 2020) gets 10 DG!{' '}
+                    played our free play games within the last 4 months gets 10 DG (Cutoff:
+                    Nov 1, 2020).{' '}
                   </p>
                 </span>
               </span>
