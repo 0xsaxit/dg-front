@@ -90,12 +90,12 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">Decentral Games Governance Token ($DG)</h3>
+              <h3 className="DG-h3">$DG | Decentral Games Governance Token</h3>
               <p>
                 {' '}
                 $DG is distributed to active participants who provide value to
-                the decentral.games ecosystem through playing games, providing
-                liquidity, and voting. $DG is not an investment. Learn more by
+                the decentral.games ecosystem through gameplay,
+                liquidity provision, and governance participation. $DG is not an investment. Learn more by
                 reading our
                 <a href="" target="_blank" style={{ color: '#2085f4' }}>
                   {' '}
@@ -175,31 +175,31 @@ const ContentFarming = (props) => {
                     style={{ marginTop: '-12px', paddingLeft: '0px' }}
                   >
                     {' '}
-                    to be announced{' '}
+                    december 1, 2020{' '}
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    We're airdropping 120 $DG for each Tominoya and Flamingos
-                    NFT with 3 month linear vesting.{' '}
+                    Each Tominoya and Flamingos
+                    NFT Holder gets 120 DG with 3 month linear vesting!{' '}
                   </p>
                 </span>
               </span>
 
               <span style={{ display: 'flex', paddingTop: '30px' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <h3 className="DG-h3">All Players in Our Database</h3>
+                  <h3 className="DG-h3">All Community Players</h3>
                   <p
                     className="welcome-text"
                     style={{ marginTop: '-12px', paddingLeft: '0px' }}
                   >
                     {' '}
-                    to be announced{' '}
+                    december 1, 2020{' '}
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    We're airdropping 10 $DG to every Ethereum address that has
+                    Every Ethereum address that has
                     played our free play games within the last 4 months (Cutoff:
-                    Nov 1, 2020).{' '}
+                    Nov 1, 2020) gets 10 DG!{' '}
                   </p>
                 </span>
               </span>
