@@ -143,7 +143,7 @@ function ButtonApproveMANA() {
           id="balances-padding-correct"
           onClick={() => metaTransaction()}
         >
-          AUTHORIZE DAI CONTRACT
+          ENABLE DAI GAMEPLAY
         </Button>
       </span>
     </Aux>

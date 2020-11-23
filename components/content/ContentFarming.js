@@ -125,7 +125,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed</p>
+                <p className="welcome-text">Unclaimed $DG</p>
                 <p className="account-name">{state.DGBalances[3]}</p>
               </span>
             </span>
@@ -247,7 +247,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed</p>
+                <p className="welcome-text">Unclaimed $DG</p>
                 <p className="account-name">{state.DGBalances[0]}</p>
               </span>
             </span>
@@ -515,20 +515,9 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> MANA-DG </p>
-                  <p className="account-name">0</p>
+                  <p className="welcome-text"> pool 1 </p>
+                  <p className="account-name"> MANA-DG </p>
                 </span>
-              </span>
-
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  disabled
-                  className="balancer-top-button"
-                  target="_blank"
-                  style={{ marginTop: '-75px' }}
-                >
-                  Pool 1 »
-                </Button>
               </span>
 
               <Divider />
@@ -647,21 +636,12 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> DAI-DG </p>
-                  <p className="account-name">0</p>
+                  <p className="welcome-text"> pool 2 </p>
+                  <p className="account-name"> DAI-DG </p>
                 </span>
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  disabled
-                  className="balancer-top-button"
-                  target="_blank"
-                  style={{ marginTop: '-75px' }}
-                >
-                  Pool 2 »
-                </Button>
-              </span>
+
 
               <Divider />
 
@@ -784,7 +764,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed</p>
+                <p className="welcome-text"> Unclaimed $DG </p>
                 <p className="account-name">{state.DGBalances[2]}</p>
               </span>
             </span>

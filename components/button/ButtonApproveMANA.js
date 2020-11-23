@@ -154,7 +154,7 @@ function ButtonApproveMANA() {
           id="balances-padding-correct"
           onClick={() => metaTransaction()}
         >
-          AUTHORIZE MANA CONTRACT
+          ENABLE MANA GAMEPLAY
         </Button>
       </span>
     </Aux>
