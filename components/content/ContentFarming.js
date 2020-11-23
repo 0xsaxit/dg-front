@@ -501,6 +501,7 @@ const ContentFarming = (props) => {
           <span className="DG-tablet-container">
             <div
               className="DG-column one"
+              id="DG-column-hover"
               style={{ position: 'relative', height: '100%' }}
             >
               <span style={{ display: 'flex' }}>
@@ -518,6 +519,16 @@ const ContentFarming = (props) => {
                   <p className="welcome-text"> pool 1 </p>
                   <p className="account-name"> MANA-DG </p>
                 </span>
+              </span>
+
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a 
+                  href="https://pools.balancer.exchange/#/pool/0xe361625f216b79a60665cae0b5c9da53a35ccc0e/"
+                  target="_blank"                     
+                  style={{ marginTop: '-75px', marginRight: '0px' }}
+                >
+                  <Icon className="more-text" name="external square alternate" />
+                </a>
               </span>
 
               <Divider />
@@ -764,7 +775,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed $DG </p>
+                <p className="welcome-text"> Unclaimed</p>
                 <p className="account-name">{state.DGBalances[2]}</p>
               </span>
             </span>

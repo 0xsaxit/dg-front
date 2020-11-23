@@ -53,23 +53,36 @@ const ContentAccount = (props) => {
           return (
             <tr className="table-body" key={i}>
               <td className="table-body-text-1 first">
-                <img
-                  src={Images.ICON_MANA}
-                  style={{
-                    width: '21px',
-                    marginRight: '6px',
-                    verticalAlign: 'middle',
-                    marginTop: '-3px',
-                    borderRadius: '100%',
-                  }}
-                />
+                {row.coinName === 'MANA' ? (
+                  <img
+                    src={Images.ICON_DAI}
+                    style={{
+                      width: '21px',
+                      marginRight: '6px',
+                      verticalAlign: 'middle',
+                      marginTop: '-2px',
+                      borderRadius: '100%',
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={Images.ICON_MANA}
+                    style={{
+                      width: '21px',
+                      marginRight: '6px',
+                      verticalAlign: 'middle',
+                      marginTop: '-2px',
+                      borderRadius: '100%',
+                    }}
+                  />
+                )}
                 {row.type}
               </td>
 
               <td className="table-body-text-1">
                 {sign}
                 {amount > 1000000000000000000000000
-                  ? 'MAX AMOUNT'
+                  ? 'N/A'
                   : amount + ' MANA'}
               </td>
 
@@ -185,8 +198,8 @@ const ContentAccount = (props) => {
                       blockchain tx
                       <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                     </Button>
-                  ) :  (
-                    <Button disabled className="etherscan-button">
+                  ) : (
+                    <Button disabled className="etherscan-button" style={{ padding: '2px 0px 0px 0px' }}>
                       blockchain tx
                       <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                     </Button>
