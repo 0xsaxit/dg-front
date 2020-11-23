@@ -151,6 +151,7 @@ const ContentFarming = (props) => {
               <span className="DG-button-span">
                 <Button
                   className="DG-claim-button"
+                  id="balances-padding-correct"
                   onClick={() => props.scrapeMyTokens()}
                 >
                   CLAIM $DG
@@ -484,6 +485,7 @@ const ContentFarming = (props) => {
               {Number(state.DGBalances[1]) ? (
                 <Button
                   className="DG-claim-button"
+                  id="balances-padding-correct"
                   onClick={() => props.getReward()}
                 >
                   CLAIM $DG
@@ -592,7 +594,7 @@ const ContentFarming = (props) => {
               </span>
 
               <span className="DG-button-span">
-                {parseInt(amountInput) ? (
+                {amountInput ? (
                   <Button
                     className="DG-stake-button"
                     id="balances-padding-correct"
@@ -606,7 +608,7 @@ const ContentFarming = (props) => {
                   </Button>
                 )}
 
-                {percentagePool1 && parseInt(amountInput) ? (
+                {percentagePool1 && amountInput ? (
                   <Button
                     className="DG-stake-button"
                     id="balances-padding-correct"
@@ -801,6 +803,7 @@ const ContentFarming = (props) => {
               {Number(state.DGBalances[2]) ? (
                 <Button
                   className="DG-claim-button"
+                  id="balances-padding-correct"
                   onClick={() => props.metaTransaction()}
                 >
                   CLAIM $DG

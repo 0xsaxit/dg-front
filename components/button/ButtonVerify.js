@@ -80,6 +80,7 @@ const ButtonVerify = () => {
             content="CONNECT"
             color="blue"
             className="metamask-mobile-button"
+            id="balances-padding-correct"
             onClick={() => openMetaMask()}
           />
         </span>

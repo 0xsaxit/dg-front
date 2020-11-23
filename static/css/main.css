@@ -494,15 +494,6 @@ div.ui.segment.transparent-menu-segment {
   background-color: rgba(8, 10, 12, 0.2) !important;
 }
 
-.matic-iframe-container {
-  backdrop-filter: blur(1px);
-  background-color: rgba(8, 10, 12, 0.2) !important;
-  min-width: 100vw;
-  min-height: calc(100vh);
-  border-radius: 0px !important;
-  margin-top: -1px;
-}
-
 .logged-out-button-span {
   display: flex;
   justify-content: center;
