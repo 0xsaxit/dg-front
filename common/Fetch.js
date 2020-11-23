@@ -49,6 +49,16 @@ const Fetch = {
     });
   },
 
+  PLAYER_DATA: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getCryptoRecords?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   TOP_UP_USER: (address) => {
     return fetch(`${API_BASE_URL}/order/topup`, {
       method: 'POST',

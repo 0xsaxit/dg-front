@@ -6,6 +6,8 @@ import Images from '../../common/Images';
 import ButtonReward from '../button/ButtonReward';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
+import Fetch from '../../common/Fetch';
+
 
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
@@ -19,6 +21,7 @@ const ContentFarming = (props) => {
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [percentagePool1, setPercentagePool1] = useState(0);
+  const [DGPrice, setDGPrice] = useState(0)
   // const [instances, setInstances] = useState(false);
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
@@ -81,6 +84,24 @@ const ContentFarming = (props) => {
   } else {
     onPool = () => setPoolSelect(1);
   }
+
+  // let userAddress = '';
+
+  // fetch total bet from API
+  // useEffect(() => {
+
+  //   console.log(state.userInfo[1]);
+
+  //   userAddress = '0x47e721e5cf400C83AECB78000ca0687Ab79CEB47';
+
+  //   (async function () {
+  //     const response = await Fetch.PLAYER_DATA(userAddress);
+  //     const json = await response.json();
+  //     console.log('!!!');
+  //     console.log(json);
+
+  //   })();
+  // }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
