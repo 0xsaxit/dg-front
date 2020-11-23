@@ -17,7 +17,7 @@ const ContentFarming = (props) => {
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
-  const [amountInput, setAmountInput] = useState(0);
+  const [amountInput, setAmountInput] = useState('');
   const [percentagePool1, setPercentagePool1] = useState(0);
   // const [instances, setInstances] = useState(false);
 
@@ -572,6 +572,7 @@ const ContentFarming = (props) => {
               <Input
                 className="liquidity-input"
                 fluid
+                placeholder="Amount"
                 value={amountInput}
                 onChange={handleChange}
               />
@@ -598,7 +599,10 @@ const ContentFarming = (props) => {
                   <Button
                     className="DG-stake-button"
                     id="balances-padding-correct"
-                    onClick={() => stake('stake', amountInput)}
+                    onClick={() => {
+                      stake('stake', amountInput)
+                      setAmountInput('')
+                    }}
                   >
                     STAKE LP
                   </Button>
@@ -612,7 +616,10 @@ const ContentFarming = (props) => {
                   <Button
                     className="DG-stake-button"
                     id="balances-padding-correct"
-                    onClick={() => stake('withdraw', amountInput)}
+                    onClick={() => {
+                      stake('withdraw', amountInput)
+                      setAmountInput('')
+                    }}
                   >
                     UNSTAKE LP
                   </Button>
