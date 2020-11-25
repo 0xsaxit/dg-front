@@ -15,14 +15,16 @@ const ContentFarming = (props) => {
 
   // define local variables
   const dataPlay = state.transactions[1];
-  // const [stakingContract, setStakingContract] = useState({});
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [percentagePool1, setPercentagePool1] = useState(0);
-  const [DGPrice, setDGPrice] = useState(0)
-  // const [instances, setInstances] = useState(false);
+  const [DGPrice, setDGPrice] = useState(0);
+  const [totalDAI, setTotalDAI] = useState(0);
+  const [totalMANA, setTotalMANA] = useState(0);
+  let userAddress = '';
+
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
   const valueUSD_1 = parseFloat(state.DGBalances[0] * 15)
@@ -35,19 +37,6 @@ const ContentFarming = (props) => {
     .toFixed(2)
     .toLocaleString();
 
-  // useEffect(() => {
-  // if (state.userStatus) {
-  // const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-
-  // async function fetchData() {
-  //   const stakingContract = await Transactions.stakingContract(web3);
-  //   setStakingContract(stakingContract);
-
-  //   setInstances(true); // contract instantiation complete
-  // }
-  // fetchData();
-  // }
-  // }, [state.userStatus]);
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -56,6 +45,7 @@ const ContentFarming = (props) => {
       rewardData(rewardAdjusted);
     }
   }, [props.instances]);
+
 
   useEffect(() => {
     if (props.instances) {
@@ -78,6 +68,7 @@ const ContentFarming = (props) => {
     }
   }, [props.instances, state.stakingBalances]);
 
+
   var onPool;
   if (poolSelect === 1) {
     onPool = () => setPoolSelect(2);
@@ -85,23 +76,18 @@ const ContentFarming = (props) => {
     onPool = () => setPoolSelect(1);
   }
 
-  // let userAddress = '';
 
   // fetch total bet from API
-  // useEffect(() => {
+  useEffect(() => {
+    userAddress = state.userInfo[1];
 
-  //   console.log(state.userInfo[1]);
-
-  //   userAddress = '0x47e721e5cf400C83AECB78000ca0687Ab79CEB47';
-
-  //   (async function () {
-  //     const response = await Fetch.PLAYER_DATA(userAddress);
-  //     const json = await response.json();
-  //     console.log('!!!');
-  //     console.log(json);
-
-  //   })();
-  // }, []);
+    (async function () {
+      const response = await Fetch.PLAYER_DATA(userAddress);
+      const json = await response.json();
+      setTotalDAI((json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
+      setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
+    })();
+  }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -332,8 +318,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Total Bet </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-text"> Total Winnings </p>
+                    <p className="earned-amount"> {totalMANA} </p>
                   </span>
                 </span>
 
@@ -393,8 +379,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Total Bet </p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-text"> Total Winnings </p>
+                    <p className="earned-amount"> {totalDAI} </p>
                   </span>
                 </span>
 

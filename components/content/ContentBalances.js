@@ -49,8 +49,10 @@ const ContentBalances = (props) => {
   const [boxMANA, setBoxMANA] = useState('none');
   const [buttonDAI, setButtonDAI] = useState('block');
   const [buttonMANA, setButtonMANA] = useState('block');
-
+  const [totalDAI, setTotalDAI] = useState(0);
+  const [totalMANA, setTotalMANA] = useState(0);
   let userAddress = '';
+
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -65,6 +67,7 @@ const ContentBalances = (props) => {
     }, 100);
     return () => clearInterval(interval);
   }, []);
+
 
   useEffect(() => {
     if (state.userStatus === 6) {
@@ -83,21 +86,14 @@ const ContentBalances = (props) => {
       setButtonDAI('none');
       setButtonMANA('none');
     }
-
-    // } else {
-    //   setBoxDAI('none');
-    //   setBoxMANA('none');
-    //   setButtonDAI('block');
-    //   setButtonMANA('block');
-    // }
   }, [state.userStatus]);
+
 
   useEffect(() => {
     // get all the events
     transak_1.on(transak_1.ALL_EVENTS, (data) => {
       console.log(data);
     });
-
     transak_2.on(transak_2.ALL_EVENTS, (data) => {
       console.log(data);
     });
@@ -106,7 +102,6 @@ const ContentBalances = (props) => {
     transak_1.on(transak_1.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
       transak_1.close();
     });
-
     transak_2.on(transak_2.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
       transak_2.close();
     });
@@ -116,22 +111,21 @@ const ContentBalances = (props) => {
       console.log(orderData);
       transak_1.close();
     });
-
     transak_2.on(transak_2.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
       console.log(orderData);
       transak_2.close();
     });
-
   }, []);
+
 
   // initialize transak modal
   function show_transak_1() {
     transak_1.init();
   }
-
   function show_transak_2() {
     transak_2.init();
   }
+
 
   // get user address
   useEffect(() => {
@@ -139,6 +133,7 @@ const ContentBalances = (props) => {
       userAddress = window.web3.currentProvider.selectedAddress;
     }
   }, [state.userStatus]);
+
 
   // top up user to 5000 play tokens
   async function topUp() {
@@ -155,6 +150,20 @@ const ContentBalances = (props) => {
       data: arrayInfo,
     });
   }
+
+
+  // fetch total bet from API
+  useEffect(() => {
+    userAddress = state.userInfo[1];
+
+    (async function () {
+      const response = await Fetch.PLAYER_DATA(userAddress);
+      const json = await response.json();
+      setTotalDAI((json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
+      setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
+    })();
+  }, []);
+
 
   // close function
   function close() {
@@ -241,7 +250,7 @@ const ContentBalances = (props) => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Earned </p>
+              <p className="earned-text"> Total Winnings </p>
               <p className="earned-amount"> ... </p>
             </span>
             <Divider />
@@ -317,8 +326,8 @@ const ContentBalances = (props) => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">Total Earned</p>
-              <p className="earned-amount"> ... </p>
+              <p className="earned-text">Total Winnings </p>
+              <p className="earned-amount"> {totalMANA} </p>
             </span>
 
             <Divider />
@@ -404,8 +413,8 @@ const ContentBalances = (props) => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Earned </p>
-              <p className="earned-amount"> ... </p>
+              <p className="earned-text"> Total Winnings </p>
+              <p className="earned-amount"> {totalDAI} </p>
             </span>
 
             <Divider />

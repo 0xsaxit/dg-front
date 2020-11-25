@@ -427,7 +427,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-@media (min-width: 1081px) {
+@media (min-width: 1041px) {
   .table-header-text-1,
   .table-body-text-1 {
     padding-left: 75px !important;
@@ -438,7 +438,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1040px) {
   .table-header-text-1.date,
   .table-body-text-1.date {
     display: none;
@@ -454,6 +454,28 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   }
 }
 
+@media (min-width: 568px) {
+  .ui.button.etherscan-button-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 567px) {
+  .ui.button.etherscan-button {
+    display: none;
+  }
+  .ui.button.etherscan-button-mobile {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #2085f4;
+    color: #2085f4;
+    margin-top: -45px;
+    height: 27px;
+    max-width: 60px !important;
+    min-width: 60px;
+    padding: 7px 6px 0px 6px;
+    opacity: 100% !important;
+  }
+}
 /* ----------------------------------------- */
 /*           ACCOUNT BALANCES CSS            */
 /* ----------------------------------------- */

@@ -99,6 +99,14 @@ const ContentAccount = (props) => {
                     blockchain tx
                     <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
                   </Button>
+                  <Button
+                    href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                    target="_blank"
+                    className="etherscan-button-mobile"
+                  >
+                    tx
+                    <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                  </Button>
                 </span>
               </td>
             </tr>
@@ -181,28 +189,59 @@ const ContentAccount = (props) => {
               <td className="table-body-text-1 hash">
                 <span style={{ float: 'right', paddingRight: '12px' }}>
                   {row.coinName === 'MANA' ? (
-                    <Button
-                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                      target="_blank"
-                      className="etherscan-button"
-                    >
-                      blockchain tx
-                      <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                    </Button>
+                    <span>
+                      <Button
+                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                        target="_blank"
+                        className="etherscan-button"
+                      >
+                        blockchain tx
+                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                      </Button>
+                      <Button
+                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                        target="_blank"
+                        className="etherscan-button-mobile"
+                      >
+                        tx
+                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                      </Button>
+                    </span>
                   ) : row.coinName === 'DAI' ? (
-                    <Button
-                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                      target="_blank"
-                      className="etherscan-button"
-                    >
-                      blockchain tx
-                      <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                    </Button>
+                    <span>
+                      <Button
+                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                        target="_blank"
+                        className="etherscan-button"
+                      >
+                        blockchain tx
+                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                      </Button>
+                      <Button
+                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                        target="_blank"
+                        className="etherscan-button-mobile"
+                      >
+                        tx
+                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                      </Button>
+                    </span>
                   ) : (
-                    <Button disabled className="etherscan-button" style={{ padding: '2px 0px 0px 0px' }}>
-                      blockchain tx
-                      <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                    </Button>
+                    <span>
+                      <Button disabled className="etherscan-button" style={{ padding: '2px 0px 0px 0px' }}>
+                        blockchain tx
+                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                      </Button>
+                      <Button
+                        disabled
+                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                        target="_blank"
+                        className="etherscan-button-mobile"
+                      >
+                        tx
+                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
+                      </Button>
+                    </span>
                   )}
                 </span>
               </td>
