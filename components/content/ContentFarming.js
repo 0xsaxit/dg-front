@@ -530,7 +530,7 @@ const ContentFarming = (props) => {
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <a 
-                  href="https://pools.balancer.exchange/#/pool/0xe361625f216b79a60665cae0b5c9da53a35ccc0e/"
+                  href="https://pools.balancer.exchange/#/pool/0xca54c398195fce98856888b0fd97a9470a140f71/"
                   target="_blank"                     
                   style={{ marginTop: '-75px', marginRight: '0px' }}
                 >
