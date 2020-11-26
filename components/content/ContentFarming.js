@@ -188,7 +188,7 @@ const ContentFarming = (props) => {
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
                     Each Tominoya and Flamingos
-                    NFT Holder gets 120 DG with 3 month linear vesting.{' '}
+                    NFT Holder gets 120 DG with 20 week linear vesting.{' '}
                   </p>
                 </span>
               </span>
