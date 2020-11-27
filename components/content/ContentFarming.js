@@ -611,11 +611,11 @@ const ContentFarming = (props) => {
                       setAmountInput('')
                     }}
                   >
-                    STAKE MANA-DG BPT
+                    STAKE BPT
                   </Button>
                 ) : (
                   <Button disabled className="DG-stake-button">
-                    STAKE MANA-DG BPT
+                    STAKE BPT
                   </Button>
                 )}
 
@@ -628,11 +628,11 @@ const ContentFarming = (props) => {
                       setAmountInput('')
                     }}
                   >
-                    UNSTAKE MANA-DG BPT
+                    UNSTAKE BPT
                   </Button>
                 ) : (
                   <Button disabled className="DG-stake-button">
-                    UNSTAKE MANA-DG BPT
+                    UNSTAKE BPT
                   </Button>
                 )}
               </span>
@@ -710,10 +710,10 @@ const ContentFarming = (props) => {
 
               <span className="DG-button-span">
                 <Button disabled className="DG-stake-button">
-                  STAKE DAI-DG BPT
+                  STAKE BPT
                 </Button>
                 <Button disabled className="DG-stake-button">
-                  UNSTAKE DAI-DG BPT
+                  UNSTAKE BPT
                 </Button>
               </span>
             </div>
