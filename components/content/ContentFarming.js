@@ -84,8 +84,8 @@ const ContentFarming = (props) => {
     (async function () {
       const response = await Fetch.PLAYER_DATA(userAddress);
       const json = await response.json();
-      setTotalDAI((json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
-      setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
+      setTotalDAI((json.DAI.bet_player / Global.CONSTANTS.FACTOR).toLocaleString());
+      setTotalMANA((json.MANA.bet_player / Global.CONSTANTS.FACTOR).toLocaleString());
     })();
   }, []);
 
@@ -318,7 +318,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Total Winnings </p>
+                    <p className="earned-text"> total bet </p>
                     <p className="earned-amount"> {totalMANA} </p>
                   </span>
                 </span>
@@ -379,7 +379,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Total Winnings </p>
+                    <p className="earned-text"> total bet </p>
                     <p className="earned-amount"> {totalDAI} </p>
                   </span>
                 </span>

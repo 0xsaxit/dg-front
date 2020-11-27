@@ -39,6 +39,16 @@ const Fetch = {
     });
   },
 
+  DG_SUPPLY: () => {
+    return fetch(`${API_BASE_URL}/admin/getDGCirculatingSupply`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   PLAYER_INFO: (address) => {
     return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
       method: 'GET',

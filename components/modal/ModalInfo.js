@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Divider, Icon } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
 import Images from '../../common/Images';
+import Fetch from '../../common/Fetch';
+
 
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -12,10 +14,9 @@ const ModalInfo = () => {
   const [DGTotal, setDGTotal] = useState(0);
   const [DGTotal_2, setDGTotal_2] = useState(0);
   const [marketCap, setMarketCap] = useState(0);
+  const [supply, setSupply] = useState(0);
 
   useEffect(() => {
-    // console.log('initial value: ' + state.userBalances[2][0]);
-    // console.log('parse float: ' + parseFloat(state.userBalances[2][0]));
 
     const temp = parseFloat(15 * 61722);
     const totalMarketCap = temp
@@ -40,6 +41,18 @@ const ModalInfo = () => {
     setDGTotal_2(totalDGAdjusted_2);
 
   }, [state.DGBalances, state.userBalances]);
+
+
+  // fetch circulating supply
+  useEffect(() => {
+
+    (async function () {
+      const response = await Fetch.DG_SUPPLY();
+      const json = await response.json();
+      setSupply(json.toLocaleString());
+    })();
+  }, []);
+
 
   return (
     <Modal
@@ -128,7 +141,7 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">circulating supply</p>
-          <p className="menu-info-text">61,722</p>
+          <p className="menu-info-text">{supply}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">market capitalization</p>

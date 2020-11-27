@@ -51,6 +51,7 @@ const ContentBalances = (props) => {
   const [buttonMANA, setButtonMANA] = useState('block');
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
+  const [totalPLAY, setTotalPLAY] = useState(0);
   let userAddress = '';
 
 
@@ -161,6 +162,7 @@ const ContentBalances = (props) => {
       const json = await response.json();
       setTotalDAI((json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
       setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
+      setTotalPLAY((json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());    
     })();
   }, []);
 
@@ -251,7 +253,7 @@ const ContentBalances = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text"> Total Winnings </p>
-              <p className="earned-amount"> ... </p>
+              <p className="earned-amount"> {totalPLAY} </p>
             </span>
             <Divider />
 
