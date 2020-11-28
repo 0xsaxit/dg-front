@@ -756,7 +756,7 @@ const ContentFarming = (props) => {
                   {' '}
                   here
                 </a>
-                . $DG Governance will go live in Q1 2021. Read more about
+                . $DG Governance will go live in Q2 2021. Read more about
                 decentral.games governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
