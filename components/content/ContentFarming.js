@@ -27,11 +27,11 @@ const ContentFarming = (props) => {
 
 
   useEffect(() => {
-    let temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
-    let price = temp.toFixed(2).toLocaleString();
-    console.log(price);
+    const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+    const price = temp.toFixed(2).toLocaleString();
     setDGPrice(price);
   }, []); 
+  
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
   const valueUSD_gameplay = (state.DGBalances[0] * DGPrice)

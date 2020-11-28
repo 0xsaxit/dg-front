@@ -38,24 +38,24 @@ const ModalInfo = () => {
 
   }, [state.DGBalances, state.userBalances]);
 
+
   useEffect(() => {
-    let temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
-    let price = temp.toFixed(2).toLocaleString();
-    console.log(price);
+
+    const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+    const price = temp.toFixed(2).toLocaleString();
     setDGPrice(price);
-  }, []); 
+
+  }, [state.DGBalances]); 
 
 
   // fetch circulating supply
   useEffect(() => {
-
     (async function () {
       const response = await Fetch.DG_SUPPLY();
       const json = await response.json();
       setSupply(json.toLocaleString());
-      let temp = (json * DGPrice);
-      let temp_2 = temp;
-      console.log(temp_2);
+      const temp = (json * DGPrice);
+      const temp_2 = temp;
       setMarketCap(temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     })();
   }, []);
