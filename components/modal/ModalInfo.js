@@ -13,7 +13,6 @@ const ModalInfo = () => {
   const [open, setOpen] = useState(false);
   const [DGTotal, setDGTotal] = useState(0);
   const [DGTotal_2, setDGTotal_2] = useState(0);
-  const [marketCap, setMarketCap] = useState(0);
   const [supply, setSupply] = useState(0);
   const [mainMATIC, setMainMATIC] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
@@ -39,12 +38,11 @@ const ModalInfo = () => {
   }, [state.DGBalances, state.userBalances]);
 
 
+  // calculate DG price
   useEffect(() => {
-
     const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
-    const price = temp.toFixed(2).toLocaleString();
+    const price = temp;
     setDGPrice(price);
-
   }, [state.DGBalances]); 
 
 
@@ -53,12 +51,14 @@ const ModalInfo = () => {
     (async function () {
       const response = await Fetch.DG_SUPPLY();
       const json = await response.json();
-      setSupply(json.toLocaleString());
-      const temp = (json * DGPrice);
-      const temp_2 = temp;
-      setMarketCap(temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+      setSupply(json);
     })();
   }, []);
+
+
+  // calculate market cap 
+  const temp = (supply * DGPrice);
+  const marketCap = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
   return (
@@ -158,11 +158,11 @@ const ModalInfo = () => {
       <div className="menu-info-container" style={{ marginBottom: '30px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">price</p>
-          <p className="menu-info-text">${DGPrice}</p>
+          <p className="menu-info-text">${DGPrice.toFixed(2)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">circulating supply</p>
-          <p className="menu-info-text">{supply}</p>
+          <p className="menu-info-text">{supply.toLocaleString()}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">market capitalization</p>

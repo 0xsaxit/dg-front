@@ -23,23 +23,19 @@ const ContentFarming = (props) => {
   const [DGPrice, setDGPrice] = useState(0);
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
-  let userAddress = '';
-
-
-  useEffect(() => {
-    const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
-    const price = temp.toFixed(2).toLocaleString();
-    setDGPrice(price);
-  }, []); 
-  
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
-  const valueUSD_gameplay = (state.DGBalances[0] * DGPrice)
-    .toFixed(2)
-    .toLocaleString();
-  const valueUSD_token = (state.DGBalances[3] * DGPrice)
-    .toFixed(2)
-    .toLocaleString();
+
+
+  // usd value calculations
+  const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+  const price = temp.toFixed(2).toLocaleString();
+
+  const temp_2 = price * state.DGBalances[0];
+  const USDGameplay = temp_2.toFixed(2).toLocaleString();
+
+  const temp_3 = price * state.DGBalances[3];
+  const USDToken = temp_3.toFixed(2).toLocaleString();
 
 
   // get initial reward and timestamp values
@@ -83,15 +79,11 @@ const ContentFarming = (props) => {
 
   // fetch total bet from API
   useEffect(() => {
-    userAddress = state.userInfo[1];
-
     (async function () {
-      const response = await Fetch.PLAYER_DATA(userAddress);
+      const response = await Fetch.PLAYER_DATA(state.userInfo[1]);
       const json = await response.json();
-      console.log(json.MANA);
-      console.log(json.DAI);
-      setTotalDAI((json.DAI.bet_player / Global.CONSTANTS.FACTOR).toLocaleString());
-      setTotalMANA((json.MANA.bet_player / Global.CONSTANTS.FACTOR).toLocaleString());
+      const MANA_adjusted = json.MANA.bet_player;
+      setTotalMANA[MANA_adjusted];
     })();
   }, []);
 
@@ -155,7 +147,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">${valueUSD_token}</p>
+              <p className="earned-amount">${USDToken}</p>
             </span>
 
             <Divider />
@@ -277,7 +269,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">${valueUSD_gameplay}</p>
+              <p className="earned-amount">${USDGameplay}</p>
             </span>
 
             <Divider />
