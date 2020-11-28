@@ -29,6 +29,7 @@ const ContentFarming = (props) => {
   useEffect(() => {
     let temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
     let price = temp.toFixed(2).toLocaleString();
+    console.log(price);
     setDGPrice(price);
   }, []); 
 
@@ -87,6 +88,8 @@ const ContentFarming = (props) => {
     (async function () {
       const response = await Fetch.PLAYER_DATA(userAddress);
       const json = await response.json();
+      console.log(json.MANA);
+      console.log(json.DAI);
       setTotalDAI((json.DAI.bet_player / Global.CONSTANTS.FACTOR).toLocaleString());
       setTotalMANA((json.MANA.bet_player / Global.CONSTANTS.FACTOR).toLocaleString());
     })();
