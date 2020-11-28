@@ -311,6 +311,17 @@ div.ui.segment.transparent-menu-segment {
   text-transform: uppercase;
 }
 
+p.menu-info-label-link,
+p.menu-info-label-link:hover,
+a.menu-info-label-link,
+a.menu-info-label-link:hover {
+  color: #2085f4 !important;
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .menu-info-text {
   font-size: 12px;
   font-weight: 700;

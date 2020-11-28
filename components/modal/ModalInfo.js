@@ -15,14 +15,50 @@ const ModalInfo = () => {
   const [DGTotal_2, setDGTotal_2] = useState(0);
   const [marketCap, setMarketCap] = useState(0);
   const [supply, setSupply] = useState(0);
+  const [mainMATIC, setMainMATIC] = useState(0);
+
+  let tokenAddress = "0xee06a81a695750e71a662b51066f2c74cf4478a0";
+  let walletAddress = state.userInfo[1];
+
+  // The minimum ABI to get ERC20 Token balance
+  let minABI = [
+    // balanceOf
+    {
+      "constant":true,
+      "inputs":[{"name":"_owner","type":"address"}],
+      "name":"balanceOf",
+      "outputs":[{"name":"balance","type":"uint256"}],
+      "type":"function"
+    },
+    // decimals
+    {
+      "constant":true,
+      "inputs":[],
+      "name":"decimals",
+      "outputs":[{"name":"","type":"uint8"}],
+      "type":"function"
+    }
+  ];
+
+  // Get ERC20 Token contract instance
+  let contract = web3.eth.contract(minABI).at(tokenAddress);
 
   useEffect(() => {
+    // Call balanceOf function
+    contract.balanceOf(walletAddress, (error, balance) => {
+      // Get decimals
+      contract.decimals((error, decimals) => {
+        // calculate a balance
+        let temp = balance.div(10**decimals);
+        let temp_2 = temp.toFixed(3);
+        balance = temp_2.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        setMainMATIC(balance);
+        console.log(mainMATIC);
+      });
+    });
+  }, []);
 
-    const temp = parseFloat(15 * 61722);
-    const totalMarketCap = temp
-      .toFixed(2)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    setMarketCap(totalMarketCap);
+  useEffect(() => {
 
     const totalDG =
       parseFloat(state.userBalances[2][0]) +
@@ -50,6 +86,8 @@ const ModalInfo = () => {
       const response = await Fetch.DG_SUPPLY();
       const json = await response.json();
       setSupply(json.toLocaleString());
+      let temp = (json * 15);
+      setMarketCap(temp.toLocaleString());
     })();
   }, []);
 
@@ -103,11 +141,19 @@ const ModalInfo = () => {
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">mainchain $DG balance</p>
-          <p className="menu-info-text">{state.userBalances[2][0].toFixed(3)}</p>
+          <p className="menu-info-label-link">
+            <a className="menu-info-label-link" href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0">
+              mainchain $DG balance
+            </a>
+          </p>
+          <p className="menu-info-text">{mainMATIC}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">matic $DG balance</p>
+          <p className="menu-info-label">
+            <a className="menu-info-label-link" href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/">
+              matic $DG balance
+            </a>
+          </p>
           <p className="menu-info-text">{state.userBalances[2][1].toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
