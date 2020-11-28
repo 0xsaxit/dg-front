@@ -160,8 +160,6 @@ const ContentBalances = (props) => {
     (async function () {
       const response = await Fetch.PLAYER_DATA(userAddress);
       const json = await response.json();
-      console.log(json.MANA);
-      console.log(json.DAI);
       setTotalDAI((json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
       setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
       setTotalPLAY((json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());    

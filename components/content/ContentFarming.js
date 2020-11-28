@@ -20,7 +20,9 @@ const ContentFarming = (props) => {
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [percentagePool1, setPercentagePool1] = useState(0);
+
   const [DGPrice, setDGPrice] = useState(0);
+
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
 
@@ -29,13 +31,19 @@ const ContentFarming = (props) => {
 
   // usd value calculations
   const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
-  const price = temp.toFixed(2).toLocaleString();
+  const price = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const temp_2 = price * state.DGBalances[0];
-  const USDGameplay = temp_2.toFixed(2).toLocaleString();
+  const USDGameplay = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const temp_3 = price * state.DGBalances[3];
-  const USDToken = temp_3.toFixed(2).toLocaleString();
+  const USDToken = temp_3.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  const temp_4 = price * state.DGBalances[1];
+  const PoolOneUSD = temp_4.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  const temp_5 = price * state.DGBalances[2];
+  const PoolTwoUSD = temp_5.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
   // get initial reward and timestamp values
@@ -455,34 +463,54 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 {poolSelect === 1 ? (
-                  <span style={{ display: 'flex' }}>
-                    <p className="welcome-text"> Pool 1</p>
-                    <Icon name="sort" id="pool-select-icon" onClick={onPool} />
+                  <span>
+                    <span style={{ display: 'flex' }}>
+                      <p className="welcome-text"> unclaimed 1</p>
+                      <Icon name="sort" id="pool-select-icon" onClick={onPool} />
+                    </span>
+                    <p className="account-name">{state.DGBalances[1]}</p>
                   </span>
                 ) : (
-                  <span style={{ display: 'flex' }}>
-                    <p className="welcome-text"> Pool 2</p>
-                    <Icon name="sort" id="pool-select-icon" onClick={onPool} />
+                  <span>
+                    <span style={{ display: 'flex' }}>
+                      <p className="welcome-text"> unclaimed 2</p>
+                      <Icon name="sort" id="pool-select-icon" onClick={onPool} />
+                    </span>
+                    <p className="account-name">{state.DGBalances[2]}</p>
                   </span>
                 )}
-                <p className="account-name">{state.DGBalances[1]}</p>
               </span>
             </span>
 
             <Divider />
 
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '11px',
-                paddingBottom: '11px',
-              }}
-            >
-              <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ... </p>
-            </span>
+            {poolSelect === 1 ? (
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '11px',
+                  paddingBottom: '11px',
+                }}
+              >
+                <p className="earned-text"> Value USD </p>
+                <p className="earned-amount"> ${PoolOneUSD} </p>
+              </span>
+            ) : ( 
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '11px',
+                  paddingBottom: '11px',
+                }}
+              >
+                <p className="earned-text"> Value USD </p>
+                <p className="earned-amount"> ${PoolTwoUSD} </p>
+              </span>
+            )}
 
             <Divider />
 
@@ -657,7 +685,15 @@ const ContentFarming = (props) => {
                 </span>
               </span>
 
-
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a 
+                  href="https://pools.balancer.exchange/#/pool/0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d/"
+                  target="_blank"                     
+                  style={{ marginTop: '-75px', marginRight: '0px' }}
+                >
+                  <Icon className="more-text" name="external square alternate" />
+                </a>
+              </span>
 
               <Divider />
 
@@ -935,7 +971,6 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">Liquidity Farming Administration</h3>
               <p>BPT Balance in contract: {state.stakingBalances[0]}</p>
               <p>DG Balance in contract: {state.stakingBalances[1]}</p>
               <p>Current reward amount: {currenReward}</p>

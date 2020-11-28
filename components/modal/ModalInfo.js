@@ -60,6 +60,9 @@ const ModalInfo = () => {
   const temp = (supply * DGPrice);
   const marketCap = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+  const temp_2 = (DGTotal_2 * DGPrice);
+  const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
 
   return (
     <Modal
@@ -106,6 +109,18 @@ const ModalInfo = () => {
             {DGTotal_2}
           </p>
         </span>
+        <span style={{ display: 'flex', justifyContent: 'center' }}>
+          <p
+            className="menu-info-text"
+            style={{
+              marginLeft: '0px',
+              paddingLeft: '0px',
+              textAlign: 'center',
+            }}
+          >
+            ${unclaimedUSD}
+          </p>
+        </span>
       </div>
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
@@ -127,10 +142,6 @@ const ModalInfo = () => {
           </p>
           <p className="menu-info-text">{state.userBalances[2][1].toFixed(3)}</p>
         </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">vested $DG</p>
-          <p className="menu-info-text">{state.DGBalances[3]}</p>
-        </span>
       </div>
 
       <div
@@ -138,6 +149,10 @@ const ModalInfo = () => {
         style={{ marginTop: '12px', marginBottom: '12px' }}
       >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+          <p className="menu-info-label">unclaimed $DG - airdrop</p>
+          <p className="menu-info-text">{state.DGBalances[3]}</p>
+        </span>
+        <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gameplay</p>
           <p className="menu-info-text">{state.DGBalances[0]}</p>
         </span>
@@ -147,11 +162,11 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - liquidity 2</p>
-          <p className="menu-info-text">0.000</p>
+          <p className="menu-info-text">{state.DGBalances[2]}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gov</p>
-          <p className="menu-info-text">{state.DGBalances[2]}</p>
+          <p className="menu-info-text">0.000</p>
         </span>
       </div>
 

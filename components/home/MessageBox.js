@@ -1,23 +1,11 @@
 import { useContext, useState, useEffect } from 'react'
 import { GlobalContext } from '../../store'
-import { Message, Progress } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react'
 import Aux from '../_Aux'
 
 const MessageBox = (props) => {
   // get token ping state from the Context API store
   const [state, dispatch] = useContext(GlobalContext)
-
-  // define local loading variable
-  // const [showMessage, setShowMessage] = useState(false);
-
-  // useEffect(() => {
-  //   if (state.tokenPings) {
-  //     setShowMessage(true);
-  //     setTimeout(() => {
-  //     setShowMessage(false);
-  //     }, 9500) 
-  //   }
-  // });
 
   if (state.tokenPings) {
     return (
@@ -84,7 +72,6 @@ const MessageBox = (props) => {
                   </p>
                 </Aux>
               ) : null}
-              <Progress id="progress-timer" percent={100} active />
             </Message>
           </div>
 

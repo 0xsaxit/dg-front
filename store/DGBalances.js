@@ -22,6 +22,7 @@ function DGBalances() {
   const [DG_BPT, setDG_BPT] = useState({});
   const [DAI_BPT, setDAI_BPT] = useState({});
 
+
   let interval = {};
   let currentTime = 0;
 
@@ -79,28 +80,30 @@ function DGBalances() {
         // update global state unclaimed DG points balances
         const balanceDG1 = await getDGBalanceGameplay();
         const balanceDG2 = await getDGBalanceStaking();
+        const balanceDG3 = (100).toFixed(3);
         const balanceDG4 = await getDGBalanceKeeper();
         const balance_BP_DG = await getDGBalancer();
         const balance_BP_DAI = await getDAIBalancer();
 
-        console.log('DG points balance 1: ' + balanceDG1);
-        console.log('DG points balance 2: ' + balanceDG2);
-        console.log('DG points balance 4: ' + balanceDG4);
+        console.log('DG points balance gameplay: ' + balanceDG1);
+        console.log('DG points balance pool 1: ' + balanceDG2);
+        console.log('DG points balance pool 2: ' + balanceDG3);
+        console.log('DG points balance airdrop: ' + balanceDG4);
         console.log('DG BP balance: ' + balance_BP_DG);
         console.log('DAI BP balance: ' + balance_BP_DAI);
 
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, (0).toFixed(3), balanceDG4, balance_BP_DG, balance_BP_DAI],
+          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI],
         });
 
         // update global state staking DG and balancer pool tokens
         const balanceStaking = await getTokensStaking();
 
-        console.log('balance staking DG:  ' + balanceStaking[0]);
-        console.log('balance staking BPT (contract):  ' + balanceStaking[1]);
-        console.log('balance staking BPT (wallet):  ' + balanceStaking[2]);
+        console.log('balance BPT (contract pool 1):  ' + balanceStaking[0]);
+        console.log('balance DG (contract pool 1):  ' + balanceStaking[1]);
+        console.log('balance BPT (wallet pool 1):  ' + balanceStaking[2]);
 
         dispatch({
           type: 'staking_balances',
