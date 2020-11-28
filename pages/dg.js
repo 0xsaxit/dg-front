@@ -17,13 +17,10 @@ const dg = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loading = localStorage.getItem('loading');
-    console.log(loading);
-    console.log(state.userStatus);
-    if (state.userStatus > 4 && loading === 'true') {
+    if (state.userStatus > 4) {
       setIsErrorMessage(false);
       setIsLoading(false);
-    } else if (state.userStatus < 5 && loading === 'false') {
+    } else {
       setIsErrorMessage(true);
       setIsLoading(false);
     }

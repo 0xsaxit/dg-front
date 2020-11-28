@@ -21,9 +21,6 @@ function UserStatus() {
             type: 'update_status',
             data: response,
           });
-          localStorage.setItem('loading', true);
-        } else {
-          localStorage.setItem('loading', false);
         }
       }
       fetchData();

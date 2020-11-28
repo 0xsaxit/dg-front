@@ -16,15 +16,11 @@ const Account = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loading = localStorage.getItem('loading');
-    console.log(loading);
-    if (loading === 'true') {
-      setIsLoading(true);
-    } else if (state.userStatus < 5) {
-      setIsErrorMessage(true);
+    if (state.userStatus > 4) {
+      setIsErrorMessage(false);
       setIsLoading(false);
     } else {
-      setIsErrorMessage(false);
+      setIsErrorMessage(true);
       setIsLoading(false);
     }
   }, [state.userStatus]);
