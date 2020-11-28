@@ -80,7 +80,7 @@ function DGBalances() {
         // update global state unclaimed DG points balances
         const balanceDG1 = await getDGBalanceGameplay();
         const balanceDG2 = await getDGBalanceStaking();
-        const balanceDG3 = (100).toFixed(3);
+        const balanceDG3 = (0).toFixed(3);
         const balanceDG4 = await getDGBalanceKeeper();
         const balance_BP_DG = await getDGBalancer();
         const balance_BP_DAI = await getDAIBalancer();

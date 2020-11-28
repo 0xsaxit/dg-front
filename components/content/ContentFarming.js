@@ -23,10 +23,27 @@ const ContentFarming = (props) => {
 
   const [DGPrice, setDGPrice] = useState(0);
 
-  const [totalDAI, setTotalDAI] = useState(0);
-  const [totalMANA, setTotalMANA] = useState(0);
+  const [totalDAI, setTotalDAI] = useState('');
+  const [totalMANA, setTotalMANA] = useState('');
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
+
+
+  // fetch total bet from API
+  useEffect(() => {
+    (async function () {
+      let response = await Fetch.PLAYER_DATA(state.userInfo[1]);
+      let json = await response.json();
+      let temp = json.MANA.bet_player / Global.CONSTANTS.FACTOR;
+      let MANA_adjusted = temp.toLocaleString();
+
+      let temp_2 = json.DAI.bet_player / Global.CONSTANTS.FACTOR;
+      let DAI_adjusted = temp_2.toLocaleString();
+
+      setTotalMANA(MANA_adjusted);
+      setTotalDAI(DAI_adjusted);
+    })();
+  }, [totalMANA, totalDAI]);
 
 
   // usd value calculations
@@ -84,16 +101,6 @@ const ContentFarming = (props) => {
     onPool = () => setPoolSelect(1);
   }
 
-
-  // fetch total bet from API
-  useEffect(() => {
-    (async function () {
-      const response = await Fetch.PLAYER_DATA(state.userInfo[1]);
-      const json = await response.json();
-      const MANA_adjusted = json.MANA.bet_player;
-      setTotalMANA[MANA_adjusted];
-    })();
-  }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

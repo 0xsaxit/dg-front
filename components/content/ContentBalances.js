@@ -164,7 +164,7 @@ const ContentBalances = (props) => {
       setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
       setTotalPLAY((json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());    
     })();
-  }, []);
+  }, [totalDAI, totalMANA, totalDAI]);
 
 
   // close function
