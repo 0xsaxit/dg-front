@@ -17,47 +17,6 @@ const ModalInfo = () => {
   const [supply, setSupply] = useState(0);
   const [mainMATIC, setMainMATIC] = useState(0);
 
-  let tokenAddress = "0xee06a81a695750e71a662b51066f2c74cf4478a0";
-  let walletAddress = state.userInfo[1];
-
-  // The minimum ABI to get ERC20 Token balance
-  let minABI = [
-    // balanceOf
-    {
-      "constant":true,
-      "inputs":[{"name":"_owner","type":"address"}],
-      "name":"balanceOf",
-      "outputs":[{"name":"balance","type":"uint256"}],
-      "type":"function"
-    },
-    // decimals
-    {
-      "constant":true,
-      "inputs":[],
-      "name":"decimals",
-      "outputs":[{"name":"","type":"uint8"}],
-      "type":"function"
-    }
-  ];
-
-  // Get ERC20 Token contract instance
-  let contract = web3.eth.contract(minABI).at(tokenAddress);
-
-  useEffect(() => {
-    // Call balanceOf function
-    contract.balanceOf(walletAddress, (error, balance) => {
-      // Get decimals
-      contract.decimals((error, decimals) => {
-        // calculate a balance
-        let temp = balance.div(10**decimals);
-        let temp_2 = temp.toFixed(3);
-        balance = temp_2.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        setMainMATIC(balance);
-        console.log(mainMATIC);
-      });
-    });
-  }, []);
-
   useEffect(() => {
 
     const totalDG =
@@ -146,7 +105,7 @@ const ModalInfo = () => {
               mainchain $DG balance
             </a>
           </p>
-          <p className="menu-info-text">{mainMATIC}</p>
+          <p className="menu-info-text">{mainMATIC.toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
