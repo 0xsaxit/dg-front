@@ -19,13 +19,12 @@ const dg = () => {
   useEffect(() => {
     const loading = localStorage.getItem('loading');
     console.log(loading);
-    if (loading === 'true') {
-      setIsLoading(true);
-    } else if (state.userStatus < 5) {
-      setIsErrorMessage(true);
-      setIsLoading(false);
-    } else {
+    console.log(state.userStatus);
+    if (state.userStatus > 4 && loading === 'true') {
       setIsErrorMessage(false);
+      setIsLoading(false);
+    } else if (state.userStatus < 5 && loading === 'false') {
+      setIsErrorMessage(true);
       setIsLoading(false);
     }
   }, [state.userStatus]);
