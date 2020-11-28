@@ -41,6 +41,7 @@ const ModalInfo = () => {
   useEffect(() => {
     let temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
     let price = temp.toFixed(2).toLocaleString();
+    console.log(price);
     setDGPrice(price);
   }, []); 
 
@@ -54,6 +55,7 @@ const ModalInfo = () => {
       setSupply(json.toLocaleString());
       let temp = (json * DGPrice);
       let temp_2 = temp;
+      console.log(temp_2);
       setMarketCap(temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     })();
   }, []);
