@@ -26,14 +26,17 @@ const ContentFarming = (props) => {
   let userAddress = '';
 
 
+  useEffect(() => {
+    let temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+    let price = temp.toFixed(2).toLocaleString();
+    setDGPrice(price);
+  }, []); 
+
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
-  const valueUSD_1 = parseFloat(state.DGBalances[0] * 15)
+  const valueUSD_gameplay = (state.DGBalances[0] * DGPrice)
     .toFixed(2)
     .toLocaleString();
-  const valueUSD_2 = parseFloat(state.DGBalances[1] * 15)
-    .toFixed(2)
-    .toLocaleString();
-  const valueUSD_3 = parseFloat(state.DGBalances[2] * 15)
+  const valueUSD_token = (state.DGBalances[3] * DGPrice)
     .toFixed(2)
     .toLocaleString();
 
@@ -149,7 +152,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">$0.00</p>
+              <p className="earned-amount">${valueUSD_token}</p>
             </span>
 
             <Divider />
@@ -271,7 +274,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">${valueUSD_1}</p>
+              <p className="earned-amount">${valueUSD_gameplay}</p>
             </span>
 
             <Divider />
@@ -483,7 +486,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ${valueUSD_2} </p>
+              <p className="earned-amount"> ... </p>
             </span>
 
             <Divider />
@@ -799,7 +802,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ${valueUSD_3} </p>
+              <p className="earned-amount"> ... </p>
             </span>
 
             <Divider />

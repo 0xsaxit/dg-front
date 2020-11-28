@@ -16,6 +16,7 @@ const ModalInfo = () => {
   const [marketCap, setMarketCap] = useState(0);
   const [supply, setSupply] = useState(0);
   const [mainMATIC, setMainMATIC] = useState(0);
+  const [DGPrice, setDGPrice] = useState(0);
 
   useEffect(() => {
 
@@ -37,6 +38,12 @@ const ModalInfo = () => {
 
   }, [state.DGBalances, state.userBalances]);
 
+  useEffect(() => {
+    let temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+    let price = temp.toFixed(2).toLocaleString();
+    setDGPrice(price);
+  }, []); 
+
 
   // fetch circulating supply
   useEffect(() => {
@@ -45,8 +52,9 @@ const ModalInfo = () => {
       const response = await Fetch.DG_SUPPLY();
       const json = await response.json();
       setSupply(json.toLocaleString());
-      let temp = (json * 15);
-      setMarketCap(temp.toLocaleString());
+      let temp = (json * DGPrice);
+      let temp_2 = temp;
+      setMarketCap(temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     })();
   }, []);
 
@@ -148,7 +156,7 @@ const ModalInfo = () => {
       <div className="menu-info-container" style={{ marginBottom: '30px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">price</p>
-          <p className="menu-info-text">$15.00 USD</p>
+          <p className="menu-info-text">${DGPrice}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">circulating supply</p>

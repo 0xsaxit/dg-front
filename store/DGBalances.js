@@ -19,6 +19,9 @@ function DGBalances() {
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
 
+  const [DG_BPT, setDG_BPT] = useState({});
+  const [DAI_BPT, setDAI_BPT] = useState({});
+
   let interval = {};
   let currentTime = 0;
 
@@ -43,6 +46,18 @@ function DGBalances() {
         );
         setDGTokenContract(DGTokenContract);
 
+        const DG_BPT = new web3.eth.Contract(
+          ABI_DG_TOKEN,
+          addresses.DG_TOKEN
+        );
+        setDG_BPT(DG_BPT);
+
+        const DAI_BPT = new web3.eth.Contract(
+          ABI_DG_TOKEN,
+          addresses.DAI_TOKEN
+        );
+        setDAI_BPT(DAI_BPT);
+
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
@@ -65,14 +80,19 @@ function DGBalances() {
         const balanceDG1 = await getDGBalanceGameplay();
         const balanceDG2 = await getDGBalanceStaking();
         const balanceDG4 = await getDGBalanceKeeper();
+        const balance_BP_DG = await getDGBalancer();
+        const balance_BP_DAI = await getDAIBalancer();
 
         console.log('DG points balance 1: ' + balanceDG1);
         console.log('DG points balance 2: ' + balanceDG2);
         console.log('DG points balance 4: ' + balanceDG4);
+        console.log('DG BP balance: ' + balance_BP_DG);
+        console.log('DAI BP balance: ' + balance_BP_DAI);
+
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, (0).toFixed(3), balanceDG4],
+          data: [balanceDG1, balanceDG2, (0).toFixed(3), balanceDG4, balance_BP_DG, balance_BP_DAI],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -118,6 +138,45 @@ function DGBalances() {
     }
   }, [state.stakeTime]);
 
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DG locked in balancer pool
+  async function getDGBalancer() {
+    console.log("Get DG locked in Balancer");
+
+    try {
+      const amount = await DG_BPT.methods
+        .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
+        .call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DAI locked in balancer pool
+  async function getDAIBalancer() {
+    console.log("Get DG locked in Balancer");
+
+    try {
+      const amount = await DAI_BPT.methods
+        .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
+        .call();
+      
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG points balance from smart contract for gameplay mining
@@ -162,6 +221,23 @@ function DGBalances() {
     try {
       const amount = await keeperContract.methods
         .availableBalance(userAddress)
+        .call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DG balance in balancer pool
+  async function getDG() {
+
+    try {
+      const amount = await DGTokenContract.methods
+        .balanceOf(0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d)
         .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
