@@ -100,18 +100,20 @@ const ModalInfo = () => {
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label-link">
-            <a className="menu-info-label-link" href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0">
-              mainchain $DG balance
-            </a>
+          <p className="menu-info-label">
+            <a className="menu-info-label-link" href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0" target="_blank">
+              mainchain $DG
+            </a>{' '}
+            balance
           </p>
           <p className="menu-info-text">{mainMATIC.toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
-            <a className="menu-info-label-link" href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/">
-              matic $DG balance
-            </a>
+            <a className="menu-info-label-link" href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/" target="_blank">
+              matic $DG
+            </a>{' '}
+            balance
           </p>
           <p className="menu-info-text">{state.userBalances[2][1].toFixed(3)}</p>
         </span>
@@ -130,8 +132,12 @@ const ModalInfo = () => {
           <p className="menu-info-text">{state.DGBalances[0]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - liquidity</p>
+          <p className="menu-info-label">unclaimed $dg - liquidity 1</p>
           <p className="menu-info-text">{state.DGBalances[1]}</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label">unclaimed $dg - liquidity 2</p>
+          <p className="menu-info-text">0.000</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gov</p>
