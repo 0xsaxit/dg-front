@@ -39,6 +39,26 @@ const Fetch = {
     });
   },
 
+  MANA_PRICE: () => {
+    return fetch(`https://api.coingecko.com/api/v3/coins/decentraland`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  BPT_SUPPLY_1: () => {
+    return fetch(`https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0xca54c398195fce98856888b0fd97a9470a140f71&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   DG_SUPPLY: () => {
     return fetch(`${API_BASE_URL}/admin/getDGCirculatingSupply`, {
       method: 'GET',

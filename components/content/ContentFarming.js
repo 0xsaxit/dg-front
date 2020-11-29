@@ -63,6 +63,14 @@ const ContentFarming = (props) => {
   const PoolTwoUSD = temp_5.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
+  // APY value calculations for pool 1
+  const numerator = (51 * 2400 * price * state.DGBalances[10]);
+  const total_locked = ((state.DGBalances[4] * price) + state.DGBalances[8]);
+  const denominator = (total_locked * state.stakingBalances[0]);
+  const APY_temp = (numerator / denominator) * 100;
+  const APY = APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+
   // get initial reward and timestamp values
   useEffect(() => {
     if (props.instances) {
@@ -582,8 +590,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 1</p>
-                    <p className="earned-amount">{((state.stakingBalances[2] / state.stakingBalances[0]) * 100).toFixed(2)}%</p>
+                    <p className="earned-text">APY</p>
+                    <p className="earned-amount"> {APY}% </p>
                   </span>
                 </span>
 
@@ -601,8 +609,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">pool 1 rate / week</p>
-                    <p className="earned-amount">2,400 $DG </p>
+                    <p className="earned-text">% of pool 1</p>
+                    <p className="earned-amount"> {((state.stakingBalances[2] / state.stakingBalances[0]) * 100).toFixed(2)}% </p>
                   </span>
                 </span>
               </div>
@@ -713,7 +721,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 2</p>
+                    <p className="earned-text">APY</p>
                     <p className="earned-amount">0.00%</p>
                   </span>
                 </span>
@@ -732,8 +740,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> pool 2 rate / week </p>
-                    <p className="earned-amount"> 2,400 $DG </p>
+                    <p className="earned-text">% of pool 2</p>
+                    <p className="earned-amount">0.00%</p>
                   </span>
                 </span>
               </div>

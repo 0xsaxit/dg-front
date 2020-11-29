@@ -4,6 +4,8 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
+import Fetch from '../common/Fetch';
+
 
 function DGBalances() {
   // dispatch user's unclaimed DG balance to the Context API store
@@ -22,6 +24,8 @@ function DGBalances() {
 
   const [DG_BPT, setDG_BPT] = useState({});
   const [DAI_BPT, setDAI_BPT] = useState({});
+  const [DG_BPT_2, setDG_BPT_2] = useState({});
+  const [MANA_BPT, setMANA_BPT] = useState({});
 
 
   let interval = {};
@@ -66,6 +70,18 @@ function DGBalances() {
         );
         setDAI_BPT(DAI_BPT);
 
+        const DG_BPT_2 = new web3.eth.Contract(
+          ABI_DG_TOKEN,
+          addresses.DG_TOKEN
+        );
+        setDG_BPT_2(DG_BPT_2);
+
+        const DG_MANA = new web3.eth.Contract(
+          ABI_DG_TOKEN,
+          addresses.MANA_TOKEN
+        );
+        setMANA_BPT(DG_MANA);
+
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
@@ -93,19 +109,39 @@ function DGBalances() {
         const balance_BP_DAI = await getDAIBalancer();
         const balance_DG_main = await getDGMainchain();
         const balance_DG_matic = await getDGMatic();
+        const balance_BP_DG_2 = await getDGBalancer_2();
+        const balance_BP_MANA = await getMANABalancer();
+
+        // calculate price of mana locked in balancer
+        let response = await Fetch.MANA_PRICE();
+        let json = await response.json();
+        let temp = json.market_data.current_price.usd;
+        const MANA_total = (temp * balance_BP_MANA);
+
+        // get BPT supply of pool 1
+        let response_2 = await Fetch.BPT_SUPPLY_1();
+        let json_2 = await response_2.json();
+        const BPT_supply_1 = (json_2.result / Global.CONSTANTS.FACTOR);
 
         console.log('DG points balance gameplay: ' + balanceDG1);
         console.log('DG points balance pool 1: ' + balanceDG2);
         console.log('DG points balance pool 2: ' + balanceDG3);
         console.log('DG points balance airdrop: ' + balanceDG4);
-        console.log('DG BP balance: ' + balance_BP_DG);
-        console.log('DAI BP balance: ' + balance_BP_DAI);
+
         console.log('DG mainchain balance: ' + balance_DG_main);
         console.log('DG matic balance: ' + balance_DG_matic);
 
+        console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
+        console.log('DAI BP balance pool 1: ' + balance_BP_DAI);
+        console.log('BPT supply pool 1: ' + BPT_supply_1);
+
+        console.log('MANA BP value (in usd) pool 2: ' + MANA_total);
+        console.log('DG BP balance pool 2: ' + balance_BP_DG);
+
+
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic],
+          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic, MANA_total, balance_BP_DG_2, BPT_supply_1],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -219,6 +255,44 @@ function DGBalances() {
     try {
       const amount = await DAI_BPT.methods
         .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
+        .call();
+      
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DG locked in balancer pool 2
+  async function getDGBalancer_2() {
+    console.log("Get DG locked in Balancer pool 2");
+
+    try {
+      const amount = await DG_BPT_2.methods
+        .balanceOf('0xca54c398195fce98856888b0fd97a9470a140f71')
+        .call();
+      
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get MANA locked in balancer pool 2
+  async function getMANABalancer() {
+    console.log("Get MANA locked in Balancer pool 2");
+
+    try {
+      const amount = await MANA_BPT.methods
+        .balanceOf('0xca54c398195fce98856888b0fd97a9470a140f71')
         .call();
       
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);

@@ -53,6 +53,7 @@ const API_ADDRESSES = (async () => {
   const DG_TOKEN = "0xee06a81a695750e71a662b51066f2c74cf4478a0";
   const DG_TOKEN_MATIC = "0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4";
   const DAI_TOKEN = "0x6b175474e89094c44da98b954eedeac495271d0f";
+  const MANA_TOKEN = "0x0f5d2fb29fb7d3cfee444a200298f468908cc942";
 
   console.log('OWNER_ADDRESS: ' + OWNER_ADDRESS);
   console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
@@ -91,6 +92,7 @@ const API_ADDRESSES = (async () => {
     DG_TOKEN,
     DG_TOKEN_MATIC,
     DAI_TOKEN,
+    MANA_TOKEN,
   };
 })();
 

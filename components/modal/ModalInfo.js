@@ -24,7 +24,9 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances[0]) +
       parseFloat(state.DGBalances[1]) +
       parseFloat(state.DGBalances[2]) +
-      parseFloat(state.DGBalances[3]);
+      parseFloat(state.DGBalances[3]) +
+      parseFloat(state.DGBalances[6]) +
+      parseFloat(state.DGBalances[7]);
     const totalDGAdjusted = totalDG
       .toFixed(0)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
