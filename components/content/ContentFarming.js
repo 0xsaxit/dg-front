@@ -23,8 +23,8 @@ const ContentFarming = (props) => {
 
   const [DGPrice, setDGPrice] = useState(0);
 
-  const [totalDAI, setTotalDAI] = useState('');
-  const [totalMANA, setTotalMANA] = useState('');
+  const [totalDAI, setTotalDAI] = useState(0);
+  const [totalMANA, setTotalMANA] = useState(0);
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
 
@@ -582,8 +582,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">APY</p>
-                    <p className="earned-amount">...</p>
+                    <p className="earned-text">% of pool 1</p>
+                    <p className="earned-amount">{(state.stakingBalances[2] / state.stakingBalances[0]).toFixed(2)}%</p>
                   </span>
                 </span>
 
@@ -713,8 +713,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">APY</p>
-                    <p className="earned-amount">...</p>
+                    <p className="earned-text">% of pool 2</p>
+                    <p className="earned-amount">0.00%</p>
                   </span>
                 </span>
 
