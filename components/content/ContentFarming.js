@@ -249,9 +249,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                Mine $DG by playing games with MANA or DAI. Earn mining
-                bonuses by playing with friends, wearing Decentral Games
-                wearables NFTs, and refering friends. For more details, see our{' '}
+                Mine $DG by playing games with MANA or DAI. Earn
+                bonuses by playing with friends, wearing DG
+                wearable NFTs, and referring friends. Read more about $DG gameplay mining in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
@@ -451,8 +451,8 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Liquidity Farming</h3>
               <p>
-                Farm $DG by providing liquidity in 98/2 MANA/DG and DAI/DG
-                Balancer pools and staking LP tokens on this dashboard. Read
+                Farm $DG by providing liquidity in 98/2 MANA-DG and DAI-DG
+                Balancer pools and staking the LP tokens on this dashboard. Read
                 more about $DG liquidity farming in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
@@ -797,9 +797,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
-                Staked $DG tokens are used to vote in decentral.games governance
-                and to receive $DG governance rewards. $DG Governance will go live in Q2 2021. Read more about
-                governance in our{' '}
+                Staked $DG tokens are used to vote to allocate house profits and
+                receive $DG governance rewards. $DG Governance will go live in Q2 2021. Read more about
+                $DG governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
