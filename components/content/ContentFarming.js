@@ -241,7 +241,7 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                Mine $DG by playing games with $MANA or $DAI. Earn mining
+                Mine $DG by playing games with MANA or DAI. Earn mining
                 bonuses by playing with friends, wearing Decentral Games
                 wearables NFTs, and refering friends. For more details, see our{' '}
                 <a
