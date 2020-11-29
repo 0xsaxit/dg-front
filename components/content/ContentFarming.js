@@ -583,7 +583,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool 1</p>
-                    <p className="earned-amount">{(state.stakingBalances[2] / state.stakingBalances[0]).toFixed(2)}%</p>
+                    <p className="earned-amount">{((state.stakingBalances[2] / state.stakingBalances[0]) * 100).toFixed(2)}%</p>
                   </span>
                 </span>
 
@@ -601,8 +601,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">pool 1 rate</p>
-                    <p className="earned-amount">2.4k DG / Week </p>
+                    <p className="earned-text">pool 1 rate / week</p>
+                    <p className="earned-amount">2,400 $DG </p>
                   </span>
                 </span>
               </div>
@@ -732,8 +732,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> pool 2 rate </p>
-                    <p className="earned-amount"> 2.4k DG / Week </p>
+                    <p className="earned-text"> pool 2 rate / week </p>
+                    <p className="earned-amount"> 2,400 $DG </p>
                   </span>
                 </span>
               </div>

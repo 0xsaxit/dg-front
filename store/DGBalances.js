@@ -14,6 +14,7 @@ function DGBalances() {
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
+  const [DG_MATIC_CONTRACT, setDGMaticContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
   const [keeperContract, setKeeperContract] = useState({});
   const [instances, setInstances] = useState(false);
@@ -46,6 +47,12 @@ function DGBalances() {
           addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDGTokenContract(DGTokenContract);
+
+        const DGMaticContract = new maticWeb3.eth.Contract(
+          ABI_DG_TOKEN,
+          addresses.DG_TOKEN_MATIC
+        );
+        setDGMaticContract(DGMaticContract);
 
         const DG_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
@@ -84,6 +91,8 @@ function DGBalances() {
         const balanceDG4 = await getDGBalanceKeeper();
         const balance_BP_DG = await getDGBalancer();
         const balance_BP_DAI = await getDAIBalancer();
+        const balance_DG_main = await getDGMainchain();
+        const balance_DG_matic = await getDGMatic();
 
         console.log('DG points balance gameplay: ' + balanceDG1);
         console.log('DG points balance pool 1: ' + balanceDG2);
@@ -91,11 +100,12 @@ function DGBalances() {
         console.log('DG points balance airdrop: ' + balanceDG4);
         console.log('DG BP balance: ' + balance_BP_DG);
         console.log('DAI BP balance: ' + balance_BP_DAI);
-
+        console.log('DG mainchain balance: ' + balance_DG_main);
+        console.log('DG matic balance: ' + balance_DG_matic);
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI],
+          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -140,6 +150,45 @@ function DGBalances() {
       }
     }
   }, [state.stakeTime]);
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get mainchain DG balance
+  async function getDGMainchain() {
+    console.log("Get Mainchain DG balance");
+
+    try {
+      const amount = await DG_BPT.methods
+        .balanceOf(userAddress)
+        .call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get matic DG balance
+  async function getDGMatic() {
+    console.log("Get Matic DG balance");
+
+    try {
+      const amount = await DG_MATIC_CONTRACT.methods
+        .balanceOf(userAddress)
+        .call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
 
 
   /////////////////////////////////////////////////////////////////////////////////////////

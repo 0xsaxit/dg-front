@@ -14,7 +14,6 @@ const ModalInfo = () => {
   const [DGTotal, setDGTotal] = useState(0);
   const [DGTotal_2, setDGTotal_2] = useState(0);
   const [supply, setSupply] = useState(0);
-  const [mainMATIC, setMainMATIC] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
 
   useEffect(() => {
@@ -131,7 +130,7 @@ const ModalInfo = () => {
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{mainMATIC.toFixed(3)}</p>
+          <p className="menu-info-text">{state.DGBalances[6]}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
@@ -140,7 +139,7 @@ const ModalInfo = () => {
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{state.userBalances[2][1].toFixed(3)}</p>
+          <p className="menu-info-text">{state.DGBalances[7]}</p>
         </span>
       </div>
 
