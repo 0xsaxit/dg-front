@@ -301,7 +301,7 @@ const Farming = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // stake, withdraw, get reward from pool 1
+  // stake, withdraw, get reward from pool 2
   async function staking_2(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const amountToString = amountAdjusted.toString();
@@ -378,14 +378,14 @@ const Farming = () => {
   }
 
   async function getReward_2() {
-    console.log('Call getReward() function to claim DG tokens');
+    console.log('Call getReward_2() function to claim DG tokens');
 
     try {
       const data = await stakingContractTwo.methods
         .getReward()
         .send({ from: userAddress });
 
-      console.log('getReward() transaction completed: ' + data.transactionHash);
+      console.log('getReward_2() transaction completed: ' + data.transactionHash);
 
       // update global state unclaimed DG balance
       const refresh = !state.refreshBalances;
@@ -395,7 +395,7 @@ const Farming = () => {
         data: refresh,
       });
     } catch (error) {
-      console.log('getReward() transaction error: ' + error);
+      console.log('getReward_2() transaction error: ' + error);
     }
   }
 
@@ -600,6 +600,7 @@ const Farming = () => {
               staking={staking}
               withdraw={withdraw}
               getReward={getReward}
+              getReward_2={getReward_2}
               getPeriodFinish={getPeriodFinish}
               stakingContract={stakingContract}
               scrapeMyTokens={scrapeMyTokens}
