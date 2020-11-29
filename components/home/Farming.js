@@ -11,6 +11,9 @@ import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
 import Whitelist from '../Whitelist';
 import { useRouter } from 'next/router';
+import ABI_DG_STAKING from '../../components/ABI/ABIDGStaking';
+import ABI_BP from '../../components/ABI/ABIBalancerPoolToken';
+
 
 const Farming = () => {
   const router = useRouter();
@@ -21,10 +24,15 @@ const Farming = () => {
   const [DGstate, setDGState] = useState('token');
   const [isLoading, setIsLoading] = useState(true);
   const [addresses, setAddresses] = useState({});
+
+  const [keeperContract, setKeeperContract] = useState({});
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
   const [BPTContract, setBPTContract] = useState({});
-  const [keeperContract, setKeeperContract] = useState({});
+
+  const [stakingContractTwo, setStakingContractTwo] = useState({});
+  const [BPTContractTwo, setBPTContractTwo] = useState({});
+
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
@@ -82,15 +90,31 @@ const Farming = () => {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
+        // mining contract
         const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
 
+        // POOL 1
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
+        // POOL 2 
+        const stakingContractTwo = new web3.eth.Contract(
+          ABI_DG_STAKING,
+          '0x8BDaF46544349849D30f76eBa71923E448CB3958'
+        );
+        setStakingContractTwo(stakingContractTwo);
+
+        const BPTContractTwo = new web3.eth.Contract(
+          ABI_BP,
+          addresses.BP_TOKEN_ADDRESS_2
+        );
+        setBPTContractTwo(BPTContractTwo); 
+   
+        // vesting contract for airdrops ect
         const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
@@ -174,6 +198,10 @@ const Farming = () => {
     }
   }
 
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // stake, withdraw, get reward from pool 1
   async function staking(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const amountToString = amountAdjusted.toString();
@@ -271,6 +299,109 @@ const Farming = () => {
     }
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // stake, withdraw, get reward from pool 1
+  async function staking_2(amount) {
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = amountAdjusted.toString();
+    console.log('Staking amount input: ' + amountToString);
+
+    try {
+      console.log(
+        'Get amount user has authorized our staking contract to spend'
+      );
+
+      const amountAllowance = await BPTContractTwo.methods
+        .allowance(userAddress, addresses.DG_STAKING_CONTRACT_ADDRESS_2)
+        .call();
+
+      console.log('Authorized amount: ' + amountAllowance);
+
+      if (Number(amountAllowance) < amountAdjusted) {
+        console.log("Approve staking contract to spend user's tokens");
+
+        const data = await BPTContractTwo.methods
+          .approve(
+            addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+            Global.CONSTANTS.MAX_AMOUNT
+          )
+          .send({ from: userAddress });
+
+        console.log('approve() transaction confirmed: ' + data.transactionHash);
+      }
+
+      console.log('Call stake() function on smart contract');
+
+      const data = await stakingContractTwo.methods
+        .stake(amountToString)
+        .send({ from: userAddress });
+
+      console.log('stake() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('Staking transactions error: ' + error);
+    }
+  }
+
+  async function withdraw_2(amount) {
+    console.log('Call withdraw() function to unstake BP tokens');
+
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = amountAdjusted.toString();
+    console.log('Withdraw amount input: ' + amountToString);
+
+    try {
+      const data = await stakingContractTwo.methods
+        .withdraw(amountToString)
+        .send({ from: userAddress });
+
+      console.log('withdraw() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('Unstake BP tokens error: ' + error);
+    }
+  }
+
+  async function getReward_2() {
+    console.log('Call getReward() function to claim DG tokens');
+
+    try {
+      const data = await stakingContractTwo.methods
+        .getReward()
+        .send({ from: userAddress });
+
+      console.log('getReward() transaction completed: ' + data.transactionHash);
+
+      // update global state unclaimed DG balance
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('getReward() transaction error: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // claim DG tokens from keeper contract
   async function scrapeMyTokens() {
     console.log('Call scrapeMyTokens() function to claim DG tokens');
     // setDisabled(true);

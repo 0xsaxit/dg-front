@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
+import ABI_BP from '../components/ABI/ABIBalancerPoolToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
@@ -15,9 +17,11 @@ function DGBalances() {
   const [addresses, setAddresses] = useState({});
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
+  const [stakingContractTwo, setStakingContractTwo] = useState({});
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
   const [DG_MATIC_CONTRACT, setDGMaticContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
+  const [BPTContractTwo, setBPTContractTwo] = useState({});
   const [keeperContract, setKeeperContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
@@ -82,12 +86,21 @@ function DGBalances() {
         );
         setMANA_BPT(DG_MANA);
 
+        // POOL 1
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
+
+        // POOL 2 
+        const stakingContractTwo = new web3.eth.Contract(
+          ABI_DG_STAKING,
+          '0x8BDaF46544349849D30f76eBa71923E448CB3958'
+        );
+        setStakingContractTwo(stakingContractTwo);
 
         const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
+        // POOL 1
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
@@ -103,7 +116,7 @@ function DGBalances() {
         // update global state unclaimed DG points balances
         const balanceDG1 = await getDGBalanceGameplay();
         const balanceDG2 = await getDGBalanceStaking();
-        const balanceDG3 = (0).toFixed(3);
+        const balanceDG3 = await getDGBalanceStaking_2();
         const balanceDG4 = await getDGBalanceKeeper();
         const balance_BP_DG = await getDGBalancer();
         const balance_BP_DAI = await getDAIBalancer();
@@ -325,12 +338,28 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get user's DG unclaimed balance from smart contract for liquidity farming
+  // get user's DG unclaimed balance from smart contract for liquidity farming for pool 1
   async function getDGBalanceStaking() {
     console.log("Get user's DG staking balance from smart contract");
 
     try {
       const amount = await stakingContract.methods.earned(userAddress).call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG staking balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG unclaimed balance from smart contract for liquidity farming for pool 2
+  async function getDGBalanceStaking_2() {
+    console.log("Get user's DG staking balance from smart contract for pool 2");
+
+    try {
+      const amount = await stakingContractTwo.methods.earned(userAddress).call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;

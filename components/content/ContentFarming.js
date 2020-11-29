@@ -527,21 +527,39 @@ const ContentFarming = (props) => {
 
             <Divider />
 
-            <span className="DG-button-span">
-              {Number(state.DGBalances[1]) ? (
-                <Button
-                  className="DG-claim-button"
-                  id="balances-padding-correct"
-                  onClick={() => props.getReward()}
-                >
-                  CLAIM $DG
-                </Button>
-              ) : (
-                <Button disabled className="DG-claim-button">
-                  CLAIM $DG
-                </Button>
-              )}
-            </span>
+            {poolSelect === 1 ? (
+              <span className="DG-button-span">
+                {Number(state.DGBalances[1]) ? (
+                  <Button
+                    className="DG-claim-button"
+                    id="balances-padding-correct"
+                    onClick={() => props.getReward()}
+                  >
+                    CLAIM POOL 1 $DG
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-claim-button">
+                    CLAIM POOL 1 $DG
+                  </Button>
+                )}
+              </span>
+            ) : (
+              <span className="DG-button-span">
+                {Number(state.DGBalances[2]) ? (
+                  <Button
+                    className="DG-claim-button"
+                    id="balances-padding-correct"
+                    onClick={() => props.getReward_2()}
+                  >
+                    CLAIM POOL 2 $DG
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-claim-button">
+                    CLAIM POOL 2 $DG
+                  </Button>
+                )}
+              </span>
+            )}
           </div>
 
           <span className="DG-tablet-container">
