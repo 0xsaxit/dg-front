@@ -132,11 +132,11 @@ function DGBalances() {
         console.log('DG matic balance: ' + balance_DG_matic);
 
         console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
-        console.log('DAI BP balance pool 1: ' + balance_BP_DAI);
+        console.log('MANA BP value (in usd) pool 1: ' + MANA_total);
         console.log('BPT supply pool 1: ' + BPT_supply_1);
 
-        console.log('MANA BP value (in usd) pool 2: ' + MANA_total);
         console.log('DG BP balance pool 2: ' + balance_BP_DG);
+        console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
 
 
         dispatch({
@@ -206,6 +206,7 @@ function DGBalances() {
       console.log('No DG balance found: ' + error);
     }
   }
+  
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -226,50 +227,11 @@ function DGBalances() {
     }
   }
 
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get DG locked in balancer pool
-  async function getDGBalancer() {
-    console.log("Get DG locked in Balancer");
-
-    try {
-      const amount = await DG_BPT.methods
-        .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
-        .call();
-
-      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
-
-      return balanceAdjusted;
-    } catch (error) {
-      console.log('No DG balance found: ' + error);
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // get DAI locked in balancer pool
-  async function getDAIBalancer() {
-    console.log("Get DG locked in Balancer");
-
-    try {
-      const amount = await DAI_BPT.methods
-        .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
-        .call();
-      
-      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
-
-      return balanceAdjusted;
-    } catch (error) {
-      console.log('No DG balance found: ' + error);
-    }
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool 2
   async function getDGBalancer_2() {
-    console.log("Get DG locked in Balancer pool 2");
+    console.log("Get DG locked in Balancer pool 1");
 
     try {
       const amount = await DG_BPT_2.methods
@@ -288,11 +250,50 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get MANA locked in balancer pool 2
   async function getMANABalancer() {
-    console.log("Get MANA locked in Balancer pool 2");
+    console.log("Get MANA locked in Balancer pool 1");
 
     try {
       const amount = await MANA_BPT.methods
         .balanceOf('0xca54c398195fce98856888b0fd97a9470a140f71')
+        .call();
+      
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DG locked in balancer pool
+  async function getDGBalancer() {
+    console.log("Get DG locked in Balancer pool 2");
+
+    try {
+      const amount = await DG_BPT.methods
+        .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
+        .call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DAI locked in balancer pool
+  async function getDAIBalancer() {
+    console.log("Get DAI locked in Balancer pool 2");
+
+    try {
+      const amount = await DAI_BPT.methods
+        .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
         .call();
       
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
