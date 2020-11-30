@@ -105,11 +105,8 @@ const Farming = () => {
         const stakingContractTwo = await Transactions.stakingContractTwo(web3);
         setStakingContractTwo(stakingContractTwo);
 
-        const BPTContractTwo = new web3.eth.Contract(
-          ABI_BP,
-          addresses.BP_TOKEN_ADDRESS_2
-        );
-        setBPTContractTwo(BPTContractTwo); 
+        const BPTContractTwo = await Transactions.BPTContractTwo(web3);
+        setBPTContractTwo(BPTContractTwo);
    
         // vesting contract for airdrops ect
         const keeperContract = await Transactions.keeperContract(web3);
@@ -217,6 +214,7 @@ const Farming = () => {
 
       if (Number(amountAllowance) < amountAdjusted) {
         console.log("Approve staking contract to spend user's tokens");
+        console.log(BPTContract);
 
         const data = await BPTContract.methods
           .approve(
