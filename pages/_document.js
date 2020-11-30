@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import Global from '../components/Constants';
 
 export default class MyDocument extends Document {
@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
@@ -66,7 +66,7 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
         
-      </html>
+      </Html>
     );
   }
 }
