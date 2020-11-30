@@ -102,10 +102,7 @@ const Farming = () => {
         setBPTContract(BPTContract);
 
         // POOL 2 
-        const stakingContractTwo = new web3.eth.Contract(
-          ABI_DG_STAKING,
-          addresses.DG_STAKING_CONTRACT_ADDRESS_2
-        );
+        const stakingContractTwo = await Transactions.stakingContractTwo(web3);
         setStakingContractTwo(stakingContractTwo);
 
         const BPTContractTwo = new web3.eth.Contract(
