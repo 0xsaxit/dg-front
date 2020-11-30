@@ -59,6 +59,16 @@ const Fetch = {
     });
   },
 
+  BPT_SUPPLY_2: () => {
+    return fetch(`https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   DG_SUPPLY: () => {
     return fetch(`${API_BASE_URL}/admin/getDGCirculatingSupply`, {
       method: 'GET',

@@ -94,10 +94,7 @@ function DGBalances() {
         setStakingContract(stakingContract);
 
         // POOL 2 
-        const stakingContractTwo = new web3.eth.Contract(
-          ABI_DG_STAKING,
-          '0x8BDaF46544349849D30f76eBa71923E448CB3958'
-        );
+        const stakingContractTwo = await Transactions.stakingContractTwo(web3);
         setStakingContractTwo(stakingContractTwo);
 
         // for airdrop stuff (don't touch)
@@ -144,6 +141,11 @@ function DGBalances() {
         let json_2 = await response_2.json();
         const BPT_supply_1 = (json_2.result / Global.CONSTANTS.FACTOR);
 
+        // get BPT supply of pool 2
+        let response_3 = await Fetch.BPT_SUPPLY_2();
+        let json_3 = await response_3.json();
+        const BPT_supply_2 = (json_3.result / Global.CONSTANTS.FACTOR);
+
         console.log('DG points balance gameplay: ' + balanceDG1);
         console.log('DG points balance pool 1: ' + balanceDG2);
         console.log('DG points balance pool 2: ' + balanceDG3);
@@ -155,13 +157,14 @@ function DGBalances() {
         console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
         console.log('MANA BP value (in usd) pool 1: ' + MANA_total);
         console.log('BPT supply pool 1: ' + BPT_supply_1);
+        console.log('BPT supply pool 2: ' + BPT_supply_2);
 
         console.log('DG BP balance pool 2: ' + balance_BP_DG);
         console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic, MANA_total, balance_BP_DG_2, BPT_supply_1],
+          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic, MANA_total, balance_BP_DG_2, BPT_supply_1, BPT_supply_2],
         });
 
         // update global state staking DG and balancer pool tokens

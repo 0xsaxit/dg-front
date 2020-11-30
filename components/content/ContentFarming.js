@@ -73,12 +73,17 @@ const ContentFarming = (props) => {
 
   // APY value calculations for pool 1
   const numerator = (51 * 2400 * price * state.DGBalances[10]);
-  const total_locked = ((state.DGBalances[4] * price) + state.DGBalances[8]);
+  const total_locked = ((state.DGBalances[4] * price) + Number(state.DGBalances[8]));
   const denominator = (total_locked * state.stakingBalances[0]);
   const APY_temp = (numerator / denominator) * 100;
   const manaAPY = (APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 
   // APY value calculations for pool 2
+  const num = (51 * 2400 * price * state.DGBalances[11]);
+  const total_locked_2 = ((state.DGBalances[9] * price) + Number(state.DGBalances[5]));
+  const denom = (total_locked_2 * state.stakingBalances[4]);
+  const APY_temp_2 = (num / denom) * 100;
+  const daiAPY = (APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 
   // player edge calculations
   const DAI_edge_temp = ((price / 1000) * 100) - 0.5;
@@ -776,7 +781,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> {daiAPY}% </p>
                   </span>
                 </span>
 
@@ -795,7 +800,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool 2</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> {((state.stakingBalances[6] / state.stakingBalances[4]) * 100).toFixed(2)}% </p>
                   </span>
                 </span>
               </div>
