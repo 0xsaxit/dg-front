@@ -214,7 +214,6 @@ const Farming = () => {
 
       if (Number(amountAllowance) < amountAdjusted) {
         console.log("Approve staking contract to spend user's tokens");
-        console.log(BPTContract);
 
         const data = await BPTContract.methods
           .approve(
