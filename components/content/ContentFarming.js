@@ -400,7 +400,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> 16K MANA : 1 DG </p>
+                    <p className="earned-amount"> 12K MANA : 1 DG </p>
                   </span>
                 </span>
               </div>
