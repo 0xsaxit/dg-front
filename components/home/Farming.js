@@ -104,7 +104,7 @@ const Farming = () => {
         // POOL 2 
         const stakingContractTwo = new web3.eth.Contract(
           ABI_DG_STAKING,
-          '0x8BDaF46544349849D30f76eBa71923E448CB3958'
+          addresses.DG_STAKING_CONTRACT_ADDRESS_2
         );
         setStakingContractTwo(stakingContractTwo);
 
@@ -598,11 +598,14 @@ const Farming = () => {
               content={DGstate}
               metaTransaction={metaTransaction}
               staking={staking}
+              staking_2={staking_2}
               withdraw={withdraw}
+              withdraw_2={withdraw_2}
               getReward={getReward}
               getReward_2={getReward_2}
               getPeriodFinish={getPeriodFinish}
               stakingContract={stakingContract}
+              stakingContractTwo={stakingContractTwo}
               scrapeMyTokens={scrapeMyTokens}
               // disabled={disabled}
               instances={instances}

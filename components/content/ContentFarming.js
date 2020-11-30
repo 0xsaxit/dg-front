@@ -20,6 +20,7 @@ const ContentFarming = (props) => {
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [percentagePool1, setPercentagePool1] = useState(0);
+  const [percentagePool2, setPercentagePool2] = useState(0);
 
   const [DGPrice, setDGPrice] = useState(0);
 
@@ -74,8 +75,9 @@ const ContentFarming = (props) => {
   const total_locked = ((state.DGBalances[4] * price) + state.DGBalances[8]);
   const denominator = (total_locked * state.stakingBalances[0]);
   const APY_temp = (numerator / denominator) * 100;
-  const APY = APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const manaAPY = (APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 
+  // APY value calculations for pool 2
 
   // player edge calculations
   const DAI_edge_temp = ((price / 1000) * 100) - 0.5;
@@ -109,6 +111,28 @@ const ContentFarming = (props) => {
           setPercentagePool1(percentageFixed);
         } else {
           setPercentagePool1(0);
+        }
+      })();
+    }
+  }, [props.instances, state.stakingBalances]);
+
+
+  useEffect(() => {
+    if (props.instances) {
+      (async () => {
+        const stakedTotal2 = await props.stakingContractTwo.methods
+          .totalSupply()
+          .call();
+        const stakedTotalAdjusted2 = stakedTotal2 / Global.CONSTANTS.FACTOR;
+
+        if (stakedTotal2) {
+          const percentagePool2 =
+            state.stakingBalances[6] / stakedTotalAdjusted2;
+          const percentageFixed2 = (percentagePool2 * 100).toFixed(3);
+
+          setPercentagePool2(percentageFixed2);
+        } else {
+          setPercentagePool2(0);
         }
       })();
     }
@@ -620,7 +644,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    <p className="earned-amount"> {APY}% </p>
+                    <p className="earned-amount"> {manaAPY}% </p>
                   </span>
                 </span>
 
@@ -751,7 +775,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    <p className="earned-amount">0.00%</p>
+                    <p className="earned-amount"> ... </p>
                   </span>
                 </span>
 
@@ -769,30 +793,73 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 2</p>
-                    <p className="earned-amount">0.00%</p>
+                    <p className="earned-text">% of pool 1</p>
+                    <p className="earned-amount"> ... </p>
                   </span>
                 </span>
               </div>
 
               <Divider />
 
-              <Input className="liquidity-input" fluid placeholder="Amount" />
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput}
+                onChange={handleChange}
+              />
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <p className="bpt-text"> 0 BPT </p>
-                <p className="bpt-text"> 0 BPT staked</p>
+                <p
+                  className="bpt-text"
+                  onClick={() => setAmountInput(state.stakingBalances[7])}
+                >
+                  {state.stakingBalances[7]} BPT
+                </p>
+                <p
+                  className="bpt-text"
+                  onClick={() => setAmountInput(state.stakingBalances[6])}
+                >
+                  {state.stakingBalances[6]} BPT staked
+                </p>
               </span>
 
               <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
-                  STAKE BPT
-                </Button>
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE BPT
-                </Button>
+                {amountInput ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      stake('stake', amountInput)
+                      setAmountInput('')
+                    }}
+                  >
+                    STAKE BPT
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    STAKE BPT
+                  </Button>
+                )}
+
+                {percentagePool2 && amountInput ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      stake('withdraw', amountInput)
+                      setAmountInput('')
+                    }}
+                  >
+                    UNSTAKE BPT
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    UNSTAKE BPT
+                  </Button>
+                )}
               </span>
             </div>
           </span>

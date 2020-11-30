@@ -17,6 +17,10 @@ const dg = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // console.log('!!!!!!!!!');
+    // console.log(state.userInfo[1]);
+    // console.log(state.userStatus);
+    // console.log('!!!!!!!!!');
     if (state.userStatus > 4) {
       setIsErrorMessage(false);
       setIsLoading(false);
@@ -24,7 +28,7 @@ const dg = () => {
       setIsErrorMessage(true);
       setIsLoading(false);
     }
-  }, [state.userStatus]);
+  }, [state.userStatus, state.userInfo]);
 
   return (
     <Layout>

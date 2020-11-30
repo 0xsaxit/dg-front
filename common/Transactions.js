@@ -46,7 +46,7 @@ async function pointerContract(web3Default) {
   return DGPointerContract;
 }
 
-// set staking contract instance
+// set staking contract instance dg pool 1
 async function stakingContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
 
@@ -58,7 +58,19 @@ async function stakingContract(web3Default) {
   return DGStakingContract;
 }
 
-// set staking contract instance
+// set staking contract instance dg pool 2
+async function stakingContractTwo(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
+
+  const DGStakingContractTwo = new web3Default.eth.Contract(
+    ABI_DG_STAKING,
+    addresses.DG_STAKING_CONTRACT_ADDRESS_2
+  );
+
+  return DGStakingContractTwo;
+}
+
+// set staking contract instance bpt pool 1
 async function BPTContract(web3Default) {
   const addresses = await Global.API_ADDRESSES;
 
@@ -68,6 +80,18 @@ async function BPTContract(web3Default) {
   );
 
   return BPTokenContract;
+}
+
+// set staking contract instance bpt pool 2
+async function BPTContractTwo(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
+
+  const BPTokenContractTwo = new web3Default.eth.Contract(
+    ABI_BP_TOKEN,
+    addresses.BP_TOKEN_ADDRESS_2
+  );
+
+  return BPTokenContractTwo;
 }
 
 // set keeper contract instance
@@ -106,6 +130,8 @@ export default {
   balanceOfToken,
   pointerContract,
   stakingContract,
+  stakingContractTwo,
   BPTContract,
+  BPTContractTwo,
   keeperContract,
 };

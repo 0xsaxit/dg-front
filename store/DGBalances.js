@@ -21,7 +21,7 @@ function DGBalances() {
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
   const [DG_MATIC_CONTRACT, setDGMaticContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
-  const [BPTContractTwo, setBPTContractTwo] = useState({});
+  const [BPT_CONTRACT_2, setBPTContractTwo] = useState({});
   const [keeperContract, setKeeperContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
@@ -47,15 +47,18 @@ function DGBalances() {
         const addresses = await Global.API_ADDRESSES;
         setAddresses(addresses);
 
+        // this is for mining DG
         const pointerContract = await Transactions.pointerContract(maticWeb3);
         setPointerContract(pointerContract);
 
+        // set up dg token contract (same for both pools)
         const DGTokenContract = new web3.eth.Contract(
           ABI_DG_TOKEN,
           addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDGTokenContract(DGTokenContract);
 
+        // matic contract to get DG balance on matic chain for modal
         const DGMaticContract = new maticWeb3.eth.Contract(
           ABI_DG_TOKEN,
           addresses.DG_TOKEN_MATIC
@@ -97,12 +100,17 @@ function DGBalances() {
         );
         setStakingContractTwo(stakingContractTwo);
 
+        // for airdrop stuff (don't touch)
         const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
         // POOL 1
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
+
+        // POOL 2
+        const BPTContractTwo = await Transactions.BPTContractTwo(web3);
+        setBPTContractTwo(BPTContractTwo);        
 
         setInstances(true); // contract instantiation complete
       }
@@ -151,7 +159,6 @@ function DGBalances() {
         console.log('DG BP balance pool 2: ' + balance_BP_DG);
         console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
 
-
         dispatch({
           type: 'dg_balances',
           data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic, MANA_total, balance_BP_DG_2, BPT_supply_1],
@@ -162,7 +169,13 @@ function DGBalances() {
 
         console.log('balance BPT (contract pool 1):  ' + balanceStaking[0]);
         console.log('balance DG (contract pool 1):  ' + balanceStaking[1]);
-        console.log('balance BPT (wallet pool 1):  ' + balanceStaking[2]);
+        console.log('balance BPT (staked pool 1):  ' + balanceStaking[2]);      
+        console.log('balance BPT (wallet pool 1):  ' + balanceStaking[3]);
+
+        console.log('balance BPT (contract pool 2):  ' + balanceStaking[4]);
+        console.log('balance DG (contract pool 2):  ' + balanceStaking[5]);
+        console.log('balance BPT (staked pool 2):  ' + balanceStaking[6]);  
+        console.log('balance BPT (wallet pool 2):  ' + balanceStaking[7]);
 
         dispatch({
           type: 'staking_balances',
@@ -243,6 +256,9 @@ function DGBalances() {
    /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool 2
+  // using 0xca54 (old pool) for testing as I have a balance here
+  // update to 0x444b3917f08a0c7a39267b1ec2f46713c5492db2 
+  // sorry for the confusing function names (this is pool 1!)
   async function getDGBalancer_2() {
     console.log("Get DG locked in Balancer pool 1");
 
@@ -407,9 +423,10 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's total staking contract & wallet DG balance
   async function getTokensStaking() {
-    console.log('Get staking DG & BPT balances');
+    console.log('Get staking DG & BPT balances pool 1');
 
     try {
+      // POOL 1
       const contractBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
         addresses.DG_STAKING_CONTRACT_ADDRESS,
@@ -434,14 +451,43 @@ function DGBalances() {
         3
       );
 
+      // POOL 2      
+      const contractBalanceBPTTwo = await Transactions.balanceOfToken(
+        BPT_CONTRACT_2,
+        addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+        3
+      );
+
+      const contractBalanceDGTwo = await Transactions.balanceOfToken(
+        DG_TOKEN_CONTRACT,
+        addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+        3
+      );
+
+      const stakedBalanceBPTTwo = await Transactions.balanceOfToken(
+        stakingContractTwo,
+        userAddress,
+        3
+      );
+
+      const walletBalanceBPTTwo = await Transactions.balanceOfToken(
+        BPT_CONTRACT_2,
+        userAddress,
+        3
+      );
+
       return [
         contractBalanceBPT,
         contractBalanceDG,
         stakedBalanceBPT,
         walletBalanceBPT,
+        contractBalanceBPTTwo,
+        contractBalanceDGTwo,
+        stakedBalanceBPTTwo,
+        walletBalanceBPTTwo,
       ];
     } catch (error) {
-      console.log('Staking DG & BPT balances error: ' + error);
+      console.log('Staking DG & BPT pool 1 balances error: ' + error);
     }
   }
 
@@ -449,3 +495,4 @@ function DGBalances() {
 }
 
 export default DGBalances;
+
