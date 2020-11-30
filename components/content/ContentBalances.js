@@ -10,9 +10,9 @@ import Fetch from '../../common/Fetch';
 
 let transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'PRODUCTION', // STAGING/PRODUCTION
+  environment: 'STAGING', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
-  themeColor: '000000', // theme color
+  themeColor: '#2085f4', // theme color
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
@@ -21,13 +21,14 @@ let transak_1 = new transakSDK({
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '100%',
+  exchangeScreenTitle: 'Buy Matic MANA directly',
 });
 
 let transak_2 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'PRODUCTION', // STAGING/PRODUCTION
+  environment: 'STAGING', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
-  themeColor: '000000', // theme color
+  themeColor: '#2085f4', // theme color
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
@@ -36,6 +37,7 @@ let transak_2 = new transakSDK({
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '100%',
+  exchangeScreenTitle: 'Buy Matic DAI directly',
 });
 
 const ContentBalances = (props) => {

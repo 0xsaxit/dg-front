@@ -25,6 +25,7 @@ const ContentFarming = (props) => {
 
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
+  const [manaPrice, setManaPrice] = useState(0);
 
   const rewardAmount = '10000000000000000000'; // hard-coded reward amount
 
@@ -40,10 +41,15 @@ const ContentFarming = (props) => {
       let temp_2 = json.DAI.bet_player / Global.CONSTANTS.FACTOR;
       let DAI_adjusted = temp_2.toLocaleString();
 
+      // calculate price of mana locked
+      let response_2 = await Fetch.MANA_PRICE();
+      let json_2 = await response_2.json();
+      
+      setManaPrice(json_2.market_data.current_price.usd);
       setTotalMANA(MANA_adjusted);
       setTotalDAI(DAI_adjusted);
     })();
-  }, [totalMANA, totalDAI]);
+  }, [totalMANA, totalDAI, manaPrice]);
 
 
   // usd value calculations
@@ -69,6 +75,13 @@ const ContentFarming = (props) => {
   const denominator = (total_locked * state.stakingBalances[0]);
   const APY_temp = (numerator / denominator) * 100;
   const APY = APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+
+  // player edge calculations
+  const DAI_edge_temp = ((price / 1000) * 100) - 0.5;
+  const DAI_edge = (DAI_edge_temp).toFixed(2);
+  const MANA_edge_temp = ((price / (16000 * manaPrice)) * 100) - 0.5;
+  const MANA_edge = (MANA_edge_temp).toFixed(2);
 
 
   // get initial reward and timestamp values
@@ -337,8 +350,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> total bet </p>
-                    <p className="earned-amount"> {totalMANA} </p>
+                    <p className="earned-text"> player edge </p>
+                    <p className="earned-amount"> {MANA_edge}% </p>
                   </span>
                 </span>
 
@@ -398,8 +411,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> total bet </p>
-                    <p className="earned-amount"> {totalDAI} </p>
+                    <p className="earned-text"> player edge </p>
+                    <p className="earned-amount"> {DAI_edge}% </p>
                   </span>
                 </span>
 

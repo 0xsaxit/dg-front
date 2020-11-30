@@ -3,7 +3,7 @@ import Fetch from '../common/Fetch';
 // third-party public API keys
 const KEYS = {
   BICONOMY_API: 'iW9B13586.996fe1e6-5969-40cb-b986-6ea37cfeec8f',
-  TRANSAK_API: '6f2cd88d-b241-4cdb-8f1a-a034cda14bf6',
+  TRANSAK_API: '4fcd6904-706b-4aff-bd9d-77422813bbb7',
   GOOGLE_ANALYTICS: 'UA-146057069-1',
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
 };
