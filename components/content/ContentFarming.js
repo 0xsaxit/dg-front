@@ -88,7 +88,7 @@ const ContentFarming = (props) => {
   // player edge calculations
   const DAI_edge_temp = ((price / 1000) * 100) - 0.5;
   const DAI_edge = (DAI_edge_temp).toFixed(2);
-  const MANA_edge_temp = ((price / (16000 * manaPrice)) * 100) - 0.5;
+  const MANA_edge_temp = ((price / (12000 * manaPrice)) * 100) - 0.5;
   const MANA_edge = (MANA_edge_temp).toFixed(2);
 
 
