@@ -12,7 +12,7 @@ const Chateau = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local loading variable
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [isZooming, setZooming] = useState(true);
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
