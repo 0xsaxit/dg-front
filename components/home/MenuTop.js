@@ -157,6 +157,14 @@ const MenuTop = () => {
               </Menu.Item>
             </a>
 
+            {state.userStatus > 4 ? (
+              <Link href="/dg">
+                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                  $DG
+                </Menu.Item>
+              </Link>
+            ) : null}
+
             <a href="/games">
               <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
                 GAMES
@@ -168,14 +176,6 @@ const MenuTop = () => {
                 NFTS
               </Menu.Item>
             </a>
-
-            {state.userStatus > 4 ? (
-              <Link href="/dg">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
-                  DG
-                </Menu.Item>
-              </Link>
-            ) : null}
 
             <a href="/blog">
               <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
@@ -196,6 +196,12 @@ const MenuTop = () => {
           <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
 
+        {state.userStatus > 4 ? (
+          <Link href="/dg">
+            <Menu.Item className={getLinkStyles('/dg')}>$DG</Menu.Item>
+          </Link>
+        ) : null}
+
         <Link href="/games">
           <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
         </Link>
@@ -203,12 +209,6 @@ const MenuTop = () => {
         <Link href="/nfts">
           <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
-
-        {state.userStatus > 4 ? (
-          <Link href="/dg">
-            <Menu.Item className={getLinkStyles('/dg')}>DG</Menu.Item>
-          </Link>
-        ) : null}
 
         <Link href="/blog">
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
