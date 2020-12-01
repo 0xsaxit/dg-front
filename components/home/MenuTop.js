@@ -169,6 +169,14 @@ const MenuTop = () => {
               </Menu.Item>
             </a>
 
+            {state.userStatus > 4 ? (
+              <Link href="/dg">
+                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                  DG
+                </Menu.Item>
+              </Link>
+            ) : null}
+
             <a href="/blog">
               <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
                 BLOG
