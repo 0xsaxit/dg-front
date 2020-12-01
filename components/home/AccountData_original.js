@@ -1,16 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Divider, Grid } from 'semantic-ui-react';
+// import ButtonAuthorize from '../button/ButtonAuthorize';
+// import ButtonEnable from '../button/ButtonEnable';
 
-import Link from 'next/link';
-import { Menu } from 'semantic-ui-react';
+// import ButtonTesting1 from '../button/ButtonTesting1';
 
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 
-const AccountData = (props) => {
+const AccountData = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
@@ -18,10 +19,7 @@ const AccountData = (props) => {
 
   // define local variables
   const [maximumCount, setMaximumCount] = useState(0);
-
-  // const [dataType, setDataType] = useState('balances');
-  const [dataType, setDataType] = useState(props.dataType);
-
+  const [dataType, setDataType] = useState('balances');
   const [dataLength, setDataLength] = useState(0);
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,14 +45,8 @@ const AccountData = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    // console.log('data type: ' + props.dataType);
-
-    setUserData(props.dataType, 1);
-  }, [props.dataType, isLoading]);
-
-  // useEffect(() => {
-  //   balancesOverlay(2);
-  // }, []);
+    balancesOverlay(2);
+  }, []);
 
   // close balances overlay on leaving page
   useEffect(() => {
@@ -148,31 +140,23 @@ const AccountData = (props) => {
               {dataType === 'balances' ? (
                 <b className="account-hover active">BALANCES</b>
               ) : (
-                // <abbr
-                //   className="account-hover"
-                //   onClick={() => setUserData('balances', 1)}
-                // >
-                //   BALANCES
-                // </abbr>
-
-                <Link href="/account">
-                  <Menu.Item className="account-hover">BALANCES</Menu.Item>
-                </Link>
+                <abbr
+                  className="account-hover"
+                  onClick={() => setUserData('balances', 1)}
+                >
+                  BALANCES
+                </abbr>
               )}
 
               {dataType === 'play' ? (
                 <b className="account-hover active">GAME HISTORY</b>
               ) : (
-                // <abbr
-                //   className="account-hover"
-                //   onClick={() => setUserData('play', 1)}
-                // >
-                //   GAME HISTORY
-                // </abbr>
-
-                <Link href="/account/play">
-                  <Menu.Item className="account-hover">GAME HISTORY</Menu.Item>
-                </Link>
+                <abbr
+                  className="account-hover"
+                  onClick={() => setUserData('play', 1)}
+                >
+                  GAME HISTORY
+                </abbr>
               )}
 
               {dataType === 'history' ? (
@@ -188,26 +172,22 @@ const AccountData = (props) => {
                   </b>
                 </span>
               ) : (
-                // <span>
-                //   <abb
-                //     className="account-hover"
-                //     id="account-txs-tab"
-                //     onClick={() => setUserData('history', 1)}
-                //   >
-                //     TRANSACTIONS
-                //   </abbr>
-                //   <abbr
-                //     className="account-hover"
-                //     id="account-txs-tab-mobile"
-                //     onClick={() => setUserData('history', 1)}
-                //   >
-                //     TXS
-                //   </abbr>
-                // </span>
-
-                <Link href="/account/history">
-                  <Menu.Item className="account-hover">TRANSACTIONS</Menu.Item>
-                </Link>
+                <span>
+                  <abbr
+                    className="account-hover"
+                    id="account-txs-tab"
+                    onClick={() => setUserData('history', 1)}
+                  >
+                    TRANSACTIONS
+                  </abbr>
+                  <abbr
+                    className="account-hover"
+                    id="account-txs-tab-mobile"
+                    onClick={() => setUserData('history', 1)}
+                  >
+                    TXS
+                  </abbr>
+                </span>
               )}
             </p>
           </div>
@@ -219,23 +199,18 @@ const AccountData = (props) => {
   }
 
   function setUserData(type, page) {
-    // console.log('set user data: ' + type);
-
     if (!isLoading) {
-      // console.log('here we are...');
-
       let result = [];
       const indexStart = (page - 1) * maximumCount;
       const indexEnd = indexStart + maximumCount;
       let overlay = 0;
       let dataLength = 0;
+
       if (type === 'balances') {
         result = true;
         overlay = 2;
         dataLength = 0;
       } else if (type === 'history') {
-        // console.log('history...');
-
         result = dataHistory.slice(indexStart, indexEnd);
         overlay = 0;
         dataLength = dataHistory.length;
@@ -244,6 +219,7 @@ const AccountData = (props) => {
         overlay = 0;
         dataLength = dataPlay.length;
       }
+
       setDataType(type);
       setDataPage(result);
       setDataLength(dataLength);
