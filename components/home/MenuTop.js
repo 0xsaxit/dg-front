@@ -196,9 +196,11 @@ const MenuTop = () => {
           <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
 
-        {/*<Link href="/dg">
-          <Menu.Item className={getLinkStyles('/dg')}>DG</Menu.Item>
-        </Link>*/}
+        {state.userStatus > 4 ? (
+          <Link href="/dg">
+            <Menu.Item className={getLinkStyles('/dg')}>DG</Menu.Item>
+          </Link>
+        ) : null}
 
         <Link href="/blog">
           <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
@@ -212,7 +214,7 @@ const MenuTop = () => {
     if (state.userStatus) {
       return (
         <span className="right-menu-items">
-          {router.pathname === '/dg' ? <ModalInfo /> : null}
+          <ModalInfo />
 
           <Link href="/account">
             <span className="menu-account-info">
