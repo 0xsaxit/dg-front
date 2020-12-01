@@ -180,10 +180,10 @@ const ContentBalances = (props) => {
       console.log('Ping token contract');
 
       // start pinging the token contract for deposit confirmation
-      dispatch({
-        type: 'token_pings',
-        data: 1,
-      });
+      // dispatch({
+      //   type: 'token_pings',
+      //   data: 1,
+      // });
     }
   }
 

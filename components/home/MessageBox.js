@@ -12,17 +12,24 @@ const MessageBox = (props) => {
       <span>
         <div className="deposit-notification-container">
           <Message className="deposit-notification-box">
-            {state.tokenPings === 1 ? // <Aux>
-            //   <p className="deposit-message-text top" style={{ fontSize: '16px', fontWeight: 'bold' }}>
-            //     Transaction Pending on Matic
-            //   </p>
-            //   <p className="deposit-message-text" style={{ fontSize: '16px' }}>
-            //     Matic balances will update once transaction is confirmed
-            //     <br />
-            //     (Normally 7 - 8 minutes)
-            //   </p>
-            // </Aux>
-            null : state.tokenPings === 2 ? (
+            {state.tokenPings === 1 ? (
+              <Aux>
+                <p
+                  className="deposit-message-text top"
+                  style={{ fontSize: '16px', fontWeight: 'bold' }}
+                >
+                  Transaction Pending on Matic
+                </p>
+                <p
+                  className="deposit-message-text"
+                  style={{ fontSize: '16px' }}
+                >
+                  Matic balances will update once transaction is confirmed
+                  <br />
+                  (Normally 7 - 8 minutes)
+                </p>
+              </Aux>
+            ) : state.tokenPings === 2 ? (
               <Aux>
                 <p
                   className="deposit-message-text top"
