@@ -45,7 +45,9 @@ const ContentBalances = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const dataPlay = state.transactions[1];
+
+  // const dataPlay = state.transactions[1];
+
   const [margin, setMargin] = useState('125px');
   const [boxDAI, setBoxDAI] = useState('none');
   const [boxMANA, setBoxMANA] = useState('none');
@@ -54,8 +56,8 @@ const ContentBalances = (props) => {
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
   const [totalPLAY, setTotalPLAY] = useState(0);
-  let userAddress = '';
 
+  let userAddress = '';
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -70,7 +72,6 @@ const ContentBalances = (props) => {
     }, 100);
     return () => clearInterval(interval);
   }, []);
-
 
   useEffect(() => {
     if (state.userStatus === 6) {
@@ -90,7 +91,6 @@ const ContentBalances = (props) => {
       setButtonMANA('none');
     }
   }, [state.userStatus]);
-
 
   useEffect(() => {
     // get all the events
@@ -120,15 +120,17 @@ const ContentBalances = (props) => {
     });
   }, []);
 
-
   // initialize transak modal
   function show_transak_1() {
     transak_1.init();
+
+    initializePings();
   }
   function show_transak_2() {
     transak_2.init();
-  }
 
+    initializePings();
+  }
 
   // get user address
   useEffect(() => {
@@ -136,7 +138,6 @@ const ContentBalances = (props) => {
       userAddress = window.web3.currentProvider.selectedAddress;
     }
   }, [state.userStatus]);
-
 
   // top up user to 5000 play tokens
   async function topUp() {
@@ -154,7 +155,6 @@ const ContentBalances = (props) => {
     });
   }
 
-
   // fetch total bet from API
   useEffect(() => {
     userAddress = state.userInfo[1];
@@ -162,12 +162,30 @@ const ContentBalances = (props) => {
     (async function () {
       const response = await Fetch.PLAYER_DATA(userAddress);
       const json = await response.json();
-      setTotalDAI((json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
-      setTotalMANA((json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());
-      setTotalPLAY((json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString());    
+      setTotalDAI(
+        (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+      setTotalMANA(
+        (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+      setTotalPLAY(
+        (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
     })();
   }, [totalDAI, totalMANA, totalDAI]);
 
+  // initialize token contract pings
+  function initializePings() {
+    if (state.userStatus >= 6) {
+      console.log('Ping token contract');
+
+      // start pinging the token contract for deposit confirmation
+      dispatch({
+        type: 'token_pings',
+        data: 1,
+      });
+    }
+  }
 
   // close function
   function close() {
@@ -203,7 +221,6 @@ const ContentBalances = (props) => {
     },
   };
 
-  
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccountPage() {
@@ -330,8 +347,8 @@ const ContentBalances = (props) => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">Total Winnings </p>
-              <p className="earned-amount"> {totalMANA} </p>
+              <p className="earned-text">Total Winnings</p>
+              <p className="earned-amount">{totalMANA}</p>
             </span>
 
             <Divider />
@@ -344,6 +361,7 @@ const ContentBalances = (props) => {
                   id="balances-padding-correct"
                   data-default-page="deposit"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                  onClick={() => initializePings()}
                 >
                   DEPOSIT
                 </Button>
@@ -353,6 +371,7 @@ const ContentBalances = (props) => {
                   id="balances-padding-correct"
                   data-default-page="withdraw"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                  onClick={() => initializePings()}
                 >
                   WITHDRAW
                 </Button>
@@ -369,7 +388,6 @@ const ContentBalances = (props) => {
                 <ButtonApproveMANA />
               </span>
             </div>
-
           </Grid.Column>
 
           <Grid.Column
@@ -398,7 +416,9 @@ const ContentBalances = (props) => {
                 }}
               >
                 <p className="welcome-text">Dai</p>
-                <p className="account-name">{parseInt(state.userBalances[0][1]).toLocaleString()}</p>
+                <p className="account-name">
+                  {parseInt(state.userBalances[0][1]).toLocaleString()}
+                </p>
               </span>
             </span>
 
@@ -417,8 +437,8 @@ const ContentBalances = (props) => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Winnings </p>
-              <p className="earned-amount"> {totalDAI} </p>
+              <p className="earned-text">Total Winnings</p>
+              <p className="earned-amount">{totalDAI}</p>
             </span>
 
             <Divider />
@@ -431,6 +451,7 @@ const ContentBalances = (props) => {
                   id="balances-padding-correct"
                   data-default-page="deposit"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                  onClick={() => initializePings()}
                 >
                   DEPOSIT
                 </Button>
@@ -440,6 +461,7 @@ const ContentBalances = (props) => {
                   id="balances-padding-correct"
                   data-default-page="deposit"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
+                  onClick={() => initializePings()}
                 >
                   WITHDRAW
                 </Button>
@@ -457,7 +479,6 @@ const ContentBalances = (props) => {
               </span>
             </div>
           </Grid.Column>
-
         </Grid.Row>
       </Grid>
     );
