@@ -12,8 +12,8 @@ const Chateau = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local loading variable
-  const [isLoading, setLoading] = useState(true);
-  const [isZooming, setZooming] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [isZooming, setZooming] = useState(false);
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -36,13 +36,6 @@ const Chateau = () => {
 
   // fetch daily top 3 from the server API
   useEffect(() => {
-
-    if (document.readyState === 'complete') {
-      console.log('complete');
-      setLoading(false);
-    } else {
-      console.log('incomplete');
-    }
 
     (async function () {
       let response = await Fetch.GAME_RECORDS();
@@ -126,12 +119,6 @@ const Chateau = () => {
   function getContent() {
     return (
       <div className="home-dashboard">
-        {isZooming ? (
-          !visited ? (
-            <span id="zoom-overlay" className="zoom-animation" />
-          ) : null
-        ) : null}
-
         {mainContent()}
       </div>
     );
@@ -504,11 +491,8 @@ const Chateau = () => {
     );
   }
 
-  if (isLoading && !visited) {
-    return <Spinner background={2} />;
-  } else {
     return getContent();
-  }
+
 };
 
 export default Chateau;
