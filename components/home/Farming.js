@@ -22,7 +22,7 @@ const Farming = () => {
 
   // define local variables
   const [DGstate, setDGState] = useState('token');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [addresses, setAddresses] = useState({});
 
   const [keeperContract, setKeeperContract] = useState({});
@@ -41,24 +41,21 @@ const Farming = () => {
   const whitelisted = Whitelist();
 
   useEffect(() => {
-    if (document.readyState === 'complete') {
-      setIsLoading(false);
-      const urlParam = window.location.href.split('?=')[1];
-      if (urlParam === undefined) {
-        router.push('?=token');
-        setDGState('token');
-      } else if (
-        urlParam === 'mining' ||
-        urlParam === 'liquidity' ||
-        urlParam === 'governance' ||
-        urlParam === 'admin'
-      ) {
-        router.push(`?=${urlParam}`);
-        setDGState(urlParam);
-      } else {
-        router.push('?=token');
-        setDGState('token');
-      }
+    const urlParam = window.location.href.split('?=')[1];
+    if (urlParam === undefined) {
+      router.push('?=token');
+      setDGState('token');
+    } else if (
+      urlParam === 'mining' ||
+      urlParam === 'liquidity' ||
+      urlParam === 'governance' ||
+      urlParam === 'admin'
+    ) {
+      router.push(`?=${urlParam}`);
+      setDGState(urlParam);
+    } else {
+      router.push('?=token');
+      setDGState('token');
     }
   }, []);
 
@@ -198,7 +195,7 @@ const Farming = () => {
   // stake, withdraw, get reward from pool 1
   async function staking(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const amountToString = amountAdjusted.toString();
+    const amountToString = web3.utils.toWei(amount);
     console.log('Staking amount input: ' + amountToString);
 
     try {
@@ -249,7 +246,7 @@ const Farming = () => {
     console.log('Call withdraw() function to unstake BP tokens');
 
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const amountToString = amountAdjusted.toString();
+    const amountToString = web3.utils.toWei(amount);
     console.log('Withdraw amount input: ' + amountToString);
 
     try {
@@ -298,7 +295,7 @@ const Farming = () => {
   // stake, withdraw, get reward from pool 2
   async function staking_2(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const amountToString = amountAdjusted.toString();
+    const amountToString = web3.utils.toWei(amount);
     console.log('Staking amount input: ' + amountToString);
 
     try {
@@ -349,7 +346,7 @@ const Farming = () => {
     console.log('Call withdraw() function to unstake BP tokens');
 
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const amountToString = amountAdjusted.toString();
+    const amountToString = web3.utils.toWei(amount);
     console.log('Withdraw amount input: ' + amountToString);
 
     try {
@@ -576,9 +573,7 @@ const Farming = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? (
-        <Spinner background={3} />
-      ) : (
+
         <div className="page-container">
           <div className="account-other-inner-container ">
             {submenu()}
@@ -606,7 +601,7 @@ const Farming = () => {
             />
           </div>
         </div>
-      )}
+  
     </div>
   );
 };
