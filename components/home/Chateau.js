@@ -12,8 +12,8 @@ const Chateau = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local loading variable
-  const [isLoading, setLoading] = useState(true);
-  const [isZooming, setZooming] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [isZooming, setZooming] = useState(false);
   const [realm, setRealm] = useState('');
   const [playerCount, setPlayerCount] = useState('');
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -32,6 +32,7 @@ const Chateau = () => {
   const [spotThree, setSpotThree] = useState('');
   const [spotThreeTotal, setSpotThreeTotal] = useState('');
   const [spotThreeAddress, setSpotThreeAddress] = useState('');
+
 
   // fetch daily top 3 from the server API
   useEffect(() => {
@@ -80,37 +81,37 @@ const Chateau = () => {
     }
   }, []);
 
-  // fetch user count from the server API
-  useEffect(() => {
-    setLoading(true);
+  // // fetch user count from the server API
+  // useEffect(() => {
+  //   setLoading(true);
 
-    (async function () {
-      let response = await Fetch.USER_NUMBERS();
-      let json = await response.json();
-      let temp = [];
+  //   (async function () {
+  //     let response = await Fetch.USER_NUMBERS();
+  //     let json = await response.json();
+  //     let temp = [];
 
-      // setTotalPlayers(json.totalPlayers);
-      setRealm(json.chateau.topServerRealm.realm);
-      setPlayerCount(json.chateau.topServerRealm.playerCount);
-      setOnlineUsers(json.chateau.totalAddresses);
-      setTotal(json.chateau.totalPlayers);
+  //     // setTotalPlayers(json.totalPlayers);
+  //     setRealm(json.chateau.topServerRealm.realm);
+  //     setPlayerCount(json.chateau.topServerRealm.playerCount);
+  //     setOnlineUsers(json.chateau.totalAddresses);
+  //     setTotal(json.chateau.totalPlayers);
 
-      for (const [index, value] of json.chateau.totalAddresses.entries()) {
-        temp.push(json.chateau.totalAddresses[index]);
-      }
+  //     for (const [index, value] of json.chateau.totalAddresses.entries()) {
+  //       temp.push(json.chateau.totalAddresses[index]);
+  //     }
 
-      setOnlineUsers(temp);
-      console.log('Total players: ' + total);
-      setLoading(false);
+  //     setOnlineUsers(temp);
+  //     console.log('Total players: ' + total);
+  //     setLoading(false);
 
 
-      const timer = setTimeout(() => {
-        setZooming(false);
-      }, 800);
+  //     const timer = setTimeout(() => {
+  //       setZooming(false);
+  //     }, 800);
 
-      return () => clearTimeout(timer);
-    })();
-  }, []);
+  //     return () => clearTimeout(timer);
+  //   })();
+  // }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -118,12 +119,6 @@ const Chateau = () => {
   function getContent() {
     return (
       <div className="home-dashboard">
-        {isZooming ? (
-          !visited ? (
-            <span id="zoom-overlay" className="zoom-animation" />
-          ) : null
-        ) : null}
-
         {mainContent()}
       </div>
     );
@@ -144,82 +139,84 @@ const Chateau = () => {
     );
   }
 
-  function playerNumbers() {
-    return (
-      <Aux>
-        <span className="user-numbers-container-1" style={{ display: 'flex' }}>
-          <div className="online-dot"></div>
+  // DON'T DELETE 
 
-          {!isLoading ? (
-            <span>
-              {total === 1 ? (
-                <p className="home-dashboard-p">
-                  {total} player online in Chateau Satoshi
-                </p>
-              ) : (
-                <p className="home-dashboard-p">
-                  {total} players online in Chateau Satoshi
-                </p>
-              )}
-            </span>
-          ) : null }
-        </span>
+  // function playerNumbers() {
+  //   return (
+  //     <Aux>
+  //       <span className="user-numbers-container-1" style={{ display: 'flex' }}>
+  //         <div className="online-dot"></div>
 
-        {onlineUsers.length > 10 ? (
-          <span style={{ display: 'flex' }}>
-            {onlineUsers.slice(0, 10).map((onlineUser) => {
-              return (
-                <span style={{ display: 'flex' }}>
-                  <img
-                    className="avatar-picture"
-                    src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
-                    style={{
-                      marginTop: '15px',
-                      marginRight: '12px',
-                      width: '3rem',
-                      height: '3rem',
-                      display: 'flex',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                      backgroundColor: 'white',
-                    }}
-                    alt="Decentraland Avatar Image"
-                  />
-                  <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
-                </span>
-              );
-            })}
-          </span>
-        ) : (
-          <span style={{ display: 'flex' }}>
-            {onlineUsers.map((onlineUser) => {
-              return (
-                <div>
-                  <img
-                    className="avatar-picture"
-                    src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
-                    style={{
-                      marginTop: '15px',
-                      marginRight: '12px',
-                      width: '3rem',
-                      height: '3rem',
-                      display: 'flex',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                      backgroundColor: 'white',
-                    }}
-                    alt="Decentraland Avatar Image"
-                  />
-                </div>
-              );
-            })}
-          </span>
-        )}
-      </Aux>
-    );
-  }
+  //         {!isLoading ? (
+  //           <span>
+  //             {total === 1 ? (
+  //               <p className="home-dashboard-p">
+  //                 {total} player online in Chateau Satoshi
+  //               </p>
+  //             ) : (
+  //               <p className="home-dashboard-p">
+  //                 {total} players online in Chateau Satoshi
+  //               </p>
+  //             )}
+  //           </span>
+  //         ) : null }
+  //       </span>
+
+  //       {onlineUsers.length > 10 ? (
+  //         <span style={{ display: 'flex' }}>
+  //           {onlineUsers.slice(0, 10).map((onlineUser) => {
+  //             return (
+  //               <span style={{ display: 'flex' }}>
+  //                 <img
+  //                   className="avatar-picture"
+  //                   src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+  //                   style={{
+  //                     marginTop: '15px',
+  //                     marginRight: '12px',
+  //                     width: '3rem',
+  //                     height: '3rem',
+  //                     display: 'flex',
+  //                     border: '1px solid rgb(227, 232, 238)',
+  //                     borderRadius: '100%',
+  //                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+  //                     backgroundColor: 'white',
+  //                   }}
+  //                   alt="Decentraland Avatar Image"
+  //                 />
+  //                 <p style={{ paddingTop: '21px' }}> + {onlineUsers.length - 10}</p>
+  //               </span>
+  //             );
+  //           })}
+  //         </span>
+  //       ) : (
+  //         <span style={{ display: 'flex' }}>
+  //           {onlineUsers.map((onlineUser) => {
+  //             return (
+  //               <div>
+  //                 <img
+  //                   className="avatar-picture"
+  //                   src={`https://events.decentraland.org/api/profile/${onlineUser}/face.png`}
+  //                   style={{
+  //                     marginTop: '15px',
+  //                     marginRight: '12px',
+  //                     width: '3rem',
+  //                     height: '3rem',
+  //                     display: 'flex',
+  //                     border: '1px solid rgb(227, 232, 238)',
+  //                     borderRadius: '100%',
+  //                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+  //                     backgroundColor: 'white',
+  //                   }}
+  //                   alt="Decentraland Avatar Image"
+  //                 />
+  //               </div>
+  //             );
+  //           })}
+  //         </span>
+  //       )}
+  //     </Aux>
+  //   );
+  // }
 
   function dailyTopThree() {
     return (
@@ -361,13 +358,12 @@ const Chateau = () => {
             <div className="home-dashboard-description">
               <h1
                 className="home-dashboard-mission"
-                style={{ marginBottom: '-12px' }}
+                style={{ marginBottom: '-15px' }}
               >
-                Hit the tables in a virtual casino
+                Be the house in the first metaverse casino
               </h1>
-              <h2 className="home-dashboard-h2">
-                Non-custodial, provably fair slots, roulette, blackjack, and
-                backgammon playable with crypto in Decentraland
+              <h2 className="home-dashboard-h2" style={{ marginBottom: '12px' }}>
+                $DG is rewarded for gameplay, liquidity provision, and governance.
               </h2>
               <span className="logged-out-button-span">
                 <ModalVideo />
@@ -378,9 +374,12 @@ const Chateau = () => {
                   target="_blank"
                   href="https://docs.decentral.games/getting-started"
                 >
-                  HOW TO PLAY
+                  HOW TO EARN $DG
                 </Button>
               </span>
+
+
+              {/* DON'T DELETE 
 
               <span
                 className="user-numbers-container-3"
@@ -451,7 +450,7 @@ const Chateau = () => {
                     );
                   })}
                 </span>
-              )}
+              )}*/}
             </div>
 
             {dailyTopThree()}
@@ -479,24 +478,21 @@ const Chateau = () => {
               target="_blank"
               href="https://docs.decentral.games/getting-started"
             >
-              HOW TO PLAY
+              HOW TO EARN $DG
             </Button>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
               Chateau Satoshi is an art deco themed metaverse casino built by Decentral Games in Decentraland. Enjoy non-custodial slots, roulette, and blackjack playable with crypto.
             </p>
 
-            {playerNumbers()}
+            {/*{playerNumbers()}*/}
           </div>
         )}
       </Aux>
     );
   }
 
-  if (isLoading && !visited) {
-    return <Spinner background={2} />;
-  } else {
-    return getContent();
-  }
+  return getContent();
+
 };
 
 export default Chateau;
