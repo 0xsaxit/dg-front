@@ -6,40 +6,25 @@ import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 import Spinner from '../components/Spinner';
-import Fetch from '../common/Fetch';
 
 
-const dg = (props) => {
+const dg = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables 
   const [isErrorMessage, setIsErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [localStatus, setLocalStatus] = useState(5);
-  let userAddress = '';
 
   useEffect(() => {
-    (async function () {
-      if (window.ethereum) {
-        userAddress = window.web3.currentProvider.selectedAddress;
-      } else {
-        userAddress = '';
-      }
-
-      const response = await Fetch.USER_STATUS(userAddress);
-      const json = await response.json();
-      setLocalStatus(json.result);
-
-      if (localStatus === 'false') {
-        setIsErrorMessage(true);
-        setIsLoading(false);
-      } else {
-        setIsErrorMessage(false);
-        setIsLoading(false);
-      }
-    })();
-  }, [localStatus, isLoading, isErrorMessage]);
+    if (state.userStatus > 4) {
+      setIsErrorMessage(false);
+      setIsLoading(false);
+    } else {
+      setIsErrorMessage(true);
+      setIsLoading(false);
+    }
+  }, [state.userStatus, state.userInfo]);
 
   return (
     <Layout>
@@ -49,7 +34,7 @@ const dg = (props) => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {isLoading ? (
+      {isLoading === true ? (
         <Spinner background={1} />
       ) : isErrorMessage === true ?  (
         <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
