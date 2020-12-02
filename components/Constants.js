@@ -17,7 +17,7 @@ const CONSTANTS = {
   GAS_AMOUNT: '80000000000', // was '20000000000'
   FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
-  ACTIVE_PERIOD: 5, // 43200, // user account active period: 3600 === 1 hour // 43200
+  ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
   MATIC_URL:
     'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9',
