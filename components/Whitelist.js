@@ -31,10 +31,10 @@ const Whitelist = () => {
         }
       }
 
-      // check every 10,000ms
+      // check every 3,000ms
       const interval = setInterval(() => {
         fetchData();
-      }, 10000);
+      }, 3000);
 
       return () => clearInterval(interval);
     }

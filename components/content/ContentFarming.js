@@ -3,11 +3,11 @@ import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Icon } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
-import ButtonReward from '../button/ButtonReward';
+import ButtonReward1 from '../button/ButtonReward1';
+import ButtonReward2 from '../button/ButtonReward2';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
-
 
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
@@ -20,6 +20,9 @@ const ContentFarming = (props) => {
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [amountInput2, setAmountInput2] = useState('');
+
+  const [amountInput3, setAmountInput3] = useState('10000000000000000000');
+
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [percentagePool2, setPercentagePool2] = useState(0);
 
@@ -29,8 +32,7 @@ const ContentFarming = (props) => {
   const [totalMANA, setTotalMANA] = useState(0);
   const [manaPrice, setManaPrice] = useState(0);
 
-  const rewardAmount = '10000000000000000000'; // hard-coded reward amount
-
+  // const rewardAmount = '10000000000000000000'; // hard-coded reward amount
 
   // fetch total bet from API
   useEffect(() => {
@@ -46,16 +48,15 @@ const ContentFarming = (props) => {
       // calculate price of mana locked
       let response_2 = await Fetch.MANA_PRICE();
       let json_2 = await response_2.json();
-      
+
       setManaPrice(json_2.market_data.current_price.usd);
       setTotalMANA(MANA_adjusted);
       setTotalDAI(DAI_adjusted);
     })();
   }, [totalMANA, totalDAI, manaPrice]);
 
-
   // usd value calculations
-  const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+  const temp = state.DGBalances[5] / (49 * state.DGBalances[4]);
   const price = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const temp_2 = price * state.DGBalances[0];
@@ -70,36 +71,37 @@ const ContentFarming = (props) => {
   const temp_5 = price * state.DGBalances[2];
   const PoolTwoUSD = temp_5.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-
   // APY value calculations for pool 1
-  const numerator = (51 * 2400 * price * state.DGBalances[10]);
-  const total_locked = ((state.DGBalances[4] * price) + Number(state.DGBalances[8]));
-  const denominator = (total_locked * state.stakingBalances[0]);
+  const numerator = 51 * 2400 * price * state.DGBalances[10];
+  const total_locked =
+    state.DGBalances[4] * price + Number(state.DGBalances[8]);
+  const denominator = total_locked * state.stakingBalances[0];
   const APY_temp = (numerator / denominator) * 100;
-  const manaAPY = (APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  const manaAPY = APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // APY value calculations for pool 2
-  const num = (51 * 2400 * price * state.DGBalances[11]);
-  const total_locked_2 = ((state.DGBalances[9] * price) + Number(state.DGBalances[5]));
-  const denom = (total_locked_2 * state.stakingBalances[4]);
+  const num = 51 * 2400 * price * state.DGBalances[11];
+  const total_locked_2 =
+    state.DGBalances[9] * price + Number(state.DGBalances[5]);
+  const denom = total_locked_2 * state.stakingBalances[4];
   const APY_temp_2 = (num / denom) * 100;
-  const daiAPY = (APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  const daiAPY = APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // player edge calculations
-  const DAI_edge_temp = ((price / 1000) * 100) - 0.5;
-  const DAI_edge = (DAI_edge_temp).toFixed(2);
-  const MANA_edge_temp = ((price / (12000 * manaPrice)) * 100) - 0.5;
-  const MANA_edge = (MANA_edge_temp).toFixed(2);
-
+  const DAI_edge_temp = (price / 1000) * 100 - 0.5;
+  const DAI_edge = DAI_edge_temp.toFixed(2);
+  const MANA_edge_temp = (price / (12000 * manaPrice)) * 100 - 0.5;
+  const MANA_edge = MANA_edge_temp.toFixed(2);
 
   // get initial reward and timestamp values
   useEffect(() => {
     if (props.instances) {
-      const rewardAdjusted = rewardAmount / Global.CONSTANTS.FACTOR;
+      // const rewardAdjusted = rewardAmount / Global.CONSTANTS.FACTOR;
+      const rewardAdjusted = amountInput3 / Global.CONSTANTS.FACTOR;
+
       rewardData(rewardAdjusted);
     }
   }, [props.instances]);
-
 
   useEffect(() => {
     if (props.instances) {
@@ -122,7 +124,6 @@ const ContentFarming = (props) => {
     }
   }, [props.instances, state.stakingBalances]);
 
-
   useEffect(() => {
     if (props.instances) {
       (async () => {
@@ -144,14 +145,12 @@ const ContentFarming = (props) => {
     }
   }, [props.instances, state.stakingBalances]);
 
-
   var onPool;
   if (poolSelect === 1) {
     onPool = () => setPoolSelect(2);
   } else {
     onPool = () => setPoolSelect(1);
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -164,9 +163,9 @@ const ContentFarming = (props) => {
               <h3 className="DG-h3">$DG | Decentral Games Governance Token</h3>
               <p>
                 {' '}
-                $DG is rewarded to players, liquidity providers, and governors of the decentral.games ecosystem.
-                $DG is not an investment. Learn more by
-                reading our
+                $DG is rewarded to players, liquidity providers, and governors
+                of the decentral.games ecosystem. $DG is not an investment.
+                Learn more by reading our
                 <a href="" target="_blank" style={{ color: '#2085f4' }}>
                   {' '}
                   announcement{' '}
@@ -250,8 +249,8 @@ const ContentFarming = (props) => {
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    Each Tominoya and Flamingos
-                    NFT Holder gets 120 DG with 20 week linear vesting.{' '}
+                    Each Tominoya and Flamingos NFT Holder gets 120 DG with 20
+                    week linear vesting.{' '}
                   </p>
                 </span>
               </span>
@@ -268,9 +267,8 @@ const ContentFarming = (props) => {
                   </p>
                   <p style={{ paddingTop: '15px' }}>
                     {' '}
-                    Each Ethereum address that has
-                    played our free play games within the last 4 months gets 10 DG (Cutoff:
-                    Nov 1, 2020).{' '}
+                    Each Ethereum address that has played our free play games
+                    within the last 4 months gets 10 DG (Cutoff: Nov 1, 2020).{' '}
                   </p>
                 </span>
               </span>
@@ -291,9 +289,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Gameplay Mining</h3>
               <p>
-                Mine $DG by playing games with MANA or DAI. Earn
-                bonuses by playing with friends, wearing DG
-                wearable NFTs, and referring friends. Read more about $DG gameplay mining in our{' '}
+                Mine $DG by playing games with MANA or DAI. Earn bonuses by
+                playing with friends, wearing DG wearable NFTs, and referring
+                friends. Read more about $DG gameplay mining in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
@@ -522,7 +520,11 @@ const ContentFarming = (props) => {
                   <span>
                     <span style={{ display: 'flex' }}>
                       <p className="welcome-text"> unclaimed 1</p>
-                      <Icon name="sort" id="pool-select-icon" onClick={onPool} />
+                      <Icon
+                        name="sort"
+                        id="pool-select-icon"
+                        onClick={onPool}
+                      />
                     </span>
                     <p className="account-name">{state.DGBalances[1]}</p>
                   </span>
@@ -530,7 +532,11 @@ const ContentFarming = (props) => {
                   <span>
                     <span style={{ display: 'flex' }}>
                       <p className="welcome-text"> unclaimed 2</p>
-                      <Icon name="sort" id="pool-select-icon" onClick={onPool} />
+                      <Icon
+                        name="sort"
+                        id="pool-select-icon"
+                        onClick={onPool}
+                      />
                     </span>
                     <p className="account-name">{state.DGBalances[2]}</p>
                   </span>
@@ -553,7 +559,7 @@ const ContentFarming = (props) => {
                 <p className="earned-text"> Value USD </p>
                 <p className="earned-amount"> ${PoolOneUSD} </p>
               </span>
-            ) : ( 
+            ) : (
               <span
                 style={{
                   display: 'flex',
@@ -629,12 +635,15 @@ const ContentFarming = (props) => {
               </span>
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a 
+                <a
                   href="https://pools.balancer.exchange/#/pool/0xca54c398195fce98856888b0fd97a9470a140f71/"
-                  target="_blank"                     
+                  target="_blank"
                   style={{ marginTop: '-75px', marginRight: '0px' }}
                 >
-                  <Icon className="more-text" name="external square alternate" />
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
                 </a>
               </span>
 
@@ -669,7 +678,14 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool 1</p>
-                    <p className="earned-amount"> {((state.stakingBalances[2] / state.stakingBalances[0]) * 100).toFixed(2)}% </p>
+                    <p className="earned-amount">
+                      {' '}
+                      {(
+                        (state.stakingBalances[2] / state.stakingBalances[0]) *
+                        100
+                      ).toFixed(2)}
+                      %{' '}
+                    </p>
                   </span>
                 </span>
               </div>
@@ -707,8 +723,8 @@ const ContentFarming = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      stake('stake', amountInput)
-                      setAmountInput('')
+                      stake('stake', amountInput);
+                      setAmountInput('');
                     }}
                   >
                     STAKE BPT
@@ -724,8 +740,8 @@ const ContentFarming = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      stake('withdraw', amountInput)
-                      setAmountInput('')
+                      stake('withdraw', amountInput);
+                      setAmountInput('');
                     }}
                   >
                     UNSTAKE BPT
@@ -760,12 +776,15 @@ const ContentFarming = (props) => {
               </span>
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a 
+                <a
                   href="https://pools.balancer.exchange/#/pool/0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d/"
-                  target="_blank"                     
+                  target="_blank"
                   style={{ marginTop: '-75px', marginRight: '0px' }}
                 >
-                  <Icon className="more-text" name="external square alternate" />
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
                 </a>
               </span>
 
@@ -800,7 +819,14 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool 2</p>
-                    <p className="earned-amount"> {((state.stakingBalances[6] / state.stakingBalances[4]) * 100).toFixed(2)}% </p>
+                    <p className="earned-amount">
+                      {' '}
+                      {(
+                        (state.stakingBalances[6] / state.stakingBalances[4]) *
+                        100
+                      ).toFixed(2)}
+                      %{' '}
+                    </p>
                   </span>
                 </span>
               </div>
@@ -838,8 +864,8 @@ const ContentFarming = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      stake_2('stake', amountInput2)
-                      setAmountInput2('')
+                      stake_2('stake', amountInput2);
+                      setAmountInput2('');
                     }}
                   >
                     STAKE BPT
@@ -855,8 +881,8 @@ const ContentFarming = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      stake_2('withdraw', amountInput2)
-                      setAmountInput2('')
+                      stake_2('withdraw', amountInput2);
+                      setAmountInput2('');
                     }}
                   >
                     UNSTAKE BPT
@@ -884,6 +910,12 @@ const ContentFarming = (props) => {
     console.log('New amount: ' + e.target.value);
 
     setAmountInput2(e.target.value);
+  }
+
+  function handleChange3(e) {
+    console.log('New amount: ' + e.target.value);
+
+    setAmountInput3(e.target.value);
   }
 
   function stake(type, amount) {
@@ -917,8 +949,8 @@ const ContentFarming = (props) => {
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
                 Staked $DG tokens are used to vote to allocate house profits and
-                receive $DG governance rewards. $DG Governance will go live in Q2 2021. Read more about
-                $DG governance in our{' '}
+                receive $DG governance rewards. $DG Governance will go live in
+                Q2 2021. Read more about $DG governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -1098,14 +1130,32 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p>BPT Balance in contract: {state.stakingBalances[0]}</p>
-              <p>DG Balance in contract: {state.stakingBalances[1]}</p>
+              <p>BPT balance in contract: {state.stakingBalances[0]}</p>
+              <p>DG balance in contract: {state.stakingBalances[1]}</p>
               <p>Current reward amount: {currenReward}</p>
               <p>Reward period finish time: {finishTime}</p>
+
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput3}
+                onChange={handleChange3}
+              />
+
+              <Divider />
+
               <p>
-                <ButtonReward
+                <ButtonReward1
                   stakingContract={props.stakingContract}
-                  rewardAmount={rewardAmount}
+                  rewardAmount={amountInput3}
+                  rewardData={(amount) => rewardData(amount)}
+                />
+              </p>
+              <p>
+                <ButtonReward2
+                  stakingContractTwo={props.stakingContractTwo}
+                  rewardAmount={amountInput3}
                   rewardData={(amount) => rewardData(amount)}
                 />
               </p>

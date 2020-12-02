@@ -34,7 +34,7 @@ function ButtonReward(props) {
     setDisabled(true);
 
     try {
-      const data = await props.stakingContract.methods
+      const data = await props.stakingContractTwo.methods
         .notifyRewardAmount(props.rewardAmount)
         .send({ from: userAddress });
 
@@ -55,12 +55,12 @@ function ButtonReward(props) {
   return (
     <Aux>
       {disabled ? (
-        <Button 
-          disabled 
+        <Button
+          disabled
           className="balances-authorize-button"
           id="balances-padding-correct"
         >
-          START REWARD CYCLE
+          START REWARD CYCLE (Pool 2)
         </Button>
       ) : (
         <Button
@@ -68,7 +68,7 @@ function ButtonReward(props) {
           id="balances-padding-correct"
           onClick={transactionReward}
         >
-          START REWARD CYCLE
+          START REWARD CYCLE (Pool 2)
         </Button>
       )}
     </Aux>
