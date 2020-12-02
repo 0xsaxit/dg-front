@@ -1,16 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
-
-import Link from 'next/link';
-
-import {
-  Menu,
-  Image,
-  Button,
-  Divider,
-  Dropdown,
-  Icon,
-} from 'semantic-ui-react';
+import { Image, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
 import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
@@ -117,31 +107,34 @@ const detailsCasinos = {
   ],
 };
 
-const Offerings = (props) => {
+const Offerings = () => {
+  const router = useRouter();
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
-  const [gameState, setGameState] = useState(props.gameState);
+  const [gameState, setGameState] = useState('');
   const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
 
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   const urlParam = ((window.location.href).split('?=')[1]);
-  //   if (urlParam === undefined) {
-  //     router.push('?=games');
-  //     setGameState('games');
-  //   } else if (urlParam === 'games' || urlParam === 'casinos' || urlParam === 'leaderboard') {
-  //     router.push(`?=${urlParam}`);
-  //     setGameState(urlParam);
-  //   } else {
-  //     router.push('?=games');
-  //     setNFTState('games');
-  //   }
-  // }, []);
+  useEffect(() => {
+    const urlParam = window.location.href.split('?=')[1];
+    if (urlParam === undefined) {
+      router.push('?=games');
+      setGameState('games');
+    } else if (
+      urlParam === 'games' ||
+      urlParam === 'casinos' ||
+      urlParam === 'leaderboard'
+    ) {
+      router.push(`?=${urlParam}`);
+      setGameState(urlParam);
+    } else {
+      router.push('?=games');
+      setNFTState('games');
+    }
+  }, []);
 
   function handleChange(value) {
     var gameSelect = '';
@@ -345,7 +338,7 @@ const Offerings = (props) => {
         {gameState === 'games' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
             <b className="account-hover active">OUR GAMES</b>{' '}
-            {/* <abbr
+            <abbr
               className="account-hover"
               onClick={() => {
                 setGameState('casinos');
@@ -353,11 +346,8 @@ const Offerings = (props) => {
               }}
             >
               OUR CASINOS
-            </abbr>{' '} */}
-            <Link href="/games/casinos">
-              <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
-            </Link>
-            {/* <abbr
+            </abbr>{' '}
+            <abbr
               className="account-hover"
               onClick={() => {
                 setGameState('leaderboard');
@@ -365,10 +355,7 @@ const Offerings = (props) => {
               }}
             >
               LEADERBOARD
-            </abbr> */}
-            <Link href="/games/leaderboard">
-              <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
-            </Link>
+            </abbr>
             <Divider
               className="tab-divider"
               style={{ marginTop: '18px', paddingBottom: '21px' }}
@@ -376,7 +363,7 @@ const Offerings = (props) => {
           </p>
         ) : gameState === 'casinos' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            {/* <abbr
+            <abbr
               className="account-hover"
               onClick={() => {
                 setGameState('games');
@@ -384,12 +371,9 @@ const Offerings = (props) => {
               }}
             >
               OUR GAMES
-            </abbr>{' '} */}
-            <Link href="/games">
-              <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
-            </Link>
+            </abbr>{' '}
             <b className="account-hover active">OUR CASINOS</b>{' '}
-            {/* <abbr
+            <abbr
               className="account-hover"
               onClick={() => {
                 setGameState('leaderboard');
@@ -397,10 +381,7 @@ const Offerings = (props) => {
               }}
             >
               LEADERBOARD
-            </abbr>{' '} */}
-            <Link href="/games/leaderboard">
-              <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
-            </Link>
+            </abbr>{' '}
             <Divider
               className="tab-divider"
               style={{ marginTop: '18px', paddingBottom: '21px' }}
@@ -410,7 +391,7 @@ const Offerings = (props) => {
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
-                {/* <abbr
+                <abbr
                   className="account-hover"
                   onClick={() => {
                     setGameState('games');
@@ -418,11 +399,8 @@ const Offerings = (props) => {
                   }}
                 >
                   OUR GAMES
-                </abbr>{' '} */}
-                <Link href="/games">
-                  <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
-                </Link>
-                {/* <abbr
+                </abbr>{' '}
+                <abbr
                   className="account-hover"
                   onClick={() => {
                     setGameState('casinos');
@@ -430,10 +408,7 @@ const Offerings = (props) => {
                   }}
                 >
                   OUR CASINOS
-                </abbr>{' '} */}
-                <Link href="/games/casinos">
-                  <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
-                </Link>
+                </abbr>{' '}
                 <b className="account-hover active">LEADERBOARD</b>{' '}
               </p>
             </span>

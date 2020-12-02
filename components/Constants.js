@@ -17,7 +17,7 @@ const CONSTANTS = {
   GAS_AMOUNT: '80000000000', // was '20000000000'
   FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
-  ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
+  ACTIVE_PERIOD: 5, // 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
   MATIC_URL:
     'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9',
@@ -58,10 +58,10 @@ const API_ADDRESSES = (async () => {
 
   const TOMINOYA_CONTRACT_ADDRESS = json.TOMINOYA_CONTRACT_ADDRESS;
 
-  const DG_TOKEN = "0xee06a81a695750e71a662b51066f2c74cf4478a0";
-  const DG_TOKEN_MATIC = "0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4";
-  const DAI_TOKEN = "0x6b175474e89094c44da98b954eedeac495271d0f";
-  const MANA_TOKEN = "0x0f5d2fb29fb7d3cfee444a200298f468908cc942";
+  const DG_TOKEN = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
+  const DG_TOKEN_MATIC = '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4';
+  const DAI_TOKEN = '0x6b175474e89094c44da98b954eedeac495271d0f';
+  const MANA_TOKEN = '0x0f5d2fb29fb7d3cfee444a200298f468908cc942';
 
   console.log('OWNER_ADDRESS: ' + OWNER_ADDRESS);
   console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);

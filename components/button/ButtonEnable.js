@@ -112,7 +112,7 @@ function ButtonEnable() {
         dispatchActiveStatus(activeStatus, txHash);
       }
     } catch (error) {
-      console.log(error);
+      console.log('Metatx error: ' + error);
     }
   }
 

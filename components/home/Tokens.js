@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Image, Button, Divider } from 'semantic-ui-react';
+
+import Link from 'next/link';
+
+import { Menu, Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from '../content/ContentNFTs';
 import Aux from '../_Aux';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner';
 import { useRouter } from 'next/router';
-
 
 const detailsNFTs = {
   tominoya: [
@@ -82,28 +84,29 @@ const detailsNFTs = {
   ],
 };
 
-const Tokens = () => {
-  const router = useRouter()
+const Tokens = (props) => {
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [NFTstate, setNFTState] = useState('');
+  const [NFTState, setNFTState] = useState(props.NFTState);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const urlParam = ((window.location.href).split('?=')[1]);
-    if (urlParam === undefined) {
-      router.push('?=buy');
-      setNFTState('buy');
-    } else if (urlParam === 'buy' || urlParam === 'my') {
-      router.push(`?=${urlParam}`);
-      setNFTState(urlParam);
-    } else {
-      router.push('?=buy');
-      setNFTState('buy');
-    }
-  }, []);
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   const urlParam = window.location.href.split('?=')[1];
+  //   if (urlParam === undefined) {
+  //     router.push('?=buy');
+  //     setNFTState('buy');
+  //   } else if (urlParam === 'buy' || urlParam === 'my') {
+  //     router.push(`?=${urlParam}`);
+  //     setNFTState(urlParam);
+  //   } else {
+  //     router.push('?=buy');
+  //     setNFTState('buy');
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (Object.keys(state.parcelDataUser).length) {
@@ -118,74 +121,84 @@ const Tokens = () => {
     return (
       <span>
         <div className="DG-liquidity-container top">
-          <div className="DG-column top" style={{ marginBottom: '21px', marginTop: '6px' }}>
+          <div
+            className="DG-column top"
+            style={{ marginBottom: '21px', marginTop: '6px' }}
+          >
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p> Each Decentral Games Decentraland wearable NFT gives a +10% $DG mining bonus while equipped. A maximum of 4 wearables (+40% bonus) may be equipped at a single time. To read more about $DG wearable mining bonuses, see our docs.
+              <p>
+                {' '}
+                Each Decentral Games Decentraland wearable NFT gives a +10% $DG
+                mining bonus while equipped. A maximum of 4 wearables (+40%
+                bonus) may be equipped at a single time. To read more about $DG
+                wearable mining bonuses, see our docs.
               </p>
             </span>
           </div>
         </div>
-      <div className="outter-nft-container">
-        {Object.keys(detailsNFTs).map((item, i) => (
-          <a href={detailsNFTs[item][5]} className="nft-container">
-            <div key={i}>
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="nft-image"
-              >
-                <Image
-                  src={detailsNFTs[item][0]}
-                  className={detailsNFTs[item][1]}
-                  style={{ borderRadius: '4px' }}
-                />
-              </span>
-              <div className="nft-description">
-                <h3 className="nft-other-h3">{detailsNFTs[item][2]}</h3>
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className="nfts-info">{detailsNFTs[item][3]}</p>
-                </span>
-
-                <Divider
-                  style={{
-                    margin: '10px 0px 15px 0px',
-                    width: 'calc(100% + 60px)',
-                    marginLeft: '-30px',
-                  }}
-                />
-
-                <p
-                  className="nft-other-p"
-                  style={{
-                    marginTop: '-12px',
-                    paddingTop: '15px',
-                    textAlign: 'center',
-                  }}
+        <div className="outter-nft-container">
+          {Object.keys(detailsNFTs).map((item, i) => (
+            <a href={detailsNFTs[item][5]} className="nft-container">
+              <div key={i}>
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
                 >
-                  {detailsNFTs[item][4]}
-                </p>
-
-                <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Button
-                    color="blue"
-                    className="nft-button"
-                    target="_blank"
-                    href={detailsNFTs[item][5]}
-                  >
-                    PURCHASE NFT
-                  </Button>
-                  <Button
-                    className="nft-read-button"
-                    target="_blank"
-                    href={detailsNFTs[item][6]}
-                  >
-                    READ MORE
-                  </Button>
+                  <Image
+                    src={detailsNFTs[item][0]}
+                    className={detailsNFTs[item][1]}
+                    style={{ borderRadius: '4px' }}
+                  />
                 </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{detailsNFTs[item][2]}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className="nfts-info">{detailsNFTs[item][3]}</p>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {detailsNFTs[item][4]}
+                  </p>
+
+                  <span
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <Button
+                      color="blue"
+                      className="nft-button"
+                      target="_blank"
+                      href={detailsNFTs[item][5]}
+                    >
+                      PURCHASE NFT
+                    </Button>
+                    <Button
+                      className="nft-read-button"
+                      target="_blank"
+                      href={detailsNFTs[item][6]}
+                    >
+                      READ MORE
+                    </Button>
+                  </span>
+                </div>
               </div>
-            </div>
-          </a>
-        ))}
-      </div>
+            </a>
+          ))}
+        </div>
       </span>
     );
   }
@@ -218,30 +231,37 @@ const Tokens = () => {
   function submenu() {
     return (
       <div className="account-other-tabs">
-        {NFTstate === 'buy' ? (
+        {NFTState === 'buy' ? (
           <p className="account-other-p">
             <b className="account-hover active">BUY NFTS</b>{' '}
-            <abbr 
-              className="account-hover" 
+            {/* <abbr
+              className="account-hover"
               onClick={() => {
-                setNFTState('my')
-                router.push('?=my')
+                setNFTState('my');
+                router.push('?=my');
               }}
-              >
-                MY NFTS
-            </abbr>
+            >
+              MY NFTS
+            </abbr> */}
+            <Link href="/nfts/my">
+              <Menu.Item className="account-hover">MY NFTS</Menu.Item>
+            </Link>
           </p>
         ) : (
           <p className="account-other-p">
-            <abbr 
-              className="account-hover" 
+            {/* <abbr
+              className="account-hover"
               onClick={() => {
-                setNFTState('buy')
-                router.push('?=buy')
+                setNFTState('buy');
+                router.push('?=buy');
               }}
             >
               BUY NFTS
-            </abbr>{' '}
+            </abbr>{' '} */}
+            <Link href="/nfts">
+              <Menu.Item className="account-hover">BUY NFTS</Menu.Item>
+            </Link>
+
             <b className="account-hover active">MY NFTS</b>
           </p>
         )}
@@ -255,9 +275,12 @@ const Tokens = () => {
         <div className="account-other-inner-container ">
           {submenu()}
 
-          <Divider className="tab-divider" style={{ marginTop: '18px', paddingBottom: '21px' }} />
+          <Divider
+            className="tab-divider"
+            style={{ marginTop: '18px', paddingBottom: '21px' }}
+          />
 
-          {NFTstate === 'my' ? myNFTs() : buyNFTs()}
+          {NFTState === 'my' ? myNFTs() : buyNFTs()}
         </div>
       </div>
     </div>

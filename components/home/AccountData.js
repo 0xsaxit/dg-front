@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Divider, Grid } from 'semantic-ui-react';
 
 import Link from 'next/link';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Divider, Grid } from 'semantic-ui-react';
 
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
