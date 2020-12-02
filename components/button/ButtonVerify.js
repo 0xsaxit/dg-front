@@ -22,7 +22,10 @@ const ButtonVerify = () => {
   async function openMetaMask() {
     if (window.web3) {
       // open MataMask for login then get the user's wallet address
+
       await window.ethereum.enable();
+      // await window.eth_requestAccounts();
+
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // set global user status based on value stored in database. if no value present

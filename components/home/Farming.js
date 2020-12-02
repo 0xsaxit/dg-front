@@ -179,13 +179,21 @@ const Farming = (props) => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        const arrayNew = state.DGBalances.slice();
-        arrayNew[0] = 0;
+        // const arrayNew = state.DGBalances.slice();
+        // arrayNew[0] = 0;
 
-        // update global state unclaimed DG balance to 0
+        // // update global state unclaimed DG balance to 0
+        // dispatch({
+        //   type: 'dg_balances',
+        //   data: arrayNew,
+        // });
+
+        // update global state BPT balances
+        const refresh = !state.refreshBalances;
+
         dispatch({
-          type: 'dg_balances',
-          data: arrayNew,
+          type: 'refresh_balances',
+          data: refresh,
         });
       }
     } catch (error) {

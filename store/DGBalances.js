@@ -8,7 +8,6 @@ import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
 
-
 function DGBalances() {
   // dispatch user's unclaimed DG balance to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -30,7 +29,6 @@ function DGBalances() {
   const [DAI_BPT, setDAI_BPT] = useState({});
   const [DG_BPT_2, setDG_BPT_2] = useState({});
   const [MANA_BPT, setMANA_BPT] = useState({});
-
 
   let interval = {};
   let currentTime = 0;
@@ -65,10 +63,7 @@ function DGBalances() {
         );
         setDGMaticContract(DGMaticContract);
 
-        const DG_BPT = new web3.eth.Contract(
-          ABI_DG_TOKEN,
-          addresses.DG_TOKEN
-        );
+        const DG_BPT = new web3.eth.Contract(ABI_DG_TOKEN, addresses.DG_TOKEN);
         setDG_BPT(DG_BPT);
 
         const DAI_BPT = new web3.eth.Contract(
@@ -93,7 +88,7 @@ function DGBalances() {
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
-        // POOL 2 
+        // POOL 2
         const stakingContractTwo = await Transactions.stakingContractTwo(web3);
         setStakingContractTwo(stakingContractTwo);
 
@@ -107,7 +102,7 @@ function DGBalances() {
 
         // POOL 2
         const BPTContractTwo = await Transactions.BPTContractTwo(web3);
-        setBPTContractTwo(BPTContractTwo);        
+        setBPTContractTwo(BPTContractTwo);
 
         setInstances(true); // contract instantiation complete
       }
@@ -134,17 +129,17 @@ function DGBalances() {
         let response = await Fetch.MANA_PRICE();
         let json = await response.json();
         let temp = json.market_data.current_price.usd;
-        const MANA_total = (temp * balance_BP_MANA);
+        const MANA_total = temp * balance_BP_MANA;
 
         // get BPT supply of pool 1
         let response_2 = await Fetch.BPT_SUPPLY_1();
         let json_2 = await response_2.json();
-        const BPT_supply_1 = (json_2.result / Global.CONSTANTS.FACTOR);
+        const BPT_supply_1 = json_2.result / Global.CONSTANTS.FACTOR;
 
         // get BPT supply of pool 2
         let response_3 = await Fetch.BPT_SUPPLY_2();
         let json_3 = await response_3.json();
-        const BPT_supply_2 = (json_3.result / Global.CONSTANTS.FACTOR);
+        const BPT_supply_2 = json_3.result / Global.CONSTANTS.FACTOR;
 
         console.log('DG points balance gameplay: ' + balanceDG1);
         console.log('DG points balance pool 1: ' + balanceDG2);
@@ -164,7 +159,20 @@ function DGBalances() {
 
         dispatch({
           type: 'dg_balances',
-          data: [balanceDG1, balanceDG2, balanceDG3, balanceDG4, balance_BP_DG, balance_BP_DAI, balance_DG_main, balance_DG_matic, MANA_total, balance_BP_DG_2, BPT_supply_1, BPT_supply_2],
+          data: [
+            balanceDG1,
+            balanceDG2,
+            balanceDG3,
+            balanceDG4,
+            balance_BP_DG,
+            balance_BP_DAI,
+            balance_DG_main,
+            balance_DG_matic,
+            MANA_total,
+            balance_BP_DG_2,
+            BPT_supply_1,
+            BPT_supply_2,
+          ],
         });
 
         // update global state staking DG and balancer pool tokens
@@ -172,12 +180,12 @@ function DGBalances() {
 
         console.log('balance BPT (contract pool 1):  ' + balanceStaking[0]);
         console.log('balance DG (contract pool 1):  ' + balanceStaking[1]);
-        console.log('balance BPT (staked pool 1):  ' + balanceStaking[2]);      
+        console.log('balance BPT (staked pool 1):  ' + balanceStaking[2]);
         console.log('balance BPT (wallet pool 1):  ' + balanceStaking[3]);
 
         console.log('balance BPT (contract pool 2):  ' + balanceStaking[4]);
         console.log('balance DG (contract pool 2):  ' + balanceStaking[5]);
-        console.log('balance BPT (staked pool 2):  ' + balanceStaking[6]);  
+        console.log('balance BPT (staked pool 2):  ' + balanceStaking[6]);
         console.log('balance BPT (wallet pool 2):  ' + balanceStaking[7]);
 
         dispatch({
@@ -196,14 +204,22 @@ function DGBalances() {
       if (currentTime < state.stakeTime) {
         interval = setInterval(() => {
           (async () => {
-            const balanceDGStaking = await getDGBalanceStaking();
-            const arrayNew = state.DGBalances.slice();
+            // const balanceDGStaking = await getDGBalanceStaking();
+            // const arrayNew = state.DGBalances.slice();
 
-            arrayNew[1] = balanceDGStaking;
+            // arrayNew[1] = balanceDGStaking;
+
+            // dispatch({
+            //   type: 'dg_balances',
+            //   data: arrayNew,
+            // });
+
+            // update global state BPT balances
+            const refresh = !state.refreshBalances;
 
             dispatch({
-              type: 'dg_balances',
-              data: arrayNew,
+              type: 'refresh_balances',
+              data: refresh,
             });
           })();
 
@@ -216,17 +232,14 @@ function DGBalances() {
     }
   }, [state.stakeTime]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get mainchain DG balance
   async function getDGMainchain() {
-    console.log("Get Mainchain DG balance");
+    console.log('Get Mainchain DG balance');
 
     try {
-      const amount = await DG_BPT.methods
-        .balanceOf(userAddress)
-        .call();
+      const amount = await DG_BPT.methods.balanceOf(userAddress).call();
 
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -235,13 +248,12 @@ function DGBalances() {
       console.log('No DG balance found: ' + error);
     }
   }
-  
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get matic DG balance
   async function getDGMatic() {
-    console.log("Get Matic DG balance");
+    console.log('Get Matic DG balance');
 
     try {
       const amount = await DG_MATIC_CONTRACT.methods
@@ -256,20 +268,20 @@ function DGBalances() {
     }
   }
 
-   /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool 2
   // using 0xca54 (old pool) for testing as I have a balance here
-  // update to 0x444b3917f08a0c7a39267b1ec2f46713c5492db2 
+  // update to 0x444b3917f08a0c7a39267b1ec2f46713c5492db2
   // sorry for the confusing function names (this is pool 1!)
   async function getDGBalancer_2() {
-    console.log("Get DG locked in Balancer pool 1");
+    console.log('Get DG locked in Balancer pool 1');
 
     try {
       const amount = await DG_BPT_2.methods
         .balanceOf('0xca54c398195fce98856888b0fd97a9470a140f71')
         .call();
-      
+
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;
@@ -282,13 +294,13 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get MANA locked in balancer pool 2
   async function getMANABalancer() {
-    console.log("Get MANA locked in Balancer pool 1");
+    console.log('Get MANA locked in Balancer pool 1');
 
     try {
       const amount = await MANA_BPT.methods
         .balanceOf('0xca54c398195fce98856888b0fd97a9470a140f71')
         .call();
-      
+
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;
@@ -297,12 +309,11 @@ function DGBalances() {
     }
   }
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool
   async function getDGBalancer() {
-    console.log("Get DG locked in Balancer pool 2");
+    console.log('Get DG locked in Balancer pool 2');
 
     try {
       const amount = await DG_BPT.methods
@@ -321,13 +332,13 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DAI locked in balancer pool
   async function getDAIBalancer() {
-    console.log("Get DAI locked in Balancer pool 2");
+    console.log('Get DAI locked in Balancer pool 2');
 
     try {
       const amount = await DAI_BPT.methods
         .balanceOf('0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d')
         .call();
-      
+
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;
@@ -378,7 +389,9 @@ function DGBalances() {
     console.log("Get user's DG staking balance from smart contract for pool 2");
 
     try {
-      const amount = await stakingContractTwo.methods.earned(userAddress).call();
+      const amount = await stakingContractTwo.methods
+        .earned(userAddress)
+        .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;
@@ -409,10 +422,9 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG balance in balancer pool
   async function getDG() {
-
     try {
       const amount = await DGTokenContract.methods
-        .balanceOf(0x3Cf393b95a4fbf9B2BdfC2011Fd6675Cf51d3e5d)
+        .balanceOf(0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d)
         .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -454,7 +466,7 @@ function DGBalances() {
         3
       );
 
-      // POOL 2      
+      // POOL 2
       const contractBalanceBPTTwo = await Transactions.balanceOfToken(
         BPT_CONTRACT_2,
         addresses.DG_STAKING_CONTRACT_ADDRESS_2,
@@ -498,4 +510,3 @@ function DGBalances() {
 }
 
 export default DGBalances;
-
