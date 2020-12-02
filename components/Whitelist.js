@@ -31,7 +31,7 @@ const Whitelist = () => {
         }
       }
 
-      // check every 1000ms
+      // check every 10,000ms
       const interval = setInterval(() => {
         fetchData();
       }, 10000);
