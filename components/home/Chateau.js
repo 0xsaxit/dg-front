@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Loader } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner';
 import Aux from '../_Aux';
-import Fetch from '../../common/Fetch';
-import MessageBox from './MessageBox';
+// import Fetch from '../../common/Fetch';
+// import MessageBox from './MessageBox';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
