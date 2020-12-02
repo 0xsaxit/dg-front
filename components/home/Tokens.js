@@ -6,8 +6,9 @@ import Link from 'next/link';
 import { Menu, Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from '../content/ContentNFTs';
 import Aux from '../_Aux';
+
 // import Spinner from '../Spinner';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 const detailsNFTs = {
   tominoya: [
@@ -92,7 +93,7 @@ const Tokens = (props) => {
   const [NFTState, setNFTState] = useState(props.NFTState);
   const [isLoading, setIsLoading] = useState(true);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   // useEffect(() => {
   //   const urlParam = window.location.href.split('?=')[1];

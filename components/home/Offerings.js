@@ -15,7 +15,8 @@ import ContentGames from '../content/ContentGames';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
-import { useRouter } from 'next/router';
+
+// import { useRouter } from 'next/router';
 
 const options = [
   {
@@ -127,7 +128,7 @@ const Offerings = (props) => {
   const [gameState, setGameState] = useState(props.gameState);
   const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   // useEffect(() => {
   //   const urlParam = ((window.location.href).split('?=')[1]);
