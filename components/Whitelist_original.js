@@ -20,20 +20,23 @@ const Whitelist = () => {
         const json = await response.json();
         const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
 
+        // console.log('user address: ' + userAddress);
+        // console.log('array upper-case: ' + arrayUpperCase);
+
         // setAdminAddresses(arrayUpperCase);
         if (arrayUpperCase.includes(userAddress)) {
+          // console.log('return true');
+
           setWhitelisted(true);
         }
       }
 
-      fetchData();
-
       // check every 3,000ms
-      // const interval = setInterval(() => {
-      //   fetchData();
-      // }, 3000);
+      const interval = setInterval(() => {
+        fetchData();
+      }, 3000);
 
-      // return () => clearInterval(interval);
+      return () => clearInterval(interval);
     }
   }, [state.userStatus]);
 
