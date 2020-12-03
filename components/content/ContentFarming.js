@@ -166,7 +166,7 @@ const ContentFarming = (props) => {
                 $DG is rewarded to players, liquidity providers, and governors
                 of the decentral.games ecosystem. $DG is not an investment.
                 Learn more by reading our
-                <a href="" target="_blank" style={{ color: '#2085f4' }}>
+                <a href="https://decentral.games/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino" target="_blank" style={{ color: '#2085f4' }}>
                   {' '}
                   announcement{' '}
                 </a>
