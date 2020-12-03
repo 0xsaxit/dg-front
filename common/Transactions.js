@@ -119,7 +119,7 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
     if (units) {
       amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(units);
     } else {
-      amountAdjusted = amount / Global.CONSTANTS.FACTOR;
+      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toString();
     }
 
     return amountAdjusted;
