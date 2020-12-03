@@ -32,6 +32,12 @@
   #add-funds-mobile-padding {
     padding-right: 15px !important;
   }
+  .mobile-display-none-name {
+    display: none;
+  }
+  #mobile-avatar-picture {
+    margin-right: -6px;
+  }
 }
 
 #mobile-menu-icon:hover,
@@ -50,12 +56,6 @@
 }
 
 @media (max-width: 499px) {
-  .mobile-display-none-name {
-    display: none;
-  }
-  #mobile-avatar-picture {
-    margin-right: -6px;
-  }
   .ui.button.modal-deposit-button {
     display: none;
   }
@@ -64,6 +64,9 @@
   }
   #menu-logo {
     margin-left: 15px;
+  }
+  #add-funds-mobile-padding {
+    display: none;
   }
   #mobile-menu-icon,
   #mobile-menu-icon-home {
