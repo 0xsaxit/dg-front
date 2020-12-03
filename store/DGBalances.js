@@ -457,13 +457,13 @@ function DGBalances() {
       const stakedBalanceBPT = await Transactions.balanceOfToken(
         stakingContract,
         userAddress,
-        3
+        0
       );
 
       const walletBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
         userAddress,
-        3
+        0
       );
 
       // POOL 2
@@ -482,13 +482,13 @@ function DGBalances() {
       const stakedBalanceBPTTwo = await Transactions.balanceOfToken(
         stakingContractTwo,
         userAddress,
-        3
+        0
       );
 
       const walletBalanceBPTTwo = await Transactions.balanceOfToken(
         BPT_CONTRACT_2,
         userAddress,
-        3
+        0
       );
 
       return [

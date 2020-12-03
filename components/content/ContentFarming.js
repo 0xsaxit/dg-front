@@ -556,8 +556,8 @@ const ContentFarming = (props) => {
                   paddingBottom: '11px',
                 }}
               >
-                <p className="earned-text"> Value USD </p>
-                <p className="earned-amount"> ${PoolOneUSD} </p>
+                <p className="earned-text">Value USD</p>
+                <p className="earned-amount">${PoolOneUSD}</p>
               </span>
             ) : (
               <span
@@ -569,8 +569,8 @@ const ContentFarming = (props) => {
                   paddingBottom: '11px',
                 }}
               >
-                <p className="earned-text"> Value USD </p>
-                <p className="earned-amount"> ${PoolTwoUSD} </p>
+                <p className="earned-text">Value USD</p>
+                <p className="earned-amount">${PoolTwoUSD}</p>
               </span>
             )}
 
@@ -629,8 +629,8 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> pool 1 </p>
-                  <p className="account-name"> MANA-DG </p>
+                  <p className="welcome-text">pool 1</p>
+                  <p className="account-name">MANA-DG</p>
                 </span>
               </span>
 
@@ -1023,7 +1023,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> Staked DG</p>
+                  <p className="welcome-text">Staked DG</p>
                   <p className="account-name">0</p>
                 </span>
               </span>
@@ -1039,7 +1039,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> % of gov pool </p>
+                    <p className="earned-text">% of gov pool</p>
                     <p className="earned-amount"> ... </p>
                   </span>
                 </span>
@@ -1058,7 +1058,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Treasury </p>
+                    <p className="earned-text">Treasury</p>
                     <p className="earned-amount"> ... </p>
                   </span>
                 </span>
@@ -1071,8 +1071,8 @@ const ContentFarming = (props) => {
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <p className="bpt-text"> 0 DG </p>
-                <p className="bpt-text"> 0 DG staked</p>
+                <p className="bpt-text">0 DG</p>
+                <p className="bpt-text">0 DG staked</p>
               </span>
 
               <span className="DG-button-span">
