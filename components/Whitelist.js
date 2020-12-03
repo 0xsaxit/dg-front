@@ -27,13 +27,6 @@ const Whitelist = () => {
       }
 
       fetchData();
-
-      // check every 3,000ms
-      // const interval = setInterval(() => {
-      //   fetchData();
-      // }, 3000);
-
-      // return () => clearInterval(interval);
     }
   }, [state.userStatus]);
 
