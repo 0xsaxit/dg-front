@@ -88,9 +88,9 @@ const ContentFarming = (props) => {
   const daiAPY = APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // player edge calculations
-  const DAI_edge_temp = (price / 1000) * 100 - 0.5;
+  const DAI_edge_temp = (price / 2000) * 100 - 0.5;
   const DAI_edge = DAI_edge_temp.toFixed(2);
-  const MANA_edge_temp = (price / (12000 * manaPrice)) * 100 - 0.5;
+  const MANA_edge_temp = (price / (24000 * manaPrice)) * 100 - 0.5;
   const MANA_edge = MANA_edge_temp.toFixed(2);
 
   // get initial reward and timestamp values
