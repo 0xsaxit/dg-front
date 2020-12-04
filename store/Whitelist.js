@@ -7,7 +7,8 @@ const Whitelist = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [whitelisted, setWhitelisted] = useState(false);
+  // const [whitelisted, setWhitelisted] = useState(false);
+  let whitelisted = false;
 
   useEffect(() => {
     if (state.userStatus) {
@@ -20,17 +21,25 @@ const Whitelist = () => {
         const json = await response.json();
         const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
 
-        // setAdminAddresses(arrayUpperCase);
+        // if (arrayUpperCase.includes(userAddress)) {
+        //   setWhitelisted(true);
+        // }
+
         if (arrayUpperCase.includes(userAddress)) {
-          setWhitelisted(true);
+          whitelisted = true;
         }
+
+        dispatch({
+          type: 'set_whitelisted',
+          data: whitelisted,
+        });
       }
 
       fetchData();
     }
   }, [state.userStatus]);
 
-  return whitelisted;
+  return null;
 };
 
 export default Whitelist;

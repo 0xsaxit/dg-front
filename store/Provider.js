@@ -41,6 +41,7 @@ const initialState = {
   stakeTime: 0,
   affiliateAddress: '',
   toggleTheme: 'light',
+  whitelisted: false,
 };
 
 const reducer = (state, action) => {
@@ -181,6 +182,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         theme: action.data,
+      };
+
+    case 'set_whitelisted':
+      return {
+        ...state,
+        whitelisted: action.data,
       };
 
     default:

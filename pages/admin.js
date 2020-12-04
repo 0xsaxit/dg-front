@@ -1,13 +1,18 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../store';
 import Administration from '../components/home/Administration';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
-import Whitelist from '../components/Whitelist';
+// import Whitelist from '../components/Whitelist';
 
 const Admin = () => {
+  // get whitelisted value from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   // define local variables
-  const whitelisted = Whitelist();
+  // const whitelisted = Whitelist();
 
   return (
     <Layout>
@@ -17,7 +22,7 @@ const Admin = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {whitelisted ? (
+      {state.whitelisted ? (
         <Administration />
       ) : (
         <div className="account-other-inner-p">

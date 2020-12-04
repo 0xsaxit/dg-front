@@ -13,7 +13,7 @@ import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
-import Whitelist from '../Whitelist';
+// import Whitelist from '../Whitelist';
 
 // import { useRouter } from 'next/router';
 
@@ -41,7 +41,7 @@ const Farming = (props) => {
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
 
-  const whitelisted = Whitelist();
+  // const whitelisted = Whitelist();
   // const router = useRouter();
 
   // useEffect(() => {
@@ -513,7 +513,7 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {whitelisted ? (
+            {state.whitelisted ? (
               DGState === 'admin' ? (
                 <b className="account-hover active">ADMIN</b>
               ) : (

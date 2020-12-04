@@ -19,6 +19,7 @@ import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
 import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
+import Whitelist from '../store/Whitelist';
 
 class Application extends App {
   render() {
@@ -39,6 +40,7 @@ class Application extends App {
         <AdminBalances />
         <AdminData />
         <DGBalances />
+        <Whitelist />
 
         <Component {...pageProps} />
       </Provider>
