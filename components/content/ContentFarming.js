@@ -976,7 +976,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed</p>
-                <p className="account-name">{state.DGBalances[2]}</p>
+                <p className="account-name">0.000</p>
               </span>
             </span>
 
@@ -992,7 +992,7 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ... </p>
+              <p className="earned-amount"> $0.00 </p>
             </span>
 
             <Divider />
@@ -1024,7 +1024,7 @@ const ContentFarming = (props) => {
                 />
                 <span className="farming-pool-span">
                   <p className="welcome-text">Staked DG</p>
-                  <p className="account-name">0</p>
+                  <p className="account-name">0.000</p>
                 </span>
               </span>
 
@@ -1040,7 +1040,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of gov pool</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 0.00% </p>
                   </span>
                 </span>
 
@@ -1059,7 +1059,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">Treasury</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount"> 0.000 </p>
                   </span>
                 </span>
               </div>
