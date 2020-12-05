@@ -88,9 +88,9 @@ const ContentFarming = (props) => {
   const daiAPY = APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // player edge calculations
-  const DAI_edge_temp = (price / 1000) * 100 - 0.5;
+  const DAI_edge_temp = (price / 2000) * 100 - 0.5;
   const DAI_edge = DAI_edge_temp.toFixed(2);
-  const MANA_edge_temp = (price / (12000 * manaPrice)) * 100 - 0.5;
+  const MANA_edge_temp = (price / (24000 * manaPrice)) * 100 - 0.5;
   const MANA_edge = MANA_edge_temp.toFixed(2);
 
   // get initial reward and timestamp values
@@ -402,7 +402,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> 12K MANA : 1 DG </p>
+                    <p className="earned-amount"> 24K MANA : 1 DG </p>
                   </span>
                 </span>
               </div>
@@ -463,7 +463,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> 1K DAI : 1 DG </p>
+                    <p className="earned-amount"> 2K DAI : 1 DG </p>
                   </span>
                 </span>
               </div>
@@ -979,8 +979,8 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed</p>
-                <p className="account-name">{state.DGBalances[2]}</p>
+                <p className="welcome-text"> Unclaimed</p>
+                <p className="account-name">0.000</p>
               </span>
             </span>
 
@@ -995,8 +995,8 @@ const ContentFarming = (props) => {
                 paddingBottom: '11px',
               }}
             >
-              <p className="earned-text">Value USD</p>
-              <p className="earned-amount">...</p>
+              <p className="earned-text"> Value USD </p>
+              <p className="earned-amount"> $0.00 </p>
             </span>
 
             <Divider />
@@ -1028,7 +1028,7 @@ const ContentFarming = (props) => {
                 />
                 <span className="farming-pool-span">
                   <p className="welcome-text">Staked DG</p>
-                  <p className="account-name">0</p>
+                  <p className="account-name">0.000</p>
                 </span>
               </span>
 
@@ -1044,7 +1044,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of gov pool</p>
-                    <p className="earned-amount">...</p>
+                    <p className="earned-amount"> 0.00% </p>
                   </span>
                 </span>
 
@@ -1063,7 +1063,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">Treasury</p>
-                    <p className="earned-amount">...</p>
+                    <p className="earned-amount"> 0.000 </p>
                   </span>
                 </span>
               </div>
