@@ -6,7 +6,7 @@ import Images from '../../common/Images';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
 import Global from '../Constants';
-import Transactions from '../../common/Transactions';
+// import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
 
 const ContentFarming = (props) => {
@@ -166,7 +166,11 @@ const ContentFarming = (props) => {
                 $DG is rewarded to players, liquidity providers, and governors
                 of the decentral.games ecosystem. $DG is not an investment.
                 Learn more by reading our
-                <a href="https://decentral.games/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino" target="_blank" style={{ color: '#2085f4' }}>
+                <a
+                  href="https://decentral.games/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                  target="_blank"
+                  style={{ color: '#2085f4' }}
+                >
                   {' '}
                   announcement{' '}
                 </a>
@@ -975,7 +979,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed</p>
+                <p className="welcome-text">Unclaimed</p>
                 <p className="account-name">{state.DGBalances[2]}</p>
               </span>
             </span>
@@ -991,8 +995,8 @@ const ContentFarming = (props) => {
                 paddingBottom: '11px',
               }}
             >
-              <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> ... </p>
+              <p className="earned-text">Value USD</p>
+              <p className="earned-amount">...</p>
             </span>
 
             <Divider />
@@ -1040,7 +1044,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of gov pool</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount">...</p>
                   </span>
                 </span>
 
@@ -1059,7 +1063,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">Treasury</p>
-                    <p className="earned-amount"> ... </p>
+                    <p className="earned-amount">...</p>
                   </span>
                 </span>
               </div>

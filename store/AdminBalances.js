@@ -1,9 +1,11 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-// import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import Global from '../components/Constants';
+
+// import ADDRESSES from '../common/Addresses';
+
 import Transactions from '../common/Transactions';
 
 function AdminBalances() {
@@ -21,9 +23,12 @@ function AdminBalances() {
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
-        workerAddress = addresses.WORKER_ADDRESS;
-        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+        // const addresses = await ADDRESSES('foo');
+        workerAddress = state.addresses.WORKER_ADDRESS;
+        contractAddress = state.addresses.TREASURY_CONTRACT_ADDRESS;
+
+        // console.log('addresses...' + workerAddress);
+        // console.log('addresses...' + contractAddress);
 
         const balance = await getEthBalance();
         balances = await getTokenBalances();
@@ -111,11 +116,13 @@ function AdminBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get total funds and individual game amounts
   async function getTokenBalances() {
-    const addresses = await Global.API_ADDRESSES;
+    // const addresses = await ADDRESSES('foo');
+
+    // console.log('address foo: ' + state.addresses.CHILD_TOKEN_ADDRESS_MANA);
 
     const tokenContract = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_MANA,
-      addresses.CHILD_TOKEN_ADDRESS_MANA
+      state.addresses.CHILD_TOKEN_ADDRESS_MANA
     );
 
     try {
@@ -157,7 +164,10 @@ function AdminBalances() {
     //   ABI_TREASURY_CONTRACT,
     //   contractAddress
     // );
-    const parentContract = await Transactions.treasuryContract(maticWeb3);
+    const parentContract = await Transactions.treasuryContract(
+      state.addresses,
+      maticWeb3
+    );
 
     try {
       const amount = await parentContract.methods

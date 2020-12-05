@@ -1,0 +1,118 @@
+import { useEffect, useContext } from 'react';
+import { GlobalContext } from './index';
+import Fetch from '../common/Fetch';
+
+function Addresses() {
+  // get user's status value from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
+  let OWNER_ADDRESS = '';
+  let WORKER_ADDRESS = '';
+  let ROOT_TOKEN_ADDRESS_DAI = '';
+  let ROOT_TOKEN_ADDRESS_MANA = '';
+  let ROOT_TOKEN_ADDRESS_DG = '';
+  let CHILD_TOKEN_ADDRESS_DAI = '';
+  let CHILD_TOKEN_ADDRESS_MANA = '';
+  let CHILD_TOKEN_ADDRESS_DG = '';
+  let TREASURY_CONTRACT_ADDRESS = '';
+  let DG_POINTER_CONTRACT_ADDRESS = '';
+  let DG_STAKING_CONTRACT_ADDRESS = '';
+  let DG_STAKING_CONTRACT_ADDRESS_2 = '';
+  let DG_GOVERNANCE_CONTRACT_ADDRESS = '';
+  let DG_KEEPER_CONTRACT_ADDRESS = '';
+  let BP_TOKEN_ADDRESS = '';
+  let BP_TOKEN_ADDRESS_2 = '';
+  let TOMINOYA_CONTRACT_ADDRESS = '';
+  // let DG_TOKEN = '';
+  // let DG_TOKEN_MATIC = '';
+  // let DAI_TOKEN = '';
+  // let MANA_TOKEN = '';
+
+  useEffect(() => {
+    if (window.ethereum) {
+      (async function () {
+        const response = await Fetch.GET_ADDRESSES();
+        let json = await response.json();
+
+        OWNER_ADDRESS = json.OWNER_ADDRESS;
+        WORKER_ADDRESS = json.WORKER_WALLET_ADDRESS;
+        ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
+        ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
+        ROOT_TOKEN_ADDRESS_DG = json.ROOT_TOKEN_ADDRESS_DG;
+        CHILD_TOKEN_ADDRESS_DAI = json.CHILD_TOKEN_ADDRESS_DAI;
+        CHILD_TOKEN_ADDRESS_MANA = json.CHILD_TOKEN_ADDRESS_MANA;
+        CHILD_TOKEN_ADDRESS_DG = json.CHILD_TOKEN_ADDRESS_DG;
+        TREASURY_CONTRACT_ADDRESS = json.TREASURY_CONTRACT_ADDRESS;
+        DG_POINTER_CONTRACT_ADDRESS = json.DG_POINTER_CONTRACT_ADDRESS;
+        DG_STAKING_CONTRACT_ADDRESS = json.DG_STAKING_CONTRACT_ADDRESS;
+        DG_STAKING_CONTRACT_ADDRESS_2 = json.DG_STAKING_CONTRACT_ADDRESS_2;
+        DG_GOVERNANCE_CONTRACT_ADDRESS = json.DG_GOVERNANCE_CONTRACT_ADDRESS;
+        DG_KEEPER_CONTRACT_ADDRESS = json.DG_KEEPER_CONTRACT_ADDRESS;
+        BP_TOKEN_ADDRESS = json.BP_TOKEN_ADDRESS;
+        BP_TOKEN_ADDRESS_2 = json.BP_TOKEN_ADDRESS_2;
+        TOMINOYA_CONTRACT_ADDRESS = json.TOMINOYA_CONTRACT_ADDRESS;
+
+        // DG_TOKEN = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
+        // DG_TOKEN_MATIC = '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4';
+        // DAI_TOKEN = '0x6b175474e89094c44da98b954eedeac495271d0f';
+        // MANA_TOKEN = '0x0f5d2fb29fb7d3cfee444a200298f468908cc942';
+
+        console.log('OWNER_ADDRESS: ' + OWNER_ADDRESS);
+        console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
+        console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
+        console.log('ROOT_TOKEN_ADDRESS_MANA: ' + ROOT_TOKEN_ADDRESS_MANA);
+        console.log('ROOT_TOKEN_ADDRESS_DG: ' + ROOT_TOKEN_ADDRESS_DG);
+        console.log('CHILD_TOKEN_ADDRESS_DAI: ' + CHILD_TOKEN_ADDRESS_DAI);
+        console.log('CHILD_TOKEN_ADDRESS_MANA: ' + CHILD_TOKEN_ADDRESS_MANA);
+        console.log('CHILD_TOKEN_ADDRESS_DG: ' + CHILD_TOKEN_ADDRESS_DG);
+        console.log('TREASURY_CONTRACT_ADDRESS: ' + TREASURY_CONTRACT_ADDRESS);
+        console.log(
+          'DG_POINTER_CONTRACT_ADDRESS: ' + DG_POINTER_CONTRACT_ADDRESS
+        );
+        console.log(
+          'DG_STAKING_CONTRACT_ADDRESS: ' + DG_STAKING_CONTRACT_ADDRESS
+        );
+        console.log(
+          'DG_GOVERNANCE_CONTRACT_ADDRESS: ' + DG_GOVERNANCE_CONTRACT_ADDRESS
+        );
+        console.log(
+          'DG_KEEPER_CONTRACT_ADDRESS: ' + DG_KEEPER_CONTRACT_ADDRESS
+        );
+        console.log('BP_TOKEN_ADDRESS: ' + BP_TOKEN_ADDRESS);
+        console.log('TOMINOYA_CONTRACT_ADDRESS: ' + TOMINOYA_CONTRACT_ADDRESS);
+
+        dispatch({
+          type: 'api_addresses',
+          data: {
+            OWNER_ADDRESS: OWNER_ADDRESS,
+            WORKER_ADDRESS: WORKER_ADDRESS,
+            ROOT_TOKEN_ADDRESS_DAI: ROOT_TOKEN_ADDRESS_DAI,
+            ROOT_TOKEN_ADDRESS_MANA: ROOT_TOKEN_ADDRESS_MANA,
+            ROOT_TOKEN_ADDRESS_DG: ROOT_TOKEN_ADDRESS_DG,
+            CHILD_TOKEN_ADDRESS_DAI: CHILD_TOKEN_ADDRESS_DAI,
+            CHILD_TOKEN_ADDRESS_MANA: CHILD_TOKEN_ADDRESS_MANA,
+            CHILD_TOKEN_ADDRESS_DG: CHILD_TOKEN_ADDRESS_DG,
+            TREASURY_CONTRACT_ADDRESS: TREASURY_CONTRACT_ADDRESS,
+            DG_POINTER_CONTRACT_ADDRESS: DG_POINTER_CONTRACT_ADDRESS,
+            DG_STAKING_CONTRACT_ADDRESS: DG_STAKING_CONTRACT_ADDRESS,
+            DG_STAKING_CONTRACT_ADDRESS_2: DG_STAKING_CONTRACT_ADDRESS_2,
+            DG_GOVERNANCE_CONTRACT_ADDRESS: DG_GOVERNANCE_CONTRACT_ADDRESS,
+            DG_KEEPER_CONTRACT_ADDRESS: DG_KEEPER_CONTRACT_ADDRESS,
+            BP_TOKEN_ADDRESS: BP_TOKEN_ADDRESS,
+            BP_TOKEN_ADDRESS_2: BP_TOKEN_ADDRESS_2,
+            TOMINOYA_CONTRACT_ADDRESS: TOMINOYA_CONTRACT_ADDRESS,
+            // DG_TOKEN: DG_TOKEN,
+            // DG_TOKEN_MATIC: DG_TOKEN_MATIC,
+            // DAI_TOKEN: DAI_TOKEN,
+            // MANA_TOKEN: MANA_TOKEN,
+          },
+        });
+      })();
+    }
+  }, []);
+
+  return null;
+}
+
+export default Addresses;

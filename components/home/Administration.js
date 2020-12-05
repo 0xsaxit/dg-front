@@ -58,7 +58,10 @@ const Administration = () => {
       // setMaticWeb3(maticWeb3);
 
       (async function () {
-        const parentContract = await Transactions.treasuryContract(maticWeb3);
+        const parentContract = await Transactions.treasuryContract(
+          state.addresses,
+          maticWeb3
+        );
         setParentContract(parentContract);
 
         setInstances(true);

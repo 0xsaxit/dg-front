@@ -42,6 +42,7 @@ const initialState = {
   affiliateAddress: '',
   toggleTheme: 'light',
   whitelisted: false,
+  addresses: [],
 };
 
 const reducer = (state, action) => {
@@ -188,6 +189,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         whitelisted: action.data,
+      };
+
+    case 'api_addresses':
+      return {
+        ...state,
+        addresses: action.data,
       };
 
     default:

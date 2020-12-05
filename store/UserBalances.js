@@ -4,8 +4,10 @@ import Web3 from 'web3';
 import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
-// import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+
 import Global from '../components/Constants';
+// import ADDRESSES from '../common/Addresses';
+
 import Fetch from '../common/Fetch';
 import Transactions from '../common/Transactions';
 
@@ -130,15 +132,15 @@ function UserBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on mainnet and Matic networks
   async function getTokenBalances() {
-    const addresses = await Global.API_ADDRESSES;
+    // const addresses = await ADDRESSES('foo');
 
     const tokenContractRoot = new web3.eth.Contract(
       ABI_ROOT_TOKEN,
-      addresses.ROOT_TOKEN_ADDRESS_MANA
+      state.addresses.ROOT_TOKEN_ADDRESS_MANA
     );
     const tokenContractChild = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_MANA,
-      addresses.CHILD_TOKEN_ADDRESS_MANA
+      state.addresses.CHILD_TOKEN_ADDRESS_MANA
     );
 
     // const DAIContractRoot = new maticWeb3.eth.Contract(
@@ -147,7 +149,7 @@ function UserBalances() {
     // );
     const DAIContractChild = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_DAI,
-      addresses.CHILD_TOKEN_ADDRESS_DAI
+      state.addresses.CHILD_TOKEN_ADDRESS_DAI
     );
 
     // const DGContractRoot = new web3.eth.Contract(

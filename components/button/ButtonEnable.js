@@ -5,7 +5,9 @@ import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
+
 import MetaTx from '../../common/MetaTx';
+
 import Aux from '../_Aux';
 import Transactions from '../../common/Transactions';
 
@@ -47,7 +49,10 @@ function ButtonEnable() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        const parentContract = await Transactions.treasuryContract(getWeb3);
+        const parentContract = await Transactions.treasuryContract(
+          state.addresses,
+          getWeb3
+        );
         setParentContract(parentContract);
       })();
 
@@ -105,6 +110,7 @@ function ButtonEnable() {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         const activeStatus = await Transactions.getActiveStatus(
+          state.addresses,
           userAddress,
           maticWeb3
         );
