@@ -1,6 +1,3 @@
-// import { useState, useEffect, useContext } from 'react';
-// import { GlobalContext } from '../store';
-
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
@@ -8,12 +5,9 @@ import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import ABI_DG_KEEPER from '../components/ABI/ABIDGKeeper';
 import Global from '../components/Constants';
 
-// import ADDRESSES from './Addresses';
-
 // set treasury contract instance
-async function treasuryContract(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
-  // const [state, dispatch] = useContext(GlobalContext);
+async function treasuryContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const treasuryContract = new web3Default.eth.Contract(
     ABI_TREASURY_CONTRACT,
@@ -24,10 +18,10 @@ async function treasuryContract(addresses, web3Default) {
 }
 
 // get user's active status (true or false) from smart contract
-async function getActiveStatus(addresses, userAddress, web3Default) {
+async function getActiveStatus(userAddress, web3Default) {
   console.log("Get user's active status from smart contract");
 
-  const parentContract = await treasuryContract(addresses, web3Default);
+  const parentContract = await treasuryContract(web3Default);
 
   try {
     const activeStatus = await parentContract.methods
@@ -41,8 +35,8 @@ async function getActiveStatus(addresses, userAddress, web3Default) {
 }
 
 // set pointer contract instance
-async function pointerContract(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
+async function pointerContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const DGPointerContract = new web3Default.eth.Contract(
     ABI_DG_POINTER,
@@ -53,8 +47,8 @@ async function pointerContract(addresses, web3Default) {
 }
 
 // set staking contract instance dg pool 1
-async function stakingContract(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
+async function stakingContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
@@ -65,8 +59,8 @@ async function stakingContract(addresses, web3Default) {
 }
 
 // set staking contract instance dg pool 2
-async function stakingContractTwo(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
+async function stakingContractTwo(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const DGStakingContractTwo = new web3Default.eth.Contract(
     ABI_DG_STAKING,
@@ -77,8 +71,8 @@ async function stakingContractTwo(addresses, web3Default) {
 }
 
 // set staking contract instance bpt pool 1
-async function BPTContract(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
+async function BPTContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const BPTokenContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
@@ -89,8 +83,8 @@ async function BPTContract(addresses, web3Default) {
 }
 
 // set staking contract instance bpt pool 2
-async function BPTContractTwo(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
+async function BPTContractTwo(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const BPTokenContractTwo = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
@@ -101,8 +95,8 @@ async function BPTContractTwo(addresses, web3Default) {
 }
 
 // set keeper contract instance
-async function keeperContract(addresses, web3Default) {
-  // const addresses = await ADDRESSES('foo');
+async function keeperContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
 
   const DGKeeperContract = new web3Default.eth.Contract(
     ABI_DG_KEEPER,
@@ -115,8 +109,6 @@ async function keeperContract(addresses, web3Default) {
 // get user or contract token balance from MetaMask
 async function balanceOfToken(tokenContract, userOrContractAddress, units) {
   console.log('Get balance of token');
-
-  // console.log('address: ' + userOrContractAddress);
 
   try {
     const amount = await tokenContract.methods

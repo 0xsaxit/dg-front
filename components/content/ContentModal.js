@@ -30,10 +30,7 @@ const ContentModal = (props) => {
       setWeb3(web3);
 
       (async function () {
-        const parentContract = await Transactions.treasuryContract(
-          state.addresses,
-          web3
-        );
+        const parentContract = await Transactions.treasuryContract(web3);
         setParentContract(parentContract);
 
         setInstances(true);

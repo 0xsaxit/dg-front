@@ -20,7 +20,6 @@ import AdminBalances from '../store/AdminBalances';
 import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
 import Whitelist from '../store/Whitelist';
-import Addresses from '../store/Addresses';
 
 class Application extends App {
   render() {
@@ -28,7 +27,6 @@ class Application extends App {
 
     return (
       <Provider store={store}>
-        <Addresses />
         <UserStatus />
         <UserBalances />
         <BalancesEvents />

@@ -6,11 +6,7 @@ import { Button } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import ABI_CHILD_TOKEN_DAI from '../ABI/ABIChildTokenDAI';
 import Global from '../Constants';
-
-// import ADDRESSES from '../../common/Addresses';
-
 import Fetch from '../../common/Fetch';
-
 import MetaTx from '../../common/MetaTx';
 
 function ButtonApproveMANA() {
@@ -54,14 +50,14 @@ function ButtonApproveMANA() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        // const addresses = await ADDRESSES('foo');
+        const addresses = await Global.API_ADDRESSES;
 
-        const spenderAddress = state.addresses.TREASURY_CONTRACT_ADDRESS;
+        const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
         setSpenderAddress(spenderAddress);
 
         const tokenContract = new getWeb3.eth.Contract(
           ABI_CHILD_TOKEN_DAI,
-          state.addresses.CHILD_TOKEN_ADDRESS_DAI
+          addresses.CHILD_TOKEN_ADDRESS_DAI
         );
 
         setTokenContract(tokenContract);

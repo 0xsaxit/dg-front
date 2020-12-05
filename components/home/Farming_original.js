@@ -87,40 +87,25 @@ const Farming = () => {
 
       async function fetchData() {
         // mining contract
-        const pointerContract = await Transactions.pointerContract(
-          state.addresses,
-          getWeb3
-        );
+        const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
 
         // POOL 1
-        const stakingContract = await Transactions.stakingContract(
-          state.addresses,
-          web3
-        );
+        const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
         // POOL 2
-        const stakingContractTwo = await Transactions.stakingContractTwo(
-          state.addresses,
-          web3
-        );
+        const stakingContractTwo = await Transactions.stakingContractTwo(web3);
         setStakingContractTwo(stakingContractTwo);
 
-        const BPTContractTwo = await Transactions.BPTContractTwo(
-          state.addresses,
-          web3
-        );
+        const BPTContractTwo = await Transactions.BPTContractTwo(web3);
         setBPTContractTwo(BPTContractTwo);
 
         // vesting contract for airdrops ect
-        const keeperContract = await Transactions.keeperContract(
-          state.addresses,
-          web3
-        );
+        const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
         setInstances(true); // contract instantiation complete

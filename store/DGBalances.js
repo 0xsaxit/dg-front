@@ -8,8 +8,6 @@ import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
 
-// import ADDRESSES from '../common/Addresses';
-
 function DGBalances() {
   // dispatch user's unclaimed DG balance to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -44,92 +42,74 @@ function DGBalances() {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        // const addresses = await ADDRESSES('foo');
-        // setAddresses(addresses);
+        const addresses = await Global.API_ADDRESSES;
+        setAddresses(addresses);
 
         // this is for mining DG
-        const pointerContract = await Transactions.pointerContract(
-          state.addresses,
-          maticWeb3
-        );
+        const pointerContract = await Transactions.pointerContract(maticWeb3);
         setPointerContract(pointerContract);
 
         // set up dg token contract (same for both pools)
         const DGTokenContract = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          state.addresses.ROOT_TOKEN_ADDRESS_DG
+          addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDGTokenContract(DGTokenContract);
 
         // matic contract to get DG balance on matic chain for modal
         const DGMaticContract = new maticWeb3.eth.Contract(
           ABI_DG_TOKEN,
-          // state.addresses.DG_TOKEN_MATIC
-          state.addresses.CHILD_TOKEN_ADDRESS_DG
+          // addresses.DG_TOKEN_MATIC
+          addresses.CHILD_TOKEN_ADDRESS_DG
         );
         setDGMaticContract(DGMaticContract);
 
         const DG_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // state.addresses.DG_TOKEN
-          state.addresses.ROOT_TOKEN_ADDRESS_DG
+          // addresses.DG_TOKEN
+          addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDG_BPT(DG_BPT);
 
         const DAI_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // state.addresses.DAI_TOKEN
-          state.addresses.ROOT_TOKEN_ADDRESS_DAI
+          // addresses.DAI_TOKEN
+          addresses.ROOT_TOKEN_ADDRESS_DAI
         );
         setDAI_BPT(DAI_BPT);
 
         const DG_BPT_2 = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // state.addresses.DG_TOKEN
-          state.addresses.ROOT_TOKEN_ADDRESS_DG
+          // addresses.DG_TOKEN
+          addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDG_BPT_2(DG_BPT_2);
 
         const DG_MANA = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // state.addresses.MANA_TOKEN
-          state.addresses.ROOT_TOKEN_ADDRESS_MANA
+          // addresses.MANA_TOKEN
+          addresses.ROOT_TOKEN_ADDRESS_MANA
         );
         setMANA_BPT(DG_MANA);
 
         // POOL 1
-        const stakingContract = await Transactions.stakingContract(
-          state.addresses,
-          web3
-        );
+        const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
 
         // POOL 2
-        const stakingContractTwo = await Transactions.stakingContractTwo(
-          state.addresses,
-          web3
-        );
+        const stakingContractTwo = await Transactions.stakingContractTwo(web3);
         setStakingContractTwo(stakingContractTwo);
 
         // for airdrop stuff (don't touch)
-        const keeperContract = await Transactions.keeperContract(
-          state.addresses,
-          web3
-        );
+        const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
         // POOL 1
-        const BPTContract = await Transactions.BPTContract(
-          state.addresses,
-          web3
-        );
+        const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
 
         // POOL 2
-        const BPTContractTwo = await Transactions.BPTContractTwo(
-          state.addresses,
-          web3
-        );
+        const BPTContractTwo = await Transactions.BPTContractTwo(web3);
         setBPTContractTwo(BPTContractTwo);
 
         setInstances(true); // contract instantiation complete
@@ -472,13 +452,13 @@ function DGBalances() {
       // POOL 1
       const contractBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
-        state.addresses.DG_STAKING_CONTRACT_ADDRESS,
+        addresses.DG_STAKING_CONTRACT_ADDRESS,
         3
       );
 
       const contractBalanceDG = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        state.addresses.DG_STAKING_CONTRACT_ADDRESS,
+        addresses.DG_STAKING_CONTRACT_ADDRESS,
         3
       );
 
@@ -497,13 +477,13 @@ function DGBalances() {
       // POOL 2
       const contractBalanceBPTTwo = await Transactions.balanceOfToken(
         BPT_CONTRACT_2,
-        state.addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+        addresses.DG_STAKING_CONTRACT_ADDRESS_2,
         3
       );
 
       const contractBalanceDGTwo = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        state.addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+        addresses.DG_STAKING_CONTRACT_ADDRESS_2,
         3
       );
 

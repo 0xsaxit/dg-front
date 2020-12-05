@@ -4,9 +4,7 @@ import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import Global from '../components/Constants';
 import Fetch from '../common/Fetch';
-
 import MetaTx from '../common/MetaTx';
-
 import Transactions from '../common/Transactions';
 
 function ActiveStatus() {
@@ -45,13 +43,9 @@ function ActiveStatus() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        parentContract = await Transactions.treasuryContract(
-          state.addresses,
-          getWeb3
-        );
+        parentContract = await Transactions.treasuryContract(getWeb3);
 
         const activeStatus = await Transactions.getActiveStatus(
-          state.addresses,
           userAddress,
           maticWeb3
         );
@@ -121,7 +115,6 @@ function ActiveStatus() {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         const activeStatus = await Transactions.getActiveStatus(
-          state.addresses,
           userAddress,
           maticWeb3
         );
