@@ -378,8 +378,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> player edge </p>
-                    <p className="earned-amount"> {MANA_edge}% </p>
+                    <p className="earned-text"> Roulette Mining Rate </p>
+                    <p className="earned-amount"> 10K MANA : 1 DG </p>
                   </span>
                 </span>
 
@@ -397,8 +397,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> 24K MANA : 1 DG </p>
+                    <p className="earned-text"> Blackjack Mining Rate </p>
+                    <p className="earned-amount"> 45K MANA : 1 DG </p>
                   </span>
                 </span>
               </div>
@@ -439,8 +439,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> player edge </p>
-                    <p className="earned-amount"> {DAI_edge}% </p>
+                    <p className="earned-text"> Roulette Mining Rate </p>
+                    <p className="earned-amount"> 900 DAI : 1 DG </p>
                   </span>
                 </span>
 
@@ -458,8 +458,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Mining Rate </p>
-                    <p className="earned-amount"> 2K DAI : 1 DG </p>
+                    <p className="earned-text"> Blackjack Mining Rate </p>
+                    <p className="earned-amount"> 4K DAI : 1 DG </p>
                   </span>
                 </span>
               </div>
