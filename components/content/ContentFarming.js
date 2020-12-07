@@ -950,7 +950,7 @@ const ContentFarming = (props) => {
               <p>
                 Staked $DG tokens are used to vote to allocate house profits and
                 receive $DG governance rewards. $DG Governance will go live in
-                Q2 2021. Read more about $DG governance in our{' '}
+                Q1 2021. Read more about $DG governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
