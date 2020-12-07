@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider, Input, Icon } from 'semantic-ui-react';
+import { Button, Divider, Input, Icon, Loader } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import ButtonReward1 from '../button/ButtonReward1';
@@ -12,6 +12,8 @@ import Fetch from '../../common/Fetch';
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const [isManaLoading, setManaLoading] = useState(true);
+  const [isPriceLoading, setPriceLoading] = useState(true);
 
   // define local variables
   const dataPlay = state.transactions[1];
@@ -20,56 +22,34 @@ const ContentFarming = (props) => {
   const [finishTime, setFinishTime] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [amountInput2, setAmountInput2] = useState('');
-
   const [amountInput3, setAmountInput3] = useState('10000000000000000000');
 
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [percentagePool2, setPercentagePool2] = useState(0);
-
-  const [DGPrice, setDGPrice] = useState(0);
-
-  const [totalDAI, setTotalDAI] = useState(0);
-  const [totalMANA, setTotalMANA] = useState(0);
   const [manaPrice, setManaPrice] = useState(0);
 
-  // const rewardAmount = '10000000000000000000'; // hard-coded reward amount
 
   // fetch total bet from API
   useEffect(() => {
     (async function () {
-      let response = await Fetch.PLAYER_DATA(state.userInfo[1]);
-      let json = await response.json();
-      let temp = json.MANA.bet_player / Global.CONSTANTS.FACTOR;
-      let MANA_adjusted = temp.toLocaleString();
 
-      let temp_2 = json.DAI.bet_player / Global.CONSTANTS.FACTOR;
-      let DAI_adjusted = temp_2.toLocaleString();
-
-      // calculate price of mana locked
+      // calculate price of mana
       let response_2 = await Fetch.MANA_PRICE();
       let json_2 = await response_2.json();
-
       setManaPrice(json_2.market_data.current_price.usd);
-      setTotalMANA(MANA_adjusted);
-      setTotalDAI(DAI_adjusted);
+      setManaLoading(false);
+
     })();
-  }, [totalMANA, totalDAI, manaPrice]);
+  }, [manaPrice]);
+
 
   // usd value calculations
-  const temp = state.DGBalances[5] / (49 * state.DGBalances[4]);
-  const price = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const price = Number(state.DGBalances[5] / (49 * state.DGBalances[4]));
+  const USDToken = Number(price * state.DGBalances[3]);
+  const USDGameplay = Number(price * state.DGBalances[0]);
+  const PoolOneUSD = Number(price * state.DGBalances[1]);
+  const PoolTwoUSD = Number(price * state.DGBalances[2]);
 
-  const temp_2 = price * state.DGBalances[0];
-  const USDGameplay = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  const temp_3 = price * state.DGBalances[3];
-  const USDToken = temp_3.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  const temp_4 = price * state.DGBalances[1];
-  const PoolOneUSD = temp_4.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  const temp_5 = price * state.DGBalances[2];
-  const PoolTwoUSD = temp_5.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // APY value calculations for pool 1
   const numerator = 51 * 2400 * price * state.DGBalances[10];
@@ -86,12 +66,6 @@ const ContentFarming = (props) => {
   const denom = total_locked_2 * state.stakingBalances[4];
   const APY_temp_2 = (num / denom) * 100;
   const daiAPY = APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  // player edge calculations
-  const DAI_edge_temp = (price / 2000) * 100 - 0.5;
-  const DAI_edge = DAI_edge_temp.toFixed(2);
-  const MANA_edge_temp = (price / (24000 * manaPrice)) * 100 - 0.5;
-  const MANA_edge = MANA_edge_temp.toFixed(2);
 
   // treasury stuff
   const treasury_dai = state.DGBalances[13];
@@ -216,7 +190,19 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">${USDToken}</p>
+              {Number(USDToken) || USDToken === 0 ? (
+                <p className="earned-amount">
+                  ${USDToken.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                </p>
+              ) : (
+                <Loader active inline size='small'
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px'
+                  }}
+                />
+              )}
             </span>
 
             <Divider />
@@ -336,7 +322,19 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">${USDGameplay}</p>
+              {Number(USDGameplay) || USDGameplay === 0 ? (
+                <p className="earned-amount">
+                  ${USDGameplay.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                </p>
+              ) : (
+                <Loader active inline size='small'
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px'
+                  }}
+                />
+              )}
             </span>
 
             <Divider />
@@ -383,8 +381,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Roulette Mining Rate </p>
-                    <p className="earned-amount"> 10K MANA : 1 DG </p>
+                    <p className="earned-text"> Roulette Rate / 1 DG </p>
+                    <p className="earned-amount"> 10K MANA </p>
                   </span>
                 </span>
 
@@ -402,8 +400,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Blackjack Mining Rate </p>
-                    <p className="earned-amount"> 45K MANA : 1 DG </p>
+                    <p className="earned-text"> Blackjack Rate / 1 DG </p>
+                    <p className="earned-amount"> 45K MANA </p>
                   </span>
                 </span>
               </div>
@@ -444,8 +442,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Roulette Mining Rate </p>
-                    <p className="earned-amount"> 900 DAI : 1 DG </p>
+                    <p className="earned-text"> Roulette Rate / 1 DG </p>
+                    <p className="earned-amount"> 900 DAI </p>
                   </span>
                 </span>
 
@@ -463,8 +461,8 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text"> Blackjack Mining Rate </p>
-                    <p className="earned-amount"> 4K DAI : 1 DG </p>
+                    <p className="earned-text"> Blackjack Rate / 1 DG </p>
+                    <p className="earned-amount"> 4K DAI </p>
                   </span>
                 </span>
               </div>
@@ -562,7 +560,19 @@ const ContentFarming = (props) => {
                 }}
               >
                 <p className="earned-text">Value USD</p>
-                <p className="earned-amount">${PoolOneUSD}</p>
+                {Number(PoolOneUSD) || PoolOneUSD === 0 ? (
+                  <p className="earned-amount">
+                    ${PoolOneUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </p>
+                ) : (
+                  <Loader active inline size='small'
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px'
+                    }}
+                  />
+                )}
               </span>
             ) : (
               <span
@@ -575,7 +585,19 @@ const ContentFarming = (props) => {
                 }}
               >
                 <p className="earned-text">Value USD</p>
-                <p className="earned-amount">${PoolTwoUSD}</p>
+                {Number(PoolTwoUSD) || PoolTwoUSD === 0 ? (
+                  <p className="earned-amount">
+                    ${PoolTwoUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </p>
+                ) : (
+                  <Loader active inline size='small'
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px'
+                    }}
+                  />
+                )}
               </span>
             )}
 
@@ -664,7 +686,17 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    <p className="earned-amount"> {manaAPY}% </p>
+                    {isManaLoading ? (
+                      <Loader active inline size='small'
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px'
+                        }}
+                      />
+                    ) : (
+                      <p className="earned-amount"> {manaAPY}% </p>
+                    )}
                   </span>
                 </span>
 

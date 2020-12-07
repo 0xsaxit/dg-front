@@ -390,13 +390,10 @@ a.menu-info-label-link:hover {
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
-.ui.loader:after, .ui.loader:before {
-  height: 24px;
-  width: 24px;
-}
-
 .ui.loader:after {
   border-color: #2085f4 transparent transparent !important;
+  animation: loader 1s linear;
+  animation-iteration-count: infinite;
 }
 
 .daily-leaders-container {

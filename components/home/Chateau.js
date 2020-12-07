@@ -71,7 +71,7 @@ const Chateau = () => {
                   target="_blank"
                   href="https://docs.decentral.games/getting-started"
                 >
-                  HOW TO EARN $DG
+                  EARN $DG
                 </Button>
               </span>
             </div>
@@ -97,7 +97,7 @@ const Chateau = () => {
               target="_blank"
               href="https://docs.decentral.games/getting-started"
             >
-              HOW TO EARN $DG
+              EARN $DG
             </Button>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
               Chateau Satoshi is an art deco themed metaverse casino built by
