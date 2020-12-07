@@ -56,6 +56,11 @@
 }
 
 @media (max-width: 499px) {
+  .menu-info-modal {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+  }
   .ui.button.modal-deposit-button {
     display: none;
   }

@@ -41,7 +41,7 @@ const detailsNFTs = {
   shades: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
     'nft-pic',
-    'DG ',
+    'DG Flip Up Spectacles',
     'LEGENDARY',
     'Swaggy flip up shades designed to be wearable at any occassion. #ice',
     'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/243',

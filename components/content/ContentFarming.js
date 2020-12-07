@@ -1098,6 +1098,7 @@ const ContentFarming = (props) => {
                 <img
                   src={Images.SNAPSHOT_ICON}
                   className="farming-logo"
+                  id="snapshot"
                   alt="Snapshot Governance Logo"
                 />
                 <span className="farming-pool-span">

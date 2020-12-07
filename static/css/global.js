@@ -114,7 +114,7 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
-  .farming-logo {
+  #snapshot {
     background: ${({ theme }) => theme.body};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow} !important;
