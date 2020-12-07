@@ -2,69 +2,69 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Loader } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner';
 import Aux from '../_Aux';
-import Fetch from '../../common/Fetch';
-import MessageBox from './MessageBox';
+// import Fetch from '../../common/Fetch';
+// import MessageBox from './MessageBox';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local loading variable
-  const [isLoading, setLoading] = useState(false);
-  const [isZooming, setZooming] = useState(false);
+  // const [isLoading, setLoading] = useState(false);
+  // const [isZooming, setZooming] = useState(false);
   const [realm, setRealm] = useState('');
-  const [playerCount, setPlayerCount] = useState('');
-  const [onlineUsers, setOnlineUsers] = useState([]);
-  const [total, setTotal] = useState('');
+  // const [playerCount, setPlayerCount] = useState('');
+  // const [onlineUsers, setOnlineUsers] = useState([]);
+  // const [total, setTotal] = useState('');
   const [visited, setVisited] = useState(false);
   const [videoPlay, setVideoPlay] = useState(true);
-  const [isLeadersLoading, setIsLeadersLoading] = useState(true);
+  // const [isLeadersLoading, setIsLeadersLoading] = useState(true);
 
   // temp
-  const [spotOne, setSpotOne] = useState('');
-  const [spotOneTotal, setSpotOneTotal] = useState('');
-  const [spotOneAddress, setSpotOneAddress] = useState('');
-  const [spotTwo, setSpotTwo] = useState('');
-  const [spotTwoTotal, setSpotTwoTotal] = useState('');
-  const [spotTwoAddress, setSpotTwoAddress] = useState('');
-  const [spotThree, setSpotThree] = useState('');
-  const [spotThreeTotal, setSpotThreeTotal] = useState('');
-  const [spotThreeAddress, setSpotThreeAddress] = useState('');
+  // const [spotOne, setSpotOne] = useState('');
+  // const [spotOneTotal, setSpotOneTotal] = useState('');
+  // const [spotOneAddress, setSpotOneAddress] = useState('');
+  // const [spotTwo, setSpotTwo] = useState('');
+  // const [spotTwoTotal, setSpotTwoTotal] = useState('');
+  // const [spotTwoAddress, setSpotTwoAddress] = useState('');
+  // const [spotThree, setSpotThree] = useState('');
+  // const [spotThreeTotal, setSpotThreeTotal] = useState('');
+  // const [spotThreeAddress, setSpotThreeAddress] = useState('');
 
   // fetch daily top 3 from the server API
-  useEffect(() => {
-    (async function () {
-      let response = await Fetch.GAME_RECORDS();
-      let json = await response.json();
+  // useEffect(() => {
+  //   (async function () {
+  //     let response = await Fetch.GAME_RECORDS();
+  //     let json = await response.json();
 
-      // clean up this jank
-      setSpotOne(json.daily.all.play[0].name);
-      setSpotTwo(json.daily.all.play[1].name);
-      setSpotThree(json.daily.all.play[2].name);
+  //     // clean up this jank
+  //     setSpotOne(json.daily.all.play[0].name);
+  //     setSpotTwo(json.daily.all.play[1].name);
+  //     setSpotThree(json.daily.all.play[2].name);
 
-      let toMana_1 = Math.round(
-        json.daily.all.play[0].winnings / 1000000000000000000
-      ).toLocaleString();
-      let toMana_2 = Math.round(
-        json.daily.all.play[1].winnings / 1000000000000000000
-      ).toLocaleString();
-      let toMana_3 = Math.round(
-        json.daily.all.play[2].winnings / 1000000000000000000
-      ).toLocaleString();
+  //     let toMana_1 = Math.round(
+  //       json.daily.all.play[0].winnings / 1000000000000000000
+  //     ).toLocaleString();
+  //     let toMana_2 = Math.round(
+  //       json.daily.all.play[1].winnings / 1000000000000000000
+  //     ).toLocaleString();
+  //     let toMana_3 = Math.round(
+  //       json.daily.all.play[2].winnings / 1000000000000000000
+  //     ).toLocaleString();
 
-      setSpotOneTotal(toMana_1);
-      setSpotTwoTotal(toMana_2);
-      setSpotThreeTotal(toMana_3);
+  //     setSpotOneTotal(toMana_1);
+  //     setSpotTwoTotal(toMana_2);
+  //     setSpotThreeTotal(toMana_3);
 
-      setSpotOneAddress(json.daily.all.play[0].address);
-      setSpotTwoAddress(json.daily.all.play[1].address);
-      setSpotThreeAddress(json.daily.all.play[2].address);
+  //     setSpotOneAddress(json.daily.all.play[0].address);
+  //     setSpotTwoAddress(json.daily.all.play[1].address);
+  //     setSpotThreeAddress(json.daily.all.play[2].address);
 
-      setIsLeadersLoading(false);
-    })();
-  }, []);
+  //     setIsLeadersLoading(false);
+  //   })();
+  // }, []);
 
   useEffect(() => {
     if (window) {
@@ -216,170 +216,135 @@ const Chateau = () => {
   //   );
   // }
 
-  function dailyTopThree() {
-    return (
-      <Aux>
-        <span className="daily-leaders-container">
-          <p className="featured-casino-text" style={{ paddingBottom: '9px' }}>
-            DAILY LEADERS
-          </p>
+  // function dailyTopThree() {
+  //   return (
+  //     <Aux>
+  //       <span className="daily-leaders-container">
+  //         <p className="featured-casino-text" style={{ paddingBottom: '9px' }}>DAILY LEADERS</p>
 
-          {isLeadersLoading ? (
-            <div>
-              <span className="leader-text-span">
-                <span className="leaders-text" style={{ marginBottom: '6px' }}>
-                  1.{' '}
-                  <Loader
-                    active
-                    inline
-                    style={{
-                      fontSize: '12px',
-                      marginLeft: '3px',
-                      marginTop: '2px',
-                    }}
-                  />
-                </span>
-              </span>
+  //         {isLeadersLoading ? (
+  //           <div>
+  //             <span className="leader-text-span">
+  //               <span className="leaders-text" style={{ marginBottom: '6px' }}>
+  //                 1.{' '}
+  //                 <Loader active inline
+  //                   style={{
+  //                     fontSize: '12px',
+  //                     marginLeft: '3px',
+  //                     marginTop: '2px',
+  //                   }}
+  //                 />
+  //               </span>
+  //             </span>
 
-              <span className="leader-text-span">
-                <span className="leaders-text" style={{ marginBottom: '6px' }}>
-                  2.{' '}
-                  <Loader
-                    active
-                    inline
-                    style={{
-                      fontSize: '12px',
-                      marginLeft: '3px',
-                      marginTop: '2px',
-                    }}
-                  />
-                </span>
-              </span>
+  //             <span className="leader-text-span">
+  //               <span className="leaders-text" style={{ marginBottom: '6px' }}>
+  //                 2.{' '}
+  //                 <Loader active inline
+  //                   style={{
+  //                     fontSize: '12px',
+  //                     marginLeft: '3px',
+  //                     marginTop: '2px',
+  //                   }}
+  //                 />
+  //               </span>
+  //             </span>
 
-              <span className="leader-text-span">
-                <span className="leaders-text">
-                  3.{' '}
-                  <Loader
-                    active
-                    inline
-                    style={{
-                      fontSize: '12px',
-                      marginLeft: '3px',
-                      marginTop: '2px',
-                    }}
-                  />
-                </span>
-              </span>
-            </div>
-          ) : (
-            <div>
-              <span className="leader-text-span">
-                <span className="leaders-text">
-                  1.{' '}
-                  <img
-                    className="avatar-picture"
-                    src={`https://events.decentraland.org/api/profile/${spotOneAddress}/face.png`}
-                    style={{
-                      width: '24px',
-                      marginRight: '9px',
-                      marginLeft: '1px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                      background: 'white',
-                    }}
-                  />
-                </span>
-                <p className="leaders-text lower"> {spotOne} </p>
-                <p
-                  className="leaders-text lower"
-                  style={{ marginLeft: '6px', marginRight: '6px' }}
-                >
-                  {' '}
-                  |{' '}
-                </p>
-                <p
-                  className="leaders-text lower"
-                  style={{ marginBottom: '18px' }}
-                >
-                  {' '}
-                  {spotOneTotal} PLAY{' '}
-                </p>
-              </span>
+  //             <span className="leader-text-span">
+  //               <span className="leaders-text">
+  //                 3.{' '}
+  //                 <Loader active inline
+  //                   style={{
+  //                     fontSize: '12px',
+  //                     marginLeft: '3px',
+  //                     marginTop: '2px',
+  //                   }}
+  //                 />
+  //               </span>
+  //             </span>
+  //           </div>
+  //         ) : (
+  //           <div>
+  //             <span className="leader-text-span">
+  //               <span className="leaders-text">
+  //                 1.{' '}
+  //                 <img
+  //                   className="avatar-picture"
+  //                   src={`https://events.decentraland.org/api/profile/${spotOneAddress}/face.png`}
+  //                   style={{
+  //                     width: '24px',
+  //                     marginRight: '9px',
+  //                     marginLeft: '1px',
+  //                     verticalAlign: 'middle',
+  //                     marginTop: '-2px',
+  //                     border: '1px solid rgb(227, 232, 238)',
+  //                     borderRadius: '100%',
+  //                     boxShadow:
+  //                       '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+  //                     background: 'white'
+  //                   }}
+  //                 />
+  //               </span>
+  //               <p className="leaders-text lower"> {spotOne} </p>
+  //               <p className="leaders-text lower" style={{ marginLeft: '6px', marginRight: '6px' }}> | </p>
+  //               <p className="leaders-text lower" style={{ marginBottom: '18px' }}> {spotOneTotal} PLAY </p>
+  //             </span>
 
-              <span className="leader-text-span">
-                <span className="leaders-text">
-                  2.{' '}
-                  <img
-                    className="avatar-picture"
-                    src={`https://events.decentraland.org/api/profile/${spotTwoAddress}/face.png`}
-                    style={{
-                      width: '24px',
-                      marginRight: '9px',
-                      marginLeft: '1px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                      background: 'white',
-                    }}
-                  />
-                </span>
-                <p className="leaders-text lower"> {spotTwo} </p>
-                <p
-                  className="leaders-text lower"
-                  style={{ marginLeft: '6px', marginRight: '6px' }}
-                >
-                  {' '}
-                  |{' '}
-                </p>
-                <p
-                  className="leaders-text lower"
-                  style={{ marginBottom: '18px' }}
-                >
-                  {' '}
-                  {spotTwoTotal} PLAY{' '}
-                </p>
-              </span>
+  //             <span className="leader-text-span">
+  //               <span className="leaders-text">
+  //                 2.{' '}
+  //                 <img
+  //                   className="avatar-picture"
+  //                   src={`https://events.decentraland.org/api/profile/${spotTwoAddress}/face.png`}
+  //                   style={{
+  //                     width: '24px',
+  //                     marginRight: '9px',
+  //                     marginLeft: '1px',
+  //                     verticalAlign: 'middle',
+  //                     marginTop: '-2px',
+  //                     border: '1px solid rgb(227, 232, 238)',
+  //                     borderRadius: '100%',
+  //                     boxShadow:
+  //                       '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+  //                     background: 'white'
+  //                   }}
+  //                 />
+  //               </span>
+  //               <p className="leaders-text lower"> {spotTwo} </p>
+  //               <p className="leaders-text lower" style={{ marginLeft: '6px', marginRight: '6px' }}> | </p>
+  //               <p className="leaders-text lower" style={{ marginBottom: '18px' }}> {spotTwoTotal} PLAY </p>
+  //             </span>
 
-              <span className="leader-text-span">
-                <span className="leaders-text">
-                  3.{' '}
-                  <img
-                    className="avatar-picture"
-                    src={`https://events.decentraland.org/api/profile/${spotThreeAddress}/face.png`}
-                    style={{
-                      width: '24px',
-                      marginRight: '9px',
-                      marginLeft: '1px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      border: '1px solid rgb(227, 232, 238)',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                      background: 'white',
-                    }}
-                  />
-                </span>
-                <p className="leaders-text lower"> {spotThree} </p>
-                <p
-                  className="leaders-text lower"
-                  style={{ marginLeft: '6px', marginRight: '6px' }}
-                >
-                  {' '}
-                  |{' '}
-                </p>
-                <p className="leaders-text lower"> {spotThreeTotal} PLAY </p>
-              </span>
-            </div>
-          )}
-        </span>
-      </Aux>
-    );
-  }
+  //             <span className="leader-text-span">
+  //               <span className="leaders-text">
+  //                 3.{' '}
+  //                 <img
+  //                   className="avatar-picture"
+  //                   src={`https://events.decentraland.org/api/profile/${spotThreeAddress}/face.png`}
+  //                   style={{
+  //                     width: '24px',
+  //                     marginRight: '9px',
+  //                     marginLeft: '1px',
+  //                     verticalAlign: 'middle',
+  //                     marginTop: '-2px',
+  //                     border: '1px solid rgb(227, 232, 238)',
+  //                     borderRadius: '100%',
+  //                     boxShadow:
+  //                       '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+  //                     background: 'white'
+  //                   }}
+  //                 />
+  //               </span>
+  //               <p className="leaders-text lower"> {spotThree} </p>
+  //               <p className="leaders-text lower" style={{ marginLeft: '6px', marginRight: '6px' }}> | </p>
+  //               <p className="leaders-text lower"> {spotThreeTotal} PLAY </p>
+  //             </span>
+  //           </div>
+  //         )}
+  //       </span>
+  //     </Aux>
+  //   );
+  // }
 
   function mainContent() {
     return (
@@ -488,8 +453,6 @@ const Chateau = () => {
                 </span>
               )}*/}
             </div>
-
-            {dailyTopThree()}
           </div>
         ) : (
           <div className="home-dashboard-content">
