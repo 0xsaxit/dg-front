@@ -93,6 +93,11 @@ const ContentFarming = (props) => {
   const MANA_edge_temp = (price / (24000 * manaPrice)) * 100 - 0.5;
   const MANA_edge = MANA_edge_temp.toFixed(2);
 
+  // treasury stuff
+  const treasury_dai = state.DGBalances[13];
+  const treasury_mana = state.DGBalances[12] * manaPrice;
+  const treasury = (Number(treasury_dai) + treasury_mana).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
   // get initial reward and timestamp values
   useEffect(() => {
     if (props.instances) {
@@ -1060,7 +1065,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">Treasury</p>
-                    <p className="earned-amount"> 0.000 </p>
+                    <p className="earned-amount"> ${treasury} </p>
                   </span>
                 </span>
               </div>

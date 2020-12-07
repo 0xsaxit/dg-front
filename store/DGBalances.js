@@ -4,6 +4,7 @@ import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_BP from '../components/ABI/ABIBalancerPoolToken';
+import test from '../components/ABI/ABIChildTokenMANA';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
@@ -22,6 +23,9 @@ function DGBalances() {
   const [BPT_CONTRACT, setBPTContract] = useState({});
   const [BPT_CONTRACT_2, setBPTContractTwo] = useState({});
   const [keeperContract, setKeeperContract] = useState({});
+  const [maticMana, setMaticMana] = useState({});
+  const [maticDai, setMaticDai] = useState({});
+
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
 
@@ -92,6 +96,20 @@ function DGBalances() {
         );
         setMANA_BPT(DG_MANA);
 
+        // for treasury stuff
+        const MATIC_MANA = new maticWeb3.eth.Contract(
+          test,
+          '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'
+        );
+        setMaticMana(MATIC_MANA);
+
+        // for treasury stuff
+        const MATIC_DAI = new maticWeb3.eth.Contract(
+          test,
+          '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'
+        );
+        setMaticDai(MATIC_DAI);
+
         // POOL 1
         const stakingContract = await Transactions.stakingContract(web3);
         setStakingContract(stakingContract);
@@ -132,6 +150,8 @@ function DGBalances() {
         const balance_DG_matic = await getDGMatic();
         const balance_BP_DG_2 = await getDGBalancer_2();
         const balance_BP_MANA = await getMANABalancer();
+        const balance_maticMana = await getMaticMana();
+        const balance_maticDai = await getMaticDai();
 
         // calculate price of mana locked in balancer
         let response = await Fetch.MANA_PRICE();
@@ -165,6 +185,9 @@ function DGBalances() {
         console.log('DG BP balance pool 2: ' + balance_BP_DG);
         console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
 
+        console.log('treasury mana: ' + balance_maticMana);
+        console.log('treasury dai: ' + balance_maticDai);
+
         dispatch({
           type: 'dg_balances',
           data: [
@@ -180,6 +203,8 @@ function DGBalances() {
             balance_BP_DG_2,
             BPT_supply_1,
             BPT_supply_2,
+            balance_maticMana,
+            balance_maticDai,
           ],
         });
 
@@ -239,6 +264,38 @@ function DGBalances() {
       }
     }
   }, [state.stakeTime]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get treasury matic mana
+  async function getMaticMana() {
+
+    try {
+      const amount = await maticMana.methods.balanceOf('0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3').call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get treasury matic dai
+  async function getMaticDai() {
+
+    try {
+      const amount = await maticDai.methods.balanceOf('0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3').call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

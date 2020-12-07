@@ -58,7 +58,7 @@
 @media (max-width: 499px) {
   .menu-info-modal {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 2em);
     top: 0;
   }
   .ui.button.modal-deposit-button {
