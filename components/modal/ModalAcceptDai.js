@@ -4,7 +4,7 @@ import { GlobalContext } from '../../store';
 import ButtonApproveDAI from '../button/ButtonApproveDAI';
 
 
-const ModalInfo = () => {
+const ModalAcceptDai = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -13,7 +13,21 @@ const ModalInfo = () => {
   const [checkedOne, setCheckedOne] = useState(false);
   const [checkedTwo, setCheckedTwo] = useState(false);
 
+  function isCheckedOne() {
+    if (checkedOne === true) {
+      setCheckedOne(false);
+    } else {
+      setCheckedOne(true);
+    }
+  }
 
+  function isCheckedTwo() {
+    if (checkedTwo === true) {
+      setCheckedTwo(false);
+    } else {
+      setCheckedTwo(true);
+    }
+  }
 
   return (
     <Modal
@@ -46,19 +60,21 @@ const ModalInfo = () => {
         <p> Please take a few minutes to read and understand our <a href="https://docs.decentral.games/disclaimer"> disclaimer</a>. To continue, you'll need to accept the following Terms of Service by checking each box. </p>
         
           <Checkbox 
-            style={{ padding: '5px 0px 0px 0px' }}
-            onClick={() => setCheckedOne(true)}
+            style={{ padding: '0px 0px 0px 0px' }}
+            onClick={() => isCheckedOne()}
             label="I am at least 18 years old" 
           />
 
           <Checkbox 
-            style={{ padding: '20px 0px 30px 0px' }}
-            onClick={() => setCheckedTwo(true)}
-            label="I reside in a legal jurisdiction" 
+            style={{ padding: '12px 0px 24px 0px' }}
+            onClick={() => isCheckedTwo()}
+            label="I reside in a jurisdiction where online gaming is permitted" 
           />
 
           {checkedOne === true && checkedTwo === true ? (
-            <ButtonApproveDAI onClick={() => setOpen(false)}/>
+            <span onClick={() => setOpen(false)}>
+              <ButtonApproveDAI />
+            </span>
           ) : (
             <Button
               className="balances-authorize-button"
@@ -74,4 +90,4 @@ const ModalInfo = () => {
   );
 };
 
-export default ModalInfo;
+export default ModalAcceptDai;

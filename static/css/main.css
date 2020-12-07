@@ -120,9 +120,15 @@ p {
   filter: brightness(0.9);
 }
 
-.ui.checkbox label {
+.ui.checkbox .box, .ui.checkbox label {
   font-size: 20px;
   font-weight: normal;
+  line-height: 1.4;
+}
+
+.ui.checkbox label::before,
+.ui.checkbox label::after {
+  margin-top: 6px;
 }
 
 .other-menu-container.blog {
