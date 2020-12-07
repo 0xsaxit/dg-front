@@ -114,6 +114,12 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
+  .farming-logo {
+    background: ${({ theme }) => theme.body};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow} !important;
+  }
+
   .ui.modal,
   .matic-overlay,
   .mailchimp-outter-container {

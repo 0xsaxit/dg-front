@@ -11,76 +11,58 @@ import Aux from '../_Aux';
 // import { useRouter } from 'next/router';
 
 const detailsNFTs = {
-  tominoya: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_9_yxm85s.png',
-    'nft-pic',
-    'Tominoya, Vegas City',
-    'LOCATION: -120, 135',
-    'Tominoya is a Japanese themed casino built by Decentral Games.',
-    'https://opensea.io/assets/vegas-city-land-lease?search=%7B%22query%22%3A%22tominoya%22%7D',
-    'https://decentral.games/blog/tominoya-casino-nft-sale',
-  ],
-  flamingos: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_n439sj.png',
-    'nft-pic',
-    'Flamingos, Vegas City',
-    'LOCATION: -126, 118',
-    'Flamingos is a classically inspired casino built by Vegas City.',
-    'https://opensea.io/assets/vegas-city-land-lease?search=%7B%22query%22%3A%22flamingos%22%7D',
-    'https://decentral.games/blog/the-flamingos-a-mega-casino-by-vegas-city-decentral-games',
-  ],
   mink_coat: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_3_ywc2cq.png',
     'nft-pic',
-    '$DG Mink',
+    'DG Fur Mink',
     'LEGENDARY',
-    'An opulent fur coat made and produced using only the finest of mink furs. #extrasaus',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/97/',
+    'An opulent fur coat made from minks #extrasaus',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/247',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_2_lu5fwe.png',
     'nft-pic',
-    'Tracksuit Top',
+    'DG Tracksuit Jacket',
     'LEGENDARY',
-    'The top portion of the decadent and elegant Decentral Games tracksuit fit. #drip',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/98/',
+    'The jacket of the decadent and elegant DG tracksuit #drip',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/248',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_bottom: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_4_meqpkq.png',
     'nft-pic',
-    'Tracksuit Bottom',
+    'DG Tracksuit Pants',
     'LEGENDARY',
-    'The bottom portion of the decadent and elegant Decentral Games tracksuit fit. #drip',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/96/',
+    'The pants of the decadent and elegant DG tracksuit #drip',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/246',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   shades: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
     'nft-pic',
-    'Spectacles',
+    'DG ',
     'LEGENDARY',
     'Swaggy flip up shades designed to be wearable at any occassion. #ice',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/93/',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/243',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   yeezies: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_5_lijr1y.png',
     'nft-pic',
-    'Deezys',
+    'DG Deezys',
     'LEGENDARY',
-    'street wear inspired comfy kicks inspired by the latest fashion. #ye',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/94/',
+    'Comfy and elegant sneekers #deezys',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/244',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   slides: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_6_iujl4o.png',
     'nft-pic',
-    '$DG Slides',
+    'DG Slides',
     'LEGENDARY',
-    'Lazy day but designer slides complete with socks to keep your toes warm.',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/95/',
+    'Lazy day designer slides complete with socks to keep your toes warm #cozyslides',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/245',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
 };
@@ -92,22 +74,6 @@ const Tokens = (props) => {
   // define local variables
   const [NFTState, setNFTState] = useState(props.NFTState);
   const [isLoading, setIsLoading] = useState(true);
-
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   const urlParam = window.location.href.split('?=')[1];
-  //   if (urlParam === undefined) {
-  //     router.push('?=buy');
-  //     setNFTState('buy');
-  //   } else if (urlParam === 'buy' || urlParam === 'my') {
-  //     router.push(`?=${urlParam}`);
-  //     setNFTState(urlParam);
-  //   } else {
-  //     router.push('?=buy');
-  //     setNFTState('buy');
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (Object.keys(state.parcelDataUser).length) {

@@ -23,7 +23,7 @@ const ContentNFTs = (props) => {
 
   return (
     <div className="account-other-inner-p">
-      Support for on site decentral.games NFTs comings soon
+      Support for on site decentral.games NFTs coming soon
     </div>
   );
 };

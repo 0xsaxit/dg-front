@@ -7,6 +7,9 @@ import ButtonApproveDAI from '../button/ButtonApproveDAI';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
+import ModalAcceptMana from '../modal/ModalAcceptMana';
+import ModalAcceptDai from '../modal/ModalAcceptDai';
+
 
 let transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -385,7 +388,7 @@ const ContentBalances = (props) => {
 
             <div style={styles.buttonMANA}>
               <span>
-                <ButtonApproveMANA />
+                <ModalAcceptMana />
               </span>
             </div>
           </Grid.Column>
@@ -475,7 +478,7 @@ const ContentBalances = (props) => {
 
             <div style={styles.buttonDAI}>
               <span>
-                <ButtonApproveDAI />
+                <ModalAcceptDai />
               </span>
             </div>
           </Grid.Column>

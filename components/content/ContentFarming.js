@@ -972,6 +972,7 @@ const ContentFarming = (props) => {
               <img
                 src={Images.DG_COIN_LOGO}
                 className="farming-logo"
+                id="snapshot"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
