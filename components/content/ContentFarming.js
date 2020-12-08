@@ -691,7 +691,7 @@ const ContentFarming = (props) => {
                     <p className="earned-text">APY</p>
                     {Number(manaAPY) && isFinite(manaAPY) ? (
                       <p className="earned-amount">
-                        ${manaAPY.toFixed(2)}
+                        {manaAPY.toFixed(2)}%
                       </p>
                     ) : (
                       <Loader active inline size='small'
@@ -723,7 +723,7 @@ const ContentFarming = (props) => {
                     <p className="earned-amount">
                     {Number(PoolOnePercentage) || PoolOnePercentage === 0 ? (
                       <p className="earned-amount">
-                        ${PoolOnePercentage.toFixed(2)}
+                        {PoolOnePercentage.toFixed(2)}%
                       </p>
                     ) : (
                       <Loader active inline size='small'
@@ -851,7 +851,7 @@ const ContentFarming = (props) => {
                     <p className="earned-text">APY</p>
                     {Number(daiAPY) && isFinite(daiAPY) ? (
                       <p className="earned-amount">
-                        ${daiAPY.toFixed(2)}
+                        {daiAPY.toFixed(2)}%
                       </p>
                     ) : (
                       <Loader active inline size='small'
@@ -882,7 +882,7 @@ const ContentFarming = (props) => {
                     <p className="earned-text">% of pool 2</p>
                     {Number(PoolTwoPercentage) || PoolTwoPercentage === 0 ? (
                       <p className="earned-amount">
-                        ${PoolTwoPercentage.toFixed(2)}
+                        {PoolTwoPercentage.toFixed(2)}%
                       </p>
                     ) : (
                       <Loader active inline size='small'
