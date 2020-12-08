@@ -689,7 +689,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    {Number(manaAPY) ? (
+                    {Number(manaAPY) && isFinite(manaAPY) ? (
                       <p className="earned-amount">
                         ${manaAPY.toFixed(2)}
                       </p>
@@ -849,7 +849,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    {Number(daiAPY) ? (
+                    {Number(daiAPY) && isFinite(daiAPY) ? (
                       <p className="earned-amount">
                         ${daiAPY.toFixed(2)}
                       </p>

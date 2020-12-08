@@ -101,7 +101,7 @@ class Mailchimp extends Component {
 
             <Divider style={{ marginTop: '-15px', width: 'calc(100% + 60px)', marginLeft: '-30px' }} />
 
-            <p>Register to recieve updates from Decentral Games</p>
+            <p style={{ textAlign: 'center' }}>Register to recieve updates from Decentral Games</p>
 
             <MailchimpSubscribe
               url={url}
