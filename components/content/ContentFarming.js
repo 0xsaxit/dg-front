@@ -9,11 +9,10 @@ import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
 
+
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const [isManaLoading, setManaLoading] = useState(true);
-  const [isPriceLoading, setPriceLoading] = useState(true);
 
   // define local variables
   const dataPlay = state.transactions[1];
@@ -37,7 +36,6 @@ const ContentFarming = (props) => {
       let response_2 = await Fetch.MANA_PRICE();
       let json_2 = await response_2.json();
       setManaPrice(json_2.market_data.current_price.usd);
-      setManaLoading(false);
 
     })();
   }, [manaPrice]);
@@ -51,13 +49,18 @@ const ContentFarming = (props) => {
   const PoolTwoUSD = Number(price * state.DGBalances[2]);
 
 
+  // pool percentage calculations
+  const PoolOnePercentage = Number((state.stakingBalances[2] / state.stakingBalances[0]) * 100);
+  const PoolTwoPercentage = Number((state.stakingBalances[6] / state.stakingBalances[4]) * 100);
+
+
   // APY value calculations for pool 1
   const numerator = 51 * 2400 * price * state.DGBalances[10];
   const total_locked =
     state.DGBalances[4] * price + Number(state.DGBalances[8]);
   const denominator = total_locked * state.stakingBalances[0];
   const APY_temp = (numerator / denominator) * 100;
-  const manaAPY = APY_temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const manaAPY = Number(APY_temp);
 
   // APY value calculations for pool 2
   const num = 51 * 2400 * price * state.DGBalances[11];
@@ -65,7 +68,7 @@ const ContentFarming = (props) => {
     state.DGBalances[9] * price + Number(state.DGBalances[5]);
   const denom = total_locked_2 * state.stakingBalances[4];
   const APY_temp_2 = (num / denom) * 100;
-  const daiAPY = APY_temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const daiAPY = Number(APY_temp_2);
 
   // treasury stuff
   const treasury_dai = state.DGBalances[13];
@@ -686,7 +689,11 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    {isManaLoading ? (
+                    {Number(manaAPY) ? (
+                      <p className="earned-amount">
+                        ${manaAPY.toFixed(2)}
+                      </p>
+                    ) : (
                       <Loader active inline size='small'
                         style={{
                           fontSize: '12px',
@@ -694,8 +701,6 @@ const ContentFarming = (props) => {
                           marginLeft: '-1px'
                         }}
                       />
-                    ) : (
-                      <p className="earned-amount"> {manaAPY}% </p>
                     )}
                   </span>
                 </span>
@@ -716,12 +721,19 @@ const ContentFarming = (props) => {
                   >
                     <p className="earned-text">% of pool 1</p>
                     <p className="earned-amount">
-                      {' '}
-                      {(
-                        (state.stakingBalances[2] / state.stakingBalances[0]) *
-                        100
-                      ).toFixed(2)}
-                      %{' '}
+                    {Number(PoolOnePercentage) || PoolOnePercentage === 0 ? (
+                      <p className="earned-amount">
+                        ${PoolOnePercentage.toFixed(2)}
+                      </p>
+                    ) : (
+                      <Loader active inline size='small'
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px'
+                        }}
+                      />
+                    )}
                     </p>
                   </span>
                 </span>
@@ -837,7 +849,19 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    <p className="earned-amount"> {daiAPY}% </p>
+                    {Number(daiAPY) ? (
+                      <p className="earned-amount">
+                        ${daiAPY.toFixed(2)}
+                      </p>
+                    ) : (
+                      <Loader active inline size='small'
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px'
+                        }}
+                      />
+                    )}
                   </span>
                 </span>
 
@@ -856,14 +880,19 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool 2</p>
-                    <p className="earned-amount">
-                      {' '}
-                      {(
-                        (state.stakingBalances[6] / state.stakingBalances[4]) *
-                        100
-                      ).toFixed(2)}
-                      %{' '}
-                    </p>
+                    {Number(PoolTwoPercentage) || PoolTwoPercentage === 0 ? (
+                      <p className="earned-amount">
+                        ${PoolTwoPercentage.toFixed(2)}
+                      </p>
+                    ) : (
+                      <Loader active inline size='small'
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px'
+                        }}
+                      />
+                    )}
                   </span>
                 </span>
               </div>
