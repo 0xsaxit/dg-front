@@ -1,6 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
-import Fetch from '../common/Fetch';
+import Global from '../components/Constants';
+// import Fetch from '../common/Fetch';
 
 const Whitelist = () => {
   // get user's status from the Context API store
@@ -17,13 +18,17 @@ const Whitelist = () => {
 
         const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
 
-        const response = await Fetch.GET_ADDRESSES();
-        const json = await response.json();
-        const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
+        // const response = await Fetch.GET_ADDRESSES();
+        // const json = await response.json();
 
-        // if (arrayUpperCase.includes(userAddress)) {
-        //   setWhitelisted(true);
-        // }
+        const addresses = await Global.API_ADDRESSES;
+
+        // console.log('addresses...');
+        // console.log(addresses);
+
+        const arrayUpperCase = addresses.ADMIN_ADDRESSES.map((a) =>
+          a.toUpperCase()
+        );
 
         if (arrayUpperCase.includes(userAddress)) {
           whitelisted = true;

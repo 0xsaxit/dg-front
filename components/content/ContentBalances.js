@@ -2,14 +2,13 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
-import ButtonApproveMANA from '../button/ButtonApproveMANA';
-import ButtonApproveDAI from '../button/ButtonApproveDAI';
+// import ButtonApproveMANA from '../button/ButtonApproveMANA';
+// import ButtonApproveDAI from '../button/ButtonApproveDAI';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
-
 
 let transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -49,7 +48,7 @@ const ContentBalances = (props) => {
 
   // define local variables
 
-  // const dataPlay = state.transactions[1];
+  const [userAddress, setUserAddress] = useState('');
 
   const [margin, setMargin] = useState('125px');
   const [boxDAI, setBoxDAI] = useState('none');
@@ -60,7 +59,7 @@ const ContentBalances = (props) => {
   const [totalMANA, setTotalMANA] = useState(0);
   const [totalPLAY, setTotalPLAY] = useState(0);
 
-  let userAddress = '';
+  // let userAddress = '';
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -138,7 +137,8 @@ const ContentBalances = (props) => {
   // get user address
   useEffect(() => {
     if (state.userStatus) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+      const userAddress = window.web3.currentProvider.selectedAddress;
+      setUserAddress(userAddress);
     }
   }, [state.userStatus]);
 
@@ -160,22 +160,26 @@ const ContentBalances = (props) => {
 
   // fetch total bet from API
   useEffect(() => {
-    userAddress = state.userInfo[1];
+    if (userAddress) {
+      // console.log('getting payout...');
+      // console.log(userAddress);
 
-    (async function () {
-      const response = await Fetch.PLAYER_DATA(userAddress);
-      const json = await response.json();
-      setTotalDAI(
-        (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-      );
-      setTotalMANA(
-        (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-      );
-      setTotalPLAY(
-        (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-      );
-    })();
-  }, [totalDAI, totalMANA, totalDAI]);
+      (async function () {
+        const response = await Fetch.PLAYER_DATA(userAddress);
+        const json = await response.json();
+
+        setTotalDAI(
+          (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+        );
+        setTotalMANA(
+          (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+        );
+        setTotalPLAY(
+          (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+        );
+      })();
+    }
+  }, [userAddress]);
 
   // initialize token contract pings
   function initializePings() {

@@ -30,6 +30,7 @@ function UserStatus() {
   async function getUserStatus() {
     const response = await Fetch.USER_STATUS(userAddress);
     const json = await response.json();
+
     localStorage.setItem('storedStatus', json.result);
 
     if (json.status === 'ok') {

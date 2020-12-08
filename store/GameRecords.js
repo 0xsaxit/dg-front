@@ -11,6 +11,8 @@ function GameRecords() {
       const response = await Fetch.GAME_RECORDS();
       const jsonRecords = await response.json();
 
+      // const jsonRecords = '';
+
       dispatch({
         type: 'update_records',
         data: jsonRecords,
