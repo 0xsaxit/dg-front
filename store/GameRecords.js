@@ -8,10 +8,10 @@ function GameRecords() {
 
   useEffect(() => {
     (async function () {
-      const response = await Fetch.GAME_RECORDS();
-      const jsonRecords = await response.json();
+      // const response = await Fetch.GAME_RECORDS();
+      // const jsonRecords = await response.json();
 
-      // const jsonRecords = '';
+      const jsonRecords = '';
 
       dispatch({
         type: 'update_records',

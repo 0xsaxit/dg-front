@@ -322,10 +322,10 @@ const Offerings = (props) => {
     console.log('Re-fetching game records');
     setGameRecordsRefresh(true);
 
-    const response = await Fetch.GAME_RECORDS();
-    const jsonRecords = await response.json();
+    // const response = await Fetch.GAME_RECORDS();
+    // const jsonRecords = await response.json();
 
-    // const jsonRecords = '';
+    const jsonRecords = '';
 
     setGameRecordsRefresh(false);
 
