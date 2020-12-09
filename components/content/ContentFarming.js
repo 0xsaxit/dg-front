@@ -394,7 +394,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Roulette Rate / 1 DG </p>
-                    <p className="earned-amount"> 10K MANA </p>
+                    <p className="earned-amount"> 48K MANA </p>
                   </span>
                 </span>
 
@@ -413,7 +413,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Blackjack Rate / 1 DG </p>
-                    <p className="earned-amount"> 45K MANA </p>
+                    <p className="earned-amount"> 100K MANA </p>
                   </span>
                 </span>
               </div>
@@ -455,7 +455,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Roulette Rate / 1 DG </p>
-                    <p className="earned-amount"> 900 DAI </p>
+                    <p className="earned-amount"> 4K DAI </p>
                   </span>
                 </span>
 
@@ -474,7 +474,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text"> Blackjack Rate / 1 DG </p>
-                    <p className="earned-amount"> 4K DAI </p>
+                    <p className="earned-amount"> 8.4K DAI </p>
                   </span>
                 </span>
               </div>
