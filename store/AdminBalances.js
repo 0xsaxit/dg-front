@@ -125,7 +125,7 @@ function AdminBalances() {
       const amountTreasury = await Transactions.balanceOfToken(
         tokenContract,
         contractAddress,
-        0
+        3
       );
       arrayAmounts.push([0, amountTreasury]);
 

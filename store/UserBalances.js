@@ -68,7 +68,7 @@ function UserBalances() {
     async function fetchData() {
       const response = await getTokenBalances();
 
-      // as soon as the balance updates on Matic display deposit confirmation
+      // as soon as the balance updates on Matic display deposit/withdraw confirmation
       if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
         console.log('Matic balances have updated: deposit');
 
@@ -107,7 +107,7 @@ function UserBalances() {
 
   // update transaction history in the database
   async function updateHistory(amount, type, _state) {
-    console.log('Writing to database: ' + type);
+    console.log('Writing transaction to database: ' + type);
 
     try {
       const response = await Fetch.POST_HISTORY(

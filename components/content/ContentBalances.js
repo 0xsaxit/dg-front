@@ -161,9 +161,6 @@ const ContentBalances = (props) => {
   // fetch total bet from API
   useEffect(() => {
     if (userAddress) {
-      // console.log('getting payout...');
-      // console.log(userAddress);
-
       (async function () {
         const response = await Fetch.PLAYER_DATA(userAddress);
         const json = await response.json();

@@ -5,14 +5,10 @@ import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
-// import Whitelist from '../components/Whitelist';
 
 const Admin = () => {
   // get whitelisted value from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
-  // const whitelisted = Whitelist();
 
   return (
     <Layout>

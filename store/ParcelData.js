@@ -35,13 +35,13 @@ function ParcelData() {
         }
 
         // get all token data for the /admin area
-        const response = await Fetch.PARCEL_DATA(landID, '*');
-        const jsonData = await response.json();
+        // const response = await Fetch.PARCEL_DATA(landID, '*');
+        // const jsonData = await response.json();
 
-        dispatch({
-          type: 'parcel_data_all',
-          data: jsonData,
-        });
+        // dispatch({
+        //   type: 'parcel_data_all',
+        //   data: jsonData,
+        // });
       })();
     }
   }, [state.userStatus]);

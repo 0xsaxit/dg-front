@@ -8,49 +8,50 @@ const ContentAdmin = (props) => {
   const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
   let game = '';
 
-  function contentLabels() {
-    if (props.type === 'balances') {
-      return null;
-    } else if (props.type === 'machines') {
-      return (
-        <tbody>
-          <tr className="table-header">
-            <td className="table-header-text account">GAME</td>
-            <td className="table-header-text-1 bet">GLOBAL ID</td>
-            <td className="table-header-text-1 date">TOTAL BETS</td>
-            <td className="table-header-text-1">TOTAL PAYOUTS</td>
-            <td className="table-header-text-1 date">LAST SESSION</td>
-          </tr>
-        </tbody>
-      );
-    } else if (props.type === 'history') {
-      return (
-        <tbody>
-          <tr className="table-header">
-            <td className="table-header-text account">GAME</td>
-            <td className="table-header-text-1 bet">GLOBAL ID</td>
-            <td className="table-header-text-1">PLAYER</td>
-            <td className="table-header-text-1 date">BET</td>
-            <td className="table-header-text-1">PAYOUT</td>
-            <td className="table-header-text-1 date">TIMESTAMP</td>
-          </tr>
-        </tbody>
-      );
-    } else if (props.type === 'nft') {
-      return (
-        <tbody>
-          <tr className="table-header">
-            <td className="table-header-text-1 bet">MACHINE IDs</td>
-            <td className="table-header-text-1 date">PARCEL LOCATION</td>
-            <td className="table-header-text-1">PARCEL VOLUME</td>
-            <td className="table-header-text-1 date">
-              REVENUE (C. MONTH) (L. MONTH) (TOTAL)
-            </td>
-          </tr>
-        </tbody>
-      );
-    }
-  }
+  // function contentLabels() {
+  //   if (props.type === 'balances') {
+  //     return null;
+  //   } else if (props.type === 'machines') {
+  //     return (
+  //       <tbody>
+  //         <tr className="table-header">
+  //           <td className="table-header-text account">GAME</td>
+  //           <td className="table-header-text-1 bet">GLOBAL ID</td>
+  //           <td className="table-header-text-1 date">TOTAL BETS</td>
+  //           <td className="table-header-text-1">TOTAL PAYOUTS</td>
+  //           <td className="table-header-text-1 date">LAST SESSION</td>
+  //         </tr>
+  //       </tbody>
+  //     );
+  //   } else if (props.type === 'history') {
+  //     return (
+  //       <tbody>
+  //         <tr className="table-header">
+  //           <td className="table-header-text account">GAME</td>
+  //           <td className="table-header-text-1 bet">GLOBAL ID</td>
+  //           <td className="table-header-text-1">PLAYER</td>
+  //           <td className="table-header-text-1 date">BET</td>
+  //           <td className="table-header-text-1">PAYOUT</td>
+  //           <td className="table-header-text-1 date">TIMESTAMP</td>
+  //         </tr>
+  //       </tbody>
+  //     );
+  //   }
+  //   // } else if (props.type === 'nft') {
+  //   //   return (
+  //   //     <tbody>
+  //   //       <tr className="table-header">
+  //   //         <td className="table-header-text-1 bet">MACHINE IDs</td>
+  //   //         <td className="table-header-text-1 date">PARCEL LOCATION</td>
+  //   //         <td className="table-header-text-1">PARCEL VOLUME</td>
+  //   //         <td className="table-header-text-1 date">
+  //   //           REVENUE (C. MONTH) (L. MONTH) (TOTAL)
+  //   //         </td>
+  //   //       </tr>
+  //   //     </tbody>
+  //   //   );
+  //   // }
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -330,51 +331,52 @@ const ContentAdmin = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function contentNFTs() {
-    return (
-      <tbody>
-        {props.dataPage.map((row, i) => {
-          return (
-            <Table.Row>
-              <Table.Cell style={{ paddingLeft: '20px' }}>
-                {row.machineIDs.map((machineID, j) =>
-                  j !== row.machineIDs.length - 1 ? machineID + ', ' : machineID
-                )}
-              </Table.Cell>
+  // function contentNFTs() {
+  //   return (
+  //     <tbody>
+  //       {props.dataPage.map((row, i) => {
+  //         return (
+  //           <Table.Row>
+  //             <Table.Cell style={{ paddingLeft: '20px' }}>
+  //               {row.machineIDs.map((machineID, j) =>
+  //                 j !== row.machineIDs.length - 1 ? machineID + ', ' : machineID
+  //               )}
+  //             </Table.Cell>
 
-              <Table.Cell style={{ paddingLeft: '20px' }}>
-                {row.parcelLocation[0]}, {row.parcelLocation[1]},{' '}
-                {row.parcelLocation[2]}
-              </Table.Cell>
+  //             <Table.Cell style={{ paddingLeft: '20px' }}>
+  //               {row.parcelLocation[0]}, {row.parcelLocation[1]},{' '}
+  //               {row.parcelLocation[2]}
+  //             </Table.Cell>
 
-              <Table.Cell style={{ paddingLeft: '20px' }}>
-                {row.parcelRevenue[0]}, {row.parcelRevenue[1]},{' '}
-                {row.parcelRevenue[2]}
-              </Table.Cell>
+  //             <Table.Cell style={{ paddingLeft: '20px' }}>
+  //               {row.parcelRevenue[0]}, {row.parcelRevenue[1]},{' '}
+  //               {row.parcelRevenue[2]}
+  //             </Table.Cell>
 
-              <Table.Cell style={{ paddingLeft: '20px' }}>
-                {parseFloat(row.parcelVolume[0]).toFixed(3)},{' '}
-                {parseFloat(row.parcelVolume[1]).toFixed(3)},{' '}
-                {parseFloat(row.parcelVolume[2]).toFixed(3)}
-              </Table.Cell>
-            </Table.Row>
-          );
-        })}
-      </tbody>
-    );
-  }
+  //             <Table.Cell style={{ paddingLeft: '20px' }}>
+  //               {parseFloat(row.parcelVolume[0]).toFixed(3)},{' '}
+  //               {parseFloat(row.parcelVolume[1]).toFixed(3)},{' '}
+  //               {parseFloat(row.parcelVolume[2]).toFixed(3)}
+  //             </Table.Cell>
+  //           </Table.Row>
+  //         );
+  //       })}
+  //     </tbody>
+  //   );
+  // }
 
-  if (props.content === 'labels') {
-    return contentLabels();
-  } else if (props.content === 'balances') {
+  // if (props.content === 'labels') {
+  //   return contentLabels();
+  if (props.content === 'balances') {
     return contentBalances();
   } else if (props.content === 'machines') {
     return contentMachines();
   } else if (props.content === 'history') {
     return contentHistory();
-  } else if (props.content === 'nft') {
-    return contentNFTs();
   }
+  // } else if (props.content === 'nft') {
+  //   return contentNFTs();
+  // }
 };
 
 export default ContentAdmin;

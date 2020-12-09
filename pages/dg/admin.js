@@ -1,29 +1,14 @@
 import { GlobalContext } from '../../store';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import Farming from '../../components/home/Farming';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
-import Spinner from '../../components/Spinner';
 
 const Admin = () => {
-  // get user's transaction history from the Context API store
+  // get whitelisted value from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
-  const [isErrorMessage, setIsErrorMessage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    if (state.userStatus > 4) {
-      setIsErrorMessage(false);
-      setIsLoading(false);
-    } else {
-      setIsErrorMessage(true);
-      setIsLoading(false);
-    }
-  }, [state.userStatus, state.userInfo]);
 
   return (
     <Layout>
@@ -33,14 +18,12 @@ const Admin = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {isLoading === true ? (
-        <Spinner background={1} />
-      ) : isErrorMessage === true ? (
-        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-          You must log in with Metamask to view this page
-        </div>
-      ) : (
+      {state.whitelisted ? (
         <Farming DGState={'admin'} />
+      ) : (
+        <div className="account-other-inner-p">
+          Please check you've connected using a whitelisted address
+        </div>
       )}
     </Layout>
   );

@@ -2,60 +2,51 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Table, Divider, Grid } from 'semantic-ui-react';
 import Web3 from 'web3';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner';
 import ButtonPause from '../button/ButtonPause';
 import ContentAdmin from '../content/ContentAdmin';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 import Aux from '../_Aux';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 
 const Administration = () => {
-  // get player/machine transaction history from the Context API store
+  // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const dataHistory = state.adminHistory[0];
-  const dataMachines = state.adminHistory[1];
+  // const dataHistory = state.adminHistory[0];
+  // const dataMachines = state.adminHistory[1];
 
   // define local variables
-  const [maximumCount, setMaximumCount] = useState(0);
+  // const [maximumCount, setMaximumCount] = useState(0);
   const [dataType, setDataType] = useState('balances');
-  const [dataLength, setDataLength] = useState(0);
-  const [dataPage, setDataPage] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [dataLength, setDataLength] = useState(0);
+  const [dataPage, setDataPage] = useState(true);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [isLoading, setIsLoading] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [parentContract, setParentContract] = useState({});
-  // const [maticWeb3, setMaticWeb3] = useState({});
   const [instances, setInstances] = useState(false);
 
-  // let maticWeb3 = {};
-  // let treasuryContract = {};
+  // useEffect(() => {
+  //   if (state.userStatus) {
+  //     const frameHeight = window.innerHeight;
+  //     setMaximumCount(Math.floor(frameHeight * 0.01575));
+  //   }
+  // }, [state.userStatus]);
+
+  // useEffect(() => {
+  //   const allTransactions = state.transactions[0].length;
+  //   const allParcelData = Object.keys(state.parcelDataAll).length;
+
+  //   if (allTransactions && allParcelData) {
+  //     setIsLoading(false);
+  //   }
+  // }, [state.transactions, state.parcelDataAll]);
 
   useEffect(() => {
     if (state.userStatus) {
-      const frameHeight = window.innerHeight;
-      setMaximumCount(Math.floor(frameHeight * 0.01575));
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
-    const allTransactions = state.transactions[0].length;
-    const allParcelData = Object.keys(state.parcelDataAll).length;
-
-    if (allTransactions && allParcelData) {
-      setIsLoading(false);
-    }
-  }, [state.transactions, state.parcelDataAll]);
-
-  useEffect(() => {
-    if (state.userStatus) {
-      // maticWeb3 = new Web3(
-      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      // ); // pass Matic provider to maticWeb3 object
-
       // initialize maticWeb3 provider and create treasury contract instance
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-      // setMaticWeb3(maticWeb3);
 
       (async function () {
         const parentContract = await Transactions.treasuryContract(maticWeb3);
@@ -82,12 +73,6 @@ const Administration = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // ping the treasury contract for pause status
   async function dataInterval() {
-    // maticWeb3 = new Web3(
-    //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-    // ); // pass Matic provider to maticWeb3 object
-
-    // treasuryContract = await Transactions.treasuryContract(maticWeb3);
-
     async function fetchData() {
       const response = await parentContract.methods.paused().call();
 
@@ -182,7 +167,7 @@ const Administration = () => {
             </Grid.Row>
           </Grid>
 
-          <div style={{ marginLeft: '0px' }}>
+          {/* <div style={{ marginLeft: '0px' }}>
             <p className="account-other-p">
               {dataType === 'balances' ? (
                 <b className="account-hover active">GAME BALANCES</b>
@@ -215,9 +200,9 @@ const Administration = () => {
                 >
                   TRANSACTIONS
                 </abbr>
-              )}
+              )} */}
 
-              {dataType === 'nft' ? (
+          {/* {dataType === 'nft' ? (
                 <b className="account-hover active">NFT HOLDERS</b>
               ) : (
                 <abbr
@@ -226,43 +211,44 @@ const Administration = () => {
                 >
                   NFT HOLDERS
                 </abbr>
-              )}
-            </p>
-          </div>
+              )} */}
+          {/* </p>
+          </div> */}
         </div>
 
-        <Divider className="tab-divider" />
+        {/* <Divider className="tab-divider" /> */}
       </Aux>
     );
   }
 
-  function setUserData(type, page) {
-    if (!isLoading) {
-      let result = [];
-      const indexStart = (page - 1) * maximumCount;
-      const indexEnd = indexStart + maximumCount;
-      let dataLength = 0;
+  // function setUserData(type, page) {
+  //   // if (!isLoading) {
+  //   let result = [];
+  //   const indexStart = (page - 1) * maximumCount;
+  //   const indexEnd = indexStart + maximumCount;
+  //   let dataLength = 0;
 
-      if (type === 'balances') {
-        result = true;
-        dataLength = 0;
-      } else if (type === 'history') {
-        result = dataHistory.slice(indexStart, indexEnd);
-        dataLength = dataHistory.length;
-      } else if (type === 'machines') {
-        result = dataMachines.slice(indexStart, indexEnd);
-        dataLength = dataMachines.length;
-      } else if (type === 'nft') {
-        result = state.parcelDataAll.slice(indexStart, indexEnd);
-        dataLength = state.parcelDataAll.length;
-      }
+  //   if (type === 'balances') {
+  //     result = true;
+  //     dataLength = 0;
+  //   } else if (type === 'history') {
+  //     result = dataHistory.slice(indexStart, indexEnd);
+  //     dataLength = dataHistory.length;
+  //   } else if (type === 'machines') {
+  //     result = dataMachines.slice(indexStart, indexEnd);
+  //     dataLength = dataMachines.length;
+  //   }
+  //   // } else if (type === 'nft') {
+  //   //   result = state.parcelDataAll.slice(indexStart, indexEnd);
+  //   //   dataLength = state.parcelDataAll.length;
+  //   // }
 
-      setDataType(type);
-      setDataPage(result);
-      setDataLength(dataLength);
-      setCurrentPage(page);
-    }
-  }
+  //   setDataType(type);
+  //   setDataPage(result);
+  //   setDataLength(dataLength);
+  //   setCurrentPage(page);
+  //   // }
+  // }
 
   function noTxHistory() {
     return (
@@ -280,40 +266,36 @@ const Administration = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? (
-        <Spinner background={0} />
-      ) : (
-        <div className="page-container">
-          <div className="account-other-inner-container">
-            {topLinks()}
+      <div className="page-container">
+        <div className="account-other-inner-container">
+          {topLinks()}
 
-            <div id="tx-box-history-2">
-              {dataPage !== 'false' ? (
-                <table className="account-table">
-                  <ContentAdmin content={'labels'} type={dataType} />
-                  <ContentAdmin
-                    content={dataType}
-                    dataPage={dataPage}
-                    adminBalances={state.adminBalances}
-                  />
-                </table>
-              ) : (
-                noTxHistory()
-              )}
-            </div>
-
-            {dataType !== 'balances' ? (
-              <Pagination
-                currentPage={currentPage}
-                dataType={dataType}
-                dataLength={dataLength}
-                maximumCount={maximumCount}
-                setUserData={setUserData}
-              />
-            ) : null}
+          <div id="tx-box-history-2">
+            {dataPage !== 'false' ? (
+              <table className="account-table">
+                {/* <ContentAdmin content={'labels'} type={dataType} /> */}
+                <ContentAdmin
+                  content={dataType}
+                  dataPage={dataPage}
+                  adminBalances={state.adminBalances}
+                />
+              </table>
+            ) : (
+              noTxHistory()
+            )}
           </div>
+
+          {/* {dataType !== 'balances' ? (
+            <Pagination
+              currentPage={currentPage}
+              dataType={dataType}
+              dataLength={dataLength}
+              maximumCount={maximumCount}
+              setUserData={setUserData}
+            />
+          ) : null} */}
         </div>
-      )}
+      </div>
     </div>
   );
 };

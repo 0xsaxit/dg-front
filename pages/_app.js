@@ -17,7 +17,7 @@ import Location from '../store/Location';
 import ActiveStatus from '../store/ActiveStatus';
 import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
-import AdminData from '../store/AdminData';
+// import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
 import Whitelist from '../store/Whitelist';
 
@@ -38,7 +38,6 @@ class Application extends App {
         <ActiveStatus />
         <UserInfo />
         <AdminBalances />
-        <AdminData />
         <DGBalances />
         <Whitelist />
 

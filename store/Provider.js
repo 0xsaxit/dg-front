@@ -18,7 +18,7 @@ const initialState = {
   transactions: [[], []],
   txHash: '',
   tokenPings: 0,
-  parcelDataAll: {},
+  // parcelDataAll: {},
   parcelDataUser: {},
   gameRecords: {},
   balancesOverlay: 0,
@@ -34,7 +34,7 @@ const initialState = {
       [0, 0],
     ],
   ],
-  adminHistory: [[], []],
+  // adminHistory: [[], []],
   DGBalances: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   stakingBalances: [[0], [0], [0], [0], [0], [0], [0], [0]],
   refreshBalances: true,
@@ -94,11 +94,11 @@ const reducer = (state, action) => {
         tokenPings: action.data,
       };
 
-    case 'parcel_data_all':
-      return {
-        ...state,
-        parcelDataAll: action.data,
-      };
+    // case 'parcel_data_all':
+    //   return {
+    //     ...state,
+    //     parcelDataAll: action.data,
+    //   };
 
     case 'parcel_data_user':
       return {
@@ -142,11 +142,11 @@ const reducer = (state, action) => {
         adminBalances: action.data,
       };
 
-    case 'admin_history':
-      return {
-        ...state,
-        adminHistory: action.data,
-      };
+    // case 'admin_history':
+    //   return {
+    //     ...state,
+    //     adminHistory: action.data,
+    //   };
 
     case 'dg_balances':
       return {

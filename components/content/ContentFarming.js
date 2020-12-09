@@ -9,13 +9,11 @@ import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
 
-
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const dataPlay = state.transactions[1];
   const [poolSelect, setPoolSelect] = useState(1);
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
@@ -27,19 +25,15 @@ const ContentFarming = (props) => {
   const [percentagePool2, setPercentagePool2] = useState(0);
   const [manaPrice, setManaPrice] = useState(0);
 
-
   // fetch total bet from API
   useEffect(() => {
     (async function () {
-
       // calculate price of mana
       let response_2 = await Fetch.MANA_PRICE();
       let json_2 = await response_2.json();
       setManaPrice(json_2.market_data.current_price.usd);
-
     })();
   }, [manaPrice]);
-
 
   // usd value calculations
   const price = Number(state.DGBalances[5] / (49 * state.DGBalances[4]));
@@ -48,11 +42,13 @@ const ContentFarming = (props) => {
   const PoolOneUSD = Number(price * state.DGBalances[1]);
   const PoolTwoUSD = Number(price * state.DGBalances[2]);
 
-
   // pool percentage calculations
-  const PoolOnePercentage = Number((state.stakingBalances[2] / state.stakingBalances[0]) * 100);
-  const PoolTwoPercentage = Number((state.stakingBalances[6] / state.stakingBalances[4]) * 100);
-
+  const PoolOnePercentage = Number(
+    (state.stakingBalances[2] / state.stakingBalances[0]) * 100
+  );
+  const PoolTwoPercentage = Number(
+    (state.stakingBalances[6] / state.stakingBalances[4]) * 100
+  );
 
   // APY value calculations for pool 1
   const numerator = 51 * 2400 * price * state.DGBalances[10];
@@ -73,7 +69,9 @@ const ContentFarming = (props) => {
   // treasury stuff
   const treasury_dai = state.DGBalances[13];
   const treasury_mana = state.DGBalances[12] * manaPrice;
-  const treasury = (Number(treasury_dai) + treasury_mana).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const treasury = (Number(treasury_dai) + treasury_mana)
+    .toFixed(2)
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -148,7 +146,11 @@ const ContentFarming = (props) => {
                 $DG is rewarded to players, liquidity providers, and governors
                 of the decentral.games ecosystem. $DG is not an investment.
                 Learn more by reading our
-                <a href="https://decentral.games/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino" target="_blank" style={{ color: '#2085f4' }}>
+                <a
+                  href="https://decentral.games/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                  target="_blank"
+                  style={{ color: '#2085f4' }}
+                >
                   {' '}
                   announcement{' '}
                 </a>
@@ -198,11 +200,14 @@ const ContentFarming = (props) => {
                   ${USDToken.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </p>
               ) : (
-                <Loader active inline size='small'
+                <Loader
+                  active
+                  inline
+                  size="small"
                   style={{
                     fontSize: '12px',
                     marginTop: '1px',
-                    marginBottom: '2px'
+                    marginBottom: '2px',
                   }}
                 />
               )}
@@ -327,14 +332,18 @@ const ContentFarming = (props) => {
               <p className="earned-text">Value USD</p>
               {Number(USDGameplay) || USDGameplay === 0 ? (
                 <p className="earned-amount">
-                  ${USDGameplay.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  $
+                  {USDGameplay.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </p>
               ) : (
-                <Loader active inline size='small'
+                <Loader
+                  active
+                  inline
+                  size="small"
                   style={{
                     fontSize: '12px',
                     marginTop: '1px',
-                    marginBottom: '2px'
+                    marginBottom: '2px',
                   }}
                 />
               )}
@@ -565,14 +574,21 @@ const ContentFarming = (props) => {
                 <p className="earned-text">Value USD</p>
                 {Number(PoolOneUSD) || PoolOneUSD === 0 ? (
                   <p className="earned-amount">
-                    ${PoolOneUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    $
+                    {PoolOneUSD.toFixed(2).replace(
+                      /\B(?=(\d{3})+(?!\d))/g,
+                      ','
+                    )}
                   </p>
                 ) : (
-                  <Loader active inline size='small'
+                  <Loader
+                    active
+                    inline
+                    size="small"
                     style={{
                       fontSize: '12px',
                       marginTop: '1px',
-                      marginBottom: '2px'
+                      marginBottom: '2px',
                     }}
                   />
                 )}
@@ -590,14 +606,21 @@ const ContentFarming = (props) => {
                 <p className="earned-text">Value USD</p>
                 {Number(PoolTwoUSD) || PoolTwoUSD === 0 ? (
                   <p className="earned-amount">
-                    ${PoolTwoUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    $
+                    {PoolTwoUSD.toFixed(2).replace(
+                      /\B(?=(\d{3})+(?!\d))/g,
+                      ','
+                    )}
                   </p>
                 ) : (
-                  <Loader active inline size='small'
+                  <Loader
+                    active
+                    inline
+                    size="small"
                     style={{
                       fontSize: '12px',
                       marginTop: '1px',
-                      marginBottom: '2px'
+                      marginBottom: '2px',
                     }}
                   />
                 )}
@@ -690,15 +713,16 @@ const ContentFarming = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {Number(manaAPY) && isFinite(manaAPY) ? (
-                      <p className="earned-amount">
-                        {manaAPY.toFixed(2)}%
-                      </p>
+                      <p className="earned-amount">{manaAPY.toFixed(2)}%</p>
                     ) : (
-                      <Loader active inline size='small'
+                      <Loader
+                        active
+                        inline
+                        size="small"
                         style={{
                           fontSize: '12px',
                           marginTop: '5px',
-                          marginLeft: '-1px'
+                          marginLeft: '-1px',
                         }}
                       />
                     )}
@@ -721,19 +745,22 @@ const ContentFarming = (props) => {
                   >
                     <p className="earned-text">% of pool 1</p>
                     <p className="earned-amount">
-                    {Number(PoolOnePercentage) || PoolOnePercentage === 0 ? (
-                      <p className="earned-amount">
-                        {PoolOnePercentage.toFixed(2)}%
-                      </p>
-                    ) : (
-                      <Loader active inline size='small'
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '5px',
-                          marginLeft: '-1px'
-                        }}
-                      />
-                    )}
+                      {Number(PoolOnePercentage) || PoolOnePercentage === 0 ? (
+                        <p className="earned-amount">
+                          {PoolOnePercentage.toFixed(2)}%
+                        </p>
+                      ) : (
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          style={{
+                            fontSize: '12px',
+                            marginTop: '5px',
+                            marginLeft: '-1px',
+                          }}
+                        />
+                      )}
                     </p>
                   </span>
                 </span>
@@ -850,15 +877,16 @@ const ContentFarming = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {Number(daiAPY) && isFinite(daiAPY) ? (
-                      <p className="earned-amount">
-                        {daiAPY.toFixed(2)}%
-                      </p>
+                      <p className="earned-amount">{daiAPY.toFixed(2)}%</p>
                     ) : (
-                      <Loader active inline size='small'
+                      <Loader
+                        active
+                        inline
+                        size="small"
                         style={{
                           fontSize: '12px',
                           marginTop: '5px',
-                          marginLeft: '-1px'
+                          marginLeft: '-1px',
                         }}
                       />
                     )}
@@ -885,11 +913,14 @@ const ContentFarming = (props) => {
                         {PoolTwoPercentage.toFixed(2)}%
                       </p>
                     ) : (
-                      <Loader active inline size='small'
+                      <Loader
+                        active
+                        inline
+                        size="small"
                         style={{
                           fontSize: '12px',
                           marginTop: '5px',
-                          marginLeft: '-1px'
+                          marginLeft: '-1px',
                         }}
                       />
                     )}

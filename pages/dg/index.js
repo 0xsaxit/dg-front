@@ -16,14 +16,14 @@ const DG = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (state.userStatus > 4) {
+    if (state.userStatus) {
       setIsErrorMessage(false);
       setIsLoading(false);
     } else {
       setIsErrorMessage(true);
       setIsLoading(false);
     }
-  }, [state.userStatus, state.userInfo]);
+  }, [state.userStatus]);
 
   return (
     <Layout>
