@@ -1,6 +1,7 @@
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
+import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import ABI_DG_KEEPER from '../components/ABI/ABIDGKeeper';
 import Global from '../components/Constants';
@@ -44,6 +45,30 @@ async function pointerContract(web3Default) {
   );
 
   return DGPointerContract;
+}
+
+// set dg main contract instance
+async function tokenContract(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
+
+  const DGToken = new web3Default.eth.Contract(
+    ABI_DG_TOKEN,
+    addresses.DG_TOKEN
+  );
+
+  return DGToken;
+}
+
+// set dg staking gov contract instance
+async function stakingContractGov(web3Default) {
+  const addresses = await Global.API_ADDRESSES;
+
+  const DGStakingGov = new web3Default.eth.Contract(
+    ABI_DG_STAKING,
+    addresses.DG_STAKING_GOV
+  );
+
+  return DGStakingGov;
 }
 
 // set staking contract instance dg pool 1
@@ -138,4 +163,6 @@ export default {
   BPTContract,
   BPTContractTwo,
   keeperContract,
+  tokenContract,
+  stakingContractGov,
 };

@@ -20,9 +20,12 @@ const ContentFarming = (props) => {
   const [amountInput, setAmountInput] = useState('');
   const [amountInput2, setAmountInput2] = useState('');
   const [amountInput3, setAmountInput3] = useState('10000000000000000000');
+  const [amountInput4, setAmountInput4] = useState('');
 
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [percentagePool2, setPercentagePool2] = useState(0);
+  const [percentageGov, setPercentageGov] = useState(0);
+
   const [manaPrice, setManaPrice] = useState(0);
 
   // fetch total bet from API
@@ -49,6 +52,9 @@ const ContentFarming = (props) => {
   const PoolTwoPercentage = Number(
     (state.stakingBalances[6] / state.stakingBalances[4]) * 100
   );
+  const PercentageGov = Number(
+    (state.stakingBalances[9] / state.stakingBalances[8]) * 100
+  ).toFixed(2);
 
   // APY value calculations for pool 1
   const numerator = 51 * 2400 * price * state.DGBalances[10];
@@ -69,9 +75,7 @@ const ContentFarming = (props) => {
   // treasury stuff
   const treasury_dai = state.DGBalances[13];
   const treasury_mana = state.DGBalances[12] * manaPrice;
-  const treasury = (Number(treasury_dai) + treasury_mana)
-    .toFixed(2)
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const treasury = Number(treasury_dai) + Number(treasury_mana);
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -120,6 +124,27 @@ const ContentFarming = (props) => {
           setPercentagePool2(percentageFixed2);
         } else {
           setPercentagePool2(0);
+        }
+      })();
+    }
+  }, [props.instances, state.stakingBalances]);
+
+  useEffect(() => {
+    if (props.instances) {
+      (async () => {
+        const stakedTotal3 = await props.stakingContractGov.methods
+          .totalSupply()
+          .call();
+        const stakedTotalAdjusted3 = stakedTotal3 / Global.CONSTANTS.FACTOR;
+
+        if (stakedTotal3) {
+          const percentagePool3 =
+            state.stakingBalances[9] / stakedTotalAdjusted3;
+          const percentageFixed3 = (percentagePool2 * 100).toFixed(3);
+
+          setPercentageGov(percentageFixed3);
+        } else {
+          setPercentageGov(0);
         }
       })();
     }
@@ -1014,6 +1039,12 @@ const ContentFarming = (props) => {
     setAmountInput3(e.target.value);
   }
 
+  function handleChange4(e) {
+    console.log('New amount: ' + e.target.value);
+
+    setAmountInput4(e.target.value);
+  }
+
   function stake(type, amount) {
     if (type === 'stake') {
       props.staking(amount);
@@ -1029,6 +1060,16 @@ const ContentFarming = (props) => {
       props.staking_2(amount);
     } else if (type === 'withdraw') {
       props.withdraw_2(amount);
+    }
+
+    setAmountInput2('0');
+  }
+
+  function stake_gov(type, amount) {
+    if (type === 'stake') {
+      props.staking_gov(amount);
+    } else if (type === 'withdraw') {
+      props.withdraw_gov(amount);
     }
 
     setAmountInput2('0');
@@ -1095,17 +1136,17 @@ const ContentFarming = (props) => {
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances[2]) ? (
+              {Number(state.DGBalances[14]) ? (
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"
-                  onClick={() => props.metaTransaction()}
+                  onClick={() => props.getReward()}
                 >
-                  CLAIM $DG
+                  CLAIM POOL 1 $DG
                 </Button>
               ) : (
                 <Button disabled className="DG-claim-button">
-                  CLAIM $DG
+                  CLAIM POOL 1 $DG
                 </Button>
               )}
             </span>
@@ -1121,7 +1162,7 @@ const ContentFarming = (props) => {
                 />
                 <span className="farming-pool-span">
                   <p className="welcome-text">Staked DG</p>
-                  <p className="account-name">0.000</p>
+                  <p className="account-name">{state.stakingBalances[8]}</p>
                 </span>
               </span>
 
@@ -1137,7 +1178,22 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of gov pool</p>
-                    <p className="earned-amount"> 0.00% </p>
+                    {Number(PercentageGov) || PercentageGov === 0 ? (
+                      <p className="earned-amount">
+                        {PercentageGov}%
+                      </p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                        }}
+                      />
+                    )}
                   </span>
                 </span>
 
@@ -1156,29 +1212,75 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">Treasury</p>
-                    <p className="earned-amount"> ${treasury} </p>
+                    {Number(treasury) ? (
+                      <p className="earned-amount">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                        }}
+                      />
+                    )}
                   </span>
                 </span>
               </div>
 
               <Divider />
 
-              <Input className="liquidity-input" fluid placeholder="Amount" />
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput4}
+                onChange={handleChange4}
+              />
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <p className="bpt-text">0 DG</p>
-                <p className="bpt-text">0 DG staked</p>
+                <p className="bpt-text">{state.DGBalances[6]} DG</p>
+                <p className="bpt-text">{state.stakingBalances[9]} DG STAKED</p>
               </span>
 
               <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
-                  STAKE $DG
-                </Button>
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE $DG
-                </Button>
+                {amountInput4 ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      stake_gov('stake', amountInput4);
+                      setAmountInput4('');
+                    }}
+                  >
+                    STAKE $DG
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    STAKE $DG
+                  </Button>
+                )}
+
+                {percentageGov && amountInput4 ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      stake_gov('withdraw', amountInput4);
+                      setAmountInput4('');
+                    }}
+                  >
+                    UNSTAKE $DG
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    UNSTAKE $DG
+                  </Button>
+                )}
               </span>
             </div>
 

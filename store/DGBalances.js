@@ -18,6 +18,8 @@ function DGBalances() {
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
   const [stakingContractTwo, setStakingContractTwo] = useState({});
+  const [stakingContractGov, setStakingContractGov] = useState({});
+
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
   const [DG_MATIC_CONTRACT, setDGMaticContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
@@ -122,6 +124,10 @@ function DGBalances() {
         const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
+        // gov
+        const stakingContractGov = await Transactions.stakingContractGov(web3);
+        setStakingContractGov(stakingContractGov);
+
         // POOL 1
         const BPTContract = await Transactions.BPTContract(web3);
         setBPTContract(BPTContract);
@@ -152,6 +158,7 @@ function DGBalances() {
         const balance_BP_MANA = await getMANABalancer();
         const balance_maticMana = await getMaticMana();
         const balance_maticDai = await getMaticDai();
+        const balance_stakingGov = await getDGBalanceStakingGov();
 
         // calculate price of mana locked in balancer
         let response = await Fetch.MANA_PRICE();
@@ -205,6 +212,7 @@ function DGBalances() {
             BPT_supply_2,
             balance_maticMana,
             balance_maticDai,
+            balance_stakingGov,
           ],
         });
 
@@ -220,6 +228,9 @@ function DGBalances() {
         console.log('balance DG (contract pool 2):  ' + balanceStaking[5]);
         console.log('balance BPT (staked pool 2):  ' + balanceStaking[6]);
         console.log('balance BPT (wallet pool 2):  ' + balanceStaking[7]);
+
+        console.log('balance DG total staked (gov): ' + balanceStaking[8]);
+        console.log('balance DG user staked (gov): ' + balanceStaking[9]);
 
         dispatch({
           type: 'staking_balances',
@@ -336,8 +347,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool 2
-  // using 0xca54 (old pool) for testing as I have a balance here
-  // update to 0x444b3917f08a0c7a39267b1ec2f46713c5492db2
+  // if things go south, check this address being passed in 
   // sorry for the confusing function names (this is pool 1!)
   async function getDGBalancer_2() {
     console.log('Get DG locked in Balancer pool 1');
@@ -449,12 +459,46 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG unclaimed balance from smart contract for gov
+  async function getDGBalanceStakingGov() {
+    console.log("Get user's DG staking balance from gov smart contract");
+
+    try {
+      const amount = await stakingContractGov.methods.earned(userAddress).call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG staking balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG unclaimed balance from smart contract for liquidity farming for pool 2
   async function getDGBalanceStaking_2() {
     console.log("Get user's DG staking balance from smart contract for pool 2");
 
     try {
       const amount = await stakingContractTwo.methods
+        .earned(userAddress)
+        .call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG staking balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get user's DG unclaimed balance from smart contract for liquidity farming for pool 2
+  async function getDGBalanceStaking_gov() {
+    console.log("Get user's DG staking balance from smart contract for pool 2");
+
+    try {
+      const amount = await stakingContractGov.methods
         .earned(userAddress)
         .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
@@ -556,6 +600,19 @@ function DGBalances() {
         0
       );
 
+      // gov
+      const contractBalanceStakingGov = await Transactions.balanceOfToken(
+        DG_TOKEN_CONTRACT,
+        addresses.DG_STAKING_GOV,
+        3
+      );
+
+      const stakedBalanceUserGov = await Transactions.balanceOfToken(
+        stakingContractGov,
+        userAddress,
+        0
+      );
+
       return [
         contractBalanceBPT,
         contractBalanceDG,
@@ -565,6 +622,8 @@ function DGBalances() {
         contractBalanceDGTwo,
         stakedBalanceBPTTwo,
         walletBalanceBPTTwo,
+        contractBalanceStakingGov,
+        stakedBalanceUserGov,
       ];
     } catch (error) {
       console.log('Staking DG & BPT pool 1 balances error: ' + error);

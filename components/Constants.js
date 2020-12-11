@@ -54,6 +54,10 @@ const API_ADDRESSES = (async () => {
     const TOMINOYA_CONTRACT_ADDRESS = json.TOMINOYA_CONTRACT_ADDRESS;
     const ADMIN_ADDRESSES = json.ADMIN_ADDRESSES;
 
+
+    const DG_STAKING_GOV = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
+    const DG_TOKEN = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
+
     console.log('OWNER_ADDRESS: ' + OWNER_ADDRESS);
     console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
     console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
@@ -95,6 +99,8 @@ const API_ADDRESSES = (async () => {
       BP_TOKEN_ADDRESS_2,
       TOMINOYA_CONTRACT_ADDRESS,
       ADMIN_ADDRESSES,
+      DG_STAKING_GOV,
+      DG_TOKEN,
     };
   }
 })();

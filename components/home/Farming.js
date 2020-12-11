@@ -28,6 +28,9 @@ const Farming = (props) => {
   const [stakingContractTwo, setStakingContractTwo] = useState({});
   const [BPTContractTwo, setBPTContractTwo] = useState({});
 
+  const [stakingContractGov, setStakingContractGov] = useState({});
+  const [DGContract, setDGContract] = useState({});
+
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
@@ -78,6 +81,13 @@ const Farming = (props) => {
 
         const BPTContractTwo = await Transactions.BPTContractTwo(web3);
         setBPTContractTwo(BPTContractTwo);
+
+        // GOV
+        const stakingContractGov = await Transactions.stakingContractGov(web3);
+        setStakingContractGov(stakingContractGov);
+
+        const DGContract = await Transactions.tokenContract(web3);
+        setDGContract(DGContract);
 
         // vesting contract for airdrops ect
         const keeperContract = await Transactions.keeperContract(web3);
@@ -375,6 +385,107 @@ const Farming = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // stake, withdraw, get reward from pool 2
+  async function staking_gov(amount) {
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = web3.utils.toWei(amount);
+    console.log('Gov staking amount input: ' + amountToString);
+
+    try {
+      console.log(
+        'Get amount user has authorized our gov staking contract to spend'
+      );
+
+      const amountAllowance = await DGContract.methods
+        .allowance(userAddress, addresses.DG_STAKING_GOV)
+        .call();
+
+      console.log('Authorized amount: ' + amountAllowance);
+
+      if (Number(amountAllowance) < amountAdjusted) {
+        console.log("Approve goov staking contract to spend user's tokens");
+
+        const data = await DGContract.methods
+          .approve(
+            addresses.DG_STAKING_GOV,
+            Global.CONSTANTS.MAX_AMOUNT
+          )
+          .send({ from: userAddress });
+
+        console.log('approve() transaction confirmed: ' + data.transactionHash);
+      }
+
+      console.log('Call stake() function on smart contract');
+
+      const data = await stakingContractGov.methods
+        .stake(amountToString)
+        .send({ from: userAddress });
+
+      console.log('stake() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('Staking transactions error: ' + error);
+    }
+  }
+
+  async function withdraw_gov(amount) {
+    console.log('Call withdraw() function to unstake BP tokens');
+
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = web3.utils.toWei(amount);
+    console.log('Withdraw amount input: ' + amountToString);
+
+    try {
+      const data = await stakingContractGov.methods
+        .withdraw(amountToString)
+        .send({ from: userAddress });
+
+      console.log('withdraw() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('Unstake BP tokens error: ' + error);
+    }
+  }
+
+  async function getReward_gov() {
+    console.log('Call getReward_gov() function to claim DG tokens');
+
+    try {
+      const data = await stakingContractGov.methods
+        .getReward()
+        .send({ from: userAddress });
+
+      console.log('getReward_gov() transaction completed: ' + data.transactionHash);
+
+      // update global state unclaimed DG balance
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('getReward_gov() transaction error: ' + error);
+    }
+  }
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // claim DG tokens from keeper contract
   async function scrapeMyTokens() {
     console.log('Call scrapeMyTokens() function to claim DG tokens');
@@ -518,15 +629,18 @@ const Farming = (props) => {
             metaTransaction={metaTransaction}
             staking={staking}
             staking_2={staking_2}
+            staking_gov={staking_gov}
             withdraw={withdraw}
             withdraw_2={withdraw_2}
+            withdraw_gov={withdraw_gov}
             getReward={getReward}
             getReward_2={getReward_2}
+            getReward_gov={getReward_gov}
             getPeriodFinish={getPeriodFinish}
             stakingContract={stakingContract}
             stakingContractTwo={stakingContractTwo}
+            stakingContractGov={stakingContractGov}
             scrapeMyTokens={scrapeMyTokens}
-            // disabled={disabled}
             instances={instances}
           />
         </div>
