@@ -1,8 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
-
 import Link from 'next/link';
-
 import {
   Menu,
   Image,
@@ -16,7 +14,6 @@ import Spinner from '../Spinner';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 
-// import { useRouter } from 'next/router';
 
 const options = [
   {
@@ -127,22 +124,6 @@ const Offerings = (props) => {
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
   const [gameState, setGameState] = useState(props.gameState);
   const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
-
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   const urlParam = ((window.location.href).split('?=')[1]);
-  //   if (urlParam === undefined) {
-  //     router.push('?=games');
-  //     setGameState('games');
-  //   } else if (urlParam === 'games' || urlParam === 'casinos' || urlParam === 'leaderboard') {
-  //     router.push(`?=${urlParam}`);
-  //     setGameState(urlParam);
-  //   } else {
-  //     router.push('?=games');
-  //     setNFTState('games');
-  //   }
-  // }, []);
 
   function handleChange(value) {
     var gameSelect = '';
@@ -322,9 +303,6 @@ const Offerings = (props) => {
     console.log('Re-fetching game records');
     setGameRecordsRefresh(true);
 
-    // const response = await Fetch.GAME_RECORDS();
-    // const jsonRecords = await response.json();
-
     const jsonRecords = '';
 
     setGameRecordsRefresh(false);
@@ -347,28 +325,10 @@ const Offerings = (props) => {
 
         {gameState === 'games' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <b className="account-hover active">OUR GAMES</b>{' '}
-            {/* <abbr
-              className="account-hover"
-              onClick={() => {
-                setGameState('casinos');
-                router.push('?=casinos');
-              }}
-            >
-              OUR CASINOS
-            </abbr>{' '} */}
+            <b className="account-hover active">OUR GAMES</b>
             <Link href="/games/casinos">
               <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
             </Link>
-            {/* <abbr
-              className="account-hover"
-              onClick={() => {
-                setGameState('leaderboard');
-                router.push('?=leaderboard');
-              }}
-            >
-              LEADERBOARD
-            </abbr> */}
             <Link href="/games/leaderboard">
               <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
             </Link>
@@ -379,28 +339,10 @@ const Offerings = (props) => {
           </p>
         ) : gameState === 'casinos' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            {/* <abbr
-              className="account-hover"
-              onClick={() => {
-                setGameState('games');
-                router.push('?=games');
-              }}
-            >
-              OUR GAMES
-            </abbr>{' '} */}
             <Link href="/games">
               <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
             </Link>
-            <b className="account-hover active">OUR CASINOS</b>{' '}
-            {/* <abbr
-              className="account-hover"
-              onClick={() => {
-                setGameState('leaderboard');
-                router.push('?=leaderboard');
-              }}
-            >
-              LEADERBOARD
-            </abbr>{' '} */}
+            <b className="account-hover active">OUR CASINOS</b>
             <Link href="/games/leaderboard">
               <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
             </Link>
@@ -413,31 +355,13 @@ const Offerings = (props) => {
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
-                {/* <abbr
-                  className="account-hover"
-                  onClick={() => {
-                    setGameState('games');
-                    router.push('?=games');
-                  }}
-                >
-                  OUR GAMES
-                </abbr>{' '} */}
                 <Link href="/games">
                   <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
                 </Link>
-                {/* <abbr
-                  className="account-hover"
-                  onClick={() => {
-                    setGameState('casinos');
-                    router.push('?=casinos');
-                  }}
-                >
-                  OUR CASINOS
-                </abbr>{' '} */}
                 <Link href="/games/casinos">
                   <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
                 </Link>
-                <b className="account-hover active">LEADERBOARD</b>{' '}
+                <b className="account-hover active">LEADERBOARD</b>
               </p>
             </span>
 

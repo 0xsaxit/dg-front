@@ -53,6 +53,18 @@ const PopupLinks = (props) => {
           </span>
         </a>
 
+        <a href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC" target="_blank">
+          <span style={{ display: 'flex', marginBottom: '6px' }}>
+            <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items">
+              <Icon
+                style={{ marginLeft: '-5px', marginRight: '10px' }}
+                name="archive"
+              />
+              PRESS KIT
+            </Menu.Item>
+          </span>
+        </a>
+
         <a href="https://discord.com/invite/cvbSNzY" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
             <Menu.Item className={props.menuStyle[7]} id="dropdown-more-items">
@@ -107,6 +119,7 @@ const PopupLinks = (props) => {
           )}
 
           <Checkbox
+            style={{ marginTop: '-6px' }}
             className="radio-theme-toggle"
             onChange={toggleTheme}
             toggle

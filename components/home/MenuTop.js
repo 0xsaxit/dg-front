@@ -10,6 +10,7 @@ import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopupLinks from './PopupLinks';
 
+
 const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -90,9 +91,7 @@ const MenuTop = () => {
         return 'menu-container blog';
       }
     } else {
-      // if (path === router.pathname) {
-
-      if (router.pathname.includes(path)) {
+      if (path === router.pathname) {
         return menuStyle[2] + ' active';
       } else {
         return menuStyle[2];

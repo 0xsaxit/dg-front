@@ -2,23 +2,14 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-
 import Link from 'next/link';
 import { Menu, Divider } from 'semantic-ui-react';
-
-// import Spinner from '../Spinner';
-
 import ButtonAffiliates from '../button/ButtonAffiliates';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
-// import Whitelist from '../Whitelist';
 
-// import { useRouter } from 'next/router';
-
-// import ABI_DG_STAKING from '../../components/ABI/ABIDGStaking';
-// import ABI_BP from '../../components/ABI/ABIBalancerPoolToken';
 
 const Farming = (props) => {
   // dispatch user's unclaimed DG balance from the Context API store
@@ -41,27 +32,6 @@ const Farming = (props) => {
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
 
-  // const whitelisted = Whitelist();
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   const urlParam = window.location.href.split('?=')[1];
-  //   if (urlParam === undefined) {
-  //     router.push('?=token');
-  //     setDGState('token');
-  //   } else if (
-  //     urlParam === 'mining' ||
-  //     urlParam === 'liquidity' ||
-  //     urlParam === 'governance' ||
-  //     urlParam === 'admin'
-  //   ) {
-  //     router.push(`?=${urlParam}`);
-  //     setDGState(urlParam);
-  //   } else {
-  //     router.push('?=token');
-  //     setDGState('token');
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -446,15 +416,6 @@ const Farming = (props) => {
             {DGState === 'token' ? (
               <b className="account-hover active">TOKEN</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('token');
-              //     router.push('?=token');
-              //   }}
-              // >
-              //   TOKEN
-              // </abbr>
               <Link href="/dg">
                 <Menu.Item className="account-hover">TOKEN</Menu.Item>
               </Link>
@@ -463,15 +424,6 @@ const Farming = (props) => {
             {DGState === 'mining' ? (
               <b className="account-hover active">GAMEPLAY MINING</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('mining');
-              //     router.push('?=mining');
-              //   }}
-              // >
-              //   GAMEPLAY MINING
-              // </abbr>
               <Link href="/dg/mining">
                 <Menu.Item className="account-hover">GAMEPLAY MINING</Menu.Item>
               </Link>
@@ -480,15 +432,6 @@ const Farming = (props) => {
             {DGState === 'liquidity' ? (
               <b className="account-hover active">LIQUIDITY FARMING</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('liquidity');
-              //     router.push('?=liquidity');
-              //   }}
-              // >
-              //   LIQUIDITY FARMING
-              // </abbr>
               <Link href="/dg/liquidity">
                 <Menu.Item className="account-hover">
                   LIQUIDITY FARMING
@@ -499,15 +442,6 @@ const Farming = (props) => {
             {DGState === 'governance' ? (
               <b className="account-hover active">GOVERNANCE</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('governance');
-              //     router.push('?=governance');
-              //   }}
-              // >
-              //   GOVERNANCE
-              // </abbr>
               <Link href="/dg/governance">
                 <Menu.Item className="account-hover">GOVERNANCE</Menu.Item>
               </Link>
@@ -517,15 +451,6 @@ const Farming = (props) => {
               DGState === 'admin' ? (
                 <b className="account-hover active">ADMIN</b>
               ) : (
-                // <abbr
-                //   className="account-hover"
-                //   onClick={() => {
-                //     setDGState('admin');
-                //     router.push('?=admin');
-                //   }}
-                // >
-                //   ADMIN
-                // </abbr>
                 <Link href="/dg/admin">
                   <Menu.Item className="account-hover">ADMIN</Menu.Item>
                 </Link>
@@ -541,15 +466,6 @@ const Farming = (props) => {
             {DGState === 'token' ? (
               <b className="account-hover active">TOKEN</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('token');
-              //     router.push('?=token');
-              //   }}
-              // >
-              //   TOKEN
-              // </abbr>
               <Link href="/dg">
                 <Menu.Item className="account-hover">TOKEN</Menu.Item>
               </Link>
@@ -558,15 +474,6 @@ const Farming = (props) => {
             {DGState === 'mining' ? (
               <b className="account-hover active">GAMEPLAY</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('mining');
-              //     router.push('?=mining');
-              //   }}
-              // >
-              //   GAMEPLAY
-              // </abbr>
               <Link href="/dg/mining">
                 <Menu.Item className="account-hover">GAMEPLAY</Menu.Item>
               </Link>
@@ -575,15 +482,6 @@ const Farming = (props) => {
             {DGState === 'liquidity' ? (
               <b className="account-hover active">LIQUIDITY</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('liquidity');
-              //     router.push('?=liquidity');
-              //   }}
-              // >
-              //   LIQUIDITY
-              // </abbr>
               <Link href="/dg/liquidity">
                 <Menu.Item className="account-hover">LIQUIDITY</Menu.Item>
               </Link>
@@ -592,15 +490,6 @@ const Farming = (props) => {
             {DGState === 'governance' ? (
               <b className="account-hover active">GOV</b>
             ) : (
-              // <abbr
-              //   className="account-hover"
-              //   onClick={() => {
-              //     setDGState('governance');
-              //     router.push('?=governance');
-              //   }}
-              // >
-              //   GOV
-              // </abbr>
               <Link href="/dg/governance">
                 <Menu.Item className="account-hover">GOV</Menu.Item>
               </Link>

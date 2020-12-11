@@ -1,14 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-
 import Link from 'next/link';
-
 import { Menu, Image, Button, Divider } from 'semantic-ui-react';
 import ContentNFTs from '../content/ContentNFTs';
 import Aux from '../_Aux';
 
-// import Spinner from '../Spinner';
-// import { useRouter } from 'next/router';
 
 const detailsNFTs = {
   mink_coat: [
@@ -200,35 +196,16 @@ const Tokens = (props) => {
       <div className="account-other-tabs">
         {NFTState === 'buy' ? (
           <p className="account-other-p">
-            <b className="account-hover active">BUY NFTS</b>{' '}
-            {/* <abbr
-              className="account-hover"
-              onClick={() => {
-                setNFTState('my');
-                router.push('?=my');
-              }}
-            >
-              MY NFTS
-            </abbr> */}
+            <b className="account-hover active">BUY NFTS</b>
             <Link href="/nfts/my">
               <Menu.Item className="account-hover">MY NFTS</Menu.Item>
             </Link>
           </p>
         ) : (
           <p className="account-other-p">
-            {/* <abbr
-              className="account-hover"
-              onClick={() => {
-                setNFTState('buy');
-                router.push('?=buy');
-              }}
-            >
-              BUY NFTS
-            </abbr>{' '} */}
             <Link href="/nfts">
               <Menu.Item className="account-hover">BUY NFTS</Menu.Item>
             </Link>
-
             <b className="account-hover active">MY NFTS</b>
           </p>
         )}
