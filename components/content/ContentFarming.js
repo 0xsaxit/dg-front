@@ -1142,11 +1142,11 @@ const ContentFarming = (props) => {
                   id="balances-padding-correct"
                   onClick={() => props.getReward_gov()}
                 >
-                  CLAIM POOL 1 $DG
+                  CLAIM $DG
                 </Button>
               ) : (
                 <Button disabled className="DG-claim-button">
-                  CLAIM POOL 1 $DG
+                  CLAIM $DG
                 </Button>
               )}
             </span>

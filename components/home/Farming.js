@@ -524,11 +524,11 @@ const Farming = (props) => {
       <div className="account-other-tabs">
         <span className="dg-tabs-desktop">
           <p className="account-other-p">
-            {DGState === 'token' ? (
-              <b className="account-hover active">TOKEN</b>
+            {DGState === 'governance' ? (
+              <b className="account-hover active">GOVERNANCE</b>
             ) : (
-              <Link href="/dg">
-                <Menu.Item className="account-hover">TOKEN</Menu.Item>
+              <Link href="/dg/governance">
+                <Menu.Item className="account-hover">GOVERNANCE</Menu.Item>
               </Link>
             )}
 
@@ -550,11 +550,11 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'governance' ? (
-              <b className="account-hover active">GOVERNANCE</b>
+            {DGState === 'token' ? (
+              <b className="account-hover active">TOKEN</b>
             ) : (
-              <Link href="/dg/governance">
-                <Menu.Item className="account-hover">GOVERNANCE</Menu.Item>
+              <Link href="/dg">
+                <Menu.Item className="account-hover">TOKEN</Menu.Item>
               </Link>
             )}
 
@@ -574,11 +574,11 @@ const Farming = (props) => {
 
         <span className="dg-tabs-mobile">
           <p className="account-other-p">
-            {DGState === 'token' ? (
-              <b className="account-hover active">TOKEN</b>
+            {DGState === 'governance' ? (
+              <b className="account-hover active">GOV</b>
             ) : (
-              <Link href="/dg">
-                <Menu.Item className="account-hover">TOKEN</Menu.Item>
+              <Link href="/dg/governance">
+                <Menu.Item className="account-hover">GOV</Menu.Item>
               </Link>
             )}
 
@@ -598,11 +598,12 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'governance' ? (
-              <b className="account-hover active">GOV</b>
+
+            {DGState === 'token' ? (
+              <b className="account-hover active">TOKEN</b>
             ) : (
-              <Link href="/dg/governance">
-                <Menu.Item className="account-hover">GOV</Menu.Item>
+              <Link href="/dg">
+                <Menu.Item className="account-hover">TOKEN</Menu.Item>
               </Link>
             )}
           </p>
