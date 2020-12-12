@@ -27,8 +27,6 @@ class Application extends App {
 
     return (
       <Provider store={store}>
-
-        <Component {...pageProps} />
         <UserStatus />
         <UserBalances />
         <BalancesEvents />
@@ -42,6 +40,8 @@ class Application extends App {
         <AdminBalances />
         <DGBalances />
         <Whitelist />
+
+        <Component {...pageProps} />
       </Provider>
     );
   }
