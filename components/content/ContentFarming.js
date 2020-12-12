@@ -83,6 +83,7 @@ const ContentFarming = (props) => {
   const treasury = Number(treasury_dai) + Number(treasury_mana);
 
   const gov_staked = Number(state.stakingBalances[9]);
+  const total_gov_staked = Number(state.stakingBalances[8]);
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -1175,7 +1176,13 @@ const ContentFarming = (props) => {
                 />
                 <span className="farming-pool-span">
                   <p className="welcome-text">Total Staked $DG</p>
-                  <p className="account-name">{state.stakingBalances[8].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                  {Number(total_gov_staked) && isFinite(total_gov_staked) ? (
+                    <p className="account-name">
+                      {total_gov_staked.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </p>
+                  ) : (
+                    null
+                  )}
                 </span>
               </span>
 
