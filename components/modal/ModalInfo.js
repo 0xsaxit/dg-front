@@ -146,7 +146,7 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
-            $DG Staked in Gov pool
+            $DG staked in gov
           </p>
           <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
         </span>

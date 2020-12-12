@@ -78,6 +78,7 @@ const ContentFarming = (props) => {
 
   // treasury stuff
   const treasury_dai = Number(state.DGBalances[13]);
+  const treasury_mana_tokens = Number(state.DGBalances[12]);
   const treasury_mana = Number(state.DGBalances[12] * manaPrice);
   const treasury = Number(treasury_dai) + Number(treasury_mana);
 
@@ -1345,8 +1346,10 @@ const ContentFarming = (props) => {
                     }}
                   >
                   <p className="earned-text">MANA</p>
-                    {Number(treasury_mana) ? (
-                      <p className="earned-amount">${treasury_mana.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    {Number(treasury_mana_tokens) ? (
+                      <p className="earned-amount">
+                        {treasury_mana_tokens.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      </p>
                     ) : (
                       <Loader
                         active
@@ -1380,7 +1383,7 @@ const ContentFarming = (props) => {
                     <p className="earned-text">dai</p>
                     {Number(treasury_dai) ? (
                       <p className="earned-amount">
-                        ${treasury_dai.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                        {treasury_dai.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                       </p>
                     ) : (
                       <Loader
