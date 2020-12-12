@@ -91,7 +91,7 @@ const MenuTop = () => {
         return 'menu-container blog';
       }
     } else {
-      if (path === router.pathname) {
+      if (router.pathname.includes(path)) {
         return menuStyle[2] + ' active';
       } else {
         return menuStyle[2];
