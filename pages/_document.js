@@ -52,7 +52,7 @@ export default class MyDocument extends Document {
           <link
             rel="manifest"
             href="/static/js/manifest.json"
-            crossorigin="use-credentials"
+            crossOrigin="use-credentials"
           />
           <link
             href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
