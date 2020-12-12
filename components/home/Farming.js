@@ -527,7 +527,7 @@ const Farming = (props) => {
             {DGState === 'governance' ? (
               <b className="account-hover active">GOVERNANCE</b>
             ) : (
-              <Link href="/dg/governance">
+              <Link href="/dg">
                 <Menu.Item className="account-hover">GOVERNANCE</Menu.Item>
               </Link>
             )}
@@ -551,10 +551,10 @@ const Farming = (props) => {
             )}
 
             {DGState === 'token' ? (
-              <b className="account-hover active">TOKEN</b>
+              <b className="account-hover active">AIRDROP</b>
             ) : (
-              <Link href="/dg">
-                <Menu.Item className="account-hover">TOKEN</Menu.Item>
+              <Link href="/dg/airdrop">
+                <Menu.Item className="account-hover">AIRDROP</Menu.Item>
               </Link>
             )}
 
@@ -577,7 +577,7 @@ const Farming = (props) => {
             {DGState === 'governance' ? (
               <b className="account-hover active">GOV</b>
             ) : (
-              <Link href="/dg/governance">
+              <Link href="/dg/">
                 <Menu.Item className="account-hover">GOV</Menu.Item>
               </Link>
             )}
@@ -600,10 +600,10 @@ const Farming = (props) => {
 
 
             {DGState === 'token' ? (
-              <b className="account-hover active">TOKEN</b>
+              <b className="account-hover active">AIRDROP</b>
             ) : (
-              <Link href="/dg">
-                <Menu.Item className="account-hover">TOKEN</Menu.Item>
+              <Link href="/dg/airdrop">
+                <Menu.Item className="account-hover">AIRDROP</Menu.Item>
               </Link>
             )}
           </p>

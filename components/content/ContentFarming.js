@@ -1161,7 +1161,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">Staked DG</p>
+                  <p className="welcome-text">Total Staked DG</p>
                   <p className="account-name">{state.stakingBalances[8]}</p>
                 </span>
               </span>
@@ -1243,8 +1243,16 @@ const ContentFarming = (props) => {
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <p className="bpt-text">{state.DGBalances[6]} DG</p>
-                <p className="bpt-text">{state.stakingBalances[9]} DG STAKED</p>
+                <p className="bpt-text"
+                  onClick={() => setAmountInput4(state.DGBalances[6])}
+                >
+                  {state.DGBalances[6]} DG
+                </p>
+                <p className="bpt-text"
+                  onClick={() => setAmountInput4(state.stakingBalances[9])}
+                >
+                  {state.stakingBalances[9]} DG STAKED
+                </p>
               </span>
 
               <span className="DG-button-span">

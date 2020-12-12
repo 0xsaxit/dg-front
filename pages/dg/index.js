@@ -40,7 +40,7 @@ const DG = () => {
           You must log in with Metamask to view this page
         </div>
       ) : (
-        <Farming DGState={'token'} />
+        <Farming DGState={'governance'} />
       )}
     </Layout>
   );
