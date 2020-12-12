@@ -1175,7 +1175,7 @@ const ContentFarming = (props) => {
                 />
                 <span className="farming-pool-span">
                   <p className="welcome-text">Total Staked $DG</p>
-                  <p className="account-name">{state.stakingBalances[8]}</p>
+                  <p className="account-name">{state.stakingBalances[8].replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                 </span>
               </span>
 

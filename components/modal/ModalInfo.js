@@ -37,7 +37,7 @@ const ModalInfo = () => {
     const totalDGAdjusted_2 = totalDG.toFixed(3);
     setDGTotal_2(totalDGAdjusted_2);
 
-  }, [state.DGBalances, state.userBalances]);
+  }, [state.DGBalances, state.userBalances, state.stakingBalances]);
 
   // calculate DG price
   useEffect(() => {
@@ -128,6 +128,12 @@ const ModalInfo = () => {
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">
+            $DG staked in gov
+          </p>
+          <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label">
             <a className="menu-info-label-link" href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0" target="_blank">
               mainchain $DG
             </a>{' '}
@@ -143,12 +149,6 @@ const ModalInfo = () => {
             balance
           </p>
           <p className="menu-info-text">{state.DGBalances[7]}</p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">
-            $DG staked in gov
-          </p>
-          <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
         </span>
       </div>
 
