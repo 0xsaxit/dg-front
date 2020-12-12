@@ -22,7 +22,7 @@ function AdminBalances() {
 
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
-        workerAddress = addresses.WORKER_ADDRESS;
+        workerAddress = addresses.WORKER_WALLET_ADDRESS;
         contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
         const balance = await getEthBalance();

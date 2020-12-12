@@ -14,7 +14,6 @@ import Spinner from '../Spinner';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 
-
 const options = [
   {
     key: 'ALL TIME',
@@ -302,6 +301,9 @@ const Offerings = (props) => {
   async function refreshLeaderboard() {
     console.log('Re-fetching game records');
     setGameRecordsRefresh(true);
+
+    // const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
+    // const jsonRecords = await response.json();
 
     const jsonRecords = '';
 

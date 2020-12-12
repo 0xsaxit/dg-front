@@ -32,11 +32,13 @@ const CONSTANTS = {
 // fetch wallet and contract addresses from server API
 const API_ADDRESSES = (async () => {
   if (window.ethereum) {
-    const response = await Fetch.GET_ADDRESSES();
+    const userAddress = window.web3.currentProvider.selectedAddress;
+
+    const response = await Fetch.GET_ADDRESSES(userAddress);
     let json = await response.json();
 
-    const OWNER_ADDRESS = json.OWNER_ADDRESS;
-    const WORKER_ADDRESS = json.WORKER_WALLET_ADDRESS;
+    const OWNER_WALLET_ADDRESS = json.OWNER_WALLET_ADDRESS;
+    const WORKER_WALLET_ADDRESS = json.WORKER_WALLET_ADDRESS;
     const ROOT_TOKEN_ADDRESS_DAI = json.ROOT_TOKEN_ADDRESS_DAI;
     const ROOT_TOKEN_ADDRESS_MANA = json.ROOT_TOKEN_ADDRESS_MANA;
     const ROOT_TOKEN_ADDRESS_DG = json.ROOT_TOKEN_ADDRESS_DG;
@@ -54,12 +56,11 @@ const API_ADDRESSES = (async () => {
     const TOMINOYA_CONTRACT_ADDRESS = json.TOMINOYA_CONTRACT_ADDRESS;
     const ADMIN_ADDRESSES = json.ADMIN_ADDRESSES;
 
-
     const DG_STAKING_GOV = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
     const DG_TOKEN = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
 
-    console.log('OWNER_ADDRESS: ' + OWNER_ADDRESS);
-    console.log('WORKER_ADDRESS: ' + WORKER_ADDRESS);
+    console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
+    console.log('WORKER_WALLET_ADDRESS: ' + WORKER_WALLET_ADDRESS);
     console.log('ROOT_TOKEN_ADDRESS_DAI: ' + ROOT_TOKEN_ADDRESS_DAI);
     console.log('ROOT_TOKEN_ADDRESS_MANA: ' + ROOT_TOKEN_ADDRESS_MANA);
     console.log('ROOT_TOKEN_ADDRESS_DG: ' + ROOT_TOKEN_ADDRESS_DG);
@@ -81,8 +82,8 @@ const API_ADDRESSES = (async () => {
     console.log('TOMINOYA_CONTRACT_ADDRESS: ' + TOMINOYA_CONTRACT_ADDRESS);
 
     return {
-      OWNER_ADDRESS,
-      WORKER_ADDRESS,
+      OWNER_WALLET_ADDRESS,
+      WORKER_WALLET_ADDRESS,
       ROOT_TOKEN_ADDRESS_DAI,
       ROOT_TOKEN_ADDRESS_MANA,
       ROOT_TOKEN_ADDRESS_DG,

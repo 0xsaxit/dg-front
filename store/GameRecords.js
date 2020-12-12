@@ -7,8 +7,10 @@ function GameRecords() {
   const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
+    const userAddress = window.web3.currentProvider.selectedAddress;
+
     (async function () {
-      // const response = await Fetch.GAME_RECORDS();
+      // const response = await Fetch.GAME_RECORDS(userAddress);
       // const jsonRecords = await response.json();
 
       const jsonRecords = '';

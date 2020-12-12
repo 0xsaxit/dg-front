@@ -20,7 +20,7 @@ function ButtonReward(props) {
       async function fetchData() {
         const addresses = await Global.API_ADDRESSES;
 
-        const ownerAddress = addresses.OWNER_ADDRESS.toUpperCase();
+        const ownerAddress = addresses.OWNER_WALLET_ADDRESS.toUpperCase();
         if (userAddress === ownerAddress) setDisabled(false);
       }
       fetchData();

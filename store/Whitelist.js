@@ -1,14 +1,12 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import Global from '../components/Constants';
-// import Fetch from '../common/Fetch';
 
 const Whitelist = () => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [whitelisted, setWhitelisted] = useState(false);
   let whitelisted = false;
 
   useEffect(() => {
@@ -18,14 +16,7 @@ const Whitelist = () => {
 
         const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
 
-        // const response = await Fetch.GET_ADDRESSES();
-        // const json = await response.json();
-
         const addresses = await Global.API_ADDRESSES;
-
-        // console.log('addresses...');
-        // console.log(addresses);
-
         const arrayUpperCase = addresses.ADMIN_ADDRESSES.map((a) =>
           a.toUpperCase()
         );

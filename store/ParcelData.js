@@ -25,7 +25,11 @@ function ParcelData() {
         // if user owns an NFT fetch parcel data for this particular token ID
         const tokenID = await getTokenID();
         if (tokenID) {
-          const response = await Fetch.PARCEL_DATA(landID, tokenID);
+          const response = await Fetch.PARCEL_DATA(
+            landID,
+            tokenID,
+            userAddress
+          );
           const jsonData = await response.json();
 
           dispatch({
@@ -35,7 +39,7 @@ function ParcelData() {
         }
 
         // get all token data for the /admin area
-        // const response = await Fetch.PARCEL_DATA(landID, '*');
+        // const response = await Fetch.PARCEL_DATA(landID, '*', userAddress);
         // const jsonData = await response.json();
 
         // dispatch({

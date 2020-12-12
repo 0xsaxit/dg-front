@@ -2,8 +2,11 @@
 const API_BASE_URL = 'https://api.decentral.games';
 
 const Fetch = {
-  GET_ADDRESSES: () => {
-    return fetch(`${API_BASE_URL}/addresses`, {
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // GET API calls
+  GET_ADDRESSES: (address) => {
+    return fetch(`${API_BASE_URL}/addresses?address=${address}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -12,21 +15,18 @@ const Fetch = {
     });
   },
 
-  USER_STATUS: (address) => {
-    return fetch(`${API_BASE_URL}/order/verifyAddress`, {
-      method: 'POST',
+  GAME_RECORDS: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getTotalRecords?address=${address}`, {
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        address: address,
-      }),
     });
   },
 
-  PARCEL_DATA: (landID, tokenID) => {
-    return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}`, {
+  PARCEL_DATA: (landID, tokenID, address) => {
+    return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}/${address}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -45,8 +45,21 @@ const Fetch = {
     });
   },
 
-  TOP_UP_USER: (address) => {
-    return fetch(`${API_BASE_URL}/order/topup`, {
+  PLAYER_DATA: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getCryptoRecords?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // POST API calls
+  USER_STATUS: (address) => {
+    return fetch(`${API_BASE_URL}/order/verifyAddress`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -58,13 +71,16 @@ const Fetch = {
     });
   },
 
-  PLAYER_DATA: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getCryptoRecords?address=${address}`, {
-      method: 'GET',
+  TOP_UP_USER: (address) => {
+    return fetch(`${API_BASE_URL}/order/topup`, {
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        address: address,
+      }),
     });
   },
 
@@ -95,16 +111,6 @@ const Fetch = {
         limit: 99999, // fetch all of the data
         page: 1,
       }),
-    });
-  },
-
-  GAME_RECORDS: () => {
-    return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
     });
   },
 
@@ -140,6 +146,26 @@ const Fetch = {
       }),
     });
   },
+
+  // ADMIN_HISTORY: () => {
+  //   return fetch(`${API_BASE_URL}/admin/getHistory`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
+
+  // MACHINE_DATA: () => {
+  //   return fetch(`${API_BASE_URL}/admin/getMachine`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -193,46 +219,6 @@ const Fetch = {
       }
     );
   },
-
-  // DG_SUPPLY: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getDGCirculatingSupply`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
-  // USER_NUMBERS: () => {
-  //   return fetch(`${API_BASE_URL}/players/getPlayerCount`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
-  // ADMIN_HISTORY: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getHistory`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
-  // MACHINE_DATA: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getMachine`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
 };
 
 export default Fetch;
