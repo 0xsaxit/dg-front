@@ -1178,7 +1178,7 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of gov pool</p>
-                    {Number(PercentageGov) || PercentageGov === 0 ? (
+                    {Number(PercentageGov) || PercentageGov == 0 ? (
                       <p className="earned-amount">
                         {PercentageGov}%
                       </p>
