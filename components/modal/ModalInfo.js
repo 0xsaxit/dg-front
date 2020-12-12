@@ -26,7 +26,8 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances[2]) +
       parseFloat(state.DGBalances[3]) +
       parseFloat(state.DGBalances[6]) +
-      parseFloat(state.DGBalances[7]);
+      parseFloat(state.DGBalances[7]) +
+      parseFloat(state.stakingBalances[9]);
     const totalDGAdjusted = totalDG
       .toFixed(0)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -37,7 +38,6 @@ const ModalInfo = () => {
     setDGTotal_2(totalDGAdjusted_2);
 
   }, [state.DGBalances, state.userBalances]);
-
 
   // calculate DG price
   useEffect(() => {
@@ -64,6 +64,7 @@ const ModalInfo = () => {
   const temp_2 = (DGTotal_2 * DGPrice);
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+  const gov_staked = Number(state.stakingBalances[9]);
 
   return (
     <Modal
@@ -142,6 +143,12 @@ const ModalInfo = () => {
             balance
           </p>
           <p className="menu-info-text">{state.DGBalances[7]}</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label">
+            $DG Staked in Gov pool
+          </p>
+          <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
         </span>
       </div>
 
