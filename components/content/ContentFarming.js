@@ -1086,8 +1086,8 @@ const ContentFarming = (props) => {
               <h3 className="DG-h3">Decentral Games Governance</h3>
               <p>
                 Staked $DG tokens are used to vote to allocate house profits and
-                receive $DG governance rewards. $DG Governance will go live in
-                Q1 2021. Read more about $DG governance in our{' '}
+                receive $DG governance rewards. $DG Governance activates when the treasury
+                surpasses $500,000 USD of value. Read more about $DG governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
