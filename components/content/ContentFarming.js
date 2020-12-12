@@ -1083,10 +1083,10 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">Decentral Games Governance</h3>
+              <h3 className="DG-h3">$DG Governance</h3>
               <p>
-                Stake $DG tokens, govern the house profits, and
-                earn $DG governance rewards. $DG proposal submission activates once the treasury
+                Stake $DG tokens, govern the casino bankroll, and
+                earn $DG governance rewards. Proposal submission activates when the treasury
                 surpasses $500,000 USD. Read more about $DG governance in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
@@ -1113,7 +1113,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed</p>
+                <p className="welcome-text"> Unclaimed $DG</p>
                 <p className="account-name">0.000</p>
               </span>
             </span>
@@ -1161,7 +1161,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">Total Staked DG</p>
+                  <p className="welcome-text">Total Staked $DG</p>
                   <p className="account-name">{state.stakingBalances[8]}</p>
                 </span>
               </span>
