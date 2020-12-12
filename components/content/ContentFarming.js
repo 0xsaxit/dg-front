@@ -81,6 +81,8 @@ const ContentFarming = (props) => {
   const treasury_mana = Number(state.DGBalances[12] * manaPrice);
   const treasury = Number(treasury_dai) + Number(treasury_mana);
 
+  const gov_staked = Number(state.stakingBalances[9]);
+
   // get initial reward and timestamp values
   useEffect(() => {
     if (props.instances) {
@@ -218,8 +220,8 @@ const ContentFarming = (props) => {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                paddingTop: '11px',
-                paddingBottom: '11px',
+                paddingTop: '12px',
+                paddingBottom: '12px',
               }}
             >
               <p className="earned-text">Value USD</p>
@@ -353,8 +355,8 @@ const ContentFarming = (props) => {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                paddingTop: '11px',
-                paddingBottom: '11px',
+                paddingTop: '12px',
+                paddingBottom: '12px',
               }}
             >
               <p className="earned-text">Value USD</p>
@@ -419,6 +421,7 @@ const ContentFarming = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      paddingBottom: '17px'
                     }}
                   >
                     <p className="earned-text"> Roulette Rate / 1 DG </p>
@@ -438,6 +441,7 @@ const ContentFarming = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      paddingBottom: '2px'
                     }}
                   >
                     <p className="earned-text"> Blackjack Rate / 1 DG </p>
@@ -595,8 +599,8 @@ const ContentFarming = (props) => {
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  paddingTop: '11px',
-                  paddingBottom: '11px',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
                 }}
               >
                 <p className="earned-text">Value USD</p>
@@ -751,6 +755,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-3px'
                         }}
                       />
                     )}
@@ -786,6 +791,7 @@ const ContentFarming = (props) => {
                             fontSize: '12px',
                             marginTop: '5px',
                             marginLeft: '-1px',
+                            marginBottom: '-3px'
                           }}
                         />
                       )}
@@ -915,6 +921,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-2px'
                         }}
                       />
                     )}
@@ -949,6 +956,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-2px'
                         }}
                       />
                     )}
@@ -1129,8 +1137,8 @@ const ContentFarming = (props) => {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                paddingTop: '11px',
-                paddingBottom: '11px',
+                paddingTop: '12px',
+                paddingBottom: '12px',
               }}
             >
               <p className="earned-text"> Value USD </p>
@@ -1179,6 +1187,7 @@ const ContentFarming = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      paddingBottom: '17px',
                     }}
                   >
                   <p className="earned-text">APY</p>
@@ -1193,6 +1202,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-2px'
                         }}
                       />
                     )}
@@ -1227,6 +1237,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-2px'
                         }}
                       />
                     )}
@@ -1255,7 +1266,7 @@ const ContentFarming = (props) => {
                 <p className="bpt-text"
                   onClick={() => setAmountInput4(state.stakingBalances[9])}
                 >
-                  {state.stakingBalances[9]} DG STAKED
+                  {gov_staked.toFixed(3)} DG STAKED
                 </p>
               </span>
 
@@ -1316,16 +1327,7 @@ const ContentFarming = (props) => {
                   {Number(treasury) ? (
                   <p className="account-name">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                   ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                      }}
-                    />
+                    null
                   )}
                 </span>
               </span>
@@ -1339,6 +1341,7 @@ const ContentFarming = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      paddingBottom: '17px',
                     }}
                   >
                   <p className="earned-text">MANA</p>
@@ -1353,6 +1356,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-2px'
                         }}
                       />
                     )}
@@ -1387,6 +1391,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
+                          marginBottom: '-2px'
                         }}
                       />
                     )}
