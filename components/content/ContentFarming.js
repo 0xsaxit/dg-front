@@ -72,9 +72,13 @@ const ContentFarming = (props) => {
   const APY_temp_2 = (num / denom) * 100;
   const daiAPY = Number(APY_temp_2);
 
+  // APY value calculation for gov 
+  const APY_temp_3 = (20000 / state.stakingBalances[8]) * 100;
+  const govAPY = Number(APY_temp_3);
+
   // treasury stuff
-  const treasury_dai = state.DGBalances[13];
-  const treasury_mana = state.DGBalances[12] * manaPrice;
+  const treasury_dai = Number(state.DGBalances[13]);
+  const treasury_mana = Number(state.DGBalances[12] * manaPrice);
   const treasury = Number(treasury_dai) + Number(treasury_mana);
 
   // get initial reward and timestamp values
@@ -1177,11 +1181,9 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of gov pool</p>
-                    {Number(PercentageGov) || PercentageGov == 0 ? (
-                      <p className="earned-amount">
-                        {PercentageGov}%
-                      </p>
+                  <p className="earned-text">APY</p>
+                    {Number(govAPY) && isFinite(govAPY) ? (
+                      <p className="earned-amount">{govAPY.toFixed(2)}%</p>
                     ) : (
                       <Loader
                         active
@@ -1211,9 +1213,11 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">Treasury</p>
-                    {Number(treasury) ? (
-                      <p className="earned-amount">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    <p className="earned-text">% of gov pool</p>
+                    {Number(PercentageGov) || PercentageGov == 0 ? (
+                      <p className="earned-amount">
+                        {PercentageGov}%
+                      </p>
                     ) : (
                       <Loader
                         active
@@ -1297,7 +1301,7 @@ const ContentFarming = (props) => {
               style={{
                 position: 'relative',
                 height: '100%',
-                maxHeight: '183px',
+                maxHeight: '258px'
               }}
             >
               <span style={{ display: 'flex' }}>
@@ -1308,18 +1312,103 @@ const ContentFarming = (props) => {
                   alt="Snapshot Governance Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> Proposals</p>
-                  <p className="account-name">0</p>
+                  <p className="welcome-text">treasury</p>
+                  {Number(treasury) ? (
+                  <p className="account-name">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="small"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '5px',
+                        marginLeft: '-1px',
+                      }}
+                    />
+                  )}
                 </span>
               </span>
 
               <Divider />
 
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                  <p className="earned-text">MANA</p>
+                    {Number(treasury_mana) ? (
+                      <p className="earned-amount">${treasury_mana.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '50%',
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text">dai</p>
+                    {Number(treasury_dai) ? (
+                      <p className="earned-amount">
+                        ${treasury_dai.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      </p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
+              </div>
+
+              <Divider />
+
               <span className="DG-button-span">
-                <Button disabled className="DG-stake-button">
+                <Button 
+                  a href="https://discord.gg/VQ2ddfFBnu"
+                  target="_blank"
+                  className="DG-stake-button"
+                >
                   DISCUSSION
                 </Button>
-                <Button disabled className="DG-stake-button">
+                <Button 
+                  a href="https://snapshot.page/#/decentralgames.eth"
+                  target="_blank"
+                  className="DG-stake-button"
+                >
                   VOTING
                 </Button>
               </span>

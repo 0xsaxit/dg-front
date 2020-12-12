@@ -150,8 +150,8 @@ const ModalInfo = () => {
         style={{ marginTop: '12px', marginBottom: '12px' }}
       >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">unclaimed $DG - airdrop</p>
-          <p className="menu-info-text">{state.DGBalances[3]}</p>
+          <p className="menu-info-label">unclaimed $dg - gov</p>
+          <p className="menu-info-text">0.000</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gameplay</p>
@@ -166,8 +166,8 @@ const ModalInfo = () => {
           <p className="menu-info-text">{state.DGBalances[2]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - gov</p>
-          <p className="menu-info-text">0.000</p>
+          <p className="menu-info-label">unclaimed $DG - airdrop</p>
+          <p className="menu-info-text">{state.DGBalances[3]}</p>
         </span>
       </div>
 
