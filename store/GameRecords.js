@@ -7,19 +7,21 @@ function GameRecords() {
   const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
-    const userAddress = window.web3.currentProvider.selectedAddress;
+    if (state.userStatus) {
+      const userAddress = window.web3.currentProvider.selectedAddress;
 
-    (async function () {
-      // const response = await Fetch.GAME_RECORDS(userAddress);
-      // const jsonRecords = await response.json();
+      (async function () {
+        // const response = await Fetch.GAME_RECORDS(userAddress);
+        // const jsonRecords = await response.json();
 
-      const jsonRecords = '';
+        const jsonRecords = '';
 
-      dispatch({
-        type: 'update_records',
-        data: jsonRecords,
-      });
-    })();
+        dispatch({
+          type: 'update_records',
+          data: jsonRecords,
+        });
+      })();
+    }
   }, []);
 
   return null;
