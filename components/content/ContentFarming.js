@@ -28,6 +28,11 @@ const ContentFarming = (props) => {
 
   const [manaPrice, setManaPrice] = useState(0);
 
+  function roundDown(number, decimals) {
+    decimals = decimals || 0;
+    return ( Math.floor( number * Math.pow(10, decimals) ) / Math.pow(10, decimals) );
+  }
+
   // fetch total bet from API
   useEffect(() => {
     (async function () {
@@ -817,13 +822,13 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(state.stakingBalances[3])}
+                  onClick={() => setAmountInput(roundDown(state.stakingBalances[3], 3))}
                 >
                   {state.stakingBalances[3]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(state.stakingBalances[2])}
+                  onClick={() => setAmountInput(roundDown(state.stakingBalances[2], 3))}
                 >
                   {state.stakingBalances[2]} BPT staked
                 </p>
@@ -981,13 +986,13 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput2(state.stakingBalances[7])}
+                  onClick={() => setAmountInput2(roundDown(state.stakingBalances[7], 3))}
                 >
                   {state.stakingBalances[7]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput2(state.stakingBalances[6])}
+                  onClick={() => setAmountInput2(roundDown(state.stakingBalances[6], 3))}
                 >
                   {state.stakingBalances[6]} BPT staked
                 </p>
@@ -1267,12 +1272,12 @@ const ContentFarming = (props) => {
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
                 <p className="bpt-text"
-                  onClick={() => setAmountInput4(state.DGBalances[6])}
+                  onClick={() => setAmountInput4(roundDown(state.DGBalances[6], 3))}
                 >
                   {state.DGBalances[6]} DG
                 </p>
                 <p className="bpt-text"
-                  onClick={() => setAmountInput4(state.stakingBalances[9])}
+                  onClick={() => setAmountInput4(roundDown(state.stakingBalances[9], 3))}
                 >
                   {gov_staked.toFixed(3)} DG STAKED
                 </p>
