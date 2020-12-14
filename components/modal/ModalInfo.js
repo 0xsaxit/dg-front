@@ -65,6 +65,7 @@ const ModalInfo = () => {
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const gov_staked = Number(state.stakingBalances[9]);
+  const gov_unclaimed = Number(state.DGBalances[14]);
 
   return (
     <Modal
@@ -162,7 +163,7 @@ const ModalInfo = () => {
       >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">unclaimed $dg - gov</p>
-          <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
+          <p className="menu-info-text">{gov_unclaimed.toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gameplay</p>
