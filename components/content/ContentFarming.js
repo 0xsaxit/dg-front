@@ -1108,10 +1108,10 @@ const ContentFarming = (props) => {
                 earn $DG governance rewards. Proposal submission activates when the treasury
                 surpasses $500,000 USD. Read more about $DG governance in our{' '}
                 <a
-                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
                   style={{ color: '#2085f4' }}
                 >
-                  docs
+                  announcement
                 </a>
                 .
               </p>
