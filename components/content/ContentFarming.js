@@ -49,6 +49,7 @@ const ContentFarming = (props) => {
   const USDGameplay = Number(price * state.DGBalances[0]);
   const PoolOneUSD = Number(price * state.DGBalances[1]);
   const PoolTwoUSD = Number(price * state.DGBalances[2]);
+  const govUSD = Number(price * state.DGBalances[14]);
 
   // pool percentage calculations
   const PoolOnePercentage = Number(
@@ -1131,9 +1132,10 @@ const ContentFarming = (props) => {
                 id="snapshot"
                 alt="Decentral Games Coin Logo"
               />
+
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed $DG</p>
-                <p className="account-name">0.000</p>
+                <p className="account-name">{state.DGBalances[14]}</p>
               </span>
             </span>
 
@@ -1149,7 +1151,26 @@ const ContentFarming = (props) => {
               }}
             >
               <p className="earned-text"> Value USD </p>
-              <p className="earned-amount"> $0.00 </p>
+              {Number(govUSD) || govUSD === 0 ? (
+                <p className="earned-amount">
+                  $
+                  {govUSD.toFixed(2).replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ','
+                  )}
+                </p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px',
+                  }}
+                />
+              )}
             </span>
 
             <Divider />
