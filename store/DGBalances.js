@@ -180,6 +180,7 @@ function DGBalances() {
         console.log('DG points balance pool 1: ' + balanceDG2);
         console.log('DG points balance pool 2: ' + balanceDG3);
         console.log('DG points balance airdrop: ' + balanceDG4);
+        console.log('DG points balance gov: ' + balance_stakingGov);
 
         console.log('DG mainchain balance: ' + balance_DG_main);
         console.log('DG matic balance: ' + balance_DG_matic);
