@@ -74,15 +74,13 @@ const ModalInfo = () => {
       open={open}
       close
       trigger={
-        <span>
-          {Number(DGTotal) || DGTotal == 0 ? (
-            <Button color="blue" className="modal-info-button">
-              <p className="right-menu-text dg">{DGTotal} DG</p>
-            </Button>
+        <Button color="blue" className="modal-info-button">
+          {Number(DGTotal) && isFinite(DGTotal) ? (
+            <p className="right-menu-text dg">{DGTotal} DG</p>
           ) : (
-            null
+            <p className="right-menu-text dg">0 DG</p>
           )}
-        </span>
+        </Button>
       }
     >
 
@@ -164,7 +162,7 @@ const ModalInfo = () => {
       >
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">unclaimed $dg - gov</p>
-          <p className="menu-info-text">0.000</p>
+          <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gameplay</p>
