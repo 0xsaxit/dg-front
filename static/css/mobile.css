@@ -538,9 +538,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   .account-authorize-span {
     display: none !important;
   }
-  div.ui.grid.balances-container {
-    padding-top: 75px !important;
-  }
 }
 
 @media (min-width: 601px) {
