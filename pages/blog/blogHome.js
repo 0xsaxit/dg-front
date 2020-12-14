@@ -54,14 +54,14 @@ function blog() {
       />
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="/blog/decentralgames-secures-investment">
+        <Link href="/blog/[id]" as="blog/governance-staking-is-now-live-start-earning-dg-gov-rewards">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">
-                  <span className="blog-date">9 SEPT 2020</span>
+                  <span className="blog-date">13 DEC 2020</span>
                   <span className="blog-category">Announcements</span>
                 </div>
                 <div className="bottom">
@@ -69,20 +69,18 @@ function blog() {
                     <h4
                       style={{
                         paddingBottom: '9px',
-                        paddingTop: '8px'
+                        paddingTop: '9px'
                       }}
                     >
-                      Decentral Games Secures Investment to Accelerate
-                      Development of Virtual World-Class Casinos
+                      Governance staking is now live - start earning $DG gov rewards!
                     </h4>
                     <p
                       style={{
-                        lineHeight: '1.3'
+                        lineHeight: '1.3',
+                        paddingTop: '3px'
                       }}
                     >
-                      We are pleased to announce we’ve closed our pre-seed
-                      round, raising over $400,000 in investments and grants
-                      with participation from Metaverse Ventures
+                      The objective of $DG governance is to evolve into a DAO, where the community of $DG stakers govern the casino treasury that accrues from game profits. The governance rollout is broken down to two initial phases to incentivize participation.
                     </p>
                   </div>
                 </div>

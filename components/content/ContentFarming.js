@@ -216,8 +216,21 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed $DG</p>
-                <p className="account-name">{state.DGBalances[3]}</p>
+              <p className="welcome-text">Unclaimed $DG</p>
+                {Number(state.DGBalances[3]) ? (
+                  <p className="account-name">{state.DGBalances[3]}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="medium"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '12px',
+                      marginLeft: '15px',
+                    }}
+                  />
+                )}
               </span>
             </span>
 
@@ -351,8 +364,21 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed $DG</p>
-                <p className="account-name">{state.DGBalances[0]}</p>
+              <p className="welcome-text">Unclaimed $DG</p>
+                {Number(state.DGBalances[0]) ? (
+                  <p className="account-name">{state.DGBalances[0]}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="medium"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '12px',
+                      marginLeft: '15px',
+                    }}
+                  />
+                )}
               </span>
             </span>
 
@@ -639,8 +665,8 @@ const ContentFarming = (props) => {
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  paddingTop: '11px',
-                  paddingBottom: '11px',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
                 }}
               >
                 <p className="earned-text">Value USD</p>
@@ -1135,7 +1161,22 @@ const ContentFarming = (props) => {
 
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed $DG</p>
-                <p className="account-name">{state.DGBalances[14]}</p>
+                {Number(treasury_dai) ? (
+                  <p className="account-name">
+                    {state.DGBalances[14]}
+                  </p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="medium"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '12px',
+                      marginLeft: '15px',
+                    }}
+                  />
+                )}
               </span>
             </span>
 
@@ -1207,7 +1248,16 @@ const ContentFarming = (props) => {
                       {total_gov_staked.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
                   ) : (
-                    null
+                    <Loader
+                      active
+                      inline
+                      size="medium"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '12px',
+                        marginLeft: '15px',
+                      }}
+                    />
                   )}
                 </span>
               </span>
@@ -1359,9 +1409,18 @@ const ContentFarming = (props) => {
                 <span className="farming-pool-span">
                   <p className="welcome-text">treasury</p>
                   {Number(treasury) ? (
-                  <p className="account-name">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    <p className="account-name">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                   ) : (
-                    null
+                    <Loader
+                      active
+                      inline
+                      size="medium"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '12px',
+                        marginLeft: '15px',
+                      }}
+                    />
                   )}
                 </span>
               </span>

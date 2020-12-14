@@ -152,7 +152,7 @@ const AccountData = (props) => {
               ) : (
                 <span>
                   <Link href="/account/history">
-                    <Menu.Item className="account-hover">TRANSACTIONS</Menu.Item>
+                    <Menu.Item className="account-hover" id="account-txs-tab">TRANSACTIONS</Menu.Item>
                   </Link>
                   <Link href="/account/history">
                     <Menu.Item className="account-hover" id="account-txs-tab-mobile">TXS</Menu.Item>
