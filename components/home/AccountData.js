@@ -115,29 +115,6 @@ const AccountData = (props) => {
                     )}
                   </span>
                 </span>
-
-                {/* <span
-                  style={{ display: 'flex', justifyContent: 'flex-end' }}
-                  className="account-authorize-span"
-                >
-                  {state.userStatus <= 6 ? (
-                    <ButtonAuthorize />
-                  ) : state.userStatus === 7 ? (
-                    <ButtonEnable />
-                  ) : null}
-                </span> */}
-
-                {/* <Divider className="DG-mobile-divider" />
-
-                <span className="account-authorize-span-mobile">
-                  {state.userStatus <= 6 ? (
-                    <ButtonAuthorize />
-                  ) : state.userStatus === 7 ? (
-                    <ButtonEnable />
-                  ) : null}
-                </span> */}
-
-                {/* <ButtonTesting1 /> */}
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -147,13 +124,6 @@ const AccountData = (props) => {
               {dataType === 'balances' ? (
                 <b className="account-hover active">BALANCES</b>
               ) : (
-                // <abbr
-                //   className="account-hover"
-                //   onClick={() => setUserData('balances', 1)}
-                // >
-                //   BALANCES
-                // </abbr>
-
                 <Link href="/account">
                   <Menu.Item className="account-hover">BALANCES</Menu.Item>
                 </Link>
@@ -162,13 +132,6 @@ const AccountData = (props) => {
               {dataType === 'play' ? (
                 <b className="account-hover active">GAME HISTORY</b>
               ) : (
-                // <abbr
-                //   className="account-hover"
-                //   onClick={() => setUserData('play', 1)}
-                // >
-                //   GAME HISTORY
-                // </abbr>
-
                 <Link href="/account/play">
                   <Menu.Item className="account-hover">GAME HISTORY</Menu.Item>
                 </Link>
@@ -187,26 +150,14 @@ const AccountData = (props) => {
                   </b>
                 </span>
               ) : (
-                // <span>
-                //   <abb
-                //     className="account-hover"
-                //     id="account-txs-tab"
-                //     onClick={() => setUserData('history', 1)}
-                //   >
-                //     TRANSACTIONS
-                //   </abbr>
-                //   <abbr
-                //     className="account-hover"
-                //     id="account-txs-tab-mobile"
-                //     onClick={() => setUserData('history', 1)}
-                //   >
-                //     TXS
-                //   </abbr>
-                // </span>
-
-                <Link href="/account/history">
-                  <Menu.Item className="account-hover">TRANSACTIONS</Menu.Item>
-                </Link>
+                <span>
+                  <Link href="/account/history">
+                    <Menu.Item className="account-hover">TRANSACTIONS</Menu.Item>
+                  </Link>
+                  <Link href="/account/history">
+                    <Menu.Item className="account-hover" id="account-txs-tab-mobile">TXS</Menu.Item>
+                  </Link>
+                </span>
               )}
             </p>
           </div>
