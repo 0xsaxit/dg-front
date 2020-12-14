@@ -12,7 +12,7 @@ const BalancesEvents = () => {
   let userAddress = '';
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // write transaction to database

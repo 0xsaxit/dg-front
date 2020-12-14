@@ -10,7 +10,6 @@ import Transactions from '../../common/Transactions';
 import MetaTx from '../../common/MetaTx';
 import ContentFarming from '../content/ContentFarming';
 
-
 const Farming = (props) => {
   // dispatch user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -35,9 +34,8 @@ const Farming = (props) => {
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
 
-
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       (async () => {
         const addresses = await Global.API_ADDRESSES;
         setAddresses(addresses);
@@ -46,7 +44,7 @@ const Farming = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 
@@ -406,10 +404,7 @@ const Farming = (props) => {
         console.log("Approve goov staking contract to spend user's tokens");
 
         const data = await DGContract.methods
-          .approve(
-            addresses.DG_STAKING_GOV,
-            Global.CONSTANTS.MAX_AMOUNT
-          )
+          .approve(addresses.DG_STAKING_GOV, Global.CONSTANTS.MAX_AMOUNT)
           .send({ from: userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);
@@ -469,7 +464,9 @@ const Farming = (props) => {
         .getReward()
         .send({ from: userAddress });
 
-      console.log('getReward_gov() transaction completed: ' + data.transactionHash);
+      console.log(
+        'getReward_gov() transaction completed: ' + data.transactionHash
+      );
 
       // update global state unclaimed DG balance
       const refresh = !state.refreshBalances;
@@ -482,7 +479,6 @@ const Farming = (props) => {
       console.log('getReward_gov() transaction error: ' + error);
     }
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -597,7 +593,6 @@ const Farming = (props) => {
                 <Menu.Item className="account-hover">LIQUIDITY</Menu.Item>
               </Link>
             )}
-
 
             {DGState === 'token' ? (
               <b className="account-hover active">AIRDROP</b>

@@ -227,7 +227,7 @@ const MenuTop = () => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
           <ModalInfo />
@@ -308,8 +308,8 @@ const MenuTop = () => {
     }
   }
 
-  if (state.isLoading) {
-    return null;
+  if (state.userStatus === 3) {
+    return null; // currently fetching user status from server
   } else {
     return (
       <div className={menuStyle[0]}>

@@ -12,7 +12,7 @@ const ButtonVerify = () => {
   let userAddress = '';
 
   useEffect(() => {
-    if (window.web3) {
+    if (window.ethereum) {
       setMetamaskEnabled(true);
     } else {
       setMetamaskEnabled(false);
@@ -20,7 +20,7 @@ const ButtonVerify = () => {
   });
 
   async function openMetaMask() {
-    if (window.web3) {
+    if (metamaskEnabled) {
       // open MataMask for login then get the user's wallet address
 
       await window.ethereum.enable();

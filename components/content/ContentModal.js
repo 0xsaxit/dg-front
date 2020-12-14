@@ -22,7 +22,7 @@ const ContentModal = (props) => {
   // let contractAddress = {};
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
       // initialize web3 provider and create treasury contract instance

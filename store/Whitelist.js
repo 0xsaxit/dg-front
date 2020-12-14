@@ -10,7 +10,7 @@ const Whitelist = () => {
   let whitelisted = false;
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       async function fetchData() {
         console.log('Fetching admin addresses...');
 

@@ -27,7 +27,7 @@ const AccountData = (props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const frameHeight = window.innerHeight;
       setMaximumCount(Math.floor(frameHeight * 0.01575));
     }

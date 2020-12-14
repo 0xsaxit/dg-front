@@ -136,7 +136,7 @@ const ContentBalances = (props) => {
 
   // get user address
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
     }

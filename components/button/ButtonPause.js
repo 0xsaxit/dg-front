@@ -22,7 +22,7 @@ function ButtonPause(props) {
   }, [props.isPaused]);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 

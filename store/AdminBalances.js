@@ -17,7 +17,7 @@ function AdminBalances() {
   let contractAddress = '';
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {

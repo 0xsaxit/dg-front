@@ -44,7 +44,7 @@ const Administration = () => {
   // }, [state.transactions, state.parcelDataAll]);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       // initialize maticWeb3 provider and create treasury contract instance
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 

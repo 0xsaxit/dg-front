@@ -13,6 +13,17 @@ function UserStatus() {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
+      // console.log('user address foo: ' + userAddress);
+
+      // set user status to 3 to denote fetching user status
+      if (userAddress) {
+        dispatch({
+          type: 'update_status',
+          data: 3,
+        });
+      }
+
+      // fetch user status
       async function fetchData() {
         const response = await getUserStatus();
 

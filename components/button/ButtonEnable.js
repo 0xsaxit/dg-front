@@ -22,7 +22,7 @@ function ButtonEnable() {
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 

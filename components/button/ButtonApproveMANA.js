@@ -33,7 +33,7 @@ function ButtonApproveMANA() {
 
   // if the user has also authorized DAI set status value to 8, otherwise 7
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       if (state.userStatus === 6) {
         setValue(8);
       } else {
@@ -43,7 +43,7 @@ function ButtonApproveMANA() {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 

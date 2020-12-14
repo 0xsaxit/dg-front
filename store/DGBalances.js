@@ -40,7 +40,7 @@ function DGBalances() {
   let currentTime = 0;
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 
@@ -281,9 +281,10 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get treasury matic mana
   async function getMaticMana() {
-
     try {
-      const amount = await maticMana.methods.balanceOf('0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3').call();
+      const amount = await maticMana.methods
+        .balanceOf('0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3')
+        .call();
 
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -297,9 +298,10 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get treasury matic dai
   async function getMaticDai() {
-
     try {
-      const amount = await maticDai.methods.balanceOf('0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3').call();
+      const amount = await maticDai.methods
+        .balanceOf('0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3')
+        .call();
 
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -348,7 +350,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool 2
-  // if things go south, check this address being passed in 
+  // if things go south, check this address being passed in
   // sorry for the confusing function names (this is pool 1!)
   async function getDGBalancer_2() {
     console.log('Get DG locked in Balancer pool 1');
@@ -465,7 +467,9 @@ function DGBalances() {
     console.log("Get user's DG staking balance from gov smart contract");
 
     try {
-      const amount = await stakingContractGov.methods.earned(userAddress).call();
+      const amount = await stakingContractGov.methods
+        .earned(userAddress)
+        .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
       return balanceAdjusted;

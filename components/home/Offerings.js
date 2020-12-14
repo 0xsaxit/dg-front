@@ -372,7 +372,7 @@ const Offerings = (props) => {
   }
 
   function leaderboardLink(link) {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       if (link) {
         return (
           <Link href="/games/leaderboard">

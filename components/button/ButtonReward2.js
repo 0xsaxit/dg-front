@@ -13,7 +13,7 @@ function ButtonReward(props) {
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
       setUserAddress(userAddress);
 

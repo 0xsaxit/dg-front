@@ -16,7 +16,7 @@ const Liquidity = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       setIsErrorMessage(false);
       setIsLoading(false);
     } else {

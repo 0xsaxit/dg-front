@@ -22,7 +22,7 @@ function ButtonApproveMANA() {
 
   // if the user has also authorized MANA set status value to 8, otherwise 6
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       if (state.userStatus === 7) {
         setValue(8);
       } else {
@@ -32,7 +32,7 @@ function ButtonApproveMANA() {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.userStatus) {
+    if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 
