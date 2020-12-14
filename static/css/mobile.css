@@ -649,6 +649,10 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   .ui.button.DG-stake-button-two {
     min-width: 100% !important;
   }
+  .ui.button.affiliate-copy-button,
+  .ui.button.affiliate-copied-button { 
+    display: none;
+  }
 }
 
 @media (max-width: 499px) {
@@ -671,10 +675,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   }
   .farming-pool-span {
     margin-top: 6px;
-  }
-  .ui.button.affiliate-copy-button,
-  .ui.button.affiliate-copied-button { 
-    display: none;
   }
 }
 
