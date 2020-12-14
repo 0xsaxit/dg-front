@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 import Spinner from '../Spinner';
 
-const ContentGames = (props) => {
+const ContentLeaderboard = (props) => {
   // get game score records from the Context API store
   // const [state, dispatch] = useContext(GlobalContext);
 
@@ -177,4 +177,4 @@ const ContentGames = (props) => {
   );
 };
 
-export default ContentGames;
+export default ContentLeaderboard;

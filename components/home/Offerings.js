@@ -1,18 +1,13 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import {
-  Menu,
-  Image,
-  Button,
-  Divider,
-  Dropdown,
-  Icon,
-} from 'semantic-ui-react';
-import ContentGames from '../content/ContentGames';
+import { Menu, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
+import ContentOfferings from '../content/ContentOfferings';
+import ContentLeaderboard from '../content/ContentLeaderboard';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
+import Aux from '../_Aux';
 
 const options = [
   {
@@ -143,83 +138,83 @@ const Offerings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the game offerings details object
-  function Games() {
-    return (
-      <div className="outter-games-container">
-        {Object.keys(detailsGames).map((item, i) => (
-          <a
-            href="https://play.decentraland.org/?position=-120%2C135"
-            target="_blank"
-            className="games-container"
-          >
-            <span
-              style={{ display: 'flex', justifyContent: 'center' }}
-              className="nft-image"
-            >
-              <Image
-                src={detailsGames[item][0]}
-                className={detailsGames[item][1]}
-                style={{ borderRadius: '4px' }}
-              />
-            </span>
-            <div className="nft-description">
-              <h3 className="nft-other-h3">{detailsGames[item][2]}</h3>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <p className="nfts-info">{detailsGames[item][4]}</p>
-                <p className="nfts-info-2">{detailsGames[item][5]}</p>
-              </span>
+  // function Games() {
+  //   return (
+  //     <div className="outter-games-container">
+  //       {Object.keys(detailsGames).map((item, i) => (
+  //         <a
+  //           href="https://play.decentraland.org/?position=-120%2C135"
+  //           target="_blank"
+  //           className="games-container"
+  //         >
+  //           <span
+  //             style={{ display: 'flex', justifyContent: 'center' }}
+  //             className="nft-image"
+  //           >
+  //             <Image
+  //               src={detailsGames[item][0]}
+  //               className={detailsGames[item][1]}
+  //               style={{ borderRadius: '4px' }}
+  //             />
+  //           </span>
+  //           <div className="nft-description">
+  //             <h3 className="nft-other-h3">{detailsGames[item][2]}</h3>
+  //             <span style={{ display: 'flex', justifyContent: 'center' }}>
+  //               <p className="nfts-info">{detailsGames[item][4]}</p>
+  //               <p className="nfts-info-2">{detailsGames[item][5]}</p>
+  //             </span>
 
-              <Divider
-                style={{
-                  margin: '10px 0px 15px 0px',
-                  width: 'calc(100% + 60px)',
-                  marginLeft: '-30px',
-                }}
-              />
+  //             <Divider
+  //               style={{
+  //                 margin: '10px 0px 15px 0px',
+  //                 width: 'calc(100% + 60px)',
+  //                 marginLeft: '-30px',
+  //               }}
+  //             />
 
-              <p
-                className="nft-other-p"
-                style={{
-                  marginTop: '-12px',
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                }}
-              >
-                {detailsGames[item][3]}
-              </p>
+  //             <p
+  //               className="nft-other-p"
+  //               style={{
+  //                 marginTop: '-12px',
+  //                 paddingTop: '15px',
+  //                 textAlign: 'center',
+  //               }}
+  //             >
+  //               {detailsGames[item][3]}
+  //             </p>
 
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
-                <Button
-                  color="blue"
-                  className="nft-button"
-                  target="_blank"
-                  href={detailsGames[item][6]}
-                >
-                  PLAY NOW
-                </Button>
-                <Button
-                  className="nft-read-button two"
-                  target="_blank"
-                  href={detailsGames[item][7]}
-                >
-                  READ MORE
-                </Button>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    );
-  }
+  //             <span
+  //               style={{ display: 'flex', justifyContent: 'space-between' }}
+  //             >
+  //               <Button
+  //                 color="blue"
+  //                 className="nft-button"
+  //                 target="_blank"
+  //                 href={detailsGames[item][6]}
+  //               >
+  //                 PLAY NOW
+  //               </Button>
+  //               <Button
+  //                 className="nft-read-button two"
+  //                 target="_blank"
+  //                 href={detailsGames[item][7]}
+  //               >
+  //                 READ MORE
+  //               </Button>
+  //             </span>
+  //           </div>
+  //         </a>
+  //       ))}
+  //     </div>
+  //   );
+  // }
 
   function Leaderboard() {
     if (gameRecordsRefresh) {
       return <Spinner background={1} />;
     } else {
       return (
-        <ContentGames
+        <ContentLeaderboard
           gameRecords={state.gameRecords}
           gameSelect={gameSelect}
           timePeriod={timePeriod}
@@ -228,80 +223,81 @@ const Offerings = (props) => {
     }
   }
 
-  function Casinos() {
-    return (
-      <div className="outter-games-container">
-        {Object.keys(detailsCasinos).map((item, i) => (
-          <a
-            href="https://play.decentraland.org/?position=-120%2C135"
-            target="_blank"
-            className="games-container"
-          >
-            <span
-              style={{ display: 'flex', justifyContent: 'center' }}
-              className="nft-image"
-            >
-              <Image
-                src={detailsCasinos[item][0]}
-                className={detailsCasinos[item][1]}
-                style={{ borderRadius: '4px' }}
-              />
-            </span>
-            <div className="nft-description">
-              <h3 className="nft-other-h3">{detailsCasinos[item][2]}</h3>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <p className="nfts-info">{detailsCasinos[item][4]}</p>
-              </span>
+  // function Casinos() {
+  //   return (
+  //     <div className="outter-games-container">
+  //       {Object.keys(detailsCasinos).map((item, i) => (
+  //         <a
+  //           href="https://play.decentraland.org/?position=-120%2C135"
+  //           target="_blank"
+  //           className="games-container"
+  //         >
+  //           <span
+  //             style={{ display: 'flex', justifyContent: 'center' }}
+  //             className="nft-image"
+  //           >
+  //             <Image
+  //               src={detailsCasinos[item][0]}
+  //               className={detailsCasinos[item][1]}
+  //               style={{ borderRadius: '4px' }}
+  //             />
+  //           </span>
+  //           <div className="nft-description">
+  //             <h3 className="nft-other-h3">{detailsCasinos[item][2]}</h3>
+  //             <span style={{ display: 'flex', justifyContent: 'center' }}>
+  //               <p className="nfts-info">{detailsCasinos[item][4]}</p>
+  //             </span>
 
-              <Divider
-                style={{
-                  margin: '10px 0px 15px 0px',
-                  width: 'calc(100% + 60px)',
-                  marginLeft: '-30px',
-                }}
-              />
+  //             <Divider
+  //               style={{
+  //                 margin: '10px 0px 15px 0px',
+  //                 width: 'calc(100% + 60px)',
+  //                 marginLeft: '-30px',
+  //               }}
+  //             />
 
-              <p
-                className="nft-other-p"
-                style={{
-                  marginTop: '-12px',
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                }}
-              >
-                {detailsCasinos[item][3]}
-              </p>
+  //             <p
+  //               className="nft-other-p"
+  //               style={{
+  //                 marginTop: '-12px',
+  //                 paddingTop: '15px',
+  //                 textAlign: 'center',
+  //               }}
+  //             >
+  //               {detailsCasinos[item][3]}
+  //             </p>
 
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
-                <Button
-                  color="blue"
-                  className="nft-button"
-                  target="_blank"
-                  href={detailsCasinos[item][5]}
-                >
-                  PLAY NOW
-                </Button>
-                <Button
-                  className="nft-read-button two"
-                  target="_blank"
-                  href={detailsCasinos[item][6]}
-                >
-                  READ MORE
-                </Button>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    );
-  }
+  //             <span
+  //               style={{ display: 'flex', justifyContent: 'space-between' }}
+  //             >
+  //               <Button
+  //                 color="blue"
+  //                 className="nft-button"
+  //                 target="_blank"
+  //                 href={detailsCasinos[item][5]}
+  //               >
+  //                 PLAY NOW
+  //               </Button>
+  //               <Button
+  //                 className="nft-read-button two"
+  //                 target="_blank"
+  //                 href={detailsCasinos[item][6]}
+  //               >
+  //                 READ MORE
+  //               </Button>
+  //             </span>
+  //           </div>
+  //         </a>
+  //       ))}
+  //     </div>
+  //   );
+  // }
 
   async function refreshLeaderboard() {
     console.log('Re-fetching game records');
     setGameRecordsRefresh(true);
 
+    // ********** do not remove - will add this code back later **********
     // const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
     // const jsonRecords = await response.json();
 
@@ -331,9 +327,9 @@ const Offerings = (props) => {
             <Link href="/games/casinos">
               <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
             </Link>
-            <Link href="/games/leaderboard">
-              <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
-            </Link>
+
+            {leaderboardLink(true)}
+
             <Divider
               className="tab-divider"
               style={{ marginTop: '18px', paddingBottom: '21px' }}
@@ -345,9 +341,9 @@ const Offerings = (props) => {
               <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
             </Link>
             <b className="account-hover active">OUR CASINOS</b>
-            <Link href="/games/leaderboard">
-              <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
-            </Link>
+
+            {leaderboardLink(true)}
+
             <Divider
               className="tab-divider"
               style={{ marginTop: '18px', paddingBottom: '21px' }}
@@ -363,244 +359,261 @@ const Offerings = (props) => {
                 <Link href="/games/casinos">
                   <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
                 </Link>
-                <b className="account-hover active">LEADERBOARD</b>
+
+                {leaderboardLink(false)}
               </p>
             </span>
 
-            {/* ////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////////////
-            ///////////////////////////  desktop coin select  ////////////////////////////// */}
-
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-              className="leaderboard-coin-select"
-            >
-              <span
-                className={
-                  gameSelect === 'play'
-                    ? 'account-select play'
-                    : 'account-select'
-                }
-                onClick={() => handleChange('play')}
-              >
-                <img
-                  style={{
-                    verticalAlign: 'middle',
-                    marginRight: '6px',
-                    marginTop: '-3px',
-                    borderRadius: '100%',
-                  }}
-                  className="image inline"
-                  width="21px"
-                  height="21px"
-                  src={Images.PLAY_CIRCLE}
-                />
-                PLAY
-              </span>
-
-              <span
-                className={
-                  gameSelect === 'mana'
-                    ? 'account-select mana'
-                    : 'account-select'
-                }
-                onClick={() => handleChange('mana')}
-              >
-                <img
-                  style={{
-                    verticalAlign: 'middle',
-                    marginRight: '6px',
-                    marginTop: '-3px',
-                    borderRadius: '100%',
-                  }}
-                  className="image inline"
-                  width="21px"
-                  height="21px"
-                  src={Images.MANA_CIRCLE}
-                />
-                MANA
-              </span>
-              <span
-                className={
-                  gameSelect === 'dai' ? 'account-select dai' : 'account-select'
-                }
-                onClick={() => handleChange('dai')}
-              >
-                <img
-                  style={{
-                    verticalAlign: 'middle',
-                    marginRight: '6px',
-                    marginTop: '-3px',
-                    borderRadius: '100%',
-                  }}
-                  className="image inline"
-                  width="21px"
-                  height="21px"
-                  src={Images.DAI_CIRCLE}
-                />
-                DAI
-              </span>
-              <span
-                className="account-select dropdown"
-                style={{
-                  marginRight: '0px',
-                  fontWeight: '400',
-                }}
-              >
-                <Dropdown
-                  options={options}
-                  defaultValue={options[0].value}
-                  onChange={timeChange}
-                />
-
-                <Button
-                  onClick={() => refreshLeaderboard()}
-                  className="reload-button"
-                  icon
-                >
-                  <Icon name="redo" />
-                </Button>
-              </span>
-            </span>
-
-            <Divider className="coin-select-divider" />
-
-            {/* ////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////  mobile coin select  ////////////////////////////// */}
-
-            <span style={{ display: 'flex', width: '100%' }}>
-              <span
-                style={{
-                  display: 'flex',
-                  marginBottom: '9px',
-                }}
-                className="leaderboard-coin-select-mobile"
-              >
-                <span
-                  className={
-                    gameSelect === 'play'
-                      ? 'account-select play'
-                      : 'account-select play2'
-                  }
-                  id="account-select-play"
-                  onClick={() => handleChange('play')}
-                >
-                  <img
-                    style={{
-                      verticalAlign: 'middle',
-                      marginRight: '6px',
-                      marginTop: '-3px',
-                    }}
-                    className="image inline"
-                    width="21px"
-                    height="21px"
-                    src={Images.PLAY_CIRCLE}
-                  />
-                  PLAY
-                </span>
-                <span
-                  className={
-                    gameSelect === 'mana'
-                      ? 'account-select mana'
-                      : 'account-select'
-                  }
-                  onClick={() => handleChange('mana')}
-                >
-                  <img
-                    style={{
-                      verticalAlign: 'middle',
-                      marginRight: '6px',
-                      marginTop: '-3px',
-                    }}
-                    className="image inline"
-                    width="21px"
-                    height="21px"
-                    src={Images.MANA_CIRCLE}
-                  />
-                  MANA
-                </span>
-                <span
-                  className={
-                    gameSelect === 'dai'
-                      ? 'account-select dai'
-                      : 'account-select'
-                  }
-                  onClick={() => handleChange('dai')}
-                >
-                  <img
-                    style={{
-                      verticalAlign: 'middle',
-                      marginRight: '6px',
-                      marginTop: '-3px',
-                    }}
-                    className="image inline"
-                    width="21px"
-                    height="21px"
-                    src={Images.DAI_CIRCLE}
-                  />
-                  DAI
-                </span>
-              </span>
-
-              {/* ////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////  send time select to own row  ///////////////////////// */}
-
-              <span
-                className="account-select dropdown"
-                id="intermediate-time-select"
-                style={{
-                  marginRight: '0px',
-                  fontWeight: '400',
-                }}
-              >
-                <Dropdown
-                  options={options}
-                  defaultValue={options[0].value}
-                  onChange={timeChange}
-                />
-
-                <Button
-                  onClick={() => refreshLeaderboard()}
-                  className="reload-button"
-                  icon
-                >
-                  <Icon name="redo" />
-                </Button>
-              </span>
-            </span>
-            <span
-              className="account-select dropdown"
-              id="mobile-time-select"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                left: '0px',
-                fontWeight: '400',
-              }}
-            >
-              <Dropdown
-                style={{ marginTop: '6px' }}
-                options={options}
-                defaultValue={options[0].value}
-                onChange={timeChange}
-              />
-
-              <Button
-                onClick={() => refreshLeaderboard()}
-                className="reload-button"
-                icon
-              >
-                <Icon name="redo" />
-              </Button>
-            </span>
+            {coinSelect()}
           </div>
         )}
       </div>
+    );
+  }
+
+  function leaderboardLink(link) {
+    if (state.userStatus) {
+      if (link) {
+        return (
+          <Link href="/games/leaderboard">
+            <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
+          </Link>
+        );
+      } else {
+        return <b className="account-hover active">LEADERBOARD</b>;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  function coinSelect() {
+    return (
+      <Aux>
+        {/* ////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////
+      ///////////////////////////  desktop coin select  ////////////////////////////// */}
+
+        <span
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+          className="leaderboard-coin-select"
+        >
+          <span
+            className={
+              gameSelect === 'play' ? 'account-select play' : 'account-select'
+            }
+            onClick={() => handleChange('play')}
+          >
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+                marginTop: '-3px',
+                borderRadius: '100%',
+              }}
+              className="image inline"
+              width="21px"
+              height="21px"
+              src={Images.PLAY_CIRCLE}
+            />
+            PLAY
+          </span>
+
+          <span
+            className={
+              gameSelect === 'mana' ? 'account-select mana' : 'account-select'
+            }
+            onClick={() => handleChange('mana')}
+          >
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+                marginTop: '-3px',
+                borderRadius: '100%',
+              }}
+              className="image inline"
+              width="21px"
+              height="21px"
+              src={Images.MANA_CIRCLE}
+            />
+            MANA
+          </span>
+          <span
+            className={
+              gameSelect === 'dai' ? 'account-select dai' : 'account-select'
+            }
+            onClick={() => handleChange('dai')}
+          >
+            <img
+              style={{
+                verticalAlign: 'middle',
+                marginRight: '6px',
+                marginTop: '-3px',
+                borderRadius: '100%',
+              }}
+              className="image inline"
+              width="21px"
+              height="21px"
+              src={Images.DAI_CIRCLE}
+            />
+            DAI
+          </span>
+          <span
+            className="account-select dropdown"
+            style={{
+              marginRight: '0px',
+              fontWeight: '400',
+            }}
+          >
+            <Dropdown
+              options={options}
+              defaultValue={options[0].value}
+              onChange={timeChange}
+            />
+
+            <Button
+              onClick={() => refreshLeaderboard()}
+              className="reload-button"
+              icon
+            >
+              <Icon name="redo" />
+            </Button>
+          </span>
+        </span>
+
+        <Divider className="coin-select-divider" />
+
+        {/* ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////// mobile coin select //////////////////////////////// */}
+
+        <span style={{ display: 'flex', width: '100%' }}>
+          <span
+            style={{
+              display: 'flex',
+              marginBottom: '9px',
+            }}
+            className="leaderboard-coin-select-mobile"
+          >
+            <span
+              className={
+                gameSelect === 'play'
+                  ? 'account-select play'
+                  : 'account-select play2'
+              }
+              id="account-select-play"
+              onClick={() => handleChange('play')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.PLAY_CIRCLE}
+              />
+              PLAY
+            </span>
+            <span
+              className={
+                gameSelect === 'mana' ? 'account-select mana' : 'account-select'
+              }
+              onClick={() => handleChange('mana')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.MANA_CIRCLE}
+              />
+              MANA
+            </span>
+            <span
+              className={
+                gameSelect === 'dai' ? 'account-select dai' : 'account-select'
+              }
+              onClick={() => handleChange('dai')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.DAI_CIRCLE}
+              />
+              DAI
+            </span>
+          </span>
+
+          {/* ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////////////////////
+                ////////////////////////  send time select to own row  ///////////////////////// */}
+
+          <span
+            className="account-select dropdown"
+            id="intermediate-time-select"
+            style={{
+              marginRight: '0px',
+              fontWeight: '400',
+            }}
+          >
+            <Dropdown
+              options={options}
+              defaultValue={options[0].value}
+              onChange={timeChange}
+            />
+
+            <Button
+              onClick={() => refreshLeaderboard()}
+              className="reload-button"
+              icon
+            >
+              <Icon name="redo" />
+            </Button>
+          </span>
+        </span>
+        <span
+          className="account-select dropdown"
+          id="mobile-time-select"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            left: '0px',
+            fontWeight: '400',
+          }}
+        >
+          <Dropdown
+            style={{ marginTop: '6px' }}
+            options={options}
+            defaultValue={options[0].value}
+            onChange={timeChange}
+          />
+
+          <Button
+            onClick={() => refreshLeaderboard()}
+            className="reload-button"
+            icon
+          >
+            <Icon name="redo" />
+          </Button>
+        </span>
+      </Aux>
     );
   }
 
@@ -610,11 +623,15 @@ const Offerings = (props) => {
         <div className="account-other-inner-container">
           {submenu()}
 
-          {gameState === 'games'
-            ? Games()
-            : gameState === 'casinos'
-            ? Casinos()
-            : Leaderboard()}
+          {gameState === 'leaderboard' ? (
+            Leaderboard()
+          ) : (
+            <ContentOfferings
+              gameState={gameState}
+              detailsGames={detailsGames}
+              detailsCasinos={detailsCasinos}
+            />
+          )}
         </div>
       </div>
     </div>

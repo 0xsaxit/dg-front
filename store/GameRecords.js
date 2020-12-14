@@ -22,7 +22,7 @@ function GameRecords() {
         });
       })();
     }
-  }, []);
+  }, [state.userStatus]);
 
   return null;
 }
