@@ -28,9 +28,8 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances[6]) +
       parseFloat(state.DGBalances[7]) +
       parseFloat(state.stakingBalances[9]);
-    const totalDGAdjusted = totalDG
-      .toFixed(0)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const totalDGAdjusted_temp = totalDG.toFixed(0)
+    const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
     setDGTotal(totalDGAdjusted);
 
@@ -75,13 +74,15 @@ const ModalInfo = () => {
       open={open}
       close
       trigger={
-        <Button color="blue" className="modal-info-button">
+        <span>
           {Number(DGTotal) && isFinite(DGTotal) ? (
-            <p className="right-menu-text dg">{DGTotal} DG</p>
+            <Button color="blue" className="modal-info-button">
+              <p className="right-menu-text dg">{DGTotal.toLocaleString()} DG </p>
+            </Button>
           ) : (
-            <p className="right-menu-text dg">0 DG</p>
+            null
           )}
-        </Button>
+        </span>
       }
     >
 

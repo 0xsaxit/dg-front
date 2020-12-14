@@ -1298,7 +1298,7 @@ const ContentFarming = (props) => {
                   {state.DGBalances[6]} DG
                 </p>
                 <p className="bpt-text"
-                  onClick={() => setAmountInput4(toFixedDown(state.DGBalances[9], 2))}
+                  onClick={() => setAmountInput4(toFixedDown(gov_staked, 2))}
                 >
                   {gov_staked.toFixed(3)} DG STAKED
                 </p>
