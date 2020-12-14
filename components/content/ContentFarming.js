@@ -9,6 +9,11 @@ import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
 
+export const toFixedDown = (num, fixed) => {
+  const re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+  return num.toString().match(re)[0];
+}
+
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -27,11 +32,6 @@ const ContentFarming = (props) => {
   const [percentageGov, setPercentageGov] = useState(0);
 
   const [manaPrice, setManaPrice] = useState(0);
-
-  function roundDown(number, decimals) {
-    decimals = decimals || 0;
-    return ( Math.floor( number * Math.pow(10, decimals) ) / Math.pow(10, decimals) );
-  }
 
   // fetch total bet from API
   useEffect(() => {
@@ -822,13 +822,13 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(roundDown(state.stakingBalances[3], 3))}
+                  onClick={() => setAmountInput(toFixedDown(state.stakingBalances[3], w))}
                 >
                   {state.stakingBalances[3]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(roundDown(state.stakingBalances[2], 3))}
+                  onClick={() => setAmountInput(toFixedDown(state.stakingBalances[2], 2))}
                 >
                   {state.stakingBalances[2]} BPT staked
                 </p>
@@ -986,13 +986,13 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput2(roundDown(state.stakingBalances[7], 3))}
+                  onClick={() => setAmountInput2(toFixedDown(state.stakingBalances[7], 2))}
                 >
                   {state.stakingBalances[7]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput2(roundDown(state.stakingBalances[6], 3))}
+                  onClick={() => setAmountInput2(toFixedDown(state.stakingBalances[6], 2))}
                 >
                   {state.stakingBalances[6]} BPT staked
                 </p>
@@ -1108,10 +1108,10 @@ const ContentFarming = (props) => {
                 earn $DG governance rewards. Proposal submission activates when the treasury
                 surpasses $500,000 USD. Read more about $DG governance in our{' '}
                 <a
-                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
                   style={{ color: '#2085f4' }}
                 >
-                  docs
+                  announcement
                 </a>
                 .
               </p>
@@ -1272,12 +1272,12 @@ const ContentFarming = (props) => {
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
                 <p className="bpt-text"
-                  onClick={() => setAmountInput4(roundDown(state.DGBalances[6], 3))}
+                  onClick={() => setAmountInput4(toFixedDown(state.DGBalances[6], 2))}
                 >
                   {state.DGBalances[6]} DG
                 </p>
                 <p className="bpt-text"
-                  onClick={() => setAmountInput4(roundDown(state.stakingBalances[9], 3))}
+                  onClick={() => setAmountInput4(toFixedDown(state.DGBalances[9], 2))}
                 >
                   {gov_staked.toFixed(3)} DG STAKED
                 </p>

@@ -75,7 +75,7 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {Number(DGTotal) && isFinite(DGTotal) ? (
+          {Number(DGTotal) || DGTotal == 0 ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">{DGTotal} DG</p>
             </Button>
