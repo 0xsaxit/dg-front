@@ -3,7 +3,7 @@ import { GlobalContext } from './Context';
 
 const initialState = {
   categories: ['All', 'Announcements', 'Tutorials', 'Technology'],
-  // isLoading: false,
+  isLoading: false,
   pages: {
     data: [],
     meta: {},
@@ -46,11 +46,11 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    // case 'is_loading':
-    //   return {
-    //     ...state,
-    //     isLoading: action.data,
-    //   };
+    case 'is_loading':
+      return {
+        ...state,
+        isLoading: action.data,
+      };
 
     case 'update_pages':
       return {

@@ -308,8 +308,8 @@ const MenuTop = () => {
     }
   }
 
-  if (state.userStatus === 3) {
-    return null; // currently fetching user status from server
+  if (state.isLoading) {
+    return null;
   } else {
     return (
       <div className={menuStyle[0]}>
