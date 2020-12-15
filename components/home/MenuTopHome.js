@@ -9,7 +9,7 @@ import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopupLinks from './PopupLinks';
-import PopupLinksHome from './PopupLinksHome';
+import PopUpLinksHome from './PopUpLinksHome';
 
 
 const MenuTopHome = () => {
@@ -236,7 +236,7 @@ const MenuTopHome = () => {
             </span>
           </Link>
 
-          <PopupLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopUpLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     } else {
@@ -244,7 +244,7 @@ const MenuTopHome = () => {
         <span className="right-menu-items">
           <ButtonVerify />
 
-          <PopupLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopUpLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     }

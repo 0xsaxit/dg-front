@@ -3,7 +3,7 @@ import { GlobalContext } from '../../store';
 import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
 import { UseDarkMode } from '../UseDarkMode';
 
-const PopupLinksHome = (props) => {
+const PopUpLinksHome = (props) => {
   // dispatch theme (light or dark mode) to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -130,4 +130,4 @@ const PopupLinksHome = (props) => {
   );
 };
 
-export default PopupLinksHome;
+export default PopUpLinksHome;
