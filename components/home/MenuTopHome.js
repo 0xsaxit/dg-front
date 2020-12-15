@@ -9,6 +9,8 @@ import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopupLinks from './PopupLinks';
+import PopupLinksHome from './PopupLinksHome';
+
 
 const MenuTopHome = () => {
   // get token balances from the Context API store
@@ -234,7 +236,7 @@ const MenuTopHome = () => {
             </span>
           </Link>
 
-          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopupLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     } else {
@@ -242,7 +244,7 @@ const MenuTopHome = () => {
         <span className="right-menu-items">
           <ButtonVerify />
 
-          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopupLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     }
@@ -256,11 +258,20 @@ const MenuTopHome = () => {
         <MessageBar />
         {dropdownMenu()}
 
-        <Menu className="menu-container" icon="labeled">
-          {DGLogo()}
-          {shownOrHiddenItems()}
-          {balancesAndButtons()}
-        </Menu>
+        {open ? (
+          <Menu className="menu-container-dark blog" icon="labeled">
+            {DGLogo()}
+            {shownOrHiddenItems()}
+            {balancesAndButtons()}
+          </Menu>
+        ) : (
+          <Menu className="menu-container dark" icon="labeled">
+            {DGLogo()}
+            {shownOrHiddenItems()}
+            {balancesAndButtons()}
+          </Menu>
+        )}
+
 
         <MessageBox handleDismiss={handleDismiss} />
       </div>
