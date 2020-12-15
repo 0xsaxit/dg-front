@@ -10,8 +10,16 @@ const Chateau = () => {
 
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   const realm = 'fenrir-amber';
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  });
 
   useEffect(() => {
     if (window) {
@@ -46,7 +54,7 @@ const Chateau = () => {
       <Aux>
         {homeVideo()}
 
-        {state.userStatus === 3 ? (
+        {state.userStatus === 3 || isLoading ? (
           null
         ) : state.userStatus === 0 ? (
           <div className="home-mission-content">

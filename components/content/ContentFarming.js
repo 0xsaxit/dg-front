@@ -33,6 +33,8 @@ const ContentFarming = (props) => {
 
   const [manaPrice, setManaPrice] = useState(0);
 
+
+
   // fetch total bet from API
   useEffect(() => {
     (async function () {
@@ -365,7 +367,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
               <p className="welcome-text">Unclaimed $DG</p>
-                {Number(state.DGBalances[0]) ? (
+                {Number(state.DGBalances[0]) || state.DGBalances[0] == 0 ? (
                   <p className="account-name">{state.DGBalances[0]}</p>
                 ) : (
                   <Loader
@@ -1245,7 +1247,7 @@ const ContentFarming = (props) => {
                   <p className="welcome-text">Total Staked $DG</p>
                   {Number(total_gov_staked) && isFinite(total_gov_staked) ? (
                     <p className="account-name">
-                      {total_gov_staked.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      {total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
                   ) : (
                     <Loader
@@ -1409,7 +1411,7 @@ const ContentFarming = (props) => {
                 <span className="farming-pool-span">
                   <p className="welcome-text">treasury</p>
                   {Number(treasury) ? (
-                    <p className="account-name">${treasury.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    <p className="account-name">${treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
                   ) : (
                     <Loader
                       active
