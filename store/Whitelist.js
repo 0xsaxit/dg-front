@@ -12,8 +12,6 @@ const Whitelist = () => {
   useEffect(() => {
     if (state.userStatus >= 4) {
       async function fetchData() {
-        console.log('Fetching admin addresses...');
-
         const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
 
         const addresses = await Global.API_ADDRESSES;

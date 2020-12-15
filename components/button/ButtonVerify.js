@@ -40,7 +40,7 @@ const ButtonVerify = () => {
     }
   }
 
-  function updateStatus(value, post) {
+  async function updateStatus(value, post) {
     // update global state user status
     dispatch({
       type: 'update_status',
@@ -51,7 +51,8 @@ const ButtonVerify = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+      await Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+      window.location.reload(); // refresh browser to fetch initial data
     }
   }
 

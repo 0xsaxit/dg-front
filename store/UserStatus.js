@@ -13,8 +13,6 @@ function UserStatus() {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
-      // console.log('user address foo: ' + userAddress);
-
       // set user status to 3 to denote fetching user status
       if (userAddress) {
         dispatch({

@@ -71,6 +71,21 @@ const Fetch = {
     });
   },
 
+  USER_VERIFY: (address, step, affiliate) => {
+    return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: address,
+        verifyStep: step,
+        affiliate: affiliate,
+      }),
+    });
+  },
+
   TOP_UP_USER: (address) => {
     return fetch(`${API_BASE_URL}/order/topup`, {
       method: 'POST',
@@ -110,21 +125,6 @@ const Fetch = {
         address: address,
         limit: 99999, // fetch all of the data
         page: 1,
-      }),
-    });
-  },
-
-  USER_VERIFY: (address, step, affiliate) => {
-    return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        verifyStep: step,
-        affiliate: affiliate,
       }),
     });
   },
