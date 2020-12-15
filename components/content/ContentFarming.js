@@ -219,7 +219,7 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
               <p className="welcome-text">Unclaimed $DG</p>
-                {Number(state.DGBalances[3]) ? (
+                {Number(state.DGBalances[3]) || state.DGBalances[3] ? (
                   <p className="account-name">{state.DGBalances[3]}</p>
                 ) : (
                   <Loader
