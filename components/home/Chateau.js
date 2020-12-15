@@ -46,7 +46,9 @@ const Chateau = () => {
       <Aux>
         {homeVideo()}
 
-        {!state.userStatus ? (
+        {state.userStatus === 3 ? (
+          null
+        ) : state.userStatus === 0 ? (
           <div className="home-mission-content">
             <div className="home-dashboard-description">
               <h1
