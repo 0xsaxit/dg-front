@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Global from '../components/Constants';
 import Images from '../common/Images';
 
+
 const Index = () => {
   return (
     <Layout>
