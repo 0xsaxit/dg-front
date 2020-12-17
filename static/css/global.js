@@ -197,13 +197,16 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: ${({ theme }) => theme.globalDividers};
   }
 
-  .sidebar-menu-text.blog.active,
-  .sidebar-menu-text.blog:hover,
   .account-hover.active,
   .account-hover:hover,
   #dropdown-more-items:hover,
   .ui.dropdown .menu > .active.item span.text,
   .ui.dropdown .menu > .item:hover span.text {
+    color: ${({ theme }) => theme.text} !important;
+  }
+
+  .sidebar-menu-text.blog#active,
+  .sidebar-menu-text.blog:hover {
     color: ${({ theme }) => theme.text} !important;
   }
 
