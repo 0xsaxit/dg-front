@@ -58,7 +58,7 @@ const ModalInfo = () => {
 
   // calculate market cap 
   const temp = (supply * DGPrice);
-  const marketCap = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const marketCap = temp.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const temp_2 = (DGTotal_2 * DGPrice);
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -191,7 +191,7 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">circulating supply</p>
-          <p className="menu-info-text">{supply.toLocaleString()}</p>
+          <p className="menu-info-text">{supply.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">market capitalization</p>
