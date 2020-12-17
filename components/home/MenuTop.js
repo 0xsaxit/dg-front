@@ -23,37 +23,6 @@ const MenuTop = () => {
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
 
-  // set menu styles
-  useEffect(() => {
-    if (router.pathname === '/') {
-      setMenuStyle([
-        'dashboard-menu-container',
-        'menu-container-dark',
-        'sidebar-menu-text',
-        '',
-        'dropdown-menu',
-        '',
-        'rgba(10, 10, 10, 1)',
-        'right-menu-text',
-        'home-menu-icon',
-        'home-mobile-background',
-      ]);
-    } else {
-      setMenuStyle([
-        'other-menu-container blog',
-        'menu-container-dark blog',
-        'sidebar-menu-text blog',
-        '',
-        '',
-        'rgb(10, 10, 10)',
-        'white',
-        'right-menu-text blog',
-        'mobile-menu-icon',
-        '',
-      ]);
-    }
-  }, []);
-
   useEffect(() => {
     if (state.userStatus) {
       console.log('User status: ' + state.userStatus);
@@ -81,28 +50,25 @@ const MenuTop = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    setMenuStyle([
+      'active',
+      '',
+    ]);
+  }, []);
+
   // get path and render appropriate styles
   function getLinkStyles(path) {
-    if (path === 'menu') {
-      if ('/' === router.pathname && !open) {
-        return 'menu-container';
+    if (path === '/') {
+      if (path === router.pathname) {
+        return menuStyle[0];
       } else {
-        return 'menu-container blog';
+        return menuStyle[1];
       }
+    } else if (router.pathname.includes(path)) {
+      return menuStyle[0];
     } else {
-      // path === router.pathname
-
-      if (path === '/') {
-        if (path === router.pathname) {
-          return menuStyle[2] + ' active';
-        } else {
-          return menuStyle[2];
-        }
-      } else if (router.pathname.includes(path)) {
-        return menuStyle[2] + ' active';
-      } else {
-        return menuStyle[2];
-      }
+      return menuStyle[1];
     }
   }
 
@@ -160,33 +126,33 @@ const MenuTop = () => {
         >
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <a href="/">
-              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+              <Menu.Item className='right-menu-text blog' id="dropdown-menu-items">
                 PLAY
               </Menu.Item>
             </a>
 
             {state.userStatus > 4 ? (
               <Link href="/dg">
-                <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+                <Menu.Item className='right-menu-text blog' id="dropdown-menu-items">
                   $DG
                 </Menu.Item>
               </Link>
             ) : null}
 
             <a href="/games">
-              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+              <Menu.Item className='right-menu-text blog' id="dropdown-menu-items">
                 GAMES
               </Menu.Item>
             </a>
 
             <a href="/nfts">
-              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+              <Menu.Item className='right-menu-text blog' id="dropdown-menu-items">
                 NFTS
               </Menu.Item>
             </a>
 
             <a href="/blog">
-              <Menu.Item className={menuStyle[7]} id="dropdown-menu-items">
+              <Menu.Item className='right-menu-text blog' id="dropdown-menu-items">
                 BLOG
               </Menu.Item>
             </a>
@@ -201,25 +167,25 @@ const MenuTop = () => {
     return (
       <div className="menu-items-to-hide">
         <Link href="/">
-          <Menu.Item className={getLinkStyles('/')}>PLAY</Menu.Item>
+          <Menu.Item className="sidebar-menu-text blog" id={getLinkStyles('/')}>PLAY</Menu.Item>
         </Link>
 
         {state.userStatus > 4 ? (
           <Link href="/dg">
-            <Menu.Item className={getLinkStyles('/dg')}>$DG</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog" id={getLinkStyles('/dg')}>$DG</Menu.Item>
           </Link>
         ) : null}
 
         <Link href="/games">
-          <Menu.Item className={getLinkStyles('/games')}>GAMES</Menu.Item>
+          <Menu.Item className="sidebar-menu-text blog" id={getLinkStyles('/games')}>GAMES</Menu.Item>
         </Link>
 
         <Link href="/nfts">
-          <Menu.Item className={getLinkStyles('/nfts')}>NFTS</Menu.Item>
+          <Menu.Item className="sidebar-menu-text blog" id={getLinkStyles('/nfts')}>NFTS</Menu.Item>
         </Link>
 
         <Link href="/blog">
-          <Menu.Item className={getLinkStyles('/blog')}>BLOG</Menu.Item>
+          <Menu.Item className="sidebar-menu-text blog" id={getLinkStyles('/blog')}>BLOG</Menu.Item>
         </Link>
       </div>
     );
@@ -227,7 +193,13 @@ const MenuTop = () => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    if (state.userStatus >= 4) {
+    if (state.userStatus === 3) {
+      return (
+        <span className="right-menu-items">
+          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+        </span>
+      );
+    } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
           <ModalInfo />
@@ -238,7 +210,7 @@ const MenuTop = () => {
                 <span style={{ display: 'flex' }}>
                   <span className="menu-info-to-hide">
                     {MANA_BALANCE > 0 ? (
-                      <p className={menuStyle[7]}>
+                      <p className='right-menu-text blog'>
                         {parseInt(state.userBalances[1][1]).toLocaleString()}{' '}
                         MANA
                       </p>
@@ -246,7 +218,7 @@ const MenuTop = () => {
                   </span>
                   <span className="menu-info-to-hide">
                     {DAI_BALANCE > 0 ? (
-                      <p className={menuStyle[7]}>
+                      <p className='right-menu-text blog'>
                         {parseInt(state.userBalances[0][1]).toLocaleString()}{' '}
                         DAI
                       </p>
@@ -254,7 +226,7 @@ const MenuTop = () => {
                   </span>
                 </span>
               ) : (
-                <p className={menuStyle[7]} id="add-funds-mobile-padding">
+                <p className='right-menu-text blog' id="add-funds-mobile-padding">
                   ADD TOKENS
                 </p>
               )}
@@ -262,13 +234,13 @@ const MenuTop = () => {
               <span className="menu-avatar-background" id="add-funds-mobile">
                 <span className="mobile-display-none-name">
                   {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                    <p className={menuStyle[7]} style={{ marginTop: '-1px' }}>
+                    <p className='right-menu-text blog' style={{ marginTop: '-1px' }}>
                       {state.userInfo[1].substr(0, 4) +
                         '...' +
                         state.userInfo[1].substr(-4)}
                     </p>
                   ) : (
-                    <p style={{ marginTop: '-1px' }} className={menuStyle[7]}>
+                    <p style={{ marginTop: '-1px' }} className='right-menu-text blog'>
                       {state.userInfo[0]}
                     </p>
                   )}
@@ -312,11 +284,11 @@ const MenuTop = () => {
     return null;
   } else {
     return (
-      <div className={menuStyle[0]}>
+      <div className='other-menu-container blog'>
         <MessageBar />
         {dropdownMenu()}
 
-        <Menu className={getLinkStyles('menu')} icon="labeled">
+        <Menu className='menu-container-dark blog' icon="labeled">
           {DGLogo()}
           {shownOrHiddenItems()}
           {balancesAndButtons()}

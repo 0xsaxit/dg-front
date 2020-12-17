@@ -851,7 +851,7 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(toFixedDown(state.stakingBalances[3], w))}
+                  onClick={() => setAmountInput(toFixedDown(state.stakingBalances[3], 2))}
                 >
                   {state.stakingBalances[3]} BPT
                 </p>
