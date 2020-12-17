@@ -1,14 +1,8 @@
-import getConfig from 'next/config'
 // https://api.decentral.games, http://localhost:5000
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-const {
-  publicRuntimeConfig: { API_URL } = {},
-} = getConfig();
 
 console.log('!!!!');
 console.log(process.env.NEXT_PUBLIC_API_URL);
-
-console.log('publicRuntimeConfig>>>>  ', API_URL);
 
 const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////

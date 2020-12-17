@@ -27,7 +27,7 @@
     "cross-env": "^7.0.3",
     "eth-sig-util": "^3.0.0",
     "html-to-react": "^1.4.5",
-    "next": "^9.5.2",
+    "next": "^9.5.5",
     "next-seo": "^4.17.0",
     "pusher-js": "^7.0.2",
     "react": "^17.0.1",
