@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
 
@@ -7,11 +7,14 @@ function UserStatus() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  // const [userAddress, setUserAddress] = useState('');
+
   let userAddress = '';
 
   useEffect(() => {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
+      // setUserAddress(userAddress);
 
       // set user status to 3 to denote fetching user status
       if (userAddress) {

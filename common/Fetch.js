@@ -6,17 +6,17 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls
   GET_ADDRESSES: (address) => {
-    return fetch(`${API_BASE_URL}/addresses?address=${address}`, {
+    return fetch(`${API_BASE_URL}/addresses?auth=${address}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     });
   },
 
   GAME_RECORDS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTotalRecords?address=${address}`, {
+    return fetch(`${API_BASE_URL}/admin/getTotalRecords?auth=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -26,17 +26,17 @@ const Fetch = {
   },
 
   PARCEL_DATA: (landID, tokenID, address) => {
-    return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}/${address}`, {
+    return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}?auth=${address}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     });
   },
 
   PLAYER_INFO: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
+    return fetch(`${API_BASE_URL}/admin/getUser?auth=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -46,7 +46,7 @@ const Fetch = {
   },
 
   PLAYER_DATA: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getCryptoRecords?address=${address}`, {
+    return fetch(`${API_BASE_URL}/admin/getCryptoRecords?auth=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -54,6 +54,26 @@ const Fetch = {
       },
     });
   },
+
+  // ADMIN_HISTORY: () => {
+  //   return fetch(`${API_BASE_URL}/admin/getHistory?auth=${address}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
+
+  // MACHINE_DATA: () => {
+  //   return fetch(`${API_BASE_URL}/admin/getMachine?auth=${address}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +86,7 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: address,
+        auth: address,
       }),
     });
   },
@@ -79,7 +99,7 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: address,
+        auth: address,
         verifyStep: step,
         affiliate: affiliate,
       }),
@@ -94,7 +114,7 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: address,
+        auth: address,
       }),
     });
   },
@@ -107,7 +127,7 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: address,
+        auth: address,
         limit: 99999, // fetch all of the data
         page: 1,
       }),
@@ -122,7 +142,7 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: address,
+        auth: address,
         limit: 99999, // fetch all of the data
         page: 1,
       }),
@@ -137,7 +157,7 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: address,
+        auth: address,
         amount: amount,
         type: type,
         state: state,
@@ -146,26 +166,6 @@ const Fetch = {
       }),
     });
   },
-
-  // ADMIN_HISTORY: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getHistory`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
-  // MACHINE_DATA: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getMachine`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

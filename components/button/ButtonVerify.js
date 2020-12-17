@@ -6,9 +6,11 @@ import Fetch from '../../common/Fetch';
 const ButtonVerify = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const [metamaskEnabled, setMetamaskEnabled] = useState(false);
 
   // define local variables
+  const [metamaskEnabled, setMetamaskEnabled] = useState(false);
+  // const [userAddress, setUserAddress] = useState('');
+
   let userAddress = '';
 
   useEffect(() => {
@@ -27,6 +29,7 @@ const ButtonVerify = () => {
       // await window.eth_requestAccounts();
 
       userAddress = window.web3.currentProvider.selectedAddress;
+      // setUserAddress(userAddress);
 
       // set global user status based on value stored in database. if no value present
       // update user status to 4 both locally and in the database
