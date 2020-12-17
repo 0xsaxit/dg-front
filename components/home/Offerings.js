@@ -227,20 +227,24 @@ const Offerings = (props) => {
     );
   }
 
+  // function leaderboardLink(link) {
+  //   if (state.userStatus >= 4) {
+  //     if (link) {
+  //       return (
+  //         <Link href="/games/leaderboard">
+  //           <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
+  //         </Link>
+  //       );
+  //     } else {
+  //       return <b className="account-hover active">LEADERBOARD</b>;
+  //     }
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
   function leaderboardLink(link) {
-    if (state.userStatus >= 4) {
-      if (link) {
-        return (
-          <Link href="/games/leaderboard">
-            <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
-          </Link>
-        );
-      } else {
-        return <b className="account-hover active">LEADERBOARD</b>;
-      }
-    } else {
-      return null;
-    }
+    return null;
   }
 
   function coinSelect() {
@@ -487,7 +491,7 @@ const Offerings = (props) => {
               detailsGames={detailsGames}
               detailsCasinos={detailsCasinos}
             />
-          )}
+          )} 
         </div>
       </div>
     </div>

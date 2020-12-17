@@ -169,7 +169,13 @@ const MenuTopHome = () => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    if (state.userStatus >= 4) {
+    if (state.userStatus === 3) {
+      return (
+        <span className="right-menu-items">
+          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+        </span>
+      );
+    } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
           <ModalInfo />
