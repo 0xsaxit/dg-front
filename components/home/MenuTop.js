@@ -8,7 +8,7 @@ import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
-import PopupLinks from './PopupLinks';
+import PopUpLinksHome from './PopUpLinksHome';
 
 const MenuTop = () => {
   // get token balances from the Context API store
@@ -188,7 +188,7 @@ const MenuTop = () => {
     if (state.userStatus === 3) {
       return (
         <span className="right-menu-items">
-          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopUpLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     } else if (state.userStatus >= 4) {
@@ -258,7 +258,7 @@ const MenuTop = () => {
             </span>
           </Link>
 
-          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopUpLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     } else {
@@ -266,7 +266,7 @@ const MenuTop = () => {
         <span className="right-menu-items">
           <ButtonVerify />
 
-          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopUpLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     }

@@ -16,7 +16,7 @@ const Account = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.userStatus) {
       setIsErrorMessage(false);
       setIsLoading(false);
     } else {
