@@ -163,7 +163,7 @@ const MenuTopHome = () => {
     if (state.userStatus === 3) {
       return (
         <span className="right-menu-items">
-          <PopupLinks menuStyle={menuStyle} isDarkMode={isDarkMode} />
+          <PopUpLinksHome menuStyle={menuStyle} isDarkMode={isDarkMode} />
         </span>
       );
     } else if (state.userStatus >= 4) {
