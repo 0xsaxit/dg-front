@@ -4,7 +4,11 @@ services:
   website:
     container_name: website
     image: decentralgames-website:latest
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: https://api.dev.decentral.games
     restart: always
     user: root
     ports:

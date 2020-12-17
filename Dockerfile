@@ -1,6 +1,8 @@
-FROM node:14.15.1-alpine3.12 as base
+FROM node:14.15.2-alpine3.12 as base
 
 ARG CI=true
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN apk add --no-cache ca-certificates git build-base python2 ;\
     rm -rf /var/cache/apk/*
@@ -25,7 +27,7 @@ RUN npm run build
 
 ################################################################################
 
-FROM node:14.15.1-alpine3.12 as runtime
+FROM node:14.15.2-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 WORKDIR /app
