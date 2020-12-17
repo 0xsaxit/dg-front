@@ -80,11 +80,7 @@ const MenuTopHome = () => {
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
-          className={
-            state.userStatus
-              ? 'mobile-menu-popup'
-              : 'mobile-menu-popup-logged-out'
-          }
+          className="mobile-menu-popup"
           pinned
           position="bottom right"
           trigger={
@@ -107,13 +103,11 @@ const MenuTopHome = () => {
               </Menu.Item>
             </a>
 
-            {state.userStatus > 4 ? (
-              <Link href="/dg">
-                <Menu.Item className="right-menu-text" id="dropdown-menu-items">
-                  $DG
-                </Menu.Item>
-              </Link>
-            ) : null}
+            <a href="/dg">
+              <Menu.Item className="right-menu-text" id="dropdown-menu-items">
+                $DG
+              </Menu.Item>
+            </a>
 
             <a href="/games">
               <Menu.Item className="right-menu-text" id="dropdown-menu-items">
@@ -146,11 +140,9 @@ const MenuTopHome = () => {
           <Menu.Item className="sidebar-menu-text active">PLAY</Menu.Item>
         </Link>
 
-        {state.userStatus > 4 ? (
-          <Link href="/dg">
-            <Menu.Item className="sidebar-menu-text">$DG</Menu.Item>
-          </Link>
-        ) : null}
+        <Link href="/dg">
+          <Menu.Item className="sidebar-menu-text">$DG</Menu.Item>
+        </Link>
 
         <Link href="/games">
           <Menu.Item className="sidebar-menu-text">GAMES</Menu.Item>

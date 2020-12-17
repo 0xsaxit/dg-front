@@ -179,22 +179,11 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   border-radius: 0px;
   padding-left: 0px;
   padding-top: 0px;
-  height: 265px;
+  height: 260px;
   position: absolute !important;
   left: -25px !important;
 }
 
-div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
-  margin-top: 70px;
-  border: none;
-  min-width: 100vw;
-  border-radius: 0px;
-  padding-left: 0px;
-  padding-top: 0px;
-  height: 216px;
-  position: absolute !important;
-  left: -25px !important;
-}
 
 /* ----------------------------------------- */
 /*         DEPOSIT MODAL MOBILE CSS          */
