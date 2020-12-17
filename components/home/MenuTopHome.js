@@ -8,7 +8,6 @@ import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
-import PopupLinks from './PopupLinks';
 import PopUpLinksHome from './PopUpLinksHome';
 
 
