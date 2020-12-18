@@ -44,6 +44,8 @@ const ButtonVerify = () => {
   }
 
   async function updateStatus(value, post) {
+    // console.log('update status...');
+
     // update global state user status
     dispatch({
       type: 'update_status',

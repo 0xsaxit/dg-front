@@ -35,7 +35,9 @@ const API_ADDRESSES = (async () => {
     const userAddress = window.web3.currentProvider.selectedAddress;
 
     if (userAddress) {
-      const response = await Fetch.GET_ADDRESSES(userAddress);
+      // ************************* this will return an error if new wallet address *************************
+
+      const response = await Fetch.GET_ADDRESSES('userAddress');
       let json = await response.json();
 
       const OWNER_WALLET_ADDRESS = json.OWNER_WALLET_ADDRESS;
@@ -59,7 +61,7 @@ const API_ADDRESSES = (async () => {
       const ADMIN_ADDRESSES = json.ADMIN_ADDRESSES;
 
       const DG_STAKING_GOV = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
-      const DG_TOKEN = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
+      // const DG_TOKEN = '0xee06a81a695750e71a662b51066f2c74cf4478a0';
 
       console.log('OWNER_WALLET_ADDRESS: ' + OWNER_WALLET_ADDRESS);
       console.log('WORKER_WALLET_ADDRESS: ' + WORKER_WALLET_ADDRESS);
@@ -107,7 +109,7 @@ const API_ADDRESSES = (async () => {
         TOMINOYA_CONTRACT_ADDRESS,
         ADMIN_ADDRESSES,
         DG_STAKING_GOV,
-        DG_TOKEN,
+        // DG_TOKEN,
       };
     }
   }

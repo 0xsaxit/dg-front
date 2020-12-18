@@ -65,35 +65,30 @@ function DGBalances() {
         // matic contract to get DG balance on matic chain for modal
         const DGMaticContract = new maticWeb3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DG_TOKEN_MATIC
           addresses.CHILD_TOKEN_ADDRESS_DG
         );
         setDGMaticContract(DGMaticContract);
 
         const DG_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DG_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDG_BPT(DG_BPT);
 
         const DAI_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DAI_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_DAI
         );
         setDAI_BPT(DAI_BPT);
 
         const DG_BPT_2 = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DG_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDG_BPT_2(DG_BPT_2);
 
         const DG_MANA = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.MANA_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_MANA
         );
         setMANA_BPT(DG_MANA);

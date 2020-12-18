@@ -53,7 +53,8 @@ async function tokenContract(web3Default) {
 
   const DGToken = new web3Default.eth.Contract(
     ABI_DG_TOKEN,
-    addresses.DG_TOKEN
+    // addresses.DG_TOKEN
+    addresses.ROOT_TOKEN_ADDRESS_DG
   );
 
   return DGToken;

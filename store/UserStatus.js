@@ -14,28 +14,31 @@ function UserStatus() {
   useEffect(() => {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
-      // setUserAddress(userAddress);
 
-      // set user status to 3 to denote fetching user status
       if (userAddress) {
-        dispatch({
-          type: 'update_status',
-          data: 3,
-        });
-      }
+        // set user status to 3 to denote fetching user status
+        // if (userAddress) {
+        //   dispatch({
+        //     type: 'update_status',
+        //     data: 3,
+        //   });
+        // }
 
-      // fetch user status
-      async function fetchData() {
-        const response = await getUserStatus();
+        // ************************* this will return an error if new wallet address *************************
 
-        if (response) {
-          dispatch({
-            type: 'update_status',
-            data: response,
-          });
+        // fetch user status
+        async function fetchData() {
+          const response = await getUserStatus();
+
+          if (response) {
+            dispatch({
+              type: 'update_status',
+              data: response,
+            });
+          }
         }
+        fetchData();
       }
-      fetchData();
     }
   }, []);
 
