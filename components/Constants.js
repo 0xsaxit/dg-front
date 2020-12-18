@@ -37,7 +37,7 @@ const API_ADDRESSES = (async () => {
     if (userAddress) {
       // ************************* this will return an error if new wallet address *************************
 
-      const response = await Fetch.GET_ADDRESSES('userAddress');
+      const response = await Fetch.GET_ADDRESSES(userAddress);
       let json = await response.json();
 
       const OWNER_WALLET_ADDRESS = json.OWNER_WALLET_ADDRESS;
