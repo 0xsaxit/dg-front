@@ -10,7 +10,7 @@ import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopUpLinksHome from './PopUpLinksHome';
 
-const MenuTopHome = () => {
+const MenuTop = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -21,6 +21,7 @@ const MenuTopHome = () => {
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
+  const router = useRouter();
 
   useEffect(() => {
     if (state.userStatus) {
@@ -48,6 +49,25 @@ const MenuTopHome = () => {
     }, 100);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    setMenuStyle(['active', '']);
+  }, []);
+
+  // get path and render appropriate styles
+  function getLinkStyles(path) {
+    if (path === '/') {
+      if (path === router.pathname) {
+        return menuStyle[0];
+      } else {
+        return menuStyle[1];
+      }
+    } else if (router.pathname.includes(path)) {
+      return menuStyle[0];
+    } else {
+      return menuStyle[1];
+    }
+  }
 
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
@@ -85,38 +105,60 @@ const MenuTopHome = () => {
               {open ? (
                 <Icon name="close" id="mobile-menu-icon" />
               ) : (
-                <Icon name="bars" id="mobile-menu-icon-home" />
+                <Icon
+                  name="bars"
+                  id={
+                    '/' === router.pathname
+                      ? 'mobile-menu-icon-home'
+                      : 'mobile-menu-icon'
+                  }
+                />
               )}
             </span>
           }
         >
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <a href="/">
-              <Menu.Item className="right-menu-text" id="dropdown-menu-items">
+              <Menu.Item
+                className="right-menu-text blog"
+                id="dropdown-menu-items"
+              >
                 PLAY
               </Menu.Item>
             </a>
 
             <a href="/dg">
-              <Menu.Item className="right-menu-text" id="dropdown-menu-items">
+              <Menu.Item
+                className="right-menu-text blog"
+                id="dropdown-menu-items"
+              >
                 $DG
               </Menu.Item>
             </a>
 
             <a href="/games">
-              <Menu.Item className="right-menu-text" id="dropdown-menu-items">
+              <Menu.Item
+                className="right-menu-text blog"
+                id="dropdown-menu-items"
+              >
                 GAMES
               </Menu.Item>
             </a>
 
             <a href="/nfts">
-              <Menu.Item className="right-menu-text" id="dropdown-menu-items">
+              <Menu.Item
+                className="right-menu-text blog"
+                id="dropdown-menu-items"
+              >
                 NFTS
               </Menu.Item>
             </a>
 
             <a href="/blog">
-              <Menu.Item className="right-menu-text" id="dropdown-menu-items">
+              <Menu.Item
+                className="right-menu-text blog"
+                id="dropdown-menu-items"
+              >
                 BLOG
               </Menu.Item>
             </a>
@@ -131,23 +173,45 @@ const MenuTopHome = () => {
     return (
       <div className="menu-items-to-hide">
         <Link href="/">
-          <Menu.Item className="sidebar-menu-text active">PLAY</Menu.Item>
+          <Menu.Item className="sidebar-menu-text blog" id={getLinkStyles('/')}>
+            PLAY
+          </Menu.Item>
         </Link>
 
         <Link href="/dg">
-          <Menu.Item className="sidebar-menu-text">$DG</Menu.Item>
+          <Menu.Item
+            className="sidebar-menu-text blog"
+            id={getLinkStyles('/dg')}
+          >
+            $DG
+          </Menu.Item>
         </Link>
 
         <Link href="/games">
-          <Menu.Item className="sidebar-menu-text">GAMES</Menu.Item>
+          <Menu.Item
+            className="sidebar-menu-text blog"
+            id={getLinkStyles('/games')}
+          >
+            GAMES
+          </Menu.Item>
         </Link>
 
         <Link href="/nfts">
-          <Menu.Item className="sidebar-menu-text">NFTS</Menu.Item>
+          <Menu.Item
+            className="sidebar-menu-text blog"
+            id={getLinkStyles('/nfts')}
+          >
+            NFTS
+          </Menu.Item>
         </Link>
 
         <Link href="/blog">
-          <Menu.Item className="sidebar-menu-text">BLOG</Menu.Item>
+          <Menu.Item
+            className="sidebar-menu-text blog"
+            id={getLinkStyles('/blog')}
+          >
+            BLOG
+          </Menu.Item>
         </Link>
       </div>
     );
@@ -172,7 +236,7 @@ const MenuTopHome = () => {
                 <span style={{ display: 'flex' }}>
                   <span className="menu-info-to-hide">
                     {MANA_BALANCE > 0 ? (
-                      <p className="right-menu-text">
+                      <p className="right-menu-text blog">
                         {parseInt(state.userBalances[1][1]).toLocaleString()}{' '}
                         MANA
                       </p>
@@ -180,7 +244,7 @@ const MenuTopHome = () => {
                   </span>
                   <span className="menu-info-to-hide">
                     {DAI_BALANCE > 0 ? (
-                      <p className="right-menu-text">
+                      <p className="right-menu-text blog">
                         {parseInt(state.userBalances[0][1]).toLocaleString()}{' '}
                         DAI
                       </p>
@@ -188,7 +252,10 @@ const MenuTopHome = () => {
                   </span>
                 </span>
               ) : (
-                <p className="right-menu-text" id="add-funds-mobile-padding">
+                <p
+                  className="right-menu-text blog"
+                  id="add-funds-mobile-padding"
+                >
                   ADD TOKENS
                 </p>
               )}
@@ -197,7 +264,7 @@ const MenuTopHome = () => {
                 <span className="mobile-display-none-name">
                   {state.userInfo[0] === null || state.userInfo[0] === '' ? (
                     <p
-                      className="right-menu-text"
+                      className="right-menu-text blog"
                       style={{ marginTop: '-1px' }}
                     >
                       {state.userInfo[1].substr(0, 4) +
@@ -207,7 +274,7 @@ const MenuTopHome = () => {
                   ) : (
                     <p
                       style={{ marginTop: '-1px' }}
-                      className="right-menu-text"
+                      className="right-menu-text blog"
                     >
                       {state.userInfo[0]}
                     </p>
@@ -252,23 +319,15 @@ const MenuTopHome = () => {
     return null;
   } else {
     return (
-      <div className="dashboard-menu-container">
+      <div className="other-menu-container blog">
         <MessageBar />
         {dropdownMenu()}
 
-        {open ? (
-          <Menu className="menu-container-dark blog" icon="labeled">
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
-        ) : (
-          <Menu className="menu-container dark" icon="labeled">
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
-        )}
+        <Menu className="menu-container-dark blog" icon="labeled">
+          {DGLogo()}
+          {shownOrHiddenItems()}
+          {balancesAndButtons()}
+        </Menu>
 
         <MessageBox handleDismiss={handleDismiss} />
       </div>
@@ -276,4 +335,4 @@ const MenuTopHome = () => {
   }
 };
 
-export default MenuTopHome;
+export default MenuTop;
