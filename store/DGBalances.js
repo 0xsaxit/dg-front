@@ -48,7 +48,7 @@ function DGBalances() {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.ADDRESSES;
         setAddresses(addresses);
 
         // this is for mining DG
@@ -171,25 +171,21 @@ function DGBalances() {
         let json_3 = await response_3.json();
         const BPT_supply_2 = json_3.result / Global.CONSTANTS.FACTOR;
 
-        console.log('DG points balance gameplay: ' + balanceDG1);
-        console.log('DG points balance pool 1: ' + balanceDG2);
-        console.log('DG points balance pool 2: ' + balanceDG3);
-        console.log('DG points balance airdrop: ' + balanceDG4);
-        console.log('DG points balance gov: ' + balance_stakingGov);
-
-        console.log('DG mainchain balance: ' + balance_DG_main);
-        console.log('DG matic balance: ' + balance_DG_matic);
-
-        console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
-        console.log('MANA BP value (in usd) pool 1: ' + MANA_total);
-        console.log('BPT supply pool 1: ' + BPT_supply_1);
-        console.log('BPT supply pool 2: ' + BPT_supply_2);
-
-        console.log('DG BP balance pool 2: ' + balance_BP_DG);
-        console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
-
-        console.log('treasury mana: ' + balance_maticMana);
-        console.log('treasury dai: ' + balance_maticDai);
+        // console.log('DG points balance gameplay: ' + balanceDG1);
+        // console.log('DG points balance pool 1: ' + balanceDG2);
+        // console.log('DG points balance pool 2: ' + balanceDG3);
+        // console.log('DG points balance airdrop: ' + balanceDG4);
+        // console.log('DG points balance gov: ' + balance_stakingGov);
+        // console.log('DG mainchain balance: ' + balance_DG_main);
+        // console.log('DG matic balance: ' + balance_DG_matic);
+        // console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
+        // console.log('MANA BP value (in usd) pool 1: ' + MANA_total);
+        // console.log('BPT supply pool 1: ' + BPT_supply_1);
+        // console.log('BPT supply pool 2: ' + BPT_supply_2);
+        // console.log('DG BP balance pool 2: ' + balance_BP_DG);
+        // console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
+        // console.log('Treasury mana: ' + balance_maticMana);
+        // console.log('Treasury dai: ' + balance_maticDai);
 
         dispatch({
           type: 'dg_balances',
@@ -215,18 +211,16 @@ function DGBalances() {
         // update global state staking DG and balancer pool tokens
         const balanceStaking = await getTokensStaking();
 
-        console.log('balance BPT (contract pool 1):  ' + balanceStaking[0]);
-        console.log('balance DG (contract pool 1):  ' + balanceStaking[1]);
-        console.log('balance BPT (staked pool 1):  ' + balanceStaking[2]);
-        console.log('balance BPT (wallet pool 1):  ' + balanceStaking[3]);
-
-        console.log('balance BPT (contract pool 2):  ' + balanceStaking[4]);
-        console.log('balance DG (contract pool 2):  ' + balanceStaking[5]);
-        console.log('balance BPT (staked pool 2):  ' + balanceStaking[6]);
-        console.log('balance BPT (wallet pool 2):  ' + balanceStaking[7]);
-
-        console.log('balance DG total staked (gov): ' + balanceStaking[8]);
-        console.log('balance DG user staked (gov): ' + balanceStaking[9]);
+        // console.log('Balance BPT (contract pool 1):  ' + balanceStaking[0]);
+        // console.log('Balance DG (contract pool 1):  ' + balanceStaking[1]);
+        // console.log('Balance BPT (staked pool 1):  ' + balanceStaking[2]);
+        // console.log('Balance BPT (wallet pool 1):  ' + balanceStaking[3]);
+        // console.log('Balance BPT (contract pool 2):  ' + balanceStaking[4]);
+        // console.log('Balance DG (contract pool 2):  ' + balanceStaking[5]);
+        // console.log('Balance BPT (staked pool 2):  ' + balanceStaking[6]);
+        // console.log('Balance BPT (wallet pool 2):  ' + balanceStaking[7]);
+        // console.log('Balance DG total staked (gov): ' + balanceStaking[8]);
+        // console.log('Balance DG user staked (gov): ' + balanceStaking[9]);
 
         dispatch({
           type: 'staking_balances',
@@ -603,7 +597,7 @@ function DGBalances() {
       // gov
       const contractBalanceStakingGov = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_GOV,
+        addresses.DG_STAKING_GOVERNANCE,
         3
       );
 

@@ -8,7 +8,7 @@ import Global from '../components/Constants';
 
 // set treasury contract instance
 async function treasuryContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const treasuryContract = new web3Default.eth.Contract(
     ABI_TREASURY_CONTRACT,
@@ -37,7 +37,7 @@ async function getActiveStatus(userAddress, web3Default) {
 
 // set pointer contract instance
 async function pointerContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const DGPointerContract = new web3Default.eth.Contract(
     ABI_DG_POINTER,
@@ -49,7 +49,7 @@ async function pointerContract(web3Default) {
 
 // set dg main contract instance
 async function tokenContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const DGToken = new web3Default.eth.Contract(
     ABI_DG_TOKEN,
@@ -62,11 +62,11 @@ async function tokenContract(web3Default) {
 
 // set dg staking gov contract instance
 async function stakingContractGov(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const DGStakingGov = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_GOV
+    addresses.DG_STAKING_GOVERNANCE
   );
 
   return DGStakingGov;
@@ -74,7 +74,7 @@ async function stakingContractGov(web3Default) {
 
 // set staking contract instance dg pool 1
 async function stakingContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
@@ -86,7 +86,7 @@ async function stakingContract(web3Default) {
 
 // set staking contract instance dg pool 2
 async function stakingContractTwo(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const DGStakingContractTwo = new web3Default.eth.Contract(
     ABI_DG_STAKING,
@@ -98,7 +98,7 @@ async function stakingContractTwo(web3Default) {
 
 // set staking contract instance bpt pool 1
 async function BPTContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const BPTokenContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
@@ -110,7 +110,7 @@ async function BPTContract(web3Default) {
 
 // set staking contract instance bpt pool 2
 async function BPTContractTwo(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const BPTokenContractTwo = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
@@ -122,7 +122,7 @@ async function BPTContractTwo(web3Default) {
 
 // set keeper contract instance
 async function keeperContract(web3Default) {
-  const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
   const DGKeeperContract = new web3Default.eth.Contract(
     ABI_DG_KEEPER,
@@ -134,7 +134,7 @@ async function keeperContract(web3Default) {
 
 // get user or contract token balance from MetaMask
 async function balanceOfToken(tokenContract, userOrContractAddress, units) {
-  console.log('Get balance of token');
+  // console.log('Get balance of token');
 
   try {
     const amount = await tokenContract.methods

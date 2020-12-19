@@ -21,7 +21,7 @@ let metaTransactionType = [];
     if (userAddress) {
       // console.log('foo foo');
 
-      const addresses = await Global.API_ADDRESSES;
+      const addresses = await Global.ADDRESSES;
 
       childTokenAddressMANA = addresses.CHILD_TOKEN_ADDRESS_MANA;
       childTokenAddressDAI = addresses.CHILD_TOKEN_ADDRESS_DAI;

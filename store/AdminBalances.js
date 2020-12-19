@@ -17,11 +17,11 @@ function AdminBalances() {
   let contractAddress = '';
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.whitelisted) {
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.ADDRESSES;
         workerAddress = addresses.WORKER_WALLET_ADDRESS;
         contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
@@ -44,7 +44,7 @@ function AdminBalances() {
       }
       fetchData();
     }
-  }, [state.userStatus, state.tokenPings]);
+  }, [state.whitelisted, state.tokenPings]);
 
   // get worker address ETH balance on Matic Network
   async function getEthBalance() {
@@ -111,7 +111,7 @@ function AdminBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get total funds and individual game amounts
   async function getTokenBalances() {
-    const addresses = await Global.API_ADDRESSES;
+    const addresses = await Global.ADDRESSES;
 
     const tokenContract = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_MANA,

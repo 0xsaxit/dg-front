@@ -37,7 +37,7 @@ const Farming = (props) => {
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async () => {
-        const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.ADDRESSES;
         setAddresses(addresses);
       })();
     }
@@ -123,7 +123,7 @@ const Farming = (props) => {
   }, [instances]);
 
   async function getPeriodFinish() {
-    console.log('Return reward period finish time');
+    // console.log('Return reward period finish time');
 
     try {
       const timestamp = await stakingContract.methods.periodFinish().call();
@@ -395,7 +395,7 @@ const Farming = (props) => {
       );
 
       const amountAllowance = await DGContract.methods
-        .allowance(userAddress, addresses.DG_STAKING_GOV)
+        .allowance(userAddress, addresses.DG_STAKING_GOVERNANCE)
         .call();
 
       console.log('Authorized amount: ' + amountAllowance);
@@ -404,7 +404,7 @@ const Farming = (props) => {
         console.log("Approve goov staking contract to spend user's tokens");
 
         const data = await DGContract.methods
-          .approve(addresses.DG_STAKING_GOV, Global.CONSTANTS.MAX_AMOUNT)
+          .approve(addresses.DG_STAKING_GOVERNANCE, Global.CONSTANTS.MAX_AMOUNT)
           .send({ from: userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);

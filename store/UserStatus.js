@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
 
@@ -7,15 +7,11 @@ function UserStatus() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  // const [userAddress, setUserAddress] = useState('');
-
   let userAddress = '';
 
   useEffect(() => {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
-
-      // console.log('user address... ' + userAddress);
 
       if (userAddress) {
         // set user status to 3 to denote fetching user status
@@ -26,16 +22,9 @@ function UserStatus() {
           });
         }
 
-        // ************************* this will return an error if new wallet address *************************
-
         // fetch user status
         async function fetchData() {
-          // console.log('fetching data...');
-
-          // try {
           const response = await getUserStatus();
-
-          // console.log('response... ' + response);
 
           // if the response is truthy set the user's respective status, else set status back to 0
           if (response) {
@@ -51,17 +40,6 @@ function UserStatus() {
               });
             }
           }
-
-          // } catch {
-          //   console.log('error error error 2...');
-
-          //   if (userAddress) {
-          //     dispatch({
-          //       type: 'update_status',
-          //       data: 0,
-          //     });
-          //   }
-          // }
         }
 
         fetchData();

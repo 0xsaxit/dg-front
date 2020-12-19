@@ -27,7 +27,7 @@ function ButtonPause(props) {
       setWeb3(web3);
 
       (async function () {
-        // const addresses = await Global.API_ADDRESSES;
+        // const addresses = await Global.ADDRESSES;
         // contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
 
         if (!isPaused) {
