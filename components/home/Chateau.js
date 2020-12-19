@@ -58,7 +58,7 @@ const Chateau = () => {
           null
         ) : (
           <div className="home-dashboard-content">
-            <p className="featured-casino-text">BETA VERSION 1.0</p>
+            <p className="featured-casino-text">BETA 1.0</p>
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
               decentral.games
             </h1>
