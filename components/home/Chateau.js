@@ -81,11 +81,11 @@ const Chateau = () => {
                 target="_blank"
                 href="https://docs.decentral.games/getting-started"
               >
-                EARN $DG
+                MINE $DG
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Be the house in the first metaverse casino featuring blackjack, roulette, slots, and backgammon playable with MANA and DAI. Earn $DG though gameplay and liquidity provision. Stake $DG to govern the casino treasury. 
+              Be the house in the first metaverse casino featuring blackjack, roulette, slots, and backgammon playable with MANA and DAI. Mine $DG though gameplay and liquidity provision. Stake $DG to govern the casino treasury. 
             </p>
           </div>
         )}
