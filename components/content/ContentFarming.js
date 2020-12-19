@@ -1245,7 +1245,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">Total Staked $DG</p>
+                  <p className="welcome-text">Total $DG Staked</p>
                   {Number(total_gov_staked) && isFinite(total_gov_staked) ? (
                     <p className="account-name">
                       {total_gov_staked
@@ -1414,7 +1414,7 @@ const ContentFarming = (props) => {
                   alt="Snapshot Governance Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">treasury</p>
+                  <p className="welcome-text">treasury balance</p>
                   {Number(treasury) ? (
                     <p className="account-name">
                       $
