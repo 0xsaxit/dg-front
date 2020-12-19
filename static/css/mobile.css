@@ -207,7 +207,10 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .demo-button-container {
     display: none !important;
   }
-  .mobile-no-scroll {
+  a.ui.blue.button.play-button,
+  .ui.blue.button.play-button,
+  .ui.blue.button.demo-button  {
+    margin-right: 21px;
   }
 }
 
@@ -242,6 +245,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     position: absolute;
     left: -9px;
     bottom: 75px;
+    padding-right: 21px !important;
   }
   .home-dashboard-p {
     width: 100%;
@@ -263,6 +267,15 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     width: 100vw;
     position: absolute;
     overflow: hidden !important;
+  }
+  .home-button-span {
+    display: flex;
+    justify-content: space-between;
+  }
+  a.ui.blue.button.play-button,
+  .ui.blue.button.play-button,
+  a.ui.blue.button.how-to-button {
+    width: 48.5% !important;
   }
 }
 

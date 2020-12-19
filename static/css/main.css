@@ -505,6 +505,7 @@ a.menu-info-label-link:hover {
   padding-bottom: 12px;
   text-shadow: 1px 1px 5px black;
   margin-top: -12px;
+  margin-left: -2px;
 }
 
 .ui.dimmer,
@@ -522,8 +523,8 @@ a.menu-info-label-link:hover {
   color: white;
   letter-spacing: 0.15px;
   text-shadow: 1px 1px 5px black;
-  max-width: 750px;
-  padding-right: 30px;
+  max-width: 700px;
+  padding-top: 12px !important;
 }
 
 .featured-casino-text {

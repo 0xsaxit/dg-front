@@ -56,63 +56,36 @@ const Chateau = () => {
 
         {state.userStatus === 3 || isLoading ? (
           null
-        ) : state.userStatus === 0 ? (
-          <div className="home-mission-content">
-            <div className="home-dashboard-description">
-              <h1
-                className="home-dashboard-mission"
-                style={{ marginBottom: '-15px' }}
-              >
-                Be the house in the first metaverse casino
-              </h1>
-              <h2
-                className="home-dashboard-h2"
-                style={{ marginBottom: '12px' }}
-              >
-                $DG is rewarded for gameplay, liquidity provision, and
-                governance.
-              </h2>
-              <span className="logged-out-button-span">
-                <ModalVideo />
-
-                <Button
-                  color="blue"
-                  className="how-to-button"
-                  target="_blank"
-                  href="https://docs.decentral.games/getting-started"
-                >
-                  EARN $DG
-                </Button>
-              </span>
-            </div>
-          </div>
         ) : (
           <div className="home-dashboard-content">
-            <p className="featured-casino-text">DECENTRAL GAMES PRESENTS</p>
+            <p className="featured-casino-text">BETA VERSION 1.0</p>
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Chateau Satoshi
+              decentral.games
             </h1>
-            <Button
-              color="blue"
-              className="play-button"
-              href={`https://play.decentraland.org/?position=-75%2C77&realm=${realm}`}
-              target="_blank"
-              style={{ marginRight: '30px' }}
-            >
-              PLAY NOW
-            </Button>
-            <Button
-              color="blue"
-              className="how-to-button"
-              target="_blank"
-              href="https://docs.decentral.games/getting-started"
-            >
-              EARN $DG
-            </Button>
+            <span className="home-button-span">
+              {state.userStatus === 0 ? (
+                <ModalVideo />
+              ) : (
+                <Button
+                  color="blue"
+                  className="play-button"
+                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
+                  target="_blank"
+                >
+                  PLAY NOW
+                </Button>
+              )}
+              <Button
+                color="blue"
+                className="how-to-button"
+                target="_blank"
+                href="https://docs.decentral.games/getting-started"
+              >
+                EARN $DG
+              </Button>
+            </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Chateau Satoshi is an art deco themed metaverse casino built by
-              Decentral Games in Decentraland. Enjoy non-custodial slots,
-              roulette, and blackjack playable with crypto.
+              $DG is rewarded for gameplay, liquidity provision, and governance. Be the house in the first metaverse casino, featuring blackjack, roulette, slots, and backgammon playable with MANA and DAI.
             </p>
           </div>
         )}
