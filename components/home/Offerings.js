@@ -74,7 +74,7 @@ const detailsGames = {
     'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
     '2 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-gold',
+    'https://play.decentraland.org/?position=85%2C-20&realm=hades-amber',
     'https://docs.decentral.games/games/backgammon',
   ],
 };
@@ -86,7 +86,7 @@ const detailsCasinos = {
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-75%2C77&realm=hades-amber',
     'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
   Tominoya: [
@@ -104,7 +104,7 @@ const detailsCasinos = {
     'Serenity Island',
     'Serenity Island is located in the Vegas City district in Decentraland. The scene features a massive island that players must climb up to enter, and the structure sports a Monte Carlo-inspired architecture. The building is three stories total featuring two levels of games and a basement club.',
     'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-145%2C115&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-145%2C115&realm=hades-amber',
     'https://docs.decentral.games/casinos/serenity-island',
   ],
 };
