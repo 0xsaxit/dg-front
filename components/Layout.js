@@ -2,13 +2,12 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import { initGA, logPageView } from './Analytics';
 import MenuTop from './home/MenuTop';
-import MenuTopHome from './home/MenuTopHome';
+// mport MenuTopHome from './home/MenuTopHome';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
 import MailChimp from './Mailchimp';
-
 
 const Layout = (props) => {
   // get theme (light or dark mode) from the Context API store
@@ -31,9 +30,9 @@ const Layout = (props) => {
       <GlobalStyles />
 
       {router.pathname === '/' ? (
-        <MenuTopHome />
+        <MenuTop isHomePage={true} />
       ) : (
-        <MenuTop />
+        <MenuTop isHomePage={false} />
       )}
 
       <MailChimp />

@@ -15,28 +15,55 @@ function UserStatus() {
     if (window.ethereum) {
       userAddress = window.web3.currentProvider.selectedAddress;
 
+      // console.log('user address... ' + userAddress);
+
       if (userAddress) {
         // set user status to 3 to denote fetching user status
-        // if (userAddress) {
-        //   dispatch({
-        //     type: 'update_status',
-        //     data: 3,
-        //   });
-        // }
+        if (userAddress) {
+          dispatch({
+            type: 'update_status',
+            data: 3,
+          });
+        }
 
         // ************************* this will return an error if new wallet address *************************
 
         // fetch user status
         async function fetchData() {
+          // console.log('fetching data...');
+
+          // try {
           const response = await getUserStatus();
 
+          // console.log('response... ' + response);
+
+          // if the response is truthy set the user's respective status, else set status back to 0
           if (response) {
             dispatch({
               type: 'update_status',
               data: response,
             });
+          } else {
+            if (userAddress) {
+              dispatch({
+                type: 'update_status',
+                data: 0,
+              });
+            }
           }
+
+          // } catch {
+          //   console.log('error error error 2...');
+
+          //   if (userAddress) {
+          //     dispatch({
+          //       type: 'update_status',
+          //       data: 0,
+          //     });
+          //   }
+          // }
         }
+
         fetchData();
       }
     }

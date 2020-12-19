@@ -61,7 +61,7 @@ const ButtonVerify = () => {
       // window.location.reload(); // refresh browser to fetch the addresses from the server API
     }
 
-    window.location.reload(); // refresh browser to fetch the addresses from the server API
+    // window.location.reload(); // refresh browser to fetch the addresses from the server API
   }
 
   async function getUserStatus() {
