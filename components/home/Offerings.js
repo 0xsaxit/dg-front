@@ -44,7 +44,7 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentral.games',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
@@ -54,7 +54,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentral.games',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -64,7 +64,7 @@ const detailsGames = {
     'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
     '1 PLAYER',
     'PLAY, MANA, DAI',
-    'https://play.decentral.games',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/games/slots',
   ],
   Backgammon: [
@@ -95,7 +95,7 @@ const detailsCasinos = {
     'Tominoya',
     'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE, BLACKJACK, SLOTS',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/casinos/tominoya',
   ],
   Serenity: [
