@@ -85,7 +85,7 @@ const Chateau = () => {
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Be the house in the first metaverse casino featuring blackjack, roulette, slots, and backgammon playable with MANA and DAI. $DG is rewarded for gameplay, liquidity provision, and governance of the casino treasury. 
+              Be the house in the first metaverse casino featuring blackjack, roulette, slots, and backgammon playable with MANA and DAI. Earn $DG though gameplay and liquidity provision. Stake $DG to govern the casino treasury. 
             </p>
           </div>
         )}
