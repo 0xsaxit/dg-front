@@ -8,7 +8,7 @@ import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
-import PopUpLinksHome from './PopUpLinksHome';
+import PopUpLinks from './PopUpLinks';
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -16,17 +16,15 @@ const MenuTop = (props) => {
 
   // define local variables
   const [isDarkMode, setDarkMode] = useState(false);
-  // const [menuStyle, setMenuStyle] = useState([]);
   const [open, setOpen] = useState(false);
-
   // const [isHomePage, setIsHomePage] = useState(false);
-  // const isHomePage = props.isHomePage;
+  // const [menuStyle, setMenuStyle] = useState([]);
 
+  let menuStyle = [];
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
 
-  let menuStyle = [];
   if (props.isHomePage) {
     menuStyle = [
       'mobile-menu-icon-home',
@@ -48,6 +46,14 @@ const MenuTop = (props) => {
   //     setIsHomePage(true);
   //   }
   // }, [router.pathname]);
+
+  // useEffect(() => {
+  //   if (isHomePage) {
+  //     setMenuStyle([]);
+  //   } else {
+  //     setMenuStyle([]);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -78,18 +84,8 @@ const MenuTop = (props) => {
     return () => clearInterval(interval);
   }, []);
 
-  // useEffect(() => {
-  //   if (isHomePage) {
-  //     setMenuStyle(['dashboard-menu-container', '']);
-  //   } else {
-  //     setMenuStyle(['other-menu-container blog', '']);
-  //   }
-  // }, []);
-
   // get path and render appropriate styles
   function getLinkStyles(path) {
-    // console.log('here: ' + path);
-
     if (path === '/') {
       if (path === router.pathname) {
         return 'active';
@@ -97,12 +93,8 @@ const MenuTop = (props) => {
         return '';
       }
     } else if (router.pathname.includes(path)) {
-      // console.log('there 1: ' + router.pathname);
-
       return 'active';
     } else {
-      // console.log('there 2: ' + router.pathname);
-
       return '';
     }
   }
@@ -195,37 +187,25 @@ const MenuTop = (props) => {
         </Link>
 
         <Link href="/dg">
-          <Menu.Item
-            className="sidebar-menu-text blog"
-            id={getLinkStyles('/dg')}
-          >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
             $DG
           </Menu.Item>
         </Link>
 
         <Link href="/games">
-          <Menu.Item
-            className="sidebar-menu-text blog"
-            id={getLinkStyles('/games')}
-          >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/games')}>
             GAMES
           </Menu.Item>
         </Link>
 
         <Link href="/nfts">
-          <Menu.Item
-            className="sidebar-menu-text blog"
-            id={getLinkStyles('/nfts')}
-          >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/nfts')}>
             NFTS
           </Menu.Item>
         </Link>
 
         <Link href="/blog">
-          <Menu.Item
-            className="sidebar-menu-text blog"
-            id={getLinkStyles('/blog')}
-          >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
             BLOG
           </Menu.Item>
         </Link>
@@ -238,7 +218,7 @@ const MenuTop = (props) => {
     if (state.userStatus === 3) {
       return (
         <span className="right-menu-items">
-          <PopUpLinksHome isDarkMode={isDarkMode} />
+          <PopUpLinks isDarkMode={isDarkMode} />
         </span>
       );
     } else if (state.userStatus >= 4) {
@@ -308,7 +288,7 @@ const MenuTop = (props) => {
             </span>
           </Link>
 
-          <PopUpLinksHome isDarkMode={isDarkMode} />
+          <PopUpLinks isDarkMode={isDarkMode} />
         </span>
       );
     } else {
@@ -316,7 +296,7 @@ const MenuTop = (props) => {
         <span className="right-menu-items">
           <ButtonVerify />
 
-          <PopUpLinksHome isDarkMode={isDarkMode} />
+          <PopUpLinks isDarkMode={isDarkMode} />
         </span>
       );
     }

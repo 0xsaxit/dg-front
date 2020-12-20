@@ -512,7 +512,7 @@ const Farming = (props) => {
       );
 
       const amountAllowance = await DGContract.methods
-        .allowance(userAddress, addresses.DG_STAKING_GOVERNANCE)
+        .allowance(userAddress, addresses.DG_STAKING_GOVERNANCE_ADDRESS)
         .call();
 
       console.log('Authorized amount: ' + amountAllowance);
@@ -521,7 +521,10 @@ const Farming = (props) => {
         console.log("Approve goov staking contract to spend user's tokens");
 
         const data = await DGContract.methods
-          .approve(addresses.DG_STAKING_GOVERNANCE, Global.CONSTANTS.MAX_AMOUNT)
+          .approve(
+            addresses.DG_STAKING_GOVERNANCE_ADDRESS,
+            Global.CONSTANTS.MAX_AMOUNT
+          )
           .send({ from: userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);

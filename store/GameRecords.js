@@ -11,10 +11,10 @@ function GameRecords() {
       const userAddress = window.web3.currentProvider.selectedAddress;
 
       (async function () {
-        // const response = await Fetch.GAME_RECORDS(userAddress);
-        // const jsonRecords = await response.json();
+        const response = await Fetch.GAME_RECORDS(userAddress);
+        const jsonRecords = await response.json();
 
-        const jsonRecords = '';
+        // const jsonRecords = '';
 
         dispatch({
           type: 'update_records',

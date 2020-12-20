@@ -66,7 +66,7 @@ async function stakingContractGov(web3Default) {
 
   const DGStakingGov = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_GOVERNANCE
+    addresses.DG_STAKING_GOVERNANCE_ADDRESS
   );
 
   return DGStakingGov;
