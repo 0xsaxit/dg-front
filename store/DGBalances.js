@@ -597,7 +597,7 @@ function DGBalances() {
       // gov
       const contractBalanceStakingGov = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_GOVERNANCE,
+        addresses.DG_STAKING_GOVERNANCE_ADDRESS,
         3
       );
 

@@ -153,11 +153,10 @@ const Offerings = (props) => {
     console.log('Re-fetching game records');
     setGameRecordsRefresh(true);
 
-    // ********** do not remove - will add this code back later **********
-    // const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
-    // const jsonRecords = await response.json();
+    const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
+    const jsonRecords = await response.json();
 
-    const jsonRecords = '';
+    // const jsonRecords = '';
 
     setGameRecordsRefresh(false);
 
@@ -227,24 +226,20 @@ const Offerings = (props) => {
     );
   }
 
-  // function leaderboardLink(link) {
-  //   if (state.userStatus >= 4) {
-  //     if (link) {
-  //       return (
-  //         <Link href="/games/leaderboard">
-  //           <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
-  //         </Link>
-  //       );
-  //     } else {
-  //       return <b className="account-hover active">LEADERBOARD</b>;
-  //     }
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   function leaderboardLink(link) {
-    return null;
+    if (state.userStatus >= 4) {
+      if (link) {
+        return (
+          <Link href="/games/leaderboard">
+            <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
+          </Link>
+        );
+      } else {
+        return <b className="account-hover active">LEADERBOARD</b>;
+      }
+    } else {
+      return null;
+    }
   }
 
   function coinSelect() {
@@ -491,7 +486,7 @@ const Offerings = (props) => {
               detailsGames={detailsGames}
               detailsCasinos={detailsCasinos}
             />
-          )} 
+          )}
         </div>
       </div>
     </div>

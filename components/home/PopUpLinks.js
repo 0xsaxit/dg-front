@@ -3,7 +3,7 @@ import { GlobalContext } from '../../store';
 import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
 import { UseDarkMode } from '../UseDarkMode';
 
-const PopUpLinksHome = (props) => {
+const PopUpLinks = (props) => {
   // dispatch theme (light or dark mode) to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -24,14 +24,19 @@ const PopUpLinksHome = (props) => {
       position="bottom right"
       trigger={
         <Button color="blue" className="more-dropdown-button">
-          <Icon name="ellipsis horizontal" style={{ marginRight: '-4px', marginTop: '-2px', fontSize: '16px' }}/>
+          <Icon
+            name="ellipsis horizontal"
+            style={{ marginRight: '-4px', marginTop: '-2px', fontSize: '16px' }}
+          />
         </Button>
       }
     >
-      <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-5px' }}>
+      <span
+        style={{ display: 'flex', flexDirection: 'column', marginTop: '-5px' }}
+      >
         <a href="https://docs.decentral.games" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
-            <Menu.Item className='right-menu-text' id="dropdown-more-items">
+            <Menu.Item className="right-menu-text" id="dropdown-more-items">
               <Icon
                 style={{ marginLeft: '-6px', marginRight: '11px' }}
                 name="file outline"
@@ -43,7 +48,7 @@ const PopUpLinksHome = (props) => {
 
         <a href="https://github.com/decentralgames" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
-            <Menu.Item className='right-menu-text' id="dropdown-more-items">
+            <Menu.Item className="right-menu-text" id="dropdown-more-items">
               <Icon
                 style={{ marginLeft: '-6px', marginRight: '11px' }}
                 name="code"
@@ -53,9 +58,12 @@ const PopUpLinksHome = (props) => {
           </span>
         </a>
 
-        <a href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC" target="_blank">
+        <a
+          href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC"
+          target="_blank"
+        >
           <span style={{ display: 'flex', marginBottom: '6px' }}>
-            <Menu.Item className='right-menu-text' id="dropdown-more-items">
+            <Menu.Item className="right-menu-text" id="dropdown-more-items">
               <Icon
                 style={{ marginLeft: '-5px', marginRight: '10px' }}
                 name="archive"
@@ -67,7 +75,7 @@ const PopUpLinksHome = (props) => {
 
         <a href="https://discord.com/invite/cvbSNzY" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
-            <Menu.Item className='right-menu-text' id="dropdown-more-items">
+            <Menu.Item className="right-menu-text" id="dropdown-more-items">
               <Icon
                 style={{ marginLeft: '-5px', marginRight: '10px' }}
                 name="discord"
@@ -79,7 +87,7 @@ const PopUpLinksHome = (props) => {
 
         <a href="https://t.me/decentralgames" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
-            <Menu.Item className='right-menu-text' id="dropdown-more-items">
+            <Menu.Item className="right-menu-text" id="dropdown-more-items">
               <Icon
                 style={{ marginLeft: '-5px', marginRight: '10px' }}
                 name="telegram"
@@ -91,7 +99,7 @@ const PopUpLinksHome = (props) => {
 
         <a href="https://twitter.com/decentralgames" target="_blank">
           <span style={{ display: 'flex', marginBottom: '6px' }}>
-            <Menu.Item className='right-menu-text' id="dropdown-more-items">
+            <Menu.Item className="right-menu-text" id="dropdown-more-items">
               <Icon
                 style={{ marginLeft: '-5px', marginRight: '10px' }}
                 name="twitter"
@@ -103,14 +111,22 @@ const PopUpLinksHome = (props) => {
 
         <span style={{ display: 'flex', paddingTop: '6px' }}>
           {props.isDarkMode ? (
-            <Menu.Item className='right-menu-text' id="dropdown-more-items-theme" style={{ marginTop: '-6px', fontSize: '14px' }}>
+            <Menu.Item
+              className="right-menu-text"
+              id="dropdown-more-items-theme"
+              style={{ marginTop: '-6px', fontSize: '14px' }}
+            >
               <Icon
                 style={{ marginLeft: '-4px', marginRight: '4px' }}
                 name="moon"
               />
             </Menu.Item>
           ) : (
-            <Menu.Item className='right-menu-text' id="dropdown-more-items-theme" style={{ marginTop: '-6px', fontSize: '16px' }}>
+            <Menu.Item
+              className="right-menu-text"
+              id="dropdown-more-items-theme"
+              style={{ marginTop: '-6px', fontSize: '16px' }}
+            >
               <Icon
                 style={{ marginLeft: '-5px', marginRight: '3px' }}
                 name="sun"
@@ -130,4 +146,4 @@ const PopUpLinksHome = (props) => {
   );
 };
 
-export default PopUpLinksHome;
+export default PopUpLinks;
