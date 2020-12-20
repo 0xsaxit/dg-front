@@ -564,13 +564,13 @@ const ContentFarming = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function contentLiquidity() {
+  function contentBalancer() {
     return (
       <Aux>
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Liquidity Farming</h3>
+              <h3 className="DG-h3">$DG Balancer Liquidity Farming</h3>
               <p>
                 Farm $DG by providing liquidity in 98/2 MANA-DG and DAI-DG
                 Balancer pools and staking the LP tokens on this dashboard. Read
@@ -1075,6 +1075,209 @@ const ContentFarming = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentUniswap() {
+    return (
+      <Aux>
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top" style={{ minWidth: '100%' }}>
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 className="DG-h3">$DG Uniswap Liquidity Farming</h3>
+              <p>
+                Farm $DG by providing liquidity in a 50/50 ETH-DG Uniswap pool and staking the LP tokens on this dashboard. Read
+                more about $DG liquidity farming in our
+                <a
+                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  style={{ color: '#2085f4' }}
+                >
+                  {' '}
+                  docs
+                </a>
+                .
+              </p>
+            </span>
+          </div>
+        </div>
+
+        <div className="DG-liquidity-container">
+          <div className="DG-column unclaimed">
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <span>
+                  <p className="welcome-text"> unclaimed </p>
+                  <p className="account-name">0.000</p>
+                </span>
+              </span>
+            </span>
+
+            <Divider />
+
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+              <p className="earned-text">Value USD</p>
+              <p className="earned-amount">$0.00</p>
+            </span>
+    
+            <Divider />
+
+            <span className="DG-button-span">
+              <Button
+                className="DG-claim-button"
+                id="balances-padding-correct"
+                disabled
+                onClick={() => props.getReward()}
+              >
+                CLAIM UNISWAP $DG
+              </Button>
+            </span>
+          </div>
+
+          <span className="DG-tablet-container">
+            <div
+              className="DG-column one-uniswap"
+              id="DG-column-hover"
+              style={{ position: 'relative', height: '100%' }}
+            >
+              <span style={{ display: 'flex' }}>
+                <img
+                  src={Images.ETH_CIRCLE}
+                  className="farming-logo"
+                />
+                <img
+                  src={Images.DG_COIN_LOGO}
+                  className="farming-logo"
+                  alt="Decentral Games Coin Logo"
+                />
+                <span className="farming-pool-span">
+                  <p className="welcome-text">Uniswap</p>
+                  <p className="account-name">ETH-DG</p>
+                </span>
+              </span>
+
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a
+                  href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+                  target="_blank"
+                  style={{ marginTop: '-75px', marginRight: '0px' }}
+                >
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
+                </a>
+              </span>
+
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text">APY</p>
+                    <p className="earned-amount">0.00%</p>
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '50%',
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text">% of pool</p>
+                    <p className="earned-amount">0.00%</p>
+                  </span>
+                </span>
+              </div>
+
+              <Divider />
+
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput}
+                onChange={handleChange}
+              />
+
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <p
+                  className="bpt-text"
+                >
+                  {state.stakingBalances[3]} UNI-V2
+                </p>
+                <p
+                  className="bpt-text"
+                >
+                  {state.stakingBalances[2]} UNI-V2 staked
+                </p>
+              </span>
+
+              <span className="DG-button-span">
+                {amountInput ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    disabled
+                  >
+                    STAKE UNI-V2
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    STAKE UNI-V2
+                  </Button>
+                )}
+
+                {percentagePool1 && amountInput ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    disabled
+                  >
+                    UNSTAKE UNI-V2
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    UNSTAKE UNI-V2
+                  </Button>
+                )}
+              </span>
+            </div>
+
+          </span>
+        </div>
+      </Aux>
+    );
+  }
+
   function handleChange(e) {
     console.log('New amount: ' + e.target.value);
 
@@ -1164,7 +1367,6 @@ const ContentFarming = (props) => {
               <img
                 src={Images.DG_COIN_LOGO}
                 className="farming-logo"
-                id="snapshot"
                 alt="Decentral Games Coin Logo"
               />
 
@@ -1604,14 +1806,16 @@ const ContentFarming = (props) => {
     });
   }
 
-  if (props.content === 'token') {
-    return contentToken();
+  if (props.content === 'governance') {
+    return contentGovernance();
   } else if (props.content === 'mining') {
     return contentMining();
-  } else if (props.content === 'liquidity') {
-    return contentLiquidity();
-  } else if (props.content === 'governance') {
-    return contentGovernance();
+  } else if (props.content === 'balancer') {
+    return contentBalancer();
+  } else if (props.content === 'uniswap') {
+    return contentUniswap();
+  } else if (props.content === 'token') {
+    return contentToken();
   } else if (props.content === 'admin') {
     return contentAdmin();
   }

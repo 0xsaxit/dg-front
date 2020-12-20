@@ -12,7 +12,7 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [isLoading, setLoading] = useState(true);
 
-  const realm = 'hades-amber';
+  const realm = 'fenrir-amber';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,7 +60,7 @@ const Chateau = () => {
           <div className="home-dashboard-content">
             <p className="featured-casino-text">BETA v1.0</p>
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              decentral.games
+              Decentral Games
             </h1>
             <span className="home-button-span">
               {state.userStatus === 0 ? (
