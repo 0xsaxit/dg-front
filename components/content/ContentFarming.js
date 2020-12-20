@@ -1085,7 +1085,7 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Uniswap Liquidity Farming</h3>
               <p>
-                Farm $DG by providing liquidity in 50/50 ETH-DG and staking the LP tokens on this dashboard. Read
+                Farm $DG by providing liquidity in a 50/50 ETH-DG Uniswap pool and staking the LP tokens on this dashboard. Read
                 more about $DG liquidity farming in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
@@ -1367,7 +1367,6 @@ const ContentFarming = (props) => {
               <img
                 src={Images.DG_COIN_LOGO}
                 className="farming-logo"
-                id="snapshot"
                 alt="Decentral Games Coin Logo"
               />
 
