@@ -536,12 +536,22 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'liquidity' ? (
-              <b className="account-hover active">LIQUIDITY FARMING</b>
+            {DGState === 'balancer' ? (
+              <b className="account-hover active">BALANCER</b>
             ) : (
-              <Link href="/dg/liquidity">
+              <Link href="/dg/balancer">
                 <Menu.Item className="account-hover">
-                  LIQUIDITY FARMING
+                  BALANCER
+                </Menu.Item>
+              </Link>
+            )}
+
+            {DGState === 'uniswap' ? (
+              <b className="account-hover active">UNISWAP</b>
+            ) : (
+              <Link href="/dg/uniswap">
+                <Menu.Item className="account-hover">
+                  UNISWAP
                 </Menu.Item>
               </Link>
             )}
@@ -586,11 +596,23 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'liquidity' ? (
-              <b className="account-hover active">LIQUIDITY</b>
+            {DGState === 'balancer' ? (
+              <b className="account-hover active">BALANCER</b>
             ) : (
-              <Link href="/dg/liquidity">
-                <Menu.Item className="account-hover">LIQUIDITY</Menu.Item>
+              <Link href="/dg/balancer">
+                <Menu.Item className="account-hover">
+                  BALANCER
+                </Menu.Item>
+              </Link>
+            )}
+
+            {DGState === 'uniswap' ? (
+              <b className="account-hover active">UNISWAP</b>
+            ) : (
+              <Link href="/dg/uniswap">
+                <Menu.Item className="account-hover">
+                  UNISWAP
+                </Menu.Item>
               </Link>
             )}
 

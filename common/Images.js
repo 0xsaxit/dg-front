@@ -19,6 +19,8 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Bitmap_1_cwsnkg.png',
   DAI_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/5_hgyzty.png',
+  ETH_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608268265/image_qpyarp.png',
   PLAY_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   ICON_PLAY:

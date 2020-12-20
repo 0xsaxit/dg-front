@@ -7,7 +7,7 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
-const Liquidity = () => {
+const Balancer = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -40,10 +40,10 @@ const Liquidity = () => {
           You must log in with Metamask to view this page
         </div>
       ) : (
-        <Farming DGState={'liquidity'} />
+        <Farming DGState={'balancer'} />
       )}
     </Layout>
   );
 };
 
-export default Liquidity;
+export default Balancer;
