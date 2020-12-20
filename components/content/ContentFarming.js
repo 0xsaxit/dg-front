@@ -26,12 +26,15 @@ const ContentFarming = (props) => {
   const [amountInput2, setAmountInput2] = useState('');
   const [amountInput3, setAmountInput3] = useState('10000000000000000000');
   const [amountInput4, setAmountInput4] = useState('');
+  const [amountInput5, setAmountInput5] = useState('');
 
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [percentagePool2, setPercentagePool2] = useState(0);
+  const [percentagePoolUni, setPercentagePoolUni] = useState(0);
   const [percentageGov, setPercentageGov] = useState(0);
 
   const [manaPrice, setManaPrice] = useState(0);
+  const [ethPrice, setEthPrice] = useState(0);
 
   // fetch total bet from API
   useEffect(() => {
@@ -40,8 +43,12 @@ const ContentFarming = (props) => {
       let response_2 = await Fetch.MANA_PRICE();
       let json_2 = await response_2.json();
       setManaPrice(json_2.market_data.current_price.usd);
+
+      let response_3 = await Fetch.ETH_PRICE();
+      let json_3 = await response_3.json();
+      setEthPrice(json_3.market_data.current_price.usd);
     })();
-  }, [manaPrice]);
+  }, [manaPrice], [ethPrice]);
 
   // usd value calculations
   const price = Number(state.DGBalances[5] / (49 * state.DGBalances[4]));
@@ -50,6 +57,7 @@ const ContentFarming = (props) => {
   const PoolOneUSD = Number(price * state.DGBalances[1]);
   const PoolTwoUSD = Number(price * state.DGBalances[2]);
   const govUSD = Number(price * state.DGBalances[14]);
+  const uniUSD = Number(price * state.DGBalances[15]);
 
   // pool percentage calculations
   const PoolOnePercentage = Number(
@@ -60,6 +68,9 @@ const ContentFarming = (props) => {
   );
   const PercentageGov = Number(
     (state.stakingBalances[9] / state.stakingBalances[8]) * 100
+  ).toFixed(2);
+  const PercentageUni = Number(
+    (state.stakingBalances[12] / state.stakingBalances[10]) * 100
   ).toFixed(2);
 
   // APY value calculations for pool 1
@@ -81,6 +92,14 @@ const ContentFarming = (props) => {
   // APY value calculation for gov
   const APY_temp_3 = (20000 / state.stakingBalances[8]) * 100;
   const govAPY = Number(APY_temp_3);
+
+  // APY value calculation for uni pool 
+  const uni_num = 51 * 400 * price;
+  const locked_DG = state.DGBalances[16] * price;
+  const locked_ETH = state.DGBalances[17] * ethPrice;
+  const uni_denom = locked_DG + locked_ETH;
+  const uni_APY_temp = (uni_num / uni_denom) * 100
+  const uniAPY = Number(uni_APY_temp);
 
   // treasury stuff
   const treasury_dai = Number(state.DGBalances[13]);
@@ -159,6 +178,27 @@ const ContentFarming = (props) => {
           setPercentageGov(percentageFixed3);
         } else {
           setPercentageGov(0);
+        }
+      })();
+    }
+  }, [props.instances, state.stakingBalances]);
+
+  useEffect(() => {
+    if (props.instances) {
+      (async () => {
+        const stakedTotal4 = await props.stakingContractThree.methods
+          .totalSupply()
+          .call();
+        const stakedTotalAdjusted4 = stakedTotal4 / Global.CONSTANTS.FACTOR;
+
+        if (stakedTotal4) {
+          const percentagePool4 =
+            state.stakingBalances[12] / stakedTotalAdjusted4;
+          const percentageFixed4 = (percentagePool2 * 100).toFixed(3);
+
+          setPercentagePoolUni(percentageFixed4);
+        } else {
+          setPercentagePoolUni(0);
         }
       })();
     }
@@ -850,7 +890,7 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput(toFixedDown(state.stakingBalances[3], 2))
+                    setAmountInput(toFixedDown(state.stakingBalances[3], 3))
                   }
                 >
                   {state.stakingBalances[3]} BPT
@@ -858,7 +898,7 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput(toFixedDown(state.stakingBalances[2], 2))
+                    setAmountInput(toFixedDown(state.stakingBalances[2], 3))
                   }
                 >
                   {state.stakingBalances[2]} BPT staked
@@ -1018,7 +1058,7 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput2(toFixedDown(state.stakingBalances[7], 2))
+                    setAmountInput2(toFixedDown(state.stakingBalances[7], 3))
                   }
                 >
                   {state.stakingBalances[7]} BPT
@@ -1026,7 +1066,7 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput2(toFixedDown(state.stakingBalances[6], 2))
+                    setAmountInput2(toFixedDown(state.stakingBalances[6], 3))
                   }
                 >
                   {state.stakingBalances[6]} BPT staked
@@ -1110,8 +1150,21 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <span>
-                  <p className="welcome-text"> unclaimed </p>
-                  <p className="account-name">0.000</p>
+                  <p className="welcome-text"> Unclaimed $DG</p>
+                  {Number(state.DGBalances[15]) || state.DGBalances[15] == 0 ? (
+                    <p className="account-name">{state.DGBalances[15]}</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="medium"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '12px',
+                        marginLeft: '15px',
+                      }}
+                    />
+                  )}
                 </span>
               </span>
             </span>
@@ -1128,20 +1181,41 @@ const ContentFarming = (props) => {
                 }}
               >
               <p className="earned-text">Value USD</p>
-              <p className="earned-amount">$0.00</p>
+              {Number(uniUSD) || uniUSD === 0 ? (
+                <p className="earned-amount">
+                  $
+                  {uniUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                </p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px',
+                  }}
+                />
+              )}
             </span>
     
             <Divider />
 
             <span className="DG-button-span">
-              <Button
-                className="DG-claim-button"
-                id="balances-padding-correct"
-                disabled
-                onClick={() => props.getReward()}
-              >
-                CLAIM UNISWAP $DG
-              </Button>
+              {Number(state.DGBalances[15]) ? (
+                <Button
+                  className="DG-claim-button"
+                  id="balances-padding-correct"
+                  onClick={() => props.getReward_uni()}
+                >
+                  CLAIM UNISWAP $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM UNISWAP $DG
+                </Button>
+              )}
             </span>
           </div>
 
@@ -1192,7 +1266,21 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">APY</p>
-                    <p className="earned-amount">0.00%</p>
+                    {Number(uniAPY) && isFinite(uniAPY) ? (
+                      <p className="earned-amount">{uniAPY.toFixed(2)}%</p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                          marginBottom: '-3px',
+                        }}
+                      />
+                    )}
                   </span>
                 </span>
 
@@ -1211,7 +1299,25 @@ const ContentFarming = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool</p>
-                    <p className="earned-amount">0.00%</p>
+                    <p className="earned-amount">
+                      {Number(PercentageUni) || PercentageUni == 0 ? (
+                        <p className="earned-amount">
+                          {PercentageUni}%
+                        </p>
+                      ) : (
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          style={{
+                            fontSize: '12px',
+                            marginTop: '5px',
+                            marginLeft: '-1px',
+                            marginBottom: '-3px',
+                          }}
+                        />
+                      )}
+                    </p>
                   </span>
                 </span>
               </div>
@@ -1222,8 +1328,8 @@ const ContentFarming = (props) => {
                 className="liquidity-input"
                 fluid
                 placeholder="Amount"
-                value={amountInput}
-                onChange={handleChange}
+                value={amountInput5}
+                onChange={handleChange5}
               />
 
               <span
@@ -1231,22 +1337,31 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
+                  onClick={() =>
+                    setAmountInput5(toFixedDown(state.stakingBalances[13], 3))
+                  }
                 >
-                  {state.stakingBalances[3]} UNI-V2
+                  {state.stakingBalances[13]} UNI-V2
                 </p>
                 <p
                   className="bpt-text"
+                  onClick={() =>
+                    setAmountInput5(toFixedDown(state.stakingBalances[12], 3))
+                  }
                 >
-                  {state.stakingBalances[2]} UNI-V2 staked
+                  {state.stakingBalances[12]} UNI-V2 staked
                 </p>
               </span>
 
               <span className="DG-button-span">
-                {amountInput ? (
+                {amountInput5 ? (
                   <Button
                     className="DG-stake-button"
                     id="balances-padding-correct"
-                    disabled
+                    onClick={() => {
+                      stake_uni('stake', amountInput5);
+                      setAmountInput5('');
+                    }}
                   >
                     STAKE UNI-V2
                   </Button>
@@ -1256,11 +1371,14 @@ const ContentFarming = (props) => {
                   </Button>
                 )}
 
-                {percentagePool1 && amountInput ? (
+                {percentagePoolUni && amountInput5 ? (
                   <Button
                     className="DG-stake-button"
                     id="balances-padding-correct"
-                    disabled
+                    onClick={() => {
+                      stake_uni('withdraw', amountInput5);
+                      setAmountInput5('');
+                    }}
                   >
                     UNSTAKE UNI-V2
                   </Button>
@@ -1302,6 +1420,12 @@ const ContentFarming = (props) => {
     setAmountInput4(e.target.value);
   }
 
+  function handleChange5(e) {
+    console.log('New amount: ' + e.target.value);
+
+    setAmountInput5(e.target.value);
+  }
+
   function stake(type, amount) {
     if (type === 'stake') {
       props.staking(amount);
@@ -1327,6 +1451,16 @@ const ContentFarming = (props) => {
       props.staking_gov(amount);
     } else if (type === 'withdraw') {
       props.withdraw_gov(amount);
+    }
+
+    setAmountInput2('0');
+  }
+
+  function stake_uni(type, amount) {
+    if (type === 'stake') {
+      props.staking_uni(amount);
+    } else if (type === 'withdraw') {
+      props.withdraw_uni(amount);
     }
 
     setAmountInput2('0');

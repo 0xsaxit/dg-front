@@ -96,6 +96,18 @@ async function stakingContractTwo(web3Default) {
   return DGStakingContractTwo;
 }
 
+// set staking contract instance dg uniswap
+async function stakingContractThree(web3Default) {
+  const addresses = await Global.ADDRESSES;
+
+  const DGStakingContractThree = new web3Default.eth.Contract(
+    ABI_DG_STAKING,
+    addresses.DG_STAKING_CONTRACT_ADDRESS_3
+  );
+
+  return DGStakingContractThree;
+}
+
 // set staking contract instance bpt pool 1
 async function BPTContract(web3Default) {
   const addresses = await Global.ADDRESSES;
@@ -118,6 +130,18 @@ async function BPTContractTwo(web3Default) {
   );
 
   return BPTokenContractTwo;
+}
+
+// set staking contract instance uniswap
+async function UNIContract(web3Default) {
+  const addresses = await Global.ADDRESSES;
+
+  const UNIContract = new web3Default.eth.Contract(
+    ABI_BP_TOKEN,
+    addresses.UNI_TOKEN_ADDRESS
+  );
+
+  return UNIContract;
 }
 
 // set keeper contract instance
@@ -161,8 +185,10 @@ export default {
   pointerContract,
   stakingContract,
   stakingContractTwo,
+  stakingContractThree,
   BPTContract,
   BPTContractTwo,
+  UNIContract,
   keeperContract,
   tokenContract,
   stakingContractGov,

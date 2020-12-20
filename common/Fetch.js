@@ -187,6 +187,16 @@ const Fetch = {
     });
   },
 
+  ETH_PRICE: () => {
+    return fetch(`https://api.coingecko.com/api/v3/coins/ethereum`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   DG_SUPPLY_GECKO: () => {
     return fetch(`https://api.coingecko.com/api/v3/coins/decentral-games`, {
       method: 'GET',
