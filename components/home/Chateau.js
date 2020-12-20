@@ -12,7 +12,7 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [isLoading, setLoading] = useState(true);
 
-  const realm = 'hades-amber';
+  const realm = 'fenrir-amber';
 
   useEffect(() => {
     const timer = setTimeout(() => {
