@@ -253,6 +253,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   div.ui.vertical.segment {
     top: 0px !important;
   }
+  .home-dashboard-h1 {
+    font-size: 48px !important;
+  }
   .home-dashboard {
     background-image: linear-gradient(
         rgba(0, 0, 0, 0.7),
@@ -281,8 +284,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 
 @media (max-width: 399px) {
   .home-dashboard-content {
-    margin-left: -9px !important;
-    margin-right: 30px;
+    margin-right: 0px !important;
     margin-top: 90px;
   }
   .featured-casino-text {
@@ -292,7 +294,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     font-size: 18px !important;
   }
   .home-dashboard-h1 {
-    font-size: 48px !important;
+    font-size: 42px !important;
   }
 }
 
