@@ -22,7 +22,7 @@ RUN npm outdated || true
 
 COPY . .
 
-RUN echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" > /app/.env
+# RUN echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" > /app/.env
 
 #COPY --from=decentralgames/website:latest /app/.next/cache /app/.next/cache
 
