@@ -4,6 +4,8 @@ ARG CI=true
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
+ENV NODE_ENV="production"
+
 RUN apk add --no-cache ca-certificates git build-base python2 ;\
     rm -rf /var/cache/apk/*
 
