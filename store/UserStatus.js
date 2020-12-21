@@ -27,6 +27,7 @@ function UserStatus() {
           const response = await getUserStatus();
 
           // if the response is truthy set the user's respective status, else set status back to 0
+          // (/verifyAddress API call will return error with new wallet address)
           if (response) {
             dispatch({
               type: 'update_status',
@@ -48,18 +49,24 @@ function UserStatus() {
   }, []);
 
   async function getUserStatus() {
-    const response = await Fetch.USER_STATUS(userAddress);
-    const json = await response.json();
+    try {
+      const response = await Fetch.USER_STATUS(userAddress);
+      const json = await response.json();
 
-    localStorage.setItem('storedStatus', json.result);
+      localStorage.setItem('storedStatus', json.result);
 
-    if (json.status === 'ok') {
-      if (json.result === 'false') {
-        return false;
+      if (json.status === 'ok') {
+        if (json.result === 'false') {
+          return false;
+        }
+        const stepValue = parseInt(json.result);
+
+        return stepValue;
       }
-      const stepValue = parseInt(json.result);
+    } catch {
+      console.log('Unregistered wallet');
 
-      return stepValue;
+      return 0;
     }
   }
 

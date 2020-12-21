@@ -31,8 +31,9 @@ const ButtonVerify = () => {
       userAddress = window.web3.currentProvider.selectedAddress;
       // setUserAddress(userAddress);
 
-      // set global user status based on value stored in database. if no value present
-      // update user status to 4 both locally and in the database
+      // set global user status based on value stored in database
+      // if new wallet update user status to 4 both locally and in the database
+      // (/verifyAddress API call will return error with new wallet address)
       const response = await getUserStatus();
 
       if (response) {
@@ -44,8 +45,6 @@ const ButtonVerify = () => {
   }
 
   async function updateStatus(value, post) {
-    // console.log('update status...');
-
     // update global state user status
     dispatch({
       type: 'update_status',
@@ -57,24 +56,26 @@ const ButtonVerify = () => {
       console.log('Posting user status to db: ' + value);
 
       await Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
-
-      // window.location.reload(); // refresh browser to fetch the addresses from the server API
     }
-
-    // window.location.reload(); // refresh browser to fetch the addresses from the server API
   }
 
   async function getUserStatus() {
-    const response = await Fetch.USER_STATUS(userAddress);
-    const json = await response.json();
+    try {
+      const response = await Fetch.USER_STATUS(userAddress);
+      const json = await response.json();
 
-    if (json.status === 'ok') {
-      if (json.result === 'false') {
-        return false;
+      if (json.status === 'ok') {
+        if (json.result === 'false') {
+          return false;
+        }
+
+        const stepValue = parseInt(json.result);
+        return stepValue;
       }
+    } catch {
+      console.log('Unregistered wallet');
 
-      const stepValue = parseInt(json.result);
-      return stepValue;
+      return 0;
     }
   }
 
