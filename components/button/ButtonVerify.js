@@ -45,17 +45,23 @@ const ButtonVerify = () => {
   }
 
   async function updateStatus(value, post) {
-    // update global state user status
-    dispatch({
-      type: 'update_status',
-      data: value,
-    });
-
-    // update user status in database
     if (post) {
       console.log('Posting user status to db: ' + value);
 
+      // update user status in database
       await Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+
+      // update global state user status after fetch is complete
+      dispatch({
+        type: 'update_status',
+        data: value,
+      });
+    } else {
+      // update global state user status immediately
+      dispatch({
+        type: 'update_status',
+        data: value,
+      });
     }
   }
 
