@@ -38,8 +38,6 @@ jobs:
       run: |
         docker build \
           --target runtime \
-          --cache-from $CONTAINER_IMAGE_NAME:base \
-          --build-arg BUILDKIT_INLINE_CACHE=1 \
           --tag $CONTAINER_IMAGE_NAME:latest --tag $CONTAINER_IMAGE_NAME:${GITHUB_SHA} .
     - name: Push the image
       run: |
