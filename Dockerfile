@@ -1,4 +1,4 @@
-FROM node:14.15.2-alpine3.12 as base
+FROM node:14.15.3-alpine3.12 as base
 
 ARG CI=true
 ARG NEXT_PUBLIC_API_URL
@@ -27,7 +27,7 @@ RUN npm run build
 
 ################################################################################
 
-FROM node:14.15.2-alpine3.12 as runtime
+FROM node:14.15.3-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 ENV NODE_ENV="production"
