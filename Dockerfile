@@ -22,6 +22,8 @@ RUN npm outdated || true
 
 COPY . .
 
+RUN echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" > /app/.env
+
 #COPY --from=decentralgames/website:latest /app/.next/cache /app/.next/cache
 
 RUN npm run build
@@ -31,9 +33,6 @@ RUN npm run build
 
 FROM node:14.15.2-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
-
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 WORKDIR /app
 
