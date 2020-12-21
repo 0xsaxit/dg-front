@@ -377,11 +377,11 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Gameplay Mining</h3>
+              <h3 className="DG-h3">$DG Gameplay Rewards</h3>
               <p>
                 Mine $DG by playing games with MANA or DAI. Earn bonuses by
                 playing with friends, wearing DG wearable NFTs, and referring
-                friends. Read more about $DG gameplay mining in our{' '}
+                friends. Read more about $DG gameplay rewards in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
@@ -610,11 +610,11 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Balancer Liquidity Farming</h3>
+              <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
               <p>
-                Farm $DG by providing liquidity in 98/2 MANA-DG and DAI-DG
+                Receive $DG incentives for liquidity provision in 98/2 MANA-DG and DAI-DG
                 Balancer pools and staking the LP tokens on this dashboard. Read
-                more about $DG liquidity farming in our
+                more about $DG liquidity incentives in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -1123,10 +1123,11 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top" style={{ minWidth: '100%' }}>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Uniswap Liquidity Farming</h3>
+              <h3 className="DG-h3">$DG Uniswap Liquidity Incentives</h3>
               <p>
-                Farm $DG by providing liquidity in a 50/50 ETH-DG Uniswap pool and staking the LP tokens on this dashboard. Read
-                more about $DG liquidity farming in our
+                Receive $DG incentives for liquidity provision in the 50/50 ETH-DG Uniswap pool
+                and staking the LP tokens on this dashboard. Read
+                more about $DG liquidity incentives in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
