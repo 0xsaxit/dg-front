@@ -27,7 +27,8 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances[3]) +
       parseFloat(state.DGBalances[6]) +
       parseFloat(state.DGBalances[7]) +
-      parseFloat(state.stakingBalances[9]);
+      parseFloat(state.stakingBalances[9]) +
+      parseFloat(state.DGBalances[15]);
     const totalDGAdjusted_temp = totalDG.toFixed(0)
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
@@ -177,6 +178,10 @@ const ModalInfo = () => {
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - liquidity 2</p>
           <p className="menu-info-text">{state.DGBalances[2]}</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label">unclaimed $dg - uniswap</p>
+          <p className="menu-info-text">{state.DGBalances[15]}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $DG - airdrop</p>
