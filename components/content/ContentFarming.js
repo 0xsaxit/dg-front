@@ -612,7 +612,7 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
               <p>
-                Receive $DG incentives for liquidity provision in 98/2 MANA-DG and DAI-DG
+                Receive $DG for liquidity provision in 98/2 MANA-DG and DAI-DG
                 Balancer pools and staking the LP tokens on this dashboard. Read
                 more about $DG liquidity incentives in our
                 <a
@@ -1125,7 +1125,7 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Uniswap Liquidity Incentives</h3>
               <p>
-                Receive $DG incentives for liquidity provision in the 50/50 ETH-DG Uniswap pool
+                Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap pool
                 and staking the LP tokens on this dashboard. Read
                 more about $DG liquidity incentives in our
                 <a
