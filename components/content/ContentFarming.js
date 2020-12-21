@@ -94,7 +94,7 @@ const ContentFarming = (props) => {
   const govAPY = Number(APY_temp_3);
 
   // APY value calculation for uni pool 
-  const uni_num = 51 * 400 * price;
+  const uni_num = 51 * 300 * price;
   const locked_DG = state.DGBalances[16] * price;
   const locked_ETH = state.DGBalances[17] * ethPrice;
   const uni_denom = locked_DG + locked_ETH;
