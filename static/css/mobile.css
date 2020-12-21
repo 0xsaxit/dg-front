@@ -179,22 +179,11 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   border-radius: 0px;
   padding-left: 0px;
   padding-top: 0px;
-  height: 265px;
+  height: 260px;
   position: absolute !important;
   left: -25px !important;
 }
 
-div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
-  margin-top: 70px;
-  border: none;
-  min-width: 100vw;
-  border-radius: 0px;
-  padding-left: 0px;
-  padding-top: 0px;
-  height: 216px;
-  position: absolute !important;
-  left: -25px !important;
-}
 
 /* ----------------------------------------- */
 /*         DEPOSIT MODAL MOBILE CSS          */
@@ -218,7 +207,10 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   .demo-button-container {
     display: none !important;
   }
-  .mobile-no-scroll {
+  a.ui.blue.button.play-button,
+  .ui.blue.button.play-button,
+  .ui.blue.button.demo-button  {
+    margin-right: 21px;
   }
 }
 
@@ -253,12 +245,16 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
     position: absolute;
     left: -9px;
     bottom: 75px;
+    padding-right: 21px !important;
   }
   .home-dashboard-p {
     width: 100%;
   }
   div.ui.vertical.segment {
     top: 0px !important;
+  }
+  .home-dashboard-h1 {
+    font-size: 48px !important;
   }
   .home-dashboard {
     background-image: linear-gradient(
@@ -275,12 +271,20 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
     position: absolute;
     overflow: hidden !important;
   }
+  .home-button-span {
+    display: flex;
+    justify-content: space-between;
+  }
+  a.ui.blue.button.play-button,
+  .ui.blue.button.play-button,
+  a.ui.blue.button.how-to-button {
+    width: 48.5% !important;
+  }
 }
 
 @media (max-width: 399px) {
   .home-dashboard-content {
-    margin-left: -9px !important;
-    margin-right: 30px;
+    margin-right: 0px !important;
     margin-top: 90px;
   }
   .featured-casino-text {
@@ -290,7 +294,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
     font-size: 18px !important;
   }
   .home-dashboard-h1 {
-    font-size: 48px !important;
+    font-size: 42px !important;
   }
 }
 
@@ -573,6 +577,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup-logged-out {
   .DG-column.unclaimed {
     width: 100% !important;
     margin-bottom: 30px;
+  }
+  .DG-column.one-uniswap {
+    width: 100%;
   }
   .DG-column.one,
   .DG-column.two {

@@ -1,13 +1,13 @@
 import { GlobalContext } from '../../store';
 import { useContext, useState, useEffect } from 'react';
-import AccountData from '../../components/home/AccountData';
+import Farming from '../../components/home/Farming';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
-const History = () => {
+const Uniswap = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -28,7 +28,7 @@ const History = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | History'}
+        title={Global.CONSTANTS.TITLE + ' | $DG'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
@@ -40,10 +40,10 @@ const History = () => {
           You must log in with Metamask to view this page
         </div>
       ) : (
-        <AccountData dataType={'history'} />
+        <Farming DGState={'uniswap'} />
       )}
     </Layout>
   );
 };
 
-export default History;
+export default Uniswap;

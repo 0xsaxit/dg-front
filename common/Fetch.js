@@ -12,8 +12,8 @@ const Fetch = {
     return fetch(`${API_BASE_URL}/addresses?address=${address}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     });
   },
@@ -29,13 +29,16 @@ const Fetch = {
   },
 
   PARCEL_DATA: (landID, tokenID, address) => {
-    return fetch(`${API_BASE_URL}/nft/${landID}/${tokenID}/${address}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
+    return fetch(
+      `${API_BASE_URL}/nft/${landID}/${tokenID}?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   PLAYER_INFO: (address) => {
@@ -57,6 +60,26 @@ const Fetch = {
       },
     });
   },
+
+  // ADMIN_HISTORY: () => {
+  //   return fetch(`${API_BASE_URL}/admin/getHistory?address=${address}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
+
+  // MACHINE_DATA: () => {
+  //   return fetch(`${API_BASE_URL}/admin/getMachine?address=${address}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -150,26 +173,6 @@ const Fetch = {
     });
   },
 
-  // ADMIN_HISTORY: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getHistory`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
-  // MACHINE_DATA: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getMachine`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
@@ -179,6 +182,16 @@ const Fetch = {
 
   MANA_PRICE: () => {
     return fetch(`https://api.coingecko.com/api/v3/coins/decentraland`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  ETH_PRICE: () => {
+    return fetch(`https://api.coingecko.com/api/v3/coins/ethereum`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

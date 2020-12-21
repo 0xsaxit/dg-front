@@ -2,7 +2,7 @@ const Images = {
   LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
   SOCIAL_SHARE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1595194024/twitterpreview_b1yemb.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1607984535/feat_u522ov.png',
   LOADING_SPINNER:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif',
   ICON_DAI:
@@ -19,6 +19,8 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Bitmap_1_cwsnkg.png',
   DAI_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/5_hgyzty.png',
+  ETH_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608268265/image_qpyarp.png',
   PLAY_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   ICON_PLAY:

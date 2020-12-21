@@ -50,7 +50,7 @@ function ButtonApproveMANA() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       (async function () {
-        const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.ADDRESSES;
 
         const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
         setSpenderAddress(spenderAddress);

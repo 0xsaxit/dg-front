@@ -90,7 +90,10 @@ const MessageBar = () => {
     state.activeStatus,
   ]);
 
-  if (message !== '') {
+  if (state.userStatus === 3) {
+    return null;
+  }
+  else if (message !== '') {
     return (
       <div
         id="message-bar"

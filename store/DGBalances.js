@@ -18,12 +18,14 @@ function DGBalances() {
   const [pointerContract, setPointerContract] = useState({});
   const [stakingContract, setStakingContract] = useState({});
   const [stakingContractTwo, setStakingContractTwo] = useState({});
+  const [stakingContractThree, setStakingContractThree] = useState({});
   const [stakingContractGov, setStakingContractGov] = useState({});
 
   const [DG_TOKEN_CONTRACT, setDGTokenContract] = useState({});
   const [DG_MATIC_CONTRACT, setDGMaticContract] = useState({});
   const [BPT_CONTRACT, setBPTContract] = useState({});
   const [BPT_CONTRACT_2, setBPTContractTwo] = useState({});
+  const [UNI_CONTRACT, setUNIContract] = useState({});
   const [keeperContract, setKeeperContract] = useState({});
   const [maticMana, setMaticMana] = useState({});
   const [maticDai, setMaticDai] = useState({});
@@ -35,6 +37,7 @@ function DGBalances() {
   const [DAI_BPT, setDAI_BPT] = useState({});
   const [DG_BPT_2, setDG_BPT_2] = useState({});
   const [MANA_BPT, setMANA_BPT] = useState({});
+  const [ETH_UNI, setETH_UNI] = useState({});
 
   let interval = {};
   let currentTime = 0;
@@ -48,7 +51,7 @@ function DGBalances() {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.ADDRESSES;
         setAddresses(addresses);
 
         // this is for mining DG
@@ -65,35 +68,36 @@ function DGBalances() {
         // matic contract to get DG balance on matic chain for modal
         const DGMaticContract = new maticWeb3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DG_TOKEN_MATIC
           addresses.CHILD_TOKEN_ADDRESS_DG
         );
         setDGMaticContract(DGMaticContract);
 
         const DG_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DG_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDG_BPT(DG_BPT);
 
         const DAI_BPT = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DAI_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_DAI
         );
         setDAI_BPT(DAI_BPT);
 
+        const ETH_UNI = new web3.eth.Contract(
+          ABI_DG_TOKEN,
+          '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+        );
+        setETH_UNI(ETH_UNI);
+
         const DG_BPT_2 = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.DG_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_DG
         );
         setDG_BPT_2(DG_BPT_2);
 
         const DG_MANA = new web3.eth.Contract(
           ABI_DG_TOKEN,
-          // addresses.MANA_TOKEN
           addresses.ROOT_TOKEN_ADDRESS_MANA
         );
         setMANA_BPT(DG_MANA);
@@ -136,6 +140,13 @@ function DGBalances() {
         const BPTContractTwo = await Transactions.BPTContractTwo(web3);
         setBPTContractTwo(BPTContractTwo);
 
+        // UNISWAP
+        const stakingContractThree = await Transactions.stakingContractThree(web3);
+        setStakingContractThree(stakingContractThree);
+
+        const UNIContract = await Transactions.UNIContract(web3);
+        setUNIContract(UNIContract);
+
         setInstances(true); // contract instantiation complete
       }
       fetchData();
@@ -159,6 +170,9 @@ function DGBalances() {
         const balance_maticMana = await getMaticMana();
         const balance_maticDai = await getMaticDai();
         const balance_stakingGov = await getDGBalanceStakingGov();
+        const balance_stakingUNI = await getDGBalanceStakingUni();
+        const balance_DG_UNI = await getDGUniswap();
+        const balance_ETH_UNI = await getETHUniswap();
 
         // calculate price of mana locked in balancer
         let response = await Fetch.MANA_PRICE();
@@ -176,25 +190,22 @@ function DGBalances() {
         let json_3 = await response_3.json();
         const BPT_supply_2 = json_3.result / Global.CONSTANTS.FACTOR;
 
-        console.log('DG points balance gameplay: ' + balanceDG1);
-        console.log('DG points balance pool 1: ' + balanceDG2);
-        console.log('DG points balance pool 2: ' + balanceDG3);
-        console.log('DG points balance airdrop: ' + balanceDG4);
-        console.log('DG points balance gov: ' + balance_stakingGov);
+        // console.log('DG points balance gameplay: ' + balanceDG1);
+        // console.log('DG points balance pool 1: ' + balanceDG2);
+        // console.log('DG points balance pool 2: ' + balanceDG3);
+        // console.log('DG points balance airdrop: ' + balanceDG4);
+        // console.log('DG points balance gov: ' + balance_stakingGov);
+        // console.log('DG mainchain balance: ' + balance_DG_main);
+        // console.log('DG matic balance: ' + balance_DG_matic);
+        // console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
+        // console.log('MANA BP value (in usd) pool 1: ' + MANA_total);
+        // console.log('BPT supply pool 1: ' + BPT_supply_1);
+        // console.log('BPT supply pool 2: ' + BPT_supply_2);
+        // console.log('DG BP balance pool 2: ' + balance_BP_DG);
+        // console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
+        // console.log('Treasury mana: ' + balance_maticMana);
+        // console.log('Treasury dai: ' + balance_maticDai);
 
-        console.log('DG mainchain balance: ' + balance_DG_main);
-        console.log('DG matic balance: ' + balance_DG_matic);
-
-        console.log('DG BP balance pool 1: ' + balance_BP_DG_2);
-        console.log('MANA BP value (in usd) pool 1: ' + MANA_total);
-        console.log('BPT supply pool 1: ' + BPT_supply_1);
-        console.log('BPT supply pool 2: ' + BPT_supply_2);
-
-        console.log('DG BP balance pool 2: ' + balance_BP_DG);
-        console.log('DAI BP balance pool 2: ' + balance_BP_DAI);
-
-        console.log('treasury mana: ' + balance_maticMana);
-        console.log('treasury dai: ' + balance_maticDai);
 
         dispatch({
           type: 'dg_balances',
@@ -214,24 +225,34 @@ function DGBalances() {
             balance_maticMana,
             balance_maticDai,
             balance_stakingGov,
+            balance_stakingUNI,
+            balance_DG_UNI,
+            balance_ETH_UNI, 
           ],
         });
 
         // update global state staking DG and balancer pool tokens
         const balanceStaking = await getTokensStaking();
 
-        console.log('balance BPT (contract pool 1):  ' + balanceStaking[0]);
-        console.log('balance DG (contract pool 1):  ' + balanceStaking[1]);
-        console.log('balance BPT (staked pool 1):  ' + balanceStaking[2]);
-        console.log('balance BPT (wallet pool 1):  ' + balanceStaking[3]);
+        console.log('!!!!!!!!');
+        console.log('earned uni: ' + balance_stakingUNI);
+        console.log('balance uni wallet: ' + balanceStaking[13]);
+        console.log('balance uni staked: ' + balanceStaking[12]);
+        console.log('balance dg in uniswap: ' + balanceStaking[11]);
+        console.log('balance of uni total: ' + balanceStaking[10]);  
+        console.log(balance_DG_UNI);
+        console.log(balance_ETH_UNI);     
 
-        console.log('balance BPT (contract pool 2):  ' + balanceStaking[4]);
-        console.log('balance DG (contract pool 2):  ' + balanceStaking[5]);
-        console.log('balance BPT (staked pool 2):  ' + balanceStaking[6]);
-        console.log('balance BPT (wallet pool 2):  ' + balanceStaking[7]);
-
-        console.log('balance DG total staked (gov): ' + balanceStaking[8]);
-        console.log('balance DG user staked (gov): ' + balanceStaking[9]);
+        // console.log('Balance BPT (contract pool 1):  ' + balanceStaking[0]);
+        // console.log('Balance DG (contract pool 1):  ' + balanceStaking[1]);
+        // console.log('Balance BPT (staked pool 1):  ' + balanceStaking[2]);
+        // console.log('Balance BPT (wallet pool 1):  ' + balanceStaking[3]);
+        // console.log('Balance BPT (contract pool 2):  ' + balanceStaking[4]);
+        // console.log('Balance DG (contract pool 2):  ' + balanceStaking[5]);
+        // console.log('Balance BPT (staked pool 2):  ' + balanceStaking[6]);
+        // console.log('Balance BPT (wallet pool 2):  ' + balanceStaking[7]);
+        // console.log('Balance DG total staked (gov): ' + balanceStaking[8]);
+        // console.log('Balance DG user staked (gov): ' + balanceStaking[9]);
 
         dispatch({
           type: 'staking_balances',
@@ -427,6 +448,44 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // get DG locked in uniswap
+  async function getDGUniswap() {
+    console.log('Get DG locked in uniswap');
+
+    try {
+      const amount = await DG_BPT.methods
+        .balanceOf('0x44c21f5dcb285d92320ae345c92e8b6204be8cdf')
+        .call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get DAI locked in balancer pool
+  async function getETHUniswap() {
+    console.log('Get ETH locked in Uniswap');
+
+    try {
+      const amount = await ETH_UNI.methods
+        .balanceOf('0x44c21f5dcb285d92320ae345c92e8b6204be8cdf')
+        .call();
+
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG balance found: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG points balance from smart contract for gameplay mining
   async function getDGBalanceGameplay() {
     console.log("Get user's DG points balance from smart contract");
@@ -498,12 +557,12 @@ function DGBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get user's DG unclaimed balance from smart contract for liquidity farming for pool 2
-  async function getDGBalanceStaking_gov() {
-    console.log("Get user's DG staking balance from smart contract for pool 2");
+  // get user's DG unclaimed balance from smart contract for uni
+  async function getDGBalanceStakingUni() {
+    console.log("Get user's DG staking balance from uni smart contract");
 
     try {
-      const amount = await stakingContractGov.methods
+      const amount = await stakingContractThree.methods
         .earned(userAddress)
         .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
@@ -552,71 +611,96 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's total staking contract & wallet DG balance
   async function getTokensStaking() {
-    console.log('Get staking DG & BPT balances pool 1');
+    console.log('Get staking DG, BPT, UNI');
 
     try {
       // POOL 1
       const contractBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
         addresses.DG_STAKING_CONTRACT_ADDRESS,
-        3
+        4
       );
 
       const contractBalanceDG = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
         addresses.DG_STAKING_CONTRACT_ADDRESS,
-        3
+        4
       );
 
       const stakedBalanceBPT = await Transactions.balanceOfToken(
         stakingContract,
         userAddress,
-        0
+        4
       );
 
       const walletBalanceBPT = await Transactions.balanceOfToken(
         BPT_CONTRACT,
         userAddress,
-        0
+        4
       );
 
       // POOL 2
       const contractBalanceBPTTwo = await Transactions.balanceOfToken(
         BPT_CONTRACT_2,
         addresses.DG_STAKING_CONTRACT_ADDRESS_2,
-        3
+        4
       );
 
       const contractBalanceDGTwo = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
         addresses.DG_STAKING_CONTRACT_ADDRESS_2,
-        3
+        4
       );
 
       const stakedBalanceBPTTwo = await Transactions.balanceOfToken(
         stakingContractTwo,
         userAddress,
-        0
+        4
       );
 
       const walletBalanceBPTTwo = await Transactions.balanceOfToken(
         BPT_CONTRACT_2,
         userAddress,
-        0
+        4
       );
 
       // gov
       const contractBalanceStakingGov = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_GOV,
-        3
+        addresses.DG_STAKING_GOVERNANCE_ADDRESS,
       );
 
       const stakedBalanceUserGov = await Transactions.balanceOfToken(
         stakingContractGov,
         userAddress,
-        0
+        4
       );
+
+      // UNI
+      const contractBalanceUNI = await Transactions.balanceOfToken(
+        UNI_CONTRACT,
+        addresses.DG_STAKING_CONTRACT_ADDRESS_3,
+        4
+      );
+
+      const contractBalanceDGUNI = await Transactions.balanceOfToken(
+        DG_TOKEN_CONTRACT,
+        addresses.DG_STAKING_CONTRACT_ADDRESS_3,
+        4
+      );
+
+      const stakedBalanceUNI = await Transactions.balanceOfToken(
+        stakingContractThree,
+        userAddress,
+        4
+      );
+
+      const walletBalanceUNI = await Transactions.balanceOfToken(
+        UNI_CONTRACT,
+        userAddress,
+        4
+      );
+
 
       return [
         contractBalanceBPT,
@@ -629,9 +713,13 @@ function DGBalances() {
         walletBalanceBPTTwo,
         contractBalanceStakingGov,
         stakedBalanceUserGov,
+        contractBalanceUNI,
+        contractBalanceDGUNI,
+        stakedBalanceUNI,
+        walletBalanceUNI,
       ];
     } catch (error) {
-      console.log('Staking DG & BPT pool 1 balances error: ' + error);
+      console.log('Staking DG, BPT, UNI balances error: ' + error);
     }
   }
 

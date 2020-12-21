@@ -130,7 +130,7 @@ function UserBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get balances on mainnet and Matic networks
   async function getTokenBalances() {
-    const addresses = await Global.API_ADDRESSES;
+    const addresses = await Global.ADDRESSES;
 
     const tokenContractRoot = new web3.eth.Contract(
       ABI_ROOT_TOKEN,

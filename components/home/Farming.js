@@ -21,12 +21,20 @@ const Farming = (props) => {
 
   const [keeperContract, setKeeperContract] = useState({});
   const [pointerContract, setPointerContract] = useState({});
+
+  // staking pool 1 balancer
   const [stakingContract, setStakingContract] = useState({});
   const [BPTContract, setBPTContract] = useState({});
 
+  // staking pool 2 balancer
   const [stakingContractTwo, setStakingContractTwo] = useState({});
   const [BPTContractTwo, setBPTContractTwo] = useState({});
 
+  // staking uniswap
+  const [stakingContractThree, setStakingContractThree] = useState({});
+  const [UNIContract, setUNIContract] = useState({});
+
+  // staking gov
   const [stakingContractGov, setStakingContractGov] = useState({});
   const [DGContract, setDGContract] = useState({});
 
@@ -37,7 +45,7 @@ const Farming = (props) => {
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async () => {
-        const addresses = await Global.API_ADDRESSES;
+        const addresses = await Global.ADDRESSES;
         setAddresses(addresses);
       })();
     }
@@ -79,6 +87,13 @@ const Farming = (props) => {
 
         const BPTContractTwo = await Transactions.BPTContractTwo(web3);
         setBPTContractTwo(BPTContractTwo);
+
+        // UNISWAP
+        const stakingContractThree = await Transactions.stakingContractThree(web3);
+        setStakingContractThree(stakingContractThree);
+
+        const UNIContract = await Transactions.UNIContract(web3);
+        setUNIContract(UNIContract);
 
         // GOV
         const stakingContractGov = await Transactions.stakingContractGov(web3);
@@ -123,7 +138,7 @@ const Farming = (props) => {
   }, [instances]);
 
   async function getPeriodFinish() {
-    console.log('Return reward period finish time');
+    // console.log('Return reward period finish time');
 
     try {
       const timestamp = await stakingContract.methods.periodFinish().call();
@@ -383,7 +398,109 @@ const Farming = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // stake, withdraw, get reward from pool 2
+  // stake, withdraw, get reward from uniswap
+  async function staking_uni(amount) {
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = web3.utils.toWei(amount);
+    console.log('Staking amount input: ' + amountToString);
+
+    try {
+      console.log(
+        'Get amount user has authorized our uni staking contract to spend'
+      );
+
+      const amountAllowance = await UNIContract.methods
+        .allowance(userAddress, addresses.DG_STAKING_CONTRACT_ADDRESS_3)
+        .call();
+
+      console.log('Authorized amount: ' + amountAllowance);
+
+      if (Number(amountAllowance) < amountAdjusted) {
+        console.log("Approve uni staking contract to spend user's tokens");
+
+        const data = await UNIContract.methods
+          .approve(
+            addresses.DG_STAKING_CONTRACT_ADDRESS_3,
+            Global.CONSTANTS.MAX_AMOUNT
+          )
+          .send({ from: userAddress });
+
+        console.log('approve() transaction confirmed: ' + data.transactionHash);
+      }
+
+      console.log('Call stake() function on smart contract');
+
+      const data = await stakingContractThree.methods
+        .stake(amountToString)
+        .send({ from: userAddress });
+
+      console.log('stake() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('Staking transactions error: ' + error);
+    }
+  }
+
+  async function withdraw_uni(amount) {
+    console.log('Call withdraw() function to unstake uni tokens');
+
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const amountToString = web3.utils.toWei(amount);
+    console.log('Withdraw amount input: ' + amountToString);
+
+    try {
+      const data = await stakingContractThree.methods
+        .withdraw(amountToString)
+        .send({ from: userAddress });
+
+      console.log('withdraw() transaction completed: ' + data.transactionHash);
+
+      // update global state BPT balances
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('Unstake uni tokens error: ' + error);
+    }
+  }
+
+  async function getReward_uni() {
+    console.log('Call getReward_uni() function to claim DG tokens');
+
+    try {
+      const data = await stakingContractThree.methods
+        .getReward()
+        .send({ from: userAddress });
+
+      console.log(
+        'getReward_uni() transaction completed: ' + data.transactionHash
+      );
+
+      // update global state unclaimed DG balance
+      const refresh = !state.refreshBalances;
+
+      dispatch({
+        type: 'refresh_balances',
+        data: refresh,
+      });
+    } catch (error) {
+      console.log('getReward_uni() transaction error: ' + error);
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // stake, withdraw, get reward from gov
   async function staking_gov(amount) {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const amountToString = web3.utils.toWei(amount);
@@ -395,7 +512,7 @@ const Farming = (props) => {
       );
 
       const amountAllowance = await DGContract.methods
-        .allowance(userAddress, addresses.DG_STAKING_GOV)
+        .allowance(userAddress, addresses.DG_STAKING_GOVERNANCE_ADDRESS)
         .call();
 
       console.log('Authorized amount: ' + amountAllowance);
@@ -404,7 +521,10 @@ const Farming = (props) => {
         console.log("Approve goov staking contract to spend user's tokens");
 
         const data = await DGContract.methods
-          .approve(addresses.DG_STAKING_GOV, Global.CONSTANTS.MAX_AMOUNT)
+          .approve(
+            addresses.DG_STAKING_GOVERNANCE_ADDRESS,
+            Global.CONSTANTS.MAX_AMOUNT
+          )
           .send({ from: userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);
@@ -431,7 +551,7 @@ const Farming = (props) => {
   }
 
   async function withdraw_gov(amount) {
-    console.log('Call withdraw() function to unstake BP tokens');
+    console.log('Call withdraw() function to unstake gov tokens');
 
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const amountToString = web3.utils.toWei(amount);
@@ -452,7 +572,7 @@ const Farming = (props) => {
         data: refresh,
       });
     } catch (error) {
-      console.log('Unstake BP tokens error: ' + error);
+      console.log('Unstake gov tokens error: ' + error);
     }
   }
 
@@ -529,19 +649,29 @@ const Farming = (props) => {
             )}
 
             {DGState === 'mining' ? (
-              <b className="account-hover active">GAMEPLAY MINING</b>
+              <b className="account-hover active">GAMEPLAY REWARDS</b>
             ) : (
               <Link href="/dg/mining">
-                <Menu.Item className="account-hover">GAMEPLAY MINING</Menu.Item>
+                <Menu.Item className="account-hover">GAMEPLAY REWARDS</Menu.Item>
               </Link>
             )}
 
-            {DGState === 'liquidity' ? (
-              <b className="account-hover active">LIQUIDITY FARMING</b>
+            {DGState === 'balancer' ? (
+              <b className="account-hover active">BALANCER</b>
             ) : (
-              <Link href="/dg/liquidity">
+              <Link href="/dg/balancer">
                 <Menu.Item className="account-hover">
-                  LIQUIDITY FARMING
+                  BALANCER
+                </Menu.Item>
+              </Link>
+            )}
+
+            {DGState === 'uniswap' ? (
+              <b className="account-hover active">UNISWAP</b>
+            ) : (
+              <Link href="/dg/uniswap">
+                <Menu.Item className="account-hover">
+                  UNISWAP
                 </Menu.Item>
               </Link>
             )}
@@ -586,21 +716,27 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'liquidity' ? (
-              <b className="account-hover active">LIQUIDITY</b>
+            {DGState === 'balancer' ? (
+              <b className="account-hover active">BALANCER</b>
             ) : (
-              <Link href="/dg/liquidity">
-                <Menu.Item className="account-hover">LIQUIDITY</Menu.Item>
+              <Link href="/dg/balancer">
+                <Menu.Item className="account-hover">
+                  BALANCER
+                </Menu.Item>
               </Link>
             )}
 
-            {DGState === 'token' ? (
-              <b className="account-hover active">AIRDROP</b>
+            {DGState === 'uniswap' ? (
+              <b className="account-hover active">UNI</b>
             ) : (
-              <Link href="/dg/airdrop">
-                <Menu.Item className="account-hover">AIRDROP</Menu.Item>
+              <Link href="/dg/uniswap">
+                <Menu.Item className="account-hover">
+                  UNI
+                </Menu.Item>
               </Link>
             )}
+
+
           </p>
 
           <ButtonAffiliates />
@@ -625,16 +761,20 @@ const Farming = (props) => {
             metaTransaction={metaTransaction}
             staking={staking}
             staking_2={staking_2}
+            staking_uni={staking_uni}
             staking_gov={staking_gov}
             withdraw={withdraw}
             withdraw_2={withdraw_2}
+            withdraw_uni={withdraw_uni}
             withdraw_gov={withdraw_gov}
             getReward={getReward}
             getReward_2={getReward_2}
+            getReward_uni={getReward_uni}
             getReward_gov={getReward_gov}
             getPeriodFinish={getPeriodFinish}
             stakingContract={stakingContract}
             stakingContractTwo={stakingContractTwo}
+            stakingContractThree={stakingContractThree}
             stakingContractGov={stakingContractGov}
             scrapeMyTokens={scrapeMyTokens}
             instances={instances}

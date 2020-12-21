@@ -10,9 +10,9 @@ import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
 
 export const toFixedDown = (num, fixed) => {
-  const re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+  const re = new RegExp('^-?\\d+(?:.\\d{0,' + (fixed || -1) + '})?');
   return num.toString().match(re)[0];
-}
+};
 
 const ContentFarming = (props) => {
   // get user's unclaimed DG balance from the Context API store
@@ -26,14 +26,15 @@ const ContentFarming = (props) => {
   const [amountInput2, setAmountInput2] = useState('');
   const [amountInput3, setAmountInput3] = useState('10000000000000000000');
   const [amountInput4, setAmountInput4] = useState('');
+  const [amountInput5, setAmountInput5] = useState('');
 
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [percentagePool2, setPercentagePool2] = useState(0);
+  const [percentagePoolUni, setPercentagePoolUni] = useState(0);
   const [percentageGov, setPercentageGov] = useState(0);
 
   const [manaPrice, setManaPrice] = useState(0);
-
-
+  const [ethPrice, setEthPrice] = useState(0);
 
   // fetch total bet from API
   useEffect(() => {
@@ -42,8 +43,12 @@ const ContentFarming = (props) => {
       let response_2 = await Fetch.MANA_PRICE();
       let json_2 = await response_2.json();
       setManaPrice(json_2.market_data.current_price.usd);
+
+      let response_3 = await Fetch.ETH_PRICE();
+      let json_3 = await response_3.json();
+      setEthPrice(json_3.market_data.current_price.usd);
     })();
-  }, [manaPrice]);
+  }, [manaPrice], [ethPrice]);
 
   // usd value calculations
   const price = Number(state.DGBalances[5] / (49 * state.DGBalances[4]));
@@ -52,6 +57,7 @@ const ContentFarming = (props) => {
   const PoolOneUSD = Number(price * state.DGBalances[1]);
   const PoolTwoUSD = Number(price * state.DGBalances[2]);
   const govUSD = Number(price * state.DGBalances[14]);
+  const uniUSD = Number(price * state.DGBalances[15]);
 
   // pool percentage calculations
   const PoolOnePercentage = Number(
@@ -62,6 +68,9 @@ const ContentFarming = (props) => {
   );
   const PercentageGov = Number(
     (state.stakingBalances[9] / state.stakingBalances[8]) * 100
+  ).toFixed(2);
+  const PercentageUni = Number(
+    (state.stakingBalances[12] / state.stakingBalances[10]) * 100
   ).toFixed(2);
 
   // APY value calculations for pool 1
@@ -80,9 +89,17 @@ const ContentFarming = (props) => {
   const APY_temp_2 = (num / denom) * 100;
   const daiAPY = Number(APY_temp_2);
 
-  // APY value calculation for gov 
+  // APY value calculation for gov
   const APY_temp_3 = (20000 / state.stakingBalances[8]) * 100;
   const govAPY = Number(APY_temp_3);
+
+  // APY value calculation for uni pool 
+  const uni_num = 51 * 300 * price;
+  const locked_DG = state.DGBalances[16] * price;
+  const locked_ETH = state.DGBalances[17] * ethPrice;
+  const uni_denom = locked_DG + locked_ETH;
+  const uni_APY_temp = (uni_num / uni_denom) * 100
+  const uniAPY = Number(uni_APY_temp);
 
   // treasury stuff
   const treasury_dai = Number(state.DGBalances[13]);
@@ -166,6 +183,27 @@ const ContentFarming = (props) => {
     }
   }, [props.instances, state.stakingBalances]);
 
+  useEffect(() => {
+    if (props.instances) {
+      (async () => {
+        const stakedTotal4 = await props.stakingContractThree.methods
+          .totalSupply()
+          .call();
+        const stakedTotalAdjusted4 = stakedTotal4 / Global.CONSTANTS.FACTOR;
+
+        if (stakedTotal4) {
+          const percentagePool4 =
+            state.stakingBalances[12] / stakedTotalAdjusted4;
+          const percentageFixed4 = (percentagePool2 * 100).toFixed(3);
+
+          setPercentagePoolUni(percentageFixed4);
+        } else {
+          setPercentagePoolUni(0);
+        }
+      })();
+    }
+  }, [props.instances, state.stakingBalances]);
+
   var onPool;
   if (poolSelect === 1) {
     onPool = () => setPoolSelect(2);
@@ -218,7 +256,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-              <p className="welcome-text">Unclaimed $DG</p>
+                <p className="welcome-text">Unclaimed $DG</p>
                 {Number(state.DGBalances[3]) || state.DGBalances[3] ? (
                   <p className="account-name">{state.DGBalances[3]}</p>
                 ) : (
@@ -339,11 +377,11 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Gameplay Mining</h3>
+              <h3 className="DG-h3">$DG Gameplay Rewards</h3>
               <p>
                 Mine $DG by playing games with MANA or DAI. Earn bonuses by
                 playing with friends, wearing DG wearable NFTs, and referring
-                friends. Read more about $DG gameplay mining in our{' '}
+                friends. Read more about $DG gameplay rewards in our{' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
@@ -366,7 +404,7 @@ const ContentFarming = (props) => {
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-              <p className="welcome-text">Unclaimed $DG</p>
+                <p className="welcome-text">Unclaimed $DG</p>
                 {Number(state.DGBalances[0]) || state.DGBalances[0] == 0 ? (
                   <p className="account-name">{state.DGBalances[0]}</p>
                 ) : (
@@ -457,7 +495,7 @@ const ContentFarming = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      paddingBottom: '17px'
+                      paddingBottom: '17px',
                     }}
                   >
                     <p className="earned-text"> Roulette Rate / 1 DG </p>
@@ -477,7 +515,7 @@ const ContentFarming = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      paddingBottom: '2px'
+                      paddingBottom: '2px',
                     }}
                   >
                     <p className="earned-text"> Blackjack Rate / 1 DG </p>
@@ -566,17 +604,17 @@ const ContentFarming = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function contentLiquidity() {
+  function contentBalancer() {
     return (
       <Aux>
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Liquidity Farming</h3>
+              <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
               <p>
-                Farm $DG by providing liquidity in 98/2 MANA-DG and DAI-DG
+                Receive $DG for liquidity provision in 98/2 MANA-DG and DAI-DG
                 Balancer pools and staking the LP tokens on this dashboard. Read
-                more about $DG liquidity farming in our
+                more about $DG liquidity incentives in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -705,11 +743,11 @@ const ContentFarming = (props) => {
                     id="balances-padding-correct"
                     onClick={() => props.getReward()}
                   >
-                    CLAIM POOL 1 $DG
+                    CLAIM BALANCER 1 $DG
                   </Button>
                 ) : (
                   <Button disabled className="DG-claim-button">
-                    CLAIM POOL 1 $DG
+                    CLAIM BALANCER 1 $DG
                   </Button>
                 )}
               </span>
@@ -721,11 +759,11 @@ const ContentFarming = (props) => {
                     id="balances-padding-correct"
                     onClick={() => props.getReward_2()}
                   >
-                    CLAIM POOL 2 $DG
+                    CLAIM BALANCER 2 $DG
                   </Button>
                 ) : (
                   <Button disabled className="DG-claim-button">
-                    CLAIM POOL 2 $DG
+                    CLAIM BALANCER 2 $DG
                   </Button>
                 )}
               </span>
@@ -750,7 +788,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">pool 1</p>
+                  <p className="welcome-text">balancer 1</p>
                   <p className="account-name">MANA-DG</p>
                 </span>
               </span>
@@ -791,7 +829,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-3px'
+                          marginBottom: '-3px',
                         }}
                       />
                     )}
@@ -812,7 +850,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 1</p>
+                    <p className="earned-text">% of balancer 1</p>
                     <p className="earned-amount">
                       {Number(PoolOnePercentage) || PoolOnePercentage === 0 ? (
                         <p className="earned-amount">
@@ -827,7 +865,7 @@ const ContentFarming = (props) => {
                             fontSize: '12px',
                             marginTop: '5px',
                             marginLeft: '-1px',
-                            marginBottom: '-3px'
+                            marginBottom: '-3px',
                           }}
                         />
                       )}
@@ -851,13 +889,17 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(toFixedDown(state.stakingBalances[3], w))}
+                  onClick={() =>
+                    setAmountInput(toFixedDown(state.stakingBalances[3], 3))
+                  }
                 >
                   {state.stakingBalances[3]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput(toFixedDown(state.stakingBalances[2], 2))}
+                  onClick={() =>
+                    setAmountInput(toFixedDown(state.stakingBalances[2], 3))
+                  }
                 >
                   {state.stakingBalances[2]} BPT staked
                 </p>
@@ -916,7 +958,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> pool 2 </p>
+                  <p className="welcome-text"> balancer 2 </p>
                   <p className="account-name"> DAI-DG </p>
                 </span>
               </span>
@@ -957,7 +999,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-2px'
+                          marginBottom: '-2px',
                         }}
                       />
                     )}
@@ -978,7 +1020,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 2</p>
+                    <p className="earned-text">% of balancer 2</p>
                     {Number(PoolTwoPercentage) || PoolTwoPercentage === 0 ? (
                       <p className="earned-amount">
                         {PoolTwoPercentage.toFixed(2)}%
@@ -992,7 +1034,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-2px'
+                          marginBottom: '-2px',
                         }}
                       />
                     )}
@@ -1015,13 +1057,17 @@ const ContentFarming = (props) => {
               >
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput2(toFixedDown(state.stakingBalances[7], 2))}
+                  onClick={() =>
+                    setAmountInput2(toFixedDown(state.stakingBalances[7], 3))
+                  }
                 >
                   {state.stakingBalances[7]} BPT
                 </p>
                 <p
                   className="bpt-text"
-                  onClick={() => setAmountInput2(toFixedDown(state.stakingBalances[6], 2))}
+                  onClick={() =>
+                    setAmountInput2(toFixedDown(state.stakingBalances[6], 3))
+                  }
                 >
                   {state.stakingBalances[6]} BPT staked
                 </p>
@@ -1069,6 +1115,288 @@ const ContentFarming = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentUniswap() {
+    return (
+      <Aux>
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top" style={{ minWidth: '100%' }}>
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 className="DG-h3">$DG Uniswap Liquidity Incentives</h3>
+              <p>
+                Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap pool
+                and staking the LP tokens on this dashboard. Read
+                more about $DG liquidity incentives in our
+                <a
+                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  style={{ color: '#2085f4' }}
+                >
+                  {' '}
+                  docs
+                </a>
+                .
+              </p>
+            </span>
+          </div>
+        </div>
+
+        <div className="DG-liquidity-container">
+          <div className="DG-column unclaimed">
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <span>
+                  <p className="welcome-text"> Unclaimed $DG</p>
+                  {Number(state.DGBalances[15]) || state.DGBalances[15] == 0 ? (
+                    <p className="account-name">{state.DGBalances[15]}</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="medium"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '12px',
+                        marginLeft: '15px',
+                      }}
+                    />
+                  )}
+                </span>
+              </span>
+            </span>
+
+            <Divider />
+
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+              <p className="earned-text">Value USD</p>
+              {Number(uniUSD) || uniUSD === 0 ? (
+                <p className="earned-amount">
+                  $
+                  {uniUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                </p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px',
+                  }}
+                />
+              )}
+            </span>
+    
+            <Divider />
+
+            <span className="DG-button-span">
+              {Number(state.DGBalances[15]) ? (
+                <Button
+                  className="DG-claim-button"
+                  id="balances-padding-correct"
+                  onClick={() => props.getReward_uni()}
+                >
+                  CLAIM UNISWAP $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM UNISWAP $DG
+                </Button>
+              )}
+            </span>
+          </div>
+
+          <span className="DG-tablet-container">
+            <div
+              className="DG-column one-uniswap"
+              id="DG-column-hover"
+              style={{ position: 'relative', height: '100%' }}
+            >
+              <span style={{ display: 'flex' }}>
+                <img
+                  src={Images.ETH_CIRCLE}
+                  className="farming-logo"
+                />
+                <img
+                  src={Images.DG_COIN_LOGO}
+                  className="farming-logo"
+                  alt="Decentral Games Coin Logo"
+                />
+                <span className="farming-pool-span">
+                  <p className="welcome-text">Uniswap</p>
+                  <p className="account-name">ETH-DG</p>
+                </span>
+              </span>
+
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a
+                  href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+                  target="_blank"
+                  style={{ marginTop: '-75px', marginRight: '0px' }}
+                >
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
+                </a>
+              </span>
+
+              <Divider />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text">APY</p>
+                    {Number(uniAPY) && isFinite(uniAPY) ? (
+                      <p className="earned-amount">{uniAPY.toFixed(2)}%</p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                          marginBottom: '-3px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '50%',
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text">% of pool</p>
+                    <p className="earned-amount">
+                      {Number(PercentageUni) || PercentageUni == 0 ? (
+                        <p className="earned-amount">
+                          {PercentageUni}%
+                        </p>
+                      ) : (
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          style={{
+                            fontSize: '12px',
+                            marginTop: '5px',
+                            marginLeft: '-1px',
+                            marginBottom: '-3px',
+                          }}
+                        />
+                      )}
+                    </p>
+                  </span>
+                </span>
+              </div>
+
+              <Divider />
+
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput5}
+                onChange={handleChange5}
+              />
+
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <p
+                  className="bpt-text"
+                  onClick={() =>
+                    setAmountInput5(toFixedDown(state.stakingBalances[13], 3))
+                  }
+                >
+                  {state.stakingBalances[13]} UNI-V2
+                </p>
+                <p
+                  className="bpt-text"
+                  onClick={() =>
+                    setAmountInput5(toFixedDown(state.stakingBalances[12], 3))
+                  }
+                >
+                  {state.stakingBalances[12]} UNI-V2 staked
+                </p>
+              </span>
+
+              <span className="DG-button-span">
+                {amountInput5 ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      stake_uni('stake', amountInput5);
+                      setAmountInput5('');
+                    }}
+                  >
+                    STAKE UNI-V2
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    STAKE UNI-V2
+                  </Button>
+                )}
+
+                {percentagePoolUni && amountInput5 ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      stake_uni('withdraw', amountInput5);
+                      setAmountInput5('');
+                    }}
+                  >
+                    UNSTAKE UNI-V2
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    UNSTAKE UNI-V2
+                  </Button>
+                )}
+              </span>
+            </div>
+
+          </span>
+        </div>
+      </Aux>
+    );
+  }
+
   function handleChange(e) {
     console.log('New amount: ' + e.target.value);
 
@@ -1091,6 +1419,12 @@ const ContentFarming = (props) => {
     console.log('New amount: ' + e.target.value);
 
     setAmountInput4(e.target.value);
+  }
+
+  function handleChange5(e) {
+    console.log('New amount: ' + e.target.value);
+
+    setAmountInput5(e.target.value);
   }
 
   function stake(type, amount) {
@@ -1123,6 +1457,16 @@ const ContentFarming = (props) => {
     setAmountInput2('0');
   }
 
+  function stake_uni(type, amount) {
+    if (type === 'stake') {
+      props.staking_uni(amount);
+    } else if (type === 'withdraw') {
+      props.withdraw_uni(amount);
+    }
+
+    setAmountInput2('0');
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentGovernance() {
@@ -1133,9 +1477,10 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Governance</h3>
               <p>
-                Stake $DG tokens, govern the casino bankroll, and
-                earn $DG governance rewards. Proposal submission activates when the treasury
-                surpasses $500,000 USD. Read more about $DG governance in our{' '}
+                Stake $DG tokens, govern the casino bankroll, and earn $DG
+                governance rewards. Proposal submission activates when the
+                treasury surpasses $500,000 USD. Read more about $DG governance
+                in our{' '}
                 <a
                   href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
                   style={{ color: '#2085f4' }}
@@ -1157,16 +1502,13 @@ const ContentFarming = (props) => {
               <img
                 src={Images.DG_COIN_LOGO}
                 className="farming-logo"
-                id="snapshot"
                 alt="Decentral Games Coin Logo"
               />
 
               <span className="farming-pool-span">
                 <p className="welcome-text"> Unclaimed $DG</p>
                 {Number(treasury_dai) ? (
-                  <p className="account-name">
-                    {state.DGBalances[14]}
-                  </p>
+                  <p className="account-name">{state.DGBalances[14]}</p>
                 ) : (
                   <Loader
                     active
@@ -1196,11 +1538,7 @@ const ContentFarming = (props) => {
               <p className="earned-text"> Value USD </p>
               {Number(govUSD) || govUSD === 0 ? (
                 <p className="earned-amount">
-                  $
-                  {govUSD.toFixed(2).replace(
-                    /\B(?=(\d{3})+(?!\d))/g,
-                    ','
-                  )}
+                  ${govUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </p>
               ) : (
                 <Loader
@@ -1244,10 +1582,12 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">Total Staked $DG</p>
+                  <p className="welcome-text">Total $DG Staked</p>
                   {Number(total_gov_staked) && isFinite(total_gov_staked) ? (
                     <p className="account-name">
-                      {total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      {total_gov_staked
+                        .toFixed(0)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
                   ) : (
                     <Loader
@@ -1276,7 +1616,7 @@ const ContentFarming = (props) => {
                       paddingBottom: '17px',
                     }}
                   >
-                  <p className="earned-text">APY</p>
+                    <p className="earned-text">APY</p>
                     {Number(govAPY) && isFinite(govAPY) ? (
                       <p className="earned-amount">{govAPY.toFixed(2)}%</p>
                     ) : (
@@ -1288,7 +1628,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-2px'
+                          marginBottom: '-2px',
                         }}
                       />
                     )}
@@ -1311,9 +1651,7 @@ const ContentFarming = (props) => {
                   >
                     <p className="earned-text">% of gov pool</p>
                     {Number(PercentageGov) || PercentageGov == 0 ? (
-                      <p className="earned-amount">
-                        {PercentageGov}%
-                      </p>
+                      <p className="earned-amount">{PercentageGov}%</p>
                     ) : (
                       <Loader
                         active
@@ -1323,7 +1661,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-2px'
+                          marginBottom: '-2px',
                         }}
                       />
                     )}
@@ -1344,12 +1682,16 @@ const ContentFarming = (props) => {
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
-                <p className="bpt-text"
-                  onClick={() => setAmountInput4(toFixedDown(state.DGBalances[6], 2))}
+                <p
+                  className="bpt-text"
+                  onClick={() =>
+                    setAmountInput4(toFixedDown(state.DGBalances[6], 2))
+                  }
                 >
                   {state.DGBalances[6]} DG
                 </p>
-                <p className="bpt-text"
+                <p
+                  className="bpt-text"
                   onClick={() => setAmountInput4(toFixedDown(gov_staked, 2))}
                 >
                   {gov_staked.toFixed(3)} DG STAKED
@@ -1398,7 +1740,7 @@ const ContentFarming = (props) => {
               style={{
                 position: 'relative',
                 height: '100%',
-                maxHeight: '258px'
+                maxHeight: '258px',
               }}
             >
               <span style={{ display: 'flex' }}>
@@ -1409,9 +1751,14 @@ const ContentFarming = (props) => {
                   alt="Snapshot Governance Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">treasury</p>
+                  <p className="welcome-text">treasury balance</p>
                   {Number(treasury) ? (
-                    <p className="account-name">${treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                    <p className="account-name">
+                      $
+                      {treasury
+                        .toFixed(0)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </p>
                   ) : (
                     <Loader
                       active
@@ -1439,10 +1786,12 @@ const ContentFarming = (props) => {
                       paddingBottom: '17px',
                     }}
                   >
-                  <p className="earned-text">MANA</p>
+                    <p className="earned-text">MANA</p>
                     {Number(treasury_mana_tokens) ? (
                       <p className="earned-amount">
-                        {treasury_mana_tokens.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                        {treasury_mana_tokens
+                          .toFixed(2)
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                       </p>
                     ) : (
                       <Loader
@@ -1453,7 +1802,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-2px'
+                          marginBottom: '-2px',
                         }}
                       />
                     )}
@@ -1477,7 +1826,9 @@ const ContentFarming = (props) => {
                     <p className="earned-text">dai</p>
                     {Number(treasury_dai) ? (
                       <p className="earned-amount">
-                        {treasury_dai.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                        {treasury_dai
+                          .toFixed(2)
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                       </p>
                     ) : (
                       <Loader
@@ -1488,7 +1839,7 @@ const ContentFarming = (props) => {
                           fontSize: '12px',
                           marginTop: '5px',
                           marginLeft: '-1px',
-                          marginBottom: '-2px'
+                          marginBottom: '-2px',
                         }}
                       />
                     )}
@@ -1499,15 +1850,17 @@ const ContentFarming = (props) => {
               <Divider />
 
               <span className="DG-button-span">
-                <Button 
-                  a href="https://discord.gg/VQ2ddfFBnu"
+                <Button
+                  a
+                  href="https://discord.gg/VQ2ddfFBnu"
                   target="_blank"
                   className="DG-stake-button"
                 >
                   DISCUSSION
                 </Button>
-                <Button 
-                  a href="https://snapshot.page/#/decentralgames.eth"
+                <Button
+                  a
+                  href="https://snapshot.page/#/decentralgames.eth"
                   target="_blank"
                   className="DG-stake-button"
                 >
@@ -1566,10 +1919,10 @@ const ContentFarming = (props) => {
   }
 
   async function rewardData(amountReward) {
-    console.log('current reward: ' + amountReward);
+    // console.log('current reward: ' + amountReward);
 
     const timestamp = await props.getPeriodFinish();
-    console.log('current timestamp: ' + timestamp);
+    // console.log('current timestamp: ' + timestamp);
 
     const date = new Date(timestamp * 1000);
     const hours = date.getHours(); // hours part from the timestamp
@@ -1588,14 +1941,16 @@ const ContentFarming = (props) => {
     });
   }
 
-  if (props.content === 'token') {
-    return contentToken();
+  if (props.content === 'governance') {
+    return contentGovernance();
   } else if (props.content === 'mining') {
     return contentMining();
-  } else if (props.content === 'liquidity') {
-    return contentLiquidity();
-  } else if (props.content === 'governance') {
-    return contentGovernance();
+  } else if (props.content === 'balancer') {
+    return contentBalancer();
+  } else if (props.content === 'uniswap') {
+    return contentUniswap();
+  } else if (props.content === 'token') {
+    return contentToken();
   } else if (props.content === 'admin') {
     return contentAdmin();
   }

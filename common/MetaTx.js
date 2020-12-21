@@ -13,74 +13,72 @@ let arrayDomainData = [];
 let metaTransactionType = [];
 
 (async function () {
-  if (window.ethereum) {
-    const addresses = await Global.API_ADDRESSES;
+  const addresses = await Global.ADDRESSES;
 
-    childTokenAddressMANA = addresses.CHILD_TOKEN_ADDRESS_MANA;
-    childTokenAddressDAI = addresses.CHILD_TOKEN_ADDRESS_DAI;
-    treasuryAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-    dgPointerAddress = addresses.DG_POINTER_CONTRACT_ADDRESS;
+  childTokenAddressMANA = addresses.CHILD_TOKEN_ADDRESS_MANA;
+  childTokenAddressDAI = addresses.CHILD_TOKEN_ADDRESS_DAI;
+  treasuryAddress = addresses.TREASURY_CONTRACT_ADDRESS;
+  dgPointerAddress = addresses.DG_POINTER_CONTRACT_ADDRESS;
 
-    const domainTypeToken = [
-      { name: 'name', type: 'string' },
-      { name: 'version', type: 'string' },
-      { name: 'verifyingContract', type: 'address' },
-      { name: 'salt', type: 'bytes32' },
-    ];
+  const domainTypeToken = [
+    { name: 'name', type: 'string' },
+    { name: 'version', type: 'string' },
+    { name: 'verifyingContract', type: 'address' },
+    { name: 'salt', type: 'bytes32' },
+  ];
 
-    const domeinTypeTreasury = [
-      { name: 'name', type: 'string' },
-      { name: 'version', type: 'string' },
-      { name: 'chainId', type: 'uint256' },
-      { name: 'verifyingContract', type: 'address' },
-    ];
+  const domeinTypeTreasury = [
+    { name: 'name', type: 'string' },
+    { name: 'version', type: 'string' },
+    { name: 'chainId', type: 'uint256' },
+    { name: 'verifyingContract', type: 'address' },
+  ];
 
-    arrayDomainType.push(domainTypeToken);
-    arrayDomainType.push(domeinTypeTreasury);
-    arrayDomainType.push(domeinTypeTreasury);
-    arrayDomainType.push(domainTypeToken);
+  arrayDomainType.push(domainTypeToken);
+  arrayDomainType.push(domeinTypeTreasury);
+  arrayDomainType.push(domeinTypeTreasury);
+  arrayDomainType.push(domainTypeToken);
 
-    metaTransactionType.push(
-      { name: 'nonce', type: 'uint256' },
-      { name: 'from', type: 'address' },
-      { name: 'functionSignature', type: 'bytes' }
-    );
+  metaTransactionType.push(
+    { name: 'nonce', type: 'uint256' },
+    { name: 'from', type: 'address' },
+    { name: 'functionSignature', type: 'bytes' }
+  );
 
-    const domainDataTokenMANA = {
-      name: '(PoS) Decentraland MANA',
-      version: '1',
-      verifyingContract: childTokenAddressMANA,
-      salt:
-        '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
-    };
+  const domainDataTokenMANA = {
+    name: '(PoS) Decentraland MANA',
+    version: '1',
+    verifyingContract: childTokenAddressMANA,
+    salt:
+      '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+  };
 
-    const domainDataTreasury = {
-      name: 'Treasury',
-      version: 'v4.0',
-      chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
-      verifyingContract: treasuryAddress,
-    };
+  const domainDataTreasury = {
+    name: 'Treasury',
+    version: 'v4.0',
+    chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
+    verifyingContract: treasuryAddress,
+  };
 
-    const domainDataDGPointer = {
-      name: 'NEW',
-      version: '5.0',
-      chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
-      verifyingContract: dgPointerAddress,
-    };
+  const domainDataDGPointer = {
+    name: 'NEW',
+    version: '5.0',
+    chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
+    verifyingContract: dgPointerAddress,
+  };
 
-    const domainDataTokenDAI = {
-      name: '(PoS) Dai Stablecoin',
-      version: '1',
-      verifyingContract: childTokenAddressDAI,
-      salt:
-        '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
-    };
+  const domainDataTokenDAI = {
+    name: '(PoS) Dai Stablecoin',
+    version: '1',
+    verifyingContract: childTokenAddressDAI,
+    salt:
+      '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+  };
 
-    arrayDomainData.push(domainDataTokenMANA);
-    arrayDomainData.push(domainDataTreasury);
-    arrayDomainData.push(domainDataDGPointer);
-    arrayDomainData.push(domainDataTokenDAI);
-  }
+  arrayDomainData.push(domainDataTokenMANA);
+  arrayDomainData.push(domainDataTreasury);
+  arrayDomainData.push(domainDataDGPointer);
+  arrayDomainData.push(domainDataTokenDAI);
 })();
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +92,7 @@ function executeMetaTransaction(
   web3Default
 ) {
   return new Promise(async (resolve, reject) => {
-    console.log('Execute Biconomy PoS meta-transaction');
+    console.log('Execute Biconomy PoS meta-transaction: ' + i);
     console.log('Function signature: ' + functionSignature);
     console.log('User address: ' + userAddress);
     console.log('Verify contract: ' + arrayDomainData[i].verifyingContract);

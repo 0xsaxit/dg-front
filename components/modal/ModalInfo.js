@@ -27,7 +27,8 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances[3]) +
       parseFloat(state.DGBalances[6]) +
       parseFloat(state.DGBalances[7]) +
-      parseFloat(state.stakingBalances[9]);
+      parseFloat(state.stakingBalances[9]) +
+      parseFloat(state.DGBalances[15]);
     const totalDGAdjusted_temp = totalDG.toFixed(0)
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
@@ -58,7 +59,7 @@ const ModalInfo = () => {
 
   // calculate market cap 
   const temp = (supply * DGPrice);
-  const marketCap = temp.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const marketCap = temp.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const temp_2 = (DGTotal_2 * DGPrice);
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -75,7 +76,7 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {Number(DGTotal) && isFinite(DGTotal) ? (
+          {(Number(DGTotal) && isFinite(DGTotal)) || DGTotal == 0 ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">{DGTotal.toLocaleString()} DG </p>
             </Button>
@@ -171,12 +172,16 @@ const ModalInfo = () => {
           <p className="menu-info-text">{state.DGBalances[0]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - liquidity 1</p>
+          <p className="menu-info-label">unclaimed $dg - balancer 1</p>
           <p className="menu-info-text">{state.DGBalances[1]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - liquidity 2</p>
+          <p className="menu-info-label">unclaimed $dg - balancer 2</p>
           <p className="menu-info-text">{state.DGBalances[2]}</p>
+        </span>
+        <span className="menu-info-inner-span">
+          <p className="menu-info-label">unclaimed $dg - uniswap</p>
+          <p className="menu-info-text">{state.DGBalances[15]}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $DG - airdrop</p>
@@ -191,7 +196,7 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">circulating supply</p>
-          <p className="menu-info-text">{supply.toLocaleString()}</p>
+          <p className="menu-info-text">{supply.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">market capitalization</p>
