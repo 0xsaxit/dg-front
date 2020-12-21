@@ -743,11 +743,11 @@ const ContentFarming = (props) => {
                     id="balances-padding-correct"
                     onClick={() => props.getReward()}
                   >
-                    CLAIM POOL 1 $DG
+                    CLAIM BALANCER 1 $DG
                   </Button>
                 ) : (
                   <Button disabled className="DG-claim-button">
-                    CLAIM POOL 1 $DG
+                    CLAIM BALANCER 1 $DG
                   </Button>
                 )}
               </span>
@@ -759,11 +759,11 @@ const ContentFarming = (props) => {
                     id="balances-padding-correct"
                     onClick={() => props.getReward_2()}
                   >
-                    CLAIM POOL 2 $DG
+                    CLAIM BALANCER 2 $DG
                   </Button>
                 ) : (
                   <Button disabled className="DG-claim-button">
-                    CLAIM POOL 2 $DG
+                    CLAIM BALANCER 2 $DG
                   </Button>
                 )}
               </span>
@@ -788,7 +788,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">pool 1</p>
+                  <p className="welcome-text">balancer 1</p>
                   <p className="account-name">MANA-DG</p>
                 </span>
               </span>
@@ -850,7 +850,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 1</p>
+                    <p className="earned-text">% of balancer 1</p>
                     <p className="earned-amount">
                       {Number(PoolOnePercentage) || PoolOnePercentage === 0 ? (
                         <p className="earned-amount">
@@ -958,7 +958,7 @@ const ContentFarming = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="welcome-text"> pool 2 </p>
+                  <p className="welcome-text"> balancer 2 </p>
                   <p className="account-name"> DAI-DG </p>
                 </span>
               </span>
@@ -1020,7 +1020,7 @@ const ContentFarming = (props) => {
                       alignItems: 'center',
                     }}
                   >
-                    <p className="earned-text">% of pool 2</p>
+                    <p className="earned-text">% of balancer 2</p>
                     {Number(PoolTwoPercentage) || PoolTwoPercentage === 0 ? (
                       <p className="earned-amount">
                         {PoolTwoPercentage.toFixed(2)}%

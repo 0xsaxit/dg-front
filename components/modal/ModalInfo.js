@@ -172,11 +172,11 @@ const ModalInfo = () => {
           <p className="menu-info-text">{state.DGBalances[0]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - liquidity 1</p>
+          <p className="menu-info-label">unclaimed $dg - balancer 1</p>
           <p className="menu-info-text">{state.DGBalances[1]}</p>
         </span>
         <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - liquidity 2</p>
+          <p className="menu-info-label">unclaimed $dg - balancer 2</p>
           <p className="menu-info-text">{state.DGBalances[2]}</p>
         </span>
         <span className="menu-info-inner-span">
