@@ -1,5 +1,5 @@
 // https://api.decentral.games, http://localhost:5000
-const API_BASE_URL = 'https://api.decentral.games';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////

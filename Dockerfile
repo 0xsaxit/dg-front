@@ -1,6 +1,10 @@
 FROM node:14.15.2-alpine3.12 as base
 
 ARG CI=true
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
+ENV NODE_ENV="production"
 
 RUN apk add --no-cache ca-certificates git build-base python2 ;\
     rm -rf /var/cache/apk/*
@@ -18,8 +22,6 @@ RUN npm outdated || true
 
 COPY . .
 
-COPY --from=decentralgames/website:latest /app/.next/cache /app/.next/cache
-
 RUN npm run build
 #RUN npm test
 
@@ -28,10 +30,10 @@ RUN npm run build
 FROM node:14.15.2-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
-WORKDIR /app
-
 ENV NODE_ENV="production"
 ENV PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+WORKDIR /app
 
 COPY --from=base --chown=node:node /app .
 
