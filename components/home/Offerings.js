@@ -81,7 +81,7 @@ const detailsGames = {
 
 const detailsCasinos = {
   Chateau: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741771/chateau_j1g5m7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608510345/Screen_Shot_2020-12-20_at_4.16.40_PM_zjxuia_nuotdx.png',
     'games-pic',
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
@@ -90,7 +90,7 @@ const detailsCasinos = {
     'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
   Tominoya: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741770/tominoya_ataapu.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608509838/2020-11-22_10-21-32_y3t9zp.png',
     'games-pic',
     'Tominoya',
     'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
@@ -99,7 +99,7 @@ const detailsCasinos = {
     'https://docs.decentral.games/casinos/tominoya',
   ],
   Serenity: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741775/serenity_sqez7j.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608509841/SI_FrontRight_Day_pyp1ww.png',
     'games-pic',
     'Serenity Island',
     'Serenity Island is located in the Vegas City district in Decentraland. The scene features a massive island that players must climb up to enter, and the structure sports a Monte Carlo-inspired architecture. The building is three stories total featuring two levels of games and a basement club.',
