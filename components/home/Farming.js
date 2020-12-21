@@ -649,10 +649,10 @@ const Farming = (props) => {
             )}
 
             {DGState === 'mining' ? (
-              <b className="account-hover active">GAMEPLAY MINING</b>
+              <b className="account-hover active">GAMEPLAY REWARDS</b>
             ) : (
               <Link href="/dg/mining">
-                <Menu.Item className="account-hover">GAMEPLAY MINING</Menu.Item>
+                <Menu.Item className="account-hover">GAMEPLAY REWARDS</Menu.Item>
               </Link>
             )}
 
@@ -666,7 +666,7 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {/*{DGState === 'uniswap' ? (
+            {DGState === 'uniswap' ? (
               <b className="account-hover active">UNISWAP</b>
             ) : (
               <Link href="/dg/uniswap">
@@ -674,7 +674,7 @@ const Farming = (props) => {
                   UNISWAP
                 </Menu.Item>
               </Link>
-            )}*/}
+            )}
 
             {DGState === 'token' ? (
               <b className="account-hover active">AIRDROP</b>
@@ -726,15 +726,15 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {/*{DGState === 'uniswap' ? (
-              <b className="account-hover active">UNISWAP</b>
+            {DGState === 'uniswap' ? (
+              <b className="account-hover active">UNI</b>
             ) : (
               <Link href="/dg/uniswap">
                 <Menu.Item className="account-hover">
-                  UNISWAP
+                  UNI
                 </Menu.Item>
               </Link>
-            )}*/}
+            )}
 
 
           </p>
