@@ -1,9 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Divider, Icon } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
-import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
-
 
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -17,35 +15,33 @@ const ModalInfo = () => {
   const [DGPrice, setDGPrice] = useState(0);
 
   useEffect(() => {
-
     const totalDG =
       parseFloat(state.userBalances[2][0]) +
       parseFloat(state.userBalances[2][1]) +
-      parseFloat(state.DGBalances[0]) +
-      parseFloat(state.DGBalances[1]) +
-      parseFloat(state.DGBalances[2]) +
-      parseFloat(state.DGBalances[3]) +
-      parseFloat(state.DGBalances[6]) +
-      parseFloat(state.DGBalances[7]) +
-      parseFloat(state.stakingBalances[9]) +
-      parseFloat(state.DGBalances[15]);
-    const totalDGAdjusted_temp = totalDG.toFixed(0)
+      parseFloat(state.DGBalances.balanceDG1) +
+      parseFloat(state.DGBalances.balanceDG2) +
+      parseFloat(state.DGBalances.balanceDG3) +
+      parseFloat(state.DGBalances.balanceDG4) +
+      parseFloat(state.DGBalances.balance_DG_main) +
+      parseFloat(state.DGBalances.balance_DG_matic) +
+      parseFloat(state.stakingBalances.stakedBalanceUserGov) +
+      parseFloat(state.DGBalances.balance_stakingUNI);
+    const totalDGAdjusted_temp = totalDG.toFixed(0);
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
     setDGTotal(totalDGAdjusted);
 
     const totalDGAdjusted_2 = totalDG.toFixed(3);
     setDGTotal_2(totalDGAdjusted_2);
-
   }, [state.DGBalances, state.userBalances, state.stakingBalances]);
 
   // calculate DG price
   useEffect(() => {
-    const temp = (state.DGBalances[5] / (49 * state.DGBalances[4]));
+    const temp =
+      state.DGBalances.balance_BP_DAI / (49 * state.DGBalances.balance_BP_DG);
     const price = temp;
     setDGPrice(price);
-  }, [state.DGBalances]); 
-
+  }, [state.DGBalances]);
 
   // fetch circulating supply
   useEffect(() => {
@@ -56,16 +52,15 @@ const ModalInfo = () => {
     })();
   }, []);
 
-
-  // calculate market cap 
-  const temp = (supply * DGPrice);
+  // calculate market cap
+  const temp = supply * DGPrice;
   const marketCap = temp.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  const temp_2 = (DGTotal_2 * DGPrice);
+  const temp_2 = DGTotal_2 * DGPrice;
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  const gov_staked = Number(state.stakingBalances[9]);
-  const gov_unclaimed = Number(state.DGBalances[14]);
+  const gov_staked = Number(state.stakingBalances.stakedBalanceUserGov);
+  const gov_unclaimed = Number(state.DGBalances.balance_stakingGov);
 
   return (
     <Modal
@@ -78,15 +73,14 @@ const ModalInfo = () => {
         <span>
           {(Number(DGTotal) && isFinite(DGTotal)) || DGTotal == 0 ? (
             <Button color="blue" className="modal-info-button">
-              <p className="right-menu-text dg">{DGTotal.toLocaleString()} DG </p>
+              <p className="right-menu-text dg">
+                {DGTotal.toLocaleString()} DG{' '}
+              </p>
             </Button>
-          ) : (
-            null
-          )}
+          ) : null}
         </span>
       }
     >
-
       <div style={{ margin: '21px 30px 0px 30px' }}>
         <span className="mailchimp-close" onClick={() => setOpen(false)}>
           <Icon name="close" />
@@ -134,28 +128,34 @@ const ModalInfo = () => {
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">
-            $DG staked in gov
-          </p>
+          <p className="menu-info-label">$DG staked in gov</p>
           <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
-            <a className="menu-info-label-link" href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0" target="_blank">
+            <a
+              className="menu-info-label-link"
+              href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0"
+              target="_blank"
+            >
               mainchain $DG
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{state.DGBalances[6]}</p>
+          <p className="menu-info-text">{state.DGBalances.balance_DG_main}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
-            <a className="menu-info-label-link" href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/" target="_blank">
+            <a
+              className="menu-info-label-link"
+              href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/"
+              target="_blank"
+            >
               matic $DG
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{state.DGBalances[7]}</p>
+          <p className="menu-info-text">{state.DGBalances.balance_DG_matic}</p>
         </span>
       </div>
 
@@ -169,23 +169,25 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gameplay</p>
-          <p className="menu-info-text">{state.DGBalances[0]}</p>
+          <p className="menu-info-text">{state.DGBalances.balanceDG1}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - balancer 1</p>
-          <p className="menu-info-text">{state.DGBalances[1]}</p>
+          <p className="menu-info-text">{state.DGBalances.balanceDG2}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - balancer 2</p>
-          <p className="menu-info-text">{state.DGBalances[2]}</p>
+          <p className="menu-info-text">{state.DGBalances.balanceDG3}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - uniswap</p>
-          <p className="menu-info-text">{state.DGBalances[15]}</p>
+          <p className="menu-info-text">
+            {state.DGBalances.balance_stakingUNI}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $DG - airdrop</p>
-          <p className="menu-info-text">{state.DGBalances[3]}</p>
+          <p className="menu-info-text">{state.DGBalances.balanceDG4}</p>
         </span>
       </div>
 
@@ -196,7 +198,9 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">circulating supply</p>
-          <p className="menu-info-text">{supply.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+          <p className="menu-info-text">
+            {supply.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">market capitalization</p>

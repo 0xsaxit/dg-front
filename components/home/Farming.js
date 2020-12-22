@@ -89,7 +89,9 @@ const Farming = (props) => {
         setBPTContractTwo(BPTContractTwo);
 
         // UNISWAP
-        const stakingContractThree = await Transactions.stakingContractThree(web3);
+        const stakingContractThree = await Transactions.stakingContractThree(
+          web3
+        );
         setStakingContractThree(stakingContractThree);
 
         const UNIContract = await Transactions.UNIContract(web3);
@@ -171,15 +173,6 @@ const Farming = (props) => {
         console.log('Biconomy meta-transaction failed');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
-
-        // const arrayNew = state.DGBalances.slice();
-        // arrayNew[0] = 0;
-
-        // // update global state unclaimed DG balance to 0
-        // dispatch({
-        //   type: 'dg_balances',
-        //   data: arrayNew,
-        // });
 
         // update global state BPT balances
         const refresh = !state.refreshBalances;
@@ -652,7 +645,9 @@ const Farming = (props) => {
               <b className="account-hover active">GAMEPLAY REWARDS</b>
             ) : (
               <Link href="/dg/mining">
-                <Menu.Item className="account-hover">GAMEPLAY REWARDS</Menu.Item>
+                <Menu.Item className="account-hover">
+                  GAMEPLAY REWARDS
+                </Menu.Item>
               </Link>
             )}
 
@@ -660,9 +655,7 @@ const Farming = (props) => {
               <b className="account-hover active">BALANCER</b>
             ) : (
               <Link href="/dg/balancer">
-                <Menu.Item className="account-hover">
-                  BALANCER
-                </Menu.Item>
+                <Menu.Item className="account-hover">BALANCER</Menu.Item>
               </Link>
             )}
 
@@ -670,9 +663,7 @@ const Farming = (props) => {
               <b className="account-hover active">UNISWAP</b>
             ) : (
               <Link href="/dg/uniswap">
-                <Menu.Item className="account-hover">
-                  UNISWAP
-                </Menu.Item>
+                <Menu.Item className="account-hover">UNISWAP</Menu.Item>
               </Link>
             )}
 
@@ -720,9 +711,7 @@ const Farming = (props) => {
               <b className="account-hover active">BALANCER</b>
             ) : (
               <Link href="/dg/balancer">
-                <Menu.Item className="account-hover">
-                  BALANCER
-                </Menu.Item>
+                <Menu.Item className="account-hover">BALANCER</Menu.Item>
               </Link>
             )}
 
@@ -730,13 +719,9 @@ const Farming = (props) => {
               <b className="account-hover active">UNI</b>
             ) : (
               <Link href="/dg/uniswap">
-                <Menu.Item className="account-hover">
-                  UNI
-                </Menu.Item>
+                <Menu.Item className="account-hover">UNI</Menu.Item>
               </Link>
             )}
-
-
           </p>
 
           <ButtonAffiliates />

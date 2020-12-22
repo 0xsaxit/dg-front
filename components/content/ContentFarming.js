@@ -37,78 +37,97 @@ const ContentFarming = (props) => {
   const [ethPrice, setEthPrice] = useState(0);
 
   // fetch total bet from API
-  useEffect(() => {
-    (async function () {
-      // calculate price of mana
-      let response_2 = await Fetch.MANA_PRICE();
-      let json_2 = await response_2.json();
-      setManaPrice(json_2.market_data.current_price.usd);
+  useEffect(
+    () => {
+      (async function () {
+        // calculate price of mana
+        let response_2 = await Fetch.MANA_PRICE();
+        let json_2 = await response_2.json();
+        setManaPrice(json_2.market_data.current_price.usd);
 
-      let response_3 = await Fetch.ETH_PRICE();
-      let json_3 = await response_3.json();
-      setEthPrice(json_3.market_data.current_price.usd);
-    })();
-  }, [manaPrice], [ethPrice]);
+        let response_3 = await Fetch.ETH_PRICE();
+        let json_3 = await response_3.json();
+        setEthPrice(json_3.market_data.current_price.usd);
+      })();
+    },
+    [manaPrice],
+    [ethPrice]
+  );
 
   // usd value calculations
-  const price = Number(state.DGBalances[5] / (49 * state.DGBalances[4]));
-  const USDToken = Number(price * state.DGBalances[3]);
-  const USDGameplay = Number(price * state.DGBalances[0]);
-  const PoolOneUSD = Number(price * state.DGBalances[1]);
-  const PoolTwoUSD = Number(price * state.DGBalances[2]);
-  const govUSD = Number(price * state.DGBalances[14]);
-  const uniUSD = Number(price * state.DGBalances[15]);
+  const price = Number(
+    state.DGBalances.balance_BP_DAI / (49 * state.DGBalances.balance_BP_DG)
+  );
+  const USDToken = Number(price * state.DGBalances.balanceDG4);
+  const USDGameplay = Number(price * state.DGBalances.balanceDG1);
+  const PoolOneUSD = Number(price * state.DGBalances.balanceDG2);
+  const PoolTwoUSD = Number(price * state.DGBalances.balanceDG3);
+  const govUSD = Number(price * state.DGBalances.balance_stakingGov);
+  const uniUSD = Number(price * state.DGBalances.balance_stakingUNI);
 
   // pool percentage calculations
   const PoolOnePercentage = Number(
-    (state.stakingBalances[2] / state.stakingBalances[0]) * 100
+    (state.stakingBalances.stakedBalanceBPT /
+      state.stakingBalances.contractBalanceBPT) *
+      100
   );
   const PoolTwoPercentage = Number(
-    (state.stakingBalances[6] / state.stakingBalances[4]) * 100
+    (state.stakingBalances.stakedBalanceBPTTwo /
+      state.stakingBalances.contractBalanceBPTTwo) *
+      100
   );
   const PercentageGov = Number(
-    (state.stakingBalances[9] / state.stakingBalances[8]) * 100
+    (state.stakingBalances.stakedBalanceUserGov /
+      state.stakingBalances.contractBalanceStakingGov) *
+      100
   ).toFixed(2);
   const PercentageUni = Number(
-    (state.stakingBalances[12] / state.stakingBalances[10]) * 100
+    (state.stakingBalances.stakedBalanceUNI /
+      state.stakingBalances.contractBalanceUNI) *
+      100
   ).toFixed(2);
 
   // APY value calculations for pool 1
-  const numerator = 51 * 2400 * price * state.DGBalances[10];
+  const numerator = 51 * 2400 * price * state.DGBalances.BPT_supply_1;
   const total_locked =
-    state.DGBalances[4] * price + Number(state.DGBalances[8]);
-  const denominator = total_locked * state.stakingBalances[0];
+    state.DGBalances.balance_BP_DG * price +
+    Number(state.DGBalances.MANA_total);
+  const denominator = total_locked * state.stakingBalances.contractBalanceBPT;
   const APY_temp = (numerator / denominator) * 100;
   const manaAPY = Number(APY_temp);
 
   // APY value calculations for pool 2
-  const num = 51 * 2400 * price * state.DGBalances[11];
+  const num = 51 * 2400 * price * state.DGBalances.BPT_supply_2;
   const total_locked_2 =
-    state.DGBalances[9] * price + Number(state.DGBalances[5]);
-  const denom = total_locked_2 * state.stakingBalances[4];
+    state.DGBalances.balance_BP_DG_2 * price +
+    Number(state.DGBalances.balance_BP_DAI);
+  const denom = total_locked_2 * state.stakingBalances.contractBalanceBPTTwo;
   const APY_temp_2 = (num / denom) * 100;
   const daiAPY = Number(APY_temp_2);
 
   // APY value calculation for gov
-  const APY_temp_3 = (20000 / state.stakingBalances[8]) * 100;
+  const APY_temp_3 =
+    (20000 / state.stakingBalances.contractBalanceStakingGov) * 100;
   const govAPY = Number(APY_temp_3);
 
-  // APY value calculation for uni pool 
+  // APY value calculation for uni pool
   const uni_num = 51 * 300 * price;
-  const locked_DG = state.DGBalances[16] * price;
-  const locked_ETH = state.DGBalances[17] * ethPrice;
+  const locked_DG = state.DGBalances.balance_DG_UNI * price;
+  const locked_ETH = state.DGBalances.balance_ETH_UNI * ethPrice;
   const uni_denom = locked_DG + locked_ETH;
-  const uni_APY_temp = (uni_num / uni_denom) * 100
+  const uni_APY_temp = (uni_num / uni_denom) * 100;
   const uniAPY = Number(uni_APY_temp);
 
   // treasury stuff
-  const treasury_dai = Number(state.DGBalances[13]);
-  const treasury_mana_tokens = Number(state.DGBalances[12]);
-  const treasury_mana = Number(state.DGBalances[12] * manaPrice);
+  const treasury_dai = Number(state.DGBalances.balance_maticDai);
+  const treasury_mana_tokens = Number(state.DGBalances.balance_maticMana);
+  const treasury_mana = Number(state.DGBalances.balance_maticMana * manaPrice);
   const treasury = Number(treasury_dai) + Number(treasury_mana);
 
-  const gov_staked = Number(state.stakingBalances[9]);
-  const total_gov_staked = Number(state.stakingBalances[8]);
+  const gov_staked = Number(state.stakingBalances.stakedBalanceUserGov);
+  const total_gov_staked = Number(
+    state.stakingBalances.contractBalanceStakingGov
+  );
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -130,7 +149,7 @@ const ContentFarming = (props) => {
 
         if (stakedTotal) {
           const percentagePool1 =
-            state.stakingBalances[2] / stakedTotalAdjusted;
+            state.stakingBalances.stakedBalanceBPT / stakedTotalAdjusted;
           const percentageFixed = (percentagePool1 * 100).toFixed(3);
 
           setPercentagePool1(percentageFixed);
@@ -151,7 +170,7 @@ const ContentFarming = (props) => {
 
         if (stakedTotal2) {
           const percentagePool2 =
-            state.stakingBalances[6] / stakedTotalAdjusted2;
+            state.stakingBalances.stakedBalanceBPTTwo / stakedTotalAdjusted2;
           const percentageFixed2 = (percentagePool2 * 100).toFixed(3);
 
           setPercentagePool2(percentageFixed2);
@@ -172,7 +191,7 @@ const ContentFarming = (props) => {
 
         if (stakedTotal3) {
           const percentagePool3 =
-            state.stakingBalances[9] / stakedTotalAdjusted3;
+            state.stakingBalances.stakedBalanceUserGov / stakedTotalAdjusted3;
           const percentageFixed3 = (percentagePool2 * 100).toFixed(3);
 
           setPercentageGov(percentageFixed3);
@@ -193,7 +212,7 @@ const ContentFarming = (props) => {
 
         if (stakedTotal4) {
           const percentagePool4 =
-            state.stakingBalances[12] / stakedTotalAdjusted4;
+            state.stakingBalances.stakedBalanceUNI / stakedTotalAdjusted4;
           const percentageFixed4 = (percentagePool2 * 100).toFixed(3);
 
           setPercentagePoolUni(percentageFixed4);
@@ -257,8 +276,9 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text">Unclaimed $DG</p>
-                {Number(state.DGBalances[3]) || state.DGBalances[3] ? (
-                  <p className="account-name">{state.DGBalances[3]}</p>
+                {Number(state.DGBalances.balanceDG4) ||
+                state.DGBalances.balanceDG4 ? (
+                  <p className="account-name">{state.DGBalances.balanceDG4}</p>
                 ) : (
                   <Loader
                     active
@@ -306,7 +326,7 @@ const ContentFarming = (props) => {
 
             <Divider />
 
-            {Number(state.DGBalances[3]) ? (
+            {Number(state.DGBalances.balanceDG4) ? (
               <span className="DG-button-span">
                 <Button
                   className="DG-claim-button"
@@ -405,8 +425,9 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text">Unclaimed $DG</p>
-                {Number(state.DGBalances[0]) || state.DGBalances[0] == 0 ? (
-                  <p className="account-name">{state.DGBalances[0]}</p>
+                {Number(state.DGBalances.balanceDG1) ||
+                state.DGBalances.balanceDG1 == 0 ? (
+                  <p className="account-name">{state.DGBalances.balanceDG1}</p>
                 ) : (
                   <Loader
                     active
@@ -456,7 +477,7 @@ const ContentFarming = (props) => {
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances[0]) ? (
+              {Number(state.DGBalances.balanceDG1) ? (
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"
@@ -640,14 +661,16 @@ const ContentFarming = (props) => {
                 {poolSelect === 1 ? (
                   <span>
                     <span style={{ display: 'flex' }}>
-                      <p className="welcome-text"> unclaimed 1</p>
+                      <p className="welcome-text">unclaimed 1</p>
                       <Icon
                         name="sort"
                         id="pool-select-icon"
                         onClick={onPool}
                       />
                     </span>
-                    <p className="account-name">{state.DGBalances[1]}</p>
+                    <p className="account-name">
+                      {state.DGBalances.balanceDG2}
+                    </p>
                   </span>
                 ) : (
                   <span>
@@ -659,7 +682,9 @@ const ContentFarming = (props) => {
                         onClick={onPool}
                       />
                     </span>
-                    <p className="account-name">{state.DGBalances[2]}</p>
+                    <p className="account-name">
+                      {state.DGBalances.balanceDG3}
+                    </p>
                   </span>
                 )}
               </span>
@@ -737,7 +762,7 @@ const ContentFarming = (props) => {
 
             {poolSelect === 1 ? (
               <span className="DG-button-span">
-                {Number(state.DGBalances[1]) ? (
+                {Number(state.DGBalances.balanceDG2) ? (
                   <Button
                     className="DG-claim-button"
                     id="balances-padding-correct"
@@ -753,7 +778,7 @@ const ContentFarming = (props) => {
               </span>
             ) : (
               <span className="DG-button-span">
-                {Number(state.DGBalances[2]) ? (
+                {Number(state.DGBalances.balanceDG3) ? (
                   <Button
                     className="DG-claim-button"
                     id="balances-padding-correct"
@@ -890,18 +915,22 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput(toFixedDown(state.stakingBalances[3], 3))
+                    setAmountInput(
+                      toFixedDown(state.stakingBalances.walletBalanceBPT, 3)
+                    )
                   }
                 >
-                  {state.stakingBalances[3]} BPT
+                  {state.stakingBalances.walletBalanceBPT} BPT
                 </p>
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput(toFixedDown(state.stakingBalances[2], 3))
+                    setAmountInput(
+                      toFixedDown(state.stakingBalances.stakedBalanceBPT, 3)
+                    )
                   }
                 >
-                  {state.stakingBalances[2]} BPT staked
+                  {state.stakingBalances.stakedBalanceBPT} BPT staked
                 </p>
               </span>
 
@@ -1058,18 +1087,22 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput2(toFixedDown(state.stakingBalances[7], 3))
+                    setAmountInput2(
+                      toFixedDown(state.stakingBalances.walletBalanceBPTTwo, 3)
+                    )
                   }
                 >
-                  {state.stakingBalances[7]} BPT
+                  {state.stakingBalances.walletBalanceBPTTwo} BPT
                 </p>
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput2(toFixedDown(state.stakingBalances[6], 3))
+                    setAmountInput2(
+                      toFixedDown(state.stakingBalances.stakedBalanceBPTTwo, 3)
+                    )
                   }
                 >
-                  {state.stakingBalances[6]} BPT staked
+                  {state.stakingBalances.stakedBalanceBPTTwo} BPT staked
                 </p>
               </span>
 
@@ -1125,9 +1158,9 @@ const ContentFarming = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Uniswap Liquidity Incentives</h3>
               <p>
-                Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap pool
-                and staking the LP tokens on this dashboard. Read
-                more about $DG liquidity incentives in our
+                Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
+                pool and staking the LP tokens on this dashboard. Read more
+                about $DG liquidity incentives in our
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
@@ -1151,9 +1184,12 @@ const ContentFarming = (props) => {
               />
               <span className="farming-pool-span">
                 <span>
-                  <p className="welcome-text"> Unclaimed $DG</p>
-                  {Number(state.DGBalances[15]) || state.DGBalances[15] == 0 ? (
-                    <p className="account-name">{state.DGBalances[15]}</p>
+                  <p className="welcome-text">Unclaimed $DG</p>
+                  {Number(state.DGBalances.balance_stakingUNI) ||
+                  state.DGBalances.balance_stakingUNI == 0 ? (
+                    <p className="account-name">
+                      {state.DGBalances.balance_stakingUNI}
+                    </p>
                   ) : (
                     <Loader
                       active
@@ -1172,20 +1208,19 @@ const ContentFarming = (props) => {
 
             <Divider />
 
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingTop: '12px',
-                  paddingBottom: '12px',
-                }}
-              >
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingTop: '12px',
+                paddingBottom: '12px',
+              }}
+            >
               <p className="earned-text">Value USD</p>
               {Number(uniUSD) || uniUSD === 0 ? (
                 <p className="earned-amount">
-                  $
-                  {uniUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  ${uniUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </p>
               ) : (
                 <Loader
@@ -1200,11 +1235,11 @@ const ContentFarming = (props) => {
                 />
               )}
             </span>
-    
+
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances[15]) ? (
+              {Number(state.DGBalances.balance_stakingUNI) ? (
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"
@@ -1227,10 +1262,7 @@ const ContentFarming = (props) => {
               style={{ position: 'relative', height: '100%' }}
             >
               <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.ETH_CIRCLE}
-                  className="farming-logo"
-                />
+                <img src={Images.ETH_CIRCLE} className="farming-logo" />
                 <img
                   src={Images.DG_COIN_LOGO}
                   className="farming-logo"
@@ -1302,9 +1334,7 @@ const ContentFarming = (props) => {
                     <p className="earned-text">% of pool</p>
                     <p className="earned-amount">
                       {Number(PercentageUni) || PercentageUni == 0 ? (
-                        <p className="earned-amount">
-                          {PercentageUni}%
-                        </p>
+                        <p className="earned-amount">{PercentageUni}%</p>
                       ) : (
                         <Loader
                           active
@@ -1339,18 +1369,22 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput5(toFixedDown(state.stakingBalances[13], 3))
+                    setAmountInput5(
+                      toFixedDown(state.stakingBalances.walletBalanceUNI, 3)
+                    )
                   }
                 >
-                  {state.stakingBalances[13]} UNI-V2
+                  {state.stakingBalances.walletBalanceUNI} UNI-V2
                 </p>
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput5(toFixedDown(state.stakingBalances[12], 3))
+                    setAmountInput5(
+                      toFixedDown(state.stakingBalances.stakedBalanceUNI, 3)
+                    )
                   }
                 >
-                  {state.stakingBalances[12]} UNI-V2 staked
+                  {state.stakingBalances.stakedBalanceUNI} UNI-V2 staked
                 </p>
               </span>
 
@@ -1390,7 +1424,6 @@ const ContentFarming = (props) => {
                 )}
               </span>
             </div>
-
           </span>
         </div>
       </Aux>
@@ -1506,9 +1539,11 @@ const ContentFarming = (props) => {
               />
 
               <span className="farming-pool-span">
-                <p className="welcome-text"> Unclaimed $DG</p>
+                <p className="welcome-text">Unclaimed $DG</p>
                 {Number(treasury_dai) ? (
-                  <p className="account-name">{state.DGBalances[14]}</p>
+                  <p className="account-name">
+                    {state.DGBalances.balance_stakingGov}
+                  </p>
                 ) : (
                   <Loader
                     active
@@ -1535,7 +1570,7 @@ const ContentFarming = (props) => {
                 paddingBottom: '12px',
               }}
             >
-              <p className="earned-text"> Value USD </p>
+              <p className="earned-text">Value USD </p>
               {Number(govUSD) || govUSD === 0 ? (
                 <p className="earned-amount">
                   ${govUSD.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
@@ -1557,7 +1592,7 @@ const ContentFarming = (props) => {
             <Divider />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances[14]) ? (
+              {Number(state.DGBalances.balance_stakingGov) ? (
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"
@@ -1685,10 +1720,12 @@ const ContentFarming = (props) => {
                 <p
                   className="bpt-text"
                   onClick={() =>
-                    setAmountInput4(toFixedDown(state.DGBalances[6], 2))
+                    setAmountInput4(
+                      toFixedDown(state.DGBalances.balance_DG_main, 2)
+                    )
                   }
                 >
-                  {state.DGBalances[6]} DG
+                  {state.DGBalances.balance_DG_main} DG
                 </p>
                 <p
                   className="bpt-text"
@@ -1882,8 +1919,14 @@ const ContentFarming = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p>BPT balance in contract: {state.stakingBalances[0]}</p>
-              <p>DG balance in contract: {state.stakingBalances[1]}</p>
+              <p>
+                BPT balance in contract:{' '}
+                {state.stakingBalances.contractBalanceBPT}
+              </p>
+              <p>
+                DG balance in contract:{' '}
+                {state.stakingBalances.contractBalanceDG}
+              </p>
               <p>Current reward amount: {currenReward}</p>
               <p>Reward period finish time: {finishTime}</p>
 
