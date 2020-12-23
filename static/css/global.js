@@ -61,7 +61,9 @@ export const GlobalStyles = createGlobalStyle`
   .menu-info-close,
   .mailchimp-close,
   .hljs,
-  .mailchimp-other-inner-p.subtext {
+  .mailchimp-other-inner-p.subtext,
+  .ui.checkbox+label, 
+  .ui.checkbox label {
     color: ${({ theme }) => theme.text} !important;
   }
 
