@@ -299,9 +299,8 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .menu-info-modal {
-  top: 81px;
   max-width: 400px !important;
-  border-radius: 2px !important;
+  border-radius: 4px !important;
 }
 
 .menu-info-container {
@@ -1866,6 +1865,18 @@ div.ui.grid.admin-balances-container {
   height: 34px;
   min-width: 100% !important;
   margin-top: 3px;  
+}
+
+.ui.button.get-dg-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 27px;
+  max-width: 120px !important;
+  min-width: 120px;
+  margin-top: 15px;
+  padding: 7px 6px 0px 6px;
+  opacity: 100% !important;
 }
 
 .ui.blue.button.metamask-button {

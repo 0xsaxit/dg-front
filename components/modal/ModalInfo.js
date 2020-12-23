@@ -25,7 +25,8 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances.balance_DG_main) +
       parseFloat(state.DGBalances.balance_DG_matic) +
       parseFloat(state.stakingBalances.stakedBalanceUserGov) +
-      parseFloat(state.DGBalances.balance_stakingUNI);
+      parseFloat(state.DGBalances.balance_stakingUNI) +
+      parseFloat(state.DGBalances.balance_stakingGov);
     const totalDGAdjusted_temp = totalDG.toFixed(0);
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
@@ -123,6 +124,15 @@ const ModalInfo = () => {
           >
             ${unclaimedUSD}
           </p>
+        </span>
+        <span style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button 
+            className="get-dg-button"
+            href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+            target="_blank"
+          > 
+            GET $DG 
+          </Button>
         </span>
       </div>
 
