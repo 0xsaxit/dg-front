@@ -34,7 +34,7 @@ function ButtonReward(props) {
     setDisabled(true);
 
     try {
-      const data = await props.stakingContractTwo.methods
+      const data = await props.stakingContract2.methods
         .notifyRewardAmount(props.rewardAmount)
         .send({ from: userAddress });
 

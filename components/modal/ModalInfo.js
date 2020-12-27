@@ -18,14 +18,14 @@ const ModalInfo = () => {
     const totalDG =
       parseFloat(state.userBalances[2][0]) +
       parseFloat(state.userBalances[2][1]) +
-      parseFloat(state.DGBalances.balanceDG1) +
-      parseFloat(state.DGBalances.balanceDG2) +
-      parseFloat(state.DGBalances.balanceDG3) +
-      parseFloat(state.DGBalances.balanceDG4) +
-      parseFloat(state.DGBalances.balance_DG_main) +
-      parseFloat(state.DGBalances.balance_DG_matic) +
-      parseFloat(state.stakingBalances.stakedBalanceUserGov) +
-      parseFloat(state.DGBalances.balance_stakingUNI);
+      parseFloat(state.DGBalances.BALANCE_MINING_DG) +
+      parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
+      parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
+      parseFloat(state.DGBalances.BALANCE_KEEPER_DG) +
+      parseFloat(state.DGBalances.BALANCE_ROOT_DG) +
+      parseFloat(state.DGBalances.BALANCE_CHILD_DG) +
+      parseFloat(state.stakingBalances.BALANCE_USER_GOVERNANCE) +
+      parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP);
     const totalDGAdjusted_temp = totalDG.toFixed(0);
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
@@ -38,7 +38,7 @@ const ModalInfo = () => {
   // calculate DG price
   useEffect(() => {
     const temp =
-      state.DGBalances.balance_BP_DAI / (49 * state.DGBalances.balance_BP_DG);
+      state.DGBalances.BALANCE_BP_DAI / (49 * state.DGBalances.BALANCE_BP_DG_1);
     const price = temp;
     setDGPrice(price);
   }, [state.DGBalances]);
@@ -59,8 +59,8 @@ const ModalInfo = () => {
   const temp_2 = DGTotal_2 * DGPrice;
   const unclaimedUSD = temp_2.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  const gov_staked = Number(state.stakingBalances.stakedBalanceUserGov);
-  const gov_unclaimed = Number(state.DGBalances.balance_stakingGov);
+  const gov_staked = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
+  const gov_unclaimed = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE); // governance
 
   return (
     <Modal
@@ -71,7 +71,7 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {(Number(DGTotal) && isFinite(DGTotal)) || DGTotal == 0 ? (
+          {DGTotal ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">
                 {DGTotal.toLocaleString()} DG{' '}
@@ -142,7 +142,7 @@ const ModalInfo = () => {
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{state.DGBalances.balance_DG_main}</p>
+          <p className="menu-info-text">{state.DGBalances.BALANCE_ROOT_DG}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
@@ -155,7 +155,7 @@ const ModalInfo = () => {
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{state.DGBalances.balance_DG_matic}</p>
+          <p className="menu-info-text">{state.DGBalances.BALANCE_CHILD_DG}</p>
         </span>
       </div>
 
@@ -182,12 +182,12 @@ const ModalInfo = () => {
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - uniswap</p>
           <p className="menu-info-text">
-            {state.DGBalances.balance_stakingUNI}
+            {state.DGBalances.BALANCE_STAKING_UNISWAP}
           </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $DG - airdrop</p>
-          <p className="menu-info-text">{state.DGBalances.balanceDG4}</p>
+          <p className="menu-info-text">{state.DGBalances.BALANCE_KEEPER_DG}</p>
         </span>
       </div>
 
