@@ -238,6 +238,13 @@ const ContentGovernance = (props) => {
                 >
                   announcement
                 </a>
+                and get $DG{' '}
+                <a
+                  href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+                  style={{ color: '#2085f4' }}
+                >
+                  here
+                </a>
                 .
               </p>
             </span>
