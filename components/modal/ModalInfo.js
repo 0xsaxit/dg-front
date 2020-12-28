@@ -74,6 +74,14 @@ const ModalInfo = () => {
   const gov_staked = Number(state.stakingBalances.BALANCE_USER_GOVERNANCE);
   const gov_unclaimed = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE); // governance
 
+  function formatPrice(balanceDG, units) {
+    const balanceAdjusted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return balanceAdjusted;
+  }
+
   return (
     <Modal
       className="menu-info-modal"
@@ -163,7 +171,9 @@ const ModalInfo = () => {
             </a>{' '}
             balance
           </p>
-          <p className="menu-info-text">{state.DGBalances.BALANCE_ROOT_DG}</p>
+          <p className="menu-info-text">
+            {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
@@ -190,25 +200,33 @@ const ModalInfo = () => {
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - gameplay</p>
-          <p className="menu-info-text">{state.DGBalances.balanceDG1}</p>
+          <p className="menu-info-text">
+            {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - balancer 1</p>
-          <p className="menu-info-text">{state.DGBalances.balanceDG2}</p>
+          <p className="menu-info-text">
+            {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - balancer 2</p>
-          <p className="menu-info-text">{state.DGBalances.balanceDG3}</p>
+          <p className="menu-info-text">
+            {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $dg - uniswap</p>
           <p className="menu-info-text">
-            {state.DGBalances.BALANCE_STAKING_UNISWAP}
+            {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
           </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">unclaimed $DG - airdrop</p>
-          <p className="menu-info-text">{state.DGBalances.BALANCE_KEEPER_DG}</p>
+          <p className="menu-info-text">
+            {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+          </p>
         </span>
       </div>
 

@@ -22,13 +22,13 @@ const ContentMining = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    if (state.DGBalances.BALANCE_MINING_DG) {
+    if (props.price && state.DGBalances.BALANCE_MINING_DG) {
       const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG;
       const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
 
       setGameplayUSD(gameplayUSDFormatted);
     }
-  }, [state.DGBalances.BALANCE_MINING_DG]);
+  }, [props.price, state.DGBalances.BALANCE_MINING_DG]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -138,7 +138,7 @@ const ContentMining = (props) => {
                 <p className="welcome-text">Unclaimed $DG</p>
                 {state.DGBalances.BALANCE_MINING_DG ? (
                   <p className="account-name">
-                    {state.DGBalances.BALANCE_MINING_DG}
+                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
                   </p>
                 ) : (
                   <Loader

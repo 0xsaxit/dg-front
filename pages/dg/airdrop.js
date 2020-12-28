@@ -8,7 +8,7 @@ import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
 const Airdrop = () => {
-  // get user's transaction history from the Context API store
+  // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -40,7 +40,7 @@ const Airdrop = () => {
           You must log in with Metamask to view this page
         </div>
       ) : (
-        <Farming DGState={'token'} />
+        <Farming DGState={'airdrop'} />
       )}
     </Layout>
   );

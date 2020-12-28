@@ -4,7 +4,7 @@ import { Button, Divider, Loader } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 
-const ContentToken = (props) => {
+const ContentAirdrop = (props) => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -14,13 +14,13 @@ const ContentToken = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    if (state.DGBalances.BALANCE_STAKING_UNISWAP) {
+    if (props.price && state.DGBalances.BALANCE_KEEPER_DG) {
       const tokenUSD = Number(props.price * state.DGBalances.BALANCE_KEEPER_DG);
       const tokenUSDFormatted = props.formatPrice(tokenUSD, 2);
 
       setTokenUSD(tokenUSDFormatted);
     }
-  }, [state.DGBalances.BALANCE_STAKING_UNISWAP]);
+  }, [props.price, state.DGBalances.BALANCE_KEEPER_DG]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ const ContentToken = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function contentToken() {
+  function contentAirdrop() {
     return (
       <Aux>
         <div className="DG-liquidity-container top">
@@ -59,7 +59,6 @@ const ContentToken = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG | Decentral Games Governance Token</h3>
               <p>
-                {' '}
                 $DG is rewarded to players, liquidity providers, and governors
                 of the decentral.games ecosystem. Learn more by reading our
                 <a
@@ -97,7 +96,7 @@ const ContentToken = (props) => {
                 <p className="welcome-text">Unclaimed $DG</p>
                 {state.DGBalances.BALANCE_KEEPER_DG ? (
                   <p className="account-name">
-                    {state.DGBalances.BALANCE_KEEPER_DG}
+                    {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
                   </p>
                 ) : (
                   <Loader
@@ -203,7 +202,7 @@ const ContentToken = (props) => {
     );
   }
 
-  return contentToken();
+  return contentAirdrop();
 };
 
-export default ContentToken;
+export default ContentAirdrop;

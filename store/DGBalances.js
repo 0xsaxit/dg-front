@@ -136,11 +136,11 @@ function DGBalances() {
         setStakingContractGovernance(stakingContractGovernance);
 
         // POOL 1
-        const BPTContract = await Transactions.BPTContract(web3);
+        const BPTContract = await Transactions.BPTContract1(web3);
         setBPTContract(BPTContract);
 
         // POOL 2
-        const BPTContractTwo = await Transactions.BPTContractTwo(web3);
+        const BPTContractTwo = await Transactions.BPTContract2(web3);
         setBPTContractTwo(BPTContractTwo);
 
         // UNISWAP
@@ -149,7 +149,7 @@ function DGBalances() {
         );
         setStakingContractUniswap(stakingContractUniswap);
 
-        const UNIContract = await Transactions.UNIContract(web3);
+        const UNIContract = await Transactions.uniswapContract(web3);
         setUNIContract(UNIContract);
 
         setInstances(true); // contract instantiation complete

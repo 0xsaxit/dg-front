@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
+import Web3 from 'web3';
 import { Button, Divider, Loader, Icon, Input } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
@@ -21,11 +22,30 @@ const ContentBalancer = (props) => {
   const [poolPercentage2, setPoolPercentage2] = useState(0);
   const [pool1USD, setPool1USD] = useState(0);
   const [pool2USD, setPool2USD] = useState(0);
+  const [BPTContract1, setBPTContract1] = useState({});
+  const [BPTContract2, setBPTContract2] = useState({});
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
+    if (state.userStatus >= 4) {
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+      async function fetchData() {
+        const BPTContract1 = await Transactions.BPTContract1(web3);
+        setBPTContract1(BPTContract1);
+
+        const BPTContract2 = await Transactions.BPTContract2(web3);
+        setBPTContract2(BPTContract2);
+      }
+
+      fetchData();
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
     if (
+      props.price &&
       state.DGBalances.BALANCE_STAKING_BALANCER_1 &&
       state.DGBalances.BALANCE_STAKING_BALANCER_2
     ) {
@@ -42,12 +62,13 @@ const ContentBalancer = (props) => {
       setPool2USD(pool2Formatted);
     }
   }, [
+    props.price,
     state.DGBalances.BALANCE_STAKING_BALANCER_1,
     state.DGBalances.BALANCE_STAKING_BALANCER_2,
   ]);
 
   useEffect(() => {
-    if (state.stakingBalances.BALANCE_CONTRACT_BPT_1) {
+    if (props.price && state.stakingBalances.BALANCE_CONTRACT_BPT_1) {
       const numeratorMANA =
         51 * 2400 * props.price * state.DGBalances.SUPPLY_BTP_1;
       const totalLockedMANA =
@@ -66,10 +87,10 @@ const ContentBalancer = (props) => {
         ).toFixed(2)
       );
     }
-  }, [state.stakingBalances.BALANCE_CONTRACT_BPT_1]);
+  }, [props.price, state.stakingBalances.BALANCE_CONTRACT_BPT_1]);
 
   useEffect(() => {
-    if (state.stakingBalances.BALANCE_CONTRACT_BPT_2) {
+    if (props.price && state.stakingBalances.BALANCE_CONTRACT_BPT_2) {
       const numeratorDAI =
         51 * 2400 * props.price * state.DGBalances.SUPPLY_BTP_2;
       const totalLockedDAI =
@@ -88,19 +109,19 @@ const ContentBalancer = (props) => {
         ).toFixed(2)
       );
     }
-  }, [state.stakingBalances.BALANCE_CONTRACT_BPT_2]);
+  }, [props.price, state.stakingBalances.BALANCE_CONTRACT_BPT_2]);
 
   useEffect(() => {
     if (props.instances) {
       (async () => {
         const stakedTotal = await Transactions.getTotalSupply(
-          props.stakingContract
+          props.stakingContractPool1
         );
 
         if (stakedTotal) {
           const percentagePool =
             state.stakingBalances.BALANCE_STAKED_BPT_1 / stakedTotal;
-          const percentageFixed = (percentagePool * 100).toFixed(3);
+          const percentageFixed = percentagePool * 100;
 
           setPercentagePool1(percentageFixed);
         } else {
@@ -114,13 +135,13 @@ const ContentBalancer = (props) => {
     if (props.instances) {
       (async () => {
         const stakedTotal = await Transactions.getTotalSupply(
-          props.stakingContract2
+          props.stakingContractPool2
         );
 
         if (stakedTotal) {
           const percentagePool =
             state.stakingBalances.BALANCE_STAKED_BPT_2 / stakedTotal;
-          const percentageFixed = (percentagePool * 100).toFixed(3);
+          const percentageFixed = percentagePool * 100;
 
           setPercentagePool2(percentageFixed);
         } else {
@@ -189,7 +210,10 @@ const ContentBalancer = (props) => {
                     </span>
                     <p className="account-name">
                       {state.DGBalances.BALANCE_STAKING_BALANCER_1 ? (
-                        state.DGBalances.BALANCE_STAKING_BALANCER_1
+                        props.formatPrice(
+                          state.DGBalances.BALANCE_STAKING_BALANCER_1,
+                          3
+                        )
                       ) : (
                         <Loader
                           active
@@ -216,7 +240,10 @@ const ContentBalancer = (props) => {
                     </span>
                     <p className="account-name">
                       {state.DGBalances.BALANCE_STAKING_BALANCER_2 ? (
-                        state.DGBalances.BALANCE_STAKING_BALANCER_2
+                        props.formatPrice(
+                          state.DGBalances.BALANCE_STAKING_BALANCER_2,
+                          3
+                        )
                       ) : (
                         <Loader
                           active
@@ -299,7 +326,7 @@ const ContentBalancer = (props) => {
                   <Button
                     className="DG-claim-button"
                     id="balances-padding-correct"
-                    onClick={() => props.reward()}
+                    onClick={() => props.reward(props.stakingContractPool1)}
                   >
                     CLAIM BALANCER 1 $DG
                   </Button>
@@ -315,7 +342,7 @@ const ContentBalancer = (props) => {
                   <Button
                     className="DG-claim-button"
                     id="balances-padding-correct"
-                    onClick={() => props.reward()}
+                    onClick={() => props.reward(props.stakingContractPool2)}
                   >
                     CLAIM BALANCER 2 $DG
                   </Button>
@@ -471,7 +498,11 @@ const ContentBalancer = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.staking(amountInputMANA);
+                      props.staking(
+                        BPTContract1,
+                        props.stakingContractPool1,
+                        amountInputMANA
+                      );
                       setAmountInputMANA('');
                     }}
                   >
@@ -488,7 +519,10 @@ const ContentBalancer = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.withdraw(amountInputMANA);
+                      props.withdrawal(
+                        props.stakingContractPool1,
+                        amountInputMANA
+                      );
                       setAmountInputMANA('');
                     }}
                   >
@@ -641,7 +675,11 @@ const ContentBalancer = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.staking_2(amountInputDAI);
+                      props.staking(
+                        BPTContract2,
+                        props.stakingContractPool2,
+                        amountInputDAI
+                      );
                       setAmountInputDAI('');
                     }}
                   >
@@ -658,7 +696,10 @@ const ContentBalancer = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.withdraw_2(amount);
+                      props.withdrawal(
+                        props.stakingContractPool2,
+                        amountInputDAI
+                      );
                       setAmountInputDAI('');
                     }}
                   >

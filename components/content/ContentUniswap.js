@@ -18,13 +18,13 @@ const ContentUniswap = (props) => {
   const [priceUSD, setPriceUSD] = useState(0);
   const [APYUniswap, setAPYUniswap] = useState(0);
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
+  const [uniswapContract, setUniswapContract] = useState({});
   const [instances, setInstances] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      // initialize Web3 providers and create contract instances
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
@@ -32,6 +32,9 @@ const ContentUniswap = (props) => {
           web3
         );
         setStakingContractUniswap(stakingContractUniswap);
+
+        const uniswapContract = await Transactions.uniswapContract(web3);
+        setUniswapContract(uniswapContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -41,7 +44,7 @@ const ContentUniswap = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (state.DGBalances.BALANCE_STAKING_UNISWAP) {
+    if (props.price && state.DGBalances.BALANCE_STAKING_UNISWAP) {
       const priceUSD = Number(
         props.price * state.DGBalances.BALANCE_STAKING_UNISWAP
       );
@@ -49,10 +52,11 @@ const ContentUniswap = (props) => {
 
       setPriceUSD(priceUSDFormatted);
     }
-  }, [state.DGBalances.BALANCE_STAKING_UNISWAP]);
+  }, [props.price, state.DGBalances.BALANCE_STAKING_UNISWAP]);
 
   useEffect(() => {
     if (
+      props.price &&
       state.DGBalances.BALANCE_UNISWAP_ETH &&
       state.DGBalances.BALANCE_UNISWAP_DG
     ) {
@@ -72,6 +76,7 @@ const ContentUniswap = (props) => {
       })();
     }
   }, [
+    props.price,
     state.DGBalances.BALANCE_UNISWAP_ETH,
     state.DGBalances.BALANCE_UNISWAP_DG,
   ]);
@@ -135,6 +140,7 @@ const ContentUniswap = (props) => {
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
+                  target="_blank"
                 >
                   {' '}
                   docs
@@ -158,7 +164,10 @@ const ContentUniswap = (props) => {
                   <p className="welcome-text">Unclaimed $DG</p>
                   {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
                     <p className="account-name">
-                      {state.DGBalances.BALANCE_STAKING_UNISWAP}
+                      {props.formatPrice(
+                        state.DGBalances.BALANCE_STAKING_UNISWAP,
+                        3
+                      )}
                     </p>
                   ) : (
                     <Loader
@@ -211,7 +220,7 @@ const ContentUniswap = (props) => {
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"
-                  onClick={() => props.reward()}
+                  onClick={() => props.reward(stakingContractUniswap)}
                 >
                   CLAIM UNISWAP $DG
                 </Button>
@@ -358,7 +367,11 @@ const ContentUniswap = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.staking(amountInput);
+                      props.staking(
+                        uniswapContract,
+                        stakingContractUniswap,
+                        amountInput
+                      );
                       setAmountInput('');
                     }}
                   >
@@ -375,7 +388,7 @@ const ContentUniswap = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.staking(amountInput);
+                      props.withdrawal(stakingContractUniswap, amountInput);
                       setAmountInput('');
                     }}
                   >

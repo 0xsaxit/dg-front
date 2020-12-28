@@ -7,7 +7,7 @@ import ContentGovernance from '../content/ContentGovernance';
 import ContentMining from '../content/ContentMining';
 import ContentBalancer from '../content/ContentBalancer';
 import ContentUniswap from '../content/ContentUniswap';
-import ContentToken from '../content/ContentToken';
+import ContentAirdrop from '../content/ContentAirdrop';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
 import ButtonAffiliates from '../button/ButtonAffiliates';
@@ -19,20 +19,20 @@ const Farming = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [stakingContract, setStakingContract] = useState({});
-  const [stakingContract2, setStakingContract2] = useState({});
+  const [stakingContractPool1, setStakingContractPool1] = useState({});
+  const [stakingContractPool2, setStakingContractPool2] = useState({});
   const [instances, setInstances] = useState(false);
   const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
+  const [price, setPrice] = useState(0);
   const [amountInput, setAmountInput] = useState('10000000000000000000');
 
   const DGState = props.DGState;
-  const price = Number(
-    state.DGBalances.BALANCE_BP_DAI / (49 * state.DGBalances.BALANCE_BP_DG_1)
-  );
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
@@ -43,11 +43,15 @@ const Farming = (props) => {
       setWeb3(web3);
 
       async function fetchData() {
-        const stakingContract = await Transactions.stakingContractPool1(web3);
-        setStakingContract(stakingContract);
+        const stakingContractPool1 = await Transactions.stakingContractPool1(
+          web3
+        );
+        setStakingContractPool1(stakingContractPool1);
 
-        const stakingContract2 = await Transactions.stakingContractPool2(web3);
-        setStakingContract2(stakingContract2);
+        const stakingContractPool2 = await Transactions.stakingContractPool2(
+          web3
+        );
+        setStakingContractPool2(stakingContractPool2);
 
         setInstances(true); // contract instantiation complete
       }
@@ -56,15 +60,19 @@ const Farming = (props) => {
     }
   }, [state.userStatus]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function formatPrice(balanceDG, units) {
-    const balanceAdjusted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  useEffect(() => {
+    if (state.DGBalances.BALANCE_BP_DAI && state.DGBalances.BALANCE_BP_DG_1) {
+      const price = Number(
+        state.DGBalances.BALANCE_BP_DAI /
+          (49 * state.DGBalances.BALANCE_BP_DG_1)
+      );
 
-    return balanceAdjusted;
-  }
+      setPrice(price);
+    }
+  }, [
+    state.DGBalances.BALANCE_STAKING_UNISWAP,
+    state.DGBalances.BALANCE_BP_DG_1,
+  ]);
 
   // get initial reward and timestamp values
   useEffect(() => {
@@ -74,8 +82,6 @@ const Farming = (props) => {
     }
   }, [instances]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // get timestamp on page load
   useEffect(() => {
     if (instances) {
@@ -91,14 +97,12 @@ const Farming = (props) => {
     }
   }, [instances]);
 
-  async function getPeriodFinish() {
-    try {
-      const timestamp = await stakingContract.methods.periodFinish().call();
+  function formatPrice(balanceDG, units) {
+    const balanceAdjusted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-      return timestamp;
-    } catch (error) {
-      console.log('Return reward period time error: ' + error);
-    }
+    return balanceAdjusted;
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -153,14 +157,14 @@ const Farming = (props) => {
     }
   }
 
-  async function withdrawal(tokenContract, amount) {
+  async function withdrawal(stakingContract, amount) {
     console.log('Call withdraw() function to unstake BP tokens');
 
     const amountToString = web3.utils.toWei(amount);
     console.log('Withdraw amount input: ' + amountToString);
 
     try {
-      const data = await tokenContract.methods
+      const data = await stakingContract.methods
         .withdraw(amountToString)
         .send({ from: userAddress });
 
@@ -178,11 +182,11 @@ const Farming = (props) => {
     }
   }
 
-  async function reward(tokenContract) {
+  async function reward(stakingContract) {
     console.log('Call getReward() function to claim DG tokens');
 
     try {
-      const data = await tokenContract.methods
+      const data = await stakingContract.methods
         .getReward()
         .send({ from: userAddress });
 
@@ -242,7 +246,7 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'token' ? (
+            {DGState === 'airdrop' ? (
               <b className="account-hover active">AIRDROP</b>
             ) : (
               <Link href="/dg/airdrop">
@@ -297,6 +301,14 @@ const Farming = (props) => {
                 <Menu.Item className="account-hover">UNI</Menu.Item>
               </Link>
             )}
+
+            {DGState === 'airdrop' ? (
+              <b className="account-hover active">AIRDROP</b>
+            ) : (
+              <Link href="/dg/airdrop">
+                <Menu.Item className="account-hover">AIRDROP</Menu.Item>
+              </Link>
+            )}
           </p>
 
           <ButtonAffiliates />
@@ -305,8 +317,6 @@ const Farming = (props) => {
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(e) {
     console.log('New amount: ' + e.target.value);
 
@@ -331,6 +341,18 @@ const Farming = (props) => {
       type: 'stake_time',
       data: timestamp,
     });
+  }
+
+  async function getPeriodFinish() {
+    try {
+      const timestamp = await stakingContractPool1.methods
+        .periodFinish()
+        .call();
+
+      return timestamp;
+    } catch (error) {
+      console.log('Return reward period time error: ' + error);
+    }
   }
 
   function contentAdmin() {
@@ -361,14 +383,14 @@ const Farming = (props) => {
 
             <p>
               <ButtonReward1
-                stakingContract={stakingContract}
+                stakingContractPool1={stakingContractPool1}
                 rewardAmount={amountInput}
                 rewardData={(amount) => rewardData(amount)}
               />
             </p>
             <p>
               <ButtonReward2
-                stakingContract2={stakingContract2}
+                stakingContractPool2={stakingContractPool2}
                 rewardAmount={amountInput}
                 rewardData={(amount) => rewardData(amount)}
               />
@@ -390,32 +412,23 @@ const Farming = (props) => {
             style={{ marginTop: '18px', paddingBottom: '21px' }}
           />
 
-          {DGState === 'admin' ? (
-            contentAdmin()
-          ) : DGState === 'governance' ? (
+          {DGState === 'governance' ? (
             <ContentGovernance
               price={price}
               formatPrice={formatPrice}
-              instances={instances}
               staking={staking}
               withdrawal={withdrawal}
               reward={reward}
             />
           ) : DGState === 'mining' ? (
-            <ContentMining
-              price={price}
-              formatPrice={formatPrice}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
+            <ContentMining price={price} formatPrice={formatPrice} />
           ) : DGState === 'balancer' ? (
             <ContentBalancer
               price={price}
               formatPrice={formatPrice}
               instances={instances}
-              stakingContract={stakingContract}
-              stakingContract2={stakingContract2}
+              stakingContractPool1={stakingContractPool1}
+              stakingContractPool2={stakingContractPool2}
               staking={staking}
               withdrawal={withdrawal}
               reward={reward}
@@ -425,10 +438,13 @@ const Farming = (props) => {
               price={price}
               formatPrice={formatPrice}
               staking={staking}
+              withdrawal={withdrawal}
               reward={reward}
             />
-          ) : DGState === 'token' ? (
-            <ContentToken price={price} formatPrice={formatPrice} />
+          ) : DGState === 'airdrop' ? (
+            <ContentAirdrop price={price} formatPrice={formatPrice} />
+          ) : DGState === 'admin' ? (
+            contentAdmin()
           ) : null}
         </div>
       </div>

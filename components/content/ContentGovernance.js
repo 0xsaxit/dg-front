@@ -17,6 +17,7 @@ const ContentGovernance = (props) => {
   const [percentGovernanceStaked, setPercentGovernanceStaked] = useState(0);
   const [percentGovernanceContract, setPercentGovernanceContract] = useState(0);
   const [APYGovernance, setAPYGovernance] = useState(0);
+  const [priceUSD, setPriceUSD] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [instances, setInstances] = useState(false);
 
@@ -94,114 +95,18 @@ const ContentGovernance = (props) => {
     }
   }, [instances, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // stake, withdraw, and get rewards from governance contract
-  // async function stakingGovernance(amount) {
-  //   console.log('Call stake() function to stake governance tokens');
+  useEffect(() => {
+    if (props.price && state.DGBalances.BALANCE_STAKING_GOVERNANCE) {
+      const priceUSD = Number(
+        props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE
+      );
+      const priceUSDAdjusted = priceUSD
+        .toFixed(2)
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  //   const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-  //   const amountToString = web3.utils.toWei(amount);
-  //   console.log('Stake amount: ' + amountToString);
-
-  //   try {
-  //     console.log(
-  //       'Get amount user has authorized governance staking contract to spend'
-  //     );
-
-  //     const amountAllowance = await Transactions.getAllowance(
-  //       userAddress,
-  //       Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS
-  //     );
-
-  //     console.log('Authorized amount: ' + amountAllowance);
-
-  //     if (Number(amountAllowance) < amountAdjusted) {
-  //       console.log(
-  //         "Approve governance staking contract to spend user's tokens"
-  //       );
-
-  //       const data = await Transactions.approveContract(
-  //         DGContract,
-  //         Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
-  //         Global.CONSTANTS.MAX_AMOUNT,
-  //         userAddress
-  //       );
-
-  //       console.log('approve() transaction confirmed: ' + data.transactionHash);
-  //     }
-
-  //     console.log('Stake the tokens');
-
-  //     const data = await Transactions.stakeTokens(
-  //       stakeContractGovernance,
-  //       amountToString,
-  //       userAddress
-  //     );
-
-  //     console.log('stake() transaction completed: ' + data.transactionHash);
-
-  //     // update global state BPT balances
-  //     const refresh = !state.refreshBalances;
-
-  //     dispatch({
-  //       type: 'refresh_balances',
-  //       data: refresh,
-  //     });
-  //   } catch (error) {
-  //     console.log('Staking governance tokens error: ' + error);
-  //   }
-  // }
-
-  // async function withdrawGovernance(amount) {
-  //   console.log('Call withdraw() function to unstake governance tokens');
-
-  //   const amountToString = web3.utils.toWei(amount);
-  //   console.log('Withdraw amount: ' + amountToString);
-
-  //   try {
-  //     const data = await Transactions.withdrawTokens(
-  //       stakeContractGovernance,
-  //       amountToString,
-  //       userAddress
-  //     );
-
-  //     console.log('withdraw() transaction completed: ' + data.transactionHash);
-
-  //     // update global state BPT balances
-  //     const refresh = !state.refreshBalances;
-
-  //     dispatch({
-  //       type: 'refresh_balances',
-  //       data: refresh,
-  //     });
-  //   } catch (error) {
-  //     console.log('Unstake governance tokens error: ' + error);
-  //   }
-  // }
-
-  // async function getRewardGovernance() {
-  //   console.log('Call getReward() function to claim DG tokens');
-
-  //   try {
-  //     const data = await Transactions.getReward(
-  //       stakeContractGovernance,
-  //       userAddress
-  //     );
-
-  //     console.log('getReward() transaction completed: ' + data.transactionHash);
-
-  //     // update global state unclaimed DG balance
-  //     const refresh = !state.refreshBalances;
-
-  //     dispatch({
-  //       type: 'refresh_balances',
-  //       data: refresh,
-  //     });
-  //   } catch (error) {
-  //     console.log('getReward() transaction error: ' + error);
-  //   }
-  // }
+      setPriceUSD(priceUSDAdjusted);
+    }
+  }, [props.price, state.DGBalances.BALANCE_STAKING_GOVERNANCE]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -209,15 +114,6 @@ const ContentGovernance = (props) => {
     console.log('New amount: ' + e.target.value);
 
     setAmountInput(e.target.value);
-  }
-
-  function getPriceUSD(balanceDG, units) {
-    const balance = Number(props.price * balanceDG);
-    const balanceAdjusted = balance
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-    return balanceAdjusted;
   }
 
   function contentGovernance() {
@@ -235,13 +131,15 @@ const ContentGovernance = (props) => {
                 <a
                   href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
                   style={{ color: '#2085f4' }}
+                  target="_blank"
                 >
-                  announcement
+                  announcement{' '}
                 </a>
                 and get $DG{' '}
                 <a
                   href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                   style={{ color: '#2085f4' }}
+                  target="_blank"
                 >
                   here
                 </a>
@@ -267,7 +165,10 @@ const ContentGovernance = (props) => {
                 <p className="welcome-text">Unclaimed $DG</p>
                 {state.DGBalances.BALANCE_STAKING_GOVERNANCE ? (
                   <p className="account-name">
-                    {state.DGBalances.BALANCE_STAKING_GOVERNANCE}
+                    {props.formatPrice(
+                      state.DGBalances.BALANCE_STAKING_GOVERNANCE,
+                      3
+                    )}
                   </p>
                 ) : (
                   <Loader
@@ -297,9 +198,7 @@ const ContentGovernance = (props) => {
             >
               <p className="earned-text">Value USD</p>
               {state.DGBalances.BALANCE_STAKING_GOVERNANCE ? (
-                <p className="earned-amount">
-                  ${getPriceUSD(state.DGBalances.BALANCE_STAKING_GOVERNANCE, 2)}
-                </p>
+                <p className="earned-amount">${priceUSD}</p>
               ) : (
                 <Loader
                   active
@@ -321,7 +220,7 @@ const ContentGovernance = (props) => {
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"
-                  onClick={() => getRewardGovernance()}
+                  onClick={() => props.reward(stakeContractGovernance)}
                 >
                   CLAIM $DG
                 </Button>
@@ -471,7 +370,11 @@ const ContentGovernance = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.staking(amountInput);
+                      props.staking(
+                        Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
+                        stakeContractGovernance,
+                        amountInput
+                      );
                       setAmountInput('');
                     }}
                   >
@@ -488,7 +391,7 @@ const ContentGovernance = (props) => {
                     className="DG-stake-button"
                     id="balances-padding-correct"
                     onClick={() => {
-                      props.withdrawal(amountInput);
+                      props.withdrawal(stakeContractGovernance, amountInput);
                       setAmountInput('');
                     }}
                   >
