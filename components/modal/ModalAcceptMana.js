@@ -41,7 +41,7 @@ const ModalAcceptMana = () => {
           className="balances-authorize-button"
           id="balances-padding-correct"
         >
-          ENABLE DAI GAMEPLAY
+          ENABLE MANA GAMEPLAY
         </Button>
       }
     >
