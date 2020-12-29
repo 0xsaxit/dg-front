@@ -314,14 +314,6 @@ const Farming = (props) => {
                 <Menu.Item className="account-hover">UNI</Menu.Item>
               </Link>
             )}
-
-            {DGState === 'airdrop' ? (
-              <b className="account-hover active">AIRDROP</b>
-            ) : (
-              <Link href="/dg/airdrop">
-                <Menu.Item className="account-hover">AIRDROP</Menu.Item>
-              </Link>
-            )}
           </p>
 
           <ButtonAffiliates />

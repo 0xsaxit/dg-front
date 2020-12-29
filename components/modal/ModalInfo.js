@@ -192,42 +192,72 @@ const ModalInfo = () => {
 
       <div
         className="menu-info-container"
-        style={{ marginTop: '12px', marginBottom: '12px' }}
+        style={{ marginTop: '12px', marginBottom: '12px', paddingTop: '12px' }}
       >
-        <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">unclaimed $dg - gov</p>
-          <p className="menu-info-text">{gov_unclaimed.toFixed(3)}</p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - gameplay</p>
-          <p className="menu-info-text">
-            {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - balancer 1</p>
-          <p className="menu-info-text">
-            {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - balancer 2</p>
-          <p className="menu-info-text">
-            {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $dg - uniswap</p>
-          <p className="menu-info-text">
-            {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">unclaimed $DG - airdrop</p>
-          <p className="menu-info-text">
-            {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
-          </p>
-        </span>
+        {gov_unclaimed > 0 ? (
+          <span className="menu-info-inner-span">
+            <p className="menu-info-label">unclaimed $dg - gov</p>
+            <p className="menu-info-text">{gov_unclaimed.toFixed(3)}</p>
+          </span>
+        ) : (
+          null
+        )}
+
+        {state.DGBalances.BALANCE_MINING_DG > 0 ? (
+          <span className="menu-info-inner-span">
+            <p className="menu-info-label">unclaimed $dg - gameplay</p>
+            <p className="menu-info-text">
+              {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+            </p>
+          </span>
+        ) : (
+          null
+        )}
+
+        {state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ? (
+          <span className="menu-info-inner-span">
+            <p className="menu-info-label">unclaimed $dg - balancer 1</p>
+            <p className="menu-info-text">
+              {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
+            </p>
+          </span>
+        ) : (
+          null
+        )}
+
+        {state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ? (
+          <span className="menu-info-inner-span">
+            <p className="menu-info-label">unclaimed $dg - balancer 2</p>
+            <p className="menu-info-text">
+              {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
+            </p>
+          </span>
+        ) : (
+          null
+        )}
+
+        {state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ? (
+          <span className="menu-info-inner-span">
+            <p className="menu-info-label">unclaimed $dg - uniswap</p>
+            <p className="menu-info-text">
+              {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
+            </p>
+          </span>
+        ) : (
+          null
+        )}
+
+        {state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
+          <span className="menu-info-inner-span">
+            <p className="menu-info-label">unclaimed $DG - airdrop</p>
+            <p className="menu-info-text">
+              {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+            </p>
+          </span>
+        ) : (
+          null
+        )}
+        
       </div>
 
       <div className="menu-info-container" style={{ marginBottom: '30px' }}>
