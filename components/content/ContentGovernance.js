@@ -6,6 +6,7 @@ import Transactions from '../../common/Transactions';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
+import Global from '../Constants';
 
 const ContentGovernance = (props) => {
   // get user's unclaimed DG balance from the Context API store
@@ -19,6 +20,7 @@ const ContentGovernance = (props) => {
   const [APYGovernance, setAPYGovernance] = useState(0);
   const [priceUSD, setPriceUSD] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
+  const [DGTokenContract, setDGTokenContract] = useState({});
   const [instances, setInstances] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +34,9 @@ const ContentGovernance = (props) => {
           web3
         );
         setStakeContractGovernance(stakeContractGovernance);
+
+        const DGTokenContract = await Transactions.DGTokenContract(web3);
+        setDGTokenContract(DGTokenContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -79,7 +84,7 @@ const ContentGovernance = (props) => {
   useEffect(() => {
     if (instances) {
       (async () => {
-        const stakedTotal = Transactions.getTotalSupply(
+        const stakedTotal = await Transactions.getTotalSupply(
           stakeContractGovernance
         );
 
@@ -111,8 +116,6 @@ const ContentGovernance = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(e) {
-    console.log('New amount: ' + e.target.value);
-
     setAmountInput(e.target.value);
   }
 
@@ -350,7 +353,7 @@ const ContentGovernance = (props) => {
                     setAmountInput(state.DGBalances.BALANCE_ROOT_DG)
                   }
                 >
-                  {state.DGBalances.BALANCE_ROOT_DG} DG
+                  {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
                 </p>
                 <p
                   className="bpt-text"
@@ -360,7 +363,11 @@ const ContentGovernance = (props) => {
                     )
                   }
                 >
-                  {state.stakingBalances.BALANCE_USER_GOVERNANCE} DG STAKED
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                    3
+                  )}{' '}
+                  DG STAKED
                 </p>
               </span>
 
@@ -371,6 +378,7 @@ const ContentGovernance = (props) => {
                     id="balances-padding-correct"
                     onClick={() => {
                       props.staking(
+                        DGTokenContract,
                         Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
                         stakeContractGovernance,
                         amountInput

@@ -118,7 +118,7 @@ function ActiveStatus() {
 
   // post reauthorization to database
   function postAuthorization(txHash) {
-    console.log('Posting reauthorization transaction to db');
+    // console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
       userAddress,

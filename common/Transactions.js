@@ -1,6 +1,7 @@
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
+import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
 import ABI_DG_KEEPER from '../components/ABI/ABIDGKeeper';
 import Global from '../components/Constants';
@@ -17,7 +18,7 @@ async function treasuryContract(web3Default) {
 
 // get user's active status (true or false) from smart contract
 async function getActiveStatus(userAddress, web3Default) {
-  console.log("Get user's active status from smart contract");
+  // console.log("Get user's active status from smart contract");
 
   const parentContract = await treasuryContract(web3Default);
 
@@ -42,6 +43,16 @@ async function pointerContract(web3Default) {
   return DGPointerContract;
 }
 
+// set DG main contract instance
+async function DGTokenContract(web3Default) {
+  const DGToken = new web3Default.eth.Contract(
+    ABI_DG_TOKEN,
+    Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG
+  );
+
+  return DGToken;
+}
+
 // set DG staking governance contract instance
 async function stakingContractGovernance(web3Default) {
   const DGStakingGovernance = new web3Default.eth.Contract(
@@ -56,7 +67,7 @@ async function stakingContractGovernance(web3Default) {
 async function stakingContractPool1(web3Default) {
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    Global.ADDRESSES.DG_STAKING_CONTRACT_ADDRESS
+    Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1
   );
 
   return DGStakingContract;
@@ -66,7 +77,7 @@ async function stakingContractPool1(web3Default) {
 async function stakingContractPool2(web3Default) {
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    Global.ADDRESSES.DG_STAKING_CONTRACT_ADDRESS_2
+    Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2
   );
 
   return DGStakingContract;
@@ -76,7 +87,7 @@ async function stakingContractPool2(web3Default) {
 async function stakingContractUniswap(web3Default) {
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    Global.ADDRESSES.DG_STAKING_CONTRACT_ADDRESS_3
+    Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS
   );
 
   return DGStakingContract;
@@ -172,6 +183,7 @@ export default {
   treasuryContract,
   getActiveStatus,
   pointerContract,
+  DGTokenContract,
   stakingContractGovernance,
   stakingContractPool1,
   stakingContractPool2,

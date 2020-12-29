@@ -1,8 +1,10 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
+import Web3 from 'web3';
 import { Button, Divider, Loader } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
+import Transactions from '../../common/Transactions';
 
 const ContentAirdrop = (props) => {
   // get user's status from the Context API store
@@ -10,9 +12,28 @@ const ContentAirdrop = (props) => {
 
   // define local variables
   const [tokenUSD, setTokenUSD] = useState(0);
+  const [keeperContract, setKeeperContract] = useState(0);
+  const [userAddress, setUserAddress] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      const userAddress = window.web3.currentProvider.selectedAddress;
+      setUserAddress(userAddress);
+
+      // initialize Web3 provider and create contract instance
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+      async function fetchData() {
+        const keeperContract = await Transactions.keeperContract(web3);
+        setKeeperContract(keeperContract);
+      }
+
+      fetchData();
+    }
+  }, [state.userStatus]);
+
   useEffect(() => {
     if (props.price && state.DGBalances.BALANCE_KEEPER_DG) {
       const tokenUSD = Number(props.price * state.DGBalances.BALANCE_KEEPER_DG);

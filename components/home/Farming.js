@@ -108,7 +108,14 @@ const Farming = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // stake, withdraw, and get reward from staking contracts
-  async function staking(tokenContract, stakingContract, amount) {
+  async function staking(
+    tokenContract,
+    contractAddress,
+    stakingContract,
+    amount
+  ) {
+    console.log('Call stake() function to stake tokens');
+
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const amountToString = web3.utils.toWei(amount);
     console.log('Staking amount input: ' + amountToString);
@@ -119,7 +126,7 @@ const Farming = (props) => {
       );
 
       const amountAllowance = await tokenContract.methods
-        .allowance(userAddress, addresses.DG_STAKING_CONTRACT_ADDRESS_2)
+        .allowance(userAddress, contractAddress)
         .call();
 
       console.log('Authorized amount: ' + amountAllowance);
@@ -128,10 +135,7 @@ const Farming = (props) => {
         console.log("Approve staking contract to spend user's tokens");
 
         const data = await tokenContract.methods
-          .approve(
-            addresses.DG_STAKING_CONTRACT_ADDRESS_2,
-            Global.CONSTANTS.MAX_AMOUNT
-          )
+          .approve(contractAddress, Global.CONSTANTS.MAX_AMOUNT)
           .send({ from: userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);
@@ -158,7 +162,7 @@ const Farming = (props) => {
   }
 
   async function withdrawal(stakingContract, amount) {
-    console.log('Call withdraw() function to unstake BP tokens');
+    console.log('Call withdraw() function to unstake tokens');
 
     const amountToString = web3.utils.toWei(amount);
     console.log('Withdraw amount input: ' + amountToString);
@@ -183,7 +187,7 @@ const Farming = (props) => {
   }
 
   async function reward(stakingContract) {
-    console.log('Call getReward() function to claim DG tokens');
+    console.log('Call getReward() function to claim tokens');
 
     try {
       const data = await stakingContract.methods
@@ -318,8 +322,6 @@ const Farming = (props) => {
   }
 
   function handleChange(e) {
-    console.log('New amount: ' + e.target.value);
-
     setAmountInput(e.target.value);
   }
 

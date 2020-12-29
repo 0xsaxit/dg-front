@@ -22,20 +22,11 @@ const ContentMining = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    if (props.price && state.DGBalances.BALANCE_MINING_DG) {
-      const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG;
-      const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
-
-      setGameplayUSD(gameplayUSDFormatted);
-    }
-  }, [props.price, state.DGBalances.BALANCE_MINING_DG]);
-
-  useEffect(() => {
     if (state.userStatus >= 4) {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 
-      // initialize Web3 providers and create contract instances
+      // initialize Web3 providers and create contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
@@ -63,6 +54,15 @@ const ContentMining = (props) => {
         });
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    if (props.price && state.DGBalances.BALANCE_MINING_DG) {
+      const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG;
+      const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
+
+      setGameplayUSD(gameplayUSDFormatted);
+    }
+  }, [props.price, state.DGBalances.BALANCE_MINING_DG]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

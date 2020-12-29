@@ -336,7 +336,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get mainchain DG balance
   async function getDGMainchain() {
-    console.log('Get Mainchain DG balance');
+    // console.log('Get Mainchain DG balance');
 
     try {
       // const amount = await DG_BPT.methods.balanceOf(userAddress).call();
@@ -354,7 +354,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get matic DG balance
   async function getDGMatic() {
-    console.log('Get Matic DG balance');
+    // console.log('Get Matic DG balance');
 
     try {
       const amount = await DG_MATIC_CONTRACT.methods
@@ -375,7 +375,7 @@ function DGBalances() {
   // if things go south, check this address being passed in
   // sorry for the confusing function names (this is pool 1!)
   async function getDGBalancer_2() {
-    console.log('Get DG locked in Balancer pool 1');
+    // console.log('Get DG locked in Balancer pool 1');
 
     try {
       const amount = await DG_BPT_2.methods
@@ -394,7 +394,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get MANA locked in balancer pool 2
   async function getMANABalancer() {
-    console.log('Get MANA locked in Balancer pool 1');
+    // console.log('Get MANA locked in Balancer pool 1');
 
     try {
       const amount = await MANA_BPT.methods
@@ -413,7 +413,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in balancer pool
   async function getDGBalancer() {
-    console.log('Get DG locked in Balancer pool 2');
+    // console.log('Get DG locked in Balancer pool 2');
 
     try {
       const amount = await DG_BPT.methods
@@ -432,7 +432,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DAI locked in balancer pool
   async function getDAIBalancer() {
-    console.log('Get DAI locked in Balancer pool 2');
+    // console.log('Get DAI locked in Balancer pool 2');
 
     try {
       const amount = await DAI_BPT.methods
@@ -451,7 +451,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DG locked in uniswap
   async function getDGUniswap() {
-    console.log('Get DG locked in uniswap');
+    // console.log('Get DG locked in uniswap');
 
     try {
       const amount = await DG_BPT.methods
@@ -470,7 +470,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get DAI locked in balancer pool
   async function getETHUniswap() {
-    console.log('Get ETH locked in Uniswap');
+    // console.log('Get ETH locked in Uniswap');
 
     try {
       const amount = await ETH_UNI.methods
@@ -489,7 +489,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG points balance from smart contract for gameplay mining
   async function getDGBalanceGameplay() {
-    console.log("Get user's DG points balance from smart contract");
+    // console.log("Get user's DG points balance from smart contract");
 
     try {
       const amount = await pointerContract.methods
@@ -508,9 +508,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG unclaimed balance from smart contract for liquidity farming for pool 1
   async function getDGBalanceStakingBalancer1() {
-    console.log(
-      "Get user's DG staking balance from balancer contract (pool 1)"
-    );
+    // console.log("Get user's DG staking balance from balancer pool 1");
 
     try {
       // const amount = await stakingContract.methods.earned(userAddress).call();
@@ -534,9 +532,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG unclaimed balance from smart contract for liquidity farming for pool 2
   async function getDGBalanceStakingBalancer2() {
-    console.log(
-      "Get user's DG staking balance from balancer contract (pool 2)"
-    );
+    // console.log("Get user's DG staking balance from balancer pool 2");
 
     try {
       // const amount = await stakingContractTwo.methods
@@ -560,7 +556,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG unclaimed balance from smart contract for governance
   async function getDGBalanceStakingGovernace() {
-    console.log("Get user's DG staking balance from governance smart contract");
+    // console.log("Get user's DG staking balance from governance smart contract");
 
     try {
       // const amount = await stakingContractGovernance.methods
@@ -584,7 +580,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG unclaimed balance from smart contract for uni
   async function getDGBalanceStakingUniswap() {
-    console.log("Get user's DG staking balance from Uniswap contract");
+    // console.log("Get user's DG staking balance from Uniswap contract");
 
     try {
       // const amount = await stakingContractThree.methods
@@ -608,7 +604,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's DG unclaimed balance from smart contract for keeping funds
   async function getDGBalanceKeeper() {
-    console.log("Get user's DG keeper balance from smart contract");
+    // console.log("Get user's DG keeper balance from smart contract");
 
     try {
       const amount = await keeperContract.methods
@@ -642,31 +638,31 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user's total staking contract & wallet DG balance
   async function getTokensStaking() {
-    console.log('Get staking DG, BPT, UNI');
+    // console.log('Get staking DG, BPT, UNI');
 
     try {
       // POOL 1
       const BALANCE_CONTRACT_BPT_1 = await Transactions.balanceOfToken(
         BPT_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS,
+        addresses.DG_STAKING_BALANCER_ADDRESS_1,
         4
       );
 
       const BALANCE_CONTRACT_BPT_2 = await Transactions.balanceOfToken(
         BPT_CONTRACT_2,
-        addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+        addresses.DG_STAKING_BALANCER_ADDRESS_2,
         4
       );
 
       const BALANCE_CONTRACT_DG_1 = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS,
+        addresses.DG_STAKING_BALANCER_ADDRESS_1,
         4
       );
 
       const BALANCE_CONTRACT_DG_2 = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS_2,
+        addresses.DG_STAKING_BALANCER_ADDRESS_2,
         4
       );
 
@@ -709,13 +705,13 @@ function DGBalances() {
       // UNI
       const BALANCE_CONTRACT_UNISWAP = await Transactions.balanceOfToken(
         UNI_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS_3,
+        addresses.DG_STAKING_UNISWAP_ADDRESS,
         4
       );
 
       const BALANCE_CONTRACT_DG_UNISWAP = await Transactions.balanceOfToken(
         DG_TOKEN_CONTRACT,
-        addresses.DG_STAKING_CONTRACT_ADDRESS_3,
+        addresses.DG_STAKING_UNISWAP_ADDRESS,
         4
       );
 

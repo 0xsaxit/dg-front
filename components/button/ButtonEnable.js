@@ -69,7 +69,7 @@ function ButtonEnable() {
     });
 
     // post reauthorization to database
-    console.log('Posting reauthorization transaction to db');
+    // console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
       userAddress,

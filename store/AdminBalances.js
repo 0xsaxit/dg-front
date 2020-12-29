@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-// import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -48,7 +47,7 @@ function AdminBalances() {
 
   // get worker address ETH balance on Matic Network
   async function getEthBalance() {
-    console.log('Worker address ETH balance on Matic Network');
+    // console.log('Worker address ETH balance on Matic Network');
 
     try {
       const amount = await maticWeb3.eth.getBalance(workerAddress);
@@ -151,12 +150,7 @@ function AdminBalances() {
   }
 
   async function getTokensGame(gameIndex, tokenIndex) {
-    console.log('Get tokens per game');
-
-    // const parentContract = new maticWeb3.eth.Contract(
-    //   ABI_TREASURY_CONTRACT,
-    //   contractAddress
-    // );
+    // console.log('Get tokens per game');
     const parentContract = await Transactions.treasuryContract(maticWeb3);
 
     try {

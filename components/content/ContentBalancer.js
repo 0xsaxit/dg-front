@@ -478,7 +478,11 @@ const ContentBalancer = (props) => {
                     )
                   }
                 >
-                  {state.stakingBalances.BALANCE_WALLET_BPT_1} BPT
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_WALLET_BPT_1,
+                    3
+                  )}{' '}
+                  BPT
                 </p>
                 <p
                   className="bpt-text"
@@ -488,7 +492,11 @@ const ContentBalancer = (props) => {
                     )
                   }
                 >
-                  {state.stakingBalances.BALANCE_STAKED_BPT_1} BPT staked
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_STAKED_BPT_1,
+                    3
+                  )}{' '}
+                  BPT staked
                 </p>
               </span>
 
@@ -500,6 +508,7 @@ const ContentBalancer = (props) => {
                     onClick={() => {
                       props.staking(
                         BPTContract1,
+                        Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1,
                         props.stakingContractPool1,
                         amountInputMANA
                       );
@@ -655,7 +664,11 @@ const ContentBalancer = (props) => {
                     )
                   }
                 >
-                  {state.stakingBalances.BALANCE_WALLET_BPT_2} BPT
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_WALLET_BPT_2,
+                    3
+                  )}{' '}
+                  BPT
                 </p>
                 <p
                   className="bpt-text"
@@ -665,7 +678,11 @@ const ContentBalancer = (props) => {
                     )
                   }
                 >
-                  {state.stakingBalances.BALANCE_STAKED_BPT_2} BPT staked
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_STAKED_BPT_2,
+                    3
+                  )}{' '}
+                  BPT staked
                 </p>
               </span>
 
@@ -677,6 +694,7 @@ const ContentBalancer = (props) => {
                     onClick={() => {
                       props.staking(
                         BPTContract2,
+                        Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2,
                         props.stakingContractPool2,
                         amountInputDAI
                       );

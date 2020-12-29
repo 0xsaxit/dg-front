@@ -121,8 +121,6 @@ const ContentUniswap = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(e) {
-    console.log('New amount: ' + e.target.value);
-
     setAmountInput(e.target.value);
   }
 
@@ -349,7 +347,11 @@ const ContentUniswap = (props) => {
                     setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)
                   }
                 >
-                  {state.stakingBalances.BALANCE_WALLET_UNISWAP} UNI-V2
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_WALLET_UNISWAP,
+                    3
+                  )}{' '}
+                  UNI-V2
                 </p>
                 <p
                   className="bpt-text"
@@ -357,7 +359,11 @@ const ContentUniswap = (props) => {
                     setAmountInput(state.stakingBalances.BALANCE_STAKED_UNISWAP)
                   }
                 >
-                  {state.stakingBalances.BALANCE_STAKED_UNISWAP} UNI-V2 staked
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_STAKED_UNISWAP,
+                    3
+                  )}{' '}
+                  UNI-V2 staked
                 </p>
               </span>
 
@@ -369,6 +375,7 @@ const ContentUniswap = (props) => {
                     onClick={() => {
                       props.staking(
                         uniswapContract,
+                        Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
                         stakingContractUniswap,
                         amountInput
                       );
