@@ -11,6 +11,7 @@ const Chateau = () => {
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
   const [isLoading, setLoading] = useState(true);
+  const [utm, setUtm] = useState('');
 
   const realm = 'fenrir-amber';
 
@@ -23,13 +24,22 @@ const Chateau = () => {
 
   useEffect(() => {
     if (window) {
-      if (window.innerWidth < 500) {
-        setVideoPlay(false);
-      } else {
+      if (window.innerWidth > 499) {
         setVideoPlay(true);
+      } else {
+        setVideoPlay(false);
       }
     }
-  }, []);
+  }, [setVideoPlay]);
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.length > 23) {
+      setUtm(url.substring(23));
+    } else {
+      setUtm('');
+    }
+  }, [utm]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +79,7 @@ const Chateau = () => {
                 <Button
                   color="blue"
                   className="play-button"
-                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
+                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
                   target="_blank"
                 >
                   PLAY NOW
