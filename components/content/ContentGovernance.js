@@ -25,6 +25,23 @@ const ContentGovernance = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
+  // fetch number of proposals
+
+  function length(obj) {
+    return Object.keys(obj).length;
+  }
+
+  useEffect(() => {
+    (async function () {
+      let response_1 = await Fetch.PROPOSALS();
+      let json_1 = await response_1.json();
+      console.log('1!!!');
+      console.log(length(json_1));
+    })();
+  }, []);
+
+
   useEffect(() => {
     if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
