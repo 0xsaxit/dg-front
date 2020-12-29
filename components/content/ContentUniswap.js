@@ -6,6 +6,7 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Transactions from '../../common/Transactions';
+import Global from '../Constants';
 
 const ContentUniswap = (props) => {
   // get user's status from the Context API store

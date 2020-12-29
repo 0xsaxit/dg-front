@@ -5,6 +5,7 @@ import { Button, Divider, Loader, Icon, Input } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Transactions from '../../common/Transactions';
+import Global from '../Constants';
 
 const ContentBalancer = (props) => {
   // get user's status from the Context API store
