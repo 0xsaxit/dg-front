@@ -18,8 +18,6 @@ async function treasuryContract(web3Default) {
 
 // get user's active status (true or false) from smart contract
 async function getActiveStatus(userAddress, web3Default) {
-  // console.log("Get user's active status from smart contract");
-
   const parentContract = await treasuryContract(web3Default);
 
   try {
@@ -97,7 +95,7 @@ async function stakingContractUniswap(web3Default) {
 async function BPTContract1(web3Default) {
   const BPTokenContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
-    Global.ADDRESSES.BP_TOKEN_ADDRESS
+    Global.ADDRESSES.BP_TOKEN_ADDRESS_1
   );
 
   return BPTokenContract;
@@ -117,7 +115,7 @@ async function BPTContract2(web3Default) {
 async function uniswapContract(web3Default) {
   const UNIContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
-    Global.ADDRESSES.UNI_TOKEN_ADDRESS
+    Global.ADDRESSES.TOKEN_ADDRESS_UNISWAP
   );
 
   return UNIContract;

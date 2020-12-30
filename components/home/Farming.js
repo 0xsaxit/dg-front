@@ -69,10 +69,7 @@ const Farming = (props) => {
 
       setPrice(price);
     }
-  }, [
-    state.DGBalances.BALANCE_STAKING_UNISWAP,
-    state.DGBalances.BALANCE_BP_DG_1,
-  ]);
+  }, [state.DGBalances.BALANCE_BP_DAI, state.DGBalances.BALANCE_BP_DG_1]);
 
   // get initial reward and timestamp values
   useEffect(() => {
