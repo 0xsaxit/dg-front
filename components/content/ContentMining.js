@@ -43,6 +43,7 @@ const ContentMining = (props) => {
         const pointerContract = await Transactions.pointerContract(getWeb3);
         setPointerContract(pointerContract);
       }
+
       fetchData();
 
       biconomy

@@ -18,12 +18,7 @@ function ActiveStatus() {
   const [maticWeb3, setMaticWeb3] = useState({});
   const [biconomyReady, setBiconomyReady] = useState(false);
 
-  // let getWeb3 = {};
-  // let userAddress = '';
   let parentContract = {};
-
-  // let web3 = {};
-  // let maticWeb3 = {};
 
   let activeStatus = true;
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
@@ -52,38 +47,10 @@ function ActiveStatus() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
       setGetWeb3(getWeb3);
 
-      // (async function () {
-      //   parentContract = await Transactions.treasuryContract(getWeb3);
-
-      //   activeStatus = await Transactions.getActiveStatus(
-      //     userAddress,
-      //     maticWeb3
-      //   );
-      //   console.log('Active status: ' + activeStatus);
-      //   dispatchActiveStatus(activeStatus);
-
-      //   // if (!activeStatus) metaTransaction(); // MetaMask popup window
-      // })();
-
       biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Active Status');
-
-          // if (!activeStatus) metaTransaction(); // MetaMask popup window
           setBiconomyReady(true);
-
-          // (async function () {
-          //   parentContract = await Transactions.treasuryContract(getWeb3);
-
-          //   activeStatus = await Transactions.getActiveStatus(
-          //     userAddress,
-          //     maticWeb3
-          //   );
-          //   console.log('Active status: ' + activeStatus);
-          //   dispatchActiveStatus(activeStatus);
-
-          //   if (!activeStatus) metaTransaction(); // MetaMask popup window
-          // })();
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);

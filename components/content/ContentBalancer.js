@@ -71,7 +71,7 @@ const ContentBalancer = (props) => {
   useEffect(() => {
     if (props.price && state.stakingBalances.BALANCE_CONTRACT_BPT_1) {
       const numeratorMANA =
-        51 * 2400 * props.price * state.DGBalances.SUPPLY_BTP_1;
+        51 * 2400 * props.price * state.DGBalances.SUPPLY_BPT_1;
       const totalLockedMANA =
         state.DGBalances.BALANCE_BP_DG_1 * props.price +
         Number(state.DGBalances.TOTAL_MANA);
@@ -93,7 +93,7 @@ const ContentBalancer = (props) => {
   useEffect(() => {
     if (props.price && state.stakingBalances.BALANCE_CONTRACT_BPT_2) {
       const numeratorDAI =
-        51 * 2400 * props.price * state.DGBalances.SUPPLY_BTP_2;
+        51 * 2400 * props.price * state.DGBalances.SUPPLY_BPT_2;
       const totalLockedDAI =
         state.DGBalances.BALANCE_BP_DG_2 * props.price +
         Number(state.DGBalances.BALANCE_BP_DAI);

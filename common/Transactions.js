@@ -115,7 +115,7 @@ async function BPTContract2(web3Default) {
 async function uniswapContract(web3Default) {
   const UNIContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
-    Global.ADDRESSES.TOKEN_ADDRESS_UNISWAP
+    Global.ADDRESSES.UNISWAP_ADDRESS_STAKING
   );
 
   return UNIContract;

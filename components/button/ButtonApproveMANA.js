@@ -9,14 +9,6 @@ import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
 
-// let spenderAddress = '';
-
-// async function getAddresses() {
-//   const addresses = await Global.ADDRESSES;
-//   spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-// }
-// getAddresses();
-
 function ButtonApproveMANA() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -27,9 +19,6 @@ function ButtonApproveMANA() {
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [value, setValue] = useState(0);
-
-  // let spenderAddress = '';
-  // let value = 0;
 
   // if the user has also authorized DAI set status value to 8, otherwise 7
   useEffect(() => {
@@ -60,23 +49,23 @@ function ButtonApproveMANA() {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      (async function () {
-        const addresses = await Global.ADDRESSES;
+      // (async function () {
+      //   const addresses = await Global.ADDRESSES;
 
-        const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-        setSpenderAddress(spenderAddress);
+      const spenderAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
+      setSpenderAddress(spenderAddress);
 
-        const tokenContract = new getWeb3.eth.Contract(
-          ABI_CHILD_TOKEN_MANA,
-          addresses.CHILD_TOKEN_ADDRESS_MANA
-        );
+      const tokenContract = new getWeb3.eth.Contract(
+        ABI_CHILD_TOKEN_MANA,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+      );
 
-        setTokenContract(tokenContract);
-      })();
+      setTokenContract(tokenContract);
+      // })();
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Active Status');
+          console.log('Mexa is Ready: Approve MANA');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);

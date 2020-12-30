@@ -17,13 +17,14 @@ function ButtonReward(props) {
       const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
       setUserAddress(userAddress);
 
-      async function fetchData() {
-        const addresses = await Global.ADDRESSES;
+      // async function fetchData() {
+      //   const addresses = await Global.ADDRESSES;
 
-        const ownerAddress = addresses.OWNER_WALLET_ADDRESS.toUpperCase();
-        if (userAddress === ownerAddress) setDisabled(false);
-      }
-      fetchData();
+      const ownerAddress = Global.ADDRESSES.OWNER_WALLET_ADDRESS.toUpperCase();
+      if (userAddress === ownerAddress) setDisabled(false);
+      // }
+
+      // fetchData();
     }
   }, [state.userStatus]);
 

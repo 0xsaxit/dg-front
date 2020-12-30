@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
-// import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 
@@ -14,9 +13,6 @@ function ButtonPause(props) {
   const [pauseContract, setPauseContract] = useState('');
   const [web3, setWeb3] = useState({});
 
-  // let web3 = {};
-  // let contractAddress = {};
-
   useEffect(() => {
     setIsPaused(props.isPaused);
   }, [props.isPaused]);
@@ -27,9 +23,6 @@ function ButtonPause(props) {
       setWeb3(web3);
 
       (async function () {
-        // const addresses = await Global.ADDRESSES;
-        // contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-
         if (!isPaused) {
           if (pauseContract === 'pause') {
             const txHash = await pauseUnpause(true);
@@ -60,9 +53,6 @@ function ButtonPause(props) {
       }
 
       try {
-        // const parentContract = web3Default.eth
-        //   .contract(ABI_TREASURY_CONTRACT)
-        //   .at(contractAddress);
         const parentContract = await Transactions.treasuryContract(web3);
 
         if (toggle) {

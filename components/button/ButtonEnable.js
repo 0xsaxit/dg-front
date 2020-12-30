@@ -53,7 +53,7 @@ function ButtonEnable() {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Active Status');
+          console.log('Mexa is Ready: Active Status Enable');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
