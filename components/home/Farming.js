@@ -38,7 +38,7 @@ const Farming = (props) => {
       const userAddress = window.web3.currentProvider.selectedAddress;
       setUserAddress(userAddress);
 
-      // initialize Web3 providers and create contract instances
+      // initialize Web3 provider and create contract instances
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
@@ -95,11 +95,11 @@ const Farming = (props) => {
   }, [instances]);
 
   function formatPrice(balanceDG, units) {
-    const balanceAdjusted = Number(balanceDG)
+    const priceFormatted = Number(balanceDG)
       .toFixed(units)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    return balanceAdjusted;
+    return priceFormatted;
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ const Farming = (props) => {
     console.log('Call stake() function to stake tokens');
 
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (14 || -1) + '})?');
+    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (13 || -1) + '})?');
     const truncated = amount.toString().match(re)[0];
     const amountToString = web3.utils.toWei(truncated);
 
@@ -150,7 +150,7 @@ const Farming = (props) => {
 
       console.log('stake() transaction completed: ' + data.transactionHash);
 
-      // update global state BPT balances
+      // update global state staking balances
       const refresh = !state.refreshBalances;
 
       dispatch({
@@ -166,7 +166,7 @@ const Farming = (props) => {
     console.log('Call withdraw() function to unstake tokens');
 
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (14 || -1) + '})?');
+    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (13 || -1) + '})?');
     const truncated = amount.toString().match(re)[0];
     const amountToString = web3.utils.toWei(truncated);
 
@@ -180,7 +180,7 @@ const Farming = (props) => {
 
       console.log('withdraw() transaction completed: ' + data.transactionHash);
 
-      // update global state BPT balances
+      // update global state staking balances
       const refresh = !state.refreshBalances;
 
       dispatch({
@@ -202,7 +202,7 @@ const Farming = (props) => {
 
       console.log('getReward() transaction completed: ' + data.transactionHash);
 
-      // update global state unclaimed DG balance
+      // update global state staking balances
       const refresh = !state.refreshBalances;
 
       dispatch({
