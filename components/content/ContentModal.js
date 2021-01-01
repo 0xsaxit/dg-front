@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
+import Web3 from 'web3';
 import { Form, Input } from 'semantic-ui-react';
-// import ABI_TREASURY_CONTRACT from '../ABI/ABITreasury';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Transactions from '../../common/Transactions';
@@ -65,8 +65,6 @@ const ContentModal = (props) => {
       console.log('Deposit start: ' + amount);
 
       try {
-        // const parentContract = await Transactions.treasuryContract(web3);
-
         parentContract.addFunds(
           gameID,
           tokenID,
@@ -107,8 +105,6 @@ const ContentModal = (props) => {
       console.log('Withdraw start: ' + amount);
 
       try {
-        // const parentContract = await Transactions.treasuryContract(web3);
-
         parentContract.withdrawGameTokens(
           gameID,
           tokenID,
