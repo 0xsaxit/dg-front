@@ -28,16 +28,6 @@ const ModalInfo = () => {
       parseFloat(state.DGBalances.BALANCE_STAKING_UNISWAP) +
       parseFloat(state.DGBalances.BALANCE_STAKING_GOVERNANCE);
 
-    // parseFloat(state.DGBalances.balanceDG1) +
-    // parseFloat(state.DGBalances.balanceDG2) +
-    // parseFloat(state.DGBalances.balanceDG3) +
-    // parseFloat(state.DGBalances.balanceDG4) +
-    // parseFloat(state.DGBalances.balance_DG_main) +
-    // parseFloat(state.DGBalances.balance_DG_matic) +
-    // parseFloat(state.stakingBalances.stakedBalanceUserGov) +
-    // parseFloat(state.DGBalances.balance_stakingUNI) +
-    // parseFloat(state.DGBalances.balance_stakingGov);
-
     const totalDGAdjusted_temp = totalDG.toFixed(0);
     const totalDGAdjusted = Number(totalDGAdjusted_temp);
 
@@ -91,13 +81,15 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {DGTotal ? (
+          {state.DGBalances.BALANCE_MINING_DG ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">
                 {DGTotal.toLocaleString()} DG{' '}
               </p>
             </Button>
-          ) : null}
+          ) : (
+            null 
+          )}
         </span>
       }
     >
@@ -147,7 +139,7 @@ const ModalInfo = () => {
         <span style={{ display: 'flex', justifyContent: 'center' }}>
           <Button
             className="get-dg-button"
-            href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+            href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
             target="_blank"
           >
             GET $DG
