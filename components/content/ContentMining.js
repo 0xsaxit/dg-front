@@ -16,16 +16,12 @@ const ContentMining = (props) => {
   // define local variables
   const [pointerContract, setPointerContract] = useState({});
   const [gameplayUSD, setGameplayUSD] = useState(0);
-  const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 providers and create contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -70,7 +66,7 @@ const ContentMining = (props) => {
   // Biconomy API meta-transaction. Dispatch DG tokens to player
   async function metaTransaction() {
     try {
-      console.log('Dispatching DG tokens to address: ' + userAddress);
+      console.log('Dispatching DG tokens to address: ' + state.userAddress);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = pointerContract.methods.getMyTokens().encodeABI();
@@ -79,7 +75,7 @@ const ContentMining = (props) => {
         2,
         functionSignature,
         pointerContract,
-        userAddress,
+        state.userAddress,
         web3
       );
 

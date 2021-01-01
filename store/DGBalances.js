@@ -29,7 +29,6 @@ function DGBalances() {
   const [MANA_BPT, setMANA_BPT] = useState({});
   const [ETH_UNI, setETH_UNI] = useState({});
   const [instances, setInstances] = useState(false);
-  const [userAddress, setUserAddress] = useState('');
 
   let interval = {};
   let currentTime = 0;
@@ -38,9 +37,6 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
@@ -208,13 +204,13 @@ function DGBalances() {
 
       const BALANCE_ROOT_DG = await Transactions.balanceOfToken(
         DGTokenContract, // was DG_BPT
-        userAddress,
+        state.userAddress,
         0
       );
 
       const BALANCE_CHILD_DG = await Transactions.balanceOfToken(
         DGMaticContract,
-        userAddress,
+        state.userAddress,
         3
       );
 
@@ -244,25 +240,25 @@ function DGBalances() {
 
       const BALANCE_STAKING_BALANCER_1 = await Transactions.balanceEarned(
         stakingContractPool1,
-        userAddress,
+        state.userAddress,
         3
       );
 
       const BALANCE_STAKING_BALANCER_2 = await Transactions.balanceEarned(
         stakingContractPool2,
-        userAddress,
+        state.userAddress,
         3
       );
 
       const BALANCE_STAKING_GOVERNANCE = await Transactions.balanceEarned(
         stakeContractGovernance,
-        userAddress,
+        state.userAddress,
         3
       );
 
       const BALANCE_STAKING_UNISWAP = await Transactions.balanceEarned(
         stakingContractUniswap,
-        userAddress,
+        state.userAddress,
         3
       );
 
@@ -315,7 +311,7 @@ function DGBalances() {
   async function getDGBalanceGameplay() {
     try {
       const amount = await pointerContract.methods
-        .pointsBalancer(userAddress)
+        .pointsBalancer(state.userAddress)
         .call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
@@ -330,7 +326,7 @@ function DGBalances() {
   async function getDGBalanceKeeper() {
     try {
       const amount = await keeperContract.methods
-        .availableBalance(userAddress)
+        .availableBalance(state.userAddress)
         .call();
       const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
 
@@ -364,25 +360,25 @@ function DGBalances() {
 
       const BALANCE_STAKED_BPT_1 = await Transactions.balanceOfToken(
         stakingContractPool1,
-        userAddress,
+        state.userAddress,
         0
       );
 
       const BALANCE_STAKED_BPT_2 = await Transactions.balanceOfToken(
         stakingContractPool2,
-        userAddress,
+        state.userAddress,
         0
       );
 
       const BALANCE_WALLET_BPT_1 = await Transactions.balanceOfToken(
         BPTContract1,
-        userAddress,
+        state.userAddress,
         0
       );
 
       const BALANCE_WALLET_BPT_2 = await Transactions.balanceOfToken(
         BPTContract2,
-        userAddress,
+        state.userAddress,
         0
       );
 
@@ -393,7 +389,7 @@ function DGBalances() {
 
       const BALANCE_USER_GOVERNANCE = await Transactions.balanceOfToken(
         stakeContractGovernance,
-        userAddress,
+        state.userAddress,
         0
       );
 
@@ -405,13 +401,13 @@ function DGBalances() {
 
       const BALANCE_STAKED_UNISWAP = await Transactions.balanceOfToken(
         stakingContractUniswap,
-        userAddress,
+        state.userAddress,
         0
       );
 
       const BALANCE_WALLET_UNISWAP = await Transactions.balanceOfToken(
         uniswapContract,
-        userAddress,
+        state.userAddress,
         0
       );
 

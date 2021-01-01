@@ -17,14 +17,8 @@ const ContentModal = (props) => {
   const [web3, setWeb3] = useState({});
   const [instances, setInstances] = useState(false);
 
-  let userAddress = '';
-  // let web3 = {};
-  // let contractAddress = {};
-
   useEffect(() => {
     if (state.userStatus >= 4) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-
       // initialize web3 provider and create treasury contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -60,19 +54,13 @@ const ContentModal = (props) => {
   async function depositFunds() {
     props.showModal(false); // close the modal
 
-    const txHash = await depositToParent(
-      props.gameTypeInt,
-      0,
-      amount,
-      userAddress,
-      web3
-    );
+    const txHash = await depositToParent(props.gameTypeInt, 0, amount);
     console.log('Tx Hash: ' + txHash);
 
     initializePings();
   }
 
-  function depositToParent(gameID, tokenID, amount, userAddress) {
+  function depositToParent(gameID, tokenID, amount) {
     return new Promise(async (resolve, reject) => {
       console.log('Deposit start: ' + amount);
 
@@ -84,7 +72,7 @@ const ContentModal = (props) => {
           tokenID,
           amount,
           {
-            from: userAddress,
+            from: state.userAddress,
             gasLimit: web3.toHex(Global.CONSTANTS.GAS_LIMIT),
             gasPrice: web3.toHex(Global.CONSTANTS.GAS_AMOUNT),
           },
@@ -108,19 +96,13 @@ const ContentModal = (props) => {
   async function withdrawFunds() {
     props.showModal(false); // close the modal
 
-    const txHash = await withdrawFromParent(
-      props.gameTypeInt,
-      0,
-      amount,
-      userAddress,
-      web3
-    );
+    const txHash = await withdrawFromParent(props.gameTypeInt, 0, amount);
     console.log('Tx Hash: ' + txHash);
 
     initializePings();
   }
 
-  function withdrawFromParent(gameID, tokenID, amount, userAddress) {
+  function withdrawFromParent(gameID, tokenID, amount) {
     return new Promise(async (resolve, reject) => {
       console.log('Withdraw start: ' + amount);
 
@@ -132,7 +114,7 @@ const ContentModal = (props) => {
           tokenID,
           amount,
           {
-            from: userAddress,
+            from: state.userAddress,
             gasLimit: web3.toHex(Global.CONSTANTS.GAS_LIMIT),
             gasPrice: web3.toHex(Global.CONSTANTS.GAS_AMOUNT),
           },

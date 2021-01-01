@@ -6,16 +6,11 @@ function UserInfo() {
   // dispatch user's information to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // define local variables
-  let userAddress = '';
-
   useEffect(() => {
     if (state.userStatus >= 4) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-
       // get user's play name, wallet address, and avatar balance
       (async function () {
-        let responseInfo = await Fetch.PLAYER_INFO(userAddress);
+        let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
         let json = await responseInfo.json();
 
         const name = json.avatarName;

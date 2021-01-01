@@ -13,15 +13,11 @@ const ContentAirdrop = (props) => {
   // define local variables
   const [tokenUSD, setTokenUSD] = useState(0);
   const [keeperContract, setKeeperContract] = useState(0);
-  const [userAddress, setUserAddress] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 provider and create contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
@@ -52,7 +48,7 @@ const ContentAirdrop = (props) => {
     try {
       const data = await keeperContract.methods
         .scrapeMyTokens()
-        .send({ from: userAddress });
+        .send({ from: state.userAddress });
 
       console.log(
         'scrapeMyTokens() transaction completed: ' + data.transactionHash

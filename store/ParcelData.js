@@ -12,13 +12,11 @@ function ParcelData() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = '';
   let landID = '3'; // hard-code to Tominoya for now
   let web3 = {};
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      userAddress = window.web3.currentProvider.selectedAddress;
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       (async function () {
@@ -28,7 +26,7 @@ function ParcelData() {
           const response = await Fetch.PARCEL_DATA(
             landID,
             tokenID,
-            userAddress
+            state.userAddress
           );
           const jsonData = await response.json();
 
@@ -39,7 +37,7 @@ function ParcelData() {
         }
 
         // get all token data for the /admin area
-        // const response = await Fetch.PARCEL_DATA(landID, '*', userAddress);
+        // const response = await Fetch.PARCEL_DATA(landID, '*', state.userAddress);
         // const jsonData = await response.json();
 
         // dispatch({
@@ -59,7 +57,7 @@ function ParcelData() {
       );
 
       const tokenID = await NFT_CONTRACT.methods
-        .tokenOfOwnerByIndex(userAddress, 0)
+        .tokenOfOwnerByIndex(state.userAddress, 0)
         .call();
 
       return tokenID;

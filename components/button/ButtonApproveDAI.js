@@ -14,7 +14,6 @@ function ButtonApproveMANA() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [userAddress, setUserAddress] = useState('');
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
@@ -33,9 +32,6 @@ function ButtonApproveMANA() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -49,9 +45,6 @@ function ButtonApproveMANA() {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      // (async function () {
-      //   const addresses = await Global.ADDRESSES;
-
       const spenderAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
       setSpenderAddress(spenderAddress);
 
@@ -61,7 +54,6 @@ function ButtonApproveMANA() {
       );
 
       setTokenContract(tokenContract);
-      // })();
 
       biconomy
         .onEvent(biconomy.READY, () => {
@@ -90,13 +82,13 @@ function ButtonApproveMANA() {
 
     // update user status in database
     console.log('Posting user status to db: ' + value);
-    Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+    Fetch.USER_VERIFY(state.userAddress, value, state.affiliateAddress);
 
     // post authorization to database
     console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
-      userAddress,
+      state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
       'Authorization',
       'Confirmed',
@@ -119,7 +111,7 @@ function ButtonApproveMANA() {
         3,
         functionSignature,
         tokenContract,
-        userAddress,
+        state.userAddress,
         web3
       );
 

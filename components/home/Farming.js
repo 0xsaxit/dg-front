@@ -22,7 +22,6 @@ const Farming = (props) => {
   const [stakingContractPool1, setStakingContractPool1] = useState({});
   const [stakingContractPool2, setStakingContractPool2] = useState({});
   const [instances, setInstances] = useState(false);
-  const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
   const [currenReward, setCurrentReward] = useState(0);
   const [finishTime, setFinishTime] = useState(0);
@@ -35,9 +34,6 @@ const Farming = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 provider and create contract instances
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -127,7 +123,7 @@ const Farming = (props) => {
       );
 
       const amountAllowance = await tokenContract.methods
-        .allowance(userAddress, contractAddress)
+        .allowance(state.userAddress, contractAddress)
         .call();
 
       console.log('Authorized amount: ' + amountAllowance);
@@ -137,7 +133,7 @@ const Farming = (props) => {
 
         const data = await tokenContract.methods
           .approve(contractAddress, Global.CONSTANTS.MAX_AMOUNT)
-          .send({ from: userAddress });
+          .send({ from: state.userAddress });
 
         console.log('approve() transaction confirmed: ' + data.transactionHash);
       }
@@ -146,7 +142,7 @@ const Farming = (props) => {
 
       const data = await stakingContract.methods
         .stake(amountToString)
-        .send({ from: userAddress });
+        .send({ from: state.userAddress });
 
       console.log('stake() transaction completed: ' + data.transactionHash);
 
@@ -176,7 +172,7 @@ const Farming = (props) => {
     try {
       const data = await stakingContract.methods
         .withdraw(amountToString)
-        .send({ from: userAddress });
+        .send({ from: state.userAddress });
 
       console.log('withdraw() transaction completed: ' + data.transactionHash);
 
@@ -198,7 +194,7 @@ const Farming = (props) => {
     try {
       const data = await stakingContract.methods
         .getReward()
-        .send({ from: userAddress });
+        .send({ from: state.userAddress });
 
       console.log('getReward() transaction completed: ' + data.transactionHash);
 

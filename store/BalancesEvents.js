@@ -9,12 +9,8 @@ const BalancesEvents = () => {
   // define local variables
   const [historyParams, setHistoryParams] = useState([]);
 
-  let userAddress = '';
-
   useEffect(() => {
     if (state.userStatus >= 4) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-
       // write transaction to database
       if (historyParams.length) updateHistory(historyParams);
     }
@@ -88,7 +84,7 @@ const BalancesEvents = () => {
 
     try {
       const response = await Fetch.POST_HISTORY(
-        userAddress,
+        state.userAddress,
         0,
         params[0],
         'Pending',

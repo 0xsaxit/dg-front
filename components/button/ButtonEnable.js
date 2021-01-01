@@ -14,7 +14,6 @@ function ButtonEnable() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [userAddress, setUserAddress] = useState('');
   const [parentContract, setParentContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [maticWeb3, setMaticWeb3] = useState({});
@@ -23,16 +22,10 @@ function ButtonEnable() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      // const maticWeb3 = new Web3(
-      //   new window.Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL)
-      // ); // pass Matic provider to maticWeb3 object
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       setMaticWeb3(maticWeb3);
@@ -72,7 +65,7 @@ function ButtonEnable() {
     // console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
-      userAddress,
+      state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
       'Reauthorization',
       'Confirmed',
@@ -95,7 +88,7 @@ function ButtonEnable() {
         1,
         functionSignature,
         parentContract,
-        userAddress,
+        state.userAddress,
         web3
       );
 
@@ -105,7 +98,7 @@ function ButtonEnable() {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         const activeStatus = await Transactions.getActiveStatus(
-          userAddress,
+          state.userAddress,
           maticWeb3
         );
         console.log('Active status (updated): ' + activeStatus);

@@ -23,15 +23,18 @@ const MessageBar = () => {
 
   // get network ID
   useEffect(() => {
-    if (window.web3) {
-      window.web3.version.getNetwork((err, network) => {
-        const networkInt = parseInt(network);
+    if (window.ethereum) {
+      const networkID = ethereum.chainId.charAt(2);
+      const networkInt = parseInt(networkID);
 
-        dispatch({
-          type: 'network_id',
-          data: networkInt,
-        });
+      // window.web3.version.getNetwork((err, network) => {
+      // const networkInt = parseInt(network);
+
+      dispatch({
+        type: 'network_id',
+        data: networkInt,
       });
+      // });
     }
   }, []);
 
@@ -92,8 +95,7 @@ const MessageBar = () => {
 
   if (state.userStatus === 3) {
     return null;
-  }
-  else if (message !== '') {
+  } else if (message !== '') {
     return (
       <div
         id="message-bar"

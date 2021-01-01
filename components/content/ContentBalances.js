@@ -2,8 +2,6 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
 import { Button, Divider, Grid } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
-// import ButtonApproveMANA from '../button/ButtonApproveMANA';
-// import ButtonApproveDAI from '../button/ButtonApproveDAI';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
@@ -49,9 +47,6 @@ const ContentBalances = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-
-  const [userAddress, setUserAddress] = useState('');
-
   const [margin, setMargin] = useState('125px');
   const [boxDAI, setBoxDAI] = useState('none');
   const [boxMANA, setBoxMANA] = useState('none');
@@ -60,8 +55,6 @@ const ContentBalances = (props) => {
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
   const [totalPLAY, setTotalPLAY] = useState(0);
-
-  // let userAddress = '';
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -80,11 +73,9 @@ const ContentBalances = (props) => {
   useEffect(() => {
     if (state.userStatus === 6) {
       setBoxDAI('block');
-      // setBoxMANA('none');
       setButtonDAI('none');
       setButtonMANA('block');
     } else if (state.userStatus === 7) {
-      // setBoxDAI('none');
       setBoxMANA('block');
       setButtonDAI('block');
       setButtonMANA('none');
@@ -136,19 +127,11 @@ const ContentBalances = (props) => {
     initializePings();
   }
 
-  // get user address
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-    }
-  }, [state.userStatus]);
-
   // top up user to 5000 play tokens
   async function topUp() {
-    await Fetch.TOP_UP_USER(userAddress);
+    await Fetch.TOP_UP_USER(state.userAddress);
 
-    let responseInfo = await Fetch.PLAYER_INFO(userAddress);
+    let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
     let json = await responseInfo.json();
 
     let arrayInfo = state.userInfo;
@@ -162,9 +145,9 @@ const ContentBalances = (props) => {
 
   // fetch total bet from API
   useEffect(() => {
-    if (userAddress) {
+    if (state.userAddress) {
       (async function () {
-        const response = await Fetch.PLAYER_DATA(userAddress);
+        const response = await Fetch.PLAYER_DATA(state.userAddress);
         const json = await response.json();
 
         setTotalDAI(
@@ -178,7 +161,7 @@ const ContentBalances = (props) => {
         );
       })();
     }
-  }, [userAddress]);
+  }, [state.userAddress]);
 
   // initialize token contract pings
   function initializePings() {

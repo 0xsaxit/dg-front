@@ -9,6 +9,7 @@ const initialState = {
     meta: {},
   },
   userStatus: 0,
+  userAddress: '',
   userInfo: [],
   userBalances: [
     [0, 0],
@@ -94,6 +95,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userStatus: action.data,
+      };
+
+    case 'user_address':
+      return {
+        ...state,
+        userAddress: action.data,
       };
 
     case 'user_info':

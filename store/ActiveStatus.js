@@ -12,7 +12,6 @@ function ActiveStatus() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
   const [getWeb3, setGetWeb3] = useState({});
   const [maticWeb3, setMaticWeb3] = useState({});
@@ -28,9 +27,6 @@ function ActiveStatus() {
       state.userStatus >= 6 &&
       state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
     ) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 providers and create treasury contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -64,7 +60,7 @@ function ActiveStatus() {
         parentContract = await Transactions.treasuryContract(getWeb3);
 
         activeStatus = await Transactions.getActiveStatus(
-          userAddress,
+          state.userAddress,
           maticWeb3
         );
         console.log('Active status: ' + activeStatus);
@@ -88,7 +84,7 @@ function ActiveStatus() {
     // console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
-      userAddress,
+      state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
       'Reauthorization',
       'Confirmed',
@@ -111,7 +107,7 @@ function ActiveStatus() {
         1,
         functionSignature,
         parentContract,
-        userAddress,
+        state.userAddress,
         web3
       );
 
@@ -121,7 +117,7 @@ function ActiveStatus() {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         const activeStatus = await Transactions.getActiveStatus(
-          userAddress,
+          state.userAddress,
           maticWeb3
         );
         console.log('Active status (updated): ' + activeStatus);

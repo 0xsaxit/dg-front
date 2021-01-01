@@ -12,7 +12,7 @@ const Whitelist = () => {
   useEffect(() => {
     if (state.userStatus >= 4) {
       async function fetchData() {
-        const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
+        const userAddress = state.userAddress.toUpperCase();
 
         const response = await Fetch.GET_ADDRESSES(userAddress);
         let json = await response.json();

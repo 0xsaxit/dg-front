@@ -13,15 +13,12 @@ function UserBalances() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let userAddress = '';
   let web3 = {};
   let maticWeb3 = {};
   let balances = [];
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
@@ -90,7 +87,7 @@ function UserBalances() {
 
     try {
       const response = await Fetch.POST_HISTORY(
-        userAddress,
+        state.userAddress,
         amount,
         type,
         _state,
@@ -126,18 +123,18 @@ function UserBalances() {
     try {
       const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
-        userAddress,
+        state.userAddress,
         0
       );
       const amountMANA2 = await Transactions.balanceOfToken(
         tokenContractChild,
-        userAddress,
+        state.userAddress,
         0
       );
 
       const amountDAI2 = await Transactions.balanceOfToken(
         DAIContractChild,
-        userAddress,
+        state.userAddress,
         0
       );
 
