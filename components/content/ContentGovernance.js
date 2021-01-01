@@ -157,7 +157,7 @@ const ContentGovernance = (props) => {
                 </a>
                 and get $DG{' '}
                 <a
-                  href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
+                  href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                   style={{ color: '#2085f4' }}
                   target="_blank"
                 >
