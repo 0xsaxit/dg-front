@@ -41,19 +41,6 @@ const MenuTop = (props) => {
     ];
   }
 
-  // useEffect(() => {
-  //   if (router.pathname === '/') {
-  //     setIsHomePage(true);
-  //   }
-  // }, [router.pathname]);
-
-  // useEffect(() => {
-  //   if (isHomePage) {
-  //     setMenuStyle([]);
-  //   } else {
-  //     setMenuStyle([]);
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (state.userStatus) {
