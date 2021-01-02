@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
+import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
