@@ -24,8 +24,10 @@ const MessageBar = () => {
   // get network ID
   useEffect(() => {
     if (window.ethereum) {
-      const networkID = ethereum.chainId.charAt(2);
-      const networkInt = parseInt(networkID);
+      // const networkID = ethereum.chainId.charAt(2);
+      // const networkInt = parseInt(networkID);
+
+      const networkInt = 1;
 
       // window.web3.version.getNetwork((err, network) => {
       // const networkInt = parseInt(network);
