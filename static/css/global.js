@@ -15,8 +15,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .ui.input>input {
-    background: ${({ theme }) => theme.input} !important;
-    border: ${({ theme }) => theme.globalDividers} !important;
+    background: ${({ theme }) => theme.card} !important;
+    border: ${({ theme }) => theme.cardBorder} !important;
   }
 
   .avatar-picture.main {
@@ -90,6 +90,7 @@ export const GlobalStyles = createGlobalStyle`
   .home-dashboard-h2,
   .featured-casino-text,
   .home-dashboard-h1,
+  .home-dashboard-main-h1,
   .right-menu-text,
   .deposit-message-text,
   .leaders-text {
@@ -98,6 +99,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .games-container,
   .nft-container,
+  .dg-powered-container,
   .balances-column,
   .table-body,
   .featured-blog-container,
@@ -183,7 +185,8 @@ export const GlobalStyles = createGlobalStyle`
   .other-menu-container.blog,
   .ui.visible.top.overlay.sidebar,
   div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu,
-  .menu-container.blog {
+  .menu-container.blog,
+  .dashboard-menu-container#top {
     background: ${({ theme }) => theme.menuColor} !important;
     box-shadow: ${({ theme }) => theme.boxShadow};
   }

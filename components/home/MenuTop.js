@@ -17,19 +17,45 @@ const MenuTop = (props) => {
   // define local variables
   const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
-  // const [isHomePage, setIsHomePage] = useState(false);
-  // const [menuStyle, setMenuStyle] = useState([]);
 
   let menuStyle = [];
+  let listener = null;
+  const [scrollState, setScrollState] = useState("top");
+
+  useEffect(() => {
+    listener = document.addEventListener("scroll", e => {
+      var scrolled = document.scrollingElement.scrollTop
+      if (scrolled >= 10) {
+        if (scrollState !== "amir") {
+          setScrollState("amir")
+        }
+      } else {
+        if (scrollState !== "top") {
+          setScrollState("top")
+        }
+      }
+    })
+    return () => {
+      document.removeEventListener("scroll", listener)
+    }
+  }, [scrollState]);
+
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
 
-  if (props.isHomePage) {
+  if (props.isHomePage && scrollState == "top") {
     menuStyle = [
       'mobile-menu-icon-home',
       'right-menu-text',
       'sidebar-menu-text',
+      'dashboard-menu-container',
+    ];
+  } else if (props.isHomePage && scrollState == "amir") {
+    menuStyle = [
+      'mobile-menu-icon',
+      'right-menu-text blog',
+      'sidebar-menu-text blog',
       'dashboard-menu-container',
     ];
   } else {
@@ -40,20 +66,6 @@ const MenuTop = (props) => {
       'other-menu-container blog',
     ];
   }
-
-  // useEffect(() => {
-  //   if (router.pathname === '/') {
-  //     setIsHomePage(true);
-  //   }
-  // }, [router.pathname]);
-
-  // useEffect(() => {
-  //   if (isHomePage) {
-  //     setMenuStyle([]);
-  //   } else {
-  //     setMenuStyle([]);
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -306,26 +318,51 @@ const MenuTop = (props) => {
     return null;
   } else {
     return (
-      <div className={menuStyle[3]}>
-        <MessageBar />
-        {dropdownMenu()}
+      <span>
+        {scrollState == "top" ? (
+          <div className={menuStyle[3]}>
+            <MessageBar />
+            {dropdownMenu()}
 
-        {props.isHomePage && !open ? (
-          <Menu className="menu-container dark" icon="labeled">
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
+            {props.isHomePage && !open ? (
+              <Menu className="menu-container" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            ) : (
+              <Menu className="menu-container-dark blog" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            )}
+
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
         ) : (
-          <Menu className="menu-container-dark blog" icon="labeled">
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
-        )}
+          <div className={menuStyle[3]} id="top">
+            <MessageBar />
+            {dropdownMenu()}
 
-        <MessageBox handleDismiss={handleDismiss} />
-      </div>
+            {props.isHomePage && !open ? (
+              <Menu className="menu-container" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            ) : (
+              <Menu className="menu-container-dark blog" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            )}
+
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
+        )}
+      </span>
     );
   }
 };
