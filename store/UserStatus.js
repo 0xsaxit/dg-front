@@ -58,8 +58,6 @@ function UserStatus() {
       const response = await Fetch.USER_STATUS(userAddress);
       const json = await response.json();
 
-      localStorage.setItem('storedStatus', json.result);
-
       if (json.status === 'ok') {
         if (json.result === 'false') {
           return false;
