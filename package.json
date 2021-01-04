@@ -26,6 +26,7 @@
     "buttercms": "^1.2.5",
     "cross-env": "^7.0.3",
     "eth-sig-util": "^3.0.0",
+    "ethers": "^5.0.24",
     "html-to-react": "^1.4.5",
     "next": "^9.5.5",
     "next-seo": "^4.17.0",

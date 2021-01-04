@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { ethers } from 'ethers';
 import { useRouter } from 'next/router';
 import { GlobalContext } from '../../store';
 import Global from '../Constants';
@@ -24,19 +25,16 @@ const MessageBar = () => {
   // get network ID
   useEffect(() => {
     if (window.ethereum) {
-      // const networkID = ethereum.chainId.charAt(2);
-      // const networkInt = parseInt(networkID);
+      (async () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const network = await provider.getNetwork();
+        const chainID = network.chainId;
 
-      const networkInt = 1;
-
-      // window.web3.version.getNetwork((err, network) => {
-      // const networkInt = parseInt(network);
-
-      dispatch({
-        type: 'network_id',
-        data: networkInt,
-      });
-      // });
+        dispatch({
+          type: 'network_id',
+          data: chainID,
+        });
+      })();
     }
   }, []);
 
