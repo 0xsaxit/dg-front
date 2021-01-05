@@ -328,7 +328,7 @@ const Chateau = () => {
               <Button
                 color="blue"
                 className="play-button"
-                href="/games/casinos"
+                href="https://decentral.games/discord"
                 target="_blank"
                 style={{ marginTop: '9px' }}
               >
