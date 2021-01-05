@@ -152,7 +152,8 @@ div.ui.segment.transparent-menu-segment {
   z-index: 6;
 }
 
-.menu-items-to-hide {
+.menu-items-to-hide,
+.footer-menu-items {
   display: flex;
 }
 
@@ -497,8 +498,9 @@ a.menu-info-label-link:hover {
 }
 
 .home-section-3 {
+  min-width: 700px;
   position: relative;
-  padding-left: 50vw;
+  padding-left: calc(100% - 640px);
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -573,9 +575,9 @@ a.menu-info-label-link:hover {
 }
 
 .inner-footer-container {
-  display: flex;
   flex-direction: column;
-  max-width: 48.5%;
+  display: flex;
+  width: 48.5%;
 }
 
 .home-footer-h1 {

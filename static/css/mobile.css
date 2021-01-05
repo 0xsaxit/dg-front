@@ -313,6 +313,60 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
+@media (max-width: 1011px) {
+  .home-section-3 {
+    padding-left: 30px;
+    padding-right: 30px;
+    min-width: 100%;
+  }
+  .dg-powered-container {
+    width: 48.5%;
+  }
+  .dg-powered-container.one,
+  .dg-powered-container.two {
+    margin-bottom: 30px;
+  }
+  .footer-container {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .inner-footer-container-2 {
+    justify-content: center;
+  }
+  .footer-menu-items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .dg-powered-container {
+    width: 100%;
+  }
+  .dg-powered-container.three {
+    margin-bottom: 30px;
+  }
+  .home-dashboard-main-h1 {
+    font-size: 48px;
+  }
+  .featured-casino-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  .outter-footer-container {
+    flex-direction: column;
+  }
+  .inner-footer-container.top {
+    padding-bottom: 60px;
+    margin-top: -30px;
+  }
+  .inner-footer-container {
+    width: 100%;
+  }
+}
+
 /* ----------------------------------------- */
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */

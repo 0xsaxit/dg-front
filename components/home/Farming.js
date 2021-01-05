@@ -667,14 +667,6 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'token' ? (
-              <b className="account-hover active">AIRDROP</b>
-            ) : (
-              <Link href="/dg/airdrop">
-                <Menu.Item className="account-hover">AIRDROP</Menu.Item>
-              </Link>
-            )}
-
             {state.whitelisted ? (
               DGState === 'admin' ? (
                 <b className="account-hover active">ADMIN</b>

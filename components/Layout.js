@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
+import Footer from './home/Footer';
 
 
 const Layout = (props) => {
@@ -35,6 +36,8 @@ const Layout = (props) => {
       )}
 
       {props.children}
+
+      <Footer />
     </ThemeProvider>
   );
 };

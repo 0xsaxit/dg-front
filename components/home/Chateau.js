@@ -3,7 +3,6 @@ import { GlobalContext } from '../../store';
 import { Button, Divider, Image } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
-import Footer from './Footer';
 import Aux from '../_Aux';
 
 const Chateau = () => {
@@ -96,7 +95,7 @@ const Chateau = () => {
         <div className="section-2-outter" >
           <div className="home-section-2">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Play games
+              Play Games
             </h1>
             <span className="home-button-span">
               <Button
@@ -117,7 +116,7 @@ const Chateau = () => {
         <div className="section-3-outter" >
           <div className="home-section-3">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Explore casinos
+              Explore Casinos
             </h1>
             <span className="home-button-span">
               <Button
@@ -153,7 +152,7 @@ const Chateau = () => {
                 <a
                   href="/dg/mining"
                   target="_blank"
-                  className="dg-powered-container"
+                  className="dg-powered-container one"
                 >
                 <span
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -194,7 +193,7 @@ const Chateau = () => {
               <a
                 href="/dg/uniswap"
                 target="_blank"
-                className="dg-powered-container"
+                className="dg-powered-container two"
               >
                 <span
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -235,7 +234,7 @@ const Chateau = () => {
               <a
                 href="/dg"
                 target="_blank"
-                className="dg-powered-container"
+                className="dg-powered-container three"
               >
                 <span
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -322,9 +321,9 @@ const Chateau = () => {
 
         <div className="home-section-6">
           <span className="outter-footer-container">
-            <span className="inner-footer-container">
+            <span className="inner-footer-container top">
               <h1 className="home-footer-h1">
-                Contact us
+                Contact Us
               </h1>
               <p> You’ll find us at all hours on Discord. You can also reach us through the usual channels. </p>
               <Button
@@ -338,17 +337,15 @@ const Chateau = () => {
               </Button>
             </span>
 
-            <span className="inner-footer-container">
+            <span className="inner-footer-container bottom">
               <h1 className="home-footer-h1">
-                Sign up
+                Sign Up
               </h1>
               <p> Register here to recieve the latest news and updates from Decentral Games. </p>
               <Mailchimp />
             </span>
           </span>
         </div>
-
-        <Footer />
 
       </Aux>
     );
