@@ -235,16 +235,17 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 @media (max-width: 499px) {
   .dashboard-image-container,
   #mobile-casino-text,
-  video#myVideo.home-dashboard-video {
+  video#myVideo.home-dashboard-video,
+  .home-video-container video {
     display: none !important;
   }
   .home-mission-content {
     margin-top: -30px;
   }
   .home-dashboard-content {
-    position: absolute;
-    left: -9px;
-    bottom: 75px;
+    position: relative;
+    height: 100vh;
+    top: 0;
     padding-right: 21px !important;
   }
   .home-dashboard-p {
@@ -266,10 +267,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
-    height: 100% !important;
+    height: 100vh !important;
     width: 100vw;
-    position: absolute;
-    overflow: hidden !important;
+    margin-top: -90px;
   }
   .home-button-span {
     display: flex;
@@ -279,6 +279,14 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .ui.blue.button.play-button,
   a.ui.blue.button.how-to-button {
     width: 48.5% !important;
+  }
+  .home-section-2,
+  .home-section-3,
+  .home-section-4,
+  .home-section-5,
+  .home-section-6 {
+    padding-left: 21px;
+    padding-right: 21px;
   }
 }
 
