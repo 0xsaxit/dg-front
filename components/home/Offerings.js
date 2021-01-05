@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
 import { Menu, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';

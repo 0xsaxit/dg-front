@@ -1,14 +1,23 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
+import { useState, useEffect, useContext } from 'react';
 
 const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
+  const [utm, setUtm] = useState('');
+
+  useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
+
+
   function contentGames() {
     return (
       <div className="outter-games-container">
         {Object.keys(props.detailsGames).map((item, i) => (
           <a
-            href="https://play.decentraland.org/?position=-120%2C135"
+            href={props.detailsGames[item][6] + utm}
             target="_blank"
             className="games-container"
           >
@@ -55,7 +64,7 @@ const ContentOfferings = (props) => {
                   color="blue"
                   className="nft-button"
                   target="_blank"
-                  href={props.detailsGames[item][6]}
+                  href={props.detailsGames[item][6] + utm}
                 >
                   PLAY NOW
                 </Button>
@@ -81,7 +90,7 @@ const ContentOfferings = (props) => {
       <div className="outter-games-container">
         {Object.keys(props.detailsCasinos).map((item, i) => (
           <a
-            href="https://play.decentraland.org/?position=-120%2C135"
+            href={props.detailsCasinos[item][5] + utm}
             target="_blank"
             className="games-container"
           >
@@ -127,7 +136,7 @@ const ContentOfferings = (props) => {
                   color="blue"
                   className="nft-button"
                   target="_blank"
-                  href={props.detailsCasinos[item][5]}
+                  href={props.detailsCasinos[item][5] + utm}
                 >
                   PLAY NOW
                 </Button>

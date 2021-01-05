@@ -17,6 +17,11 @@ const ContentMining = (props) => {
   const [pointerContract, setPointerContract] = useState({});
   const [gameplayUSD, setGameplayUSD] = useState(0);
   const [web3, setWeb3] = useState({});
+  const [utm, setUtm] = useState('');
+
+  useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -255,7 +260,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                  href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
                 >
@@ -317,7 +322,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+                  href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
                 >

@@ -17,8 +17,7 @@ const MenuTop = (props) => {
   // define local variables
   const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
-  // const [isHomePage, setIsHomePage] = useState(false);
-  // const [menuStyle, setMenuStyle] = useState([]);
+  const [utm, setUtm] = useState('');
 
   let menuStyle = [];
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
@@ -40,6 +39,10 @@ const MenuTop = (props) => {
       'other-menu-container blog',
     ];
   }
+
+  useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
 
 
   useEffect(() => {
@@ -128,7 +131,7 @@ const MenuTop = (props) => {
           }
         >
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <a href="/">
+            <a href={`/${utm}`}>
               <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
                 PLAY
               </Menu.Item>
@@ -167,7 +170,7 @@ const MenuTop = (props) => {
   function shownOrHiddenItems() {
     return (
       <div className="menu-items-to-hide">
-        <Link href="/">
+        <Link href={`/${utm}`}>
           <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
             PLAY
           </Menu.Item>
