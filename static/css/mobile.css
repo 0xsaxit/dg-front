@@ -245,7 +245,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-dashboard-content {
     position: relative;
     height: 100vh;
-    top: 0;
     padding-right: 21px !important;
   }
   .home-dashboard-p {
@@ -269,7 +268,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     background-size: cover !important;
     height: 100vh !important;
     width: 100vw;
-    margin-top: -90px;
   }
   .home-button-span {
     display: flex;
@@ -280,13 +278,14 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   a.ui.blue.button.how-to-button {
     width: 48.5% !important;
   }
+  .home-dashboard-content,
   .home-section-2,
   .home-section-3,
   .home-section-4,
   .home-section-5,
   .home-section-6 {
-    padding-left: 21px;
-    padding-right: 21px;
+    padding-left: 21px !important;
+    padding-right: 21px !important;
   }
 }
 

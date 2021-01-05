@@ -4,6 +4,7 @@ import { Button, Divider, Image } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
+import Footer from './Footer';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -315,9 +316,7 @@ const Chateau = () => {
 
             </span>
           </div>
-        </div>
-
-        
+        </div>    
 
         <div className="home-section-6">
           <span className="outter-footer-container">
@@ -346,6 +345,8 @@ const Chateau = () => {
             </span>
           </span>
         </div>
+
+        <Footer />
 
       </Aux>
     );
