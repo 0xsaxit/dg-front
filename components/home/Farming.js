@@ -101,6 +101,15 @@ const Farming = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // stake, withdraw, and get reward from staking contracts
+  function getAmounts(amount) {
+    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
+    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (10 || -1) + '})?');
+    const truncated = amount.toString().match(re)[0];
+    const amountToString = web3.utils.toWei(truncated);
+
+    return { amountAdjusted, amountToString };
+  }
+
   async function staking(
     tokenContract,
     contractAddress,
@@ -109,11 +118,7 @@ const Farming = (props) => {
   ) {
     console.log('Call stake() function to stake tokens');
 
-    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (13 || -1) + '})?');
-    const truncated = amount.toString().match(re)[0];
-    const amountToString = web3.utils.toWei(truncated);
-
+    const { amountAdjusted, amountToString } = getAmounts(amount);
     console.log('Staking amount input (number): ' + amountAdjusted);
     console.log('Staking amount input (string): ' + amountToString);
 
@@ -161,11 +166,7 @@ const Farming = (props) => {
   async function withdrawal(stakingContract, amount) {
     console.log('Call withdraw() function to unstake tokens');
 
-    const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
-    const re = new RegExp('^-?\\d+(?:.\\d{0,' + (13 || -1) + '})?');
-    const truncated = amount.toString().match(re)[0];
-    const amountToString = web3.utils.toWei(truncated);
-
+    const { amountAdjusted, amountToString } = getAmounts(amount);
     console.log('Withdraw amount input (number): ' + amountAdjusted);
     console.log('Withdraw amount input (string): ' + amountToString);
 
