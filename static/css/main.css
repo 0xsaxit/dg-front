@@ -509,6 +509,10 @@ a.menu-info-label-link:hover {
   padding-bottom: 180px;
 }
 
+.section-4-outter-loading {
+  margin-top: 100vh;
+}
+
 .home-section-4 {
   position: relative;
   padding-left: 30px;
@@ -541,6 +545,7 @@ a.menu-info-label-link:hover {
 .dg-powered-h1 {
   font-weight: 600;
   margin-left: -2px;
+  padding-bottom: 6px;
 }
 
 .dg-powered-container {
@@ -560,8 +565,20 @@ a.menu-info-label-link:hover {
   transition: all 0.25s ease 0s;
 }
 
+.treasury-container {
+  width: 31.75%;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 4px;
+}
+
 .dg-video-container {
-  width: 23.5%;
+  width: 31.75%;
   margin-top: 0px;
   display: flex;
   flex-direction: column;
@@ -574,7 +591,36 @@ a.menu-info-label-link:hover {
   font-weight: 500;
   padding-bottom: 12px;
   text-align: left;
-  padding-top: 24px;
+  padding-top: 0px;
+  margin-top: 6px;
+}
+
+.tutorial-info,
+.tutorial-info-2 {
+  font-size: 12px !important;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 3px 6px 3px 6px;
+  border-radius: 4px;
+}
+
+.tutorial-info-2 {
+  margin-left: 12px;
+  margin-bottom: 12px !important;
+}
+
+.tutorials-h3.two {
+  margin-top: -6px;
+}
+
+.home-more-nav-top {
+  color: #2085f4 !important;
+  margin-top: 7px !important;
+}
+
+.home-more-nav {
+  color: #2085f4 !important;
+  margin-top: 20px !important;
 }
 
 .home-section-6 {
@@ -593,6 +639,7 @@ a.menu-info-label-link:hover {
 }
 
 .inner-footer-container {
+  margin-top: -30px;
   flex-direction: column;
   display: flex;
   width: 48.5%;
@@ -764,6 +811,7 @@ a.menu-info-label-link:hover {
   letter-spacing: 1.5px;
   padding: 3px 6px 3px 6px;
   margin-top: -3px !important;
+  border-radius: 4px;
 }
 
 .nfts-info {
@@ -2066,6 +2114,30 @@ a.ui.blue.button.play-button,
   min-width: 150px;
   padding: 7px 6px 0px 6px;
   opacity: 100% !important;
+}
+
+.ui.blue.button.our-blog-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  height: 27px;
+  padding: 8px 30px 0px 30px;
+  border-radius: 50px !important;
+  margin-right: 12px;
+}
+
+.ui.blue.button.learn-more-button {
+  position: relative;
+  background-color: transparent !important;
+  color: #2085f4;
+  border: 1px solid #2085f4;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  height: 27px;
+  padding: 7px 30px 0px 30px;
+  border-radius: 50px !important;
 }
 
 .ui.disabled.button.balances-top-button,

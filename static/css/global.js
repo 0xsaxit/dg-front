@@ -5,18 +5,12 @@ export const GlobalStyles = createGlobalStyle`
   body,
   div.ui.grid.balances-container,
   .post__content,
-  .read-next-div,
-  .ui.input>input {
+  .read-next-div {
     background: ${({ theme }) => theme.body};
   }
 
   .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
     background: ${({ theme }) => theme.toggle};
-  }
-
-  .ui.input>input {
-    background: ${({ theme }) => theme.card} !important;
-    border: ${({ theme }) => theme.cardBorder} !important;
   }
 
   .avatar-picture.main {
@@ -100,6 +94,7 @@ export const GlobalStyles = createGlobalStyle`
   .games-container,
   .nft-container,
   .dg-powered-container,
+  .treasury-container,
   .balances-column,
   .table-body,
   .featured-blog-container,
@@ -116,6 +111,17 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
+  .ui.input>input {
+    background: ${({ theme }) => theme.card}; 
+    border: ${({ theme }) => theme.cardBorder};
+  }
+
+  .tutorial-info,
+  .tutorial-info-2 {
+    background: ${({ theme }) => theme.tutorialColor};
+    color: ${({ theme }) => theme.text} !important;
   }
 
   #snapshot {
