@@ -5,6 +5,8 @@ import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
+import Fetch from '../../common/Fetch';
+import { Chart } from "react-charts";
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -13,6 +15,7 @@ const Chateau = () => {
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
   const [isLoading, setLoading] = useState(true);
+  const [stats, setStats] = useState('');
 
   const realm = 'fenrir-amber';
 
@@ -32,6 +35,69 @@ const Chateau = () => {
       }
     }
   }, []);
+
+  useEffect(
+    () => {
+      (async function () {
+        // calculate price of mana
+        let response_3 = await Fetch.TREASURY_STATS('0xA170087bbA92c03E5492A151B022FDd7F4B83867');
+        let json_3 = await response_3.json();
+        let temp = json_3.daiBalance;
+        setStats(temp);
+      })();
+    },
+    [stats]
+  );
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentStatistics() {
+    const data =  
+      [
+        {
+          label: 'Series 1',
+          data: [[stats.primary, stats.secondary]]
+        },
+      ]
+      
+    const axes = 
+     [
+        { primary: true, type: 'time', position: 'bottom' },
+        { type: 'linear', position: 'left' }
+      ]
+   
+    return (
+      <Aux>
+        <div className="section-4-outter" >
+          <div className="home-section-4">
+            <h1 className="dg-powered-h1">
+              Powered by $DG
+            </h1>
+
+            <span style={{ minWidth: '100%' }}>
+              <div
+                className="DG-column one-uniswap"
+                id="DG-column-hover"
+                style={{ position: 'relative', height: '100%', minWidth: '100%' }}
+              >
+              
+                <div
+                  style={{
+                    width: '100%',
+                    height: '300px'
+                  }}
+                >
+                  <Chart data={data} axes={axes} />
+                </div>
+
+              </div>
+            </span>
+          </div>
+        </div>
+
+      </Aux>
+    );
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -87,60 +153,10 @@ const Chateau = () => {
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Stake $DG to be the house in the first metaverse casino. Earn $DG through gameplay, liquidity provision, and governance rewards. 
+              Be the house in the first metaverse casino. Earn $DG through gameplay, liquidity provision, and governance rewards. 
             </p>
           </div>
         )}
-
-        <div className="section-2-outter" >
-          <div className="home-section-2">
-            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Play games, earn $DG
-            </h1>
-            <span className="home-button-span">
-              <Button
-                color="blue"
-                className="play-button"
-                href="/account"
-                target="_blank"
-              >
-                DEPOSIT CRYPTO
-              </Button>
-            </span>
-            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Play blackjack, roulette, slots, and backgammon with MANA or DAI in the first 3D metaverse casino. Enjoy $DG gameplay mining rewards distributed immediately based on wager amount. 
-            </p>
-          </div>
-        </div>
-
-        <div className="section-3-outter" >
-          <div className="home-section-3">
-            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              The Metaverse is the next frontier
-            </h1>
-            <span className="home-button-span">
-              <Button
-                color="blue"
-                className="play-button"
-                href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
-                target="_blank"
-              >
-                HOP IN
-              </Button>
-              <Button
-                color="blue"
-                className="how-to-button"
-                target="_blank"
-                href="/games/casinos"
-              >
-                OUR CASINOS
-              </Button>
-            </span>
-            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              The metaverse is poised to explode in 2021. Blackjack, roulette, and poker in a 3D virtual social environment will change gaming forever.
-            </p>
-          </div>
-        </div>
 
         <div className="section-4-outter" >
           <div className="home-section-4">
@@ -185,7 +201,7 @@ const Chateau = () => {
                       textAlign: 'center',
                     }}
                   >
-                    Players mine $DG for playing games with MANA and DAI.
+                    Mine $DG by playing games with MANA and DAI.
                   </p>
                 </div>
               </a>
@@ -315,7 +331,142 @@ const Chateau = () => {
 
             </span>
           </div>
-        </div>    
+        </div>  
+
+        <div className="section-2-outter" >
+          <div className="home-section-2">
+            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
+              Play games, earn $DG
+            </h1>
+            <span className="home-button-span">
+              <Button
+                color="blue"
+                className="play-button"
+                href="/account"
+                target="_blank"
+              >
+                DEPOSIT CRYPTO
+              </Button>
+            </span>
+            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              Play blackjack, roulette, slots, and backgammon with MANA or DAI. Enjoy $DG gameplay mining rewards on all bets.
+            </p>
+          </div>
+        </div>
+
+        <div className="section-3-outter" >
+          <div className="home-section-3">
+            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
+              The Metaverse is the next frontier
+            </h1>
+            <span className="home-button-span">
+              <Button
+                color="blue"
+                className="play-button"
+                href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
+                target="_blank"
+              >
+                HOP IN
+              </Button>
+              <Button
+                color="blue"
+                className="how-to-button"
+                target="_blank"
+                href="/games/casinos"
+              >
+                OUR CASINOS
+              </Button>
+            </span>
+            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              The metaverse is poised to explode in 2021. 3D virtual blackjack, roulette, and poker accessible from anywhere in the world will change online gaming forever. 
+            </p>
+          </div>
+        </div>
+
+        <div className="section-4-outter" >
+          <div className="home-section-4">
+            <h1 className="dg-powered-h1">
+              Need some help?
+            </h1>
+
+            <span className="outter-games-container" 
+              style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}
+            >
+              <div
+                href="/dg/mining"
+                target="_blank"
+                className="dg-video-container one"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <iframe style={{ borderRadius: '4px' }} width="100%" height="162px" src="https://www.youtube.com/embed/7kyDcfEK_jU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                  </iframe>
+                </span>
+                <div className="nft-description">
+                  <h3 className="tutorials-h3">Deposit $MANA or $DAI</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+                </div>
+              </div>
+
+              <div
+                href="/dg/mining"
+                target="_blank"
+                className="dg-video-container two"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <iframe style={{ borderRadius: '4px' }} width="100%" height="162px" src="https://www.youtube.com/embed/S8CiLKSCiA0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                  </iframe>
+                </span>
+                <div className="nft-description">
+                  <h3 className="tutorials-h3">Withdraw $MANA or $DAI</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+                </div>
+              </div>
+
+              <div
+                href="/dg/mining"
+                target="_blank"
+                className="dg-video-container three"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <iframe style={{ borderRadius: '4px' }} width="100%" height="162px" src="https://www.youtube.com/embed/-7U3_YzO-ZU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                  </iframe>
+                </span>
+                <div className="nft-description">
+                  <h3 className="tutorials-h3">Play and Earn $DG - Blackjack Demo</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+                </div>
+              </div>
+
+              <div
+                href="/dg/mining"
+                target="_blank"
+                className="dg-video-container four"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <iframe style={{ borderRadius: '4px' }} width="100%" height="162px" src="https://www.youtube.com/embed/zSyx4Zq0VJ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                  </iframe>
+                </span>
+                <div className="nft-description">
+                  <h3 className="tutorials-h3">Play and Earn $DG - Roulette Demo</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+                </div>
+              </div>
+
+            </span>
+          </div>
+        </div>  
 
         <div className="home-section-6">
           <span className="outter-footer-container">

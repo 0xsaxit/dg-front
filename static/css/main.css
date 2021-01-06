@@ -560,6 +560,23 @@ a.menu-info-label-link:hover {
   transition: all 0.25s ease 0s;
 }
 
+.dg-video-container {
+  width: 23.5%;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+  border-radius: 4px;
+}
+
+.tutorials-h3 {
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 12px;
+  text-align: left;
+  padding-top: 24px;
+}
+
 .home-section-6 {
   position: relative;
   padding-left: 30px;
