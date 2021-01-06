@@ -414,7 +414,7 @@ a.menu-info-label-link:hover {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 35vh;
+  padding-top: 33vh;
   height: 100vh;
 }
 
@@ -433,6 +433,7 @@ a.menu-info-label-link:hover {
   text-shadow: 1px 1px 5px black;
   margin-top: -12px;
   margin-left: -2px;
+  max-width: 600px;
 }
 
 .home-dashboard-h1 {

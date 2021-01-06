@@ -60,9 +60,9 @@ const Chateau = () => {
           null
         ) : (
           <div className="home-dashboard-content">
-            <p className="featured-casino-text">BETA v1.0</p>
+            <p className="featured-casino-text">DECENTRAL GAMES</p>
             <h1 className="home-dashboard-main-h1" style={{ marginBottom: '-12px' }}>
-              Decentral Games
+              The future of casinos is in the Metaverse
             </h1>
             <span className="home-button-span">
               {state.userStatus === 0 ? (
@@ -83,12 +83,11 @@ const Chateau = () => {
                 target="_blank"
                 href="https://docs.decentral.games/getting-started"
               >
-                HOW TO PLAY
+                EARN $DG
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Be the house in the first metaverse casino featuring blackjack, roulette, slots, and backgammon playable with MANA and DAI. Stake $DG to govern the casino bankroll.
-
+              Stake $DG to be the house in the first metaverse casino. Earn $DG through gameplay, liquidity provision, and governance rewards. 
             </p>
           </div>
         )}
@@ -96,20 +95,20 @@ const Chateau = () => {
         <div className="section-2-outter" >
           <div className="home-section-2">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Play Games
+              Play games, earn $DG
             </h1>
             <span className="home-button-span">
               <Button
                 color="blue"
                 className="play-button"
-                href="/games/"
+                href="/account"
                 target="_blank"
               >
-                OUR GAMES
+                DEPOSIT CRYPTO
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              We currently offer four games - Blackjack, Roulette, Slots and Backgammon. Blackjack and Roulette are live for gameplay in MANA and DAI. Check back frequently for gamee updates and new offerings.
+              Play blackjack, roulette, slots, and backgammon with MANA or DAI in the first 3D metaverse casino. Enjoy $DG gameplay mining rewards distributed immediately based on wager amount. 
             </p>
           </div>
         </div>
@@ -117,16 +116,16 @@ const Chateau = () => {
         <div className="section-3-outter" >
           <div className="home-section-3">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Explore Casinos
+              The Metaverse is the next frontier
             </h1>
             <span className="home-button-span">
               <Button
                 color="blue"
                 className="play-button"
-                href="/games/casinos"
+                href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
                 target="_blank"
               >
-                TOMINOYA
+                HOP IN
               </Button>
               <Button
                 color="blue"
@@ -134,11 +133,11 @@ const Chateau = () => {
                 target="_blank"
                 href="/games/casinos"
               >
-                MORE CASINOS
+                OUR CASINOS
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Decentral Games' has three casinos - Chateau Satoshi, Tominoya and Serenity Island. Hop in now to check them out or visit our docs to learn more.
+              The metaverse is poised to explode in 2021. Blackjack, roulette, and poker in a 3D virtual social environment will change gaming forever.
             </p>
           </div>
         </div>

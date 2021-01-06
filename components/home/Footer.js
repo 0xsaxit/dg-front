@@ -28,15 +28,9 @@ const Footer = () => {
 		        </Menu.Item>
 		      </a>
 
-		      <a href="/">
+		      <a href="https://docs.decentral.games/info/privacy-policy" target="_blank">
 		        <Menu.Item className="sidebar-menu-text blog">
 		          PRIVACY POLICY
-		        </Menu.Item>
-		      </a>
-
-		      <a href="/">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          TERMS OF USE
 		        </Menu.Item>
 		      </a>
 
