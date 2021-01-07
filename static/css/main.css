@@ -2124,7 +2124,7 @@ a.ui.blue.button.play-button,
   margin-bottom: 9px;
   height: 27px;
   padding: 8px 30px 0px 30px;
-  border-radius: 50px !important;
+  border-radius: 4px !important;
   margin-right: 12px;
 }
 
@@ -2137,7 +2137,7 @@ a.ui.blue.button.play-button,
   margin-bottom: 9px;
   height: 27px;
   padding: 7px 30px 0px 30px;
-  border-radius: 50px !important;
+  border-radius: 4px !important;
 }
 
 .ui.disabled.button.balances-top-button,

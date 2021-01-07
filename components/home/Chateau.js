@@ -370,7 +370,7 @@ const Chateau = () => {
                     className="our-blog-button"
                     href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                   >
-                    BLOG POST
+                    READ ANNOUNCEMENT
                   </Button>
                   <Button
                     color="blue"
@@ -382,7 +382,7 @@ const Chateau = () => {
                   </Button>
                 </span>
                 <a href="/dg">
-                  <p className="home-more-nav-top">$DG »</p>
+                  <p className="home-more-nav-top">$DG Dashboard»</p>
                 </a>
               </span>
 
@@ -580,7 +580,7 @@ const Chateau = () => {
         <div className="section-4-outter">
           <div className="home-section-4">
             <h1 className="dg-powered-h1">
-              Treasury Statistics
+              Community Governed Treasury
             </h1>
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span className="home-button-span">
@@ -589,7 +589,7 @@ const Chateau = () => {
                   className="our-blog-button"
                   href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                 >
-                  BLOG POST
+                  READ ANNOUNCEMENT
                 </Button>
                 <Button
                   color="blue"
@@ -601,7 +601,7 @@ const Chateau = () => {
                 </Button>
               </span>
               <a href="/dg">
-                <p className="home-more-nav-top">$DG »</p>
+                <p className="home-more-nav-top">$DG Dashboard »</p>
               </a>
             </span>
 
