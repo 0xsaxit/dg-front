@@ -606,15 +606,13 @@ const Chateau = () => {
             </span>
 
               <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
-                <a
-                  href="/dg/mining"
-                  target="_blank"
+                <span
                   className="treasury-container one"
                 >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
+                  <span
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                    className="nft-image"
+                  >
                   <Image
                     src={Images.MANA_CIRCLE}
                     className="dg-powered-pic"
@@ -634,11 +632,9 @@ const Chateau = () => {
                     {treasury_mana_tokens.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </h1>
                 </div>
-              </a>
+              </span>
 
-              <a
-                href="/dg/uniswap"
-                target="_blank"
+              <span
                 className="treasury-container two"
               >
                 <span
@@ -664,11 +660,9 @@ const Chateau = () => {
                     {treasury_dai.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </h1>
                 </div>
-              </a>
+              </span>
 
-              <a
-                href="/dg"
-                target="_blank"
+              <span
                 className="treasury-container three"
               >
                 <span
@@ -694,7 +688,7 @@ const Chateau = () => {
                     ${treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </h1>
                 </div>
-              </a>
+              </span>
 
             </span>
           </div>
