@@ -39,6 +39,9 @@ const Chateau = () => {
   const treasury_mana_tokens = Number(state.DGBalances.balance_maticMana);
   const treasury_mana = Number(state.DGBalances.balance_maticMana * manaPrice);
   const treasury = Number(treasury_dai) + Number(treasury_mana);
+  const total_gov_staked = Number(
+    state.stakingBalances.contractBalanceStakingGov
+  );
 
   const realm = 'fenrir-amber';
 
@@ -607,7 +610,7 @@ const Chateau = () => {
 
               <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
                 <span
-                  className="treasury-container one"
+                  className="dg-powered-container one"
                 >
                   <span
                     style={{ display: 'flex', justifyContent: 'center' }}
@@ -616,16 +619,27 @@ const Chateau = () => {
                   <Image
                     src={Images.MANA_CIRCLE}
                     className="dg-powered-pic"
-                    style={{ borderRadius: '4px', height: '90px', marginBottom: '15px' }}
+                    style={{ height: '90px', marginBottom: '3px' }}
                   />
                 </span>
                 <div className="nft-description">
+                  <h3 className="nft-other-h3">Mana</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
 
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
                   <h1
                     className="dg-powered-h1"
                     style={{
                       marginTop: '-12px',
-                      paddingTop: '15px',
+                      paddingTop: '6px',
+                      marginBottom: '-21px',
                       textAlign: 'center',
                     }}
                   >
@@ -635,7 +649,7 @@ const Chateau = () => {
               </span>
 
               <span
-                className="treasury-container two"
+                className="dg-powered-container two"
               >
                 <span
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -644,16 +658,27 @@ const Chateau = () => {
                   <Image
                     src={Images.DAI_CIRCLE}
                     className="dg-powered-pic"
-                    style={{ borderRadius: '4px', height: '90px', marginBottom: '15px' }}
+                    style={{ height: '90px', marginBottom: '3px' }}
                   />
                 </span>
                 <div className="nft-description">
+                 <h3 className="nft-other-h3">Dai</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
 
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
                   <h1
                     className="dg-powered-h1"
                     style={{
                       marginTop: '-12px',
-                      paddingTop: '15px',
+                      paddingTop: '6px',
+                      marginBottom: '-21px',
                       textAlign: 'center',
                     }}
                   >
@@ -663,7 +688,7 @@ const Chateau = () => {
               </span>
 
               <span
-                className="treasury-container three"
+                className="dg-powered-container three"
               >
                 <span
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -672,20 +697,70 @@ const Chateau = () => {
                   <Image
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609978246/money-face-emoji-png-2_xy9yyj.png"
                     className="dg-powered-pic"
-                    style={{ borderRadius: '4px', height: '138px', marginBottom: '-7px', marginTop: '-26px' }}
+                    style={{ height: '138px', minWidth: '197px', marginBottom: '-19px', marginTop: '-26px' }}
                   />
                 </span>
                 <div className="nft-description">
+                 <h3 className="nft-other-h3">USD</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
 
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
                   <h1
                     className="dg-powered-h1"
                     style={{
                       marginTop: '-12px',
-                      paddingTop: '15px',
+                      paddingTop: '6px',
+                      marginBottom: '-21px',
                       textAlign: 'center',
                     }}
                   >
-                    ${treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    {treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </h1>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container four"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src={Images.DG_COIN_LOGO}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                 <h3 className="nft-other-h3">Staked</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+                  <h1
+                    className="dg-powered-h1"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '6px',
+                      marginBottom: '-21px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </h1>
                 </div>
               </span>
