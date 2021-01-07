@@ -556,7 +556,7 @@ const Chateau = () => {
           </div>  
         )}
 
-        <div className="section-2-outter" >
+        <div className="section-2-outter">
           <div className="home-section-2">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
               Play games, earn $DG
@@ -676,9 +676,9 @@ const Chateau = () => {
                   className="nft-image"
                 >
                   <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f3db-fe0f_2x_muszls.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609978246/money-face-emoji-png-2_xy9yyj.png"
                     className="dg-powered-pic"
-                    style={{ borderRadius: '4px', height: '90px', marginBottom: '15px' }}
+                    style={{ borderRadius: '4px', height: '138px', marginBottom: '-7px', marginTop: '-26px' }}
                   />
                 </span>
                 <div className="nft-description">
@@ -700,7 +700,7 @@ const Chateau = () => {
           </div>
         </div>  
 
-        <div className="section-3-outter" >
+        <div className="section-3-outter">
           <div className="home-section-3">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
               The Metaverse is the next frontier
