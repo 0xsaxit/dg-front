@@ -21,7 +21,7 @@ const PopUpLinks = (props) => {
     <Button className="more-dropdown-button" onClick={toggleTheme}>
       {props.isDarkMode ? (
         <Menu.Item
-          style={{ color: 'white', fontSize: '9px', marginLeft: '-2px' }}
+          style={{ color: 'white', fontSize: '8px', marginLeft: '-3px', marginTop: '0px' }}
         >
           <Icon
             style={{ color: 'white' }}
@@ -30,7 +30,7 @@ const PopUpLinks = (props) => {
         </Menu.Item>
       ) : (
         <Menu.Item
-          style={{ color: 'white', fontSize: '9px', marginLeft: '-2px' }}
+          style={{ color: 'white', fontSize: '9px', marginLeft: '-5px', marginTop: '-2px' }}
         >
           <Icon
             style={{ color: 'white' }}

@@ -325,13 +325,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     padding-right: 30px;
     min-width: 100%;
   }
-  .dg-powered-container {
-    width: 48.5%;
-  }
-  .dg-powered-container.one,
-  .dg-powered-container.two {
-    margin-bottom: 30px;
-  }
   .footer-container {
     display: flex;
     flex-direction: column !important;
@@ -346,12 +339,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 599px) {
-  .dg-powered-container {
-    width: 100%;
-  }
-  .dg-powered-container.three {
-    margin-bottom: 30px;
-  }
   .home-dashboard-main-h1 {
     font-size: 48px;
   }

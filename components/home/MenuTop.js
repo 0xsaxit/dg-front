@@ -285,11 +285,11 @@ const MenuTop = (props) => {
                   id="mobile-avatar-picture"
                   src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
                   style={{
-                    width: '21px',
-                    height: '21px',
+                    width: '18px',
+                    height: '18px',
                     display: 'flex',
                     border: '1px solid rgb(227, 232, 238)',
-                    marginTop: '5px',
+                    marginTop: '4px',
                     borderRadius: '100%',
                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                     backgroundColor: 'white',
