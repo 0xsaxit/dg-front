@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Icon, Loader } from 'semantic-ui-react';
 import Aux from '../_Aux';
@@ -8,6 +8,7 @@ import ButtonReward2 from '../button/ButtonReward2';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
+
 
 export const toFixedDown = (num, fixed) => {
   const re = new RegExp('^-?\\d+(?:.\\d{0,' + (fixed || -1) + '})?');
@@ -1999,6 +2000,8 @@ const ContentFarming = (props) => {
     return contentBalancer();
   } else if (props.content === 'uniswap') {
     return contentUniswap();
+  } else if (props.content === 'stats') {
+    return contentStatistics();
   } else if (props.content === 'token') {
     return contentToken();
   } else if (props.content === 'admin') {

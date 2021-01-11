@@ -667,6 +667,14 @@ const Farming = (props) => {
               </Link>
             )}
 
+            {DGState === 'stats' ? (
+              <b className="account-hover active">STATISTICS</b>
+            ) : (
+              <Link href="/dg/statistics">
+                <Menu.Item className="account-hover">STATISTICS</Menu.Item>
+              </Link>
+            )}
+
             {state.whitelisted ? (
               DGState === 'admin' ? (
                 <b className="account-hover active">ADMIN</b>
