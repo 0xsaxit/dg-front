@@ -13,7 +13,7 @@ function Location() {
     if (state.userStatus >= 4) {
       async function fetchData() {
         const countryCode = await getCountryCode();
-        console.log('Country code: ' + countryCode);
+        // console.log('Country code: ' + countryCode);
 
         if (state.userStatus === 4) {
           // if (countryCode === 'US') return;
@@ -36,10 +36,10 @@ function Location() {
   }, [state.userStatus]);
 
   async function getCountryCode() {
-    const response = await Fetch.COUNTRY_CODE();
-    const json = await response.json();
+    // const response = await Fetch.COUNTRY_CODE();
+    // const json = await response.json();
 
-    return json.country_code;
+    return ''; // json.country_code;
   }
 
   return null;
