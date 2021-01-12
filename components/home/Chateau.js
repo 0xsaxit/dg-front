@@ -6,6 +6,7 @@ import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
 import Fetch from '../../common/Fetch';
+import { Chart } from "react-charts";
 import Images from '../../common/Images';
 
 const Chateau = () => {
@@ -59,8 +60,7 @@ const Chateau = () => {
       }
     }
   }, []);
-
-  
+   
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ const Chateau = () => {
     );
   }
 
-  function mainContent() {
+  function sectionOne() {
     return (
       <Aux>
         {homeVideo()}
@@ -121,16 +121,22 @@ const Chateau = () => {
             </p>
           </div>
         )}
+      </Aux>
+    );
+  }
 
+  function sectionTwo() {
+    return (
+      <Aux>
         {state.userStatus === 3 || isLoading ? (
 
-          <div>
+        <div>
           <div className="section-4-header-loading">
             <div className="home-section-4-header">
               <h1 className="dg-powered-h1">
                 Powered by $DG
               </h1>
-              <span className="dashboard-span">
+              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span className="home-button-span">
                   <Button
                     color="blue"
@@ -322,7 +328,164 @@ const Chateau = () => {
                     </p>
                   </div>
                 </a>
+              </span>
 
+              <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
+                <span
+                  className="dg-powered-container one"
+                >
+                  <span
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                    className="nft-image"
+                  >
+                  <Image
+                    src={Images.MANA_CIRCLE}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{treasury_mana_tokens.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    MANA treasury balance, calculated using current exchange prices.
+                  </p>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container two"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src={Images.DAI_CIRCLE}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{treasury_dai.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    DAI treasury balance, calculated using current exchange prices.
+                  </p>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container three"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    Total treasury balance in USD, calculated as the sum of MANA and DAI.
+                  </p>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container four"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src={Images.DG_COIN_LOGO}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    $DG staked in governance, representing the voting power of our holders.
+                  </p>
+                </div>
+              </span>
               </span>
             </div>
           </div> 
@@ -334,7 +497,7 @@ const Chateau = () => {
               <h1 className="dg-powered-h1">
                 Powered by $DG
               </h1>
-              <span className="dashboard-span">
+              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span className="home-button-span">
                   <Button
                     color="blue"
@@ -526,13 +689,176 @@ const Chateau = () => {
                     </p>
                   </div>
                 </a>
+              </span>
 
+              <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
+                <span
+                  className="dg-powered-container one"
+                >
+                  <span
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                    className="nft-image"
+                  >
+                  <Image
+                    src={Images.MANA_CIRCLE}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{treasury_mana_tokens.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    MANA treasury balance, calculated using current exchange prices.
+                  </p>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container two"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src={Images.DAI_CIRCLE}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{treasury_dai.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    DAI treasury balance, calculated using current exchange prices.
+                  </p>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container three"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                   Total treasury balance in USD, calculated as the sum of MANA and DAI.
+                  </p>
+                </div>
+              </span>
+
+              <span
+                className="dg-powered-container four"
+              >
+                <span
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
+                >
+                  <Image
+                    src={Images.DG_COIN_LOGO}
+                    className="dg-powered-pic"
+                    style={{ height: '90px', marginBottom: '3px' }}
+                  />
+                </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    $DG staked in governance, representing the voting power of our holders.
+                  </p>
+                </div>
+              </span>
               </span>
             </div>
-          </div>  
-        </div>
+          </div> 
+        </div> 
         )}
+      </Aux>
+    );
+  }
 
+  function sectionThree() {
+    return (
+      <Aux>
         <div className="section-2-outter">
           <div className="home-section-2">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
@@ -553,202 +879,75 @@ const Chateau = () => {
             </p>
           </div>
         </div>
+      </Aux>
+    );
+  }
 
+  function sectionFour() {
+    return (
+      <Aux>
         <div className="section-4-outter-header">
-          <div className="home-section-4-header">
-            <h1 className="dg-powered-h1">
-              Community Governed Treasury
+          <div className="home-section-4-header" style={{ paddingBottom: '90px' }}>
+            <h1 className="dg-powered-h1" style={{ textAlign: 'center', paddingBottom: '15px' }}>
+              Partnerships
             </h1>
 
-            <span className="dashboard-span">
-              <span className="home-button-span">
-                <Button
-                  color="blue"
-                  className="our-blog-button"
-                  href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
-                >
-                  READ ANNOUNCEMENT
-                </Button>
-                <Button
-                  color="blue"
-                  className="learn-more-button"
-                  target="_blank"
-                  href="https://docs.decentral.games/ecosystem"
-                >
-                  LEARN MORE
-                </Button>
+
+          <span className="partners-container">
+            <span className="inner-partners-container">
+              <div className="footer-menu-items">
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/download-removebg-preview_vkinri.png" 
+                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
+                />
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/68e5b859631b8f66624f5880acb8c189a32aee64_whdgsw.png" 
+                  style={{ width: '90px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
+                />
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/gitcoin-logo_a9jkkk.png" 
+                  style={{ width: '240px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
+                />
+                <Image
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/1_loY0qZhyg6gdUogKj9HhOg-removebg-preview_nwm4mo.png" 
+                  style={{ width: '120px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
+                />
+                <Image
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/cropped-horizontal-logo_black-01_l7rf3r.png" 
+                  style={{ width: '270px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
+                />
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/logo_ecdmik.png"
+                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
+                />
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/decentraland-mana-logo_jdmtx2.png" 
+                  style={{ width: '90px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                />
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/VdHYxVBWWl1hcYANkQVDB9uOOgB1597734436389_200x200_ttiotb.png" 
+                  style={{ width: '210px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                />
+                <Image
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/9Giq2hVThhGVfXLyA3xYbfXnMB91567126599684_200x200-removebg-preview_uw1bik.png" 
+                  style={{ width: '120px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                />
+                <Image 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/logoHorizontal_tmla0p.png"
+                  style={{ width: '210px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                />
+                </div>
               </span>
-              <a href="/dg">
-                <p className="home-more-nav-top">$DG Dashboard »</p>
-              </a>
             </span>
           </div>
         </div>
+      </Aux>
+    );
+  }
 
-          <div className="section-4-outter">
-            <div className="home-section-4">
-              <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
-                <span
-                  className="dg-powered-container one"
-                >
-                  <span
-                    style={{ display: 'flex', justifyContent: 'center' }}
-                    className="nft-image"
-                  >
-                  <Image
-                    src={Images.MANA_CIRCLE}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">Mana</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-                  <h1
-                    className="dg-powered-h1"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '6px',
-                      marginBottom: '-21px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {treasury_mana_tokens.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </h1>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container two"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={Images.DAI_CIRCLE}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                 <h3 className="nft-other-h3">Dai</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-                  <h1
-                    className="dg-powered-h1"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '6px',
-                      marginBottom: '-21px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {treasury_dai.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </h1>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container three"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                 <h3 className="nft-other-h3">USD</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-                  <h1
-                    className="dg-powered-h1"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '6px',
-                      marginBottom: '-21px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </h1>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container four"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={Images.DG_COIN_LOGO}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                 <h3 className="nft-other-h3">Staked</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-                  <h1
-                    className="dg-powered-h1"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '6px',
-                      marginBottom: '-21px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    {total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </h1>
-                </div>
-              </span>
-
-
-            </span>
-          </div>
-        </div>
-
+  function sectionFive() {
+    return (
+      <Aux>
         <div className="section-3-outter">
           <div className="home-section-3">
             <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
@@ -777,7 +976,13 @@ const Chateau = () => {
             </p>
           </div>
         </div>
+      </Aux>
+    );
+  }
 
+  function sectionSix() {
+    return (
+      <Aux>
         <div className="section-4-header" >
           <div className="home-section-4-header">
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -888,7 +1093,14 @@ const Chateau = () => {
     );
   }
 
-  return <div className="home-dashboard">{mainContent()}</div>;
+  return <div className="home-dashboard">
+    {sectionOne()}
+    {sectionTwo()}
+    {sectionThree()}
+    {sectionFour()}
+    {sectionFive()}
+    {sectionSix()}
+  </div>;
 };
 
 export default Chateau;

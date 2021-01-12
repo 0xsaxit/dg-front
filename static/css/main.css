@@ -651,6 +651,18 @@ a.menu-info-label-link:hover {
   margin-top: 20px !important;
 }
 
+.partners-container {
+  display: flex;
+  flex-direction: column !important;
+}
+.inner-partners-container {
+  justify-content: center;
+}
+.footer-menu-items {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .home-section-6 {
   position: relative;
   padding-left: 30px;
