@@ -46,6 +46,8 @@ const MessageBar = () => {
     }
   }, [state.networkID]);
 
+  const account = <a href="/account"> here </a>
+
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use a Metamask-enabled browser to play games');
@@ -65,7 +67,7 @@ const MessageBar = () => {
       );
     } else if (state.userStatus === 5) {
       setMessage(
-        'You must authorize the DAI and MANA token contracts to play games with DAI and MANA'
+        `You must authorize the DAI and MANA token contracts to play games with DAI and MANA`
       );
     } else if (!state.activeStatus) {
       setMessage(

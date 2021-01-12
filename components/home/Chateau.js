@@ -6,7 +6,6 @@ import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
 import Fetch from '../../common/Fetch';
-import { Chart } from "react-charts";
 import Images from '../../common/Images';
 
 const Chateau = () => {
@@ -17,7 +16,6 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [isLoading, setLoading] = useState(true);
   const [pageLoaded, setPageLoaded] = useState(true);
-  const [stats, setStats] = useState('');
   const [manaPrice, setManaPrice] = useState('');
 
   // fetch total bet from API
@@ -62,68 +60,7 @@ const Chateau = () => {
     }
   }, []);
 
-  useEffect(
-    () => {
-      (async function () {
-        // calculate price of mana
-        let response_3 = await Fetch.TREASURY_STATS('0xA170087bbA92c03E5492A151B022FDd7F4B83867');
-        let json_3 = await response_3.json();
-        let temp = json_3.daiBalance;
-        setStats(temp);
-      })();
-    },
-    [stats]
-  );
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentStatistics() {
-    const data =  
-      [
-        {
-          label: 'Series 1',
-          data: [[stats.primary, stats.secondary]]
-        },
-      ]
-      
-    const axes = 
-     [
-        { primary: true, type: 'time', position: 'bottom' },
-        { type: 'linear', position: 'left' }
-      ]
-   
-    return (
-      <Aux>
-        <div className="section-4-outter" >
-          <div className="home-section-4">
-            <h1 className="dg-powered-h1">
-              Powered by $DG
-            </h1>
-
-            <span style={{ minWidth: '100%' }}>
-              <div
-                className="DG-column one-uniswap"
-                id="DG-column-hover"
-                style={{ position: 'relative', height: '100%', minWidth: '100%' }}
-              >
-              
-                <div
-                  style={{
-                    width: '100%',
-                    height: '300px'
-                  }}
-                >
-                  <Chart data={data} axes={axes} />
-                </div>
-
-              </div>
-            </span>
-          </div>
-        </div>
-
-      </Aux>
-    );
-  }
+  
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -193,7 +130,7 @@ const Chateau = () => {
               <h1 className="dg-powered-h1">
                 Powered by $DG
               </h1>
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span className="dashboard-span">
                 <span className="home-button-span">
                   <Button
                     color="blue"
@@ -397,7 +334,7 @@ const Chateau = () => {
               <h1 className="dg-powered-h1">
                 Powered by $DG
               </h1>
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span className="dashboard-span">
                 <span className="home-button-span">
                   <Button
                     color="blue"
@@ -623,7 +560,7 @@ const Chateau = () => {
               Community Governed Treasury
             </h1>
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span className="dashboard-span">
               <span className="home-button-span">
                 <Button
                   color="blue"

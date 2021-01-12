@@ -8,6 +8,7 @@ import ButtonReward2 from '../button/ButtonReward2';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 import Fetch from '../../common/Fetch';
+import { Chart } from "react-charts";
 
 
 export const toFixedDown = (num, fixed) => {
@@ -36,6 +37,89 @@ const ContentFarming = (props) => {
 
   const [manaPrice, setManaPrice] = useState(0);
   const [ethPrice, setEthPrice] = useState(0);
+
+  const [statsDai, setStatsDai] = useState('');
+  const [statsMana, setStatsMana] = useState('');
+  const [statsUSD, setStatsUSD] = useState('');
+
+  useEffect(
+    () => {
+      (async function () {
+        // get treasury statistics
+        if (state.userStatus) {
+          let userAddress = window.web3.currentProvider.selectedAddress;
+          let response_3 = await Fetch.TREASURY_STATS(userAddress);
+          let json_3 = await response_3.json();
+          let dai = json_3.daiBalance;
+          let mana = json_3.manaBalance;
+          let usd = json_3.totalBalanceUSD;
+          setStatsDai(dai);
+          setStatsMana(mana);
+          setStatsUSD(usd);
+        } 
+      })();
+    },
+    [statsDai], [statsMana], [statsUSD]
+  );
+
+  let data;
+
+  if (statsDai.length > 0 && statsUSD.length > 0 && statsMana.length > 0) {
+
+    statsDai.map((stat) => stat.primary = new Date(stat.primary));
+    statsUSD.map((stat) => stat.primary = new Date(stat.primary));
+    statsMana.map((stat) => stat.primary = new Date(stat.primary));
+
+    data =
+    [
+      {
+        label: 'DAI',
+        color: '#faa606',
+        data: [...new Array(statsDai.map((stat, i) => {
+           return {
+              primary: stat.primary,
+              secondary: stat.secondary
+           }
+        }))[0]],
+      },
+      {
+        label: 'MANA',
+        color: '#fa2252',
+        data: [...new Array(statsMana.map((stat, i) => {
+           return {
+              primary: stat.primary,
+              secondary: stat.secondary * manaPrice
+           }
+        }))[0]],
+      },
+      {
+        label: 'USD',
+        color: '#85bb65',
+        data: [...new Array(statsUSD.map((stat, i) => {
+           return {
+              primary: stat.primary,
+              secondary: stat.secondary
+           }
+        }))[0]],
+      },
+    ]
+  } else {
+    data =
+    [
+      {
+        label: 'Loading Dai',
+        data: [],
+      },
+      {
+        label: 'Loading Mana',
+        data: [],
+      },
+      {
+        label: 'Loading USD',
+        data: [],
+      },
+    ]
+  }
 
   // fetch total bet from API
   useEffect(
@@ -1915,6 +1999,59 @@ const ContentFarming = (props) => {
             </div>
           </span>
         </div>
+      </Aux>
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentStatistics() {
+
+    const axes = [
+      { primary: true, type: 'utc', position: 'bottom' },
+      { type: 'linear', position: 'left' }
+    ]
+   
+    return (
+      <Aux>
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top">
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 className="DG-h3">$DG Treasury Statistics</h3>
+              <p> Track the growth of the Decentral Games Treasury below. MANA amounts are converted to USD value to maintain axis consistency. Check back here frequently for more in depth statistics updates in the near future!</p>
+            </span>
+          </div>
+        </div>
+
+        <div className="treasury-outter" style={{ paddingTop: '30px' }}>
+          <div className="treasury-inner">
+
+            <span style={{ minWidth: '100%' }}>
+              <div
+                className="DG-column one-uniswap"
+                id="DG-column-hover"
+                style={{ position: 'relative', minWidth: '100%' }}
+              >
+              
+                <div
+                  style={{
+                    width: '100%',
+                    height: '500px'
+                  }}
+                >
+                  <Chart 
+                    data={data} 
+                    axes={axes} 
+                    cursor
+                    tooltip
+                  />
+                </div>
+
+              </div>
+            </span>
+          </div>
+        </div>
+
       </Aux>
     );
   }

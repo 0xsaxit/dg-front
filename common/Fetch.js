@@ -26,7 +26,7 @@ const Fetch = {
   },
 
   TREASURY_STATS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/month?address=${address}`, {
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/year?address=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
