@@ -63,6 +63,7 @@ const ContentFarming = (props) => {
   );
 
   let data;
+  let axes;
 
   if (statsDai.length > 0 && statsUSD.length > 0 && statsMana.length > 0) {
 
@@ -103,6 +104,12 @@ const ContentFarming = (props) => {
         }))[0]],
       },
     ]
+
+    axes = [
+      { primary: true, type: 'utc', position: 'bottom', show: true },
+      { type: 'linear', position: 'left', show: true }
+    ]
+
   } else {
     data =
     [
@@ -118,6 +125,11 @@ const ContentFarming = (props) => {
         label: 'Loading USD',
         data: [],
       },
+    ]
+
+    axes = [
+      { primary: true, type: 'linear', position: 'bottom', show: true },
+      { type: 'linear', position: 'left', show: true }
     ]
   }
 
@@ -2006,11 +2018,6 @@ const ContentFarming = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentStatistics() {
-
-    const axes = [
-      { primary: true, type: 'utc', position: 'bottom' },
-      { type: 'linear', position: 'left' }
-    ]
    
     return (
       <Aux>
@@ -2042,7 +2049,6 @@ const ContentFarming = (props) => {
                   <Chart 
                     data={data} 
                     axes={axes} 
-                    cursor
                     tooltip
                   />
                 </div>

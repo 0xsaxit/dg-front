@@ -674,9 +674,9 @@ const Chateau = () => {
                   className="nft-image"
                 >
                   <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609978246/money-face-emoji-png-2_xy9yyj.png"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
                     className="dg-powered-pic"
-                    style={{ height: '138px', minWidth: '197px', marginBottom: '-19px', marginTop: '-26px' }}
+                    style={{ height: '90px', marginBottom: '3px' }}
                   />
                 </span>
                 <div className="nft-description">
