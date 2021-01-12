@@ -50,49 +50,23 @@ const ContentFarming = (props) => {
           let userAddress = window.web3.currentProvider.selectedAddress;
           let response_3 = await Fetch.TREASURY_STATS(userAddress);
           let json_3 = await response_3.json();
-          let dai = json_3.daiBalance;
-          let mana = json_3.manaBalance;
           let usd = json_3.totalBalanceUSD;
-          setStatsDai(dai);
-          setStatsMana(mana);
           setStatsUSD(usd);
         } 
       })();
     },
-    [statsDai], [statsMana], [statsUSD]
+    [statsUSD]
   );
 
   let data;
   let axes;
 
-  if (statsDai.length > 0 && statsUSD.length > 0 && statsMana.length > 0) {
+  if (statsUSD.length > 0) {
 
-    statsDai.map((stat) => stat.primary = new Date(stat.primary));
     statsUSD.map((stat) => stat.primary = new Date(stat.primary));
-    statsMana.map((stat) => stat.primary = new Date(stat.primary));
 
     data =
     [
-      {
-        label: 'DAI',
-        color: '#faa606',
-        data: [...new Array(statsDai.map((stat, i) => {
-           return {
-              primary: stat.primary,
-              secondary: stat.secondary
-           }
-        }))[0]],
-      },
-      {
-        label: 'MANA',
-        color: '#fa2252',
-        data: [...new Array(statsMana.map((stat, i) => {
-           return {
-              primary: stat.primary,
-              secondary: stat.secondary * manaPrice
-           }
-        }))[0]],
-      },
       {
         label: 'USD',
         color: '#85bb65',
@@ -113,14 +87,6 @@ const ContentFarming = (props) => {
   } else {
     data =
     [
-      {
-        label: 'Loading Dai',
-        data: [],
-      },
-      {
-        label: 'Loading Mana',
-        data: [],
-      },
       {
         label: 'Loading USD',
         data: [],
@@ -2018,6 +1984,10 @@ const ContentFarming = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentStatistics() {
+
+    const series = {
+      showPoints: false
+    }
    
     return (
       <Aux>
@@ -2025,7 +1995,7 @@ const ContentFarming = (props) => {
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Treasury Statistics</h3>
-              <p> Track the growth of the Decentral Games Treasury below. MANA amounts are converted to USD value to maintain axis consistency. Check back here frequently for more in depth statistics updates in the near future!</p>
+              <p> Track the growth of the Decentral Games Treasury below. Data shown is for total value USD. Check back here frequently for more in depth statistics updates in the near future!</p>
             </span>
           </div>
         </div>
@@ -2050,6 +2020,7 @@ const ContentFarming = (props) => {
                     data={data} 
                     axes={axes} 
                     tooltip
+                    series={series}
                   />
                 </div>
 
