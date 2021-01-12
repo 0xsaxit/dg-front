@@ -7,7 +7,7 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
-const Statistics = () => {
+const Treasury = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -46,4 +46,4 @@ const Statistics = () => {
   );
 };
 
-export default Statistics;
+export default Treasury;

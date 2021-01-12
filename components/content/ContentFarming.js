@@ -1995,7 +1995,7 @@ const ContentFarming = (props) => {
           <div className="DG-column top">
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Treasury Statistics</h3>
-              <p> Track the growth of the Decentral Games Treasury below. Data shown is for total value USD. Check back here frequently for more in depth statistics updates in the near future!</p>
+              <p>Decentral Games treasury data is in USD. After reaching $500,000 USD, $DG holders may create proposals to allocate funds. All Data is calculated using MANA and DAI exchange prices.</p>
             </span>
           </div>
         </div>

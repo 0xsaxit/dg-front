@@ -668,10 +668,10 @@ const Farming = (props) => {
             )}
 
             {DGState === 'stats' ? (
-              <b className="account-hover active">STATISTICS</b>
+              <b className="account-hover active">TREASURY</b>
             ) : (
-              <Link href="/dg/statistics">
-                <Menu.Item className="account-hover">STATISTICS</Menu.Item>
+              <Link href="/dg/treasury">
+                <Menu.Item className="account-hover">TREASURY</Menu.Item>
               </Link>
             )}
 
