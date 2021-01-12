@@ -69,7 +69,7 @@ const ContentFarming = (props) => {
     [
       {
         label: 'USD',
-        color: '#85bb65',
+        color: '#2085f4',
         data: [...new Array(statsUSD.map((stat, i) => {
            return {
               primary: stat.primary,
@@ -1986,7 +1986,8 @@ const ContentFarming = (props) => {
   function contentStatistics() {
 
     const series = {
-      showPoints: false
+      showPoints: false,
+      type: 'area'
     }
    
     return (
@@ -2020,7 +2021,7 @@ const ContentFarming = (props) => {
                     data={data} 
                     axes={axes} 
                     tooltip
-                    series={series}
+                    series={series} 
                   />
                 </div>
 

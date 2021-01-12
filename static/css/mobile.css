@@ -199,6 +199,16 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
+@media (max-width: 620px) {
+  .outter-dashboard-span {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .home-more-nav {
+    margin-top: 0px !important;
+  }
+}
 
 @media (min-width: 500px) {
   .mobile-menu-image,

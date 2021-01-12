@@ -136,7 +136,7 @@ const Chateau = () => {
               <h1 className="dg-powered-h1">
                 Powered by $DG
               </h1>
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span className="outter-dashboard-span">
                 <span className="home-button-span">
                   <Button
                     color="blue"
@@ -497,7 +497,7 @@ const Chateau = () => {
               <h1 className="dg-powered-h1">
                 Powered by $DG
               </h1>
-              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span className="outter-dashboard-span">
                 <span className="home-button-span">
                   <Button
                     color="blue"
@@ -985,7 +985,7 @@ const Chateau = () => {
       <Aux>
         <div className="section-4-header" >
           <div className="home-section-4-header">
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span className="outter-dashboard-span">
               <h1 className="dg-powered-h1">
                 Get Started
               </h1>

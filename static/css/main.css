@@ -651,13 +651,31 @@ a.menu-info-label-link:hover {
   margin-top: 20px !important;
 }
 
+.outter-dashboard-span {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 620px) {
+  .outter-dashboard-span {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .home-more-nav {
+    margin-top: 0px !important;
+  }
+}
+
 .partners-container {
   display: flex;
   flex-direction: column !important;
 }
+
 .inner-partners-container {
   justify-content: center;
 }
+
 .footer-menu-items {
   flex-wrap: wrap;
   justify-content: center;
