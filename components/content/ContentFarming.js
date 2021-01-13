@@ -2027,12 +2027,8 @@ const ContentFarming = (props) => {
               
                 <div
                   style={{
-                    width: 'calc(100% + 44px)',
+                    width: '100%',
                     height: '420px',
-                    marginBottom: '-42px',
-                    marginLeft: '-54px',
-                    marginRight: '-42px',
-                    paddingTop: '3px'
                   }}
                 >
                   <Chart
