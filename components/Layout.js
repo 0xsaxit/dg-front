@@ -2,7 +2,6 @@ import { useEffect, useContext } from 'react';
 import { GlobalContext } from '../store';
 import { initGA, logPageView } from './Analytics';
 import MenuTop from './home/MenuTop';
-// mport MenuTopHome from './home/MenuTopHome';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
@@ -19,9 +18,10 @@ const Layout = (props) => {
 
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
-      initGA();
+      initGA(state.userAddress, state.userStatus, 0, 0);
       window.GA_INITIALIZED = true;
     }
+
     logPageView();
   }, []);
 
