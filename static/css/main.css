@@ -656,17 +656,6 @@ a.menu-info-label-link:hover {
   justify-content: space-between;
 }
 
-@media (max-width: 620px) {
-  .outter-dashboard-span {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-  .home-more-nav {
-    margin-top: 0px !important;
-  }
-}
-
 .partners-container {
   display: flex;
   flex-direction: column !important;
@@ -1630,7 +1619,8 @@ div.ui.grid.balances-container {
   width: 48.5%;
 }
 
-.DG-column {
+.DG-column,
+.DG-graph-column {
   border-radius: 4px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);

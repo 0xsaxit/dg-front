@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, React } from 'react';
+import { useEffect, useContext, useState, useCallback, React } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Divider, Input, Icon, Loader } from 'semantic-ui-react';
 import Aux from '../_Aux';
@@ -69,7 +69,7 @@ const ContentFarming = (props) => {
     [
       {
         label: 'USD',
-        color: '#2085f4',
+        
         data: [...new Array(statsUSD.map((stat, i) => {
            return {
               primary: stat.primary,
@@ -80,8 +80,12 @@ const ContentFarming = (props) => {
     ]
 
     axes = [
-      { primary: true, type: 'utc', position: 'bottom', show: true },
-      { type: 'linear', position: 'left', show: true }
+      { primary: true, type: 'utc', position: 'bottom' },
+      {
+        type: 'linear',
+        position: 'left',
+        format: d => `$${d}`
+      }
     ]
 
   } else {
@@ -94,8 +98,12 @@ const ContentFarming = (props) => {
     ]
 
     axes = [
-      { primary: true, type: 'linear', position: 'bottom', show: true },
-      { type: 'linear', position: 'left', show: true }
+      { primary: true, type: 'utc', position: 'bottom' },
+      {
+        type: 'linear',
+        position: 'left',
+        format: d => `$${d}`
+      }
     ]
   }
 
@@ -1989,7 +1997,14 @@ const ContentFarming = (props) => {
       showPoints: false,
       type: 'area'
     }
-   
+
+    const getSeriesStyle = useCallback(
+      series => ({
+        color: `url(#${series.index % 4})`,
+        opacity: 1,
+      }),
+    );
+    
     return (
       <Aux>
         <div className="DG-liquidity-container top">
@@ -2006,22 +2021,34 @@ const ContentFarming = (props) => {
 
             <span style={{ minWidth: '100%' }}>
               <div
-                className="DG-column one-uniswap"
-                id="DG-column-hover"
+                className="DG-graph-column"
                 style={{ position: 'relative', minWidth: '100%' }}
               >
               
                 <div
                   style={{
-                    width: '100%',
-                    height: '500px'
+                    width: 'calc(100% + 44px)',
+                    height: '420px',
+                    marginBottom: '-42px',
+                    marginLeft: '-54px',
+                    marginRight: '-42px',
+                    paddingTop: '3px'
                   }}
                 >
-                  <Chart 
-                    data={data} 
-                    axes={axes} 
+                  <Chart
+                    data={data}
+                    series={series}
+                    axes={axes}
+                    getSeriesStyle={getSeriesStyle}
                     tooltip
-                    series={series} 
+                    renderSVG={() => (
+                      <defs>
+                        <linearGradient id="0" x1="0" x2="0" y1="1" y2="0">
+                          <stop offset="1%" stopColor="#ffffff" />
+                          <stop offset="100" stopColor="#2085f4" />
+                        </linearGradient>
+                      </defs>
+                    )}
                   />
                 </div>
 
