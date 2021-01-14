@@ -341,7 +341,7 @@ const Chateau = () => {
                   <Button
                     color="blue"
                     className="play-button avatars"
-                    href="/account"
+                    href="https://docs.decentral.games/info/partners"
                     target="_blank"
                   >
                     PARTNERS
@@ -349,7 +349,7 @@ const Chateau = () => {
                   <Button
                     color="blue"
                     className="roadmap-button avatars"
-                    href="/account"
+                    href="https://docs.decentral.games/info/roadmap"
                     target="_blank"
                   >
                     ROADMAP
