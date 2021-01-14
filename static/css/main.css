@@ -690,23 +690,52 @@ a.menu-info-label-link:hover {
   justify-content: space-between;
 }
 
-.avatar-bounce { 
-  border-radius: 50%; 
-  background-color: #FF5722; 
-  animation: bounce 1s; 
-  animation-direction: alternate; 
-  animation-timing-function: cubic-bezier(.5, 0.05, 1, .5); 
-  animation-iteration-count: infinite; 
+.learn-more-dg-outter {
+  display: flex;
+  justify-content: space-between;
 }
 
-@keyframes bounce { 
-  from { 
-    transform: translate3d(0, 0, 0); 
-  } 
-  to { 
-    transform: translate3d(0, 3px, 0); 
-  } 
-} 
+.avatar-image-span {
+  display: flex;
+  min-width: 48.5%;
+}
+
+.learn-more-dg-span {
+  display: flex;
+  min-width: 48.5%;
+  flex-direction: column;
+  margin-top: 150px;
+}
+
+@media (max-width: 1261px) {
+  .learn-more-dg-outter {
+    display: flex;
+    flex-direction: column;
+  }
+  .avatar-image-span {
+    order: 2;
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+    margin-left: 30px;
+  }
+  .learn-more-dg-span {
+    margin-top: 90px !important;
+    order: 1;
+    display: flex;
+    min-width: 100%;
+    flex-direction: column;
+    margin-top: 150px;
+  }
+  .home-footer-h1.avatars,
+  .home-footer-p.avatars {
+    text-align: center;
+  }
+  .home-button-span.avatars {
+    display: flex;
+    align-self: center;
+  }
+}
 
 
 /* ----------------------------------------- */

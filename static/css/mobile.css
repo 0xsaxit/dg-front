@@ -76,7 +76,7 @@
   #mobile-menu-icon,
   #mobile-menu-icon-home {
     position: relative;
-    left: 72px;
+    left: 60px;
   }
   #dropdown-menu-items {
     padding-left: 78px !important;
@@ -252,12 +252,10 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-video-container video {
     display: none !important;
   }
-  .home-mission-content {
-    margin-top: -30px;
-  }
   .home-dashboard-content {
     position: relative;
     height: 100vh;
+    padding-top: 25vh !important;
     padding-right: 21px !important;
   }
   .home-dashboard-p {
@@ -268,6 +266,21 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .home-dashboard-h1 {
     font-size: 48px !important;
+  }
+  .home-section-4-header {
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+  .ui.blue.button.our-blog-button,
+  .ui.blue.button.learn-more-button {
+    min-width: 48.5%;
+    padding: 7px 0 0 0;
+  }
+  .home-button-span.dg {
+    min-width: calc(100vw - 42px);
+  }
+  .mailchimp-input {
+    width: 100%;
   }
   .home-dashboard {
     background-image: linear-gradient(
@@ -299,6 +312,65 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-section-6 {
     padding-left: 21px !important;
     padding-right: 21px !important;
+  }
+}
+
+@media (max-width: 1261px) {
+  .learn-more-dg-outter {
+    display: flex;
+    flex-direction: column;
+  }
+  .avatar-image-span {
+    order: 2;
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+    margin-left: 30px;
+  }
+  .learn-more-dg-span {
+    margin-top: 90px !important;
+    order: 1;
+    display: flex;
+    min-width: 100%;
+    flex-direction: column;
+    margin-top: 150px;
+  }
+  .home-footer-h1.avatars,
+  .home-footer-p.avatars {
+    text-align: center;
+  }
+  .home-button-span.avatars {
+    display: flex;
+    align-self: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-footer-h1.avatars,
+  .home-footer-p.avatars {
+    text-align: left;
+  }
+  .home-button-span.avatars {
+    align-self: start !important;
+  }
+}
+
+@media (max-width: 499px) {
+  .avatar-image-span {
+    padding-left: 30px;
+    overflow: hidden !important;
+    width: calc(100% + 42px);
+    margin-left: -21px;
+    margin-right: -21px;
+  }
+  .home-button-span.avatars {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ui.blue.button.play-button.avatars {
+    min-width: 48.5%;
+    margin-right: 9px;
   }
 }
 

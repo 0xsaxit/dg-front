@@ -136,13 +136,13 @@ const Chateau = () => {
                 Powered by $DG
               </h1>
               <span className="outter-dashboard-span">
-                <span className="home-button-span">
+                <span className="home-button-span dg">
                   <Button
                     color="blue"
                     className="our-blog-button"
                     href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                   >
-                    READ ANNOUNCEMENT
+                    ANNOUNCEMENT
                   </Button>
                   <Button
                     color="blue"
@@ -298,13 +298,13 @@ const Chateau = () => {
                 Powered by $DG
               </h1>
               <span className="outter-dashboard-span">
-                <span className="home-button-span">
+                <span className="home-button-span dg">
                   <Button
                     color="blue"
                     className="our-blog-button"
                     href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                   >
-                    READ ANNOUNCEMENT
+                    ANNOUNCEMENT
                   </Button>
                   <Button
                     color="blue"
@@ -497,8 +497,8 @@ const Chateau = () => {
         <div className="section-4-outter-header" style={{ marginBottom: '-210px', marginTop: '-90px' }}>
           <div className="home-section-4-header" style={{ paddingBottom: '30px' }}>
 
-          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ display: 'flex', minWidth: '48.5%' }}>
+          <span className="learn-more-dg-outter">
+            <span className="avatar-image-span">
               <Image
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610653695/download_2_bdhk3t.png" 
                 style={{ height: '630px', objectFit: 'scale-down', marginLeft: '-60px' }}
@@ -513,14 +513,14 @@ const Chateau = () => {
               />
             </span>
 
-              <span style={{ display: 'flex', minWidth: '48.5%', flexDirection: 'column', marginTop: '150px' }}>
-                <h1 className="home-footer-h1" style={{ marginBottom: '0px' }}>
+              <span className="learn-more-dg-span">
+                <h1 className="home-footer-h1 avatars" style={{ marginBottom: '0px' }}>
                   Learn more about the Decentral Games ecosystem
                 </h1>
-                <span className="home-button-span">
+                <span className="home-button-span avatars">
                   <Button
                     color="blue"
-                    className="play-button"
+                    className="play-button avatars"
                     href="/account"
                     target="_blank"
                   >
@@ -528,14 +528,14 @@ const Chateau = () => {
                   </Button>
                   <Button
                     color="blue"
-                    className="roadmap-button"
+                    className="roadmap-button avatars"
                     href="/account"
                     target="_blank"
                   >
                     ROADMAP
                   </Button>
                 </span>
-                <p className="home-footer-p" style={{ marginTop: '27px' }}>
+                <p className="home-footer-p avatars" style={{ marginTop: '27px' }}>
                   We've strategically partnered with projects that help bolster our offerings and make our user experience as seamless as possible. Check out our partnerships to learn more and our roadmap to see what's in store for the future of Decentral Games.
                 </p>
               </span>
