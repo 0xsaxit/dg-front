@@ -494,59 +494,53 @@ const Chateau = () => {
   function sectionFour() {
     return (
       <Aux>
-        <div className="section-4-outter-header">
-          <div className="home-section-4-header" style={{ paddingBottom: '90px' }}>
-            <h1 className="dg-powered-h1" style={{ textAlign: 'center', paddingBottom: '30px' }}>
-              Partners
-            </h1>
+        <div className="section-4-outter-header" style={{ marginBottom: '-210px', marginTop: '-90px' }}>
+          <div className="home-section-4-header" style={{ paddingBottom: '30px' }}>
 
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', minWidth: '48.5%' }}>
+              <Image
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610653695/download_2_bdhk3t.png" 
+                style={{ height: '630px', objectFit: 'scale-down', marginLeft: '-60px' }}
+              />
+              <Image 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610652923/download_1_l4dnha.png" 
+                  style={{ height: '810px', objectFit: 'scale-down', marginLeft: '-160px', zIndex: '-1' }}               
+                />
+              <Image
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610652806/download_lb9h4u.png" 
+                style={{ height: '540px', objectFit: 'scale-down', marginLeft: '-170px' }}
+              />
+            </span>
 
-          <span className="partners-container">
-            <span className="inner-partners-container">
-              <div className="footer-menu-items">
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/download-removebg-preview_vkinri.png" 
-                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/68e5b859631b8f66624f5880acb8c189a32aee64_whdgsw.png" 
-                  style={{ width: '90px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/gitcoin-logo_a9jkkk.png" 
-                  style={{ width: '240px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/1_loY0qZhyg6gdUogKj9HhOg-removebg-preview_nwm4mo.png" 
-                  style={{ width: '120px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/cropped-horizontal-logo_black-01_l7rf3r.png" 
-                  style={{ width: '270px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/logo_ecdmik.png"
-                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/decentraland-mana-logo_jdmtx2.png" 
-                  style={{ width: '90px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/VdHYxVBWWl1hcYANkQVDB9uOOgB1597734436389_200x200_ttiotb.png" 
-                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610650335/VPA28IWa_400x400_jn7qje.png" 
-                  style={{ width: '90px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                <Image 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/logoHorizontal_tmla0p.png"
-                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
-                />
-                </div>
+              <span style={{ display: 'flex', minWidth: '48.5%', flexDirection: 'column', marginTop: '150px' }}>
+                <h1 className="home-footer-h1" style={{ marginBottom: '0px' }}>
+                  Learn more about the Decentral Games ecosystem
+                </h1>
+                <span className="home-button-span">
+                  <Button
+                    color="blue"
+                    className="play-button"
+                    href="/account"
+                    target="_blank"
+                  >
+                    PARTNERS
+                  </Button>
+                  <Button
+                    color="blue"
+                    className="roadmap-button"
+                    href="/account"
+                    target="_blank"
+                  >
+                    ROADMAP
+                  </Button>
+                </span>
+                <p className="home-footer-p" style={{ marginTop: '27px' }}>
+                  We've strategically partnered with projects that help bolster our offerings and make our user experience as seamless as possible. Check out our partnerships to learn more and our roadmap to see what's in store for the future of Decentral Games.
+                </p>
               </span>
             </span>
+          
           </div>
         </div>
       </Aux>

@@ -690,6 +690,25 @@ a.menu-info-label-link:hover {
   justify-content: space-between;
 }
 
+.avatar-bounce { 
+  border-radius: 50%; 
+  background-color: #FF5722; 
+  animation: bounce 1s; 
+  animation-direction: alternate; 
+  animation-timing-function: cubic-bezier(.5, 0.05, 1, .5); 
+  animation-iteration-count: infinite; 
+}
+
+@keyframes bounce { 
+  from { 
+    transform: translate3d(0, 0, 0); 
+  } 
+  to { 
+    transform: translate3d(0, 3px, 0); 
+  } 
+} 
+
+
 /* ----------------------------------------- */
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
@@ -2099,6 +2118,16 @@ a.ui.blue.button.play-button,
   position: relative;
   background-color: #2085f4 !important;
   color: white;
+  margin-top: 20px;
+  width: 180px !important;
+  height: 34px;
+}
+
+.ui.blue.button.roadmap-button {
+  position: relative;
+  background-color: transparent;
+  border: 1px solid #2085f4 !important;
+  color: #2085f4;
   margin-top: 20px;
   width: 180px !important;
   height: 34px;
