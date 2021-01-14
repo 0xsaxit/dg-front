@@ -8,6 +8,8 @@ import Footer from './Footer';
 import Fetch from '../../common/Fetch';
 import { Chart } from "react-charts";
 import Images from '../../common/Images';
+import { Parallax } from 'react-parallax';
+
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -38,9 +40,6 @@ const Chateau = () => {
   const treasury_mana_tokens = Number(state.DGBalances.balance_maticMana);
   const treasury_mana = Number(state.DGBalances.balance_maticMana * manaPrice);
   const treasury = Number(treasury_dai) + Number(treasury_mana);
-  const total_gov_staked = Number(
-    state.stakingBalances.contractBalanceStakingGov
-  );
 
   const realm = 'fenrir-amber';
 
@@ -164,7 +163,7 @@ const Chateau = () => {
           <div className="section-4-outter">
             <div className="home-section-4">
 
-                <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
+                <span className="outter-dg-powered-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
                   <a
                     href="/dg/mining"
                     target="_blank"
@@ -201,7 +200,7 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Mine $DG by playing games with MANA and DAI.
+                      Mine $DG by playing games with MANA and DAI. Refer friends and enjoy up to 10% of the $DG they mine.
                     </p>
                   </div>
                 </a>
@@ -242,7 +241,7 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Earn $DG liquidity incentives by providing liquidity in AMM pools.
+                      Earn $DG liquidity incentives by providing liquidity in Balancer or Uniswap AMM pools.
                     </p>
                   </div>
                 </a>
@@ -283,209 +282,10 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Stake $DG to govern the casino bankroll.
+                      Stake $DG to govern the casino bankroll. The current treasury balance is {treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}.
                     </p>
                   </div>
                 </a>
-
-                <a
-                  href="/dg"
-                  target="_blank"
-                  className="dg-powered-container"
-                >
-                  <span
-                    style={{ display: 'flex', justifyContent: 'center' }}
-                    className="nft-image"
-                  >
-                    <Image
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f465_2x_wn7k1w.png"
-                      className="dg-powered-pic"
-                      style={{ borderRadius: '4px' }}
-                    />
-                  </span>
-                  <div className="nft-description">
-                    <h3 className="nft-other-h3">Affiliates</h3>
-                    <span style={{ display: 'flex', justifyContent: 'center' }}>
-                    </span>
-
-                    <Divider
-                      style={{
-                        margin: '10px 0px 15px 0px',
-                        width: 'calc(100% + 60px)',
-                        marginLeft: '-30px',
-                      }}
-                    />
-
-                    <p
-                      className="nft-other-p"
-                      style={{
-                        marginTop: '-12px',
-                        paddingTop: '15px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      Refer friends and enjoy 10% of the $DG they mine.
-                    </p>
-                  </div>
-                </a>
-              </span>
-
-              <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
-                <span
-                  className="dg-powered-container one"
-                >
-                  <span
-                    style={{ display: 'flex', justifyContent: 'center' }}
-                    className="nft-image"
-                  >
-                  <Image
-                    src={Images.MANA_CIRCLE}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{treasury_mana_tokens.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    MANA treasury balance, calculated using current exchange prices.
-                  </p>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container two"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={Images.DAI_CIRCLE}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{treasury_dai.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    DAI treasury balance, calculated using current exchange prices.
-                  </p>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container three"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    Total treasury balance in USD, calculated as the sum of MANA and DAI.
-                  </p>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container four"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={Images.DG_COIN_LOGO}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    $DG staked in governance, representing the voting power of our holders.
-                  </p>
-                </div>
-              </span>
               </span>
             </div>
           </div> 
@@ -562,7 +362,7 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Mine $DG by playing games with MANA and DAI.
+                      Mine $DG by playing games with MANA and DAI. Refer friends and enjoy up to 10% of the $DG they mine.
                     </p>
                   </div>
                 </a>
@@ -603,7 +403,7 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Earn $DG liquidity incentives by providing liquidity in AMM pools.
+                      Earn $DG liquidity incentives by providing liquidity in Balancer or Uniswap AMM pools.
                     </p>
                   </div>
                 </a>
@@ -644,209 +444,11 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Stake $DG to govern the casino bankroll.
+                      Stake $DG to govern the casino bankroll. The current treasury balance is {treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}.
                     </p>
                   </div>
                 </a>
 
-                <a
-                  href="/dg"
-                  target="_blank"
-                  className="dg-powered-container"
-                >
-                  <span
-                    style={{ display: 'flex', justifyContent: 'center' }}
-                    className="nft-image"
-                  >
-                    <Image
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f465_2x_wn7k1w.png"
-                      className="dg-powered-pic"
-                      style={{ borderRadius: '4px' }}
-                    />
-                  </span>
-                  <div className="nft-description">
-                    <h3 className="nft-other-h3">Affiliates</h3>
-                    <span style={{ display: 'flex', justifyContent: 'center' }}>
-                    </span>
-
-                    <Divider
-                      style={{
-                        margin: '10px 0px 15px 0px',
-                        width: 'calc(100% + 60px)',
-                        marginLeft: '-30px',
-                      }}
-                    />
-
-                    <p
-                      className="nft-other-p"
-                      style={{
-                        marginTop: '-12px',
-                        paddingTop: '15px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      Refer friends and enjoy 10% of the $DG they mine.
-                    </p>
-                  </div>
-                </a>
-              </span>
-
-              <span className="outter-games-container" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
-                <span
-                  className="dg-powered-container one"
-                >
-                  <span
-                    style={{ display: 'flex', justifyContent: 'center' }}
-                    className="nft-image"
-                  >
-                  <Image
-                    src={Images.MANA_CIRCLE}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{treasury_mana_tokens.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    MANA treasury balance, calculated using current exchange prices.
-                  </p>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container two"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={Images.DAI_CIRCLE}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{treasury_dai.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    DAI treasury balance, calculated using current exchange prices.
-                  </p>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container three"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{treasury.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                   Total treasury balance in USD, calculated as the sum of MANA and DAI.
-                  </p>
-                </div>
-              </span>
-
-              <span
-                className="dg-powered-container four"
-              >
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={Images.DG_COIN_LOGO}
-                    className="dg-powered-pic"
-                    style={{ height: '90px', marginBottom: '3px' }}
-                  />
-                </span>
-                <div className="nft-description">
-                  <h3 className="nft-other-h3">{total_gov_staked.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  </span>
-
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
-
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
-                    $DG staked in governance, representing the voting power of our holders.
-                  </p>
-                </div>
-              </span>
               </span>
             </div>
           </div> 
@@ -859,26 +461,32 @@ const Chateau = () => {
   function sectionThree() {
     return (
       <Aux>
-        <div className="section-2-outter">
-          <div className="home-section-2">
-            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              Play games, earn $DG
-            </h1>
-            <span className="home-button-span">
-              <Button
-                color="blue"
-                className="play-button"
-                href="/account"
-                target="_blank"
-              >
-                DEPOSIT CRYPTO
-              </Button>
-            </span>
-            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Play blackjack, roulette, slots, and backgammon with MANA or DAI. Enjoy $DG gameplay mining rewards on all bets.
-            </p>
+        <Parallax 
+          blur={0} 
+          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1609542250/2020-11-23_18-54-31_dr9zme.png" 
+          strength={100}
+        >
+          <div className="home-section-2-outter">
+            <div className="home-section-2 inner">
+              <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
+                Play games, earn $DG
+              </h1>
+              <span className="home-button-span">
+                <Button
+                  color="blue"
+                  className="play-button"
+                  href="/account"
+                  target="_blank"
+                >
+                  DEPOSIT CRYPTO
+                </Button>
+              </span>
+              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+                Play blackjack, roulette, slots, and backgammon with MANA or DAI. Enjoy $DG gameplay mining rewards on all bets.
+              </p>
+            </div>
           </div>
-        </div>
+        </Parallax>
       </Aux>
     );
   }
@@ -888,8 +496,8 @@ const Chateau = () => {
       <Aux>
         <div className="section-4-outter-header">
           <div className="home-section-4-header" style={{ paddingBottom: '90px' }}>
-            <h1 className="dg-powered-h1" style={{ textAlign: 'center', paddingBottom: '15px' }}>
-              Partnerships
+            <h1 className="dg-powered-h1" style={{ textAlign: 'center', paddingBottom: '30px' }}>
+              Partners
             </h1>
 
 
@@ -922,19 +530,19 @@ const Chateau = () => {
                 />
                 <Image 
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/decentraland-mana-logo_jdmtx2.png" 
-                  style={{ width: '90px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                  style={{ width: '90px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
                 />
                 <Image 
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/VdHYxVBWWl1hcYANkQVDB9uOOgB1597734436389_200x200_ttiotb.png" 
-                  style={{ width: '210px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
                 />
                 <Image
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/9Giq2hVThhGVfXLyA3xYbfXnMB91567126599684_200x200-removebg-preview_uw1bik.png" 
-                  style={{ width: '120px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610650335/VPA28IWa_400x400_jn7qje.png" 
+                  style={{ width: '90px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
                 />
                 <Image 
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610484034/logoHorizontal_tmla0p.png"
-                  style={{ width: '210px', objectFit: 'scale-down', margin: '0 15px 0px 15px' }}
+                  style={{ width: '210px', objectFit: 'scale-down', margin: '30px 15px 0px 15px' }}
                 />
                 </div>
               </span>
@@ -948,34 +556,40 @@ const Chateau = () => {
   function sectionFive() {
     return (
       <Aux>
-        <div className="section-3-outter">
-          <div className="home-section-3">
-            <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
-              The Metaverse is the next frontier
-            </h1>
-            <span className="home-button-span">
-              <Button
-                color="blue"
-                className="play-button"
-                href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
-                target="_blank"
-              >
-                HOP IN
-              </Button>
-              <Button
-                color="blue"
-                className="how-to-button"
-                target="_blank"
-                href="/games/casinos"
-              >
-                OUR CASINOS
-              </Button>
-            </span>
-            <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              The metaverse is poised to explode in 2021. 3D virtual blackjack, roulette, and poker accessible from anywhere in the world will change online gaming forever. 
-            </p>
+        <Parallax 
+          blur={0} 
+          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1609549765/2020-11-22_10-12-02_yjrf1v.png" 
+          strength={100}
+        >
+          <div className="home-section-2-outter">
+            <div className="home-section-2 inner">
+              <h1 className="home-dashboard-h1" style={{ marginBottom: '-12px' }}>
+                The Metaverse is the next frontier
+              </h1>
+              <span className="home-button-span">
+                <Button
+                  color="blue"
+                  className="play-button"
+                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
+                  target="_blank"
+                >
+                  HOP IN
+                </Button>
+                <Button
+                  color="blue"
+                  className="how-to-button"
+                  target="_blank"
+                  href="/games/casinos"
+                >
+                  OUR CASINOS
+                </Button>
+              </span>
+              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+                The metaverse is poised to explode in 2021. 3D virtual blackjack, roulette, and poker accessible from anywhere in the world will change online gaming forever. 
+              </p>
+            </div>
           </div>
-        </div>
+        </Parallax>
       </Aux>
     );
   }

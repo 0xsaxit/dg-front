@@ -6,52 +6,52 @@ import { Menu, Popup, Icon } from 'semantic-ui-react';
 const Footer = () => {
 
  return (
- 		<span className="footer-container">
+ 	<span className="footer-container">
 
-	 		<Menu className="inner-footer-container-2" icon="labeled">
-		    <div className="footer-menu-items">
-		      <a href="/">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          PLAY
-		        </Menu.Item>
-		      </a>
+	 <Menu className="inner-footer-container-2" icon="labeled">
+	    <div className="footer-menu-items">
+	      <a href="/">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          PLAY
+	        </Menu.Item>
+	      </a>
 
-		      <a href="https://docs.decentral.games/info/risks" target="_blank">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          RISKS
-		        </Menu.Item>
-		      </a>
+	      <a href="https://docs.decentral.games/info/risks" target="_blank">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          RISKS
+	        </Menu.Item>
+	      </a>
 
-					<a href="https://docs.decentral.games/info/disclaimer" target="_blank">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          DISCLAIMER
-		        </Menu.Item>
-		      </a>
+		  <a href="https://docs.decentral.games/info/disclaimer" target="_blank">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          DISCLAIMER
+	        </Menu.Item>
+	      </a>
 
-		      <a href="https://docs.decentral.games/info/privacy-policy" target="_blank">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          PRIVACY POLICY
-		        </Menu.Item>
-		      </a>
+	      <a href="https://docs.decentral.games/info/privacy-policy" target="_blank">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          PRIVACY POLICY
+	        </Menu.Item>
+	      </a>
 
-		      <a href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC" target="_blank">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          PRESS KIT
-		        </Menu.Item>
-		      </a>
+	      <a href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC" target="_blank">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          PRESS KIT
+	        </Menu.Item>
+	      </a>
 
-					<a href="https://docs.decentral.games" target="_blank">
-		        <Menu.Item className="sidebar-menu-text blog">
-		          DOCS
-		        </Menu.Item>
-		      </a>
-		    </div>
-	    </Menu>
+				<a href="https://docs.decentral.games" target="_blank">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          DOCS
+	        </Menu.Item>
+	      </a>
+	    </div>
+	  </Menu>
 
-			<Menu className="inner-footer-container-2" icon="labeled">
-		    <div className="footer-menu-items" style={{ marginTop: '9px' }}>
+		<Menu className="inner-footer-container-2" icon="labeled">
+		  <div className="footer-menu-items">
 
-					<a href="https://github.com/decentralgames" target="_blank">
+			<a href="https://github.com/decentralgames" target="_blank">
 	          <span style={{ display: 'flex', marginBottom: '6px' }}>
 	            <Menu.Item className="right-menu-text" id="dropdown-more-items">
 	              <Icon

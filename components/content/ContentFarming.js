@@ -81,11 +81,7 @@ const ContentFarming = (props) => {
 
     axes = [
       { primary: true, type: 'utc', position: 'bottom' },
-      {
-        type: 'linear',
-        position: 'left',
-        format: d => `$${d}`
-      }
+      { type: 'linear', position: 'left' }
     ]
 
   } else {
@@ -99,11 +95,7 @@ const ContentFarming = (props) => {
 
     axes = [
       { primary: true, type: 'utc', position: 'bottom' },
-      {
-        type: 'linear',
-        position: 'left',
-        format: d => `$${d}`
-      }
+      { type: 'linear', position: 'left' }
     ]
   }
 
@@ -2028,13 +2020,13 @@ const ContentFarming = (props) => {
                 <div
                   style={{
                     width: '100%',
-                    height: '420px',
+                    height: '500px',
                   }}
                 >
                   <Chart
                     data={data}
-                    series={series}
                     axes={axes}
+                    series={series}
                     getSeriesStyle={getSeriesStyle}
                     tooltip
                     renderSVG={() => (
