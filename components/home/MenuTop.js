@@ -165,6 +165,12 @@ const MenuTop = (props) => {
               </Menu.Item>
             </a>
 
+            <a href="/account">
+              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                ACCOUNT
+              </Menu.Item>
+            </a>
+
             <a href="/games">
               <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
                 GAMES
@@ -201,6 +207,12 @@ const MenuTop = (props) => {
         <Link href="/dg">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
             $DG
+          </Menu.Item>
+        </Link>
+
+        <Link href="/account">
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/account')}>
+            ACCOUNT
           </Menu.Item>
         </Link>
 

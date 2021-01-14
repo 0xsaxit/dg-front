@@ -704,37 +704,7 @@ a.menu-info-label-link:hover {
   display: flex;
   min-width: 48.5%;
   flex-direction: column;
-  margin-top: 150px;
-}
-
-@media (max-width: 1261px) {
-  .learn-more-dg-outter {
-    display: flex;
-    flex-direction: column;
-  }
-  .avatar-image-span {
-    order: 2;
-    display: flex;
-    min-width: 100%;
-    justify-content: center;
-    margin-left: 30px;
-  }
-  .learn-more-dg-span {
-    margin-top: 90px !important;
-    order: 1;
-    display: flex;
-    min-width: 100%;
-    flex-direction: column;
-    margin-top: 150px;
-  }
-  .home-footer-h1.avatars,
-  .home-footer-p.avatars {
-    text-align: center;
-  }
-  .home-button-span.avatars {
-    display: flex;
-    align-self: center;
-  }
+  margin-top: 141px;
 }
 
 

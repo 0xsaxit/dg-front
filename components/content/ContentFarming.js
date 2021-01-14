@@ -80,8 +80,14 @@ const ContentFarming = (props) => {
     ]
 
     axes = [
-      { primary: true, type: 'utc', position: 'bottom' },
-      { type: 'linear', position: 'left' }
+      { primary: true, type: "time", position: "bottom" },
+      {
+        type: "linear",
+        id: "Second Metric",
+        min: 0,
+        position: "left",
+        format: (d) => `$${d}`,
+      },
     ]
 
   } else {
