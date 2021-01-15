@@ -271,10 +271,13 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     padding-left: 21px;
     padding-right: 21px;
   }
-  .ui.blue.button.our-blog-button,
-  .ui.blue.button.learn-more-button {
+  .ui.blue.button.our-blog-button {
     min-width: 48.5%;
-    padding: 7px 0 0 0;
+    padding: 11px 0 0 0;
+  }
+  .ui.blue.button.learn-more-button  {
+    min-width: 48.5%;
+    padding: 10px 0 0 0;
   }
   .home-button-span.dg {
     min-width: calc(100vw - 42px);
@@ -351,6 +354,12 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     text-align: left;
   }
   .home-button-span.avatars {
+    align-self: start !important;
+  }
+  .home-footer-h1.ecosystem {
+    text-align: left;
+  }
+  .home-button-span.ecosystem {
     align-self: start !important;
   }
 }

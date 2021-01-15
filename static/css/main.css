@@ -566,11 +566,20 @@ a.menu-info-label-link:hover {
   padding-bottom: 6px;
 }
 
+.home-footer-h1.ecosystem {
+  text-align: center;
+}
+
+.home-button-span.ecosystem {
+  display: flex;
+  align-self: center;
+}
+
 .dg-powered-container {
   width: 31.75%;
   display: flex;
   justify-content: space-between;
-  margin-top: 0px;
+  margin-top: -24px;
   display: block;
   margin-bottom: 6px;
   padding: 30px 30px 0px 30px;
@@ -2182,8 +2191,8 @@ a.ui.blue.button.play-button,
   color: white;
   margin-top: 9px;
   margin-bottom: 9px;
-  height: 27px;
-  padding: 8px 30px 0px 30px;
+  height: 34px;
+  padding: 11px 30px 0px 30px;
   border-radius: 4px !important;
   margin-right: 12px;
 }
@@ -2195,8 +2204,8 @@ a.ui.blue.button.play-button,
   border: 1px solid #2085f4;
   margin-top: 9px;
   margin-bottom: 9px;
-  height: 27px;
-  padding: 7px 30px 0px 30px;
+  height: 34px;
+  padding: 10px 30px 0px 30px;
   border-radius: 4px !important;
 }
 
