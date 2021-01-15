@@ -720,6 +720,15 @@ a.menu-info-label-link:hover {
   margin-top: 141px;
 }
 
+.powered-dg-span {
+  margin-top: 90px !important;
+  order: 1;
+  display: flex;
+  min-width: 100%;
+  flex-direction: column;
+  margin-top: 150px;
+}
+
 
 /* ----------------------------------------- */
 /*             NFT/GAMES PAGE CSS            */

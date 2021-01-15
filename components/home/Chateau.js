@@ -293,7 +293,7 @@ const Chateau = () => {
                 className="home-section-4-header"
                 style={{ paddingBottom: '30px' }}
               >
-                <span className="learn-more-dg-span">
+                <span className="powered-dg-span">
                   <h1
                     className="home-footer-h1 ecosystem"
                     style={{ marginBottom: '0px' }}
