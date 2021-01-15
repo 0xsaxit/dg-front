@@ -1941,7 +1941,8 @@ div.ui.grid.admin-balances-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 20vh;
+  padding-top: 0vh;
+  min-height: 83vh;
 }
 
 .not-found-header-text {
