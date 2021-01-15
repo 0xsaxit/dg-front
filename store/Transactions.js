@@ -6,19 +6,14 @@ function Transactions() {
   // dispatch users transaction history data to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // define local variables
-  let userAddress = '';
-
   useEffect(() => {
     if (state.userStatus >= 4) {
-      userAddress = window.web3.currentProvider.selectedAddress;
-
       (async function () {
-        const responseHistory = await Fetch.HISTORY_DATA(userAddress);
+        const responseHistory = await Fetch.HISTORY_DATA(state.userAddress);
         const jsonHistory = await responseHistory.json();
         const dataHistory = jsonHistory.result;
 
-        const responsePlay = await Fetch.PLAY_DATA(userAddress);
+        const responsePlay = await Fetch.PLAY_DATA(state.userAddress);
         const jsonPlay = await responsePlay.json();
         const dataPlay = jsonPlay.result;
 

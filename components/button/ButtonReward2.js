@@ -9,21 +9,16 @@ function ButtonReward(props) {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [userAddress, setUserAddress] = useState('');
+  // const [userAddress, setUserAddress] = useState('');
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress.toUpperCase();
-      setUserAddress(userAddress);
+      const userAddress = state.userAddress.toUpperCase();
+      // setUserAddress(userAddress);
 
-      async function fetchData() {
-        const addresses = await Global.ADDRESSES;
-
-        const ownerAddress = addresses.OWNER_WALLET_ADDRESS.toUpperCase();
-        if (userAddress === ownerAddress) setDisabled(false);
-      }
-      fetchData();
+      const ownerAddress = Global.ADDRESSES.OWNER_WALLET_ADDRESS.toUpperCase();
+      if (userAddress === ownerAddress) setDisabled(false);
     }
   }, [state.userStatus]);
 
@@ -34,9 +29,9 @@ function ButtonReward(props) {
     setDisabled(true);
 
     try {
-      const data = await props.stakingContractTwo.methods
+      const data = await props.stakingContractPool2.methods
         .notifyRewardAmount(props.rewardAmount)
-        .send({ from: userAddress });
+        .send({ from: state.userAddress });
 
       setDisabled(false);
 

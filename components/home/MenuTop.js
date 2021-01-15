@@ -17,41 +17,42 @@ const MenuTop = (props) => {
   // define local variables
   const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
+  const [utm, setUtm] = useState('');
 
   let menuStyle = [];
   let listener = null;
-  const [scrollState, setScrollState] = useState("top");
+  const [scrollState, setScrollState] = useState('top');
 
   useEffect(() => {
-    listener = document.addEventListener("scroll", e => {
-      var scrolled = document.scrollingElement.scrollTop
+    listener = document.addEventListener('scroll', (e) => {
+      var scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
-        if (scrollState !== "amir") {
-          setScrollState("amir")
+        if (scrollState !== 'amir') {
+          setScrollState('amir');
         }
       } else {
-        if (scrollState !== "top") {
-          setScrollState("top")
+        if (scrollState !== 'top') {
+          setScrollState('top');
         }
       }
-    })
+    });
     return () => {
-      document.removeEventListener("scroll", listener)
-    }
+      document.removeEventListener('scroll', listener);
+    };
   }, [scrollState]);
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
 
-  if (props.isHomePage && scrollState == "top") {
+  if (props.isHomePage && scrollState == 'top') {
     menuStyle = [
       'mobile-menu-icon-home',
       'right-menu-text',
       'sidebar-menu-text',
       'dashboard-menu-container',
     ];
-  } else if (props.isHomePage && scrollState == "amir") {
+  } else if (props.isHomePage && scrollState == 'amir') {
     menuStyle = [
       'mobile-menu-icon',
       'right-menu-text blog',
@@ -66,6 +67,10 @@ const MenuTop = (props) => {
       'other-menu-container blog',
     ];
   }
+
+  useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
 
   useEffect(() => {
     if (state.userStatus) {
@@ -153,7 +158,7 @@ const MenuTop = (props) => {
           }
         >
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <a href="/">
+            <a href={`/${utm}`}>
               <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
                 PLAY
               </Menu.Item>
@@ -198,7 +203,7 @@ const MenuTop = (props) => {
   function shownOrHiddenItems() {
     return (
       <div className="menu-items-to-hide">
-        <Link href="/">
+        <Link href={`/${utm}`}>
           <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
             PLAY
           </Menu.Item>
@@ -331,7 +336,7 @@ const MenuTop = (props) => {
   } else {
     return (
       <span>
-        {scrollState == "top" ? (
+        {scrollState == 'top' ? (
           <div className={menuStyle[3]}>
             <MessageBar />
             {dropdownMenu()}

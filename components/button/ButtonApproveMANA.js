@@ -9,27 +9,15 @@ import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
 
-// let spenderAddress = '';
-
-// async function getAddresses() {
-//   const addresses = await Global.ADDRESSES;
-//   spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-// }
-// getAddresses();
-
 function ButtonApproveMANA() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [userAddress, setUserAddress] = useState('');
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [value, setValue] = useState(0);
-
-  // let spenderAddress = '';
-  // let value = 0;
 
   // if the user has also authorized DAI set status value to 8, otherwise 7
   useEffect(() => {
@@ -44,9 +32,6 @@ function ButtonApproveMANA() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 providers and create token contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -60,23 +45,19 @@ function ButtonApproveMANA() {
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      (async function () {
-        const addresses = await Global.ADDRESSES;
+      const spenderAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
+      setSpenderAddress(spenderAddress);
 
-        const spenderAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-        setSpenderAddress(spenderAddress);
+      const tokenContract = new getWeb3.eth.Contract(
+        ABI_CHILD_TOKEN_MANA,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+      );
 
-        const tokenContract = new getWeb3.eth.Contract(
-          ABI_CHILD_TOKEN_MANA,
-          addresses.CHILD_TOKEN_ADDRESS_MANA
-        );
-
-        setTokenContract(tokenContract);
-      })();
+      setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Active Status');
+          console.log('Mexa is Ready: Approve MANA');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -101,13 +82,13 @@ function ButtonApproveMANA() {
 
     // update user status in database
     console.log('Posting user status to db: ' + value);
-    Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+    Fetch.USER_VERIFY(state.userAddress, value, state.affiliateAddress);
 
     // post authorization to database
     console.log('Posting MANA authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
-      userAddress,
+      state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
       'Authorization',
       'Confirmed',
@@ -130,7 +111,7 @@ function ButtonApproveMANA() {
         0,
         functionSignature,
         tokenContract,
-        userAddress,
+        state.userAddress,
         web3
       );
 

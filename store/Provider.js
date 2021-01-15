@@ -9,6 +9,7 @@ const initialState = {
     meta: {},
   },
   userStatus: 0,
+  userAddress: '',
   userInfo: [],
   userBalances: [
     [0, 0],
@@ -35,8 +36,40 @@ const initialState = {
     ],
   ],
   // adminHistory: [[], []],
-  DGBalances: {},
-  stakingBalances: {},
+  DGBalances: {
+    BALANCE_BP_DG_1: 0,
+    BALANCE_BP_DG_2: 0,
+    BALANCE_BP_DAI: 0,
+    BALANCE_ROOT_DG: 0,
+    BALANCE_CHILD_DG: 0,
+    BALANCE_CHILD_MANA: 0,
+    BALANCE_CHILD_DAI: 0,
+    BALANCE_UNISWAP_DG: 0,
+    BALANCE_UNISWAP_ETH: 0,
+    BALANCE_STAKING_BALANCER_1: 0,
+    BALANCE_STAKING_BALANCER_2: 0,
+    BALANCE_STAKING_GOVERNANCE: 0,
+    BALANCE_STAKING_UNISWAP: 0,
+    BALANCE_MINING_DG: 0,
+    BALANCE_KEEPER_DG: 0,
+    TOTAL_MANA: 0,
+    SUPPLY_BPT_1: 0,
+    SUPPLY_BPT_2: 0,
+  },
+  stakingBalances: {
+    BALANCE_CONTRACT_BPT_1: 0,
+    BALANCE_CONTRACT_BPT_2: 0,
+    BALANCE_CONTRACT_DG_1: 0,
+    BALANCE_STAKED_BPT_1: 0,
+    BALANCE_STAKED_BPT_2: 0,
+    BALANCE_WALLET_BPT_1: 0,
+    BALANCE_WALLET_BPT_2: 0,
+    BALANCE_CONTRACT_GOVERNANCE: 0,
+    BALANCE_USER_GOVERNANCE: 0,
+    BALANCE_CONTRACT_UNISWAP: 0,
+    BALANCE_STAKED_UNISWAP: 0,
+    BALANCE_WALLET_UNISWAP: 0,
+  },
   refreshBalances: true,
   stakeTime: 0,
   affiliateAddress: '',
@@ -62,6 +95,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userStatus: action.data,
+      };
+
+    case 'user_address':
+      return {
+        ...state,
+        userAddress: action.data,
       };
 
     case 'user_info':

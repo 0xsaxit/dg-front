@@ -11,14 +11,19 @@ function UserStatus() {
 
   useEffect(() => {
     if (window.ethereum) {
-      userAddress = window.web3.currentProvider.selectedAddress;
+      userAddress = window.ethereum.selectedAddress;
 
       if (userAddress) {
-        // set user status to 3 to denote fetching user status
+        // set user status to 3 to denote fetching user status, and dispatch the user address
         if (userAddress) {
           dispatch({
             type: 'update_status',
             data: 3,
+          });
+
+          dispatch({
+            type: 'user_address',
+            data: userAddress,
           });
         }
 
@@ -52,8 +57,6 @@ function UserStatus() {
     try {
       const response = await Fetch.USER_STATUS(userAddress);
       const json = await response.json();
-
-      localStorage.setItem('storedStatus', json.result);
 
       if (json.status === 'ok') {
         if (json.result === 'false') {

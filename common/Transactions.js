@@ -8,11 +8,9 @@ import Global from '../components/Constants';
 
 // set treasury contract instance
 async function treasuryContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
   const treasuryContract = new web3Default.eth.Contract(
     ABI_TREASURY_CONTRACT,
-    addresses.TREASURY_CONTRACT_ADDRESS
+    Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS
   );
 
   return treasuryContract;
@@ -20,8 +18,6 @@ async function treasuryContract(web3Default) {
 
 // get user's active status (true or false) from smart contract
 async function getActiveStatus(userAddress, web3Default) {
-  console.log("Get user's active status from smart contract");
-
   const parentContract = await treasuryContract(web3Default);
 
   try {
@@ -37,120 +33,99 @@ async function getActiveStatus(userAddress, web3Default) {
 
 // set pointer contract instance
 async function pointerContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
   const DGPointerContract = new web3Default.eth.Contract(
     ABI_DG_POINTER,
-    addresses.DG_POINTER_CONTRACT_ADDRESS
+    Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS
   );
 
   return DGPointerContract;
 }
 
-// set dg main contract instance
-async function tokenContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
+// set DG main contract instance
+async function DGTokenContract(web3Default) {
   const DGToken = new web3Default.eth.Contract(
     ABI_DG_TOKEN,
-    // addresses.DG_TOKEN
-    addresses.ROOT_TOKEN_ADDRESS_DG
+    Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG
   );
 
   return DGToken;
 }
 
-// set dg staking gov contract instance
-async function stakingContractGov(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
-  const DGStakingGov = new web3Default.eth.Contract(
+// set DG staking governance contract instance
+async function stakingContractGovernance(web3Default) {
+  const DGStakingGovernance = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_GOVERNANCE_ADDRESS
+    Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS
   );
 
-  return DGStakingGov;
+  return DGStakingGovernance;
 }
 
-// set staking contract instance dg pool 1
-async function stakingContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
+// set staking contract instance DG pool 1
+async function stakingContractPool1(web3Default) {
   const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_CONTRACT_ADDRESS
+    Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1
   );
 
   return DGStakingContract;
 }
 
-// set staking contract instance dg pool 2
-async function stakingContractTwo(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
-  const DGStakingContractTwo = new web3Default.eth.Contract(
+// set staking contract instance DG pool 2
+async function stakingContractPool2(web3Default) {
+  const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_CONTRACT_ADDRESS_2
+    Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2
   );
 
-  return DGStakingContractTwo;
+  return DGStakingContract;
 }
 
-// set staking contract instance dg uniswap
-async function stakingContractThree(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
-  const DGStakingContractThree = new web3Default.eth.Contract(
+// set staking contract instance DG uniswap
+async function stakingContractUniswap(web3Default) {
+  const DGStakingContract = new web3Default.eth.Contract(
     ABI_DG_STAKING,
-    addresses.DG_STAKING_CONTRACT_ADDRESS_3
+    Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS
   );
 
-  return DGStakingContractThree;
+  return DGStakingContract;
 }
 
-// set staking contract instance bpt pool 1
-async function BPTContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
+// set staking contract instance BPT pool 1
+async function BPTContract1(web3Default) {
   const BPTokenContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
-    addresses.BP_TOKEN_ADDRESS
+    Global.ADDRESSES.BP_TOKEN_ADDRESS_1
   );
 
   return BPTokenContract;
 }
 
-// set staking contract instance bpt pool 2
-async function BPTContractTwo(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
-  const BPTokenContractTwo = new web3Default.eth.Contract(
+// set staking contract instance BPT pool 2
+async function BPTContract2(web3Default) {
+  const BPTokenContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
-    addresses.BP_TOKEN_ADDRESS_2
+    Global.ADDRESSES.BP_TOKEN_ADDRESS_2
   );
 
-  return BPTokenContractTwo;
+  return BPTokenContract;
 }
 
 // set staking contract instance uniswap
-async function UNIContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
+async function uniswapContract(web3Default) {
   const UNIContract = new web3Default.eth.Contract(
     ABI_BP_TOKEN,
-    addresses.UNI_TOKEN_ADDRESS
+    Global.ADDRESSES.UNISWAP_ADDRESS_STAKING
   );
 
   return UNIContract;
 }
 
-// set keeper contract instance
+// set DG keeper contract instance
 async function keeperContract(web3Default) {
-  const addresses = await Global.ADDRESSES;
-
   const DGKeeperContract = new web3Default.eth.Contract(
     ABI_DG_KEEPER,
-    addresses.DG_KEEPER_CONTRACT_ADDRESS
+    Global.ADDRESSES.DG_KEEPER_CONTRACT_ADDRESS
   );
 
   return DGKeeperContract;
@@ -158,8 +133,6 @@ async function keeperContract(web3Default) {
 
 // get user or contract token balance from MetaMask
 async function balanceOfToken(tokenContract, userOrContractAddress, units) {
-  // console.log('Get balance of token');
-
   try {
     const amount = await tokenContract.methods
       .balanceOf(userOrContractAddress)
@@ -178,18 +151,46 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
   }
 }
 
+// amount user has earned from smart contract
+async function balanceEarned(tokenContract, userAddress, units) {
+  try {
+    const amount = await tokenContract.methods.earned(userAddress).call();
+
+    let amountAdjusted = 0;
+    if (units) {
+      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(units);
+    } else {
+      amountAdjusted = (amount / Global.CONSTANTS.FACTOR).toString();
+    }
+
+    return amountAdjusted;
+  } catch (error) {
+    console.log('Get amount earned failed', error);
+  }
+}
+
+// get total supply of token in contract
+async function getTotalSupply(tokenContract) {
+  const supply = await tokenContract.methods.totalSupply().call();
+  const supplyAdjusted = supply / Global.CONSTANTS.FACTOR;
+
+  return supplyAdjusted;
+}
+
 export default {
   treasuryContract,
   getActiveStatus,
-  balanceOfToken,
   pointerContract,
-  stakingContract,
-  stakingContractTwo,
-  stakingContractThree,
-  BPTContract,
-  BPTContractTwo,
-  UNIContract,
+  DGTokenContract,
+  stakingContractGovernance,
+  stakingContractPool1,
+  stakingContractPool2,
+  stakingContractUniswap,
+  BPTContract1,
+  BPTContract2,
+  uniswapContract,
   keeperContract,
-  tokenContract,
-  stakingContractGov,
+  balanceOfToken,
+  balanceEarned,
+  getTotalSupply,
 };

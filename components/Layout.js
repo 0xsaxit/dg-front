@@ -18,9 +18,10 @@ const Layout = (props) => {
 
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
-      initGA();
+      initGA(state.userAddress, state.userStatus, 0, 0);
       window.GA_INITIALIZED = true;
     }
+
     logPageView();
   }, []);
 

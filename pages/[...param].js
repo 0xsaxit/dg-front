@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
-import Chateau from '../components/home/Chateau';
+import Farming from '../components/home/Farming';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
@@ -14,17 +14,17 @@ const Wildcard = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [affiliateAddress, setAffiliateAddress] = useState(0);
+  const [affiliateAddress, setAffiliateAddress] = useState(false);
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
 
   const router = useRouter();
-  let parameter = '';
 
   useEffect(() => {
     if (router.query.param) {
-      parameter = router.query.param[0];
+      const parameter = router.query.param[0];
 
       if (parameter.slice(0, 2) === '0x') {
-        setAffiliateAddress(1);
+        setAffiliateAddress(true);
 
         console.log('Affiliate address received: ' + parameter);
 
@@ -32,28 +32,40 @@ const Wildcard = () => {
           type: 'affiliate_address',
           data: parameter,
         });
-      } else {
-        setAffiliateAddress(2);
       }
     }
   }, [router]);
 
+  useEffect(() => {
+    if (!state.userStatus) {
+      setIsErrorMessage(true);
+    } else {
+      setIsErrorMessage(false);
+    }
+  }, [state.userStatus]);
+
   return (
     <Layout>
-      {affiliateAddress === 1 ? (
+      {affiliateAddress ? (
         <Aux>
           <Header
-            title={
-              Global.CONSTANTS.TITLE +
-              ' | Metavarse Casinos Playable with Crypto'
-            }
+            title={Global.CONSTANTS.TITLE + ' | $DG'}
             description={Global.CONSTANTS.DESCRIPTION}
             image={Images.SOCIAL_SHARE}
           />
 
-          <Chateau />
+          {isErrorMessage ? (
+            <div
+              className="account-other-inner-p"
+              style={{ paddingTop: '20px' }}
+            >
+              You must log in with Metamask to view this page
+            </div>
+          ) : (
+            <Farming DGState={'governance'} />
+          )}
         </Aux>
-      ) : affiliateAddress === 2 ? (
+      ) : (
         <Aux>
           <Header
             title={Global.CONSTANTS.TITLE + ' | Page Not Found'}
@@ -63,7 +75,7 @@ const Wildcard = () => {
 
           <Content404 />
         </Aux>
-      ) : null}
+      )}
     </Layout>
   );
 };

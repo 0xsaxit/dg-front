@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-// import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -13,18 +12,12 @@ function AdminBalances() {
   // define local variables
   let maticWeb3 = {};
   let balances = [];
-  let workerAddress = '';
-  let contractAddress = '';
 
   useEffect(() => {
     if (state.whitelisted) {
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        const addresses = await Global.ADDRESSES;
-        workerAddress = addresses.WORKER_WALLET_ADDRESS;
-        contractAddress = addresses.TREASURY_CONTRACT_ADDRESS;
-
         const balance = await getEthBalance();
         balances = await getTokenBalances();
 
@@ -42,16 +35,19 @@ function AdminBalances() {
         // if deposit or withdrawal start pinging the token contract for changed balances
         if (state.tokenPings === 2) dataInterval();
       }
+
       fetchData();
     }
   }, [state.whitelisted, state.tokenPings]);
 
   // get worker address ETH balance on Matic Network
   async function getEthBalance() {
-    console.log('Worker address ETH balance on Matic Network');
+    // console.log('Worker address ETH balance on Matic Network');
 
     try {
-      const amount = await maticWeb3.eth.getBalance(workerAddress);
+      const amount = await maticWeb3.eth.getBalance(
+        Global.ADDRESSES.WORKER_WALLET_ADDRESS
+      );
 
       const amountEth = web3.fromWei(amount, 'ether') + ' ETH';
       const amountNumber = parseFloat(amountEth).toFixed(4);
@@ -111,11 +107,9 @@ function AdminBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // get total funds and individual game amounts
   async function getTokenBalances() {
-    const addresses = await Global.ADDRESSES;
-
     const tokenContract = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_MANA,
-      addresses.CHILD_TOKEN_ADDRESS_MANA
+      Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
     );
 
     try {
@@ -124,7 +118,7 @@ function AdminBalances() {
       // get treasury balances from token contracts
       const amountTreasury = await Transactions.balanceOfToken(
         tokenContract,
-        contractAddress,
+        Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
         3
       );
       arrayAmounts.push([0, amountTreasury]);
@@ -151,12 +145,7 @@ function AdminBalances() {
   }
 
   async function getTokensGame(gameIndex, tokenIndex) {
-    console.log('Get tokens per game');
-
-    // const parentContract = new maticWeb3.eth.Contract(
-    //   ABI_TREASURY_CONTRACT,
-    //   contractAddress
-    // );
+    // console.log('Get tokens per game');
     const parentContract = await Transactions.treasuryContract(maticWeb3);
 
     try {

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import Web3 from 'web3';
 import { useRouter } from 'next/router';
 import { GlobalContext } from '../../store';
 import Global from '../Constants';
@@ -12,6 +13,7 @@ const MessageBar = () => {
   const [adminError, setAdminError] = useState(false);
 
   let isSafari = false;
+  let web3 = {};
   const router = useRouter();
 
   // using Safari browser
@@ -23,15 +25,17 @@ const MessageBar = () => {
 
   // get network ID
   useEffect(() => {
-    if (window.web3) {
-      window.web3.version.getNetwork((err, network) => {
-        const networkInt = parseInt(network);
+    if (window.ethereum) {
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+      (async () => {
+        const networkID = await web3.eth.net.getId();
 
         dispatch({
           type: 'network_id',
-          data: networkInt,
+          data: networkID,
         });
-      });
+      })();
     }
   }, []);
 
@@ -94,8 +98,7 @@ const MessageBar = () => {
 
   if (state.userStatus === 3) {
     return null;
-  }
-  else if (message !== '') {
+  } else if (message !== '') {
     return (
       <div
         id="message-bar"

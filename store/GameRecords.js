@@ -8,13 +8,9 @@ function GameRecords() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-
       (async function () {
-        const response = await Fetch.GAME_RECORDS(userAddress);
+        const response = await Fetch.GAME_RECORDS(state.userAddress);
         const jsonRecords = await response.json();
-
-        // const jsonRecords = '';
 
         dispatch({
           type: 'update_records',

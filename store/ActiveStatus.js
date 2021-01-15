@@ -12,18 +12,12 @@ function ActiveStatus() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [userAddress, setUserAddress] = useState('');
   const [web3, setWeb3] = useState({});
   const [getWeb3, setGetWeb3] = useState({});
   const [maticWeb3, setMaticWeb3] = useState({});
   const [biconomyReady, setBiconomyReady] = useState(false);
 
-  // let getWeb3 = {};
-  // let userAddress = '';
   let parentContract = {};
-
-  // let web3 = {};
-  // let maticWeb3 = {};
 
   let activeStatus = true;
   const sessionDuration = Global.CONSTANTS.ACTIVE_PERIOD;
@@ -33,9 +27,6 @@ function ActiveStatus() {
       state.userStatus >= 6 &&
       state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
     ) {
-      const userAddress = window.web3.currentProvider.selectedAddress;
-      setUserAddress(userAddress);
-
       // initialize Web3 providers and create treasury contract instance
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
@@ -52,38 +43,10 @@ function ActiveStatus() {
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
       setGetWeb3(getWeb3);
 
-      // (async function () {
-      //   parentContract = await Transactions.treasuryContract(getWeb3);
-
-      //   activeStatus = await Transactions.getActiveStatus(
-      //     userAddress,
-      //     maticWeb3
-      //   );
-      //   console.log('Active status: ' + activeStatus);
-      //   dispatchActiveStatus(activeStatus);
-
-      //   // if (!activeStatus) metaTransaction(); // MetaMask popup window
-      // })();
-
       biconomy
         .onEvent(biconomy.READY, () => {
           console.log('Mexa is Ready: Active Status');
-
-          // if (!activeStatus) metaTransaction(); // MetaMask popup window
           setBiconomyReady(true);
-
-          // (async function () {
-          //   parentContract = await Transactions.treasuryContract(getWeb3);
-
-          //   activeStatus = await Transactions.getActiveStatus(
-          //     userAddress,
-          //     maticWeb3
-          //   );
-          //   console.log('Active status: ' + activeStatus);
-          //   dispatchActiveStatus(activeStatus);
-
-          //   if (!activeStatus) metaTransaction(); // MetaMask popup window
-          // })();
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -97,7 +60,7 @@ function ActiveStatus() {
         parentContract = await Transactions.treasuryContract(getWeb3);
 
         activeStatus = await Transactions.getActiveStatus(
-          userAddress,
+          state.userAddress,
           maticWeb3
         );
         console.log('Active status: ' + activeStatus);
@@ -118,10 +81,10 @@ function ActiveStatus() {
 
   // post reauthorization to database
   function postAuthorization(txHash) {
-    console.log('Posting reauthorization transaction to db');
+    // console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
-      userAddress,
+      state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
       'Reauthorization',
       'Confirmed',
@@ -144,7 +107,7 @@ function ActiveStatus() {
         1,
         functionSignature,
         parentContract,
-        userAddress,
+        state.userAddress,
         web3
       );
 
@@ -154,7 +117,7 @@ function ActiveStatus() {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         const activeStatus = await Transactions.getActiveStatus(
-          userAddress,
+          state.userAddress,
           maticWeb3
         );
         console.log('Active status (updated): ' + activeStatus);

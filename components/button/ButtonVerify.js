@@ -9,7 +9,6 @@ const ButtonVerify = () => {
 
   // define local variables
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
-  // const [userAddress, setUserAddress] = useState('');
 
   let userAddress = '';
 
@@ -26,10 +25,13 @@ const ButtonVerify = () => {
       // open MataMask for login then get the user's wallet address
 
       await window.ethereum.enable();
-      // await window.eth_requestAccounts();
 
-      userAddress = window.web3.currentProvider.selectedAddress;
-      // setUserAddress(userAddress);
+      // dispatch user address to the Context API store
+      userAddress = window.ethereum.selectedAddress;
+      dispatch({
+        type: 'user_address',
+        data: userAddress,
+      });
 
       // set global user status based on value stored in database
       // if new wallet update user status to 4 both locally and in the database
