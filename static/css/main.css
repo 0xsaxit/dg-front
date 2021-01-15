@@ -690,6 +690,10 @@ a.menu-info-label-link:hover {
   justify-content: space-between;
 }
 
+.main-container {
+  min-height: calc(100vh - 180px);
+}
+
 .learn-more-dg-outter {
   display: flex;
   justify-content: space-between;
@@ -841,7 +845,7 @@ a.menu-info-label-link:hover {
 }
 
 .main-container {
-  padding-bottom: 60px !important;
+  padding-bottom: 30px !important;
 }
 
 .my-nft-row {

@@ -163,7 +163,6 @@ const Chateau = () => {
                 >
                   <a
                     href="/dg/mining"
-                    target="_blank"
                     className="dg-powered-container one"
                   >
                     <span
@@ -206,7 +205,6 @@ const Chateau = () => {
 
                   <a
                     href="/dg/uniswap"
-                    target="_blank"
                     className="dg-powered-container two"
                   >
                     <span
@@ -249,7 +247,6 @@ const Chateau = () => {
 
                   <a
                     href="/dg"
-                    target="_blank"
                     className="dg-powered-container three"
                   >
                     <span
@@ -320,7 +317,6 @@ const Chateau = () => {
                   color="blue"
                   className="play-button"
                   href="/account"
-                  target="_blank"
                 >
                   DEPOSIT CRYPTO
                 </Button>
@@ -447,7 +443,6 @@ const Chateau = () => {
                 <Button
                   color="blue"
                   className="how-to-button"
-                  target="_blank"
                   href="/games/casinos"
                 >
                   OUR CASINOS
@@ -595,8 +590,6 @@ const Chateau = () => {
             </span>
           </span>
         </div>
-
-        <Footer />
       </Aux>
     );
   }

@@ -8,6 +8,7 @@ import ContentMining from '../content/ContentMining';
 import ContentBalancer from '../content/ContentBalancer';
 import ContentUniswap from '../content/ContentUniswap';
 import ContentAirdrop from '../content/ContentAirdrop';
+import ContentTreasury from '../content/ContentTreasury';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
 import ButtonAffiliates from '../button/ButtonAffiliates';
@@ -253,8 +254,8 @@ const Farming = (props) => {
               </Link>
             )}
 
-            {DGState === 'airdrop' ? (
-              <b className="account-hover active">AIRDROP</b>
+            {DGState === 'treasury' ? (
+              <b className="account-hover active">TREASURY</b>
             ) : (
               <Link href="/dg/treasury">
                 <Menu.Item className="account-hover">TREASURY</Menu.Item>
@@ -438,6 +439,8 @@ const Farming = (props) => {
               withdrawal={withdrawal}
               reward={reward}
             />
+          ) : DGState === 'treasury' ? (
+            <ContentTreasury />
           ) : DGState === 'airdrop' ? (
             <ContentAirdrop price={price} formatPrice={formatPrice} />
           ) : DGState === 'admin' ? (

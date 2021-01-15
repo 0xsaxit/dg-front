@@ -40,7 +40,7 @@ const Treasury = () => {
           You must log in with Metamask to view this page
         </div>
       ) : (
-        <Farming DGState={'stats'} />
+        <Farming DGState={'treasury'} />
       )}
     </Layout>
   );
