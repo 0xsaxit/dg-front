@@ -1,4 +1,4 @@
-/* ----------------------------------------- */
+f/* ----------------------------------------- */
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
@@ -495,7 +495,7 @@ a.menu-info-label-link:hover {
 }
 
 .section-4-outter-header-loading {
-  margin-top: 100vh;
+  margin-top: 100vh !important;
 }
 
 .home-section-4-header {
