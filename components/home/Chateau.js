@@ -80,7 +80,7 @@ const Chateau = () => {
               className="home-dashboard-main-h1"
               style={{ marginBottom: '-12px' }}
             >
-              The future of casinos is in the Metaverse
+              Be The House
             </h1>
             <span className="home-button-span">
               {state.userStatus === 0 ? (
@@ -105,8 +105,7 @@ const Chateau = () => {
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              Be the house in the first metaverse casino. Earn $DG through
-              gameplay, liquidity provision, and governance rewards.
+              By owning $DG, the first-ever metaverse casino is now yours. Earn $DG through gameplay, liquidity provision, and governance rewards.
             </p>
           </div>
         )}
