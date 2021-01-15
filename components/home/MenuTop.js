@@ -20,15 +20,43 @@ const MenuTop = (props) => {
   const [utm, setUtm] = useState('');
 
   let menuStyle = [];
+  let listener = null;
+  const [scrollState, setScrollState] = useState('top');
+
+  useEffect(() => {
+    listener = document.addEventListener('scroll', (e) => {
+      var scrolled = document.scrollingElement.scrollTop;
+      if (scrolled >= 10) {
+        if (scrollState !== 'amir') {
+          setScrollState('amir');
+        }
+      } else {
+        if (scrollState !== 'top') {
+          setScrollState('top');
+        }
+      }
+    });
+    return () => {
+      document.removeEventListener('scroll', listener);
+    };
+  }, [scrollState]);
+
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
 
-  if (props.isHomePage) {
+  if (props.isHomePage && scrollState == 'top') {
     menuStyle = [
       'mobile-menu-icon-home',
       'right-menu-text',
       'sidebar-menu-text',
+      'dashboard-menu-container',
+    ];
+  } else if (props.isHomePage && scrollState == 'amir') {
+    menuStyle = [
+      'mobile-menu-icon',
+      'right-menu-text blog',
+      'sidebar-menu-text blog',
       'dashboard-menu-container',
     ];
   } else {
@@ -43,7 +71,6 @@ const MenuTop = (props) => {
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
-
 
   useEffect(() => {
     if (state.userStatus) {
@@ -263,11 +290,11 @@ const MenuTop = (props) => {
                   id="mobile-avatar-picture"
                   src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
                   style={{
-                    width: '21px',
-                    height: '21px',
+                    width: '18px',
+                    height: '18px',
                     display: 'flex',
                     border: '1px solid rgb(227, 232, 238)',
-                    marginTop: '5px',
+                    marginTop: '4px',
                     borderRadius: '100%',
                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                     backgroundColor: 'white',
@@ -296,26 +323,51 @@ const MenuTop = (props) => {
     return null;
   } else {
     return (
-      <div className={menuStyle[3]}>
-        <MessageBar />
-        {dropdownMenu()}
+      <span>
+        {scrollState == 'top' ? (
+          <div className={menuStyle[3]}>
+            <MessageBar />
+            {dropdownMenu()}
 
-        {props.isHomePage && !open ? (
-          <Menu className="menu-container dark" icon="labeled">
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
+            {props.isHomePage && !open ? (
+              <Menu className="menu-container" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            ) : (
+              <Menu className="menu-container-dark blog" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            )}
+
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
         ) : (
-          <Menu className="menu-container-dark blog" icon="labeled">
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {balancesAndButtons()}
-          </Menu>
-        )}
+          <div className={menuStyle[3]} id="top">
+            <MessageBar />
+            {dropdownMenu()}
 
-        <MessageBox handleDismiss={handleDismiss} />
-      </div>
+            {props.isHomePage && !open ? (
+              <Menu className="menu-container" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            ) : (
+              <Menu className="menu-container-dark blog" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            )}
+
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
+        )}
+      </span>
     );
   }
 };

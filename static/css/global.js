@@ -5,18 +5,12 @@ export const GlobalStyles = createGlobalStyle`
   body,
   div.ui.grid.balances-container,
   .post__content,
-  .read-next-div,
-  .ui.input>input {
+  .read-next-div {
     background: ${({ theme }) => theme.body};
   }
 
   .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
     background: ${({ theme }) => theme.toggle};
-  }
-
-  .ui.input>input {
-    background: ${({ theme }) => theme.input} !important;
-    border: ${({ theme }) => theme.globalDividers} !important;
   }
 
   .avatar-picture.main {
@@ -90,6 +84,7 @@ export const GlobalStyles = createGlobalStyle`
   .home-dashboard-h2,
   .featured-casino-text,
   .home-dashboard-h1,
+  .home-dashboard-main-h1,
   .right-menu-text,
   .deposit-message-text,
   .leaders-text {
@@ -98,6 +93,8 @@ export const GlobalStyles = createGlobalStyle`
 
   .games-container,
   .nft-container,
+  .dg-powered-container,
+  .treasury-container,
   .balances-column,
   .table-body,
   .featured-blog-container,
@@ -114,6 +111,17 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
+  .ui.input>input {
+    background: ${({ theme }) => theme.card}; 
+    border: ${({ theme }) => theme.cardBorder};
+  }
+
+  .tutorial-info,
+  .tutorial-info-2 {
+    background: ${({ theme }) => theme.tutorialColor};
+    color: ${({ theme }) => theme.text} !important;
   }
 
   #snapshot {
@@ -183,7 +191,8 @@ export const GlobalStyles = createGlobalStyle`
   .other-menu-container.blog,
   .ui.visible.top.overlay.sidebar,
   div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu,
-  .menu-container.blog {
+  .menu-container.blog,
+  .dashboard-menu-container#top {
     background: ${({ theme }) => theme.menuColor} !important;
     box-shadow: ${({ theme }) => theme.boxShadow};
   }

@@ -6,8 +6,8 @@
   position: relative;
   color: black;
   background-color: transparent;
-  top: 45px;
-  left: 81px;
+  top: 42px;
+  left: 72px;
   z-index: 10;
   font-size: 18px !important;
 }
@@ -16,8 +16,8 @@
   position: relative;
   color: white;
   background-color: transparent;
-  top: 45px;
-  left: 81px;
+  top: 42px;
+  left: 72px;
   z-index: 10;
   font-size: 18px !important; 
 }
@@ -76,7 +76,7 @@
   #mobile-menu-icon,
   #mobile-menu-icon-home {
     position: relative;
-    left: 72px;
+    left: 60px;
   }
   #dropdown-menu-items {
     padding-left: 78px !important;
@@ -95,7 +95,7 @@
     min-width: 150px !important;
     padding-left: 0px;
     padding-right: 0px;
-    height: 33px;
+    height: 27px;
     letter-spacing: 0.5px;
     border-radius: 4px;
     margin-right: 15px !important;
@@ -169,11 +169,11 @@
   width: 100vw;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-left: 87px;
+  padding-left: 76px;
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
-  margin-top: 70px;
+  margin-top: 64px;
   border: none;
   min-width: 100vw;
   border-radius: 0px;
@@ -181,7 +181,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   padding-top: 0px;
   height: 260px;
   position: absolute !important;
-  left: -25px !important;
+  left: -26px !important;
 }
 
 
@@ -199,6 +199,16 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 /*               HOME PAGE CSS               */
 /* ----------------------------------------- */
 
+@media (max-width: 620px) {
+  .outter-dashboard-span {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .home-more-nav {
+    margin-top: 0px !important;
+  }
+}
 
 @media (min-width: 500px) {
   .mobile-menu-image,
@@ -218,6 +228,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .daily-leaders-container {
     display: none;
   }
+  .dashboard-span {
+    flex-direction: column !important;
+  }
 }
 
 @media (max-height: 750px) {
@@ -235,16 +248,14 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 @media (max-width: 499px) {
   .dashboard-image-container,
   #mobile-casino-text,
-  video#myVideo.home-dashboard-video {
+  video#myVideo.home-dashboard-video,
+  .home-video-container video {
     display: none !important;
   }
-  .home-mission-content {
-    margin-top: -30px;
-  }
   .home-dashboard-content {
-    position: absolute;
-    left: -9px;
-    bottom: 75px;
+    position: relative;
+    height: 100vh;
+    padding-top: 25vh !important;
     padding-right: 21px !important;
   }
   .home-dashboard-p {
@@ -256,6 +267,24 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-dashboard-h1 {
     font-size: 48px !important;
   }
+  .home-section-4-header {
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+  .ui.blue.button.our-blog-button {
+    min-width: 48.5%;
+    padding: 11px 0 0 0;
+  }
+  .ui.blue.button.learn-more-button  {
+    min-width: 48.5%;
+    padding: 10px 0 0 0;
+  }
+  .home-button-span.dg {
+    min-width: calc(100vw - 42px);
+  }
+  .mailchimp-input {
+    width: 100%;
+  }
   .home-dashboard {
     background-image: linear-gradient(
         rgba(0, 0, 0, 0.7),
@@ -266,10 +295,8 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     background-position: 75% !important;
     background-color: transparent;
     background-size: cover !important;
-    height: 100% !important;
+    height: 100vh !important;
     width: 100vw;
-    position: absolute;
-    overflow: hidden !important;
   }
   .home-button-span {
     display: flex;
@@ -280,12 +307,85 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   a.ui.blue.button.how-to-button {
     width: 48.5% !important;
   }
+  .home-dashboard-content,
+  .home-section-2,
+  .home-section-3,
+  .home-section-4,
+  .home-section-5,
+  .home-section-6 {
+    padding-left: 21px !important;
+    padding-right: 21px !important;
+  }
+}
+
+@media (max-width: 1261px) {
+  .learn-more-dg-outter {
+    display: flex;
+    flex-direction: column;
+  }
+  .avatar-image-span {
+    order: 2;
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+    margin-left: 30px;
+  }
+  .learn-more-dg-span {
+    margin-top: 90px !important;
+    order: 1;
+    display: flex;
+    min-width: 100%;
+    flex-direction: column;
+    margin-top: 150px;
+  }
+  .home-footer-h1.avatars,
+  .home-footer-p.avatars {
+    text-align: center;
+  }
+  .home-button-span.avatars {
+    display: flex;
+    align-self: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-footer-h1.avatars,
+  .home-footer-p.avatars {
+    text-align: left;
+  }
+  .home-button-span.avatars {
+    align-self: start !important;
+  }
+  .home-footer-h1.ecosystem {
+    text-align: left;
+  }
+  .home-button-span.ecosystem {
+    align-self: start !important;
+  }
+}
+
+@media (max-width: 499px) {
+  .avatar-image-span {
+    padding-left: 30px;
+    overflow: hidden !important;
+    width: calc(100% + 42px);
+    margin-left: -21px;
+    margin-right: -21px;
+  }
+  .home-button-span.avatars {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ui.blue.button.play-button.avatars {
+    min-width: 48.5%;
+    margin-right: 9px;
+  }
 }
 
 @media (max-width: 399px) {
   .home-dashboard-content {
     margin-right: 0px !important;
-    margin-top: 90px;
   }
   .featured-casino-text {
     font-size: 12px !important;
@@ -310,6 +410,50 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     display: flex;
     margin-left: calc(50% - 90px);
     flex-direction: column;
+  }
+}
+
+@media (max-width: 1011px) {
+  .home-section-3 {
+    padding-left: 30px;
+    padding-right: 30px;
+    min-width: 100%;
+  }
+  .footer-container {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .inner-footer-container-2 {
+    justify-content: center;
+  }
+  .footer-menu-items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .home-dashboard-main-h1 {
+    font-size: 48px;
+  }
+  .featured-casino-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  .outter-footer-container {
+    flex-direction: column;
+  }
+  .inner-footer-container.top {
+    padding-bottom: 60px;
+    margin-top: -30px;
+  }
+  .inner-footer-container {
+    width: 100%;
+  }
+  .inner-footer-container.bottom {
+    padding-top: 45px;
   }
 }
 
