@@ -500,9 +500,9 @@ const Chateau = () => {
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/7kyDcfEK_jU"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 </span>
                 <span style={{ display: 'flex', marginTop: '15px' }}>
@@ -522,9 +522,9 @@ const Chateau = () => {
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/-7U3_YzO-ZU"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 </span>
                 <span style={{ display: 'flex', marginTop: '15px' }}>
@@ -547,9 +547,9 @@ const Chateau = () => {
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/zSyx4Zq0VJ0"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 </span>
                 <span style={{ display: 'flex', marginTop: '15px' }}>

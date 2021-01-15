@@ -20,8 +20,8 @@ const ModalVideo = () => {
         <iframe
           className="mobile-demo-video"
           src="https://www.youtube.com/embed/1NxYpUsxhC0"
-          frameborder="0"
-          allowfullscreen
+          frameBorder="0"
+          allowFullScreen
         ></iframe>
       </Modal.Content>
     </Modal>

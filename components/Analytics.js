@@ -2,13 +2,13 @@ import ReactGA from 'react-ga';
 import Global from './Constants';
 
 export const initGA = (userAddress, userStatus, winningsDAI, winningsMANA) => {
-  console.log('user address (GA): ' + userAddress);
-  console.log('user status (GA): ' + userStatus);
-  console.log('winnings DAI (GA): ' + winningsDAI);
-  console.log('winnings MANA (GA): ' + winningsMANA);
+  // console.log('user address (GA): ' + userAddress);
+  // console.log('user status (GA): ' + userStatus);
+  // console.log('winnings DAI (GA): ' + winningsDAI);
+  // console.log('winnings MANA (GA): ' + winningsMANA);
 
   ReactGA.initialize(Global.KEYS.GOOGLE_ANALYTICS, {
-    debug: true,
+    debug: false,
     titleCase: false,
     gaOptions: {
       dimension1: userAddress,
