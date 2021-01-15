@@ -11,7 +11,7 @@ const Index = () => {
       <Header
         title={
           Global.CONSTANTS.TITLE +
-          ' | Metavarse Casinos Playable with Crypto'
+          ' | Metaverse Casinos Playable with Crypto'
         }
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
