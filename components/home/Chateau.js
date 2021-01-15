@@ -118,25 +118,36 @@ const Chateau = () => {
       <Aux>
         {state.userStatus === 3 || isLoading ? (
           <div>
-            <div className="section-4-header-loading">
-              <div className="home-section-4-header">
-                <h1 className="dg-powered-h1 main">An Ecosystem powered by $DG</h1>
-                <span className="outter-dashboard-span">
-                  <span className="home-button-span dg">
+            <div
+              className="section-4-outter-header-loading"
+              style={{  marginTop: '-90px' }}
+            >
+              <div
+                className="home-section-4-header"
+                style={{ paddingBottom: '30px' }}
+              >
+                <span className="powered-dg-span">
+                  <h1
+                    className="home-footer-h1 ecosystem"
+                    style={{ marginBottom: '0px' }}
+                  >
+                    An ecosystem powered by $DG
+                  </h1>
+                  <span className="home-button-span ecosystem">
                     <Button
                       color="blue"
-                      className="our-blog-button"
+                      className="play-button ecosystem"
                       href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                     >
                       ANNOUNCEMENT
                     </Button>
                     <Button
                       color="blue"
-                      className="learn-more-button"
+                      className="roadmap-button ecosystem"
                       target="_blank"
                       href="https://docs.decentral.games/ecosystem"
                     >
-                      LEARN MORE
+                      READ DOCS
                     </Button>
                   </span>
                 </span>
@@ -314,7 +325,7 @@ const Chateau = () => {
                       target="_blank"
                       href="https://docs.decentral.games/ecosystem"
                     >
-                      LEARN MORE
+                      READ DOCS
                     </Button>
                   </span>
                 </span>
