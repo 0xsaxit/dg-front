@@ -38,7 +38,11 @@ const Layout = (props) => {
 
       {props.children}
 
-      <Footer />
+      {router.pathname === '/' ? (
+        null
+      ) : (
+        <Footer />
+      )}
 
     </ThemeProvider>
   );
