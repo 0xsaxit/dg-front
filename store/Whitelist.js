@@ -17,7 +17,7 @@ const Whitelist = () => {
         const response = await Fetch.GET_ADDRESSES(userAddress);
         let json = await response.json();
 
-        const arrayUpperCase = json.ADMIN_ADDRESSES.map((a) => a.toUpperCase());
+        const arrayUpperCase = json.FOUNDERS.map((a) => a.toUpperCase());
 
         if (arrayUpperCase.includes(userAddress)) {
           whitelisted = true;
