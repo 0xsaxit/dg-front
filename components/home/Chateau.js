@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Divider, Image } from 'semantic-ui-react';
+import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
@@ -106,6 +106,9 @@ const Chateau = () => {
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
               By owning $DG, the first-ever metaverse casino is now yours. Earn $DG through gameplay, liquidity provision, and governance rewards.
+            </p>
+            <p className="scroll-down-icon">
+              <Icon name="chevron down" />
             </p>
           </div>
         )}
@@ -528,6 +531,7 @@ const Chateau = () => {
               <span className="avatar-image-span">
                 <Image
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610653695/download_2_bdhk3t.png"
+                  className="home-avatar-1"
                   style={{
                     height: '630px',
                     objectFit: 'scale-down',
@@ -536,6 +540,7 @@ const Chateau = () => {
                 />
                 <Image
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610652923/download_1_l4dnha.png"
+                  className="home-avatar-2"
                   style={{
                     height: '810px',
                     objectFit: 'scale-down',
@@ -544,6 +549,7 @@ const Chateau = () => {
                   }}
                 />
                 <Image
+                  className="home-avatar-3"
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610652806/download_lb9h4u.png"
                   style={{
                     height: '540px',
@@ -651,16 +657,16 @@ const Chateau = () => {
           </div>
         </div>
 
-        <div className="section-4-outter">
-          <div className="home-section-4">
-            <span
-              className="outter-games-container"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginTop: '30px',
-              }}
-            >
+          <div className="section-4-outter">
+            <div className="home-section-4">
+              <span
+                className="outter-games-container"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginTop: '30px',
+                }}
+              >
               <div
                 href="/dg/mining"
                 target="_blank"

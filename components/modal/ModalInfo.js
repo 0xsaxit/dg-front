@@ -2,6 +2,23 @@ import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Divider, Icon } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
 import Fetch from '../../common/Fetch';
+import transakSDK from '@transak/transak-sdk';
+import Global from '../Constants';
+
+let transak_3 = new transakSDK({
+  apiKey: Global.KEYS.TRANSAK_API, // API Key
+  environment: 'PRODUCTION', // STAGING/PRODUCTION
+  walletAddress: '', // customer wallet address
+  themeColor: '#2085f4', // theme color
+  fiatCurrency: '', // INR/GBP
+  email: '', // customer email address
+  redirectURL: '',
+  defaultCryptoCurrency: 'DG',
+  hostURL: Global.CONSTANTS.BASE_URL,
+  widgetHeight: '633px',
+  widgetWidth: '100%',
+  exchangeScreenTitle: 'Buy Mainchain $DG directly',
+});
 
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -36,6 +53,31 @@ const ModalInfo = () => {
     const totalDGAdjusted_2 = totalDG.toFixed(3);
     setDGTotal_2(totalDGAdjusted_2);
   }, [state.DGBalances, state.userBalances, state.stakingBalances]);
+
+  // transak for DG
+  useEffect(() => {
+    // get all the events
+    transak_3.on(transak_3.ALL_EVENTS, (data) => {
+      console.log(data);
+    });
+
+    // triggers when the user closes the widget
+    transak_3.on(transak_3.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak_3.close();
+    });
+
+    // triggers when the payment is complete
+    transak_3.on(transak_3.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+      console.log(orderData);
+      transak_3.close();
+    });
+  }, []);
+
+  // initialize transak modal
+  function show_transak_3() {
+    transak_3.init();
+    setOpen(false);
+  }
 
   // calculate DG price
   useEffect(() => {
@@ -121,7 +163,7 @@ const ModalInfo = () => {
               textAlign: 'center',
             }}
           >
-            {DGTotal_2}
+            {formatPrice(DGTotal_2, 3)}
           </p>
         </span>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
@@ -142,7 +184,16 @@ const ModalInfo = () => {
             href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
             target="_blank"
           >
-            GET $DG
+            GET $DG WITH CRYPTO
+          </Button>
+        </span>
+        <span style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button
+            className="get-dg-button"
+            style={{ padding: '0 0 0 0' }}
+            onClick={() => show_transak_3()}
+          >
+            GET $DG WITH FIAT
           </Button>
         </span>
       </div>
@@ -150,7 +201,7 @@ const ModalInfo = () => {
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">$DG staked in gov</p>
-          <p className="menu-info-text">{gov_staked.toFixed(3)}</p>
+          <p className="menu-info-text">{gov_staked.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
@@ -182,74 +233,84 @@ const ModalInfo = () => {
         </span>
       </div>
 
-      <div
-        className="menu-info-container"
-        style={{ marginTop: '12px', marginBottom: '12px', paddingTop: '12px' }}
-      >
-        {gov_unclaimed > 0 ? (
-          <span className="menu-info-inner-span">
-            <p className="menu-info-label">unclaimed $dg - gov</p>
-            <p className="menu-info-text">{gov_unclaimed.toFixed(3)}</p>
-          </span>
-        ) : (
-          null
-        )}
+      <div>
+        {gov_unclaimed > 0 || 
+          state.DGBalances.BALANCE_MINING_DG > 0 || 
+          state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 || 
+          state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ||
+          state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ||
+          state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
+          <div
+            className="menu-info-container"
+            style={{ marginTop: '12px', marginBottom: '12px', paddingTop: '12px' }}
+          >
+            {gov_unclaimed > 0 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $dg - gov</p>
+                <p className="menu-info-text">{gov_unclaimed.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+              </span>
+            ) : (
+              null
+            )}
 
-        {state.DGBalances.BALANCE_MINING_DG > 0 ? (
-          <span className="menu-info-inner-span">
-            <p className="menu-info-label">unclaimed $dg - gameplay</p>
-            <p className="menu-info-text">
-              {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
-            </p>
-          </span>
-        ) : (
-          null
-        )}
+            {state.DGBalances.BALANCE_MINING_DG > 0 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $dg - gameplay</p>
+                <p className="menu-info-text">
+                  {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+                </p>
+              </span>
+            ) : (
+              null
+            )}
 
-        {state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ? (
-          <span className="menu-info-inner-span">
-            <p className="menu-info-label">unclaimed $dg - balancer 1</p>
-            <p className="menu-info-text">
-              {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
-            </p>
-          </span>
-        ) : (
-          null
-        )}
+            {state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $dg - balancer 1</p>
+                <p className="menu-info-text">
+                  {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
+                </p>
+              </span>
+            ) : (
+              null
+            )}
 
-        {state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ? (
-          <span className="menu-info-inner-span">
-            <p className="menu-info-label">unclaimed $dg - balancer 2</p>
-            <p className="menu-info-text">
-              {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
-            </p>
-          </span>
-        ) : (
-          null
-        )}
+            {state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $dg - balancer 2</p>
+                <p className="menu-info-text">
+                  {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
+                </p>
+              </span>
+            ) : (
+              null
+            )}
 
-        {state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ? (
-          <span className="menu-info-inner-span">
-            <p className="menu-info-label">unclaimed $dg - uniswap</p>
-            <p className="menu-info-text">
-              {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
-            </p>
-          </span>
-        ) : (
-          null
-        )}
+            {state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $dg - uniswap</p>
+                <p className="menu-info-text">
+                  {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
+                </p>
+              </span>
+            ) : (
+              null
+            )}
 
-        {state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
-          <span className="menu-info-inner-span">
-            <p className="menu-info-label">unclaimed $DG - airdrop</p>
-            <p className="menu-info-text">
-              {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
-            </p>
-          </span>
+            {state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $DG - airdrop</p>
+                <p className="menu-info-text">
+                  {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+                </p>
+              </span>
+            ) : (
+              null
+            )}  
+          </div>
         ) : (
-          null
+          <div style={{ marginTop: '12px' }} />
         )}
-        
       </div>
 
       <div className="menu-info-container" style={{ marginBottom: '30px' }}>

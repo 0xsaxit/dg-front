@@ -420,8 +420,35 @@ a.menu-info-label-link:hover {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 34vh;
+  padding-top: 35vh;
   height: 100vh;
+}
+
+i.chevron.down.icon {
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  opacity: 75%;
+  bottom: 42px;
+  position: absolute;
+  animation: bounce 0.75s infinite alternate;
+  -webkit-animation: bounce 0.75s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+@-webkit-keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-6px);
+  }
 }
 
 .demo-button-container {
@@ -534,7 +561,7 @@ a.menu-info-label-link:hover {
   margin-left: auto !important;
   margin-right: auto !important;
   padding: 0px 30px 90px 30px;
-  flex: 0 0 400%;
+  flex: 0 0 250%;
 }
 
 .dashboard-span {
@@ -2028,8 +2055,8 @@ div.ui.grid.admin-balances-container {
   border: 1px solid #2085f4;
   color: #2085f4;
   height: 27px;
-  max-width: 120px !important;
-  min-width: 120px;
+  max-width: 180px !important;
+  min-width: 180px;
   margin-top: 15px;
   padding: 7px 6px 0px 6px;
   opacity: 100% !important;
