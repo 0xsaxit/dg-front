@@ -435,7 +435,7 @@ i.chevron.down.icon {
   position: absolute;
   animation: bounce 0.75s infinite alternate;
   -webkit-animation: bounce 0.75s infinite alternate;
-  left: calc(50% - 9px);
+  left: calc(50% - 12px);
 }
 
 @media (max-width: 499px) {
