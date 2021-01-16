@@ -53,7 +53,7 @@ a:hover {
   z-index: 1;
   object-fit: cover;
   height: 360px;
-  width: calc(200%/3 - 6px);
+  width: calc(200% / 3 - 6px);
   border-radius: 4px 0px 0px 4px;
 }
 
@@ -393,7 +393,7 @@ img.logo-image {
 
 .read-next-button:hover {
   transform: translateY(-2px) !important;
-  transition: all .0.25s ease 0s !important;
+  transition: all 0.25s ease 0s !important;
 }
 
 .read-next-button:first-child:before {
