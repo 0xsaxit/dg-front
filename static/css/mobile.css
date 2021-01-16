@@ -231,6 +231,11 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .dashboard-span {
     flex-direction: column !important;
   }
+  .home-dashboard-h1,
+  .home-footer-h1,
+  .dg-powered-h1 {
+    font-size: 40px !important;
+  }
 }
 
 @media (max-height: 750px) {
@@ -255,7 +260,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-dashboard-content {
     position: relative;
     height: 100vh;
-    padding-top: 25vh !important;
+    padding-top: 33vh !important;
     padding-right: 21px !important;
   }
   .home-dashboard-p {
@@ -263,9 +268,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   div.ui.vertical.segment {
     top: 0px !important;
-  }
-  .home-dashboard-h1 {
-    font-size: 48px !important;
   }
   .home-section-4-header {
     padding-left: 21px;
@@ -372,12 +374,14 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     margin-left: -21px;
     margin-right: -21px;
   }
-  .home-button-span.avatars {
+  .home-button-span.avatars,
+  .home-button-span.ecosystem {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
-  .ui.blue.button.play-button.avatars {
+  .ui.blue.button.play-button.avatars,
+  .ui.blue.button.play-button.ecosystem {
     min-width: 48.5%;
     margin-right: 9px;
   }
@@ -392,9 +396,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .home-dashboard-p {
     font-size: 18px !important;
-  }
-  .home-dashboard-h1 {
-    font-size: 42px !important;
   }
 }
 
