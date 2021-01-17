@@ -178,22 +178,20 @@ const ModalInfo = () => {
             ${unclaimedUSD}
           </p>
         </span>
-        <span style={{ display: 'flex', justifyContent: 'center' }}>
+        <span style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 30px 0px 30px' }}>
           <Button
             className="get-dg-button"
             href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
             target="_blank"
           >
-            GET $DG WITH CRYPTO
+            BUY WITH CRYPTO
           </Button>
-        </span>
-        <span style={{ display: 'flex', justifyContent: 'center' }}>
           <Button
             className="get-dg-button"
             style={{ padding: '0 0 0 0' }}
             onClick={() => show_transak_3()}
           >
-            GET $DG WITH FIAT
+            BUY WITH FIAT
           </Button>
         </span>
       </div>
