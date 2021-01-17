@@ -53,16 +53,16 @@ export default class MyDocument extends Document {
             href="/static/js/manifest.json"
             crossOrigin="use-credentials"
           />
-          {/* <link
+          <link
             href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
             rel="stylesheet"
             disabled
-          /> */}
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          />
+          {/* <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
             rel="stylesheet"
-          />
+          /> */}
         </Head>
 
         <body>
