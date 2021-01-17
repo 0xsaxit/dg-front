@@ -105,7 +105,8 @@ const Chateau = () => {
               </Button>
             </span>
             <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-              By owning $DG, the first-ever metaverse casino is now yours. Earn $DG through gameplay, liquidity provision, and governance rewards.
+              By owning $DG, the first-ever metaverse casino is now yours. Earn
+              $DG through gameplay, liquidity provision, and governance rewards.
             </p>
             <p className="scroll-down-icon">
               <Icon name="chevron down" />
@@ -123,7 +124,7 @@ const Chateau = () => {
           <div>
             <div
               className="section-4-outter-header-loading"
-              style={{  marginTop: '-90px' }}
+              style={{ marginTop: '-90px' }}
             >
               <div
                 className="home-section-4-header"
@@ -167,10 +168,7 @@ const Chateau = () => {
                     marginTop: '30px',
                   }}
                 >
-                  <a
-                    href="/dg/mining"
-                    className="dg-powered-container one"
-                  >
+                  <a href="/dg/mining" className="dg-powered-container one">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
                       className="nft-image"
@@ -209,10 +207,7 @@ const Chateau = () => {
                     </div>
                   </a>
 
-                  <a
-                    href="/dg/uniswap"
-                    className="dg-powered-container two"
-                  >
+                  <a href="/dg/uniswap" className="dg-powered-container two">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
                       className="nft-image"
@@ -251,10 +246,7 @@ const Chateau = () => {
                     </div>
                   </a>
 
-                  <a
-                    href="/dg"
-                    className="dg-powered-container three"
-                  >
+                  <a href="/dg" className="dg-powered-container three">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
                       className="nft-image"
@@ -301,7 +293,7 @@ const Chateau = () => {
           <div>
             <div
               className="section-4-outter-header"
-              style={{  marginTop: '-90px' }}
+              style={{ marginTop: '-90px' }}
             >
               <div
                 className="home-section-4-header"
@@ -345,10 +337,7 @@ const Chateau = () => {
                     marginTop: '30px',
                   }}
                 >
-                  <a
-                    href="/dg/mining"
-                    className="dg-powered-container one"
-                  >
+                  <a href="/dg/mining" className="dg-powered-container one">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
                       className="nft-image"
@@ -387,10 +376,7 @@ const Chateau = () => {
                     </div>
                   </a>
 
-                  <a
-                    href="/dg/uniswap"
-                    className="dg-powered-container two"
-                  >
+                  <a href="/dg/uniswap" className="dg-powered-container two">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
                       className="nft-image"
@@ -429,10 +415,7 @@ const Chateau = () => {
                     </div>
                   </a>
 
-                  <a
-                    href="/dg"
-                    className="dg-powered-container three"
-                  >
+                  <a href="/dg" className="dg-powered-container three">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
                       className="nft-image"
@@ -485,7 +468,7 @@ const Chateau = () => {
       <Aux>
         <Parallax
           blur={0}
-          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1609542250/2020-11-23_18-54-31_dr9zme.png"
+          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/roulette_zuawjl.jpg"
           strength={100}
         >
           <div className="home-section-2-outter">
@@ -497,11 +480,7 @@ const Chateau = () => {
                 Play games, earn $DG
               </h1>
               <span className="home-button-span">
-                <Button
-                  color="blue"
-                  className="play-button"
-                  href="/account"
-                >
+                <Button color="blue" className="play-button" href="/account">
                   DEPOSIT CRYPTO
                 </Button>
               </span>
@@ -588,7 +567,11 @@ const Chateau = () => {
                   className="home-footer-p avatars"
                   style={{ marginTop: '27px' }}
                 >
-                  We’ve strategically partnered with projects that help bolster our offerings and make our user experience as seamless as possible. Check out our partnerships to learn more and our roadmap to see what’s in store for the future of Decentral Games.
+                  We’ve strategically partnered with projects that help bolster
+                  our offerings and make our user experience as seamless as
+                  possible. Check out our partnerships to learn more and our
+                  roadmap to see what’s in store for the future of Decentral
+                  Games.
                 </p>
               </span>
             </span>
@@ -603,7 +586,7 @@ const Chateau = () => {
       <Aux>
         <Parallax
           blur={0}
-          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1609549765/2020-11-22_10-12-02_yjrf1v.png"
+          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/tominoya_v1w0zk.jpg"
           strength={100}
         >
           <div className="home-section-2-outter">
@@ -657,16 +640,16 @@ const Chateau = () => {
           </div>
         </div>
 
-          <div className="section-4-outter">
-            <div className="home-section-4">
-              <span
-                className="outter-games-container"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginTop: '30px',
-                }}
-              >
+        <div className="section-4-outter">
+          <div className="home-section-4">
+            <span
+              className="outter-games-container"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: '30px',
+              }}
+            >
               <div
                 href="/dg/mining"
                 target="_blank"
