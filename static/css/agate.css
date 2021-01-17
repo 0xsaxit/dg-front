@@ -22,7 +22,9 @@ pre {
   display: none;
 }
 
-code strong, kbd, samp {
+code strong,
+kbd,
+samp {
   font-size: 16px !important;
   padding: 3px 6px 3px 6px;
   border-radius: 2px;
@@ -34,7 +36,8 @@ code {
   font-size: 16px !important;
 }
 
-b, strong {
+b,
+strong {
   font-weight: 800 !important;
 }
 
@@ -74,7 +77,6 @@ b, strong {
 .hljs-selector-class {
   color: #2085f4;
 }
-
 
 .hljs-number,
 .hljs-params {
