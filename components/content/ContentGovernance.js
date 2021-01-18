@@ -32,14 +32,14 @@ const ContentGovernance = (props) => {
     return Object.keys(obj).length;
   }
 
-  useEffect(() => {
-    (async function () {
-      let response_1 = await Fetch.PROPOSALS();
-      let json_1 = await response_1.json();
-      console.log('1!!!');
-      console.log(length(json_1));
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async function () {
+  //     let response_1 = await Fetch.PROPOSALS();
+  //     let json_1 = await response_1.json();
+  //     console.log('1!!!');
+  //     console.log(length(json_1));
+  //   })();
+  // }, []);
 
 
   useEffect(() => {
@@ -70,14 +70,18 @@ const ContentGovernance = (props) => {
 
         const priceMANA = json.market_data.current_price.usd;
         const balanceMANAUSD = state.DGBalances.BALANCE_CHILD_MANA * priceMANA;
+        const balanceMANA_CEO_USD = state.DGBalances.CEO_MANA * priceMANA;
         const treasuryTotal =
-          Number(state.DGBalances.BALANCE_CHILD_DAI) + Number(balanceMANAUSD);
+          Number(state.DGBalances.BALANCE_CHILD_DAI) + 
+          Number(balanceMANAUSD) +
+          Number(balanceMANA_CEO_USD) +
+          Number(state.DGBalances.CEO_DAI);
         const treasuryTotalFormatted = props.formatPrice(treasuryTotal, 0);
 
         setTreasuryTotal(treasuryTotalFormatted);
       })();
     }
-  }, [state.DGBalances.BALANCE_CHILD_MANA]);
+  }, [state.DGBalances.BALANCE_CHILD_MANA], [state.DGBalances.CEO_MANA]);
 
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
