@@ -10,7 +10,7 @@ h5,
 p,
 button,
 a {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -41,7 +41,7 @@ h3 {
 }
 
 h1 {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   font-size: 48px;
   font-weight: 500;
   margin-bottom: 0px;
@@ -858,7 +858,7 @@ i.chevron.down.icon {
 }
 
 .account-select {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   cursor: pointer;
   letter-spacing: 0.5px;
   font-size: 16px;
@@ -979,7 +979,7 @@ table {
 .table-header-text,
 .table-header-text-1,
 .table-header-text-2 {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   padding-top: 9px;
   padding-bottom: 9px;
   font-size: 12px;
@@ -997,7 +997,7 @@ table {
 }
 
 .table-body {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   font-size: 16px;
   letter-spacing: 0.25px;
 }
@@ -1168,7 +1168,7 @@ table.ui.fixed.single.line.table {
 }
 
 .account-other-inner-p {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   font-size: 17px !important;
   margin-top: 45px;
   padding-bottom: 60px;
@@ -1252,7 +1252,7 @@ svg.spanbox.disable {
 }
 
 .spanbox {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   margin-top: 30px;
 }
 
@@ -1678,7 +1678,7 @@ div.ui.grid.balances-container {
 
 .DG-column,
 .DG-graph-column {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Monda', sans-serif !important;
   border-radius: 4px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
