@@ -21,6 +21,8 @@ const ContentGovernance = (props) => {
   const [priceUSD, setPriceUSD] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
+  const [manaBalance, setManaBalance] = useState(0);
+  const [daiBalance, setDaiBalance] = useState(0);
   const [instances, setInstances] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -82,6 +84,26 @@ const ContentGovernance = (props) => {
       })();
     }
   }, [state.DGBalances.BALANCE_CHILD_MANA], [state.DGBalances.CEO_MANA]);
+
+  useEffect(() => {
+    if (state.DGBalances.BALANCE_CHILD_MANA) {
+      (async () => {
+        const manaTotal =
+          Number(state.DGBalances.BALANCE_CHILD_MANA) +
+          Number(state.DGBalances.CEO_MANA);
+        const treasuryManaFormatted = props.formatPrice(manaTotal, 0);
+
+        const daiTotal =
+          Number(state.DGBalances.BALANCE_CHILD_DAI) + 
+          Number(state.DGBalances.CEO_DAI);
+        const treasuryDaiFormatted = props.formatPrice(daiTotal, 0);
+
+        setManaBalance(treasuryManaFormatted);
+        setDaiBalance(treasuryDaiFormatted);
+      })();
+    }
+  }, [state.DGBalances.BALANCE_CHILD_MANA], [state.DGBalances.CEO_MANA]);
+
 
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
@@ -483,10 +505,7 @@ const ContentGovernance = (props) => {
                     <p className="earned-text">MANA</p>
                     {state.DGBalances.BALANCE_CHILD_MANA ? (
                       <p className="earned-amount">
-                        {props.formatPrice(
-                          state.DGBalances.BALANCE_CHILD_MANA,
-                          2
-                        )}
+                        {manaBalance}
                       </p>
                     ) : (
                       <Loader
@@ -521,10 +540,7 @@ const ContentGovernance = (props) => {
                     <p className="earned-text">dai</p>
                     {state.DGBalances.BALANCE_CHILD_DAI ? (
                       <p className="earned-amount">
-                        {props.formatPrice(
-                          state.DGBalances.BALANCE_CHILD_DAI,
-                          2
-                        )}
+                        {daiBalance}
                       </p>
                     ) : (
                       <Loader
