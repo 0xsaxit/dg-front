@@ -257,7 +257,7 @@ const ContentGovernance = (props) => {
               <h3 className="DG-h3">$DG Governance</h3>
               <p>
                 Stake $DG tokens, govern the $DG treasury, and earn $DG
-                governance rewards. Proposal submissions for casino profits activate when the gameplay treasury surpasses $500,000 USD. Users can submit proposals for LAND and $DG treasury usage immediately. Read more about $DG governance
+                governance rewards. Proposal submissions for casino profits activate when the gameplay treasury surpasses $500,000 USD. Users can submit proposals for LAND and $DG treasury allocation immediately. Read more about $DG governance
                 in our{' '}
                 <a
                   href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
@@ -378,7 +378,7 @@ const ContentGovernance = (props) => {
                   id="snapshot"
                   alt="Snapshot Governance Logo"
                 />
-                <span className="farming-pool-span" style={{ width: '48.5%' }}>
+                <span className="farming-pool-span" style={{ width: '60%' }}>
                   <p className="welcome-text">total treasury</p>
                   {treasuryTotal ? (
                     <p className="account-name">${treasuryTotal}</p>
@@ -398,9 +398,9 @@ const ContentGovernance = (props) => {
 
                 <span
                   style={{
-                    width: '48.5%',
+                    width: '38%',
                     maxWidth: '48.5%',
-                    height: '81px',
+                    height: '72px',
                   }}
                 >
                   <Chart

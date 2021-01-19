@@ -705,7 +705,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1170px) {
   .DG-liquidity-container.gov {
     flex-direction: column;
   }
