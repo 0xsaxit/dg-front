@@ -1,4 +1,4 @@
-FROM node:14.15.3-alpine3.12 as base
+FROM node:14.15.4-alpine3.12 as base
 
 ARG CI=true
 ARG NEXT_PUBLIC_API_URL
@@ -13,21 +13,21 @@ WORKDIR /app
 
 COPY package*.json ./
 
-#RUN npm audit
+RUN npm audit
 
 RUN npm install --production --no-fund
 
-# web3 1.3.0 affected https://www.npmjs.com/advisories/877/versions , so we use 1.3.0-rc.0
+# web3 1.3.1 affected https://www.npmjs.com/advisories/877/versions , so we use 1.3.0-rc.0
 RUN npm outdated || true
 
 COPY . .
 
 RUN npm run build
 #RUN npm test
-
+# CMD ["sleep", "3d"]
 ################################################################################
 
-FROM node:14.15.3-alpine3.12 as runtime
+FROM node:14.15.4-alpine3.12 as runtime
 LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
 
 ENV NODE_ENV=production \

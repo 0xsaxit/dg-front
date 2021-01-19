@@ -5,7 +5,8 @@ import { Menu, Popup, Icon } from 'semantic-ui-react';
 
 const Footer = () => {
 
- return (
+ 	return (
+
  	<span className="footer-container">
 
 	 <Menu className="inner-footer-container-2" icon="labeled">

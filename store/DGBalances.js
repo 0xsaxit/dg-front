@@ -28,6 +28,8 @@ function DGBalances() {
   const [DAI_BPT, setDAI_BPT] = useState({});
   const [MANA_BPT, setMANA_BPT] = useState({});
   const [ETH_UNI, setETH_UNI] = useState({});
+  const [CEO_MANA, setCEO_MANA] = useState({});
+  const [CEO_DAI, setCEO_DAI] = useState({});
   const [instances, setInstances] = useState(false);
 
   let interval = {};
@@ -226,6 +228,18 @@ function DGBalances() {
         3
       );
 
+      const CEO_DAI = await Transactions.balanceOfToken(
+        maticDAIContract,
+        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+        3
+      );
+
+      const CEO_MANA = await Transactions.balanceOfToken(
+        maticMana,
+        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+        3
+      );   
+
       const BALANCE_UNISWAP_DG = await Transactions.balanceOfToken(
         DGTokenContract, // was DG_BPT
         Global.ADDRESSES.UNISWAP_ADDRESS_STAKING,
@@ -301,6 +315,8 @@ function DGBalances() {
         TOTAL_MANA: TOTAL_MANA,
         SUPPLY_BPT_1: SUPPLY_BPT_1,
         SUPPLY_BPT_2: SUPPLY_BPT_2,
+        CEO_MANA: CEO_MANA,
+        CEO_DAI: CEO_DAI,
       };
     } catch (error) {
       console.log('Token balances error: ' + error);
