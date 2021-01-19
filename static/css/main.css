@@ -74,6 +74,10 @@ p {
   border-radius: 4px;
 }
 
+.account-other-inner-p {
+  min-height: calc(100vh - 250px);
+}
+
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
@@ -1997,8 +2001,7 @@ div.ui.grid.admin-balances-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 0vh;
-  min-height: 83vh;
+  min-height: calc(100vh - 250px);
 }
 
 .not-found-header-text {
