@@ -148,7 +148,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 991px) {
   #mobile-menu-icon,
   #mobile-menu-icon-home,
   div.ui.bottom.right.popup.transition.visible.mobile-menu-popup  {
