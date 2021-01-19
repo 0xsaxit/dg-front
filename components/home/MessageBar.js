@@ -104,7 +104,7 @@ const MessageBar = () => {
         id="message-bar"
         className="mobile-message-bar"
         style={{
-          fontFamily: 'Monda, sans-serif',
+          fontFamily: 'Open Sans, sans-serif',
           color: 'white',
           textAlign: 'center',
           padding: '10px 30px 9px 30px',
