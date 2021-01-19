@@ -705,12 +705,30 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
+@media (max-width: 1200px) {
+  .DG-liquidity-container.gov {
+    flex-direction: column;
+  }
+  .DG-column-treasury.one,
+  .DG-column-treasury.two {
+    width: 48.5%;
+  }
+  .DG-tablet-container-gov {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row !important;
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
 @media (max-width: 1030px) {
   .DG-liquidity-container,
   .DG-top-container {
     flex-direction: column;
   }
   .DG-tablet-container {
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     flex-direction: row !important;
@@ -721,7 +739,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .DG-column.unclaimed {
     width: 100% !important;
-    margin-bottom: 30px;
   }
   .DG-column.one-uniswap {
     width: 100%;
@@ -729,9 +746,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .DG-column.one,
   .DG-column.two {
     max-width: 48.5% !important;
-  }
-  .DG-liquidity-container.gov {
-    flex-direction: column;
   }
   .outter-airdrop-container {
     display: flex;
@@ -746,17 +760,20 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .dg-tabs-desktop {
     display: none;
   }
-  .DG-tablet-container {
+  .DG-tablet-container,
+  .DG-tablet-container-gov {
     display: flex;
     justify-content: space-between;
     flex-direction: column !important;
     width: 100%;
   }
-  .DG-column.one {
+  .DG-column.one,
+  .DG-column-treasury.one {
     min-width: 100%;
     margin-bottom: 30px;
   }
-  .DG-column.two {
+  .DG-column.two,
+  .DG-column-treasury.two {
     min-width: 100%;
   }
   .DG-liquidity-container.top {

@@ -1386,6 +1386,14 @@ deposit-notification-box-hidden {
   margin-bottom: 0px;
 }
 
+.ui.top.left.popup:before {
+  display: none;
+}
+
+.ui.popup {
+  padding-top: 7px;
+}
+
 .bpt-text {
   cursor: pointer;
   font-size: 12px;
@@ -1646,7 +1654,8 @@ div.ui.grid.balances-container {
   padding-top: 0px;
 }
 
-.DG-tablet-container {
+.DG-tablet-container,
+.DG-tablet-container-gov {
   display: flex;
   justify-content: space-between;
   flex-direction: row !important;
@@ -1672,7 +1681,9 @@ div.ui.grid.balances-container {
 }
 
 .DG-column.one,
-.DG-column.two {
+.DG-column.two,
+.DG-column-treasury.one,
+.DG-column-treasury.two {
   width: 48.5%;
 }
 
@@ -1681,7 +1692,8 @@ div.ui.grid.balances-container {
 }
 
 .DG-column,
-.DG-graph-column {
+.DG-graph-column,
+.DG-column-treasury {
   font-family: 'Montserrat', sans-serif !important;
   border-radius: 4px;
   border: 1px solid #edf2f9;
