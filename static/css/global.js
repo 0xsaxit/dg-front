@@ -100,6 +100,7 @@ export const GlobalStyles = createGlobalStyle`
   .featured-blog-container,
   .post,
   .DG-column,
+  .DG-column-treasury,
   .read-next-button:first-child,
   .read-next-button:last-child,
   .admin-balances-column,
@@ -139,7 +140,8 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 4px !important;
   }
 
-  .ui.bottom.right.popup {
+  .ui.bottom.right.popup,
+  .ui.popup {
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow} !important; 
@@ -174,6 +176,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .welcome-text,
   .earned-text,
+  i.info.circle.icon.dai-mana-icon,
   .read-next-button:first-child:before,
   .read-next-button:last-child:before,
   #pool-select-icon,

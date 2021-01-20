@@ -10,7 +10,7 @@ h5,
 p,
 button,
 a {
-  font-family: Lato, sans-serif !important;
+  font-family: 'Lato', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -41,6 +41,7 @@ h3 {
 }
 
 h1 {
+  font-family: 'Lato', sans-serif !important;
   font-size: 48px;
   font-weight: 500;
   margin-bottom: 0px;
@@ -439,13 +440,6 @@ i.chevron.down.icon {
   position: absolute;
   animation: bounce 0.75s infinite alternate;
   -webkit-animation: bounce 0.75s infinite alternate;
-  left: calc(50% - 12px);
-}
-
-@media (max-width: 499px) {
-  i.chevron.down.icon {
-    bottom: 150px;
-  }
 }
 
 @keyframes bounce {
@@ -868,6 +862,7 @@ i.chevron.down.icon {
 }
 
 .account-select {
+  font-family: 'Lato', sans-serif !important;
   cursor: pointer;
   letter-spacing: 0.5px;
   font-size: 16px;
@@ -988,6 +983,7 @@ table {
 .table-header-text,
 .table-header-text-1,
 .table-header-text-2 {
+  font-family: 'Lato', sans-serif !important;
   padding-top: 9px;
   padding-bottom: 9px;
   font-size: 12px;
@@ -1005,6 +1001,7 @@ table {
 }
 
 .table-body {
+  font-family: 'Lato', sans-serif !important;
   font-size: 16px;
   letter-spacing: 0.25px;
 }
@@ -1175,6 +1172,8 @@ table.ui.fixed.single.line.table {
 }
 
 .account-other-inner-p {
+  font-family: 'Lato', sans-serif !important;
+  font-size: 17px !important;
   margin-top: 45px;
   padding-bottom: 60px;
   text-align: center;
@@ -1257,6 +1256,7 @@ svg.spanbox.disable {
 }
 
 .spanbox {
+  font-family: 'Lato', sans-serif !important;
   margin-top: 30px;
 }
 
@@ -1384,6 +1384,14 @@ deposit-notification-box-hidden {
   text-transform: uppercase;
   padding-top: 6px !important;
   margin-bottom: 0px;
+}
+
+.ui.top.left.popup:before {
+  display: none;
+}
+
+.ui.popup {
+  padding-top: 7px;
 }
 
 .bpt-text {
@@ -1646,7 +1654,8 @@ div.ui.grid.balances-container {
   padding-top: 0px;
 }
 
-.DG-tablet-container {
+.DG-tablet-container,
+.DG-tablet-container-gov {
   display: flex;
   justify-content: space-between;
   flex-direction: row !important;
@@ -1672,7 +1681,9 @@ div.ui.grid.balances-container {
 }
 
 .DG-column.one,
-.DG-column.two {
+.DG-column.two,
+.DG-column-treasury.one,
+.DG-column-treasury.two {
   width: 48.5%;
 }
 
@@ -1681,7 +1692,9 @@ div.ui.grid.balances-container {
 }
 
 .DG-column,
-.DG-graph-column {
+.DG-graph-column,
+.DG-column-treasury {
+  font-family: 'Lato', sans-serif !important;
   border-radius: 4px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -2068,7 +2081,8 @@ div.ui.grid.admin-balances-container {
   border: 1px solid #2085f4;
   color: #2085f4;
   height: 27px;
-  width: 48.5%;
+  max-width: 180px !important;
+  min-width: 180px;
   margin-top: 15px;
   padding: 7px 6px 0px 6px;
   opacity: 100% !important;

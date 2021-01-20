@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-#RUN npm audit
+RUN npm audit
 
 RUN npm install --production --no-fund
 
