@@ -558,7 +558,7 @@ const ContentGovernance = (props) => {
                     }
                   >
                     <div>
-                      <p className="earned-text">calculated as 210 wearables times 5000 MANA at current price </p>
+                      <p className="earned-text">calculated as 210 wearables times 5,000 MANA at current market price </p>
                     </div>
                   </Popup>
                 </span>
