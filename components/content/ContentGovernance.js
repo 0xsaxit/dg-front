@@ -514,7 +514,7 @@ const ContentGovernance = (props) => {
                     }
                   >
                     <div>
-                      <p className="earned-text">calculated as 400 parcels times T30 avg LAND price </p>
+                      <p className="earned-text">calculated as 403 parcels times T30 avg LAND price </p>
                     </div>
                   </Popup>
                 </span>
