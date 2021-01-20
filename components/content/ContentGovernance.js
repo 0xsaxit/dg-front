@@ -222,7 +222,7 @@ const ContentGovernance = (props) => {
         const dgTotal = Number(3000 * props.price);
         const dgTotalFormatted = props.formatPrice(dgTotal, 0);
 
-        const landTotal = Number(400 * 1211.46);
+        const landTotal = Number(403 * 1288.25);
         const landTotalFormatted = props.formatPrice(landTotal, 0);
 
         const nftPrice = 5000 * priceMANA;
