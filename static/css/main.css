@@ -2082,10 +2082,9 @@ div.ui.grid.admin-balances-container {
   border: 1px solid #2085f4;
   color: #2085f4;
   height: 27px;
-  max-width: 180px !important;
-  min-width: 180px;
   margin-top: 15px;
   padding: 7px 6px 0px 6px;
+  width: 48.5%;
   opacity: 100% !important;
 }
 
