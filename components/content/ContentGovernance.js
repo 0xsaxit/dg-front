@@ -27,6 +27,7 @@ const ContentGovernance = (props) => {
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
+  const [nftTreasury, setNftTreasury] = useState(0);
   const [statsUSD, setStatsUSD] = useState('');
   const [instances, setInstances] = useState(false);
 
@@ -224,12 +225,17 @@ const ContentGovernance = (props) => {
         const landTotal = Number(400 * 1211.46);
         const landTotalFormatted = props.formatPrice(landTotal, 0);
 
-        const totalTreasury = gameplayTotal + dgTotal + landTotal;
+        const nftPrice = 5000 * priceMANA;
+        const nftTotal = Number(210 * nftPrice);
+        const nftTotalFormatted = props.formatPrice(nftTotal, 0);
+
+        const totalTreasury = gameplayTotal + dgTotal + landTotal + nftTotal;
         const treasuryTotalFormatted = props.formatPrice(totalTreasury, 0);
 
         setGameplayTreasury(gameplayTotalFormatted);
         setDgTreasury(dgTotalFormatted);
         setLandTreasury(landTotalFormatted);
+        setNftTreasury(nftTotalFormatted);
         setTreasuryTotal(treasuryTotalFormatted);
 
       })();
@@ -398,7 +404,7 @@ const ContentGovernance = (props) => {
 
                 <span
                   style={{
-                    width: '38%',
+                    width: '35%',
                     maxWidth: '48.5%',
                     height: '72px',
                   }}
@@ -514,6 +520,50 @@ const ContentGovernance = (props) => {
                 </span>
                 {landTreasury ? (
                   <p className="earned-amount">${landTreasury}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="small"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px',
+                    }}
+                  />
+                )}
+              </span>
+
+              <Divider />
+
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">Wearables Treasury</p>
+                  <Popup 
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon 
+                        className="dai-mana-icon" 
+                        name="info circle" 
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text">calculated as 210 wearables times 5000 MANA at current price </p>
+                    </div>
+                  </Popup>
+                </span>
+                {nftTreasury ? (
+                  <p className="earned-amount">${nftTreasury}</p>
                 ) : (
                   <Loader
                     active
