@@ -53,15 +53,14 @@ const ContentGovernance = (props) => {
     (async function () {
       // get treasury statistics
       if (state.userStatus) {
-        let userAddress = window.web3.currentProvider.selectedAddress;
-        let response_3 = await Fetch.TREASURY_STATS(userAddress);
+        let response_3 = await Fetch.TREASURY_STATS(state.userAddress);
         let json_3 = await response_3.json();
         let usd = json_3.totalBalanceUSD;
 
         setStatsUSD(usd);
       }
     })();
-  }, []); // statsUSD
+  }, []);
 
   let data;
   let axes;
@@ -95,7 +94,7 @@ const ContentGovernance = (props) => {
         min: 0,
         position: 'left',
         format: (d) => `$${d}`,
-        show: false
+        show: false,
       },
     ];
   } else {
@@ -132,25 +131,28 @@ const ContentGovernance = (props) => {
     }
   }, [state.userStatus]);
 
-  useEffect(() => {
-    if (state.DGBalances.BALANCE_CHILD_MANA) {
-      (async () => {
-        const manaTotal =
-          Number(state.DGBalances.BALANCE_CHILD_MANA) +
-          Number(state.DGBalances.CEO_MANA);
-        const treasuryManaFormatted = props.formatPrice(manaTotal, 0);
+  useEffect(
+    () => {
+      if (state.DGBalances.BALANCE_CHILD_MANA) {
+        (async () => {
+          const manaTotal =
+            Number(state.DGBalances.BALANCE_CHILD_MANA) +
+            Number(state.DGBalances.CEO_MANA);
+          const treasuryManaFormatted = props.formatPrice(manaTotal, 0);
 
-        const daiTotal =
-          Number(state.DGBalances.BALANCE_CHILD_DAI) + 
-          Number(state.DGBalances.CEO_DAI);
-        const treasuryDaiFormatted = props.formatPrice(daiTotal, 0);
+          const daiTotal =
+            Number(state.DGBalances.BALANCE_CHILD_DAI) +
+            Number(state.DGBalances.CEO_DAI);
+          const treasuryDaiFormatted = props.formatPrice(daiTotal, 0);
 
-        setManaBalance(treasuryManaFormatted);
-        setDaiBalance(treasuryDaiFormatted);
-      })();
-    }
-  }, [state.DGBalances.BALANCE_CHILD_MANA], [state.DGBalances.CEO_MANA]);
-
+          setManaBalance(treasuryManaFormatted);
+          setDaiBalance(treasuryDaiFormatted);
+        })();
+      }
+    },
+    [state.DGBalances.BALANCE_CHILD_MANA],
+    [state.DGBalances.CEO_MANA]
+  );
 
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
@@ -213,7 +215,7 @@ const ContentGovernance = (props) => {
         const balanceMANAUSD = state.DGBalances.BALANCE_CHILD_MANA * priceMANA;
         const balanceMANA_CEO_USD = state.DGBalances.CEO_MANA * priceMANA;
         const gameplayTotal =
-          Number(state.DGBalances.BALANCE_CHILD_DAI) + 
+          Number(state.DGBalances.BALANCE_CHILD_DAI) +
           Number(balanceMANAUSD) +
           Number(balanceMANA_CEO_USD) +
           Number(state.DGBalances.CEO_DAI);
@@ -237,10 +239,13 @@ const ContentGovernance = (props) => {
         setLandTreasury(landTotalFormatted);
         setNftTreasury(nftTotalFormatted);
         setTreasuryTotal(treasuryTotalFormatted);
-
       })();
     }
-  }, [state.DGBalances.BALANCE_CHILD_MANA, props.price, state.DGBalances.CEO_MANA]);
+  }, [
+    state.DGBalances.BALANCE_CHILD_MANA,
+    props.price,
+    state.DGBalances.CEO_MANA,
+  ]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -249,7 +254,6 @@ const ContentGovernance = (props) => {
   }
 
   function contentGovernance() {
-
     const series = {
       showPoints: false,
       type: 'line',
@@ -263,8 +267,10 @@ const ContentGovernance = (props) => {
               <h3 className="DG-h3">$DG Governance</h3>
               <p>
                 Stake $DG tokens, govern the $DG treasury, and earn $DG
-                governance rewards. Proposal submissions for casino profits activate when the gameplay treasury surpasses $500,000 USD. Users can submit proposals for LAND and $DG treasury allocation immediately. Read more about $DG governance
-                in our{' '}
+                governance rewards. Proposal submissions for casino profits
+                activate when the gameplay treasury surpasses $500,000 USD.
+                Users can submit proposals for LAND and $DG treasury allocation
+                immediately. Read more about $DG governance in our{' '}
                 <a
                   href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
                   style={{ color: '#2085f4' }}
@@ -374,10 +380,16 @@ const ContentGovernance = (props) => {
               className="DG-column-treasury one"
               style={{
                 position: 'relative',
-                height: '100%'
+                height: '100%',
               }}
             >
-              <span style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
+              <span
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <img
                   src={Images.SNAPSHOT_ICON}
                   className="farming-logo"
@@ -409,11 +421,7 @@ const ContentGovernance = (props) => {
                     height: '72px',
                   }}
                 >
-                  <Chart
-                    data={data}
-                    axes={axes}
-                    series={series}
-                  />
+                  <Chart data={data} axes={axes} series={series} />
                 </span>
               </span>
 
@@ -430,12 +438,12 @@ const ContentGovernance = (props) => {
               >
                 <span style={{ display: 'flex' }}>
                   <p className="earned-text">Gameplay Treasury</p>
-                  <Popup 
+                  <Popup
                     className="dai-mana-popup"
                     trigger={
-                      <Icon 
-                        className="dai-mana-icon" 
-                        name="info circle" 
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
                         style={{ fontSize: '10px', marginLeft: '6px' }}
                       />
                     }
@@ -503,18 +511,20 @@ const ContentGovernance = (props) => {
               >
                 <span style={{ display: 'flex' }}>
                   <p className="earned-text">LAND Treasury</p>
-                  <Popup 
+                  <Popup
                     className="dai-mana-popup"
                     trigger={
-                      <Icon 
-                        className="dai-mana-icon" 
-                        name="info circle" 
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
                         style={{ fontSize: '10px', marginLeft: '6px' }}
                       />
                     }
                   >
                     <div>
-                      <p className="earned-text">calculated as 403 parcels times T30 avg LAND price </p>
+                      <p className="earned-text">
+                        calculated as 403 parcels times T30 avg LAND price{' '}
+                      </p>
                     </div>
                   </Popup>
                 </span>
@@ -547,18 +557,21 @@ const ContentGovernance = (props) => {
               >
                 <span style={{ display: 'flex' }}>
                   <p className="earned-text">Wearables Treasury</p>
-                  <Popup 
+                  <Popup
                     className="dai-mana-popup"
                     trigger={
-                      <Icon 
-                        className="dai-mana-icon" 
-                        name="info circle" 
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
                         style={{ fontSize: '10px', marginLeft: '6px' }}
                       />
                     }
                   >
                     <div>
-                      <p className="earned-text">calculated as 210 wearables times 5,000 MANA at current market price </p>
+                      <p className="earned-text">
+                        calculated as 210 wearables times 5,000 MANA at current
+                        market price{' '}
+                      </p>
                     </div>
                   </Popup>
                 </span>
@@ -598,12 +611,12 @@ const ContentGovernance = (props) => {
               </span>
             </div>
 
-            <div 
+            <div
               className="DG-column-treasury two"
               style={{
                 position: 'relative',
                 height: '100%',
-                maxHeight: '330px'
+                maxHeight: '330px',
               }}
             >
               <span style={{ display: 'flex' }}>
@@ -781,10 +794,8 @@ const ContentGovernance = (props) => {
                 )}
               </span>
             </div>
-
           </span>
         </div>
-
       </Aux>
     );
   }
