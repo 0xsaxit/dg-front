@@ -21,8 +21,7 @@ const ContentTreasury = (props) => {
     (async function () {
       // get treasury statistics
       if (state.userStatus) {
-        let userAddress = window.web3.currentProvider.selectedAddress;
-        let response_3 = await Fetch.TREASURY_STATS(userAddress);
+        let response_3 = await Fetch.TREASURY_STATS(state.userAddress);
         let json_3 = await response_3.json();
         let usd = json_3.totalBalanceUSD;
 
