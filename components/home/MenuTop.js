@@ -18,10 +18,28 @@ const MenuTop = (props) => {
   const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
+  const [scrollState, setScrollState] = useState('top');
 
+  const DAI_BALANCE = parseInt(state.userBalances[0][1]);
+  const MANA_BALANCE = parseInt(state.userBalances[1][1]);
+  const router = useRouter();
   let menuStyle = [];
   let listener = null;
-  const [scrollState, setScrollState] = useState('top');
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // send current path to Segment analytics
+  useEffect(() => {
+    analytics.page(router.pathname);
+
+    console.log('path: ' + router.pathname);
+  }, [router.pathname]);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      console.log('User status: ' + state.userStatus);
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     listener = document.addEventListener('scroll', (e) => {
@@ -40,10 +58,6 @@ const MenuTop = (props) => {
       document.removeEventListener('scroll', listener);
     };
   }, [scrollState]);
-
-  const DAI_BALANCE = parseInt(state.userBalances[0][1]);
-  const MANA_BALANCE = parseInt(state.userBalances[1][1]);
-  const router = useRouter();
 
   if (props.isHomePage && scrollState == 'top') {
     menuStyle = [
@@ -73,12 +87,6 @@ const MenuTop = (props) => {
   }, [utm]);
 
   useEffect(() => {
-    if (state.userStatus) {
-      console.log('User status: ' + state.userStatus);
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
 
     if (localTheme === 'dark') {
@@ -100,6 +108,10 @@ const MenuTop = (props) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
 
   // get path and render appropriate styles
   function getLinkStyles(path) {
@@ -124,9 +136,6 @@ const MenuTop = (props) => {
     });
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // helper functions
   function DGLogo() {
     return (
       <Link href="/">

@@ -5,7 +5,10 @@ import Global from './Constants';
 
 const Header = (props) => {
   function segmentSnippet() {
-    if (typeof window !== 'undefined') {
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.analytics === 'undefined'
+    ) {
       // create a queue, but don't obliterate an existing one
       var analytics = (window.analytics = window.analytics || []);
 
@@ -86,10 +89,6 @@ const Header = (props) => {
 
       // load Analytics.js with your key, which will automatically load the tools you've enabled for your account
       analytics.load(Global.SEGMENT_WRITE_KEY);
-
-      // make the first page call to load the integrations
-      // if you'd like to manually name or tag the page, edit or move this call however you'd like
-      analytics.page();
     }
   }
 
