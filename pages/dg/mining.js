@@ -28,7 +28,7 @@ const Mining = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Mining'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
