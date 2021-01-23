@@ -29,11 +29,13 @@ const MenuTop = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // send current path to Segment analytics
-  useEffect(() => {
-    analytics.page(router.pathname);
+  // useEffect(() => {
+  //   analytics.page(router.pathname);
 
-    console.log('path: ' + router.pathname);
-  }, [router.pathname]);
+  //   console.log('analytics variable...');
+  //   console.log(analytics);
+  //   console.log('path: ' + router.pathname);
+  // }, [router.pathname]);
 
   useEffect(() => {
     if (state.userStatus) {

@@ -32,7 +32,7 @@ function UserStatus() {
           const response = await getUserStatus();
 
           // if the response is truthy set the user's respective status, else set status back to 0
-          // (/verifyAddress API call will return error with new wallet address)
+          // (/verifyAddress API call will return error if new wallet address)
           if (response) {
             dispatch({
               type: 'update_status',

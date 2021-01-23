@@ -24,6 +24,12 @@ function UserInfo() {
           type: 'user_info',
           data: response,
         });
+
+        // send identy data to Segment
+        analytics.identify(address, {
+          name: name,
+          balance: balance,
+        });
       })();
     }
   }, [state.userStatus]);
