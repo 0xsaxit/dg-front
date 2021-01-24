@@ -28,6 +28,14 @@ const MenuTop = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // send current page data to Segment analytics
+  useEffect(() => {
+    analytics.page(router.pathname, {
+      path: router.pathname,
+      address: state.userAddress,
+    });
+  }, [router.pathname]);
+
   useEffect(() => {
     if (state.userStatus) {
       console.log('User status: ' + state.userStatus);
