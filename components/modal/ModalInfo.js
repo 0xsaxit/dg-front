@@ -123,7 +123,7 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {state.DGBalances.BALANCE_MINING_DG (
+          {state.DGBalances.BALANCE_MINING_DG ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">
                 {DGTotal.toLocaleString()} DG{' '}
