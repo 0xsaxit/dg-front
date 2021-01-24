@@ -253,6 +253,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .dashboard-image-container,
   #mobile-casino-text,
   video#myVideo.home-dashboard-video,
+  .home-video-container,
   .home-video-container video {
     display: none !important;
   }

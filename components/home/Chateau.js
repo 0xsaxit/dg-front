@@ -29,14 +29,12 @@ const Chateau = () => {
   });
 
   useEffect(() => {
-    if (window) {
-      if (window.innerWidth > 499) {
-        setVideoPlay(true);
-      } else {
-        setVideoPlay(false);
-      }
+    if (typeof window.orientation == 'undefined') {
+      setVideoPlay(true);
+    } else {
+      setVideoPlay(false);
     }
-  }, [setVideoPlay]);
+  }, []);
 
   useEffect(() => {
     const url = window.location.href;
