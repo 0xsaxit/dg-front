@@ -11,11 +11,6 @@ const Header = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function segmentSnippet() {
-    // if (
-    //   typeof window !== 'undefined' &&
-    //   typeof window.analytics === 'undefined'
-    // ) {
-
     // create a queue, but don't obliterate an existing one
     var analytics = (window.analytics = window.analytics || []);
 
@@ -94,12 +89,11 @@ const Header = (props) => {
 
     // load Analytics.js with your key, which will automatically load the tools you've enabled for your account
     analytics.load(Global.KEYS.SEGMENT_WRITE_KEY);
-
-    // }
   }
 
+  // send current page data to Segment analytics
   function pageAnalytics() {
-    analytics.page(props.title, {
+    analytics.page(router.pathname, {
       title: props.title,
       path: router.pathname,
     });
