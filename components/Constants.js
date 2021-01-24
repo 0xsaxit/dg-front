@@ -4,7 +4,7 @@ const KEYS = {
   TRANSAK_API: '6f2cd88d-b241-4cdb-8f1a-a034cda14bf6',
   GOOGLE_ANALYTICS: 'UA-146057069-1',
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
-  SEGMENT_WRITE_KEY: '4AK73Fjiz82l6zugwDmUvQDDBaEeUvIW',
+  SEGMENT_WRITE_KEY: 'RdHIxumqvBBwE6RaXTf6NfQMWgu5oTQS',
 };
 
 // common constant values
