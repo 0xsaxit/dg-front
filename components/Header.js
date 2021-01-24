@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../store';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
@@ -5,6 +7,9 @@ import Aux from './_Aux';
 import Global from './Constants';
 
 const Header = (props) => {
+  // get user's wallet address from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   // define local variables
   const router = useRouter();
 
@@ -96,7 +101,7 @@ const Header = (props) => {
     analytics.page(router.pathname, {
       title: props.title,
       path: router.pathname,
-      test: 'foo',
+      address: state.userAddress,
     });
   }
 
