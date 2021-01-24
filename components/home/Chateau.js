@@ -29,10 +29,10 @@ const Chateau = () => {
   });
 
   useEffect(() => {
-    if (typeof window.orientation == 'undefined') {
-      setVideoPlay(true);
-    } else {
+    if (typeof window.orientation != 'undefined') {
       setVideoPlay(false);
+    } else {
+      setVideoPlay(true);
     }
   }, []);
 
