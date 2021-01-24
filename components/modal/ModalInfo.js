@@ -123,7 +123,7 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {state.DGBalances.BALANCE_MINING_DG ? (
+          {state.DGBalances.BALANCE_MINING_DG & DGTotal != 10 ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">
                 {DGTotal.toLocaleString()} DG{' '}
@@ -293,7 +293,18 @@ const ModalInfo = () => {
               </span>
             ) : (
               null
-            )} 
+            )}
+
+            {state.DGBalances.BALANCE_KEEPER_DG > 0 && state.DGBalances.BALANCE_KEEPER_DG != 10 ? (
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">unclaimed $DG - airdrop</p>
+                <p className="menu-info-text">
+                  {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+                </p>
+              </span>
+            ) : (
+              null
+            )}  
           </div>
         ) : (
           <div style={{ marginTop: '12px' }} />
