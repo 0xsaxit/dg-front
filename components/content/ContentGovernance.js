@@ -495,7 +495,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 3,000 $DG att market price{' '}
+                        calculated as 3,000 $DG at market price{' '}
                       </p>
                     </div>
                   </Popup>

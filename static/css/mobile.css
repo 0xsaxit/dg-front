@@ -79,7 +79,7 @@
     left: 60px;
   }
   #dropdown-menu-items {
-    padding-left: 78px !important;
+    padding-left: 67px !important;
   }
   .ui.blue.button.metamask-button {
     display: none;
@@ -173,15 +173,14 @@
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
-  margin-top: 64px;
   border: none;
-  min-width: 100vw;
+  min-width: calc(100vw + 1px);
   border-radius: 0px;
   padding-left: 0px;
-  padding-top: 0px;
   height: 309px;
   position: absolute !important;
-  left: -26px !important;
+  top: 48px;
+  left: -25px !important;
 }
 
 
