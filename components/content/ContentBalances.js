@@ -448,7 +448,7 @@ const ContentBalances = (props) => {
                   color="blue"
                   className="matic-widget-button balances-play-button"
                   id="balances-padding-correct"
-                  data-default-page="deposit"
+                  data-default-page="withdraw"
                   data-wapp-id="I8qoM5yxmkAm6tT72vwD"
                   onClick={() => initializePings()}
                 >

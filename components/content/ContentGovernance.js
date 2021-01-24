@@ -481,7 +481,25 @@ const ContentGovernance = (props) => {
                   paddingBottom: '12px',
                 }}
               >
-                <p className="earned-text">$DG Treasury</p>
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">$DG Treasury</p>
+                  <Popup
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text">
+                        calculated as 3,000 $DG att market price{' '}
+                      </p>
+                    </div>
+                  </Popup>
+                </span>
                 {dgTreasury ? (
                   <p className="earned-amount">${dgTreasury}</p>
                 ) : (

@@ -123,14 +123,16 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {state.DGBalances.BALANCE_MINING_DG ? (
+          {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
+            null    
+          ) : state.DGBalances.BALANCE_MINING_DG ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">
                 {DGTotal.toLocaleString()} DG{' '}
               </p>
             </Button>
           ) : (
-            null 
+            null
           )}
         </span>
       }
@@ -155,16 +157,29 @@ const ModalInfo = () => {
         </span>
 
         <span style={{ display: 'flex', justifyContent: 'center' }}>
-          <p
-            className="account-name"
-            style={{
-              marginLeft: '0px',
-              paddingLeft: '0px',
-              textAlign: 'center',
-            }}
-          >
-            {formatPrice(DGTotal_2, 3)}
-          </p>
+          {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
+            <p
+              className="account-name"
+              style={{
+                marginLeft: '0px',
+                paddingLeft: '0px',
+                textAlign: 'center',
+              }}
+            >
+              0.000
+            </p>
+          ) : (
+            <p
+              className="account-name"
+              style={{
+                marginLeft: '0px',
+                paddingLeft: '0px',
+                textAlign: 'center',
+              }}
+            >
+              {formatPrice(DGTotal_2, 3)}
+            </p>
+          )}
         </span>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
           <p
@@ -302,6 +317,8 @@ const ModalInfo = () => {
                   {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
                 </p>
               </span>
+            ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
+              null
             ) : (
               null
             )}  
