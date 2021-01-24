@@ -1,7 +1,7 @@
 // import { useContext } from 'react';
 // import { GlobalContext } from '../store';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import Aux from './_Aux';
 import Global from './Constants';
@@ -11,7 +11,7 @@ const Header = (props) => {
   // const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const router = useRouter();
+  // const router = useRouter();
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
