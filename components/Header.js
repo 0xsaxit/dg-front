@@ -96,6 +96,7 @@ const Header = (props) => {
     analytics.page(router.pathname, {
       title: props.title,
       path: router.pathname,
+      test: 'foo',
     });
   }
 
@@ -113,14 +114,12 @@ const Header = (props) => {
         />
         <meta name="robots" content="index, follow" />
 
-        {typeof window !== 'undefined' &&
-        typeof window.analytics === 'undefined' ? (
-          <script dangerouslySetInnerHTML={{ __html: segmentSnippet() }} />
-        ) : null}
-
-        {typeof window !== 'undefined' &&
-        typeof window.analytics !== 'undefined' ? (
-          <script dangerouslySetInnerHTML={{ __html: pageAnalytics() }} />
+        {typeof window !== 'undefined' ? (
+          typeof window.analytics === 'undefined' ? (
+            <script dangerouslySetInnerHTML={{ __html: segmentSnippet() }} />
+          ) : (
+            <script dangerouslySetInnerHTML={{ __html: pageAnalytics() }} />
+          )
         ) : null}
       </Head>
 

@@ -25,7 +25,7 @@ function UserInfo() {
           data: response,
         });
 
-        // send identity data to Segment
+        // send identity data to Segment analytics
         analytics.identify(address, {
           name: name,
           balance: balance,
