@@ -201,6 +201,13 @@ const MenuTop = (props) => {
                 BLOG
               </Menu.Item>
             </a>
+
+            <a href="https://docs.decentral.games" target="_blank">
+              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                DOCS
+              </Menu.Item>
+            </a>
+
           </span>
         </Popup>
       </div>
@@ -238,6 +245,12 @@ const MenuTop = (props) => {
         <Link href="/blog">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
             BLOG
+          </Menu.Item>
+        </Link>
+
+        <Link href="https://docs.decentral.games" target="_blank">
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
+            DOCS
           </Menu.Item>
         </Link>
       </div>
