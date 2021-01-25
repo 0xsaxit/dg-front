@@ -754,6 +754,8 @@ const Chateau = () => {
             </span>
           </span>
         </div>
+
+        <Footer />
       </Aux>
     );
   }

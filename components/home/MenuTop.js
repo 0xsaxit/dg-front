@@ -239,11 +239,11 @@ const MenuTop = (props) => {
           </Menu.Item>
         </Link>
 
-        <Link href="https://docs.decentral.games" target="_blank">
+        <a href="https://docs.decentral.games" target="_blank">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
             DOCS
           </Menu.Item>
-        </Link>
+        </a>
       </div>
     );
   }
