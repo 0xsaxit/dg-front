@@ -272,7 +272,7 @@ const ContentGovernance = (props) => {
                 Users can submit proposals for LAND and $DG treasury allocation
                 immediately. Read more about $DG governance in our{' '}
                 <a
-                  href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
+                  href={`${Global.CONSTANTS.BASE_URL}/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards`}
                   style={{ color: '#2085f4' }}
                   target="_blank"
                 >

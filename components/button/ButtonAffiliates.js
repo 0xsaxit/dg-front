@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { Button, Icon } from 'semantic-ui-react';
+import Global from '../Constants';
 
 const ButtonAffiliates = () => {
   // get token balances from the Context API store
@@ -11,7 +12,7 @@ const ButtonAffiliates = () => {
 
   const onCopy = () => {
     navigator.clipboard.writeText(
-      `https://decentral.games/${state.userInfo[1]}`
+      Global.CONSTANTS.BASE_URL + '/' + state.userInfo[1]
     );
     setCopied(true);
   };
@@ -27,7 +28,11 @@ const ButtonAffiliates = () => {
       >
         <Button className="affiliate-copied-button">
           Copied
-          <Icon name="check square outline" id="etherscan-button-icon" style={{ marginLeft: '0px', marginRight: '3px', marginTop: '-1px' }} />
+          <Icon
+            name="check square outline"
+            id="etherscan-button-icon"
+            style={{ marginLeft: '0px', marginRight: '3px', marginTop: '-1px' }}
+          />
         </Button>
       </span>
     );
@@ -42,7 +47,11 @@ const ButtonAffiliates = () => {
     >
       <Button className="affiliate-copy-button" onClick={() => onCopy()}>
         affiliate link
-        <Icon name="copy outline" id="etherscan-button-icon" style={{ marginLeft: '3px', marginTop: '-1px' }} />
+        <Icon
+          name="copy outline"
+          id="etherscan-button-icon"
+          style={{ marginLeft: '3px', marginTop: '-1px' }}
+        />
       </Button>
     </span>
   );

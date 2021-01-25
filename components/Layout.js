@@ -8,7 +8,6 @@ import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
 import Footer from './home/Footer';
 
-
 const Layout = (props) => {
   // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -38,12 +37,7 @@ const Layout = (props) => {
 
       {props.children}
 
-      {router.pathname === '/' ? (
-        null
-      ) : (
-        <Footer />
-      )}
-
+      <Footer />
     </ThemeProvider>
   );
 };

@@ -5,6 +5,7 @@ import { Button, Divider, Loader } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Transactions from '../../common/Transactions';
+import Global from '../Constants';
 
 const ContentAirdrop = (props) => {
   // get user's status from the Context API store
@@ -79,7 +80,7 @@ const ContentAirdrop = (props) => {
                 $DG is rewarded to players, liquidity providers, and governors
                 of the decentral.games ecosystem. Learn more by reading our
                 <a
-                  href="https://decentral.games/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                  href={`${Global.CONSTANTS.BASE_URL}/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino`}
                   target="_blank"
                   style={{ color: '#2085f4' }}
                 >
