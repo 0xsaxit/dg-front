@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm audit --audit-level=low
+# RUN npm audit --audit-level=low
 
 RUN npm install --production --no-fund
 
