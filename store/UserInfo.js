@@ -28,7 +28,8 @@ function UserInfo() {
         // send identity data to Segment analytics
         analytics.identify(address, {
           name: name,
-          balance: balance,
+          userStatus: state.userStatus,
+          countryCode: state.countryCode,
         });
       })();
     }
