@@ -222,6 +222,38 @@ const ContentBalances = (props) => {
   function contentAccountPage() {
     return (
       <Grid className="balances-container" style={marginTop}>
+
+        <div className="DG-column top" style={{ marginBottom: '15px' }}>
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <h3 className="DG-h3">How To Deposit and Withdraw Crypto</h3>
+            <p>
+              We've recently partnered with{' '}
+              <a
+                href="https://connext.network/"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                Connext{' '}
+              </a>
+              to substantially decrease deposit and withdrawal times. Just copy the address from our new widget and send the crypto you'd like to deposit there in metamask. To withdraw, be sure to send from your matic wallet - to learn more, visit our{' '}
+              <a
+                href="https://docs.decentral.games"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                docs{' '}
+              </a>
+              or watch our how to{' '}
+              <a
+                style={{ color: '#2085f4' }}
+              >
+                video
+              </a>
+              .
+            </p>
+          </span>
+        </div>
+
         <Grid.Row>
           <Grid.Column
             computer={5}
