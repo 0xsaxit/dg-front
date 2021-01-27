@@ -227,14 +227,6 @@ const ContentBalances = (props) => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h3 className="DG-h3">How To Deposit and Withdraw Crypto</h3>
             <p>
-              We've recently partnered with{' '}
-              <a
-                href="https://connext.network/"
-                style={{ color: '#2085f4' }}
-                target="_blank"
-              >
-                Connext{' '}
-              </a>
               To deposit to Matic, send Ethereum tokens to the address provided in the modal. To withdraw to Ethereum, send Matic tokens from your matic wallet to the address provided in the modal. For help visit our{' '}
               <a
                 href="https://docs.decentral.games"
