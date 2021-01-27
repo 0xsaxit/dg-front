@@ -53,14 +53,14 @@ const Footer = () => {
             href="https://decentralgames.substack.com/"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">PRESS KIT</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">NEWSLETTER</Menu.Item>
           </a>
 
           <a
             href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">NEWSLETTER</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">PRESS KIT</Menu.Item>
           </a>
 
           <a href="https://docs.decentral.games" target="_blank">
