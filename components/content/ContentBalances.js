@@ -235,7 +235,7 @@ const ContentBalances = (props) => {
               >
                 Connext{' '}
               </a>
-              to substantially decrease deposit and withdrawal times. Just copy the address from our new widget and send the crypto you'd like to deposit there in metamask. To withdraw, be sure to send from your matic wallet - to learn more, visit our{' '}
+              To deposit to Matic, send Ethereum tokens to the address provided in the modal. To withdraw to Ethereum, send Matic tokens from your matic wallet to the address provided in the modal. For help visit our{' '}
               <a
                 href="https://docs.decentral.games"
                 style={{ color: '#2085f4' }}
