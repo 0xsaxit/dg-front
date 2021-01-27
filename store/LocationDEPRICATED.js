@@ -25,6 +25,9 @@ function Location() {
     const response = await Fetch.COUNTRY_CODE();
     const json = await response.json();
 
+    console.log('ipapi...');
+    console.log(json);
+
     return json.country_code;
   }
 
