@@ -9,6 +9,7 @@ function UserInfo() {
   // define local variables
   const [DGStaking, setDGStaking] = useState(0);
   const [DGMainchain, setDGMainchain] = useState(0);
+  const [complete, setComplete] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -19,12 +20,10 @@ function UserInfo() {
     );
     const DGMainchain = formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3);
 
-    // console.log('balances...');
-    // console.log(DGStaking);
-    // console.log(DGMainchain);
-
     setDGStaking(DGStaking);
     setDGMainchain(DGMainchain);
+
+    setComplete(true);
   }, [state.stakingBalances, state.DGBalances]);
 
   function formatPrice(balance, units) {
@@ -36,7 +35,7 @@ function UserInfo() {
   }
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (complete) {
       // get user's play name, wallet address, and avatar balance
       (async function () {
         let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
@@ -63,7 +62,6 @@ function UserInfo() {
             stakedGovernance: DGStaking,
             mainchainWallet: DGMainchain,
           },
-          // countryCode: state.countryCode,
           PLAY: { slots: [], roulette: [], blackjack: [], poker: [] },
           DAI: { slots: [], roulette: [], blackjack: [], poker: [] },
           MANA: { slots: [], roulette: [], blackjack: [], poker: [] },
@@ -72,7 +70,7 @@ function UserInfo() {
         });
       })();
     }
-  }, [state.userStatus]);
+  }, [complete]);
 
   return null;
 }
