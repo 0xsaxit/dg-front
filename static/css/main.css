@@ -1436,7 +1436,6 @@ div.ui.grid.balances-container {
   justify-content: space-between;
   margin-left: 0px;
   margin-right: 0px;
-  padding-bottom: 90px !important;
 }
 
 @media (max-width: 991px) {

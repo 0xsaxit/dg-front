@@ -63,37 +63,6 @@ const ContentBalances = (props) => {
   const [showModal_4, setShowModal_4] = useState(false);
 
 
-  // set top padding of balancees container dependent on top bar message height
-  useEffect(() => {
-    const interval = setInterval(() => {
-      var messageBar = document.getElementById('message-bar');
-      if (messageBar) {
-        var height = messageBar.offsetHeight;
-        setMargin(90 + height + 'px');
-      } else {
-        setMargin('90px');
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (state.userStatus === 6) {
-      setBoxDAI('block');
-      setButtonDAI('none');
-      setButtonMANA('block');
-    } else if (state.userStatus === 7) {
-      setBoxMANA('block');
-      setButtonDAI('block');
-      setButtonMANA('none');
-    } else if (state.userStatus === 8) {
-      setBoxDAI('block');
-      setBoxMANA('block');
-      setButtonDAI('none');
-      setButtonMANA('none');
-    }
-  }, [state.userStatus]);
-
   useEffect(() => {
     // get all the events
     transak_1.on(transak_1.ALL_EVENTS, (data) => {
@@ -198,25 +167,6 @@ const ContentBalances = (props) => {
     }
   }
 
-  const marginTop = {
-    marginTop: margin,
-  };
-
-  const styles = {
-    boxDAI: {
-      display: boxDAI || 'none',
-    },
-    buttonDAI: {
-      display: buttonDAI || 'none',
-    },
-    boxMANA: {
-      display: boxMANA || 'none',
-    },
-    buttonMANA: {
-      display: buttonMANA || 'none',
-    },
-  };
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccountPage() {
@@ -235,13 +185,6 @@ const ContentBalances = (props) => {
               >
                 docs{' '}
               </a>
-              or watch our how to{' '}
-              <a
-                style={{ color: '#2085f4' }}
-              >
-                video
-              </a>
-              .
             </p>
           </span>
         </div>
