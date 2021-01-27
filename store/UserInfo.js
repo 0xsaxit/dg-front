@@ -14,17 +14,25 @@ function UserInfo() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    const DGStaking = formatPrice(
-      state.stakingBalances.BALANCE_USER_GOVERNANCE,
-      3
-    );
-    const DGMainchain = formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3);
+    if (
+      state.stakingBalances.BALANCE_USER_GOVERNANCE &&
+      state.DGBalances.BALANCE_ROOT_DG
+    ) {
+      const DGStaking = formatPrice(
+        state.stakingBalances.BALANCE_USER_GOVERNANCE,
+        3
+      );
+      const DGMainchain = formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3);
 
-    setDGStaking(DGStaking);
-    setDGMainchain(DGMainchain);
+      setDGStaking(DGStaking);
+      setDGMainchain(DGMainchain);
 
-    setComplete(true);
-  }, [state.stakingBalances, state.DGBalances]);
+      setComplete(true);
+    }
+  }, [
+    state.stakingBalances.BALANCE_USER_GOVERNANCE,
+    state.DGBalances.BALANCE_ROOT_DG,
+  ]);
 
   function formatPrice(balance, units) {
     const balanceAdjusted = Number(balance)
