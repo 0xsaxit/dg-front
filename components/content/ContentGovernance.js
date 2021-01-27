@@ -224,10 +224,10 @@ const ContentGovernance = (props) => {
         const dgTotal = Number(3000 * props.price);
         const dgTotalFormatted = props.formatPrice(dgTotal, 0);
 
-        const landTotal = Number(400 * 1211.46);
+        const landTotal = Number(403 * 1418.03);
         const landTotalFormatted = props.formatPrice(landTotal, 0);
 
-        const nftPrice = 5000 * priceMANA;
+        const nftPrice = 7500 * priceMANA;
         const nftTotal = Number(210 * nftPrice);
         const nftTotalFormatted = props.formatPrice(nftTotal, 0);
 
@@ -569,7 +569,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 210 wearables times 5000 MANA at current
+                        calculated as 210 wearables times 7,500 MANA at current
                         price{' '}
                       </p>
                     </div>

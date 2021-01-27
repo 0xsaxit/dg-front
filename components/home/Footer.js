@@ -23,7 +23,7 @@ const Footer = () => {
 	        </Menu.Item>
 	      </a>
 
-		  <a href="https://docs.decentral.games/info/disclaimer" target="_blank">
+		  	<a href="https://docs.decentral.games/info/disclaimer" target="_blank">
 	        <Menu.Item className="sidebar-menu-text blog">
 	          DISCLAIMER
 	        </Menu.Item>
@@ -38,6 +38,12 @@ const Footer = () => {
 	      <a href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC" target="_blank">
 	        <Menu.Item className="sidebar-menu-text blog">
 	          PRESS KIT
+	        </Menu.Item>
+	      </a>
+
+	      <a href="https://decentralgames.substack.com/" target="_blank">
+	        <Menu.Item className="sidebar-menu-text blog">
+	          NEWSLETTER
 	        </Menu.Item>
 	      </a>
 
