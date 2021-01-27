@@ -587,7 +587,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 210 wearables times 7,000 MANA at current
+                        calculated as 210 wearables times 7,500 MANA at current
                         market price{' '}
                       </p>
                     </div>
