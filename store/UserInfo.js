@@ -73,8 +73,6 @@ function UserInfo() {
           PLAY: { slots: [], roulette: [], blackjack: [], poker: [] },
           DAI: { slots: [], roulette: [], blackjack: [], poker: [] },
           MANA: { slots: [], roulette: [], blackjack: [], poker: [] },
-          USDC: { slots: [], roulette: [], blackjack: [], poker: [] },
-          USDT: { slots: [], roulette: [], blackjack: [], poker: [] },
         });
       })();
     }

@@ -13,6 +13,10 @@ const Footer = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    console.log('User status: ' + state.userStatus);
+  }, [state.userStatus]);
+
   // send current page data to Segment analytics
   useEffect(() => {
     analytics.page(router.pathname, {
@@ -50,7 +54,7 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://decentralgames.substack.com/"
+            href={`${Global.CONSTANTS.BASE_URL}/substack.com/`}
             target="_blank"
           >
             <Menu.Item className="sidebar-menu-text blog">NEWSLETTER</Menu.Item>

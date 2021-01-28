@@ -67,7 +67,7 @@ function UserStatus() {
         return stepValue;
       }
     } catch {
-      console.log('Unregistered wallet');
+      console.log('Unregistered wallet: User Status');
 
       return 0;
     }

@@ -29,12 +29,6 @@ const MenuTop = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    if (state.userStatus) {
-      console.log('User status: ' + state.userStatus);
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
     listener = document.addEventListener('scroll', (e) => {
       let scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
