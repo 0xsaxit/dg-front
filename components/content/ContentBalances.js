@@ -375,21 +375,7 @@ const ContentBalances = (props) => {
                 >
                   DEPOSIT
                 </Button>
-                <ConnextModal
-                  showModal={showModal}
-                  onClose={() => setShowModal(false)}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
-                  depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/19d908a2af6d48a0984cee0620a8665d"
-                  withdrawAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
-                  withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
-                />
+
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_2(true)}
@@ -397,21 +383,7 @@ const ContentBalances = (props) => {
                 >
                   WITHDRAW
                 </Button>
-                <ConnextModal
-                  showModal={showModal_2}
-                  onClose={() => setShowModal_2(false)}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
-                  withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/19d908a2af6d48a0984cee0620a8665d"
-                  depositAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
-                  depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
-                />
+
               </span>
             </div>
 
@@ -484,21 +456,7 @@ const ContentBalances = (props) => {
                 >
                   DEPOSIT
                 </Button>
-                <ConnextModal
-                  showModal={showModal_3}
-                  onClose={() => setShowModal_3(false)}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
-                  depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/19d908a2af6d48a0984cee0620a8665d"
-                  withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
-                  withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
-                />
+
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_4(true)}
@@ -506,21 +464,7 @@ const ContentBalances = (props) => {
                 >
                   WITHDRAW
                 </Button>
-                <ConnextModal
-                  showModal={showModal_4}
-                  onClose={() => setShowModal_4(false)}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
-                  withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/19d908a2af6d48a0984cee0620a8665d"
-                  depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
-                  depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
-                />
+
               </span>
             </div>
 
