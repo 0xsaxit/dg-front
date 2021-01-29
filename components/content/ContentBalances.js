@@ -57,9 +57,9 @@ const ContentBalances = (props) => {
   const [totalMANA, setTotalMANA] = useState(0);
   const [totalPLAY, setTotalPLAY] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [showModal_2, setShowModal_2] = useState(false);
-  const [showModal_3, setShowModal_3] = useState(false);
-  const [showModal_4, setShowModal_4] = useState(false);
+  // const [showModal_2, setShowModal_2] = useState(false);
+  // const [showModal_3, setShowModal_3] = useState(false);
+  // const [showModal_4, setShowModal_4] = useState(false);
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -390,14 +390,14 @@ const ContentBalances = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                 />
-                <Button
+                {/*<Button
                   className="balances-play-button"
                   onClick={() => setShowModal_2(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
                   WITHDRAW
                 </Button>
-                {/*<ConnextModal
+                <ConnextModal
                   showModal={showModal_2}
                   onClose={() => setShowModal_2(false)}
                   onReady={(params) =>
@@ -477,14 +477,14 @@ const ContentBalances = (props) => {
 
             <div style={styles.boxDAI}>
               <span className="balances-button-span">
-                <Button
+                {/*<Button
                   className="balances-play-button"
                   onClick={() => setShowModal_3(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
                   DEPOSIT
                 </Button>
-                {/*<ConnextModal
+                <ConnextModal
                   showModal={showModal_3}
                   onClose={() => setShowModal_3(false)}
                   onReady={(params) =>
@@ -498,7 +498,7 @@ const ContentBalances = (props) => {
                   withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
-                />*/}
+                />
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_4(true)}
@@ -506,7 +506,7 @@ const ContentBalances = (props) => {
                 >
                   WITHDRAW
                 </Button>
-                {/*<ConnextModal
+                <ConnextModal
                   showModal={showModal_4}
                   onClose={() => setShowModal_4(false)}
                   onReady={(params) =>
