@@ -22,7 +22,7 @@ function blog() {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 30 });
+      const { data } = await ButterCMS.post.list({ page_size: 40 });
       dispatch({
         type: 'update_pages',
         data,
@@ -54,14 +54,14 @@ function blog() {
       />
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/governance-staking-is-now-live-start-earning-dg-gov-rewards">
+        <Link href="/blog/[id]" as="blog/decentral-games-becomes-the-first-dao-to-own-govern-and-monetize-virtual-land">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">
-                  <span className="blog-date">13 DEC 2020</span>
+                  <span className="blog-date">20 JAN 2021</span>
                   <span className="blog-category">Announcements</span>
                 </div>
                 <div className="bottom">
@@ -72,7 +72,7 @@ function blog() {
                         paddingTop: '9px'
                       }}
                     >
-                      Governance staking is now live - start earning $DG gov rewards!
+                      Decentral Games Becomes the First DAO to Own, Govern, and Monetize Virtual Land
                     </h4>
                     <p
                       style={{
@@ -80,7 +80,7 @@ function blog() {
                         paddingTop: '3px'
                       }}
                     >
-                      The objective of $DG governance is to evolve into a DAO, where the community of $DG stakers govern the casino treasury that accrues from game profits. The governance rollout is broken down to two initial phases to incentivize participation.
+                      $DG hodlers – We appreciate your continued support, attendance at Casino Night events, and participation in governing the Decentral Games ecosystem.
                     </p>
                   </div>
                 </div>

@@ -65,11 +65,12 @@ const MessageBar = () => {
       );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your MetaMask Network to Ethereum Mainnet');
-    } else if (!state.userStatus === 4) {
-      setMessage(
-        'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play free play games.'
-      );
-    } else if (state.userStatus === 5) {
+
+      // } else if (!state.userStatus === 4) {
+      //   setMessage(
+      //     'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play free play games.'
+      //   );
+    } else if (state.userStatus === 4) {
       setMessage(
         `You must authorize the DAI and MANA token contracts on /account to play games with DAI and MANA`
       );

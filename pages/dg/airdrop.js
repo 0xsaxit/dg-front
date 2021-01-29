@@ -28,7 +28,7 @@ const Airdrop = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Airdrop'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

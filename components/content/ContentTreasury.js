@@ -28,7 +28,7 @@ const ContentTreasury = (props) => {
         setStatsUSD(usd);
       }
     })();
-  }, []); // statsUSD
+  }, []);
 
   let data;
   let axes;

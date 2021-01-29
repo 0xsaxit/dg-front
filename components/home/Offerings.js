@@ -156,8 +156,6 @@ const Offerings = (props) => {
     const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
     const jsonRecords = await response.json();
 
-    // const jsonRecords = '';
-
     setGameRecordsRefresh(false);
 
     dispatch({

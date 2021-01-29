@@ -9,7 +9,6 @@ import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import { ConnextModal } from '@connext/vector-modal';
 
-
 let transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'PRODUCTION', // STAGING/PRODUCTION
@@ -61,7 +60,6 @@ const ContentBalances = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
-
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -222,12 +220,14 @@ const ContentBalances = (props) => {
   function contentAccountPage() {
     return (
       <Grid className="balances-container" style={marginTop}>
-
         <div className="DG-column top" style={{ marginBottom: '15px' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h3 className="DG-h3">How To Deposit and Withdraw Crypto</h3>
             <p>
-              To deposit to Matic, send Ethereum tokens to the address provided in the modal. To withdraw to Ethereum, send Matic tokens from your matic wallet to the address provided in the modal. For help visit our{' '}
+              To deposit to Matic, send Ethereum tokens to the address provided
+              in the modal. To withdraw to Ethereum, send Matic tokens from your
+              matic wallet to the address provided in the modal. For help visit
+              our{' '}
               <a
                 href="https://docs.decentral.games"
                 style={{ color: '#2085f4' }}
@@ -368,7 +368,7 @@ const ContentBalances = (props) => {
 
             <div style={styles.boxMANA}>
               <span className="balances-button-span">
-                <Button 
+                <Button
                   className="balances-play-button"
                   onClick={() => setShowModal(true)}
                   style={{ padding: '0 0 0 0' }}
@@ -378,7 +378,9 @@ const ContentBalances = (props) => {
                 <ConnextModal
                   showModal={showModal}
                   onClose={() => setShowModal(false)}
-                  onReady={params => console.log('MODAL IS READY =======>', params)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
                   withdrawalAddress={state.userAddress}
                   routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                   depositAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
@@ -388,7 +390,7 @@ const ContentBalances = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                 />
-                <Button 
+                <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_2(true)}
                   style={{ padding: '0 0 0 0' }}
@@ -398,7 +400,9 @@ const ContentBalances = (props) => {
                 <ConnextModal
                   showModal={showModal_2}
                   onClose={() => setShowModal_2(false)}
-                  onReady={params => console.log('MODAL IS READY =======>', params)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
                   withdrawalAddress={state.userAddress}
                   routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                   withdrawAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
@@ -473,7 +477,7 @@ const ContentBalances = (props) => {
 
             <div style={styles.boxDAI}>
               <span className="balances-button-span">
-                <Button 
+                <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_3(true)}
                   style={{ padding: '0 0 0 0' }}
@@ -483,7 +487,9 @@ const ContentBalances = (props) => {
                 <ConnextModal
                   showModal={showModal_3}
                   onClose={() => setShowModal_3(false)}
-                  onReady={params => console.log('MODAL IS READY =======>', params)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
                   withdrawalAddress={state.userAddress}
                   routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                   depositAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
@@ -493,7 +499,7 @@ const ContentBalances = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                 />
-                <Button 
+                <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_4(true)}
                   style={{ padding: '0 0 0 0' }}
@@ -503,7 +509,9 @@ const ContentBalances = (props) => {
                 <ConnextModal
                   showModal={showModal_4}
                   onClose={() => setShowModal_4(false)}
-                  onReady={params => console.log('MODAL IS READY =======>', params)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
                   withdrawalAddress={state.userAddress}
                   routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                   withdrawAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}

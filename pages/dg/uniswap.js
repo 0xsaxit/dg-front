@@ -28,7 +28,7 @@ const Uniswap = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Uniswap'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

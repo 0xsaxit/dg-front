@@ -4,6 +4,7 @@ const KEYS = {
   TRANSAK_API: '6f2cd88d-b241-4cdb-8f1a-a034cda14bf6',
   GOOGLE_ANALYTICS: 'UA-146057069-1',
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
+  SEGMENT_WRITE_KEY: 'RdHIxumqvBBwE6RaXTf6NfQMWgu5oTQS',
 };
 
 // common constant values
@@ -17,8 +18,7 @@ const CONSTANTS = {
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
-  MATIC_URL:
-    'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9',
+  MATIC_URL: 'https://rpc-mainnet.maticvigil.com/v1/77716f1e281178d28966c64ff271bde0aa1570d9', // 'https://rpc-mainnet.matic.network'
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
   DESCRIPTION:

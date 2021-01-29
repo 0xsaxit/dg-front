@@ -75,6 +75,7 @@ const initialState = {
   affiliateAddress: '',
   toggleTheme: 'light',
   whitelisted: false,
+  // countryCode: '',
 };
 
 const reducer = (state, action) => {
@@ -228,6 +229,12 @@ const reducer = (state, action) => {
         ...state,
         whitelisted: action.data,
       };
+
+    // case 'country_code':
+    //   return {
+    //     ...state,
+    //     countryCode: action.data,
+    //   };
 
     default:
       throw new Error('Wrong action type got dispatched');

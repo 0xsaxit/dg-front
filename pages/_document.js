@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
+        <Head>          
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />

@@ -22,12 +22,16 @@ const ButtonVerify = () => {
 
   async function openMetaMask() {
     if (metamaskEnabled) {
-      // open MataMask for login then get the user's wallet address
-
+      // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
+      userAddress = window.ethereum.selectedAddress;
+
+      // track MetaMask connect event
+      analytics.track('connected MetaMask', {
+        userAddress: userAddress,
+      });
 
       // dispatch user address to the Context API store
-      userAddress = window.ethereum.selectedAddress;
       dispatch({
         type: 'user_address',
         data: userAddress,
@@ -81,7 +85,7 @@ const ButtonVerify = () => {
         return stepValue;
       }
     } catch {
-      console.log('Unregistered wallet');
+      console.log('Unregistered wallet: Verify');
 
       return 0;
     }

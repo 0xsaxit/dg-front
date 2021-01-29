@@ -29,8 +29,14 @@ const MenuTop = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
+    if (state.userStatus) {
+      console.log('User status: ' + state.userStatus);
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
     listener = document.addEventListener('scroll', (e) => {
-      let scrolled = document.scrollingElement.scrollTop;
+      var scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {
           setScrollState('amir');
@@ -41,7 +47,6 @@ const MenuTop = (props) => {
         }
       }
     });
-
     return () => {
       document.removeEventListener('scroll', listener);
     };
@@ -53,7 +58,6 @@ const MenuTop = (props) => {
       'right-menu-text',
       'sidebar-menu-text',
       'dashboard-menu-container',
-      '',
     ];
   } else if (props.isHomePage && scrollState == 'amir') {
     menuStyle = [
@@ -61,7 +65,6 @@ const MenuTop = (props) => {
       'right-menu-text blog',
       'sidebar-menu-text blog',
       'dashboard-menu-container',
-      'top',
     ];
   } else {
     menuStyle = [
@@ -69,7 +72,6 @@ const MenuTop = (props) => {
       'right-menu-text blog',
       'sidebar-menu-text blog',
       'other-menu-container blog',
-      '',
     ];
   }
 
@@ -187,12 +189,6 @@ const MenuTop = (props) => {
                 BLOG
               </Menu.Item>
             </a>
-
-            <a href="https://docs.decentral.games" target="_blank">
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                DOCS
-              </Menu.Item>
-            </a>
           </span>
         </Popup>
       </div>
@@ -232,12 +228,6 @@ const MenuTop = (props) => {
             BLOG
           </Menu.Item>
         </Link>
-
-        <a href="https://docs.decentral.games" target="_blank">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
-            DOCS
-          </Menu.Item>
-        </a>
       </div>
     );
   }
@@ -336,26 +326,49 @@ const MenuTop = (props) => {
   } else {
     return (
       <span>
-        <div className={menuStyle[3]} id={menuStyle[4]}>
-          <MessageBar />
-          {dropdownMenu()}
+        {scrollState == 'top' ? (
+          <div className={menuStyle[3]}>
+            <MessageBar />
+            {dropdownMenu()}
 
-          {props.isHomePage && !open ? (
-            <Menu className="menu-container" icon="labeled">
-              {DGLogo()}
-              {shownOrHiddenItems()}
-              {balancesAndButtons()}
-            </Menu>
-          ) : (
-            <Menu className="menu-container-dark blog" icon="labeled">
-              {DGLogo()}
-              {shownOrHiddenItems()}
-              {balancesAndButtons()}
-            </Menu>
-          )}
+            {props.isHomePage && !open ? (
+              <Menu className="menu-container" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            ) : (
+              <Menu className="menu-container-dark blog" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            )}
 
-          <MessageBox handleDismiss={handleDismiss} />
-        </div>
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
+        ) : (
+          <div className={menuStyle[3]} id="top">
+            <MessageBar />
+            {dropdownMenu()}
+
+            {props.isHomePage && !open ? (
+              <Menu className="menu-container" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            ) : (
+              <Menu className="menu-container-dark blog" icon="labeled">
+                {DGLogo()}
+                {shownOrHiddenItems()}
+                {balancesAndButtons()}
+              </Menu>
+            )}
+
+            <MessageBox handleDismiss={handleDismiss} />
+          </div>
+        )}
       </span>
     );
   }

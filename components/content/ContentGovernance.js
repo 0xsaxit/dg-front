@@ -60,7 +60,7 @@ const ContentGovernance = (props) => {
         setStatsUSD(usd);
       }
     })();
-  }, []); // statsUSD
+  }, []);
 
   let data;
   let axes;
@@ -272,7 +272,7 @@ const ContentGovernance = (props) => {
                 Users can submit proposals for LAND and $DG treasury allocation
                 immediately. Read more about $DG governance in our{' '}
                 <a
-                  href="https://www.decentral.games/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards"
+                  href={`${Global.CONSTANTS.BASE_URL}/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards`}
                   style={{ color: '#2085f4' }}
                   target="_blank"
                 >
@@ -481,7 +481,25 @@ const ContentGovernance = (props) => {
                   paddingBottom: '12px',
                 }}
               >
-                <p className="earned-text">$DG Treasury</p>
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">$DG Treasury</p>
+                  <Popup
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text">
+                        calculated as 3,000 $DG at market price{' '}
+                      </p>
+                    </div>
+                  </Popup>
+                </span>
                 {dgTreasury ? (
                   <p className="earned-amount">${dgTreasury}</p>
                 ) : (
@@ -523,7 +541,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 400 parcels times T30 avg LAND price{' '}
+                        calculated as 403 parcels times T30 avg LAND price{' '}
                       </p>
                     </div>
                   </Popup>
@@ -570,7 +588,7 @@ const ContentGovernance = (props) => {
                     <div>
                       <p className="earned-text">
                         calculated as 210 wearables times 7,500 MANA at current
-                        price{' '}
+                        market price{' '}
                       </p>
                     </div>
                   </Popup>

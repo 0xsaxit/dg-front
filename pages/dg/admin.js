@@ -13,7 +13,7 @@ const Admin = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Admin'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

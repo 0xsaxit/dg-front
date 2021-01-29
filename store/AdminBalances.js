@@ -10,11 +10,13 @@ function AdminBalances() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  let web3 = {};
   let maticWeb3 = {};
   let balances = [];
 
   useEffect(() => {
     if (state.whitelisted) {
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
@@ -49,7 +51,7 @@ function AdminBalances() {
         Global.ADDRESSES.WORKER_WALLET_ADDRESS
       );
 
-      const amountEth = web3.fromWei(amount, 'ether') + ' ETH';
+      const amountEth = web3.utils.fromWei(amount, 'ether') + ' ETH';
       const amountNumber = parseFloat(amountEth).toFixed(4);
 
       return amountNumber;

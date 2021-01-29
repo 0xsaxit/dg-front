@@ -28,7 +28,7 @@ const Balancer = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Balancer'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

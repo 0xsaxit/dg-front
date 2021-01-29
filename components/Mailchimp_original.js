@@ -1,22 +1,14 @@
-import { Component, useState, useContext } from 'react';
-import { GlobalContext } from '../store';
-
-// import { render } from 'react-dom';
-
+import React, { Component, useState } from 'react';
+import { render } from 'react-dom';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 import { Button, Input, Icon } from 'semantic-ui-react';
-import Aux from './_Aux';
 
 const CustomForm = ({ status, message, onValidated }) => {
-  // get user's wallet address from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
   const [email, setEmail] = useState('');
 
-  //   function handleNameChange(e) {
-  //     setName(e.target.value);
-  //   }
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -51,27 +43,12 @@ const CustomForm = ({ status, message, onValidated }) => {
           dangerouslySetInnerHTML={{ __html: message }}
         />
       )}
-      <Aux>
-        {status === 'success' && (
-          <div
-            className="mailchimp-other-inner-p"
-            dangerouslySetInnerHTML={{ __html: message }}
-          />
-        )}
-
-        {status === 'success' && (
-          // track signed-up for newsletter event
-
-          <script
-            dangerouslySetInnerHTML={{
-              __html: window.analytics.track('signed-up for newsletter', {
-                userAddress: state.userAddress,
-                email: email,
-              }),
-            }}
-          />
-        )}
-      </Aux>
+      {status === 'success' && (
+        <div
+          className="mailchimp-other-inner-p"
+          dangerouslySetInnerHTML={{ __html: message }}
+        />
+      )}
     </span>
   );
 };
