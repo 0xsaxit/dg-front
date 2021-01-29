@@ -116,7 +116,6 @@ const Chateau = () => {
   function sectionTwo() {
     return (
       <Aux>
-         
         <div>
           <div
             className="section-4-outter-header"
@@ -197,8 +196,8 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Mine $DG by playing games with MANA and DAI. Refer
-                      friends and enjoy up to 10% of the $DG they mine.
+                      Mine $DG by playing games with MANA and DAI. Refer friends
+                      and enjoy up to 10% of the $DG they mine.
                     </p>
                   </div>
                 </a>
@@ -275,9 +274,8 @@ const Chateau = () => {
                         textAlign: 'center',
                       }}
                     >
-                      Stake $DG to govern the casino bankroll. When the
-                      treasury hits $500K USD stakers may vote to allocate
-                      funds.
+                      Stake $DG to govern the casino bankroll. When the treasury
+                      hits $500K USD stakers may vote to allocate funds.
                     </p>
                   </div>
                 </a>
@@ -285,7 +283,6 @@ const Chateau = () => {
             </div>
           </div>
         </div>
-          
       </Aux>
     );
   }
