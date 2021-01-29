@@ -59,7 +59,9 @@ const CustomForm = ({ status, message, onValidated }) => {
           />
         )}
 
-        {typeof window !== 'undefined' ? (
+        {status === 'success' && (
+          // track signed-up for newsletter event
+
           <script
             dangerouslySetInnerHTML={{
               __html: window.analytics.track('signed-up for newsletter', {
@@ -68,7 +70,7 @@ const CustomForm = ({ status, message, onValidated }) => {
               }),
             }}
           />
-        ) : null}
+        )}
       </Aux>
     </span>
   );
