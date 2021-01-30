@@ -31,7 +31,7 @@ const Footer = () => {
           </a>
 
           <a
-            href={`${Global.CONSTANTS.BASE_URL}/substack.com/`}
+            href="https://decentralgames.substack.com/"
             target="_blank"
           >
             <Menu.Item className="sidebar-menu-text blog">NEWSLETTER</Menu.Item>
