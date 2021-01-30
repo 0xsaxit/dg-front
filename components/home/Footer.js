@@ -1,30 +1,7 @@
-import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
-import { useRouter } from 'next/router';
 import { Menu, Icon } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const Footer = () => {
-  // get user address from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
-  const router = useRouter();
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    console.log('User status: ' + state.userStatus);
-  }, [state.userStatus]);
-
-  // send current page data to Segment analytics
-  useEffect(() => {
-    analytics.page(router.pathname, {
-      path: router.pathname,
-      address: state.userAddress,
-    });
-  }, [router.pathname]);
-
   return (
     <span className="footer-container">
       <Menu className="inner-footer-container-2" icon="labeled">

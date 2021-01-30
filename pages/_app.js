@@ -6,9 +6,10 @@ import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
 import '../static/css/mobile.css';
+import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
-import BalancesEvents from '../store/BalancesEvents';
+// import BalancesEvents from '../store/BalancesEvents';
 import Transactions from '../store/Transactions';
 import ParcelData from '../store/ParcelData';
 import GameRecords from '../store/GameRecords';
@@ -27,9 +28,9 @@ class Application extends App {
 
     return (
       <Provider store={store}>
+        <Segment />
         <UserStatus />
         <UserBalances />
-        <BalancesEvents />
         <Transactions />
         <ParcelData />
         <GameRecords />

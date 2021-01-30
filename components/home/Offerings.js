@@ -149,20 +149,20 @@ const Offerings = (props) => {
     }
   }
 
-  async function refreshLeaderboard() {
-    console.log('Re-fetching game records');
-    setGameRecordsRefresh(true);
+  // async function refreshLeaderboard() {
+  //   console.log('Re-fetching game records');
+  //   setGameRecordsRefresh(true);
 
-    const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
-    const jsonRecords = await response.json();
+  //   const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
+  //   const jsonRecords = await response.json();
 
-    setGameRecordsRefresh(false);
+  //   setGameRecordsRefresh(false);
 
-    dispatch({
-      type: 'update_records',
-      data: jsonRecords,
-    });
-  }
+  //   dispatch({
+  //     type: 'update_records',
+  //     data: jsonRecords,
+  //   });
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -328,13 +328,13 @@ const Offerings = (props) => {
               onChange={timeChange}
             />
 
-            <Button
+           {/*<Button
               onClick={() => refreshLeaderboard()}
               className="reload-button"
               icon
             >
               <Icon name="redo" />
-            </Button>
+            </Button>*/}
           </span>
         </span>
 
@@ -432,13 +432,13 @@ const Offerings = (props) => {
               onChange={timeChange}
             />
 
-            <Button
+           {/*<Button
               onClick={() => refreshLeaderboard()}
               className="reload-button"
               icon
             >
               <Icon name="redo" />
-            </Button>
+            </Button>*/}
           </span>
         </span>
         <span
@@ -458,13 +458,13 @@ const Offerings = (props) => {
             onChange={timeChange}
           />
 
-          <Button
-            onClick={() => refreshLeaderboard()}
-            className="reload-button"
-            icon
-          >
-            <Icon name="redo" />
-          </Button>
+           {/*<Button
+              onClick={() => refreshLeaderboard()}
+              className="reload-button"
+              icon
+            >
+              <Icon name="redo" />
+            </Button>*/}
         </span>
       </Aux>
     );
