@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
 import { useRouter } from 'next/router';
 
-const Footer = () => {
+const Segment = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -60,10 +60,6 @@ const Footer = () => {
   // send user identity data to Segment analytics
   useEffect(() => {
     if (complete && state.userInfo.length) {
-      // console.log('use effect...');
-      // console.log(complete);
-      // console.log(state.userInfo);
-
       analytics.identify(state.userAddress, {
         name: state.userInfo[0],
         userStatus: state.userStatus,
@@ -82,4 +78,4 @@ const Footer = () => {
   return null;
 };
 
-export default Footer;
+export default Segment;

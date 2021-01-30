@@ -64,7 +64,7 @@ const CustomForm = ({ status, message, onValidated }) => {
 
           <script
             dangerouslySetInnerHTML={{
-              __html: window.analytics.track('signed-up for newsletter', {
+              __html: window.analytics.track('Signed-up for newsletter', {
                 userAddress: state.userAddress,
                 email: email,
               }),

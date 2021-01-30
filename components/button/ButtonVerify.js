@@ -27,7 +27,7 @@ const ButtonVerify = () => {
       userAddress = window.ethereum.selectedAddress;
 
       // track MetaMask connect event
-      analytics.track('connected MetaMask', {
+      analytics.track('Connected MetaMask', {
         userAddress: userAddress,
       });
 

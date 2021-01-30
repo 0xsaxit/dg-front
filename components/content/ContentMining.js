@@ -19,12 +19,22 @@ const ContentMining = (props) => {
   const [web3, setWeb3] = useState({});
   const [utm, setUtm] = useState('');
 
+  const buttonMANA = document.getElementById('play-now-button-MANA');
+  const buttonDAI = document.getElementById('play-now-button-DAI');
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (buttonMANA || buttonDAI) {
+      analytics.trackLink(buttonMANA, 'Clicked PLAY NOW (mining MANA)');
+      analytics.trackLink(buttonDAI, 'Clicked PLAY NOW (mining DAI)');
+    }
+  }, [buttonMANA, buttonDAI]);
+
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create contract instance
@@ -260,6 +270,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
+                  id={'play-now-button-MANA'}
                   href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
@@ -322,6 +333,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
+                  id={'play-now-button-DAI'}
                   href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
