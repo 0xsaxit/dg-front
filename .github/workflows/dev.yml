@@ -129,9 +129,9 @@ jobs:
             var status_icon_func = function(s) {
                 switch (s) {
                 case "w_success":
-                    return ":heavy_check_mark:"
+                    return ":white_check_mark:"
                 case "w_failure":
-                    return ":x:"
+                    return ":no_entry:"
                 case "w_cancelled":
                     return ":warning:"
                 case "success":
