@@ -60,6 +60,7 @@ const ContentBalances = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
+  const [injectedProvider, setInjectedProvider] = useState('');
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -215,6 +216,14 @@ const ContentBalances = (props) => {
     },
   };
 
+  useEffect(() => {
+    if (state.userAddress) {
+      setInjectedProvider(window.ethereum);
+    } else {
+      setInjectedProvider('');
+    }
+  }, [state.userAddress]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccountPage() {
@@ -224,17 +233,23 @@ const ContentBalances = (props) => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h3 className="DG-h3">How To Deposit and Withdraw Crypto</h3>
             <p>
-              To deposit to Matic, send Ethereum tokens to the address provided
-              in the modal. To withdraw to Ethereum, send Matic tokens from your
-              matic wallet to the address provided in the modal. For help visit
-              our{' '}
+              To deposit to Matic, click deposit and select the amount you'd like to send. To withdraw to Ethereum, ensure you've switched to{' '}
+              <a
+                href="https://docs.matic.network/docs/develop/metamask/config-matic/"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                Matic RPC{' '}
+              </a>
+              in Metamask and then click withdraw. For further explanation, please visit our{' '}
               <a
                 href="https://docs.decentral.games"
                 style={{ color: '#2085f4' }}
                 target="_blank"
               >
-                docs{' '}
+                docs
               </a>
+              .
             </p>
           </span>
         </div>
@@ -389,6 +404,7 @@ const ContentBalances = (props) => {
                   withdrawAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -411,6 +427,7 @@ const ContentBalances = (props) => {
                   depositAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
               </span>
             </div>
@@ -498,6 +515,7 @@ const ContentBalances = (props) => {
                   withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -520,6 +538,7 @@ const ContentBalances = (props) => {
                   depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
               </span>
             </div>

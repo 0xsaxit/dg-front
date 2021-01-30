@@ -1,13 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-
 import Link from 'next/link';
 import { Menu, Divider, Grid } from 'semantic-ui-react';
-
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
+
 
 const AccountData = (props) => {
   // get user's transaction history from the Context API store
