@@ -114,6 +114,7 @@ p {
 }
 
 .menu-account-info {
+  margin-right: 30px !important;
   cursor: pointer;
   display: flex;
 }
