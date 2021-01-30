@@ -60,6 +60,7 @@ const ContentBalances = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
+  const [injectedProvider, setInjectedProvider] = useState('');
 
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
@@ -214,6 +215,15 @@ const ContentBalances = (props) => {
       display: buttonMANA || 'none',
     },
   };
+
+  useEffect(() => {
+    if (state.userAddress) {
+      setInjectedProvider(window.ethereum);
+    } else {
+      setInjectedProvider('');
+    }
+  }, [state.userAddress]);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -370,6 +380,7 @@ const ContentBalances = (props) => {
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
+                  disabled={!injectedProvider}
                   onClick={() => setShowModal(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
@@ -389,6 +400,7 @@ const ContentBalances = (props) => {
                   withdrawAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -411,6 +423,7 @@ const ContentBalances = (props) => {
                   depositAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
               </span>
             </div>
@@ -498,6 +511,7 @@ const ContentBalances = (props) => {
                   withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -520,6 +534,7 @@ const ContentBalances = (props) => {
                   depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
                 />
               </span>
             </div>

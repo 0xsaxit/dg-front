@@ -14,7 +14,8 @@ const Layout = (props) => {
   const router = useRouter();
 
   // define local variables
-  const themeMode = state.theme === 'light' ? lightTheme : darkTheme;
+  // change second "lightTheme" to "darkTheme" when re implementing dark mode
+  const themeMode = state.theme === 'light' ? lightTheme : lightTheme;
 
   useEffect(() => {
     if (!window.GA_INITIALIZED) {

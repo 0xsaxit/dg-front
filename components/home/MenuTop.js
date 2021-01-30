@@ -244,13 +244,15 @@ const MenuTop = (props) => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    if (state.userStatus === 3) {
+    {/*if (state.userStatus === 3) {
       return (
         <span className="right-menu-items">
           <PopUpLinks isDarkMode={isDarkMode} />
         </span>
       );
-    } else if (state.userStatus >= 4) {
+    } else*/}
+
+    if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
           <ModalInfo />
@@ -317,7 +319,7 @@ const MenuTop = (props) => {
             </span>
           </Link>
 
-          <PopUpLinks isDarkMode={isDarkMode} />
+          {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>
       );
     } else {
@@ -325,7 +327,7 @@ const MenuTop = (props) => {
         <span className="right-menu-items">
           <ButtonVerify />
 
-          <PopUpLinks isDarkMode={isDarkMode} />
+          {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>
       );
     }
