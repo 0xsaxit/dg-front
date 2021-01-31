@@ -114,6 +114,7 @@ p {
 }
 
 .menu-account-info {
+  margin-right: 30px !important;
   cursor: pointer;
   display: flex;
 }
@@ -737,7 +738,7 @@ i.chevron.down.icon {
 }
 
 .main-container {
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 220px);
 }
 
 .learn-more-dg-outter {
@@ -2013,7 +2014,7 @@ div.ui.grid.admin-balances-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 250px);
+  min-height: calc(100vh - 210px);
 }
 
 .not-found-header-text {
