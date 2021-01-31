@@ -28,7 +28,7 @@ const History = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | History'}
+        title={Global.CONSTANTS.TITLE + ' | Account | Transactions'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

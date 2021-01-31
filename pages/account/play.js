@@ -28,7 +28,7 @@ const Play = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Play'}
+        title={Global.CONSTANTS.TITLE + ' | Account | Game History'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

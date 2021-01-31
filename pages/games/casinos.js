@@ -8,7 +8,7 @@ const Casinos = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Casinos'}
+        title={Global.CONSTANTS.TITLE + ' | Games | Our Casinos'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

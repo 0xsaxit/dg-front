@@ -25,15 +25,15 @@ const ContentMining = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
+
+  useEffect(() => {
     if (buttonMANA || buttonDAI) {
       analytics.trackLink(buttonMANA, 'Clicked PLAY NOW (mining MANA)');
       analytics.trackLink(buttonDAI, 'Clicked PLAY NOW (mining DAI)');
     }
   }, [buttonMANA, buttonDAI]);
-
-  useEffect(() => {
-    setUtm(sessionStorage.getItem('utm'));
-  }, [utm]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {

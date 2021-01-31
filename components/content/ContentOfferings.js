@@ -1,17 +1,54 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 
 const ContentOfferings = (props) => {
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-
+  // define local variables
   const [utm, setUtm] = useState('');
 
+  let buttonGames1 = '';
+  let buttonGames2 = '';
+  let buttonGames3 = '';
+  let buttonGames4 = '';
+  let buttonCasinos1 = '';
+  let buttonCasinos2 = '';
+  let buttonCasinos3 = '';
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
 
+  useEffect(() => {
+    buttonGames1 = document.getElementById('play-now-button-games-1');
+    buttonGames2 = document.getElementById('play-now-button-games-2');
+    buttonGames3 = document.getElementById('play-now-button-games-3');
+    buttonGames4 = document.getElementById('play-now-button-games-4');
+    buttonCasinos1 = document.getElementById('play-now-button-casinos-1');
+    buttonCasinos2 = document.getElementById('play-now-button-casinos-2');
+    buttonCasinos3 = document.getElementById('play-now-button-casinos-3');
+  }, []);
 
+  useEffect(() => {
+    if (buttonGames1 || buttonGames2 || buttonGames3 || buttonGames4) {
+      analytics.trackLink(
+        [buttonGames1, buttonGames2, buttonGames3, buttonGames4],
+        'Clicked PLAY NOW (games page)'
+      );
+    }
+  }, [buttonGames1, buttonGames2, buttonGames3, buttonGames4]);
+
+  useEffect(() => {
+    if (buttonCasinos1 || buttonCasinos2 || buttonCasinos3) {
+      analytics.trackLink(
+        [buttonCasinos1, buttonCasinos2, buttonCasinos3],
+        'Clicked PLAY NOW (casinos page)'
+      );
+    }
+  }, [buttonCasinos1, buttonCasinos2, buttonCasinos3]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentGames() {
     return (
       <div className="outter-games-container">
@@ -61,6 +98,7 @@ const ContentOfferings = (props) => {
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
                 <Button
+                  id={`play-now-button-games-${i + 1}`}
                   color="blue"
                   className="nft-button"
                   target="_blank"
@@ -133,6 +171,7 @@ const ContentOfferings = (props) => {
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
                 <Button
+                  id={`play-now-button-casinos-${i + 1}`}
                   color="blue"
                   className="nft-button"
                   target="_blank"
