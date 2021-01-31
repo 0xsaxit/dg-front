@@ -8,7 +8,7 @@ const Leaderboard = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Leaderboard'}
+        title={Global.CONSTANTS.TITLE + ' | Games | Leaderboard'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

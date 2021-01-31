@@ -1,7 +1,23 @@
+import { useEffect } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const Footer = () => {
+  // define local variables
+  let linkDocs = '';
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    linkDocs = document.getElementById('docs-footer');
+  }, []);
+
+  useEffect(() => {
+    if (linkDocs) {
+      analytics.trackLink(linkDocs, 'Clicked DOCS link (footer)');
+    }
+  }, [linkDocs]);
+
   return (
     <span className="footer-container">
       <Menu className="inner-footer-container-2" icon="labeled">
@@ -30,10 +46,7 @@ const Footer = () => {
             </Menu.Item>
           </a>
 
-          <a
-            href="https://decentralgames.substack.com/"
-            target="_blank"
-          >
+          <a href="https://decentralgames.substack.com/" target="_blank">
             <Menu.Item className="sidebar-menu-text blog">NEWSLETTER</Menu.Item>
           </a>
 
@@ -44,7 +57,11 @@ const Footer = () => {
             <Menu.Item className="sidebar-menu-text blog">PRESS KIT</Menu.Item>
           </a>
 
-          <a href="https://docs.decentral.games" target="_blank">
+          <a
+            href="https://docs.decentral.games"
+            id="docs-footer"
+            target="_blank"
+          >
             <Menu.Item className="sidebar-menu-text blog">DOCS</Menu.Item>
           </a>
         </div>
