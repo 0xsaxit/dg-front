@@ -19,14 +19,19 @@ const ContentMining = (props) => {
   const [web3, setWeb3] = useState({});
   const [utm, setUtm] = useState('');
 
-  const buttonMANA = document.getElementById('play-now-button-MANA');
-  const buttonDAI = document.getElementById('play-now-button-DAI');
+  let buttonMANA = '';
+  let buttonDAI = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
+
+  useEffect(() => {
+    buttonMANA = document.getElementById('play-now-button-MANA');
+    buttonDAI = document.getElementById('play-now-button-DAI');
+  }, []);
 
   useEffect(() => {
     if (buttonMANA || buttonDAI) {
