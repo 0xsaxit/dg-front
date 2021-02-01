@@ -15,6 +15,9 @@ const ButtonAffiliates = () => {
       Global.CONSTANTS.BASE_URL + '/' + state.userInfo[1]
     );
     setCopied(true);
+
+    // track 'Affiliate Link' button click event
+    analytics.track('Clicked AFFILIATE LINK button');
   };
 
   if (copied) {
