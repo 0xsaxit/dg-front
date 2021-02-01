@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
 import { initGA, logPageView } from './Analytics';
 import MenuTop from './home/MenuTop';
@@ -12,9 +12,10 @@ const Layout = (props) => {
   // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
   // define local variables
-  // change second "lightTheme" to "darkTheme" when re implementing dark mode
+  // change second "lightTheme" to "darkTheme" when theme jump is fixed
   const themeMode = state.theme === 'light' ? lightTheme : lightTheme;
 
   useEffect(() => {
@@ -25,6 +26,12 @@ const Layout = (props) => {
 
     logPageView();
   }, []);
+
+  useEffect(() => {
+    if (state.userStatus > 3) {
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
 
   return (
     <ThemeProvider theme={themeMode}>
@@ -38,12 +45,7 @@ const Layout = (props) => {
 
       {props.children}
 
-      {router.pathname === '/' ? (
-        null
-      ) : (
-        <Footer />
-      )}
-      
+      {router.pathname === '/' || isLoading ? null : <Footer />}
     </ThemeProvider>
   );
 };

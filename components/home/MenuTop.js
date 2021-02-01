@@ -25,9 +25,20 @@ const MenuTop = (props) => {
   const router = useRouter();
   let menuStyle = [];
   let listener = null;
+  let linkDocs = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    linkDocs = document.getElementById('docs-top-menu');
+  }, []);
+
+  useEffect(() => {
+    if (linkDocs) {
+      analytics.trackLink(linkDocs, 'Clicked DOCS link (top menu)');
+    }
+  }, [linkDocs]);
+
   useEffect(() => {
     listener = document.addEventListener('scroll', (e) => {
       let scrolled = document.scrollingElement.scrollTop;
@@ -188,7 +199,11 @@ const MenuTop = (props) => {
               </Menu.Item>
             </a>
 
-            <a href="https://docs.decentral.games" target="_blank">
+            <a
+              href="https://docs.decentral.games"
+              id="docs-top-menu"
+              target="_blank"
+            >
               <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
                 DOCS
               </Menu.Item>
@@ -233,7 +248,11 @@ const MenuTop = (props) => {
           </Menu.Item>
         </Link>
 
-        <a href="https://docs.decentral.games" target="_blank">
+        <a
+          href="https://docs.decentral.games"
+          id="docs-top-menu"
+          target="_blank"
+        >
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
             DOCS
           </Menu.Item>
@@ -244,14 +263,15 @@ const MenuTop = (props) => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    {/*if (state.userStatus === 3) {
+    {
+      /*if (state.userStatus === 3) {
       return (
         <span className="right-menu-items">
           <PopUpLinks isDarkMode={isDarkMode} />
         </span>
       );
-    } else*/}
-
+    } else*/
+    }
     if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">

@@ -62,6 +62,10 @@ const ContentBalances = (props) => {
   const [showModal_4, setShowModal_4] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState('');
 
+  let buttonPlay = '';
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // set top padding of balancees container dependent on top bar message height
   useEffect(() => {
     const interval = setInterval(() => {
@@ -92,6 +96,16 @@ const ContentBalances = (props) => {
       setButtonMANA('none');
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    buttonPlay = document.getElementById('play-now-button-balances');
+  }, []);
+
+  useEffect(() => {
+    if (buttonPlay) {
+      analytics.trackLink(buttonPlay, 'Clicked PLAY NOW (balances page)');
+    }
+  }, [buttonPlay]);
 
   useEffect(() => {
     // get all the events
@@ -125,12 +139,12 @@ const ContentBalances = (props) => {
   function show_transak_1() {
     transak_1.init();
 
-    initializePings();
+    // initializePings();
   }
   function show_transak_2() {
     transak_2.init();
 
-    initializePings();
+    // initializePings();
   }
 
   // top up user to 5000 play tokens
@@ -170,17 +184,11 @@ const ContentBalances = (props) => {
   }, [state.userAddress]);
 
   // initialize token contract pings
-  function initializePings() {
-    if (state.userStatus >= 6) {
-      console.log('Ping token contract');
-
-      // start pinging the token contract for deposit confirmation
-      // dispatch({
-      //   type: 'token_pings',
-      //   data: 1,
-      // });
-    }
-  }
+  // function initializePings() {
+  //   if (state.userStatus >= 6) {
+  //     console.log('Ping token contract');
+  //   }
+  // }
 
   // close function
   function close() {
@@ -224,7 +232,6 @@ const ContentBalances = (props) => {
     }
   }, [state.userAddress]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccountPage() {
@@ -234,17 +241,25 @@ const ContentBalances = (props) => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h3 className="DG-h3">How To Deposit and Withdraw Crypto</h3>
             <p>
-              To deposit to Matic, send Ethereum tokens to the address provided
-              in the modal. To withdraw to Ethereum, send Matic tokens from your
-              matic wallet to the address provided in the modal. For help visit
-              our{' '}
+              To deposit to Matic, click deposit and select the amount you'd
+              like to send. To withdraw to Ethereum, ensure you've switched to{' '}
+              <a
+                href="https://docs.matic.network/docs/develop/metamask/config-matic/"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                Matic RPC{' '}
+              </a>
+              in Metamask and then click withdraw. For further explanation,
+              please visit our{' '}
               <a
                 href="https://docs.decentral.games"
                 style={{ color: '#2085f4' }}
                 target="_blank"
               >
-                docs{' '}
+                docs
               </a>
+              .
             </p>
           </span>
         </div>
@@ -275,7 +290,7 @@ const ContentBalances = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text"> Play </p>
+                <p className="welcome-text">Play</p>
                 <p className="account-name">{state.userInfo[2]}</p>
               </span>
             </span>
@@ -294,13 +309,14 @@ const ContentBalances = (props) => {
             <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text"> Total Winnings </p>
+              <p className="earned-text">Total Winnings</p>
               <p className="earned-amount"> {totalPLAY} </p>
             </span>
             <Divider />
 
             <span className="balances-button-span">
               <Button
+                id="play-now-button-balances"
                 className="balances-play-button"
                 href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
                 target="_blank"

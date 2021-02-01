@@ -1,12 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-// import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
-import { Parallax } from 'react-parallax';
 import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
+import Fetch from '../../common/Fetch';
+import { Chart } from 'react-charts';
+import Images from '../../common/Images';
+import { Parallax } from 'react-parallax';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -14,25 +16,20 @@ const Chateau = () => {
 
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [utm, setUtm] = useState('');
 
   const realm = 'fenrir-amber';
-  let buttonPlay = '';
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    buttonPlay = document.getElementById('play-now-button-home');
-  }, []);
 
   useEffect(() => {
-    if (buttonPlay) {
-      analytics.trackLink(buttonPlay, 'Clicked PLAY NOW (home page)');
-    }
-  }, [buttonPlay]);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 100);
+    return () => clearTimeout(timer);
+  });
 
   useEffect(() => {
-    if (typeof window.orientation !== 'undefined') {
+    if (typeof window.orientation != 'undefined') {
       setVideoPlay(false);
     } else {
       setVideoPlay(true);
@@ -136,12 +133,6 @@ const Chateau = () => {
                   An ecosystem powered by $DG
                 </h1>
                 <span className="home-button-span ecosystem">
-                  {/* <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
-                    <Button color="blue" className="play-button ecosystem">
-                      ANNOUNCEMENT
-                    </Button>
-                  </Link> */}
-
                   <Button
                     color="blue"
                     className="play-button ecosystem"
@@ -435,7 +426,6 @@ const Chateau = () => {
                   color="blue"
                   className="play-button"
                   href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
-                  id="play-now-button-home"
                   target="_blank"
                 >
                   HOP IN

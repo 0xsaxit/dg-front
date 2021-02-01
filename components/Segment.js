@@ -21,10 +21,7 @@ const Segment = () => {
 
   // send current page data to Segment analytics
   useEffect(() => {
-    analytics.page(router.pathname, {
-      path: router.pathname,
-      address: state.userAddress,
-    });
+    analytics.page(document.title, {});
   }, [router.pathname]);
 
   // get DG staking and DG mainchan amounts

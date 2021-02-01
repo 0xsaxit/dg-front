@@ -8,7 +8,7 @@ const NFTs = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Buy NFTs'}
+        title={Global.CONSTANTS.TITLE + ' | NFTs | Buy NFTs'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

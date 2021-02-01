@@ -8,7 +8,7 @@ const My = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | My NFTs'}
+        title={Global.CONSTANTS.TITLE + ' | NFTs | My NFTs'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

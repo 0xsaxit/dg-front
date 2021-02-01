@@ -28,7 +28,7 @@ const Account = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Account'}
+        title={Global.CONSTANTS.TITLE + ' | Account | Balances'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
