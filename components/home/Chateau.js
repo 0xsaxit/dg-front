@@ -313,7 +313,7 @@ const Chateau = () => {
               </h1>
               <span className="home-button-span">
                 <Link href="/account">
-                  <Button color="blue" className="play-button">
+                  <Button color="blue" className="play-button deposit">
                     DEPOSIT CRYPTO
                   </Button>
                 </Link>
@@ -442,7 +442,7 @@ const Chateau = () => {
                   HOP IN
                 </Button>
                 <Link href="/games/casinos">
-                  <Button color="blue" className="how-to-button">
+                  <Button color="blue" className="casinos-button">
                     OUR CASINOS
                   </Button>
                 </Link>

@@ -2167,6 +2167,17 @@ a.ui.blue.button.how-to-button {
   height: 34px;
 }
 
+.ui.blue.button.casinos-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  position: relative;
+  margin-top: 20px;
+  width: 180px !important;
+  height: 34px;
+  padding: 0 0 0 0;
+}
+
 a.ui.blue.button.dg-learn-button {
   background-color: transparent;
   border: 1px solid #2085f4;
@@ -2376,4 +2387,9 @@ a.ui.blue.button.play-button,
   height: 34px;
   min-width: 180px;
   margin-top: 12px;
+}
+
+.ui.button.play-button.ecosystem,
+.ui.button.play-button.deposit {
+  padding: 2px 0 0 0;
 }
