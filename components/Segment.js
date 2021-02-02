@@ -70,7 +70,7 @@ const Segment = () => {
         MANA: { slots: [], roulette: [], blackjack: [], poker: [] },
       });
     }
-  }, [complete, state.userInfo]);
+  }, [complete, state.userInfo, state.userStatus]);
 
   return null;
 };
