@@ -397,6 +397,7 @@ const ContentBalances = (props) => {
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
+                  disabled={!injectedProvider}
                   onClick={() => setShowModal(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
