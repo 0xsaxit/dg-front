@@ -164,31 +164,31 @@ const ContentBalances = (props) => {
   }
 
   // fetch total bet from API
-  // useEffect(() => {
-  //   if (state.userAddress) {
-  //     (async function () {
-  //       const response = await Fetch.PLAYER_DATA(state.userAddress);
-  //       const json = await response.json();
+  useEffect(() => {
+    if (state.userAddress) {
+      (async function () {
+        const response = await Fetch.PLAYER_DATA(state.userAddress);
+        const json = await response.json();
 
-  //       setTotalDAI(
-  //         (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-  //       );
-  //       setTotalMANA(
-  //         (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-  //       );
-  //       setTotalPLAY(
-  //         (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-  //       );
-  //     })();
-  //   }
-  // }, [state.userAddress]);
+        setTotalDAI(
+          (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+        );
+        setTotalMANA(
+          (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+        );
+        setTotalPLAY(
+          (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+        );
+      })();
+    }
+  }, [state.userAddress]);
 
   // initialize token contract pings
-  // function initializePings() {
-  //   if (state.userStatus >= 6) {
-  //     console.log('Ping token contract');
-  //   }
-  // }
+  function initializePings() {
+    if (state.userStatus >= 6) {
+      console.log('Ping token contract');
+    }
+  }
 
   // close function
   function close() {
@@ -308,12 +308,12 @@ const ContentBalances = (props) => {
 
             <Divider />
 
-            {/*<span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount"> {totalPLAY} </p>
             </span>
 
-            <Divider />*/}
+            <Divider />
 
             <span className="balances-button-span">
               <Button
@@ -386,17 +386,18 @@ const ContentBalances = (props) => {
 
             <Divider />
 
-            {/*<span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount">{totalMANA}</p>
             </span>
 
-            <Divider />*/}
+            <Divider />
 
             <div style={styles.boxMANA}>
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
+                  disabled={!injectedProvider}
                   onClick={() => setShowModal(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
@@ -497,12 +498,12 @@ const ContentBalances = (props) => {
 
             <Divider />
 
-            {/*<span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount">{totalDAI}</p>
             </span>
 
-            <Divider />*/}
+            <Divider />
 
             <div style={styles.boxDAI}>
               <span className="balances-button-span">

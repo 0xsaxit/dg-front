@@ -205,6 +205,16 @@ const ContentGovernance = (props) => {
     }
   }, [props.price, state.DGBalances.BALANCE_STAKING_GOVERNANCE]);
 
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const response_land = await Fetch.LAND_PRICE();
+  //     const json_land = await response_land.json(); 
+  //     console.log(json_land);
+  //   })();
+  // }, []);
+
+
   useEffect(() => {
     if (state.DGBalances.BALANCE_CHILD_MANA) {
       (async () => {
@@ -224,7 +234,7 @@ const ContentGovernance = (props) => {
         const dgTotal = Number(3000 * props.price);
         const dgTotalFormatted = props.formatPrice(dgTotal, 0);
 
-        const landTotal = Number(403 * 1601.65);
+        const landTotal = Number(403 * 1639.31);
         const landTotalFormatted = props.formatPrice(landTotal, 0);
 
         const nftPrice = 7500 * priceMANA;
