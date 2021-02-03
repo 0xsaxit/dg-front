@@ -26,13 +26,16 @@ const Fetch = {
   },
 
   TREASURY_STATS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/month?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/month?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   PARCEL_DATA: (landID, tokenID, address) => {
