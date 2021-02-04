@@ -206,6 +206,14 @@ const ContentGovernance = (props) => {
   }, [props.price, state.DGBalances.BALANCE_STAKING_GOVERNANCE]);
 
   useEffect(() => {
+    (async () => {
+      const response_land = await Fetch.LAND_PRICE();
+      const json_land = await response_land.json(); 
+      console.log(json_land);
+    })();
+  }, []);
+
+  useEffect(() => {
     if (state.DGBalances.BALANCE_CHILD_MANA) {
       (async () => {
         const response = await Fetch.MANA_PRICE();
