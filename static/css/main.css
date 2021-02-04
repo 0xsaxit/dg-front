@@ -1665,6 +1665,7 @@ div.ui.grid.balances-container {
 
 .DG-column.top {
   max-width: 100% !important;
+  min-width: 100% !important;
 }
 
 .DG-column.unclaimed {
