@@ -276,11 +276,8 @@ const ContentGovernance = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Governance</h3>
               <p>
-                Stake $DG tokens, govern the $DG treasury, and earn $DG
-                governance rewards. Proposal submissions for casino profits
-                activate when the gameplay treasury surpasses $500,000 USD.
-                Users can submit proposals for LAND and $DG treasury allocation
-                immediately. Read more about $DG governance in our{' '}
+                Stake $DG tokens, govern the treasury, and earn
+                governance rewards. Read more about $DG governance in our{' '}
                 <a
                   href={`${Global.CONSTANTS.BASE_URL}/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards`}
                   style={{ color: '#2085f4' }}
