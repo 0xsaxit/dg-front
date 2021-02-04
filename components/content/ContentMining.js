@@ -128,14 +128,14 @@ const ContentMining = (props) => {
               <h3 className="DG-h3">$DG Gameplay Rewards</h3>
               <p>
                 Mine $DG by playing games with MANA or DAI. Earn bonuses by
-                playing with friends, wearing DG wearable NFTs, and referring
-                friends. Read more about $DG gameplay rewards in our{' '}
+                playing with friends, wearing $DG NFTs, and referring
+                friends. {' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
                   style={{ color: '#2085f4' }}
                 >
-                  docs
+                  Read More
                 </a>
                 .
               </p>
