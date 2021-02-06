@@ -20,7 +20,6 @@ const MenuTop = (props) => {
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
-  const [avatar, setAvatar] = useState('');
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -113,14 +112,6 @@ const MenuTop = (props) => {
     return () => clearInterval(interval);
   }, []);
 
-  // avatar image
-  useEffect(() => {
-    (async function () {
-      let response = await Fetch.AVATAR_IMAGE(state.userAddress);
-      let json = await response.json();
-      setAvatar(json.avatars[0].avatar.snapshots.face);
-    })();
-  }, [state.userAddress]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -333,7 +324,7 @@ const MenuTop = (props) => {
                 <img
                   className="avatar-picture"
                   id="mobile-avatar-picture"
-                  src={avatar}
+                  src={state.userInfo[5]}
                   style={{
                     width: '18px',
                     height: '18px',

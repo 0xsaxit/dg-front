@@ -25,8 +25,18 @@ const Fetch = {
     });
   },
 
-  TREASURY_STATS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/month?address=${address}`, {
+  TREASURY_STATS_GRAPH: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  TREASURY_STATS_NUMBERS: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

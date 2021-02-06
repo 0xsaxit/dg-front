@@ -70,16 +70,6 @@ const AccountData = (props) => {
       data: toggle,
     });
   }
-
-  // avatar image
-  useEffect(() => {
-    (async function () {
-      let response = await Fetch.AVATAR_IMAGE(state.userAddress);
-      let json = await response.json();
-      setAvatar(json.avatars[0].avatar.snapshots.face);
-    })();
-  }, []);
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -103,7 +93,7 @@ const AccountData = (props) => {
                     >
                       <img
                         className="avatar-picture main"
-                        src={avatar}
+                        src={state.userInfo[5]}
                         style={{
                           width: '72px',
                           display: 'flex',

@@ -19,7 +19,12 @@ function UserInfo() {
         const count = json.callCount;
         const email = '';
 
-        const response = [name, address, balance, count, email];
+        const responseAvatar = await Fetch.AVATAR_IMAGE(state.userAddress);
+        const jsonAvatar = await responseAvatar.json();
+
+        const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
+
+        const response = [name, address, balance, count, email, avatar];
 
         dispatch({
           type: 'user_info',
