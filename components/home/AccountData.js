@@ -6,6 +6,7 @@ import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
+import Fetch from '../../common/Fetch';
 
 
 const AccountData = (props) => {
@@ -24,6 +25,7 @@ const AccountData = (props) => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -69,6 +71,15 @@ const AccountData = (props) => {
     });
   }
 
+  // avatar image
+  useEffect(() => {
+    (async function () {
+      let response = await Fetch.AVATAR_IMAGE(state.userAddress);
+      let json = await response.json();
+      setAvatar(json.avatars[0].avatar.snapshots.face);
+    })();
+  }, []);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -92,7 +103,7 @@ const AccountData = (props) => {
                     >
                       <img
                         className="avatar-picture main"
-                        src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                        src={avatar}
                         style={{
                           width: '72px',
                           display: 'flex',
