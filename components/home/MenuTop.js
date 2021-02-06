@@ -148,6 +148,9 @@ const MenuTop = (props) => {
     );
   }
 
+  console.log('!!!!');
+  console.log(state.userInfo[1]);
+
   // dropdown menu for mobile
   function dropdownMenu() {
     return (

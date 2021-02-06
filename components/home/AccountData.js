@@ -99,7 +99,6 @@ const AccountData = (props) => {
                           display: 'flex',
                         }}
                       />
-                      <span className="avatar-edit"> edit </span>
                     </a>
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>

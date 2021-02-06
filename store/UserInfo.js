@@ -19,10 +19,14 @@ function UserInfo() {
         const count = json.callCount;
         const email = '';
 
-        const responseAvatar = await Fetch.AVATAR_IMAGE(state.userAddress);
+        const responseAvatar = await Fetch.AVATAR_IMAGE(address);
         const jsonAvatar = await responseAvatar.json();
-
-        const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
+        
+        if (jsonAvatar.avatars.length < 1) {
+          const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612653645/image_olhfie.png";
+        } else {
+          const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
+        }
 
         const response = [name, address, balance, count, email, avatar];
 
