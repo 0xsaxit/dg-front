@@ -1466,7 +1466,7 @@ div.ui.grid.balances-container {
   height: 100px;
 }
 
-/*.avatar-picture .avatar-edit {
+.avatar-picture .avatar-edit {
   visibility: hidden;
   text-transform: uppercase;
   font-size: 12px;
@@ -1487,7 +1487,7 @@ div.ui.grid.balances-container {
 
 .avatar-picture:hover .avatar-edit {
   visibility: visible;
-}*/
+}
 
 .avatar-name-row {
   margin-bottom: 30px !important;

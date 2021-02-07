@@ -100,6 +100,7 @@ const AccountData = (props) => {
                         }}
                       />
                     </a>
+                  <span className="avatar-edit"> edit </span>
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
                     <p className="welcome-text"> Account Connected </p>

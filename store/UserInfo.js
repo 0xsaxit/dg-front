@@ -23,7 +23,7 @@ function UserInfo() {
         const jsonAvatar = await responseAvatar.json();
         
         if (jsonAvatar.avatars.length < 1) {
-          const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612653645/image_olhfie.png";
+          const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
         } else {
           const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
         }
