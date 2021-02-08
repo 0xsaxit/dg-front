@@ -25,9 +25,22 @@ const Fetch = {
     });
   },
 
-  TREASURY_STATS: (address) => {
+  TREASURY_STATS_GRAPH: (address) => {
     return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/month?address=${address}`,
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  },
+
+  TREASURY_STATS_NUMBERS: (address) => {
+    return fetch(
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`,
       {
         method: 'GET',
         headers: {
@@ -230,17 +243,14 @@ const Fetch = {
     });
   },
 
-  LAND_PRICE: () => {
-    return fetch(
-      "https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{'id':'nftTicker','value':'LAND'},{'id':'saleType','value':''}]",
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+  AVATAR_IMAGE: (address) => {
+    return fetch(`https://peer.decentral.games/lambdas/profile/${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   },
 
   BPT_SUPPLY_1: () => {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-// import { GlobalContext } from '../../store';
 import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 import Spinner from '../Spinner';
+import Images from '../../common/Images';
 
 const ContentLeaderboard = (props) => {
   // get game score records from the Context API store
@@ -148,7 +148,7 @@ const ContentLeaderboard = (props) => {
                         {index + 1}.{' '}
                         <img
                           className="avatar-picture"
-                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
+                          src={Images.DG_COIN_LOGO}
                           style={{
                             width: '24px',
                             marginRight: '6px',

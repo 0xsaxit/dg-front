@@ -9,6 +9,7 @@ import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopUpLinks from './PopUpLinks';
+import Fetch from '../../common/Fetch';
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -111,6 +112,7 @@ const MenuTop = (props) => {
     return () => clearInterval(interval);
   }, []);
 
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -145,6 +147,9 @@ const MenuTop = (props) => {
       </Link>
     );
   }
+
+  console.log('!!!!');
+  console.log(state.userInfo[1]);
 
   // dropdown menu for mobile
   function dropdownMenu() {
@@ -322,7 +327,7 @@ const MenuTop = (props) => {
                 <img
                   className="avatar-picture"
                   id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                  src={state.userInfo[5]}
                   style={{
                     width: '18px',
                     height: '18px',
@@ -333,7 +338,6 @@ const MenuTop = (props) => {
                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                     backgroundColor: 'white',
                   }}
-                  alt="Decentraland Avatar Image"
                 />
               </span>
             </span>
