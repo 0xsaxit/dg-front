@@ -563,7 +563,7 @@ const ContentGovernance = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  href="https://discord.gg/VQ2ddfFBnu"
+                  href="https://gov.decentral.games"
                   target="_blank"
                   className="DG-stake-button"
                 >
