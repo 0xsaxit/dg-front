@@ -404,7 +404,7 @@ const ContentBalancer = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {APYMANA ? (
-                      <p className="earned-amount">{APYMANA}%</p>
+                      <p className="earned-amount">N/A</p>
                     ) : (
                       <Loader
                         active
@@ -592,7 +592,7 @@ const ContentBalancer = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {APYDAI ? (
-                      <p className="earned-amount">{APYDAI}%</p>
+                      <p className="earned-amount">N/A</p>
                     ) : (
                       <Loader
                         active
