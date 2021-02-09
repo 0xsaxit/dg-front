@@ -9,7 +9,7 @@ const Segment = () => {
   // define local variables
   const [DGStaking, setDGStaking] = useState(0);
   const [DGMainchain, setDGMainchain] = useState(0);
-  const [complete, setComplete] = useState(false);
+  // const [complete, setComplete] = useState(false);
 
   const router = useRouter();
 
@@ -39,7 +39,7 @@ const Segment = () => {
       setDGStaking(DGStaking);
       setDGMainchain(DGMainchain);
 
-      setComplete(true);
+      // setComplete(true);
     }
   }, [
     state.stakingBalances.BALANCE_USER_GOVERNANCE,
@@ -55,22 +55,36 @@ const Segment = () => {
   }
 
   // send user identity data to Segment analytics
+  // useEffect(() => {
+  //   if (complete && state.userInfo.length) {
+  //     analytics.identify(state.userAddress, {
+  //       name: state.userInfo[0],
+  //       userStatus: state.userStatus,
+  //       email: state.userInfo[4],
+  //       DG: {
+  //         stakedGovernance: DGStaking,
+  //         mainchainWallet: DGMainchain,
+  //       },
+  //       PLAY: { slots: [], roulette: [], blackjack: [], poker: [] },
+  //       DAI: { slots: [], roulette: [], blackjack: [], poker: [] },
+  //       MANA: { slots: [], roulette: [], blackjack: [], poker: [] },
+  //     });
+  //   }
+  // }, [complete, state.userInfo, state.userStatus]);
+
+  // track balance fetch event
   useEffect(() => {
-    if (complete && state.userInfo.length) {
-      analytics.identify(state.userAddress, {
-        name: state.userInfo[0],
-        userStatus: state.userStatus,
-        email: state.userInfo[4],
-        DG: {
-          stakedGovernance: DGStaking,
-          mainchainWallet: DGMainchain,
-        },
-        PLAY: { slots: [], roulette: [], blackjack: [], poker: [] },
-        DAI: { slots: [], roulette: [], blackjack: [], poker: [] },
-        MANA: { slots: [], roulette: [], blackjack: [], poker: [] },
+    if (DGStaking && DGMainchain) {
+      analytics.track('Fetched Balances from Smart Contracts', {
+        stakedGovernance: DGStaking,
+        mainchainWallet: DGMainchain,
       });
     }
-  }, [complete, state.userInfo, state.userStatus]);
+  }, [DGStaking, DGMainchain]);
+
+  // analytics.track('Connected MetaMask', {
+  //   userAddress: userAddress,
+  // });
 
   return null;
 };
