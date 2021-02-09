@@ -9,7 +9,6 @@ const Segment = () => {
   // define local variables
   const [DGStaking, setDGStaking] = useState(0);
   const [DGMainchain, setDGMainchain] = useState(0);
-  // const [complete, setComplete] = useState(false);
 
   const router = useRouter();
 
@@ -38,8 +37,6 @@ const Segment = () => {
 
       setDGStaking(DGStaking);
       setDGMainchain(DGMainchain);
-
-      // setComplete(true);
     }
   }, [
     state.stakingBalances.BALANCE_USER_GOVERNANCE,
@@ -73,18 +70,29 @@ const Segment = () => {
   // }, [complete, state.userInfo, state.userStatus]);
 
   // track balance fetch event
+  // useEffect(() => {
+  //   if (DGStaking && DGMainchain) {
+  //     analytics.track('Fetched Balances from Smart Contracts', {
+  //       stakedGovernance: DGStaking,
+  //       mainchainWallet: DGMainchain,
+  //     });
+  //   }
+  // }, [DGStaking, DGMainchain]);
+
+  // send user identity data to Segment analytics
   useEffect(() => {
-    if (DGStaking && DGMainchain) {
-      analytics.track('Fetched Balances from Smart Contracts', {
-        stakedGovernance: DGStaking,
-        mainchainWallet: DGMainchain,
+    if (DGStaking && DGMainchain && state.userInfo.length) {
+      analytics.identify(state.userAddress, {
+        name: state.userInfo[0],
+        userStatus: state.userStatus,
+        email: state.userInfo[4],
+        DG: {
+          stakedGovernance: DGStaking,
+          mainchainWallet: DGMainchain,
+        },
       });
     }
-  }, [DGStaking, DGMainchain]);
-
-  // analytics.track('Connected MetaMask', {
-  //   userAddress: userAddress,
-  // });
+  }, [DGStaking, DGMainchain, state.userInfo, state.userStatus]);
 
   return null;
 };
