@@ -174,16 +174,15 @@ const ContentBalancer = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
               <p>
-                Receive $DG for liquidity provision in 98/2 MANA-DG and DAI-DG
-                Balancer pools and staking the LP tokens on this dashboard.{' '}
+                Balancer LP rewards have now ended following this{' '}
                 <a
-                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
                   style={{ color: '#2085f4' }}
                   target="_blank"
                 >
-                  Read more
+                  gov proposal
                 </a>
-                .
+                . The Uniswap LP rewards are still active and have been increased.{' '}
               </p>
             </span>
           </div>
