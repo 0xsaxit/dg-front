@@ -109,7 +109,64 @@ const detailsCasinos = {
   ],
 };
 
-const Offerings = (props) => {
+const detailsNFTs = {
+  mink_coat: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_3_ywc2cq.png',
+    'nft-pic',
+    'DG Fur Mink',
+    'LEGENDARY',
+    'An opulent fur coat made from minks #extrasaus',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/247',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  tracksuit_top: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_2_lu5fwe.png',
+    'nft-pic',
+    'DG Tracksuit Jacket',
+    'LEGENDARY',
+    'The jacket of the decadent and elegant DG tracksuit #drip',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/248',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  tracksuit_bottom: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_4_meqpkq.png',
+    'nft-pic',
+    'DG Tracksuit Pants',
+    'LEGENDARY',
+    'The pants of the decadent and elegant DG tracksuit #drip',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/246',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  shades: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
+    'nft-pic',
+    'DG Flip Up Spectacles',
+    'LEGENDARY',
+    'Swaggy flip up shades designed to be wearable at any occassion. #ice',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/243',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  yeezies: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_5_lijr1y.png',
+    'nft-pic',
+    'DG Deezys',
+    'LEGENDARY',
+    'Comfy and elegant sneekers #deezys',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/244',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  slides: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_6_iujl4o.png',
+    'nft-pic',
+    'DG Slides',
+    'LEGENDARY',
+    'Lazy day designer slides complete with socks to keep your toes warm #cozyslides',
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/245',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+};
+
+const Games = (props) => {
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -176,9 +233,18 @@ const Offerings = (props) => {
 
         {gameState === 'games' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <b className="account-hover active">OUR GAMES</b>
-            <Link href="/games/casinos">
-              <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
+            <span className="account-hover active">
+              <b>GAMES</b>
+            </span>
+            <Link href="/offerings/casinos">
+              <span className="account-hover">
+                <b>CASINOS</b>
+              </span>
+            </Link>
+            <Link href="/offerings/nfts">
+              <span className="account-hover">
+                <b>NFTS</b>
+              </span>
             </Link>
 
             {leaderboardLink(true)}
@@ -190,10 +256,42 @@ const Offerings = (props) => {
           </p>
         ) : gameState === 'casinos' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/games">
-              <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
+            <Link href="/offerings">
+              <span className="account-hover">
+                <b>GAMES</b>
+              </span>
             </Link>
-            <b className="account-hover active">OUR CASINOS</b>
+            <span className="account-hover active">
+              <b>CASINOS</b>
+            </span>
+            <Link href="/offerings/nfts">
+              <span className="account-hover">
+                <b>NFTS</b>
+              </span>
+            </Link>
+
+            {leaderboardLink(true)}
+
+            <Divider
+              className="tab-divider"
+              style={{ marginTop: '18px', paddingBottom: '21px' }}
+            />
+          </p>
+        ) : gameState == 'nfts' ? (
+          <p className="account-other-p" style={{ width: '100%' }}>
+            <Link href="/offerings">
+              <span className="account-hover">
+                <b>GAMES</b>
+              </span>
+            </Link>
+            <Link href="/offerings/casinos">
+              <span className="account-hover">
+                <b>CASINOS</b>
+              </span>
+            </Link>
+            <span className="account-hover active">
+              <b>NFTS</b>
+            </span>
 
             {leaderboardLink(true)}
 
@@ -206,11 +304,20 @@ const Offerings = (props) => {
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
-                <Link href="/games">
-                  <Menu.Item className="account-hover">OUR GAMES</Menu.Item>
+                <Link href="/offerings">
+                  <span className="account-hover">
+                    <b>GAMES</b>
+                  </span>
                 </Link>
-                <Link href="/games/casinos">
-                  <Menu.Item className="account-hover">OUR CASINOS</Menu.Item>
+                <Link href="/offerings/casinos">
+                  <span className="account-hover">
+                    <b>CASINOS</b>
+                  </span>
+                </Link>
+                <Link href="/offerings/nfts">
+                  <span className="account-hover">
+                    <b>NFTS</b>
+                  </span>
                 </Link>
 
                 {leaderboardLink(false)}
@@ -228,12 +335,18 @@ const Offerings = (props) => {
     if (state.userStatus >= 4) {
       if (link) {
         return (
-          <Link href="/games/leaderboard">
-            <Menu.Item className="account-hover">LEADERBOARD</Menu.Item>
+          <Link href="/offerings/leaderboard">
+            <span className="account-hover">
+              <b>LEADERBOARD</b>
+            </span>
           </Link>
         );
       } else {
-        return <b className="account-hover active">LEADERBOARD</b>;
+        return (
+          <span className="account-hover active">
+            <b>LEADERBOARD</b>
+          </span>
+        );
       }
     } else {
       return null;
@@ -483,6 +596,7 @@ const Offerings = (props) => {
               gameState={gameState}
               detailsGames={detailsGames}
               detailsCasinos={detailsCasinos}
+              detailsNFTs={detailsNFTs}
             />
           )}
         </div>
@@ -491,4 +605,4 @@ const Offerings = (props) => {
   );
 };
 
-export default Offerings;
+export default Games;

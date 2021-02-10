@@ -40,24 +40,39 @@ const ContentGovernance = (props) => {
     return Object.keys(obj).length;
   }
 
-  // useEffect(() => {
-  //   (async function () {
-  //     let response_1 = await Fetch.PROPOSALS();
-  //     let json_1 = await response_1.json();
-  //     console.log('1!!!');
-  //     console.log(length(json_1));
-  //   })();
-  // }, []);
-
   useEffect(() => {
     (async function () {
       // get treasury statistics
       if (state.userStatus) {
-        let response_3 = await Fetch.TREASURY_STATS(state.userAddress);
+        let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
-        let usd = json_3.totalBalanceUSD;
 
+        let usd = json_3.totalBalanceUSD;
         setStatsUSD(usd);
+
+        let response_4 = await Fetch.TREASURY_STATS_NUMBERS(state.userAddress);
+        let json_4 = await response_4.json();
+
+        let land = json_4.totalLandUSD;
+        setLandTreasury(props.formatPrice(land.slice(-1)[0].secondary, 0));
+
+        let wearables = json_4.totalWearablesUSD;
+        setNftTreasury(props.formatPrice(wearables.slice(-1)[0].secondary, 0));
+
+        let gameplay = json_4.totalGameplayUSD;
+        setGameplayTreasury(props.formatPrice(gameplay.slice(-1)[0].secondary, 0));
+
+        let dg = json_4.totalDgUSD;
+        setDgTreasury(props.formatPrice(dg.slice(-1)[0].secondary, 0));
+
+        let mana = json_4.manaBalance;
+        setManaBalance(props.formatPrice(mana.slice(-1)[0].secondary, 0));
+
+        let dai = json_4.daiBalance;
+        setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
+
+        let totalUSD = json_4.totalBalanceUSD;
+        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
       }
     })();
   }, []);
@@ -131,28 +146,6 @@ const ContentGovernance = (props) => {
     }
   }, [state.userStatus]);
 
-  useEffect(
-    () => {
-      if (state.DGBalances.BALANCE_CHILD_MANA) {
-        (async () => {
-          const manaTotal =
-            Number(state.DGBalances.BALANCE_CHILD_MANA) +
-            Number(state.DGBalances.CEO_MANA);
-          const treasuryManaFormatted = props.formatPrice(manaTotal, 0);
-
-          const daiTotal =
-            Number(state.DGBalances.BALANCE_CHILD_DAI) +
-            Number(state.DGBalances.CEO_DAI);
-          const treasuryDaiFormatted = props.formatPrice(daiTotal, 0);
-
-          setManaBalance(treasuryManaFormatted);
-          setDaiBalance(treasuryDaiFormatted);
-        })();
-      }
-    },
-    [state.DGBalances.BALANCE_CHILD_MANA],
-    [state.DGBalances.CEO_MANA]
-  );
 
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
@@ -205,55 +198,6 @@ const ContentGovernance = (props) => {
     }
   }, [props.price, state.DGBalances.BALANCE_STAKING_GOVERNANCE]);
 
-  useEffect(() => {
-    (async () => {
-      const response_land = await Fetch.LAND_PRICE();
-      const json_land = await response_land.json(); 
-      console.log(json_land);
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (state.DGBalances.BALANCE_CHILD_MANA) {
-      (async () => {
-        const response = await Fetch.MANA_PRICE();
-        const json = await response.json();
-
-        const priceMANA = json.market_data.current_price.usd;
-        const balanceMANAUSD = state.DGBalances.BALANCE_CHILD_MANA * priceMANA;
-        const balanceMANA_CEO_USD = state.DGBalances.CEO_MANA * priceMANA;
-        const gameplayTotal =
-          Number(state.DGBalances.BALANCE_CHILD_DAI) +
-          Number(balanceMANAUSD) +
-          Number(balanceMANA_CEO_USD) +
-          Number(state.DGBalances.CEO_DAI);
-        const gameplayTotalFormatted = props.formatPrice(gameplayTotal, 0);
-
-        const dgTotal = Number(3000 * props.price);
-        const dgTotalFormatted = props.formatPrice(dgTotal, 0);
-
-        const landTotal = Number(403 * 1518.32);
-        const landTotalFormatted = props.formatPrice(landTotal, 0);
-
-        const nftPrice = 7500 * priceMANA;
-        const nftTotal = Number(210 * nftPrice);
-        const nftTotalFormatted = props.formatPrice(nftTotal, 0);
-
-        const totalTreasury = gameplayTotal + dgTotal + landTotal + nftTotal;
-        const treasuryTotalFormatted = props.formatPrice(totalTreasury, 0);
-
-        setGameplayTreasury(gameplayTotalFormatted);
-        setDgTreasury(dgTotalFormatted);
-        setLandTreasury(landTotalFormatted);
-        setNftTreasury(nftTotalFormatted);
-        setTreasuryTotal(treasuryTotalFormatted);
-      })();
-    }
-  }, [
-    state.DGBalances.BALANCE_CHILD_MANA,
-    props.price,
-    state.DGBalances.CEO_MANA,
-  ]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -274,11 +218,8 @@ const ContentGovernance = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Governance</h3>
               <p>
-                Stake $DG tokens, govern the $DG treasury, and earn $DG
-                governance rewards. Proposal submissions for casino profits
-                activate when the gameplay treasury surpasses $500,000 USD.
-                Users can submit proposals for LAND and $DG treasury allocation
-                immediately. Read more about $DG governance in our{' '}
+                Stake $DG tokens, govern the treasury, and earn
+                governance rewards. Read more about $DG governance in our{' '}
                 <a
                   href={`${Global.CONSTANTS.BASE_URL}/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards`}
                   style={{ color: '#2085f4' }}
@@ -426,7 +367,8 @@ const ContentGovernance = (props) => {
                   style={{
                     width: '35%',
                     maxWidth: '48.5%',
-                    height: '72px',
+                    height: '75px',
+                    marginTop: '5px'
                   }}
                 >
                   <Chart data={data} axes={axes} series={series} />
@@ -595,8 +537,8 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 210 wearables times 7,500 MANA at current
-                        market price{' '}
+                        calculated as 210 wearables times average bid at current
+                        MANA price{' '}
                       </p>
                     </div>
                   </Popup>
@@ -621,7 +563,7 @@ const ContentGovernance = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  href="https://discord.gg/VQ2ddfFBnu"
+                  href="https://gov.decentral.games"
                   target="_blank"
                   className="DG-stake-button"
                 >

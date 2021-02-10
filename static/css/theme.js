@@ -8,10 +8,10 @@ export const lightTheme = {
   cardBorder: '1px solid #edf2f9',
   boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
   globalDividers: '1px solid #edf2f9',
-  infoColor: '#f0f2f5',
-  tutorialColor: '#f0f2f5',
+  infoColor: 'rgb(229, 232, 235)',
+  tutorialColor: 'rgb(229, 232, 235)',
   offColorText: 'rgb(92, 95, 97)',
-  codeHighlight: '#f0f2f5',
+  codeHighlight: 'rgb(229, 232, 235)',
   codeHighlightBorder: '#edf2f9', 
   homeBoxShadow: '0 0.75rem 1.5rem rgba(13, 13, 13, 0.3)',
   homeMenuColor: '#191919',
@@ -25,7 +25,7 @@ export const lightTheme = {
   bptText: 'rgb(203, 203, 203)',
   darkModeDivider: '#edf2f9',
   toggle: 'rgba(0, 0, 0, 0.1)',
-  leaderboardSelect: '#f0f2f5',
+  leaderboardSelect: 'rgb(229, 232, 235)',
 }
 
 export const darkTheme = {

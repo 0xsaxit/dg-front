@@ -263,9 +263,10 @@ const Farming = (props) => {
                 </Link>
               )
             ) : null}
+
+            <ButtonAffiliates />
           </p>
 
-          <ButtonAffiliates />
         </span>
 
         <span className="dg-tabs-mobile">

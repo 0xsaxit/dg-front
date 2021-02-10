@@ -1,23 +1,25 @@
-import { useState, useEffect } from 'react';
-// import { GlobalContext } from '../../store';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../store';
 import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 import Spinner from '../Spinner';
+import Fetch from '../../common/Fetch';
+
 
 const ContentLeaderboard = (props) => {
   // get game score records from the Context API store
-  // const [state, dispatch] = useContext(GlobalContext);
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [dataGames, setDataGames] = useState([[], [], [], [], []]);
   const [isLoading, setIsLoading] = useState(true);
+  const [avatarImage, setAvatarImage] = useState('');
 
   const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    // console.log(props.gameRecords);
 
     if (Object.keys(props.gameRecords).length !== 0) {
       setIsLoading(false);
@@ -101,16 +103,29 @@ const ContentLeaderboard = (props) => {
       });
 
       selected[4].map((row) => {
+
+        // let avatarImg;
+        // await (async function () {
+        //   const responseAvatar = await Fetch.AVATAR_IMAGE(row.address);
+        //   const jsonAvatar = await responseAvatar.json();
+        //   avatarImg = jsonAvatar.avatars[0].avatar.snapshots.face;
+        // })();
+
         game5.push({
+          // image: avatarImg,
           name: row.name,
           address: row.address,
           winnings: row.winnings,
         });
       });
 
+      // game5.sort((a,b) => parseFloat(Number(a.winnings) / Global.CONSTANTS.FACTOR ) > parseFloat(Number(B.winnings) / Global.CONSTANTS.FACTOR ) ? 1 : -1);
+      // console.log('game5 array');
+      // console.log(game5);
       setDataGames([game1, game2, game3, game4, game5]);
     }
   }, [props.gameRecords, props.timePeriod, props.gameSelect]);
+
 
   if (isLoading) return <Spinner background={0} />;
 

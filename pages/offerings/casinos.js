@@ -1,4 +1,4 @@
-import Offerings from '../../components/home/Offerings';
+import Games from '../../components/home/Games';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -13,7 +13,7 @@ const Casinos = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Offerings gameState={'casinos'} />
+      <Games gameState={'casinos'} />
     </Layout>
   );
 };

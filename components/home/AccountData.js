@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import { Menu, Divider, Grid } from 'semantic-ui-react';
+import { Menu, Divider, Grid, Icon, Image, Popup } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
+import { Parallax } from 'react-parallax';
 
 
 const AccountData = (props) => {
@@ -50,25 +51,6 @@ const AccountData = (props) => {
     setUserData(props.dataType, 1);
   }, [props.dataType, isLoading]);
 
-  // useEffect(() => {
-  //   balancesOverlay(2);
-  // }, []);
-
-  // close balances overlay on leaving page
-  useEffect(() => {
-    return () => {
-      balancesOverlay(0);
-    };
-  }, []);
-
-  // display or remove the balances overlay
-  function balancesOverlay(toggle) {
-    dispatch({
-      type: 'balances_overlay',
-      data: toggle,
-    });
-  }
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -77,88 +59,129 @@ const AccountData = (props) => {
     return (
       <Aux>
         <div className="account-other-tabs">
-          <Grid className="account-connected-grid">
-            <Grid.Row>
-              <Grid.Column
-                floated="right"
-                width={16}
-                className="balances-column zero"
+
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <span className="avatar-picture" style={{ alignSelf: 'center', marginTop: '-135px' }}>
+              <a
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                target="_blank"
               >
-                <span style={{ display: 'flex' }}>
-                  <span className="avatar-picture">
-                    <a
-                      href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                      target="_blank"
-                    >
-                      <img
-                        className="avatar-picture main"
-                        src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
-                        style={{
-                          width: '72px',
-                          display: 'flex',
-                        }}
-                      />
-                      <span className="avatar-edit"> edit </span>
-                    </a>
+                <img
+                  className="avatar-picture main"
+                  src={state.userInfo[5]}
+                  style={{
+                    backgroundColor: 'white',
+                    width: '120px',
+                    display: 'flex',
+                  }}
+                />
+              </a>
+            </span>
+              {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                <p className="account-name">
+                  {state.userInfo[1].substr(0, 4) +
+                    '...' +
+                    state.userInfo[1].substr(-4)}
+                </p>
+              ) : (
+                <p className="account-name-2">{state.userInfo[0]}</p>
+              )}
+              <p className="welcome-text-2"> {state.userInfo[1]} </p>
+            </span>
+
+          <span style={{ display: 'flex', justifyContent: 'flex-end', margin: '-130px 0px 108px 0px' }}>
+            <Popup
+              position='top center'
+              className="account-popup"
+              trigger={
+                <a href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" target="_blank" className="account-icon-hover">
+                  <span>
+                    <Icon name="settings" className="submenu-icon" />
                   </span>
-                  <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p className="welcome-text"> Account Connected </p>
-                    {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                      <p className="account-name">
-                        {state.userInfo[1].substr(0, 4) +
-                          '...' +
-                          state.userInfo[1].substr(-4)}
-                      </p>
-                    ) : (
-                      <p className="account-name">{state.userInfo[0]}</p>
-                    )}
-                  </span>
+                </a>
+              }
+            >
+              <div>
+                <p className="earned-text">
+                  EDIT AVATAR
+                </p>
+              </div>
+            </Popup>
+            <Popup
+              position='top center'
+              className="account-popup"
+              trigger={
+                <span className="account-icon-hover">
+                  <Icon name="help circle" className="submenu-icon" />
                 </span>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+              }
+            >
+              <div>
+                <p className="earned-text">
+                  NEED HELP?
+                </p>
+              </div>
+            </Popup>
+          </span>
 
           <div style={{ marginLeft: '0px' }}>
-            <p className="account-other-p">
+            <span className="account-other-p" style={{ display: 'flex' }}>
               {dataType === 'balances' ? (
-                <b className="account-hover active">BALANCES</b>
+                <span className="account-hover active">
+                  <Icon name="dollar sign" />
+                  <b>BALANCES</b>
+                </span>
               ) : (
                 <Link href="/account">
-                  <Menu.Item className="account-hover">BALANCES</Menu.Item>
+                  <span className="account-hover">
+                    <Icon name="dollar sign" />
+                    <b>BALANCES</b>
+                  </span>
+                </Link>
+              )}
+
+              {dataType === 'wearables' ? (
+                <span className="account-hover active">
+                  <Icon name="tag" />
+                  <b>NFTS</b>
+                </span>
+              ) : (
+                <Link href="/account/nfts">
+                  <span className="account-hover">
+                    <Icon name="tag" />
+                    <b>NFTS</b>
+                  </span>
                 </Link>
               )}
 
               {dataType === 'play' ? (
-                <b className="account-hover active">GAME HISTORY</b>
+                <span className="account-hover active">
+                  <Icon name="history" />
+                  <b>GAME HISTORY</b>
+                </span>
               ) : (
                 <Link href="/account/play">
-                  <Menu.Item className="account-hover">GAME HISTORY</Menu.Item>
+                  <span className="account-hover">
+                    <Icon name="history" />
+                    <b>GAME HISTORY</b>
+                  </span>
                 </Link>
               )}
 
               {dataType === 'history' ? (
-                <span>
-                  <b className="account-hover active" id="account-txs-tab">
-                    TRANSACTIONS
-                  </b>
-                  <b
-                    className="account-hover active"
-                    id="account-txs-tab-mobile"
-                  >
-                    TXS
-                  </b>
+                <span className="account-hover active">
+                  <Icon name="exchange" />
+                  <b>TRANSACTIONS</b>
                 </span>
               ) : (
-                <span>
-                  <Link href="/account/history">
-                    <Menu.Item className="account-hover" id="account-txs-tab">TRANSACTIONS</Menu.Item>
-                  </Link>
-                  <Link href="/account/history">
-                    <Menu.Item className="account-hover" id="account-txs-tab-mobile">TXS</Menu.Item>
-                  </Link>
-                </span>
+                <Link href="/account/history">
+                  <span className="account-hover">
+                    <Icon name="exchange" />
+                    <b>TRANSACTIONS</b>
+                  </span>
+                </Link>
               )}
-            </p>
+            </span>
           </div>
         </div>
 
@@ -168,36 +191,26 @@ const AccountData = (props) => {
   }
 
   function setUserData(type, page) {
-    // console.log('set user data: ' + type);
 
     if (!isLoading) {
-      // console.log('here we are...');
-
       let result = [];
       const indexStart = (page - 1) * maximumCount;
       const indexEnd = indexStart + maximumCount;
-      let overlay = 0;
       let dataLength = 0;
       if (type === 'balances') {
         result = true;
-        overlay = 2;
         dataLength = 0;
       } else if (type === 'history') {
-        // console.log('history...');
-
         result = dataHistory.slice(indexStart, indexEnd);
-        overlay = 0;
         dataLength = dataHistory.length;
       } else if (type === 'play') {
         result = dataPlay.slice(indexStart, indexEnd);
-        overlay = 0;
         dataLength = dataPlay.length;
       }
       setDataType(type);
       setDataPage(result);
       setDataLength(dataLength);
       setCurrentPage(page);
-      balancesOverlay(overlay);
     }
   }
 
@@ -214,28 +227,47 @@ const AccountData = (props) => {
       {isLoading ? (
         <Spinner background={1} />
       ) : (
-        <div className="page-container">
-          <div className="account-other-inner-container">
-            {topLinks()}
+        <div>
+          <div style={{ maxWidth: '100vw', marginTop: '60px' }}>
+            <Parallax
+              blur={0}
+              bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1612826628/Screen_Shot_2021-02-08_at_3.23.36_PM_po0m5c.png" 
+              strength={100}
+            >
+              <div style={{ height: '240px' }} />
+            </Parallax>
+          </div>
+          <div className="page-container">
+            <div className="account-other-inner-container">
+              {topLinks()}
 
-            <div id="tx-box-history-2">
-              {dataPage !== 'false' ? (
-                <table className="account-table">
-                  <ContentAccount content={'labels'} type={dataType} />
-                  <ContentAccount content={dataType} dataPage={dataPage} />
-                </table>
-              ) : (
-                noTxHistory()
-              )}
+              <div id="tx-box-history-2">
+                {dataType == 'balances' ? (
+                  <div>
+                    <ContentAccount content={'balances'} />
+                  </div>
+                ) : dataType == 'wearables' ? (
+                  <div>
+                    <ContentAccount content={'wearables'} />
+                  </div>
+                ) : dataPage !== 'false' ? (
+                  <table className="account-table">
+                    <ContentAccount content={'labels'} type={dataType} />
+                    <ContentAccount content={dataType} dataPage={dataPage} />
+                  </table>
+                ) : (
+                  noTxHistory()
+                )}
+              </div>
+
+              <Pagination
+                currentPage={currentPage}
+                dataType={dataType}
+                dataLength={dataLength}
+                maximumCount={maximumCount}
+                setUserData={setUserData}
+              />
             </div>
-
-            <Pagination
-              currentPage={currentPage}
-              dataType={dataType}
-              dataLength={dataLength}
-              maximumCount={maximumCount}
-              setUserData={setUserData}
-            />
           </div>
         </div>
       )}

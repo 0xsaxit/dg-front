@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Modal, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ButtonAffiliates = () => {
@@ -9,6 +9,8 @@ const ButtonAffiliates = () => {
 
   // define local variables
   const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [link, setLink] = useState('');
 
   const onCopy = () => {
     navigator.clipboard.writeText(
@@ -20,43 +22,41 @@ const ButtonAffiliates = () => {
     analytics.track('Clicked AFFILIATE LINK button');
   };
 
-  if (copied) {
-    return (
-      <span
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          marginBottom: '-20px',
-        }}
-      >
-        <Button className="affiliate-copied-button">
-          Copied
-          <Icon
-            name="check square outline"
-            id="etherscan-button-icon"
-            style={{ marginLeft: '0px', marginRight: '3px', marginTop: '-1px' }}
-          />
-        </Button>
-      </span>
-    );
-  }
   return (
-    <span
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginBottom: '-20px',
-      }}
+    <Modal
+      className="referral-modal"
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      close
+      trigger={
+        <span>
+          <b className="account-hover">REFERRALS</b>
+        </span>
+      }
     >
-      <Button className="affiliate-copy-button" onClick={() => onCopy()}>
-        affiliate link
-        <Icon
-          name="copy outline"
-          id="etherscan-button-icon"
-          style={{ marginLeft: '3px', marginTop: '-1px' }}
-        />
-      </Button>
-    </span>
+      <div style={{ margin: '21px 30px 0px 30px' }}>
+        <span className="mailchimp-close" onClick={() => setOpen(false)}>
+          <Icon name="close" />
+        </span>
+      </div>
+
+      <p className="mailchimp-header-text"> Refer a Friend to Decentral Games </p>
+
+      <Divider style={{ marginTop: '-15px' }} />
+
+      <p style={{ margin: '21px 30px 15px 30px' }}> Copy your unique referral link and share it far and wide. Any time a new user deposits crypto, you'll earn 10% of the $DG they mine. </p>
+      <p className="welcome-text" style={{ marginLeft: '15px' }}> Referral Link </p>
+      <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', margin: '6px 30px 21px 30px', padding: '3px 6px 6px 6px' }}>
+        <p style={{ marginBottom: '0px' }}> https://decentral.games/{state.userAddress.slice(0, 8)}... </p>
+        {copied == false ? (
+          <p onClick={() => onCopy()}> Copy </p>
+        ) : (
+          <p> Copied! </p>
+        )}
+      </span>
+    </Modal>
+
   );
 };
 

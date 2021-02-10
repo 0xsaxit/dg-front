@@ -174,17 +174,15 @@ const ContentBalancer = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
               <p>
-                Receive $DG for liquidity provision in 98/2 MANA-DG and DAI-DG
-                Balancer pools and staking the LP tokens on this dashboard. Read
-                more about $DG liquidity incentives in our{' '}
+                Balancer LP rewards have now ended following this{' '}
                 <a
-                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
                   style={{ color: '#2085f4' }}
                   target="_blank"
                 >
-                  docs
+                  gov proposal
                 </a>
-                .
+                . The Uniswap LP rewards are still active and have been increased.{' '}
               </p>
             </span>
           </div>
@@ -405,7 +403,7 @@ const ContentBalancer = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {APYMANA ? (
-                      <p className="earned-amount">{APYMANA}%</p>
+                      <p className="earned-amount">N/A</p>
                     ) : (
                       <Loader
                         active
@@ -593,7 +591,7 @@ const ContentBalancer = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {APYDAI ? (
-                      <p className="earned-amount">{APYDAI}%</p>
+                      <p className="earned-amount">N/A</p>
                     ) : (
                       <Loader
                         active

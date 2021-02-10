@@ -13,7 +13,6 @@ import UserBalances from '../store/UserBalances';
 import Transactions from '../store/Transactions';
 import ParcelData from '../store/ParcelData';
 import GameRecords from '../store/GameRecords';
-import BalancesOverlay from '../store/BalancesOverlay';
 // import Location from '../store/Location';
 import ActiveStatus from '../store/ActiveStatus';
 import UserInfo from '../store/UserInfo';
@@ -34,7 +33,6 @@ class Application extends App {
         <Transactions />
         <ParcelData />
         <GameRecords />
-        <BalancesOverlay />
         <ActiveStatus />
         <UserInfo />
         <AdminBalances />

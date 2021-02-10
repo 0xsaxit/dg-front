@@ -25,8 +25,18 @@ const Fetch = {
     });
   },
 
-  TREASURY_STATS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/month?address=${address}`, {
+  TREASURY_STATS_GRAPH: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  TREASURY_STATS_NUMBERS: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -185,6 +195,26 @@ const Fetch = {
   // third-party API calls
   COUNTRY_CODE: () => {
     return fetch(`https://ipapi.co/json`);
+  },
+
+  NFTS: (address) => {
+    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&order_direction=desc&offset=0&limit=20`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  AVATAR_IMAGE: (address) => {
+    return fetch(`https://peer.decentral.games/lambdas/profile/${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   },
 
   PROPOSALS: () => {

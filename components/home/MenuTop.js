@@ -9,6 +9,7 @@ import ButtonVerify from '../button/ButtonVerify';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopUpLinks from './PopUpLinks';
+import Fetch from '../../common/Fetch';
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -111,6 +112,7 @@ const MenuTop = (props) => {
     return () => clearInterval(interval);
   }, []);
 
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -181,15 +183,9 @@ const MenuTop = (props) => {
               </Menu.Item>
             </a>
 
-            <a href="/games">
+            <a href="/offerings">
               <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                GAMES
-              </Menu.Item>
-            </a>
-
-            <a href="/nfts">
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                NFTS
+                OFFERINGS
               </Menu.Item>
             </a>
 
@@ -230,15 +226,9 @@ const MenuTop = (props) => {
           </Menu.Item>
         </Link>
 
-        <Link href="/games">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/games')}>
-            GAMES
-          </Menu.Item>
-        </Link>
-
-        <Link href="/nfts">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/nfts')}>
-            NFTS
+        <Link href="/offerings">
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/offerings')}>
+            OFFERINGS
           </Menu.Item>
         </Link>
 
@@ -253,8 +243,18 @@ const MenuTop = (props) => {
           id="docs-top-menu"
           target="_blank"
         >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')} >
             DOCS
+          </Menu.Item>
+        </a>
+
+        <a
+          href="https://gov.decentral.games"
+          id="docs-top-menu"
+          target="_blank"
+        >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')} >
+            GOV
           </Menu.Item>
         </a>
       </div>
@@ -322,7 +322,7 @@ const MenuTop = (props) => {
                 <img
                   className="avatar-picture"
                   id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                  src={state.userInfo[5]}
                   style={{
                     width: '18px',
                     height: '18px',
@@ -333,7 +333,6 @@ const MenuTop = (props) => {
                     boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                     backgroundColor: 'white',
                   }}
-                  alt="Decentraland Avatar Image"
                 />
               </span>
             </span>
