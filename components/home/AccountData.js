@@ -78,7 +78,7 @@ const AccountData = (props) => {
               </a>
             </span>
               {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                <p className="account-name">
+                <p className="account-name-2">
                   {state.userInfo[1].substr(0, 4) +
                     '...' +
                     state.userInfo[1].substr(-4)}
