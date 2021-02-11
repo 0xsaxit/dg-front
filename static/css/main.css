@@ -187,7 +187,7 @@ div.ui.segment.transparent-menu-segment {
 .dashboard-menu-container {
   position: fixed;
   z-index: 8;
-  width: 100vw;
+  width: 100%;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
