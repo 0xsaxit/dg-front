@@ -24,7 +24,7 @@ function UserInfo() {
 
         const playerList = json.playerList;
         
-        if (jsonAvatar.avatars.length < 1) {
+        if (jsonAvatar.avatars.length == 0) {
           const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
         } else {
           const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;

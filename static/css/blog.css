@@ -103,8 +103,9 @@ a:hover {
 
 .post:hover,
 .featured-blog-container:hover {
-  transform: translateY(-2px);
-  transition: transform 0.25s ease 0s;
+  transform: translateY(-1px);
+  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+  transition: all 0.1s ease 0s;
 }
 
 .post {
@@ -392,8 +393,9 @@ img.logo-image {
 }
 
 .read-next-button:hover {
-  transform: translateY(-2px) !important;
-  transition: all 0.25s ease 0s !important;
+  transform: translateY(-1px);
+  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+  transition: all 0.1s ease 0s;
 }
 
 .read-next-button:first-child:before {

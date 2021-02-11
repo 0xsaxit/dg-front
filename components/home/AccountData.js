@@ -73,6 +73,8 @@ const AccountData = (props) => {
                     backgroundColor: 'white',
                     width: '120px',
                     display: 'flex',
+                    marginTop: '-18px',
+
                   }}
                 />
               </a>
@@ -89,7 +91,7 @@ const AccountData = (props) => {
               <p className="welcome-text-2"> {state.userInfo[1]} </p>
             </span>
 
-          <span style={{ display: 'flex', justifyContent: 'flex-end', margin: '-130px 0px 108px 0px' }}>
+          <span style={{ display: 'flex', justifyContent: 'flex-end', margin: '-112px 0px 90px 0px' }}>
             <Popup
               position='top center'
               className="account-popup"
@@ -234,7 +236,7 @@ const AccountData = (props) => {
               bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1612826628/Screen_Shot_2021-02-08_at_3.23.36_PM_po0m5c.png" 
               strength={100}
             >
-              <div style={{ height: '240px' }} />
+              <div style={{ height: '200px' }} />
             </Parallax>
           </div>
           <div className="page-container">

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Popup, Icon } from 'semantic-ui-react';
+import { Menu, Popup, Icon, Modal, Dropdown } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonVerify from '../button/ButtonVerify';
@@ -99,6 +99,14 @@ const MenuTop = (props) => {
     }
   });
 
+  function menuOpen() {
+    if (open == true) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  };
+
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
     const interval = setInterval(() => {
@@ -152,60 +160,66 @@ const MenuTop = (props) => {
   function dropdownMenu() {
     return (
       <div className="mobile-height-fix">
-        <Popup
-          on="click"
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
-          className="mobile-menu-popup"
-          pinned
-          position="bottom right"
-          trigger={
-            <span>
-              {open ? (
-                <Icon name="close" id="mobile-menu-icon" />
-              ) : (
-                <Icon name="bars" id={menuStyle[0]} />
-              )}
-            </span>
-          }
-        >
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <a href={`/${utm}`}>
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                PLAY
-              </Menu.Item>
-            </a>
+        <Menu attached='top' className="mobile-menu-popup">
+          <Dropdown 
+            item 
+            icon={open ? 'close' : 'bars' } 
+            onClick={() => menuOpen()}
+            id={open ? 'mobile-menu-icon' : menuStyle[0] }
+          >
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                <Icon name='dropdown' />
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <a href={`/${utm}`}>
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                      PLAY
+                    </Menu.Item>
+                  </a>
 
-            <a href="/dg">
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                $DG
-              </Menu.Item>
-            </a>
+                  <a href="/dg">
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                      $DG
+                    </Menu.Item>
+                  </a>
 
-            <a href="/offerings">
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                OFFERINGS
-              </Menu.Item>
-            </a>
+                  <a href="/offerings">
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                      OFFERINGS
+                    </Menu.Item>
+                  </a>
 
-            <a href="/blog">
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                BLOG
-              </Menu.Item>
-            </a>
+                  <a href="/blog">
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                      BLOG
+                    </Menu.Item>
+                  </a>
 
-            <a
-              href="https://docs.decentral.games"
-              id="docs-top-menu"
-              target="_blank"
-            >
-              <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
-                DOCS
-              </Menu.Item>
-            </a>
-          </span>
-        </Popup>
+                  <a
+                    href="https://docs.decentral.games"
+                    id="docs-top-menu"
+                    target="_blank"
+                  >
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                      DOCS
+                    </Menu.Item>
+                  </a>
+
+                  <a
+                    href="https://gov.decentral.games"
+                    id="docs-top-menu"
+                    target="_blank"
+                  >
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items" >
+                      GOV
+                    </Menu.Item>
+                  </a>
+                </span>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+        </Menu>
       </div>
     );
   }
@@ -253,7 +267,7 @@ const MenuTop = (props) => {
           id="docs-top-menu"
           target="_blank"
         >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')} >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/gov')} >
             GOV
           </Menu.Item>
         </a>

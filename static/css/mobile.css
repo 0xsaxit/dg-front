@@ -6,8 +6,8 @@
   position: relative;
   color: black;
   background-color: transparent;
-  top: 42px;
-  left: 72px;
+  top: -20px;
+  left: 69px;
   z-index: 10;
   font-size: 18px !important;
 }
@@ -15,9 +15,9 @@
 #mobile-menu-icon-home {
   position: relative;
   color: white;
+  top: -20px;
   background-color: transparent;
-  top: 42px;
-  left: 72px;
+  left: 69px;
   z-index: 10;
   font-size: 18px !important; 
 }
@@ -141,19 +141,36 @@
   }
 }
 
-@media (max-width: 650px) {
-  .sidebar-menu-text-2,
-  .sidebar-menu-text-3 {
-    display: none;
-  }
+div#dropdown-menu-items.item.right-menu-text {
+  border: none;
+  box-shadow: none;
+  letter-spacing: 1.25px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 18px 0px 18px 84px;
+  text-transform: uppercase; 
 }
 
-@media (min-width: 991px) {
-  #mobile-menu-icon,
-  #mobile-menu-icon-home,
-  div.ui.bottom.right.popup.transition.visible.mobile-menu-popup  {
-    display: none !important;
-  }
+.ui.top.attached.menu>.item:first-child {
+  margin-top: 76px;
+  border: 0px solid white;
+}
+
+.ui.dropdown .menu,
+.ui.menu .dropdown.item .menu {
+  border: 0px;
+  box-shadow: none;
+  padding-top: 0px;
+  margin-left: -66px;
+  border-radius: 0px;
+}
+
+.ui.link.menu .item:hover, 
+.ui.menu .dropdown.item:hover, 
+.ui.menu .link.item:hover, 
+.ui.menu a.item:hover,
+.ui.menu .ui.dropdown .menu>.item:hover {
+  background: none !important;
 }
 
 @media (max-width: 991px) {
@@ -161,7 +178,30 @@
     display: none;
   }
   .mobile-height-fix {
-    margin-top: -20px;
+    margin-top: -70px;
+  }
+}
+
+@media (max-width: 650px) {
+  .sidebar-menu-text-2,
+  .sidebar-menu-text-3 {
+    display: none;
+  }
+}
+
+div.ui.top.attached.menu {
+  margin-left: -3px;
+  width: 0px;
+  height: 0px;
+  margin-top: 30px;
+  border: 0px solid white;
+}
+
+@media (min-width: 991px) {
+  #mobile-menu-icon,
+  #mobile-menu-icon-home,
+  div.ui.top.attached.menu  {
+    display: none !important;
   }
 }
 
@@ -169,7 +209,8 @@
   width: 100vw;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-left: 76px;
+  margin-left: -21px;
+  padding-left: 81px;
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
@@ -492,7 +533,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
-@media (min-width: 948px) {
+@media (min-width: 947px) {
   span.leaderboard-coin-select-mobile,
   #intermediate-time-select {
     display: none !important;

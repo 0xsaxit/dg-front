@@ -295,6 +295,16 @@ div.item.sidebar-menu-text.blog:hover {
   text-transform: uppercase;
 }
 
+div#dropdown-menu-items.item.right-menu-text {
+  border: none;
+  box-shadow: none;
+  letter-spacing: 1.25px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 18px 0px 18px 84px;
+  text-transform: uppercase; 
+}
+
 .right-menu-text.dg {
   border: none;
   box-shadow: none;
@@ -650,8 +660,9 @@ i.chevron.down.icon {
 }
 
 .dg-powered-container:hover {
-  transform: translateY(-2px);
-  transition: all 0.25s ease 0s;
+  transform: translateY(-1px);
+  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+  transition: all 0.1s ease 0s;
 }
 
 .dg-video-container {
@@ -851,8 +862,9 @@ i.chevron.down.icon {
 }
 
 .nft-container:hover {
-  transform: translateY(-2px);
-  transition: all 0.25s ease 0s;
+  transform: translateY(-1px);
+  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+  transition: all 0.1s ease 0s;
 }
 
 .outter-games-container {
@@ -876,8 +888,9 @@ i.chevron.down.icon {
 }
 
 .games-container:hover {
-  transform: translateY(-2px);
-  transition: transform 0.25s ease 0s;
+  transform: translateY(-1px);
+  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+  transition: all 0.1s ease 0s;
 }
 
 .ui.dropdown > .dropdown.icon {

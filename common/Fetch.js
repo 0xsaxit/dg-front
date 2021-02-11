@@ -208,7 +208,7 @@ const Fetch = {
   },
 
   AVATAR_IMAGE: (address) => {
-    return fetch(`https://peer.decentral.games/lambdas/profile/${address}`, {
+    return fetch(`https://peer.decentraland.org/lambdas/profile/${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
