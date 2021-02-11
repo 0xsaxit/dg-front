@@ -295,16 +295,6 @@ div.item.sidebar-menu-text.blog:hover {
   text-transform: uppercase;
 }
 
-div#dropdown-menu-items.item.right-menu-text {
-  border: none;
-  box-shadow: none;
-  letter-spacing: 1.25px;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 18px 0px 18px 84px;
-  text-transform: uppercase; 
-}
-
 .right-menu-text.dg {
   border: none;
   box-shadow: none;
@@ -604,7 +594,7 @@ i.chevron.down.icon {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding: 0px 30px 90px 30px;
+  padding: 0px 30px 30px 30px;
   flex: 0 0 250%;
 }
 
@@ -738,7 +728,8 @@ i.chevron.down.icon {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-bottom: 90px;
+  padding-top: 110px;
+  padding-bottom: 130px;
 }
 
 .outter-footer-container {
@@ -2237,7 +2228,7 @@ div.ui.grid.admin-balances-container {
   margin-top: 9px;
 }
 
-a.ui.blue.button.how-to-button {
+.ui.blue.button.how-to-button {
   background-color: white;
   color: black;
   width: 180px;
@@ -2245,6 +2236,7 @@ a.ui.blue.button.how-to-button {
   margin-top: 20px;
   width: 180px !important;
   height: 34px;
+  padding: 0 0 0 0;
 }
 
 .ui.blue.button.casinos-button {

@@ -7,6 +7,7 @@ import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
+import introJs from 'intro.js';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -93,10 +94,9 @@ const Chateau = () => {
             <Button
               color="blue"
               className="how-to-button"
-              target="_blank"
-              href="https://docs.decentral.games/getting-started"
+              onClick={() => introJs().start()}
             >
-              EARN $DG
+              GET STARTED
             </Button>
           </span>
           <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
@@ -141,6 +141,7 @@ const Chateau = () => {
                     className="roadmap-button ecosystem"
                     target="_blank"
                     href="https://docs.decentral.games/ecosystem"
+                    data-intro="Start here and find a simple step by step guide on to set up a cryptocurrency wallet with Metamask."
                   >
                     READ DOCS
                   </Button>
@@ -149,7 +150,7 @@ const Chateau = () => {
             </div>
           </div>
 
-          <div className="section-4-outter">
+          <div className="section-4-outter" style={{ paddingBottom: '60px' }}>
             <div className="home-section-4">
               <span
                 className="outter-games-container"
@@ -308,7 +309,11 @@ const Chateau = () => {
               </h1>
               <span className="home-button-span">
                 <Link href="/account">
-                  <Button color="blue" className="play-button deposit">
+                  <Button 
+                    color="blue" 
+                    className="play-button deposit"
+                    data-intro="Once you're all set up with Metamask, connect your wallet using the button in the top right of our menu. Then come here, or click your name in that same spot to visit your account."
+                  >
                     DEPOSIT CRYPTO
                   </Button>
                 </Link>
@@ -371,6 +376,7 @@ const Chateau = () => {
                 <h1
                   className="home-footer-h1 avatars"
                   style={{ marginBottom: '0px' }}
+                  data-intro="If you want to learn about the future of Decentral Games or who we have the priviledge of building alongside, come here!"
                 >
                   Learn more about the Decentral Games ecosystem
                 </h1>
@@ -433,6 +439,7 @@ const Chateau = () => {
                   href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
                   id="play-now-button-home"
                   target="_blank"
+                  data-intro="If you're all setup, hop in with one click! You can also take a look at all Decentral Games has to offer in the offerings tab up top."
                 >
                   HOP IN
                 </Button>
@@ -457,7 +464,7 @@ const Chateau = () => {
   function sectionSix() {
     return (
       <Aux>
-        <div className="section-4-header">
+        <div className="section-4-header" style={{ marginTop: '15px' }}>
           <div className="home-section-4-header">
             <span className="outter-dashboard-span">
               <h1 className="dg-powered-h1">Get Started</h1>
@@ -469,7 +476,10 @@ const Chateau = () => {
         </div>
 
         <div className="section-4-outter">
-          <div className="home-section-4">
+          <div 
+            className="home-section-4"
+            data-intro="Don't forget to take a look at our how to videos if you ever get stuck, they'll walk you through all the steps you need to complete. Have fun and play responsibly!"
+          >
             <span
               className="outter-games-container"
               style={{
