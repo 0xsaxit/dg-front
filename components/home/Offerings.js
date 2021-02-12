@@ -119,15 +119,6 @@ const detailsShop = {
     'https://play.decentraland.org/?position=-74%2C80&realm=hades-amber',
     'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
-  Shop_2: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
-    'games-pic',
-    'NFT Shop',
-    'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
-    'WEARABLES',
-    'https://play.decentraland.org/?position=-74%2C80&realm=hades-amber',
-    'https://docs.decentral.games/casinos/chateau-satoshi',
-  ],
 };
 
 const detailsNFTs = {
@@ -187,7 +178,7 @@ const detailsNFTs = {
   ],
 };
 
-const Games = (props) => {
+const Offerings = (props) => {
   // get user's NFT data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -257,17 +248,17 @@ const Games = (props) => {
             <span className="account-hover active">
               <b>GAMES</b>
             </span>
-            <Link href="/offerings/casinos">
+            <Link href="/games/casinos">
               <span className="account-hover">
                 <b>CASINOS</b>
               </span>
             </Link>
-            <Link href="/offerings/nfts">
+            <Link href="/games/nfts">
               <span className="account-hover">
                 <b>NFTS</b>
               </span>
             </Link>
-            <Link href="/offerings/shop">
+            <Link href="/games/shop">
               <span className="account-hover">
                 <b>SHOP</b>
               </span>
@@ -282,7 +273,7 @@ const Games = (props) => {
           </p>
         ) : gameState === 'casinos' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/offerings">
+            <Link href="/games">
               <span className="account-hover">
                 <b>GAMES</b>
               </span>
@@ -290,12 +281,12 @@ const Games = (props) => {
             <span className="account-hover active">
               <b>CASINOS</b>
             </span>
-            <Link href="/offerings/nfts">
+            <Link href="/games/nfts">
               <span className="account-hover">
                 <b>NFTS</b>
               </span>
             </Link>
-            <Link href="/offerings/shop">
+            <Link href="/games/shop">
               <span className="account-hover">
                 <b>SHOP</b>
               </span>
@@ -310,12 +301,12 @@ const Games = (props) => {
           </p>
         ) : gameState == 'nfts' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/offerings">
+            <Link href="/games">
               <span className="account-hover">
                 <b>GAMES</b>
               </span>
             </Link>
-            <Link href="/offerings/casinos">
+            <Link href="/games/casinos">
               <span className="account-hover">
                 <b>CASINOS</b>
               </span>
@@ -323,7 +314,7 @@ const Games = (props) => {
             <span className="account-hover active">
               <b>NFTS</b>
             </span>
-            <Link href="/offerings/shop">
+            <Link href="/games/shop">
               <span className="account-hover">
                 <b>SHOP</b>
               </span>
@@ -338,17 +329,17 @@ const Games = (props) => {
           </p>
         ) : gameState == 'shop' ? (
           <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/offerings">
+            <Link href="/games">
               <span className="account-hover">
                 <b>GAMES</b>
               </span>
             </Link>
-            <Link href="/offerings/casinos">
+            <Link href="/games/casinos">
               <span className="account-hover">
                 <b>CASINOS</b>
               </span>
             </Link>
-            <Link href="/offerings/nfts">
+            <Link href="/games/nfts">
               <span className="account-hover">
                 <b>NFTS</b>
               </span>
@@ -368,22 +359,22 @@ const Games = (props) => {
           <div style={{ width: '100%' }}>
             <span style={{ display: 'flex', width: '100%' }}>
               <p className="account-other-p">
-                <Link href="/offerings">
+                <Link href="/games">
                   <span className="account-hover">
                     <b>GAMES</b>
                   </span>
                 </Link>
-                <Link href="/offerings/casinos">
+                <Link href="/games/casinos">
                   <span className="account-hover">
                     <b>CASINOS</b>
                   </span>
                 </Link>
-                <Link href="/offerings/nfts">
+                <Link href="/games/nfts">
                   <span className="account-hover">
                     <b>NFTS</b>
                   </span>
                 </Link>
-                <Link href="/offerings/shop">
+                <Link href="/games/shop">
                   <span className="account-hover">
                     <b>SHOP</b>
                   </span>
@@ -404,7 +395,7 @@ const Games = (props) => {
     if (state.userStatus >= 4) {
       if (link) {
         return (
-          <Link href="/offerings/leaderboard">
+          <Link href="/games/leaderboard">
             <span className="account-hover">
               <b>LEADERBOARD</b>
             </span>
@@ -675,4 +666,4 @@ const Games = (props) => {
   );
 };
 
-export default Games;
+export default Offerings;

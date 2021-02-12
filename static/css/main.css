@@ -433,7 +433,7 @@ a.menu-info-label-link:hover {
   width: calc(100% - 60px);
   height: 30px;
   position: fixed !important;
-  margin-top: -370px;
+  top: 54px;
 }
 
 .home-video-container {
@@ -918,6 +918,8 @@ i.chevron.down.icon {
   margin-top: 15px;
   padding: 9px 0px 9px 0px;
   border-radius: 4px;
+  position: static;
+  z-index: 999;
 }
 
 .ui.dropdown .menu > .item {
