@@ -1,21 +1,21 @@
-import Games from '../../components/home/Games';
+import Offerings from '../../components/home/Offerings';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Nfts = () => {
+const Casinos = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Our Casinos'}
+        title={Global.CONSTANTS.TITLE + ' | Games | Casinos'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
-      <Games gameState={'nfts'} />
+      <Offerings gameState={'casinos'} />
     </Layout>
   );
 };
 
-export default Nfts;
+export default Casinos;

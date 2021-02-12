@@ -433,7 +433,7 @@ a.menu-info-label-link:hover {
   width: calc(100% - 60px);
   height: 30px;
   position: fixed !important;
-  margin-top: -370px;
+  top: 54px;
 }
 
 .home-video-container {

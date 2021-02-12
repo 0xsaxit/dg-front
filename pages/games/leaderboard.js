@@ -1,21 +1,21 @@
-import Games from '../../components/home/Games';
+import Offerings from '../../components/home/Offerings';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Shop = () => {
+const Leaderboard = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Shop'}
+        title={Global.CONSTANTS.TITLE + ' | Games | Leaderboard'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
-      <Games gameState={'shop'} />
+      <Offerings gameState={'leaderboard'} />
     </Layout>
   );
 };
 
-export default Shop;
+export default Leaderboard;
