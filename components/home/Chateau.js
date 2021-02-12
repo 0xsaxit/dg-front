@@ -94,7 +94,8 @@ const Chateau = () => {
             <Button
               color="blue"
               className="how-to-button"
-              onClick={() => introJs().start()}
+              href="https://docs.decentral.games/getting-started/play-to-mine"
+              target="_blank"
             >
               GET STARTED
             </Button>
@@ -141,7 +142,6 @@ const Chateau = () => {
                     className="roadmap-button ecosystem"
                     target="_blank"
                     href="https://docs.decentral.games/ecosystem"
-                    data-intro="Start here and find a simple step by step guide on to set up a cryptocurrency wallet with Metamask."
                   >
                     READ DOCS
                   </Button>
@@ -312,7 +312,6 @@ const Chateau = () => {
                   <Button 
                     color="blue" 
                     className="play-button deposit"
-                    data-intro="Once you're all set up with Metamask, connect your wallet using the button in the top right of our menu. Then come here, or click your name in that same spot to visit your account."
                   >
                     DEPOSIT CRYPTO
                   </Button>
@@ -376,7 +375,6 @@ const Chateau = () => {
                 <h1
                   className="home-footer-h1 avatars"
                   style={{ marginBottom: '0px' }}
-                  data-intro="If you want to learn about the future of Decentral Games or who we have the priviledge of building alongside, come here!"
                 >
                   Learn more about the Decentral Games ecosystem
                 </h1>
@@ -439,7 +437,6 @@ const Chateau = () => {
                   href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
                   id="play-now-button-home"
                   target="_blank"
-                  data-intro="If you're all setup, hop in with one click! You can also take a look at all Decentral Games has to offer in the offerings tab up top."
                 >
                   HOP IN
                 </Button>
@@ -476,10 +473,7 @@ const Chateau = () => {
         </div>
 
         <div className="section-4-outter">
-          <div 
-            className="home-section-4"
-            data-intro="Don't forget to take a look at our how to videos if you ever get stuck, they'll walk you through all the steps you need to complete. Have fun and play responsibly!"
-          >
+          <div className="home-section-4">
             <span
               className="outter-games-container"
               style={{

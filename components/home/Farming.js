@@ -11,7 +11,7 @@ import ContentAirdrop from '../content/ContentAirdrop';
 import ContentTreasury from '../content/ContentTreasury';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
-import ButtonAffiliates from '../button/ButtonAffiliates';
+import ModalAffiliates from '../modal/ModalAffiliates';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 
@@ -264,7 +264,7 @@ const Farming = (props) => {
               )
             ) : null}
 
-            <ButtonAffiliates />
+            <ModalAffiliates />
           </p>
 
         </span>
@@ -304,7 +304,7 @@ const Farming = (props) => {
             )}
           </p>
 
-          <ButtonAffiliates />
+          <ModalAffiliates />
         </span>
       </div>
     );

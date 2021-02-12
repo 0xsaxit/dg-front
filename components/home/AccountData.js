@@ -7,6 +7,7 @@ import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 import { Parallax } from 'react-parallax';
+import introJs from 'intro.js';
 
 
 const AccountData = (props) => {
@@ -112,6 +113,7 @@ const AccountData = (props) => {
             <Popup
               position='top center'
               className="account-popup"
+              onClick={() => introJs().start()}
               trigger={
                 <span className="account-icon-hover">
                   <Icon name="help circle" className="submenu-icon" />

@@ -72,7 +72,7 @@ const MessageBar = () => {
       //   );
     } else if (state.userStatus === 4) {
       setMessage(
-        `You must authorize the DAI and MANA token contracts on /account to play games with DAI and MANA`
+        `Need help? Click the question mark icon in the menu for step by step instructions`
       );
     } else if (!state.activeStatus) {
       setMessage(
