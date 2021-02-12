@@ -1,21 +1,21 @@
-import Offerings from '../../components/home/Offerings';
+import Tokens from '../../components/home/Tokens';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Leaderboard = () => {
+const My = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Leaderboard'}
+        title={Global.CONSTANTS.TITLE + ' | NFTs | My NFTs'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
-      <Offerings gameState={'leaderboard'} />
+      <Tokens NFTState={'my'} />
     </Layout>
   );
 };
 
-export default Leaderboard;
+export default My;
