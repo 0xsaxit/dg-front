@@ -1,194 +1,119 @@
-import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { useState, useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 import Global from '../Constants';
 import Spinner from '../Spinner';
-import Fetch from '../../common/Fetch';
-
+import Images from '../../common/Images';
 
 const ContentLeaderboard = (props) => {
   // get game score records from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+  // const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [dataGames, setDataGames] = useState([[], [], [], [], []]);
   const [isLoading, setIsLoading] = useState(true);
-  const [avatarImage, setAvatarImage] = useState('');
 
   const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    (async function func() {
-      if (Object.keys(props.gameRecords).length !== 0) {
+    // console.log(props.gameRecords);
 
-        let gameData = {};
-        let game1 = [];
-        let game2 = [];
-        let game3 = [];
-        let game4 = [];
-        let game5 = [];
-        let selected = [];
+    if (Object.keys(props.gameRecords).length !== 0) {
+      setIsLoading(false);
 
-        // parse game scores based on time period
-        if (props.timePeriod === 'ALL TIME') {
-          gameData = props.gameRecords.all;
-        } else if (props.timePeriod === 'WEEKLY') {
-          gameData = props.gameRecords.weekly;
-        } else if (props.timePeriod === 'DAILY') {
-          gameData = props.gameRecords.daily;
-        } else if (props.timePeriod === 'COMPETITION') {
-          gameData = props.gameRecords.competition;
-        }
+      let gameData = {};
+      let game1 = [];
+      let game2 = [];
+      let game3 = [];
+      let game4 = [];
+      let game5 = [];
+      let selected = [];
 
-        // parse game scores based on token type
-        if (props.gameSelect === 'play') {
-          selected = [
-            gameData.all.play,
-            gameData.blackjack.play,
-            gameData.roulette.play,
-            gameData.slot.play,
-            gameData.backgammon.play,
-          ];
-        } else if (props.gameSelect === 'dai') {
-          selected = [
-            gameData.all.dai,
-            gameData.blackjack.dai,
-            gameData.roulette.dai,
-            gameData.slot.dai,
-            gameData.backgammon.dai,
-          ];
-        } else if (props.gameSelect === 'mana') {
-          selected = [
-            gameData.all.mana,
-            gameData.blackjack.mana,
-            gameData.roulette.mana,
-            gameData.slot.mana,
-            gameData.backgammon.mana,
-          ];
-        }
-
-        await selected[0].map(async(row) => {
-
-          let avatarImg;
-          await (async function () {
-            const responseAvatar = await Fetch.AVATAR_IMAGE(row.address);
-            const jsonAvatar = await responseAvatar.json();
-            avatarImg = jsonAvatar.avatars[0].avatar.snapshots.face;
-          })();
-
-          game1.push({
-            image: avatarImg,
-            name: row.name,
-            address: row.address,
-            winnings: row.winnings,
-          });
-
-          await game1.sort(function(a, b) {
-            return parseInt(b.winnings) - parseInt(a.winnings);
-          });
-        });
-
-        await selected[1].map(async(row) => {
-
-          let avatarImg;
-          await (async function () {
-            const responseAvatar = await Fetch.AVATAR_IMAGE(row.address);
-            const jsonAvatar = await responseAvatar.json();
-            avatarImg = jsonAvatar.avatars[0].avatar.snapshots.face;
-          })();
-
-          game2.push({
-            image: avatarImg,
-            name: row.name,
-            address: row.address,
-            winnings: row.winnings,
-          });
-
-          await game2.sort(function(a, b) {
-            return parseInt(b.winnings) - parseInt(a.winnings);
-          });
-        });
-
-        await selected[2].map(async(row) => {
-
-          let avatarImg;
-          await (async function () {
-            const responseAvatar = await Fetch.AVATAR_IMAGE(row.address);
-            const jsonAvatar = await responseAvatar.json();
-            avatarImg = jsonAvatar.avatars[0].avatar.snapshots.face;
-          })();
-
-          game3.push({
-            image: avatarImg,
-            name: row.name,
-            address: row.address,
-            winnings: row.winnings,
-          });
-
-          await game3.sort(function(a, b) {
-            return parseInt(b.winnings) - parseInt(a.winnings);
-          });
-        });
-
-        await selected[3].map(async(row) => {
-
-          let avatarImg;
-          await (async function () {
-            const responseAvatar = await Fetch.AVATAR_IMAGE(row.address);
-            const jsonAvatar = await responseAvatar.json();
-            avatarImg = jsonAvatar.avatars[0].avatar.snapshots.face;
-          })();
-
-          game4.push({
-            image: avatarImg,
-            name: row.name,
-            address: row.address,
-            winnings: row.winnings,
-          });
-
-          await game4.sort(function(a, b) {
-            return parseInt(b.winnings) - parseInt(a.winnings);
-          });
-        });
-
-        await selected[4].map(async(row) => {
-
-          let avatarImg;
-          await (async function () {
-            const responseAvatar = await Fetch.AVATAR_IMAGE(row.address);
-            const jsonAvatar = await responseAvatar.json();
-            avatarImg = jsonAvatar.avatars[0].avatar.snapshots.face;
-          })();
-
-          console.log(avatarImg);
-
-          game5.push({
-            image: avatarImg,
-            name: row.name,
-            address: row.address,
-            winnings: row.winnings,
-          });
-
-
-          await game5.sort(function(a, b) {
-            return parseInt(b.winnings) - parseInt(a.winnings);
-          });
-          console.log('$$$$$$$$$$$$$$$$');
-          console.log(game5);
-        });
-        setDataGames([game1, game2, game3, game4, game5]);
-
-        console.log(dataGames);
+      // parse game scores based on time period
+      if (props.timePeriod === 'ALL TIME') {
+        gameData = props.gameRecords.all;
+      } else if (props.timePeriod === 'WEEKLY') {
+        gameData = props.gameRecords.weekly;
+      } else if (props.timePeriod === 'DAILY') {
+        gameData = props.gameRecords.daily;
+      } else if (props.timePeriod === 'COMPETITION') {
+        gameData = props.gameRecords.competition;
       }
-    }) ();
-    setIsLoading(false);
+
+      // parse game scores based on token type
+      if (props.gameSelect === 'play') {
+        selected = [
+          gameData.all.play,
+          gameData.blackjack.play,
+          gameData.roulette.play,
+          gameData.slot.play,
+          gameData.backgammon.play,
+        ];
+      } else if (props.gameSelect === 'dai') {
+        selected = [
+          gameData.all.dai,
+          gameData.blackjack.dai,
+          gameData.roulette.dai,
+          gameData.slot.dai,
+          gameData.backgammon.dai,
+        ];
+      } else if (props.gameSelect === 'mana') {
+        selected = [
+          gameData.all.mana,
+          gameData.blackjack.mana,
+          gameData.roulette.mana,
+          gameData.slot.mana,
+          gameData.backgammon.mana,
+        ];
+      }
+
+      selected[0].map((row) => {
+        game1.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      selected[1].map((row) => {
+        game2.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      selected[2].map((row) => {
+        game3.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      selected[3].map((row) => {
+        game4.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      selected[4].map((row) => {
+        game5.push({
+          name: row.name,
+          address: row.address,
+          winnings: row.winnings,
+        });
+      });
+
+      setDataGames([game1, game2, game3, game4, game5]);
+    }
   }, [props.gameRecords, props.timePeriod, props.gameSelect]);
 
+  if (isLoading) return <Spinner background={0} />;
 
-  if (isLoading) return <Spinner background={1} />;
-  console.log(dataGames);
   return (
     <Grid>
       {games.map((game, index) => {
@@ -223,7 +148,7 @@ const ContentLeaderboard = (props) => {
                         {index + 1}.{' '}
                         <img
                           className="avatar-picture"
-                          src={row.image}
+                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
                           style={{
                             width: '24px',
                             marginRight: '6px',
@@ -235,7 +160,7 @@ const ContentLeaderboard = (props) => {
                               '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                           }}
                         />
-                        {row.name === null || row.name === ''
+                        {row.name === null || row.name === '' 
                           ? row.address.substr(0, 6) +
                             '...' +
                             row.address.substr(-4)

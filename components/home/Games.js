@@ -369,7 +369,7 @@ const Games = (props) => {
         >
           <span
             className={
-              gameSelect === 'play' ? 'account-select play' : 'account-select'
+              gameSelect === 'play' ? 'account-hover active' : 'account-hover'
             }
             onClick={() => handleChange('play')}
           >
@@ -390,7 +390,7 @@ const Games = (props) => {
 
           <span
             className={
-              gameSelect === 'mana' ? 'account-select mana' : 'account-select'
+              gameSelect === 'mana' ? 'account-hover active' : 'account-hover'
             }
             onClick={() => handleChange('mana')}
           >
@@ -410,7 +410,7 @@ const Games = (props) => {
           </span>
           <span
             className={
-              gameSelect === 'dai' ? 'account-select dai' : 'account-select'
+              gameSelect === 'dai' ? 'account-hover active' : 'account-hover'
             }
             onClick={() => handleChange('dai')}
           >
@@ -468,8 +468,8 @@ const Games = (props) => {
             <span
               className={
                 gameSelect === 'play'
-                  ? 'account-select play'
-                  : 'account-select play2'
+                  ? 'account-hover active'
+                  : 'account-hover'
               }
               id="account-select-play"
               onClick={() => handleChange('play')}
@@ -489,7 +489,7 @@ const Games = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'mana' ? 'account-select mana' : 'account-select'
+                gameSelect === 'mana' ? 'account-hover active' : 'account-hover'
               }
               onClick={() => handleChange('mana')}
             >
@@ -508,7 +508,7 @@ const Games = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'dai' ? 'account-select dai' : 'account-select'
+                gameSelect === 'dai' ? 'account-hover active' : 'account-hover'
               }
               onClick={() => handleChange('dai')}
             >

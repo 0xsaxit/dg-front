@@ -71,6 +71,13 @@ const Chateau = () => {
         {homeVideo()}
 
         <div className="home-dashboard-content">
+          <div style={{ maxWidth: '1400px' }}>
+            <div 
+              className="account-intro" 
+              data-title="Welcome! 👋" 
+              data-intro="Here's our site nav. Please connect to Metamask on the right side. Once done, your account information will appear - click your avatar image and you'll arrive on your account. If you need help depositing, click the question mark icon on your account page." 
+            />
+          </div>
           <p className="featured-casino-text">DECENTRAL GAMES</p>
           <h1
             className="home-dashboard-main-h1"
@@ -94,8 +101,7 @@ const Chateau = () => {
             <Button
               color="blue"
               className="how-to-button"
-              href="https://docs.decentral.games/getting-started/play-to-mine"
-              target="_blank"
+              onClick={() => introJs().start()}
             >
               GET STARTED
             </Button>
@@ -316,6 +322,16 @@ const Chateau = () => {
                     DEPOSIT CRYPTO
                   </Button>
                 </Link>
+                <Button
+                  color="blue"
+                  className="metamask-how-button"
+                  href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+                  target="_blank"
+                  data-title="Using Metamask 🦁" 
+                  data-intro="Never used Metamask before? That's alright, click here for a step by step guide on how to set up your first wallet. Then come back and visit your account." 
+                >
+                  METAMASK
+                </Button>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
                 Play blackjack, roulette, slots, and backgammon with MANA or
@@ -481,6 +497,8 @@ const Chateau = () => {
                 justifyContent: 'space-between',
                 marginTop: '30px',
               }}
+              data-title="Video Tutorials 📽️" 
+              data-intro="Looking for a more visual guide? We've got you covered! Check out our tutorial videos here if you are in need of further assistance." 
             >
               <div
                 href="/dg/mining"

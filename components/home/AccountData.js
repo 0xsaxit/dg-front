@@ -7,7 +7,7 @@ import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 import { Parallax } from 'react-parallax';
-import introJs from 'intro.js';
+import ModalAffiliates from '../modal/ModalAffiliates';
 
 
 const AccountData = (props) => {
@@ -59,10 +59,9 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
-        <div className="account-other-tabs">
-
+        <div style={{ position: 'relative', zIndex: '999', }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <span className="avatar-picture" style={{ alignSelf: 'center', marginTop: '-135px' }}>
+            <span className="avatar-picture" style={{ alignSelf: 'center', marginTop: '-60px' }}>
               <a
                 href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                 target="_blank"
@@ -92,104 +91,105 @@ const AccountData = (props) => {
               <p className="welcome-text-2"> {state.userInfo[1]} </p>
             </span>
 
-          <span style={{ display: 'flex', justifyContent: 'flex-end', margin: '-112px 0px 90px 0px' }}>
-            <Popup
-              position='top center'
-              className="account-popup"
-              trigger={
-                <a href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" target="_blank" className="account-icon-hover">
-                  <span>
-                    <Icon name="settings" className="submenu-icon" />
+            <span style={{ display: 'flex', justifyContent: 'flex-end', margin: '-123px 0px 90px 0px' }}>
+              <Popup
+                position='top center'
+                className="account-popup"
+                trigger={
+                  <a href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" target="_blank" className="account-icon-hover">
+                    <span>
+                      <Icon name="settings" className="submenu-icon" />
+                    </span>
+                  </a>
+                }
+              >
+                <div>
+                  <p className="earned-text">
+                    EDIT AVATAR
+                  </p>
+                </div>
+              </Popup>
+              <Popup
+                position='top center'
+                className="account-popup"
+                onClick={() => introJs().start()}
+                trigger={
+                  <span className="account-icon-hover">
+                    <Icon name="help circle" className="submenu-icon" />
                   </span>
-                </a>
-              }
-            >
-              <div>
-                <p className="earned-text">
-                  EDIT AVATAR
-                </p>
-              </div>
-            </Popup>
-            <Popup
-              position='top center'
-              className="account-popup"
-              onClick={() => introJs().start()}
-              trigger={
-                <span className="account-icon-hover">
-                  <Icon name="help circle" className="submenu-icon" />
-                </span>
-              }
-            >
-              <div>
-                <p className="earned-text">
-                  NEED HELP?
-                </p>
-              </div>
-            </Popup>
-          </span>
-
-          <div style={{ marginLeft: '0px' }}>
-            <span className="account-other-p" style={{ display: 'flex' }}>
-              {dataType === 'balances' ? (
-                <span className="account-hover active">
-                  <Icon name="dollar sign" />
-                  <b>BALANCES</b>
-                </span>
-              ) : (
-                <Link href="/account">
-                  <span className="account-hover">
-                    <Icon name="dollar sign" />
-                    <b>BALANCES</b>
-                  </span>
-                </Link>
-              )}
-
-              {dataType === 'wearables' ? (
-                <span className="account-hover active">
-                  <Icon name="tag" />
-                  <b>NFTS</b>
-                </span>
-              ) : (
-                <Link href="/account/nfts">
-                  <span className="account-hover">
-                    <Icon name="tag" />
-                    <b>NFTS</b>
-                  </span>
-                </Link>
-              )}
-
-              {dataType === 'play' ? (
-                <span className="account-hover active">
-                  <Icon name="history" />
-                  <b>GAME HISTORY</b>
-                </span>
-              ) : (
-                <Link href="/account/play">
-                  <span className="account-hover">
-                    <Icon name="history" />
-                    <b>GAME HISTORY</b>
-                  </span>
-                </Link>
-              )}
-
-              {dataType === 'history' ? (
-                <span className="account-hover active">
-                  <Icon name="exchange" />
-                  <b>TRANSACTIONS</b>
-                </span>
-              ) : (
-                <Link href="/account/history">
-                  <span className="account-hover">
-                    <Icon name="exchange" />
-                    <b>TRANSACTIONS</b>
-                  </span>
-                </Link>
-              )}
+                }
+              >
+                <div>
+                  <p className="earned-text">
+                    NEED HELP?
+                  </p>
+                </div>
+              </Popup>
             </span>
           </div>
-        </div>
 
-        <Divider className="tab-divider" />
+          <div className="account-other-tabs">
+
+            <div style={{ marginLeft: '0px' }}>
+              <span className="account-other-p" style={{ display: 'flex' }}>
+                {dataType === 'balances' ? (
+                  <span className="account-hover active">
+                    <b>BALANCES</b>
+                  </span>
+                ) : (
+                  <Link href="/account">
+                    <span className="account-hover">
+                      <b>BALANCES</b>
+                    </span>
+                  </Link>
+                )}
+
+                {dataType === 'wearables' ? (
+                  <span className="account-hover active">
+                    <b>NFTS</b>
+                  </span>
+                ) : (
+                  <Link href="/account/nfts">
+                    <span className="account-hover">
+                      <b>NFTS</b>
+                    </span>
+                  </Link>
+                )}
+
+                {dataType === 'play' ? (
+                  <span className="account-hover active">
+                    <b style={{ marginRight: '4px' }}>GAME</b>
+                    <b>HISTORY</b>
+                  </span>
+                ) : (
+                  <Link href="/account/play">
+                    <span className="account-hover">
+                      <b style={{ marginRight: '4px' }}>GAME</b>
+                      <b>HISTORY</b>
+                    </span>
+                  </Link>
+                )}
+
+                {dataType === 'history' ? (
+                  <span className="account-hover active">
+                    <b>TRANSACTIONS</b>
+                  </span>
+                ) : (
+                  <Link href="/account/history">
+                    <span className="account-hover">
+                      <b>TRANSACTIONS</b>
+                    </span>
+                  </Link>
+                )}
+
+                <span style={{ marginTop: '27px' }}>
+                  <ModalAffiliates />
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <Divider className="tab-divider" />
       </Aux>
     );
   }

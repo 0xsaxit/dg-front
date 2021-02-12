@@ -10,7 +10,6 @@ import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import PopUpLinks from './PopUpLinks';
 import Fetch from '../../common/Fetch';
-import introJs from 'intro.js';
 
 
 const MenuTop = (props) => {
@@ -159,27 +158,6 @@ const MenuTop = (props) => {
     );
   }
 
-  function needHelp() {
-    if (router.pathname === '/') {
-      return (
-        <Button className="more-dropdown-button" onClick={() => introJs().start()}>
-          <Menu.Item
-            style={{ color: 'white', fontSize: '8px', marginLeft: '-9px', marginTop: '0px' }}
-          >
-            <Icon
-              style={{ color: 'white' }}
-              name="help circle"
-            />
-          </Menu.Item>
-        </Button>
-      );
-    } else {
-      return (
-        <span style={{ width: '30px' }} />
-      );
-    }
-  }
-
   // dropdown menu for mobile
   function dropdownMenu() {
     return (
@@ -315,70 +293,67 @@ const MenuTop = (props) => {
         <span className="right-menu-items">
           <ModalInfo />
 
-          <div data-title="Welcome! 👋" data-intro="To get started, click here and you'll be redirected to your account. Once there, you'll find another help button that will direct you on how to authorize games and deposit or withdraw funds. Have fun!">
-            <Link href="/account">
-              <span className="menu-account-info">
-                {DAI_BALANCE || MANA_BALANCE > 0 ? (
-                  <span style={{ display: 'flex' }}>
-                    <span className="menu-info-to-hide">
-                      {MANA_BALANCE > 0 ? (
-                        <p className={menuStyle[1]}>
-                          {parseInt(state.userBalances[1][1]).toLocaleString()}{' '}
-                          MANA
-                        </p>
-                      ) : null}
-                    </span>
-                    <span className="menu-info-to-hide">
-                      {DAI_BALANCE > 0 ? (
-                        <p className={menuStyle[1]}>
-                          {parseInt(state.userBalances[0][1]).toLocaleString()}{' '}
-                          DAI
-                        </p>
-                      ) : null}
-                    </span>
-                  </span>
-                ) : (
-                  <p className={menuStyle[1]} id="add-funds-mobile-padding">
-                    ADD TOKENS
-                  </p>
-                )}
-
-                <span className="menu-avatar-background" id="add-funds-mobile">
-                  <span className="mobile-display-none-name">
-                    {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                      <p className={menuStyle[1]} style={{ marginTop: '-1px' }}>
-                        {state.userInfo[1].substr(0, 4) +
-                          '...' +
-                          state.userInfo[1].substr(-4)}
+          <Link href="/account">
+            <span className="menu-account-info">
+              {DAI_BALANCE || MANA_BALANCE > 0 ? (
+                <span style={{ display: 'flex' }}>
+                  <span className="menu-info-to-hide">
+                    {MANA_BALANCE > 0 ? (
+                      <p className={menuStyle[1]}>
+                        {parseInt(state.userBalances[1][1]).toLocaleString()}{' '}
+                        MANA
                       </p>
-                    ) : (
-                      <p style={{ marginTop: '-1px' }} className={menuStyle[1]}>
-                        {state.userInfo[0]}
-                      </p>
-                    )}
+                    ) : null}
                   </span>
-
-                  <img
-                    className="avatar-picture"
-                    id="mobile-avatar-picture"
-                    src={state.userInfo[5]}
-                    style={{
-                      width: '18px',
-                      height: '18px',
-                      display: 'flex',
-                      border: '1px solid rgb(227, 232, 238)',
-                      marginTop: '4px',
-                      borderRadius: '100%',
-                      boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                      backgroundColor: 'white',
-                    }}
-                  />
+                  <span className="menu-info-to-hide">
+                    {DAI_BALANCE > 0 ? (
+                      <p className={menuStyle[1]}>
+                        {parseInt(state.userBalances[0][1]).toLocaleString()}{' '}
+                        DAI
+                      </p>
+                    ) : null}
+                  </span>
                 </span>
-              </span>
-            </Link>
-          </div>
+              ) : (
+                <p className={menuStyle[1]} id="add-funds-mobile-padding">
+                  ADD TOKENS
+                </p>
+              )}
 
-          {needHelp()}
+              <span className="menu-avatar-background" id="add-funds-mobile">
+                <span className="mobile-display-none-name">
+                  {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                    <p className={menuStyle[1]} style={{ marginTop: '-1px' }}>
+                      {state.userInfo[1].substr(0, 4) +
+                        '...' +
+                        state.userInfo[1].substr(-4)}
+                    </p>
+                  ) : (
+                    <p style={{ marginTop: '-1px' }} className={menuStyle[1]}>
+                      {state.userInfo[0]}
+                    </p>
+                  )}
+                </span>
+
+                <img
+                  className="avatar-picture"
+                  id="mobile-avatar-picture"
+                  src={state.userInfo[5]}
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                    display: 'flex',
+                    border: '1px solid rgb(227, 232, 238)',
+                    marginTop: '4px',
+                    borderRadius: '100%',
+                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                    backgroundColor: 'white',
+                  }}
+                />
+              </span>
+            </span>
+          </Link>
+
           {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>
       );
