@@ -44,7 +44,7 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
@@ -54,7 +54,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -74,7 +74,7 @@ const detailsGames = {
     'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
     '2 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=85%2C-20&realm=hades-amber',
     'https://docs.decentral.games/games/backgammon',
   ],
 };
@@ -86,7 +86,7 @@ const detailsCasinos = {
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-75%2C77&realm=hades-amber',
     'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
   Tominoya: [
@@ -95,7 +95,7 @@ const detailsCasinos = {
     'Tominoya',
     'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE, BLACKJACK, SLOTS',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/casinos/tominoya',
   ],
   Serenity: [
@@ -104,8 +104,29 @@ const detailsCasinos = {
     'Serenity Island',
     'Serenity Island is located in the Vegas City district in Decentraland. The scene features a massive island that players must climb up to enter, and the structure sports a Monte Carlo-inspired architecture. The building is three stories total featuring two levels of games and a basement club.',
     'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-145%2C115&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-145%2C115&realm=hades-amber',
     'https://docs.decentral.games/casinos/serenity-island',
+  ],
+};
+
+const detailsShop = {
+  Shop: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
+    'games-pic',
+    'NFT Shop',
+    'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
+    'WEARABLES',
+    'https://play.decentraland.org/?position=-74%2C80&realm=hades-amber',
+    'https://docs.decentral.games/casinos/chateau-satoshi',
+  ],
+  Shop_2: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
+    'games-pic',
+    'NFT Shop',
+    'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
+    'WEARABLES',
+    'https://play.decentraland.org/?position=-74%2C80&realm=hades-amber',
+    'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
 };
 
@@ -246,6 +267,11 @@ const Games = (props) => {
                 <b>NFTS</b>
               </span>
             </Link>
+            <Link href="/offerings/shop">
+              <span className="account-hover">
+                <b>SHOP</b>
+              </span>
+            </Link>
 
             {leaderboardLink(true)}
 
@@ -267,6 +293,11 @@ const Games = (props) => {
             <Link href="/offerings/nfts">
               <span className="account-hover">
                 <b>NFTS</b>
+              </span>
+            </Link>
+            <Link href="/offerings/shop">
+              <span className="account-hover">
+                <b>SHOP</b>
               </span>
             </Link>
 
@@ -291,6 +322,39 @@ const Games = (props) => {
             </Link>
             <span className="account-hover active">
               <b>NFTS</b>
+            </span>
+            <Link href="/offerings/shop">
+              <span className="account-hover">
+                <b>SHOP</b>
+              </span>
+            </Link>
+
+            {leaderboardLink(true)}
+
+            <Divider
+              className="tab-divider"
+              style={{ marginTop: '18px', paddingBottom: '21px' }}
+            />
+          </p>
+        ) : gameState == 'shop' ? (
+          <p className="account-other-p" style={{ width: '100%' }}>
+            <Link href="/offerings">
+              <span className="account-hover">
+                <b>GAMES</b>
+              </span>
+            </Link>
+            <Link href="/offerings/casinos">
+              <span className="account-hover">
+                <b>CASINOS</b>
+              </span>
+            </Link>
+            <Link href="/offerings/nfts">
+              <span className="account-hover">
+                <b>NFTS</b>
+              </span>
+            </Link>
+            <span className="account-hover active">
+              <b>SHOP</b>
             </span>
 
             {leaderboardLink(true)}
@@ -317,6 +381,11 @@ const Games = (props) => {
                 <Link href="/offerings/nfts">
                   <span className="account-hover">
                     <b>NFTS</b>
+                  </span>
+                </Link>
+                <Link href="/offerings/shop">
+                  <span className="account-hover">
+                    <b>SHOP</b>
                   </span>
                 </Link>
 
@@ -597,6 +666,7 @@ const Games = (props) => {
               detailsGames={detailsGames}
               detailsCasinos={detailsCasinos}
               detailsNFTs={detailsNFTs}
+              detailsShop={detailsShop}
             />
           )}
         </div>

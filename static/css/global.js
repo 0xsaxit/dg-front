@@ -92,6 +92,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .games-container,
+  .shop-container,
   .nft-container,
   .my-nft-container,
   .dg-powered-container,

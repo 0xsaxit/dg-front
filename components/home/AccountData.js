@@ -128,7 +128,7 @@ const AccountData = (props) => {
             </span>
           </div>
 
-          <div className="account-other-tabs">
+          <div className="account-other-tabs" style={{ paddingTop: '15px' }}>
 
             <div style={{ marginLeft: '0px' }}>
               <span className="account-other-p" style={{ display: 'flex' }}>
@@ -238,7 +238,7 @@ const AccountData = (props) => {
               bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1612826628/Screen_Shot_2021-02-08_at_3.23.36_PM_po0m5c.png" 
               strength={100}
             >
-              <div style={{ height: '200px' }} />
+              <div style={{ height: '180px' }} />
             </Parallax>
           </div>
           <div className="page-container">

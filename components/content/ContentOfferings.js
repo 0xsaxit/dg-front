@@ -285,12 +285,84 @@ const ContentOfferings = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentShop() {
+    return (
+      <div className="outter-games-container">
+        <a
+          href="https://play.decentraland.org/?position=-74%2C80&realm=hades-amber"
+          target="_blank"
+          className="shop-container"
+        >
+          <span
+            style={{ display: 'flex', justifyContent: 'center' }}
+            className="nft-image"
+          >
+            <Image
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png"
+              className='games-pic'
+              style={{ borderRadius: '4px' }}
+            />
+          </span>
+          <div className="nft-description">
+            <h3 className="nft-other-h3">NFT Shop</h3>
+            <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <p className="nfts-info">WEARABLES</p>
+            </span>
+
+            <Divider
+              style={{
+                margin: '10px 0px 15px 0px',
+                width: 'calc(100% + 60px)',
+                marginLeft: '-30px',
+              }}
+            />
+
+            <p
+              className="nft-other-p"
+              style={{
+                marginTop: '-12px',
+                paddingTop: '15px',
+                textAlign: 'center',
+              }}
+            >
+              Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.
+            </p>
+            <span
+              style={{ display: 'flex', justifyContent: 'space-between' }}
+            >
+              <Button
+                id="play-now-button-casinos"
+                color="blue"
+                className="nft-button"
+                target="_blank"
+                href="https://play.decentraland.org/?position=-74%2C80&realm=hades-amber"
+              >
+                PLAY NOW
+              </Button>
+              <Button
+                className="nft-read-button two"
+                target="_blank"
+                href="https://play.decentraland.org/?position=-74%2C80&realm=hades-amber"
+              >
+                READ MORE
+              </Button>
+            </span>
+          </div>
+        </a>
+      </div>
+    );
+  }
+
   if (props.gameState === 'games') {
     return contentGames();
   } else if (props.gameState === 'nfts') {
     return buyNFTs();
   } else if (props.gameState === 'casinos') {
     return contentCasinos();
+  } else if (props.gameState === 'shop') {
+    return contentShop();
   }
 };
 

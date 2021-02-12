@@ -318,14 +318,14 @@ const Farming = (props) => {
                 <b>REWARDS</b>
               </span>
             </Link>
-            <span className="account-hover active">
-              <b>BALANCER</b>
-            </span>
-            <Link href="/dg/uniswap">
+            <Link href="/dg/balancer">
               <span className="account-hover">
-                <b>UNISWAP</b>
+                <b>BALANCER</b>
               </span>
             </Link>
+            <span className="account-hover active">
+              <b>UNISWAP</b>
+            </span>
 
             <ModalAffiliates />
 
