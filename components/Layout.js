@@ -7,6 +7,7 @@ import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
 
+
 const Layout = (props) => {
   // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
