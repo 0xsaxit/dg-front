@@ -49,7 +49,7 @@ const detailsNFTs = {
     'DG Deezys',
     'LEGENDARY',
     'Comfy and elegant sneekers #deezys',
-    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/299,
+    'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/299',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   slides: [
