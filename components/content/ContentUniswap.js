@@ -153,14 +153,14 @@ const ContentUniswap = (props) => {
 
   useEffect(() => {
     if (props.instances) {
-      const percentagePool = state.stakingBalances.BALANCE_STAKED_BPT_1;
+      const percentagePool = Number(state.stakingBalances.BALANCE_STAKED_BPT_1);
       setPercentagePool1(percentagePool);
     }
   }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
 
   useEffect(() => {
     if (props.instances) {
-      const percentagePool2 = state.stakingBalances.BALANCE_STAKED_BPT_2;
+      const percentagePool2 = Number(state.stakingBalances.BALANCE_STAKED_BPT_2);
       setPercentagePool2(percentagePool2);
     }
   }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_2]);
