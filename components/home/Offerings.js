@@ -291,10 +291,6 @@ const Offerings = (props) => {
 
               {leaderboardLink(true)}
 
-              <Divider
-                className="tab-divider"
-                style={{ marginTop: '18px', paddingBottom: '21px' }}
-              />
             </p>
           ) : gameState == 'nfts' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
