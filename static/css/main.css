@@ -1304,6 +1304,14 @@ i.help.circle.icon.submenu-icon {
   }
 }
 
+@media (max-width: 499px) {
+  div.ui.divider.tab-divider {
+    width: calc(100vw - 43px) !important;
+    position: relative;
+    z-index: 999;
+  }
+}
+
 .pagination {
   text-align: center;
   width: 100vw !important;
