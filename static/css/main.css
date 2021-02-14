@@ -2454,6 +2454,25 @@ a.ui.blue.button.play-button,
   min-width: 48.5% !important;
 }
 
+.ui.button.DG-stake-button-balancer {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 34px;
+  min-width: 100% !important;
+  margin-top: 15px;
+}
+
+.ui.button.DG-stake-button-balancer-enabled {
+  background-color: white;
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 34px;
+  min-width: 100% !important;
+  margin-top: 15px;
+  padding: 0 0 0 0;
+}
+
 .ui.disabled.button.balances-top-button.two {
   opacity: 45% !important;
 }

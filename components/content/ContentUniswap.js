@@ -24,6 +24,8 @@ const ContentUniswap = (props) => {
   const [instances, setInstances] = useState(false);
 
   // balancer local variables
+  const [percentagePool1, setPercentagePool1] = useState(0);
+  const [percentagePool2, setPercentagePool2] = useState(0);
   const [pool1, setPool1] = useState(true);
   const [pool1USD, setPool1USD] = useState(0);
   const [pool2USD, setPool2USD] = useState(0);
@@ -147,6 +149,48 @@ const ContentUniswap = (props) => {
       fetchData();
     }
   }, [state.userStatus]);
+
+  useEffect(() => {
+    if (props.price && state.stakingBalances.BALANCE_CONTRACT_BPT_2) {
+      const numeratorDAI =
+        51 * 1200 * props.price * state.DGBalances.SUPPLY_BPT_2;
+      const totalLockedDAI =
+        state.DGBalances.BALANCE_BP_DG_2 * props.price +
+        Number(state.DGBalances.BALANCE_BP_DAI);
+      const denominatorDAI =
+        totalLockedDAI * state.stakingBalances.BALANCE_CONTRACT_BPT_2;
+
+      setAPYDAI(((numeratorDAI / denominatorDAI) * 100).toFixed(2));
+
+      setPoolPercentage2(
+        (
+          (state.stakingBalances.BALANCE_STAKED_BPT_2 /
+            state.stakingBalances.BALANCE_CONTRACT_BPT_2) *
+          100
+        ).toFixed(2)
+      );
+    }
+  }, [props.price, state.stakingBalances.BALANCE_CONTRACT_BPT_2]);
+
+  useEffect(() => {
+    if (props.instances) {
+      (async () => {
+        const stakedTotal = await Transactions.getTotalSupply(
+          props.stakingContractPool1
+        );
+
+        if (stakedTotal) {
+          const percentagePool =
+            state.stakingBalances.BALANCE_STAKED_BPT_1 / stakedTotal;
+          const percentageFixed = percentagePool * 100;
+
+          setPercentagePool1(percentageFixed);
+        } else {
+          setPercentagePool1(0);
+        }
+      })();
+    }
+  }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
 
   useEffect(() => {
     if (
@@ -405,66 +449,10 @@ const ContentUniswap = (props) => {
                 </span>
               </span>
 
-              {/*<Divider />
-
-              {pool1 ? (
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingTop: '12px',
-                    paddingBottom: '12px',
-                  }}
-                >
-                  <p className="earned-text">Value USD</p>
-                  {pool1USD ? (
-                    <p className="earned-amount">${pool1USD}</p>
-                  ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '1px',
-                        marginBottom: '2px',
-                      }}
-                    />
-                  )}
-                </span>
-              ) : (
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingTop: '12px',
-                    paddingBottom: '12px',
-                  }}
-                >
-                  <p className="earned-text">Value USD</p>
-                  {pool2USD ? (
-                    <p className="earned-amount">${pool2USD}</p>
-                  ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '1px',
-                        marginBottom: '2px',
-                      }}
-                    />
-                  )}
-                </span>
-              )}*/}
-
               <Divider />
 
               {pool1 ? (
-                <span className="DG-button-span">
+                <span className="DG-button-span" style={{ flexDirection: 'column' }}>
                   {Number(state.DGBalances.BALANCE_STAKING_BALANCER_1) ? (
                     <Button
                       className="DG-claim-button"
@@ -478,9 +466,27 @@ const ContentUniswap = (props) => {
                       CLAIM BALANCER 1 $DG
                     </Button>
                   )}
+                  {percentagePool1 ? (
+                    <Button
+                      className="DG-stake-button-balancer-enabled"
+                      onClick={() => {
+                        props.withdrawal(
+                          props.stakingContractPool1,
+                          amountInputMANA
+                        );
+                        setAmountInputMANA(state.stakingBalances.BALANCE_STAKED_BPT_1);
+                      }}
+                    >
+                      UNSTAKE MANA-DG BPT
+                    </Button>
+                  ) : (
+                    <Button disabled className="DG-stake-button-balancer">
+                      UNSTAKE MANA-DG BPT
+                    </Button>
+                  )}
                 </span>
               ) : (
-                <span className="DG-button-span">
+                <span className="DG-button-span" style={{ flexDirection: 'column' }}>
                   {Number(state.DGBalances.BALANCE_STAKING_BALANCER_2) ? (
                     <Button
                       className="DG-claim-button"
@@ -494,8 +500,26 @@ const ContentUniswap = (props) => {
                       CLAIM BALANCER 2 $DG
                     </Button>
                   )}
-                </span>
-              )}
+                  {percentagePool2 ? (
+                    <Button
+                      className="DG-stake-button-balancer-enabled"
+                      onClick={() => {
+                        props.withdrawal(
+                          props.stakingContractPool2,
+                          amountInputDAI
+                        );
+                        setAmountInputDAI(state.stakingBalances.BALANCE_STAKED_BPT_2);
+                      }}
+                    >
+                      UNSTAKE DAI-DG BPT
+                    </Button>
+                  ) : (
+                    <Button disabled className="DG-stake-button-balancer">
+                      UNSTAKE DAI-DG BPT
+                    </Button>
+                  )}
+                  </span>
+                )}
               </div>
             </Modal>
           </div>
