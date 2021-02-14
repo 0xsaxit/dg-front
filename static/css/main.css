@@ -1775,6 +1775,12 @@ i.copy.icon.affiliate-icon:hover {
   max-height: 260px;
 }
 
+.DG-column.balancer {
+  min-width: 22.75% !important;
+  max-height: 260px;
+  margin: 45px -20px 0px -20px;
+}
+
 .DG-column.liquidity-unclaimed {
   max-width: 100% !important;
   max-height: 183px;
@@ -2470,7 +2476,7 @@ a.ui.blue.button.play-button,
 
 .balancer-pool-modal-trigger {
   display: flex;
-  margin: 12px 0px -24px 0px;
+  margin: 45px 0px 0px 0px;
 }
 
 .balancer-pool-modal-trigger:hover {
@@ -2516,4 +2522,8 @@ a.ui.blue.button.play-button,
 .ui.button.play-button.ecosystem,
 .ui.button.play-button.deposit {
   padding: 2px 0 0 0;
+}
+
+.referral-modal {
+  max-width: 630px;
 }

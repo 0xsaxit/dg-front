@@ -232,7 +232,7 @@ const Farming = (props) => {
             <Link href="/dg/liquidity">
               <span className="account-hover">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
-                <b>PROVISIONS</b>
+                <b>PROVISION</b>
               </span>
             </Link>
 
@@ -250,14 +250,14 @@ const Farming = (props) => {
                 <b>GOVERNANCE</b>
               </span>
             </Link>
-            <span className="account-hover">
+            <span className="account-hover active">
               <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
               <b>REWARDS</b>
             </span>
             <Link href="/dg/liquidity">
               <span className="account-hover">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
-                <b>PROVISIONS</b>
+                <b>PROVISION</b>
               </span>
             </Link>
 
@@ -281,9 +281,9 @@ const Farming = (props) => {
                 <b>REWARDS</b>
               </span>
             </Link>
-            <span className="account-hover">
+            <span className="account-hover active">
               <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
-              <b>PROVISIONS</b>
+              <b>PROVISION</b>
             </span>
 
             <ModalAffiliates />

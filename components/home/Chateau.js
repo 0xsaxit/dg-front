@@ -99,7 +99,7 @@ const Chateau = () => {
               </Button>
             )}
             <span>
-              {state.userStatus < 7 ? (
+              {state.userStatus < 5 ? (
                 <Button
                   color="blue"
                   className="how-to-button"
