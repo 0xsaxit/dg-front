@@ -1570,8 +1570,8 @@ div.ui.grid.balances-container {
 }
 
 @media (max-width: 1027px) {
-  .leaderboard-coin-select {
-    margin-bottom: -9px !important;
+  .leaderboard-coin-select-mobile {
+    margin-bottom: -100px !important;
   }
 }
 

@@ -571,7 +571,7 @@ span#mobile-time-select.account-select.dropdown {
   }
   span.leaderboard-coin-select-mobile {
     margin-top: -27px;
-    margin-bottom: 45px !important;
+    margin-bottom: -3px !important;
   }
   .ui.dropdown {
     margin-bottom: 30px !important;
