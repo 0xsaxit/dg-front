@@ -111,7 +111,7 @@ const detailsShop = {
     'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
   shop_opensea: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1613266160/OpenSea_y26zkp.png',
     'games-pic',
     'OpenSea',
     'Decentral Games wearables are also available on OpenSea. OpenSea provides a one-stop shop for creating a customizable marketplace for non-fungible tokens, like our Decentral Games wearables. Here, users can smoothly buy and sell our wearables, get custom stats and analytics, and earn revenue by trading goods.',

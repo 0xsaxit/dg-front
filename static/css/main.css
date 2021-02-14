@@ -1641,7 +1641,7 @@ div.ui.grid.balances-container {
 
 #pool-select-icon {
   font-size: 12px;
-  margin: 7px 0px 0px 3px;
+  margin: 10px 0px 0px 3px;
   cursor: pointer;
 }
 
@@ -2466,6 +2466,15 @@ a.ui.blue.button.play-button,
   padding-left: 6px;
   padding-right: 6px;
   opacity: 100% !important;
+}
+
+.balancer-pool-modal-trigger {
+  display: flex;
+  margin: 12px 0px -24px 0px;
+}
+
+.balancer-pool-modal-trigger:hover {
+  cursor: pointer;
 }
 
 .ui.button.DG-airdrop-button {

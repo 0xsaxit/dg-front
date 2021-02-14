@@ -229,14 +229,10 @@ const Farming = (props) => {
                 <b>REWARDS</b>
               </span>
             </Link>
-            <Link href="/dg/balancer">
+            <Link href="/dg/liquidity">
               <span className="account-hover">
-                <b>BALANCER</b>
-              </span>
-            </Link>
-            <Link href="/dg/uniswap">
-              <span className="account-hover">
-                <b>UNISWAP</b>
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                <b>PROVISIONS</b>
               </span>
             </Link>
 
@@ -258,43 +254,10 @@ const Farming = (props) => {
               <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
               <b>REWARDS</b>
             </span>
-            <Link href="/dg/balancer">
+            <Link href="/dg/liquidity">
               <span className="account-hover">
-                <b>BALANCER</b>
-              </span>
-            </Link>
-            <Link href="/dg/uniswap">
-              <span className="account-hover">
-                <b>UNISWAP</b>
-              </span>
-            </Link>
-
-            <ModalAffiliates />
-
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : DGState === 'balancer' ? (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/dg">
-              <span className="account-hover">
-                <b>GOVERNANCE</b>
-              </span>
-            </Link>            
-            <Link href="/dg/mining">
-              <span className="account-hover">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
-                <b>REWARDS</b>
-              </span>
-            </Link>
-            <span className="account-hover active">
-              <b>BALANCER</b>
-            </span>
-            <Link href="/dg/uniswap">
-              <span className="account-hover">
-                <b>UNISWAP</b>
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                <b>PROVISIONS</b>
               </span>
             </Link>
 
@@ -318,13 +281,9 @@ const Farming = (props) => {
                 <b>REWARDS</b>
               </span>
             </Link>
-            <Link href="/dg/balancer">
-              <span className="account-hover">
-                <b>BALANCER</b>
-              </span>
-            </Link>
-            <span className="account-hover active">
-              <b>UNISWAP</b>
+            <span className="account-hover">
+              <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+              <b>PROVISIONS</b>
             </span>
 
             <ModalAffiliates />

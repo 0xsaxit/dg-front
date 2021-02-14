@@ -7,7 +7,7 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
-const Uniswap = () => {
+const Liquidity = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -46,4 +46,4 @@ const Uniswap = () => {
   );
 };
 
-export default Uniswap;
+export default Liquidity;

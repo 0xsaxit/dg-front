@@ -13,10 +13,10 @@ const ContentBalancer = (props) => {
 
   // define local variables
   const [pool1, setPool1] = useState(true);
-  const [amountInputMANA, setAmountInputMANA] = useState('');
-  const [amountInputDAI, setAmountInputDAI] = useState('');
-  const [percentagePool1, setPercentagePool1] = useState(0);
-  const [percentagePool2, setPercentagePool2] = useState(0);
+  // const [amountInputMANA, setAmountInputMANA] = useState('');
+  // const [amountInputDAI, setAmountInputDAI] = useState('');
+  // const [percentagePool1, setPercentagePool1] = useState(0);
+  // const [percentagePool2, setPercentagePool2] = useState(0);
   // const [APYMANA, setAPYMANA] = useState(0);
   // const [APYDAI, setAPYDAI] = useState(0);
   // const [poolPercentage1, setPoolPercentage1] = useState(0);
@@ -152,19 +152,19 @@ const ContentBalancer = (props) => {
   //   }
   // }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_2]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function handleChangeMANA(e) {
-    console.log('New amount (MANA): ' + e.target.value);
+  // /////////////////////////////////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////////////////////////////////
+  // function handleChangeMANA(e) {
+  //   console.log('New amount (MANA): ' + e.target.value);
 
-    setAmountInputMANA(e.target.value);
-  }
+  //   setAmountInputMANA(e.target.value);
+  // }
 
-  function handleChangeDAI(e) {
-    console.log('New amount (DAI): ' + e.target.value);
+  // function handleChangeDAI(e) {
+  //   console.log('New amount (DAI): ' + e.target.value);
 
-    setAmountInputDAI(e.target.value);
-  }
+  //   setAmountInputDAI(e.target.value);
+  // }
 
   function contentBalancer() {
     return (

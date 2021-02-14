@@ -335,7 +335,6 @@ const ContentOfferings = (props) => {
                 style={{ display: 'flex', justifyContent: 'space-between' }}
               >
                 <Button
-                  id={`play-now-button-games-${i + 1}`}
                   color="blue"
                   className="nft-button"
                   target="_blank"
