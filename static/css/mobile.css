@@ -78,9 +78,6 @@
     position: relative;
     left: 60px;
   }
-  #dropdown-menu-items {
-    padding-left: 67px !important;
-  }
   .ui.blue.button.metamask-button {
     display: none;
   }
@@ -141,19 +138,46 @@
   }
 }
 
+#dropdown-menu-items {
+  width: 100vw;
+  margin-left: -9px;
+  padding-left: 90px;
+}
+
+@media (max-width: 499px) {
+  #dropdown-menu-items {
+    width: 100vw;
+    margin-left: -9px;
+    padding-left: 81px;
+  }
+}
+
+
 div#dropdown-menu-items.item.right-menu-text {
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
   font-size: 14px;
   font-weight: 600;
-  padding: 18px 0px 18px 100px;
   text-transform: uppercase; 
+  padding-top: 21px;
+  padding-bottom: 21px;
 }
 
 .ui.top.attached.menu>.item:first-child {
   margin-top: 76px;
   border: 0px solid white;
+}
+
+@media (max-width: 499px) {
+  .ui.dropdown .menu,
+  .ui.menu .dropdown.item .menu {
+    border: 0px;
+    box-shadow: none;
+    padding-top: 0px;
+    margin-left: -72px !important;
+    border-radius: 0px;
+  }
 }
 
 .ui.dropdown .menu,
@@ -203,14 +227,6 @@ div.ui.top.attached.menu {
   div.ui.top.attached.menu  {
     display: none !important;
   }
-}
-
-#dropdown-menu-items {
-  width: 100vw;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-left: -21px;
-  padding-left: 81px;
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
@@ -282,6 +298,10 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 499px) {
+  .ui.blue.button.how-to-button,
+  a.ui.blue.button-how-to-button {
+    display: none !important;
+  }
   .dashboard-image-container,
   #mobile-casino-text,
   video#myVideo.home-dashboard-video,
@@ -312,6 +332,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .ui.blue.button.learn-more-button  {
     min-width: 48.5%;
     padding: 10px 0 0 0;
+  }
+  a.ui.blue.button.metamask-how-button {
+    max-width: 48.5%;
   }
   .home-button-span.dg {
     min-width: calc(100vw - 42px);

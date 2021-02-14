@@ -584,6 +584,37 @@ const ContentGovernance = (props) => {
                 <p className="earned-amount">$0.00</p>
               </span>
 
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">DAI Yield farm</p>
+                  <Popup
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text">
+                        Coming soon{' '}
+                      </p>
+                    </div>
+                  </Popup>
+                </span>
+                <p className="earned-amount">$0.00</p>
+              </span>
+
               <Divider />
 
               <span className="DG-button-span">

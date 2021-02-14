@@ -121,7 +121,7 @@ const AccountData = (props) => {
               >
                 <div>
                   <p className="earned-text">
-                    NEED HELP?
+                    COMING SOON
                   </p>
                 </div>
               </Popup>

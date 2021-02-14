@@ -12,7 +12,7 @@ const ContentOfferings = (props) => {
   let buttonGames4 = '';
   let buttonCasinos1 = '';
   let buttonCasinos2 = '';
-  let buttonCasinos3 = '';
+  // let buttonCasinos3 = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ const ContentOfferings = (props) => {
     buttonGames4 = document.getElementById('play-now-button-games-4');
     buttonCasinos1 = document.getElementById('play-now-button-casinos-1');
     buttonCasinos2 = document.getElementById('play-now-button-casinos-2');
-    buttonCasinos3 = document.getElementById('play-now-button-casinos-3');
+    // buttonCasinos3 = document.getElementById('play-now-button-casinos-3');
   }, []);
 
   useEffect(() => {
@@ -40,13 +40,13 @@ const ContentOfferings = (props) => {
   }, [buttonGames1, buttonGames2, buttonGames3, buttonGames4]);
 
   useEffect(() => {
-    if (buttonCasinos1 || buttonCasinos2 || buttonCasinos3) {
+    if (buttonCasinos1 || buttonCasinos2) {
       analytics.trackLink(
-        [buttonCasinos1, buttonCasinos2, buttonCasinos3],
+        [buttonCasinos1, buttonCasinos2],
         'Clicked PLAY NOW (casinos page)'
       );
     }
-  }, [buttonCasinos1, buttonCasinos2, buttonCasinos3]);
+  }, [buttonCasinos1, buttonCasinos2]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
