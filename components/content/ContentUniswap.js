@@ -160,6 +160,8 @@ const ContentUniswap = (props) => {
 
   console.log('!!!');
   console.log(percentagePool1);
+  console.log('???');
+  console.log(state.stakingBalances.BALANCE_STAKED_BPT_1);
 
   useEffect(() => {
     if (props.instances) {
