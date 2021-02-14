@@ -1560,6 +1560,21 @@ div.ui.grid.balances-container {
   }
 }
 
+@media (min-width: 1027px) {
+  .leaderboard-coin-select {
+    margin-bottom: -9px !important;
+  }
+  .coin-select-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 1027px) {
+  .leaderboard-coin-select {
+    margin-bottom: -9px !important;
+  }
+}
+
 .leaderboard-column {
   width: 100%;
 }

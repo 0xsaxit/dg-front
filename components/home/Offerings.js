@@ -413,6 +413,7 @@ const Offerings = (props) => {
           style={{
             display: 'flex',
             justifyContent: 'flex-end',
+            marginRight: '-15px'
           }}
           className="leaderboard-coin-select"
         >
@@ -477,7 +478,7 @@ const Offerings = (props) => {
             />
             DAI
           </span>
-          <span
+          {/*<span
             className="account-select dropdown"
             style={{
               marginRight: '0px',
@@ -490,14 +491,14 @@ const Offerings = (props) => {
               onChange={timeChange}
             />
 
-           {/*<Button
+           <Button
               onClick={() => refreshLeaderboard()}
               className="reload-button"
               icon
             >
               <Icon name="redo" />
-            </Button>*/}
-          </span>
+            </Button>
+          </span>*/}
         </span>
 
         <Divider className="coin-select-divider" />
@@ -580,7 +581,7 @@ const Offerings = (props) => {
                 ////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////  send time select to own row  ///////////////////////// */}
 
-          <span
+          {/*<span
             className="account-select dropdown"
             id="intermediate-time-select"
             style={{
@@ -594,16 +595,16 @@ const Offerings = (props) => {
               onChange={timeChange}
             />
 
-           {/*<Button
+           <Button
               onClick={() => refreshLeaderboard()}
               className="reload-button"
               icon
             >
               <Icon name="redo" />
-            </Button>*/}
-          </span>
+            </Button>
+          </span>*/}
         </span>
-        <span
+        {/*<span
           className="account-select dropdown"
           id="mobile-time-select"
           style={{
@@ -620,14 +621,14 @@ const Offerings = (props) => {
             onChange={timeChange}
           />
 
-           {/*<Button
+           <Button
               onClick={() => refreshLeaderboard()}
               className="reload-button"
               icon
             >
               <Icon name="redo" />
-            </Button>*/}
-        </span>
+            </Button>
+        </span>*/}
       </Aux>
     );
   }
