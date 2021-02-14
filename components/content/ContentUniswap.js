@@ -158,6 +158,9 @@ const ContentUniswap = (props) => {
     }
   }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
 
+  console.log('!!!');
+  console.log(percentagePool1);
+
   useEffect(() => {
     if (props.instances) {
       const percentagePool2 = Number(state.stakingBalances.BALANCE_STAKED_BPT_2);
@@ -440,7 +443,7 @@ const ContentUniswap = (props) => {
                       CLAIM BALANCER 1 $DG
                     </Button>
                   )}
-                  {percentagePool1 > 0 ? (
+                  {Number(percentagePool1) > 0 ? (
                     <Button
                       className="DG-stake-button-balancer-enabled"
                       onClick={() => {
