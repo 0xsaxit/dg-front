@@ -150,27 +150,6 @@ const ContentUniswap = (props) => {
     }
   }, [state.userStatus]);
 
-  useEffect(() => {
-    if (props.price && state.stakingBalances.BALANCE_CONTRACT_BPT_2) {
-      const numeratorDAI =
-        51 * 1200 * props.price * state.DGBalances.SUPPLY_BPT_2;
-      const totalLockedDAI =
-        state.DGBalances.BALANCE_BP_DG_2 * props.price +
-        Number(state.DGBalances.BALANCE_BP_DAI);
-      const denominatorDAI =
-        totalLockedDAI * state.stakingBalances.BALANCE_CONTRACT_BPT_2;
-
-      setAPYDAI(((numeratorDAI / denominatorDAI) * 100).toFixed(2));
-
-      setPoolPercentage2(
-        (
-          (state.stakingBalances.BALANCE_STAKED_BPT_2 /
-            state.stakingBalances.BALANCE_CONTRACT_BPT_2) *
-          100
-        ).toFixed(2)
-      );
-    }
-  }, [props.price, state.stakingBalances.BALANCE_CONTRACT_BPT_2]);
 
   useEffect(() => {
     if (props.instances) {

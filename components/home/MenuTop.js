@@ -338,7 +338,7 @@ const MenuTop = (props) => {
                 <img
                   className="avatar-picture"
                   id="mobile-avatar-picture"
-                  src={state.userInfo[5]}
+                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
                   style={{
                     width: '18px',
                     height: '18px',

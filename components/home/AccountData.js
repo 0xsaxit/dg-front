@@ -68,7 +68,7 @@ const AccountData = (props) => {
               >
                 <img
                   className="avatar-picture main"
-                  src={state.userInfo[5]}
+                  src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
                   style={{
                     backgroundColor: 'white',
                     width: '120px',
