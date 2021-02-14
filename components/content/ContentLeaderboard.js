@@ -160,7 +160,7 @@ const ContentLeaderboard = (props) => {
                               '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                           }}
                         />
-                        {row.name === null || row.name === ''
+                        {row.name === null || row.name === '' 
                           ? row.address.substr(0, 6) +
                             '...' +
                             row.address.substr(-4)

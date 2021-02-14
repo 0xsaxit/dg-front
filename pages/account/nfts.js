@@ -1,13 +1,13 @@
 import { GlobalContext } from '../../store';
 import { useContext, useState, useEffect } from 'react';
-import Farming from '../../components/home/Farming';
+import AccountData from '../../components/home/AccountData';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
-const Uniswap = () => {
+const Nfts = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -28,7 +28,7 @@ const Uniswap = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG | Uniswap'}
+        title={Global.CONSTANTS.TITLE + ' | Account | NFTs'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
@@ -40,10 +40,10 @@ const Uniswap = () => {
           You must log in with Metamask to view this page
         </div>
       ) : (
-        <Farming DGState={'uniswap'} />
+        <AccountData dataType={'wearables'} />
       )}
     </Layout>
   );
 };
 
-export default Uniswap;
+export default Nfts;

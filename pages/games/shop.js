@@ -4,18 +4,18 @@ import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Leaderboard = () => {
+const Shop = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Leaderboard'}
+        title={Global.CONSTANTS.TITLE + ' | Games | Shop'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
-      <Offerings gameState={'leaderboard'} />
+      <Offerings gameState={'shop'} />
     </Layout>
   );
 };
 
-export default Leaderboard;
+export default Shop;

@@ -6,8 +6,8 @@
   position: relative;
   color: black;
   background-color: transparent;
-  top: 42px;
-  left: 72px;
+  top: -20px;
+  left: 69px;
   z-index: 10;
   font-size: 18px !important;
 }
@@ -15,14 +15,14 @@
 #mobile-menu-icon-home {
   position: relative;
   color: white;
+  top: -20px;
   background-color: transparent;
-  top: 42px;
-  left: 72px;
+  left: 69px;
   z-index: 10;
   font-size: 18px !important; 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 599px) {
   .menu-info-to-hide {
     display: none;
   }
@@ -77,9 +77,6 @@
   #mobile-menu-icon-home {
     position: relative;
     left: 60px;
-  }
-  #dropdown-menu-items {
-    padding-left: 67px !important;
   }
   .ui.blue.button.metamask-button {
     display: none;
@@ -141,19 +138,73 @@
   }
 }
 
-@media (max-width: 650px) {
-  .sidebar-menu-text-2,
-  .sidebar-menu-text-3 {
-    display: none;
+#dropdown-menu-items {
+  width: calc(100vw - 41px);
+}
+
+div#dropdown-menu-items.item.right-menu-text {
+  border: none;
+  box-shadow: none;
+  letter-spacing: 1.25px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase; 
+  padding-top: 21px;
+  padding-bottom: 21px;
+  width: calc(100vw);
+  margin-left: -20px;
+  padding-left: 100px;
+}
+
+@media (max-width: 499px) {
+  div#dropdown-menu-items.item.right-menu-text {
+    border: none;
+    box-shadow: none;
+    letter-spacing: 1.25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase; 
+    padding-top: 21px;
+    padding-bottom: 21px;
+    width: calc(100vw);
+    margin-left: -20px;
+    padding-left: 81px;
+  }  
+}
+
+.ui.top.attached.menu>.item:first-child {
+  margin-top: 76px;
+  border: 0px solid white;
+}
+
+.ui.dropdown .menu,
+.ui.menu .dropdown.item .menu {
+  border: 0px;
+  box-shadow: none;
+  padding-top: 0px;
+  border-radius: 0px;
+  width: calc(100vw + 1px);
+  margin-left: -81px;
+}
+
+@media (max-width: 499px) {
+  .ui.dropdown .menu,
+  .ui.menu .dropdown.item .menu {
+    border: 0px;
+    box-shadow: none;
+    padding-top: 0px;
+    border-radius: 0px;
+    max-width: calc(100vw + 1px);
+    margin-left: -100% !important;
   }
 }
 
-@media (min-width: 991px) {
-  #mobile-menu-icon,
-  #mobile-menu-icon-home,
-  div.ui.bottom.right.popup.transition.visible.mobile-menu-popup  {
-    display: none !important;
-  }
+.ui.link.menu .item:hover, 
+.ui.menu .dropdown.item:hover, 
+.ui.menu .link.item:hover, 
+.ui.menu a.item:hover,
+.ui.menu .ui.dropdown .menu>.item:hover {
+  background: none !important;
 }
 
 @media (max-width: 991px) {
@@ -161,15 +212,31 @@
     display: none;
   }
   .mobile-height-fix {
-    margin-top: -20px;
+    margin-top: -70px;
   }
 }
 
-#dropdown-menu-items {
-  width: 100vw;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 76px;
+@media (max-width: 650px) {
+  .sidebar-menu-text-2,
+  .sidebar-menu-text-3 {
+    display: none;
+  }
+}
+
+div.ui.top.attached.menu {
+  margin-left: -3px;
+  width: 0px;
+  height: 0px;
+  margin-top: 30px;
+  border: 0px solid white;
+}
+
+@media (min-width: 991px) {
+  #mobile-menu-icon,
+  #mobile-menu-icon-home,
+  div.ui.top.attached.menu  {
+    display: none !important;
+  }
 }
 
 div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
@@ -224,9 +291,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 600px) {
-  .daily-leaders-container {
-    display: none;
-  }
   .dashboard-span {
     flex-direction: column !important;
   }
@@ -237,12 +301,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
-@media (max-height: 750px) {
-  .daily-leaders-container {
-    display: none;
-  }
-}
-
 .mobile-demo-video {
   width: 100%;
   border-radius: 2px;
@@ -250,6 +308,12 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 499px) {
+  .ui.blue.button.how-to-button,
+  a.ui.blue.button-how-to-button,
+  .ui.blue.button.earn-dg-button,
+  a.ui.blue.button.earn-dg-button {
+    display: none !important;
+  }
   .dashboard-image-container,
   #mobile-casino-text,
   video#myVideo.home-dashboard-video,
@@ -280,6 +344,10 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .ui.blue.button.learn-more-button  {
     min-width: 48.5%;
     padding: 10px 0 0 0;
+  }
+  a.ui.blue.button.metamask-how-button,
+  .ui.blue.button.casinos-button {
+    max-width: 48.5%;
   }
   .home-button-span.dg {
     min-width: calc(100vw - 42px);
@@ -462,6 +530,71 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
 
+@media (min-width: 1027px) {
+  span.leaderboard-coin-select-mobile,
+  #intermediate-time-select {
+    display: none !important;
+  }
+  span.leaderboard-coin-select {
+    margin-top: -48px !important;
+    margin-bottom: 12px;
+  }
+  .coin-select-divider {
+    margin-top: -2px !important;
+    padding-bottom: 21px;
+  }
+}
+
+@media (max-width: 599px) {
+  #intermediate-time-select {
+    display: none !important;
+  }
+}
+
+span#mobile-time-select.account-select.dropdown {
+  margin: -30px 0px 0px -9px;
+}
+
+@media (min-width: 599px) {
+  span#mobile-time-select.account-select.dropdown {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1027px) {
+  .grid-margin {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+  }
+  span.leaderboard-coin-select {
+    display: none !important;
+  }
+  span.leaderboard-coin-select-mobile {
+    margin-top: -27px;
+    margin-bottom: 45px !important;
+  }
+  .ui.dropdown {
+    margin-bottom: 30px !important;
+  }
+  .coin-select-divider {
+    margin-top: 18px !important;
+    padding-bottom: 15px;
+  }
+}
+
+#intermediate-time-select {
+  position: absolute;
+  right: 0;
+  margin-top: -9px;
+  margin-bottom: 45px !important;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px !important;
+  color: rgb(92, 95, 97);
+}
+
 @media (max-width: 1251px) {
   .nft-container {
     width: 48.5%;
@@ -492,57 +625,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
-@media (min-width: 948px) {
-  span.leaderboard-coin-select-mobile,
-  #intermediate-time-select {
-    display: none !important;
-  }
-  span.leaderboard-coin-select {
-    margin-top: -21px !important;
-  }
-  .coin-select-divider {
-    margin-top: -2px !important;
-    padding-bottom: 21px;
-  }
-}
-
-@media (max-width: 947px) {
-  .grid-margin {
-    margin-left: 0em !important;
-    margin-right: 0em !important;
-  }
-  span.leaderboard-coin-select {
-    display: none !important;
-  }
-  #mobile-time-select {
-    margin-left: 0px !important;
-  }
-  .ui.dropdown {
-    margin-bottom: 30px !important;
-  }
-  .coin-select-divider {
-    margin-top: 18px !important;
-    padding-bottom: 15px;
-  }
-}
-
-@media (min-width: 600px) {
-  #mobile-time-select {
-    display: none !important;
-  }
-}
-
-@media (max-width: 599px) {
-  #intermediate-time-select {
-    display: none;
-  }
-}
-
-#intermediate-time-select {
-  position: absolute;
-  right: 0;
-}
-
 @media (max-width: 590px) {
   .tominoya-pic {
     min-width: calc(100vw - 75px) !important;
@@ -565,12 +647,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .ui.blue.button.games-button {
     width: 50%;
-  }
-}
-
-@media (max-width: 767px) {
-  .account-select.play2 {
-    margin-left: 9px !important;
   }
 }
 
@@ -699,12 +775,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
-@media (min-width: 882px) {
-  .dg-tabs-mobile {
-    display: none;
-  }
-}
-
 @media (max-width: 1170px) {
   .DG-liquidity-container.gov {
     flex-direction: column;
@@ -741,6 +811,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     width: 100% !important;
   }
   .DG-column.one-uniswap {
+    margin-top: 55px;
     width: 100%;
   }
   .DG-column.one,
@@ -757,9 +828,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 }
 
 @media (max-width: 881px) {
-  .dg-tabs-desktop {
-    display: none;
-  }
   .DG-tablet-container,
   .DG-tablet-container-gov {
     display: flex;

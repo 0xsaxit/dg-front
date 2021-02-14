@@ -286,15 +286,15 @@ function DGBalances() {
       let temp = json.market_data.current_price.usd;
       const TOTAL_MANA = temp * BALANCE_BP_MANA;
 
-      // get BPT supply of pool 1
-      let response_2 = await Fetch.BPT_SUPPLY_1();
-      let json_2 = await response_2.json();
-      const SUPPLY_BPT_1 = json_2.result / Global.CONSTANTS.FACTOR;
+      // // get BPT supply of pool 1
+      // let response_2 = await Fetch.BPT_SUPPLY_1();
+      // let json_2 = await response_2.json();
+      // const SUPPLY_BPT_1 = json_2.result / Global.CONSTANTS.FACTOR;
 
-      // get BPT supply of pool 2
-      let response_3 = await Fetch.BPT_SUPPLY_2();
-      let json_3 = await response_3.json();
-      const SUPPLY_BPT_2 = json_3.result / Global.CONSTANTS.FACTOR;
+      // // get BPT supply of pool 2
+      // let response_3 = await Fetch.BPT_SUPPLY_2();
+      // let json_3 = await response_3.json();
+      // const SUPPLY_BPT_2 = json_3.result / Global.CONSTANTS.FACTOR;
 
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
@@ -313,8 +313,8 @@ function DGBalances() {
         BALANCE_MINING_DG: BALANCE_MINING_DG,
         BALANCE_KEEPER_DG: BALANCE_KEEPER_DG,
         TOTAL_MANA: TOTAL_MANA,
-        SUPPLY_BPT_1: SUPPLY_BPT_1,
-        SUPPLY_BPT_2: SUPPLY_BPT_2,
+        // SUPPLY_BPT_1: SUPPLY_BPT_1,
+        // SUPPLY_BPT_2: SUPPLY_BPT_2,
         CEO_MANA: CEO_MANA,
         CEO_DAI: CEO_DAI,
       };

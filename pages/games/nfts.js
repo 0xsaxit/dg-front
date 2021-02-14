@@ -4,18 +4,18 @@ import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Leaderboard = () => {
+const Nfts = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Leaderboard'}
+        title={Global.CONSTANTS.TITLE + ' | Games | NFTs'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
-      <Offerings gameState={'leaderboard'} />
+      <Offerings gameState={'nfts'} />
     </Layout>
   );
 };
 
-export default Leaderboard;
+export default Nfts;

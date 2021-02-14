@@ -7,6 +7,7 @@ import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
+import introJs from 'intro.js';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -16,7 +17,7 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
 
-  const realm = 'fenrir-amber';
+  const realm = 'hades-amber';
   let buttonPlay = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +71,13 @@ const Chateau = () => {
         {homeVideo()}
 
         <div className="home-dashboard-content">
+          <div style={{ maxWidth: '1400px' }}>
+            <div 
+              className="account-intro" 
+              data-title="Welcome! 👋" 
+              data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
+            />
+          </div>
           <p className="featured-casino-text">DECENTRAL GAMES</p>
           <h1
             className="home-dashboard-main-h1"
@@ -90,14 +98,30 @@ const Chateau = () => {
                 PLAY NOW
               </Button>
             )}
-            <Button
-              color="blue"
-              className="how-to-button"
-              target="_blank"
-              href="https://docs.decentral.games/getting-started"
-            >
-              EARN $DG
-            </Button>
+            <span>
+              {state.userStatus < 5 ? (
+                <Button
+                  color="blue"
+                  className="how-to-button"
+                  onClick={() => 
+                    introJs().setOptions({
+                      showBullets: false
+                    }).start()
+                  }
+                >
+                  GET STARTED
+                </Button>
+              ) : (
+                <Button
+                  color="blue"
+                  className="earn-dg-button"
+                  href="https://docs.decentral.games/getting-started/play-to-mine"
+                  target="_blank"
+                >
+                  EARN $DG
+                </Button>
+              )}
+            </span>
           </span>
           <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
             By owning $DG, the first-ever metaverse casino is now yours. Earn
@@ -149,7 +173,7 @@ const Chateau = () => {
             </div>
           </div>
 
-          <div className="section-4-outter">
+          <div className="section-4-outter" style={{ paddingBottom: '60px' }}>
             <div className="home-section-4">
               <span
                 className="outter-games-container"
@@ -308,10 +332,21 @@ const Chateau = () => {
               </h1>
               <span className="home-button-span">
                 <Link href="/account">
-                  <Button color="blue" className="play-button deposit">
+                  <Button 
+                    color="blue" 
+                    className="play-button deposit"
+                  >
                     DEPOSIT CRYPTO
                   </Button>
                 </Link>
+                <Button
+                  color="blue"
+                  className="metamask-how-button"
+                  href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+                  target="_blank"
+                >
+                  METAMASK
+                </Button>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
                 Play blackjack, roulette, slots, and backgammon with MANA or
@@ -457,7 +492,7 @@ const Chateau = () => {
   function sectionSix() {
     return (
       <Aux>
-        <div className="section-4-header">
+        <div className="section-4-header" style={{ marginTop: '15px' }}>
           <div className="home-section-4-header">
             <span className="outter-dashboard-span">
               <h1 className="dg-powered-h1">Get Started</h1>

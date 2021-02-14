@@ -54,11 +54,11 @@ const MessageBar = () => {
 
   useEffect(() => {
     if (isSafari) {
-      setMessage('Please use a Metamask-enabled browser to play games');
+      setMessage('Please use Brave, Chrome or Firefox to play games');
     } else if (!state.networkID) {
-      setMessage('Please enable MetaMask to play games');
+      setMessage('Please enable MetaMask to play games, for help, click "Get Started"');
     } else if (!state.userStatus) {
-      setMessage('Please log in to MetaMask to play games');
+      setMessage('Please log in to MetaMask to play games, for help, click "Get Started"');
     } else if (adminError) {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
@@ -72,7 +72,7 @@ const MessageBar = () => {
       //   );
     } else if (state.userStatus === 4) {
       setMessage(
-        `You must authorize the DAI and MANA token contracts on /account to play games with DAI and MANA`
+        `Need help? Click "Get Started". Make sure you've enabled MANA and DAI gameplay in your account`
       );
     } else if (!state.activeStatus) {
       setMessage(
@@ -80,11 +80,11 @@ const MessageBar = () => {
       );
     } else if (state.userStatus === 6) {
       setMessage(
-        'You must authorize the MANA token contract on /account to play games with MANA'
+        'You must authorize the MANA token contract on your account page to play games with MANA'
       );
     } else if (state.userStatus === 7) {
       setMessage(
-        'You must authorize the DAI token contract on /account to play games with DAI'
+        'You must authorize the DAI token contract on on your account page to play games with DAI'
       );
     } else {
       setMessage('');

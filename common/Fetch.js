@@ -26,29 +26,23 @@ const Fetch = {
   },
 
   TREASURY_STATS_GRAPH: (address) => {
-    return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   },
 
   TREASURY_STATS_NUMBERS: (address) => {
-    return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   },
 
   PARCEL_DATA: (landID, tokenID, address) => {
@@ -199,12 +193,9 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
-  COUNTRY_CODE: () => {
-    return fetch(`https://ipapi.co/json`);
-  },
 
-  PROPOSALS: () => {
-    return fetch(`https://hub.snapshot.page/api/decentralgames.eth/proposals`, {
+  NFTS: (address) => {
+    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&order_direction=desc&offset=0&limit=20`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -212,6 +203,26 @@ const Fetch = {
       },
     });
   },
+
+  AVATAR_IMAGE: (address) => {
+    return fetch(`https://peer.decentraland.org/lambdas/profile/${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  // PROPOSALS: () => {
+  //   return fetch(`https://hub.snapshot.page/api/decentralgames.eth/proposals`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   MANA_PRICE: () => {
     return fetch(`https://api.coingecko.com/api/v3/coins/decentraland`, {
@@ -243,8 +254,21 @@ const Fetch = {
     });
   },
 
-  AVATAR_IMAGE: (address) => {
-    return fetch(`https://peer.decentral.games/lambdas/profile/${address}`, {
+  // BPT_SUPPLY_1: () => {
+  //   return fetch(
+  //     `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0xca54c398195fce98856888b0fd97a9470a140f71&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   );
+  // },
+
+  LAND_PRICE: () => {
+    return fetch(`https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -253,31 +277,18 @@ const Fetch = {
     });
   },
 
-  BPT_SUPPLY_1: () => {
-    return fetch(
-      `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0xca54c398195fce98856888b0fd97a9470a140f71&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  },
-
-  BPT_SUPPLY_2: () => {
-    return fetch(
-      `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  },
+  // BPT_SUPPLY_2: () => {
+  //   return fetch(
+  //     `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   );
+  // },
 };
 
 export default Fetch;

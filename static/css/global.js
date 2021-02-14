@@ -92,7 +92,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .games-container,
+  .shop-container,
   .nft-container,
+  .my-nft-container,
   .dg-powered-container,
   .treasury-container,
   .balances-column,
@@ -165,7 +167,8 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: ${({ theme }) => theme.boxShadow} !important; 
   }
 
-  .ui.dropdown .menu > .item:hover {
+  .ui.dropdown .menu > .item:hover,
+  .account-table {
     background: ${({ theme }) => theme.card};
   }
 
@@ -175,6 +178,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .welcome-text,
+  .welcome-text-2,
   .earned-text,
   i.info.circle.icon.dai-mana-icon,
   .read-next-button:first-child:before,
@@ -186,7 +190,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .featured-blog-grid,
-  .ui.dropdown .menu > .active.item {
+  .ui.dropdown .menu > .active.item, {
     background: ${({ theme }) => theme.card} !important;
   }
 
@@ -257,7 +261,7 @@ export const GlobalStyles = createGlobalStyle`
   .table-body-text-1,
   .table-body-text-2, 
   .table-body-text-2.games {
-    border-bottom: ${({ theme }) => theme.globalDividers};
+    border-top: ${({ theme }) => theme.globalDividers};
   }
 
   .account-select.play,
@@ -266,9 +270,9 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.leaderboardSelect};   
   }
 
+  .table-header,
   .nfts-info,
   .nfts-info-2,
-  .table-header,
   .blog-date,
   .blog-category,
   .post-date,

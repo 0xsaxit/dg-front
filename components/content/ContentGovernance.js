@@ -60,9 +60,7 @@ const ContentGovernance = (props) => {
         setNftTreasury(props.formatPrice(wearables.slice(-1)[0].secondary, 0));
 
         let gameplay = json_4.totalGameplayUSD;
-        setGameplayTreasury(
-          props.formatPrice(gameplay.slice(-1)[0].secondary, 0)
-        );
+        setGameplayTreasury(props.formatPrice(gameplay.slice(-1)[0].secondary, 0));
 
         let dg = json_4.totalDgUSD;
         setDgTreasury(props.formatPrice(dg.slice(-1)[0].secondary, 0));
@@ -148,6 +146,7 @@ const ContentGovernance = (props) => {
     }
   }, [state.userStatus]);
 
+
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
       const percentGovernanceContract = (
@@ -199,6 +198,7 @@ const ContentGovernance = (props) => {
     }
   }, [props.price, state.DGBalances.BALANCE_STAKING_GOVERNANCE]);
 
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(e) {
@@ -218,8 +218,8 @@ const ContentGovernance = (props) => {
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <h3 className="DG-h3">$DG Governance</h3>
               <p>
-                Stake $DG tokens, govern the treasury, and earn governance
-                rewards. Read more about $DG governance in our{' '}
+                Stake $DG tokens, govern the treasury, and earn
+                governance rewards. Read more about $DG governance in our{' '}
                 <a
                   href={`${Global.CONSTANTS.BASE_URL}/blog/governance-staking-is-now-live-start-earning-dg-gov-rewards`}
                   style={{ color: '#2085f4' }}
@@ -368,7 +368,7 @@ const ContentGovernance = (props) => {
                     width: '35%',
                     maxWidth: '48.5%',
                     height: '75px',
-                    marginTop: '5px',
+                    marginTop: '5px'
                   }}
                 >
                   <Chart data={data} axes={axes} series={series} />
@@ -420,8 +420,6 @@ const ContentGovernance = (props) => {
                 )}
               </span>
 
-              <Divider />
-
               <span
                 style={{
                   display: 'flex',
@@ -465,8 +463,6 @@ const ContentGovernance = (props) => {
                   />
                 )}
               </span>
-
-              <Divider />
 
               <span
                 style={{
@@ -512,8 +508,6 @@ const ContentGovernance = (props) => {
                 )}
               </span>
 
-              <Divider />
-
               <span
                 style={{
                   display: 'flex',
@@ -557,6 +551,68 @@ const ContentGovernance = (props) => {
                     }}
                   />
                 )}
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">Uniswap ETH-DG LP</p>
+                  <Popup
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text">
+                        Coming soon{' '}
+                      </p>
+                    </div>
+                  </Popup>
+                </span>
+                <p className="earned-amount">$0.00</p>
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">DAI Yield farm</p>
+                  <Popup
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text">
+                        Coming soon{' '}
+                      </p>
+                    </div>
+                  </Popup>
+                </span>
+                <p className="earned-amount">$0.00</p>
               </span>
 
               <Divider />

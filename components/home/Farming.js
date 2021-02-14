@@ -11,7 +11,7 @@ import ContentAirdrop from '../content/ContentAirdrop';
 import ContentTreasury from '../content/ContentTreasury';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
-import ButtonAffiliates from '../button/ButtonAffiliates';
+import ModalAffiliates from '../modal/ModalAffiliates';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 
@@ -217,94 +217,76 @@ const Farming = (props) => {
   // helper functions
   function submenu() {
     return (
-      <div className="account-other-tabs">
-        <span className="dg-tabs-desktop">
-          <p className="account-other-p">
-            {DGState === 'governance' ? (
-              <b className="account-hover active">GOVERNANCE</b>
-            ) : (
+      <div>
+        <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
+          {DGState === 'governance' ? (
+             <p className="account-other-p" style={{ width: '100%' }}>
+              <span className="account-hover active">
+                <b>GOVERNANCE</b>
+              </span>
+              <Link href="/dg/mining">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                  <b>REWARDS</b>
+                </span>
+              </Link>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
+
+              <ModalAffiliates />
+            </p>
+          ) : DGState === 'mining' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
-                <Menu.Item className="account-hover">GOVERNANCE</Menu.Item>
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
               </Link>
-            )}
+              <span className="account-hover active">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                <b>REWARDS</b>
+              </span>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
 
-            {DGState === 'mining' ? (
-              <b className="account-hover active">GAMEPLAY REWARDS</b>
-            ) : (
+              <ModalAffiliates />
+            </p>
+          ) : (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>            
               <Link href="/dg/mining">
-                <Menu.Item className="account-hover">
-                  GAMEPLAY REWARDS
-                </Menu.Item>
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                  <b>REWARDS</b>
+                </span>
               </Link>
-            )}
+              <span className="account-hover active">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                <b>PROVISION</b>
+              </span>
 
-            {DGState === 'balancer' ? (
-              <b className="account-hover active">BALANCER</b>
-            ) : (
-              <Link href="/dg/balancer">
-                <Menu.Item className="account-hover">BALANCER</Menu.Item>
-              </Link>
-            )}
+              <ModalAffiliates />
+            </p>
+          )}
 
-            {DGState === 'uniswap' ? (
-              <b className="account-hover active">UNISWAP</b>
-            ) : (
-              <Link href="/dg/uniswap">
-                <Menu.Item className="account-hover">UNISWAP</Menu.Item>
-              </Link>
-            )}
+          </div>
 
-            {state.whitelisted ? (
-              DGState === 'admin' ? (
-                <b className="account-hover active">ADMIN</b>
-              ) : (
-                <Link href="/dg/admin">
-                  <Menu.Item className="account-hover">ADMIN</Menu.Item>
-                </Link>
-              )
-            ) : null}
-          </p>
-
-          <ButtonAffiliates />
-        </span>
-
-        <span className="dg-tabs-mobile">
-          <p className="account-other-p">
-            {DGState === 'governance' ? (
-              <b className="account-hover active">GOV</b>
-            ) : (
-              <Link href="/dg/">
-                <Menu.Item className="account-hover">GOV</Menu.Item>
-              </Link>
-            )}
-
-            {DGState === 'mining' ? (
-              <b className="account-hover active">GAMEPLAY</b>
-            ) : (
-              <Link href="/dg/mining">
-                <Menu.Item className="account-hover">GAMEPLAY</Menu.Item>
-              </Link>
-            )}
-
-            {DGState === 'balancer' ? (
-              <b className="account-hover active">BALANCER</b>
-            ) : (
-              <Link href="/dg/balancer">
-                <Menu.Item className="account-hover">BALANCER</Menu.Item>
-              </Link>
-            )}
-
-            {DGState === 'uniswap' ? (
-              <b className="account-hover active">UNI</b>
-            ) : (
-              <Link href="/dg/uniswap">
-                <Menu.Item className="account-hover">UNI</Menu.Item>
-              </Link>
-            )}
-          </p>
-
-          <ButtonAffiliates />
-        </span>
+        <Divider
+          className="tab-divider"
+          style={{ paddingTop: '21px' }}
+        />
       </div>
     );
   }
@@ -394,13 +376,8 @@ const Farming = (props) => {
   return (
     <div className="main-container">
       <div className="page-container">
-        <div className="account-other-inner-container ">
+        <div className="account-other-inner-container">
           {submenu()}
-
-          <Divider
-            className="tab-divider"
-            style={{ marginTop: '18px', paddingBottom: '21px' }}
-          />
 
           {DGState === 'governance' ? (
             <ContentGovernance
