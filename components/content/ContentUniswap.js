@@ -153,23 +153,18 @@ const ContentUniswap = (props) => {
 
   useEffect(() => {
     if (props.instances) {
-      (async () => {
-        const stakedTotal = await Transactions.getTotalSupply(
-          props.stakingContractPool1
-        );
-
-        if (stakedTotal) {
-          const percentagePool =
-            state.stakingBalances.BALANCE_STAKED_BPT_1 / stakedTotal;
-          const percentageFixed = percentagePool * 100;
-
-          setPercentagePool1(percentageFixed);
-        } else {
-          setPercentagePool1(0);
-        }
-      })();
+      const percentagePool = state.stakingBalances.BALANCE_STAKED_BPT_1;
+      setPercentagePool1(percentagePool);
     }
   }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
+
+  useEffect(() => {
+    if (props.instances) {
+      const percentagePool2 = state.stakingBalances.BALANCE_STAKED_BPT_2;
+      setPercentagePool2(percentagePool2);
+    }
+  }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_2]);
+
 
   useEffect(() => {
     if (
@@ -445,7 +440,7 @@ const ContentUniswap = (props) => {
                       CLAIM BALANCER 1 $DG
                     </Button>
                   )}
-                  {percentagePool1 ? (
+                  {percentagePool1 > 0 ? (
                     <Button
                       className="DG-stake-button-balancer-enabled"
                       onClick={() => {
@@ -479,7 +474,7 @@ const ContentUniswap = (props) => {
                       CLAIM BALANCER 2 $DG
                     </Button>
                   )}
-                  {percentagePool2 ? (
+                  {percentagePool2 > 0 ? (
                     <Button
                       className="DG-stake-button-balancer-enabled"
                       onClick={() => {
