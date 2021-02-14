@@ -184,11 +184,11 @@ const ContentBalances = (props) => {
   }, [state.userAddress]);
 
   // initialize token contract pings
-  // function initializePings() {
-  //   if (state.userStatus >= 6) {
-  //     console.log('Ping token contract');
-  //   }
-  // }
+  function initializePings() {
+    if (state.userStatus >= 6) {
+      console.log('Ping token contract');
+    }
+  }
 
   // close function
   function close() {
@@ -312,6 +312,7 @@ const ContentBalances = (props) => {
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount"> {totalPLAY} </p>
             </span>
+
             <Divider />
 
             <span className="balances-button-span">

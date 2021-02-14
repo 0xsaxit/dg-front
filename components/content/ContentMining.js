@@ -128,14 +128,14 @@ const ContentMining = (props) => {
               <h3 className="DG-h3">$DG Gameplay Rewards</h3>
               <p>
                 Mine $DG by playing games with MANA or DAI. Earn bonuses by
-                playing with friends, wearing DG wearable NFTs, and referring
-                friends. Read more about $DG gameplay rewards in our{' '}
+                playing with friends, wearing $DG NFTs, and referring
+                friends. {' '}
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/allocation"
                   target="_blank"
                   style={{ color: '#2085f4' }}
                 >
-                  docs
+                  Read More
                 </a>
                 .
               </p>
@@ -246,7 +246,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">26K MANA</p>
+                    <p className="earned-amount">31.3K MANA</p>
                   </span>
                 </span>
 
@@ -266,7 +266,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">88K MANA</p>
+                    <p className="earned-amount">106K MANA</p>
                   </span>
                 </span>
               </div>
@@ -310,7 +310,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">4.4K DAI</p>
+                    <p className="earned-amount">11K DAI</p>
                   </span>
                 </span>
 
@@ -329,7 +329,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">15K DAI</p>
+                    <p className="earned-amount">37K DAI</p>
                   </span>
                 </span>
               </div>

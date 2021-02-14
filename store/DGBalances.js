@@ -28,8 +28,8 @@ function DGBalances() {
   const [DAI_BPT, setDAI_BPT] = useState({});
   const [MANA_BPT, setMANA_BPT] = useState({});
   const [ETH_UNI, setETH_UNI] = useState({});
-  const [CEO_MANA, setCEO_MANA] = useState({});
-  const [CEO_DAI, setCEO_DAI] = useState({});
+  // const [CEO_MANA, setCEO_MANA] = useState({});
+  // const [CEO_DAI, setCEO_DAI] = useState({});
   const [instances, setInstances] = useState(false);
 
   let interval = {};
@@ -238,7 +238,7 @@ function DGBalances() {
         maticMana,
         '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
         3
-      );   
+      );
 
       const BALANCE_UNISWAP_DG = await Transactions.balanceOfToken(
         DGTokenContract, // was DG_BPT

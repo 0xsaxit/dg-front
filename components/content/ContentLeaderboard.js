@@ -148,7 +148,7 @@ const ContentLeaderboard = (props) => {
                         {index + 1}.{' '}
                         <img
                           className="avatar-picture"
-                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
+                          src={Images.DG_COIN_LOGO}
                           style={{
                             width: '24px',
                             marginRight: '6px',

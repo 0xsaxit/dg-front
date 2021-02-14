@@ -188,15 +188,14 @@ const ContentUniswap = (props) => {
               <h3 className="DG-h3">$DG Liquidity Provision</h3>
               <p>
                 Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
-                pool and staking the LP tokens on this dashboard. Read more
-                about $DG liquidity incentives in our
+                pool and staking the LP tokens on this dashboard.
                 <a
                   href="https://decentral-games-1.gitbook.io/dg/governance-1"
                   style={{ color: '#2085f4' }}
                   target="_blank"
                 >
                   {' '}
-                  docs
+                  Read more
                 </a>
                 . Balancer LP rewards have now ended following this{' '}
                 <a
