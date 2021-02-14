@@ -238,155 +238,148 @@ const Offerings = (props) => {
   // tab select and coin select area
   function submenu() {
     return (
-      <div className="account-other-tabs">
-        {/* ////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////////////////////////////////////////////////////////
-            ////////////////////////////  tab select area   //////////////////////////////// */}
+      <div>
+        <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
+          {/* ////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////  tab select area   //////////////////////////////// */}
 
-        {gameState === 'games' ? (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <span className="account-hover active">
-              <b>GAMES</b>
-            </span>
-            <Link href="/games/casinos">
-              <span className="account-hover">
-                <b>CASINOS</b>
-              </span>
-            </Link>
-            <Link href="/games/nfts">
-              <span className="account-hover">
-                <b>NFTS</b>
-              </span>
-            </Link>
-            <Link href="/games/shop">
-              <span className="account-hover">
-                <b>SHOP</b>
-              </span>
-            </Link>
-
-            {leaderboardLink(true)}
-
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : gameState === 'casinos' ? (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/games">
-              <span className="account-hover">
+          {gameState === 'games' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <span className="account-hover active">
                 <b>GAMES</b>
               </span>
-            </Link>
-            <span className="account-hover active">
-              <b>CASINOS</b>
-            </span>
-            <Link href="/games/nfts">
-              <span className="account-hover">
-                <b>NFTS</b>
-              </span>
-            </Link>
-            <Link href="/games/shop">
-              <span className="account-hover">
-                <b>SHOP</b>
-              </span>
-            </Link>
+              <Link href="/games/casinos">
+                <span className="account-hover">
+                  <b>CASINOS</b>
+                </span>
+              </Link>
+              <Link href="/games/nfts">
+                <span className="account-hover">
+                  <b>NFTS</b>
+                </span>
+              </Link>
+              <Link href="/games/shop">
+                <span className="account-hover">
+                  <b>SHOP</b>
+                </span>
+              </Link>
 
-            {leaderboardLink(true)}
+              {leaderboardLink(true)}
 
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : gameState == 'nfts' ? (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/games">
-              <span className="account-hover">
-                <b>GAMES</b>
-              </span>
-            </Link>
-            <Link href="/games/casinos">
-              <span className="account-hover">
+            </p>
+          ) : gameState === 'casinos' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/games">
+                <span className="account-hover">
+                  <b>GAMES</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
                 <b>CASINOS</b>
               </span>
-            </Link>
-            <span className="account-hover active">
-              <b>NFTS</b>
-            </span>
-            <Link href="/games/shop">
-              <span className="account-hover">
-                <b>SHOP</b>
-              </span>
-            </Link>
+              <Link href="/games/nfts">
+                <span className="account-hover">
+                  <b>NFTS</b>
+                </span>
+              </Link>
+              <Link href="/games/shop">
+                <span className="account-hover">
+                  <b>SHOP</b>
+                </span>
+              </Link>
 
-            {leaderboardLink(true)}
+              {leaderboardLink(true)}
 
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : gameState == 'shop' ? (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/games">
-              <span className="account-hover">
-                <b>GAMES</b>
-              </span>
-            </Link>
-            <Link href="/games/casinos">
-              <span className="account-hover">
-                <b>CASINOS</b>
-              </span>
-            </Link>
-            <Link href="/games/nfts">
-              <span className="account-hover">
+              <Divider
+                className="tab-divider"
+                style={{ marginTop: '18px', paddingBottom: '21px' }}
+              />
+            </p>
+          ) : gameState == 'nfts' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/games">
+                <span className="account-hover">
+                  <b>GAMES</b>
+                </span>
+              </Link>
+              <Link href="/games/casinos">
+                <span className="account-hover">
+                  <b>CASINOS</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
                 <b>NFTS</b>
               </span>
-            </Link>
-            <span className="account-hover active">
-              <b>SHOP</b>
-            </span>
+              <Link href="/games/shop">
+                <span className="account-hover">
+                  <b>SHOP</b>
+                </span>
+              </Link>
 
-            {leaderboardLink(true)}
+              {leaderboardLink(true)}
+            </p>
+          ) : gameState == 'shop' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/games">
+                <span className="account-hover">
+                  <b>GAMES</b>
+                </span>
+              </Link>
+              <Link href="/games/casinos">
+                <span className="account-hover">
+                  <b>CASINOS</b>
+                </span>
+              </Link>
+              <Link href="/games/nfts">
+                <span className="account-hover">
+                  <b>NFTS</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
+                <b>SHOP</b>
+              </span>
 
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : (
-          <div style={{ width: '100%' }}>
-            <span style={{ display: 'flex', width: '100%' }}>
-              <p className="account-other-p">
-                <Link href="/games">
-                  <span className="account-hover">
-                    <b>GAMES</b>
-                  </span>
-                </Link>
-                <Link href="/games/casinos">
-                  <span className="account-hover">
-                    <b>CASINOS</b>
-                  </span>
-                </Link>
-                <Link href="/games/nfts">
-                  <span className="account-hover">
-                    <b>NFTS</b>
-                  </span>
-                </Link>
-                <Link href="/games/shop">
-                  <span className="account-hover">
-                    <b>SHOP</b>
-                  </span>
-                </Link>
+              {leaderboardLink(true)}
+            </p>
+          ) : (
+            <div style={{ width: '100%' }}>
+              <span style={{ display: 'flex', width: '100%' }}>
+                <p className="account-other-p">
+                  <Link href="/games">
+                    <span className="account-hover">
+                      <b>GAMES</b>
+                    </span>
+                  </Link>
+                  <Link href="/games/casinos">
+                    <span className="account-hover">
+                      <b>CASINOS</b>
+                    </span>
+                  </Link>
+                  <Link href="/games/nfts">
+                    <span className="account-hover">
+                      <b>NFTS</b>
+                    </span>
+                  </Link>
+                  <Link href="/games/shop">
+                    <span className="account-hover">
+                      <b>SHOP</b>
+                    </span>
+                  </Link>
 
-                {leaderboardLink(false)}
-              </p>
-            </span>
+                  {leaderboardLink(false)}
+                </p>
+              </span>
 
-            {coinSelect()}
-          </div>
-        )}
+              {coinSelect()}
+            </div>
+          )}
+        </div>
+
+        <Divider
+          className="tab-divider"
+          style={{ paddingTop: '21px' }}
+        />
       </div>
     );
   }

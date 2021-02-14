@@ -114,7 +114,7 @@ const Chateau = () => {
               ) : (
                 <Button
                   color="blue"
-                  className="how-to-button"
+                  className="earn-dg-button"
                   href="https://docs.decentral.games/getting-started/play-to-mine"
                   target="_blank"
                 >

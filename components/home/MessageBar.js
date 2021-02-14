@@ -72,7 +72,7 @@ const MessageBar = () => {
       //   );
     } else if (state.userStatus === 4) {
       setMessage(
-        `Need help? Click "Get Started". Make sure you've enabled MANA and DAI gameplay in your account!`
+        `Need help? Click "Get Started". Make sure you've enabled MANA and DAI gameplay in your account`
       );
     } else if (!state.activeStatus) {
       setMessage(

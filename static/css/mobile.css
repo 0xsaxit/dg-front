@@ -187,6 +187,7 @@ div#dropdown-menu-items.item.right-menu-text {
   padding-top: 0px;
   margin-left: -81px;
   border-radius: 0px;
+  max-width: 100vw;
 }
 
 .ui.link.menu .item:hover, 
@@ -299,7 +300,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 
 @media (max-width: 499px) {
   .ui.blue.button.how-to-button,
-  a.ui.blue.button-how-to-button {
+  a.ui.blue.button-how-to-button,
+  .ui.blue.button.earn-dg-button,
+  a.ui.blue.button.earn-dg-button {
     display: none !important;
   }
   .dashboard-image-container,

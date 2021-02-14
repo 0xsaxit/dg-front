@@ -185,7 +185,7 @@ const ContentUniswap = (props) => {
         <div className="DG-liquidity-container top">
           <div className="DG-column top" style={{ minWidth: '100%' }}>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Liquidity Provision Incentives</h3>
+              <h3 className="DG-h3">$DG Liquidity Provision</h3>
               <p>
                 Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
                 pool and staking the LP tokens on this dashboard. Read more
@@ -300,8 +300,8 @@ const ContentUniswap = (props) => {
               close
               trigger={
                 <span className='balancer-pool-modal-trigger'>
-                  <p> Balancer Pools </p>
-                  <Icon name="external alternate" style={{ margin: '6px 0px 0px 6px' }} />
+                  <p style={{ fontSize: '16px' }}> Balancer Pools </p>
+                  <Icon name="external alternate" style={{ fontSize: '12px', margin: '3px 0px 0px 6px' }} />
                 </span>
               }
             >

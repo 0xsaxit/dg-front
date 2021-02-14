@@ -217,84 +217,76 @@ const Farming = (props) => {
   // helper functions
   function submenu() {
     return (
-      <div className="account-other-tabs">
-        {DGState === 'governance' ? (
-           <p className="account-other-p" style={{ width: '100%' }}>
-            <span className="account-hover active">
-              <b>GOVERNANCE</b>
-            </span>
-            <Link href="/dg/mining">
-              <span className="account-hover">
+      <div>
+        <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
+          {DGState === 'governance' ? (
+             <p className="account-other-p" style={{ width: '100%' }}>
+              <span className="account-hover active">
+                <b>GOVERNANCE</b>
+              </span>
+              <Link href="/dg/mining">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                  <b>REWARDS</b>
+                </span>
+              </Link>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
+
+              <ModalAffiliates />
+            </p>
+          ) : DGState === 'mining' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
                 <b>REWARDS</b>
               </span>
-            </Link>
-            <Link href="/dg/liquidity">
-              <span className="account-hover">
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
+
+              <ModalAffiliates />
+            </p>
+          ) : (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>            
+              <Link href="/dg/mining">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                  <b>REWARDS</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
                 <b>PROVISION</b>
               </span>
-            </Link>
 
-            <ModalAffiliates />
+              <ModalAffiliates />
+            </p>
+          )}
 
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : DGState === 'mining' ? (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/dg">
-              <span className="account-hover">
-                <b>GOVERNANCE</b>
-              </span>
-            </Link>
-            <span className="account-hover active">
-              <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
-              <b>REWARDS</b>
-            </span>
-            <Link href="/dg/liquidity">
-              <span className="account-hover">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
-                <b>PROVISION</b>
-              </span>
-            </Link>
+          </div>
 
-            <ModalAffiliates />
-
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        ) : (
-          <p className="account-other-p" style={{ width: '100%' }}>
-            <Link href="/dg">
-              <span className="account-hover">
-                <b>GOVERNANCE</b>
-              </span>
-            </Link>            
-            <Link href="/dg/mining">
-              <span className="account-hover">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
-                <b>REWARDS</b>
-              </span>
-            </Link>
-            <span className="account-hover active">
-              <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
-              <b>PROVISION</b>
-            </span>
-
-            <ModalAffiliates />
-
-            <Divider
-              className="tab-divider"
-              style={{ marginTop: '18px', paddingBottom: '21px' }}
-            />
-          </p>
-        )}
-
+        <Divider
+          className="tab-divider"
+          style={{ paddingTop: '21px' }}
+        />
       </div>
     );
   }
