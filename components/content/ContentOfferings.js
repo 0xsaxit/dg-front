@@ -289,68 +289,71 @@ const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentShop() {
     return (
-      <div className="outter-games-container">
-        <a
-          href="https://play.decentraland.org/?position=-74%2C80&realm=hades-amber"
-          target="_blank"
-          className="shop-container"
-        >
-          <span
-            style={{ display: 'flex', justifyContent: 'center' }}
-            className="nft-image"
+       <div className="outter-games-container">
+        {Object.keys(props.detailsShop).map((item, i) => (
+          <a
+            href={props.detailsShop[item][6] + utm}
+            target="_blank"
+            className="games-container"
           >
-            <Image
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png"
-              className='games-pic'
-              style={{ borderRadius: '4px' }}
-            />
-          </span>
-          <div className="nft-description">
-            <h3 className="nft-other-h3">NFT Shop</h3>
-            <span style={{ display: 'flex', justifyContent: 'center' }}>
-              <p className="nfts-info">WEARABLES</p>
-            </span>
-
-            <Divider
-              style={{
-                margin: '10px 0px 15px 0px',
-                width: 'calc(100% + 60px)',
-                marginLeft: '-30px',
-              }}
-            />
-
-            <p
-              className="nft-other-p"
-              style={{
-                marginTop: '-12px',
-                paddingTop: '15px',
-                textAlign: 'center',
-              }}
-            >
-              Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.
-            </p>
             <span
-              style={{ display: 'flex', justifyContent: 'space-between' }}
+              style={{ display: 'flex', justifyContent: 'center' }}
+              className="nft-image"
             >
-              <Button
-                id="play-now-button-casinos"
-                color="blue"
-                className="nft-button"
-                target="_blank"
-                href="https://play.decentraland.org/?position=-74%2C80&realm=hades-amber"
-              >
-                PLAY NOW
-              </Button>
-              <Button
-                className="nft-read-button two"
-                target="_blank"
-                href="https://play.decentraland.org/?position=-74%2C80&realm=hades-amber"
-              >
-                READ MORE
-              </Button>
+              <Image
+                src={props.detailsShop[item][0]}
+                className={props.detailsShop[item][1]}
+                style={{ borderRadius: '4px' }}
+              />
             </span>
-          </div>
-        </a>
+            <div className="nft-description">
+              <h3 className="nft-other-h3">{props.detailsShop[item][2]}</h3>
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <p className="nfts-info">{props.detailsShop[item][4]}</p>
+              </span>
+
+              <Divider
+                style={{
+                  margin: '10px 0px 15px 0px',
+                  width: 'calc(100% + 60px)',
+                  marginLeft: '-30px',
+                }}
+              />
+
+              <p
+                className="nft-other-p"
+                style={{
+                  marginTop: '-12px',
+                  paddingTop: '15px',
+                  textAlign: 'center',
+                }}
+              >
+                {props.detailsShop[item][3]}
+              </p>
+
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <Button
+                  id={`play-now-button-games-${i + 1}`}
+                  color="blue"
+                  className="nft-button"
+                  target="_blank"
+                  href={props.detailsShop[item][5] + utm}
+                >
+                  PLAY NOW
+                </Button>
+                <Button
+                  className="nft-read-button two"
+                  target="_blank"
+                  href={props.detailsShop[item][6]}
+                >
+                  READ MORE
+                </Button>
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
     );
   }

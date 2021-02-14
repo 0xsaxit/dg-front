@@ -75,7 +75,7 @@ const Chateau = () => {
             <div 
               className="account-intro" 
               data-title="Welcome! 👋" 
-              data-intro="Here's our site nav. Please connect to Metamask on the right side. Once done, your account information will appear - click your avatar image and you'll arrive on your account. If you need help depositing, click the question mark icon on your account page." 
+              data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
             />
           </div>
           <p className="featured-casino-text">DECENTRAL GAMES</p>
@@ -98,13 +98,30 @@ const Chateau = () => {
                 PLAY NOW
               </Button>
             )}
-            <Button
-              color="blue"
-              className="how-to-button"
-              onClick={() => introJs().start()}
-            >
-              GET STARTED
-            </Button>
+            <span>
+              {state.userStatus < 7 ? (
+                <Button
+                  color="blue"
+                  className="how-to-button"
+                  onClick={() => 
+                    introJs().setOptions({
+                      showBullets: false
+                    }).start()
+                  }
+                >
+                  GET STARTED
+                </Button>
+              ) : (
+                <Button
+                  color="blue"
+                  className="how-to-button"
+                  href="https://docs.decentral.games/getting-started/play-to-mine"
+                  target="_blank"
+                >
+                  EARN $DG
+                </Button>
+              )}
+            </span>
           </span>
           <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
             By owning $DG, the first-ever metaverse casino is now yours. Earn
@@ -327,8 +344,6 @@ const Chateau = () => {
                   className="metamask-how-button"
                   href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                   target="_blank"
-                  data-title="Using Metamask 🦁" 
-                  data-intro="Never used Metamask before? That's alright, click here for a step by step guide on how to set up your first wallet. Then come back and visit your account." 
                 >
                   METAMASK
                 </Button>
@@ -497,8 +512,6 @@ const Chateau = () => {
                 justifyContent: 'space-between',
                 marginTop: '30px',
               }}
-              data-title="Video Tutorials 📽️" 
-              data-intro="Looking for a more visual guide? We've got you covered! Check out our tutorial videos here if you are in need of further assistance." 
             >
               <div
                 href="/dg/mining"

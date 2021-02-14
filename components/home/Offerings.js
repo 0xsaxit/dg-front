@@ -80,15 +80,6 @@ const detailsGames = {
 };
 
 const detailsCasinos = {
-  Chateau: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608510345/Screen_Shot_2020-12-20_at_4.16.40_PM_zjxuia_nuotdx.png',
-    'games-pic',
-    'Chateau Satoshi',
-    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
-    'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-75%2C77&realm=hades-amber',
-    'https://docs.decentral.games/casinos/chateau-satoshi',
-  ],
   Tominoya: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1608509838/2020-11-22_10-21-32_y3t9zp.png',
     'games-pic',
@@ -98,35 +89,35 @@ const detailsCasinos = {
     'https://play.decentraland.org/?position=-119%2C133&realm=hades-amber',
     'https://docs.decentral.games/casinos/tominoya',
   ],
-  Serenity: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608509841/SI_FrontRight_Day_pyp1ww.png',
+  Chateau: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608510345/Screen_Shot_2020-12-20_at_4.16.40_PM_zjxuia_nuotdx.png',
     'games-pic',
-    'Serenity Island',
-    'Serenity Island is located in the Vegas City district in Decentraland. The scene features a massive island that players must climb up to enter, and the structure sports a Monte Carlo-inspired architecture. The building is three stories total featuring two levels of games and a basement club.',
+    'Chateau Satoshi',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-145%2C115&realm=hades-amber',
-    'https://docs.decentral.games/casinos/serenity-island',
+    'https://play.decentraland.org/?position=-75%2C77&realm=hades-amber',
+    'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
 };
 
 const detailsShop = {
-  Shop: [
+  shop_dcl: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
     'games-pic',
     'NFT Shop',
     'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'WEARABLES',
     'https://play.decentraland.org/?position=-74%2C80&realm=hades-amber',
-    'https://docs.decentral.games/casinos/chateau-satoshi',
+    'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
-  Shop_2: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
+  shop_opensea: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
     'games-pic',
-    'NFT Shop',
-    'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
+    'OpenSea',
+    'Decentral Games wearables are also available on OpenSea. OpenSea provides a one-stop shop for creating a customizable marketplace for non-fungible tokens, like our Decentral Games wearables. Here, users can smoothly buy and sell our wearables, get custom stats and analytics, and earn revenue by trading goods.',
     'WEARABLES',
-    'https://play.decentraland.org/?position=-74%2C80&realm=hades-amber',
-    'https://docs.decentral.games/casinos/chateau-satoshi',
+    'https://opensea.io/accounts/DecentralGames',
+    'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
 };
 
