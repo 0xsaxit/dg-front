@@ -1292,7 +1292,7 @@ i.help.circle.icon.submenu-icon {
 }
 
 .account-hover:hover {
-  background-color: rgb(229, 232, 235);
+  background-color: rgba(229, 232, 235, 0.5);
   border-radius: 4px;
   color: black;
 }
