@@ -333,7 +333,8 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     min-width: 48.5%;
     padding: 10px 0 0 0;
   }
-  a.ui.blue.button.metamask-how-button {
+  a.ui.blue.button.metamask-how-button,
+  .ui.blue.button.casinos-button {
     max-width: 48.5%;
   }
   .home-button-span.dg {
