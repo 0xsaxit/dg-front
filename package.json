@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.12.16",
-    "@biconomy/mexa": "^2.0.1",
+    "@biconomy/mexa": "^1.5.15",
     "@connext/vector-modal": "^0.1.46",
     "@next/bundle-analyzer": "^10.0.6",
     "@transak/transak-sdk": "^1.0.28",
