@@ -46,7 +46,7 @@ const ModalAffiliates = () => {
       <Divider style={{ marginTop: '-15px' }} />
 
       <p style={{ margin: '21px 30px 15px 30px' }}> Copy your unique referral link and share it far and wide. Any time a new user deposits crypto, you'll earn 10% of the $DG they mine.</p>
-      <p style={{ margin: '12px 30px 30px 30px' }}> <b>Please Note:</b> This link will only earn you $DG when shared with a user who has not yet deposited crypto on our site.</p>
+      <p style={{ margin: '12px 30px 30px 30px' }}> <b>Please Note:</b> This link will only earn you $DG when shared with a user who has not yet registered an account.</p>
       <p className="welcome-text" style={{ marginLeft: '15px' }}> Referral Link </p>
       <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', margin: '6px 30px 30px 30px', padding: '3px 6px 6px 6px' }}>
         <p style={{ marginBottom: '0px' }}> https://decentral.games/{state.userAddress.slice(0, 8)}... </p>
