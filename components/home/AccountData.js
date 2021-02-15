@@ -59,7 +59,7 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '999', }}>
+        <div style={{ position: 'relative', zIndex: '5', }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span className="avatar-picture" style={{ alignSelf: 'center', marginTop: '-60px' }}>
               <a
