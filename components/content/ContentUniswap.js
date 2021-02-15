@@ -14,6 +14,8 @@ const ContentUniswap = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [amountInputMANA, setAmountInputMANA] = useState('');
+  const [amountInputDAI, setAmountInputDAI] = useState('');
   const [amountInput, setAmountInput] = useState('');
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [percentagePool, setPercentagePool] = useState(0);
@@ -112,6 +114,8 @@ const ContentUniswap = (props) => {
     state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
   ]);
 
+
+
   useEffect(() => {
     if (instances) {
       (async () => {
@@ -156,7 +160,7 @@ const ContentUniswap = (props) => {
       const percentagePool = Number(state.stakingBalances.BALANCE_STAKED_BPT_1);
       setPercentagePool1(percentagePool);
     }
-  }, [props.instances, percentagePool1, state.stakingBalances.BALANCE_STAKED_BPT_1]);
+  }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
 
   console.log('!!!');
   console.log(percentagePool1);
@@ -228,7 +232,14 @@ const ContentUniswap = (props) => {
                 >
                   gov proposal
                 </a>
-                . Unclaimed $DG and links to the pools can be found below.
+                  . Unclaimed $DG and links to the pools can be found{' '}
+                <a 
+                  href="/dg/balancer"
+                  style={{ color: '#2085f4' }}
+                >
+                  here
+                </a>
+                .
               </p>
             </span>
           </div>
@@ -314,7 +325,7 @@ const ContentUniswap = (props) => {
               )}
             </span>
 
-            <Modal
+            {/*<Modal
               className="menu-info-modal"
               onClose={() => setOpen(false)}
               onOpen={() => setOpen(true)}
@@ -445,7 +456,7 @@ const ContentUniswap = (props) => {
                       CLAIM BALANCER 1 $DG
                     </Button>
                   )}
-                  {Number(percentagePool1) > 0 ? (
+                  {state.stakingBalances.BALANCE_STAKED_BPT_1 > 0 ? (
                     <Button
                       className="DG-stake-button-balancer-enabled"
                       onClick={() => {
@@ -453,7 +464,7 @@ const ContentUniswap = (props) => {
                           props.stakingContractPool1,
                           amountInputMANA
                         );
-                        setAmountInputMANA(state.stakingBalances.BALANCE_STAKED_BPT_1);
+                        setAmountInputMANA('');
                       }}
                     >
                       UNSTAKE MANA-DG BPT
@@ -500,7 +511,7 @@ const ContentUniswap = (props) => {
                   </span>
                 )}
               </div>
-            </Modal>
+            </Modal>*/}
           </div>
 
           <span className="DG-tablet-container">
