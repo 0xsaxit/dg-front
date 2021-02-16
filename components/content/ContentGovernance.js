@@ -108,7 +108,8 @@ const ContentGovernance = (props) => {
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
         let totalUSD = json_4.totalBalanceUSD;
-        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
+        let temp = totalUSD.slice(-1)[0].secondary + Number(uniTreasury);
+        setTreasuryTotal(props.formatPrice(temp));
       }
     })();
   }, []);
