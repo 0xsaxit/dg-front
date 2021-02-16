@@ -31,7 +31,7 @@ const ContentGovernance = (props) => {
   const [statsUSD, setStatsUSD] = useState('');
   const [instances, setInstances] = useState(false);
   const [uniTreasury, setUniTreasury] = useState(0);
-  const [percentageTreasuryUniswap, setPercentageTreasuryUniswap] = useState(0);
+  const [percentageUniswap, setPercentageUniswap] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -46,27 +46,13 @@ const ContentGovernance = (props) => {
       state.stakingBalances.BALANCE_CONTRACT_UNISWAP
     ) {
 
-      console.log('????');
-      console.log(state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY);
       const percentageTreasuryUniswap = Number(
         (state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY /
           state.stakingBalances.BALANCE_CONTRACT_UNISWAP)
       );
 
-      setPercentageTreasuryUniswap(percentageTreasuryUniswap);
-      console.log(percentageTreasuryUniswap);
-    }
-  }, [
-    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
-    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
-  ]);
+      setPercentageUniswap((percentageTreasuryUniswap * 100).toFixed(2));
 
-  useEffect(() => {
-    if (
-      props.price &&
-      state.DGBalances.BALANCE_UNISWAP_ETH &&
-      state.DGBalances.BALANCE_UNISWAP_DG
-    ) {
       (async () => {
         let response = await Fetch.ETH_PRICE();
         let json = await response.json();
@@ -81,13 +67,14 @@ const ContentGovernance = (props) => {
       })();
     }
   }, [
+    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
+    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
     props.price,
     state.DGBalances.BALANCE_UNISWAP_ETH,
     state.DGBalances.BALANCE_UNISWAP_DG,
+    uniTreasury,
+    percentageUniswap,
   ]);
-
-  console.log('!?!?');
-  console.log(uniTreasury);
 
   useEffect(() => {
     (async function () {
@@ -625,13 +612,13 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        Coming soon{' '}
+                        {percentageUniswap}% of the UNI V2 ETH-DG pool
                       </p>
                     </div>
                   </Popup>
                 </span>
                 {uniTreasury ? (
-                  <p className="earned-amount">$0.00</p>
+                  <p className="earned-amount">${props.formatPrice(uniTreasury)}</p>
                 ) : (
                   <Loader
                     active
