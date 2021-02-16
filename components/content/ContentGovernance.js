@@ -66,17 +66,7 @@ const ContentGovernance = (props) => {
         setUniTreasury(uniTreasury);
       })();
     }
-  }, [
-    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
-    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
-    props.price,
-    state.DGBalances.BALANCE_UNISWAP_ETH,
-    state.DGBalances.BALANCE_UNISWAP_DG,
-    uniTreasury,
-    percentageUniswap,
-  ]);
 
-  useEffect(() => {
     (async function () {
       // get treasury statistics
       if (state.userStatus) {
@@ -112,7 +102,16 @@ const ContentGovernance = (props) => {
         setTreasuryTotal(props.formatPrice(temp));
       }
     })();
-  }, []);
+  }, [
+    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
+    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
+    props.price,
+    state.DGBalances.BALANCE_UNISWAP_ETH,
+    state.DGBalances.BALANCE_UNISWAP_DG,
+    uniTreasury,
+    percentageUniswap,
+    treasuryTotal,
+  ]);
 
   let data;
   let axes;
