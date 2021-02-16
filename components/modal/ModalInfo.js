@@ -79,20 +79,13 @@ const ModalInfo = () => {
     setOpen(false);
   }
 
-  // calculate DG price
-  useEffect(() => {
-    const temp =
-      state.DGBalances.BALANCE_BP_DAI / (49 * state.DGBalances.BALANCE_BP_DG_1);
-    const price = temp;
-    setDGPrice(price);
-  }, [state.DGBalances]);
-
   // fetch circulating supply
   useEffect(() => {
     (async function () {
       const response = await Fetch.DG_SUPPLY_GECKO();
       const json = await response.json();
       setSupply(json.market_data.circulating_supply);
+      setDGPrice(json.market_data.current_price.usd);
     })();
   }, []);
 
