@@ -421,6 +421,12 @@ function DGBalances() {
         0
       );
 
+      const BALANCE_STAKED_UNISWAP_TREASURY = await Transactions.balanceOfToken(
+        stakingContractUniswap,
+        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+        0
+      );
+
       const BALANCE_WALLET_UNISWAP = await Transactions.balanceOfToken(
         uniswapContract,
         state.userAddress,
@@ -439,6 +445,7 @@ function DGBalances() {
         BALANCE_USER_GOVERNANCE: BALANCE_USER_GOVERNANCE,
         BALANCE_CONTRACT_UNISWAP: BALANCE_CONTRACT_UNISWAP,
         BALANCE_STAKED_UNISWAP: BALANCE_STAKED_UNISWAP,
+        BALANCE_STAKED_UNISWAP_TREASURY: BALANCE_STAKED_UNISWAP_TREASURY,
         BALANCE_WALLET_UNISWAP: BALANCE_WALLET_UNISWAP,
       };
     } catch (error) {

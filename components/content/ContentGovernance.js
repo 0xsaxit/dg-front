@@ -30,15 +30,64 @@ const ContentGovernance = (props) => {
   const [nftTreasury, setNftTreasury] = useState(0);
   const [statsUSD, setStatsUSD] = useState('');
   const [instances, setInstances] = useState(false);
+  const [uniTreasury, setUniTreasury] = useState(0);
+  const [percentageTreasuryUniswap, setPercentageTreasuryUniswap] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
-  // fetch number of proposals
 
   function length(obj) {
     return Object.keys(obj).length;
   }
+
+  useEffect(() => {
+    if (
+      state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY &&
+      state.stakingBalances.BALANCE_CONTRACT_UNISWAP
+    ) {
+
+      console.log('????');
+      console.log(state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY);
+      const percentageTreasuryUniswap = Number(
+        (state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY /
+          state.stakingBalances.BALANCE_CONTRACT_UNISWAP)
+      );
+
+      setPercentageTreasuryUniswap(percentageTreasuryUniswap);
+      console.log(percentageTreasuryUniswap);
+    }
+  }, [
+    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
+    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
+  ]);
+
+  useEffect(() => {
+    if (
+      props.price &&
+      state.DGBalances.BALANCE_UNISWAP_ETH &&
+      state.DGBalances.BALANCE_UNISWAP_DG
+    ) {
+      (async () => {
+        let response = await Fetch.ETH_PRICE();
+        let json = await response.json();
+
+        const priceETH = json.market_data.current_price.usd;
+        const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
+        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
+        const total_locked = locked_DG + locked_ETH;
+        const uniTreasury = Number(percentageTreasuryUniswap * total_locked).toFixed(2);
+
+        setUniTreasury(uniTreasury);
+      })();
+    }
+  }, [
+    props.price,
+    state.DGBalances.BALANCE_UNISWAP_ETH,
+    state.DGBalances.BALANCE_UNISWAP_DG,
+  ]);
+
+  console.log('!?!?');
+  console.log(uniTreasury);
 
   useEffect(() => {
     (async function () {
@@ -581,7 +630,20 @@ const ContentGovernance = (props) => {
                     </div>
                   </Popup>
                 </span>
-                <p className="earned-amount">$0.00</p>
+                {uniTreasury ? (
+                  <p className="earned-amount">$0.00</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="small"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px',
+                    }}
+                  />
+                )}
               </span>
 
               <span

@@ -14,6 +14,8 @@ import ButtonReward2 from '../button/ButtonReward2';
 import ModalAffiliates from '../modal/ModalAffiliates';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
+import Fetch from '../../common/Fetch';
+
 
 const Farming = (props) => {
   // get user's state from the Context API store
@@ -57,16 +59,14 @@ const Farming = (props) => {
     }
   }, [state.userStatus]);
 
+  // fetch circulating supply
   useEffect(() => {
-    if (state.DGBalances.BALANCE_BP_DAI && state.DGBalances.BALANCE_BP_DG_1) {
-      const price = Number(
-        state.DGBalances.BALANCE_BP_DAI /
-          (49 * state.DGBalances.BALANCE_BP_DG_1)
-      );
-
-      setPrice(price);
-    }
-  }, [state.DGBalances.BALANCE_BP_DAI, state.DGBalances.BALANCE_BP_DG_1]);
+    (async function () {
+      const response = await Fetch.DG_SUPPLY_GECKO();
+      const json = await response.json();
+      setPrice(json.market_data.current_price.usd);
+    })();
+  }, []);
 
   // get initial reward and timestamp values
   useEffect(() => {

@@ -83,6 +83,9 @@ const ContentUniswap = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
+        console.log('????');
+        console.log(uni_denom);
+        console.log(props.price);
         const uni_num = 51 * 1000 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
@@ -161,11 +164,6 @@ const ContentUniswap = (props) => {
       setPercentagePool1(percentagePool);
     }
   }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
-
-  console.log('!!!');
-  console.log(percentagePool1);
-  console.log('???');
-  console.log(parseFloat(state.stakingBalances.BALANCE_STAKED_BPT_1));
 
   useEffect(() => {
     if (props.instances) {
