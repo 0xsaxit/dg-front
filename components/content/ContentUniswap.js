@@ -83,9 +83,6 @@ const ContentUniswap = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
-        console.log('????');
-        console.log(uni_denom);
-        console.log(props.price);
         const uni_num = 51 * 1000 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
@@ -118,7 +115,6 @@ const ContentUniswap = (props) => {
   ]);
 
 
-
   useEffect(() => {
     if (instances) {
       (async () => {
@@ -137,65 +133,6 @@ const ContentUniswap = (props) => {
       })();
     }
   }, [instances, state.stakingBalances.BALANCE_STAKED_UNISWAP]);
-
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
-
-      async function fetchData() {
-        const BPTContract1 = await Transactions.BPTContract1(web3);
-        setBPTContract1(BPTContract1);
-
-        const BPTContract2 = await Transactions.BPTContract2(web3);
-        setBPTContract2(BPTContract2);
-      }
-
-      fetchData();
-    }
-  }, [state.userStatus]);
-
-
-  useEffect(() => {
-    if (props.instances) {
-      const percentagePool = Number(state.stakingBalances.BALANCE_STAKED_BPT_1);
-      setPercentagePool1(percentagePool);
-    }
-  }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_1]);
-
-  useEffect(() => {
-    if (props.instances) {
-      const percentagePool2 = Number(state.stakingBalances.BALANCE_STAKED_BPT_2);
-      setPercentagePool2(percentagePool2);
-    }
-  }, [props.instances, state.stakingBalances.BALANCE_STAKED_BPT_2]);
-
-
-  useEffect(() => {
-    if (
-      props.price &&
-      state.DGBalances.BALANCE_STAKING_BALANCER_1 &&
-      state.DGBalances.BALANCE_STAKING_BALANCER_2
-    ) {
-      const pool1USD =
-        props.price * state.DGBalances.BALANCE_STAKING_BALANCER_1;
-      const pool1Formatted = props.formatPrice(pool1USD, 2);
-
-      setPool1USD(pool1Formatted);
-
-      const pool2USD =
-        props.price * state.DGBalances.BALANCE_STAKING_BALANCER_2;
-      const pool2Formatted = props.formatPrice(pool2USD, 2);
-
-      setPool2USD(pool2Formatted);
-    }
-  }, [
-    props.price,
-    state.DGBalances.BALANCE_STAKING_BALANCER_1,
-    state.DGBalances.BALANCE_STAKING_BALANCER_2,
-  ]);
 
   
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -322,194 +259,6 @@ const ContentUniswap = (props) => {
                 </Button>
               )}
             </span>
-
-            {/*<Modal
-              className="menu-info-modal"
-              onClose={() => setOpen(false)}
-              onOpen={() => setOpen(true)}
-              open={open}
-              close
-              trigger={
-                <span className='balancer-pool-modal-trigger'>
-                  <p style={{ fontSize: '16px' }}> Balancer Pools </p>
-                  <Icon name="external alternate" style={{ fontSize: '12px', margin: '3px 0px 0px 6px' }} />
-                </span>
-              }
-            >
-            <div style={{ margin: '21px 30px 0px 30px' }}>
-              <span className="mailchimp-close" onClick={() => setOpen(false)}>
-                <Icon name="close" />
-              </span>
-            </div>
-
-            <p className="mailchimp-header-text"> Balancer Pools </p>
-
-            <Divider style={{ marginTop: '-15px' }} />
-
-            <p style={{ margin: '21px 30px 30px 30px' }}> To unstake from the MANA-DG pool, go{' '} 
-              <a 
-                href="https://pools.balancer.exchange/#/pool/0xca54c398195fce98856888b0fd97a9470a140f71/"
-                target="_blank"
-              >
-                here
-              </a>
-              . To unstake from DAI-DG, go{' '}
-              <a 
-                href="https://pools.balancer.exchange/#/pool/0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d/"
-                target="_blank"
-              >
-                here
-              </a>
-              .
-            </p>
-
-            <Divider />
-
-            <div style={{ margin: '15px 30px 30px 30px'}}>
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.DG_COIN_LOGO}
-                  className="farming-logo"
-                  alt="Decentral Games Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  {pool1 ? (
-                    <span>
-                      <span style={{ display: 'flex' }}>
-                        <p className="welcome-text">unclaimed 1</p>
-                        <Icon
-                          name="sort"
-                          id="pool-select-icon"
-                          onClick={() => setPool1(!pool1)}
-                        />
-                      </span>
-                      <p className="account-name">
-                        {state.DGBalances.BALANCE_STAKING_BALANCER_1 ? (
-                          props.formatPrice(
-                            state.DGBalances.BALANCE_STAKING_BALANCER_1,
-                            3
-                          )
-                        ) : (
-                          <Loader
-                            active
-                            inline
-                            size="small"
-                            style={{
-                              fontSize: '12px',
-                              marginTop: '1px',
-                              marginBottom: '2px',
-                            }}
-                          />
-                        )}
-                      </p>
-                    </span>
-                  ) : (
-                    <span>
-                      <span style={{ display: 'flex' }}>
-                        <p className="welcome-text">unclaimed 2</p>
-                        <Icon
-                          name="sort"
-                          id="pool-select-icon"
-                          onClick={() => setPool1(!pool1)}
-                        />
-                      </span>
-                      <p className="account-name">
-                        {state.DGBalances.BALANCE_STAKING_BALANCER_2 ? (
-                          props.formatPrice(
-                            state.DGBalances.BALANCE_STAKING_BALANCER_2,
-                            3
-                          )
-                        ) : (
-                          <Loader
-                            active
-                            inline
-                            size="small"
-                            style={{
-                              fontSize: '12px',
-                              marginTop: '1px',
-                              marginBottom: '2px',
-                            }}
-                          />
-                        )}
-                      </p>
-                    </span>
-                  )}
-                </span>
-              </span>
-
-              <Divider />
-
-              {pool1 ? (
-                <span className="DG-button-span" style={{ flexDirection: 'column' }}>
-                  {Number(state.DGBalances.BALANCE_STAKING_BALANCER_1) ? (
-                    <Button
-                      className="DG-claim-button"
-                      id="balances-padding-correct"
-                      onClick={() => props.reward(props.stakingContractPool1)}
-                    >
-                      CLAIM BALANCER 1 $DG
-                    </Button>
-                  ) : (
-                    <Button disabled className="DG-claim-button">
-                      CLAIM BALANCER 1 $DG
-                    </Button>
-                  )}
-                  {state.stakingBalances.BALANCE_STAKED_BPT_1 > 0 ? (
-                    <Button
-                      className="DG-stake-button-balancer-enabled"
-                      onClick={() => {
-                        props.withdrawal(
-                          props.stakingContractPool1,
-                          amountInputMANA
-                        );
-                        setAmountInputMANA('');
-                      }}
-                    >
-                      UNSTAKE MANA-DG BPT
-                    </Button>
-                  ) : (
-                    <Button disabled className="DG-stake-button-balancer">
-                      UNSTAKE MANA-DG BPT
-                    </Button>
-                  )}
-                </span>
-              ) : (
-                <span className="DG-button-span" style={{ flexDirection: 'column' }}>
-                  {Number(state.DGBalances.BALANCE_STAKING_BALANCER_2) ? (
-                    <Button
-                      className="DG-claim-button"
-                      id="balances-padding-correct"
-                      onClick={() => props.reward(props.stakingContractPool2)}
-                    >
-                      CLAIM BALANCER 2 $DG
-                    </Button>
-                  ) : (
-                    <Button disabled className="DG-claim-button">
-                      CLAIM BALANCER 2 $DG
-                    </Button>
-                  )}
-                  {percentagePool2 > 0 ? (
-                    <Button
-                      className="DG-stake-button-balancer-enabled"
-                      onClick={() => {
-                        props.withdrawal(
-                          props.stakingContractPool2,
-                          amountInputDAI
-                        );
-                        setAmountInputDAI(state.stakingBalances.BALANCE_STAKED_BPT_2);
-                      }}
-                    >
-                      UNSTAKE DAI-DG BPT
-                    </Button>
-                  ) : (
-                    <Button disabled className="DG-stake-button-balancer">
-                      UNSTAKE DAI-DG BPT
-                    </Button>
-                  )}
-                  </span>
-                )}
-              </div>
-            </Modal>*/}
           </div>
 
           <span className="DG-tablet-container">
