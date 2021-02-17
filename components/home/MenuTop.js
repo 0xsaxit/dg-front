@@ -208,7 +208,7 @@ const MenuTop = (props) => {
                   </a>
 
                   <a
-                    href="https://gov.decentral.games"
+                    href="https://snapshot.page/#/decentralgames.eth"
                     id="docs-top-menu"
                     target="_blank"
                   >
@@ -265,7 +265,7 @@ const MenuTop = (props) => {
         </a>
 
         <a
-          href="https://gov.decentral.games"
+          href="https://snapshot.page/#/decentralgames.eth"
           id="docs-top-menu"
           target="_blank"
         >
