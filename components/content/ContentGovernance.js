@@ -32,6 +32,7 @@ const ContentGovernance = (props) => {
   const [instances, setInstances] = useState(false);
   const [uniTreasury, setUniTreasury] = useState(0);
   const [percentageUniswap, setPercentageUniswap] = useState(0);
+  const [temp, setTemp] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -41,19 +42,19 @@ const ContentGovernance = (props) => {
   }
 
   useEffect(() => {
-    if (
-      state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY &&
-      state.stakingBalances.BALANCE_CONTRACT_UNISWAP
-    ) {
 
-      const percentageTreasuryUniswap = Number(
-        (state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY /
-          state.stakingBalances.BALANCE_CONTRACT_UNISWAP)
-      );
+    (async function () {
+      // get treasury statistics
+      if (state.userStatus && state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY &&
+      state.stakingBalances.BALANCE_CONTRACT_UNISWAP) {
 
-      setPercentageUniswap((percentageTreasuryUniswap * 100).toFixed(2));
+        const percentageTreasuryUniswap = Number(
+          (state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY /
+            state.stakingBalances.BALANCE_CONTRACT_UNISWAP)
+        );
 
-      (async () => {
+        setPercentageUniswap((percentageTreasuryUniswap * 100).toFixed(2));
+
         let response = await Fetch.ETH_PRICE();
         let json = await response.json();
 
@@ -61,15 +62,10 @@ const ContentGovernance = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const total_locked = locked_DG + locked_ETH;
-        const uniTreasury = Number(percentageTreasuryUniswap * total_locked).toFixed(2);
+        const uniTreasury = percentageTreasuryUniswap * total_locked;
 
         setUniTreasury(uniTreasury);
-      })();
-    }
 
-    (async function () {
-      // get treasury statistics
-      if (state.userStatus) {
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
 
@@ -98,8 +94,13 @@ const ContentGovernance = (props) => {
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
         let totalUSD = json_4.totalBalanceUSD;
-        let temp = totalUSD.slice(-1)[0].secondary + Number(uniTreasury);
-        setTreasuryTotal(props.formatPrice(temp));
+        setTreasuryTotal(totalUSD.slice(-1)[0].secondary);
+
+        console.log(uniTreasury);
+        console.log(treasuryTotal);
+
+        let temp_1 = uniTreasury + treasuryTotal;
+        setTemp(props.formatPrice(temp_1));
       }
     })();
   }, [
@@ -111,6 +112,7 @@ const ContentGovernance = (props) => {
     uniTreasury,
     percentageUniswap,
     treasuryTotal,
+    temp,
   ]);
 
   let data;
@@ -383,8 +385,8 @@ const ContentGovernance = (props) => {
                 />
                 <span className="farming-pool-span" style={{ width: '60%' }}>
                   <p className="welcome-text">total treasury</p>
-                  {treasuryTotal ? (
-                    <p className="account-name">${treasuryTotal}</p>
+                  {(uniTreasury && treasuryTotal) != 0 ? (
+                    <p className="account-name">${temp}</p>
                   ) : (
                     <Loader
                       active
