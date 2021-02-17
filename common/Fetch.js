@@ -194,8 +194,18 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
 
-  NFTS: (address) => {
-    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&order_direction=desc&offset=0&limit=20`, {
+  NFTS_1: (address) => {
+    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0xbf53c33235cbfc22cef5a61a83484b86342679c5&order_direction=desc&offset=0&limit=10`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  NFTS_2: (address) => {
+    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0x7038e9d2c6f5f84469a84cf9bc5f4909bb6ac5e0&order_direction=desc&offset=0&limit=10`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

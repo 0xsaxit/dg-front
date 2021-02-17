@@ -69,17 +69,24 @@ const ContentAccount = (props) => {
     (async function () {
       // get user nfts statistics
       if (state.userStatus) {
-        let response = await Fetch.NFTS(state.userAddress);
+        let response = await Fetch.NFTS_1(state.userAddress);
         let json = await response.json();
+
+        let response_2 = await Fetch.NFTS_2(state.userAddress);
+        let json_2 = await response_2.json();
 
         var wearables = [];
         var i;
+        var j;
+
         for (i = 0; i < json.assets.length; i++) {
-          if (json.assets[i].asset_contract.address == "0x7038e9d2c6f5f84469a84cf9bc5f4909bb6ac5e0"
-            || json.assets[i].asset_contract.address == "0xbf53c33235cbfc22cef5a61a83484b86342679c5") {
-            wearables.push(json.assets[i]);
-          }
+          wearables.push(json.assets[i]);
         }
+
+        for (j = 0; j < json_2.assets.length; j++) {
+          wearables.push(json_2.assets[j]);
+        }
+
         setWearables(wearables);
       }
     })();
