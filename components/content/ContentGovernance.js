@@ -45,8 +45,9 @@ const ContentGovernance = (props) => {
 
     (async function () {
       // get treasury statistics
-      if (state.userStatus && state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY &&
-      state.stakingBalances.BALANCE_CONTRACT_UNISWAP) {
+      if (state.userStatus 
+        && state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY 
+        && state.stakingBalances.BALANCE_CONTRACT_UNISWAP) {
 
         const percentageTreasuryUniswap = Number(
           (state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY /
@@ -94,13 +95,7 @@ const ContentGovernance = (props) => {
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
         let totalUSD = json_4.totalBalanceUSD;
-        setTreasuryTotal(totalUSD.slice(-1)[0].secondary);
-
-        console.log(uniTreasury);
-        console.log(treasuryTotal);
-
-        let temp_1 = uniTreasury + treasuryTotal;
-        setTemp(props.formatPrice(temp_1));
+        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
       }
     })();
   }, [
@@ -112,7 +107,6 @@ const ContentGovernance = (props) => {
     uniTreasury,
     percentageUniswap,
     treasuryTotal,
-    temp,
   ]);
 
   let data;
@@ -385,8 +379,8 @@ const ContentGovernance = (props) => {
                 />
                 <span className="farming-pool-span" style={{ width: '60%' }}>
                   <p className="welcome-text">total treasury</p>
-                  {(uniTreasury && treasuryTotal) != 0 ? (
-                    <p className="account-name">${temp}</p>
+                  {treasuryTotal ? (
+                    <p className="account-name">${treasuryTotal}</p>
                   ) : (
                     <Loader
                       active
