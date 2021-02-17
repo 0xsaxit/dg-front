@@ -82,6 +82,15 @@ p {
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
+a.get-metamask {
+  margin: 21px -36px 0px 0px;
+  color: white;
+}
+
+a.get-metamask:hover {
+  color: #2085f4;
+}
+
 #menu-logo {
   width: 33px;
   padding-top: 15px;

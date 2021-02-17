@@ -8,6 +8,8 @@ import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
 import introJs from 'intro.js';
+import ButtonPlayVerify from '../button/ButtonPlayVerify';
+
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -87,7 +89,10 @@ const Chateau = () => {
           </h1>
           <span className="home-button-span">
             {state.userStatus === 0 ? (
-              <ModalVideo />
+              <span>
+                <ButtonPlayVerify />
+                <ModalVideo />
+              </span>
             ) : (
               <Button
                 color="blue"
