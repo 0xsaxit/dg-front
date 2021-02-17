@@ -33,6 +33,7 @@ const ContentGovernance = (props) => {
   const [uniTreasury, setUniTreasury] = useState(0);
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [temp, setTemp] = useState(0);
+  const [treasuryDG, setTreasuryDG] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -96,6 +97,8 @@ const ContentGovernance = (props) => {
 
         let totalUSD = json_4.totalBalanceUSD;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
+
+        setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
     })();
   }, [
@@ -107,6 +110,7 @@ const ContentGovernance = (props) => {
     uniTreasury,
     percentageUniswap,
     treasuryTotal,
+    treasuryDG,
   ]);
 
   let data;
@@ -475,7 +479,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 3,000 $DG at market price{' '}
+                        calculated as {treasuryDG} $DG at market price{' '}
                       </p>
                     </div>
                   </Popup>

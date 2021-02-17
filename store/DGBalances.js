@@ -210,6 +210,12 @@ function DGBalances() {
         0
       );
 
+      const BALANCE_TREASURY_DG = await Transactions.balanceOfToken(
+        DGTokenContract,
+        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+        0
+      );
+
       const BALANCE_CHILD_DG = await Transactions.balanceOfToken(
         DGMaticContract,
         state.userAddress,
@@ -317,6 +323,7 @@ function DGBalances() {
         // SUPPLY_BPT_2: SUPPLY_BPT_2,
         CEO_MANA: CEO_MANA,
         CEO_DAI: CEO_DAI,
+        BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
       };
     } catch (error) {
       console.log('Token balances error: ' + error);
