@@ -18,10 +18,10 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.12.17",
     "@biconomy/mexa": "^1.5.15",
     "@connext/vector-modal": "^0.1.50",
-    "@next/bundle-analyzer": "^10.0.6",
+    "@next/bundle-analyzer": "^10.0.7",
     "@transak/transak-sdk": "^1.0.28",
     "@zeit/next-css": "^1.0.1",
     "buttercms": "^1.2.6",
@@ -29,7 +29,7 @@
     "eth-sig-util": "^3.0.1",
     "html-to-react": "^1.4.5",
     "intro.js": "^3.3.1",
-    "next": "^10.0.6",
+    "next": "^10.0.7",
     "next-seo": "^4.19.0",
     "pusher-js": "^7.0.3",
     "react": "^17.0.1",

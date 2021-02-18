@@ -1,4 +1,7 @@
 FROM node:14.15.5-alpine3.13 as base
+LABEL website="Secure Docker Images https://secureimages.dev"
+LABEL description="We secure your business from scratch"
+LABEL maintainer="support@secureimages.dev"
 
 ARG CI=true
 ARG NEXT_PUBLIC_API_URL
@@ -6,7 +9,7 @@ ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 ENV NODE_ENV="production"
 
-RUN apk add --no-cache ca-certificates git build-base python2 ;\
+RUN apk add --no-cache ca-certificates git build-base python2 &&\
     rm -rf /var/cache/apk/*
 
 WORKDIR /app
@@ -28,7 +31,9 @@ RUN npm run build
 ################################################################################
 
 FROM node:14.15.5-alpine3.13 as runtime
-LABEL maintainer="Sviatoslav <sviatoslav@uadevops.com>"
+LABEL website="Secure Docker Images https://secureimages.dev"
+LABEL description="We secure your business from scratch"
+LABEL maintainer="support@secureimages.dev"
 
 ENV NODE_ENV=production \
     PATH="/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
