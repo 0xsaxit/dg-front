@@ -661,7 +661,7 @@ const ContentGovernance = (props) => {
                     </div>
                   </Popup>
                 </span>
-                <p className="earned-amount">$0.00</p>
+                <p className="earned-amount">Coming Soon</p>
               </span>
 
               <Divider />
