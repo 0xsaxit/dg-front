@@ -340,7 +340,7 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsShop[item][5] + utm}
                 >
-                  PLAY NOW
+                  SHOP NOW
                 </Button>
                 <Button
                   className="nft-read-button two"
