@@ -195,7 +195,7 @@ const ContentAccount = (props) => {
         );
       })();
     }
-  }, [state.userAddress]);
+  }, [state.userAddress, state.userBalances[1][1]]);
 
   // initialize token contract pings
   function initializePings() {

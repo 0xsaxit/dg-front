@@ -52,6 +52,7 @@ const AccountData = (props) => {
     setUserData(props.dataType, 1);
   }, [props.dataType, isLoading]);
 
+  console.log(state.userInfo[5]);
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -68,7 +69,7 @@ const AccountData = (props) => {
               >
                 <img
                   className="avatar-picture main"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                  src={state.userInfo[5]}
                   style={{
                     backgroundColor: 'white',
                     width: '120px',

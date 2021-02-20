@@ -21,14 +21,9 @@ function UserInfo() {
 
         const responseAvatar = await Fetch.AVATAR_IMAGE(address);
         const jsonAvatar = await responseAvatar.json();
+        const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
 
         const playerList = json.playerList;
-        
-        if (jsonAvatar.avatars.length == 0) {
-          const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
-        } else {
-          const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
-        }
 
         const response = [name, address, balance, count, email, avatar, playerList];
 
