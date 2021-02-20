@@ -268,7 +268,7 @@ img.logo-image {
 
 .blogdetail-page-container .post__content p,
 .summary_content {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 20px;
   word-break: break-word;
@@ -279,7 +279,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content li {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 12px;
   word-break: break-word;
@@ -294,7 +294,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content blockquote {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 20px;
   word-break: break-word;
@@ -306,7 +306,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content h6 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: -18px !important;
   margin-bottom: 42px !important;

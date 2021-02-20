@@ -56,9 +56,13 @@ const MessageBar = () => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
     } else if (!state.networkID) {
-      setMessage('Please enable MetaMask to play games, for help, click "Get Started"');
+      setMessage(
+        'Please enable MetaMask to play games, for help, click "Get Started"'
+      );
     } else if (!state.userStatus) {
-      setMessage('Please log in to MetaMask to play games, for help, click "Get Started"');
+      setMessage(
+        'Please log in to MetaMask to play games, for help, click "Get Started"'
+      );
     } else if (adminError) {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
@@ -105,7 +109,7 @@ const MessageBar = () => {
         id="message-bar"
         className="mobile-message-bar"
         style={{
-          fontFamily: 'Montserrat, sans-serif',
+          fontFamily: 'Poppins, sans-serif',
           color: 'white',
           textAlign: 'center',
           padding: '10px 30px 9px 30px',

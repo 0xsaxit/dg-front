@@ -10,7 +10,7 @@ h5,
 p,
 button,
 a {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -41,7 +41,7 @@ h3 {
 }
 
 h1 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   font-size: 48px;
   font-weight: 500;
   margin-bottom: 0px;
@@ -223,7 +223,6 @@ div.ui.segment.transparent-menu-segment {
   padding-right: 15px !important;
 }
 
-
 div.item.sidebar-menu-text.blog#active,
 div.item.sidebar-menu-text.blog:hover {
   color: black;
@@ -233,7 +232,7 @@ div.item.sidebar-menu-text.blog:hover {
   padding-bottom: 22px !important;
 }
 
-.sidebar-menu-text.blog#active, 
+.sidebar-menu-text.blog#active,
 .sidebar-menu-text.blog:hover {
   color: black;
   cursor: default;
@@ -1029,7 +1028,7 @@ table {
 .table-header-text,
 .table-header-text-1,
 .table-header-text-2 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   padding-top: 9px;
   padding-bottom: 9px;
   font-size: 12px;
@@ -1047,7 +1046,7 @@ table {
 }
 
 .table-body {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   font-size: 16px;
   letter-spacing: 0.25px;
 }
@@ -1229,7 +1228,7 @@ table.ui.fixed.single.line.table {
 }
 
 .account-other-inner-p {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   font-size: 17px !important;
   margin-top: 45px;
   padding-bottom: 60px;
@@ -1359,7 +1358,7 @@ svg.spanbox.disable {
 }
 
 .spanbox {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   margin-top: 30px;
 }
 
@@ -1824,7 +1823,7 @@ i.copy.icon.affiliate-icon:hover {
 .DG-column,
 .DG-graph-column,
 .DG-column-treasury {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   border-radius: 4px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
