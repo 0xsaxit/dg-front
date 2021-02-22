@@ -6,6 +6,7 @@ import Fetch from '../../common/Fetch';
 
 
 const EventData = () => {
+  console.log('hello');
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -25,12 +26,13 @@ const EventData = () => {
       console.log(json);
 
       for (i = 0; i < json.data.length; i++) {
-        if (json.data[i].user === "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0") {
+        if (json.data[i].user == "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0") {
           events.push(json.data[i]);
         }
       }
 
       setEvents(events);
+      console.log(events);
 
     })();
   }, []);
@@ -59,6 +61,7 @@ const EventData = () => {
             tablet={8}
             mobile={16}
             className="leaderboard-column"
+            id='nine-nine-one'
             key={i}
           >
             <a href={event.url} className="my-nft-container">

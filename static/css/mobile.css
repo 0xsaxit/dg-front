@@ -598,6 +598,18 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
+@media (max-width: 1101px) {
+.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 768px) {
+.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+    width: 100% !important;
+  }
+}
+
 #intermediate-time-select {
   position: absolute;
   right: 0;

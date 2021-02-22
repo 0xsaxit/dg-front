@@ -6,6 +6,7 @@ import Images from '../common/Images';
 
 
 const Events = () => {
+  console.log('world');
   return (
     <Layout>
       <Header
