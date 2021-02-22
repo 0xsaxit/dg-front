@@ -83,12 +83,13 @@ p {
 /* ----------------------------------------- */
 
 a.get-metamask {
-  margin: 21px -36px 0px 0px;
+  margin: 21px 15px 0px 0px;
   color: white;
 }
 
 a.get-metamask:hover {
-  color: #2085f4;
+  color: white;
+  filter: brightness(0.9);
 }
 
 #menu-logo {

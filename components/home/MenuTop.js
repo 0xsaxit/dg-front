@@ -355,13 +355,6 @@ const MenuTop = (props) => {
     } else {
       return (
         <span className="right-menu-items">
-          <a 
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className="get-metamask"
-          > 
-            What's Metamask?
-          </a>
           <ButtonVerify />
 
           {/*<PopUpLinks isDarkMode={isDarkMode} />*/}

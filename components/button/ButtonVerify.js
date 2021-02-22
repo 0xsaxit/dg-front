@@ -95,6 +95,13 @@ const ButtonVerify = () => {
     <span>
       {metamaskEnabled ? (
         <span className="right-menu-items">
+          <a 
+            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+            target="_blank"
+            className="get-metamask"
+          > 
+            What's Metamask?
+          </a>
           <Button
             content="CONNECT METAMASK"
             color="blue"
