@@ -92,6 +92,15 @@ a.get-metamask:hover {
   filter: brightness(0.9);
 }
 
+a.get-metamask-scroll {
+  margin: 21px 15px 0px 0px;
+  color: black;
+}
+
+a.get-metamask-scroll:hover {
+  color: rgba(0, 0, 0, 0.75);
+}
+
 #menu-logo {
   width: 33px;
   padding-top: 15px;

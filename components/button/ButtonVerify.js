@@ -9,6 +9,41 @@ const ButtonVerify = () => {
 
   // define local variables
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [scrollState, setScrollState] = useState('top');
+
+  let menuStyle = [];
+  let listener = null;
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    listener = document.addEventListener('scroll', (e) => {
+      let scrolled = document.scrollingElement.scrollTop;
+      if (scrolled >= 10) {
+        if (scrollState !== 'amir') {
+          setScrollState('amir');
+        }
+      } else {
+        if (scrollState !== 'top') {
+          setScrollState('top');
+        }
+      }
+    });
+
+    return () => {
+      document.removeEventListener('scroll', listener);
+    };
+  }, [scrollState]);
+
+  if (scrollState == 'top') {
+    menuStyle = [
+      'get-metamask'
+    ];
+  } else {
+    menuStyle = [
+      'get-metamask-scroll',
+    ];
+  }
 
   let userAddress = '';
 
@@ -98,7 +133,7 @@ const ButtonVerify = () => {
           <a 
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
             target="_blank"
-            className="get-metamask"
+            className={menuStyle[0]}
           > 
             What's Metamask?
           </a>
