@@ -18,6 +18,7 @@ const Chateau = () => {
   // define local variables
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
+  const [ref, setRef] = useState('');
 
   const realm = 'hades-amber';
   let buttonPlay = '';
@@ -52,6 +53,17 @@ const Chateau = () => {
       setUtm(sessionStorage.getItem('utm'));
     }
   }, [utm]);
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes("0x")) {
+      sessionStorage.setItem('ref', url.substring(url.lastIndexOf('/') + 1));
+      setRef(sessionStorage.getItem('ref'));
+    } else {
+      sessionStorage.setItem('ref', '');
+      setRef(sessionStorage.getItem('ref'));
+    }
+  }, [ref]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
