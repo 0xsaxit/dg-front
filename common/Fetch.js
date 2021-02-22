@@ -214,6 +214,16 @@ const Fetch = {
     });
   },
 
+  EVENTS: () => {
+    return fetch(`https://events.decentraland.org/api/events`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });  
+  },
+
   AVATAR_IMAGE: (address) => {
     return fetch(`https://peer.decentraland.org/lambdas/profile/${address}`, {
       method: 'GET',

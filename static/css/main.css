@@ -912,7 +912,8 @@ i.chevron.down.icon {
 }
 
 .games-container:hover,
-.shop-container:hover {
+.shop-container:hover,
+.my-nft-container:hover {
   transform: translateY(-1px);
   box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
   transition: all 0.1s ease 0s;
