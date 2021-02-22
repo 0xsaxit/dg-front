@@ -72,7 +72,7 @@ const initialState = {
   },
   refreshBalances: true,
   stakeTime: 0,
-  affiliateAddress: '',
+  affiliateAddress: `{sessionStorage.getItem('ref')}`,
   toggleTheme: 'light',
   whitelisted: false,
   // countryCode: '',

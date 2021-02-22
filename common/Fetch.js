@@ -215,7 +215,7 @@ const Fetch = {
   },
 
   EVENTS: () => {
-    return fetch(`https://events.decentraland.org/api/events/`, {
+    return fetch(`https://api.decentral.games/players/getEvents`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
