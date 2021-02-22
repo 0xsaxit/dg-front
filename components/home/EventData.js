@@ -16,24 +16,25 @@ const EventData = () => {
   useEffect(() => {
     (async function () {
       // get user nfts statistics
-      let response = await Fetch.EVENTS();
-      let json = await response.json();
+      if (state.userStatus) {
+        let response = await Fetch.EVENTS();
+        let json = await response.json();
 
-      var events = [];
-      var i;
+        var events = [];
+        var i;
 
-      console.log('!!!!');
-      console.log(json);
+        console.log('!!!!');
+        console.log(json);
 
-      for (i = 0; i < json.data.length; i++) {
-        if (json.data[i].user == "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0") {
-          events.push(json.data[i]);
+        for (i = 0; i < json.data.length; i++) {
+          if (json.data[i].user == "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0") {
+            events.push(json.data[i]);
+          }
         }
+
+        setEvents(events);
+        console.log(events);
       }
-
-      setEvents(events);
-      console.log(events);
-
     })();
   }, []);
 
