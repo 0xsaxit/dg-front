@@ -34,13 +34,6 @@ const EventData = () => {
     })();
   }, []);
 
-  function getFormattedDate() {
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    var d = new Date();
-    return monthNames[d.getMonth()] + ' ' + d.getDate();
-  }
-
   function getSentences(str) {
     var ss = str.split('!');
     var f = ss.slice(0, 1).join('!') + '!';

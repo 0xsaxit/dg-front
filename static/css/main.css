@@ -875,7 +875,8 @@ i.chevron.down.icon {
     padding: 0px 21px 120px 21px;
   }
   .event-pic {
-    max-height: 100% !important;
+    width: 100%;
+    height: 100%;
   }
 }
 
