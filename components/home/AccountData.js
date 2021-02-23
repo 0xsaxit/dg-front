@@ -26,6 +26,7 @@ const AccountData = (props) => {
   const [dataPage, setDataPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [utm, setUtm] = useState('');
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -53,6 +54,12 @@ const AccountData = (props) => {
   }, [props.dataType, isLoading]);
 
   console.log(state.userInfo[5]);
+
+  useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
+
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -64,7 +71,7 @@ const AccountData = (props) => {
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span className="avatar-picture" style={{ alignSelf: 'center', marginTop: '-60px' }}>
               <a
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                href={`https://play.decentraland.org/?position=-119%2C133&realm=hades-amber${utm}`}
                 target="_blank"
               >
                 <img
