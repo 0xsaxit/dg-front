@@ -824,6 +824,15 @@ i.chevron.down.icon {
 /*              EVENTS PAGE CSS              */
 /* ----------------------------------------- */
 
+.account-hover.active.events {
+  text-transform: uppercase;
+}
+
+.account-hover.active.events:hover {
+  text-transform: uppercase;
+  background-color: rgb(229, 232, 235);
+}
+
 .event-pic.featured {
   z-index: 1;
   object-fit: cover;

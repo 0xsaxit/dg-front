@@ -53,7 +53,7 @@ const EventData = () => {
         <div className="account-other-tabs" style={{ paddingTop: '15px' }}>
           <div style={{ marginLeft: '0px' }}>
             <span className="account-other-p" style={{ display: 'flex' }}>
-              <span className="account-hover active">
+              <span className="account-hover active events">
                 <b>FEATURED EVENT</b>
               </span>
             </span>
@@ -95,7 +95,7 @@ const EventData = () => {
                   {getSentences(events[0].description)}
                 </p>
                 <span
-                  style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '15px' }}
+                  style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0px', paddingBottom: '39px' }}
                 >
                   <Button
                     color="blue"
@@ -121,7 +121,7 @@ const EventData = () => {
         <div className="account-other-tabs" style={{ marginTop: '30px' }}>
           <div style={{ marginLeft: '0px' }}>
             <span className="account-other-p" style={{ display: 'flex' }}>
-              <span className="account-hover active">
+              <span className="account-hover active events">
                 <b>ALL EVENTS</b>
               </span>
             </span>
