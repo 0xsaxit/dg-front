@@ -213,7 +213,7 @@ div#dropdown-menu-items.item.right-menu-text {
   background: none !important;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
   .menu-items-to-hide {
     display: none;
   }
@@ -237,7 +237,7 @@ div.ui.top.attached.menu {
   border: 0px solid white;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 1101px) {
   #mobile-menu-icon,
   #mobile-menu-icon-home,
   div.ui.top.attached.menu  {
@@ -595,6 +595,18 @@ span#mobile-time-select.account-select.dropdown {
   .coin-select-divider {
     margin-top: 18px !important;
     padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 1101px) {
+.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 768px) {
+.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+    width: 100% !important;
   }
 }
 

@@ -34,6 +34,7 @@ const ContentGovernance = (props) => {
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [temp, setTemp] = useState(0);
   const [treasuryDG, setTreasuryDG] = useState(0);
+  const [ref, setRef] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -233,6 +234,17 @@ const ContentGovernance = (props) => {
       setPriceUSD(priceUSDAdjusted);
     }
   }, [props.price, state.DGBalances.BALANCE_STAKING_GOVERNANCE]);
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes("0x")) {
+      sessionStorage.setItem('ref', url.substring(url.lastIndexOf('/') + 1));
+      setRef(sessionStorage.getItem('ref'));
+    } else {
+      sessionStorage.setItem('ref', '');
+      setRef(sessionStorage.getItem('ref'));
+    }
+  }, [ref]);
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
