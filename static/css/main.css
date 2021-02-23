@@ -819,6 +819,66 @@ i.chevron.down.icon {
   flex-direction: column;
   margin-top: 150px;
 }
+
+/* ----------------------------------------- */
+/*              EVENTS PAGE CSS              */
+/* ----------------------------------------- */
+
+.event-pic.featured {
+  z-index: 1;
+  object-fit: cover;
+  width: 66%;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.featured-event-grid {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+}
+
+.featured-info {
+  display: flex;
+  margin-top: 3px;
+}
+
+@media (max-width: 1100px) {
+  .event-pic.featured {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px 4px 0px 0px;
+  }
+  .featured-event-grid {
+    flex-direction: column !important;
+  }
+  .featured-info {
+    justify-content: center;
+    margin-top: 0px;
+  }
+  .events-featured-p,
+  .nft-other-h3.featured {
+    text-align: center !important;
+  }
+  .events-featured-divider {
+    margin: 10px 0px 15px -19px !important;
+    width: calc(100% + 38px);
+  }
+}
+
+#event-container {
+  padding: 0px 30px 120px 30px;
+}
+
+@media (max-width: 499px) {
+  #event-container {
+    padding: 0px 21px 120px 21px;
+  }
+  .event-pic {
+    max-height: 100% !important;
+  }
+}
+
 /* ----------------------------------------- */
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
@@ -1002,6 +1062,14 @@ i.chevron.down.icon {
   font-weight: 600;
   padding-bottom: 12px;
   text-align: center;
+  padding-top: 12px;
+}
+
+.nft-other-h3.featured {
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  text-align: left;
   padding-top: 12px;
 }
 
