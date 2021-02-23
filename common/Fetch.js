@@ -190,6 +190,16 @@ const Fetch = {
     });
   },
 
+  EVENTS: () => {
+    return fetch(`https://api.decentral.games/players/getEvents`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });  
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
@@ -212,16 +222,6 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
     });
-  },
-
-  EVENTS: () => {
-    return fetch(`https://api.decentral.games/players/getEvents`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });  
   },
 
   AVATAR_IMAGE: (address) => {

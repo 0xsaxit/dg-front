@@ -3,6 +3,7 @@ import { GlobalContext } from '../../store/index';
 import { Button, Divider, Grid, Icon, Image } from 'semantic-ui-react';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
+import Spinner from '../Spinner';
 
 
 const EventData = () => {
@@ -11,15 +12,13 @@ const EventData = () => {
 
   // define local variables
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async function () {
       // get user nfts statistics
       let response = await Fetch.EVENTS();
       let json = await response.json();
-
-      console.log('!!!');
-      console.log(json);
 
       var events = [];
       var i;
@@ -30,10 +29,10 @@ const EventData = () => {
         }
       }
 
-      console.log('???');
-      console.log(events);
+      setEvents(events);
+      setLoading(false);
     })();
-  }, [events]);
+  }, []);
 
   function getFormattedDate() {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -130,9 +129,13 @@ const EventData = () => {
 
   return (
     <div className="main-container" style={{ padding: '96px 0px 0px 0px' }}>
-      <div className="page-container" style={{ padding: '0px 30px 120px 30px' }}>
-        {contentEvents()}
-      </div>
+      {loading === true ? (
+        <Spinner background={1} />
+      ) : (
+        <div className="page-container" style={{ padding: '0px 30px 120px 30px' }}>
+          {contentEvents()}
+        </div>
+      )}
     </div>
   );
 };
