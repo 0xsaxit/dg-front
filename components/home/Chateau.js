@@ -134,8 +134,7 @@ const Chateau = () => {
             </span>
           </span>
           <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-            By owning $DG, the first-ever metaverse casino is now yours. Earn
-            $DG through gameplay, liquidity provision, and governance rewards.
+            By owning $DG, the first-ever metaverse casino is now yours. Vote on treasury management, economic policy, and new game development.
           </p>
           <p className="scroll-down-icon">
             <Icon name="chevron down" />
