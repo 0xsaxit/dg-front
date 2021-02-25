@@ -202,6 +202,13 @@ const ModalInfo = () => {
             BUY WITH FIAT
           </Button>
         </span>
+        <Button
+          className="withdraw-dg-button"
+          href="https://explorer-mainnet.maticvigil.com/tokens/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/token-transfers"
+          target="_blank"
+        >
+          WITHDRAW MATIC $DG
+        </Button>
       </div>
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>

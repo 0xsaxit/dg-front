@@ -4,6 +4,7 @@ import { Button, Divider, Grid, Icon, Image } from 'semantic-ui-react';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import Spinner from '../Spinner';
+import Countdown from 'react-countdown';
 
 
 const EventData = () => {
@@ -52,9 +53,16 @@ const EventData = () => {
 
         <div className="account-other-tabs" style={{ paddingTop: '15px' }}>
           <div style={{ marginLeft: '0px' }}>
-            <span className="account-other-p" style={{ display: 'flex' }}>
+            <span className="account-other-p" style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span className="account-hover active events">
                 <b>FEATURED EVENT</b>
+              </span>
+              <span style={{ display: 'flex' }}>
+                <h3 className="nft-other-h3 countdown1"> Next Event:</h3>
+                <Countdown 
+                  className="nft-other-h3 countdown2"
+                  date={events[0].next_start_at} 
+                />
               </span>
             </span>
           </div>

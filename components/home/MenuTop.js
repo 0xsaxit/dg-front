@@ -22,6 +22,7 @@ const MenuTop = (props) => {
   const [popUpOpen, setPopUpOpen] = useState(true);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
+  const [ref, setRef] = useState('');
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -122,6 +123,26 @@ const MenuTop = (props) => {
     return () => clearInterval(interval);
   }, []);
 
+
+  // store affiliate address in localStorage
+  function setAffiliateState() {
+    dispatch({
+      type: 'affiliate_address',
+      data: localStorage.getItem('ref'),
+    });
+  }
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes("0x")) {
+      localStorage.setItem('ref', url.substring(url.lastIndexOf('/') + 1));
+      setRef(localStorage.getItem('ref'));
+    } else {
+      localStorage.setItem('ref', '');
+      setRef(localStorage.getItem('ref'));
+    }
+    setAffiliateState();
+  }, [ref]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

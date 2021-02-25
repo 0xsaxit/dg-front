@@ -1083,6 +1083,21 @@ i.chevron.down.icon {
   padding-top: 12px;
 }
 
+.nft-other-h3.countdown1 {
+  padding-bottom: 0px;
+  margin: 5px 0px -5px 0px;
+}
+
+.nft-other-h3.countdown2 {
+  margin: 15px 0px -5px 6px;
+}
+
+@media (max-width: 599px) {
+  .nft-other-h3.countdown1 {
+    display: none;
+  }
+}
+
 .games-other-h3 {
   font-size: 28px;
   font-weight: 600;
@@ -2304,6 +2319,18 @@ div.ui.grid.admin-balances-container {
   padding: 7px 6px 0px 6px;
   width: 48.5%;
   opacity: 100% !important;
+}
+
+.ui.button.withdraw-dg-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 27px;
+  margin-top: 15px;
+  padding: 7px 6px 0px 6px;
+  width: calc(100% - 60px);
+  opacity: 100% !important;
+  margin: 15px 30px 0px 30px;
 }
 
 .ui.blue.button.metamask-button {
