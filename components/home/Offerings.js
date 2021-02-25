@@ -9,32 +9,6 @@ import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';
 
-const options = [
-  {
-    key: 'ALL TIME',
-    text: 'ALL TIME',
-    value: 'ALL TIME',
-    content: 'ALL TIME',
-  },
-  {
-    key: 'WEEKLY',
-    text: 'WEEKLY',
-    value: 'WEEKLY',
-    content: 'WEEKLY',
-  },
-  {
-    key: 'DAILY',
-    text: 'DAILY',
-    value: 'DAILY',
-    content: 'DAILY',
-  },
-  {
-    key: 'COMPETITION',
-    text: 'COMPETITION',
-    value: 'COMPETITION',
-    content: 'COMPETITION',
-  },
-];
 
 const detailsGames = {
   BlackJack: [
@@ -200,8 +174,28 @@ const Offerings = (props) => {
     setGameSelect(gameSelect);
   }
 
-  function timeChange(event, data) {
-    setTimePeriod(data.value);
+  const timePeriods = ['ALL TIME', 'WEEKLY', 'DAILY', 'COMPETITION'];
+
+  function timeChangeForward() {
+    var i = timePeriod;
+    var j = timePeriods.indexOf(i);
+    if (j < 3) {
+      setTimePeriod(timePeriods[j + 1]);
+    } else {
+      j = 0;
+      setTimePeriod(timePeriods[j]);   
+    }
+  }
+
+  function timeChangeBackward() {
+    var i = timePeriod;
+    var j = timePeriods.indexOf(i);
+    if (j < 1) {
+      j = 3;
+      setTimePeriod(timePeriods[j]);
+    } else {
+      setTimePeriod(timePeriods[j - 1]);   
+    }
   }
 
   function Leaderboard() {
@@ -478,27 +472,23 @@ const Offerings = (props) => {
             />
             DAI
           </span>
-          {/*<span
-            className="account-select dropdown"
-            style={{
-              marginRight: '0px',
-              fontWeight: '400',
-            }}
+          <span
+            className="account-hover-time"
+            style={{ marginRight: '-6px' }}
           >
-            <Dropdown
-              options={options}
-              defaultValue={options[0].value}
-              onChange={timeChange}
+            <Icon 
+              className="time-select-icon"
+              name="angle left"
+              onClick={timeChangeBackward}
             />
-
-           <Button
-              onClick={() => refreshLeaderboard()}
-              className="reload-button"
-              icon
-            >
-              <Icon name="redo" />
-            </Button>
-          </span>*/}
+              {timePeriod}
+            <Icon 
+              className="time-select-icon"
+              name="angle right"
+              style={{ marginLeft: '4px' }}
+              onClick={timeChangeForward}
+            />
+          </span>
         </span>
 
         <Divider className="coin-select-divider" />
@@ -581,54 +571,23 @@ const Offerings = (props) => {
                 ////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////  send time select to own row  ///////////////////////// */}
 
-          {/*<span
-            className="account-select dropdown"
-            id="intermediate-time-select"
-            style={{
-              marginRight: '0px',
-              fontWeight: '400',
-            }}
+          <span
+            className="account-hover-time tablet"
           >
-            <Dropdown
-              options={options}
-              defaultValue={options[0].value}
-              onChange={timeChange}
+            <Icon 
+              className="time-select-icon"
+              name="angle left"
+              onClick={timeChangeBackward}
             />
-
-           <Button
-              onClick={() => refreshLeaderboard()}
-              className="reload-button"
-              icon
-            >
-              <Icon name="redo" />
-            </Button>
-          </span>*/}
+              {timePeriod}
+            <Icon 
+              className="time-select-icon"
+              name="angle right"
+              style={{ marginLeft: '4px' }}
+              onClick={timeChangeForward}
+            />
+          </span>
         </span>
-        {/*<span
-          className="account-select dropdown"
-          id="mobile-time-select"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            left: '0px',
-            fontWeight: '400',
-          }}
-        >
-          <Dropdown
-            style={{ marginTop: '6px' }}
-            options={options}
-            defaultValue={options[0].value}
-            onChange={timeChange}
-          />
-
-           <Button
-              onClick={() => refreshLeaderboard()}
-              className="reload-button"
-              icon
-            >
-              <Icon name="redo" />
-            </Button>
-        </span>*/}
       </Aux>
     );
   }

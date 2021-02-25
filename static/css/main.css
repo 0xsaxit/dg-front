@@ -1371,6 +1371,21 @@ table.ui.fixed.single.line.table {
   margin-top: 18px;
 }
 
+.account-hover-time {
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 9px 12px 9px 12px;
+  letter-spacing: 0.5px !important;
+  margin-right: 15px;
+  color: rgb(92, 95, 97);
+  margin-top: 18px;
+}
+
+.time-select-icon {
+  cursor: pointer;
+}
+
 .account-icon-hover {
   cursor: pointer;
   letter-spacing: 0.5px;
