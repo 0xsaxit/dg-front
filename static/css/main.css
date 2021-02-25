@@ -455,6 +455,12 @@ a.menu-info-label-link:hover {
   top: 54px;
 }
 
+@media (max-width: 746px) {
+  .account-intro {
+    top: 74px !important;
+  }
+}
+
 .home-video-container {
   position: absolute;
   top: 0;
@@ -1085,7 +1091,7 @@ i.chevron.down.icon {
 
 .nft-other-h3.countdown1 {
   padding-bottom: 0px;
-  margin: 5px 0px -5px 0px;
+  margin: 5px 0px -5.account-intropx 0px;
 }
 
 .nft-other-h3.countdown2 {
