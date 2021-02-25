@@ -31,9 +31,9 @@ const ContentGovernance = (props) => {
   const [statsUSD, setStatsUSD] = useState('');
   const [instances, setInstances] = useState(false);
   const [uniTreasury, setUniTreasury] = useState(0);
-  const [percentageUniswap, setPercentageUniswap] = useState(0);
-  const [temp, setTemp] = useState(0);
+  const [daiTreasury, setDaiTreasury] = useState(0);
   const [treasuryDG, setTreasuryDG] = useState(0);
+  const [percentageUniswap, setPercentageUniswap] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,6 @@ const ContentGovernance = (props) => {
         let json = await response.json();
 
         const priceETH = json.market_data.current_price.usd;
-        const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
-        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
-        const total_locked = locked_DG + locked_ETH;
-        const uniTreasury = percentageTreasuryUniswap * total_locked;
-
-        setUniTreasury(uniTreasury);
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
@@ -98,19 +92,25 @@ const ContentGovernance = (props) => {
         let totalUSD = json_4.totalBalanceUSD;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
 
+        let uni = json_4.totalDgEthUniswapBalance;
+        setUniTreasury(props.formatPrice(uni.slice(-1)[0].secondary));
+
+        let daiYield = json_4.totalCurveAaveBalance;
+        setDaiTreasury(props.formatPrice(daiYield.slice(-1)[0].secondary));
+
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
     })();
   }, [
-    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
-    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
     props.price,
-    state.DGBalances.BALANCE_UNISWAP_ETH,
-    state.DGBalances.BALANCE_UNISWAP_DG,
     uniTreasury,
-    percentageUniswap,
     treasuryTotal,
     treasuryDG,
+    daiTreasury,
+    daiBalance,
+    manaBalance,
+    gameplayTreasury,
+    percentageUniswap,
   ]);
 
   let data;
@@ -618,7 +618,7 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {uniTreasury ? (
-                  <p className="earned-amount">${props.formatPrice(uniTreasury)}</p>
+                  <p className="earned-amount">${uniTreasury}</p>
                 ) : (
                   <Loader
                     active
@@ -656,12 +656,25 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        Coming soon{' '}
+                        Total treasury balance contained in the Curve Aave vault{' '}
                       </p>
                     </div>
                   </Popup>
                 </span>
-                <p className="earned-amount">Coming Soon</p>
+                {daiTreasury ? (
+                  <p className="earned-amount">${daiTreasury}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="small"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px',
+                    }}
+                  />
+                )}
               </span>
 
               <Divider />
