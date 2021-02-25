@@ -43,7 +43,14 @@ const Chateau = () => {
   }, []);
 
   useEffect(() => {
-    setUtm(sessionStorage.getItem('utm'));
+    const url = window.location.href;
+    if (url.includes("?utm_source")) {
+      sessionStorage.setItem('utm', url.substring(url.lastIndexOf('/') + 1));
+      setUtm(sessionStorage.getItem('utm'));
+    } else {
+      sessionStorage.setItem('utm', '');
+      setUtm(sessionStorage.getItem('utm'));
+    }
   }, [utm]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
