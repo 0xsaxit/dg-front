@@ -34,6 +34,7 @@ const ContentGovernance = (props) => {
   const [percentageUniswap, setPercentageUniswap] = useState(0);
   const [temp, setTemp] = useState(0);
   const [treasuryDG, setTreasuryDG] = useState(0);
+  const [daiTreasury, setDaiTreasury] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -64,9 +65,6 @@ const ContentGovernance = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const total_locked = locked_DG + locked_ETH;
-        const uniTreasury = percentageTreasuryUniswap * total_locked;
-
-        setUniTreasury(uniTreasury);
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
@@ -95,6 +93,12 @@ const ContentGovernance = (props) => {
         let dai = json_4.daiBalance;
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
+        let uni = json_4.totalDgEthUniswapBalance;
+        setUniTreasury(props.formatPrice(uni.slice(-1)[0].secondary));
+
+        let daiYield = json_4.totalCurveAaveBalance;
+        setDaiTreasury(props.formatPrice(daiYield.slice(-1)[0].secondary));
+
         let totalUSD = json_4.totalBalanceUSD;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
 
@@ -111,6 +115,7 @@ const ContentGovernance = (props) => {
     percentageUniswap,
     treasuryTotal,
     treasuryDG,
+    daiTreasury,
   ]);
 
   let data;
@@ -618,7 +623,7 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {uniTreasury ? (
-                  <p className="earned-amount">${props.formatPrice(uniTreasury)}</p>
+                  <p className="earned-amount">${uniTreasury}</p>
                 ) : (
                   <Loader
                     active
@@ -656,12 +661,25 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        Coming soon{' '}
+                        Total treasury balance locked in Curve Aave vault{' '}
                       </p>
                     </div>
                   </Popup>
                 </span>
-                <p className="earned-amount">Coming Soon</p>
+                {daiTreasury ? (
+                  <p className="earned-amount">${daiTreasury}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="small"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px',
+                    }}
+                  />
+                )}
               </span>
 
               <Divider />
