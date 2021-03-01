@@ -243,7 +243,7 @@ const AccountData = (props) => {
           <div style={{ maxWidth: '100vw', marginTop: '60px' }}>
             <Parallax
               blur={0}
-              bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1612826628/Screen_Shot_2021-02-08_at_3.23.36_PM_po0m5c.png" 
+              bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1614574769/Image_from_iOS_coebmd.png" 
               strength={100}
             >
               <div style={{ height: '180px' }} />
