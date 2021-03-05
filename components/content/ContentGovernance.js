@@ -36,6 +36,8 @@ const ContentGovernance = (props) => {
   const [treasuryDG, setTreasuryDG] = useState(0);
   const [daiTreasury, setDaiTreasury] = useState(0);
   const [gameplayAll, setGameplayAll] = useState(0);
+  const [dgBalance, setDgBalance] = useState(0);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -106,6 +108,9 @@ const ContentGovernance = (props) => {
         let gameplayTotal = gameplay.slice(-1)[0].secondary + 300000;
         setGameplayAll(props.formatPrice(gameplayTotal, 0));
 
+        let dgbal = json_4.dgBalance;
+        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary));
+
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
     })();
@@ -121,6 +126,7 @@ const ContentGovernance = (props) => {
     treasuryDG,
     daiTreasury,
     gameplayAll,
+    dgBalance,
   ]);
 
   let data;
@@ -385,13 +391,7 @@ const ContentGovernance = (props) => {
                   justifyContent: 'space-between',
                 }}
               >
-                <img
-                  src={Images.SNAPSHOT_ICON}
-                  className="farming-logo"
-                  id="snapshot"
-                  alt="Snapshot Governance Logo"
-                />
-                <span className="farming-pool-span" style={{ width: '60%' }}>
+                <span className="farming-pool-span" style={{ width: '60%', marginLeft: '-15px' }}>
                   <p className="welcome-text">total treasury</p>
                   {treasuryTotal ? (
                     <p className="account-name">${treasuryTotal}</p>
@@ -411,7 +411,7 @@ const ContentGovernance = (props) => {
 
                 <span
                   style={{
-                    width: '35%',
+                    width: '40%',
                     maxWidth: '48.5%',
                     height: '75px',
                     marginTop: '5px'
@@ -533,7 +533,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as {treasuryDG} $DG at market price{' '}
+                        calculated as {dgBalance} $DG at market price{' '}
                       </p>
                     </div>
                   </Popup>
