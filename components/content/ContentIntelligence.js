@@ -1,0 +1,32 @@
+// import { Image, Button, Divider } from 'semantic-ui-react';
+// import { useState, useEffect } from 'react';
+
+const ContentIntelligence = (props) => {
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentServer() {
+    return <div className="outter-games-container">server intel...</div>;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentWebsite() {
+    return <div className="outter-games-container">website intel...</div>;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentDecentraland() {
+    return <div className="outter-games-container">decentraland intel...</div>;
+  }
+
+  if (props.dashboard === 'server') {
+    return contentServer();
+  } else if (props.dashboard === 'website') {
+    return contentWebsite();
+  } else if (props.dashboard === 'decentraland') {
+    return contentDecentraland();
+  }
+};
+
+export default ContentIntelligence;
