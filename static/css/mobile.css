@@ -701,34 +701,21 @@ span#mobile-time-select.account-select.dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-@media (min-width: 1041px) {
-  .table-header-text-1,
-  .table-body-text-1 {
-    padding-left: 75px !important;
-  }
-  .table-header-text-1.games,
-  .table-body-text-1.games {
-    padding-left: 9px !important;
-  }
-}
-
-@media (max-width: 1040px) {
-  .table-header-text-1.date,
-  .table-body-text-1.date {
+@media (max-width: 900px) {
+  th:nth-child(2),
+  td:nth-child(2) {
     display: none;
   }
 }
 
-@media (max-width: 700px) {
-  .table-header-text-1.status,
-  .table-body-text-1.status,
-  .table-header-text-1.bet,
-  .table-body-text-1.bet {
+@media (max-width: 750px) {
+  th:nth-child(4),
+  td:nth-child(4) {
     display: none;
   }
 }
 
-@media (min-width: 568px) {
+@media (min-width: 567px) {
   .ui.button.etherscan-button-mobile {
     display: none;
   }

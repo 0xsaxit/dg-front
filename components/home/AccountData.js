@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import { Menu, Divider, Grid, Icon, Image, Popup } from 'semantic-ui-react';
+import { Menu, Divider, Grid, Icon, Image, Popup, Table } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Pagination from './Pagination';
 import Aux from '../_Aux';
 import { Parallax } from 'react-parallax';
 import ModalAffiliates from '../modal/ModalAffiliates';
+import Images from '../../common/Images';
 
 
 const AccountData = (props) => {
@@ -31,7 +32,7 @@ const AccountData = (props) => {
   useEffect(() => {
     if (state.userStatus >= 4) {
       const frameHeight = window.innerHeight;
-      setMaximumCount(Math.floor(frameHeight * 0.01575));
+      setMaximumCount(100);
     }
   }, [state.userStatus]);
 
@@ -262,23 +263,24 @@ const AccountData = (props) => {
                   <div>
                     <ContentAccount content={'wearables'} />
                   </div>
-                ) : dataPage !== 'false' ? (
-                  <table className="account-table">
-                    <ContentAccount content={'labels'} type={dataType} />
-                    <ContentAccount content={dataType} dataPage={dataPage} />
-                  </table>
+                ) : dataType == 'history' ? (
+                  <div style={{ paddingTop: '12px'}}>
+                    <div className="tx-box-overflow">
+                      <ContentAccount content={'labels'} type={dataType} />
+                      <ContentAccount content={dataType} dataPage={dataPage} />
+                    </div>
+                  </div>
+                ) : dataType == 'play' ? (
+                  <div style={{ paddingTop: '12px'}}>
+                    <div className="tx-box-overflow">
+                      <ContentAccount content={'labels'} type={dataType} />
+                      <ContentAccount content={dataType} dataPage={dataPage} />
+                    </div>
+                  </div>
                 ) : (
                   noTxHistory()
                 )}
               </div>
-
-              <Pagination
-                currentPage={currentPage}
-                dataType={dataType}
-                dataLength={dataLength}
-                maximumCount={maximumCount}
-                setUserData={setUserData}
-              />
             </div>
           </div>
         </div>
