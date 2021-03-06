@@ -37,6 +37,7 @@ const ContentGovernance = (props) => {
   const [daiTreasury, setDaiTreasury] = useState(0);
   const [gameplayAll, setGameplayAll] = useState(0);
   const [dgBalance, setDgBalance] = useState(0);
+  const [gameplayMana, setGameplayMana] = useState(0);
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +69,13 @@ const ContentGovernance = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const total_locked = locked_DG + locked_ETH;
+
+        let response_2 = await Fetch.MANA_PRICE();
+        let json_2 = await response_2.json();
+
+        const priceMANA = json_2.market_data.current_price.usd;
+        const manaTemp = priceMANA * 400000;
+        setGameplayMana(manaTemp);
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
@@ -105,7 +113,7 @@ const ContentGovernance = (props) => {
         let totalUSD = json_4.totalBalanceUSD;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
 
-        let gameplayTotal = gameplay.slice(-1)[0].secondary + 300000;
+        let gameplayTotal = gameplay.slice(-1)[0].secondary + 300000 + gameplayMana;
         setGameplayAll(props.formatPrice(gameplayTotal, 0));
 
         let dgbal = json_4.dgBalance;
@@ -127,6 +135,7 @@ const ContentGovernance = (props) => {
     daiTreasury,
     gameplayAll,
     dgBalance,
+    gameplayMana,
   ]);
 
   let data;
