@@ -36,6 +36,9 @@ const ContentGovernance = (props) => {
   const [treasuryDG, setTreasuryDG] = useState(0);
   const [daiTreasury, setDaiTreasury] = useState(0);
   const [gameplayAll, setGameplayAll] = useState(0);
+  const [dgBalance, setDgBalance] = useState(0);
+  const [gameplayMana, setGameplayMana] = useState(0);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -66,6 +69,13 @@ const ContentGovernance = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const total_locked = locked_DG + locked_ETH;
+
+        let response_2 = await Fetch.MANA_PRICE();
+        let json_2 = await response_2.json();
+
+        const priceMANA = json_2.market_data.current_price.usd;
+        const manaTemp = priceMANA * 400000;
+        setGameplayMana(manaTemp);
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
@@ -103,8 +113,11 @@ const ContentGovernance = (props) => {
         let totalUSD = json_4.totalBalanceUSD;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
 
-        let gameplayTotal = gameplay.slice(-1)[0].secondary + 300000;
+        let gameplayTotal = gameplay.slice(-1)[0].secondary + 300000 + gameplayMana;
         setGameplayAll(props.formatPrice(gameplayTotal, 0));
+
+        let dgbal = json_4.dgBalance;
+        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary));
 
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
@@ -121,6 +134,8 @@ const ContentGovernance = (props) => {
     treasuryDG,
     daiTreasury,
     gameplayAll,
+    dgBalance,
+    gameplayMana,
   ]);
 
   let data;
@@ -385,13 +400,7 @@ const ContentGovernance = (props) => {
                   justifyContent: 'space-between',
                 }}
               >
-                <img
-                  src={Images.SNAPSHOT_ICON}
-                  className="farming-logo"
-                  id="snapshot"
-                  alt="Snapshot Governance Logo"
-                />
-                <span className="farming-pool-span" style={{ width: '60%' }}>
+                <span className="farming-pool-span" style={{ width: '60%', marginLeft: '-15px' }}>
                   <p className="welcome-text">total treasury</p>
                   {treasuryTotal ? (
                     <p className="account-name">${treasuryTotal}</p>
@@ -411,7 +420,7 @@ const ContentGovernance = (props) => {
 
                 <span
                   style={{
-                    width: '35%',
+                    width: '40%',
                     maxWidth: '48.5%',
                     height: '75px',
                     marginTop: '5px'
@@ -533,7 +542,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as {treasuryDG} $DG at market price{' '}
+                        calculated as {dgBalance} $DG at market price{' '}
                       </p>
                     </div>
                   </Popup>

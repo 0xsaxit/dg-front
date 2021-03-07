@@ -98,7 +98,6 @@ export const GlobalStyles = createGlobalStyle`
   .dg-powered-container,
   .treasury-container,
   .balances-column,
-  .table-body,
   .featured-blog-container,
   .post,
   .DG-column,
