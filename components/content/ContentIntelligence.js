@@ -5,7 +5,38 @@ const ContentIntelligence = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentServer() {
-    return <div className="outter-games-container">server intel...</div>;
+    return (
+      <div className="outter-games-container">
+        {/* <iframe
+          src="https://intel.decentral.games/embed/dashboard/11"
+          frameBorder={0}
+          width={800}
+          height={600}
+          allowTransparency
+        /> */}
+
+        {/* <iframe
+          src="https://intel.decentral.games/public/dashboard/50db5987-28dd-4d2e-a47b-e33f78b2d267"
+          frameborder="0"
+          width="100%"
+          height="100%"
+          overflow="scroll"
+          scrolling="no"
+          allowtransparency
+        ></iframe> */}
+
+        <iframe
+          src="https://intel.decentral.games/public/dashboard/50db5987-28dd-4d2e-a47b-e33f78b2d267"
+          frameborder="0"
+          allowTransparency
+          overflow="hidden"
+          height="2500px"
+          // scrolling="no"
+          // position="absolute"
+          width="1340px"
+        />
+      </div>
+    );
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
