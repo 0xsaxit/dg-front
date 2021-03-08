@@ -47,14 +47,14 @@ function blog() {
       <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-becomes-the-first-dao-to-own-govern-and-monetize-virtual-land">
+        <Link href="/blog/[id]" as="blog/decentral-games-partners-with-video-game-pioneer-atari">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">
-                  <span className="blog-date">20 JAN 2021</span>
+                  <span className="blog-date">7 MAR 2021</span>
                   <span className="blog-category">Announcements</span>
                 </div>
                 <div className="bottom">
@@ -65,7 +65,7 @@ function blog() {
                         paddingTop: '9px'
                       }}
                     >
-                      Decentral Games Becomes the First DAO to Own, Govern, and Monetize Virtual Land
+                      Decentral Games Partners With Video Game Pioneer Atari
                     </h4>
                     <p
                       style={{
@@ -73,7 +73,7 @@ function blog() {
                         paddingTop: '3px'
                       }}
                     >
-                      $DG hodlers – We appreciate your continued support, attendance at Casino Night events, and participation in governing the Decentral Games ecosystem.
+                      We are thrilled to announce that we have partnered up with Atari to launch Atari Casino powered by Decentral Games this May!
                     </p>
                   </div>
                 </div>
