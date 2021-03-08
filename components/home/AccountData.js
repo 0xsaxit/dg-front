@@ -242,7 +242,7 @@ const AccountData = (props) => {
   function noTxHistory() {
     return (
       <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-        There is no transaction history for this account
+        There doesn't appear to be anything here!
       </div>
     );
   }
