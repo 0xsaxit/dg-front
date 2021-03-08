@@ -554,7 +554,7 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentWearables() {
     return (
-      <Grid>
+      <Grid style={{ marginBottom: '90px' }}>
         {wearables.map((wearable, i) => (
           <Grid.Column
             computer={5}

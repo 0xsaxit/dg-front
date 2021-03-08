@@ -1091,11 +1091,13 @@ i.chevron.down.icon {
 
 .nft-other-h3.countdown1 {
   padding-bottom: 0px;
-  margin: 5px 0px -5px 0px;
+  margin: 5px 0px 0px 0px;
+  overflow: hidden !important;
 }
 
 .nft-other-h3.countdown2 {
-  margin: 15px 0px -5px 6px;
+  margin: 15px 0px 0px 6px;
+  overflow: hidden !important;
 }
 
 @media (max-width: 599px) {

@@ -25,17 +25,20 @@ const ContentGovernance = (props) => {
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
+  const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
+  const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
+  const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
   const [nftTreasury, setNftTreasury] = useState(0);
+  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
+  const [gameplayAll, setGameplayAll] = useState(0);
   const [statsUSD, setStatsUSD] = useState('');
   const [instances, setInstances] = useState(false);
   const [uniTreasury, setUniTreasury] = useState(0);
   const [percentageUniswap, setPercentageUniswap] = useState(0);
-  const [temp, setTemp] = useState(0);
   const [treasuryDG, setTreasuryDG] = useState(0);
   const [daiTreasury, setDaiTreasury] = useState(0);
-  const [gameplayAll, setGameplayAll] = useState(0);
   const [dgBalance, setDgBalance] = useState(0);
   const [gameplayMana, setGameplayMana] = useState(0);
 
@@ -105,23 +108,23 @@ const ContentGovernance = (props) => {
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
         let uni = json_4.totalDgEthUniswapBalance;
-        setUniTreasury(props.formatPrice(uni.slice(-1)[0].secondary));
+        setUniTreasury(props.formatPrice(uni.slice(-1)[0].secondary, 0));
 
         let daiYield = json_4.totalCurveAaveBalance;
-        setDaiTreasury(props.formatPrice(daiYield.slice(-1)[0].secondary));
+        setDaiTreasury(props.formatPrice(daiYield.slice(-1)[0].secondary, 0));
 
         let totalUSD = json_4.totalBalanceUSD;
-        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
+        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
 
-        let gameplayTotal = gameplay.slice(-1)[0].secondary + 300000 + gameplayMana;
-        setGameplayAll(props.formatPrice(gameplayTotal, 0));
+        let gameplayTotal = json_4.allTimeGameplayUSD;
+        setGameplayAll(props.formatPrice(gameplayTotal.slice(-1)[0].secondary, 0));
 
         let dgbal = json_4.dgBalance;
-        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary));
+        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
 
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
-    })();
+    })()
   }, [
     state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
     state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
