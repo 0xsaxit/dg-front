@@ -424,6 +424,7 @@ const ContentAccount = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -447,6 +448,7 @@ const ContentAccount = (props) => {
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
               </span>
             </div>
@@ -535,6 +537,7 @@ const ContentAccount = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -558,6 +561,7 @@ const ContentAccount = (props) => {
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
               </span>
             </div>
