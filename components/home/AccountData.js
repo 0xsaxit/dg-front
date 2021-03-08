@@ -165,6 +165,18 @@ const AccountData = (props) => {
                   </Link>
                 )}
 
+                {dataType === 'poaps' ? (
+                  <span className="account-hover active">
+                    <b>POAPS</b>
+                  </span>
+                ) : (
+                  <Link href="/account/poaps">
+                    <span className="account-hover">
+                      <b>POAPS</b>
+                    </span>
+                  </Link>
+                )}
+
                 {dataType === 'play' ? (
                   <span className="account-hover active">
                     <b style={{ marginRight: '4px' }}>GAME</b>
@@ -262,6 +274,10 @@ const AccountData = (props) => {
                 ) : dataType == 'wearables' ? (
                   <div>
                     <ContentAccount content={'wearables'} />
+                  </div>
+                ) : dataType == 'poaps' ? (
+                  <div>
+                    <ContentAccount content={'poaps'} />
                   </div>
                 ) : dataType == 'history' ? (
                   <div style={{ paddingTop: '12px'}}>

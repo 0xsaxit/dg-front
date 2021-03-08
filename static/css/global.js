@@ -115,6 +115,12 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
+  .poap-pic {
+    border-radius: 100%;
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
   .ui.input>input {
     background: ${({ theme }) => theme.card}; 
     border: ${({ theme }) => theme.cardBorder};

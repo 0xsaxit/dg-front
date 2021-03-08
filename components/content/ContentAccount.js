@@ -64,6 +64,7 @@ const ContentAccount = (props) => {
   const [showModal_4, setShowModal_4] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState('');
   const [wearables, setWearables] = useState([]);
+  const [poaps, setPoaps] = useState([]);
 
   useEffect(() => {
     (async function () {
@@ -91,6 +92,28 @@ const ContentAccount = (props) => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    (async function () {
+      // get user poaps
+      if (state.userStatus) {
+        let response_1 = await Fetch.POAPS(state.userAddress);
+        let json_1 = await response_1.json();
+
+        var poaps = [];
+        var k;
+
+        for (k = 0; k < json_1.length; k++) {
+          if (json_1[k].event.name.includes("Decentral Games")) {
+            poaps.push(json_1[k].event);
+          }
+        }
+
+        setPoaps(poaps);
+      }
+    })();
+  }, []);
+
 
   let buttonPlay = '';
 
@@ -630,6 +653,28 @@ const ContentAccount = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  function contentPoaps() {
+    return (
+      <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
+        {poaps.map((poap, i) => (
+          <Grid.Column
+            computer={4}
+            tablet={8}
+            mobile={8}
+            key={i}
+          >
+            <Image
+              src={poap.image_url}
+              className="poap-pic"
+            />
+          </Grid.Column>
+        ))}
+      </Grid>
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentHistory() {
     return (
       <Table unstackable>
@@ -877,6 +922,8 @@ const ContentAccount = (props) => {
     return contentAccount();
   } else if (props.content === 'wearables') {
     return contentWearables();
+  } else if (props.content === 'poaps') {
+    return contentPoaps();
   } else if (props.content === 'history') {
     return contentHistory();
   } else if (props.content === 'play') {
