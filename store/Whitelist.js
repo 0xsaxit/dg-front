@@ -33,7 +33,7 @@ const Whitelist = () => {
 
         /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
-        const arrayUpperCaseIntel = json.INTEL.map((a) => a.toUpperCase());
+        const arrayUpperCaseIntel = json.FOUNDERS.map((a) => a.toUpperCase()); // INTEL
 
         if (arrayUpperCaseIntel.includes(userAddress)) {
           whitelistedIntel = true;
