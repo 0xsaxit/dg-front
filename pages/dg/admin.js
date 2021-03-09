@@ -18,7 +18,7 @@ const Admin = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.whitelisted ? (
+      {state.whitelistedAdmin ? (
         <Farming DGState={'admin'} />
       ) : (
         <div className="account-other-inner-p">

@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../../store';
 import Intelligence from '../../components/home/Intelligence';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
@@ -5,6 +7,9 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
 const Server = () => {
+  // get whitelisted value from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   return (
     <Layout>
       <Header
@@ -13,7 +18,13 @@ const Server = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Intelligence dashboard={'server'} />
+      {state.whitelistedIntel ? (
+        <Intelligence dashboard={'server'} />
+      ) : (
+        <div className="account-other-inner-p">
+          Please check you've connected using a whitelisted address
+        </div>
+      )}
     </Layout>
   );
 };

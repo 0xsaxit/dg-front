@@ -7,7 +7,8 @@ const Whitelist = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  let whitelisted = false;
+  let whitelistedAdmin = false;
+  let whitelistedIntel = false;
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -17,15 +18,30 @@ const Whitelist = () => {
         const response = await Fetch.GET_ADDRESSES(userAddress);
         let json = await response.json();
 
-        const arrayUpperCase = json.FOUNDERS.map((a) => a.toUpperCase());
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        const arrayUpperCaseAdmin = json.FOUNDERS.map((a) => a.toUpperCase());
 
-        if (arrayUpperCase.includes(userAddress)) {
-          whitelisted = true;
+        if (arrayUpperCaseAdmin.includes(userAddress)) {
+          whitelistedAdmin = true;
         }
 
         dispatch({
-          type: 'set_whitelisted',
-          data: whitelisted,
+          type: 'set_whitelisted_admin',
+          data: whitelistedAdmin,
+        });
+
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        const arrayUpperCaseIntel = json.FOUNDERS.map((a) => a.toUpperCase()); // INTEL
+
+        if (arrayUpperCaseIntel.includes(userAddress)) {
+          whitelistedIntel = true;
+        }
+
+        dispatch({
+          type: 'set_whitelisted_intel',
+          data: whitelistedIntel,
         });
       }
 

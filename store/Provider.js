@@ -74,8 +74,8 @@ const initialState = {
   stakeTime: 0,
   affiliateAddress: '',
   toggleTheme: 'light',
-  whitelisted: false,
-  // countryCode: '',
+  whitelistedAdmin: false,
+  whitelistedIntel: false,
 };
 
 const reducer = (state, action) => {
@@ -224,17 +224,17 @@ const reducer = (state, action) => {
         theme: action.data,
       };
 
-    case 'set_whitelisted':
+    case 'set_whitelisted_admin':
       return {
         ...state,
-        whitelisted: action.data,
+        whitelistedAdmin: action.data,
       };
 
-    // case 'country_code':
-    //   return {
-    //     ...state,
-    //     countryCode: action.data,
-    //   };
+    case 'set_whitelisted_intel':
+      return {
+        ...state,
+        whitelistedIntel: action.data,
+      };
 
     default:
       throw new Error('Wrong action type got dispatched');
