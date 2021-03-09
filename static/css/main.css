@@ -1130,6 +1130,7 @@ i.chevron.down.icon {
 
 table {
   border-spacing: 0px;
+  width: 100%;
 }
 
 .ui.table {
