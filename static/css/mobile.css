@@ -708,8 +708,8 @@ span#mobile-time-select.account-select.dropdown {
 /* ----------------------------------------- */
 
 @media (max-width: 900px) {
-  th:nth-child(2),
-  td:nth-child(2) {
+  td.account-col-2,
+  th.account-col-2 {
     display: none;
   }
 }

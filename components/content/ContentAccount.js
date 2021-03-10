@@ -666,7 +666,7 @@ const ContentAccount = (props) => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Action</Table.HeaderCell>
-            <Table.HeaderCell>Amount</Table.HeaderCell>
+            <Table.HeaderCell className="account-col-2">Amount</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>Date</Table.HeaderCell>
             <Table.HeaderCell />
@@ -714,7 +714,7 @@ const ContentAccount = (props) => {
                   )}
                   {row.type}
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell className="account-col-2">
                   {sign}
                   {amount > 1000000000000000000000000
                     ? 'N/A'
@@ -764,7 +764,7 @@ const ContentAccount = (props) => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Game</Table.HeaderCell>
-            <Table.HeaderCell>Bet</Table.HeaderCell>
+            <Table.HeaderCell className="account-col-2">Bet</Table.HeaderCell>
             <Table.HeaderCell>Payout</Table.HeaderCell>
             <Table.HeaderCell>Date</Table.HeaderCell>
             <Table.HeaderCell />
@@ -827,7 +827,7 @@ const ContentAccount = (props) => {
                   )}
                   {action}
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell className="account-col-2">
                   -{amount} {row.coinName}
                 </Table.Cell>
                 <Table.Cell>

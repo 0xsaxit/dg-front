@@ -1179,6 +1179,17 @@ td {
   border-radius: 4px !important;
 }
 
+.table.ui.unstackable.table.leaders-table {
+  border: 1px solid #edf2f9 !important;
+  box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
+  border-radius: 4px !important;
+}
+
+.leaders-col-2 {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .tx-box-overflow::-webkit-scrollbar {
   display: none;
 }
