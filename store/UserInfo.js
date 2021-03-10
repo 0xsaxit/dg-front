@@ -13,6 +13,9 @@ function UserInfo() {
         const responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
         const json = await responseInfo.json();
 
+        // console.log('user information...');
+        // console.log(json);
+
         const name = json.avatarName;
         const address = json.address;
         const balance = json.playBalance.toLocaleString();
@@ -28,9 +31,9 @@ function UserInfo() {
         //   const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
         // }
 
-        const playerList = json.playerList;
+        const playersList = json.playersList;
 
-        const response = [name, address, balance, count, email, playerList];
+        const response = [name, address, balance, count, email, playersList];
 
         dispatch({
           type: 'user_info',
@@ -44,4 +47,3 @@ function UserInfo() {
 }
 
 export default UserInfo;
-

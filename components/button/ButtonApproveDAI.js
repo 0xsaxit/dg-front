@@ -19,6 +19,8 @@ function ButtonApproveMANA() {
   const [spenderAddress, setSpenderAddress] = useState('');
   const [value, setValue] = useState(0);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // if the user has also authorized MANA set status value to 8, otherwise 6
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -65,6 +67,9 @@ function ButtonApproveMANA() {
     }
   }, [state.userStatus]);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // helper functions
   function dispatchActiveStatus(txHash) {
     console.log('Updating user status to: ' + value);
 
@@ -90,7 +95,7 @@ function ButtonApproveMANA() {
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'Authorization',
+      'DAI Authorization',
       'Confirmed',
       txHash,
       state.userStatus
