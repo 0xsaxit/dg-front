@@ -204,7 +204,7 @@ const ModalInfo = () => {
         </span>
         <Button
           className="withdraw-dg-button"
-          href="https://explorer-mainnet.maticvigil.com/tokens/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/token-transfers"
+          href="https://wallet.matic.network/bridge"
           target="_blank"
         >
           WITHDRAW MATIC $DG

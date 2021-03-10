@@ -126,6 +126,7 @@ const AccountData = (props) => {
                   href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                   target="_blank"
                   className="account-icon-hover"
+                  id="mobile-display-none"
                 >
                   <span>
                     <Icon name="settings" className="submenu-icon" />
@@ -154,7 +155,7 @@ const AccountData = (props) => {
           </span>
         </div>
 
-        <div className="account-other-tabs" style={{ paddingTop: '15px' }}>
+        <div className="account-other-tabs" id="account-mobile-tabs">
           <div style={{ marginLeft: '0px' }}>
             <span className="account-other-p" style={{ display: 'flex' }}>
               {dataType === 'balances' ? (
