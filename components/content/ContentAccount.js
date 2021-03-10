@@ -172,13 +172,10 @@ const ContentAccount = (props) => {
   // initialize transak modal
   function show_transak_1() {
     transak_1.init();
-
-    // initializePings();
   }
+
   function show_transak_2() {
     transak_2.init();
-
-    // initializePings();
   }
 
   // top up user to 5000 play tokens

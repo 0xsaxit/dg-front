@@ -41,7 +41,7 @@ const ModalAffiliates = () => {
         </span>
       </div>
 
-      <p className="mailchimp-header-text"> Refer a Friend to Decentral Games </p>
+      <p className="mailchimp-header-text"> Refer a Friend </p>
 
       <Divider style={{ marginTop: '-15px' }} />
 

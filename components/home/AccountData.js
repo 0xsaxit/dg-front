@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Divider, Icon, Popup } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
-// import Pagination from './Pagination';
 import Aux from '../_Aux';
 import { Parallax } from 'react-parallax';
 import ModalAffiliates from '../modal/ModalAffiliates';
@@ -17,11 +16,7 @@ const AccountData = (props) => {
   const dataPlay = state.transactions[1];
 
   // define local variables
-  // const [maximumCount, setMaximumCount] = useState(0);
-  // const [dataType, setDataType] = useState(props.dataType);
-  // const [dataLength, setDataLength] = useState(0);
   const [dataPage, setDataPage] = useState([]);
-  // const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [utm, setUtm] = useState('');
 
@@ -30,13 +25,6 @@ const AccountData = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     const frameHeight = window.innerHeight;
-  //     setMaximumCount(100);
-  //   }
-  // }, [state.userStatus]);
-
   useEffect(() => {
     if (state.transactions[0].length) {
       setIsLoading(false);
