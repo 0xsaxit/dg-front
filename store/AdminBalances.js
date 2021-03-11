@@ -15,7 +15,7 @@ function AdminBalances() {
   let balances = [];
 
   useEffect(() => {
-    if (state.whitelisted) {
+    if (state.whitelistedAdmin) {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
@@ -40,7 +40,7 @@ function AdminBalances() {
 
       fetchData();
     }
-  }, [state.whitelisted, state.tokenPings]);
+  }, [state.whitelistedAdmin, state.tokenPings]);
 
   // get worker address ETH balance on Matic Network
   async function getEthBalance() {

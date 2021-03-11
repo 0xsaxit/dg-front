@@ -16,7 +16,6 @@ import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 
-
 const Farming = (props) => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -220,19 +219,23 @@ const Farming = (props) => {
       <div>
         <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
           {DGState === 'governance' ? (
-             <p className="account-other-p" style={{ width: '100%' }}>
+            <p className="account-other-p" style={{ width: '100%' }}>
               <span className="account-hover active">
                 <b>GOVERNANCE</b>
               </span>
               <Link href="/dg/mining">
                 <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    GAMEPLAY
+                  </b>
                   <b>REWARDS</b>
                 </span>
               </Link>
               <Link href="/dg/liquidity">
                 <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
                   <b>PROVISION</b>
                 </span>
               </Link>
@@ -247,15 +250,43 @@ const Farming = (props) => {
                 </span>
               </Link>
               <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                  GAMEPLAY
+                </b>
                 <b>REWARDS</b>
               </span>
               <Link href="/dg/liquidity">
                 <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
                   <b>PROVISION</b>
                 </span>
               </Link>
+
+              <ModalAffiliates />
+            </p>
+          ) : DGState === 'uniswap' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <Link href="/dg/mining">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    GAMEPLAY
+                  </b>
+                  <b>REWARDS</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                  LIQUIDITY
+                </b>
+                <b>PROVISION</b>
+              </span>
 
               <ModalAffiliates />
             </p>
@@ -265,28 +296,30 @@ const Farming = (props) => {
                 <span className="account-hover">
                   <b>GOVERNANCE</b>
                 </span>
-              </Link>            
+              </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>GAMEPLAY</b>
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    GAMEPLAY
+                  </b>
                   <b>REWARDS</b>
                 </span>
               </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>LIQUIDITY</b>
-                <b>PROVISION</b>
-              </span>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
 
               <ModalAffiliates />
             </p>
           )}
+        </div>
 
-          </div>
-
-        <Divider
-          className="tab-divider"
-          style={{ paddingTop: '21px' }}
-        />
+        <Divider className="tab-divider" style={{ paddingTop: '21px' }} />
       </div>
     );
   }

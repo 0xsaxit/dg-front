@@ -18,7 +18,7 @@ const Admin = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.whitelisted ? (
+      {state.whitelistedAdmin ? (
         <Administration />
       ) : (
         <div className="account-other-inner-p">

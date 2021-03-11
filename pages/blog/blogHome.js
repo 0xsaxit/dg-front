@@ -34,34 +34,27 @@ function blog() {
 
   return (
     <div className="blog-home-container">
-      <span
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          paddingTop: '0px',
-        }}
-      >
-        <span style={{ borderBottom: '1px solid #2085f4' }}>
-          <p className="featured-text" style={{ marginBottom: '15px' }}>
-            FEATURED POST
-          </p>
-        </span>
-      </span>
+      <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
+        <div style={{ marginLeft: '0px' }}>
+          <span className="account-other-p" style={{ display: 'flex' }}>
+            <span className="account-hover active events">
+              <b>FEATURED POST</b>
+            </span>
+          </span>
+        </div>
+      </div>
 
-      <Divider
-        id="blog-divider"
-        style={{ paddingBottom: '15px', marginTop: '-1px' }}
-      />
+      <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-becomes-the-first-dao-to-own-govern-and-monetize-virtual-land">
+        <Link href="/blog/[id]" as="blog/decentral-games-partners-with-video-game-pioneer-atari">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">
-                  <span className="blog-date">20 JAN 2021</span>
+                  <span className="blog-date">7 MAR 2021</span>
                   <span className="blog-category">Announcements</span>
                 </div>
                 <div className="bottom">
@@ -72,7 +65,7 @@ function blog() {
                         paddingTop: '9px'
                       }}
                     >
-                      Decentral Games Becomes the First DAO to Own, Govern, and Monetize Virtual Land
+                      Decentral Games Partners With Video Game Pioneer Atari
                     </h4>
                     <p
                       style={{
@@ -80,7 +73,7 @@ function blog() {
                         paddingTop: '3px'
                       }}
                     >
-                      $DG hodlers – We appreciate your continued support, attendance at Casino Night events, and participation in governing the Decentral Games ecosystem.
+                      We are thrilled to announce that we have partnered up with Atari to launch Atari Casino powered by Decentral Games this May!
                     </p>
                   </div>
                 </div>
@@ -95,33 +88,28 @@ function blog() {
           (categoryURL = category.toLowerCase()),
           (
             <Aux>
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  paddingTop: '30px',
-                }}
-              >
-                <span style={{ borderBottom: '1px solid #2085f4' }}>
-                  <p className="featured-text" style={{ marginBottom: '15px' }}>
-                    {category}
-                  </p>
-                </span>
-                {category !== 'All Articles' ? (
-                  <Link
-                    href="/blog/category/[id]"
-                    key={index}
-                    as={`/blog/category/${categoryURL}`}
-                  >
-                    <p style={{ fontSize: '14px' }} className="more-text"> More » </p>
-                  </Link>
-                ) : null}
-              </span>
+              <div className="account-other-tabs" style={{ marginTop: '0px' }}>
+                <div style={{ marginLeft: '0px' }}>
+                  <span className="account-other-p" style={{ display: 'flex' }}>
+                    <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                      <span className="account-hover active events">
+                        {category}
+                      </span>
+                      {category !== 'All Articles' ? (
+                        <Link
+                          href="/blog/category/[id]"
+                          key={index}
+                          as={`/blog/category/${categoryURL}`}
+                        >
+                          <p style={{ fontSize: '14px' }} className="more-text"> More » </p>
+                        </Link>
+                      ) : null}
+                    </span>
+                  </span>
+                </div>
+              </div>
 
-              <Divider
-                id="blog-divider"
-                style={{ paddingBottom: '15px', marginTop: '-1px' }}
-              />
+              <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
               <div className="posts">
                 {

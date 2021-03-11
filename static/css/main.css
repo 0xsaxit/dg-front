@@ -83,12 +83,22 @@ p {
 /* ----------------------------------------- */
 
 a.get-metamask {
-  margin: 21px -36px 0px 0px;
+  margin: 21px 15px 0px 0px;
   color: white;
 }
 
 a.get-metamask:hover {
-  color: #2085f4;
+  color: white;
+  filter: brightness(0.9);
+}
+
+a.get-metamask-scroll {
+  margin: 21px 15px 0px 0px;
+  color: black;
+}
+
+a.get-metamask-scroll:hover {
+  color: rgba(0, 0, 0, 0.75);
 }
 
 #menu-logo {
@@ -442,6 +452,12 @@ a.menu-info-label-link:hover {
   height: 30px;
   position: fixed !important;
   top: 54px;
+}
+
+@media (max-width: 746px) {
+  .account-intro {
+    top: 74px !important;
+  }
 }
 
 .home-video-container {
@@ -808,6 +824,76 @@ i.chevron.down.icon {
   flex-direction: column;
   margin-top: 150px;
 }
+
+/* ----------------------------------------- */
+/*              EVENTS PAGE CSS              */
+/* ----------------------------------------- */
+
+.account-hover.active.events {
+  text-transform: uppercase;
+}
+
+.account-hover.active.events:hover {
+  text-transform: uppercase;
+  background-color: rgb(229, 232, 235);
+}
+
+.event-pic.featured {
+  z-index: 1;
+  object-fit: cover;
+  width: 66%;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.featured-event-grid {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+}
+
+.featured-info {
+  display: flex;
+  margin-top: 3px;
+}
+
+@media (max-width: 1100px) {
+  .event-pic.featured {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px 4px 0px 0px;
+  }
+  .featured-event-grid {
+    flex-direction: column !important;
+  }
+  .featured-info {
+    justify-content: center;
+    margin-top: 0px;
+  }
+  .events-featured-p,
+  .nft-other-h3.featured {
+    text-align: center !important;
+  }
+  .events-featured-divider {
+    margin: 10px 0px 15px -19px !important;
+    width: calc(100% + 38px);
+  }
+}
+
+#event-container {
+  padding: 0px 30px 120px 30px;
+}
+
+@media (max-width: 499px) {
+  #event-container {
+    padding: 0px 21px 120px 21px;
+  }
+  .event-pic {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 /* ----------------------------------------- */
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
@@ -901,7 +987,8 @@ i.chevron.down.icon {
 }
 
 .games-container:hover,
-.shop-container:hover {
+.shop-container:hover,
+.my-nft-container:hover {
   transform: translateY(-1px);
   box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
   transition: all 0.1s ease 0s;
@@ -993,6 +1080,31 @@ i.chevron.down.icon {
   padding-top: 12px;
 }
 
+.nft-other-h3.featured {
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  text-align: left;
+  padding-top: 12px;
+}
+
+.nft-other-h3.countdown1 {
+  padding-bottom: 0px;
+  margin: 5px 0px 0px 0px;
+  overflow: hidden !important;
+}
+
+.nft-other-h3.countdown2 {
+  margin: 15px 0px 0px 6px;
+  overflow: hidden !important;
+}
+
+@media (max-width: 599px) {
+  .nft-other-h3.countdown1 {
+    display: none;
+  }
+}
+
 .games-other-h3 {
   font-size: 28px;
   font-weight: 600;
@@ -1021,138 +1133,71 @@ table {
   border-radius: 4px;
 }
 
-.account-table {
-  margin-top: 42px !important;
+.ui.table {
+  margin-top: 0px;
+  border: 0px solid white !important;
+} 
+
+.ui.table thead th {
+  border: 0px solid white !important;
 }
 
-.table-header-text,
-.table-header-text-1,
-.table-header-text-2 {
-  font-family: 'Bai Jamjuree', sans-serif !important;
-  padding-top: 9px;
-  padding-bottom: 9px;
+.ui.table thead tr:first-child>th:first-child {
+  border-radius: 4px 0px 0px 0px !important;
+}
+
+.ui.table thead tr:last-child>th:last-child {
+  border-radius: 0px 4px 0px 0px !important;
+}
+
+th {
+  background-color: rgb(229, 232, 235) !important;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 700 !important;
   letter-spacing: 1.5px;
-}
-
-.table-header-text.account {
+  text-transform: uppercase !important;
+  z-index: 3;
   padding-left: 12px !important;
 }
 
-.table-header-text-2,
-.table-body-text-2 {
-  text-align: right !important;
-}
-
-.table-body {
-  font-family: 'Bai Jamjuree', sans-serif !important;
+td {
   font-size: 16px;
   letter-spacing: 0.25px;
+  padding: 18px 12px 18px 12px !important;
 }
 
-.table-body-text-1,
-.table-body-text-2 {
-  padding-top: 12px;
-  padding-bottom: 12px;
+.ui.table tbody+tbody tr:first-child td {
+  border-top: 1px solid #edf2f9 !important;
 }
 
-.table-header-text-1.games {
-  padding-left: 9px;
-}
-
-.table-body-text-1.games {
-  padding-left: 9px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.table-header-text-2.games,
-.table-body-text-2.games {
-  padding-right: 9px;
-}
-
-.table-body-text-1.first {
-  padding-left: 12px !important;
-}
-
-.table-header-text-1.hash,
-.table-body-text-1.hash {
-  margin-left: -60px !important;
-}
-
-.ui.table tr:first-child td {
-  padding-top: 12px !important;
-}
-
-.ui.table thead tr:first-child > th:last-child,
-.ui.fixed.table td:last-child {
-  padding-left: 21px;
-}
-
-.ui.table thead th {
-  padding-top: 9px;
-  padding-bottom: 9px;
-  background-color: #f5f6f8;
-  border-radius: 0px !important;
-}
-
-th.table-header-text {
-  font-size: 12px !important;
-  font-weight: bold !important;
-  letter-spacing: 1.5px !important;
-  color: black !important;
-}
-
-.dataTable {
+.tx-box-overflow {
+  max-height: 50vh !important;
   overflow: auto;
-  height: calc(100vh - 300px) !important;
+  margin-bottom: 90px; 
+  border: 1px solid #edf2f9 !important;
+  box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
+  border-radius: 4px !important;
 }
 
-.dataTable::-webkit-scrollbar {
-  width: 10px !important ;
+.table.ui.unstackable.table.leaders-table {
+  border: 1px solid #edf2f9 !important;
+  box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
+  border-radius: 4px !important;
 }
 
-.dataTable::-webkit-scrollbar-thumb {
-  background-color: transparent;
+.leaders-col-2 {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.dataTable::-webkit-scrollbar-track {
-  background: transparent;
+.tx-box-overflow::-webkit-scrollbar {
+  display: none;
 }
 
-.scrollTable::-webkit-scrollbar-thumb {
-  background-color: gray;
-}
-
-table#header.ui.fixed.single.line.table {
-  margin-bottom: 0px;
-  border: 0px;
-  border-radius: 0px;
-}
-
-.ui.table {
-  letter-spacing: 0.25px !important;
-  font-size: 16px !important;
-}
-
-.ui.table thead th {
-  border: 0px;
-}
-
-.ui.table thead tr:first-child > th:first-child {
-  padding-left: 3px;
-}
-
-table.ui.fixed.single.line.table {
-  margin-top: 0px;
-  border: 0px;
-}
-
-.ui.table tr td {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  border: 0px;
+.ui.table thead th,
+.ui.table thead th:only-child {
+  position: sticky;
+  top: 0px;
 }
 
 /* ----------------------------------------- */
@@ -1258,6 +1303,21 @@ table.ui.fixed.single.line.table {
   margin-right: 15px;
   color: rgb(92, 95, 97);
   margin-top: 18px;
+}
+
+.account-hover-time {
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 9px 12px 9px 12px;
+  letter-spacing: 0.5px !important;
+  margin-right: 15px;
+  color: rgb(92, 95, 97);
+  margin-top: 18px;
+}
+
+.time-select-icon {
+  cursor: pointer;
 }
 
 .account-icon-hover {
@@ -2214,6 +2274,18 @@ div.ui.grid.admin-balances-container {
   padding: 7px 6px 0px 6px;
   width: 48.5%;
   opacity: 100% !important;
+}
+
+.ui.button.withdraw-dg-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 27px;
+  margin-top: 15px;
+  padding: 7px 6px 0px 6px;
+  width: calc(100% - 60px);
+  opacity: 100% !important;
+  margin: 15px 30px 0px 30px;
 }
 
 .ui.blue.button.metamask-button {

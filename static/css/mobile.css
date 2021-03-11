@@ -7,7 +7,7 @@
   color: black;
   background-color: transparent;
   top: -20px;
-  left: 69px;
+  left: 60px;
   z-index: 10;
   font-size: 18px !important;
 }
@@ -17,7 +17,7 @@
   color: white;
   top: -20px;
   background-color: transparent;
-  left: 69px;
+  left: 60px;
   z-index: 10;
   font-size: 18px !important; 
 }
@@ -55,7 +55,16 @@
     height: 27px;
     letter-spacing: 0.5px;
     border-radius: 4px;
-    margin-right: 15px !important;
+    margin-right: 30px !important;
+  }
+}
+
+@media (max-width: 499px) {
+  .ui.blue.button.metamask-mobile-button {
+    margin-right: 21px !important;
+  }
+  .right-menu-items {
+    margin-right: -9px;
   }
 }
 
@@ -72,6 +81,9 @@
 }
 
 @media (max-width: 499px) {
+  #mobile-display-none {
+    display: none;
+  }
   .menu-info-modal {
     width: 100vw;
     height: calc(100vh - 2em);
@@ -92,7 +104,7 @@
   #mobile-menu-icon,
   #mobile-menu-icon-home {
     position: relative;
-    left: 60px;
+    left: 50px;
   }
   .right-menu-items.outter {
     position: absolute;
@@ -207,7 +219,7 @@ div#dropdown-menu-items.item.right-menu-text {
   background: none !important;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
   .menu-items-to-hide {
     display: none;
   }
@@ -231,7 +243,7 @@ div.ui.top.attached.menu {
   border: 0px solid white;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 1101px) {
   #mobile-menu-icon,
   #mobile-menu-icon-home,
   div.ui.top.attached.menu  {
@@ -542,7 +554,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 
 @media (min-width: 1027px) {
   span.leaderboard-coin-select-mobile,
-  #intermediate-time-select {
+  .account-hover-time.tablet {
     display: none !important;
   }
   span.leaderboard-coin-select {
@@ -576,12 +588,19 @@ span#mobile-time-select.account-select.dropdown {
     margin-left: 0em !important;
     margin-right: 0em !important;
   }
+  .account-hover-time.tablet {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 304px);
+    margin: 0px -10px 0px 0px !important;
+    padding: 0px 0px 0px 0px;
+  }
   span.leaderboard-coin-select {
     display: none !important;
   }
   span.leaderboard-coin-select-mobile {
     margin-top: -27px;
-    margin-bottom: -3px !important;
+    margin-bottom: -6px !important;
   }
   .ui.dropdown {
     margin-bottom: 30px !important;
@@ -589,6 +608,24 @@ span#mobile-time-select.account-select.dropdown {
   .coin-select-divider {
     margin-top: 18px !important;
     padding-bottom: 15px;
+  }
+}
+
+@media (max-width: 560px) {
+  .account-hover-time.tablet {
+    display: none;
+  }
+}
+
+@media (max-width: 1101px) {
+.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 768px) {
+.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+    width: 100% !important;
   }
 }
 
@@ -670,34 +707,21 @@ span#mobile-time-select.account-select.dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-@media (min-width: 1041px) {
-  .table-header-text-1,
-  .table-body-text-1 {
-    padding-left: 75px !important;
-  }
-  .table-header-text-1.games,
-  .table-body-text-1.games {
-    padding-left: 9px !important;
-  }
-}
-
-@media (max-width: 1040px) {
-  .table-header-text-1.date,
-  .table-body-text-1.date {
+@media (max-width: 900px) {
+  td.account-col-2,
+  th.account-col-2 {
     display: none;
   }
 }
 
-@media (max-width: 700px) {
-  .table-header-text-1.status,
-  .table-body-text-1.status,
-  .table-header-text-1.bet,
-  .table-body-text-1.bet {
+@media (max-width: 750px) {
+  th:nth-child(4),
+  td:nth-child(4) {
     display: none;
   }
 }
 
-@media (min-width: 568px) {
+@media (min-width: 567px) {
   .ui.button.etherscan-button-mobile {
     display: none;
   }
@@ -757,15 +781,26 @@ span#mobile-time-select.account-select.dropdown {
   #account-txs-tab {
     display: none !important;
   }
-  div.ui.grid.balances-container {
-    margin-left: -9px !important;
-    margin-right: -9px !important;
+  .welcome-text-2 {
+    display: none;
+  }
+  .account-name-2 {
+    margin-bottom: 0px;
+  }
+  span.account-icon-hover {
+    margin-top: 15px;
+  }
+  #account-mobile-tabs {
+    padding-top: 0px;
   }
 }
 
 @media (min-width: 500px) {
   #account-txs-tab-mobile {
     display: none;
+  }
+  #account-mobile-tabs {
+    padding-top: 15px;
   }
 }
 

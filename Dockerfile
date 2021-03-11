@@ -1,4 +1,4 @@
-FROM node:14.15.5-alpine3.13 as base
+FROM node:14.16.0-alpine3.13 as base
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"
@@ -16,7 +16,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# RUN npm audit --audit-level=low
+RUN npm audit --audit-level=high
 
 RUN npm install --production --no-fund
 
@@ -30,7 +30,7 @@ RUN npm run build
 # CMD ["sleep", "3d"]
 ################################################################################
 
-FROM node:14.15.5-alpine3.13 as runtime
+FROM node:14.16.0-alpine3.13 as runtime
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"

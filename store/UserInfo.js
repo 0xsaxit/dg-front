@@ -13,24 +13,27 @@ function UserInfo() {
         const responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
         const json = await responseInfo.json();
 
+        // console.log('user information...');
+        // console.log(json);
+
         const name = json.avatarName;
         const address = json.address;
         const balance = json.playBalance.toLocaleString();
         const count = json.callCount;
         const email = '';
 
-        const responseAvatar = await Fetch.AVATAR_IMAGE(address);
-        const jsonAvatar = await responseAvatar.json();
+        // const responseAvatar = await Fetch.AVATAR_IMAGE(state.userAddress);
+        // const jsonAvatar = await responseAvatar.json();
 
-        const playerList = json.playerList;
-        
-        if (jsonAvatar.avatars.length == 0) {
-          const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
-        } else {
-          const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
-        }
+        // if (jsonAvatar.avatars.length == 0) {
+        //   const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
+        // } else {
+        //   const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
+        // }
 
-        const response = [name, address, balance, count, email, avatar, playerList];
+        const playersList = json.playersList;
+
+        const response = [name, address, balance, count, email, playersList];
 
         dispatch({
           type: 'user_info',
@@ -44,4 +47,3 @@ function UserInfo() {
 }
 
 export default UserInfo;
-

@@ -22,6 +22,7 @@ const MenuTop = (props) => {
   const [popUpOpen, setPopUpOpen] = useState(true);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
+  const [ref, setRef] = useState('');
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -88,10 +89,6 @@ const MenuTop = (props) => {
   }
 
   useEffect(() => {
-    setUtm(sessionStorage.getItem('utm'));
-  }, [utm]);
-
-  useEffect(() => {
     const localTheme = window.localStorage.getItem('theme');
 
     if (localTheme === 'dark') {
@@ -122,6 +119,38 @@ const MenuTop = (props) => {
     return () => clearInterval(interval);
   }, []);
 
+  // set utm
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes("?utm_source")) {
+      sessionStorage.setItem('utm', url.substring(url.lastIndexOf('/') + 1));
+      setUtm(sessionStorage.getItem('utm'));
+    } else {
+      sessionStorage.setItem('utm', '');
+      setUtm(sessionStorage.getItem('utm'));
+    }
+  }, [utm]);
+
+
+  // store affiliate address in localStorage
+  function setAffiliateState() {
+    dispatch({
+      type: 'affiliate_address',
+      data: localStorage.getItem('ref'),
+    });
+  }
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (url.includes("0x")) {
+      localStorage.setItem('ref', url.substring(url.lastIndexOf('/') + 1));
+      setRef(localStorage.getItem('ref'));
+    } else {
+      localStorage.setItem('ref', '');
+      setRef(localStorage.getItem('ref'));
+    }
+    setAffiliateState();
+  }, [ref]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -191,6 +220,12 @@ const MenuTop = (props) => {
                     </Menu.Item>
                   </a>
 
+                  <a href="/events">
+                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                      EVENTS
+                    </Menu.Item>
+                  </a>
+
                   <a href="/blog">
                     <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
                       BLOG
@@ -248,6 +283,12 @@ const MenuTop = (props) => {
           </Menu.Item>
         </Link>
 
+        <Link href="/events">
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/events')}>
+            EVENTS
+          </Menu.Item>
+        </Link>
+
         <Link href="/blog">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
             BLOG
@@ -279,16 +320,11 @@ const MenuTop = (props) => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    {
-      /*if (state.userStatus === 3) {
+    if (state.userStatus === 3) {
       return (
-        <span className="right-menu-items">
-          <PopUpLinks isDarkMode={isDarkMode} />
-        </span>
-      );
-    } else*/
-    }
-    if (state.userStatus >= 4) {
+        null
+      )
+    } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
           <ModalInfo />
@@ -360,13 +396,6 @@ const MenuTop = (props) => {
     } else {
       return (
         <span className="right-menu-items">
-          <a 
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className="get-metamask"
-          > 
-            What's Metamask?
-          </a>
           <ButtonVerify />
 
           {/*<PopUpLinks isDarkMode={isDarkMode} />*/}

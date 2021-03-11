@@ -190,6 +190,16 @@ const Fetch = {
     });
   },
 
+  EVENTS: () => {
+    return fetch(`https://api.decentral.games/players/getEvents`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });  
+  },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
@@ -264,19 +274,6 @@ const Fetch = {
     });
   },
 
-  // BPT_SUPPLY_1: () => {
-  //   return fetch(
-  //     `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0xca54c398195fce98856888b0fd97a9470a140f71&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   );
-  // },
-
   LAND_PRICE: () => {
     return fetch(`https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`, {
       method: 'GET',
@@ -287,18 +284,16 @@ const Fetch = {
     });
   },
 
-  // BPT_SUPPLY_2: () => {
-  //   return fetch(
-  //     `https://api.etherscan.io/api?module=stats&action=tokensupply&contractaddress=0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d&apikey=343PW1Z28AS3KMI3VQRBBCF7ZN6JFIU12W`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   );
-  // },
+  POAPS: (address) => {
+    return fetch(`https://api.poap.xyz/actions/scan/${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
 };
 
 export default Fetch;

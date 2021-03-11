@@ -48,21 +48,15 @@ const MessageBar = () => {
         setAdminError(false);
       }
     }
-  }, [state.networkID]);
-
-  const account = <a href="/account"> here </a>;
+  }, [state.networkID]);</a>;
 
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
     } else if (!state.networkID) {
-      setMessage(
-        'Please enable MetaMask to play games, for help, click "Get Started"'
-      );
+      setMessage('Please enable MetaMask to play, for help, click "Get Started"');
     } else if (!state.userStatus) {
-      setMessage(
-        'Please log in to MetaMask to play games, for help, click "Get Started"'
-      );
+      setMessage('Please log in to MetaMask to play, for help, click "Get Started"');
     } else if (adminError) {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'

@@ -25,15 +25,23 @@ const ContentGovernance = (props) => {
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
+  const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
+  const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
+  const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
   const [nftTreasury, setNftTreasury] = useState(0);
+  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
+  const [gameplayAll, setGameplayAll] = useState(0);
   const [statsUSD, setStatsUSD] = useState('');
   const [instances, setInstances] = useState(false);
   const [uniTreasury, setUniTreasury] = useState(0);
   const [percentageUniswap, setPercentageUniswap] = useState(0);
-  const [temp, setTemp] = useState(0);
   const [treasuryDG, setTreasuryDG] = useState(0);
+  const [daiTreasury, setDaiTreasury] = useState(0);
+  const [dgBalance, setDgBalance] = useState(0);
+  const [gameplayMana, setGameplayMana] = useState(0);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -64,9 +72,13 @@ const ContentGovernance = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const total_locked = locked_DG + locked_ETH;
-        const uniTreasury = percentageTreasuryUniswap * total_locked;
 
-        setUniTreasury(uniTreasury);
+        let response_2 = await Fetch.MANA_PRICE();
+        let json_2 = await response_2.json();
+
+        const priceMANA = json_2.market_data.current_price.usd;
+        const manaTemp = priceMANA * 400000;
+        setGameplayMana(manaTemp);
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
@@ -95,12 +107,24 @@ const ContentGovernance = (props) => {
         let dai = json_4.daiBalance;
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
+        let uni = json_4.totalDgEthUniswapBalance;
+        setUniTreasury(props.formatPrice(uni.slice(-1)[0].secondary, 0));
+
+        let daiYield = json_4.totalCurveAaveBalance;
+        setDaiTreasury(props.formatPrice(daiYield.slice(-1)[0].secondary, 0));
+
         let totalUSD = json_4.totalBalanceUSD;
-        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary));
+        setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
+
+        let gameplayTotal = json_4.allTimeGameplayUSD;
+        setGameplayAll(props.formatPrice(gameplayTotal.slice(-1)[0].secondary, 0));
+
+        let dgbal = json_4.dgBalance;
+        setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
 
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
-    })();
+    })()
   }, [
     state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
     state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
@@ -111,6 +135,10 @@ const ContentGovernance = (props) => {
     percentageUniswap,
     treasuryTotal,
     treasuryDG,
+    daiTreasury,
+    gameplayAll,
+    dgBalance,
+    gameplayMana,
   ]);
 
   let data;
@@ -375,13 +403,7 @@ const ContentGovernance = (props) => {
                   justifyContent: 'space-between',
                 }}
               >
-                <img
-                  src={Images.SNAPSHOT_ICON}
-                  className="farming-logo"
-                  id="snapshot"
-                  alt="Snapshot Governance Logo"
-                />
-                <span className="farming-pool-span" style={{ width: '60%' }}>
+                <span className="farming-pool-span" style={{ width: '60%', marginLeft: '-15px' }}>
                   <p className="welcome-text">total treasury</p>
                   {treasuryTotal ? (
                     <p className="account-name">${treasuryTotal}</p>
@@ -401,7 +423,7 @@ const ContentGovernance = (props) => {
 
                 <span
                   style={{
-                    width: '35%',
+                    width: '40%',
                     maxWidth: '48.5%',
                     height: '75px',
                     marginTop: '5px'
@@ -409,6 +431,50 @@ const ContentGovernance = (props) => {
                 >
                   <Chart data={data} axes={axes} series={series} />
                 </span>
+              </span>
+
+              <Divider />
+
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingTop: '12px',
+                  paddingBottom: '12px',
+                }}
+              >
+                <span style={{ display: 'flex' }}>
+                  <p className="earned-text">Gameplay All Time</p>
+                  <Popup
+                    className="dai-mana-popup"
+                    trigger={
+                      <Icon
+                        className="dai-mana-icon"
+                        name="info circle"
+                        style={{ fontSize: '10px', marginLeft: '6px' }}
+                      />
+                    }
+                  >
+                    <div>
+                      <p className="earned-text"> All time gameplay earnings, not counting earnings allocated elsewhere by the DG DAO (not used in total treasury calculation)</p>
+                    </div>
+                  </Popup>
+                </span>
+                {gameplayAll ? (
+                  <p className="earned-amount">${gameplayAll}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="small"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px',
+                    }}
+                  />
+                )}
               </span>
 
               <Divider />
@@ -479,7 +545,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as {treasuryDG} $DG at market price{' '}
+                        calculated as {dgBalance} $DG at market price{' '}
                       </p>
                     </div>
                   </Popup>
@@ -618,7 +684,7 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {uniTreasury ? (
-                  <p className="earned-amount">${props.formatPrice(uniTreasury)}</p>
+                  <p className="earned-amount">${uniTreasury}</p>
                 ) : (
                   <Loader
                     active
@@ -656,12 +722,25 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        Coming soon{' '}
+                        Total treasury balance locked in Curve Aave vault{' '}
                       </p>
                     </div>
                   </Popup>
                 </span>
-                <p className="earned-amount">$0.00</p>
+                {daiTreasury ? (
+                  <p className="earned-amount">${daiTreasury}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="small"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '1px',
+                      marginBottom: '2px',
+                    }}
+                  />
+                )}
               </span>
 
               <Divider />

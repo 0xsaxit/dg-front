@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
-import { Button, Divider, Grid, Icon, Image } from 'semantic-ui-react';
+import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
 import transakSDK from '@transak/transak-sdk';
 import Global from '../Constants';
 import Images from '../../common/Images';
@@ -8,7 +8,6 @@ import Fetch from '../../common/Fetch';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import { ConnextModal } from '@connext/vector-modal';
-
 
 let transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -44,7 +43,6 @@ let transak_2 = new transakSDK({
   exchangeScreenTitle: 'Buy Matic DAI directly',
 });
 
-
 const ContentAccount = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -64,6 +62,7 @@ const ContentAccount = (props) => {
   const [showModal_4, setShowModal_4] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState('');
   const [wearables, setWearables] = useState([]);
+  const [poaps, setPoaps] = useState([]);
 
   useEffect(() => {
     (async function () {
@@ -88,6 +87,27 @@ const ContentAccount = (props) => {
         }
 
         setWearables(wearables);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async function () {
+      // get user poaps
+      if (state.userStatus) {
+        let response_1 = await Fetch.POAPS(state.userAddress);
+        let json_1 = await response_1.json();
+
+        var poaps = [];
+        var k;
+
+        for (k = 0; k < json_1.length; k++) {
+          if (json_1[k].event.name.includes('Decentral Games')) {
+            poaps.push(json_1[k].event);
+          }
+        }
+
+        setPoaps(poaps);
       }
     })();
   }, []);
@@ -124,10 +144,10 @@ const ContentAccount = (props) => {
   useEffect(() => {
     // get all the events
     transak_1.on(transak_1.ALL_EVENTS, (data) => {
-      console.log(data);
+      console.log('Transak events 1: ' + data);
     });
     transak_2.on(transak_2.ALL_EVENTS, (data) => {
-      console.log(data);
+      console.log('Transak events 2: ' + data);
     });
 
     // triggers when the user closes the widget
@@ -140,11 +160,11 @@ const ContentAccount = (props) => {
 
     // triggers when the payment is complete
     transak_1.on(transak_1.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData);
+      console.log('Transak order complete 1: ' + orderData);
       transak_1.close();
     });
     transak_2.on(transak_2.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData);
+      console.log('Transak order complete 2: ' + orderData);
       transak_2.close();
     });
   }, []);
@@ -152,13 +172,10 @@ const ContentAccount = (props) => {
   // initialize transak modal
   function show_transak_1() {
     transak_1.init();
-
-    // initializePings();
   }
+
   function show_transak_2() {
     transak_2.init();
-
-    // initializePings();
   }
 
   // top up user to 5000 play tokens
@@ -195,7 +212,7 @@ const ContentAccount = (props) => {
         );
       })();
     }
-  }, [state.userAddress]);
+  }, [state.userAddress, state.userBalances[1][1]]);
 
   // initialize token contract pings
   function initializePings() {
@@ -227,34 +244,13 @@ const ContentAccount = (props) => {
     }
   }, [state.userAddress]);
 
-
   function contentLabels() {
     if (props.type === 'balances') {
       return null;
     } else if (props.type === 'play') {
-      return (
-        <tbody>
-          <tr className="table-header">
-            <td className="table-header-text account">GAME</td>
-            <td className="table-header-text-1 bet">BET</td>
-            <td className="table-header-text-1">PAYOUT</td>
-            <td className="table-header-text-1 date">DATE</td>
-            <td className="table-header-text-1"/>
-          </tr>
-        </tbody>
-      );
+      return <span />;
     } else if (props.type === 'history') {
-      return (
-        <tbody>
-          <tr className="table-header">
-            <td className="table-header-text account">ACTION</td>
-            <td className="table-header-text-1">AMOUNT</td>
-            <td className="table-header-text-1 status">STATUS</td>
-            <td className="table-header-text-1 date">DATE</td>
-            <td />
-          </tr>
-        </tbody>
-      );
+      return <span />;
     }
   }
 
@@ -417,6 +413,7 @@ const ContentAccount = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -440,6 +437,7 @@ const ContentAccount = (props) => {
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
               </span>
             </div>
@@ -528,6 +526,7 @@ const ContentAccount = (props) => {
                   withdrawChainId={137}
                   withdrawChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
                 <Button
                   className="balances-play-button"
@@ -551,6 +550,7 @@ const ContentAccount = (props) => {
                   depositChainId={137}
                   depositChainProvider="https://rpc-mainnet.matic.network"
                   injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
                 />
               </span>
             </div>
@@ -570,7 +570,7 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentWearables() {
     return (
-      <Grid>
+      <Grid style={{ marginBottom: '90px' }}>
         {wearables.map((wearable, i) => (
           <Grid.Column
             computer={5}
@@ -646,9 +646,33 @@ const ContentAccount = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  function contentPoaps() {
+    return (
+      <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
+        {poaps.map((poap, i) => (
+          <Grid.Column computer={4} tablet={8} mobile={8} key={i}>
+            <Image src={poap.image_url} className="poap-pic" />
+          </Grid.Column>
+        ))}
+      </Grid>
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentHistory() {
     return (
-      <tbody>
+      <Table unstackable>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Action</Table.HeaderCell>
+            <Table.HeaderCell className="account-col-2">Amount</Table.HeaderCell>
+            <Table.HeaderCell>Status</Table.HeaderCell>
+            <Table.HeaderCell>Date</Table.HeaderCell>
+            <Table.HeaderCell />
+          </Table.Row>
+        </Table.Header>
+
         {props.dataPage.map((row, i) => {
           const date = new Date(row.createdAt);
           const timestamp = date.toLocaleString();
@@ -662,68 +686,73 @@ const ContentAccount = (props) => {
           }
 
           return (
-            <tr className="table-body" key={i}>
-              <td className="table-body-text-1 first">
-                {row.coinName === 'MANA' ? (
-                  <img
-                    src={Images.ICON_DAI}
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      borderRadius: '100%',
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={Images.ICON_MANA}
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      borderRadius: '100%',
-                    }}
-                  />
-                )}
-                {row.type}
-              </td>
-
-              <td className="table-body-text-1">
-                {sign}
-                {amount > 1000000000000000000000000
-                  ? 'N/A'
-                  : amount + ' MANA'}
-              </td>
-
-              <td className="table-body-text-1 status">{row.status}</td>
-              <td className="table-body-text-1 date">{timestamp}</td>
-
-              <td className="table-body-text-1 hash">
-                <span style={{ float: 'right', paddingRight: '12px' }}>
-                  <Button
-                    href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                    target="_blank"
-                    className="etherscan-button"
-                  >
-                    blockchain tx
-                    <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                  </Button>
-                  <Button
-                    href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                    target="_blank"
-                    className="etherscan-button-mobile"
-                  >
-                    tx
-                    <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                  </Button>
-                </span>
-              </td>
-            </tr>
+            <Table.Body key={i}>
+              <Table.Row>
+                <Table.Cell>
+                  {row.coinName === 'MANA' ? (
+                    <img
+                      src={Images.ICON_DAI}
+                      style={{
+                        width: '21px',
+                        marginRight: '6px',
+                        verticalAlign: 'middle',
+                        marginTop: '-2px',
+                        borderRadius: '100%',
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={Images.ICON_MANA}
+                      style={{
+                        width: '21px',
+                        marginRight: '6px',
+                        verticalAlign: 'middle',
+                        marginTop: '-2px',
+                        borderRadius: '100%',
+                      }}
+                    />
+                  )}
+                  {row.type}
+                </Table.Cell>
+                <Table.Cell className="account-col-2">
+                  {sign}
+                  {amount > 1000000000000000000000000
+                    ? 'N/A'
+                    : amount + ' MANA'}
+                </Table.Cell>
+                <Table.Cell>{row.status}</Table.Cell>
+                <Table.Cell>{timestamp}</Table.Cell>
+                <Table.Cell>
+                  <span style={{ float: 'right', paddingRight: '12px' }}>
+                    <Button
+                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                      target="_blank"
+                      className="etherscan-button"
+                    >
+                      blockchain tx
+                      <Icon
+                        name="external alternate"
+                        style={{ marginLeft: '6px', marginRight: '-2px' }}
+                      />
+                    </Button>
+                    <Button
+                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+                      target="_blank"
+                      className="etherscan-button-mobile"
+                    >
+                      tx
+                      <Icon
+                        name="external alternate"
+                        style={{ marginLeft: '6px', marginRight: '-2px' }}
+                      />
+                    </Button>
+                  </span>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
           );
         })}
-      </tbody>
+      </Table>
     );
   }
 
@@ -731,7 +760,17 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentGameplay() {
     return (
-      <tbody>
+      <Table unstackable>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Game</Table.HeaderCell>
+            <Table.HeaderCell className="account-col-2">Bet</Table.HeaderCell>
+            <Table.HeaderCell>Payout</Table.HeaderCell>
+            <Table.HeaderCell>Date</Table.HeaderCell>
+            <Table.HeaderCell />
+          </Table.Row>
+        </Table.Header>
+
         {props.dataPage.map((row, i) => {
           const date = new Date(row.createdAt);
           const timestamp = date.toLocaleString();
@@ -749,117 +788,148 @@ const ContentAccount = (props) => {
           }
 
           return (
-            <tr className="table-body" key={i}>
-              <td className="table-body-text-1 first">
-                {row.coinName === 'MANA' ? (
-                  <img
-                    src={Images.ICON_MANA}
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      borderRadius: '100%',
-                    }}
-                  />
-                ) : row.coinName === 'DAI' ? (
-                  <img
-                    src={Images.ICON_DAI}
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      borderRadius: '100%',
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={Images.ICON_PLAY}
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-2px',
-                      borderRadius: '100%',
-                    }}
-                  />
-                )}
-
-                {action}
-              </td>
-
-              <td className="table-body-text-1 bet">
-                -{amount} {row.coinName}
-              </td>
-              <td className="table-body-text-1">
-                +{result} {row.coinName}
-              </td>
-              <td className="table-body-text-1 date">{timestamp}</td>
-
-              <td className="table-body-text-1 hash">
-                <span style={{ float: 'right', paddingRight: '12px' }}>
+            <Table.Body key={i}>
+              <Table.Row>
+                <Table.Cell>
                   {row.coinName === 'MANA' ? (
-                    <span>
-                      <Button
-                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                        target="_blank"
-                        className="etherscan-button"
-                      >
-                        blockchain tx
-                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                      </Button>
-                      <Button
-                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                        target="_blank"
-                        className="etherscan-button-mobile"
-                      >
-                        tx
-                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                      </Button>
-                    </span>
+                    <img
+                      src={Images.ICON_MANA}
+                      style={{
+                        width: '21px',
+                        marginRight: '6px',
+                        verticalAlign: 'middle',
+                        marginTop: '-2px',
+                        borderRadius: '100%',
+                      }}
+                    />
                   ) : row.coinName === 'DAI' ? (
-                    <span>
-                      <Button
-                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                        target="_blank"
-                        className="etherscan-button"
-                      >
-                        blockchain tx
-                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                      </Button>
-                      <Button
-                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                        target="_blank"
-                        className="etherscan-button-mobile"
-                      >
-                        tx
-                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                      </Button>
-                    </span>
+                    <img
+                      src={Images.ICON_DAI}
+                      style={{
+                        width: '21px',
+                        marginRight: '6px',
+                        verticalAlign: 'middle',
+                        marginTop: '-2px',
+                        borderRadius: '100%',
+                      }}
+                    />
                   ) : (
-                    <span>
-                      <Button disabled className="etherscan-button" style={{ padding: '2px 0px 0px 0px' }}>
-                        blockchain tx
-                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                      </Button>
-                      <Button
-                        disabled
-                        href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                        target="_blank"
-                        className="etherscan-button-mobile"
-                      >
-                        tx
-                        <Icon name="external alternate" style={{ marginLeft: '6px', marginRight: '-2px' }}/>
-                      </Button>
-                    </span>
+                    <img
+                      src={Images.ICON_PLAY}
+                      style={{
+                        width: '21px',
+                        marginRight: '6px',
+                        verticalAlign: 'middle',
+                        marginTop: '-2px',
+                        borderRadius: '100%',
+                      }}
+                    />
                   )}
-                </span>
-              </td>
-            </tr>
+                  {action}
+                </Table.Cell>
+                <Table.Cell className="account-col-2">
+                  -{amount} {row.coinName}
+                </Table.Cell>
+                <Table.Cell>
+                  +{result} {row.coinName}
+                </Table.Cell>
+                <Table.Cell>{timestamp}</Table.Cell>
+                <Table.Cell>
+                  <span style={{ float: 'right', paddingRight: '12px' }}>
+                    {row.coinName === 'MANA' ? (
+                      <span>
+                        <Button
+                          href={
+                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
+                          }
+                          target="_blank"
+                          className="etherscan-button"
+                        >
+                          blockchain tx
+                          <Icon
+                            name="external alternate"
+                            style={{ marginLeft: '6px', marginRight: '-2px' }}
+                          />
+                        </Button>
+                        <Button
+                          href={
+                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
+                          }
+                          target="_blank"
+                          className="etherscan-button-mobile"
+                        >
+                          tx
+                          <Icon
+                            name="external alternate"
+                            style={{ marginLeft: '6px', marginRight: '-2px' }}
+                          />
+                        </Button>
+                      </span>
+                    ) : row.coinName === 'DAI' ? (
+                      <span>
+                        <Button
+                          href={
+                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
+                          }
+                          target="_blank"
+                          className="etherscan-button"
+                        >
+                          blockchain tx
+                          <Icon
+                            name="external alternate"
+                            style={{ marginLeft: '6px', marginRight: '-2px' }}
+                          />
+                        </Button>
+                        <Button
+                          href={
+                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
+                          }
+                          target="_blank"
+                          className="etherscan-button-mobile"
+                        >
+                          tx
+                          <Icon
+                            name="external alternate"
+                            style={{ marginLeft: '6px', marginRight: '-2px' }}
+                          />
+                        </Button>
+                      </span>
+                    ) : (
+                      <span>
+                        <Button
+                          disabled
+                          className="etherscan-button"
+                          style={{ padding: '2px 0px 0px 0px' }}
+                        >
+                          blockchain tx
+                          <Icon
+                            name="external alternate"
+                            style={{ marginLeft: '6px', marginRight: '-2px' }}
+                          />
+                        </Button>
+                        <Button
+                          disabled
+                          href={
+                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
+                          }
+                          target="_blank"
+                          className="etherscan-button-mobile"
+                        >
+                          tx
+                          <Icon
+                            name="external alternate"
+                            style={{ marginLeft: '6px', marginRight: '-2px' }}
+                          />
+                        </Button>
+                      </span>
+                    )}
+                  </span>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
           );
         })}
-      </tbody>
+      </Table>
     );
   }
 
@@ -869,6 +939,8 @@ const ContentAccount = (props) => {
     return contentAccount();
   } else if (props.content === 'wearables') {
     return contentWearables();
+  } else if (props.content === 'poaps') {
+    return contentPoaps();
   } else if (props.content === 'history') {
     return contentHistory();
   } else if (props.content === 'play') {

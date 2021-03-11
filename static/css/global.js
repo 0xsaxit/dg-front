@@ -98,7 +98,6 @@ export const GlobalStyles = createGlobalStyle`
   .dg-powered-container,
   .treasury-container,
   .balances-column,
-  .table-body,
   .featured-blog-container,
   .post,
   .DG-column,
@@ -112,6 +111,12 @@ export const GlobalStyles = createGlobalStyle`
   #airdrop-number-1,
   #airdrop-number-2 {
     background: ${({ theme }) => theme.card};
+    border: ${({ theme }) => theme.cardBorder};
+    box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
+  .poap-pic {
+    border-radius: 100%;
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
   }

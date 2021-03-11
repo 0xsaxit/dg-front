@@ -8,7 +8,7 @@ $black200: #eeeeee;
 $black100: #f4f4f4;
 $white: #ffffff;
 
-$font_family: "Helvetica Neue", Inter, ui-sans-serif, "Apple Color Emoji", Helvetica, Arial, sans-serif;
+$font_family: 'Lato', sans-serif !important;
 $background_color_9: #08c;
 $background_color_10: rgba(136, 136, 136, 0.24);
 
@@ -127,7 +127,7 @@ tr.introjs-showElement {
 
 .introjs-arrow.top {
   top: -10px;
-  left: 10px;
+  right: 10px;
   border-bottom-color: $white;
 }
 
@@ -194,13 +194,14 @@ tr.introjs-showElement {
   background-color: $white;
   min-width: 250px;
   max-width: 300px;
+  right: 0;
   border-radius: 5px;
   box-shadow: 0 3px 30px rgba($black900, 0.3);
   transition: opacity 0.1s ease-out;
 }
 
 .introjs-tooltiptext {
-  padding: 20px;
+  padding: 9px 20px 20px 20px;
 }
 
 .introjs-tooltip-title {
@@ -246,50 +247,24 @@ tr.introjs-showElement {
   position: relative;
   overflow: visible;
   display: inline-block;
-
-  padding: 0.5rem 1rem;
-
-  border: 1px solid $black400;
-  text-decoration: none;
-  text-shadow: 1px 1px 0 $white;
-  font-size: 14px;
-  color: $black800;
+  height: 23px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: 4px 30px 0 30px;
+  color: white !important;
   white-space: nowrap;
   cursor: pointer;
   outline: none;
-  background-color: $black100;
-  border-radius: 0.2em;
+  background-color: #2085f4 !important;
+  border-radius: 4px;
   zoom: 1;
+  text-transform: uppercase;
   *display: inline;
+  margin: 3px 9px 3px 0px;
 
   &:hover {
-    outline: none;
-    text-decoration: none;
-    border-color: $black500;
-    background-color: $black300;
-    color: $black900;
-  }
-
-  &:focus {
-    outline: none;
-    text-decoration: none;
-    background-color: $black200;
-    box-shadow: 0 0 0 0.2rem rgba($black500,.5);
-    border: 1px solid $black600;
-    color: $black900;
-  }
-
-  &:active {
-    outline: none;
-    text-decoration: none;
-    background-color: $black300;
-    border-color: $black500;
-    color: $black900;
-  }
-
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0;
+    filter: brightness(0.9);
   }
 }
 
@@ -302,7 +277,7 @@ tr.introjs-showElement {
   font-weight: bold;
   line-height: 1;
   text-align: center;
-  padding: 7px 10px;
+  margin-top: 3px;
 
   &:hover,
   &:focus {

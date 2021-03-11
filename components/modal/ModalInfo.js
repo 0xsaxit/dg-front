@@ -202,6 +202,13 @@ const ModalInfo = () => {
             BUY WITH FIAT
           </Button>
         </span>
+        <Button
+          className="withdraw-dg-button"
+          href="https://wallet.matic.network/bridge"
+          target="_blank"
+        >
+          WITHDRAW MATIC $DG
+        </Button>
       </div>
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>

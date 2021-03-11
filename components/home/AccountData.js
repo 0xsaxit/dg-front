@@ -1,14 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import { Menu, Divider, Grid, Icon, Image, Popup } from 'semantic-ui-react';
+import { Divider, Icon, Popup } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
-import Pagination from './Pagination';
 import Aux from '../_Aux';
 import { Parallax } from 'react-parallax';
 import ModalAffiliates from '../modal/ModalAffiliates';
-
+// import Images from '../../common/Images';
 
 const AccountData = (props) => {
   // get user's transaction history from the Context API store
@@ -17,23 +16,15 @@ const AccountData = (props) => {
   const dataPlay = state.transactions[1];
 
   // define local variables
-  const [maximumCount, setMaximumCount] = useState(0);
-
-  // const [dataType, setDataType] = useState('balances');
-  const [dataType, setDataType] = useState(props.dataType);
-
-  const [dataLength, setDataLength] = useState(0);
   const [dataPage, setDataPage] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [utm, setUtm] = useState('');
 
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      const frameHeight = window.innerHeight;
-      setMaximumCount(Math.floor(frameHeight * 0.01575));
-    }
-  }, [state.userStatus]);
+  const dataType = props.dataType;
+  const maximumCount = 100;
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.transactions[0].length) {
       setIsLoading(false);
@@ -47,10 +38,25 @@ const AccountData = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    // console.log('data type: ' + props.dataType);
+    if (!isLoading) {
+      // setUserData(props.dataType, 1);
 
-    setUserData(props.dataType, 1);
-  }, [props.dataType, isLoading]);
+      let result = [];
+      if (dataType === 'balances') {
+        result = true;
+      } else if (dataType === 'history') {
+        result = dataHistory.slice(0, maximumCount);
+      } else if (dataType === 'play') {
+        result = dataPlay.slice(0, maximumCount);
+      }
+
+      setDataPage(result);
+    }
+  }, [dataType, isLoading]);
+
+  useEffect(() => {
+    setUtm(sessionStorage.getItem('utm'));
+  }, [utm]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -59,11 +65,14 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '5', }}>
+        <div style={{ position: 'relative', zIndex: '5' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <span className="avatar-picture" style={{ alignSelf: 'center', marginTop: '-60px' }}>
+            <span
+              className="avatar-picture"
+              style={{ alignSelf: 'center', marginTop: '-60px' }}
+            >
               <a
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                href={`https://play.decentraland.org/?position=-119%2C133&realm=hades-amber${utm}`}
                 target="_blank"
               >
                 <img
@@ -74,154 +83,172 @@ const AccountData = (props) => {
                     width: '120px',
                     display: 'flex',
                     marginTop: '-18px',
-
                   }}
                 />
               </a>
             </span>
-              {state.userInfo[0] === null || state.userInfo[0] === '' ? (
-                <p className="account-name-2">
-                  {state.userInfo[1].substr(0, 4) +
-                    '...' +
-                    state.userInfo[1].substr(-4)}
-                </p>
-              ) : (
-                <p className="account-name-2">{state.userInfo[0]}</p>
-              )}
-              <p className="welcome-text-2"> {state.userInfo[1]} </p>
-            </span>
+            {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+              <p className="account-name-2">
+                {state.userInfo[1].substr(0, 4) +
+                  '...' +
+                  state.userInfo[1].substr(-4)}
+              </p>
+            ) : (
+              <p className="account-name-2">{state.userInfo[0]}</p>
+            )}
+            <p className="welcome-text-2"> {state.userInfo[1]} </p>
+          </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end', margin: '-123px 0px 90px 0px' }}>
-              <Popup
-                position='top center'
-                className="account-popup"
-                trigger={
-                  <a href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" target="_blank" className="account-icon-hover">
-                    <span>
-                      <Icon name="settings" className="submenu-icon" />
-                    </span>
-                  </a>
-                }
-              >
-                <div>
-                  <p className="earned-text">
-                    EDIT AVATAR
-                  </p>
-                </div>
-              </Popup>
-              <Popup
-                position='top center'
-                className="account-popup"
-                onClick={() => introJs().start()}
-                trigger={
-                  <span className="account-icon-hover">
-                    <Icon name="help circle" className="submenu-icon" />
+          <span
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              margin: '-123px 0px 90px 0px',
+            }}
+          >
+            <Popup
+              position="top center"
+              className="account-popup"
+              trigger={
+                <a
+                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                  target="_blank"
+                  className="account-icon-hover"
+                  id="mobile-display-none"
+                >
+                  <span>
+                    <Icon name="settings" className="submenu-icon" />
                   </span>
-                }
-              >
-                <div>
-                  <p className="earned-text">
-                    COMING SOON
-                  </p>
-                </div>
-              </Popup>
-            </span>
-          </div>
+                </a>
+              }
+            >
+              <div>
+                <p className="earned-text">EDIT AVATAR</p>
+              </div>
+            </Popup>
+            <Popup
+              position="top center"
+              className="account-popup"
+              onClick={() => introJs().start()}
+              trigger={
+                <span className="account-icon-hover">
+                  <Icon name="help circle" className="submenu-icon" />
+                </span>
+              }
+            >
+              <div>
+                <p className="earned-text">COMING SOON</p>
+              </div>
+            </Popup>
+          </span>
+        </div>
 
-          <div className="account-other-tabs" style={{ paddingTop: '15px' }}>
-
-            <div style={{ marginLeft: '0px' }}>
-              <span className="account-other-p" style={{ display: 'flex' }}>
-                {dataType === 'balances' ? (
-                  <span className="account-hover active">
+        <div className="account-other-tabs" id="account-mobile-tabs">
+          <div style={{ marginLeft: '0px' }}>
+            <span className="account-other-p" style={{ display: 'flex' }}>
+              {dataType === 'balances' ? (
+                <span className="account-hover active">
+                  <b>BALANCES</b>
+                </span>
+              ) : (
+                <Link href="/account">
+                  <span className="account-hover">
                     <b>BALANCES</b>
                   </span>
-                ) : (
-                  <Link href="/account">
-                    <span className="account-hover">
-                      <b>BALANCES</b>
-                    </span>
-                  </Link>
-                )}
+                </Link>
+              )}
 
-                {dataType === 'wearables' ? (
-                  <span className="account-hover active">
+              {dataType === 'wearables' ? (
+                <span className="account-hover active">
+                  <b>NFTS</b>
+                </span>
+              ) : (
+                <Link href="/account/nfts">
+                  <span className="account-hover">
                     <b>NFTS</b>
                   </span>
-                ) : (
-                  <Link href="/account/nfts">
-                    <span className="account-hover">
-                      <b>NFTS</b>
-                    </span>
-                  </Link>
-                )}
+                </Link>
+              )}
 
-                {dataType === 'play' ? (
-                  <span className="account-hover active">
+              {dataType === 'poaps' ? (
+                <span className="account-hover active">
+                  <b>POAPS</b>
+                </span>
+              ) : (
+                <Link href="/account/poaps">
+                  <span className="account-hover">
+                    <b>POAPS</b>
+                  </span>
+                </Link>
+              )}
+
+              {dataType === 'play' ? (
+                <span className="account-hover active">
+                  <b style={{ marginRight: '4px' }}>GAME</b>
+                  <b>HISTORY</b>
+                </span>
+              ) : (
+                <Link href="/account/play">
+                  <span className="account-hover">
                     <b style={{ marginRight: '4px' }}>GAME</b>
                     <b>HISTORY</b>
                   </span>
-                ) : (
-                  <Link href="/account/play">
-                    <span className="account-hover">
-                      <b style={{ marginRight: '4px' }}>GAME</b>
-                      <b>HISTORY</b>
-                    </span>
-                  </Link>
-                )}
+                </Link>
+              )}
 
-                {dataType === 'history' ? (
-                  <span className="account-hover active">
+              {dataType === 'history' ? (
+                <span className="account-hover active">
+                  <b>TRANSACTIONS</b>
+                </span>
+              ) : (
+                <Link href="/account/history">
+                  <span className="account-hover">
                     <b>TRANSACTIONS</b>
                   </span>
-                ) : (
-                  <Link href="/account/history">
-                    <span className="account-hover">
-                      <b>TRANSACTIONS</b>
-                    </span>
-                  </Link>
-                )}
+                </Link>
+              )}
 
-                <span style={{ marginTop: '27px' }}>
-                  <ModalAffiliates />
-                </span>
+              <span style={{ marginTop: '27px' }}>
+                <ModalAffiliates />
               </span>
-            </div>
+            </span>
           </div>
+        </div>
 
-          <Divider className="tab-divider" />
+        <Divider className="tab-divider" />
       </Aux>
     );
   }
 
-  function setUserData(type, page) {
+  // function setUserData(type, page) {
+  //   if (!isLoading) {
+  //     let result = [];
+  //     const indexStart = (page - 1) * maximumCount;
+  //     const indexEnd = indexStart + maximumCount;
 
-    if (!isLoading) {
-      let result = [];
-      const indexStart = (page - 1) * maximumCount;
-      const indexEnd = indexStart + maximumCount;
-      let dataLength = 0;
-      if (type === 'balances') {
-        result = true;
-        dataLength = 0;
-      } else if (type === 'history') {
-        result = dataHistory.slice(indexStart, indexEnd);
-        dataLength = dataHistory.length;
-      } else if (type === 'play') {
-        result = dataPlay.slice(indexStart, indexEnd);
-        dataLength = dataPlay.length;
-      }
-      setDataType(type);
-      setDataPage(result);
-      setDataLength(dataLength);
-      setCurrentPage(page);
-    }
-  }
+  //     // let dataLength = 0;
+  //     if (type === 'balances') {
+  //       result = true;
+  //       // dataLength = 0;
+  //     } else if (type === 'history') {
+  //       result = dataHistory.slice(indexStart, indexEnd);
+  //       // dataLength = dataHistory.length;
+  //     } else if (type === 'play') {
+  //       result = dataPlay.slice(indexStart, indexEnd);
+  //       // dataLength = dataPlay.length;
+  //     }
+
+  //     setDataType(type);
+  //     setDataPage(result);
+  //     // setCurrentPage(page);
+  //     // setDataLength(dataLength);
+  //   }
+  // }
 
   function noTxHistory() {
     return (
       <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-        There is no transaction history for this account
+        There doesn't appear to be anything here!
       </div>
     );
   }
@@ -235,12 +262,13 @@ const AccountData = (props) => {
           <div style={{ maxWidth: '100vw', marginTop: '60px' }}>
             <Parallax
               blur={0}
-              bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1612826628/Screen_Shot_2021-02-08_at_3.23.36_PM_po0m5c.png" 
+              bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1614574769/Image_from_iOS_coebmd.png"
               strength={100}
             >
               <div style={{ height: '180px' }} />
             </Parallax>
           </div>
+
           <div className="page-container">
             <div className="account-other-inner-container">
               {topLinks()}
@@ -254,23 +282,28 @@ const AccountData = (props) => {
                   <div>
                     <ContentAccount content={'wearables'} />
                   </div>
-                ) : dataPage !== 'false' ? (
-                  <table className="account-table">
-                    <ContentAccount content={'labels'} type={dataType} />
-                    <ContentAccount content={dataType} dataPage={dataPage} />
-                  </table>
+                ) : dataType == 'poaps' ? (
+                  <div>
+                    <ContentAccount content={'poaps'} />
+                  </div>
+                ) : dataType == 'history' ? (
+                  <div style={{ paddingTop: '12px' }}>
+                    <div className="tx-box-overflow">
+                      <ContentAccount content={'labels'} type={dataType} />
+                      <ContentAccount content={dataType} dataPage={dataPage} />
+                    </div>
+                  </div>
+                ) : dataType == 'play' ? (
+                  <div style={{ paddingTop: '12px' }}>
+                    <div className="tx-box-overflow">
+                      <ContentAccount content={'labels'} type={dataType} />
+                      <ContentAccount content={dataType} dataPage={dataPage} />
+                    </div>
+                  </div>
                 ) : (
                   noTxHistory()
                 )}
               </div>
-
-              <Pagination
-                currentPage={currentPage}
-                dataType={dataType}
-                dataLength={dataLength}
-                maximumCount={maximumCount}
-                setUserData={setUserData}
-              />
             </div>
           </div>
         </div>
