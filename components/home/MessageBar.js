@@ -48,7 +48,7 @@ const MessageBar = () => {
         setAdminError(false);
       }
     }
-  }, [state.networkID]);</a>;
+  }, [state.networkID]);
 
   useEffect(() => {
     if (isSafari) {
