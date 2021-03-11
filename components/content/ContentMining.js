@@ -246,7 +246,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">37.7K MANA</p>
+                    <p className="earned-amount">47.7K MANA</p>
                   </span>
                 </span>
 
@@ -266,7 +266,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">127K MANA</p>
+                    <p className="earned-amount">161K MANA</p>
                   </span>
                 </span>
               </div>
@@ -310,7 +310,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">21.1K DAI</p>
+                    <p className="earned-amount">24.4K DAI</p>
                   </span>
                 </span>
 
@@ -329,7 +329,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">71.2K DAI</p>
+                    <p className="earned-amount">82.2K DAI</p>
                   </span>
                 </span>
               </div>
