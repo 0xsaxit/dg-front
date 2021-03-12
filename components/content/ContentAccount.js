@@ -238,7 +238,7 @@ const ContentAccount = (props) => {
 
   useEffect(() => {
     if (state.userAddress) {
-      setInjectedProvider(window.ethereum);
+      setInjectedProvider(state.walletProvider);
     } else {
       setInjectedProvider('');
     }
@@ -689,7 +689,7 @@ const ContentAccount = (props) => {
             <Table.Body key={i}>
               <Table.Row>
                 <Table.Cell>
-                  {row.coinName === 'MANA' ? (
+                  {row.coinName === 'MANA' || row.type === "DAI Authorization" ? (
                     <img
                       src={Images.ICON_DAI}
                       style={{
