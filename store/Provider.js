@@ -16,7 +16,7 @@ const initialState = {
     [0, 0],
     [0, 0],
   ],
-  transactions: [[], []],
+  transactions: [{}, {}],
   txHash: '',
   tokenPings: 0,
   // parcelDataAll: {},

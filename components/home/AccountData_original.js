@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import { Parallax } from 'react-parallax';
 import { Divider, Icon, Popup } from 'semantic-ui-react';
-import ModalAffiliates from '../modal/ModalAffiliates';
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Aux from '../_Aux';
+import { Parallax } from 'react-parallax';
+import ModalAffiliates from '../modal/ModalAffiliates';
+// import Images from '../../common/Images';
 
 const AccountData = (props) => {
   // get user's transaction history from the Context API store
@@ -20,20 +21,30 @@ const AccountData = (props) => {
   const [utm, setUtm] = useState('');
 
   const dataType = props.dataType;
-  const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
+  const maximumCount = 100;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    if (state.transactions[0].length && state.transactions[1]) {
+    if (state.transactions[0].length) {
       setIsLoading(false);
     }
   }, [state.transactions]);
 
   useEffect(() => {
+    if (!state.userStatus) {
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
     if (!isLoading) {
-      let result = {};
-      if (dataType === 'history') {
+      // setUserData(props.dataType, 1);
+
+      let result = [];
+      if (dataType === 'balances') {
+        result = true;
+      } else if (dataType === 'history') {
         result = dataHistory.slice(0, maximumCount);
       } else if (dataType === 'play') {
         result = dataPlay.slice(0, maximumCount);
@@ -41,7 +52,7 @@ const AccountData = (props) => {
 
       setDataPage(result);
     }
-  }, [isLoading]);
+  }, [dataType, isLoading]);
 
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
@@ -50,6 +61,7 @@ const AccountData = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
+
   function topLinks() {
     return (
       <Aux>
@@ -208,6 +220,31 @@ const AccountData = (props) => {
     );
   }
 
+  // function setUserData(type, page) {
+  //   if (!isLoading) {
+  //     let result = [];
+  //     const indexStart = (page - 1) * maximumCount;
+  //     const indexEnd = indexStart + maximumCount;
+
+  //     // let dataLength = 0;
+  //     if (type === 'balances') {
+  //       result = true;
+  //       // dataLength = 0;
+  //     } else if (type === 'history') {
+  //       result = dataHistory.slice(indexStart, indexEnd);
+  //       // dataLength = dataHistory.length;
+  //     } else if (type === 'play') {
+  //       result = dataPlay.slice(indexStart, indexEnd);
+  //       // dataLength = dataPlay.length;
+  //     }
+
+  //     setDataType(type);
+  //     setDataPage(result);
+  //     // setCurrentPage(page);
+  //     // setDataLength(dataLength);
+  //   }
+  // }
+
   function noTxHistory() {
     return (
       <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
@@ -252,12 +289,14 @@ const AccountData = (props) => {
                 ) : dataType == 'history' ? (
                   <div style={{ paddingTop: '12px' }}>
                     <div className="tx-box-overflow">
+                      <ContentAccount content={'labels'} type={dataType} />
                       <ContentAccount content={dataType} dataPage={dataPage} />
                     </div>
                   </div>
                 ) : dataType == 'play' ? (
                   <div style={{ paddingTop: '12px' }}>
                     <div className="tx-box-overflow">
+                      <ContentAccount content={'labels'} type={dataType} />
                       <ContentAccount content={dataType} dataPage={dataPage} />
                     </div>
                   </div>
