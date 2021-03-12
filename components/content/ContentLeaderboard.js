@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Table } from 'semantic-ui-react';
 import Global from '../Constants';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
@@ -125,15 +125,15 @@ const ContentLeaderboard = (props) => {
             key={index}
             className="leaderboard-column"
           >
-            <table style={{ marginTop: '5px' }}>
-              <tbody>
-                <tr className="table-header">
-                  <td className="table-header-text-1 games">{game}</td>
-                  <td className="table-header-text-2 games">WIN</td>
-                </tr>
-              </tbody>
+            <Table unstackable className="leaders-table">
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>{game}</Table.HeaderCell>
+                  <Table.HeaderCell className="leaders-col-2">WIN</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-              <tbody>
+              <Table.Body>
                 {dataGames[index].map((row, index) => {
                   var num = parseInt(
                     Number(row.winnings) / Global.CONSTANTS.FACTOR
@@ -143,8 +143,8 @@ const ContentLeaderboard = (props) => {
                     .split(/\s/)
                     .join(',');
                   return (
-                    <tr className="table-body" key={index}>
-                      <td className="table-body-text-1 games">
+                    <Table.Row key={index}>
+                      <Table.Cell>
                         {index + 1}.{' '}
                         <img
                           className="avatar-picture"
@@ -165,13 +165,13 @@ const ContentLeaderboard = (props) => {
                             '...' +
                             row.address.substr(-4)
                           : row.name}
-                      </td>
-                      <td className="table-body-text-2 games">{amount}</td>
-                    </tr>
+                      </Table.Cell>
+                      <Table.Cell className="leaders-col-2">{amount}</Table.Cell>
+                    </Table.Row>
                   );
                 })}
-              </tbody>
-            </table>
+              </Table.Body>
+            </Table>
           </Grid.Column>
         );
       })}
