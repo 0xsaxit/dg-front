@@ -30,6 +30,12 @@ const ButtonVerify = () => {
         userAddress: userAddress,
       });
 
+      // dispatch wallet provider as metmask
+      dispatch({
+        type: 'update_provider',
+        data: window.ethereum // something like this
+      })
+
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
@@ -97,7 +103,7 @@ const ButtonVerify = () => {
           <span style={{ display: 'flex' }}>
             <Image 
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png" 
-              className="wallet-image"
+              className="wallet-image-1"
             />
             <span>
               <h3 className="wallet-h3"> Metamask </h3>

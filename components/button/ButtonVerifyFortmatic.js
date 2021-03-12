@@ -16,15 +16,25 @@ const ButtonVerifyFortmatic = () => {
 
     const fm = new Fortmatic('pk_live_C9EC08967C16ABA1');
     window.web3 = new Web3(fm.getProvider());
+
+    web3.eth.getCoinbase((error, coinbase) => {
+      if (error) throw error;
+      userAddress = coinbase.toLowerCase();
+    });
     
     // open MetaMask for login then get the user's wallet address
     await web3.currentProvider.enable();
-    userAddress = web3.eth.accounts;
 
-    // track MetaMask connect event
-    analytics.track('Connected MetaMask', {
-      userAddress: userAddress,
-    });
+    console.log('???');
+    console.log(userAddress);
+    console.log(fm.getProvider());
+
+
+    // dispatch wallet provider as metmask
+    dispatch({
+      type: 'update_provider',
+      data: fm.getProvider(), // something like this
+    })
 
     // dispatch user address to the Context API store
     dispatch({
@@ -90,8 +100,8 @@ const ButtonVerifyFortmatic = () => {
       <div className="wallet-card" onClick={() => openFortmatic()}>
         <span style={{ display: 'flex' }}>
           <Image 
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1615507987/spaces_-Lj7HukBJLlR6jbx0-eP_avatar_eqjjnl.png" 
-            className="wallet-image"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1615581511/spaces_-Lj7HukBJLlR6jbx0-eP_avatar_y2ijet.png" 
+            className="wallet-image-2"
           />
           <span>
             <h3 className="wallet-h3"> Fortmatic </h3>

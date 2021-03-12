@@ -39,7 +39,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {

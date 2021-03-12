@@ -16,7 +16,7 @@ function AdminBalances() {
 
   useEffect(() => {
     if (state.whitelistedAdmin) {
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {

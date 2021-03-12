@@ -12,6 +12,11 @@ function UserStatus() {
   useEffect(() => {
     if (window.ethereum) {
       userAddress = window.ethereum.selectedAddress;
+    } else {
+      web3.eth.getCoinbase((error, coinbase) => {
+        if (error) throw error;
+        userAddress = coinbase.toLowerCase();
+      });
 
       if (userAddress) {
         // set user status to 3 to denote fetching user status, and dispatch the user address

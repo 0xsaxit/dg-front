@@ -9,6 +9,7 @@ const initialState = {
     meta: {},
   },
   userStatus: 0,
+  walletProvider: '',
   userAddress: '',
   userInfo: [],
   userBalances: [
@@ -96,6 +97,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         userStatus: action.data,
+      };
+
+    case 'update_provider': 
+      console.log('!!!');
+      console.log(action.data);
+      return {
+        ...state,
+        walletProvider: action.data,
       };
 
     case 'user_address':

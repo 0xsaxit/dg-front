@@ -28,7 +28,7 @@ function ActiveStatus() {
       state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
     ) {
       // initialize Web3 providers and create treasury contract instance
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
       setWeb3(web3);
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
       setMaticWeb3(maticWeb3);

@@ -37,7 +37,7 @@ const Airdrop = () => {
         <Spinner background={1} />
       ) : isErrorMessage === true ? (
         <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-          You must log in with Metamask to view this page
+          You must connect your wallet to view this page
         </div>
       ) : (
         <Farming DGState={'airdrop'} />

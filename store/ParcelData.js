@@ -17,7 +17,7 @@ function ParcelData() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
 
       (async function () {
         // if user owns an NFT fetch parcel data for this particular token ID

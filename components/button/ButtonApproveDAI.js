@@ -35,7 +35,7 @@ function ButtonApproveMANA() {
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
-      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
       setWeb3(web3);
 
       const biconomy = new Biconomy(

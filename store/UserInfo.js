@@ -34,6 +34,8 @@ function UserInfo() {
         const playersList = json.playersList;
 
         const response = [name, address, balance, count, email, playersList];
+        console.log('test');
+        console.log(response);
 
         dispatch({
           type: 'user_info',

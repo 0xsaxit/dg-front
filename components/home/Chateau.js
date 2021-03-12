@@ -75,7 +75,7 @@ const Chateau = () => {
             <div 
               className="account-intro" 
               data-title="Welcome! 👋" 
-              data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
+              data-intro="Connect your wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
             />
           </div>
           <p className="featured-casino-text">DECENTRAL GAMES</p>
@@ -347,7 +347,7 @@ const Chateau = () => {
                   href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                   target="_blank"
                 >
-                  METAMASK
+                  Wallets
                 </Button>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
