@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
 
 const ButtonVerify = () => {
@@ -9,42 +9,6 @@ const ButtonVerify = () => {
 
   // define local variables
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
-  const [scrollState, setScrollState] = useState('top');
-
-  let menuStyle = [];
-  let listener = null;
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
-      let scrolled = document.scrollingElement.scrollTop;
-      if (scrolled >= 10) {
-        if (scrollState !== 'amir') {
-          setScrollState('amir');
-        }
-      } else {
-        if (scrollState !== 'top') {
-          setScrollState('top');
-        }
-      }
-    });
-
-    return () => {
-      document.removeEventListener('scroll', listener);
-    };
-  }, [scrollState]);
-
-  if (scrollState == 'top') {
-    menuStyle = [
-      'get-metamask'
-    ];
-  } else {
-    menuStyle = [
-      'get-metamask-scroll',
-    ];
-  }
-
   let userAddress = '';
 
   useEffect(() => {
@@ -129,28 +93,18 @@ const ButtonVerify = () => {
   return (
     <span>
       {metamaskEnabled ? (
-        <span className="right-menu-items">
-          <a 
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={menuStyle[0]}
-          > 
-            What's Metamask?
-          </a>
-          <Button
-            content="CONNECT METAMASK"
-            color="blue"
-            className="metamask-button"
-            onClick={() => openMetaMask()}
-          />
-          <Button
-            content="CONNECT"
-            color="blue"
-            className="metamask-mobile-button"
-            id="balances-padding-correct"
-            onClick={() => openMetaMask()}
-          />
-        </span>
+        <div className="wallet-card" onClick={() => openMetaMask()}>
+          <span style={{ display: 'flex' }}>
+            <Image 
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png" 
+              className="wallet-image"
+            />
+            <span>
+              <h3 className="wallet-h3"> Metamask </h3>
+              <p> Using a browser extension </p>
+            </span>
+          </span>
+        </div>
       ) : null}
     </span>
   );
