@@ -208,14 +208,6 @@ const AccountData = (props) => {
     );
   }
 
-  function noTxHistory() {
-    return (
-      <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-        There doesn't appear to be anything here!
-      </div>
-    );
-  }
-
   return (
     <div className="main-container">
       {isLoading ? (
@@ -237,33 +229,7 @@ const AccountData = (props) => {
               {topLinks()}
 
               <div id="tx-box-history-2">
-                {dataType == 'balances' ? (
-                  <div>
-                    <ContentAccount content={'balances'} />
-                  </div>
-                ) : dataType == 'wearables' ? (
-                  <div>
-                    <ContentAccount content={'wearables'} />
-                  </div>
-                ) : dataType == 'poaps' ? (
-                  <div>
-                    <ContentAccount content={'poaps'} />
-                  </div>
-                ) : dataType == 'history' ? (
-                  <div style={{ paddingTop: '12px' }}>
-                    <div className="tx-box-overflow">
-                      <ContentAccount content={dataType} dataPage={dataPage} />
-                    </div>
-                  </div>
-                ) : dataType == 'play' ? (
-                  <div style={{ paddingTop: '12px' }}>
-                    <div className="tx-box-overflow">
-                      <ContentAccount content={dataType} dataPage={dataPage} />
-                    </div>
-                  </div>
-                ) : (
-                  noTxHistory()
-                )}
+                <ContentAccount content={dataType} dataPage={dataPage} />
               </div>
             </div>
           </div>
