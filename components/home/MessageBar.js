@@ -48,7 +48,9 @@ const MessageBar = () => {
         setAdminError(false);
       }
     }
-  }, [state.networkID]);</a>;
+  }, [state.networkID]);
+
+  const account = <a href="/account"> here </a>;
 
   useEffect(() => {
     if (isSafari) {
@@ -103,7 +105,7 @@ const MessageBar = () => {
         id="message-bar"
         className="mobile-message-bar"
         style={{
-          fontFamily: 'Bai Jamjuree, sans-serif',
+          fontFamily: 'Montserrat, sans-serif',
           color: 'white',
           textAlign: 'center',
           padding: '10px 30px 9px 30px',
