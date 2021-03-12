@@ -59,12 +59,22 @@ const ContentAccount = (props) => {
   const [wearables, setWearables] = useState([]);
   const [poaps, setPoaps] = useState([]);
 
-  const injectedProvider = window.ethereum;
+  const [injectedProvider, setInjectedProvider] = useState('');
+  // const injectedProvider = window.ethereum;
+
   const buttonPlay = document.getElementById('play-now-button-balances');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // get user nfts statistics
+  useEffect(() => {
+    if (state.userAddress) {
+      setInjectedProvider(window.ethereum);
+    } else {
+      setInjectedProvider('');
+    }
+  }, [state.userAddress]);
+
   useEffect(() => {
     (async function () {
       let response = await Fetch.NFTS_1(state.userAddress);
