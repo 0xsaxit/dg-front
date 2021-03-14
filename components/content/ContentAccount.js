@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store/index';
+import { GlobalContext, Provider } from '../../store/index';
 import { ConnextModal } from '@connext/vector-modal';
 import transakSDK from '@transak/transak-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
@@ -10,7 +10,7 @@ import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import Aux from '../_Aux';
 
-let transak_1 = new transakSDK({
+const transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'PRODUCTION', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
@@ -27,7 +27,7 @@ let transak_1 = new transakSDK({
   exchangeScreenTitle: 'Buy Matic MANA directly',
 });
 
-let transak_2 = new transakSDK({
+const transak_2 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'PRODUCTION', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
@@ -44,6 +44,17 @@ let transak_2 = new transakSDK({
   exchangeScreenTitle: 'Buy Matic DAI directly',
 });
 
+const connext = {
+  routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
+  chainProviderInfura:
+    'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
+  chainProviderMatic: 'https://rpc-mainnet.matic.network',
+  assetID_1_MANA: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',
+  assetID_2_MANA: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+  assetID_1_DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+  assetID_2_DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+};
+
 const ContentAccount = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -58,23 +69,17 @@ const ContentAccount = (props) => {
   const [showModal_4, setShowModal_4] = useState(false);
   const [wearables, setWearables] = useState([]);
   const [poaps, setPoaps] = useState([]);
-
   const [injectedProvider, setInjectedProvider] = useState('');
-  // const injectedProvider = window.ethereum;
 
   const buttonPlay = document.getElementById('play-now-button-balances');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get user nfts statistics
   useEffect(() => {
-    if (state.userAddress) {
-      setInjectedProvider(window.ethereum);
-    } else {
-      setInjectedProvider('');
-    }
-  }, [state.userAddress]);
+    setInjectedProvider(window.ethereum);
+  }, []);
 
+  // get user nfts statistics
   useEffect(() => {
     (async function () {
       let response = await Fetch.NFTS_1(state.userAddress);
@@ -145,7 +150,7 @@ const ContentAccount = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // handle Transak events
+  // handle Transak purchase events and write to database
   useEffect(() => {
     // get all the events
     transak_1.on(transak_1.ALL_EVENTS, (data) => {
@@ -173,6 +178,30 @@ const ContentAccount = (props) => {
       transak_2.close();
     });
   }, []);
+
+  // handle Connext deposit/withdrawal events and write to database
+  async function getWithdrawalTransaction(params) {
+    console.log('Transaction hash: ' + params);
+
+    const txReceipt = await injectedProvider.getTransactionReceipt(params);
+    console.log('Transaction receipt: ' + txReceipt);
+  }
+
+  function getWithdrawalAmount(params) {
+    console.log('Success: ' + params);
+
+    // post transaction to database
+    // console.log('Posting Connext transaction to db: ' + params.event);
+
+    // Fetch.POST_HISTORY(
+    //   state.userAddress,
+    //   params.amount,
+    //   params.event,
+    //   'Confirmed',
+    //   params.txHash,
+    //   state.userStatus
+    // );
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -310,12 +339,12 @@ const ContentAccount = (props) => {
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
-                  disabled={!injectedProvider}
                   onClick={() => setShowModal(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
                   DEPOSIT
                 </Button>
+
                 <ConnextModal
                   showModal={showModal}
                   onClose={() => setShowModal(false)}
@@ -323,16 +352,19 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_1_MANA}
                   depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  withdrawAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
+                  depositChainProvider={connext.chainProviderInfura}
+                  withdrawAssetId={connext.assetID_2_MANA}
                   withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
+
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_2(true)}
@@ -340,6 +372,7 @@ const ContentAccount = (props) => {
                 >
                   WITHDRAW
                 </Button>
+
                 <ConnextModal
                   showModal={showModal_2}
                   onClose={() => setShowModal_2(false)}
@@ -347,15 +380,17 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  withdrawAssetId={connext.assetID_1_MANA}
                   withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  depositAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositAssetId={connext.assetID_2_MANA}
                   depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
+                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
               </span>
             ) : (
@@ -423,6 +458,7 @@ const ContentAccount = (props) => {
                 >
                   DEPOSIT
                 </Button>
+
                 <ConnextModal
                   showModal={showModal_3}
                   onClose={() => setShowModal_3(false)}
@@ -430,16 +466,19 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_1_DAI}
                   depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
+                  depositChainProvider={connext.chainProviderInfura}
+                  withdrawAssetId={connext.assetID_2_DAI}
                   withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
+
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_4(true)}
@@ -447,6 +486,7 @@ const ContentAccount = (props) => {
                 >
                   WITHDRAW
                 </Button>
+
                 <ConnextModal
                   showModal={showModal_4}
                   onClose={() => setShowModal_4(false)}
@@ -454,15 +494,17 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  withdrawAssetId={connext.assetID_1_DAI}
                   withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositAssetId={connext.assetID_2_DAI}
                   depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
+                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
               </span>
             ) : (
