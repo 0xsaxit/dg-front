@@ -19,7 +19,7 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
 
-  const realm = 'hades-amber';
+  const realm = 'loki-amber';
   let buttonPlay = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
