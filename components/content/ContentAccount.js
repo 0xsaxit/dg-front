@@ -192,8 +192,8 @@ const ContentAccount = (props) => {
 
     // re-execute getTokenBalances() in UserBalances.js
     //   dispatch({
-    //     type: 'token_pings',
-    //     data: 7,
+    //     type: 'refresh_tokens',
+    //     data: !state.refreshTokens,
     //   });
 
     // post transaction to database

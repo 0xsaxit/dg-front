@@ -70,6 +70,7 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
+  refreshTokens: true,
   refreshBalances: true,
   stakeTime: 0,
   affiliateAddress: '',
@@ -198,6 +199,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         stakingBalances: action.data,
+      };
+
+    case 'refresh_tokens':
+      return {
+        ...state,
+        refreshTokens: action.data,
       };
 
     case 'refresh_balances':

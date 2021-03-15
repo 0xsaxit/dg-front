@@ -19,7 +19,6 @@ const CONSTANTS = {
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
   MATIC_URL: 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
-  BICONOMY_ENDPOINT: 'https://rpc-mainnet.maticvigil.com/v1/2ac03d4fd9d671e79063e071828a5260d3752de3',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
   DESCRIPTION:
