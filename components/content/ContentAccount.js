@@ -191,17 +191,10 @@ const ContentAccount = (props) => {
     console.log('Success: ' + params);
 
     // re-execute getTokenBalances() in UserBalances.js
-    // if (params.event === 'deposit') {
     //   dispatch({
     //     type: 'token_pings',
-    //     data: 3,
+    //     data: 7,
     //   });
-    // } else if (params.event === 'withdrawal') {
-    //   dispatch({
-    //     type: 'token_pings',
-    //     data: 4,
-    //   });
-    // }
 
     // post transaction to database
     // console.log('Posting Connext transaction to db: ' + params.event);

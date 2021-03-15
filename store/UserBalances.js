@@ -29,9 +29,6 @@ function UserBalances() {
           type: 'update_balances',
           data: balances,
         });
-
-        // ping token contract to get new balances
-        if (state.tokenPings === 1) dataInterval();
       }
 
       fetchData();
@@ -40,67 +37,67 @@ function UserBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function dataInterval() {
-    async function fetchData() {
-      const response = await getTokenBalances();
+  // function dataInterval() {
+  //   async function fetchData() {
+  //     const response = await getTokenBalances();
 
-      // as soon as the balance updates on Matic display deposit/withdraw confirmation
-      if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
-        console.log('Matic balances have updated: deposit');
+  //     // as soon as the balance updates on Matic display deposit/withdraw confirmation
+  //     if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
+  //       console.log('Matic balances have updated: deposit');
 
-        dispatch({
-          type: 'token_pings',
-          data: 3,
-        });
-        const amount = response[1][1] - balances[1][1];
-        updateHistory(amount, 'Deposit', 'Confirmed');
+  //       dispatch({
+  //         type: 'token_pings',
+  //         data: 3,
+  //       });
+  //       const amount = response[1][1] - balances[1][1];
+  //       updateHistory(amount, 'Deposit', 'Confirmed');
 
-        clearInterval(interval);
-      } else if (
-        response[0][1] < balances[0][1] ||
-        response[1][1] < balances[1][1]
-      ) {
-        console.log('Matic balances have updated: withdrawal');
+  //       clearInterval(interval);
+  //     } else if (
+  //       response[0][1] < balances[0][1] ||
+  //       response[1][1] < balances[1][1]
+  //     ) {
+  //       console.log('Matic balances have updated: withdrawal');
 
-        dispatch({
-          type: 'token_pings',
-          data: 4,
-        });
-        const amount = balances[1][1] - response[1][1];
-        updateHistory(amount, 'Withdraw', 'Confirmed');
+  //       dispatch({
+  //         type: 'token_pings',
+  //         data: 4,
+  //       });
+  //       const amount = balances[1][1] - response[1][1];
+  //       updateHistory(amount, 'Withdraw', 'Confirmed');
 
-        clearInterval(interval);
-      }
-    }
+  //       clearInterval(interval);
+  //     }
+  //   }
 
-    // call token contract every 10 seconds to get new balances
-    const interval = setInterval(() => {
-      fetchData();
-    }, 10000);
+  //   // call token contract every 10 seconds to get new balances
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 10000);
 
-    return () => clearInterval(interval);
-  }
+  //   return () => clearInterval(interval);
+  // }
 
   // update transaction history in the database
-  async function updateHistory(amount, type, _state) {
-    console.log('Writing transaction to database: ' + type);
+  // async function updateHistory(amount, type, _state) {
+  //   console.log('Writing transaction to database: ' + type);
 
-    try {
-      const response = await Fetch.POST_HISTORY(
-        state.userAddress,
-        amount,
-        type,
-        _state,
-        state.txHash,
-        state.userStatus
-      );
+  //   try {
+  //     const response = await Fetch.POST_HISTORY(
+  //       state.userAddress,
+  //       amount,
+  //       type,
+  //       _state,
+  //       state.txHash,
+  //       state.userStatus
+  //     );
 
-      const json = await response.json();
-      console.log('Update history complete: ' + json.status);
-    } catch (error) {
-      console.log('Update history error: ' + error);
-    }
-  }
+  //     const json = await response.json();
+  //     console.log('Update history complete: ' + json.status);
+  //   } catch (error) {
+  //     console.log('Update history error: ' + error);
+  //   }
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
