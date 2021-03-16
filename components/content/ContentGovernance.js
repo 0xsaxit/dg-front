@@ -14,7 +14,6 @@ const ContentGovernance = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [treasuryTotal, setTreasuryTotal] = useState(0);
   const [amountInput, setAmountInput] = useState('');
   const [percentGovernanceStaked, setPercentGovernanceStaked] = useState(0);
   const [percentGovernanceContract, setPercentGovernanceContract] = useState(0);
@@ -22,25 +21,40 @@ const ContentGovernance = (props) => {
   const [priceUSD, setPriceUSD] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
-  const [manaBalance, setManaBalance] = useState(0);
-  const [daiBalance, setDaiBalance] = useState(0);
-  const [gameplayTreasury, setGameplayTreasury] = useState(0);
-  const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
-  const [dgTreasury, setDgTreasury] = useState(0);
-  const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
-  const [landTreasury, setLandTreasury] = useState(0);
-  const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
-  const [nftTreasury, setNftTreasury] = useState(0);
-  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
-  const [gameplayAll, setGameplayAll] = useState(0);
-  const [statsUSD, setStatsUSD] = useState('');
-  const [instances, setInstances] = useState(false);
-  const [uniTreasury, setUniTreasury] = useState(0);
-  const [percentageUniswap, setPercentageUniswap] = useState(0);
-  const [treasuryDG, setTreasuryDG] = useState(0);
-  const [daiTreasury, setDaiTreasury] = useState(0);
   const [dgBalance, setDgBalance] = useState(0);
   const [gameplayMana, setGameplayMana] = useState(0);
+  const [instances, setInstances] = useState(false);
+
+  // define treasury variables
+  const [treasuryTotal, setTreasuryTotal] = useState(0);
+  const [statsUSD, setStatsUSD] = useState('');
+
+  const [gameplayTreasury, setGameplayTreasury] = useState(0);
+  const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
+
+  const [gameplayAll, setGameplayAll] = useState(0);
+  const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
+
+  const [manaBalance, setManaBalance] = useState(0);
+  const [daiBalance, setDaiBalance] = useState(0);
+
+  const [dgTreasury, setDgTreasury] = useState(0);
+  const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
+  const [treasuryDG, setTreasuryDG] = useState(0);
+  const [treasuryDGPercent, setTreasuryDGPercent] = useState(0);
+
+  const [landTreasury, setLandTreasury] = useState(0);
+  const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
+
+  const [nftTreasury, setNftTreasury] = useState(0);
+  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
+
+  const [uniTreasury, setUniTreasury] = useState(0);
+  const [percentageUniswap, setPercentageUniswap] = useState(0);
+  const [uniTreasuryPercent, setUniTreasuryPercent] = useState(0);
+
+  const [daiTreasury, setDaiTreasury] = useState(0);
+  const [daiTreasuryPercent, setDaiTreasuryPercent] = useState(0);
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -83,43 +97,59 @@ const ContentGovernance = (props) => {
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
 
-        let usd = json_3.totalBalanceUSD;
+        let usd = json_3.totalBalanceUSD.graph;
         setStatsUSD(usd);
 
         let response_4 = await Fetch.TREASURY_STATS_NUMBERS(state.userAddress);
         let json_4 = await response_4.json();
+        console.log('!!!');
+        console.log(json_4);
 
-        let land = json_4.totalLandUSD;
-        setLandTreasury(props.formatPrice(land.slice(-1)[0].secondary, 0));
-
-        let wearables = json_4.totalWearablesUSD;
-        setNftTreasury(props.formatPrice(wearables.slice(-1)[0].secondary, 0));
-
-        let gameplay = json_4.totalGameplayUSD;
-        setGameplayTreasury(props.formatPrice(gameplay.slice(-1)[0].secondary, 0));
-
-        let dg = json_4.totalDgUSD;
-        setDgTreasury(props.formatPrice(dg.slice(-1)[0].secondary, 0));
-
-        let mana = json_4.manaBalance;
-        setManaBalance(props.formatPrice(mana.slice(-1)[0].secondary, 0));
-
-        let dai = json_4.daiBalance;
-        setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
-
-        let uni = json_4.totalDgEthUniswapBalance;
-        setUniTreasury(props.formatPrice(uni.slice(-1)[0].secondary, 0));
-
-        let daiYield = json_4.totalCurveAaveBalance;
-        setDaiTreasury(props.formatPrice(daiYield.slice(-1)[0].secondary, 0));
-
-        let totalUSD = json_4.totalBalanceUSD;
+        let totalUSD = json_4.totalBalanceUSD.graph;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
 
         let gameplayTotal = json_4.allTimeGameplayUSD;
-        setGameplayAll(props.formatPrice(gameplayTotal.slice(-1)[0].secondary, 0));
+        setGameplayAll(props.formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0));
+        let gameplayTotal_temp = (gameplayTotal.changes.daily.percent).toFixed(2);
+        setGameplayAllPercent(Number(gameplayTotal_temp));
 
-        let dgbal = json_4.dgBalance;
+        let gameplay = json_4.totalGameplayUSD;
+        setGameplayTreasury(props.formatPrice(gameplay.graph.slice(-1)[0].secondary, 0));
+        let gameplay_temp = (gameplay.changes.daily.percent).toFixed(2)
+        setGameplayTreasuryPercent(Number(gameplay_temp));
+
+        let mana = json_4.manaBalance.graph;
+        setManaBalance(props.formatPrice(mana.slice(-1)[0].secondary, 0));
+
+        let dai = json_4.daiBalance.graph;
+        setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
+
+        let land = json_4.totalLandUSD;
+        setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
+        let land_temp = (land.changes.daily.percent).toFixed(2);
+        setLandTreasuryPercent(Number(land_temp));
+
+        let wearables = json_4.totalWearablesUSD;
+        setNftTreasury(props.formatPrice(wearables.graph.slice(-1)[0].secondary, 0));
+        let wearables_temp = (wearables.changes.daily.percent).toFixed(2);
+        setNftTreasuryPercent(Number(wearables_temp));
+
+        let dg = json_4.totalDgUSD;
+        setDgTreasury(props.formatPrice(dg.graph.slice(-1)[0].secondary, 0));
+        let dg_temp = (dg.changes.daily.percent).toFixed(2);
+        setDgTreasuryPercent(Number(dg_temp));
+
+        let uni = json_4.totalDgEthUniswapBalance;
+        setUniTreasury(props.formatPrice(uni.graph.slice(-1)[0].secondary, 0));
+        let uni_temp = (uni.changes.daily.percent).toFixed(2);
+        setUniTreasuryPercent(Number(uni_temp));
+
+        let daiYield = json_4.totalCurveAaveBalance;
+        setDaiTreasury(props.formatPrice(daiYield.graph.slice(-1)[0].secondary, 0));
+        let daiYield_temp = (daiYield.changes.daily.percent).toFixed(2);
+        setDaiTreasuryPercent(Number(daiYield_temp));
+
+        let dgbal = json_4.dgBalance.graph;
         setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
 
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
@@ -462,7 +492,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {gameplayAll ? (
-                  <p className="earned-amount">${gameplayAll}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${gameplayAll}</p>
+                    {gameplayAllPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{gameplayAllPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{gameplayAllPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
@@ -507,7 +550,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {gameplayTreasury ? (
-                  <p className="earned-amount">${gameplayTreasury}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${gameplayTreasury}</p>
+                    {gameplayTreasuryPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{gameplayTreasuryPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{gameplayTreasuryPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
@@ -551,7 +607,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {dgTreasury ? (
-                  <p className="earned-amount">${dgTreasury}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${dgTreasury}</p>
+                    {dgTreasuryPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{dgTreasuryPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{dgTreasuryPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
@@ -595,7 +664,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {landTreasury ? (
-                  <p className="earned-amount">${landTreasury}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${landTreasury}</p>
+                    {landTreasuryPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{landTreasuryPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{landTreasuryPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
@@ -640,7 +722,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {nftTreasury ? (
-                  <p className="earned-amount">${nftTreasury}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${nftTreasury}</p>
+                    {nftTreasuryPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{nftTreasuryPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{nftTreasuryPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
@@ -684,7 +779,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {uniTreasury ? (
-                  <p className="earned-amount">${uniTreasury}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${uniTreasury}</p>
+                    {uniTreasuryPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{uniTreasuryPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{uniTreasuryPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
@@ -728,7 +836,20 @@ const ContentGovernance = (props) => {
                   </Popup>
                 </span>
                 {daiTreasury ? (
-                  <p className="earned-amount">${daiTreasury}</p>
+                  <span className="percent-span">
+                    <p className="earned-amount">${daiTreasury}</p>
+                    {daiTreasuryPercent > 0 ? (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent pos">{daiTreasuryPercent}%</p>
+                        <Icon name="caret up" className="percent-icon pos" />
+                      </span>
+                    ) : (
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-percent neg">{daiTreasuryPercent}%</p>
+                        <Icon name="caret down" className="percent-icon neg" />
+                      </span>
+                    )}
+                  </span>
                 ) : (
                   <Loader
                     active
