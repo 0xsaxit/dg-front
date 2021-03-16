@@ -102,8 +102,6 @@ const ContentGovernance = (props) => {
 
         let response_4 = await Fetch.TREASURY_STATS_NUMBERS(state.userAddress);
         let json_4 = await response_4.json();
-        console.log('!!!');
-        console.log(json_4);
 
         let totalUSD = json_4.totalBalanceUSD.graph;
         setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
