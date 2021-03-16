@@ -203,7 +203,7 @@ div#dropdown-menu-items.item.right-menu-text {
     box-shadow: none;
     padding-top: 0px;
     border-radius: 0px;
-    max-width: calc(100vw + 1px);
+    max-width: calc(100vw + 9px);
     margin-left: -100% !important;
   }
   a.get-metamask {
