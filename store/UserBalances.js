@@ -23,6 +23,8 @@ function UserBalances() {
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
+        console.log('fetching token balances: ' + state.refreshTokens);
+
         balances = await getTokenBalances();
 
         dispatch({
