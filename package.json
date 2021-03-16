@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/core": "^7.13.10",
     "@biconomy/mexa": "^1.5.15",
-    "@connext/vector-modal": "^1.0.3-beta.13",
+    "@connext/vector-modal": "^1.0.3-beta.14",
     "@next/bundle-analyzer": "^10.0.8",
     "@transak/transak-sdk": "^1.0.28",
     "buttercms": "^1.2.6",
