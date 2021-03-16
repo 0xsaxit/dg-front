@@ -167,6 +167,13 @@ const ContentGovernance = (props) => {
     gameplayAll,
     dgBalance,
     gameplayMana,
+    gameplayTreasuryPercent,
+    landTreasuryPercent,
+    dgTreasuryPercent,
+    nftTreasuryPercent,
+    gameplayAllPercent,
+    uniTreasuryPercent,
+    daiTreasuryPercent,
   ]);
 
   let data;
