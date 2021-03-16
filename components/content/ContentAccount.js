@@ -197,16 +197,16 @@ const ContentAccount = (props) => {
     });
 
     // post transaction to database
-    // console.log('Posting Connext transaction to db: ' + params.event);
+    console.log('Posting Connext transaction to db: ' + params.event);
 
-    // Fetch.POST_HISTORY(
-    //   state.userAddress,
-    //   params.amount,
-    //   params.event,
-    //   'Confirmed',
-    //   params.txHash,
-    //   state.userStatus
-    // );
+    Fetch.POST_HISTORY(
+      state.userAddress,
+      params.amount,
+      params.event,
+      'Confirmed',
+      params.txHash,
+      state.userStatus
+    );
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
