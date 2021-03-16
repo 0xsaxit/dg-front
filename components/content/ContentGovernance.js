@@ -439,7 +439,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span className="farming-pool-span" style={{ width: '60%', marginLeft: '-15px' }}>
-                  <p className="welcome-text">total treasury</p>
+                  <p className="welcome-text">treasury</p>
                   {treasuryTotal ? (
                     <p className="account-name">${treasuryTotal}</p>
                   ) : (
@@ -480,7 +480,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">Gameplay All Time</p>
+                  <p className="earned-text">Gameplay total</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
@@ -606,7 +606,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as {dgBalance} $DG at market price{' '}
+                        Treasury holdings of $DG calculated as {dgBalance} $DG at market price{' '}
                       </p>
                     </div>
                   </Popup>
@@ -663,7 +663,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 403 parcels times T30 avg LAND price{' '}
+                        Treasury holdings of LAND calculated as 403 parcels times T30 avg LAND price{' '}
                       </p>
                     </div>
                   </Popup>
@@ -720,7 +720,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        calculated as 210 wearables times average bid at current
+                        Treasury holdings of wearable NFTs calculated as 210 wearables times average bid at current
                         MANA price{' '}
                       </p>
                     </div>
@@ -778,7 +778,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        {percentageUniswap}% of the UNI V2 ETH-DG pool
+                        Treasury holdings of ETH-DG Uniswap LP calculated as {percentageUniswap}% of the UNI V2 ETH-DG pool
                       </p>
                     </div>
                   </Popup>
@@ -835,7 +835,7 @@ const ContentGovernance = (props) => {
                   >
                     <div>
                       <p className="earned-text">
-                        Total treasury balance locked in Curve Aave vault{' '}
+                        Treasury balance locked in Curve Aave vault{' '}
                       </p>
                     </div>
                   </Popup>
