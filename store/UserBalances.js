@@ -5,7 +5,7 @@ import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
 import Global from '../components/Constants';
-import Fetch from '../common/Fetch';
+// import Fetch from '../common/Fetch';
 import Transactions from '../common/Transactions';
 
 function UserBalances() {
@@ -23,7 +23,7 @@ function UserBalances() {
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
-        console.log('fetching token balances: ' + state.refreshTokens);
+        console.log('fetching user balances: ' + state.refreshTokens);
 
         balances = await getTokenBalances();
 

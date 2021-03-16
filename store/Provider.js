@@ -70,7 +70,7 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
-  refreshTokens: true,
+  refreshTokens: 'Initial',
   refreshBalances: true,
   stakeTime: 0,
   affiliateAddress: '',
