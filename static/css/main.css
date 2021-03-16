@@ -1636,11 +1636,13 @@ deposit-notification-box-hidden {
   letter-spacing: 0.5px;
   color: black;
   padding-top: 2px !important;
+  margin: 0 0 0px 0 !important;
 }
 
 .percent-span {
   display: flex;
-  margin-bottom: -16px;
+  flex-direction: row;
+  margin-bottom: 0px;
 }
 
 .earned-percent {
@@ -1650,6 +1652,7 @@ deposit-notification-box-hidden {
   padding-top: 2px !important;
   padding-left: 12px;
   padding-right: 3px;
+  margin: 0 0 1px 0 !important;
 }
 
 .earned-percent.pos {

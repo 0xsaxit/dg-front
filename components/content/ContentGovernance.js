@@ -839,12 +839,12 @@ const ContentGovernance = (props) => {
                   <span className="percent-span">
                     <p className="earned-amount">${daiTreasury}</p>
                     {daiTreasuryPercent > 0 ? (
-                      <span style={{ display: 'flex' }}>
+                      <span style={{ display: 'flex', flexDirection: 'row' }}>
                         <p className="earned-percent pos">{daiTreasuryPercent}%</p>
                         <Icon name="caret up" className="percent-icon pos" />
                       </span>
                     ) : (
-                      <span style={{ display: 'flex' }}>
+                      <span style={{ display: 'flex', flexDirection: 'row' }}>
                         <p className="earned-percent neg">{daiTreasuryPercent}%</p>
                         <Icon name="caret down" className="percent-icon neg" />
                       </span>
