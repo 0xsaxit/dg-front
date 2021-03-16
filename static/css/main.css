@@ -1604,10 +1604,10 @@ deposit-notification-box-hidden {
 }
 
 .earned-percent {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 2px !important;
+  padding-top: 5px !important;
   padding-left: 12px;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
@@ -1621,8 +1621,12 @@ deposit-notification-box-hidden {
   color: #ea3943 !important;
 }
 
+i.caret.up.icon.percent-icon.pos,
+i.caret.down.icon.percent-icon.neg {
+  font-size: 12px !important;
+}
+
 .percent-icon {
-  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.5px;
   padding-top: 6px !important;

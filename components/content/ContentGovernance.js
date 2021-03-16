@@ -108,12 +108,12 @@ const ContentGovernance = (props) => {
 
         let gameplayTotal = json_4.allTimeGameplayUSD;
         setGameplayAll(props.formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0));
-        let gameplayTotal_temp = (gameplayTotal.changes.daily.percent).toFixed(2);
+        let gameplayTotal_temp = (gameplayTotal.changes.weekly.percent).toFixed(2);
         setGameplayAllPercent(Number(gameplayTotal_temp));
 
         let gameplay = json_4.totalGameplayUSD;
         setGameplayTreasury(props.formatPrice(gameplay.graph.slice(-1)[0].secondary, 0));
-        let gameplay_temp = (gameplay.changes.daily.percent).toFixed(2)
+        let gameplay_temp = (gameplay.changes.weekly.percent).toFixed(2)
         setGameplayTreasuryPercent(Number(gameplay_temp));
 
         let mana = json_4.manaBalance.graph;
@@ -124,27 +124,27 @@ const ContentGovernance = (props) => {
 
         let land = json_4.totalLandUSD;
         setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
-        let land_temp = (land.changes.daily.percent).toFixed(2);
+        let land_temp = (land.changes.weekly.percent).toFixed(2);
         setLandTreasuryPercent(Number(land_temp));
 
         let wearables = json_4.totalWearablesUSD;
         setNftTreasury(props.formatPrice(wearables.graph.slice(-1)[0].secondary, 0));
-        let wearables_temp = (wearables.changes.daily.percent).toFixed(2);
+        let wearables_temp = (wearables.changes.weekly.percent).toFixed(2);
         setNftTreasuryPercent(Number(wearables_temp));
 
         let dg = json_4.totalDgUSD;
         setDgTreasury(props.formatPrice(dg.graph.slice(-1)[0].secondary, 0));
-        let dg_temp = (dg.changes.daily.percent).toFixed(2);
+        let dg_temp = (dg.changes.weekly.percent).toFixed(2);
         setDgTreasuryPercent(Number(dg_temp));
 
         let uni = json_4.totalDgEthUniswapBalance;
         setUniTreasury(props.formatPrice(uni.graph.slice(-1)[0].secondary, 0));
-        let uni_temp = (uni.changes.daily.percent).toFixed(2);
+        let uni_temp = (uni.changes.weekly.percent).toFixed(2);
         setUniTreasuryPercent(Number(uni_temp));
 
         let daiYield = json_4.totalCurveAaveBalance;
         setDaiTreasury(props.formatPrice(daiYield.graph.slice(-1)[0].secondary, 0));
-        let daiYield_temp = (daiYield.changes.daily.percent).toFixed(2);
+        let daiYield_temp = (daiYield.changes.weekly.percent).toFixed(2);
         setDaiTreasuryPercent(Number(daiYield_temp));
 
         let dgbal = json_4.dgBalance.graph;
@@ -537,7 +537,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">Gameplay Treasury</p>
+                  <p className="earned-text">Gameplay</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
@@ -593,7 +593,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">$DG Treasury</p>
+                  <p className="earned-text">$DG Token</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
@@ -650,7 +650,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">LAND Treasury</p>
+                  <p className="earned-text">LAND</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
@@ -707,7 +707,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">Wearables Treasury</p>
+                  <p className="earned-text">Wearables</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
@@ -765,7 +765,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">Uniswap ETH-DG LP</p>
+                  <p className="earned-text">Uniswap LP</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
@@ -822,7 +822,7 @@ const ContentGovernance = (props) => {
                 }}
               >
                 <span style={{ display: 'flex' }}>
-                  <p className="earned-text">DAI Yield farm</p>
+                  <p className="earned-text">DAI Yield</p>
                   <Popup
                     className="dai-mana-popup"
                     trigger={
