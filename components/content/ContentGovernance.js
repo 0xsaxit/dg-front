@@ -335,7 +335,7 @@ const ContentGovernance = (props) => {
           </div>
         </div>
 
-        <div className="DG-liquidity-container gov">
+        <div className="DG-liquidity-container gov" style={{ marginBottom: '30px' }}>
           <div
             className="DG-column unclaimed"
             style={{ position: 'relative', height: '100%' }}
