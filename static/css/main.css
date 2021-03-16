@@ -1596,6 +1596,46 @@ deposit-notification-box-hidden {
   padding-top: 2px !important;
 }
 
+.percent-span {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+}
+
+.earned-percent {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-top: 2px !important;
+  padding-left: 12px;
+  padding-right: 3px;
+  margin: 0 0 1px 0 !important;
+}
+
+.earned-percent.pos {
+  color: #16c784 !important;
+}
+
+.earned-percent.neg {
+  color: #ea3943 !important;
+}
+
+.percent-icon {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-top: 6px !important;
+  margin-right: -3px !important;
+}
+
+.percent-icon.pos {
+  color: #16c784 !important;
+}
+
+.percent-icon.neg {
+  color: #ea3943 !important;
+}
+
 .gameplay-left-column {
   display: flex;
   justify-content: center;
