@@ -192,7 +192,7 @@ div#dropdown-menu-items.item.right-menu-text {
   box-shadow: none;
   padding-top: 0px;
   border-radius: 0px;
-  width: calc(100vw + 1px);
+  width: calc(100vw + 9px);
   margin-left: -81px;
 }
 
