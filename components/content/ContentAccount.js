@@ -9,6 +9,7 @@ import Fetch from '../../common/Fetch';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import Aux from '../_Aux';
+import { ethers } from 'ethers';
 
 const transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -183,8 +184,16 @@ const ContentAccount = (props) => {
   async function getWithdrawalTransaction(params) {
     console.log('Transaction hash: ' + params);
 
-    const txReceipt = await injectedProvider.getTransactionReceipt(params);
-    console.log('Transaction receipt: ' + txReceipt);
+    // const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // const txReceipt = await provider.getTransactionReceipt(params);
+
+    // console.log('Transaction receipt: ' + txReceipt);
+
+    // re-execute getTokenBalances() in UserBalances.js
+    // dispatch({
+    //   type: 'refresh_tokens',
+    //   data: params.params,
+    // });
   }
 
   function getWithdrawalAmount(params) {
@@ -193,20 +202,20 @@ const ContentAccount = (props) => {
     // re-execute getTokenBalances() in UserBalances.js
     dispatch({
       type: 'refresh_tokens',
-      data: params.txHash,
+      data: params,
     });
 
     // post transaction to database
-    console.log('Posting Connext transaction to db: ' + params.event);
+    // console.log('Posting Connext transaction to db: ' + params.event);
 
-    Fetch.POST_HISTORY(
-      state.userAddress,
-      params.amount,
-      params.event,
-      'Confirmed',
-      params.txHash,
-      state.userStatus
-    );
+    // Fetch.POST_HISTORY(
+    //   state.userAddress,
+    //   params.amount,
+    //   params.event,
+    //   'Confirmed',
+    //   params.txHash,
+    //   state.userStatus
+    // );
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -367,7 +376,7 @@ const ContentAccount = (props) => {
                   withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
-                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -395,7 +404,7 @@ const ContentAccount = (props) => {
                   depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
-                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
               </span>
@@ -481,7 +490,7 @@ const ContentAccount = (props) => {
                   withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
-                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -509,7 +518,7 @@ const ContentAccount = (props) => {
                   depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
-                  onWithdrawTxCreated={getWithdrawalTransaction}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
               </span>
