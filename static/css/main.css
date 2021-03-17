@@ -1588,6 +1588,26 @@ deposit-notification-box-hidden {
   margin-bottom: -9px !important;
 }
 
+td.treasury-cell {
+  padding: 11px 0px 13px 0 !important;
+}
+
+td.treasury-cell-lower {
+  padding: 6px 0px 6px 0px !important;
+}
+
+td.treasury-cell.two {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 82px;
+}
+
+td.treasury-cell-lower.two {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 82px;
+}
+
 .earned-amount {
   font-size: 18px;
   font-weight: 700;
@@ -1597,18 +1617,12 @@ deposit-notification-box-hidden {
   margin: 0 0 0px 0 !important;
 }
 
-.percent-span {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0px;
-}
-
 .earned-percent {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 5px !important;
-  padding-left: 12px;
+  padding-top: 6px !important;
+  padding-left: 0px;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
 }
