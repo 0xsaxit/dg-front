@@ -200,10 +200,14 @@ const ContentAccount = (props) => {
     console.log('Success: ' + params);
 
     // re-execute getTokenBalances() in UserBalances.js
-    dispatch({
-      type: 'refresh_tokens',
-      data: params,
-    });
+    const timer = setTimeout(() => {
+      dispatch({
+        type: 'refresh_tokens',
+        data: params,
+      });
+
+      clearTimeout(timer)}, 
+    2000);
 
     // post transaction to database
     // console.log('Posting Connext transaction to db: ' + params.event);

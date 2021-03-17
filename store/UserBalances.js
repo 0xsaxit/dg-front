@@ -137,6 +137,8 @@ function UserBalances() {
         0
       );
 
+      console.log('amount DAI: ' + amountDAI2 + ', '  + 'amount MANA: ' + amountMANA2);
+
       return [
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
