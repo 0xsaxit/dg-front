@@ -68,6 +68,7 @@ const ContentAccount = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
+  const [event, setEvent] = useState('');
   const [wearables, setWearables] = useState([]);
   const [poaps, setPoaps] = useState([]);
   const [injectedProvider, setInjectedProvider] = useState('');
@@ -148,6 +149,24 @@ const ContentAccount = (props) => {
       );
     })();
   }, []);
+
+  // refresh user token balances and post transaction to database
+  useEffect(() => {
+    if (event !== '') {
+      console.log('Event type: ' + event);
+
+      // console.log('Posting Connext transaction to db: ' + params.event);
+
+      // Fetch.POST_HISTORY(
+      //   state.userAddress,
+      //   params.amount,
+      //   params.event,
+      //   'Confirmed',
+      //   params.txHash,
+      //   state.userStatus
+      // );
+    }
+  }, [event]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -358,7 +377,7 @@ const ContentAccount = (props) => {
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setStateAndEvent(1, true, 'Deposit')}
                   style={{ padding: '0 0 0 0' }}
                 >
                   DEPOSIT
@@ -366,7 +385,7 @@ const ContentAccount = (props) => {
 
                 <ConnextModal
                   showModal={showModal}
-                  onClose={() => setShowModal(false)}
+                  onClose={() => setStateAndEvent(1, false, 'Deposit')}
                   onReady={(params) =>
                     console.log('MODAL IS READY =======>', params)
                   }
@@ -386,7 +405,7 @@ const ContentAccount = (props) => {
 
                 <Button
                   className="balances-play-button"
-                  onClick={() => setShowModal_2(true)}
+                  onClick={() => setStateAndEvent(2, true, 'Withdaral')}
                   style={{ padding: '0 0 0 0' }}
                 >
                   WITHDRAW
@@ -394,7 +413,7 @@ const ContentAccount = (props) => {
 
                 <ConnextModal
                   showModal={showModal_2}
-                  onClose={() => setShowModal_2(false)}
+                  onClose={() => setStateAndEvent(2, false, 'Withdaral')}
                   onReady={(params) =>
                     console.log('MODAL IS READY =======>', params)
                   }
@@ -472,7 +491,7 @@ const ContentAccount = (props) => {
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
-                  onClick={() => setShowModal_3(true)}
+                  onClick={() => setStateAndEvent(3, true, 'Deposit')}
                   style={{ padding: '0 0 0 0' }}
                 >
                   DEPOSIT
@@ -480,7 +499,7 @@ const ContentAccount = (props) => {
 
                 <ConnextModal
                   showModal={showModal_3}
-                  onClose={() => setShowModal_3(false)}
+                  onClose={() => setStateAndEvent(3, false, 'Deposit')}
                   onReady={(params) =>
                     console.log('MODAL IS READY =======>', params)
                   }
@@ -500,7 +519,7 @@ const ContentAccount = (props) => {
 
                 <Button
                   className="balances-play-button"
-                  onClick={() => setShowModal_4(true)}
+                  onClick={() => setStateAndEvent(4, true, 'Withdaral')}
                   style={{ padding: '0 0 0 0' }}
                 >
                   WITHDRAW
@@ -508,7 +527,7 @@ const ContentAccount = (props) => {
 
                 <ConnextModal
                   showModal={showModal_4}
-                  onClose={() => setShowModal_4(false)}
+                  onClose={() => setStateAndEvent(4, false, 'Withdaral')}
                   onReady={(params) =>
                     console.log('MODAL IS READY =======>', params)
                   }
@@ -533,6 +552,21 @@ const ContentAccount = (props) => {
         </Grid.Row>
       </Grid>
     );
+  }
+
+  // set modal state and event type
+  function setStateAndEvent(number, state, type) {
+    if (number === 1) {
+      setShowModal(state);
+    } else if (number === 2) {
+      setShowModal_2(state);
+    } else if (number === 3) {
+      setShowModal_3(state);
+    } else if (number === 4) {
+      setShowModal_4(state);
+    }
+
+    setEvent(type);
   }
 
   // top up user to 5000 play tokens
