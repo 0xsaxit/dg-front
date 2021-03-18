@@ -207,7 +207,7 @@ const ContentAccount = (props) => {
       });
 
       clearTimeout(timer)}, 
-    2000);
+    5000);
 
     // post transaction to database
     // console.log('Posting Connext transaction to db: ' + params.event);
