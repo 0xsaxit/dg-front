@@ -721,7 +721,7 @@ const ContentAccount = (props) => {
                   Amount
                 </Table.HeaderCell>
                 <Table.HeaderCell>Status</Table.HeaderCell>
-                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell className="account-col-4">Date</Table.HeaderCell>
                 <Table.HeaderCell />
               </Table.Row>
             </Table.Header>
@@ -776,7 +776,7 @@ const ContentAccount = (props) => {
                             : (amount / 1000000000000000000).toFixed(2) + ' MANA'}
                         </Table.Cell>
                         <Table.Cell>{row.status}</Table.Cell>
-                        <Table.Cell>{timestamp}</Table.Cell>
+                        <Table.Cell className="account-col-4">{timestamp}</Table.Cell>
                         <Table.Cell>
                           <span
                             style={{ float: 'right', paddingRight: '12px' }}
@@ -837,9 +837,9 @@ const ContentAccount = (props) => {
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Game</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-4">Bet</Table.HeaderCell>
+                <Table.HeaderCell className="account-col-2">Bet</Table.HeaderCell>
                 <Table.HeaderCell>Payout</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-2">Date</Table.HeaderCell>
+                <Table.HeaderCell className="account-col-4">Date</Table.HeaderCell>
                 <Table.HeaderCell />
               </Table.Row>
             </Table.Header>
@@ -905,13 +905,13 @@ const ContentAccount = (props) => {
                           )}
                           {action}
                         </Table.Cell>
-                        <Table.Cell className="account-col-4">
+                        <Table.Cell className="account-col-2">
                           -{amount} {row.coinName}
                         </Table.Cell>
                         <Table.Cell>
                           +{result} {row.coinName}
                         </Table.Cell>
-                        <Table.Cell className="account-col-2">{timestamp}</Table.Cell>
+                        <Table.Cell className="account-col-4">{timestamp}</Table.Cell>
                         <Table.Cell>
                           <span
                             style={{ float: 'right', paddingRight: '12px' }}
