@@ -1100,11 +1100,29 @@ i.chevron.down.icon {
   overflow: hidden !important;
 }
 
-@media (max-width: 599px) {
+.nft-other-h3.countdown3 {
+  margin: 15px 0px 0px 6px;
+  overflow: hidden !important;
+}
+
+@media (max-width: 909px) {
   .nft-other-h3.countdown1 {
     display: none;
   }
 }
+
+@media (max-width: 799px) {
+  .nft-other-h3.countdown2 {
+    display: none;
+  }
+}
+
+@media (max-width: 689px) {
+  .nft-other-h3.countdown3 {
+    display: none;
+  }
+}
+
 
 .games-other-h3 {
   font-size: 28px;
