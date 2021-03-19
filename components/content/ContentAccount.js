@@ -426,7 +426,7 @@ const ContentAccount = (props) => {
 
                 <Button
                   className="balances-play-button"
-                  onClick={() => setStateAndEvent(2, true, 'Withdaral')}
+                  onClick={() => setStateAndEvent(2, true, 'Withdrawal')}
                   style={{ padding: '0 0 0 0' }}
                 >
                   WITHDRAW
@@ -434,7 +434,7 @@ const ContentAccount = (props) => {
 
                 <ConnextModal
                   showModal={showModal_2}
-                  onClose={() => setStateAndEvent(2, false, 'Withdaral')}
+                  onClose={() => setStateAndEvent(2, false, 'Withdrawal')}
                   onReady={(params) =>
                     console.log('MODAL IS READY =======>', params)
                   }
@@ -540,7 +540,7 @@ const ContentAccount = (props) => {
 
                 <Button
                   className="balances-play-button"
-                  onClick={() => setStateAndEvent(4, true, 'Withdaral')}
+                  onClick={() => setStateAndEvent(4, true, 'Withdrawal')}
                   style={{ padding: '0 0 0 0' }}
                 >
                   WITHDRAW
@@ -548,7 +548,7 @@ const ContentAccount = (props) => {
 
                 <ConnextModal
                   showModal={showModal_4}
-                  onClose={() => setStateAndEvent(4, false, 'Withdaral')}
+                  onClose={() => setStateAndEvent(4, false, 'Withdrawal')}
                   onReady={(params) =>
                     console.log('MODAL IS READY =======>', params)
                   }
