@@ -773,7 +773,7 @@ const ContentAccount = (props) => {
                           {sign}
                           {amount > 1000000000000000000000000
                             ? 'N/A'
-                            : amount + ' MANA'}
+                            : (amount / 1000000000000000000).toFixed(2) + ' MANA'}
                         </Table.Cell>
                         <Table.Cell>{row.status}</Table.Cell>
                         <Table.Cell>{timestamp}</Table.Cell>
