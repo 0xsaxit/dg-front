@@ -173,7 +173,34 @@ const ContentGovernance = (props) => {
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
     })();
-  }, [state.stakingBalances]);
+  }, [
+    state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY,
+    state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
+    props.price,
+    state.DGBalances.BALANCE_UNISWAP_ETH,
+    state.DGBalances.BALANCE_UNISWAP_DG,
+    uniTreasury,
+    percentageUniswap,
+    treasuryTotal,
+    treasuryDG,
+    daiTreasury,
+    gameplayAll,
+    dgBalance,
+    gameplayMana,
+    gameplayTreasury,
+    gameplayTreasuryPercent,
+    landTreasuryPercent,
+    dgTreasuryPercent,
+    dgTreasury,
+    nftTreasury,
+    landTreasury,
+    daiBalance,
+    manaBalance,
+    nftTreasuryPercent,
+    gameplayAllPercent,
+    uniTreasuryPercent,
+    daiTreasuryPercent,
+  ]);
 
   let data;
   let axes;
