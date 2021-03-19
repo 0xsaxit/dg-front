@@ -707,7 +707,7 @@ span#mobile-time-select.account-select.dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   td.account-col-2,
   th.account-col-2 {
     display: none;
@@ -716,7 +716,9 @@ span#mobile-time-select.account-select.dropdown {
 
 @media (max-width: 750px) {
   th:nth-child(4),
-  td:nth-child(4) {
+  td:nth-child(4),
+  td.account-col-4,
+  th.account-col-4 {
     display: none;
   }
 }

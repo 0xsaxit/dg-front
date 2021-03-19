@@ -736,7 +736,7 @@ const ContentAccount = (props) => {
                   let sign = '';
                   if (row.type === 'Deposit') {
                     sign = '+';
-                  } else if (row.type === 'Withdraw') {
+                  } else if (row.type === 'Withdrawal') {
                     sign = '-';
                   }
 
@@ -769,7 +769,7 @@ const ContentAccount = (props) => {
                           )}
                           {row.type}
                         </Table.Cell>
-                        <Table.Cell>
+                        <Table.Cell className="account-col-2">
                           {sign}
                           {amount > 1000000000000000000000000
                             ? 'N/A'
@@ -837,9 +837,9 @@ const ContentAccount = (props) => {
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Game</Table.HeaderCell>
-                <Table.HeaderCell>Bet</Table.HeaderCell>
+                <Table.HeaderCell className="account-col-4">Bet</Table.HeaderCell>
                 <Table.HeaderCell>Payout</Table.HeaderCell>
-                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell className="account-col-2">Date</Table.HeaderCell>
                 <Table.HeaderCell />
               </Table.Row>
             </Table.Header>
@@ -905,13 +905,13 @@ const ContentAccount = (props) => {
                           )}
                           {action}
                         </Table.Cell>
-                        <Table.Cell>
+                        <Table.Cell className="account-col-4">
                           -{amount} {row.coinName}
                         </Table.Cell>
                         <Table.Cell>
                           +{result} {row.coinName}
                         </Table.Cell>
-                        <Table.Cell>{timestamp}</Table.Cell>
+                        <Table.Cell className="account-col-2">{timestamp}</Table.Cell>
                         <Table.Cell>
                           <span
                             style={{ float: 'right', paddingRight: '12px' }}
