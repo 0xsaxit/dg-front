@@ -1,15 +1,17 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store/index';
-import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
+import { GlobalContext, Provider } from '../../store/index';
+import { ConnextModal } from '@connext/vector-modal';
 import transakSDK from '@transak/transak-sdk';
+import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
-import { ConnextModal } from '@connext/vector-modal';
+import Aux from '../_Aux';
+import { ethers } from 'ethers';
 
-let transak_1 = new transakSDK({
+const transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'PRODUCTION', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
@@ -26,7 +28,7 @@ let transak_1 = new transakSDK({
   exchangeScreenTitle: 'Buy Matic MANA directly',
 });
 
-let transak_2 = new transakSDK({
+const transak_2 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'PRODUCTION', // STAGING/PRODUCTION
   walletAddress: '', // customer wallet address
@@ -43,16 +45,22 @@ let transak_2 = new transakSDK({
   exchangeScreenTitle: 'Buy Matic DAI directly',
 });
 
+const connext = {
+  routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
+  chainProviderInfura:
+    'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
+  chainProviderMatic: 'https://rpc-mainnet.matic.network',
+  assetID_1_MANA: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',
+  assetID_2_MANA: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+  assetID_1_DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+  assetID_2_DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+};
+
 const ContentAccount = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [margin, setMargin] = useState('125px');
-  const [boxDAI, setBoxDAI] = useState('none');
-  const [boxMANA, setBoxMANA] = useState('none');
-  const [buttonDAI, setButtonDAI] = useState('block');
-  const [buttonMANA, setButtonMANA] = useState('block');
   const [totalDAI, setTotalDAI] = useState(0);
   const [totalMANA, setTotalMANA] = useState(0);
   const [totalPLAY, setTotalPLAY] = useState(0);
@@ -60,87 +68,90 @@ const ContentAccount = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
-  const [injectedProvider, setInjectedProvider] = useState('');
   const [wearables, setWearables] = useState([]);
   const [poaps, setPoaps] = useState([]);
+  const [injectedProvider, setInjectedProvider] = useState('');
 
+  const buttonPlay = document.getElementById('play-now-button-balances');
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    setInjectedProvider(window.ethereum);
+  }, []);
+
+  // get user nfts statistics
   useEffect(() => {
     (async function () {
-      // get user nfts statistics
-      if (state.userStatus) {
-        let response = await Fetch.NFTS_1(state.userAddress);
-        let json = await response.json();
+      let response = await Fetch.NFTS_1(state.userAddress);
+      let json = await response.json();
 
-        let response_2 = await Fetch.NFTS_2(state.userAddress);
-        let json_2 = await response_2.json();
+      let response_2 = await Fetch.NFTS_2(state.userAddress);
+      let json_2 = await response_2.json();
 
-        var wearables = [];
-        var i;
-        var j;
+      let wearables = [];
+      let i;
+      let j;
 
-        for (i = 0; i < json.assets.length; i++) {
-          wearables.push(json.assets[i]);
-        }
-
-        for (j = 0; j < json_2.assets.length; j++) {
-          wearables.push(json_2.assets[j]);
-        }
-
-        setWearables(wearables);
+      for (i = 0; i < json.assets.length; i++) {
+        wearables.push(json.assets[i]);
       }
+
+      for (j = 0; j < json_2.assets.length; j++) {
+        wearables.push(json_2.assets[j]);
+      }
+
+      setWearables(wearables);
     })();
   }, []);
 
+  // get user poaps
   useEffect(() => {
     (async function () {
-      // get user poaps
-      if (state.userStatus) {
-        let response_1 = await Fetch.POAPS(state.userAddress);
-        let json_1 = await response_1.json();
+      let response_1 = await Fetch.POAPS(state.userAddress);
+      let json_1 = await response_1.json();
 
-        var poaps = [];
-        var k;
+      let poaps = [];
+      let k;
 
-        for (k = 0; k < json_1.length; k++) {
-          if (json_1[k].event.name.includes('Decentral Games')) {
-            poaps.push(json_1[k].event);
-          }
+      for (k = 0; k < json_1.length; k++) {
+        if (json_1[k].event.name.includes('Decentral Games')) {
+          poaps.push(json_1[k].event);
         }
-
-        setPoaps(poaps);
       }
+
+      setPoaps(poaps);
     })();
   }, []);
 
-  let buttonPlay = '';
-
-  useEffect(() => {
-    if (state.userStatus === 6) {
-      setBoxDAI('block');
-      setButtonDAI('none');
-      setButtonMANA('block');
-    } else if (state.userStatus === 7) {
-      setBoxMANA('block');
-      setButtonDAI('block');
-      setButtonMANA('none');
-    } else if (state.userStatus === 8) {
-      setBoxDAI('block');
-      setBoxMANA('block');
-      setButtonDAI('none');
-      setButtonMANA('none');
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
-    buttonPlay = document.getElementById('play-now-button-balances');
-  }, []);
-
+  // send tracking data to Segment
   useEffect(() => {
     if (buttonPlay) {
       analytics.trackLink(buttonPlay, 'Clicked PLAY NOW (balances page)');
     }
   }, [buttonPlay]);
 
+  // fetch total bet from API
+  useEffect(() => {
+    (async function () {
+      const response = await Fetch.PLAYER_DATA(state.userAddress);
+      const json = await response.json();
+
+      setTotalDAI(
+        (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+      setTotalMANA(
+        (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+      setTotalPLAY(
+        (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+    })();
+  }, []);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // handle Transak purchase events and write to database
   useEffect(() => {
     // get all the events
     transak_1.on(transak_1.ALL_EVENTS, (data) => {
@@ -169,89 +180,46 @@ const ContentAccount = (props) => {
     });
   }, []);
 
-  // initialize transak modal
-  function show_transak_1() {
-    transak_1.init();
+  // handle Connext deposit/withdrawal events and write to database
+  async function getWithdrawalTransaction(params) {
+    console.log('Transaction hash: ' + params);
+
+    // const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // const txReceipt = await provider.getTransactionReceipt(params);
+
+    // console.log('Transaction receipt: ' + txReceipt);
+
+    // re-execute getTokenBalances() in UserBalances.js
+    // dispatch({
+    //   type: 'refresh_tokens',
+    //   data: params.params,
+    // });
   }
 
-  function show_transak_2() {
-    transak_2.init();
-  }
+  function getWithdrawalAmount(params) {
+    console.log('Success: ' + params);
 
-  // top up user to 5000 play tokens
-  async function topUp() {
-    await Fetch.TOP_UP_USER(state.userAddress);
+    // re-execute getTokenBalances() in UserBalances.js
+    const timer = setTimeout(() => {
+      dispatch({
+        type: 'refresh_tokens',
+        data: params,
+      });
 
-    let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
-    let json = await responseInfo.json();
+      clearTimeout(timer);
+    }, 2000);
 
-    let arrayInfo = state.userInfo;
-    arrayInfo[3] = json.callCount;
+    // post transaction to database
+    // console.log('Posting Connext transaction to db: ' + params.event);
 
-    dispatch({
-      type: 'user_info',
-      data: arrayInfo,
-    });
-  }
-
-  // fetch total bet from API
-  useEffect(() => {
-    if (state.userAddress) {
-      (async function () {
-        const response = await Fetch.PLAYER_DATA(state.userAddress);
-        const json = await response.json();
-
-        setTotalDAI(
-          (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-        );
-        setTotalMANA(
-          (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-        );
-        setTotalPLAY(
-          (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
-        );
-      })();
-    }
-  }, [state.userAddress, state.userBalances[1][1]]);
-
-  // initialize token contract pings
-  function initializePings() {
-    if (state.userStatus >= 6) {
-      console.log('Ping token contract');
-    }
-  }
-
-  const styles = {
-    boxDAI: {
-      display: boxDAI || 'none',
-    },
-    buttonDAI: {
-      display: buttonDAI || 'none',
-    },
-    boxMANA: {
-      display: boxMANA || 'none',
-    },
-    buttonMANA: {
-      display: buttonMANA || 'none',
-    },
-  };
-
-  useEffect(() => {
-    if (state.userAddress) {
-      setInjectedProvider(window.ethereum);
-    } else {
-      setInjectedProvider('');
-    }
-  }, [state.userAddress]);
-
-  function contentLabels() {
-    if (props.type === 'balances') {
-      return null;
-    } else if (props.type === 'play') {
-      return <span />;
-    } else if (props.type === 'history') {
-      return <span />;
-    }
+    // Fetch.POST_HISTORY(
+    //   state.userAddress,
+    //   params.amount,
+    //   params.event,
+    //   'Confirmed',
+    //   params.txHash,
+    //   state.userStatus
+    // );
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -367,17 +335,15 @@ const ContentAccount = (props) => {
               </span>
             </span>
 
-            <div style={styles.boxMANA}>
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  className="balances-top-button"
-                  onClick={() => show_transak_1()}
-                  style={{ marginTop: '-75px' }}
-                >
-                  PURCHASE
-                </Button>
-              </span>
-            </div>
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                className="balances-top-button"
+                onClick={() => show_transak_1()}
+                style={{ marginTop: '-75px' }}
+              >
+                PURCHASE
+              </Button>
+            </span>
 
             <Divider />
 
@@ -388,16 +354,16 @@ const ContentAccount = (props) => {
 
             <Divider />
 
-            <div style={styles.boxMANA}>
+            {state.userStatus === 7 || state.userStatus === 8 ? (
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
-                  disabled={!injectedProvider}
                   onClick={() => setShowModal(true)}
                   style={{ padding: '0 0 0 0' }}
                 >
                   DEPOSIT
                 </Button>
+
                 <ConnextModal
                   showModal={showModal}
                   onClose={() => setShowModal(false)}
@@ -405,16 +371,19 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_1_MANA}
                   depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  withdrawAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
+                  depositChainProvider={connext.chainProviderInfura}
+                  withdrawAssetId={connext.assetID_2_MANA}
                   withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
+
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_2(true)}
@@ -422,6 +391,7 @@ const ContentAccount = (props) => {
                 >
                   WITHDRAW
                 </Button>
+
                 <ConnextModal
                   showModal={showModal_2}
                   onClose={() => setShowModal_2(false)}
@@ -429,24 +399,22 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  withdrawAssetId={connext.assetID_1_MANA}
                   withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  depositAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositAssetId={connext.assetID_2_MANA}
                   depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
+                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
               </span>
-            </div>
-
-            <div style={styles.buttonMANA}>
-              <span>
-                <ModalAcceptMana />
-              </span>
-            </div>
+            ) : (
+              <ModalAcceptMana />
+            )}
           </Grid.Column>
 
           <Grid.Column
@@ -481,17 +449,15 @@ const ContentAccount = (props) => {
               </span>
             </span>
 
-            <div style={styles.boxDAI}>
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  className="balances-top-button two"
-                  onClick={() => show_transak_2()}
-                  style={{ marginTop: '-75px' }}
-                >
-                  PURCHASE
-                </Button>
-              </span>
-            </div>
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                className="balances-top-button two"
+                onClick={() => show_transak_2()}
+                style={{ marginTop: '-75px' }}
+              >
+                PURCHASE
+              </Button>
+            </span>
 
             <Divider />
 
@@ -502,7 +468,7 @@ const ContentAccount = (props) => {
 
             <Divider />
 
-            <div style={styles.boxDAI}>
+            {state.userStatus === 6 || state.userStatus === 8 ? (
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
@@ -511,6 +477,7 @@ const ContentAccount = (props) => {
                 >
                   DEPOSIT
                 </Button>
+
                 <ConnextModal
                   showModal={showModal_3}
                   onClose={() => setShowModal_3(false)}
@@ -518,16 +485,19 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_1_DAI}
                   depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
+                  depositChainProvider={connext.chainProviderInfura}
+                  withdrawAssetId={connext.assetID_2_DAI}
                   withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
+
                 <Button
                   className="balances-play-button"
                   onClick={() => setShowModal_4(true)}
@@ -535,6 +505,7 @@ const ContentAccount = (props) => {
                 >
                   WITHDRAW
                 </Button>
+
                 <ConnextModal
                   showModal={showModal_4}
                   onClose={() => setShowModal_4(false)}
@@ -542,28 +513,51 @@ const ContentAccount = (props) => {
                     console.log('MODAL IS READY =======>', params)
                   }
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  withdrawAssetId={connext.assetID_1_DAI}
                   withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositAssetId={connext.assetID_2_DAI}
                   depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
+                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  onWithdrawalTxCreated={getWithdrawalTransaction}
+                  onFinished={getWithdrawalAmount}
                 />
               </span>
-            </div>
-
-            <div style={styles.buttonDAI}>
-              <span>
-                <ModalAcceptDai />
-              </span>
-            </div>
+            ) : (
+              <ModalAcceptDai />
+            )}
           </Grid.Column>
         </Grid.Row>
       </Grid>
     );
+  }
+
+  // top up user to 5000 play tokens
+  async function topUp() {
+    await Fetch.TOP_UP_USER(state.userAddress);
+
+    let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
+    let json = await responseInfo.json();
+
+    let arrayInfo = state.userInfo;
+    arrayInfo[3] = json.callCount;
+
+    dispatch({
+      type: 'user_info',
+      data: arrayInfo,
+    });
+  }
+
+  // initialize transak modal
+  function show_transak_1() {
+    transak_1.init();
+  }
+
+  function show_transak_2() {
+    transak_2.init();
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -662,99 +656,119 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentHistory() {
     return (
-      <Table unstackable>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Action</Table.HeaderCell>
-            <Table.HeaderCell className="account-col-2">
-              Amount
-            </Table.HeaderCell>
-            <Table.HeaderCell>Status</Table.HeaderCell>
-            <Table.HeaderCell>Date</Table.HeaderCell>
-            <Table.HeaderCell />
-          </Table.Row>
-        </Table.Header>
-
-        {props.dataPage.map((row, i) => {
-          const date = new Date(row.createdAt);
-          const timestamp = date.toLocaleString();
-          const amount = row.amount;
-
-          let sign = '';
-          if (row.type === 'Deposit') {
-            sign = '+';
-          } else if (row.type === 'Withdraw') {
-            sign = '-';
-          }
-
-          return (
-            <Table.Body key={i}>
+      <div style={{ paddingTop: '12px' }}>
+        <div className="tx-box-overflow">
+          <Table unstackable>
+            <Table.Header>
               <Table.Row>
-                <Table.Cell>
-                  {row.coinName === 'MANA' ? (
-                    <img
-                      src={Images.ICON_DAI}
-                      style={{
-                        width: '21px',
-                        marginRight: '6px',
-                        verticalAlign: 'middle',
-                        marginTop: '-2px',
-                        borderRadius: '100%',
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={Images.ICON_MANA}
-                      style={{
-                        width: '21px',
-                        marginRight: '6px',
-                        verticalAlign: 'middle',
-                        marginTop: '-2px',
-                        borderRadius: '100%',
-                      }}
-                    />
-                  )}
-                  {row.type}
-                </Table.Cell>
-                <Table.Cell className="account-col-2">
-                  {sign}
-                  {amount > 1000000000000000000000000
-                    ? 'N/A'
-                    : amount + ' MANA'}
-                </Table.Cell>
-                <Table.Cell>{row.status}</Table.Cell>
-                <Table.Cell>{timestamp}</Table.Cell>
-                <Table.Cell>
-                  <span style={{ float: 'right', paddingRight: '12px' }}>
-                    <Button
-                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                      target="_blank"
-                      className="etherscan-button"
-                    >
-                      blockchain tx
-                      <Icon
-                        name="external alternate"
-                        style={{ marginLeft: '6px', marginRight: '-2px' }}
-                      />
-                    </Button>
-                    <Button
-                      href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-                      target="_blank"
-                      className="etherscan-button-mobile"
-                    >
-                      tx
-                      <Icon
-                        name="external alternate"
-                        style={{ marginLeft: '6px', marginRight: '-2px' }}
-                      />
-                    </Button>
-                  </span>
-                </Table.Cell>
+                <Table.HeaderCell>Action</Table.HeaderCell>
+                <Table.HeaderCell className="account-col-2">
+                  Amount
+                </Table.HeaderCell>
+                <Table.HeaderCell>Status</Table.HeaderCell>
+                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell />
               </Table.Row>
-            </Table.Body>
-          );
-        })}
-      </Table>
+            </Table.Header>
+
+            {props.dataPage === 'false'
+              ? 'No data to display'
+              : props.dataPage.map((row, i) => {
+                  const date = new Date(row.createdAt);
+                  const timestamp = date.toLocaleString();
+                  const amount = row.amount;
+
+                  let sign = '';
+                  if (row.type === 'Deposit') {
+                    sign = '+';
+                  } else if (row.type === 'Withdraw') {
+                    sign = '-';
+                  }
+
+                  return (
+                    <Table.Body key={i}>
+                      <Table.Row>
+                        <Table.Cell>
+                          {row.coinName === 'MANA' ? (
+                            <img
+                              src={Images.ICON_DAI}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : (
+                            <img
+                              src={Images.ICON_MANA}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          )}
+                          {row.type}
+                        </Table.Cell>
+                        <Table.Cell>
+                          {sign}
+                          {amount > 1000000000000000000000000
+                            ? 'N/A'
+                            : amount + ' MANA'}
+                        </Table.Cell>
+                        <Table.Cell>{row.status}</Table.Cell>
+                        <Table.Cell>{timestamp}</Table.Cell>
+                        <Table.Cell>
+                          <span
+                            style={{ float: 'right', paddingRight: '12px' }}
+                          >
+                            <Button
+                              href={
+                                Global.CONSTANTS.MATIC_EXPLORER +
+                                `/tx/${row.txid}`
+                              }
+                              target="_blank"
+                              className="etherscan-button"
+                            >
+                              blockchain tx
+                              <Icon
+                                name="external alternate"
+                                style={{
+                                  marginLeft: '6px',
+                                  marginRight: '-2px',
+                                }}
+                              />
+                            </Button>
+                            <Button
+                              href={
+                                Global.CONSTANTS.MATIC_EXPLORER +
+                                `/tx/${row.txid}`
+                              }
+                              target="_blank"
+                              className="etherscan-button-mobile"
+                            >
+                              tx
+                              <Icon
+                                name="external alternate"
+                                style={{
+                                  marginLeft: '6px',
+                                  marginRight: '-2px',
+                                }}
+                              />
+                            </Button>
+                          </span>
+                        </Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+                  );
+                })}
+          </Table>
+        </div>
+      </div>
     );
   }
 
@@ -762,182 +776,214 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentGameplay() {
     return (
-      <Table unstackable>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Game</Table.HeaderCell>
-            <Table.HeaderCell className="account-col-2">Bet</Table.HeaderCell>
-            <Table.HeaderCell>Payout</Table.HeaderCell>
-            <Table.HeaderCell>Date</Table.HeaderCell>
-            <Table.HeaderCell />
-          </Table.Row>
-        </Table.Header>
-
-        {props.dataPage.map((row, i) => {
-          const date = new Date(row.createdAt);
-          const timestamp = date.toLocaleString();
-          const amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-          const result = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
-          let action;
-          if (row.gameType === 1) {
-            action = 'Slots';
-          } else if (row.gameType === 2) {
-            action = 'Roulette';
-          } else if (row.gameType === 3) {
-            action = 'Backgammon';
-          } else if (row.gameType === 4) {
-            action = 'Blackjack';
-          }
-
-          return (
-            <Table.Body key={i}>
+      <div style={{ paddingTop: '12px' }}>
+        <div className="tx-box-overflow">
+          <Table unstackable>
+            <Table.Header>
               <Table.Row>
-                <Table.Cell>
-                  {row.coinName === 'MANA' ? (
-                    <img
-                      src={Images.ICON_MANA}
-                      style={{
-                        width: '21px',
-                        marginRight: '6px',
-                        verticalAlign: 'middle',
-                        marginTop: '-2px',
-                        borderRadius: '100%',
-                      }}
-                    />
-                  ) : row.coinName === 'DAI' ? (
-                    <img
-                      src={Images.ICON_DAI}
-                      style={{
-                        width: '21px',
-                        marginRight: '6px',
-                        verticalAlign: 'middle',
-                        marginTop: '-2px',
-                        borderRadius: '100%',
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={Images.ICON_PLAY}
-                      style={{
-                        width: '21px',
-                        marginRight: '6px',
-                        verticalAlign: 'middle',
-                        marginTop: '-2px',
-                        borderRadius: '100%',
-                      }}
-                    />
-                  )}
-                  {action}
-                </Table.Cell>
-                <Table.Cell className="account-col-2">
-                  -{amount} {row.coinName}
-                </Table.Cell>
-                <Table.Cell>
-                  +{result} {row.coinName}
-                </Table.Cell>
-                <Table.Cell>{timestamp}</Table.Cell>
-                <Table.Cell>
-                  <span style={{ float: 'right', paddingRight: '12px' }}>
-                    {row.coinName === 'MANA' ? (
-                      <span>
-                        <Button
-                          href={
-                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
-                          }
-                          target="_blank"
-                          className="etherscan-button"
-                        >
-                          blockchain tx
-                          <Icon
-                            name="external alternate"
-                            style={{ marginLeft: '6px', marginRight: '-2px' }}
-                          />
-                        </Button>
-                        <Button
-                          href={
-                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
-                          }
-                          target="_blank"
-                          className="etherscan-button-mobile"
-                        >
-                          tx
-                          <Icon
-                            name="external alternate"
-                            style={{ marginLeft: '6px', marginRight: '-2px' }}
-                          />
-                        </Button>
-                      </span>
-                    ) : row.coinName === 'DAI' ? (
-                      <span>
-                        <Button
-                          href={
-                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
-                          }
-                          target="_blank"
-                          className="etherscan-button"
-                        >
-                          blockchain tx
-                          <Icon
-                            name="external alternate"
-                            style={{ marginLeft: '6px', marginRight: '-2px' }}
-                          />
-                        </Button>
-                        <Button
-                          href={
-                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
-                          }
-                          target="_blank"
-                          className="etherscan-button-mobile"
-                        >
-                          tx
-                          <Icon
-                            name="external alternate"
-                            style={{ marginLeft: '6px', marginRight: '-2px' }}
-                          />
-                        </Button>
-                      </span>
-                    ) : (
-                      <span>
-                        <Button
-                          disabled
-                          className="etherscan-button"
-                          style={{ padding: '2px 0px 0px 0px' }}
-                        >
-                          blockchain tx
-                          <Icon
-                            name="external alternate"
-                            style={{ marginLeft: '6px', marginRight: '-2px' }}
-                          />
-                        </Button>
-                        <Button
-                          disabled
-                          href={
-                            Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`
-                          }
-                          target="_blank"
-                          className="etherscan-button-mobile"
-                        >
-                          tx
-                          <Icon
-                            name="external alternate"
-                            style={{ marginLeft: '6px', marginRight: '-2px' }}
-                          />
-                        </Button>
-                      </span>
-                    )}
-                  </span>
-                </Table.Cell>
+                <Table.HeaderCell>Game</Table.HeaderCell>
+                <Table.HeaderCell>Bet</Table.HeaderCell>
+                <Table.HeaderCell>Payout</Table.HeaderCell>
+                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell />
               </Table.Row>
-            </Table.Body>
-          );
-        })}
-      </Table>
+            </Table.Header>
+
+            {props.dataPage === 'false'
+              ? 'No data to display'
+              : props.dataPage.map((row, i) => {
+                  const date = new Date(row.createdAt);
+                  const timestamp = date.toLocaleString();
+                  const amount =
+                    Number(row.betAmount) / Global.CONSTANTS.FACTOR;
+                  const result =
+                    Number(row.amountWin) / Global.CONSTANTS.FACTOR;
+
+                  let action = '';
+                  if (row.gameType === 1) {
+                    action = 'Slots';
+                  } else if (row.gameType === 2) {
+                    action = 'Roulette';
+                  } else if (row.gameType === 3) {
+                    action = 'Backgammon';
+                  } else if (row.gameType === 4) {
+                    action = 'Blackjack';
+                  }
+
+                  return (
+                    <Table.Body key={i}>
+                      <Table.Row>
+                        <Table.Cell>
+                          {row.coinName === 'MANA' ? (
+                            <img
+                              src={Images.ICON_MANA}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'DAI' ? (
+                            <img
+                              src={Images.ICON_DAI}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : (
+                            <img
+                              src={Images.ICON_PLAY}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          )}
+                          {action}
+                        </Table.Cell>
+                        <Table.Cell>
+                          -{amount} {row.coinName}
+                        </Table.Cell>
+                        <Table.Cell>
+                          +{result} {row.coinName}
+                        </Table.Cell>
+                        <Table.Cell>{timestamp}</Table.Cell>
+                        <Table.Cell>
+                          <span
+                            style={{ float: 'right', paddingRight: '12px' }}
+                          >
+                            {row.coinName === 'MANA' ? (
+                              <Aux>
+                                <Button
+                                  href={
+                                    Global.CONSTANTS.MATIC_EXPLORER +
+                                    `/tx/${row.txid}`
+                                  }
+                                  target="_blank"
+                                  className="etherscan-button"
+                                >
+                                  blockchain tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                                <Button
+                                  href={
+                                    Global.CONSTANTS.MATIC_EXPLORER +
+                                    `/tx/${row.txid}`
+                                  }
+                                  target="_blank"
+                                  className="etherscan-button-mobile"
+                                >
+                                  tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                              </Aux>
+                            ) : row.coinName === 'DAI' ? (
+                              <Aux>
+                                <Button
+                                  href={
+                                    Global.CONSTANTS.MATIC_EXPLORER +
+                                    `/tx/${row.txid}`
+                                  }
+                                  target="_blank"
+                                  className="etherscan-button"
+                                >
+                                  blockchain tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                                <Button
+                                  href={
+                                    Global.CONSTANTS.MATIC_EXPLORER +
+                                    `/tx/${row.txid}`
+                                  }
+                                  target="_blank"
+                                  className="etherscan-button-mobile"
+                                >
+                                  tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                              </Aux>
+                            ) : (
+                              <Aux>
+                                <Button
+                                  disabled
+                                  className="etherscan-button"
+                                  style={{ padding: '2px 0px 0px 0px' }}
+                                >
+                                  blockchain tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                                <Button
+                                  disabled
+                                  href={
+                                    Global.CONSTANTS.MATIC_EXPLORER +
+                                    `/tx/${row.txid}`
+                                  }
+                                  target="_blank"
+                                  className="etherscan-button-mobile"
+                                >
+                                  tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                              </Aux>
+                            )}
+                          </span>
+                        </Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+                  );
+                })}
+          </Table>
+        </div>
+      </div>
     );
   }
 
-  if (props.content === 'labels') {
-    return contentLabels();
-  } else if (props.content === 'balances') {
+  if (props.content === 'balances') {
     return contentAccount();
   } else if (props.content === 'wearables') {
     return contentWearables();
