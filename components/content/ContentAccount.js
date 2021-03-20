@@ -678,9 +678,9 @@ const ContentAccount = (props) => {
                   const amount = row.amount;
 
                   let sign = '';
-                  if (row.type === 'Deposit') {
+                  if ((row.type).includes("Deposit")) {
                     sign = '+';
-                  } else if (row.type === 'Withdrawal') {
+                  } else if ((row.type).includes("Withdrawal")) {
                     sign = '-';
                   }
 
@@ -688,7 +688,7 @@ const ContentAccount = (props) => {
                     <Table.Body key={i}>
                       <Table.Row>
                         <Table.Cell>
-                          {row.coinName === 'MANA' ? (
+                          {(row.type).includes("DAI") ? (
                             <img
                               src={Images.ICON_DAI}
                               style={{
@@ -714,11 +714,22 @@ const ContentAccount = (props) => {
                           {row.type}
                         </Table.Cell>
                         <Table.Cell className="account-col-2">
-                          {sign}
-                          {amount > 1000000000000000000000000
-                            ? 'N/A'
-                            : (amount / 1000000000000000000).toFixed(2) +
-                              ' MANA'}
+                          {(row.type).includes("DAI") ? (
+                            <span>
+                              {sign}
+                              {amount > 1000000000000000000000000
+                                ? 'N/A'
+                                : (amount / 1000000000000000000).toFixed(2) +
+                                  ' DAI'}
+                            </span>
+                          ) : (
+                            <span>
+                              {amount > 1000000000000000000000000
+                                ? 'N/A'
+                                : (amount / 1000000000000000000).toFixed(2) +
+                                  ' MANA'}
+                            </span>
+                          )}
                         </Table.Cell>
                         <Table.Cell>{row.status}</Table.Cell>
                         <Table.Cell className="account-col-4">
