@@ -1,43 +1,54 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
+import Global from '../components/Constants';
 
 function UserInfo() {
   // dispatch user's information to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // get user's play name, wallet address, avatar balance, and email address
+  // get user's play name, wallet address, MANA balance, email address, players list, and token totals
   useEffect(() => {
     if (state.userAddress) {
       (async function () {
         const responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
-        const json = await responseInfo.json();
+        const jsonInfo = await responseInfo.json();
 
-        // console.log('user information...');
-        // console.log(json);
-
-        const name = json.avatarName;
-        const address = json.address;
-        const balance = json.playBalance.toLocaleString();
-        const count = json.callCount;
+        const name = jsonInfo.avatarName;
+        const address = jsonInfo.address;
+        const balancePLAY = jsonInfo.playBalance.toLocaleString();
+        const count = jsonInfo.callCount;
         const email = '';
+        const playersList = jsonInfo.playersList;
 
-        // const responseAvatar = await Fetch.AVATAR_IMAGE(state.userAddress);
-        // const jsonAvatar = await responseAvatar.json();
+        const responseData = await Fetch.PLAYER_DATA(state.userAddress);
+        const jsonData = await responseData.json();
 
-        // if (jsonAvatar.avatars.length == 0) {
-        //   const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
-        // } else {
-        //   const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
-        // }
+        const totalDAI = (
+          jsonData.DAI.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalMANA = (
+          jsonData.MANA.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalPLAY = (
+          jsonData.PLAY.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
 
-        const playersList = json.playersList;
-
-        const response = [name, address, balance, count, email, playersList];
+        const data = [
+          name,
+          address,
+          balancePLAY,
+          count,
+          email,
+          playersList,
+          totalDAI,
+          totalMANA,
+          totalPLAY,
+        ];
 
         dispatch({
           type: 'user_info',
-          data: response,
+          data: data,
         });
       })();
     }

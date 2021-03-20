@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store/index';
+import { GlobalContext, Provider } from '../../store/index';
 import { ConnextModal } from '@connext/vector-modal';
 import transakSDK from '@transak/transak-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
@@ -60,6 +60,9 @@ const ContentAccount = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [totalDAI, setTotalDAI] = useState(0);
+  const [totalMANA, setTotalMANA] = useState(0);
+  const [totalPLAY, setTotalPLAY] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
@@ -90,10 +93,12 @@ const ContentAccount = (props) => {
 
       let wearables = [];
       let i;
+      let j;
+
       for (i = 0; i < json.assets.length; i++) {
         wearables.push(json.assets[i]);
       }
-      let j;
+
       for (j = 0; j < json_2.assets.length; j++) {
         wearables.push(json_2.assets[j]);
       }
@@ -110,6 +115,7 @@ const ContentAccount = (props) => {
 
       let poaps = [];
       let k;
+
       for (k = 0; k < json_1.length; k++) {
         if (json_1[k].event.name.includes('Decentral Games')) {
           poaps.push(json_1[k].event);
@@ -126,6 +132,24 @@ const ContentAccount = (props) => {
       analytics.trackLink(buttonPlay, 'Clicked PLAY NOW (balances page)');
     }
   }, [buttonPlay]);
+
+  // fetch total bet from API
+  useEffect(() => {
+    (async function () {
+      const response = await Fetch.PLAYER_DATA(state.userAddress);
+      const json = await response.json();
+
+      setTotalDAI(
+        (json.DAI.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+      setTotalMANA(
+        (json.MANA.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+      setTotalPLAY(
+        (json.PLAY.payout_player / Global.CONSTANTS.FACTOR).toLocaleString()
+      );
+    })();
+  }, []);
 
   // refresh user token balances and post transaction to database
   useEffect(() => {
@@ -242,7 +266,7 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount"> {state.userInfo[8]} </p>
+              <p className="earned-amount"> {totalPLAY} </p>
             </span>
 
             <Divider />
@@ -318,7 +342,7 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{state.userInfo[7]}</p>
+              <p className="earned-amount">{totalMANA}</p>
             </span>
 
             <Divider />
@@ -432,7 +456,7 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{state.userInfo[6]}</p>
+              <p className="earned-amount">{totalDAI}</p>
             </span>
 
             <Divider />
