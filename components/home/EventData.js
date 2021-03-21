@@ -45,23 +45,23 @@ const EventData = () => {
     return f;
   }
 
-  // Renderer callback with condition
-  const renderer = ({ days, hours, minutes, seconds }) => {
-    // Render a countdown
-    if (days) {
-      return (
-        <span className="nft-other-h3 countdown2">
-          {days} days, {hours} hours, {minutes} minutes, {seconds} seconds
-        </span>
-      );
-    } else {
-      return (
-        <span className="nft-other-h3 countdown3">
-          {hours} hours, {minutes} minutes, {seconds} seconds
-        </span>
-      );
-    }
-  };
+  // // Renderer callback with condition
+  // const renderer = ({ days, hours, minutes, seconds }) => {
+  //   // Render a countdown
+  //   if (days) {
+  //     return (
+  //       <span className="nft-other-h3 countdown2">
+  //         {days} days, {hours} hours, {minutes} minutes, {seconds} seconds
+  //       </span>
+  //     );
+  //   } else {
+  //     return (
+  //       <span className="nft-other-h3 countdown3">
+  //         {hours} hours, {minutes} minutes, {seconds} seconds
+  //       </span>
+  //     );
+  //   }
+  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,6 @@ const EventData = () => {
                 <Countdown 
                   className="nft-other-h3 countdown2"
                   date={events[0].next_start_at}
-                  renderer={renderer} 
                 />
               </span>
             </span>
