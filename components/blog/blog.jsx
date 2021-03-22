@@ -12,7 +12,7 @@ const Blog = (Paths) => {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 25 });
+      const { data } = await ButterCMS.post.list({ page_size: 50 });
       dispatch({
         type: 'update_pages',
         data,

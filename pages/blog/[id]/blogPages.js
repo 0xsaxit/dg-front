@@ -23,7 +23,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 40 });
+      const { data } = await ButterCMS.post.list({ page_size: 50 });
       dispatch({
         type: 'update_pages',
         data,
@@ -54,7 +54,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
 
 BlogDetail.getInitialProps = async ({ query }) => {
   const slug = query.id;
-  const { data } = await Butter.instance.post.list({ page_size: 40 });
+  const { data } = await Butter.instance.post.list({ page_size: 50 });
   const currentPage = data.data.find((page) => page.slug === slug);
   var currentPage_title = currentPage.title;
   currentPage_title = currentPage_title.replace(': ', ':');
