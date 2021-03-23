@@ -251,7 +251,7 @@ const ContentAccount = (props) => {
               <Button
                 id="play-now-button-balances"
                 className="balances-play-button"
-                href="https://play.decentraland.org/?position=-120%2C135&realm=dg-amber"
+                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
                 target="_blank"
               >
                 PLAY NOW

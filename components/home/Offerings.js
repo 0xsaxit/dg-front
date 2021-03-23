@@ -18,7 +18,7 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=dg-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
@@ -28,7 +28,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=dg-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -38,7 +38,7 @@ const detailsGames = {
     'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
     '1 PLAYER',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=dg-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
     'https://docs.decentral.games/games/slots',
   ],
   Backgammon: [
@@ -48,7 +48,7 @@ const detailsGames = {
     'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
     '2 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=85%2C-20&realm=dg-amber',
+    'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-amber',
     'https://docs.decentral.games/games/backgammon',
   ],
 };
@@ -60,7 +60,7 @@ const detailsCasinos = {
     'Tominoya',
     'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE, BLACKJACK, SLOTS',
-    'https://play.decentraland.org/?position=-119%2C133&realm=dg-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
     'https://docs.decentral.games/casinos/tominoya',
   ],
   Chateau: [
@@ -69,7 +69,7 @@ const detailsCasinos = {
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'ROULETTE, BLACKJACK',
-    'https://play.decentraland.org/?position=-75%2C77&realm=dg-amber',
+    'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
     'https://docs.decentral.games/casinos/chateau-satoshi',
   ],
 };
@@ -81,7 +81,7 @@ const detailsShop = {
     'NFT Shop',
     'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'WEARABLES',
-    'https://play.decentraland.org/?position=-75%2C79&realm=dg-amber',
+    'https://play.decentraland.org/?position=-75%2C79&realm=fenrir-amber',
     'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
   shop_opensea: [
