@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Menu, Icon, Dropdown } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
-import ButtonVerify from '../button/ButtonVerify';
+import ButtonConnect from '../button/ButtonConnect';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 // import PopUpLinks from './PopUpLinks';
@@ -410,7 +410,7 @@ const MenuTop = (props) => {
     } else {
       return (
         <span className="right-menu-items">
-          <ButtonVerify />
+          <ButtonConnect />
 
           {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>

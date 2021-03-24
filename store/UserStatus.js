@@ -15,17 +15,15 @@ function UserStatus() {
 
       if (userAddress) {
         // set user status to 3 to denote fetching user status, and dispatch the user address
-        if (userAddress) {
-          dispatch({
-            type: 'update_status',
-            data: 3,
-          });
+        dispatch({
+          type: 'update_status',
+          data: 3,
+        });
 
-          dispatch({
-            type: 'user_address',
-            data: userAddress,
-          });
-        }
+        dispatch({
+          type: 'user_address',
+          data: userAddress,
+        });
 
         // fetch user status
         async function fetchData() {
@@ -39,12 +37,10 @@ function UserStatus() {
               data: response,
             });
           } else {
-            if (userAddress) {
-              dispatch({
-                type: 'update_status',
-                data: 0,
-              });
-            }
+            dispatch({
+              type: 'update_status',
+              data: 0,
+            });
           }
         }
 
@@ -53,23 +49,43 @@ function UserStatus() {
     }
   }, []);
 
+  // async function getUserStatus() {
+  //   try {
+  //     const response = await Fetch.USER_STATUS(userAddress);
+  //     const json = await response.json();
+
+  //     if (json.status === 'ok') {
+  //       if (json.result === 'false') {
+  //         return false;
+  //       }
+  //       const stepValue = parseInt(json.result);
+
+  //       return stepValue;
+  //     }
+  //   } catch {
+  //     console.log('Unregistered wallet: User Status');
+
+  //     return 0;
+  //   }
+  // }
+
   async function getUserStatus() {
+    console.log('Get user status: User Status');
+
     try {
-      const response = await Fetch.USER_STATUS(userAddress);
-      const json = await response.json();
+      const responseIP = await Fetch.IP_ADDRESS();
+      const jsonIP = await responseIP.json();
 
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return false;
-        }
-        const stepValue = parseInt(json.result);
+      const responseStatus = await Fetch.USER_STATUS(userAddress, jsonIP.ip);
+      const jsonStatus = await responseStatus.json();
 
-        return stepValue;
-      }
+      if (!jsonStatus.status) return false;
+
+      return jsonStatus.status;
     } catch {
       console.log('Unregistered wallet: User Status');
 
-      return 0;
+      return false;
     }
   }
 

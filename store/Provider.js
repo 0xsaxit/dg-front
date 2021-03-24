@@ -10,6 +10,7 @@ const initialState = {
   },
   userStatus: 0,
   userAddress: '',
+  // ipAddress: '',
   userInfo: [],
   userBalances: [
     [0, 0],
@@ -242,6 +243,12 @@ const reducer = (state, action) => {
         ...state,
         whitelistedIntel: action.data,
       };
+
+    // case 'ip_address':
+    //   return {
+    //     ...state,
+    //     ipAddress: action.data,
+    //   };
 
     default:
       throw new Error('Wrong action type got dispatched');

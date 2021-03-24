@@ -3,47 +3,12 @@ import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
 
-const ButtonVerify = () => {
+const ButtonPlayNow = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
-  const [scrollState, setScrollState] = useState('top');
-
-  let menuStyle = [];
-  let listener = null;
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
-      let scrolled = document.scrollingElement.scrollTop;
-      if (scrolled >= 10) {
-        if (scrollState !== 'amir') {
-          setScrollState('amir');
-        }
-      } else {
-        if (scrollState !== 'top') {
-          setScrollState('top');
-        }
-      }
-    });
-
-    return () => {
-      document.removeEventListener('scroll', listener);
-    };
-  }, [scrollState]);
-
-  if (scrollState == 'top') {
-    menuStyle = [
-      'get-metamask'
-    ];
-  } else {
-    menuStyle = [
-      'get-metamask-scroll',
-    ];
-  }
 
   let userAddress = '';
 
@@ -107,53 +72,38 @@ const ButtonVerify = () => {
   }
 
   async function getUserStatus() {
+    console.log('Get user status: Play Now');
+
     try {
-      const response = await Fetch.USER_STATUS(userAddress);
-      const json = await response.json();
+      const responseIP = await Fetch.IP_ADDRESS();
+      const jsonIP = await responseIP.json();
 
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return false;
-        }
+      const responseStatus = await Fetch.USER_STATUS(userAddress, jsonIP.ip);
+      const jsonStatus = await responseStatus.json();
 
-        const stepValue = parseInt(json.result);
-        return stepValue;
-      }
+      if (!jsonStatus.status) return false;
+
+      return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Verify');
+      console.log('Unregistered wallet: Play Now');
 
-      return 0;
+      return false;
     }
   }
 
   return (
     <span>
       {metamaskEnabled ? (
-        <span className="right-menu-items">
-          <a 
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={menuStyle[0]}
-          > 
-            What's Metamask?
-          </a>
-          <Button
-            content="CONNECT METAMASK"
-            color="blue"
-            className="metamask-button"
-            onClick={() => openMetaMask()}
-          />
-          <Button
-            content="CONNECT"
-            color="blue"
-            className="metamask-mobile-button"
-            id="balances-padding-correct"
-            onClick={() => openMetaMask()}
-          />
-        </span>
+        <Button
+          content="PLAY NOW"
+          color="blue"
+          className="play-button verify"
+          style={{ padding: '0 0 0 0' }}
+          onClick={() => openMetaMask()}
+        />
       ) : null}
     </span>
   );
 };
 
-export default ButtonVerify;
+export default ButtonPlayNow;
