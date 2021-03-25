@@ -87,15 +87,10 @@ function ButtonApproveMANA() {
     // update user status in database
     console.log('Posting user status to db: ' + value);
 
-    const responseIP = await Fetch.IP_ADDRESS();
-    const jsonIP = await responseIP.json();
+    // const responseIP = await Fetch.IP_ADDRESS();
+    // const jsonIP = await responseIP.json();
 
-    Fetch.USER_VERIFY(
-      state.userAddress,
-      value,
-      jsonIP.ip,
-      state.affiliateAddress
-    );
+    Fetch.USER_VERIFY(state.userAddress, value, '', state.affiliateAddress);
 
     // post authorization to database
     console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');

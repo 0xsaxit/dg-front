@@ -73,10 +73,10 @@ function UserStatus() {
     console.log('Get user status: User Status');
 
     try {
-      const responseIP = await Fetch.IP_ADDRESS();
-      const jsonIP = await responseIP.json();
+      // const responseIP = await Fetch.IP_ADDRESS();
+      // const jsonIP = await responseIP.json();
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, jsonIP.ip);
+      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
       const jsonStatus = await responseStatus.json();
 
       if (!jsonStatus.status) return false;

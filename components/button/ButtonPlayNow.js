@@ -55,16 +55,11 @@ const ButtonPlayNow = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
-      const responseIP = await Fetch.IP_ADDRESS();
-      const jsonIP = await responseIP.json();
+      // const responseIP = await Fetch.IP_ADDRESS();
+      // const jsonIP = await responseIP.json();
 
       // update user status in database
-      await Fetch.USER_VERIFY(
-        userAddress,
-        value,
-        jsonIP.ip,
-        state.affiliateAddress
-      );
+      await Fetch.USER_VERIFY(userAddress, value, '', state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({
@@ -84,10 +79,10 @@ const ButtonPlayNow = () => {
     console.log('Get user status: Play Now');
 
     try {
-      const responseIP = await Fetch.IP_ADDRESS();
-      const jsonIP = await responseIP.json();
+      // const responseIP = await Fetch.IP_ADDRESS();
+      // const jsonIP = await responseIP.json();
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, jsonIP.ip);
+      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
       const jsonStatus = await responseStatus.json();
 
       if (!jsonStatus.status) return false;
