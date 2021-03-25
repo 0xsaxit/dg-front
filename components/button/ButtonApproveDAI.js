@@ -3,7 +3,6 @@ import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import Aux from '../_Aux';
 import ABI_CHILD_TOKEN_DAI from '../ABI/ABIChildTokenDAI';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
@@ -70,7 +69,7 @@ function ButtonApproveMANA() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function dispatchActiveStatus(txHash) {
+  async function dispatchActiveStatus(txHash) {
     console.log('Updating user status to: ' + value);
 
     // update global state active status
@@ -87,7 +86,16 @@ function ButtonApproveMANA() {
 
     // update user status in database
     console.log('Posting user status to db: ' + value);
-    Fetch.USER_VERIFY(state.userAddress, value, state.affiliateAddress);
+
+    const responseIP = await Fetch.IP_ADDRESS();
+    const jsonIP = await responseIP.json();
+
+    Fetch.USER_VERIFY(
+      state.userAddress,
+      value,
+      jsonIP.ip,
+      state.affiliateAddress
+    );
 
     // post authorization to database
     console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');
@@ -133,17 +141,13 @@ function ButtonApproveMANA() {
   }
 
   return (
-    <Aux>
-      <span>
-        <Button
-          className="balances-authorize-button"
-          id="balances-padding-correct"
-          onClick={() => metaTransaction()}
-        >
-          ENABLE DAI GAMEPLAY
-        </Button>
-      </span>
-    </Aux>
+    <Button
+      className="balances-authorize-button"
+      id="balances-padding-correct"
+      onClick={() => metaTransaction()}
+    >
+      ENABLE DAI GAMEPLAY
+    </Button>
   );
 }
 

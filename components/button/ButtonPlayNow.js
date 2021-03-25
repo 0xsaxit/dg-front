@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
+import Aux from '../_Aux';
 
 const ButtonPlayNow = () => {
   // dispatch new user status to Context API store
@@ -39,7 +40,7 @@ const ButtonPlayNow = () => {
 
       // set global user status based on value stored in database
       // if new wallet update user status to 4 both locally and in the database
-      // (/verifyAddress API call will return error with new wallet address)
+      // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
 
       if (response) {
@@ -54,8 +55,16 @@ const ButtonPlayNow = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
+      const responseIP = await Fetch.IP_ADDRESS();
+      const jsonIP = await responseIP.json();
+
       // update user status in database
-      await Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+      await Fetch.USER_VERIFY(
+        userAddress,
+        value,
+        jsonIP.ip,
+        state.affiliateAddress
+      );
 
       // update global state user status after fetch is complete
       dispatch({
@@ -92,7 +101,7 @@ const ButtonPlayNow = () => {
   }
 
   return (
-    <span>
+    <Aux>
       {metamaskEnabled ? (
         <Button
           content="PLAY NOW"
@@ -102,7 +111,7 @@ const ButtonPlayNow = () => {
           onClick={() => openMetaMask()}
         />
       ) : null}
-    </span>
+    </Aux>
   );
 };
 

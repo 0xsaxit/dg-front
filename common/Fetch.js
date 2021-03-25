@@ -108,7 +108,7 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls
   USER_STATUS: (address, ipAddress) => {
-    return fetch(`${API_BASE_URL}/order/getStatus`, {
+    return fetch(`${API_BASE_URL}/order/websiteLogin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -121,8 +121,8 @@ const Fetch = {
     });
   },
 
-  USER_VERIFY: (address, step, affiliate) => {
-    return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
+  USER_VERIFY: (address, step, ipAddress, affiliate) => {
+    return fetch(`${API_BASE_URL}/order/updateStatus`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -131,6 +131,7 @@ const Fetch = {
       body: JSON.stringify({
         address: address,
         verifyStep: step,
+        ipAddress: ipAddress,
         affiliate: affiliate,
       }),
     });
