@@ -9,6 +9,7 @@ import ContentBalancer from '../content/ContentBalancer';
 import ContentUniswap from '../content/ContentUniswap';
 import ContentAirdrop from '../content/ContentAirdrop';
 import ContentTreasury from '../content/ContentTreasury';
+import ContentReferrals from '../content/ContentReferrals';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
 import ModalAffiliates from '../modal/ModalAffiliates';
@@ -239,8 +240,13 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-
-              <ModalAffiliates />
+              <Link href="/dg/referrals">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    REFERRALS
+                  </b>
+                </span>
+              </Link>
             </p>
           ) : DGState === 'mining' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -263,8 +269,13 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-
-              <ModalAffiliates />
+              <Link href="/dg/referrals">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    REFERRALS
+                  </b>
+                </span>
+              </Link>
             </p>
           ) : DGState === 'uniswap' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -287,8 +298,13 @@ const Farming = (props) => {
                 </b>
                 <b>PROVISION</b>
               </span>
-
-              <ModalAffiliates />
+              <Link href="/dg/referrals">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    REFERRALS
+                  </b>
+                </span>
+              </Link>
             </p>
           ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -313,8 +329,9 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-
-              <ModalAffiliates />
+              <span className="account-hover active">
+                <b>REFERRALS</b>
+              </span>
             </p>
           )}
         </div>
@@ -441,6 +458,8 @@ const Farming = (props) => {
               withdrawal={withdrawal}
               reward={reward}
             />
+          ) : DGState === 'referrals' ? (
+            <ContentReferrals />
           ) : DGState === 'treasury' ? (
             <ContentTreasury />
           ) : DGState === 'airdrop' ? (

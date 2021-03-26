@@ -11,6 +11,7 @@ const MessageBar = () => {
   // define local variables
   const [message, setMessage] = useState('');
   const [adminError, setAdminError] = useState(false);
+  const [isMobile, setMobile] = useState(false);
 
   let isSafari = false;
   let web3 = {};
@@ -22,6 +23,15 @@ const MessageBar = () => {
       isSafari = true;
     }
   }, []);
+
+  // on mobile
+  useEffect(() => {
+    if (window.innerWidth < 500) {
+      setMobile(true);
+      console.log(isMobile);
+    }
+    console.log(isMobile);
+  }, [isMobile]);
 
   // get network ID
   useEffect(() => {
@@ -53,10 +63,14 @@ const MessageBar = () => {
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
-    } else if (!state.networkID) {
+    } else if (!state.networkID && isMobile == false) {
       setMessage('Please connect your wallet to play, for help, click "Get Started"');
-    } else if (!state.userStatus) {
+    } else if (!state.networkID && isMobile == true) {
+      setMessage('Please connect your wallet on desktop to play');
+    } else if (!state.userStatus && isMobile == false) {
       setMessage('Please connect your wallet to play, for help, click "Get Started"');
+    } else if (!state.userStatus && isMobile == true) {
+      setMessage('Please connect your wallet on desktop to play');
     } else if (adminError) {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
@@ -70,7 +84,7 @@ const MessageBar = () => {
       //   );
     } else if (state.userStatus === 4) {
       setMessage(
-        `Need help? Click "Get Started". Make sure you've enabled MANA and DAI gameplay in your account`
+        `Make sure you've enabled MANA and DAI gameplay in your account`
       );
     } else if (!state.activeStatus) {
       setMessage(
