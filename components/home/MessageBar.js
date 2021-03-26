@@ -11,6 +11,7 @@ const MessageBar = () => {
   // define local variables
   const [message, setMessage] = useState('');
   const [adminError, setAdminError] = useState(false);
+  const [isMobile, setMobile] = useState(false);
 
   let isSafari = false;
   let web3 = {};
@@ -22,6 +23,13 @@ const MessageBar = () => {
       isSafari = true;
     }
   }, []);
+
+  // on mobile
+  useEffect(() => {
+    if (window.innerWidth < 500) {
+      setMobile(true);
+    }
+  }, [isMobile]);
 
   // get network ID
   useEffect(() => {
@@ -50,21 +58,23 @@ const MessageBar = () => {
     }
   }, [state.networkID]);
 
-  const account = <a href="/account"> here </a>;
-
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
-    } else if (!state.networkID) {
-      setMessage('Please enable MetaMask to play, for help, click "Get Started"');
-    } else if (!state.userStatus) {
-      setMessage('Please log in to MetaMask to play, for help, click "Get Started"');
+    } else if (!state.networkID && isMobile == false) {
+      setMessage('Please connect your wallet to play, for help, click "Get Started"');
+    } else if (!state.networkID && isMobile == true) {
+      setMessage('Please connect your wallet on desktop to play');
+    } else if (!state.userStatus && isMobile == false) {
+      setMessage('Please connect your wallet to play, for help, click "Get Started"');
+    } else if (!state.userStatus && isMobile == true) {
+      setMessage('Please connect your wallet on desktop to play');
     } else if (adminError) {
       setMessage(
         'You must switch to Matic Network to deposit and withdraw funds'
       );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
-      setMessage('Please switch your MetaMask Network to Ethereum Mainnet');
+      setMessage('Please switch your Network to Ethereum Mainnet');
 
       // } else if (!state.userStatus === 4) {
       //   setMessage(
@@ -72,7 +82,7 @@ const MessageBar = () => {
       //   );
     } else if (state.userStatus === 4) {
       setMessage(
-        `Need help? Click "Get Started". Make sure you've enabled MANA and DAI gameplay in your account`
+        `Make sure you've enabled MANA and DAI gameplay in your account`
       );
     } else if (!state.activeStatus) {
       setMessage(
@@ -105,7 +115,7 @@ const MessageBar = () => {
         id="message-bar"
         className="mobile-message-bar"
         style={{
-          fontFamily: 'Montserrat, sans-serif',
+          fontFamily: 'Lato, sans-serif',
           color: 'white',
           textAlign: 'center',
           padding: '10px 30px 9px 30px',
