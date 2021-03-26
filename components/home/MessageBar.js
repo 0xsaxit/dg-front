@@ -24,10 +24,11 @@ const MessageBar = () => {
     }
   }, []);
 
-  // on mobile
   useEffect(() => {
-    if (window.innerWidth < 500) {
-      setMobile(true);
+    if (typeof window.orientation !== 'undefined') {
+      setMobile(true);  
+    } else {
+      setMobile(false);
     }
   }, [isMobile]);
 
