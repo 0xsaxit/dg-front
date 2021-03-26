@@ -90,7 +90,7 @@ const ButtonConnect = () => {
       // const jsonIP = await responseIP.json();
 
       // update user status in database
-      await Fetch.USER_VERIFY(userAddress, value, '', state.affiliateAddress);
+      await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({

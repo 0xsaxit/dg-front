@@ -108,7 +108,7 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls
   USER_STATUS: (address, ipAddress) => {
-    return fetch(`${API_BASE_URL}/order/websiteLogin`, {
+    return fetch(`${API_BASE_URL}/order/webLogin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -121,7 +121,22 @@ const Fetch = {
     });
   },
 
-  USER_VERIFY: (address, step, ipAddress, affiliate) => {
+  REGISTER: (address, ipAddress, affiliate) => {
+    return fetch(`${API_BASE_URL}/order/webRegister`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: address,
+        ipAddress: ipAddress,
+        affiliate: affiliate,
+      }),
+    });
+  },
+
+  UPDATE_STATUS: (address, step) => {
     return fetch(`${API_BASE_URL}/order/updateStatus`, {
       method: 'POST',
       headers: {
@@ -131,8 +146,6 @@ const Fetch = {
       body: JSON.stringify({
         address: address,
         verifyStep: step,
-        ipAddress: ipAddress,
-        affiliate: affiliate,
       }),
     });
   },

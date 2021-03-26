@@ -87,10 +87,7 @@ function ButtonApproveMANA() {
     // update user status in database
     console.log('Posting user status to db: ' + value);
 
-    // const responseIP = await Fetch.IP_ADDRESS();
-    // const jsonIP = await responseIP.json();
-
-    Fetch.USER_VERIFY(state.userAddress, value, '', state.affiliateAddress);
+    Fetch.UPDATE_STATUS(state.userAddress, value);
 
     // post authorization to database
     console.log('Posting MANA authorization transaction to db: MAX_AMOUNT');
