@@ -1974,10 +1974,14 @@ i.copy.icon.affiliate-icon:hover {
 .DG-column.treasury-graph {
   width: 32%;
   height: 100%;
+  position: relative; 
+  z-index: 3;
 }
 
 .DG-column.treasury-stats {
   width: 66%;
+  position: relative;
+  z-index: 2;
 }
 
 .DG-column.one-uniswap {

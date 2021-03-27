@@ -359,6 +359,7 @@ const ContentTreasury = (props) => {
                 data={data}
                 series={series}
                 axes={axes}
+                tooltip
               />
             </div>
           </div>
