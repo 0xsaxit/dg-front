@@ -1560,6 +1560,21 @@ deposit-notification-box-hidden {
   margin-bottom: -3px;
 }
 
+.welcome-text-top {
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: rgb(92, 95, 97) !important;
+  text-transform: uppercase;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
+}
+
+.ui.divider.divider-dg-top {
+  margin-left: -18px;
+  width: calc(100% + 36px);
+}
+
 .welcome-text-2 {
   font-size: 14px;
   font-weight: bold !important;
@@ -1894,6 +1909,17 @@ i.copy.icon.affiliate-icon:hover {
 
 .farming-logo.snapshot {
   border: 1px solid #edf2f9;
+}
+
+.farming-logo-small {
+  max-width: 42px;
+  max-height: 42px;
+  margin-top: 12px;
+  margin-bottom: 9px;
+  margin-right: 12px;
+  border-radius: 100%;
+  position: relative;
+  z-index: 3;
 }
 
 .outter-DG-container {

@@ -124,18 +124,25 @@ const ContentMining = (props) => {
       <Aux>
 
         <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed" style={{ maxHeight: '408px' }}>
+          <div className="DG-column unclaimed" style={{ maxHeight: '345px' }}>
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo"
+                className="farming-logo-small"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed $DG</p>
-                {state.DGBalances.BALANCE_MINING_DG ? (
-                  <p className="account-name">
-                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+                <p className="welcome-text-top">$DG Balance</p>
+                {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
+                  <p className="earned-amount">
+                    {props.formatPrice(
+                      state.DGBalances.BALANCE_STAKING_UNISWAP,
+                      3
+                    )}
                   </p>
                 ) : (
                   <Loader
@@ -152,35 +159,7 @@ const ContentMining = (props) => {
               </span>
             </span>
 
-            <Divider />
-
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">Value USD</p>
-              {gameplayUSD ? (
-                <p className="earned-amount">${gameplayUSD}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '1px',
-                    marginBottom: '2px',
-                  }}
-                />
-              )}
-            </span>
-
-            <Divider />
+            <Divider className="divider-dg-top"/>
 
             <p>
               Mine $DG by playing games with MANA or DAI. Earn bonuses by
@@ -195,8 +174,6 @@ const ContentMining = (props) => {
               </a>
               .
             </p>
-
-            <Divider />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_MINING_DG) ? (
@@ -223,28 +200,13 @@ const ContentMining = (props) => {
                 height: '100%',
               }}
             >
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.DAI_CIRCLE}
-                  className="farming-logo"
-                  alt="Decentraland Logo"
-                />
-                <img
-                  src={Images.MANA_CIRCLE}
-                  className="farming-logo two"
-                  alt="Decentraland Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Gameplay</p>
-                  <p className="account-name">REWARDS</p>
-                </span>
-              </span>
+              <p className="earned-amount">Gameplay Rewards</p>
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <a
                   href="https://docs.decentral.games/allocation"
                   target="_blank"
-                  style={{ marginTop: '-73px', marginRight: '-4px' }}
+                  style={{ marginTop: '-22px', marginRight: '-4px' }}
                 >
                   <Icon
                     className="more-text"
@@ -253,7 +215,7 @@ const ContentMining = (props) => {
                 </a>
               </span>
 
-              <Divider />
+              <Divider className="divider-dg-top" />
 
               <Table unstackable>
                 <Table.Body>
@@ -262,20 +224,20 @@ const ContentMining = (props) => {
                       <span style={{ display: 'flex' }}>
                         <img
                           src={Images.ICON_MANA}
-                          style={{
-                            width: '21px',
-                            height: '21px',
-                            marginRight: '6px',
-                            marginTop: '3px',
-                            borderRadius: '100%',
-                          }}
+                          className="farming-logo-small"
+                          alt="Decentral Games Coin Logo"
                         />
-                        <p className="earned-text">Roullete Rate / 1 DG</p>
+                        <span className="farming-pool-span">
+                          <p className="welcome-text-top">Roulette</p>
+                          <p className="earned-amount">
+                            RATE / 1 DG
+                          </p>
+                        </span>
                       </span>
                     </Table.Cell>
 
                     <Table.Cell className="treasury-cell" textAlign="right">
-                      <p className="earned-amount">47.7K MANA</p>
+                      <p className="earned-amount">43K MANA</p>
                     </Table.Cell>
                   </Table.Row>
                 </Table.Body>
@@ -365,18 +327,6 @@ const ContentMining = (props) => {
                 </Table.Body>
               </Table>
 
-              <Divider />
-
-              <span className="DG-button-span">
-                <Button
-                  id="play-now-button-MANA"
-                  href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
-                  className="DG-play-now-button"
-                  target="_blank"
-                >
-                  PLAY NOW
-                </Button>
-              </span>
             </div>
           </span>
         </div>

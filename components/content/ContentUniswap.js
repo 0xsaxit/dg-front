@@ -155,7 +155,7 @@ const ContentUniswap = (props) => {
               />
               <span className="farming-pool-span">
                 <span>
-                  <p className="welcome-text">Unclaimed $DG</p>
+                  <p className="welcome-text-top">Unclaimed $DG</p>
                   {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
                     <p className="account-name">
                       {props.formatPrice(
