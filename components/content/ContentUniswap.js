@@ -144,41 +144,6 @@ const ContentUniswap = (props) => {
   function contentUniswap() {
     return (
       <Aux>
-        <div className="DG-liquidity-container top">
-          <div className="DG-column top" style={{ minWidth: '100%' }}>
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Liquidity Provision</h3>
-              <p>
-                Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
-                pool and staking the LP tokens on this dashboard.
-                <a
-                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
-                  style={{ color: '#2085f4' }}
-                  target="_blank"
-                >
-                  {' '}
-                  Read more
-                </a>
-                . Balancer LP rewards have now ended following this{' '}
-                <a
-                  href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
-                  style={{ color: '#2085f4' }}
-                  target="_blank"
-                >
-                  gov proposal
-                </a>
-                  . Unclaimed $DG and links to the pools can be found{' '}
-                <a 
-                  href="/dg/balancer"
-                  style={{ color: '#2085f4' }}
-                >
-                  here
-                </a>
-                .
-              </p>
-            </span>
-          </div>
-        </div>
 
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
@@ -244,6 +209,37 @@ const ContentUniswap = (props) => {
 
             <Divider />
 
+            <p>
+              Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
+              pool by staking the LP tokens on this dashboard.
+              <a
+                href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                {' '}
+                Read more
+              </a>
+              . Balancer LP rewards have now ended following this{' '}
+              <a
+                href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                gov proposal
+              </a>
+                . Unclaimed $DG and links to the pools can be found{' '}
+              <a 
+                href="/dg/balancer"
+                style={{ color: '#2085f4' }}
+              >
+                here
+              </a>
+              .
+            </p>
+
+            <Divider />
+
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
                 <Button
@@ -261,17 +257,20 @@ const ContentUniswap = (props) => {
             </span>
           </div>
 
-          <span className="DG-tablet-container">
+          <span className="DG-tablet-container-gov">
             <div
-              className="DG-column one-uniswap"
-              id="DG-column-hover"
-              style={{ position: 'relative', height: '100%' }}
+              className="DG-column-treasury two"
+              style={{
+                position: 'relative',
+                height: '100%',
+                maxHeight: '333px',
+              }}
             >
               <span style={{ display: 'flex' }}>
                 <img src={Images.ETH_CIRCLE} className="farming-logo" />
                 <img
                   src={Images.DG_COIN_LOGO}
-                  className="farming-logo"
+                  className="farming-logo two"
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">

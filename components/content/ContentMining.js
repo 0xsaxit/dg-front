@@ -122,26 +122,6 @@ const ContentMining = (props) => {
   function contentMining() {
     return (
       <Aux>
-        <div className="DG-liquidity-container top">
-          <div className="DG-column top">
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Gameplay Rewards</h3>
-              <p>
-                Mine $DG by playing games with MANA or DAI. Earn bonuses by
-                playing with friends, wearing $DG NFTs, and referring
-                friends. {' '}
-                <a
-                  href="https://decentral-games-1.gitbook.io/dg/allocation"
-                  target="_blank"
-                  style={{ color: '#2085f4' }}
-                >
-                  Read More
-                </a>
-                .
-              </p>
-            </span>
-          </div>
-        </div>
 
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
@@ -202,6 +182,22 @@ const ContentMining = (props) => {
 
             <Divider />
 
+            <p>
+              Mine $DG by playing games with MANA or DAI. Earn bonuses by
+              playing with friends, wearing $DG NFTs, and referring
+              friends. {' '}
+              <a
+                href="https://decentral-games-1.gitbook.io/dg/allocation"
+                target="_blank"
+                style={{ color: '#2085f4' }}
+              >
+                Read more
+              </a>
+              .
+            </p>
+
+            <Divider />
+
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_MINING_DG) ? (
                 <Button
@@ -219,17 +215,29 @@ const ContentMining = (props) => {
             </span>
           </div>
 
-          <span className="DG-tablet-container">
-            <div className="DG-column one">
+          <span className="DG-tablet-container-gov">
+            <div
+              className="DG-column-treasury two"
+              style={{
+                position: 'relative',
+                height: '100%',
+                maxHeight: '342px',
+              }}
+            >
               <span style={{ display: 'flex' }}>
                 <img
-                  src={Images.MANA_CIRCLE}
+                  src={Images.DAI_CIRCLE}
                   className="farming-logo"
                   alt="Decentraland Logo"
                 />
+                <img
+                  src={Images.MANA_CIRCLE}
+                  className="farming-logo two"
+                  alt="Decentraland Logo"
+                />
                 <span className="farming-pool-span">
-                  <p className="welcome-text">Coin</p>
-                  <p className="account-name">MANA</p>
+                  <p className="welcome-text">Gameplay</p>
+                  <p className="account-name">REWARDS</p>
                 </span>
               </span>
 
@@ -273,33 +281,6 @@ const ContentMining = (props) => {
 
               <Divider />
 
-              <span className="DG-button-span">
-                <Button
-                  id="play-now-button-MANA"
-                  href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
-                  className="DG-play-now-button"
-                  target="_blank"
-                >
-                  PLAY NOW
-                </Button>
-              </span>
-            </div>
-
-            <div className="DG-column two">
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.DAI_CIRCLE}
-                  className="farming-logo"
-                  alt="Dai Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Coin</p>
-                  <p className="account-name">DAI</p>
-                </span>
-              </span>
-
-              <Divider />
-
               <div style={{ display: 'flex' }}>
                 <span className="gameplay-left-column">
                   <span
@@ -307,6 +288,7 @@ const ContentMining = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      paddingBottom: '17px',
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
@@ -326,6 +308,7 @@ const ContentMining = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      paddingBottom: '2px',
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
@@ -338,7 +321,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  id="play-now-button-DAI"
+                  id="play-now-button-MANA"
                   href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"

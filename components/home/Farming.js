@@ -224,6 +224,11 @@ const Farming = (props) => {
               <span className="account-hover active">
                 <b>GOVERNANCE</b>
               </span>
+              <Link href="/dg/treasury">
+                <span className="account-hover">
+                  <b>TREASURY</b>
+                </span>
+              </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
@@ -240,11 +245,31 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-              <Link href="/dg/referrals">
+            </p>
+          ) : DGState === 'treasury' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
+                <b>TREASURY</b>
+              </span>
+              <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    REFERRALS
+                    GAMEPLAY
                   </b>
+                  <b>REWARDS</b>
+                </span>
+              </Link>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
+                  <b>PROVISION</b>
                 </span>
               </Link>
             </p>
@@ -253,6 +278,11 @@ const Farming = (props) => {
               <Link href="/dg">
                 <span className="account-hover">
                   <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <Link href="/dg/treasury">
+                <span className="account-hover">
+                  <b>TREASURY</b>
                 </span>
               </Link>
               <span className="account-hover active">
@@ -269,19 +299,17 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-              <Link href="/dg/referrals">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    REFERRALS
-                  </b>
-                </span>
-              </Link>
             </p>
-          ) : DGState === 'uniswap' ? (
+          ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
                   <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <Link href="/dg/treasury">
+                <span className="account-hover">
+                  <b>TREASURY</b>
                 </span>
               </Link>
               <Link href="/dg/mining">
@@ -297,40 +325,6 @@ const Farming = (props) => {
                   LIQUIDITY
                 </b>
                 <b>PROVISION</b>
-              </span>
-              <Link href="/dg/referrals">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    REFERRALS
-                  </b>
-                </span>
-              </Link>
-            </p>
-          ) : (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">
-                  <b>GOVERNANCE</b>
-                </span>
-              </Link>
-              <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    GAMEPLAY
-                  </b>
-                  <b>REWARDS</b>
-                </span>
-              </Link>
-              <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
-                  </b>
-                  <b>PROVISION</b>
-                </span>
-              </Link>
-              <span className="account-hover active">
-                <b>REFERRALS</b>
               </span>
             </p>
           )}
