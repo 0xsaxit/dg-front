@@ -1872,6 +1872,10 @@ i.copy.icon.affiliate-icon:hover {
   border-right: 0px solid transparent !important;
 }
 
+.farming-pool-span {
+  margin-top: 6px;
+}
+
 .farming-logo {
   max-width: 60px;
   max-height: 60px;

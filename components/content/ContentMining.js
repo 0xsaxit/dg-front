@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Button, Divider, Loader } from 'semantic-ui-react';
+import { Button, Divider, Loader, Table, Icon } from 'semantic-ui-react';
 import MetaTx from '../../common/MetaTx';
 import Transactions from '../../common/Transactions';
 import Aux from '../_Aux';
@@ -124,7 +124,7 @@ const ContentMining = (props) => {
       <Aux>
 
         <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed">
+          <div className="DG-column unclaimed" style={{ maxHeight: '408px' }}>
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
@@ -221,7 +221,6 @@ const ContentMining = (props) => {
               style={{
                 position: 'relative',
                 height: '100%',
-                maxHeight: '342px',
               }}
             >
               <span style={{ display: 'flex' }}>
@@ -241,81 +240,130 @@ const ContentMining = (props) => {
                 </span>
               </span>
 
-              <Divider />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      paddingBottom: '17px',
-                    }}
-                  >
-                    <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">47.7K MANA</p>
-                  </span>
-                </span>
-
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a
+                  href="https://docs.decentral.games/allocation"
+                  target="_blank"
+                  style={{ marginTop: '-73px', marginRight: '-4px' }}
                 >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      paddingBottom: '2px',
-                    }}
-                  >
-                    <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">161K MANA</p>
-                  </span>
-                </span>
-              </div>
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
+                </a>
+              </span>
 
               <Divider />
 
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      paddingBottom: '17px',
-                    }}
-                  >
-                    <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">24.4K DAI</p>
-                  </span>
-                </span>
+              <Table unstackable>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell className="treasury-cell">
+                      <span style={{ display: 'flex' }}>
+                        <img
+                          src={Images.ICON_MANA}
+                          style={{
+                            width: '21px',
+                            height: '21px',
+                            marginRight: '6px',
+                            marginTop: '3px',
+                            borderRadius: '100%',
+                          }}
+                        />
+                        <p className="earned-text">Roullete Rate / 1 DG</p>
+                      </span>
+                    </Table.Cell>
 
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      paddingBottom: '2px',
-                    }}
-                  >
-                    <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">82.2K DAI</p>
-                  </span>
-                </span>
-              </div>
+                    <Table.Cell className="treasury-cell" textAlign="right">
+                      <p className="earned-amount">47.7K MANA</p>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+
+              <Divider />
+
+              <Table unstackable>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell className="treasury-cell">
+                      <span style={{ display: 'flex' }}>
+                        <img
+                          src={Images.ICON_DAI}
+                          style={{
+                            width: '21px',
+                            height: '21px',
+                            marginRight: '6px',
+                            marginTop: '3px',
+                            borderRadius: '100%',
+                          }}
+                        />
+                        <p className="earned-text">Roullete Rate / 1 DG</p>
+                      </span>
+                    </Table.Cell>
+
+                    <Table.Cell className="treasury-cell" textAlign="right">
+                      <p className="earned-amount">24.4K DAI</p>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+
+              <Divider />
+
+              <Table unstackable>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell className="treasury-cell">
+                      <span style={{ display: 'flex' }}>
+                        <img
+                          src={Images.ICON_MANA}
+                          style={{
+                            width: '21px',
+                            height: '21px',
+                            marginRight: '6px',
+                            marginTop: '3px',
+                            borderRadius: '100%',
+                          }}
+                        />
+                        <p className="earned-text">Blackjack Rate / 1 DG</p>
+                      </span>
+                    </Table.Cell>
+
+                    <Table.Cell className="treasury-cell" textAlign="right">
+                      <p className="earned-amount">161K MANA</p>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+
+              <Divider />
+
+              <Table unstackable>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell className="treasury-cell">
+                      <span style={{ display: 'flex' }}>
+                        <img
+                          src={Images.ICON_DAI}
+                          style={{
+                            width: '21px',
+                            height: '21px',
+                            marginRight: '6px',
+                            marginTop: '3px',
+                            borderRadius: '100%',
+                          }}
+                        />
+                        <p className="earned-text">Roullete Rate / 1 DG</p>
+                      </span>
+                    </Table.Cell>
+
+                    <Table.Cell className="treasury-cell" textAlign="right">
+                      <p className="earned-amount">82.2K MANA</p>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
 
               <Divider />
 

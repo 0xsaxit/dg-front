@@ -220,15 +220,7 @@ const ContentUniswap = (props) => {
                 {' '}
                 Read more
               </a>
-              . Balancer LP rewards have now ended following this{' '}
-              <a
-                href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
-                style={{ color: '#2085f4' }}
-                target="_blank"
-              >
-                gov proposal
-              </a>
-                . Unclaimed $DG and links to the pools can be found{' '}
+                . Unclaimed $DG and links to the Balancer pools can be found{' '}
               <a 
                 href="/dg/balancer"
                 style={{ color: '#2085f4' }}
@@ -283,7 +275,7 @@ const ContentUniswap = (props) => {
                 <a
                   href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                   target="_blank"
-                  style={{ marginTop: '-75px', marginRight: '0px' }}
+                  style={{ marginTop: '-73px', marginRight: '-4px' }}
                 >
                   <Icon
                     className="more-text"

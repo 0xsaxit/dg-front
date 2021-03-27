@@ -321,23 +321,33 @@ const ContentTreasury = (props) => {
 
         <div className="DG-liquidity-container gov" style={{ marginBottom: '30px' }}>
           <div className="DG-column treasury-graph">
-            <div style={{ marginTop: '3px', marginLeft: '-12px', marginBottom: '12px' }}>
-              <p className="welcome-text">treasury</p>
-              {treasuryTotal ? (
-                <p className="account-name">${treasuryTotal}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="medium"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '12px',
-                    marginLeft: '15px',
-                  }}
-                />
-              )}
-            </div>
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text">treasury</p>
+                {treasuryTotal ? (
+                  <p className="account-name">${treasuryTotal}</p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="medium"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '12px',
+                      marginLeft: '15px',
+                    }}
+                  />
+                )}
+              </span>
+            </span>
+
+            <Divider />
+
             <div
               style={{
                 width: '100%',
@@ -364,7 +374,7 @@ const ContentTreasury = (props) => {
               <Table unstackable>
                 <Table.Body>
                   <Table.Row>
-                    <Table.Cell className="treasury-cell">
+                    <Table.Cell className="treasury-cell-lower">
                       <span style={{ display: 'flex' }}>
                         <p className="earned-text">Gameplay total</p>
                         <Popup
@@ -393,11 +403,11 @@ const ContentTreasury = (props) => {
                       <span
                         style={{ display: 'flex', justifyContent: 'flex-end' }}
                       >
-                        <Table.Cell className="treasury-cell" textAlign="right">
+                        <Table.Cell className="treasury-cell-lower" textAlign="right">
                           <p className="earned-amount">${gameplayAll}</p>
                         </Table.Cell>
                         <Table.Cell
-                          className="treasury-cell two"
+                          className="treasury-cell-lower two"
                           textAlign="right"
                         >
                           {gameplayAllPercent > 0 ? (
@@ -426,7 +436,7 @@ const ContentTreasury = (props) => {
                     ) : (
                       <span>
                         <Table.Cell
-                          className="treasury-cell two"
+                          className="treasury-cell-lower two"
                           textAlign="right"
                         >
                           <Loader
@@ -441,8 +451,6 @@ const ContentTreasury = (props) => {
                   </Table.Row>
                 </Table.Body>
               </Table>
-
-              <Divider />
 
               <Table unstackable>
                 <Table.Body>
