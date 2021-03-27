@@ -65,6 +65,10 @@ const ContentGovernance = (props) => {
   const [daiTreasury, setDaiTreasury] = useState(0);
   const [daiTreasuryPercent, setDaiTreasuryPercent] = useState(0);
 
+  const [maticTreasury, setMaticTreasury] = useState(0);
+  const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
+  const [maticTokens, setMaticTokens] = useState(0);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -169,6 +173,13 @@ const ContentGovernance = (props) => {
 
         let dgbal = json_4.dgBalance.graph;
         setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
+
+        let maticBal = json_4.totalMaticUSD;
+        setMaticTreasury(props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0));
+        let maticTemp = (json_4.maticBalance.graph.slice(-1)[0].secondary.toFixed(0));
+        setMaticTokens(maticTemp);
+        // let maticPercent = maticBal.changes.weekly.percent.toFixed(2);
+        // setMaticTreasuryPercent(Number(maticPercent));
 
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
@@ -1018,6 +1029,87 @@ const ContentGovernance = (props) => {
                             <span style={{ display: 'flex' }}>
                               <p className="earned-percent neg">
                                 {daiTreasuryPercent}%
+                              </p>
+                              <Icon
+                                name="caret down"
+                                className="percent-icon neg"
+                              />
+                            </span>
+                          )}
+                        </Table.Cell>
+                      </span>
+                    ) : (
+                      <span>
+                        <Table.Cell
+                          className="treasury-cell two"
+                          textAlign="right"
+                        >
+                          <Loader
+                            active
+                            inline
+                            size="small"
+                            className="treasury-loader"
+                          />
+                        </Table.Cell>
+                      </span>
+                    )}
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+
+              <Table unstackable>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell className="treasury-cell-lower">
+                      <span style={{ display: 'flex' }}>
+                        <p className="earned-text">Matic Node</p>
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              Calculated as {Number(maticTokens).toLocaleString()} delegated tokens times current Matic token price{' '}
+                            </p>
+                          </div>
+                        </Popup>
+                      </span>
+                    </Table.Cell>
+
+                    {maticTreasury ? (
+                      <span
+                        style={{ display: 'flex', justifyContent: 'flex-end' }}
+                      >
+                        <Table.Cell
+                          className="treasury-cell-lower"
+                          textAlign="right"
+                        >
+                          <p className="earned-amount">${maticTreasury}</p>
+                        </Table.Cell>
+                        <Table.Cell
+                          className="treasury-cell-lower two"
+                          textAlign="right"
+                        >
+                          {maticTreasuryPercent > 0 ? (
+                            <span style={{ display: 'flex' }}>
+                              <p className="earned-percent pos">
+                                {maticTreasuryPercent}%
+                              </p>
+                              <Icon
+                                name="caret up"
+                                className="percent-icon pos"
+                              />
+                            </span>
+                          ) : (
+                            <span style={{ display: 'flex' }}>
+                              <p className="earned-percent neg">
+                                {maticTreasuryPercent}%
                               </p>
                               <Icon
                                 name="caret down"
