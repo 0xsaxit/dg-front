@@ -1609,6 +1609,16 @@ deposit-notification-box-hidden {
   margin-bottom: 0px;
 }
 
+.governance-block:hover {
+  margin-left: -18px;
+  padding-left: 15px;
+  margin-top: -14px;
+  padding-top: 14px;
+  margin-bottom: -14px;
+  padding-bottom: 14px;
+  border-left: 3px solid #16c784 !important;
+}
+
 .ui.top.left.popup:before,
 .ui.top.center.popup:before {
   display: none;
@@ -1656,6 +1666,19 @@ td.treasury-cell-lower.two {
   color: black;
   padding-top: 2px !important;
   margin: 0 0 0px 0 !important;
+}
+
+.earned-amount-executed {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: black;
+  padding-top: 0px !important;
+  margin: -6px 0 0px 0 !important;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .earned-percent {

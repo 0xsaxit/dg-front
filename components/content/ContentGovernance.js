@@ -26,10 +26,20 @@ const ContentGovernance = (props) => {
   const [instances, setInstances] = useState(false);
 
   // governance variables
-  const [govOneName, setGovOneName] = useState('');
+  const [govOne, setGovOne] = useState('');
   const [passedOne, setPassedOne] = useState(false);
-  const [govTwoName, setGovTwoName] = useState('');
-  const [govThreeName, setGovThreeName] = useState('');
+  const [endOne, setEndOne] = useState('');
+  const [linkOne, setLinkOne] = useState('');
+
+  const [govTwo, setGovTwo] = useState('');
+  const [passedTwo, setPassedTwo] = useState(false);
+  const [endTwo, setEndTwo] = useState('');
+  const [linkTwo, setLinkTwo] = useState('');
+
+  const [govThree, setGovThree] = useState('');
+  const [passedThree, setPassedThree] = useState(false);
+  const [endThree, setEndThree] = useState('');
+  const [linkThree, setLinkThree] = useState('');
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +128,8 @@ const ContentGovernance = (props) => {
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      setGovOneName(json[(Object.keys(json)[0])].msg.payload.name);
+      setGovOne(json[(Object.keys(json)[0])].msg.payload);
+      setLinkOne(json[(Object.keys(json)[0])].authorIpfsHash);
       let temp_one = json[(Object.keys(json)[0])].msg.payload.end;
       if (temp_one < Date.now()) {
         setPassedOne(true)
@@ -126,8 +137,32 @@ const ContentGovernance = (props) => {
         setPassedOne(false);
       }
 
-      setGovTwoName(json[(Object.keys(json)[1])].msg.payload.name);
-      setGovThreeName(json[(Object.keys(json)[2])].msg.payload.name);
+      var date = new Date(govOne.end * 1000);
+      setEndOne(date.toDateString());
+
+      setGovTwo(json[(Object.keys(json)[2])].msg.payload);
+      setLinkTwo(json[(Object.keys(json)[2])].authorIpfsHash);
+      let temp_two = json[(Object.keys(json)[2])].msg.payload.end;
+      if (temp_two < Date.now()) {
+        setPassedTwo(true)
+      } else {
+        setPassedTwo(false);
+      }
+
+      var date = new Date(govTwo.end * 1000);
+      setEndTwo(date.toDateString());
+
+      setGovThree(json[(Object.keys(json)[4])].msg.payload);
+      setLinkThree(json[(Object.keys(json)[4])].authorIpfsHash);
+      let temp_three = json[(Object.keys(json)[4])].msg.payload.end;
+      if (temp_three < Date.now()) {
+        setPassedThree(true)
+      } else {
+        setPassedThree(false);
+      }
+
+      var date = new Date(govThree.end * 1000);
+      setEndThree(date.toDateString());
 
     })()
   }, []);
@@ -229,27 +264,69 @@ const ContentGovernance = (props) => {
               style={{
                 position: 'relative',
                 height: '100%',
-                maxHeight: '330px',
               }}
             >
             <p className="earned-amount">Governance Proposals</p>
 
             <Divider className="divider-dg-top" />
 
-              <span style={{ display: 'flex' }}>
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className="earned-amount">{govOneName}</p>
-                  {passedOne == true ? (
-                    <Button className="etherscan-button-green">
-                      PASSED
-                    </Button>
-                  ) : (
-                    <Button className="etherscan-button-blue">
-                      ACTIVE
-                    </Button>   
-                  )}
-                </span>
-              </span>
+              <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkOne}`}>
+                <div className="governance-block">
+                  <p className="earned-amount">{govOne.name}</p>
+                  <span style={{ display: 'flex'  }}>
+                    {passedOne == true ? (
+                      <Button className="etherscan-button-green" disabled>
+                        PASSED
+                      </Button>
+                    ) : (
+                      <Button className="etherscan-button-blue" disabled>
+                        ACTIVE
+                      </Button>   
+                    )}
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>{endOne}</p>
+                  </span>
+                </div>
+              </a>
+
+              <Divider className="divider-dg-top"/>
+
+              <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkTwo}`}>
+                <div className="governance-block">
+                  <p className="earned-amount">{govTwo.name}</p>
+                  <span style={{ display: 'flex'  }}>
+                    {passedTwo == true ? (
+                      <Button className="etherscan-button-green" disabled>
+                        PASSED
+                      </Button>
+                    ) : (
+                      <Button className="etherscan-button-blue" disabled>
+                        ACTIVE
+                      </Button>   
+                    )}
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>{endTwo}</p>
+                  </span>
+                </div>
+              </a>
+
+              <Divider className="divider-dg-top"/>
+
+              <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkThree}`}>
+                <div className="governance-block">
+                  <p className="earned-amount">{govThree.name}</p>
+                  <span style={{ display: 'flex'  }}>
+                    {passedThree == true ? (
+                      <Button className="etherscan-button-green" disabled>
+                        PASSED
+                      </Button>
+                    ) : (
+                      <Button className="etherscan-button-blue" disabled>
+                        ACTIVE
+                      </Button>   
+                    )}
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>{endThree}</p>
+                  </span>
+                </div>
+              </a>
 
               <Divider className="divider-dg-top"/>
 
@@ -266,7 +343,7 @@ const ContentGovernance = (props) => {
                   target="_blank"
                   className="DG-stake-button"
                 >
-                  VOTING
+                  ALL PROPOSALS
                 </Button>
               </span>
             </div>
@@ -276,20 +353,23 @@ const ContentGovernance = (props) => {
               style={{
                 position: 'relative',
                 height: '100%',
-                maxHeight: '330px',
                 marginTop: '30px',
               }}
             >
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.DG_COIN_LOGO}
-                  className="farming-logo"
-                  alt="Decentral Games Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Total $DG Staked</p>
+            <p className="earned-amount">Governance Staking</p>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo-small"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text-top">Total $DG Staked</p>
                   {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
-                    <p className="account-name">
+                    <p className="earned-amount">
                       {props.formatPrice(
                         state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
                         0
