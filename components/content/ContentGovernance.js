@@ -586,6 +586,7 @@ const ContentGovernance = (props) => {
                           <div>
                             <p className="earned-text">DAI: {daiBalance}</p>
                             <p className="earned-text">MANA: {manaBalance}</p>
+                            <p className="earned-text">USDT: 149,768 </p>
                           </div>
                         </Popup>
                       </span>
