@@ -2614,6 +2614,30 @@ a.ui.blue.button.play-button,
   opacity: 100% !important;
 }
 
+.ui.button.etherscan-button-green {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #16c784;
+  color: #16c784;
+  height: 27px;
+  margin-top: 0.7rem;
+  max-width: 100px !important;
+  min-width: 100px;
+  padding: 0 0 0 0;
+  opacity: 100% !important;
+}
+
+.ui.button.etherscan-button-blue {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 27px;
+  margin-top: 0.7rem;
+  max-width: 100px !important;
+  min-width: 100px;
+  padding: 0 0 0 0;
+  opacity: 100% !important;
+}
+
 .ui.blue.button.our-blog-button {
   position: relative;
   background-color: #2085f4 !important;

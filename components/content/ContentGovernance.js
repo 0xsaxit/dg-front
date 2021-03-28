@@ -25,6 +25,12 @@ const ContentGovernance = (props) => {
   const [gameplayMana, setGameplayMana] = useState(0);
   const [instances, setInstances] = useState(false);
 
+  // governance variables
+  const [govOneName, setGovOneName] = useState('');
+  const [passedOne, setPassedOne] = useState(false);
+  const [govTwoName, setGovTwoName] = useState('');
+  const [govThreeName, setGovThreeName] = useState('');
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +117,18 @@ const ContentGovernance = (props) => {
       // get snapshot statistics
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
-      console.log(json);
+
+      setGovOneName(json[(Object.keys(json)[0])].msg.payload.name);
+      let temp_one = json[(Object.keys(json)[0])].msg.payload.end;
+      if (temp_one < Date.now()) {
+        setPassedOne(true)
+      } else {
+        setPassedOne(false);
+      }
+
+      setGovTwoName(json[(Object.keys(json)[1])].msg.payload.name);
+      setGovThreeName(json[(Object.keys(json)[2])].msg.payload.name);
+
     })()
   }, []);
 
@@ -127,22 +144,22 @@ const ContentGovernance = (props) => {
     return (
       <Aux>
 
-        <div className="DG-liquidity-container gov" style={{ marginBottom: '30px' }}>
-          <div
-            className="DG-column unclaimed"
-            style={{ position: 'relative', height: '100%' }}
-          >
+        <div className="DG-liquidity-container">
+          <div className="DG-column unclaimed" style={{ maxHeight: '351px' }}>
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo"
+                className="farming-logo-small"
                 alt="Decentral Games Coin Logo"
               />
-
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed $DG</p>
+                <p className="welcome-text-top">$DG Balance</p>
                 {state.DGBalances.BALANCE_STAKING_GOVERNANCE ? (
-                  <p className="account-name">
+                  <p className="earned-amount">
                     {props.formatPrice(
                       state.DGBalances.BALANCE_STAKING_GOVERNANCE,
                       3
@@ -163,37 +180,9 @@ const ContentGovernance = (props) => {
               </span>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top"/>
 
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">Value USD</p>
-              {state.DGBalances.BALANCE_STAKING_GOVERNANCE ? (
-                <p className="earned-amount">${priceUSD}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '1px',
-                    marginBottom: '2px',
-                  }}
-                />
-              )}
-            </span>
-
-            <Divider />
-
-            <p>
+            <p style={{ fontSize: '18px' }}>
               Stake $DG tokens, govern the treasury, and earn
               governance rewards. Read more about $DG governance in our{' '}
               <a
@@ -214,7 +203,7 @@ const ContentGovernance = (props) => {
               .
             </p>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
@@ -234,12 +223,61 @@ const ContentGovernance = (props) => {
           </div>
 
           <span className="DG-tablet-container-gov">
+
+            <div
+              className="DG-column-treasury three"
+              style={{
+                position: 'relative',
+                height: '100%',
+                maxHeight: '330px',
+              }}
+            >
+            <p className="earned-amount">Governance Proposals</p>
+
+            <Divider className="divider-dg-top" />
+
+              <span style={{ display: 'flex' }}>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className="earned-amount">{govOneName}</p>
+                  {passedOne == true ? (
+                    <Button className="etherscan-button-green">
+                      PASSED
+                    </Button>
+                  ) : (
+                    <Button className="etherscan-button-blue">
+                      ACTIVE
+                    </Button>   
+                  )}
+                </span>
+              </span>
+
+              <Divider className="divider-dg-top"/>
+
+              <span className="DG-button-span">
+                <Button
+                  href="https://gov.decentral.games"
+                  target="_blank"
+                  className="DG-stake-button"
+                >
+                  DISCUSSION
+                </Button>
+                <Button
+                  href="https://snapshot.page/#/decentralgames.eth"
+                  target="_blank"
+                  className="DG-stake-button"
+                >
+                  VOTING
+                </Button>
+              </span>
+            </div>
+
             <div
               className="DG-column-treasury two"
               style={{
                 position: 'relative',
                 height: '100%',
                 maxHeight: '330px',
+                marginTop: '30px',
               }}
             >
               <span style={{ display: 'flex' }}>
@@ -418,46 +456,6 @@ const ContentGovernance = (props) => {
               </span>
             </div>
 
-            <div
-              className="DG-column-treasury three"
-              style={{
-                position: 'relative',
-                height: '100%',
-                maxHeight: '330px',
-                marginTop: '30px',
-              }}
-            >
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.SNAPSHOT_ICON}
-                  className="farming-logo snapshot"
-                  alt="Decentral Games Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Proposals</p>
-                  <p className="account-name">28</p>
-                </span>
-              </span>
-
-              <Divider />
-
-              <span className="DG-button-span">
-                <Button
-                  href="https://gov.decentral.games"
-                  target="_blank"
-                  className="DG-stake-button"
-                >
-                  DISCUSSION
-                </Button>
-                <Button
-                  href="https://snapshot.page/#/decentralgames.eth"
-                  target="_blank"
-                  className="DG-stake-button"
-                >
-                  VOTING
-                </Button>
-              </span>
-            </div>
           </span>
         </div>
       </Aux>
