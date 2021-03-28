@@ -146,70 +146,44 @@ const ContentUniswap = (props) => {
       <Aux>
 
         <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed">
+          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo"
+                className="farming-logo-small"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <span>
-                  <p className="welcome-text-top">Unclaimed $DG</p>
-                  {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
-                    <p className="account-name">
-                      {props.formatPrice(
-                        state.DGBalances.BALANCE_STAKING_UNISWAP,
-                        3
-                      )}
-                    </p>
-                  ) : (
-                    <Loader
-                      active
-                      inline
-                      size="medium"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '12px',
-                        marginLeft: '15px',
-                      }}
-                    />
-                  )}
-                </span>
+                <p className="welcome-text-top">$DG Balance</p>
+                {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
+                  <p className="earned-amount">
+                    {props.formatPrice(
+                      state.DGBalances.BALANCE_STAKING_UNISWAP,
+                      3
+                    )}
+                  </p>
+                ) : (
+                  <Loader
+                    active
+                    inline
+                    size="medium"
+                    style={{
+                      fontSize: '12px',
+                      marginTop: '12px',
+                      marginLeft: '15px',
+                    }}
+                  />
+                )}
               </span>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top"/>
 
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">Value USD</p>
-              {priceUSD ? (
-                <p className="earned-amount">${priceUSD}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '1px',
-                    marginBottom: '2px',
-                  }}
-                />
-              )}
-            </span>
-
-            <Divider />
-
-            <p>
+            <p style={{ fontSize: '18px' }}>
               Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
               pool by staking the LP tokens on this dashboard.
               <a
@@ -220,17 +194,8 @@ const ContentUniswap = (props) => {
                 {' '}
                 Read more
               </a>
-                . Unclaimed $DG and links to the Balancer pools can be found{' '}
-              <a 
-                href="/dg/balancer"
-                style={{ color: '#2085f4' }}
-              >
-                here
-              </a>
-              .
+                .
             </p>
-
-            <Divider />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
@@ -249,55 +214,91 @@ const ContentUniswap = (props) => {
             </span>
           </div>
 
-          <span className="DG-tablet-container-gov">
-            <div
-              className="DG-column-treasury two"
-              style={{
-                position: 'relative',
-                height: '100%',
-                maxHeight: '333px',
-              }}
-            >
-              <span style={{ display: 'flex' }}>
-                <img src={Images.ETH_CIRCLE} className="farming-logo" />
-                <img
-                  src={Images.DG_COIN_LOGO}
-                  className="farming-logo two"
-                  alt="Decentral Games Coin Logo"
+          <div
+            className="DG-column-treasury two"
+            style={{
+              position: 'relative',
+              height: '100%',
+            }}
+          >
+            <p className="earned-amount">Liquidity Provision</p>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex' }}>
+              <img src={Images.ETH_CIRCLE} className="farming-logo-small" />
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo-small two"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="earned-text">Uniswap</p>
+                <p className="earned-amount">ETH-DG</p>
+              </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <a
+                href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+                target="_blank"
+                style={{ marginTop: '-73px', marginRight: '-4px' }}
+              >
+                <Icon
+                  className="more-text"
+                  name="external square alternate"
                 />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Uniswap</p>
-                  <p className="account-name">ETH-DG</p>
+              </a>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text">APY</p>
+                  {APYUniswap ? (
+                    <p className="earned-amount">{APYUniswap}%</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="small"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '5px',
+                        marginLeft: '-1px',
+                        marginBottom: '-3px',
+                      }}
+                    />
+                  )}
                 </span>
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
-                  target="_blank"
-                  style={{ marginTop: '-73px', marginRight: '-4px' }}
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
                 >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
-                  />
-                </a>
-              </span>
-
-              <Divider />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">APY</p>
-                    {APYUniswap ? (
-                      <p className="earned-amount">{APYUniswap}%</p>
+                  <p className="earned-text">% of pool</p>
+                  <p className="earned-amount">
+                    {percentageUniswap ? (
+                      <p className="earned-amount">{percentageUniswap}%</p>
                     ) : (
                       <Loader
                         active
@@ -311,126 +312,100 @@ const ContentUniswap = (props) => {
                         }}
                       />
                     )}
-                  </span>
+                  </p>
                 </span>
-
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">% of pool</p>
-                    <p className="earned-amount">
-                      {percentageUniswap ? (
-                        <p className="earned-amount">{percentageUniswap}%</p>
-                      ) : (
-                        <Loader
-                          active
-                          inline
-                          size="small"
-                          style={{
-                            fontSize: '12px',
-                            marginTop: '5px',
-                            marginLeft: '-1px',
-                            marginBottom: '-3px',
-                          }}
-                        />
-                      )}
-                    </p>
-                  </span>
-                </span>
-              </div>
-
-              <Divider />
-
-              <Input
-                className="liquidity-input"
-                fluid
-                placeholder="Amount"
-                value={amountInput}
-                onChange={handleChange}
-              />
-
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
-                <p
-                  className="bpt-text"
-                  onClick={() =>
-                    setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)
-                  }
-                >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_WALLET_UNISWAP,
-                    3
-                  )}{' '}
-                  UNI-V2
-                </p>
-                <p
-                  className="bpt-text"
-                  onClick={() =>
-                    setAmountInput(state.stakingBalances.BALANCE_STAKED_UNISWAP)
-                  }
-                >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_STAKED_UNISWAP,
-                    3
-                  )}{' '}
-                  UNI-V2 staked
-                </p>
-              </span>
-
-              <span className="DG-button-span">
-                {Number(amountInput) ? (
-                  <Button
-                    className="DG-stake-button"
-                    id="balances-padding-correct"
-                    onClick={() => {
-                      props.staking(
-                        uniswapContract,
-                        Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
-                        stakingContractUniswap,
-                        amountInput
-                      );
-                      setAmountInput('');
-                    }}
-                  >
-                    STAKE UNI-V2
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-stake-button">
-                    STAKE UNI-V2
-                  </Button>
-                )}
-
-                {percentagePool && Number(amountInput) ? (
-                  <Button
-                    className="DG-stake-button"
-                    id="balances-padding-correct"
-                    onClick={() => {
-                      props.withdrawal(stakingContractUniswap, amountInput);
-                      setAmountInput('');
-                    }}
-                  >
-                    UNSTAKE UNI-V2
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-stake-button">
-                    UNSTAKE UNI-V2
-                  </Button>
-                )}
               </span>
             </div>
-          </span>
+
+            <Divider className="divider-dg-top" />
+
+            <Input
+              className="liquidity-input"
+              fluid
+              placeholder="Amount"
+              value={amountInput}
+              onChange={handleChange}
+            />
+
+            <span
+              style={{ display: 'flex', justifyContent: 'space-between' }}
+            >
+              <p
+                className="bpt-text"
+                onClick={() =>
+                  setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_WALLET_UNISWAP,
+                  3
+                )}{' '}
+                UNI-V2
+              </p>
+              <p
+                className="bpt-text"
+                onClick={() =>
+                  setAmountInput(state.stakingBalances.BALANCE_STAKED_UNISWAP)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_STAKED_UNISWAP,
+                  3
+                )}{' '}
+                UNI-V2 staked
+              </p>
+            </span>
+
+            <span className="DG-button-span" style={{ paddingTop: '5px' }}>
+              {Number(amountInput) ? (
+                <Button
+                  className="DG-stake-button"
+                  id="balances-padding-correct"
+                  onClick={() => {
+                    props.staking(
+                      uniswapContract,
+                      Global.ADDRESSES.DG_STAKING_UNISWAP_ADDRESS,
+                      stakingContractUniswap,
+                      amountInput
+                    );
+                    setAmountInput('');
+                  }}
+                >
+                  STAKE UNI-V2
+                </Button>
+              ) : (
+                <Button disabled className="DG-stake-button">
+                  STAKE UNI-V2
+                </Button>
+              )}
+
+              {percentagePool && Number(amountInput) ? (
+                <Button
+                  className="DG-stake-button"
+                  id="balances-padding-correct"
+                  onClick={() => {
+                    props.withdrawal(stakingContractUniswap, amountInput);
+                    setAmountInput('');
+                  }}
+                >
+                  UNSTAKE UNI-V2
+                </Button>
+              ) : (
+                <Button disabled className="DG-stake-button">
+                  UNSTAKE UNI-V2
+                </Button>
+              )}
+            </span>
+          </div>
+
+          <div
+            style={{
+              position: 'relative',
+              height: '100%',
+              width: '36%',
+            }}
+          />
+
         </div>
       </Aux>
     );

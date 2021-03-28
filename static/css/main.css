@@ -1170,6 +1170,10 @@ i.chevron.down.icon {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
+.earned-amount#treasury-breakdown {
+  padding: 14px 18px 0px 18px !important;
+}
+
 table {
   border-spacing: 0px;
   width: 100%;
@@ -1182,6 +1186,24 @@ table {
 
 .ui.table thead th {
   border: 0px solid white !important;
+  background: white;
+  padding: 15px 18px 15px 18px;
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: rgb(92, 95, 97) !important;
+  text-transform: uppercase;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #edf2f9 !important;
+}
+
+.ui.table tr td {
+  border-bottom: 1px solid #edf2f9 !important;
+}
+
+.ui.table td {
+  padding: 15px 18px 15px 18px;
 }
 
 .ui.table thead tr:first-child>th:first-child {
@@ -1686,7 +1708,6 @@ td.treasury-cell-lower.two {
   font-weight: 700;
   letter-spacing: 0.5px;
   padding-top: 6px !important;
-  padding-left: 0px;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
 }
@@ -1718,6 +1739,7 @@ i.caret.down.icon.percent-icon.neg {
 .percent-icon.neg {
   color: #ea3943 !important;
 }
+
 .gameplay-left-column {
   display: flex;
   justify-content: center;
@@ -1924,8 +1946,8 @@ i.copy.icon.affiliate-icon:hover {
   z-index: 3;
 }
 
-.farming-logo.two {
-  margin-left: -18px;
+.farming-logo-small.two {
+  margin-left: -24px;
   position: relative;
   z-index: 2;
 }
@@ -1995,7 +2017,8 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .DG-column.unclaimed {
-  width: 32% !important;
+  width: 23% !important;
+  height: 100%;
 }
 
 .DG-column.balancer {
@@ -2014,10 +2037,14 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .DG-column.one,
-.DG-column.two,
-.DG-column-treasury.one,
-.DG-column-treasury.two {
+.DG-column.two {
   width: 100%;
+}
+
+.DG-column-treasury.one,
+.DG-column-treasury.two,
+.DG-column-treasury.three {
+  width: 36%;
 }
 
 .DG-column.treasury-graph {
@@ -2028,9 +2055,10 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .DG-column.treasury-stats {
-  width: 66%;
+  width: 74%;
   position: relative;
   z-index: 2;
+  padding: 0 0 0 0 !important;
 }
 
 .DG-column.one-uniswap {

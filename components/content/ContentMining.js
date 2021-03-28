@@ -124,7 +124,7 @@ const ContentMining = (props) => {
       <Aux>
 
         <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed" style={{ maxHeight: '345px' }}>
+          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
             <p className="earned-amount">Unclaimed</p>
 
             <Divider className="divider-dg-top" />
@@ -161,7 +161,7 @@ const ContentMining = (props) => {
 
             <Divider className="divider-dg-top"/>
 
-            <p>
+            <p style={{ fontSize: '18px' }}>
               Mine $DG by playing games with MANA or DAI. Earn bonuses by
               playing with friends, wearing $DG NFTs, and referring
               friends. {' '}
@@ -192,143 +192,160 @@ const ContentMining = (props) => {
             </span>
           </div>
 
-          <span className="DG-tablet-container-gov">
-            <div
-              className="DG-column-treasury two"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
-            >
-              <p className="earned-amount">Gameplay Rewards</p>
+          <div
+            className="DG-column-treasury two"
+            style={{
+              position: 'relative',
+              height: '100%',
+            }}
+          >
+          <p className="earned-amount">Gameplay Rewards</p>
 
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://docs.decentral.games/allocation"
-                  target="_blank"
-                  style={{ marginTop: '-22px', marginRight: '-4px' }}
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex' }}>
+            <img
+              src={Images.MANA_CIRCLE}
+              className="farming-logo-small"
+              alt="MANA Coin Logo"
+            />
+            <span className="farming-pool-span">
+              <p className="welcome-text-top">Coin</p>
+                <p className="earned-amount">
+                  MANA
+                </p>
+              </span>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    paddingBottom: '17px',
+                  }}
                 >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
-                  />
-                </a>
+                  <p className="earned-text">Roulette Rate / 1 DG</p>
+                  <p className="earned-amount">43K MANA</p>
+                </span>
               </span>
 
-              <Divider className="divider-dg-top" />
-
-              <Table unstackable>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell className="treasury-cell">
-                      <span style={{ display: 'flex' }}>
-                        <img
-                          src={Images.ICON_MANA}
-                          className="farming-logo-small"
-                          alt="Decentral Games Coin Logo"
-                        />
-                        <span className="farming-pool-span">
-                          <p className="welcome-text-top">Roulette</p>
-                          <p className="earned-amount">
-                            RATE / 1 DG
-                          </p>
-                        </span>
-                      </span>
-                    </Table.Cell>
-
-                    <Table.Cell className="treasury-cell" textAlign="right">
-                      <p className="earned-amount">43K MANA</p>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-
-              <Divider />
-
-              <Table unstackable>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell className="treasury-cell">
-                      <span style={{ display: 'flex' }}>
-                        <img
-                          src={Images.ICON_DAI}
-                          style={{
-                            width: '21px',
-                            height: '21px',
-                            marginRight: '6px',
-                            marginTop: '3px',
-                            borderRadius: '100%',
-                          }}
-                        />
-                        <p className="earned-text">Roullete Rate / 1 DG</p>
-                      </span>
-                    </Table.Cell>
-
-                    <Table.Cell className="treasury-cell" textAlign="right">
-                      <p className="earned-amount">24.4K DAI</p>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-
-              <Divider />
-
-              <Table unstackable>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell className="treasury-cell">
-                      <span style={{ display: 'flex' }}>
-                        <img
-                          src={Images.ICON_MANA}
-                          style={{
-                            width: '21px',
-                            height: '21px',
-                            marginRight: '6px',
-                            marginTop: '3px',
-                            borderRadius: '100%',
-                          }}
-                        />
-                        <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      </span>
-                    </Table.Cell>
-
-                    <Table.Cell className="treasury-cell" textAlign="right">
-                      <p className="earned-amount">161K MANA</p>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-
-              <Divider />
-
-              <Table unstackable>
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell className="treasury-cell">
-                      <span style={{ display: 'flex' }}>
-                        <img
-                          src={Images.ICON_DAI}
-                          style={{
-                            width: '21px',
-                            height: '21px',
-                            marginRight: '6px',
-                            marginTop: '3px',
-                            borderRadius: '100%',
-                          }}
-                        />
-                        <p className="earned-text">Roullete Rate / 1 DG</p>
-                      </span>
-                    </Table.Cell>
-
-                    <Table.Cell className="treasury-cell" textAlign="right">
-                      <p className="earned-amount">82.2K MANA</p>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    paddingBottom: '17px',
+                  }}
+                >
+                  <p className="earned-text">Blackjack Rate / 1 DG</p>
+                  <p className="earned-amount">146K MANA</p>
+                </span>
+              </span>
             </div>
-          </span>
+
+            <Divider className="divider-dg-top" />
+
+            <span className="DG-button-span">
+              <Button
+                id="play-now-button-MANA"
+                href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
+                className="DG-play-now-button"
+                target="_blank"
+              >
+                PLAY NOW
+              </Button>
+            </span>
+          </div>
+
+          <div
+            className="DG-column-treasury two"
+            style={{
+              position: 'relative',
+              height: '100%',
+            }}
+          >
+          <p className="earned-amount">Gameplay Rewards</p>
+
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex' }}>
+            <img
+              src={Images.DAI_CIRCLE}
+              className="farming-logo-small"
+              alt="MANA Coin Logo"
+            />
+            <span className="farming-pool-span">
+              <p className="welcome-text-top">Coin</p>
+                <p className="earned-amount">
+                  DAI
+                </p>
+              </span>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    paddingBottom: '17px',
+                  }}
+                >
+                  <p className="earned-text">Roulette Rate / 1 DG</p>
+                  <p className="earned-amount">41K MANA</p>
+                </span>
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    paddingBottom: '17px',
+                  }}
+                >
+                  <p className="earned-text">Blackjack Rate / 1 DG</p>
+                  <p className="earned-amount">137K MANA</p>
+                </span>
+              </span>
+            </div>
+
+            <Divider className="divider-dg-top" />
+
+            <span className="DG-button-span">
+              <Button
+                id="play-now-button-MANA"
+                href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
+                className="DG-play-now-button"
+                target="_blank"
+              >
+                PLAY NOW
+              </Button>
+            </span>
+          </div>
+
         </div>
       </Aux>
     );

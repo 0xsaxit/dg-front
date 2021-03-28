@@ -185,13 +185,16 @@ export const GlobalStyles = createGlobalStyle`
   .welcome-text,
   .welcome-text-2,
   .earned-text,
-  i.info.circle.icon.dai-mana-icon,
   .read-next-button:first-child:before,
   .read-next-button:last-child:before,
   #pool-select-icon,
   .menu-info-label,
   .account-other-inner-p {
     color: ${({ theme }) => theme.offColorText} !important;   
+  }
+
+  i.info.circle.icon.dai-mana-icon {
+    color: black;
   }
 
   .featured-blog-grid,
