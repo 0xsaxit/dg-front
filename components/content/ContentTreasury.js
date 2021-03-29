@@ -342,7 +342,7 @@ const ContentTreasury = (props) => {
 
           <div>
             <Line
-              height={360}
+              height={315}
               data={test}
               options={{
                 maintainAspectRatio: false,
