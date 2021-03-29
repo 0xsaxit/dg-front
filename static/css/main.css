@@ -1200,6 +1200,7 @@ table {
 
 .ui.table tr td {
   border-bottom: 1px solid #edf2f9 !important;
+  border-top: 0px solid white;
 }
 
 .ui.table td {
@@ -2021,6 +2022,11 @@ i.copy.icon.affiliate-icon:hover {
   height: 100%;
 }
 
+.DG-column.treasury-all {
+  width: 100%;
+  padding: 12px 0px 0px 0px !important;
+}
+
 .DG-column.balancer {
   min-width: 22.75% !important;
   max-height: 260px;
@@ -2047,18 +2053,12 @@ i.copy.icon.affiliate-icon:hover {
   width: 36%;
 }
 
-.DG-column.treasury-graph {
-  width: 32%;
-  height: 100%;
-  position: relative; 
-  z-index: 3;
-}
-
 .DG-column.treasury-stats {
-  width: 74%;
+  width: 100%;
   position: relative;
   z-index: 2;
   padding: 0 0 0 0 !important;
+  margin-top: 30px;
 }
 
 .DG-column.one-uniswap {
