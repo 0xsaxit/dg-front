@@ -7,7 +7,7 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Global from '../Constants';
-import { Chart } from 'react-charts';
+
 
 const ContentGovernance = (props) => {
   // get user's unclaimed DG balance from the Context API store
