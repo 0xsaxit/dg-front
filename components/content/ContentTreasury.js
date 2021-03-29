@@ -7,7 +7,6 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Global from '../Constants';
-import { Chart } from 'react-charts';
 import { Line } from 'react-chartjs-2';
 
 
