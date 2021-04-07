@@ -26,7 +26,7 @@ const EventData = () => {
       var i;
 
       for (i = 0; i < json.data.length; i++) {
-        if (json.data[i].user == "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0") {
+        if (json.data[i].user == "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0" || json.data[i].user == "0x154620dDfdcd6AB15dd9c1682386dEBad1eef536") {
           var date = new Date(json.data[i].next_start_at);
           json.data[i].next_start_at = date.toUTCString().replace("GMT", "UTC");
           events.push(json.data[i]);
