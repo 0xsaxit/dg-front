@@ -175,6 +175,8 @@ const ContentMining = (props) => {
               .
             </p>
 
+            <Divider className="divider-dg-top"/>
+
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_MINING_DG) ? (
                 <Button
@@ -226,7 +228,6 @@ const ContentMining = (props) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    paddingBottom: '17px',
                   }}
                 >
                   <p className="earned-text">Roulette Rate / 1 DG</p>
@@ -246,7 +247,6 @@ const ContentMining = (props) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    paddingBottom: '17px',
                   }}
                 >
                   <p className="earned-text">Blackjack Rate / 1 DG</p>
@@ -303,7 +303,6 @@ const ContentMining = (props) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    paddingBottom: '17px',
                   }}
                 >
                   <p className="earned-text">Roulette Rate / 1 DG</p>
@@ -323,7 +322,6 @@ const ContentMining = (props) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    paddingBottom: '17px',
                   }}
                 >
                   <p className="earned-text">Blackjack Rate / 1 DG</p>

@@ -35,14 +35,31 @@ const ContentReferrals = (props) => {
   function contentReferrals() {
     return (
       <Aux>
+
         <div className="DG-liquidity-container top">
-          <div className="DG-column top" style={{ minWidth: '100%' }}>
+          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex' }}>
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
+                className="farming-logo-small"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text-top">Affiliate Balance</p>
+                <p className="earned-amount">0.00</p>
+              </span>
+            </span>
+
+            <Divider className="divider-dg-top"/>
+
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">Referral Bonuses</h3>
-              <p> Copy your unique referral link and share it far and wide. Any time a new user deposits crypto, you'll earn 10% of their expected losses in MANA or DAI.
-              This link will only earn you crypto when shared with a user who has not yet registered an account.</p>              
+              <p> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
               <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', padding: '3px 6px 6px 6px' }}>
-                <p style={{ marginBottom: '0px' }}> https://decentral.games/{state.userAddress} </p>
+                <p style={{ marginBottom: '0px' }}> https://decentral...</p>
                 {copied == false ? (
                   <Icon className="affiliate-icon" onClick={() => onCopy()} name="copy" />
                 ) : (
@@ -50,92 +67,59 @@ const ContentReferrals = (props) => {
                 )}
               </span>
             </span>
-          </div>
-        </div>
 
-        <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed" style={{ minHeight: '339px' }}>
-            <span style={{ display: 'flex' }}>
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
-                className="farming-logo"
-                alt="USD Logo"
-              />
-              <span className="farming-pool-span">
-                <span>
-                  <p className="welcome-text">Unclaimed</p>
-                  <p className="account-name">
-                    0.00
-                  </p>
-                </span>
-              </span>
-            </span>
-
-            <Divider />
-
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">MANA</p>
-              <p className="earned-amount">0.000</p>
-            </span>
-
-            <Divider />
-
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">DAI</p>
-              <p className="earned-amount">0.000</p>
-            </span>
-
-            <Divider />
+            <Divider className="divider-dg-top"/>
 
             <span className="DG-button-span">
-              <Button disabled className="DG-claim-button">
-                CLAIM RERFERRAL BONUS
-              </Button>
+              {Number(state.DGBalances.BALANCE_MINING_DG) ? (
+                <Button
+                  disabled
+                  className="DG-claim-button"
+                  id="balances-padding-correct"
+                  onClick={() => metaTransaction()}
+                >
+                  CLAIM REFERRAL BONUS
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM REFERRAL BONUS
+                </Button>
+              )}
             </span>
           </div>
 
-          <span className="DG-tablet-container">
+          <span className="DG-column treasury-stats">
             <Table unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Address</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-2">Claimable</Table.HeaderCell>
+                  <Table.HeaderCell>Affiliate</Table.HeaderCell>
+                  <Table.HeaderCell className="account-col-2">Alias</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>
-                    0xd8856cCe3F878d3Ea03964F80B18987fF1919272
+                    <p className="earned-amount">0xd8856cCe3F878d3Ea03964F80B18987fF1919272</p>
                   </Table.Cell>
                   <Table.Cell className="account-col-2">
-                    <img
-                      src={Images.ICON_DAI}
-                      style={{
-                        width: '21px',
-                        marginRight: '6px',
-                        verticalAlign: 'middle',
-                        marginTop: '-2px',
-                        borderRadius: '100%',
-                      }}
-                    />
-                    10.00 DAI
+                    <span style={{ display: 'flex' }}>
+                      <img
+                        className="avatar-picture"
+                        src={`https://events.decentraland.org/api/profile/0xd8856cCe3F878d3Ea03964F80B18987fF1919272/face.png`}
+                        style={{
+                          width: '24px',
+                          height: '24px',
+                          marginRight: '6px',
+                          marginTop: '2px',
+                          border: '1px solid rgb(227, 232, 238)',
+                          borderRadius: '100%',
+                          boxShadow:
+                            '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                        }}
+                      />
+                      <p className="earned-amount">Hootie</p>
+                    </span>
                   </Table.Cell>
                 </Table.Row>
               </Table.Body>

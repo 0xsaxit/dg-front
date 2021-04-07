@@ -197,6 +197,8 @@ const ContentUniswap = (props) => {
                 .
             </p>
 
+            <Divider className="divider-dg-top"/>
+
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
                 <Button

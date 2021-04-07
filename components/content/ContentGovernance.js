@@ -132,7 +132,7 @@ const ContentGovernance = (props) => {
       setLinkOne(json[(Object.keys(json)[0])].authorIpfsHash);
       let temp_one = json[(Object.keys(json)[0])].msg.payload.end;
       if (temp_one < Date.now()) {
-        setPassedOne(true)
+        setPassedOne(true);
       } else {
         setPassedOne(false);
       }
@@ -144,7 +144,7 @@ const ContentGovernance = (props) => {
       setLinkTwo(json[(Object.keys(json)[2])].authorIpfsHash);
       let temp_two = json[(Object.keys(json)[2])].msg.payload.end;
       if (temp_two < Date.now()) {
-        setPassedTwo(true)
+        setPassedTwo(true);
       } else {
         setPassedTwo(false);
       }
@@ -156,7 +156,7 @@ const ContentGovernance = (props) => {
       setLinkThree(json[(Object.keys(json)[4])].authorIpfsHash);
       let temp_three = json[(Object.keys(json)[4])].msg.payload.end;
       if (temp_three < Date.now()) {
-        setPassedThree(true)
+        setPassedThree(true);
       } else {
         setPassedThree(false);
       }
@@ -488,7 +488,7 @@ const ContentGovernance = (props) => {
                       ACTIVE
                     </Button>   
                   )}
-                  <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>{endTwo}</p>
+                  <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endTwo}</p>
                 </span>
               </div>
             </a>
