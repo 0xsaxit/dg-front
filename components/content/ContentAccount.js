@@ -640,7 +640,7 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text-top">Atari</p>
+                <p className="welcome-text-top">Atri</p>
                 <p className="earned-amount">
                   0
                 </p>
@@ -730,7 +730,7 @@ const ContentAccount = (props) => {
                   href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
                   target="_blank"
                 >
-                  Enable USDT Gameplay
+                  Enable Atri Gameplay
                 </Button>
               </span>
             </div>
@@ -756,9 +756,9 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text-top">Ethereum</p>
+                <p className="welcome-text-top">Eth</p>
                 <p className="earned-amount" style={{ marginBottom: '-30px' }}>
-                  {parseInt(state.userBalances[0][1]).toLocaleString()}
+                  0
                 </p>
               </span>
             </span>
@@ -845,7 +845,7 @@ const ContentAccount = (props) => {
                   href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
                   target="_blank"
                 >
-                  Enable Ethereum Gameplay
+                  Enable Eth Gameplay
                 </Button>
               </span>
             </div>

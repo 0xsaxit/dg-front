@@ -1574,6 +1574,29 @@ deposit-notification-box-hidden {
   margin-bottom: 24px;
 }
 
+i.pencil.icon.edit-icon {
+  color: #5c5e61;
+  margin-left: 4px;
+  margin-top: 3px;
+}
+
+i.pencil.icon.edit-icon:hover {
+  color: black;
+}
+
+.avatar-edit-circle {
+  border: 1px solid #edf2f9;
+  background-color: white;
+  position: relative;
+  z-index: 3;
+  width: 27px;
+  height: 27px;
+  border-radius: 100%;
+  float: right;
+  margin-top: -27px;
+  margin-right: 9px;
+}
+
 .balances-token-name.avatar {
   font-weight: bold;
   padding-left: 21px;
