@@ -199,6 +199,10 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 8px !important;
   }
 
+  i.info.circle.icon.dai-mana-icon:hover {
+    cursor: pointer;
+  }
+
   .featured-blog-grid,
   .ui.dropdown .menu > .active.item, {
     background: ${({ theme }) => theme.card} !important;

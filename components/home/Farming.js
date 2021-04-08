@@ -12,10 +12,10 @@ import ContentTreasury from '../content/ContentTreasury';
 import ContentReferrals from '../content/ContentReferrals';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
-import ModalAffiliates from '../modal/ModalAffiliates';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
+
 
 const Farming = (props) => {
   // get user's state from the Context API store

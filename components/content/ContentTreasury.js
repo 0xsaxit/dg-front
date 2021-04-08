@@ -110,15 +110,18 @@ const ContentTreasury = (props) => {
         var j;
 
         for (i = 0; i < usd.length; i+= 3) {
-          xAxis.push(usd[i].primary);
+          var temp_x = new Date(usd[i].primary);
+          var temp_x2 = temp_x.toDateString();
+          xAxis.push(temp_x2);
         }
 
         for (j = 0; j < usd.length; j+= 3) {
-          yAxis.push(usd[j].secondary);
+          var temp_y = usd[j].secondary
+          yAxis.push(temp_y.toFixed(2));
         }
 
         setStatsUSDX(xAxis);
-        setStatsUSDY(yAxis);;
+        setStatsUSDY(yAxis);
 
         let gameplayAll = json_3.allTimeGameplayUSD.graph;
         setGameplayAllStats(gameplayAll);

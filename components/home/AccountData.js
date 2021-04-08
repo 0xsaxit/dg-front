@@ -6,8 +6,7 @@ import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Aux from '../_Aux';
 import { Parallax } from 'react-parallax';
-import ModalAffiliates from '../modal/ModalAffiliates';
-// import Images from '../../common/Images';
+
 
 const AccountData = (props) => {
   // get user's transaction history from the Context API store
@@ -109,26 +108,6 @@ const AccountData = (props) => {
             <Popup
               position="top center"
               className="account-popup"
-              trigger={
-                <a
-                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                  target="_blank"
-                  className="account-icon-hover"
-                  id="mobile-display-none"
-                >
-                  <span>
-                    <Icon name="settings" className="submenu-icon" />
-                  </span>
-                </a>
-              }
-            >
-              <div>
-                <p className="earned-text">EDIT AVATAR</p>
-              </div>
-            </Popup>
-            <Popup
-              position="top center"
-              className="account-popup"
               onClick={() => introJs().start()}
               trigger={
                 <span className="account-icon-hover">
@@ -208,9 +187,18 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              <span style={{ marginTop: '27px' }}>
-                <ModalAffiliates />
-              </span>
+              {dataType === 'referrals' ? (
+                <span className="account-hover active">
+                  <b>REFERRALS</b>
+                </span>
+              ) : (
+                <Link href="/account/referrals">
+                  <span className="account-hover">
+                    <b>REFERRALS</b>
+                  </span>
+                </Link>
+              )}
+
             </span>
           </div>
         </div>
@@ -299,6 +287,10 @@ const AccountData = (props) => {
                       <ContentAccount content={'labels'} type={dataType} />
                       <ContentAccount content={dataType} dataPage={dataPage} />
                     </div>
+                  </div>
+                ) : dataType == 'referrals' ? (
+                  <div>
+                    <ContentAccount content={'referrals'} />
                   </div>
                 ) : (
                   noTxHistory()

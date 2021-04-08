@@ -1,6 +1,6 @@
 import { GlobalContext } from '../../store';
 import { useContext, useState, useEffect } from 'react';
-import Farming from '../../components/home/Farming';
+import AccountData from '../../components/home/AccountData';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -28,7 +28,7 @@ const Referrals = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG | Referrals'}
+        title={Global.CONSTANTS.TITLE + ' | Account | Referrals'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
@@ -40,7 +40,7 @@ const Referrals = () => {
           You must connect your wallet to view this page
         </div>
       ) : (
-        <Farming DGState={'referrals'} />
+        <AccountData dataType={'referrals'} />
       )}
     </Layout>
   );
