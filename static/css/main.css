@@ -478,6 +478,10 @@ a.menu-info-label-link:hover {
   padding-bottom: 12px;
   font-weight: 800 !important;
   text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: black;
 }
 
 .mailchimp-other-inner-p {
@@ -1201,7 +1205,7 @@ table {
 
 .ui.table tr td {
   border-bottom: 1px solid #edf2f9 !important;
-  border-top: 0px solid white;
+  border-top: 0px solid white !important;
 }
 
 .ui.table td {
@@ -1249,6 +1253,25 @@ table {
   position: sticky;
   top: 0px;
 }
+
+.ui.table tr td {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding-top: 16px;
+}
+
+.ui.table tr td.leaders-col-1 {
+  padding-top: 18px !important;
+  padding-bottom: 14px !important;
+}
+
+.ui.table tr td.leaders-col-2 {
+  padding-top: 18px !important;
+  padding-bottom: 17px !important; 
+}
+
 
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
@@ -1643,6 +1666,16 @@ deposit-notification-box-hidden {
   border-left: 3px solid #16c784 !important;
 }
 
+.governance-block-blue:hover {
+  margin-left: -18px;
+  padding-left: 15px;
+  margin-top: -14px;
+  padding-top: 14px;
+  margin-bottom: -14px;
+  padding-bottom: 14px;
+  border-left: 3px solid #2085f4 !important;
+}
+
 .ui.top.left.popup:before,
 .ui.top.center.popup:before {
   display: none;
@@ -1661,26 +1694,6 @@ deposit-notification-box-hidden {
   text-transform: uppercase;
   padding: 9px 16px 0px 16px;
   margin-bottom: -9px !important;
-}
-
-td.treasury-cell {
-  padding: 11px 0px 13px 0 !important;
-}
-
-td.treasury-cell-lower {
-  padding: 6px 0px 6px 0px !important;
-}
-
-td.treasury-cell.two {
-  display: flex;
-  justify-content: flex-end;
-  min-width: 82px;
-}
-
-td.treasury-cell-lower.two {
-  display: flex;
-  justify-content: flex-end;
-  min-width: 82px;
 }
 
 .earned-amount {
@@ -1709,7 +1722,7 @@ td.treasury-cell-lower.two {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 6px !important;
+  padding-top: 3px !important;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
 }
@@ -1730,7 +1743,7 @@ i.caret.down.icon.percent-icon.neg {
 .percent-icon {
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 6px !important;
+  padding-top: 3px !important;
   margin-right: -3px !important;
 }
 
@@ -2658,7 +2671,8 @@ a.ui.blue.button.play-button,
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid #2085f4;
   color: #2085f4;
-  margin-top: -45px;
+  margin-bottom: -2px;
+  margin-top: -3px;
   height: 27px;
   max-width: 150px !important;
   min-width: 150px;

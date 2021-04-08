@@ -128,22 +128,27 @@ const ContentGovernance = (props) => {
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      setGovOne(json[(Object.keys(json)[0])].msg.payload);
-      setLinkOne(json[(Object.keys(json)[0])].authorIpfsHash);
-      let temp_one = json[(Object.keys(json)[0])].msg.payload.end;
-      if (temp_one < Date.now()) {
+      console.log('!!!');
+      console.log(json);
+
+      setGovOne(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
+      setLinkOne(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
+      let temp_one = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
+
+      if (temp_one * 1000 < Date.now()) {
         setPassedOne(true);
       } else {
         setPassedOne(false);
       }
 
-      var date = new Date(govOne.end * 1000);
+      var date = new Date(temp_one * 1000);
       setEndOne(date.toDateString());
 
-      setGovTwo(json[(Object.keys(json)[2])].msg.payload);
-      setLinkTwo(json[(Object.keys(json)[2])].authorIpfsHash);
-      let temp_two = json[(Object.keys(json)[2])].msg.payload.end;
-      if (temp_two < Date.now()) {
+      setGovTwo(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload);
+      setLinkTwo(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.authorIpfsHash);
+      let temp_two = json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload.end;
+
+      if (temp_two * 1000 < Date.now()) {
         setPassedTwo(true);
       } else {
         setPassedTwo(false);
@@ -152,10 +157,11 @@ const ContentGovernance = (props) => {
       var date = new Date(govTwo.end * 1000);
       setEndTwo(date.toDateString());
 
-      setGovThree(json[(Object.keys(json)[4])].msg.payload);
-      setLinkThree(json[(Object.keys(json)[4])].authorIpfsHash);
-      let temp_three = json[(Object.keys(json)[4])].msg.payload.end;
-      if (temp_three < Date.now()) {
+      setGovThree(json.QmNS7mcDdSA6EQqMTqHPCJS3R2VvXbHuDtGKmySdCTW5hB.msg.payload);
+      setLinkThree(json.QmNS7mcDdSA6EQqMTqHPCJS3R2VvXbHuDtGKmySdCTW5hB.authorIpfsHash);
+      let temp_three = json.QmNS7mcDdSA6EQqMTqHPCJS3R2VvXbHuDtGKmySdCTW5hB.msg.payload.end;
+
+      if (temp_three * 1000 < Date.now()) {
         setPassedThree(true);
       } else {
         setPassedThree(false);
@@ -204,11 +210,11 @@ const ContentGovernance = (props) => {
                   <Loader
                     active
                     inline
-                    size="medium"
+                    size="small"
                     style={{
                       fontSize: '12px',
-                      marginTop: '12px',
-                      marginLeft: '15px',
+                      marginTop: '5px',
+                      marginBottom: '-2px',
                     }}
                   />
                 )}
@@ -287,11 +293,11 @@ const ContentGovernance = (props) => {
                   <Loader
                     active
                     inline
-                    size="medium"
+                    size="small"
                     style={{
                       fontSize: '12px',
-                      marginTop: '12px',
-                      marginLeft: '15px',
+                      marginTop: '5px',
+                      marginBottom: '-2px',
                     }}
                   />
                 )}
@@ -402,7 +408,7 @@ const ContentGovernance = (props) => {
               </p>
             </span>
 
-            <span className="DG-button-span" style={{ paddingTop: '5px' }}>
+            <span className="DG-button-span" style={{ paddingTop: '8px' }}>
               {Number(amountInput) ? (
                 <Button
                   className="DG-stake-button"
@@ -456,7 +462,7 @@ const ContentGovernance = (props) => {
           <Divider className="divider-dg-top" />
 
             <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkOne}`}>
-              <div className="governance-block">
+              <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
                 <p className="earned-amount">{govOne.name}</p>
                 <span style={{ display: 'flex'  }}>
                   {passedOne == true ? (
@@ -476,7 +482,7 @@ const ContentGovernance = (props) => {
             <Divider className="divider-dg-top"/>
 
             <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkTwo}`}>
-              <div className="governance-block">
+              <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
                 <p className="earned-amount">{govTwo.name}</p>
                 <span style={{ display: 'flex'  }}>
                   {passedTwo == true ? (
@@ -496,7 +502,7 @@ const ContentGovernance = (props) => {
             <Divider className="divider-dg-top"/>
 
             <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkThree}`}>
-              <div className="governance-block">
+              <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
                 <p className="earned-amount">{govThree.name}</p>
                 <span style={{ display: 'flex'  }}>
                   {passedThree == true ? (

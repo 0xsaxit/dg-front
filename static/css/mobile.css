@@ -721,7 +721,7 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
-@media (min-width: 567px) {
+@media (min-width: 568px) {
   .ui.button.etherscan-button-mobile {
     display: none;
   }
@@ -735,7 +735,8 @@ span#mobile-time-select.account-select.dropdown {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid #2085f4;
     color: #2085f4;
-    margin-top: -45px;
+    margin-bottom: -2px;
+    margin-top: -3px;
     height: 27px;
     max-width: 60px !important;
     min-width: 60px;

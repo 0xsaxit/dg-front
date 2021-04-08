@@ -270,12 +270,7 @@ const ContentAccount = (props) => {
               <span className="avatar-picture">
                 <img
                   src={Images.PLAY_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
+                  className="farming-logo-small"
                 />
               </span>
               <span
@@ -285,8 +280,8 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text">Play</p>
-                <p className="account-name">{state.userInfo[2]}</p>
+                <p className="welcome-text-top">Play</p>
+                <p className="earned-amount">{state.userInfo[2]}</p>
               </span>
             </span>
 
@@ -295,20 +290,20 @@ const ContentAccount = (props) => {
                 disabled
                 className="balances-top-button"
                 target="_blank"
-                style={{ marginTop: '-75px' }}
+                style={{ marginTop: '-60px' }}
               >
                 FREE
               </Button>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount"> {totalPLAY} </p>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <span className="balances-button-span">
               <Button
@@ -345,12 +340,7 @@ const ContentAccount = (props) => {
               <span className="avatar-picture">
                 <img
                   src={Images.MANA_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
+                  className="farming-logo-small"
                 />
               </span>
               <span
@@ -360,8 +350,8 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text">Mana</p>
-                <p className="account-name">
+                <p className="welcome-text-top">Mana</p>
+                <p className="earned-amount">
                   {parseInt(state.userBalances[1][1]).toLocaleString()}
                 </p>
               </span>
@@ -379,14 +369,14 @@ const ContentAccount = (props) => {
               </span>
             </div>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount">{totalMANA}</p>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <div style={styles.boxMANA}>
               <span className="balances-button-span">
@@ -459,12 +449,7 @@ const ContentAccount = (props) => {
               <span className="avatar-picture">
                 <img
                   src={Images.DAI_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
+                  className="farming-logo-small"
                 />
               </span>
               <span
@@ -474,8 +459,8 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="welcome-text">Dai</p>
-                <p className="account-name">
+                <p className="welcome-text-top">Dai</p>
+                <p className="earned-amount">
                   {parseInt(state.userBalances[0][1]).toLocaleString()}
                 </p>
               </span>
@@ -493,14 +478,14 @@ const ContentAccount = (props) => {
               </span>
             </div>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount">{totalDAI}</p>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <div style={styles.boxDAI}>
               <span className="balances-button-span">
@@ -558,6 +543,285 @@ const ContentAccount = (props) => {
             <div style={styles.buttonDAI}>
               <span>
                 <ModalAcceptDai />
+              </span>
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column
+            computer={5}
+            tablet={8}
+            mobile={16}
+            className="balances-column one"
+          >
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <img
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/825_vksbx4.png"
+                  className="farming-logo-small"
+                />
+              </span>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
+                <p className="welcome-text-top">USDT</p>
+                <p className="earned-amount">0</p>
+              </span>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text">Total Winnings</p>
+              <p className="earned-amount"> {totalPLAY} </p>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <span className="balances-button-span">
+              <Button
+                style={{ width: '100%' }}
+                className="balances-play-button"
+                href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
+                target="_blank"
+              >
+                Enable USDT Gameplay
+              </Button>
+            </span>
+          </Grid.Column>
+
+          <Grid.Column
+            computer={5}
+            tablet={8}
+            mobile={16}
+            className="balances-column two"
+          >
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <img
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/7395_konn7v.png"
+                  className="farming-logo-small"
+                />
+              </span>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
+                <p className="welcome-text-top">Atari</p>
+                <p className="earned-amount">
+                  0
+                </p>
+              </span>
+            </span>
+
+            <div style={styles.boxMANA}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  className="balances-top-button"
+                  onClick={() => show_transak_1()}
+                  style={{ marginTop: '-75px' }}
+                >
+                  PURCHASE
+                </Button>
+              </span>
+            </div>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text">Total Winnings</p>
+              <p className="earned-amount">{totalMANA}</p>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <div style={styles.boxMANA}>
+              <span className="balances-button-span">
+                <Button
+                  className="balances-play-button"
+                  disabled={!injectedProvider}
+                  onClick={() => setShowModal(true)}
+                  style={{ padding: '0 0 0 0' }}
+                >
+                  DEPOSIT
+                </Button>
+                <ConnextModal
+                  showModal={showModal}
+                  onClose={() => setShowModal(false)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
+                  withdrawalAddress={state.userAddress}
+                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                  depositAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
+                  depositChainId={1}
+                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
+                  withdrawAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
+                  withdrawChainId={137}
+                  withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
+                />
+                <Button
+                  className="balances-play-button"
+                  onClick={() => setShowModal_2(true)}
+                  style={{ padding: '0 0 0 0' }}
+                >
+                  WITHDRAW
+                </Button>
+                <ConnextModal
+                  showModal={showModal_2}
+                  onClose={() => setShowModal_2(false)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
+                  withdrawalAddress={state.userAddress}
+                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                  withdrawAssetId={'0x0F5D2fB29fb7d3CFeE444a200298f468908cC942'}
+                  withdrawChainId={1}
+                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
+                  depositAssetId={'0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4'}
+                  depositChainId={137}
+                  depositChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
+                />
+              </span>
+            </div>
+
+            <div style={styles.buttonMANA}>
+              <span className="balances-button-span">
+                <Button
+                  style={{ width: '100%' }}
+                  className="balances-play-button"
+                  href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
+                  target="_blank"
+                >
+                  Enable USDT Gameplay
+                </Button>
+              </span>
+            </div>
+          </Grid.Column>
+
+          <Grid.Column
+            computer={5}
+            tablet={8}
+            mobile={16}
+            className="balances-column three"
+          >
+            <span style={{ display: 'flex' }}>
+              <span className="avatar-picture">
+                <img
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/1027_ikeis0.png"
+                  className="farming-logo-small"
+                />
+              </span>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '7px',
+                }}
+              >
+                <p className="welcome-text-top">Ethereum</p>
+                <p className="earned-amount" style={{ marginBottom: '-30px' }}>
+                  {parseInt(state.userBalances[0][1]).toLocaleString()}
+                </p>
+              </span>
+            </span>
+
+            <div style={styles.boxDAI}>
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  className="balances-top-button two"
+                  onClick={() => show_transak_2()}
+                  style={{ marginTop: '-75px' }}
+                >
+                  PURCHASE
+                </Button>
+              </span>
+            </div>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p className="earned-text">Total Winnings</p>
+              <p className="earned-amount">{totalDAI}</p>
+            </span>
+
+            <Divider className="divider-dg-top" />
+
+            <div style={styles.boxDAI}>
+              <span className="balances-button-span">
+                <Button
+                  className="balances-play-button"
+                  onClick={() => setShowModal_3(true)}
+                  style={{ padding: '0 0 0 0' }}
+                >
+                  DEPOSIT
+                </Button>
+                <ConnextModal
+                  showModal={showModal_3}
+                  onClose={() => setShowModal_3(false)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
+                  withdrawalAddress={state.userAddress}
+                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                  depositAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
+                  depositChainId={1}
+                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
+                  withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
+                  withdrawChainId={137}
+                  withdrawChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
+                />
+                <Button
+                  className="balances-play-button"
+                  onClick={() => setShowModal_4(true)}
+                  style={{ padding: '0 0 0 0' }}
+                >
+                  WITHDRAW
+                </Button>
+                <ConnextModal
+                  showModal={showModal_4}
+                  onClose={() => setShowModal_4(false)}
+                  onReady={(params) =>
+                    console.log('MODAL IS READY =======>', params)
+                  }
+                  withdrawalAddress={state.userAddress}
+                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                  withdrawAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
+                  withdrawChainId={1}
+                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
+                  depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
+                  depositChainId={137}
+                  depositChainProvider="https://rpc-mainnet.matic.network"
+                  injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}
+                />
+              </span>
+            </div>
+
+            <div style={styles.buttonDAI}>
+              <span className="balances-button-span">
+                <Button
+                  style={{ width: '100%' }}
+                  className="balances-play-button"
+                  href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
+                  target="_blank"
+                >
+                  Enable Ethereum Gameplay
+                </Button>
               </span>
             </div>
           </Grid.Column>
@@ -650,7 +914,7 @@ const ContentAccount = (props) => {
     return (
       <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
         {poaps.map((poap, i) => (
-          <Grid.Column computer={4} tablet={8} mobile={8} key={i}>
+          <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
             <Image src={poap.image_url} className="poap-pic" />
           </Grid.Column>
         ))}

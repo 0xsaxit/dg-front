@@ -148,11 +148,12 @@ const ContentMining = (props) => {
                   <Loader
                     active
                     inline
-                    size="medium"
+                    size="small"
                     style={{
                       fontSize: '12px',
-                      marginTop: '12px',
-                      marginLeft: '15px',
+                      marginTop: '5px',
+                      marginLeft: '-1px',
+                      marginBottom: '-2px',
                     }}
                   />
                 )}
@@ -217,6 +218,19 @@ const ContentMining = (props) => {
                   MANA
                 </p>
               </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <a
+                href="https://docs.decentral.games/allocation#community"
+                target="_blank"
+                style={{ marginTop: '-60px', marginRight: '-4px' }}
+              >
+                <Icon
+                  className="more-text"
+                  name="external square alternate"
+                />
+              </a>
             </span>
 
             <Divider className="divider-dg-top" />
@@ -292,6 +306,19 @@ const ContentMining = (props) => {
                   DAI
                 </p>
               </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <a
+                href="https://docs.decentral.games/allocation#community"
+                target="_blank"
+                style={{ marginTop: '-60px', marginRight: '-4px' }}
+              >
+                <Icon
+                  className="more-text"
+                  name="external square alternate"
+                />
+              </a>
             </span>
 
             <Divider className="divider-dg-top" />

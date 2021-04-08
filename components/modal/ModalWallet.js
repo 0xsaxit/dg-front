@@ -61,7 +61,7 @@ const ModalWallet = () => {
             target="_blank"
             className={menuStyle[0]}
           > 
-            What's a wallet?
+            Need help?
           </a>
           <Button
             content="CONNECT WALLET"

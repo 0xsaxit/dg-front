@@ -195,6 +195,8 @@ export const GlobalStyles = createGlobalStyle`
 
   i.info.circle.icon.dai-mana-icon {
     color: black;
+    margin-top: -3px;
+    font-size: 8px !important;
   }
 
   .featured-blog-grid,

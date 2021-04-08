@@ -26,6 +26,7 @@ const MenuTop = (props) => {
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
+
   const router = useRouter();
   let menuStyle = [];
   let listener = null;
@@ -331,30 +332,9 @@ const MenuTop = (props) => {
 
           <Link href="/account">
             <span className="menu-account-info">
-              {DAI_BALANCE || MANA_BALANCE > 0 ? (
-                <span style={{ display: 'flex' }}>
-                  <span className="menu-info-to-hide">
-                    {MANA_BALANCE > 0 ? (
-                      <p className={menuStyle[1]}>
-                        {parseInt(state.userBalances[1][1]).toLocaleString()}{' '}
-                        MANA
-                      </p>
-                    ) : null}
-                  </span>
-                  <span className="menu-info-to-hide">
-                    {DAI_BALANCE > 0 ? (
-                      <p className={menuStyle[1]}>
-                        {parseInt(state.userBalances[0][1]).toLocaleString()}{' '}
-                        DAI
-                      </p>
-                    ) : null}
-                  </span>
-                </span>
-              ) : (
-                <p className={menuStyle[1]} id="add-funds-mobile-padding">
-                  ADD TOKENS
-                </p>
-              )}
+              <p className={menuStyle[1]} id="add-funds-mobile-padding">
+                ADD TOKENS
+              </p>
 
               <span className="menu-avatar-background" id="add-funds-mobile">
                 <span className="mobile-display-none-name">

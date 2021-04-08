@@ -170,11 +170,12 @@ const ContentUniswap = (props) => {
                   <Loader
                     active
                     inline
-                    size="medium"
+                    size="small"
                     style={{
                       fontSize: '12px',
-                      marginTop: '12px',
-                      marginLeft: '15px',
+                      marginTop: '5px',
+                      marginLeft: '-1px',
+                      marginBottom: '-2px',
                     }}
                   />
                 )}
@@ -244,7 +245,7 @@ const ContentUniswap = (props) => {
               <a
                 href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                 target="_blank"
-                style={{ marginTop: '-73px', marginRight: '-4px' }}
+                style={{ marginTop: '-60px', marginRight: '-4px' }}
               >
                 <Icon
                   className="more-text"
@@ -358,7 +359,7 @@ const ContentUniswap = (props) => {
               </p>
             </span>
 
-            <span className="DG-button-span" style={{ paddingTop: '5px' }}>
+            <span className="DG-button-span" style={{ paddingTop: '8px' }}>
               {Number(amountInput) ? (
                 <Button
                   className="DG-stake-button"

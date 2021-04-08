@@ -362,7 +362,7 @@ const ContentTreasury = (props) => {
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Name</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right" style={{ paddingLeft: '150px' }}>Amount</Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right" style={{ paddingLeft: '180px' }}>Amount</Table.HeaderCell>
                   <Table.HeaderCell textAlign="right">Weekly Change</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
@@ -371,7 +371,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">Gameplay All Time</p>
+                      Gameplay All Time
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -396,7 +396,7 @@ const ContentTreasury = (props) => {
 
                   {gameplayAll ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${gameplayAll}</p>
+                      ${gameplayAll}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
@@ -439,7 +439,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">Gameplay Current</p>
+                      Gameplay Current
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -460,7 +460,7 @@ const ContentTreasury = (props) => {
 
                   {gameplayTreasury ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${gameplayTreasury}</p>
+                      ${gameplayTreasury}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
@@ -503,7 +503,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">$DG Treasury</p>
+                      $DG Treasury
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -526,7 +526,7 @@ const ContentTreasury = (props) => {
 
                   {dgTreasury ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${dgTreasury}</p>
+                      ${dgTreasury}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
@@ -569,7 +569,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">Land Treasury</p>
+                      Land Treasury
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -592,7 +592,7 @@ const ContentTreasury = (props) => {
 
                   {landTreasury ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${landTreasury}</p>
+                      ${landTreasury}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
@@ -635,7 +635,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">Wearables Treasury</p>
+                      Wearables Treasury
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -659,7 +659,7 @@ const ContentTreasury = (props) => {
 
                   {nftTreasury ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${nftTreasury}</p>
+                      ${nftTreasury}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
@@ -702,7 +702,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">Uniswap Liquidity Provision</p>
+                      Uniswap Liquidity Provision
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -725,7 +725,7 @@ const ContentTreasury = (props) => {
 
                   {uniTreasury ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${uniTreasury}</p>
+                      ${uniTreasury}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
@@ -768,7 +768,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      <p className="earned-amount">Matic Node</p>
+                      Matic Node
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -790,7 +790,7 @@ const ContentTreasury = (props) => {
 
                   {maticTreasury ? (
                     <Table.Cell textAlign="right">
-                      <p className="earned-amount">${maticTreasury}</p>
+                      ${maticTreasury}
                     </Table.Cell>
                   ) : (
                     <Table.Cell textAlign="right">
