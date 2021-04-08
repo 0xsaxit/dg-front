@@ -128,9 +128,6 @@ const ContentGovernance = (props) => {
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      console.log('!!!');
-      console.log(json);
-
       setGovOne(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
       setLinkOne(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
       let temp_one = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;

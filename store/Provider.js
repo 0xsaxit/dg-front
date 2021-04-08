@@ -100,8 +100,6 @@ const reducer = (state, action) => {
       };
 
     case 'update_provider': 
-      console.log('!!!');
-      console.log(action.data);
       return {
         ...state,
         walletProvider: action.data,
