@@ -128,9 +128,9 @@ const ContentGovernance = (props) => {
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      setGovOne(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
-      setLinkOne(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
-      let temp_one = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
+      setGovOne(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload);
+      setLinkOne(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash);
+      let temp_one = json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
 
       if (temp_one * 1000 < Date.now()) {
         setPassedOne(true);
@@ -141,9 +141,9 @@ const ContentGovernance = (props) => {
       var date = new Date(temp_one * 1000);
       setEndOne(date.toDateString());
 
-      setGovTwo(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload);
-      setLinkTwo(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.authorIpfsHash);
-      let temp_two = json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload.end;
+      setGovTwo(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
+      setLinkTwo(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
+      let temp_two = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
 
       if (temp_two * 1000 < Date.now()) {
         setPassedTwo(true);
@@ -154,9 +154,9 @@ const ContentGovernance = (props) => {
       var date = new Date(govTwo.end * 1000);
       setEndTwo(date.toDateString());
 
-      setGovThree(json.QmNS7mcDdSA6EQqMTqHPCJS3R2VvXbHuDtGKmySdCTW5hB.msg.payload);
-      setLinkThree(json.QmNS7mcDdSA6EQqMTqHPCJS3R2VvXbHuDtGKmySdCTW5hB.authorIpfsHash);
-      let temp_three = json.QmNS7mcDdSA6EQqMTqHPCJS3R2VvXbHuDtGKmySdCTW5hB.msg.payload.end;
+      setGovThree(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload);
+      setLinkThree(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.authorIpfsHash);
+      let temp_three = json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload.end;
 
       if (temp_three * 1000 < Date.now()) {
         setPassedThree(true);
@@ -260,96 +260,32 @@ const ContentGovernance = (props) => {
             </span>
           </div>
 
-          <div
-            className="DG-column-treasury two"
-            style={{
-              position: 'relative',
-              height: '100%',
-            }}
-          >
-          <p className="earned-amount">Governance Staking</p>
-
-          <Divider className="divider-dg-top" />
-
-          <span style={{ display: 'flex' }}>
-            <img
-              src={Images.DG_COIN_LOGO}
-              className="farming-logo-small"
-              alt="Decentral Games Coin Logo"
-            />
-            <span className="farming-pool-span">
-              <p className="welcome-text-top">Total $DG Staked</p>
-                {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
-                  <p className="earned-amount">
-                    {props.formatPrice(
-                      state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
-                      0
-                    )}
-                  </p>
-                ) : (
-                  <Loader
-                    active
-                    inline
-                    size="small"
-                    style={{
-                      fontSize: '12px',
-                      marginTop: '5px',
-                      marginBottom: '-2px',
-                    }}
-                  />
-                )}
-              </span>
-            </span>
+          <div className="DG-tablet-container-gov">
+            <div
+              className="DG-column-treasury two"
+              style={{
+                position: 'relative',
+                height: '100%',
+              }}
+            >
+            <p className="earned-amount">Governance Staking</p>
 
             <Divider className="divider-dg-top" />
 
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    paddingBottom: '17px',
-                  }}
-                >
-                  <p className="earned-text">APY</p>
-                  {APYGovernance ? (
-                    <p className="earned-amount">{APYGovernance}%</p>
-                  ) : (
-                    <Loader
-                      active
-                      inline
-                      size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-2px',
-                      }}
-                    />
-                  )}
-                </span>
-              </span>
-
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text">% of gov pool</p>
-                  {percentGovernanceContract ? (
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo-small"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text-top">Total $DG Staked</p>
+                  {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
                     <p className="earned-amount">
-                      {percentGovernanceContract}%
+                      {props.formatPrice(
+                        state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
+                        0
+                      )}
                     </p>
                   ) : (
                     <Loader
@@ -359,181 +295,247 @@ const ContentGovernance = (props) => {
                       style={{
                         fontSize: '12px',
                         marginTop: '5px',
-                        marginLeft: '-1px',
                         marginBottom: '-2px',
                       }}
                     />
                   )}
                 </span>
               </span>
+
+              <Divider className="divider-dg-top" />
+
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      paddingBottom: '17px',
+                    }}
+                  >
+                    <p className="earned-text">APY</p>
+                    {APYGovernance ? (
+                      <p className="earned-amount">{APYGovernance}%</p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                          marginBottom: '-2px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '50%',
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className="earned-text">% of gov pool</p>
+                    {percentGovernanceContract ? (
+                      <p className="earned-amount">
+                        {percentGovernanceContract}%
+                      </p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                          marginBottom: '-2px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
+              </div>
+
+              <Divider className="divider-dg-top" />
+
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput}
+                onChange={handleChange}
+              />
+
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <p
+                  className="bpt-text"
+                  onClick={() =>
+                    setAmountInput(state.DGBalances.BALANCE_ROOT_DG)
+                  }
+                >
+                  {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
+                </p>
+                <p
+                  className="bpt-text"
+                  onClick={() =>
+                    setAmountInput(
+                      state.stakingBalances.BALANCE_USER_GOVERNANCE
+                    )
+                  }
+                >
+                  {props.formatPrice(
+                    state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                    3
+                  )}{' '}
+                  DG STAKED
+                </p>
+              </span>
+
+              <span className="DG-button-span" style={{ paddingTop: '8px' }}>
+                {Number(amountInput) ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      props.staking(
+                        DGTokenContract,
+                        Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
+                        stakeContractGovernance,
+                        amountInput
+                      );
+                      setAmountInput('');
+                    }}
+                  >
+                    STAKE $DG
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    STAKE $DG
+                  </Button>
+                )}
+
+                {percentGovernanceStaked && Number(amountInput) ? (
+                  <Button
+                    className="DG-stake-button"
+                    id="balances-padding-correct"
+                    onClick={() => {
+                      props.withdrawal(stakeContractGovernance, amountInput);
+                      setAmountInput('');
+                    }}
+                  >
+                    UNSTAKE $DG
+                  </Button>
+                ) : (
+                  <Button disabled className="DG-stake-button">
+                    UNSTAKE $DG
+                  </Button>
+                )}
+              </span>
             </div>
+
+            <div
+              className="DG-column-treasury three"
+              style={{
+                position: 'relative',
+                height: '100%',
+              }}
+            >
+            <p className="earned-amount">Governance Proposals</p>
 
             <Divider className="divider-dg-top" />
 
-            <Input
-              className="liquidity-input"
-              fluid
-              placeholder="Amount"
-              value={amountInput}
-              onChange={handleChange}
-            />
+              <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkOne}`}>
+                <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
+                  <p className="earned-amount">{govOne.name}</p>
+                  <span style={{ display: 'flex'  }}>
+                    {passedOne == true ? (
+                      <Button className="etherscan-button-green" disabled>
+                        PASSED
+                      </Button>
+                    ) : (
+                      <Button className="etherscan-button-blue" disabled>
+                        ACTIVE
+                      </Button>   
+                    )}
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>ONGOING ∙ {endOne}</p>
+                  </span>
+                </div>
+              </a>
 
-            <span
-              style={{ display: 'flex', justifyContent: 'space-between' }}
-            >
-              <p
-                className="bpt-text"
-                onClick={() =>
-                  setAmountInput(state.DGBalances.BALANCE_ROOT_DG)
-                }
-              >
-                {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
-              </p>
-              <p
-                className="bpt-text"
-                onClick={() =>
-                  setAmountInput(
-                    state.stakingBalances.BALANCE_USER_GOVERNANCE
-                  )
-                }
-              >
-                {props.formatPrice(
-                  state.stakingBalances.BALANCE_USER_GOVERNANCE,
-                  3
-                )}{' '}
-                DG STAKED
-              </p>
-            </span>
+              <Divider className="divider-dg-top"/>
 
-            <span className="DG-button-span" style={{ paddingTop: '8px' }}>
-              {Number(amountInput) ? (
+              <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkTwo}`}>
+                <div className={`${passedTwo ? "governance-block" : "governance-block-blue"}`}>
+                  <p className="earned-amount">{govTwo.name}</p>
+                  <span style={{ display: 'flex'  }}>
+                    {passedTwo == true ? (
+                      <Button className="etherscan-button-green" disabled>
+                        PASSED
+                      </Button>
+                    ) : (
+                      <Button className="etherscan-button-blue" disabled>
+                        ACTIVE
+                      </Button>   
+                    )}
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endTwo}</p>
+                  </span>
+                </div>
+              </a>
+
+              <Divider className="divider-dg-top"/>
+
+              <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkThree}`}>
+                <div className={`${passedThree ? "governance-block" : "governance-block-blue"}`}>
+                  <p className="earned-amount">{govThree.name}</p>
+                  <span style={{ display: 'flex'  }}>
+                    {passedThree == true ? (
+                      <Button className="etherscan-button-green" disabled>
+                        PASSED
+                      </Button>
+                    ) : (
+                      <Button className="etherscan-button-blue" disabled>
+                        ACTIVE
+                      </Button>   
+                    )}
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endThree}</p>
+                  </span>
+                </div>
+              </a>
+
+              <Divider className="divider-dg-top"/>
+
+              <span className="DG-button-span">
                 <Button
+                  href="https://gov.decentral.games"
+                  target="_blank"
                   className="DG-stake-button"
-                  id="balances-padding-correct"
-                  onClick={() => {
-                    props.staking(
-                      DGTokenContract,
-                      Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
-                      stakeContractGovernance,
-                      amountInput
-                    );
-                    setAmountInput('');
-                  }}
                 >
-                  STAKE $DG
+                  DISCUSSION
                 </Button>
-              ) : (
-                <Button disabled className="DG-stake-button">
-                  STAKE $DG
-                </Button>
-              )}
-
-              {percentGovernanceStaked && Number(amountInput) ? (
                 <Button
+                  href="https://snapshot.page/#/decentralgames.eth"
+                  target="_blank"
                   className="DG-stake-button"
-                  id="balances-padding-correct"
-                  onClick={() => {
-                    props.withdrawal(stakeContractGovernance, amountInput);
-                    setAmountInput('');
-                  }}
                 >
-                  UNSTAKE $DG
+                  ALL PROPOSALS
                 </Button>
-              ) : (
-                <Button disabled className="DG-stake-button">
-                  UNSTAKE $DG
-                </Button>
-              )}
-            </span>
-          </div>
-
-          <div
-            className="DG-column-treasury three"
-            style={{
-              position: 'relative',
-              height: '100%',
-            }}
-          >
-          <p className="earned-amount">Governance Proposals</p>
-
-          <Divider className="divider-dg-top" />
-
-            <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkOne}`}>
-              <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
-                <p className="earned-amount">{govOne.name}</p>
-                <span style={{ display: 'flex'  }}>
-                  {passedOne == true ? (
-                    <Button className="etherscan-button-green" disabled>
-                      PASSED
-                    </Button>
-                  ) : (
-                    <Button className="etherscan-button-blue" disabled>
-                      ACTIVE
-                    </Button>   
-                  )}
-                  <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endOne}</p>
-                </span>
-              </div>
-            </a>
-
-            <Divider className="divider-dg-top"/>
-
-            <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkTwo}`}>
-              <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
-                <p className="earned-amount">{govTwo.name}</p>
-                <span style={{ display: 'flex'  }}>
-                  {passedTwo == true ? (
-                    <Button className="etherscan-button-green" disabled>
-                      PASSED
-                    </Button>
-                  ) : (
-                    <Button className="etherscan-button-blue" disabled>
-                      ACTIVE
-                    </Button>   
-                  )}
-                  <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endTwo}</p>
-                </span>
-              </div>
-            </a>
-
-            <Divider className="divider-dg-top"/>
-
-            <a target="_blank" href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkThree}`}>
-              <div className={`${passedOne ? "governance-block" : "governance-block-blue"}`}>
-                <p className="earned-amount">{govThree.name}</p>
-                <span style={{ display: 'flex'  }}>
-                  {passedThree == true ? (
-                    <Button className="etherscan-button-green" disabled>
-                      PASSED
-                    </Button>
-                  ) : (
-                    <Button className="etherscan-button-blue" disabled>
-                      ACTIVE
-                    </Button>   
-                  )}
-                  <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endThree}</p>
-                </span>
-              </div>
-            </a>
-
-            <Divider className="divider-dg-top"/>
-
-            <span className="DG-button-span">
-              <Button
-                href="https://gov.decentral.games"
-                target="_blank"
-                className="DG-stake-button"
-              >
-                DISCUSSION
-              </Button>
-              <Button
-                href="https://snapshot.page/#/decentralgames.eth"
-                target="_blank"
-                className="DG-stake-button"
-              >
-                ALL PROPOSALS
-              </Button>
-            </span>
+              </span>
+            </div>
           </div>
 
         </div>

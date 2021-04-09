@@ -27,6 +27,7 @@
     "chart.js": "^2.9.4",
     "cross-env": "^7.0.3",
     "eth-sig-util": "^3.0.1",
+    "formatic": "^2.2.0",
     "fortmatic": "^2.2.1",
     "html-to-react": "^1.4.5",
     "intro.js": "^3.3.1",

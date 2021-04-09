@@ -41,7 +41,7 @@ const ModalAcceptDai = () => {
           className="balances-authorize-button"
           id="balances-padding-correct"
         >
-          ENABLE DAI GAMEPLAY
+          ENABLE DAI
         </Button>
       }
     >
@@ -81,7 +81,7 @@ const ModalAcceptDai = () => {
               id="balances-padding-correct"
               disabled
             >
-              ENABLE DAI GAMEPLAY
+              ENABLE DAI
             </Button>
           )}
 

@@ -1823,11 +1823,48 @@ div.ui.grid.balances-container {
   width: 100%;
 }
 
+.balances-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1401px) {
+  .balances-column-three {
+    display: none;
+  }
+}
+
 .balances-column {
   background-color: white;
-  width: 100%;
+  width: 18.5%;
   padding: 12px 18px 12px 18px !important;
+  margin-bottom: 30px;
 }
+
+@media (max-width: 1400px) {
+  .balances-column,
+  .balances-column-three {
+    width: 32%;
+  }
+}
+
+@media (max-width: 1121px) {
+  .balances-column,
+  .balances-column-three {
+    width: 48.5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .balances-column {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  .balances-column-three {
+    display: none;
+  }
+}
+
 
 .top-balances-column {
   border: 1px solid #edf2f9;
@@ -2012,21 +2049,6 @@ i.copy.icon.affiliate-icon:hover {
   padding: 18px 18px 18px 18px !important;
 }
 
-.DG-h3 {
-  font-size: 20px;
-  font-weight: 800;
-  padding-bottom: 9px;
-  color: black;
-}
-
-.DG-top-container {
-  padding-top: 30px;
-  padding-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
-
 .DG-liquidity-container {
   max-width: 1343px;
   margin-left: auto !important;
@@ -2040,12 +2062,16 @@ i.copy.icon.affiliate-icon:hover {
   padding-top: 0px;
 }
 
-.DG-tablet-container,
 .DG-tablet-container-gov {
   display: flex;
   justify-content: space-between;
-  flex-direction: column !important;
-  width: 66%;
+  flex-direction: row !important;
+  width: 74.75%;
+  height: 100%;
+}
+
+.DG-column-treasury {
+  width: 48.5%;
 }
 
 .DG-column.top {
@@ -2083,12 +2109,6 @@ i.copy.icon.affiliate-icon:hover {
 .DG-column.one,
 .DG-column.two {
   width: 100%;
-}
-
-.DG-column-treasury.one,
-.DG-column-treasury.two,
-.DG-column-treasury.three {
-  width: 36%;
 }
 
 .DG-column.treasury-stats {
@@ -2758,8 +2778,8 @@ a.ui.blue.button.play-button,
   color: #2085f4;
   height: 27px;
   padding: 0 0 0 0;
-  max-width: 90px !important;
-  min-width: 90px;
+  max-width: 60px !important;
+  min-width: 60px;
   opacity: 100% !important;
 }
 

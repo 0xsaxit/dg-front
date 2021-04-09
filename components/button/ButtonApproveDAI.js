@@ -140,7 +140,7 @@ function ButtonApproveMANA() {
           id="balances-padding-correct"
           onClick={() => metaTransaction()}
         >
-          ENABLE DAI GAMEPLAY
+          ENABLE DAI
         </Button>
       </span>
     </Aux>

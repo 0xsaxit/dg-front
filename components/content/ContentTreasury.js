@@ -365,7 +365,7 @@ const ContentTreasury = (props) => {
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Name</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right" style={{ paddingLeft: '180px' }}>Amount</Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right" style={{ paddingLeft: '23vw' }}>Amount</Table.HeaderCell>
                   <Table.HeaderCell textAlign="right">Weekly Change</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>

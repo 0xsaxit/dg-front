@@ -283,14 +283,8 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccount() {
     return (
-      <Grid className="balances-container">
-        <Grid.Row>
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column one"
-          >
+        <div className="balances-container">
+          <div className="balances-column one">
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
@@ -310,17 +304,6 @@ const ContentAccount = (props) => {
               </span>
             </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                disabled
-                className="balances-top-button"
-                target="_blank"
-                style={{ marginTop: '-60px' }}
-              >
-                FREE
-              </Button>
-            </span>
-
             <Divider className="divider-dg-top" />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -337,7 +320,7 @@ const ContentAccount = (props) => {
                 href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
                 target="_blank"
               >
-                PLAY NOW
+                PLAY
               </Button>
               {state.userInfo[3] === 2 ? (
                 <Button disabled className="balances-play-button">
@@ -353,14 +336,9 @@ const ContentAccount = (props) => {
                 </Button>
               )}
             </span>
-          </Grid.Column>
+          </div>
 
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column two"
-          >
+          <div className="balances-column two">
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
@@ -387,9 +365,9 @@ const ContentAccount = (props) => {
                 <Button
                   className="balances-top-button"
                   onClick={() => show_transak_1()}
-                  style={{ marginTop: '-75px' }}
+                  style={{ marginTop: '-60px' }}
                 >
-                  PURCHASE
+                  BUY
                 </Button>
               </span>
             </div>
@@ -462,14 +440,9 @@ const ContentAccount = (props) => {
                 <ModalAcceptMana />
               </span>
             </div>
-          </Grid.Column>
+          </div>
 
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column three"
-          >
+          <div className="balances-column three">
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
@@ -494,11 +467,11 @@ const ContentAccount = (props) => {
             <div style={styles.boxDAI}>
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
-                  className="balances-top-button two"
+                  className="balances-top-button"
                   onClick={() => show_transak_2()}
-                  style={{ marginTop: '-75px' }}
+                  style={{ marginTop: '-60px' }}
                 >
-                  PURCHASE
+                  BUY
                 </Button>
               </span>
             </div>
@@ -570,16 +543,9 @@ const ContentAccount = (props) => {
                 <ModalAcceptDai />
               </span>
             </div>
-          </Grid.Column>
-        </Grid.Row>
+          </div>
 
-        <Grid.Row>
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column one"
-          >
+          <div className="balances-column one">
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
@@ -610,22 +576,18 @@ const ContentAccount = (props) => {
 
             <span className="balances-button-span">
               <Button
-                style={{ width: '100%' }}
+                disabled
+                  style={{ width: '100%', padding: '11px 0 0 0' }}
                 className="balances-play-button"
                 href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
                 target="_blank"
               >
-                Enable USDT Gameplay
+                Enable USDT
               </Button>
             </span>
-          </Grid.Column>
+          </div>
 
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column two"
-          >
+          <div className="balances-column two">
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
@@ -651,10 +613,10 @@ const ContentAccount = (props) => {
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   className="balances-top-button"
-                  onClick={() => show_transak_1()}
-                  style={{ marginTop: '-75px' }}
+                  onClick={() => show_transak_4()}
+                  style={{ marginTop: '-60px' }}
                 >
-                  PURCHASE
+                  BUY
                 </Button>
               </span>
             </div>
@@ -725,133 +687,20 @@ const ContentAccount = (props) => {
             <div style={styles.buttonMANA}>
               <span className="balances-button-span">
                 <Button
-                  style={{ width: '100%' }}
+                  disabled
+                  style={{ width: '100%', padding: '11px 0 0 0' }}
                   className="balances-play-button"
                   href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
                   target="_blank"
                 >
-                  Enable Atri Gameplay
+                  Enable Atri
                 </Button>
               </span>
             </div>
-          </Grid.Column>
+          </div>
 
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column three"
-          >
-            <span style={{ display: 'flex' }}>
-              <span className="avatar-picture">
-                <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/1027_ikeis0.png"
-                  className="farming-logo-small"
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
-                <p className="welcome-text-top">Eth</p>
-                <p className="earned-amount" style={{ marginBottom: '-30px' }}>
-                  0
-                </p>
-              </span>
-            </span>
-
-            <div style={styles.boxDAI}>
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  className="balances-top-button two"
-                  onClick={() => show_transak_2()}
-                  style={{ marginTop: '-75px' }}
-                >
-                  PURCHASE
-                </Button>
-              </span>
-            </div>
-
-            <Divider className="divider-dg-top" />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{totalDAI}</p>
-            </span>
-
-            <Divider className="divider-dg-top" />
-
-            <div style={styles.boxDAI}>
-              <span className="balances-button-span">
-                <Button
-                  className="balances-play-button"
-                  onClick={() => setShowModal_3(true)}
-                  style={{ padding: '0 0 0 0' }}
-                >
-                  DEPOSIT
-                </Button>
-                <ConnextModal
-                  showModal={showModal_3}
-                  onClose={() => setShowModal_3(false)}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
-                  depositChainId={1}
-                  depositChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  withdrawAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
-                  withdrawChainId={137}
-                  withdrawChainProvider="https://rpc-mainnet.matic.network"
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                />
-                <Button
-                  className="balances-play-button"
-                  onClick={() => setShowModal_4(true)}
-                  style={{ padding: '0 0 0 0' }}
-                >
-                  WITHDRAW
-                </Button>
-                <ConnextModal
-                  showModal={showModal_4}
-                  onClose={() => setShowModal_4(false)}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={'0x6B175474E89094C44Da98b954EedeAC495271d0F'}
-                  withdrawChainId={1}
-                  withdrawChainProvider="https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6"
-                  depositAssetId={'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063'}
-                  depositChainId={137}
-                  depositChainProvider="https://rpc-mainnet.matic.network"
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                />
-              </span>
-            </div>
-
-            <div style={styles.buttonDAI}>
-              <span className="balances-button-span">
-                <Button
-                  style={{ width: '100%' }}
-                  className="balances-play-button"
-                  href="https://play.decentraland.org/?position=-120%2C135&realm=hades-amber"
-                  target="_blank"
-                >
-                  Enable Eth Gameplay
-                </Button>
-              </span>
-            </div>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          <div className="balances-column-three" />
+        </div>
     );
   }
 
