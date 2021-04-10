@@ -591,7 +591,7 @@ const ContentAccount = (props) => {
             <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/7395_konn7v.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1618091848/Group_uotjwj.png"
                   className="farming-logo-small"
                 />
               </span>
