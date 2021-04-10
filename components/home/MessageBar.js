@@ -62,17 +62,17 @@ const MessageBar = () => {
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
-    } else if (!state.networkID && isMobile == false) {
+    } else if (!state.networkID && !isMobile) {
       setMessage(
         'Please connect your wallet to play, for help, click "Get Started"'
       );
-    } else if (!state.networkID && isMobile == true) {
+    } else if (!state.networkID && isMobile) {
       setMessage('Please connect your wallet on desktop to play');
-    } else if (!state.userStatus && isMobile == false) {
+    } else if (!state.userStatus && !isMobile) {
       setMessage(
         'Please connect your wallet to play, for help, click "Get Started"'
       );
-    } else if (!state.userStatus && isMobile == true) {
+    } else if (!state.userStatus && isMobile) {
       setMessage('Please connect your wallet on desktop to play');
     } else if (adminError) {
       setMessage(
@@ -80,12 +80,7 @@ const MessageBar = () => {
       );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
-    } else if (
-      !state.userInfo[0] &&
-      !state.userInfo[1] &&
-      !state.userInfo[2] &&
-      !state.userInfo[3]
-    ) {
+    } else if (!state.userInfo.tokenArray.includes(true)) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
       );
@@ -93,19 +88,19 @@ const MessageBar = () => {
       setMessage(
         'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
-    } else if (!state.userInfo[0]) {
+    } else if (!state.userInfo.tokenArray[0]) {
       setMessage(
         'You must authorize the DAI token contract on your account page to play games with DAI'
       );
-    } else if (!state.userInfo[1]) {
+    } else if (!state.userInfo.tokenArray[1]) {
       setMessage(
         'You must authorize the MANA token contract on your account page to play games with MANA'
       );
-    } else if (!state.userInfo[2]) {
+    } else if (!state.userInfo.tokenArray[2]) {
       setMessage(
         'You must authorize the USDT token contract on your account page to play games with USDT'
       );
-    } else if (!state.userInfo[3]) {
+    } else if (!state.userInfo.tokenArray[3]) {
       setMessage(
         'You must authorize the ATRI token contract on your account page to play games with ATRI'
       );
@@ -118,6 +113,7 @@ const MessageBar = () => {
     state.userStatus,
     adminError,
     state.activeStatus,
+    state.userInfo,
   ]);
 
   if (state.userStatus === 3) {
