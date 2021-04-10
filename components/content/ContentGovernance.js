@@ -46,6 +46,7 @@ const ContentGovernance = (props) => {
 
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
+  const [atariBalance, setAtariBalance] = useState(0);
 
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -140,6 +141,9 @@ const ContentGovernance = (props) => {
         let dai = json_4.daiBalance.graph;
         setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
 
+        let atari = json_4.atriBalance;
+        setAtariBalance(props.formatPrice(atari.graph.slice(-1)[0].secondary, 0));
+
         let land = json_4.totalLandUSD;
         setLandTreasury(
           props.formatPrice(land.graph.slice(-1)[0].secondary, 0)
@@ -178,8 +182,8 @@ const ContentGovernance = (props) => {
         setMaticTreasury(props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0));
         let maticTemp = (json_4.maticBalance.graph.slice(-1)[0].secondary.toFixed(0));
         setMaticTokens(maticTemp);
-        // let maticPercent = maticBal.changes.weekly.percent.toFixed(2);
-        // setMaticTreasuryPercent(Number(maticPercent));
+        let maticPercent = maticBal.changes.weekly.percent.toFixed(2);
+        setMaticTreasuryPercent(Number(maticPercent));
 
         setTreasuryDG(props.formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
       }
@@ -587,6 +591,7 @@ const ContentGovernance = (props) => {
                             <p className="earned-text">DAI: {daiBalance}</p>
                             <p className="earned-text">MANA: {manaBalance}</p>
                             <p className="earned-text">USDT: 149,768 </p>
+                            <p className="earned-text">ATRI: {atariBalance}</p>
                           </div>
                         </Popup>
                       </span>
