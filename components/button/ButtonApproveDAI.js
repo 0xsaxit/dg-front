@@ -16,20 +16,20 @@ function ButtonApproveMANA() {
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // if the user has also authorized MANA set status value to 8, otherwise 6
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      if (state.userStatus === 7) {
-        setValue(8);
-      } else {
-        setValue(6);
-      }
-    }
-  }, [state.userStatus]);
+  // useEffect(() => {
+  //   if (state.userStatus >= 4) {
+  //     if (state.userStatus === 7) {
+  //       setValue(8);
+  //     } else {
+  //       setValue(6);
+  //     }
+  //   }
+  // }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -70,7 +70,7 @@ function ButtonApproveMANA() {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
   async function dispatchActiveStatus(txHash) {
-    console.log('Updating user status to: ' + value);
+    console.log('Updating active status to true');
 
     // update global state active status
     dispatch({
@@ -78,16 +78,23 @@ function ButtonApproveMANA() {
       data: true,
     });
 
-    // update global state user status
+    // dispatch({
+    //   type: 'update_status',
+    //   data: value,
+    // });
+
+    // update user's token array in database
+    console.log("Updating user's token array in database: DAI");
+
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 0);
+
+    // update global state user information
+    const refresh = !state.updateInfo;
+
     dispatch({
-      type: 'update_status',
-      data: value,
+      type: 'update_info',
+      data: refresh,
     });
-
-    // update user status in database
-    console.log('Posting user status to db: ' + value);
-
-    Fetch.UPDATE_STATUS(state.userAddress, value);
 
     // post authorization to database
     console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');

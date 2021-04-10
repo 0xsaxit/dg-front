@@ -223,7 +223,7 @@ const ContentAccount = (props) => {
                 }}
               >
                 <p className="welcome-text">Play</p>
-                <p className="account-name">{state.userInfo[2]}</p>
+                <p className="account-name">{state.userInfo.balancePLAY}</p>
               </span>
             </span>
 
@@ -242,7 +242,7 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount"> {state.userInfo[8]} </p>
+              <p className="earned-amount"> {state.userInfo.totalPLAY} </p>
             </span>
 
             <Divider />
@@ -256,7 +256,7 @@ const ContentAccount = (props) => {
               >
                 PLAY NOW
               </Button>
-              {state.userInfo[3] === 2 ? (
+              {state.userInfo.count === 2 ? (
                 <Button disabled className="balances-play-button">
                   TOP UP
                 </Button>
@@ -318,12 +318,12 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{state.userInfo[7]}</p>
+              <p className="earned-amount">{state.userInfo.totalMANA}</p>
             </span>
 
             <Divider />
 
-            {state.userStatus === 7 || state.userStatus === 8 ? (
+            {state.userInfo.tokenArray[1] ? (
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
@@ -432,12 +432,12 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{state.userInfo[6]}</p>
+              <p className="earned-amount">{state.userInfo.totalDAI}</p>
             </span>
 
             <Divider />
 
-            {state.userStatus === 6 || state.userStatus === 8 ? (
+            {state.userInfo.tokenArray[0] ? (
               <span className="balances-button-span">
                 <Button
                   className="balances-play-button"
@@ -536,15 +536,26 @@ const ContentAccount = (props) => {
   async function topUp() {
     await Fetch.TOP_UP_USER(state.userAddress);
 
-    let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
-    let json = await responseInfo.json();
+    // let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
+    // let json = await responseInfo.json();
 
-    let arrayInfo = state.userInfo;
-    arrayInfo[3] = json.callCount;
+    // let arrayInfo = state.userInfo;
+    // arrayInfo[3] = json.callCount;
+
+    // let objectInfo = state.userInfo;
+    // objectInfo.count = json.callCount;
+
+    // dispatch({
+    //   type: 'user_info',
+    //   data: objectInfo,
+    // });
+
+    // update global state user information
+    const refresh = !state.updateInfo;
 
     dispatch({
-      type: 'user_info',
-      data: arrayInfo,
+      type: 'update_info',
+      data: refresh,
     });
   }
 
@@ -678,9 +689,9 @@ const ContentAccount = (props) => {
                   const amount = row.amount;
 
                   let sign = '';
-                  if ((row.type).includes("Deposit")) {
+                  if (row.type.includes('Deposit')) {
                     sign = '+';
-                  } else if ((row.type).includes("Withdrawal")) {
+                  } else if (row.type.includes('Withdrawal')) {
                     sign = '-';
                   }
 
@@ -688,7 +699,7 @@ const ContentAccount = (props) => {
                     <Table.Body key={i}>
                       <Table.Row>
                         <Table.Cell>
-                          {(row.type).includes("DAI") ? (
+                          {row.type.includes('DAI') ? (
                             <img
                               src={Images.ICON_DAI}
                               style={{
@@ -714,7 +725,7 @@ const ContentAccount = (props) => {
                           {row.type}
                         </Table.Cell>
                         <Table.Cell className="account-col-2">
-                          {(row.type).includes("DAI") ? (
+                          {row.type.includes('DAI') ? (
                             <span>
                               {sign}
                               {amount > 1000000000000000000000000

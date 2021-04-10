@@ -65,7 +65,7 @@ const AccountData = (props) => {
               >
                 <img
                   className="avatar-picture main"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                  src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
                   style={{
                     backgroundColor: 'white',
                     width: '120px',
@@ -75,16 +75,16 @@ const AccountData = (props) => {
                 />
               </a>
             </span>
-            {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+            {state.userInfo.name === null || state.userInfo.name === '' ? (
               <p className="account-name-2">
-                {state.userInfo[1].substr(0, 4) +
+                {state.userAddress.substr(0, 4) +
                   '...' +
-                  state.userInfo[1].substr(-4)}
+                  state.userAddress.substr(-4)}
               </p>
             ) : (
-              <p className="account-name-2">{state.userInfo[0]}</p>
+              <p className="account-name-2">{state.userInfo.name}</p>
             )}
-            <p className="welcome-text-2"> {state.userInfo[1]} </p>
+            <p className="welcome-text-2"> {state.userAddress} </p>
           </span>
 
           <span

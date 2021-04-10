@@ -24,7 +24,7 @@ function ActiveStatus() {
 
   useEffect(() => {
     if (
-      state.userStatus >= 6 &&
+      state.userInfo.tokenArray.includes(true) &&
       state.networkID === Global.CONSTANTS.PARENT_NETWORK_ID
     ) {
       // initialize Web3 providers and create treasury contract instance

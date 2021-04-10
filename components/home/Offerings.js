@@ -9,7 +9,6 @@ import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';
 
-
 const detailsGames = {
   BlackJack: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/blackjack_jcrtzp.png',
@@ -183,7 +182,7 @@ const Offerings = (props) => {
       setTimePeriod(timePeriods[j + 1]);
     } else {
       j = 0;
-      setTimePeriod(timePeriods[j]);   
+      setTimePeriod(timePeriods[j]);
     }
   }
 
@@ -194,7 +193,7 @@ const Offerings = (props) => {
       j = 3;
       setTimePeriod(timePeriods[j]);
     } else {
-      setTimePeriod(timePeriods[j - 1]);   
+      setTimePeriod(timePeriods[j - 1]);
     }
   }
 
@@ -216,7 +215,7 @@ const Offerings = (props) => {
   //   console.log('Re-fetching game records');
   //   setGameRecordsRefresh(true);
 
-  //   const response = await Fetch.GAME_RECORDS(state.userInfo[1]);
+  //   const response = await Fetch.GAME_RECORDS(state.userAddress);
   //   const jsonRecords = await response.json();
 
   //   setGameRecordsRefresh(false);
@@ -260,7 +259,6 @@ const Offerings = (props) => {
               </Link>
 
               {leaderboardLink(true)}
-
             </p>
           ) : gameState === 'casinos' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -284,7 +282,6 @@ const Offerings = (props) => {
               </Link>
 
               {leaderboardLink(true)}
-
             </p>
           ) : gameState == 'nfts' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -366,10 +363,7 @@ const Offerings = (props) => {
           )}
         </div>
 
-        <Divider
-          className="tab-divider"
-          style={{ paddingTop: '21px' }}
-        />
+        <Divider className="tab-divider" style={{ paddingTop: '21px' }} />
       </div>
     );
   }
@@ -407,7 +401,7 @@ const Offerings = (props) => {
           style={{
             display: 'flex',
             justifyContent: 'flex-end',
-            marginRight: '-15px'
+            marginRight: '-15px',
           }}
           className="leaderboard-coin-select"
         >
@@ -472,17 +466,14 @@ const Offerings = (props) => {
             />
             DAI
           </span>
-          <span
-            className="account-hover-time"
-            style={{ marginRight: '-6px' }}
-          >
-            <Icon 
+          <span className="account-hover-time" style={{ marginRight: '-6px' }}>
+            <Icon
               className="time-select-icon"
               name="angle left"
               onClick={timeChangeBackward}
             />
-              {timePeriod}
-            <Icon 
+            {timePeriod}
+            <Icon
               className="time-select-icon"
               name="angle right"
               style={{ marginLeft: '4px' }}
@@ -507,9 +498,7 @@ const Offerings = (props) => {
           >
             <span
               className={
-                gameSelect === 'play'
-                  ? 'account-hover active'
-                  : 'account-hover'
+                gameSelect === 'play' ? 'account-hover active' : 'account-hover'
               }
               id="account-select-play"
               onClick={() => handleChange('play')}
@@ -571,16 +560,14 @@ const Offerings = (props) => {
                 ////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////  send time select to own row  ///////////////////////// */}
 
-          <span
-            className="account-hover-time tablet"
-          >
-            <Icon 
+          <span className="account-hover-time tablet">
+            <Icon
               className="time-select-icon"
               name="angle left"
               onClick={timeChangeBackward}
             />
-              {timePeriod}
-            <Icon 
+            {timePeriod}
+            <Icon
               className="time-select-icon"
               name="angle right"
               style={{ marginLeft: '4px' }}

@@ -11,7 +11,20 @@ const initialState = {
   userStatus: 0,
   userAddress: '',
   // ipAddress: '',
-  userInfo: [],
+  userInfo: {
+    name: '',
+    index: 0,
+    balancePLAY: 0,
+    count: '',
+    email: '',
+    playersList: [],
+    totalDAI: 0,
+    totalMANA: 0,
+    totalPLAY: 0,
+    totalUSDT: 0,
+    totalATRI: 0,
+    tokenArray: [false, false, false, false, false, false],
+  },
   userBalances: [
     [0, 0],
     [0, 0],
@@ -73,6 +86,7 @@ const initialState = {
   },
   refreshTokens: 'Initial',
   refreshBalances: true,
+  updateInfo: true,
   stakeTime: 0,
   affiliateAddress: '',
   toggleTheme: 'light',
@@ -212,6 +226,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshBalances: action.data,
+      };
+
+    case 'update_info':
+      return {
+        ...state,
+        updateInfo: action.data,
       };
 
     case 'stake_time':

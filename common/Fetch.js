@@ -84,6 +84,16 @@ const Fetch = {
     });
   },
 
+  EVENTS: () => {
+    return fetch(`https://api.decentral.games/players/getEvents`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   // ADMIN_HISTORY: () => {
   //   return fetch(`${API_BASE_URL}/admin/getHistory?address=${address}`, {
   //     method: 'GET',
@@ -136,8 +146,22 @@ const Fetch = {
     });
   },
 
-  UPDATE_STATUS: (address, step) => {
-    return fetch(`${API_BASE_URL}/order/updateStatus`, {
+  // UPDATE_STATUS: (address, step) => {
+  //   return fetch(`${API_BASE_URL}/order/updateStatus`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: address,
+  //       verifyStep: step,
+  //     }),
+  //   });
+  // },
+
+  UPDATE_TOKEN_ARRAY: (address, index) => {
+    return fetch(`${API_BASE_URL}/order/updateTokenArray`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -145,7 +169,7 @@ const Fetch = {
       },
       body: JSON.stringify({
         address: address,
-        verifyStep: step,
+        index: index,
       }),
     });
   },
@@ -208,16 +232,6 @@ const Fetch = {
         txHash: txHash,
         step: step,
       }),
-    });
-  },
-
-  EVENTS: () => {
-    return fetch(`https://api.decentral.games/players/getEvents`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
     });
   },
 

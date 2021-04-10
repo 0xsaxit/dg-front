@@ -15,36 +15,49 @@ function UserInfo() {
         const jsonInfo = await responseInfo.json();
 
         const name = jsonInfo.avatarName;
-        const address = jsonInfo.address;
+
+        // const address = jsonInfo.address;
+        const index = ''; // jsonInfo.id/
+
         const balancePLAY = jsonInfo.playBalance.toLocaleString();
         const count = jsonInfo.callCount;
         const email = '';
         const playersList = jsonInfo.playersList;
-
+        const tokenArray = jsonInfo.tokenArray;
         const responseData = await Fetch.PLAYER_DATA(state.userAddress);
         const jsonData = await responseData.json();
 
+        const totalPLAY = (
+          jsonData.PLAY.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
         const totalDAI = (
           jsonData.DAI.payout_player / Global.CONSTANTS.FACTOR
         ).toLocaleString();
         const totalMANA = (
           jsonData.MANA.payout_player / Global.CONSTANTS.FACTOR
         ).toLocaleString();
-        const totalPLAY = (
-          jsonData.PLAY.payout_player / Global.CONSTANTS.FACTOR
-        ).toLocaleString();
+        // const totalUSDT = (
+        //   jsonData.USDT.payout_player / Global.CONSTANTS.FACTOR
+        // ).toLocaleString();
+        // const totalATRI = (
+        //   jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
+        // ).toLocaleString();
 
-        const data = [
-          name,
-          address,
-          balancePLAY,
-          count,
-          email,
-          playersList,
-          totalDAI,
-          totalMANA,
-          totalPLAY,
-        ];
+        const data = {
+          name: name,
+          // address,
+          index: index,
+          balancePLAY: balancePLAY,
+          count: count,
+          email: email,
+          playersList: playersList,
+          totalPLAY: totalPLAY,
+          totalDAI: totalDAI,
+          totalMANA: totalMANA,
+          totalUSDT: 0, // totalUSDT, // ********************
+          totalATRI: 0, // totalATRI, // ********************
+          tokenArray: tokenArray,
+        };
 
         dispatch({
           type: 'user_info',
@@ -52,7 +65,7 @@ function UserInfo() {
         });
       })();
     }
-  }, [state.userAddress]);
+  }, [state.userAddress, state.updateInfo]);
 
   return null;
 }

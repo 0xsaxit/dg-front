@@ -26,7 +26,7 @@ const MessageBar = () => {
 
   useEffect(() => {
     if (typeof window.orientation !== 'undefined') {
-      setMobile(true);  
+      setMobile(true);
     } else {
       setMobile(false);
     }
@@ -63,11 +63,15 @@ const MessageBar = () => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome or Firefox to play games');
     } else if (!state.networkID && isMobile == false) {
-      setMessage('Please connect your wallet to play, for help, click "Get Started"');
+      setMessage(
+        'Please connect your wallet to play, for help, click "Get Started"'
+      );
     } else if (!state.networkID && isMobile == true) {
       setMessage('Please connect your wallet on desktop to play');
     } else if (!state.userStatus && isMobile == false) {
-      setMessage('Please connect your wallet to play, for help, click "Get Started"');
+      setMessage(
+        'Please connect your wallet to play, for help, click "Get Started"'
+      );
     } else if (!state.userStatus && isMobile == true) {
       setMessage('Please connect your wallet on desktop to play');
     } else if (adminError) {
@@ -76,26 +80,34 @@ const MessageBar = () => {
       );
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
-
-      // } else if (!state.userStatus === 4) {
-      //   setMessage(
-      //     'You must reside in a whitelisted jurisdiction to play games with crypto. You may still play free play games.'
-      //   );
-    } else if (state.userStatus === 4) {
+    } else if (
+      !state.userInfo[0] &&
+      !state.userInfo[1] &&
+      !state.userInfo[2] &&
+      !state.userInfo[3]
+    ) {
       setMessage(
-        `Make sure you've enabled MANA and DAI gameplay in your account`
+        `Make sure you've enabled cypto gameplay on your account page`
       );
     } else if (!state.activeStatus) {
       setMessage(
         'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
-    } else if (state.userStatus === 6) {
+    } else if (!state.userInfo[0]) {
+      setMessage(
+        'You must authorize the DAI token contract on your account page to play games with DAI'
+      );
+    } else if (!state.userInfo[1]) {
       setMessage(
         'You must authorize the MANA token contract on your account page to play games with MANA'
       );
-    } else if (state.userStatus === 7) {
+    } else if (!state.userInfo[2]) {
       setMessage(
-        'You must authorize the DAI token contract on on your account page to play games with DAI'
+        'You must authorize the USDT token contract on your account page to play games with USDT'
+      );
+    } else if (!state.userInfo[3]) {
+      setMessage(
+        'You must authorize the ATRI token contract on your account page to play games with ATRI'
       );
     } else {
       setMessage('');

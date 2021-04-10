@@ -372,15 +372,16 @@ const MenuTop = (props) => {
 
               <span className="menu-avatar-background" id="add-funds-mobile">
                 <span className="mobile-display-none-name">
-                  {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                  {state.userInfo.name === null ||
+                  state.userInfo.name === '' ? (
                     <p className={menuStyle[1]} style={{ marginTop: '-1px' }}>
-                      {state.userInfo[1].substr(0, 4) +
+                      {state.userAddress.substr(0, 4) +
                         '...' +
-                        state.userInfo[1].substr(-4)}
+                        state.userAddress.substr(-4)}
                     </p>
                   ) : (
                     <p style={{ marginTop: '-1px' }} className={menuStyle[1]}>
-                      {state.userInfo[0]}
+                      {state.userInfo.name}
                     </p>
                   )}
                 </span>
@@ -388,7 +389,7 @@ const MenuTop = (props) => {
                 <img
                   className="avatar-picture"
                   id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                  src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
                   style={{
                     width: '18px',
                     height: '18px',
