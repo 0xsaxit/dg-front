@@ -15,7 +15,7 @@ const EventData = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  {/*useEffect(() => {
+  useEffect(() => {
     (async function () {
       // get events from dcl
       let response = await Fetch.EVENTS();
@@ -36,7 +36,7 @@ const EventData = () => {
       setEvents(events);
       setLoading(false);
     })();
-  }, []);*/}
+  }, []);
 
   function getSentences(str) {
     var ss = str.split('!');

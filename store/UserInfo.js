@@ -36,12 +36,12 @@ function UserInfo() {
         const totalMANA = (
           jsonData.MANA.payout_player / Global.CONSTANTS.FACTOR
         ).toLocaleString();
-        // const totalUSDT = (
-        //   jsonData.USDT.payout_player / Global.CONSTANTS.FACTOR
-        // ).toLocaleString();
-        // const totalATRI = (
-        //   jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
-        // ).toLocaleString();
+        const totalUSDT = (
+          jsonData.USDT.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalATRI = (
+          jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
 
         const data = {
           name: name,
@@ -54,8 +54,8 @@ function UserInfo() {
           totalPLAY: totalPLAY,
           totalDAI: totalDAI,
           totalMANA: totalMANA,
-          totalUSDT: 0, // totalUSDT, // ********************
-          totalATRI: 0, // totalATRI, // ********************
+          totalUSDT: totalUSDT,
+          totalATRI: totalATRI,
           tokenArray: tokenArray,
         };
 

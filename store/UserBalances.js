@@ -108,6 +108,7 @@ function UserBalances() {
       ABI_ROOT_TOKEN,
       Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
     );
+
     const tokenContractChild = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_MANA,
       Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
@@ -118,12 +119,23 @@ function UserBalances() {
       Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
     );
 
+    const USDTContractChild = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_DAI,
+      '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+    );
+
+    const ATRIContractChild = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_DAI,
+      '0xb140665dde25c644c6b418e417c930de8a8a6ac9'
+    );
+
     try {
       const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
         state.userAddress,
         0
       );
+
       const amountMANA2 = await Transactions.balanceOfToken(
         tokenContractChild,
         state.userAddress,
@@ -136,10 +148,22 @@ function UserBalances() {
         0
       );
 
+      const amountUSDT = await Transactions.balanceOfToken(
+        USDTContractChild,
+        state.userAddress,
+        0
+      ); 
+
+      const amountATRI= await Transactions.balanceOfToken(
+        ATRIContractChild,
+        state.userAddress,
+        0
+      );
+
       return [
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
-        // [0, 0],
+        [0, amountUSDT, amountATRI],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

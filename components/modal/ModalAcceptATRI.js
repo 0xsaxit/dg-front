@@ -1,10 +1,9 @@
 import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Divider, Icon, Checkbox } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
-import ButtonApproveDAI from '../button/ButtonApproveDAI';
+import ButtonApproveATRI from '../button/ButtonApproveATRI';
 
-
-const ModalAcceptDai = () => {
+const ModalAcceptATRI = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -13,6 +12,8 @@ const ModalAcceptDai = () => {
   const [checkedOne, setCheckedOne] = useState(false);
   const [checkedTwo, setCheckedTwo] = useState(false);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function isCheckedOne() {
     if (checkedOne === true) {
       setCheckedOne(false);
@@ -41,11 +42,10 @@ const ModalAcceptDai = () => {
           className="balances-authorize-button"
           id="balances-padding-correct"
         >
-          ENABLE DAI GAMEPLAY
+          ENABLE ATRI
         </Button>
       }
     >
-
       <div style={{ margin: '21px 30px 0px 30px' }}>
         <span className="mailchimp-close" onClick={() => setOpen(false)}>
           <Icon name="close" />
@@ -57,37 +57,42 @@ const ModalAcceptDai = () => {
       <Divider style={{ marginTop: '-15px' }} />
 
       <div style={{ padding: '10px 30px 30px 30px' }}>
-        <p> Please take a few minutes to read and understand our <a href="https://docs.decentral.games/disclaimer"> disclaimer</a>. To continue, you'll need to accept the following Terms of Service by checking each box. </p>
-        
-          <Checkbox 
-            style={{ padding: '0px 0px 0px 0px' }}
-            onClick={() => isCheckedOne()}
-            label="I am at least 18 years old" 
-          />
+        <p>
+          {' '}
+          Please take a few minutes to read and understand our{' '}
+          <a href="https://docs.decentral.games/disclaimer"> disclaimer</a>. To
+          continue, you'll need to accept the following Terms of Service by
+          checking each box.{' '}
+        </p>
 
-          <Checkbox 
-            style={{ padding: '12px 0px 24px 0px' }}
-            onClick={() => isCheckedTwo()}
-            label="I reside in a jurisdiction where online gaming is permitted" 
-          />
+        <Checkbox
+          style={{ padding: '0px 0px 0px 0px' }}
+          onClick={() => isCheckedOne()}
+          label="I am at least 18 years old"
+        />
 
-          {checkedOne === true && checkedTwo === true ? (
-            <span onClick={() => setOpen(false)}>
-              <ButtonApproveDAI />
-            </span>
-          ) : (
-            <Button
-              className="balances-authorize-button"
-              id="balances-padding-correct"
-              disabled
-            >
-              ENABLE DAI
-            </Button>
-          )}
+        <Checkbox
+          style={{ padding: '12px 0px 24px 0px' }}
+          onClick={() => isCheckedTwo()}
+          label="I reside in a jurisdiction where online gaming is permitted"
+        />
 
+        {checkedOne === true && checkedTwo === true ? (
+          <span onClick={() => setOpen(false)}>
+            <ButtonApproveATRI/>
+          </span>
+        ) : (
+          <Button
+            className="balances-authorize-button"
+            id="balances-padding-correct"
+            disabled
+          >
+            ENABLE ATRI
+          </Button>
+        )}
       </div>
     </Modal>
   );
 };
 
-export default ModalAcceptDai;
+export default ModalAccepATRI;
