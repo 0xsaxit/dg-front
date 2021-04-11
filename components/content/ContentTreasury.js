@@ -40,6 +40,8 @@ const ContentTreasury = (props) => {
 
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
+  const [usdtBalance, setUSDTBalance] = useState(0);
+  const [atriBalance, setAtriBalance] = useState(0);
 
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -147,6 +149,12 @@ const ContentTreasury = (props) => {
 
         let dai = json_4.daiBalance.graph;
         setDaiBalance(formatPrice(dai.slice(-1)[0].secondary, 0));
+
+        let usdt = 149746;
+        setUSDTBalance(formatPrice(usdt, 0));
+
+        let atri = json_4.atriBalance.graph;
+        setAtriBalance(formatPrice(atri.slice(-1)[0].secondary, 0));
 
         let land = json_4.totalLandUSD;
         setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));
@@ -364,9 +372,9 @@ const ContentTreasury = (props) => {
             <Table unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Name</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right" style={{ paddingLeft: '23vw' }}>Amount</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right">Weekly Change</Table.HeaderCell>
+                  <Table.HeaderCell style={{ paddingRight: '27vw' }}>Name</Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right" className="treasury-left-padding">Amount</Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right">Weekly</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -374,7 +382,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Gameplay All Time
+                      Gameplay All
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -442,7 +450,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Gameplay Current
+                      Gameplay
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -456,6 +464,8 @@ const ContentTreasury = (props) => {
                         <div>
                           <p className="earned-text">DAI: {daiBalance}</p>
                           <p className="earned-text">MANA: {manaBalance}</p>
+                          <p className="earned-text">USDT: {usdtBalance}</p>
+                          <p className="earned-text">ATRI: {atriBalance}</p>
                         </div>
                       </Popup>
                     </span>
@@ -638,7 +648,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Wearables Treasury
+                    NFT Treasury
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -705,7 +715,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Uniswap Liquidity Provision
+                      Uniswap LP
                       <Popup
                         className="dai-mana-popup"
                         trigger={

@@ -1724,6 +1724,17 @@ i.pencil.icon.edit-icon:hover {
   margin: 0 0 0px 0 !important;
 }
 
+.earned-amount-black {
+  font-size: 18px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 3px;
+  padding-top: 9px !important;
+  margin-bottom: -3px;
+}
+
 .earned-amount-executed {
   font-size: 18px;
   font-weight: 700;

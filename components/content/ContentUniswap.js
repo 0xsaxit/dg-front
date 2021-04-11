@@ -181,7 +181,14 @@ const ContentUniswap = (props) => {
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+              <p className="earned-amount"> ${priceUSD} </p>
+            </span>
+
+            <Divider className="divider-dg-top" />
 
             <p style={{ fontSize: '18px' }}>
               Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
