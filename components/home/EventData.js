@@ -15,9 +15,9 @@ const EventData = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  {/*useEffect(() => {
     (async function () {
-      // get user nfts statistics
+      // get events from dcl
       let response = await Fetch.EVENTS();
       let json = await response.json();
 
@@ -36,7 +36,7 @@ const EventData = () => {
       setEvents(events);
       setLoading(false);
     })();
-  }, []);
+  }, []);*/}
 
   function getSentences(str) {
     var ss = str.split('!');
