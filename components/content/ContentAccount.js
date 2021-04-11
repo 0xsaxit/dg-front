@@ -1134,7 +1134,7 @@ const ContentAccount = (props) => {
               </Table.Row>
             </Table.Header>
 
-            <Table.Body>
+            {/*<Table.Body>
               <Table.Row>
                 <Table.Cell>
                   0xd8856cCe3F878d3Ea03964F80B18987fF1919272
@@ -1159,7 +1159,7 @@ const ContentAccount = (props) => {
                   </span>
                 </Table.Cell>
               </Table.Row>
-            </Table.Body>
+            </Table.Body>*/}
           </Table>
         </span>
       </div>

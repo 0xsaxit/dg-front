@@ -97,7 +97,7 @@ const ButtonVerifyFortmatic = () => {
 
   return (
     <span>
-      <div className="wallet-card" onClick={() => openFortmatic()}>
+      <div className="wallet-card">
         <span style={{ display: 'flex' }}>
           <Image 
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1615581511/spaces_-Lj7HukBJLlR6jbx0-eP_avatar_y2ijet.png" 
@@ -105,7 +105,7 @@ const ButtonVerifyFortmatic = () => {
           />
           <span>
             <h3 className="wallet-h3"> Fortmatic </h3>
-            <p> Using your email address </p>
+            <p> Coming Soon </p>
           </span>
         </span>
       </div>

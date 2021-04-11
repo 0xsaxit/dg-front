@@ -1220,10 +1220,6 @@ table {
   border-radius: 0px 4px 0px 0px !important;
 }
 
-.ui.table tbody+tbody tr:first-child td {
-  border-top: 1px solid #edf2f9 !important;
-}
-
 .tx-box-overflow {
   max-height: 50vh !important;
   overflow: auto;
