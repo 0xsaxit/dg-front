@@ -36,7 +36,7 @@ const EventData = () => {
       setEvents(events);
       setLoading(false);
     })();
-  }, [events, loading]);
+  }, []);
 
   function getSentences(str) {
     var ss = str.split('!');
