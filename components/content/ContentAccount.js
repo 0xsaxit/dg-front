@@ -203,11 +203,16 @@ const ContentAccount = (props) => {
             mobile={16}
             className="balances-column one"
           >
-            <span style={{ display: 'flex', marginLeft: '21px' }}>
+            <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
                   src={Images.PLAY_CIRCLE}
-                  className="farming-logo-small two"
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
                 />
               </span>
               <span
@@ -217,8 +222,8 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="earned-text">Play</p>
-                <p className="earned-amount">{state.userInfo.balancePLAY}</p>
+                <p className="welcome-text">Play</p>
+                <p className="account-name">{state.userInfo.balancePLAY}</p>
               </span>
             </span>
 
@@ -227,20 +232,20 @@ const ContentAccount = (props) => {
                 disabled
                 className="balances-top-button"
                 target="_blank"
-                style={{ marginTop: '-60px' }}
+                style={{ marginTop: '-75px' }}
               >
                 FREE
               </Button>
             </span>
 
-            <Divider className="divider-dg-top" />
+            <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount"> {state.userInfo.totalPLAY} </p>
             </span>
 
-            <Divider className="divider-dg-top" />
+            <Divider />
 
             <span className="balances-button-span">
               <Button
@@ -273,11 +278,16 @@ const ContentAccount = (props) => {
             mobile={16}
             className="balances-column two"
           >
-            <span style={{ display: 'flex', marginLeft: '21px' }}>
+            <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
                   src={Images.MANA_CIRCLE}
-                  className="farming-logo-small two"
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
                 />
               </span>
               <span
@@ -287,8 +297,8 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="earned-text">Mana</p>
-                <p className="earned-amount">
+                <p className="welcome-text">Mana</p>
+                <p className="account-name">
                   {parseInt(state.userBalances[1][1]).toLocaleString()}
                 </p>
               </span>
@@ -298,20 +308,20 @@ const ContentAccount = (props) => {
               <Button
                 className="balances-top-button"
                 onClick={() => show_transak_1()}
-                style={{ marginTop: '-60px' }}
+                style={{ marginTop: '-75px' }}
               >
-                BUY
+                PURCHASE
               </Button>
             </span>
 
-            <Divider className="divider-dg-top" />
+            <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount">{state.userInfo.totalMANA}</p>
             </span>
 
-            <Divider className="divider-dg-top" />
+            <Divider />
 
             {state.userInfo.tokenArray[1] ? (
               <span className="balances-button-span">
@@ -382,11 +392,16 @@ const ContentAccount = (props) => {
             mobile={16}
             className="balances-column three"
           >
-            <span style={{ display: 'flex', marginLeft: '21px' }}>
+            <span style={{ display: 'flex' }}>
               <span className="avatar-picture">
                 <img
                   src={Images.DAI_CIRCLE}
-                  className="farming-logo-small two"
+                  style={{
+                    width: '60px',
+                    display: 'flex',
+                    paddingTop: '12px',
+                    paddingBottom: '9px',
+                  }}
                 />
               </span>
               <span
@@ -396,8 +411,8 @@ const ContentAccount = (props) => {
                   marginTop: '7px',
                 }}
               >
-                <p className="earned-text">Dai</p>
-                <p className="earned-amount">
+                <p className="welcome-text">Dai</p>
+                <p className="account-name">
                   {parseInt(state.userBalances[0][1]).toLocaleString()}
                 </p>
               </span>
@@ -407,20 +422,20 @@ const ContentAccount = (props) => {
               <Button
                 className="balances-top-button two"
                 onClick={() => show_transak_2()}
-                style={{ marginTop: '-60px' }}
+                style={{ marginTop: '-75px' }}
               >
-                BUY
+                PURCHASE
               </Button>
             </span>
 
-            <Divider className="divider-dg-top" />
+            <Divider />
 
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
               <p className="earned-text">Total Winnings</p>
               <p className="earned-amount">{state.userInfo.totalDAI}</p>
             </span>
 
-            <Divider className="divider-dg-top" />
+            <Divider />
 
             {state.userInfo.tokenArray[0] ? (
               <span className="balances-button-span">
@@ -637,7 +652,7 @@ const ContentAccount = (props) => {
     return (
       <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
         {poaps.map((poap, i) => (
-          <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
+          <Grid.Column computer={4} tablet={8} mobile={8} key={i}>
             <Image src={poap.image_url} className="poap-pic" />
           </Grid.Column>
         ))}
@@ -682,7 +697,7 @@ const ContentAccount = (props) => {
 
                   return (
                     <Table.Body key={i}>
-                      <Table.Row className="border-account-table">
+                      <Table.Row>
                         <Table.Cell>
                           {row.type.includes('DAI') ? (
                             <img

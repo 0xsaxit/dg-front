@@ -278,15 +278,15 @@ const Fetch = {
     });
   },
 
-  PROPOSALS: () => {
-    return fetch(`https://hub.snapshot.page/api/decentralgames.eth/proposals`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  },
+  // PROPOSALS: () => {
+  //   return fetch(`https://hub.snapshot.page/api/decentralgames.eth/proposals`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   MANA_PRICE: () => {
     return fetch(`https://api.coingecko.com/api/v3/coins/decentraland`, {

@@ -59,22 +59,20 @@ const AccountData = (props) => {
               className="avatar-picture"
               style={{ alignSelf: 'center', marginTop: '-60px' }}
             >
-              <img
-                className="avatar-picture main"
-                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-                style={{
-                  backgroundColor: 'white',
-                  width: '120px',
-                  display: 'flex',
-                  marginTop: '-18px',
-                }}
-              />
-              <a 
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
+              <a
+                href={`https://play.decentraland.org/?position=-119%2C133&realm=hades-amber${utm}`}
                 target="_blank"
-                className="avatar-edit-circle"
               >
-                <Icon name="pencil" className="edit-icon" />
+                <img
+                  className="avatar-picture main"
+                  src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                  style={{
+                    backgroundColor: 'white',
+                    width: '120px',
+                    display: 'flex',
+                    marginTop: '-18px',
+                  }}
+                />
               </a>
             </span>
             {state.userInfo.name === null || state.userInfo.name === '' ? (
@@ -96,6 +94,26 @@ const AccountData = (props) => {
               margin: '-123px 0px 90px 0px',
             }}
           >
+            <Popup
+              position="top center"
+              className="account-popup"
+              trigger={
+                <a
+                  href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                  target="_blank"
+                  className="account-icon-hover"
+                  id="mobile-display-none"
+                >
+                  <span>
+                    <Icon name="settings" className="submenu-icon" />
+                  </span>
+                </a>
+              }
+            >
+              <div>
+                <p className="earned-text">EDIT AVATAR</p>
+              </div>
+            </Popup>
             <Popup
               position="top center"
               className="account-popup"

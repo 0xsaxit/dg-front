@@ -83,7 +83,7 @@ const ContentUniswap = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
-        const uni_num = 51 * 700 * props.price;
+        const uni_num = 51 * 500 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
 
@@ -144,61 +144,105 @@ const ContentUniswap = (props) => {
   function contentUniswap() {
     return (
       <Aux>
+        <div className="DG-liquidity-container top">
+          <div className="DG-column top" style={{ minWidth: '100%' }}>
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3 className="DG-h3">$DG Liquidity Provision</h3>
+              <p>
+                Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
+                pool and staking the LP tokens on this dashboard.
+                <a
+                  href="https://decentral-games-1.gitbook.io/dg/governance-1"
+                  style={{ color: '#2085f4' }}
+                  target="_blank"
+                >
+                  {' '}
+                  Read more
+                </a>
+                . Balancer LP rewards have now ended following this{' '}
+                <a
+                  href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
+                  style={{ color: '#2085f4' }}
+                  target="_blank"
+                >
+                  gov proposal
+                </a>
+                  . Unclaimed $DG and links to the pools can be found{' '}
+                <a 
+                  href="/dg/balancer"
+                  style={{ color: '#2085f4' }}
+                >
+                  here
+                </a>
+                .
+              </p>
+            </span>
+          </div>
+        </div>
 
         <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-            <p className="earned-amount">Unclaimed</p>
-
-            <Divider className="divider-dg-top" />
-
+          <div className="DG-column unclaimed">
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo-small"
+                className="farming-logo"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text-top">$DG Balance</p>
-                {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
-                  <p className="earned-amount">
-                    {props.formatPrice(
-                      state.DGBalances.BALANCE_STAKING_UNISWAP,
-                      3
-                    )}
-                  </p>
-                ) : (
-                  <Loader
-                    active
-                    inline
-                    size="small"
-                    style={{
-                      fontSize: '12px',
-                      marginTop: '5px',
-                      marginLeft: '-1px',
-                      marginBottom: '-2px',
-                    }}
-                  />
-                )}
+                <span>
+                  <p className="welcome-text">Unclaimed $DG</p>
+                  {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
+                    <p className="account-name">
+                      {props.formatPrice(
+                        state.DGBalances.BALANCE_STAKING_UNISWAP,
+                        3
+                      )}
+                    </p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="medium"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '12px',
+                        marginLeft: '15px',
+                      }}
+                    />
+                  )}
+                </span>
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider />
 
-            <p style={{ fontSize: '18px' }}>
-              Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
-              pool by staking the LP tokens on this dashboard.
-              <a
-                href="https://decentral-games-1.gitbook.io/dg/governance-1"
-                style={{ color: '#2085f4' }}
-                target="_blank"
-              >
-                {' '}
-                Read more
-              </a>
-                .
-            </p>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingTop: '12px',
+                paddingBottom: '12px',
+              }}
+            >
+              <p className="earned-text">Value USD</p>
+              {priceUSD ? (
+                <p className="earned-amount">${priceUSD}</p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px',
+                  }}
+                />
+              )}
+            </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
@@ -217,28 +261,22 @@ const ContentUniswap = (props) => {
             </span>
           </div>
 
-          <div className="DG-tablet-container-gov">
+          <span className="DG-tablet-container">
             <div
-              className="DG-column-treasury two"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
+              className="DG-column one-uniswap"
+              id="DG-column-hover"
+              style={{ position: 'relative', height: '100%' }}
             >
-              <p className="earned-amount">Liquidity Provision</p>
-
-              <Divider className="divider-dg-top" />
-
               <span style={{ display: 'flex' }}>
-                <img src={Images.ETH_CIRCLE} className="farming-logo-small" />
+                <img src={Images.ETH_CIRCLE} className="farming-logo" />
                 <img
                   src={Images.DG_COIN_LOGO}
-                  className="farming-logo-small two"
+                  className="farming-logo"
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="earned-text">Uniswap</p>
-                  <p className="earned-amount">ETH-DG</p>
+                  <p className="welcome-text">Uniswap</p>
+                  <p className="account-name">ETH-DG</p>
                 </span>
               </span>
 
@@ -246,7 +284,7 @@ const ContentUniswap = (props) => {
                 <a
                   href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                   target="_blank"
-                  style={{ marginTop: '-60px', marginRight: '-4px' }}
+                  style={{ marginTop: '-75px', marginRight: '0px' }}
                 >
                   <Icon
                     className="more-text"
@@ -255,7 +293,7 @@ const ContentUniswap = (props) => {
                 </a>
               </span>
 
-              <Divider className="divider-dg-top" />
+              <Divider />
 
               <div style={{ display: 'flex' }}>
                 <span className="gameplay-left-column">
@@ -321,7 +359,7 @@ const ContentUniswap = (props) => {
                 </span>
               </div>
 
-              <Divider className="divider-dg-top" />
+              <Divider />
 
               <Input
                 className="liquidity-input"
@@ -360,7 +398,7 @@ const ContentUniswap = (props) => {
                 </p>
               </span>
 
-              <span className="DG-button-span" style={{ paddingTop: '8px' }}>
+              <span className="DG-button-span">
                 {Number(amountInput) ? (
                   <Button
                     className="DG-stake-button"
@@ -401,10 +439,7 @@ const ContentUniswap = (props) => {
                 )}
               </span>
             </div>
-
-            <div className="DG-column-blank" />
-          </div>
-
+          </span>
         </div>
       </Aux>
     );
