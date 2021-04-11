@@ -8,6 +8,7 @@ import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
+import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
 import Aux from '../_Aux';
 
 const transak_1 = new transakSDK({
@@ -18,13 +19,11 @@ const transak_1 = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  defaultNetwork: 'matic',
   defaultCryptoCurrency: 'MANA',
-  cryptoCurrencyList: 'MANA',
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy Matic MANA directly',
+  exchangeScreenTitle: 'Buy MANA',
 });
 
 const transak_2 = new transakSDK({
@@ -35,13 +34,42 @@ const transak_2 = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  defaultNetwork: 'matic',
   defaultCryptoCurrency: 'DAI',
-  cryptoCurrencyList: 'DAI',
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy Matic DAI directly',
+  exchangeScreenTitle: 'Buy DAI',
+});
+
+const transak_3 = new transakSDK({
+  apiKey: Global.KEYS.TRANSAK_API, // API Key
+  environment: 'PRODUCTION', // STAGING/PRODUCTION
+  walletAddress: '', // customer wallet address
+  themeColor: '#2085f4', // theme color
+  fiatCurrency: '', // INR/GBP
+  email: '', // customer email address
+  redirectURL: '',
+  defaultCryptoCurrency: 'USDT',
+  hostURL: Global.CONSTANTS.BASE_URL,
+  widgetHeight: '633px',
+  widgetWidth: '100%',
+  exchangeScreenTitle: 'Buy USDT',
+});
+
+const transak_4 = new transakSDK({
+  apiKey: Global.KEYS.TRANSAK_API, // API Key
+  environment: 'PRODUCTION', // STAGING/PRODUCTION
+  walletAddress: '', // customer wallet address
+  themeColor: '#2085f4', // theme color
+  fiatCurrency: '', // INR/GBP
+  email: '', // customer email address
+  redirectURL: '',
+  defaultNetwork: 'matic',
+  defaultCryptoCurrency: 'ATRI',
+  hostURL: Global.CONSTANTS.BASE_URL,
+  widgetHeight: '633px',
+  widgetWidth: '100%',
+  exchangeScreenTitle: 'Buy ATRI',
 });
 
 const connext = {
@@ -53,6 +81,8 @@ const connext = {
   assetID_2_MANA: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
   assetID_1_DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
   assetID_2_DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+  assetID_1_USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+  assetID_2_USDT: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
 };
 
 const ContentAccount = (props) => {
@@ -64,6 +94,8 @@ const ContentAccount = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
+  const [showModal_5, setShowModal_5] = useState(false);
+  const [showModal_6, setShowModal_6] = useState(false);
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
@@ -171,6 +203,12 @@ const ContentAccount = (props) => {
     transak_2.on(transak_2.ALL_EVENTS, (data) => {
       console.log('Transak events 2: ' + data);
     });
+    transak_3.on(transak_3.ALL_EVENTS, (data) => {
+      console.log('Transak events 3: ' + data);
+    });
+    transak_4.on(transak_4.ALL_EVENTS, (data) => {
+      console.log('Transak events 4: ' + data);
+    });
 
     // triggers when the user closes the widget
     transak_1.on(transak_1.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
@@ -178,6 +216,12 @@ const ContentAccount = (props) => {
     });
     transak_2.on(transak_2.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
       transak_2.close();
+    });
+    transak_3.on(transak_3.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak_3.close();
+    });
+    transak_4.on(transak_4.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
+      transak_4.close();
     });
 
     // triggers when the payment is complete
@@ -188,6 +232,14 @@ const ContentAccount = (props) => {
     transak_2.on(transak_2.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
       console.log('Transak order complete 2: ' + orderData);
       transak_2.close();
+    });
+    transak_3.on(transak_3.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+      console.log('Transak order complete 3: ' + orderData);
+      transak_3.close();
+    });
+    transak_4.on(transak_4.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+      console.log('Transak order complete 2: ' + orderData);
+      transak_4.close();
     });
   }, []);
 
@@ -457,6 +509,160 @@ const ContentAccount = (props) => {
             <ModalAcceptDai />
           )}
         </div>
+
+        {/*<div className="balances-column one">
+          <span style={{ display: 'flex' }}>
+            <span className="avatar-picture">
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/825_vksbx4.png"
+                className="farming-logo-small"
+              />
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '7px',
+              }}
+            >
+              <p className="welcome-text-top">USDT</p>
+              <p className="earned-amount">                
+                {parseInt(state.userBalances[2][1] * 1000000000000).toLocaleString()}
+              </p>
+            </span>
+          </span>
+
+          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              className="balances-top-button"
+              onClick={() => show_transak_3()}
+              style={{ marginTop: '-60px' }}
+            >
+              BUY
+            </Button>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text">Total Winnings</p>
+            <p className="earned-amount"> {state.userInfo.totalUSDT} </p>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+            <span className="balances-button-span">
+              <Button
+                className="balances-play-button"
+                onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
+                style={{ padding: '0 0 0 0' }}
+              >
+                DEPOSIT
+              </Button>
+
+              <ConnextModal
+                showModal={showModal_5}
+                onClose={() => setStateAndEvent(5, false, 'USDT Deposit')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier={connext.routerPublicID}
+                depositAssetId={connext.assetID_1_USDT}
+                depositChainId={1}
+                depositChainProvider={connext.chainProviderInfura}
+                withdrawAssetId={connext.assetID_2_USDT}
+                withdrawChainId={137}
+                withdrawChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+
+              <Button
+                className="balances-play-button"
+                onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
+                style={{ padding: '0 0 0 0' }}
+              >
+                WITHDRAW
+              </Button>
+
+              <ConnextModal
+                showModal={showModal_6}
+                onClose={() => setStateAndEvent(6, false, 'USDT Withdrawal')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier={connext.routerPublicID}
+                withdrawAssetId={connext.assetID_1_USDT}
+                withdrawChainId={1}
+                withdrawChainProvider={connext.chainProviderInfura}
+                depositAssetId={connext.assetID_2_USDT}
+                depositChainId={137}
+                depositChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+            </span>
+
+        </div>
+
+        <div className="balances-column two">
+          <span style={{ display: 'flex' }}>
+            <span className="avatar-picture">
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1618091848/Group_uotjwj.png"
+                className="farming-logo-small"
+              />
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '7px',
+              }}
+            >
+              <p className="welcome-text-top">Atri</p>
+              <p className="earned-amount">
+                {parseInt(state.userBalances[2][2]).toLocaleString()}
+              </p>
+            </span>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text">Total Winnings</p>
+            <p className="earned-amount">{state.userInfo.totalATRI}</p>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          <span className="balances-button-span">
+            <Button
+              className="balances-play-button"
+              href="https://wallet.matic.network/bridge/"
+              target="_blank"
+            >
+              DEPOSIT
+            </Button>
+
+            <Button
+              className="balances-play-button"
+              href="https://wallet.matic.network/bridge/"
+              target="_blank"
+            >
+              WITHDRAW
+            </Button>
+          </span>
+
+        </div>
+
+        <div className="balances-column-three" />*/}
       </div>
     );
   }
@@ -471,6 +677,10 @@ const ContentAccount = (props) => {
       setShowModal_3(state);
     } else if (number === 4) {
       setShowModal_4(state);
+    } else if (number === 5) {
+      setShowModal_5(state);
+    } else if (number === 6) {
+      setShowModal_6(state);
     }
 
     setEvent(type);
@@ -523,6 +733,14 @@ const ContentAccount = (props) => {
 
   function show_transak_2() {
     transak_2.init();
+  }
+
+  function show_transak_3() {
+    transak_3.init();
+  }
+
+  function show_transak_4() {
+    transak_4.init();
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -609,7 +827,7 @@ const ContentAccount = (props) => {
     return (
       <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
         {poaps.map((poap, i) => (
-          <Grid.Column computer={4} tablet={8} mobile={8} key={i}>
+          <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
             <Image src={poap.image_url} className="poap-pic" />
           </Grid.Column>
         ))}
