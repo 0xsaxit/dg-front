@@ -9,12 +9,13 @@ import ContentBalancer from '../content/ContentBalancer';
 import ContentUniswap from '../content/ContentUniswap';
 import ContentAirdrop from '../content/ContentAirdrop';
 import ContentTreasury from '../content/ContentTreasury';
+import ContentReferrals from '../content/ContentReferrals';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
-import ModalAffiliates from '../modal/ModalAffiliates';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
+
 
 const Farming = (props) => {
   // get user's state from the Context API store
@@ -223,6 +224,11 @@ const Farming = (props) => {
               <span className="account-hover active">
                 <b>GOVERNANCE</b>
               </span>
+              <Link href="/dg/treasury">
+                <span className="account-hover">
+                  <b>TREASURY</b>
+                </span>
+              </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
@@ -239,14 +245,44 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-
-              <ModalAffiliates />
+            </p>
+          ) : DGState === 'treasury' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
+                <b>TREASURY</b>
+              </span>
+              <Link href="/dg/mining">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    GAMEPLAY
+                  </b>
+                  <b>REWARDS</b>
+                </span>
+              </Link>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
             </p>
           ) : DGState === 'mining' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
                   <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <Link href="/dg/treasury">
+                <span className="account-hover">
+                  <b>TREASURY</b>
                 </span>
               </Link>
               <span className="account-hover active">
@@ -263,14 +299,17 @@ const Farming = (props) => {
                   <b>PROVISION</b>
                 </span>
               </Link>
-
-              <ModalAffiliates />
             </p>
-          ) : DGState === 'uniswap' ? (
+          ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
                   <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <Link href="/dg/treasury">
+                <span className="account-hover">
+                  <b>TREASURY</b>
                 </span>
               </Link>
               <Link href="/dg/mining">
@@ -287,34 +326,6 @@ const Farming = (props) => {
                 </b>
                 <b>PROVISION</b>
               </span>
-
-              <ModalAffiliates />
-            </p>
-          ) : (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <Link href="/dg">
-                <span className="account-hover">
-                  <b>GOVERNANCE</b>
-                </span>
-              </Link>
-              <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    GAMEPLAY
-                  </b>
-                  <b>REWARDS</b>
-                </span>
-              </Link>
-              <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
-                  </b>
-                  <b>PROVISION</b>
-                </span>
-              </Link>
-
-              <ModalAffiliates />
             </p>
           )}
         </div>
@@ -441,6 +452,8 @@ const Farming = (props) => {
               withdrawal={withdrawal}
               reward={reward}
             />
+          ) : DGState === 'referrals' ? (
+            <ContentReferrals />
           ) : DGState === 'treasury' ? (
             <ContentTreasury />
           ) : DGState === 'airdrop' ? (
@@ -455,3 +468,4 @@ const Farming = (props) => {
 };
 
 export default Farming;
+
