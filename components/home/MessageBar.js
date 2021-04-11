@@ -88,22 +88,22 @@ const MessageBar = () => {
       setMessage(
         'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
-    } else if (!state.userInfo.tokenArray[0]) {
-      setMessage(
-        'You must authorize the DAI token contract on your account page to play games with DAI'
-      );
-    } else if (!state.userInfo.tokenArray[1]) {
-      setMessage(
-        'You must authorize the MANA token contract on your account page to play games with MANA'
-      );
-    } else if (!state.userInfo.tokenArray[2]) {
-      setMessage(
-        'You must authorize the USDT token contract on your account page to play games with USDT'
-      );
-    } else if (!state.userInfo.tokenArray[3]) {
-      setMessage(
-        'You must authorize the ATRI token contract on your account page to play games with ATRI'
-      );
+      // } else if (!state.userInfo.tokenArray[0]) {
+      //   setMessage(
+      //     'You must authorize the DAI token contract on your account page to play games with DAI'
+      //   );
+      // } else if (!state.userInfo.tokenArray[1]) {
+      //   setMessage(
+      //     'You must authorize the MANA token contract on your account page to play games with MANA'
+      //   );
+      // } else if (!state.userInfo.tokenArray[2]) {
+      //   setMessage(
+      //     'You must authorize the USDT token contract on your account page to play games with USDT'
+      //   );
+      // } else if (!state.userInfo.tokenArray[3]) {
+      //   setMessage(
+      //     'You must authorize the ATRI token contract on your account page to play games with ATRI'
+      //   );
     } else {
       setMessage('');
     }
