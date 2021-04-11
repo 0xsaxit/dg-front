@@ -6,6 +6,10 @@ import Global from '../components/Constants';
 const sigUtil = require('eth-sig-util');
 let childTokenAddressMANA = '';
 let childTokenAddressDAI = '';
+
+let childTokenAddressUSDT = '';
+let childTokenAddressATRI = '';
+
 let treasuryAddress = '';
 let dgPointerAddress = '';
 let arrayDomainType = [];
@@ -14,6 +18,10 @@ let metaTransactionType = [];
 
 childTokenAddressMANA = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA;
 childTokenAddressDAI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI;
+
+childTokenAddressUSDT = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT;
+childTokenAddressATRI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI;
+
 treasuryAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
 dgPointerAddress = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS;
 
@@ -70,10 +78,26 @@ const domainDataTokenDAI = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
+const domainDataTokenUSDT = {
+  name: '(PoS) Tether USD',
+  version: '1',
+  verifyingContract: childTokenAddressUSDT,
+  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+};
+
+const domainDataTokenATRI = {
+  name: 'Atari (PoS)',
+  version: '1',
+  verifyingContract: childTokenAddressATRI,
+  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+};
+
 arrayDomainData.push(domainDataTokenMANA);
 arrayDomainData.push(domainDataTreasury);
 arrayDomainData.push(domainDataDGPointer);
 arrayDomainData.push(domainDataTokenDAI);
+arrayDomainData.push(domainDataTokenUSDT);
+arrayDomainData.push(domainDataTokenATRI);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

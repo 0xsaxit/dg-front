@@ -17,7 +17,6 @@ function ButtonApproveUSDT() {
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -109,7 +108,7 @@ function ButtonApproveUSDT() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        2,
+        4,
         functionSignature,
         tokenContract,
         state.userAddress,
