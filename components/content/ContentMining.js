@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Button, Divider, Loader } from 'semantic-ui-react';
+import { Button, Divider, Loader, Icon } from 'semantic-ui-react';
 import MetaTx from '../../common/MetaTx';
 import Transactions from '../../common/Transactions';
 import Aux from '../_Aux';
@@ -122,85 +122,57 @@ const ContentMining = (props) => {
   function contentMining() {
     return (
       <Aux>
-        <div className="DG-liquidity-container top">
-          <div className="DG-column top">
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Gameplay Rewards</h3>
-              <p>
-                Mine $DG by playing games with MANA or DAI. Earn bonuses by
-                playing with friends, wearing $DG NFTs, and referring
-                friends. {' '}
-                <a
-                  href="https://decentral-games-1.gitbook.io/dg/allocation"
-                  target="_blank"
-                  style={{ color: '#2085f4' }}
-                >
-                  Read More
-                </a>
-                .
-              </p>
-            </span>
-          </div>
-        </div>
-
         <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed">
+          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo"
+                className="farming-logo-small"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed $DG</p>
+                <p className="welcome-text-top">$DG Balance</p>
                 {state.DGBalances.BALANCE_MINING_DG ? (
-                  <p className="account-name">
+                  <p className="earned-amount">
                     {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
                   </p>
                 ) : (
                   <Loader
                     active
                     inline
-                    size="medium"
+                    size="small"
                     style={{
                       fontSize: '12px',
-                      marginTop: '12px',
-                      marginLeft: '15px',
+                      marginTop: '5px',
+                      marginLeft: '-1px',
+                      marginBottom: '-2px',
                     }}
                   />
                 )}
               </span>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top"/>
 
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">Value USD</p>
-              {gameplayUSD ? (
-                <p className="earned-amount">${gameplayUSD}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '1px',
-                    marginBottom: '2px',
-                  }}
-                />
-              )}
-            </span>
+            <p style={{ fontSize: '18px' }}>
+              Mine $DG by playing games with MANA or DAI. Earn bonuses by
+              playing with friends, wearing $DG NFTs, and referring
+              friends. {' '}
+              <a
+                href="https://decentral-games-1.gitbook.io/dg/allocation"
+                target="_blank"
+                style={{ color: '#2085f4' }}
+              >
+                Read more
+              </a>
+              .
+            </p>
 
-            <Divider />
+            <Divider className="divider-dg-top"/>
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_MINING_DG) ? (
@@ -219,21 +191,46 @@ const ContentMining = (props) => {
             </span>
           </div>
 
-          <span className="DG-tablet-container">
-            <div className="DG-column one">
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.MANA_CIRCLE}
-                  className="farming-logo"
-                  alt="Decentraland Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Coin</p>
-                  <p className="account-name">MANA</p>
+          <div className="DG-tablet-container-gov">
+            <div
+              className="DG-column-treasury two"
+              style={{
+                position: 'relative',
+                height: '100%',
+              }}
+            >
+            <p className="earned-amount">Gameplay Rewards</p>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.MANA_CIRCLE}
+                className="farming-logo-small"
+                alt="MANA Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text-top">Coin</p>
+                  <p className="earned-amount">
+                    MANA
+                  </p>
                 </span>
               </span>
 
-              <Divider />
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a
+                  href="https://docs.decentral.games/allocation#community"
+                  target="_blank"
+                  style={{ marginTop: '-60px', marginRight: '-4px' }}
+                >
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
+                </a>
+              </span>
+
+              <Divider className="divider-dg-top" />
 
               <div style={{ display: 'flex' }}>
                 <span className="gameplay-left-column">
@@ -242,7 +239,6 @@ const ContentMining = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      paddingBottom: '17px',
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
@@ -262,7 +258,6 @@ const ContentMining = (props) => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      paddingBottom: '2px',
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
@@ -271,7 +266,7 @@ const ContentMining = (props) => {
                 </span>
               </div>
 
-              <Divider />
+              <Divider className="divider-dg-top" />
 
               <span className="DG-button-span">
                 <Button
@@ -285,20 +280,45 @@ const ContentMining = (props) => {
               </span>
             </div>
 
-            <div className="DG-column two">
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.DAI_CIRCLE}
-                  className="farming-logo"
-                  alt="Dai Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">Coin</p>
-                  <p className="account-name">DAI</p>
+            <div
+              className="DG-column-treasury three"
+              style={{
+                position: 'relative',
+                height: '100%',
+              }}
+            >
+            <p className="earned-amount">Gameplay Rewards</p>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DAI_CIRCLE}
+                className="farming-logo-small"
+                alt="MANA Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text-top">Coin</p>
+                  <p className="earned-amount">
+                    DAI
+                  </p>
                 </span>
               </span>
 
-              <Divider />
+              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <a
+                  href="https://docs.decentral.games/allocation#community"
+                  target="_blank"
+                  style={{ marginTop: '-60px', marginRight: '-4px' }}
+                >
+                  <Icon
+                    className="more-text"
+                    name="external square alternate"
+                  />
+                </a>
+              </span>
+
+              <Divider className="divider-dg-top" />
 
               <div style={{ display: 'flex' }}>
                 <span className="gameplay-left-column">
@@ -310,7 +330,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount">41K DAI</p>
+                    <p className="earned-amount">41K MANA</p>
                   </span>
                 </span>
 
@@ -329,16 +349,16 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount">137K DAI</p>
+                    <p className="earned-amount">137K MANA</p>
                   </span>
                 </span>
               </div>
 
-              <Divider />
+              <Divider className="divider-dg-top" />
 
               <span className="DG-button-span">
                 <Button
-                  id="play-now-button-DAI"
+                  id="play-now-button-MANA"
                   href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
@@ -347,7 +367,7 @@ const ContentMining = (props) => {
                 </Button>
               </span>
             </div>
-          </span>
+          </div>
         </div>
       </Aux>
     );

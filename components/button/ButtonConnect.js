@@ -135,7 +135,7 @@ const ButtonConnect = () => {
             target="_blank"
             className={menuStyle[0]}
           >
-            What's Metamask?
+            Need help?
           </a>
           <Button
             content="CONNECT METAMASK"

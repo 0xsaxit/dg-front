@@ -9,10 +9,10 @@ const ContentLeaderboard = (props) => {
   // const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [dataGames, setDataGames] = useState([[], [], [], [], []]);
+  const [dataGames, setDataGames] = useState([[], [], [], []]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS', 'BACKGAMMON'];
+  const games = ['ALL GAMES', 'BLACKJACK', 'ROULETTE', 'SLOTS'];
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ const ContentLeaderboard = (props) => {
       let game2 = [];
       let game3 = [];
       let game4 = [];
-      let game5 = [];
+      // let game5 = [];
       let selected = [];
 
       // parse game scores based on time period
@@ -48,7 +48,6 @@ const ContentLeaderboard = (props) => {
           gameData.blackjack.play,
           gameData.roulette.play,
           gameData.slot.play,
-          gameData.backgammon.play,
         ];
       } else if (props.gameSelect === 'dai') {
         selected = [
@@ -56,7 +55,6 @@ const ContentLeaderboard = (props) => {
           gameData.blackjack.dai,
           gameData.roulette.dai,
           gameData.slot.dai,
-          gameData.backgammon.dai,
         ];
       } else if (props.gameSelect === 'mana') {
         selected = [
@@ -64,7 +62,6 @@ const ContentLeaderboard = (props) => {
           gameData.blackjack.mana,
           gameData.roulette.mana,
           gameData.slot.mana,
-          gameData.backgammon.mana,
         ];
       }
 
@@ -100,15 +97,7 @@ const ContentLeaderboard = (props) => {
         });
       });
 
-      selected[4].map((row) => {
-        game5.push({
-          name: row.name,
-          address: row.address,
-          winnings: row.winnings,
-        });
-      });
-
-      setDataGames([game1, game2, game3, game4, game5]);
+      setDataGames([game1, game2, game3, game4]);
     }
   }, [props.gameRecords, props.timePeriod, props.gameSelect]);
 
@@ -119,7 +108,7 @@ const ContentLeaderboard = (props) => {
       {games.map((game, index) => {
         return (
           <Grid.Column
-            computer={5}
+            computer={8}
             tablet={8}
             mobile={16}
             key={index}

@@ -409,8 +409,51 @@ a.menu-info-label-link:hover {
 }
 
 /* ----------------------------------------- */
-/*               MAILCHIMP CSS               */
+/*             WALLET MODAL CSS              */
 /* ----------------------------------------- */
+
+.wallet-image-1 {
+  margin-top: 24px;
+  margin-right: 23px;
+  margin-left: 4px;
+  height: 48px;
+}
+
+.wallet-image-2 {
+  margin-top: 18px;
+  margin-right: 18px;
+  height: 60px;
+}
+
+.wallet-h3 {
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  text-align: left;
+  padding-top: 12px;
+  margin-bottom: -12px;
+}
+
+.wallet-card {
+  display: flex;
+  border: 1px solid #edf2f9;
+  box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03);
+  margin: 30px 30px -15px 30px;
+  padding: 0px 12px 18px 18px;
+}
+
+.wallet-card:hover {
+  cursor: pointer;
+  transform: translateY(-1px);
+  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+  transition: all 0.1s ease 0s;
+}
+
+.wallet-modal {
+  max-width: 500px;
+  padding-bottom: 60px;
+}
+
 
 .mailchimp-outter-container {
   top: 106px;
@@ -435,6 +478,10 @@ a.menu-info-label-link:hover {
   padding-bottom: 12px;
   font-weight: 800 !important;
   text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: black;
 }
 
 .mailchimp-other-inner-p {
@@ -547,8 +594,7 @@ i.chevron.down.icon {
 
 .ui.dimmer,
 .transak_modal-overlay {
-  backdrop-filter: blur(1px);
-  background-color: rgba(8, 10, 12, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.48) !important;
 }
 
 .logged-out-button-span {
@@ -1128,6 +1174,10 @@ i.chevron.down.icon {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
+.earned-amount#treasury-breakdown {
+  padding: 14px 18px 0px 18px !important;
+}
+
 table {
   border-spacing: 0px;
   width: 100%;
@@ -1139,7 +1189,27 @@ table {
 } 
 
 .ui.table thead th {
+  background-color: rgb(239 241 244) !important;
   border: 0px solid white !important;
+  background: white;
+  padding: 15px 18px 15px 18px;
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: black;
+  text-transform: uppercase;
+  padding-top: 18px !important;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #edf2f9 !important;
+}
+
+.ui.table tr td {
+  border-bottom: 1px solid #edf2f9 !important;
+  border-top: 0px solid white !important;
+}
+
+.ui.table td {
+  padding: 15px 18px 15px 18px;
 }
 
 .ui.table thead tr:first-child>th:first-child {
@@ -1148,26 +1218,6 @@ table {
 
 .ui.table thead tr:last-child>th:last-child {
   border-radius: 0px 4px 0px 0px !important;
-}
-
-th {
-  background-color: rgb(229, 232, 235) !important;
-  font-size: 12px;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px;
-  text-transform: uppercase !important;
-  z-index: 3;
-  padding-left: 12px !important;
-}
-
-td {
-  font-size: 16px;
-  letter-spacing: 0.25px;
-  padding: 18px 12px 18px 12px !important;
-}
-
-.ui.table tbody+tbody tr:first-child td {
-  border-top: 1px solid #edf2f9 !important;
 }
 
 .tx-box-overflow {
@@ -1199,6 +1249,25 @@ td {
   position: sticky;
   top: 0px;
 }
+
+.ui.table tr td {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding-top: 16px;
+}
+
+.ui.table tr td.leaders-col-1 {
+  padding-top: 18px !important;
+  padding-bottom: 14px !important;
+}
+
+.ui.table tr td.leaders-col-2 {
+  padding-top: 18px !important;
+  padding-bottom: 17px !important; 
+}
+
 
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
@@ -1501,6 +1570,29 @@ deposit-notification-box-hidden {
   margin-bottom: 24px;
 }
 
+i.pencil.icon.edit-icon {
+  color: #5c5e61;
+  margin-left: 4px;
+  margin-top: 3px;
+}
+
+i.pencil.icon.edit-icon:hover {
+  color: black;
+}
+
+.avatar-edit-circle {
+  border: 1px solid #edf2f9;
+  background-color: white;
+  position: relative;
+  z-index: 3;
+  width: 27px;
+  height: 27px;
+  border-radius: 100%;
+  float: right;
+  margin-top: -27px;
+  margin-right: 9px;
+}
+
 .balances-token-name.avatar {
   font-weight: bold;
   padding-left: 21px;
@@ -1532,6 +1624,21 @@ deposit-notification-box-hidden {
   padding-left: 16px;
   padding-top: 9px !important;
   margin-bottom: -3px;
+}
+
+.welcome-text-top {
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: rgb(92, 95, 97) !important;
+  text-transform: uppercase;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
+}
+
+.ui.divider.divider-dg-top {
+  margin-left: -18px;
+  width: calc(100% + 36px);
 }
 
 .welcome-text-2 {
@@ -1568,6 +1675,26 @@ deposit-notification-box-hidden {
   margin-bottom: 0px;
 }
 
+.governance-block:hover {
+  margin-left: -18px;
+  padding-left: 15px;
+  margin-top: -14px;
+  padding-top: 14px;
+  margin-bottom: -14px;
+  padding-bottom: 14px;
+  border-left: 3px solid #16c784 !important;
+}
+
+.governance-block-blue:hover {
+  margin-left: -18px;
+  padding-left: 15px;
+  margin-top: -14px;
+  padding-top: 14px;
+  margin-bottom: -14px;
+  padding-bottom: 14px;
+  border-left: 3px solid #2085f4 !important;
+}
+
 .ui.top.left.popup:before,
 .ui.top.center.popup:before {
   display: none;
@@ -1588,26 +1715,6 @@ deposit-notification-box-hidden {
   margin-bottom: -9px !important;
 }
 
-td.treasury-cell {
-  padding: 11px 0px 13px 0 !important;
-}
-
-td.treasury-cell-lower {
-  padding: 6px 0px 6px 0px !important;
-}
-
-td.treasury-cell.two {
-  display: flex;
-  justify-content: flex-end;
-  min-width: 82px;
-}
-
-td.treasury-cell-lower.two {
-  display: flex;
-  justify-content: flex-end;
-  min-width: 82px;
-}
-
 .earned-amount {
   font-size: 18px;
   font-weight: 700;
@@ -1617,12 +1724,24 @@ td.treasury-cell-lower.two {
   margin: 0 0 0px 0 !important;
 }
 
+.earned-amount-executed {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: black;
+  padding-top: 0px !important;
+  margin: -6px 0 0px 0 !important;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .earned-percent {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 6px !important;
-  padding-left: 0px;
+  padding-top: 3px !important;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
 }
@@ -1643,7 +1762,7 @@ i.caret.down.icon.percent-icon.neg {
 .percent-icon {
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 6px !important;
+  padding-top: 3px !important;
   margin-right: -3px !important;
 }
 
@@ -1700,11 +1819,48 @@ div.ui.grid.balances-container {
   width: 100%;
 }
 
+.balances-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1401px) {
+  .balances-column-three {
+    display: none;
+  }
+}
+
 .balances-column {
   background-color: white;
-  width: 100%;
+  width: 18.5%;
   padding: 12px 18px 12px 18px !important;
+  margin-bottom: 30px;
 }
+
+@media (max-width: 1400px) {
+  .balances-column,
+  .balances-column-three {
+    width: 32%;
+  }
+}
+
+@media (max-width: 1121px) {
+  .balances-column,
+  .balances-column-three {
+    width: 48.5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .balances-column {
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  .balances-column-three {
+    display: none;
+  }
+}
+
 
 .top-balances-column {
   border: 1px solid #edf2f9;
@@ -1857,6 +2013,29 @@ i.copy.icon.affiliate-icon:hover {
   margin-top: 12px;
   margin-bottom: 9px;
   border-radius: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.farming-logo-small.two {
+  margin-left: -24px;
+  position: relative;
+  z-index: 2;
+}
+
+.farming-logo.snapshot {
+  border: 1px solid #edf2f9;
+}
+
+.farming-logo-small {
+  max-width: 42px;
+  max-height: 42px;
+  margin-top: 12px;
+  margin-bottom: 9px;
+  margin-right: 12px;
+  border-radius: 100%;
+  position: relative;
+  z-index: 3;
 }
 
 .outter-DG-container {
@@ -1866,23 +2045,7 @@ i.copy.icon.affiliate-icon:hover {
   padding: 18px 18px 18px 18px !important;
 }
 
-.DG-h3 {
-  font-size: 20px;
-  font-weight: 800;
-  padding-bottom: 9px;
-  color: black;
-}
-
-.DG-top-container {
-  padding-top: 30px;
-  padding-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
-
 .DG-liquidity-container {
-  padding-top: 30px;
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1895,22 +2058,33 @@ i.copy.icon.affiliate-icon:hover {
   padding-top: 0px;
 }
 
-.DG-tablet-container,
 .DG-tablet-container-gov {
   display: flex;
   justify-content: space-between;
   flex-direction: row !important;
-  width: 75%;
+  width: 74.75%;
+  height: 100%;
+}
+
+.DG-column-treasury {
+  width: 48.5%;
 }
 
 .DG-column.top {
-  max-width: 100% !important;
-  min-width: 100%;
+  max-width: 48.5% !important;
+  min-width: 48.5%;
+  padding: 0 0 0 0 !important;
 }
 
 .DG-column.unclaimed {
-  min-width: 22.75% !important;
-  max-height: 260px;
+  width: 23% !important;
+  height: 100%;
+}
+
+.DG-column.treasury-all {
+  height: 100%;
+  width: 23%;
+  padding: 12px 0px 0px 0px !important;
 }
 
 .DG-column.balancer {
@@ -1929,10 +2103,15 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .DG-column.one,
-.DG-column.two,
-.DG-column-treasury.one,
-.DG-column-treasury.two {
-  width: 48.5%;
+.DG-column.two {
+  width: 100%;
+}
+
+.DG-column.treasury-stats {
+  width: 74.5%;
+  position: relative;
+  z-index: 2;
+  padding: 0 0 0 0 !important;
 }
 
 .DG-column.one-uniswap {
@@ -2531,11 +2710,36 @@ a.ui.blue.button.play-button,
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid #2085f4;
   color: #2085f4;
-  margin-top: -45px;
+  margin-bottom: -2px;
+  margin-top: -3px;
   height: 27px;
   max-width: 150px !important;
   min-width: 150px;
   padding: 7px 6px 0px 6px;
+  opacity: 100% !important;
+}
+
+.ui.button.etherscan-button-green {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #16c784;
+  color: #16c784;
+  height: 27px;
+  margin-top: 0.7rem;
+  max-width: 100px !important;
+  min-width: 100px;
+  padding: 0 0 0 0;
+  opacity: 100% !important;
+}
+
+.ui.button.etherscan-button-blue {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  height: 27px;
+  margin-top: 0.7rem;
+  max-width: 100px !important;
+  min-width: 100px;
+  padding: 0 0 0 0;
   opacity: 100% !important;
 }
 
@@ -2570,8 +2774,8 @@ a.ui.blue.button.play-button,
   color: #2085f4;
   height: 27px;
   padding: 0 0 0 0;
-  max-width: 90px !important;
-  min-width: 90px;
+  max-width: 60px !important;
+  min-width: 60px;
   opacity: 100% !important;
 }
 

@@ -195,312 +195,269 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentAccount() {
     return (
-      <Grid className="balances-container">
-        <Grid.Row>
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column one"
-          >
-            <span style={{ display: 'flex' }}>
-              <span className="avatar-picture">
-                <img
-                  src={Images.PLAY_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
-                <p className="welcome-text">Play</p>
-                <p className="account-name">{state.userInfo.balancePLAY}</p>
-              </span>
+      <div className="balances-container">
+        <div className="balances-column one">
+          <span style={{ display: 'flex' }}>
+            <span className="avatar-picture">
+              <img
+                src={Images.PLAY_CIRCLE}
+                className="farming-logo-small"
+              />
             </span>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '7px',
+              }}
+            >
+              <p className="welcome-text-top">Play</p>
+              <p className="earned-amount">{state.userInfo.balancePLAY}</p>
+            </span>
+          </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <Button
-                disabled
-                className="balances-top-button"
-                target="_blank"
-                style={{ marginTop: '-75px' }}
-              >
-                FREE
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text">Total Winnings</p>
+            <p className="earned-amount"> {state.userInfo.totalPLAY} </p>
+          </span>
+
+          <Divider className="divider-dg-top"/>
+
+          <span className="balances-button-span">
+            <Button
+              id="play-now-button-balances"
+              className="balances-play-button"
+              href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
+              target="_blank"
+            >
+              PLAY NOW
+            </Button>
+            {state.userInfo.count === 2 ? (
+              <Button disabled className="balances-play-button">
+                TOP UP
               </Button>
+            ) : (
+              <Button
+                onClick={() => topUp()}
+                className="balances-play-button"
+                id="balances-padding-correct"
+              >
+                TOP UP
+              </Button>
+            )}
+          </span>
+        </div>
+
+        <div className="balances-column two">
+          <span style={{ display: 'flex' }}>
+            <span className="avatar-picture">
+              <img
+                src={Images.MANA_CIRCLE}
+                className="farming-logo-small"
+              />
             </span>
-
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount"> {state.userInfo.totalPLAY} </p>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '7px',
+              }}
+            >
+              <p className="welcome-text-top">Mana</p>
+              <p className="earned-amount">
+                {parseInt(state.userBalances[1][1]).toLocaleString()}
+              </p>
             </span>
+          </span>
 
-            <Divider />
+          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              className="balances-top-button"
+              onClick={() => show_transak_1()}
+              style={{ marginTop: '-60px' }}
+            >
+              BUY
+            </Button>
+          </span>
 
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text">Total Winnings</p>
+            <p className="earned-amount">{state.userInfo.totalMANA}</p>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          {state.userInfo.tokenArray[1] ? (
             <span className="balances-button-span">
               <Button
-                id="play-now-button-balances"
                 className="balances-play-button"
-                href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
-                target="_blank"
+                onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
+                style={{ padding: '0 0 0 0' }}
               >
-                PLAY NOW
+                DEPOSIT
               </Button>
-              {state.userInfo.count === 2 ? (
-                <Button disabled className="balances-play-button">
-                  TOP UP
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => topUp()}
-                  className="balances-play-button"
-                  id="balances-padding-correct"
-                >
-                  TOP UP
-                </Button>
-              )}
-            </span>
-          </Grid.Column>
 
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column two"
-          >
-            <span style={{ display: 'flex' }}>
-              <span className="avatar-picture">
-                <img
-                  src={Images.MANA_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
-                <p className="welcome-text">Mana</p>
-                <p className="account-name">
-                  {parseInt(state.userBalances[1][1]).toLocaleString()}
-                </p>
-              </span>
-            </span>
+              <ConnextModal
+                showModal={showModal}
+                onClose={() => setStateAndEvent(1, false, 'MANA Deposit')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier={connext.routerPublicID}
+                depositAssetId={connext.assetID_1_MANA}
+                depositChainId={1}
+                depositChainProvider={connext.chainProviderInfura}
+                withdrawAssetId={connext.assetID_2_MANA}
+                withdrawChainId={137}
+                withdrawChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button
-                className="balances-top-button"
-                onClick={() => show_transak_1()}
-                style={{ marginTop: '-75px' }}
+                className="balances-play-button"
+                onClick={() => setStateAndEvent(2, true, 'MANA Withdrawal')}
+                style={{ padding: '0 0 0 0' }}
               >
-                PURCHASE
+                WITHDRAW
               </Button>
+
+              <ConnextModal
+                showModal={showModal_2}
+                onClose={() => setStateAndEvent(2, false, 'MANA Withdrawal')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier={connext.routerPublicID}
+                withdrawAssetId={connext.assetID_1_MANA}
+                withdrawChainId={1}
+                withdrawChainProvider={connext.chainProviderInfura}
+                depositAssetId={connext.assetID_2_MANA}
+                depositChainId={137}
+                depositChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
             </span>
+          ) : (
+            <ModalAcceptMana />
+          )}
+        </div>
 
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{state.userInfo.totalMANA}</p>
+        <div className="balances-column three">
+          <span style={{ display: 'flex' }}>
+            <span className="avatar-picture">
+              <img
+                src={Images.DAI_CIRCLE}
+                className="farming-logo-small"
+              />
             </span>
-
-            <Divider />
-
-            {state.userInfo.tokenArray[1] ? (
-              <span className="balances-button-span">
-                <Button
-                  className="balances-play-button"
-                  onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
-                  style={{ padding: '0 0 0 0' }}
-                >
-                  DEPOSIT
-                </Button>
-
-                <ConnextModal
-                  showModal={showModal}
-                  onClose={() => setStateAndEvent(1, false, 'MANA Deposit')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier={connext.routerPublicID}
-                  depositAssetId={connext.assetID_1_MANA}
-                  depositChainId={1}
-                  depositChainProvider={connext.chainProviderInfura}
-                  withdrawAssetId={connext.assetID_2_MANA}
-                  withdrawChainId={137}
-                  withdrawChainProvider={connext.chainProviderMatic}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
-                  onFinished={getWithdrawalAmount}
-                />
-
-                <Button
-                  className="balances-play-button"
-                  onClick={() => setStateAndEvent(2, true, 'MANA Withdrawal')}
-                  style={{ padding: '0 0 0 0' }}
-                >
-                  WITHDRAW
-                </Button>
-
-                <ConnextModal
-                  showModal={showModal_2}
-                  onClose={() => setStateAndEvent(2, false, 'MANA Withdrawal')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier={connext.routerPublicID}
-                  withdrawAssetId={connext.assetID_1_MANA}
-                  withdrawChainId={1}
-                  withdrawChainProvider={connext.chainProviderInfura}
-                  depositAssetId={connext.assetID_2_MANA}
-                  depositChainId={137}
-                  depositChainProvider={connext.chainProviderMatic}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
-                  onFinished={getWithdrawalAmount}
-                />
-              </span>
-            ) : (
-              <ModalAcceptMana />
-            )}
-          </Grid.Column>
-
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="balances-column three"
-          >
-            <span style={{ display: 'flex' }}>
-              <span className="avatar-picture">
-                <img
-                  src={Images.DAI_CIRCLE}
-                  style={{
-                    width: '60px',
-                    display: 'flex',
-                    paddingTop: '12px',
-                    paddingBottom: '9px',
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  marginTop: '7px',
-                }}
-              >
-                <p className="welcome-text">Dai</p>
-                <p className="account-name">
-                  {parseInt(state.userBalances[0][1]).toLocaleString()}
-                </p>
-              </span>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '7px',
+              }}
+            >
+              <p className="welcome-text-top">Dai</p>
+              <p className="earned-amount">
+                {parseInt(state.userBalances[0][1]).toLocaleString()}
+              </p>
             </span>
+          </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              className="balances-top-button two"
+              onClick={() => show_transak_2()}
+              style={{ marginTop: '-60px' }}
+            >
+              BUY
+            </Button>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text">Total Winnings</p>
+            <p className="earned-amount">{state.userInfo.totalDAI}</p>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          {state.userInfo.tokenArray[0] ? (
+            <span className="balances-button-span">
               <Button
-                className="balances-top-button two"
-                onClick={() => show_transak_2()}
-                style={{ marginTop: '-75px' }}
+                className="balances-play-button"
+                onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
+                style={{ padding: '0 0 0 0' }}
               >
-                PURCHASE
+                DEPOSIT
               </Button>
+
+              <ConnextModal
+                showModal={showModal_3}
+                onClose={() => setStateAndEvent(3, false, 'DAI Deposit')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier={connext.routerPublicID}
+                depositAssetId={connext.assetID_1_DAI}
+                depositChainId={1}
+                depositChainProvider={connext.chainProviderInfura}
+                withdrawAssetId={connext.assetID_2_DAI}
+                withdrawChainId={137}
+                withdrawChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+
+              <Button
+                className="balances-play-button"
+                onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
+                style={{ padding: '0 0 0 0' }}
+              >
+                WITHDRAW
+              </Button>
+
+              <ConnextModal
+                showModal={showModal_4}
+                onClose={() => setStateAndEvent(4, false, 'DAI Withdrawal')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier={connext.routerPublicID}
+                withdrawAssetId={connext.assetID_1_DAI}
+                withdrawChainId={1}
+                withdrawChainProvider={connext.chainProviderInfura}
+                depositAssetId={connext.assetID_2_DAI}
+                depositChainId={137}
+                depositChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
             </span>
-
-            <Divider />
-
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p className="earned-text">Total Winnings</p>
-              <p className="earned-amount">{state.userInfo.totalDAI}</p>
-            </span>
-
-            <Divider />
-
-            {state.userInfo.tokenArray[0] ? (
-              <span className="balances-button-span">
-                <Button
-                  className="balances-play-button"
-                  onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
-                  style={{ padding: '0 0 0 0' }}
-                >
-                  DEPOSIT
-                </Button>
-
-                <ConnextModal
-                  showModal={showModal_3}
-                  onClose={() => setStateAndEvent(3, false, 'DAI Deposit')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier={connext.routerPublicID}
-                  depositAssetId={connext.assetID_1_DAI}
-                  depositChainId={1}
-                  depositChainProvider={connext.chainProviderInfura}
-                  withdrawAssetId={connext.assetID_2_DAI}
-                  withdrawChainId={137}
-                  withdrawChainProvider={connext.chainProviderMatic}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
-                  onFinished={getWithdrawalAmount}
-                />
-
-                <Button
-                  className="balances-play-button"
-                  onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
-                  style={{ padding: '0 0 0 0' }}
-                >
-                  WITHDRAW
-                </Button>
-
-                <ConnextModal
-                  showModal={showModal_4}
-                  onClose={() => setStateAndEvent(4, false, 'DAI Withdrawal')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
-                  withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier={connext.routerPublicID}
-                  withdrawAssetId={connext.assetID_1_DAI}
-                  withdrawChainId={1}
-                  withdrawChainProvider={connext.chainProviderInfura}
-                  depositAssetId={connext.assetID_2_DAI}
-                  depositChainId={137}
-                  depositChainProvider={connext.chainProviderMatic}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
-                  onFinished={getWithdrawalAmount}
-                />
-              </span>
-            ) : (
-              <ModalAcceptDai />
-            )}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          ) : (
+            <ModalAcceptDai />
+          )}
+        </div>
+      </div>
     );
   }
 
