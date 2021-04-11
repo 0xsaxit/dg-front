@@ -52,7 +52,7 @@ function ActiveStatus() {
           console.error(error);
         });
     }
-  }, [state.userStatus]);
+  }, [state.userInfo, state.networkID]);
 
   useEffect(() => {
     if (biconomyReady) {
