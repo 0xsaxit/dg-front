@@ -24,6 +24,7 @@
     "@next/bundle-analyzer": "^10.0.8",
     "@transak/transak-sdk": "^1.0.28",
     "buttercms": "^1.2.6",
+    "chart.js": "^3.1.0",
     "cross-env": "^7.0.3",
     "eth-sig-util": "^3.0.1",
     "ethers": "^5.0.32",
