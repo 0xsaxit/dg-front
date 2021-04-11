@@ -158,6 +158,13 @@ const ContentMining = (props) => {
 
             <Divider className="divider-dg-top"/>
 
+            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+              <p className="earned-amount"> ${gameplayUSD} </p>
+            </span>
+
+            <Divider className="divider-dg-top"/>
+
             <p style={{ fontSize: '18px' }}>
               Mine $DG by playing games with MANA or DAI. Earn bonuses by
               playing with friends, wearing $DG NFTs, and referring
