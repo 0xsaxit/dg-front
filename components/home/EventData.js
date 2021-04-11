@@ -18,7 +18,7 @@ const EventData = () => {
   useEffect(() => {
     (async function () {
       // get events from dcl
-      let response = await Fetch.EVENTS();
+      let response = await Fetch.EVENTS(state.userAddress);
       let json = await response.json();
 
       var events = [];

@@ -84,8 +84,8 @@ const Fetch = {
     });
   },
 
-  EVENTS: () => {
-    return fetch(`https://api.decentral.games/players/getEvents`, {
+  EVENTS: (address) => {
+    return fetch(`https://api.decentral.games/players/getEvents?address=${address}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
