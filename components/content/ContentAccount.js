@@ -1005,11 +1005,11 @@ const ContentAccount = (props) => {
                   let action = '';
                   if (row.gameType === 1) {
                     action = 'Slots';
-                  } else if (row.gameType === 8) {
+                  } else if (row.gameType === 8 || row.gameType === 2) {
                     action = 'Roulette';
                   } else if (row.gameType === 3) {
                     action = 'Backgammon';
-                  } else if (row.gameType === 7) {
+                  } else if (row.gameType === 7 || row.gameType === 4) {
                     action = 'Blackjack';
                   }
 
