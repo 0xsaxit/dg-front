@@ -9,7 +9,9 @@ import Fetch from '../../common/Fetch';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
+import ModalAcceptATRI from '../modal/ModalAcceptATRI';
 import Aux from '../_Aux';
+
 
 const transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
@@ -551,6 +553,7 @@ const ContentAccount = (props) => {
 
           <Divider className="divider-dg-top" />
 
+          {state.userInfo.tokenArray[2] ? (
             <span className="balances-button-span">
               <Button
                 className="balances-play-button"
@@ -608,7 +611,9 @@ const ContentAccount = (props) => {
                 onFinished={getWithdrawalAmount}
               />
             </span>
-
+          ) : (
+            <ModalAcceptUSDT />
+          )}
         </div>
 
         <div className="balances-column two">
@@ -642,24 +647,27 @@ const ContentAccount = (props) => {
 
           <Divider className="divider-dg-top" />
 
-          <span className="balances-button-span">
-            <Button
-              className="balances-play-button"
-              href="https://wallet.matic.network/bridge/"
-              target="_blank"
-            >
-              DEPOSIT
-            </Button>
+          {state.userInfo.tokenArray[2] ? (
+            <span className="balances-button-span">
+              <Button
+                className="balances-play-button"
+                href="https://wallet.matic.network/bridge/"
+                target="_blank"
+              >
+                DEPOSIT
+              </Button>
 
-            <Button
-              className="balances-play-button"
-              href="https://wallet.matic.network/bridge/"
-              target="_blank"
-            >
-              WITHDRAW
-            </Button>
-          </span>
-
+              <Button
+                className="balances-play-button"
+                href="https://wallet.matic.network/bridge/"
+                target="_blank"
+              >
+                WITHDRAW
+              </Button>
+            </span>
+          ) : (
+            <ModalAcceptATRI />
+          )}
         </div>
 
         <div className="balances-column-three" />*/}

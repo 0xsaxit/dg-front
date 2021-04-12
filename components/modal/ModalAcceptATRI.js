@@ -95,4 +95,4 @@ const ModalAcceptATRI = () => {
   );
 };
 
-export default ModalAccepATRI;
+export default ModalAcceptATRI;

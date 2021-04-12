@@ -46,7 +46,7 @@ function ButtonApproveUSDT() {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve MANA');
+          console.log('Mexa is Ready: Approve USDT');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
