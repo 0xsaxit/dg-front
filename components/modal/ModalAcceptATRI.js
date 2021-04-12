@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Divider, Icon, Checkbox } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
-import ButtonApproveATRI from '../button/ButtonApproveATRI';
+import ButtonApproveATRI from '../button/buttonApproveATRI';
 
 const ModalAcceptATRI = () => {
   // get user's unclaimed DG balance from the Context API store
