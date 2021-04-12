@@ -43,6 +43,8 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domeinTypeTreasury);
 arrayDomainType.push(domeinTypeTreasury);
 arrayDomainType.push(domainTypeToken);
+arrayDomainType.push(domainTypeToken);
+arrayDomainType.push(domainTypeToken);
 
 metaTransactionType.push(
   { name: 'nonce', type: 'uint256' },

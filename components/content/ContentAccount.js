@@ -12,7 +12,6 @@ import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
 import ModalAcceptATRI from '../modal/ModalAcceptATRI';
 import Aux from '../_Aux';
 
-
 const transak_1 = new transakSDK({
   apiKey: Global.KEYS.TRANSAK_API, // API Key
   environment: 'PRODUCTION', // STAGING/PRODUCTION
@@ -253,10 +252,7 @@ const ContentAccount = (props) => {
         <div className="balances-column one">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
-              <img
-                src={Images.PLAY_CIRCLE}
-                className="farming-logo-small"
-              />
+              <img src={Images.PLAY_CIRCLE} className="farming-logo-small" />
             </span>
             <span
               style={{
@@ -277,7 +273,7 @@ const ContentAccount = (props) => {
             <p className="earned-amount"> {state.userInfo.totalPLAY} </p>
           </span>
 
-          <Divider className="divider-dg-top"/>
+          <Divider className="divider-dg-top" />
 
           <span className="balances-button-span">
             <Button
@@ -307,10 +303,7 @@ const ContentAccount = (props) => {
         <div className="balances-column two">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
-              <img
-                src={Images.MANA_CIRCLE}
-                className="farming-logo-small"
-              />
+              <img src={Images.MANA_CIRCLE} className="farming-logo-small" />
             </span>
             <span
               style={{
@@ -411,10 +404,7 @@ const ContentAccount = (props) => {
         <div className="balances-column three">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
-              <img
-                src={Images.DAI_CIRCLE}
-                className="farming-logo-small"
-              />
+              <img src={Images.DAI_CIRCLE} className="farming-logo-small" />
             </span>
             <span
               style={{
@@ -512,7 +502,7 @@ const ContentAccount = (props) => {
           )}
         </div>
 
-        {/*<div className="balances-column one">
+        <div className="balances-column one">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
               <img
@@ -528,8 +518,10 @@ const ContentAccount = (props) => {
               }}
             >
               <p className="welcome-text-top">USDT</p>
-              <p className="earned-amount">                
-                {parseInt(state.userBalances[2][1] * 1000000000000).toLocaleString()}
+              <p className="earned-amount">
+                {parseInt(
+                  state.userBalances[2][1] * 1000000000000
+                ).toLocaleString()}
               </p>
             </span>
           </span>
@@ -647,7 +639,7 @@ const ContentAccount = (props) => {
 
           <Divider className="divider-dg-top" />
 
-          {state.userInfo.tokenArray[2] ? (
+          {state.userInfo.tokenArray[3] ? (
             <span className="balances-button-span">
               <Button
                 className="balances-play-button"
@@ -670,7 +662,7 @@ const ContentAccount = (props) => {
           )}
         </div>
 
-        <div className="balances-column-three" />*/}
+        <div className="balances-column-three" />
       </div>
     );
   }

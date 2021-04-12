@@ -3,7 +3,7 @@ import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_DAI from '../ABI/ABIChildTokenDAI';
+import ABI_CHILD_TOKEN_ATRI from '../ABI/ABIChildTokenATRI';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
@@ -50,8 +50,8 @@ function ButtonApproveATRI() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_DAI,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
+        ABI_CHILD_TOKEN_ATRI,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI
       );
 
       setTokenContract(tokenContract);
