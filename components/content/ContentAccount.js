@@ -66,12 +66,11 @@ const transak_4 = new transakSDK({
   fiatCurrency: '', // INR/GBP
   email: '', // customer email address
   redirectURL: '',
-  defaultNetwork: 'matic',
-  defaultCryptoCurrency: 'ATRI',
+  defaultCryptoCurrency: 'ETH',
   hostURL: Global.CONSTANTS.BASE_URL,
   widgetHeight: '633px',
   widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy ATRI',
+  exchangeScreenTitle: 'Buy ETH',
 });
 
 const connext = {
@@ -244,6 +243,23 @@ const ContentAccount = (props) => {
       transak_4.close();
     });
   }, []);
+
+  // initialize transak modal
+  function show_transak_1() {
+    transak_1.init();
+  }
+
+  function show_transak_2() {
+    transak_2.init();
+  }
+
+  function show_transak_3() {
+    transak_3.init();
+  }
+
+  function show_transak_4() {
+    transak_4.init();
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -503,13 +519,10 @@ const ContentAccount = (props) => {
           )}
         </div>
 
-        <div className="balances-column one">
+        {/*<div className="balances-column one">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1617897947/825_vksbx4.png"
-                className="farming-logo-small"
-              />
+              <img src={Images.USDT_CIRCLE} className="farming-logo-small" />
             </span>
             <span
               style={{
@@ -612,10 +625,7 @@ const ContentAccount = (props) => {
         <div className="balances-column two">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1618091848/Group_uotjwj.png"
-                className="farming-logo-small"
-              />
+              <img src={Images.ATRI_CIRCLE} className="farming-logo-small" />
             </span>
             <span
               style={{
@@ -629,6 +639,17 @@ const ContentAccount = (props) => {
                 {parseInt(state.userBalances[2][2]).toLocaleString()}
               </p>
             </span>
+          </span>
+
+          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              href="https://www.ataritokens.com/myportal/home"
+              target="_blank"
+              className="balances-top-button"
+              style={{ marginTop: '-60px', padding: '7px 0 0 0' }}
+            >
+              BUY
+            </Button>
           </span>
 
           <Divider className="divider-dg-top" />
@@ -663,13 +684,10 @@ const ContentAccount = (props) => {
           )}
         </div>
 
-        {/* <div className="balances-column three">
+        <div className="balances-column three">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/.png"
-                className="farming-logo-small"
-              />
+              <img src={Images.ETH_CIRCLE} className="farming-logo-small" />
             </span>
             <span
               style={{
@@ -679,14 +697,14 @@ const ContentAccount = (props) => {
               }}
             >
               <p className="welcome-text-top">WETH</p>
-              <p className="earned-amount">0</p>
+              <p className="earned-amount">{(state.userBalances[2][3])}</p>
             </span>
           </span>
 
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => show_transak_3()}
+              onClick={() => show_transak_4()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -697,7 +715,7 @@ const ContentAccount = (props) => {
 
           <span style={{ display: 'flex', justifyContent: 'space-between' }}>
             <p className="earned-text">Total Winnings</p>
-            <p className="earned-amount">{state.userInfo.totalATRI}</p>
+            <p className="earned-amount">{state.userInfo.totalWETH}</p>
           </span>
 
           <Divider className="divider-dg-top" />
@@ -723,9 +741,8 @@ const ContentAccount = (props) => {
           ) : (
             <ModalAcceptWETH />
           )}
-        </div> */}
+        </div>*/}
 
-        {/* <div className="balances-column-three" /> */}
       </div>
     );
   }
@@ -787,23 +804,6 @@ const ContentAccount = (props) => {
       type: 'update_info',
       data: refresh,
     });
-  }
-
-  // initialize transak modal
-  function show_transak_1() {
-    transak_1.init();
-  }
-
-  function show_transak_2() {
-    transak_2.init();
-  }
-
-  function show_transak_3() {
-    transak_3.init();
-  }
-
-  function show_transak_4() {
-    transak_4.init();
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -939,7 +939,51 @@ const ContentAccount = (props) => {
                         <Table.Cell>
                           {row.type.includes('DAI') ? (
                             <img
-                              src={Images.ICON_DAI}
+                              src={Images.DAI_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.type.includes('MANA') ? (
+                            <img
+                              src={Images.MANA_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.type.includes('USDT') ? (
+                            <img
+                              src={Images.USDT_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.type.includes('ATRI') ? (
+                            <img
+                              src={Images.ATRI_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.type.includes('WETH') ? (
+                            <img
+                              src={Images.ETH_CIRCLE}
                               style={{
                                 width: '21px',
                                 marginRight: '6px',
@@ -950,7 +994,7 @@ const ContentAccount = (props) => {
                             />
                           ) : (
                             <img
-                              src={Images.ICON_MANA}
+                              src={Images.DG_COIN_LOGO}
                               style={{
                                 width: '21px',
                                 marginRight: '6px',
@@ -1080,9 +1124,9 @@ const ContentAccount = (props) => {
                     <Table.Body key={i}>
                       <Table.Row>
                         <Table.Cell>
-                          {row.coinName === 'MANA' ? (
+                          {row.coinName === 'DAI' ? (
                             <img
-                              src={Images.ICON_MANA}
+                              src={Images.DAI_CIRCLE}
                               style={{
                                 width: '21px',
                                 marginRight: '6px',
@@ -1091,9 +1135,42 @@ const ContentAccount = (props) => {
                                 borderRadius: '100%',
                               }}
                             />
-                          ) : row.coinName === 'DAI' ? (
+                          ) : row.coinName === 'MANA' ? (
                             <img
-                              src={Images.ICON_DAI}
+                              src={Images.MANA_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'USDT' ? (
+                            <img
+                              src={Images.USDT_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'ATRI' ? (
+                            <img
+                              src={Images.ATRI_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '6px',
+                                verticalAlign: 'middle',
+                                marginTop: '-2px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'WETH' ? (
+                            <img
+                              src={Images.ETH_CIRCLE}
                               style={{
                                 width: '21px',
                                 marginRight: '6px',
@@ -1104,7 +1181,7 @@ const ContentAccount = (props) => {
                             />
                           ) : (
                             <img
-                              src={Images.ICON_PLAY}
+                              src={Images.PLAY_CIRCLE}
                               style={{
                                 width: '21px',
                                 marginRight: '6px',
