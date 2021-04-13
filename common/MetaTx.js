@@ -9,6 +9,7 @@ let childTokenAddressDAI = '';
 
 let childTokenAddressUSDT = '';
 let childTokenAddressATRI = '';
+let childTokenAddressWETH = '';
 
 let treasuryAddress = '';
 let dgPointerAddress = '';
@@ -21,6 +22,7 @@ childTokenAddressDAI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI;
 
 childTokenAddressUSDT = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT;
 childTokenAddressATRI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI;
+childTokenAddressWETH = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH;
 
 treasuryAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
 dgPointerAddress = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS;
@@ -42,6 +44,7 @@ const domeinTypeTreasury = [
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domeinTypeTreasury);
 arrayDomainType.push(domeinTypeTreasury);
+arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
@@ -94,12 +97,20 @@ const domainDataTokenATRI = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
+const domainDataTokenWETH = {
+  name: 'Wrapped Ether',
+  version: '1',
+  verifyingContract: childTokenAddressWETH,
+  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+};
+
 arrayDomainData.push(domainDataTokenMANA);
 arrayDomainData.push(domainDataTreasury);
 arrayDomainData.push(domainDataDGPointer);
 arrayDomainData.push(domainDataTokenDAI);
 arrayDomainData.push(domainDataTokenUSDT);
 arrayDomainData.push(domainDataTokenATRI);
+arrayDomainData.push(domainDataTokenWETH);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

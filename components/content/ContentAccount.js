@@ -10,6 +10,7 @@ import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
 import ModalAcceptATRI from '../modal/ModalAcceptATRI';
+import ModalAcceptWETH from '../modal/ModalAcceptWETH';
 import Aux from '../_Aux';
 
 const transak_1 = new transakSDK({
@@ -662,7 +663,69 @@ const ContentAccount = (props) => {
           )}
         </div>
 
-        <div className="balances-column-three" />
+        {/* <div className="balances-column three">
+          <span style={{ display: 'flex' }}>
+            <span className="avatar-picture">
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/.png"
+                className="farming-logo-small"
+              />
+            </span>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '7px',
+              }}
+            >
+              <p className="welcome-text-top">WETH</p>
+              <p className="earned-amount">0</p>
+            </span>
+          </span>
+
+          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              className="balances-top-button"
+              onClick={() => show_transak_3()}
+              style={{ marginTop: '-60px' }}
+            >
+              BUY
+            </Button>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="earned-text">Total Winnings</p>
+            <p className="earned-amount">{state.userInfo.totalATRI}</p>
+          </span>
+
+          <Divider className="divider-dg-top" />
+
+          {state.userInfo.tokenArray[4] ? (
+            <span className="balances-button-span">
+              <Button
+                className="balances-play-button"
+                href="https://wallet.matic.network/bridge/"
+                target="_blank"
+              >
+                DEPOSIT
+              </Button>
+
+              <Button
+                className="balances-play-button"
+                href="https://wallet.matic.network/bridge/"
+                target="_blank"
+              >
+                WITHDRAW
+              </Button>
+            </span>
+          ) : (
+            <ModalAcceptWETH />
+          )}
+        </div> */}
+
+        {/* <div className="balances-column-three" /> */}
       </div>
     );
   }
