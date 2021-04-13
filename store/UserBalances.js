@@ -129,6 +129,11 @@ function UserBalances() {
       '0xb140665dde25c644c6b418e417c930de8a8a6ac9'
     );
 
+    const WETHContractChild = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_DAI,
+      '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
+    );
+
     try {
       const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
@@ -154,8 +159,27 @@ function UserBalances() {
         0
       ); 
 
-      const amountATRI= await Transactions.balanceOfToken(
+      // get user or contract token balance from MetaMask
+      async function balanceOfAtari(tokenContract, userOrContractAddress, units) {
+        try {
+          const amount = await tokenContract.methods
+            .balanceOf(userOrContractAddress)
+            .call();
+
+          return amount;
+        } catch (error) {
+          console.log('Get balance failed', error);
+        }
+      }
+
+      const amountATRI = await balanceOfAtari(
         ATRIContractChild,
+        state.userAddress,
+        0
+      ); 
+
+      const amountWETH = await Transactions.balanceOfToken(
+        WETHContractChild,
         state.userAddress,
         0
       );
@@ -163,7 +187,7 @@ function UserBalances() {
       return [
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
-        [0, amountUSDT, amountATRI],
+        [0, amountUSDT, amountATRI, amountWETH],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

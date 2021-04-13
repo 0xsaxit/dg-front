@@ -134,6 +134,7 @@ const ButtonConnect = () => {
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
             target="_blank"
             className={menuStyle[0]}
+            id="need-help-text"
           >
             Need help?
           </a>

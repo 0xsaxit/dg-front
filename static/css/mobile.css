@@ -61,7 +61,7 @@
 
 @media (max-width: 499px) {
   .ui.blue.button.metamask-mobile-button {
-    margin-right: 21px !important;
+    margin-right: 39px !important;
   }
   .right-menu-items {
     margin-right: -9px;
@@ -161,7 +161,7 @@ div#dropdown-menu-items.item.right-menu-text {
   padding-top: 21px;
   padding-bottom: 21px;
   width: calc(100vw);
-  margin-left: -20px;
+  margin-left: -42px;
   padding-left: 100px;
 }
 
@@ -176,7 +176,7 @@ div#dropdown-menu-items.item.right-menu-text {
     padding-top: 21px;
     padding-bottom: 21px;
     width: calc(100vw);
-    margin-left: -20px;
+    margin-left: -33px;
     padding-left: 81px;
   }  
 }
@@ -193,7 +193,7 @@ div#dropdown-menu-items.item.right-menu-text {
   padding-top: 0px;
   border-radius: 0px;
   width: calc(100vw + 9px);
-  margin-left: -81px;
+  margin-left: -60px;
 }
 
 @media (max-width: 499px) {
@@ -204,10 +204,10 @@ div#dropdown-menu-items.item.right-menu-text {
     padding-top: 0px;
     border-radius: 0px;
     max-width: calc(100vw + 1px);
-    margin-left: -100% !important;
+    margin-left: -48px !important;
   }
   a.get-metamask {
-    display: none;
+    display: none !important;
   }
 }
 

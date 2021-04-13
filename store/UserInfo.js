@@ -42,6 +42,9 @@ function UserInfo() {
         const totalATRI = (
           jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
         ).toLocaleString();
+        const totalWETH = (
+          jsonData.WETH.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
 
         const data = {
           name: name,
@@ -56,6 +59,7 @@ function UserInfo() {
           totalMANA: totalMANA,
           totalUSDT: totalUSDT,
           totalATRI: totalATRI,
+          totalWETH: totalWETH,
           tokenArray: tokenArray,
         };
 
