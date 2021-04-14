@@ -42,9 +42,11 @@ function UserInfo() {
         const totalATRI = (
           jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
         ).toLocaleString();
-        const totalWETH = (
-          jsonData.WETH.payout_player / Global.CONSTANTS.FACTOR
-        ).toLocaleString();
+
+        // const totalWETH = (
+        //   jsonData.WETH.payout_player / Global.CONSTANTS.FACTOR
+        // ).toLocaleString();
+        const totalWETH = '0';
 
         const data = {
           name: name,
