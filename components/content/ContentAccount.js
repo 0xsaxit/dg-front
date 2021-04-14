@@ -519,7 +519,7 @@ const ContentAccount = (props) => {
           )}
         </div>
 
-        {/*<div className="balances-column one">
+        <div className="balances-column one">
           <span style={{ display: 'flex' }}>
             <span className="avatar-picture">
               <img src={Images.USDT_CIRCLE} className="farming-logo-small" />
@@ -741,7 +741,7 @@ const ContentAccount = (props) => {
           ) : (
             <ModalAcceptWETH />
           )}
-        </div>*/}
+        </div>
 
       </div>
     );
