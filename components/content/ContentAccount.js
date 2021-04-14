@@ -697,7 +697,7 @@ const ContentAccount = (props) => {
               }}
             >
               <p className="welcome-text-top">WETH</p>
-              <p className="earned-amount">{(state.userBalances[2][3])}</p>
+              <p className="earned-amount">{(state.userBalances[2][3].toFixed(2))}</p>
             </span>
           </span>
 
