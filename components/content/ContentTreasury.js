@@ -372,7 +372,7 @@ const ContentTreasury = (props) => {
             <Table unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell style={{ paddingRight: '27vw' }}>Name</Table.HeaderCell>
+                  <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>Name</Table.HeaderCell>
                   <Table.HeaderCell textAlign="right" className="treasury-left-padding">Amount</Table.HeaderCell>
                   <Table.HeaderCell textAlign="right">Weekly</Table.HeaderCell>
                 </Table.Row>
@@ -516,7 +516,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      $DG Treasury
+                      $DG Token
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -582,7 +582,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Land Treasury
+                      DCL LAND
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -648,7 +648,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                    NFT Treasury
+                    Wearables
                       <Popup
                         className="dai-mana-popup"
                         trigger={
