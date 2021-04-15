@@ -85,20 +85,25 @@ const ContentTreasury = (props) => {
 
         setPercentageUniswap((percentageTreasuryUniswap * 100).toFixed(2));
 
-        let response = await Fetch.ETH_PRICE();
-        let json = await response.json();
+        try {
+          const response = await Fetch.ETH_PRICE();
+          const  json = await response.json();
 
-        const priceETH = json.market_data.current_price.usd;
-        const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
-        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
-        const total_locked = locked_DG + locked_ETH;
+          const priceETH = json.market_data.current_price.usd;
+          const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
+          const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
+          const total_locked = locked_DG + locked_ETH;
 
-        let response_2 = await Fetch.MANA_PRICE();
-        let json_2 = await response_2.json();
+          let response_2 = await Fetch.MANA_PRICE();
+          let json_2 = await response_2.json();
 
-        const priceMANA = json_2.market_data.current_price.usd;
-        const manaTemp = priceMANA * 400000;
-        setGameplayMana(manaTemp);
+          const priceMANA = json_2.market_data.current_price.usd;
+          const manaTemp = priceMANA * 400000;
+          setGameplayMana(manaTemp);
+          
+        } catch (error) {
+          console.log('coingecko api error: ' + error);
+        }
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
