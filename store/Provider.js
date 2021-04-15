@@ -9,15 +9,28 @@ const initialState = {
     meta: {},
   },
   userStatus: 0,
-  walletProvider: '',
   userAddress: '',
-  userInfo: [],
+  // ipAddress: '',
+  userInfo: {
+    name: '',
+    index: 0,
+    balancePLAY: 0,
+    count: '',
+    email: '',
+    playersList: [],
+    totalDAI: 0,
+    totalMANA: 0,
+    totalPLAY: 0,
+    totalUSDT: 0,
+    totalATRI: 0,
+    tokenArray: [false, false, false, false, false, false],
+  },
   userBalances: [
     [0, 0],
     [0, 0],
     [0, 0],
   ],
-  transactions: [[], []],
+  transactions: [{}, {}],
   txHash: '',
   tokenPings: 0,
   // parcelDataAll: {},
@@ -71,7 +84,9 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
+  refreshTokens: 'Initial',
   refreshBalances: true,
+  updateInfo: true,
   stakeTime: 0,
   affiliateAddress: '',
   toggleTheme: 'light',
@@ -97,12 +112,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         userStatus: action.data,
-      };
-
-    case 'update_provider': 
-      return {
-        ...state,
-        walletProvider: action.data,
       };
 
     case 'user_address':
@@ -207,10 +216,22 @@ const reducer = (state, action) => {
         stakingBalances: action.data,
       };
 
+    case 'refresh_tokens':
+      return {
+        ...state,
+        refreshTokens: action.data,
+      };
+
     case 'refresh_balances':
       return {
         ...state,
         refreshBalances: action.data,
+      };
+
+    case 'update_info':
+      return {
+        ...state,
+        updateInfo: action.data,
       };
 
     case 'stake_time':
@@ -242,6 +263,12 @@ const reducer = (state, action) => {
         ...state,
         whitelistedIntel: action.data,
       };
+
+    // case 'ip_address':
+    //   return {
+    //     ...state,
+    //     ipAddress: action.data,
+    //   };
 
     default:
       throw new Error('Wrong action type got dispatched');

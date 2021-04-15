@@ -1724,6 +1724,17 @@ i.pencil.icon.edit-icon:hover {
   margin: 0 0 0px 0 !important;
 }
 
+.earned-amount-black {
+  font-size: 18px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 3px;
+  padding-top: 9px !important;
+  margin-bottom: -3px;
+}
+
 .earned-amount-executed {
   font-size: 18px;
   font-weight: 700;
@@ -1738,7 +1749,7 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-percent {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.5px;
   padding-top: 3px !important;
@@ -1756,13 +1767,13 @@ i.pencil.icon.edit-icon:hover {
 
 i.caret.up.icon.percent-icon.pos,
 i.caret.down.icon.percent-icon.neg {
-  font-size: 12px !important;
+  font-size: 10px !important;
 }
 
 .percent-icon {
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 3px !important;
+  padding-top: 1px !important;
   margin-right: -3px !important;
 }
 
@@ -1832,7 +1843,7 @@ div.ui.grid.balances-container {
 
 .balances-column {
   background-color: white;
-  width: 18.5%;
+  width: 32%;
   padding: 12px 18px 12px 18px !important;
   margin-bottom: 30px;
 }

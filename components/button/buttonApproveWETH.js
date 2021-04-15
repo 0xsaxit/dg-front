@@ -3,12 +3,12 @@ import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_MANA from '../ABI/ABIChildTokenMANA';
+import ABI_CHILD_TOKEN_WETH from '../ABI/ABIChildTokenWETH';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 import MetaTx from '../../common/MetaTx';
 
-function ButtonApproveMANA() {
+function ButtonApproveWETH() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -20,13 +20,13 @@ function ButtonApproveMANA() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // if the user has also authorized DAI set status value to 8, otherwise 7
+  // if the user has also authorized MANA set status value to 8, otherwise 6
   // useEffect(() => {
   //   if (state.userStatus >= 4) {
-  //     if (state.userStatus === 6) {
+  //     if (state.userStatus === 7) {
   //       setValue(8);
   //     } else {
-  //       setValue(7);
+  //       setValue(6);
   //     }
   //   }
   // }, [state.userStatus]);
@@ -50,15 +50,15 @@ function ButtonApproveMANA() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_MANA,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+        ABI_CHILD_TOKEN_WETH,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve MANA');
+          console.log('Mexa is Ready: Approve WETH');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,9 +84,9 @@ function ButtonApproveMANA() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: MANA");
+    console.log("Updating user's token array in database: WETH");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 1);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -97,12 +97,12 @@ function ButtonApproveMANA() {
     });
 
     // post authorization to database
-    console.log('Posting MANA authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting WETH authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'MANA Authorization',
+      'WETH Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -120,7 +120,7 @@ function ButtonApproveMANA() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        0,
+        6,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -135,7 +135,7 @@ function ButtonApproveMANA() {
         dispatchActiveStatus(txHash);
       }
     } catch (error) {
-      console.log('Biconomy metatransaction error: ' + error);
+      console.log(error);
     }
   }
 
@@ -145,9 +145,9 @@ function ButtonApproveMANA() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE MANA GAMEPLAY
+      ENABLE WETH
     </Button>
   );
 }
 
-export default ButtonApproveMANA;
+export default ButtonApproveWETH;

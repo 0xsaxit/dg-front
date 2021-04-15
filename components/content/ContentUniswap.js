@@ -83,7 +83,7 @@ const ContentUniswap = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
-        const uni_num = 51 * 700 * props.price;
+        const uni_num = 51 * 500 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
 
@@ -144,7 +144,6 @@ const ContentUniswap = (props) => {
   function contentUniswap() {
     return (
       <Aux>
-
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
             <p className="earned-amount">Unclaimed</p>
@@ -182,7 +181,14 @@ const ContentUniswap = (props) => {
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+              <p className="earned-amount"> ${priceUSD} </p>
+            </span>
+
+            <Divider className="divider-dg-top" />
 
             <p style={{ fontSize: '18px' }}>
               Receive $DG for liquidity provision in the 50/50 ETH-DG Uniswap
@@ -404,7 +410,6 @@ const ContentUniswap = (props) => {
 
             <div className="DG-column-blank" />
           </div>
-
         </div>
       </Aux>
     );

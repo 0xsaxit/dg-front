@@ -1,49 +1,77 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
+import Global from '../components/Constants';
 
 function UserInfo() {
   // dispatch user's information to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-  // get user's play name, wallet address, avatar balance, and email address
+  // get user's play name, wallet address, MANA balance, email address, players list, and token totals
   useEffect(() => {
     if (state.userAddress) {
       (async function () {
         const responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
-        const json = await responseInfo.json();
+        const jsonInfo = await responseInfo.json();
 
-        // console.log('user information...');
-        // console.log(json);
+        const name = jsonInfo.avatarName;
 
-        const name = json.avatarName;
-        const address = json.address;
-        const balance = json.playBalance.toLocaleString();
-        const count = json.callCount;
+        // const address = jsonInfo.address;
+        const index = ''; // jsonInfo.id/
+
+        const balancePLAY = jsonInfo.playBalance.toLocaleString();
+        const count = jsonInfo.callCount;
         const email = '';
+        const playersList = jsonInfo.playersList;
+        const tokenArray = jsonInfo.tokenArray;
+        const responseData = await Fetch.PLAYER_DATA(state.userAddress);
+        const jsonData = await responseData.json();
 
-        // const responseAvatar = await Fetch.AVATAR_IMAGE(state.userAddress);
-        // const jsonAvatar = await responseAvatar.json();
+        const totalPLAY = (
+          jsonData.PLAY.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalDAI = (
+          jsonData.DAI.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalMANA = (
+          jsonData.MANA.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalUSDT = (
+          jsonData.USDT.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+        const totalATRI = (
+          jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
 
-        // if (jsonAvatar.avatars.length == 0) {
-        //   const avatar = "https://res.cloudinary.com/dnzambf4m/image/upload/v1612658446/download_z4thkf.png";
-        // } else {
-        //   const avatar = jsonAvatar.avatars[0].avatar.snapshots.face;
-        // }
+        // const totalWETH = (
+        //   jsonData.WETH.payout_player / Global.CONSTANTS.FACTOR
+        // ).toLocaleString();
+        const totalWETH = '0';
 
-        const playersList = json.playersList;
-
-        const response = [name, address, balance, count, email, playersList];
-        console.log('test');
-        console.log(response);
+        const data = {
+          name: name,
+          // address,
+          index: index,
+          balancePLAY: balancePLAY,
+          count: count,
+          email: email,
+          playersList: playersList,
+          totalPLAY: totalPLAY,
+          totalDAI: totalDAI,
+          totalMANA: totalMANA,
+          totalUSDT: totalUSDT,
+          totalATRI: totalATRI,
+          totalWETH: totalWETH,
+          tokenArray: tokenArray,
+        };
 
         dispatch({
           type: 'user_info',
-          data: response,
+          data: data,
         });
       })();
     }
-  }, [state.userAddress]);
+  }, [state.userAddress, state.updateInfo]);
 
   return null;
 }

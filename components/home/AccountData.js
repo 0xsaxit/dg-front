@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
+import { Parallax } from 'react-parallax';
 import { Divider, Icon, Popup } from 'semantic-ui-react';
+import ModalAffiliates from '../modal/ModalAffiliates';
 import Spinner from '../Spinner';
 import ContentAccount from '../content/ContentAccount';
 import Aux from '../_Aux';
-import { Parallax } from 'react-parallax';
-
 
 const AccountData = (props) => {
   // get user's transaction history from the Context API store
@@ -20,30 +20,20 @@ const AccountData = (props) => {
   const [utm, setUtm] = useState('');
 
   const dataType = props.dataType;
-  const maximumCount = 100;
+  const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    if (state.transactions[0].length) {
+    if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);
     }
   }, [state.transactions]);
 
   useEffect(() => {
-    if (!state.userStatus) {
-      setIsLoading(false);
-    }
-  }, [state.userStatus]);
-
-  useEffect(() => {
     if (!isLoading) {
-      // setUserData(props.dataType, 1);
-
-      let result = [];
-      if (dataType === 'balances') {
-        result = true;
-      } else if (dataType === 'history') {
+      let result = {};
+      if (dataType === 'history') {
         result = dataHistory.slice(0, maximumCount);
       } else if (dataType === 'play') {
         result = dataPlay.slice(0, maximumCount);
@@ -51,7 +41,7 @@ const AccountData = (props) => {
 
       setDataPage(result);
     }
-  }, [dataType, isLoading]);
+  }, [isLoading]);
 
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
@@ -60,7 +50,6 @@ const AccountData = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-
   function topLinks() {
     return (
       <Aux>
@@ -72,14 +61,14 @@ const AccountData = (props) => {
             >
               <img
                 className="avatar-picture main"
-                src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
                 style={{
                   backgroundColor: 'white',
                   width: '120px',
                   display: 'flex',
                   marginTop: '-18px',
                 }}
-              />
+              /> 
               <a 
                 href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
                 target="_blank"
@@ -88,16 +77,16 @@ const AccountData = (props) => {
                 <Icon name="pencil" className="edit-icon" />
               </a>
             </span>
-            {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+            {state.userInfo.name === null || state.userInfo.name === '' ? (
               <p className="account-name-2">
-                {state.userInfo[1].substr(0, 4) +
+                {state.userAddress.substr(0, 4) +
                   '...' +
-                  state.userInfo[1].substr(-4)}
+                  state.userAddress.substr(-4)}
               </p>
             ) : (
-              <p className="account-name-2">{state.userInfo[0]}</p>
+              <p className="account-name-2">{state.userInfo.name}</p>
             )}
-            <p className="welcome-text-2"> {state.userInfo[1]} </p>
+            <p className="welcome-text-2"> {state.userAddress} </p>
           </span>
 
           <span
@@ -189,57 +178,15 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              {dataType === 'referrals' ? (
-                <span className="account-hover active">
-                  <b>REFERRALS</b>
-                </span>
-              ) : (
-                <Link href="/account/referrals">
-                  <span className="account-hover">
-                    <b>REFERRALS</b>
-                  </span>
-                </Link>
-              )}
-
+              <span style={{ marginTop: '27px' }}>
+                <ModalAffiliates />
+              </span>
             </span>
           </div>
         </div>
 
         <Divider className="tab-divider" />
       </Aux>
-    );
-  }
-
-  // function setUserData(type, page) {
-  //   if (!isLoading) {
-  //     let result = [];
-  //     const indexStart = (page - 1) * maximumCount;
-  //     const indexEnd = indexStart + maximumCount;
-
-  //     // let dataLength = 0;
-  //     if (type === 'balances') {
-  //       result = true;
-  //       // dataLength = 0;
-  //     } else if (type === 'history') {
-  //       result = dataHistory.slice(indexStart, indexEnd);
-  //       // dataLength = dataHistory.length;
-  //     } else if (type === 'play') {
-  //       result = dataPlay.slice(indexStart, indexEnd);
-  //       // dataLength = dataPlay.length;
-  //     }
-
-  //     setDataType(type);
-  //     setDataPage(result);
-  //     // setCurrentPage(page);
-  //     // setDataLength(dataLength);
-  //   }
-  // }
-
-  function noTxHistory() {
-    return (
-      <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-        There doesn't appear to be anything here!
-      </div>
     );
   }
 
@@ -264,39 +211,7 @@ const AccountData = (props) => {
               {topLinks()}
 
               <div id="tx-box-history-2">
-                {dataType == 'balances' ? (
-                  <div>
-                    <ContentAccount content={'balances'} />
-                  </div>
-                ) : dataType == 'wearables' ? (
-                  <div>
-                    <ContentAccount content={'wearables'} />
-                  </div>
-                ) : dataType == 'poaps' ? (
-                  <div>
-                    <ContentAccount content={'poaps'} />
-                  </div>
-                ) : dataType == 'history' ? (
-                  <div style={{ paddingTop: '12px' }}>
-                    <div className="tx-box-overflow">
-                      <ContentAccount content={'labels'} type={dataType} />
-                      <ContentAccount content={dataType} dataPage={dataPage} />
-                    </div>
-                  </div>
-                ) : dataType == 'play' ? (
-                  <div style={{ paddingTop: '12px' }}>
-                    <div className="tx-box-overflow">
-                      <ContentAccount content={'labels'} type={dataType} />
-                      <ContentAccount content={dataType} dataPage={dataPage} />
-                    </div>
-                  </div>
-                ) : dataType == 'referrals' ? (
-                  <div>
-                    <ContentAccount content={'referrals'} />
-                  </div>
-                ) : (
-                  noTxHistory()
-                )}
+                <ContentAccount content={dataType} dataPage={dataPage} />
               </div>
             </div>
           </div>

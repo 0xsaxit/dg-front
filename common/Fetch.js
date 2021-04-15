@@ -26,23 +26,29 @@ const Fetch = {
   },
 
   TREASURY_STATS_GRAPH: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   TREASURY_STATS_NUMBERS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   PARCEL_DATA: (landID, tokenID, address) => {
@@ -78,6 +84,16 @@ const Fetch = {
     });
   },
 
+  EVENTS: (address) => {
+    return fetch(`https://api.decentral.games/players/getEvents?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
   // ADMIN_HISTORY: () => {
   //   return fetch(`${API_BASE_URL}/admin/getHistory?address=${address}`, {
   //     method: 'GET',
@@ -101,8 +117,8 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls
-  USER_STATUS: (address) => {
-    return fetch(`${API_BASE_URL}/order/verifyAddress`, {
+  USER_STATUS: (address, ipAddress) => {
+    return fetch(`${API_BASE_URL}/order/webLogin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -110,12 +126,13 @@ const Fetch = {
       },
       body: JSON.stringify({
         address: address,
+        ipAddress: ipAddress,
       }),
     });
   },
 
-  USER_VERIFY: (address, step, affiliate) => {
-    return fetch(`${API_BASE_URL}/order/updateUserVerify`, {
+  REGISTER: (address, ipAddress, affiliate) => {
+    return fetch(`${API_BASE_URL}/order/webRegister`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -123,8 +140,36 @@ const Fetch = {
       },
       body: JSON.stringify({
         address: address,
-        verifyStep: step,
+        ipAddress: ipAddress,
         affiliate: affiliate,
+      }),
+    });
+  },
+
+  // UPDATE_STATUS: (address, step) => {
+  //   return fetch(`${API_BASE_URL}/order/updateStatus`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       address: address,
+  //       verifyStep: step,
+  //     }),
+  //   });
+  // },
+
+  UPDATE_TOKEN_ARRAY: (address, index) => {
+    return fetch(`${API_BASE_URL}/order/updateTokenArray`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        address: address,
+        index: index,
       }),
     });
   },
@@ -190,38 +235,37 @@ const Fetch = {
     });
   },
 
-  EVENTS: () => {
-    return fetch(`https://api.decentral.games/players/getEvents`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });  
-  },
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
+  // IP_ADDRESS: () => {
+  //   return fetch(`https://ipapi.co/json`);
+  // },
 
   NFTS_1: (address) => {
-    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0xbf53c33235cbfc22cef5a61a83484b86342679c5&order_direction=desc&offset=0&limit=10`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0xbf53c33235cbfc22cef5a61a83484b86342679c5&order_direction=desc&offset=0&limit=10`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   NFTS_2: (address) => {
-    return fetch(`https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0x7038e9d2c6f5f84469a84cf9bc5f4909bb6ac5e0&order_direction=desc&offset=0&limit=10`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0x7038e9d2c6f5f84469a84cf9bc5f4909bb6ac5e0&order_direction=desc&offset=0&limit=10`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   AVATAR_IMAGE: (address) => {
@@ -275,13 +319,16 @@ const Fetch = {
   },
 
   LAND_PRICE: () => {
-    return fetch(`https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   POAPS: (address) => {
@@ -293,7 +340,6 @@ const Fetch = {
       },
     });
   },
-
 };
 
 export default Fetch;

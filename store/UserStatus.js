@@ -12,44 +12,35 @@ function UserStatus() {
   useEffect(() => {
     if (window.ethereum) {
       userAddress = window.ethereum.selectedAddress;
-    } else {
-      web3.eth.getCoinbase((error, coinbase) => {
-        if (error) throw error;
-        userAddress = coinbase.toLowerCase();
-      });
 
       if (userAddress) {
         // set user status to 3 to denote fetching user status, and dispatch the user address
-        if (userAddress) {
-          dispatch({
-            type: 'update_status',
-            data: 3,
-          });
+        dispatch({
+          type: 'update_status',
+          data: 3,
+        });
 
-          dispatch({
-            type: 'user_address',
-            data: userAddress,
-          });
-        }
+        dispatch({
+          type: 'user_address',
+          data: userAddress,
+        });
 
         // fetch user status
         async function fetchData() {
           const response = await getUserStatus();
 
           // if the response is truthy set the user's respective status, else set status back to 0
-          // (/verifyAddress API call will return error if new wallet address)
+          // (/websiteLogin API call will return error if new wallet address)
           if (response) {
             dispatch({
               type: 'update_status',
               data: response,
             });
           } else {
-            if (userAddress) {
-              dispatch({
-                type: 'update_status',
-                data: 0,
-              });
-            }
+            dispatch({
+              type: 'update_status',
+              data: 0,
+            });
           }
         }
 
@@ -58,23 +49,43 @@ function UserStatus() {
     }
   }, []);
 
+  // async function getUserStatus() {
+  //   try {
+  //     const response = await Fetch.USER_STATUS(userAddress);
+  //     const json = await response.json();
+
+  //     if (json.status === 'ok') {
+  //       if (json.result === 'false') {
+  //         return false;
+  //       }
+  //       const stepValue = parseInt(json.result);
+
+  //       return stepValue;
+  //     }
+  //   } catch {
+  //     console.log('Unregistered wallet: User Status');
+
+  //     return 0;
+  //   }
+  // }
+
   async function getUserStatus() {
+    console.log('Get user status: User Status');
+
     try {
-      const response = await Fetch.USER_STATUS(userAddress);
-      const json = await response.json();
+      // const responseIP = await Fetch.IP_ADDRESS();
+      // const jsonIP = await responseIP.json();
 
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return false;
-        }
-        const stepValue = parseInt(json.result);
+      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
+      const jsonStatus = await responseStatus.json();
 
-        return stepValue;
-      }
+      if (!jsonStatus.status) return false;
+
+      return jsonStatus.status;
     } catch {
       console.log('Unregistered wallet: User Status');
 
-      return 0;
+      return false;
     }
   }
 

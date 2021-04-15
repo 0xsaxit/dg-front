@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import { Button, Divider, Loader, Table, Icon } from 'semantic-ui-react';
+import { Button, Divider, Loader, Icon } from 'semantic-ui-react';
 import MetaTx from '../../common/MetaTx';
 import Transactions from '../../common/Transactions';
 import Aux from '../_Aux';
@@ -122,7 +122,6 @@ const ContentMining = (props) => {
   function contentMining() {
     return (
       <Aux>
-
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
             <p className="earned-amount">Unclaimed</p>
@@ -137,12 +136,9 @@ const ContentMining = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text-top">$DG Balance</p>
-                {state.DGBalances.BALANCE_STAKING_UNISWAP ? (
+                {state.DGBalances.BALANCE_MINING_DG ? (
                   <p className="earned-amount">
-                    {props.formatPrice(
-                      state.DGBalances.BALANCE_STAKING_UNISWAP,
-                      3
-                    )}
+                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
                   </p>
                 ) : (
                   <Loader
@@ -158,6 +154,13 @@ const ContentMining = (props) => {
                   />
                 )}
               </span>
+            </span>
+
+            <Divider className="divider-dg-top"/>
+
+            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+              <p className="earned-amount"> ${gameplayUSD} </p>
             </span>
 
             <Divider className="divider-dg-top"/>
@@ -372,7 +375,6 @@ const ContentMining = (props) => {
               </span>
             </div>
           </div>
-
         </div>
       </Aux>
     );

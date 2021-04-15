@@ -129,22 +129,6 @@ const ContentOfferings = (props) => {
   function buyNFTs() {
     return (
       <span>
-        <div className="DG-liquidity-container top">
-          <div
-            className="DG-column top"
-            style={{ marginBottom: '21px', marginTop: '6px' }}
-          >
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p>
-                {' '}
-                Each Decentral Games Decentraland wearable NFT gives a +10% $DG
-                mining bonus while equipped. A maximum of 4 wearables (+40%
-                bonus) may be equipped at a single time. To read more about $DG
-                wearable mining bonuses, see our docs.
-              </p>
-            </span>
-          </div>
-        </div>
         <div className="outter-nft-container">
           {Object.keys(props.detailsNFTs).map((item, i) => (
             <a href={props.detailsNFTs[item][5]} className="nft-container">

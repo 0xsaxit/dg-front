@@ -44,7 +44,6 @@ const ContentGovernance = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
   function length(obj) {
     return Object.keys(obj).length;
   }
@@ -68,7 +67,6 @@ const ContentGovernance = (props) => {
       fetchData();
     }
   }, [state.userStatus]);
-
 
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
@@ -123,7 +121,6 @@ const ContentGovernance = (props) => {
 
   useEffect(() => {
     (async function () {
-
       // get snapshot statistics
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
@@ -178,10 +175,8 @@ const ContentGovernance = (props) => {
   }
 
   function contentGovernance() {
-
     return (
       <Aux>
-
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
             <p className="earned-amount">Unclaimed</p>
@@ -218,7 +213,14 @@ const ContentGovernance = (props) => {
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+              <p className="earned-amount"> ${priceUSD} </p>
+            </span>
+
+            <Divider className="divider-dg-top" />
 
             <p style={{ fontSize: '18px' }}>
               Stake $DG tokens, govern the treasury, and earn
@@ -472,7 +474,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>ONGOING ∙ {endOne}</p>
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endOne}</p>
                   </span>
                 </div>
               </a>
@@ -492,7 +494,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endTwo}</p>
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endTwo}</p>
                   </span>
                 </div>
               </a>

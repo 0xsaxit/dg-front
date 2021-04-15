@@ -40,6 +40,8 @@ const ContentTreasury = (props) => {
 
   const [manaBalance, setManaBalance] = useState(0);
   const [daiBalance, setDaiBalance] = useState(0);
+  const [usdtBalance, setUSDTBalance] = useState(0);
+  const [atriBalance, setAtriBalance] = useState(0);
 
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -83,20 +85,25 @@ const ContentTreasury = (props) => {
 
         setPercentageUniswap((percentageTreasuryUniswap * 100).toFixed(2));
 
-        let response = await Fetch.ETH_PRICE();
-        let json = await response.json();
+        try {
+          const response = await Fetch.ETH_PRICE();
+          const  json = await response.json();
 
-        const priceETH = json.market_data.current_price.usd;
-        const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
-        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
-        const total_locked = locked_DG + locked_ETH;
+          const priceETH = json.market_data.current_price.usd;
+          const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
+          const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
+          const total_locked = locked_DG + locked_ETH;
 
-        let response_2 = await Fetch.MANA_PRICE();
-        let json_2 = await response_2.json();
+          let response_2 = await Fetch.MANA_PRICE();
+          let json_2 = await response_2.json();
 
-        const priceMANA = json_2.market_data.current_price.usd;
-        const manaTemp = priceMANA * 400000;
-        setGameplayMana(manaTemp);
+          const priceMANA = json_2.market_data.current_price.usd;
+          const manaTemp = priceMANA * 400000;
+          setGameplayMana(manaTemp);
+          
+        } catch (error) {
+          console.log('coingecko api error: ' + error);
+        }
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
@@ -147,6 +154,12 @@ const ContentTreasury = (props) => {
 
         let dai = json_4.daiBalance.graph;
         setDaiBalance(formatPrice(dai.slice(-1)[0].secondary, 0));
+
+        let usdt = 149746;
+        setUSDTBalance(formatPrice(usdt, 0));
+
+        let atri = json_4.atriBalance.graph;
+        setAtriBalance(formatPrice(atri.slice(-1)[0].secondary, 0));
 
         let land = json_4.totalLandUSD;
         setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));
@@ -364,9 +377,9 @@ const ContentTreasury = (props) => {
             <Table unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Name</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right" style={{ paddingLeft: '23vw' }}>Amount</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right">Weekly Change</Table.HeaderCell>
+                  <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>Name</Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right" className="treasury-left-padding">Amount</Table.HeaderCell>
+                  <Table.HeaderCell textAlign="right">Weekly</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -374,7 +387,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Gameplay All Time
+                      Gameplay All
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -442,7 +455,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Gameplay Current
+                      Gameplay
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -456,6 +469,8 @@ const ContentTreasury = (props) => {
                         <div>
                           <p className="earned-text">DAI: {daiBalance}</p>
                           <p className="earned-text">MANA: {manaBalance}</p>
+                          <p className="earned-text">USDT: {usdtBalance}</p>
+                          <p className="earned-text">ATRI: {atriBalance}</p>
                         </div>
                       </Popup>
                     </span>
@@ -506,7 +521,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      $DG Treasury
+                      $DG Token
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -572,7 +587,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Land Treasury
+                      DCL LAND
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -638,7 +653,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Wearables Treasury
+                    Wearables
                       <Popup
                         className="dai-mana-popup"
                         trigger={
@@ -705,7 +720,7 @@ const ContentTreasury = (props) => {
                 <Table.Row>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
-                      Uniswap Liquidity Provision
+                      Uniswap LP
                       <Popup
                         className="dai-mana-popup"
                         trigger={

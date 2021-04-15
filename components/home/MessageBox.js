@@ -18,15 +18,13 @@ const MessageBox = (props) => {
                   className="deposit-message-text top"
                   style={{ fontSize: '16px', fontWeight: 'bold' }}
                 >
-                  Transaction Pending on Matic
+                  Transaction Pending on Polygon Network
                 </p>
                 <p
                   className="deposit-message-text"
                   style={{ fontSize: '16px' }}
                 >
-                  Matic balances will update once transaction is confirmed
-                  <br />
-                  (Normally 7 - 8 minutes)
+                  Token balances will update once transaction is confirmed
                 </p>
               </Aux>
             ) : state.tokenPings === 2 ? (
@@ -35,7 +33,7 @@ const MessageBox = (props) => {
                   className="deposit-message-text top"
                   style={{ fontSize: '16px', fontWeight: 'bold' }}
                 >
-                  Transaction Pending on Matic
+                  Transaction Pending on Polygon Network
                 </p>
                 <p
                   className="deposit-message-text"
@@ -50,13 +48,13 @@ const MessageBox = (props) => {
                   className="deposit-message-text top"
                   style={{ fontSize: '16px', fontWeight: 'bold' }}
                 >
-                  Deposit Confirmed on Matic
+                  Deposit Confirmed on Polygon Network
                 </p>
                 <p
                   className="deposit-message-text"
                   style={{ fontSize: '16px' }}
                 >
-                  Your Matic balances have been updated
+                  Your token balances have been updated
                 </p>
               </Aux>
             ) : state.tokenPings === 4 ? (
@@ -65,13 +63,13 @@ const MessageBox = (props) => {
                   className="deposit-message-text top"
                   style={{ fontSize: '16px', fontWeight: 'bold' }}
                 >
-                  Withdrawal Confirmed on Matic
+                  Withdrawal Confirmed on Ethereum Network
                 </p>
                 <p
                   className="deposit-message-text"
                   style={{ fontSize: '16px' }}
                 >
-                  Your Matic balances have been updated
+                  Your token balances have been updated
                 </p>
               </Aux>
             ) : state.tokenPings === 5 ? (

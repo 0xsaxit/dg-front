@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
+        <Head>          
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
@@ -53,15 +53,10 @@ export default class MyDocument extends Document {
             href="/static/js/manifest.json"
             crossOrigin="use-credentials"
           />
-          {/* <link
+          <link
             href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
             rel="stylesheet"
             disabled
-          /> */}
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400&display=swap"
-            rel="stylesheet"
           />
         </Head>
 

@@ -39,7 +39,7 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
@@ -287,10 +287,14 @@ function DGBalances() {
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
       // calculate price of mana locked in balancer
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      let temp = json.market_data.current_price.usd;
-      const TOTAL_MANA = temp * BALANCE_BP_MANA;
+      try {
+        const response = await Fetch.MANA_PRICE();
+        const json = await response.json();
+        let temp = json.market_data.current_price.usd;
+        const TOTAL_MANA = temp * BALANCE_BP_MANA;
+      } catch (error) {
+        console.log('coingecko api error: ' + error);
+      }
 
       // // get BPT supply of pool 1
       // let response_2 = await Fetch.BPT_SUPPLY_1();

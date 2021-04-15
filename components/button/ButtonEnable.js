@@ -23,7 +23,7 @@ function ButtonEnable() {
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
-      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
@@ -62,7 +62,7 @@ function ButtonEnable() {
     });
 
     // post reauthorization to database
-    // console.log('Posting reauthorization transaction to db');
+    console.log('Posting reauthorization transaction to db');
 
     Fetch.POST_HISTORY(
       state.userAddress,
