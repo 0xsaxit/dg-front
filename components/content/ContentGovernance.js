@@ -474,7 +474,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>ONGOING ∙ {endOne}</p>
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endOne}</p>
                   </span>
                 </div>
               </a>
@@ -494,7 +494,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endTwo}</p>
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endTwo}</p>
                   </span>
                 </div>
               </a>
