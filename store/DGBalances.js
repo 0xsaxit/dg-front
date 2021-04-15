@@ -287,10 +287,14 @@ function DGBalances() {
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
       // calculate price of mana locked in balancer
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      let temp = json.market_data.current_price.usd;
-      const TOTAL_MANA = temp * BALANCE_BP_MANA;
+      try {
+        const response = await Fetch.MANA_PRICE();
+        const json = await response.json();
+        let temp = json.market_data.current_price.usd;
+        const TOTAL_MANA = temp * BALANCE_BP_MANA;
+      } catch (error) {
+        console.log('coingecko api error: ' + error);
+      }
 
       // // get BPT supply of pool 1
       // let response_2 = await Fetch.BPT_SUPPLY_1();
