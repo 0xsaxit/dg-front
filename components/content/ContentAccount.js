@@ -54,7 +54,7 @@ const ContentAccount = (props) => {
   const ramp2 = new RampInstantSDK({
     hostAppName: 'Buy DAI Directly',
     hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
-    swapAsset: 'DAI',
+    swapAsset: 'MATIC_DAI',
   });
 
   function show_ramp2() {
