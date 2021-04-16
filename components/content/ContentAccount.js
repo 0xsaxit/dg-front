@@ -1288,9 +1288,9 @@ const ContentAccount = (props) => {
             <Divider className="divider-dg-top"/>
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
+              <p style={{ fontSize: '18px' }}> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
               <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', padding: '3px 6px 6px 6px' }}>
-                <p style={{ marginBottom: '0px' }}> https://decentral...</p>
+                <p style={{ marginBottom: '0px', fontSize: '18px' }}> https://decentral...</p>
                 {copied == false ? (
                   <Icon className="affiliate-icon" onClick={() => onCopy()} name="copy" />
                 ) : (
