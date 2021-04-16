@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
 import { ConnextModal } from '@connext/vector-modal';
-import transakSDK from '@transak/transak-sdk';
+import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
 import Global from '../Constants';
 import Images from '../../common/Images';
@@ -13,65 +13,6 @@ import ModalAcceptATRI from '../modal/ModalAcceptATRI';
 import ModalAcceptWETH from '../modal/ModalAcceptWETH';
 import Aux from '../_Aux';
 
-const transak_1 = new transakSDK({
-  apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'PRODUCTION', // STAGING/PRODUCTION
-  walletAddress: '', // customer wallet address
-  themeColor: '#2085f4', // theme color
-  fiatCurrency: '', // INR/GBP
-  email: '', // customer email address
-  redirectURL: '',
-  defaultCryptoCurrency: 'MANA',
-  hostURL: Global.CONSTANTS.BASE_URL,
-  widgetHeight: '633px',
-  widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy MANA',
-});
-
-const transak_2 = new transakSDK({
-  apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'PRODUCTION', // STAGING/PRODUCTION
-  walletAddress: '', // customer wallet address
-  themeColor: '#2085f4', // theme color
-  fiatCurrency: '', // INR/GBP
-  email: '', // customer email address
-  redirectURL: '',
-  defaultCryptoCurrency: 'DAI',
-  hostURL: Global.CONSTANTS.BASE_URL,
-  widgetHeight: '633px',
-  widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy DAI',
-});
-
-const transak_3 = new transakSDK({
-  apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'PRODUCTION', // STAGING/PRODUCTION
-  walletAddress: '', // customer wallet address
-  themeColor: '#2085f4', // theme color
-  fiatCurrency: '', // INR/GBP
-  email: '', // customer email address
-  redirectURL: '',
-  defaultCryptoCurrency: 'USDT',
-  hostURL: Global.CONSTANTS.BASE_URL,
-  widgetHeight: '633px',
-  widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy USDT',
-});
-
-const transak_4 = new transakSDK({
-  apiKey: Global.KEYS.TRANSAK_API, // API Key
-  environment: 'PRODUCTION', // STAGING/PRODUCTION
-  walletAddress: '', // customer wallet address
-  themeColor: '#2085f4', // theme color
-  fiatCurrency: '', // INR/GBP
-  email: '', // customer email address
-  redirectURL: '',
-  defaultCryptoCurrency: 'ETH',
-  hostURL: Global.CONSTANTS.BASE_URL,
-  widgetHeight: '633px',
-  widgetWidth: '100%',
-  exchangeScreenTitle: 'Buy ETH',
-});
 
 const connext = {
   routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
@@ -91,12 +32,6 @@ const ContentAccount = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [showModal, setShowModal] = useState(false);
-  const [showModal_2, setShowModal_2] = useState(false);
-  const [showModal_3, setShowModal_3] = useState(false);
-  const [showModal_4, setShowModal_4] = useState(false);
-  const [showModal_5, setShowModal_5] = useState(false);
-  const [showModal_6, setShowModal_6] = useState(false);
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
@@ -105,6 +40,57 @@ const ContentAccount = (props) => {
   const [injectedProvider, setInjectedProvider] = useState('');
 
   const buttonPlay = document.getElementById('play-now-button-balances');
+
+  const ramp1 = new RampInstantSDK({
+    hostAppName: 'Buy Mana Directly',
+    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
+    swapAsset: 'MANA',
+  });
+
+  function show_ramp1() {
+    ramp1.show()
+  }
+
+  const ramp2 = new RampInstantSDK({
+    hostAppName: 'Buy DAI Directly',
+    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
+    swapAsset: 'DAI',
+  });
+
+  function show_ramp2() {
+    ramp2.show()
+  }
+
+  const ramp3 = new RampInstantSDK({
+    hostAppName: 'Buy USDT Directly',
+    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
+    swapAsset: 'USDT',
+  });
+
+  function show_ramp3() {
+    ramp3.show()
+  }
+
+  const ramp4 = new RampInstantSDK({
+    hostAppName: 'Buy ATRI Directly',
+    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
+    swapAsset: 'ATRI',
+  });
+
+  function show_ramp4() {
+    ramp4.show()
+  }
+
+  const ramp5 = new RampInstantSDK({
+    hostAppName: 'Buy ETH Directly',
+    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
+    swapAsset: 'ETH',
+  });
+
+  function show_ramp5() {
+    ramp5.show()
+  }
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -193,73 +179,6 @@ const ContentAccount = (props) => {
     }
   }, [event, txHash, amount]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // handle Transak purchase events and write to database
-  useEffect(() => {
-    // get all the events
-    transak_1.on(transak_1.ALL_EVENTS, (data) => {
-      console.log('Transak events 1: ' + data);
-    });
-    transak_2.on(transak_2.ALL_EVENTS, (data) => {
-      console.log('Transak events 2: ' + data);
-    });
-    transak_3.on(transak_3.ALL_EVENTS, (data) => {
-      console.log('Transak events 3: ' + data);
-    });
-    transak_4.on(transak_4.ALL_EVENTS, (data) => {
-      console.log('Transak events 4: ' + data);
-    });
-
-    // triggers when the user closes the widget
-    transak_1.on(transak_1.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak_1.close();
-    });
-    transak_2.on(transak_2.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak_2.close();
-    });
-    transak_3.on(transak_3.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak_3.close();
-    });
-    transak_4.on(transak_4.EVENTS.TRANSAK_WIDGET_CLOSE, (orderData) => {
-      transak_4.close();
-    });
-
-    // triggers when the payment is complete
-    transak_1.on(transak_1.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log('Transak order complete 1: ' + orderData);
-      transak_1.close();
-    });
-    transak_2.on(transak_2.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log('Transak order complete 2: ' + orderData);
-      transak_2.close();
-    });
-    transak_3.on(transak_3.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log('Transak order complete 3: ' + orderData);
-      transak_3.close();
-    });
-    transak_4.on(transak_4.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log('Transak order complete 2: ' + orderData);
-      transak_4.close();
-    });
-  }, []);
-
-  // initialize transak modal
-  function show_transak_1() {
-    transak_1.init();
-  }
-
-  function show_transak_2() {
-    transak_2.init();
-  }
-
-  function show_transak_3() {
-    transak_3.init();
-  }
-
-  function show_transak_4() {
-    transak_4.init();
-  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -339,8 +258,9 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => show_transak_1()}
-              style={{ marginTop: '-60px' }}
+              href="https://www.binance.com/en/trade/MANA_ETH"
+              target="_blank"
+              style={{ marginTop: '-60px', padding: '7px 0 0 0' }}
             >
               BUY
             </Button>
@@ -440,7 +360,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button two"
-              onClick={() => show_transak_2()}
+              onClick={() => show_ramp2()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -543,7 +463,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => show_transak_3()}
+              onClick={() => show_ramp3()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -704,7 +624,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => show_transak_4()}
+              onClick={() => show_ramp5()}
               style={{ marginTop: '-60px' }}
             >
               BUY
