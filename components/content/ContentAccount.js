@@ -38,6 +38,19 @@ const ContentAccount = (props) => {
   const [wearables, setWearables] = useState([]);
   const [poaps, setPoaps] = useState([]);
   const [injectedProvider, setInjectedProvider] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [link, setLink] = useState('');
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(
+      Global.CONSTANTS.BASE_URL + '/' + state.userInfo[1]
+    );
+    setCopied(true);
+
+    // track 'Affiliate Link' button click event
+    analytics.track('Clicked AFFILIATE LINK button');
+  };
 
   const buttonPlay = document.getElementById('play-now-button-balances');
 
@@ -1248,6 +1261,123 @@ const ContentAccount = (props) => {
     );
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function contentReferrals() {
+    return (
+      <Aux>
+
+        <div className="DG-liquidity-container top">
+          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex' }}>
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
+                className="farming-logo-small"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text-top">Affiliate Balance</p>
+                <p className="earned-amount">0.00</p>
+              </span>
+            </span>
+
+            <Divider className="divider-dg-top"/>
+
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              <p> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
+              <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', padding: '3px 6px 6px 6px' }}>
+                <p style={{ marginBottom: '0px' }}> https://decentral...</p>
+                {copied == false ? (
+                  <Icon className="affiliate-icon" onClick={() => onCopy()} name="copy" />
+                ) : (
+                  <Icon className="affiliate-icon" onClick={() => onCopy()} name="check" />
+                )}
+              </span>
+            </span>
+
+            <Divider className="divider-dg-top"/>
+
+            <span className="DG-button-span">
+              {Number(state.DGBalances.BALANCE_MINING_DG) ? (
+                <Button
+                  disabled
+                  className="DG-claim-button"
+                  id="balances-padding-correct"
+                  onClick={() => metaTransaction()}
+                >
+                  CLAIM REFERRAL BONUS
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM REFERRAL BONUS
+                </Button>
+              )}
+            </span>
+          </div>
+
+          <span className="DG-column treasury-stats" style={{ height: '100%' }}>
+            <Table unstackable>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Affiliate</Table.HeaderCell>
+                  <Table.HeaderCell className="account-col-2">Amount</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+
+              <Table.Body>
+                <Table.Row>
+                  <Table.Cell>
+                    0xd8856cCe3F878d3Ea03964F80B18987fF1919272
+                  </Table.Cell>
+                  <Table.Cell className="account-col-2">
+                    <span style={{ display: 'flex' }}>
+                      <img
+                        src={Images.MANA_CIRCLE}
+                        style={{
+                          width: '21px',
+                          marginRight: '6px',
+                          verticalAlign: 'middle',
+                          marginTop: '-2px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                      100 MANA
+                    </span>
+                  </Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>
+                    0x05b264ABC4A35A1927AE2a0058ecEc1013b5B9a8
+                  </Table.Cell>
+                  <Table.Cell className="account-col-2">
+                    <span style={{ display: 'flex' }}>
+                      <img
+                        src={Images.DAI_CIRCLE}
+                        style={{
+                          width: '21px',
+                          marginRight: '6px',
+                          verticalAlign: 'middle',
+                          marginTop: '-2px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                      10 DAI
+                    </span>
+                  </Table.Cell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
+          </span>
+        </div>
+      </Aux>
+    );
+  }
+
   if (props.content === 'balances') {
     return contentAccount();
   } else if (props.content === 'wearables') {
@@ -1258,7 +1388,8 @@ const ContentAccount = (props) => {
     return contentHistory();
   } else if (props.content === 'play') {
     return contentGameplay();
-  }
-};
+  } else if (props.content === 'referrals') {
+    return contentReferrals();
+  }};
 
 export default ContentAccount;

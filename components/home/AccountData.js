@@ -178,9 +178,18 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              <span style={{ marginTop: '27px' }}>
-                <ModalAffiliates />
-              </span>
+
+              {dataType === 'referrals' ? (
+                <span className="account-hover active">
+                  <b>REFERRALS</b>
+                </span>
+              ) : (
+                <Link href="/account/referrals">
+                  <span className="account-hover">
+                    <b>REFERRALS</b>
+                  </span>
+                </Link>
+              )}
             </span>
           </div>
         </div>
