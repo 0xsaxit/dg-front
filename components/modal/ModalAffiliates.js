@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Button, Icon, Modal, Divider } from 'semantic-ui-react';
+import { Icon, Modal, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
 
 const ModalAffiliates = () => {
@@ -10,12 +10,13 @@ const ModalAffiliates = () => {
   // define local variables
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
-  const [link, setLink] = useState('');
 
+  const referralLink = Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id;
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   const onCopy = () => {
-    navigator.clipboard.writeText(
-      Global.CONSTANTS.BASE_URL + '/' + state.userAddress // *** will update with database index value ****
-    );
+    navigator.clipboard.writeText(referralLink);
     setCopied(true);
 
     // track 'Affiliate Link' button click event
@@ -41,7 +42,7 @@ const ModalAffiliates = () => {
         </span>
       </div>
 
-      <p className="mailchimp-header-text"> Refer a Friend </p>
+      <p className="mailchimp-header-text">Refer a Friend</p>
 
       <Divider style={{ marginTop: '-15px' }} />
 
@@ -69,10 +70,7 @@ const ModalAffiliates = () => {
           padding: '3px 6px 6px 6px',
         }}
       >
-        <p style={{ marginBottom: '0px' }}>
-          {' '}
-          https://decentral.games/{state.userAddress.slice(0, 8)}...{' '}
-        </p>
+        <p style={{ marginBottom: '0px' }}>{referralLink}</p>
         {copied == false ? (
           <Icon
             className="affiliate-icon"
