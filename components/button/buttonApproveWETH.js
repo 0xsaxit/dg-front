@@ -112,6 +112,12 @@ function ButtonApproveWETH() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
+
+      dispatch({
+        type: 'set_wethLoading',
+        data: true,
+      });
+
       console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
@@ -129,13 +135,31 @@ function ButtonApproveWETH() {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
+
+        dispatch({
+          type: 'set_wethLoading',
+          data: false,
+        });
+
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         dispatchActiveStatus(txHash);
+
+        dispatch({
+          type: 'set_wethLoading',
+          data: false,
+        });
+        
       }
     } catch (error) {
       console.log(error);
+
+      dispatch({
+        type: 'set_wethLoading',
+        data: false,
+      });
+        
     }
   }
 

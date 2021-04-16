@@ -92,6 +92,11 @@ const initialState = {
   toggleTheme: 'light',
   whitelistedAdmin: false,
   whitelistedIntel: false,
+  manaLoading: false,
+  daiLoading: false,
+  usdtLoading: false,
+  atriLoading: false,
+  wethLoading: false,
 };
 
 const reducer = (state, action) => {
@@ -262,6 +267,36 @@ const reducer = (state, action) => {
       return {
         ...state,
         whitelistedIntel: action.data,
+      };
+
+    case 'set_manaLoading':
+      return {
+        ...state,
+        manaLoading: action.data,
+      };
+
+    case 'set_daiLoading':
+      return {
+        ...state,
+        daiLoading: action.data,
+      };
+
+    case 'set_usdtLoading':
+      return {
+        ...state,
+        usdtLoading: action.data,
+      };
+
+    case 'set_atriLoading':
+      return {
+        ...state,
+        atriLoading: action.data,
+      };
+
+    case 'set_wethLoading':
+      return {
+        ...state,
+        wethLoading: action.data,
       };
 
     // case 'ip_address':

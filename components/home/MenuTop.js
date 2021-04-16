@@ -108,7 +108,7 @@ const MenuTop = (props) => {
     const interval = setInterval(() => {
       const frameWidth = window.innerWidth;
 
-      if (frameWidth > 991) {
+      if (frameWidth > 1100) {
         setOpen(false);
       }
     }, 100);
@@ -243,6 +243,18 @@ const MenuTop = (props) => {
                     </Menu.Item>
                   </a>
 
+                  <a 
+                    href="https://decentralgames.substack.com/" 
+                    target="_blank"
+                  >
+                    <Menu.Item 
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
+                      NEWS
+                    </Menu.Item>
+                  </a>
+
                   <a
                     href="https://docs.decentral.games"
                     id="docs-top-menu"
@@ -310,6 +322,16 @@ const MenuTop = (props) => {
             BLOG
           </Menu.Item>
         </Link>
+
+        <a 
+          href="https://decentralgames.substack.com/" 
+          target="_blank"
+          id="docs-top-menu"
+        >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/news')}>
+            NEWS
+          </Menu.Item>
+        </a>
 
         <a
           href="https://docs.decentral.games"

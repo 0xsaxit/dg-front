@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Modal, Button, Divider, Icon, Checkbox } from 'semantic-ui-react';
+import { Modal, Button, Divider, Icon, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from '../../store';
 import ButtonApproveUSDT from '../button/ButtonApproveUSDT';
 
@@ -38,12 +38,31 @@ const ModalAcceptUSDT = () => {
       open={open}
       close
       trigger={
-        <Button
-          className="balances-authorize-button"
-          id="balances-padding-correct"
-        >
-          ENABLE USDT
-        </Button>
+        <span>
+          {!state.usdtLoading ? (
+            <Button
+              className="balances-authorize-button"
+              id="balances-padding-correct"
+            >
+              ENABLE USDT
+            </Button>
+          ) : (
+            <Button
+              className="balances-authorize-button"
+              id="balances-padding-correct"
+            >
+              <Loader
+                active
+                inline
+                size="tiny"
+                className="auth-loader"
+                style={{
+                  fontSize: '12px',
+                }}
+              />
+            </Button>  
+          )}
+        </span> 
       }
     >
       <div style={{ margin: '21px 30px 0px 30px' }}>
