@@ -107,7 +107,6 @@ const ContentTreasury = (props) => {
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
-        console.log(json_3);
 
         // All Time Graph
         let usd = json_3.totalBalanceUSD.graph;
