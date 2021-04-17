@@ -1919,6 +1919,10 @@ div.ui.grid.balances-container {
   margin-bottom: 36px;
 }
 
+.ui.loader.auth-loader:after {
+  border-color: white transparent transparent !important;
+}
+
 .balances-divider {
   border-top: 1px solid #edf2f9 !important;
   border-bottom: 0px !important;
