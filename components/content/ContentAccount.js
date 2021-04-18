@@ -32,6 +32,12 @@ const ContentAccount = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [showModal, setShowModal] = useState(false);
+  const [showModal_2, setShowModal_2] = useState(false);
+  const [showModal_3, setShowModal_3] = useState(false);
+  const [showModal_4, setShowModal_4] = useState(false);
+  const [showModal_5, setShowModal_5] = useState(false);
+  const [showModal_6, setShowModal_6] = useState(false);
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
