@@ -599,7 +599,7 @@ const ContentTreasury = (props) => {
                       >
                         <div>
                           <p className="earned-text">
-                            Treasury holdings of LAND calculated as 403
+                            Treasury holdings of LAND calculated as 1,007
                             parcels times T30 avg LAND price{' '}
                           </p>
                         </div>
