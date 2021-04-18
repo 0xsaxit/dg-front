@@ -58,7 +58,7 @@ function ButtonApproveWETH() {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve WETH');
+          console.log('Mexa is Ready: Approve ETH');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,7 +84,7 @@ function ButtonApproveWETH() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: WETH");
+    console.log("Updating user's token array in database: ETH");
 
     await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
 
@@ -97,12 +97,12 @@ function ButtonApproveWETH() {
     });
 
     // post authorization to database
-    console.log('Posting WETH authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting ETH authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'WETH Authorization',
+      'ETH Authorization',
       'Confirmed',
       txHash,
       state.userStatus

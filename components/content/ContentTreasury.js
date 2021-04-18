@@ -474,7 +474,7 @@ const ContentTreasury = (props) => {
                           <p className="earned-text">MANA: {manaBalance}</p>
                           <p className="earned-text">USDT: {usdtBalance}</p>
                           <p className="earned-text">ATRI: {atriBalance}</p>
-                          <p className="earned-text">WETH: {ethBalance}</p>
+                          <p className="earned-text">ETH: {ethBalance}</p>
                         </div>
                       </Popup>
                     </span>

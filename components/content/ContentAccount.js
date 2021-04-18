@@ -696,7 +696,7 @@ const ContentAccount = (props) => {
                 marginTop: '7px',
               }}
             >
-              <p className="welcome-text-top">WETH</p>
+              <p className="welcome-text-top">ETH</p>
               <p className="earned-amount">{(state.userBalances[2][3])}</p>
             </span>
           </span>
