@@ -181,7 +181,7 @@ function UserBalances() {
       const amountWETH = await Transactions.balanceOfToken(
         WETHContractChild,
         state.userAddress,
-        0
+        3
       );
 
       return [
