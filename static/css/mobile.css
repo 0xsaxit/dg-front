@@ -160,7 +160,7 @@ div#dropdown-menu-items.item.right-menu-text {
   text-transform: uppercase; 
   padding-top: 21px;
   padding-bottom: 21px;
-  width: calc(100vw);
+  width: calc(100vw + 42px);
   margin-left: -42px;
   padding-left: 100px;
 }

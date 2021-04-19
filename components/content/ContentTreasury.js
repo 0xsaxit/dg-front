@@ -42,6 +42,7 @@ const ContentTreasury = (props) => {
   const [daiBalance, setDaiBalance] = useState(0);
   const [usdtBalance, setUSDTBalance] = useState(0);
   const [atriBalance, setAtriBalance] = useState(0);
+  const [ethBalance, setEthBalance] = useState(0);
 
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -107,7 +108,6 @@ const ContentTreasury = (props) => {
 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
-        console.log(json_3);
 
         // All Time Graph
         let usd = json_3.totalBalanceUSD.graph;
@@ -160,6 +160,9 @@ const ContentTreasury = (props) => {
 
         let atri = json_4.atriBalance.graph;
         setAtriBalance(formatPrice(atri.slice(-1)[0].secondary, 0));
+
+        let eth = json_4.ethBalance.graph;
+        setEthBalance(formatPrice(eth.slice(-1)[0].secondary, 0));
 
         let land = json_4.totalLandUSD;
         setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));
@@ -471,6 +474,7 @@ const ContentTreasury = (props) => {
                           <p className="earned-text">MANA: {manaBalance}</p>
                           <p className="earned-text">USDT: {usdtBalance}</p>
                           <p className="earned-text">ATRI: {atriBalance}</p>
+                          <p className="earned-text">ETH: {ethBalance}</p>
                         </div>
                       </Popup>
                     </span>
@@ -600,7 +604,7 @@ const ContentTreasury = (props) => {
                       >
                         <div>
                           <p className="earned-text">
-                            Treasury holdings of LAND calculated as 403
+                            Treasury holdings of LAND calculated as 1,007
                             parcels times T30 avg LAND price{' '}
                           </p>
                         </div>

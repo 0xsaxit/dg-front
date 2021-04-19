@@ -125,9 +125,9 @@ const ContentGovernance = (props) => {
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      setGovOne(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload);
-      setLinkOne(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash);
-      let temp_one = json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
+      setGovOne(json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload);
+      setLinkOne(json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.authorIpfsHash);
+      let temp_one = json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload.end;
 
       if (temp_one * 1000 < Date.now()) {
         setPassedOne(true);
@@ -135,12 +135,12 @@ const ContentGovernance = (props) => {
         setPassedOne(false);
       }
 
-      var date = new Date(temp_one * 1000);
+      var date = new Date(govOne.end * 1000);
       setEndOne(date.toDateString());
 
-      setGovTwo(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
-      setLinkTwo(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
-      let temp_two = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
+      setGovTwo(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload);
+      setLinkTwo(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash);
+      let temp_two = json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
 
       if (temp_two * 1000 < Date.now()) {
         setPassedTwo(true);
@@ -148,12 +148,12 @@ const ContentGovernance = (props) => {
         setPassedTwo(false);
       }
 
-      var date = new Date(govTwo.end * 1000);
+      var date = new Date(temp_two * 1000);
       setEndTwo(date.toDateString());
 
-      setGovThree(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload);
-      setLinkThree(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.authorIpfsHash);
-      let temp_three = json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload.end;
+      setGovThree(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
+      setLinkThree(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
+      let temp_three = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
 
       if (temp_three * 1000 < Date.now()) {
         setPassedThree(true);
@@ -474,7 +474,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endOne}</p>
+                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>ONGOING ∙ {endOne}</p>
                   </span>
                 </div>
               </a>

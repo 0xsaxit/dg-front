@@ -112,6 +112,12 @@ function ButtonApproveMANA() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
+
+      dispatch({
+        type: 'set_manaLoading',
+        data: true,
+      });
+
       console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
@@ -129,13 +135,31 @@ function ButtonApproveMANA() {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
+
+        dispatch({
+          type: 'set_manaLoading',
+          data: false,
+        });
+        
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         dispatchActiveStatus(txHash);
+
+        dispatch({
+          type: 'set_manaLoading',
+          data: false,
+        });
+
       }
     } catch (error) {
       console.log('Biconomy metatransaction error: ' + error);
+
+      dispatch({
+        type: 'set_manaLoading',
+        data: false,
+      });
+
     }
   }
 
@@ -145,7 +169,7 @@ function ButtonApproveMANA() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE MANA GAMEPLAY
+      ENABLE MANA
     </Button>
   );
 }

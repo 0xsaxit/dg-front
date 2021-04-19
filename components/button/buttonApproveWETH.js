@@ -58,7 +58,7 @@ function ButtonApproveWETH() {
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve WETH');
+          console.log('Mexa is Ready: Approve ETH');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,7 +84,7 @@ function ButtonApproveWETH() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: WETH");
+    console.log("Updating user's token array in database: ETH");
 
     await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
 
@@ -97,12 +97,12 @@ function ButtonApproveWETH() {
     });
 
     // post authorization to database
-    console.log('Posting WETH authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting ETH authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'WETH Authorization',
+      'ETH Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -112,6 +112,12 @@ function ButtonApproveWETH() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
+
+      dispatch({
+        type: 'set_wethLoading',
+        data: true,
+      });
+
       console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
@@ -129,13 +135,31 @@ function ButtonApproveWETH() {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
+
+        dispatch({
+          type: 'set_wethLoading',
+          data: false,
+        });
+
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         dispatchActiveStatus(txHash);
+
+        dispatch({
+          type: 'set_wethLoading',
+          data: false,
+        });
+        
       }
     } catch (error) {
       console.log(error);
+
+      dispatch({
+        type: 'set_wethLoading',
+        data: false,
+      });
+        
     }
   }
 
@@ -145,7 +169,7 @@ function ButtonApproveWETH() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE WETH
+      ENABLE ETH
     </Button>
   );
 }

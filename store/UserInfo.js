@@ -15,10 +15,7 @@ function UserInfo() {
         const jsonInfo = await responseInfo.json();
 
         const name = jsonInfo.avatarName;
-
-        // const address = jsonInfo.address;
-        const index = ''; // jsonInfo.id/
-
+        const id = jsonInfo._id.slice(-6);
         const balancePLAY = jsonInfo.playBalance.toLocaleString();
         const count = jsonInfo.callCount;
         const email = '';
@@ -50,8 +47,7 @@ function UserInfo() {
 
         const data = {
           name: name,
-          // address,
-          index: index,
+          id: id,
           balancePLAY: balancePLAY,
           count: count,
           email: email,

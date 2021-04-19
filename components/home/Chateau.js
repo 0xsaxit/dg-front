@@ -228,7 +228,7 @@ const Chateau = () => {
                   </a>
                 </Link>
 
-                <Link href="/dg/uniswap">
+                <Link href="/dg/liquidity">
                   <a className="dg-powered-container two">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
