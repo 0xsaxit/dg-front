@@ -18,7 +18,7 @@ const CONSTANTS = {
   PARENT_NETWORK_ID: 1, // 1: Mainnet, 3: Ropsten, 5: Goerli
   ACTIVE_PERIOD: 43200, // user account active period: 3600 === 1 hour // 43200
   MATIC_NETWORK_ID: 137, // Mumbai: 80001, Mainnet: 137
-  MATIC_URL: 'https://misty-patient-sky.matic.quiknode.pro/13b04819a5839524bf7724512e22ff0f5e613899', // 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
+  MATIC_URL: 'https://misty-patient-sky.matic.quiknode.pro/13b04819a5839524bf7724512e22ff0f5e613899/', // 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
   DESCRIPTION:
