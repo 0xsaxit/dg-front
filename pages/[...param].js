@@ -21,11 +21,11 @@ const Wildcard = () => {
 
   useEffect(() => {
     if (router.query.param) {
-      // test if URL parameter is valid hex string of 5 characters in length
+      // test if URL parameter is valid hex string of 6 characters in length
       const parameter = router.query.param[0];
-      const re = /[0-9A-Fa-f]{5}/g;
+      const re = /[0-9A-Fa-f]{6}/g;
 
-      if (re.test(parameter) && parameter.length === 5) {
+      if (re.test(parameter) && parameter.length === 6) {
         setAffiliateAddress(true);
 
         console.log('Affiliate address received: ' + parameter);

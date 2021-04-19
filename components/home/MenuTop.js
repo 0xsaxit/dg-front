@@ -130,6 +130,14 @@ const MenuTop = (props) => {
 
   // store affiliate address in localStorage
   function setAffiliateState() {
+    // if (localStorage.getItem('ref') === '') {
+    //   console.log('affiliate address parameter: blank');
+    // } else {
+    //   console.log(
+    //     'affiliate address parameter: ' + localStorage.getItem('ref')
+    //   );
+    // }
+
     dispatch({
       type: 'affiliate_address',
       data: localStorage.getItem('ref'),
@@ -243,11 +251,11 @@ const MenuTop = (props) => {
                     </Menu.Item>
                   </a>
 
-                  <a 
-                    href="https://decentralgames.substack.com/" 
+                  <a
+                    href="https://decentralgames.substack.com/"
                     target="_blank"
                   >
-                    <Menu.Item 
+                    <Menu.Item
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
@@ -323,8 +331,8 @@ const MenuTop = (props) => {
           </Menu.Item>
         </Link>
 
-        <a 
-          href="https://decentralgames.substack.com/" 
+        <a
+          href="https://decentralgames.substack.com/"
           target="_blank"
           id="docs-top-menu"
         >
