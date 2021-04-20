@@ -728,7 +728,7 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 @media (max-width: 587px) {
-  .ui.button.etherscan-button {
+  .ui.button.etherscan-button-ptxid {
     display: none;
   }
   .ui.button.etherscan-button-mobile {
@@ -738,10 +738,11 @@ span#mobile-time-select.account-select.dropdown {
     margin-bottom: -2px;
     margin-top: -3px;
     height: 27px;
-    max-width: 60px !important;
-    min-width: 60px;
+    max-width: 66px !important;
+    min-width: 66px;
     padding: 7px 6px 0px 6px;
     opacity: 100% !important;
+    margin-right: 0px !important;
   }
 }
 /* ----------------------------------------- */

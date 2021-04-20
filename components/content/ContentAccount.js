@@ -1035,7 +1035,9 @@ const ContentAccount = (props) => {
                 <Table.HeaderCell className="account-col-4">
                   Date
                 </Table.HeaderCell>
-                <Table.HeaderCell />
+                <Table.HeaderCell style={{ textAlign: 'right', paddingRight: '21px' }}>
+                  transactions
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 
@@ -1108,7 +1110,7 @@ const ContentAccount = (props) => {
                                 borderRadius: '100%',
                               }}
                             />
-                          ) : row.coinName === 'WETH' ? (
+                          ) : row.coinName === 'ETH' ? (
                             <img
                               src={Images.ETH_CIRCLE}
                               style={{
@@ -1143,9 +1145,7 @@ const ContentAccount = (props) => {
                           {timestamp}
                         </Table.Cell>
                         <Table.Cell>
-                          <span
-                            style={{ float: 'right', paddingRight: '12px' }}
-                          >
+                          <span style={{ float: 'right' }}>
                             {row.coinName !== 'PLAY' ? (
                               <Aux>
                                 <Button
@@ -1155,23 +1155,7 @@ const ContentAccount = (props) => {
                                   }
                                   target="_blank"
                                   className="etherscan-button"
-                                >
-                                  blockchain tx
-                                  <Icon
-                                    name="external alternate"
-                                    style={{
-                                      marginLeft: '6px',
-                                      marginRight: '-2px',
-                                    }}
-                                  />
-                                </Button>
-                                <Button
-                                  href={
-                                    Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.txid}`
-                                  }
-                                  target="_blank"
-                                  className="etherscan-button-mobile"
+                                  style={{ marginRight: '12px' }}
                                 >
                                   tx
                                   <Icon
@@ -1188,9 +1172,32 @@ const ContentAccount = (props) => {
                                 <Button
                                   disabled
                                   className="etherscan-button"
-                                  style={{ padding: '2px 0px 0px 0px' }}
+                                  style={{ marginRight: '12px', padding: '2px 0px 0px 0px', }}
                                 >
-                                  blockchain tx
+                                  tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+                              </Aux>
+                            )}
+
+                            {row.coinName !== 'PLAY' ? (
+                              <Aux>
+                                <Button
+                                  href={
+                                    Global.CONSTANTS.MATIC_EXPLORER +
+                                    `/tx/${row.ptxid}`
+                                  }
+                                  target="_blank"
+                                  className="etherscan-button-ptxid"
+                                  style={{ marginRight: '12px' }}
+                                >
+                                  payout tx
                                   <Icon
                                     name="external alternate"
                                     style={{
@@ -1200,15 +1207,33 @@ const ContentAccount = (props) => {
                                   />
                                 </Button>
                                 <Button
-                                  disabled
                                   href={
                                     Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.txid}`
+                                    `/tx/${row.ptxid}`
                                   }
                                   target="_blank"
                                   className="etherscan-button-mobile"
+                                  style={{ marginRight: '12px' }}
                                 >
-                                  tx
+                                  p tx
+                                  <Icon
+                                    name="external alternate"
+                                    style={{
+                                      marginLeft: '6px',
+                                      marginRight: '-2px',
+                                    }}
+                                  />
+                                </Button>
+
+                              </Aux>
+                            ) : (
+                              <Aux>
+                                <Button
+                                  disabled
+                                  className="etherscan-button-ptxid"
+                                  style={{ padding: '2px 0px 0px 0px', marginRight: '12px' }}
+                                >
+                                  payout tx
                                   <Icon
                                     name="external alternate"
                                     style={{
