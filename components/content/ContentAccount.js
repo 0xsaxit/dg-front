@@ -11,6 +11,7 @@ import ModalAcceptDai from '../modal/ModalAcceptDai';
 import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
 import ModalAcceptATRI from '../modal/ModalAcceptATRI';
 import ModalAcceptWETH from '../modal/ModalAcceptWETH';
+import ModalAffiliates from '../modal/ModalAffiliates';
 import Aux from '../_Aux';
 
 
@@ -1145,44 +1146,7 @@ const ContentAccount = (props) => {
                           <span
                             style={{ float: 'right', paddingRight: '12px' }}
                           >
-                            {row.coinName === 'MANA' ? (
-                              <Aux>
-                                <Button
-                                  href={
-                                    Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.txid}`
-                                  }
-                                  target="_blank"
-                                  className="etherscan-button"
-                                >
-                                  blockchain tx
-                                  <Icon
-                                    name="external alternate"
-                                    style={{
-                                      marginLeft: '6px',
-                                      marginRight: '-2px',
-                                    }}
-                                  />
-                                </Button>
-                                <Button
-                                  href={
-                                    Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.txid}`
-                                  }
-                                  target="_blank"
-                                  className="etherscan-button-mobile"
-                                >
-                                  tx
-                                  <Icon
-                                    name="external alternate"
-                                    style={{
-                                      marginLeft: '6px',
-                                      marginRight: '-2px',
-                                    }}
-                                  />
-                                </Button>
-                              </Aux>
-                            ) : row.coinName === 'DAI' ? (
+                            {row.coinName !== 'PLAY' ? (
                               <Aux>
                                 <Button
                                   href={
@@ -1438,8 +1402,6 @@ const ContentAccount = (props) => {
     return contentHistory();
   } else if (props.content === 'play') {
     return contentGameplay();
-  } else if (props.content === 'referrals') {
-    return contentReferrals();
   }};
 
 export default ContentAccount;

@@ -162,7 +162,7 @@ const ContentTreasury = (props) => {
         setAtriBalance(formatPrice(atri.slice(-1)[0].secondary, 0));
 
         let eth = json_4.ethBalance.graph;
-        setEthBalance(formatPrice(eth.slice(-1)[0].secondary, 0));
+        setEthBalance(formatPrice(eth.slice(-1)[0].secondary, 3));
 
         let land = json_4.totalLandUSD;
         setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));

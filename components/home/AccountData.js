@@ -178,18 +178,7 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-
-              {dataType === 'referrals' ? (
-                <span className="account-hover active">
-                  <b>REFERRALS</b>
-                </span>
-              ) : (
-                <Link href="/account/referrals">
-                  <span className="account-hover">
-                    <b>REFERRALS</b>
-                  </span>
-                </Link>
-              )}
+              <ModalAffiliates />
             </span>
           </div>
         </div>

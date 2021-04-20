@@ -40,10 +40,10 @@ function UserInfo() {
           jsonData.ATRI.payout_player / Global.CONSTANTS.FACTOR
         ).toLocaleString();
 
-        // const totalWETH = (
-        //   jsonData.WETH.payout_player / Global.CONSTANTS.FACTOR
-        // ).toLocaleString();
-        const totalWETH = '0';
+        const totalWETH = (
+          jsonData.ETH.payout_player / Global.CONSTANTS.FACTOR
+        ).toLocaleString();
+
 
         const data = {
           name: name,

@@ -31,7 +31,7 @@ const ModalAffiliates = () => {
       open={open}
       close
       trigger={
-        <span>
+        <span style={{ marginTop: '27px' }}>
           <b className="account-hover">REFERRALS</b>
         </span>
       }
