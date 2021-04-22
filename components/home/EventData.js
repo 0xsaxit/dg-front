@@ -14,6 +14,7 @@ const EventData = () => {
   // define local variables
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [eventOngoing, setEventOngoing] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -31,6 +32,15 @@ const EventData = () => {
           json.data[i].next_start_at = date.toUTCString().replace("GMT", "UTC");
           events.push(json.data[i]);
         }
+      }
+
+      const event_date = new Date(json.data[0].next_start_at).getTime();
+      const current_date = new Date().getTime()
+
+      if (event_date > current_date) {
+        setEventOngoing(true);
+      } else {
+        setEventOngoing(false);
       }
 
       setEvents(events);
@@ -74,13 +84,17 @@ const EventData = () => {
               <span className="account-hover active events">
                 <b>FEATURED EVENT</b>
               </span>
-              <span style={{ display: 'flex' }}>
-                <h3 className="nft-other-h3 countdown1"> Next Event:</h3>
-                <Countdown 
-                  className="nft-other-h3 countdown2"
-                  date={events[0].next_start_at}
-                />
-              </span>
+              {eventOngoing ? (
+                <h3 className="nft-other-h3 countdown1"> Next Event: Now</h3>
+              ) : (
+                <span style={{ display: 'flex' }}>
+                  <h3 className="nft-other-h3 countdown1"> Next Event: Now</h3>
+                  <Countdown 
+                    className="nft-other-h3 countdown2"
+                    date={events[0].next_start_at}
+                  />
+                </span>
+              )}
             </span>
           </div>
         </div>
