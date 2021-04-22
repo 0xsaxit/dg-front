@@ -291,6 +291,11 @@ function DGBalances() {
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
+      console.log('????');
+      const BALANCE_AFFILIATES = await getAffiliateBalances();
+      console.log(BALANCE_AFFILIATES);
+      console.log(BALANCE_MINING_DG);
+
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
         BALANCE_BP_DG_2: BALANCE_BP_DG_2,
@@ -349,17 +354,14 @@ function DGBalances() {
   async function getAffiliateBalances() {
     try {
       const amount = await pointerContractNew.methods
-        .profitPagination(state.userAddress, '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50)
-        .call();
-      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+        .profitPagination('0xd8856cCe3F878d3Ea03964F80B18987fF1919272', '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50);
 
-      return balanceAdjusted;
+      return amount;
     } catch (error) {
       console.log('No DG keeper balance found: ' + error);
     }
   }
 
-  console.log(getAffiliateBalances());
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
