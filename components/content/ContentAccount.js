@@ -50,7 +50,7 @@ const ContentAccount = (props) => {
 
   const onCopy = () => {
     navigator.clipboard.writeText(
-      Global.CONSTANTS.BASE_URL + '/' + state.userInfo[1]
+      Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id
     );
     setCopied(true);
 

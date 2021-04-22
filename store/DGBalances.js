@@ -13,6 +13,7 @@ function DGBalances() {
 
   // define local variables
   const [pointerContract, setPointerContract] = useState({});
+  const [pointerContractNew, setPointerContractNew] = useState({});
   const [stakingContractPool1, setStakingContractPool1] = useState({});
   const [stakingContractPool2, setStakingContractPool2] = useState({});
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
@@ -46,6 +47,10 @@ function DGBalances() {
         // this is for mining DG
         const pointerContract = await Transactions.pointerContract(maticWeb3);
         setPointerContract(pointerContract);
+
+        // this is for affiliates
+        const pointerContractNew = await Transactions.pointerContractNew(maticWeb3);
+        setPointerContractNew(pointerContractNew);
 
         // set up dg token contract (same for both pools)
         const DGTokenContract = await Transactions.DGTokenContract(web3);
@@ -339,6 +344,22 @@ function DGBalances() {
       console.log('No DG keeper balance found: ' + error);
     }
   }
+
+  // get user's affiliate balances
+  async function getAffiliateBalances() {
+    try {
+      const amount = await pointerContractNew.methods
+        .profitPagination(state.userAddress, '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50)
+        .call();
+      const balanceAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return balanceAdjusted;
+    } catch (error) {
+      console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  console.log(getAffiliateBalances());
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
