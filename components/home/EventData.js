@@ -88,7 +88,7 @@ const EventData = () => {
                 <h3 className="nft-other-h3 countdown1"> Next Event: Now</h3>
               ) : (
                 <span style={{ display: 'flex' }}>
-                  <h3 className="nft-other-h3 countdown1"> Next Event: Now</h3>
+                  <h3 className="nft-other-h3 countdown1"> Next Event: </h3>
                   <Countdown 
                     className="nft-other-h3 countdown2"
                     date={events[0].next_start_at}
