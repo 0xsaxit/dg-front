@@ -2081,6 +2081,19 @@ i.copy.icon.affiliate-icon:hover {
   height: 100%;
 }
 
+.mining-container-outter {
+  display: flex;
+  flex-direction: column;
+  width: 74.75%;
+}
+
+.mining-container-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
 .DG-column-treasury {
   width: 48.5%;
 }

@@ -831,6 +831,10 @@ span#mobile-time-select.account-select.dropdown {
     flex-direction: row !important;
     width: 100%;
   }
+  .mining-container-outter {
+    margin-top: 30px;
+    width: 100%;
+  }
   .DG-column.unclaimed,
   .DG-column.treasury-all,
   .DG-column.treasury-stats {
@@ -866,6 +870,9 @@ span#mobile-time-select.account-select.dropdown {
     justify-content: space-between;
     flex-direction: column !important;
     width: 100%;
+  }
+  .mining-container-inner {
+    flex-direction: column;
   }
   .DG-column.one,
   .DG-column-treasury.one {
