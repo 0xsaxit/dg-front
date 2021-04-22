@@ -1297,8 +1297,8 @@ const ContentAccount = (props) => {
               <p style={{ fontSize: '18px' }}> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
               <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', padding: '3px 6px 6px 6px' }}>
                 <p className="referral-desktop"> https://decentral...</p>
-                <p className="referral-tablet"> https://decentral.games/{state.userAddress}</p>
-                <p className="referral-mobile"> https://decentral.games/0x...</p>
+                <p className="referral-tablet"> https://decentral.games/{state.userInfo.id}</p>
+                <p className="referral-mobile"> https://decentral.games/{state.userInfo.id}</p>
                 {copied == false ? (
                   <Icon className="affiliate-icon" onClick={() => onCopy()} name="copy" />
                 ) : (
@@ -1339,85 +1339,29 @@ const ContentAccount = (props) => {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>
-                    0xd8856cCe3F878d3Ea03964F80B18987fF1919272
                   </Table.Cell>
                   <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.MANA_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                      100 MANA
-                    </span>
                   </Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
                   <Table.Cell>
-                    0xd8856cCe3F878d3Ea03964F80B18987fF1919272
                   </Table.Cell>
                   <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.DAI_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                      17 DAI
-                    </span>
                   </Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
                   <Table.Cell>
-                    0x05b264ABC4A35A1927AE2a0058ecEc1013b5B9a8
                   </Table.Cell>
                   <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.MANA_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                     301 MANA
-                    </span>
                   </Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
                   <Table.Cell>
-                    0x05b264ABC4A35A1927AE2a0058ecEc1013b5B9a8
                   </Table.Cell>
                   <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.DAI_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                      10 DAI
-                    </span>
                   </Table.Cell>
                 </Table.Row>
               </Table.Body>
