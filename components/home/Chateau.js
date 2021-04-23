@@ -210,9 +210,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -251,9 +250,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -292,9 +290,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -531,7 +528,7 @@ const Chateau = () => {
               >
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <iframe
-                    style={{ borderRadius: '4px' }}
+                    style={{ borderRadius: '24px' }}
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/7kyDcfEK_jU"
@@ -553,7 +550,7 @@ const Chateau = () => {
               >
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <iframe
-                    style={{ borderRadius: '4px' }}
+                    style={{ borderRadius: '24px' }}
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/-7U3_YzO-ZU"
@@ -578,7 +575,7 @@ const Chateau = () => {
               >
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <iframe
-                    style={{ borderRadius: '4px' }}
+                    style={{ borderRadius: '24px' }}
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/zSyx4Zq0VJ0"

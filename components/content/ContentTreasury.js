@@ -318,7 +318,7 @@ const ContentTreasury = (props) => {
 
         <div className="DG-liquidity-container">
           <div className="DG-column treasury-all">
-            <p className="earned-amount" style={{ paddingLeft: '18px' }}>Treasury All Time</p>
+            <p className="earned-amount" style={{ paddingLeft: '18px', paddingTop: '2px' }}>Treasury All Time</p>
 
             <Divider/>
 

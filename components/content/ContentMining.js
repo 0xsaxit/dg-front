@@ -124,7 +124,7 @@ const ContentMining = (props) => {
       <Aux>
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-            <p className="earned-amount">Unclaimed</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>Unclaimed</p>
 
             <Divider className="divider-dg-top" />
 
@@ -188,11 +188,11 @@ const ContentMining = (props) => {
                   id="balances-padding-correct"
                   onClick={() => metaTransaction()}
                 >
-                  CLAIM $DG
+                  Claim
                 </Button>
               ) : (
                 <Button disabled className="DG-claim-button">
-                  CLAIM $DG
+                  Claim
                 </Button>
               )}
             </span>
@@ -207,7 +207,7 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount">Gameplay Rewards</p>
+              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
 
               <Divider className="divider-dg-top" />
 
@@ -250,7 +250,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Roulette Rate / 1 DG</p>
-                      <p className="earned-amount">28,000</p>
+                      <p className="earned-amount stat">28,000</p>
                     </span>
                   </span>
 
@@ -269,7 +269,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      <p className="earned-amount">95,000</p>
+                      <p className="earned-amount stat">95,000</p>
                     </span>
                   </span>
                 </div>
@@ -283,7 +283,7 @@ const ContentMining = (props) => {
                     className="DG-play-now-button"
                     target="_blank"
                   >
-                    PLAY NOW
+                    Play Now
                   </Button>
                 </span>
               </div>
@@ -295,7 +295,7 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount">Gameplay Rewards</p>
+              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
 
               <Divider className="divider-dg-top" />
 
@@ -341,7 +341,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Roulette Rate / 1 DG</p>
-                      <p className="earned-amount">36,000</p>
+                      <p className="earned-amount stat">36,000</p>
                     </span>
                   </span>
 
@@ -360,7 +360,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      <p className="earned-amount">121,000</p>
+                      <p className="earned-amount stat">121,000</p>
                     </span>
                   </span>
                 </div>
@@ -374,7 +374,7 @@ const ContentMining = (props) => {
                     className="DG-play-now-button"
                     target="_blank"
                   >
-                    PLAY NOW
+                    Play Now
                   </Button>
                 </span>
               </div>
@@ -389,7 +389,7 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount">Gameplay Rewards</p>
+              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
 
               <Divider className="divider-dg-top" />
 
@@ -432,7 +432,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Roulette Rate / 1 DG</p>
-                      <p className="earned-amount">N/A</p>
+                      <p className="earned-amount stat">N/A</p>
                     </span>
                   </span>
 
@@ -451,7 +451,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      <p className="earned-amount">N/A</p>
+                      <p className="earned-amount stat">N/A</p>
                     </span>
                   </span>
                 </div>
@@ -465,7 +465,7 @@ const ContentMining = (props) => {
                     className="DG-play-now-button"
                     target="_blank"
                   >
-                    PLAY NOW
+                    Play Now
                   </Button>
                 </span>
               </div>
@@ -477,7 +477,7 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount">Gameplay Rewards</p>
+              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
 
               <Divider className="divider-dg-top" />
 
@@ -520,7 +520,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Roulette Rate / 1 DG</p>
-                      <p className="earned-amount">N/A</p>
+                      <p className="earned-amount stat">N/A</p>
                     </span>
                   </span>
 
@@ -539,7 +539,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      <p className="earned-amount">N/A</p>
+                      <p className="earned-amount stat">N/A</p>
                     </span>
                   </span>
                 </div>
@@ -553,7 +553,7 @@ const ContentMining = (props) => {
                     className="DG-play-now-button"
                     target="_blank"
                   >
-                    PLAY NOW
+                    Play Now
                   </Button>
                 </span>
               </div>

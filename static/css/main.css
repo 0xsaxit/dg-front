@@ -8,12 +8,16 @@ h1 {
 }
 
 h2,
-h3,
 h4,
 h5,
 p,
 a {
   font-family: "Larsseit-Regular" !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h3 {
+  font-family: "Larsseit-Bold" !important; 
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -77,7 +81,7 @@ p {
 .ui.grid > .column.row > [class*='sixteen wide'].column,
 .ui.grid > .row > [class*='sixteen wide'].column,
 .ui.grid > [class*='sixteen wide'].column {
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .account-other-inner-p {
@@ -364,7 +368,7 @@ div.item.sidebar-menu-text.blog:hover {
 
 .menu-info-modal {
   max-width: 400px !important;
-  border-radius: 4px !important;
+  border-radius: 24px !important;
 }
 
 .menu-info-container {
@@ -477,6 +481,7 @@ a.menu-info-label-link:hover {
   width: calc(100% - 180px);
   padding-top: 6px;
   margin-top: 3px;
+  border-radius: 16px;
 }
 
 .mailchimp-header-text {
@@ -729,7 +734,7 @@ i.chevron.down.icon {
   display: block;
   margin-bottom: 6px;
   padding: 30px 30px 0px 30px;
-  border-radius: 4px;
+  border-radius: 24px;
   position: relative;
 }
 
@@ -745,7 +750,7 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 24px;
   position: relative;
 }
 
@@ -764,7 +769,7 @@ i.chevron.down.icon {
   font-weight: bold;
   letter-spacing: 1.5px;
   padding: 3px 6px 3px 6px;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .tutorial-info-2 {
@@ -894,14 +899,14 @@ i.chevron.down.icon {
   z-index: 1;
   object-fit: cover;
   width: 66%;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 24px 0px 0px 24px;
 }
 
 .featured-event-grid {
   background-color: white;
   display: flex;
   flex-direction: row;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .featured-info {
@@ -913,7 +918,7 @@ i.chevron.down.icon {
   .event-pic.featured {
     width: 100%;
     height: 100%;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 24px 24px 0px 0px;
   }
   .featured-event-grid {
     flex-direction: column !important;
@@ -957,7 +962,7 @@ i.chevron.down.icon {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 24px 24px 0px 0px !important;
 }
 
 .games-pic {
@@ -967,7 +972,7 @@ i.chevron.down.icon {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 24px 24px 0px 0px !important;
 }
 
 .my-nft-pic {
@@ -991,7 +996,8 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 24px;
+  padding-bottom: 24px;
 }
 
 .my-nft-container {
@@ -999,7 +1005,8 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 24px;
+  padding-bottom: 24px;
   min-height: 100%;
 }
 
@@ -1022,8 +1029,9 @@ i.chevron.down.icon {
   margin-top: 21px;
   display: flex;
   flex-direction: column !important;
-  margin-bottom: 6px;
-  border-radius: 4px;
+  margin-bottom: 24px;
+  border-radius: 24px;
+  padding-bottom: 24px;
 }
 
 .shop-container {
@@ -1032,10 +1040,8 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column !important;
   margin-bottom: 6px;
-  padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 4px;
+  padding: 30px 30px 24px 30px;
+  border-radius: 24px;
 }
 
 .games-container:hover,
@@ -1058,7 +1064,7 @@ i.chevron.down.icon {
 .ui.dropdown .menu {
   margin-top: 15px;
   padding: 9px 0px 9px 0px;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .ui.dropdown .menu > .item {
@@ -1091,13 +1097,11 @@ i.chevron.down.icon {
 
 .nfts-info,
 .nfts-info-2 {
-  text-transform: uppercase;
-  font-size: 12px !important;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  padding: 3px 6px 3px 6px;
-  margin-top: -3px !important;
-  border-radius: 4px;
+  padding: 2px 24px 2px 24px;
+  border-radius: 16px;
 }
 
 .nfts-info {
@@ -1125,15 +1129,14 @@ i.chevron.down.icon {
 }
 
 .nft-other-h3 {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 32px;
   padding-bottom: 12px;
   text-align: center;
   padding-top: 12px;
 }
 
 .nft-other-h3.featured {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 600;
   padding-bottom: 12px;
   text-align: left;
@@ -1218,11 +1221,11 @@ table {
 }
 
 .ui.table thead tr:first-child>th:first-child {
-  border-radius: 4px 0px 0px 0px !important;
+  border-radius: 24px 0px 0px 0px !important;
 }
 
 .ui.table thead tr:last-child>th:last-child {
-  border-radius: 0px 4px 0px 0px !important;
+  border-radius: 0px 42px 0px 0px !important;
 }
 
 .tx-box-overflow {
@@ -1231,13 +1234,13 @@ table {
   margin-bottom: 90px; 
   border: 1px solid #edf2f9 !important;
   box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
-  border-radius: 4px !important;
+  border-radius:2 4px !important;
 }
 
 .table.ui.unstackable.table.leaders-table {
   border: 1px solid #edf2f9 !important;
   box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
-  border-radius: 4px !important;
+  border-radius: 24px !important;
 }
 
 .leaders-col-2 {
@@ -1357,7 +1360,7 @@ table {
 
 #tx-box-history-2 {
   border: 0px;
-  border-radius: 4px;
+  border-radius: 24px;
   margin-top: 30px;
   padding-bottom: 10px;
 }
@@ -1403,13 +1406,13 @@ table {
   border: 1px solid rgb(229, 232, 235);
   letter-spacing: 0.5px !important;
   color: rgb(92, 95, 97);
-  border-radius: 4px;
+  border-radius: 24px;
   margin-left: 9px;
 }
 
 .account-icon-hover:hover {
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  border-radius: 4px;
+  border-radius: 24px;
   color: black;
 }
 
@@ -1422,14 +1425,14 @@ i.help.circle.icon.submenu-icon {
   color: black;
   cursor: default;
   font-weight: 700 !important;
-  background-color: rgb(229, 232, 235);
-  border-radius: 4px;
+  background-color: rgba(21, 24, 28, 1);
+  border-radius: 16px;
   padding: 9px 12px 9px 12px;
 }
 
 .account-hover:hover {
-  background-color: rgba(229, 232, 235, 0.5);
-  border-radius: 4px;
+  background-color: rgba(42, 48, 56, 1);
+  border-radius: 16px;
   color: black;
 }
 
@@ -1538,7 +1541,7 @@ deposit-notification-box-hidden {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
   padding: 18px 18px 0px 18px;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .deposit-message-text.top {
@@ -1627,8 +1630,7 @@ i.pencil.icon.edit-icon:hover {
   color: rgb(92, 95, 97);
   text-transform: uppercase;
   padding-left: 16px;
-  padding-top: 9px !important;
-  margin-bottom: -3px;
+  margin-bottom: -4px;
 }
 
 .welcome-text-top {
@@ -1637,8 +1639,7 @@ i.pencil.icon.edit-icon:hover {
   letter-spacing: 0.5px;
   color: rgb(92, 95, 97) !important;
   text-transform: uppercase;
-  padding-top: 6px !important;
-  margin-bottom: 0px;
+  margin-bottom: -6px;
 }
 
 .ui.divider.divider-dg-top {
@@ -1658,7 +1659,7 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .top-right-gameplay-text {
-  border-radius: 4px;
+  border-radius: 24px;
   background-color: white;
   border: 1px solid #2085f4;
   font-size: 12px;
@@ -1676,8 +1677,7 @@ i.pencil.icon.edit-icon:hover {
   font-weight: bold !important;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding-top: 6px !important;
-  margin-bottom: 0px;
+  margin-bottom: 4px;
 }
 
 .governance-block:hover {
@@ -1721,12 +1721,15 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-amount {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 21px;
+  font-weight: 600;
   letter-spacing: 0.5px;
   color: black;
-  padding-top: 2px !important;
-  margin: 0 0 0px 0 !important;
+  margin: 0 0 0 0 !important;
+}
+
+.earned-amount.stat {
+  margin-top: -8px !important;
 }
 
 .earned-amount-black {
@@ -2004,8 +2007,8 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .ui.input > input {
-  border-radius: 4px 4px 4px 4px;
-  height: 34px;
+  border-radius: 16px;
+  height: 48px;
   transition: none;
 }
 
@@ -2155,7 +2158,7 @@ i.copy.icon.affiliate-icon:hover {
 .DG-graph-column,
 .DG-column-treasury {
   font-family: "Larsseit-Medium" !important;
-  border-radius: 4px;
+  border-radius: 24px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 12px 18px 18px 18px !important;
@@ -2499,10 +2502,10 @@ div.ui.grid.admin-balances-container {
 }
 
 .ui.button {
-  font-size: 21px !important;
+  font-size: 21px;
   padding: 8px 0 0 0;
-  border-radius: 16px !important;
-  line-height: 30px !important;
+  border-radius: 16px;
+  line-height: 30px;
   margin: 0 0 0 0;
 }
 
@@ -2534,7 +2537,8 @@ a.ui.blue.button.announcement,
 a.ui.blue.button.deposit,
 a.ui.blue.button.partners,
 a.ui.blue.button.partners,
-a.ui.blue.button.hop {
+a.ui.blue.button.hop,
+a.ui.blue.button.touch {
   position: relative;
   background-color: #2085f4;
   color: white;
@@ -2564,15 +2568,6 @@ a.ui.blue.button.casinos {
   height: 48px;
 }
 
-a.ui.blue.button.touch {
-  position: relative;
-  background-color: #2085f4;
-  color: white;
-  margin-top: 8px;
-  width: 220px !important;
-  height: 48px;
-}
-
 a.ui.blue.button.metamask-how-button {
   background-color: white;
   color: black;
@@ -2582,18 +2577,12 @@ a.ui.blue.button.metamask-how-button {
   height: 48px;
 }
 
-.ui.button.modal-info-button:hover,
-.ui.button.theme-mode-button:hover,
-.ui.button.more-dropdown-button:hover {
-  background-color: #2085f4 !important;
-}
-
 .ui.button.DG-claim-button,
 .ui.button.DG-deposit-button,
 .ui.button.DG-play-now-button {
   color: white;
   background-color: #2085f4;
-  height: 34px;
+  height: 48px;
   min-width: 100% !important;
 }
 
@@ -2654,45 +2643,13 @@ a.ui.blue.button.metamask-how-button {
   padding: 0px 6px 0px 6px;
 }
 
-.ui.button.more-dropdown-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  margin-top: 18px;
-  height: 27px;
-  margin-right: 30px;
-  margin-left: 15px;
-  max-width: 27px !important;
-  min-width: 27px !important;
-  padding: 0px 0px 0px 0px;
-}
-
-.ui.button.theme-mode-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 12px;
-  height: 33px;
-  letter-spacing: 1.25px;
-  border-radius: 16px;
-  margin-right: 30px;
-  min-width: 100% !important;
-  padding: 3px 4px 0px 5px;
-}
-
-.ui.button.theme-mode-button:focus,
-.ui.button.more-dropdown-button:focus {
-  background-color: #2085f4 !important;
-}
-
 .ui.button.mailchimp-submit-button {
   position: relative;
   background-color: #2085f4 !important;
   color: white;
-  width: 180px !important;
+  width: 220px !important;
   margin-left: 15px;
-  height: 34px;
+  height: 48px;
   padding: 0 0 0 0;
   border-radius: 16px !important;
   margin-top: 9px;
@@ -2731,17 +2688,20 @@ a.ui.blue.button.dg-learn-button {
 }
 
 .ui.blue.button.nft-button {
-  color: white;
+  position: relative;
   background-color: #2085f4;
+  color: white;
+  margin-top: 8px;
+  height: 48px;
   width: 48.5% !important;
 }
 
 .ui.button.nft-read-button {
   background-color: transparent;
   border: 1px solid #2085f4;
-  padding: 10px 0 0 0;
   color: #2085f4;
-  height: 34px;
+  margin-top: 8px;
+  height: 48px;
   width: 48.5% !important;
 }
 
@@ -2759,6 +2719,7 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
+  font-size: 12px;
   border: 1px solid #2085f4;
   color: #2085f4;
   margin-bottom: -2px;
@@ -2772,13 +2733,14 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button-green {
   background-color: rgba(255, 255, 255, 0);
+  font-size: 12px;
   border: 1px solid #16c784;
   color: #16c784;
-  height: 27px;
-  margin-top: 0.7rem;
+  height: 24px;
+  margin-top: 8px;
+  line-height: 0px;
   max-width: 100px !important;
   min-width: 100px;
-  padding: 0 0 0 0;
   opacity: 100% !important;
 }
 
@@ -2844,7 +2806,7 @@ a.ui.blue.button.dg-learn-button {
 .ui.button.DG-stake-button {
   color: white;
   background-color: #2085f4;
-  height: 34px;
+  height: 48px;
   min-width: 48.5% !important;
 }
 
@@ -2852,7 +2814,7 @@ a.ui.blue.button.dg-learn-button {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;
-  height: 34px;
+  height: 48px;
   min-width: 100% !important;
   margin-top: 15px;
 }

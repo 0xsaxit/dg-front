@@ -24,7 +24,7 @@ const detailsGames = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/roulette_whagvm.png',
     'games-pic',
     'Roulette',
-    'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
+    'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
     'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',

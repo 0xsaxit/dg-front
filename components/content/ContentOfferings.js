@@ -105,14 +105,14 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsGames[item][6] + utm}
                 >
-                  PLAY NOW
+                  Play Now
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
                   href={props.detailsGames[item][7]}
                 >
-                  READ MORE
+                  Read More
                 </Button>
               </span>
             </div>
@@ -177,14 +177,14 @@ const ContentOfferings = (props) => {
                       target="_blank"
                       href={props.detailsNFTs[item][5]}
                     >
-                      PURCHASE NFT
+                      Purchase NFT
                     </Button>
                     <Button
                       className="nft-read-button"
                       target="_blank"
                       href={props.detailsNFTs[item][6]}
                     >
-                      READ MORE
+                      Read More
                     </Button>
                   </span>
                 </div>
@@ -252,14 +252,14 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsCasinos[item][5] + utm}
                 >
-                  PLAY NOW
+                  Play Now
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
                   href={props.detailsCasinos[item][6]}
                 >
-                  READ MORE
+                  Read More
                 </Button>
               </span>
             </div>
@@ -324,14 +324,14 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsShop[item][5] + utm}
                 >
-                  SHOP NOW
+                  Shop Now
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
                   href={props.detailsShop[item][6]}
                 >
-                  READ MORE
+                  Read More
                 </Button>
               </span>
             </div>

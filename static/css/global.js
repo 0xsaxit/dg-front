@@ -144,7 +144,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: none !important;  
-    border-radius: 4px !important;
+    border-radius: 24px !important;
   }
 
   .ui.bottom.right.popup,
