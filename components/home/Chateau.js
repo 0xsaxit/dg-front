@@ -77,14 +77,18 @@ const Chateau = () => {
               data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
             />
           </div>
-          <p className="featured-casino-text">DECENTRAL GAMES</p>
           <h1
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-12px' }}
           >
-            Be The House
+            Play the games <i> and </i> be the house
           </h1>
           <span className="home-button-span">
+          </span>
+          <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+            By owning $DG, the first-ever metaverse casino is now yours. Vote on
+            treasury management, economic policy, and new game development.
+          </p>
             {state.userStatus === 0 ? (
               <span>
                 <ButtonPlayNow />
@@ -97,7 +101,7 @@ const Chateau = () => {
                 href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
                 target="_blank"
               >
-                PLAY NOW
+                Play Now
               </Button>
             )}
             <span>
@@ -122,15 +126,10 @@ const Chateau = () => {
                   href="https://docs.decentral.games/getting-started/play-to-mine"
                   target="_blank"
                 >
-                  EARN $DG
+                  Earn $DG
                 </Button>
               )}
             </span>
-          </span>
-          <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-            By owning $DG, the first-ever metaverse casino is now yours. Vote on
-            treasury management, economic policy, and new game development.
-          </p>
           <p className="scroll-down-icon">
             <Icon name="chevron down" />
           </p>
@@ -160,17 +159,21 @@ const Chateau = () => {
                 </h1>
                 <span className="home-button-span ecosystem">
                   <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
-                    <Button color="blue" className="play-button ecosystem">
-                      ANNOUNCEMENT
+                    <Button
+                      color="blue" 
+                      className="announcement"
+                      href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                    >
+                      Announcement
                     </Button>
                   </Link>
                   <Button
                     color="blue"
-                    className="roadmap-button ecosystem"
+                    className="docs"
                     target="_blank"
                     href="https://docs.decentral.games/ecosystem"
                   >
-                    READ DOCS
+                    Read Docs
                   </Button>
                 </span>
               </span>
@@ -336,17 +339,21 @@ const Chateau = () => {
               </h1>
               <span className="home-button-span">
                 <Link href="/account">
-                  <Button color="blue" className="play-button deposit">
-                    DEPOSIT CRYPTO
+                  <Button 
+                    color="blue" 
+                    className="deposit"
+                    href="/account"
+                  >
+                    Deposit Crypto
                   </Button>
                 </Link>
                 <Button
                   color="blue"
-                  className="metamask-how-button"
+                  className="metamask"
                   href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                   target="_blank"
                 >
-                  METAMASK
+                  Metamask
                 </Button>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
@@ -408,24 +415,24 @@ const Chateau = () => {
                   className="home-footer-h1 avatars"
                   style={{ marginBottom: '0px' }}
                 >
-                  Learn more about the Decentral Games ecosystem
+                  Learn more about our ecosystem
                 </h1>
                 <span className="home-button-span avatars">
                   <Button
                     color="blue"
-                    className="play-button avatars"
+                    className="partners"
                     href="https://docs.decentral.games/info/partners"
                     target="_blank"
                   >
-                    PARTNERS
+                    Partners
                   </Button>
                   <Button
                     color="blue"
-                    className="roadmap-button avatars"
+                    className="roadmap"
                     href="https://docs.decentral.games/info/roadmap"
                     target="_blank"
                   >
-                    ROADMAP
+                    Roadmap
                   </Button>
                 </span>
                 <p
@@ -465,16 +472,19 @@ const Chateau = () => {
               <span className="home-button-span">
                 <Button
                   color="blue"
-                  className="play-button"
+                  className="hop"
                   href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
-                  id="play-now-button-home"
                   target="_blank"
                 >
-                  HOP IN
+                  Hop In
                 </Button>
                 <Link href="/games/casinos">
-                  <Button color="blue" className="casinos-button">
-                    OUR CASINOS
+                  <Button 
+                    color="blue" 
+                    className="casinos"
+                    href="/games/casinos"
+                  >
+                    Our Casinos
                   </Button>
                 </Link>
               </span>
@@ -600,12 +610,11 @@ const Chateau = () => {
               </p>
               <Button
                 color="blue"
-                className="play-button"
+                className="touch"
                 href="https://decentral.games/discord"
                 target="_blank"
-                style={{ marginTop: '9px' }}
               >
-                GET IN TOUCH
+                Get in Touch
               </Button>
             </span>
 

@@ -2,15 +2,23 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
-h1,
+h1 {
+  font-family: "Larsseit-ExtraBold" !important; 
+  -webkit-font-smoothing: antialiased !important;
+}
+
 h2,
 h3,
 h4,
 h5,
 p,
-button,
 a {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Regular" !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+a.ui.button {
+  font-family: "Larsseit-Bold" !important;
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -41,18 +49,16 @@ h3 {
 }
 
 h1 {
-  font-family: 'Lato', sans-serif !important;
-  font-size: 48px;
-  font-weight: 500;
+  font-family: "Larsseit-ExtraBold" !important;
+  font-size: 60px;
   margin-bottom: 0px;
-  line-height: 1.4;
+  line-height: 70px;
+  letter-spacing: -0.7px;
 }
 
 p {
-  font-size: 20px;
-  font-weight: normal;
-  letter-spacing: 0.5;
-  line-height: 1.4;
+  font-size: 21px;
+  line-height: 30px;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -304,7 +310,7 @@ div.item.sidebar-menu-text.blog:hover {
   letter-spacing: 1.25px;
   font-size: 14px;
   font-weight: 600;
-  padding: 4px 6px 0px 6px;
+  padding: 0px 6px 0px 6px;
   text-transform: uppercase;
 }
 
@@ -333,7 +339,7 @@ div.item.sidebar-menu-text.blog:hover {
 
 .menu-account-info {
   background-color: #2085f4;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-top: 18px;
   height: 27px !important;
   padding-left: 9px;
@@ -351,7 +357,7 @@ div.item.sidebar-menu-text.blog:hover {
   display: flex;
   background-color: #165daa;
   padding-right: 15px;
-  border-radius: 4px;
+  border-radius: 16px;
   padding-left: 9px;
   margin-left: 6px;
 }
@@ -537,6 +543,14 @@ a.menu-info-label-link:hover {
   height: 100vh;
 }
 
+.home-dashboard-p {
+  color: white;
+  letter-spacing: 0.15px;
+  text-shadow: 1px 1px 5px black;
+  max-width: 640px;
+  padding-right: 30px;
+}
+
 i.chevron.down.icon {
   color: white;
   text-shadow: 1px 1px 5px black;
@@ -580,7 +594,7 @@ i.chevron.down.icon {
   text-shadow: 1px 1px 5px black;
   margin-top: -12px;
   margin-left: -2px;
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .home-dashboard-h1 {
@@ -600,15 +614,6 @@ i.chevron.down.icon {
 .logged-out-button-span {
   display: flex;
   justify-content: center;
-}
-
-.home-dashboard-p {
-  color: white;
-  letter-spacing: 0.15px;
-  text-shadow: 1px 1px 5px black;
-  max-width: 640px;
-  padding-right: 30px;
-  padding-top: 12px !important;
 }
 
 .featured-casino-text {
@@ -1342,7 +1347,7 @@ table {
 }
 
 .account-other-inner-p {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Medium" !important;
   font-size: 17px !important;
   margin-top: 45px;
   padding-bottom: 60px;
@@ -1487,7 +1492,7 @@ svg.spanbox.disable {
 }
 
 .spanbox {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Medium" !important;
   margin-top: 30px;
 }
 
@@ -2149,7 +2154,7 @@ i.copy.icon.affiliate-icon:hover {
 .DG-column,
 .DG-graph-column,
 .DG-column-treasury {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Medium" !important;
   border-radius: 4px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -2494,18 +2499,87 @@ div.ui.grid.admin-balances-container {
 }
 
 .ui.button {
-  font-size: 12px !important;
-  padding: 11px 0 0 0;
-  font-weight: bold !important;
-  letter-spacing: 0.5px !important;
-  border-radius: 4px !important;
-  text-transform: uppercase !important;
-  line-height: 12px !important;
+  font-size: 21px !important;
+  padding: 8px 0 0 0;
+  border-radius: 16px !important;
+  line-height: 30px !important;
   margin: 0 0 0 0;
 }
 
 .ui.disabled.button {
   padding: 0px 0 0 0;
+}
+
+a.ui.blue.button.play-button,
+.ui.blue.button.play-button {
+  position: relative;
+  background-color: #2085f4 !important;
+  color: white;
+  margin-top: 8px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.earn-dg-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  position: relative;
+  margin-top: 8px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.announcement,
+a.ui.blue.button.deposit,
+a.ui.blue.button.partners,
+a.ui.blue.button.partners,
+a.ui.blue.button.hop {
+  position: relative;
+  background-color: #2085f4;
+  color: white;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.docs,
+a.ui.blue.button.roadmap {
+  background: transparent;
+  color: #2085f4;
+  margin-left: 20px;
+  border: 1px solid #2085f4;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.metamask,
+a.ui.blue.button.casinos {
+  background: white;
+  color: black;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.touch {
+  position: relative;
+  background-color: #2085f4;
+  color: white;
+  margin-top: 8px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.metamask-how-button {
+  background-color: white;
+  color: black;
+  position: relative;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
 }
 
 .ui.button.modal-info-button:hover,
@@ -2562,7 +2636,7 @@ div.ui.grid.admin-balances-container {
   margin-top: 18px;
   width: 210px !important;
   height: 27px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-right: 30px;
 }
 
@@ -2574,7 +2648,7 @@ div.ui.grid.admin-balances-container {
   margin-top: 18px;
   height: 27px;
   letter-spacing: 1.25px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-right: 15px;
   min-width: 15px !important;
   padding: 0px 6px 0px 6px;
@@ -2601,7 +2675,7 @@ div.ui.grid.admin-balances-container {
   margin-top: 12px;
   height: 33px;
   letter-spacing: 1.25px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-right: 30px;
   min-width: 100% !important;
   padding: 3px 4px 0px 5px;
@@ -2620,42 +2694,11 @@ div.ui.grid.admin-balances-container {
   margin-left: 15px;
   height: 34px;
   padding: 0 0 0 0;
-  border-radius: 4px !important;
+  border-radius: 16px !important;
   margin-top: 9px;
 }
 
 .ui.blue.button.how-to-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  position: relative;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-  padding: 0 0 0 0;
-}
-
-a.ui.blue.button.earn-dg-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  position: relative;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
-a.ui.blue.button.metamask-how-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  position: relative;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
-.ui.blue.button.casinos-button {
   background-color: white;
   color: black;
   width: 180px;
@@ -2685,26 +2728,6 @@ a.ui.blue.button.dg-learn-button {
   width: 180px !important;
   height: 34px;
   padding: 0 0 0 0;
-}
-
-a.ui.blue.button.play-button,
-.ui.blue.button.play-button {
-  position: relative;
-  background-color: #2085f4 !important;
-  color: white;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
-.ui.blue.button.roadmap-button {
-  position: relative;
-  background-color: transparent;
-  border: 1px solid #2085f4 !important;
-  color: #2085f4;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
 }
 
 .ui.blue.button.nft-button {
@@ -2779,7 +2802,7 @@ a.ui.blue.button.play-button,
   margin-bottom: 9px;
   height: 34px;
   padding: 11px 30px 0px 30px;
-  border-radius: 4px !important;
+  border-radius: 16px !important;
   margin-right: 12px;
 }
 
@@ -2792,7 +2815,7 @@ a.ui.blue.button.play-button,
   margin-bottom: 9px;
   height: 34px;
   padding: 10px 30px 0px 30px;
-  border-radius: 4px !important;
+  border-radius: 16px !important;
 }
 
 .ui.disabled.button.balances-top-button,

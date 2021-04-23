@@ -1,4 +1,4 @@
-export const lightTheme = {
+export const darkTheme = {
   body: '#f9fbfd',
   text: 'black',
   menuText: 'rgba(92, 95, 97, 1)',
@@ -28,7 +28,7 @@ export const lightTheme = {
   leaderboardSelect: 'rgb(229, 232, 235)',
 }
 
-export const darkTheme = {
+export const lightTheme = {
   body: 'rgb(8, 10, 12)',
   text: 'rgba(255, 255, 255, .87)',
   menuText: 'rgba(255, 255, 255, .55)',

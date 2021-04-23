@@ -58,6 +58,11 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             disabled
           />
+          <link 
+            href="./static/fonts/MyFontsWebfontsKit.css"
+            rel="stylesheet" 
+            type="text/css" 
+          />
         </Head>
 
         <body>
