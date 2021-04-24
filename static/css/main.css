@@ -2581,8 +2581,10 @@ a.ui.blue.button.metamask-how-button {
 .ui.button.DG-play-now-button {
   color: white;
   background-color: #2085f4;
-  height: 48px;
+  height: 36px;
   min-width: 100% !important;
+  font-size: 18px !important;
+  border-radius: 12px;
 }
 
 .ui.button.balances-authorize-button {
@@ -2802,20 +2804,27 @@ a.ui.blue.button.dg-learn-button {
   padding: 0 0 0 0;
 }
 
+#balances-padding-correct-two {
+  padding: 3px 0 0 0;
+}
+
 .ui.button.DG-stake-button {
   color: white;
   background-color: #2085f4;
-  height: 48px;
+  height: 36px;
   min-width: 48.5% !important;
+  font-size: 18px;
+  border-radius: 12px;
 }
 
 .ui.button.DG-stake-button-balancer {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;
-  height: 48px;
+  height: 36px;
   min-width: 100% !important;
   margin-top: 15px;
+  border-radius: 12px;
 }
 
 .ui.button.DG-stake-button-balancer-enabled {

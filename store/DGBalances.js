@@ -354,11 +354,11 @@ function DGBalances() {
   async function getAffiliateBalances() {
     try {
       const amount = await pointerContractNew.methods
-        .profitPagination('0xd8856cCe3F878d3Ea03964F80B18987fF1919272', '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50);
+        .profitPagination(state.userAddress, '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50);
 
       return amount;
     } catch (error) {
-      console.log('No DG keeper balance found: ' + error);
+      console.log('Affiliate array not found: ' + error);
     }
   }
 

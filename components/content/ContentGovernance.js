@@ -526,6 +526,7 @@ const ContentGovernance = (props) => {
                   href="https://gov.decentral.games"
                   target="_blank"
                   className="DG-stake-button"
+                  id="balances-padding-correct-two"
                 >
                   Discussion
                 </Button>
@@ -533,6 +534,7 @@ const ContentGovernance = (props) => {
                   href="https://snapshot.page/#/decentralgames.eth"
                   target="_blank"
                   className="DG-stake-button"
+                  id="balances-padding-correct-two"
                 >
                   All Proposals
                 </Button>
