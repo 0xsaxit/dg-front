@@ -81,7 +81,7 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-12px' }}
           >
-            Play the games <i> and </i> be the house
+            Play the games and be the house
           </h1>
           <span className="home-button-span">
           </span>
