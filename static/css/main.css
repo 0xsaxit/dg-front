@@ -755,8 +755,7 @@ i.chevron.down.icon {
 }
 
 .tutorials-h3 {
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 32px;
   padding-bottom: 12px;
   text-align: left;
   padding-top: 0px;
@@ -765,11 +764,11 @@ i.chevron.down.icon {
 
 .tutorial-info,
 .tutorial-info-2 {
-  font-size: 12px !important;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  padding: 3px 6px 3px 6px;
-  border-radius: 24px;
+  padding: 2px 24px 2px 24px;
+  border-radius: 16px;
 }
 
 .tutorial-info-2 {
