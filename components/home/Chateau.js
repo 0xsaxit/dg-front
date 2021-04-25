@@ -8,8 +8,7 @@ import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
 import introJs from 'intro.js';
-import ButtonPlayVerify from '../button/ButtonPlayVerify';
-
+import ButtonPlayNow from '../button/ButtonPlayNow';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -19,7 +18,7 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
 
-  const realm = 'hades-amber';
+  const realm = 'fenrir-amber';
   let buttonPlay = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +53,7 @@ const Chateau = () => {
       <div className="home-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1613592503/DG_Background_video_kfiogn.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto/v1613592503/DG_Background_video_kfiogn.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -72,23 +71,27 @@ const Chateau = () => {
 
         <div className="home-dashboard-content">
           <div style={{ maxWidth: '1400px' }}>
-            <div 
-              className="account-intro" 
-              data-title="Welcome! 👋" 
-              data-intro="Connect your wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
+            <div
+              className="account-intro"
+              data-title="Welcome! 👋"
+              data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
             />
           </div>
-          <p className="featured-casino-text">DECENTRAL GAMES</p>
           <h1
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-12px' }}
           >
-            Be The House
+            Play the games and be the house
           </h1>
           <span className="home-button-span">
+          </span>
+          <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+            By owning $DG, the first-ever metaverse casino is now yours. Vote on
+            treasury management, economic policy, and new game development.
+          </p>
             {state.userStatus === 0 ? (
               <span>
-                <ButtonPlayVerify />
+                <ButtonPlayNow />
                 <ModalVideo />
               </span>
             ) : (
@@ -98,7 +101,7 @@ const Chateau = () => {
                 href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
                 target="_blank"
               >
-                PLAY NOW
+                Play Now
               </Button>
             )}
             <span>
@@ -106,10 +109,12 @@ const Chateau = () => {
                 <Button
                   color="blue"
                   className="how-to-button"
-                  onClick={() => 
-                    introJs().setOptions({
-                      showBullets: false
-                    }).start()
+                  onClick={() =>
+                    introJs()
+                      .setOptions({
+                        showBullets: false,
+                      })
+                      .start()
                   }
                 >
                   GET STARTED
@@ -121,14 +126,10 @@ const Chateau = () => {
                   href="https://docs.decentral.games/getting-started/play-to-mine"
                   target="_blank"
                 >
-                  EARN $DG
+                  Earn $DG
                 </Button>
               )}
             </span>
-          </span>
-          <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-            By owning $DG, the first-ever metaverse casino is now yours. Vote on treasury management, economic policy, and new game development.
-          </p>
           <p className="scroll-down-icon">
             <Icon name="chevron down" />
           </p>
@@ -158,17 +159,21 @@ const Chateau = () => {
                 </h1>
                 <span className="home-button-span ecosystem">
                   <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
-                    <Button color="blue" className="play-button ecosystem">
-                      ANNOUNCEMENT
+                    <Button
+                      color="blue" 
+                      className="announcement"
+                      href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                    >
+                      Announcement
                     </Button>
                   </Link>
                   <Button
                     color="blue"
-                    className="roadmap-button ecosystem"
+                    className="docs"
                     target="_blank"
                     href="https://docs.decentral.games/ecosystem"
                   >
-                    READ DOCS
+                    Read Docs
                   </Button>
                 </span>
               </span>
@@ -205,9 +210,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -226,7 +230,7 @@ const Chateau = () => {
                   </a>
                 </Link>
 
-                <Link href="/dg/uniswap">
+                <Link href="/dg/liquidity">
                   <a className="dg-powered-container two">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
@@ -246,9 +250,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -287,9 +290,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -336,18 +338,19 @@ const Chateau = () => {
                 <Link href="/account">
                   <Button 
                     color="blue" 
-                    className="play-button deposit"
+                    className="deposit"
+                    href="/account"
                   >
-                    DEPOSIT CRYPTO
+                    Deposit Crypto
                   </Button>
                 </Link>
                 <Button
                   color="blue"
-                  className="metamask-how-button"
+                  className="metamask"
                   href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                   target="_blank"
                 >
-                  Wallets
+                  Metamask
                 </Button>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
@@ -409,24 +412,24 @@ const Chateau = () => {
                   className="home-footer-h1 avatars"
                   style={{ marginBottom: '0px' }}
                 >
-                  Learn more about the Decentral Games ecosystem
+                  Learn more about our ecosystem
                 </h1>
                 <span className="home-button-span avatars">
                   <Button
                     color="blue"
-                    className="play-button avatars"
+                    className="partners"
                     href="https://docs.decentral.games/info/partners"
                     target="_blank"
                   >
-                    PARTNERS
+                    Partners
                   </Button>
                   <Button
                     color="blue"
-                    className="roadmap-button avatars"
+                    className="roadmap"
                     href="https://docs.decentral.games/info/roadmap"
                     target="_blank"
                   >
-                    ROADMAP
+                    Roadmap
                   </Button>
                 </span>
                 <p
@@ -466,16 +469,19 @@ const Chateau = () => {
               <span className="home-button-span">
                 <Button
                   color="blue"
-                  className="play-button"
+                  className="hop"
                   href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
-                  id="play-now-button-home"
                   target="_blank"
                 >
-                  HOP IN
+                  Hop In
                 </Button>
                 <Link href="/games/casinos">
-                  <Button color="blue" className="casinos-button">
-                    OUR CASINOS
+                  <Button 
+                    color="blue" 
+                    className="casinos"
+                    href="/games/casinos"
+                  >
+                    Our Casinos
                   </Button>
                 </Link>
               </span>
@@ -522,7 +528,7 @@ const Chateau = () => {
               >
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <iframe
-                    style={{ borderRadius: '4px' }}
+                    style={{ borderRadius: '24px' }}
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/7kyDcfEK_jU"
@@ -544,7 +550,7 @@ const Chateau = () => {
               >
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <iframe
-                    style={{ borderRadius: '4px' }}
+                    style={{ borderRadius: '24px' }}
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/-7U3_YzO-ZU"
@@ -569,7 +575,7 @@ const Chateau = () => {
               >
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <iframe
-                    style={{ borderRadius: '4px' }}
+                    style={{ borderRadius: '24px' }}
                     width="100%"
                     height="240px"
                     src="https://www.youtube.com/embed/zSyx4Zq0VJ0"
@@ -601,12 +607,11 @@ const Chateau = () => {
               </p>
               <Button
                 color="blue"
-                className="play-button"
+                className="touch"
                 href="https://decentral.games/discord"
                 target="_blank"
-                style={{ marginTop: '9px' }}
               >
-                GET IN TOUCH
+                Get in Touch
               </Button>
             </span>
 

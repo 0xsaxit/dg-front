@@ -33,8 +33,8 @@ const ModalInfo = () => {
 
   useEffect(() => {
     const totalDG =
-      parseFloat(state.userBalances[2][0]) +
-      parseFloat(state.userBalances[2][1]) +
+      // parseFloat(state.userBalances[2][0]) +
+      // parseFloat(state.userBalances[2][1]) +
       parseFloat(state.DGBalances.BALANCE_MINING_DG) +
       parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_1) +
       parseFloat(state.DGBalances.BALANCE_STAKING_BALANCER_2) +
@@ -116,17 +116,14 @@ const ModalInfo = () => {
       close
       trigger={
         <span>
-          {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-            null    
-          ) : state.DGBalances.BALANCE_MINING_DG ? (
+          {state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : state.DGBalances
+              .BALANCE_MINING_DG ? (
             <Button color="blue" className="modal-info-button">
               <p className="right-menu-text dg">
                 {DGTotal.toLocaleString()} DG{' '}
               </p>
             </Button>
-          ) : (
-            null
-          )}
+          ) : null}
         </span>
       }
     >
@@ -186,7 +183,13 @@ const ModalInfo = () => {
             ${unclaimedUSD}
           </p>
         </span>
-        <span style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 30px 0px 30px' }}>
+        <span
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: '0px 30px 0px 30px',
+          }}
+        >
           <Button
             className="get-dg-button"
             href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
@@ -214,7 +217,9 @@ const ModalInfo = () => {
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
         <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
           <p className="menu-info-label">$DG staked in gov</p>
-          <p className="menu-info-text">{gov_staked.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+          <p className="menu-info-text">
+            {gov_staked.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </p>
         </span>
         <span className="menu-info-inner-span">
           <p className="menu-info-label">
@@ -247,24 +252,30 @@ const ModalInfo = () => {
       </div>
 
       <div>
-        {gov_unclaimed > 0 || 
-          state.DGBalances.BALANCE_MINING_DG > 0 || 
-          state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 || 
-          state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ||
-          state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ||
-          state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
+        {gov_unclaimed > 0 ||
+        state.DGBalances.BALANCE_MINING_DG > 0 ||
+        state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ||
+        state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ||
+        state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ||
+        state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
           <div
             className="menu-info-container"
-            style={{ marginTop: '12px', marginBottom: '12px', paddingTop: '12px' }}
+            style={{
+              marginTop: '12px',
+              marginBottom: '12px',
+              paddingTop: '12px',
+            }}
           >
             {gov_unclaimed > 0 ? (
               <span className="menu-info-inner-span">
                 <p className="menu-info-label">unclaimed $dg - gov</p>
-                <p className="menu-info-text">{gov_unclaimed.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                <p className="menu-info-text">
+                  {gov_unclaimed
+                    .toFixed(3)
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                </p>
               </span>
-            ) : (
-              null
-            )}
+            ) : null}
 
             {state.DGBalances.BALANCE_MINING_DG > 0 ? (
               <span className="menu-info-inner-span">
@@ -273,9 +284,7 @@ const ModalInfo = () => {
                   {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
                 </p>
               </span>
-            ) : (
-              null
-            )}
+            ) : null}
 
             {state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ? (
               <span className="menu-info-inner-span">
@@ -284,9 +293,7 @@ const ModalInfo = () => {
                   {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
                 </p>
               </span>
-            ) : (
-              null
-            )}
+            ) : null}
 
             {state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ? (
               <span className="menu-info-inner-span">
@@ -295,9 +302,7 @@ const ModalInfo = () => {
                   {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
                 </p>
               </span>
-            ) : (
-              null
-            )}
+            ) : null}
 
             {state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ? (
               <span className="menu-info-inner-span">
@@ -306,9 +311,7 @@ const ModalInfo = () => {
                   {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
                 </p>
               </span>
-            ) : (
-              null
-            )}
+            ) : null}
 
             {state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
               <span className="menu-info-inner-span">
@@ -317,11 +320,7 @@ const ModalInfo = () => {
                   {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
                 </p>
               </span>
-            ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-              null
-            ) : (
-              null
-            )}  
+            ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : null}
           </div>
         ) : (
           <div style={{ marginTop: '12px' }} />

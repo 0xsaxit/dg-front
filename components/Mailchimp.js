@@ -39,7 +39,7 @@ const CustomForm = ({ status, message, onValidated }) => {
           placeholder="Email"
         />
         <Button className="mailchimp-submit-button" onClick={submit}>
-          SUBMIT
+          Submit
         </Button>
       </span>
       {status === 'sending' && (

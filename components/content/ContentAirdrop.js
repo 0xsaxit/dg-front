@@ -72,48 +72,23 @@ const ContentAirdrop = (props) => {
   function contentAirdrop() {
     return (
       <Aux>
-        <div className="DG-liquidity-container top">
-          <div className="DG-column top">
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG | Decentral Games Governance Token</h3>
-              <p>
-                $DG is rewarded to players, liquidity providers, and governors
-                of the decentral.games ecosystem. Learn more by reading our
-                <a
-                  href={`${Global.CONSTANTS.BASE_URL}/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino`}
-                  target="_blank"
-                  style={{ color: '#2085f4' }}
-                >
-                  {' '}
-                  announcement{' '}
-                </a>
-                or by visiting our
-                <a
-                  href="https://decentral-games-1.gitbook.io/dg/allocation"
-                  target="_blank"
-                  style={{ color: '#2085f4' }}
-                >
-                  {' '}
-                  docs
-                </a>
-                .
-              </p>
-            </span>
-          </div>
-        </div>
 
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
+            <p className="earned-amount">Unclaimed</p>
+
+            <Divider className="divider-dg-top" />
+
             <span style={{ display: 'flex' }}>
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo"
+                className="farming-logo-small"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                <p className="welcome-text">Unclaimed $DG</p>
+                <p className="welcome-text-top">$DG Balance</p>
                 {state.DGBalances.BALANCE_KEEPER_DG ? (
-                  <p className="account-name">
+                  <p className="earned-amount">
                     {props.formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
                   </p>
                 ) : (
@@ -131,7 +106,7 @@ const ContentAirdrop = (props) => {
               </span>
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
 
             <span
               style={{
@@ -159,7 +134,21 @@ const ContentAirdrop = (props) => {
               )}
             </span>
 
-            <Divider />
+            <Divider className="divider-dg-top" />
+
+            <p style={{ fontSize: '18px' }}>
+              $DG is rewarded to players, liquidity providers, and governors
+              of the decentral.games ecosystem. 
+              <a
+                href="https://decentral-games-1.gitbook.io/dg/allocation"
+                target="_blank"
+                style={{ color: '#2085f4' }}
+              >
+                {' '}
+                Learn more 
+              </a>
+              .
+            </p>
 
             {Number(state.DGBalances.BALANCE_KEEPER_DG) ? (
               <span className="DG-button-span">
@@ -180,41 +169,6 @@ const ContentAirdrop = (props) => {
             )}
           </div>
 
-          <span className="DG-tablet-container">
-            <div className="DG-column" style={{ width: '100%' }}>
-              <span style={{ display: 'flex' }}>
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <h3 className="DG-h3">Existing NFT Holders</h3>
-                  <p
-                    className="welcome-text"
-                    style={{ marginTop: '-12px', paddingLeft: '0px' }}
-                  >
-                    december 1, 2020
-                  </p>
-                  <p style={{ paddingTop: '15px' }}>
-                    Each Tominoya and Flamingos NFT Holder gets 120 DG with 20
-                    week linear vesting.
-                  </p>
-                </span>
-              </span>
-
-              <span style={{ display: 'flex', paddingTop: '30px' }}>
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <h3 className="DG-h3">All Community Players</h3>
-                  <p
-                    className="welcome-text"
-                    style={{ marginTop: '-12px', paddingLeft: '0px' }}
-                  >
-                    december 1, 2020
-                  </p>
-                  <p style={{ paddingTop: '15px' }}>
-                    Each Ethereum address that has played our free play games
-                    within the last 4 months gets 10 DG (Cutoff: Nov 1, 2020).
-                  </p>
-                </span>
-              </span>
-            </div>
-          </span>
         </div>
       </Aux>
     );
@@ -224,3 +178,4 @@ const ContentAirdrop = (props) => {
 };
 
 export default ContentAirdrop;
+

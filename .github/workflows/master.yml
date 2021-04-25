@@ -65,7 +65,7 @@ jobs:
         PORT: ${PORT}
         USERNAME: ${USERNAME}
         KEY: ${SSHKEY}
-        script: deploy_dcl.games ${{ steps.vars.outputs.image }} ${{ steps.vars.outputs.tag }}
+        script: deploy_dcl.games ${{ steps.vars.outputs.image }} ${{ steps.vars.outputs.tag }} dg_website
 
   notify:
     if: always()

@@ -9,15 +9,28 @@ const initialState = {
     meta: {},
   },
   userStatus: 0,
-  walletProvider: '',
   userAddress: '',
-  userInfo: [],
+  // ipAddress: '',
+  userInfo: {
+    name: '',
+    index: 0,
+    balancePLAY: 0,
+    count: '',
+    email: '',
+    playersList: [],
+    totalDAI: 0,
+    totalMANA: 0,
+    totalPLAY: 0,
+    totalUSDT: 0,
+    totalATRI: 0,
+    tokenArray: [false, false, false, false, false, false],
+  },
   userBalances: [
     [0, 0],
     [0, 0],
     [0, 0],
   ],
-  transactions: [[], []],
+  transactions: [{}, {}],
   txHash: '',
   tokenPings: 0,
   // parcelDataAll: {},
@@ -71,12 +84,19 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
+  refreshTokens: 'Initial',
   refreshBalances: true,
+  updateInfo: true,
   stakeTime: 0,
   affiliateAddress: '',
   toggleTheme: 'light',
   whitelistedAdmin: false,
   whitelistedIntel: false,
+  manaLoading: false,
+  daiLoading: false,
+  usdtLoading: false,
+  atriLoading: false,
+  wethLoading: false,
 };
 
 const reducer = (state, action) => {
@@ -97,12 +117,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         userStatus: action.data,
-      };
-
-    case 'update_provider': 
-      return {
-        ...state,
-        walletProvider: action.data,
       };
 
     case 'user_address':
@@ -207,10 +221,22 @@ const reducer = (state, action) => {
         stakingBalances: action.data,
       };
 
+    case 'refresh_tokens':
+      return {
+        ...state,
+        refreshTokens: action.data,
+      };
+
     case 'refresh_balances':
       return {
         ...state,
         refreshBalances: action.data,
+      };
+
+    case 'update_info':
+      return {
+        ...state,
+        updateInfo: action.data,
       };
 
     case 'stake_time':
@@ -242,6 +268,42 @@ const reducer = (state, action) => {
         ...state,
         whitelistedIntel: action.data,
       };
+
+    case 'set_manaLoading':
+      return {
+        ...state,
+        manaLoading: action.data,
+      };
+
+    case 'set_daiLoading':
+      return {
+        ...state,
+        daiLoading: action.data,
+      };
+
+    case 'set_usdtLoading':
+      return {
+        ...state,
+        usdtLoading: action.data,
+      };
+
+    case 'set_atriLoading':
+      return {
+        ...state,
+        atriLoading: action.data,
+      };
+
+    case 'set_wethLoading':
+      return {
+        ...state,
+        wethLoading: action.data,
+      };
+
+    // case 'ip_address':
+    //   return {
+    //     ...state,
+    //     ipAddress: action.data,
+    //   };
 
     default:
       throw new Error('Wrong action type got dispatched');

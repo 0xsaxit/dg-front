@@ -2,31 +2,27 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Popup, Icon, Modal, Dropdown, Button } from 'semantic-ui-react';
+import { Menu, Icon, Dropdown } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
-import ModalWallet from '../modal/ModalWallet';
+import ButtonConnect from '../button/ButtonConnect';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
-import PopUpLinks from './PopUpLinks';
-import Fetch from '../../common/Fetch';
-
+// import PopUpLinks from './PopUpLinks';
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [isDarkMode, setDarkMode] = useState(false);
+  // const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
-  const [popUpOpen, setPopUpOpen] = useState(true);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
-
   const router = useRouter();
   let menuStyle = [];
   let listener = null;
@@ -89,15 +85,15 @@ const MenuTop = (props) => {
     ];
   }
 
-  useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
+  // useEffect(() => {
+  //   const localTheme = window.localStorage.getItem('theme');
 
-    if (localTheme === 'dark') {
-      setDarkMode(true);
-    } else {
-      setDarkMode(false);
-    }
-  });
+  //   if (localTheme === 'dark') {
+  //     setDarkMode(true);
+  //   } else {
+  //     setDarkMode(false);
+  //   }
+  // });
 
   function menuOpen() {
     if (open == true) {
@@ -105,14 +101,14 @@ const MenuTop = (props) => {
     } else {
       setOpen(true);
     }
-  };
+  }
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
     const interval = setInterval(() => {
       const frameWidth = window.innerWidth;
 
-      if (frameWidth > 991) {
+      if (frameWidth > 1100) {
         setOpen(false);
       }
     }, 100);
@@ -123,7 +119,7 @@ const MenuTop = (props) => {
   // set utm
   useEffect(() => {
     const url = window.location.href;
-    if (url.includes("?utm_source")) {
+    if (url.includes('?utm_source')) {
       sessionStorage.setItem('utm', url.substring(url.lastIndexOf('/') + 1));
       setUtm(sessionStorage.getItem('utm'));
     } else {
@@ -132,9 +128,16 @@ const MenuTop = (props) => {
     }
   }, [utm]);
 
-
   // store affiliate address in localStorage
   function setAffiliateState() {
+    // if (localStorage.getItem('ref') === '') {
+    //   console.log('affiliate address parameter: blank');
+    // } else {
+    //   console.log(
+    //     'affiliate address parameter: ' + localStorage.getItem('ref')
+    //   );
+    // }
+
     dispatch({
       type: 'affiliate_address',
       data: localStorage.getItem('ref'),
@@ -143,7 +146,7 @@ const MenuTop = (props) => {
 
   useEffect(() => {
     const url = window.location.href;
-    if (url.includes("0x")) {
+    if (url.includes('0x')) {
       localStorage.setItem('ref', url.substring(url.lastIndexOf('/') + 1));
       setRef(localStorage.getItem('ref'));
     } else {
@@ -192,44 +195,71 @@ const MenuTop = (props) => {
   function dropdownMenu() {
     return (
       <div className="mobile-height-fix">
-        <Menu attached='top' className="mobile-menu-popup">
-          <Dropdown 
-            item 
-            icon={open ? 'close' : 'bars' } 
+        <Menu attached="top" className="mobile-menu-popup">
+          <Dropdown
+            item
+            icon={open ? 'close' : 'bars'}
             onClick={() => menuOpen()}
-            id={open ? 'mobile-menu-icon' : menuStyle[0] }
+            id={open ? 'mobile-menu-icon' : menuStyle[0]}
           >
             <Dropdown.Menu>
               <Dropdown.Item>
-                <Icon name='dropdown' />
+                <Icon name="dropdown" />
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <a href={`/${utm}`}>
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       PLAY
                     </Menu.Item>
                   </a>
 
                   <a href="/dg">
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       $DG
                     </Menu.Item>
                   </a>
 
                   <a href="/games">
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       GAMES
                     </Menu.Item>
                   </a>
 
                   <a href="/events">
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       EVENTS
                     </Menu.Item>
                   </a>
 
                   <a href="/blog">
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       BLOG
+                    </Menu.Item>
+                  </a>
+
+                  <a
+                    href="https://decentralgames.substack.com/"
+                    target="_blank"
+                  >
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
+                      NEWS
                     </Menu.Item>
                   </a>
 
@@ -238,7 +268,10 @@ const MenuTop = (props) => {
                     id="docs-top-menu"
                     target="_blank"
                   >
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items">
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       DOCS
                     </Menu.Item>
                   </a>
@@ -248,7 +281,10 @@ const MenuTop = (props) => {
                     id="docs-top-menu"
                     target="_blank"
                   >
-                    <Menu.Item className={menuStyle[1]} id="dropdown-menu-items" >
+                    <Menu.Item
+                      className={menuStyle[1]}
+                      id="dropdown-menu-items"
+                    >
                       GOV
                     </Menu.Item>
                   </a>
@@ -256,7 +292,6 @@ const MenuTop = (props) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
         </Menu>
       </div>
     );
@@ -297,11 +332,21 @@ const MenuTop = (props) => {
         </Link>
 
         <a
+          href="https://decentralgames.substack.com/"
+          target="_blank"
+          id="docs-top-menu"
+        >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/news')}>
+            NEWS
+          </Menu.Item>
+        </a>
+
+        <a
           href="https://docs.decentral.games"
           id="docs-top-menu"
           target="_blank"
         >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')} >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
             DOCS
           </Menu.Item>
         </a>
@@ -311,7 +356,7 @@ const MenuTop = (props) => {
           id="docs-top-menu"
           target="_blank"
         >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/gov')} >
+          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/gov')}>
             GOV
           </Menu.Item>
         </a>
@@ -322,9 +367,7 @@ const MenuTop = (props) => {
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
     if (state.userStatus === 3) {
-      return (
-        null
-      )
+      return null;
     } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
@@ -338,15 +381,16 @@ const MenuTop = (props) => {
 
               <span className="menu-avatar-background" id="add-funds-mobile">
                 <span className="mobile-display-none-name">
-                  {state.userInfo[0] === null || state.userInfo[0] === '' ? (
+                  {state.userInfo.name === null ||
+                  state.userInfo.name === '' ? (
                     <p className={menuStyle[1]} style={{ marginTop: '-1px' }}>
-                      {state.userInfo[1].substr(0, 4) +
+                      {state.userAddress.substr(0, 4) +
                         '...' +
-                        state.userInfo[1].substr(-4)}
+                        state.userAddress.substr(-4)}
                     </p>
                   ) : (
                     <p style={{ marginTop: '-1px' }} className={menuStyle[1]}>
-                      {state.userInfo[0]}
+                      {state.userInfo.name}
                     </p>
                   )}
                 </span>
@@ -354,7 +398,7 @@ const MenuTop = (props) => {
                 <img
                   className="avatar-picture"
                   id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userInfo[1]}/face.png`}
+                  src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
                   style={{
                     width: '18px',
                     height: '18px',
@@ -376,7 +420,7 @@ const MenuTop = (props) => {
     } else {
       return (
         <span className="right-menu-items">
-          <ModalWallet />
+          <ButtonConnect />
 
           {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>

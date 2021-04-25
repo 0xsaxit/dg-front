@@ -2,15 +2,27 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
-h1,
+h1 {
+  font-family: "Larsseit-ExtraBold" !important; 
+  -webkit-font-smoothing: antialiased !important;
+}
+
 h2,
-h3,
 h4,
 h5,
 p,
-button,
 a {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Regular" !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h3 {
+  font-family: "Larsseit-Bold" !important; 
+  -webkit-font-smoothing: antialiased !important;
+}
+
+a.ui.button {
+  font-family: "Larsseit-Bold" !important;
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -41,18 +53,16 @@ h3 {
 }
 
 h1 {
-  font-family: 'Lato', sans-serif !important;
-  font-size: 48px;
-  font-weight: 500;
+  font-family: "Larsseit-ExtraBold" !important;
+  font-size: 60px;
   margin-bottom: 0px;
-  line-height: 1.4;
+  line-height: 70px;
+  letter-spacing: -0.7px;
 }
 
 p {
-  font-size: 20px;
-  font-weight: normal;
-  letter-spacing: 0.5;
-  line-height: 1.4;
+  font-size: 21px;
+  line-height: 30px;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -71,7 +81,7 @@ p {
 .ui.grid > .column.row > [class*='sixteen wide'].column,
 .ui.grid > .row > [class*='sixteen wide'].column,
 .ui.grid > [class*='sixteen wide'].column {
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .account-other-inner-p {
@@ -304,7 +314,7 @@ div.item.sidebar-menu-text.blog:hover {
   letter-spacing: 1.25px;
   font-size: 14px;
   font-weight: 600;
-  padding: 4px 6px 0px 6px;
+  padding: 0px 6px 0px 6px;
   text-transform: uppercase;
 }
 
@@ -333,7 +343,7 @@ div.item.sidebar-menu-text.blog:hover {
 
 .menu-account-info {
   background-color: #2085f4;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-top: 18px;
   height: 27px !important;
   padding-left: 9px;
@@ -351,14 +361,14 @@ div.item.sidebar-menu-text.blog:hover {
   display: flex;
   background-color: #165daa;
   padding-right: 15px;
-  border-radius: 4px;
+  border-radius: 16px;
   padding-left: 9px;
   margin-left: 6px;
 }
 
 .menu-info-modal {
   max-width: 400px !important;
-  border-radius: 4px !important;
+  border-radius: 24px !important;
 }
 
 .menu-info-container {
@@ -471,6 +481,7 @@ a.menu-info-label-link:hover {
   width: calc(100% - 180px);
   padding-top: 6px;
   margin-top: 3px;
+  border-radius: 16px;
 }
 
 .mailchimp-header-text {
@@ -537,6 +548,14 @@ a.menu-info-label-link:hover {
   height: 100vh;
 }
 
+.home-dashboard-p {
+  color: white;
+  letter-spacing: 0.15px;
+  text-shadow: 1px 1px 5px black;
+  max-width: 640px;
+  padding-right: 30px;
+}
+
 i.chevron.down.icon {
   color: white;
   text-shadow: 1px 1px 5px black;
@@ -580,7 +599,7 @@ i.chevron.down.icon {
   text-shadow: 1px 1px 5px black;
   margin-top: -12px;
   margin-left: -2px;
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .home-dashboard-h1 {
@@ -600,15 +619,6 @@ i.chevron.down.icon {
 .logged-out-button-span {
   display: flex;
   justify-content: center;
-}
-
-.home-dashboard-p {
-  color: white;
-  letter-spacing: 0.15px;
-  text-shadow: 1px 1px 5px black;
-  max-width: 640px;
-  padding-right: 30px;
-  padding-top: 12px !important;
 }
 
 .featured-casino-text {
@@ -724,7 +734,7 @@ i.chevron.down.icon {
   display: block;
   margin-bottom: 6px;
   padding: 30px 30px 0px 30px;
-  border-radius: 4px;
+  border-radius: 24px;
   position: relative;
 }
 
@@ -740,13 +750,12 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 24px;
   position: relative;
 }
 
 .tutorials-h3 {
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 32px;
   padding-bottom: 12px;
   text-align: left;
   padding-top: 0px;
@@ -755,11 +764,11 @@ i.chevron.down.icon {
 
 .tutorial-info,
 .tutorial-info-2 {
-  font-size: 12px !important;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  padding: 3px 6px 3px 6px;
-  border-radius: 4px;
+  padding: 2px 24px 2px 24px;
+  border-radius: 16px;
 }
 
 .tutorial-info-2 {
@@ -889,14 +898,14 @@ i.chevron.down.icon {
   z-index: 1;
   object-fit: cover;
   width: 66%;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 24px 0px 0px 24px;
 }
 
 .featured-event-grid {
   background-color: white;
   display: flex;
   flex-direction: row;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .featured-info {
@@ -908,7 +917,7 @@ i.chevron.down.icon {
   .event-pic.featured {
     width: 100%;
     height: 100%;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 24px 24px 0px 0px;
   }
   .featured-event-grid {
     flex-direction: column !important;
@@ -952,7 +961,7 @@ i.chevron.down.icon {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 24px 24px 0px 0px !important;
 }
 
 .games-pic {
@@ -962,7 +971,7 @@ i.chevron.down.icon {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 24px 24px 0px 0px !important;
 }
 
 .my-nft-pic {
@@ -986,7 +995,8 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 24px;
+  padding-bottom: 24px;
 }
 
 .my-nft-container {
@@ -994,7 +1004,8 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 24px;
+  padding-bottom: 24px;
   min-height: 100%;
 }
 
@@ -1017,8 +1028,9 @@ i.chevron.down.icon {
   margin-top: 21px;
   display: flex;
   flex-direction: column !important;
-  margin-bottom: 6px;
-  border-radius: 4px;
+  margin-bottom: 24px;
+  border-radius: 24px;
+  padding-bottom: 24px;
 }
 
 .shop-container {
@@ -1027,10 +1039,8 @@ i.chevron.down.icon {
   display: flex;
   flex-direction: column !important;
   margin-bottom: 6px;
-  padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 4px;
+  padding: 30px 30px 24px 30px;
+  border-radius: 24px;
 }
 
 .games-container:hover,
@@ -1053,7 +1063,7 @@ i.chevron.down.icon {
 .ui.dropdown .menu {
   margin-top: 15px;
   padding: 9px 0px 9px 0px;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .ui.dropdown .menu > .item {
@@ -1086,13 +1096,11 @@ i.chevron.down.icon {
 
 .nfts-info,
 .nfts-info-2 {
-  text-transform: uppercase;
-  font-size: 12px !important;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  padding: 3px 6px 3px 6px;
-  margin-top: -3px !important;
-  border-radius: 4px;
+  padding: 2px 24px 2px 24px;
+  border-radius: 16px;
 }
 
 .nfts-info {
@@ -1120,15 +1128,14 @@ i.chevron.down.icon {
 }
 
 .nft-other-h3 {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 32px;
   padding-bottom: 12px;
   text-align: center;
   padding-top: 12px;
 }
 
 .nft-other-h3.featured {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 600;
   padding-bottom: 12px;
   text-align: left;
@@ -1213,11 +1220,11 @@ table {
 }
 
 .ui.table thead tr:first-child>th:first-child {
-  border-radius: 4px 0px 0px 0px !important;
+  border-radius: 24px 0px 0px 0px !important;
 }
 
 .ui.table thead tr:last-child>th:last-child {
-  border-radius: 0px 4px 0px 0px !important;
+  border-radius: 0px 42px 0px 0px !important;
 }
 
 .tx-box-overflow {
@@ -1226,13 +1233,13 @@ table {
   margin-bottom: 90px; 
   border: 1px solid #edf2f9 !important;
   box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
-  border-radius: 4px !important;
+  border-radius:2 4px !important;
 }
 
 .table.ui.unstackable.table.leaders-table {
   border: 1px solid #edf2f9 !important;
   box-shadow: 0px 0px 8px 0px rgba(18, 38, 63, 0.03) !important;
-  border-radius: 4px !important;
+  border-radius: 24px !important;
 }
 
 .leaders-col-2 {
@@ -1342,7 +1349,7 @@ table {
 }
 
 .account-other-inner-p {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Medium" !important;
   font-size: 17px !important;
   margin-top: 45px;
   padding-bottom: 60px;
@@ -1352,7 +1359,7 @@ table {
 
 #tx-box-history-2 {
   border: 0px;
-  border-radius: 4px;
+  border-radius: 24px;
   margin-top: 30px;
   padding-bottom: 10px;
 }
@@ -1398,13 +1405,13 @@ table {
   border: 1px solid rgb(229, 232, 235);
   letter-spacing: 0.5px !important;
   color: rgb(92, 95, 97);
-  border-radius: 4px;
+  border-radius: 24px;
   margin-left: 9px;
 }
 
 .account-icon-hover:hover {
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
-  border-radius: 4px;
+  border-radius: 24px;
   color: black;
 }
 
@@ -1417,14 +1424,14 @@ i.help.circle.icon.submenu-icon {
   color: black;
   cursor: default;
   font-weight: 700 !important;
-  background-color: rgb(229, 232, 235);
-  border-radius: 4px;
+  background-color: rgba(21, 24, 28, 1);
+  border-radius: 16px;
   padding: 9px 12px 9px 12px;
 }
 
 .account-hover:hover {
-  background-color: rgba(229, 232, 235, 0.5);
-  border-radius: 4px;
+  background-color: rgba(42, 48, 56, 1);
+  border-radius: 16px;
   color: black;
 }
 
@@ -1487,7 +1494,7 @@ svg.spanbox.disable {
 }
 
 .spanbox {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "Larsseit-Medium" !important;
   margin-top: 30px;
 }
 
@@ -1533,7 +1540,7 @@ deposit-notification-box-hidden {
   background-color: rgba(0, 0, 0, 0.75);
   border: none !important;
   padding: 18px 18px 0px 18px;
-  border-radius: 4px;
+  border-radius: 24px;
 }
 
 .deposit-message-text.top {
@@ -1622,8 +1629,7 @@ i.pencil.icon.edit-icon:hover {
   color: rgb(92, 95, 97);
   text-transform: uppercase;
   padding-left: 16px;
-  padding-top: 9px !important;
-  margin-bottom: -3px;
+  margin-bottom: -4px;
 }
 
 .welcome-text-top {
@@ -1632,8 +1638,7 @@ i.pencil.icon.edit-icon:hover {
   letter-spacing: 0.5px;
   color: rgb(92, 95, 97) !important;
   text-transform: uppercase;
-  padding-top: 6px !important;
-  margin-bottom: 0px;
+  margin-bottom: -6px;
 }
 
 .ui.divider.divider-dg-top {
@@ -1653,7 +1658,7 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .top-right-gameplay-text {
-  border-radius: 4px;
+  border-radius: 24px;
   background-color: white;
   border: 1px solid #2085f4;
   font-size: 12px;
@@ -1671,8 +1676,7 @@ i.pencil.icon.edit-icon:hover {
   font-weight: bold !important;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding-top: 6px !important;
-  margin-bottom: 0px;
+  margin-bottom: 4px;
 }
 
 .governance-block:hover {
@@ -1716,12 +1720,26 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-amount {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 21px;
+  font-weight: 600;
   letter-spacing: 0.5px;
   color: black;
-  padding-top: 2px !important;
-  margin: 0 0 0px 0 !important;
+  margin: 0 0 0 0 !important;
+}
+
+.earned-amount.stat {
+  margin-top: -8px !important;
+}
+
+.earned-amount-black {
+  font-size: 18px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: black;
+  text-transform: uppercase;
+  padding-left: 3px;
+  padding-top: 9px !important;
+  margin-bottom: -3px;
 }
 
 .earned-amount-executed {
@@ -1738,7 +1756,7 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-percent {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.5px;
   padding-top: 3px !important;
@@ -1756,13 +1774,13 @@ i.pencil.icon.edit-icon:hover {
 
 i.caret.up.icon.percent-icon.pos,
 i.caret.down.icon.percent-icon.neg {
-  font-size: 12px !important;
+  font-size: 10px !important;
 }
 
 .percent-icon {
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 3px !important;
+  padding-top: 1px !important;
   margin-right: -3px !important;
 }
 
@@ -1832,7 +1850,7 @@ div.ui.grid.balances-container {
 
 .balances-column {
   background-color: white;
-  width: 18.5%;
+  width: 32%;
   padding: 12px 18px 12px 18px !important;
   margin-bottom: 30px;
 }
@@ -1906,6 +1924,10 @@ div.ui.grid.balances-container {
 .account-authorize-span {
   margin-top: -72px;
   margin-bottom: 36px;
+}
+
+.ui.loader.auth-loader:after {
+  border-color: white transparent transparent !important;
 }
 
 .balances-divider {
@@ -1984,8 +2006,8 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .ui.input > input {
-  border-radius: 4px 4px 4px 4px;
-  height: 34px;
+  border-radius: 16px;
+  height: 48px;
   transition: none;
 }
 
@@ -2066,6 +2088,19 @@ i.copy.icon.affiliate-icon:hover {
   height: 100%;
 }
 
+.mining-container-outter {
+  display: flex;
+  flex-direction: column;
+  width: 74.75%;
+}
+
+.mining-container-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
 .DG-column-treasury {
   width: 48.5%;
 }
@@ -2121,8 +2156,8 @@ i.copy.icon.affiliate-icon:hover {
 .DG-column,
 .DG-graph-column,
 .DG-column-treasury {
-  font-family: 'Lato', sans-serif !important;
-  border-radius: 4px;
+  font-family: "Larsseit-Medium" !important;
+  border-radius: 24px;
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 12px 18px 18px 18px !important;
@@ -2466,13 +2501,10 @@ div.ui.grid.admin-balances-container {
 }
 
 .ui.button {
-  font-size: 12px !important;
-  padding: 11px 0 0 0;
-  font-weight: bold !important;
-  letter-spacing: 0.5px !important;
-  border-radius: 4px !important;
-  text-transform: uppercase !important;
-  line-height: 12px !important;
+  font-size: 21px;
+  padding: 8px 0 0 0;
+  border-radius: 16px;
+  line-height: 30px;
   margin: 0 0 0 0;
 }
 
@@ -2480,10 +2512,68 @@ div.ui.grid.admin-balances-container {
   padding: 0px 0 0 0;
 }
 
-.ui.button.modal-info-button:hover,
-.ui.button.theme-mode-button:hover,
-.ui.button.more-dropdown-button:hover {
+a.ui.blue.button.play-button,
+.ui.blue.button.play-button {
+  position: relative;
   background-color: #2085f4 !important;
+  color: white;
+  margin-top: 8px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.earn-dg-button {
+  background-color: white;
+  color: black;
+  width: 180px;
+  position: relative;
+  margin-top: 8px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.announcement,
+a.ui.blue.button.deposit,
+a.ui.blue.button.partners,
+a.ui.blue.button.partners,
+a.ui.blue.button.hop,
+a.ui.blue.button.touch {
+  position: relative;
+  background-color: #2085f4;
+  color: white;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.docs,
+a.ui.blue.button.roadmap {
+  background: transparent;
+  color: #2085f4;
+  margin-left: 20px;
+  border: 1px solid #2085f4;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.metamask,
+a.ui.blue.button.casinos {
+  background: white;
+  color: black;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
+}
+
+a.ui.blue.button.metamask-how-button {
+  background-color: white;
+  color: black;
+  position: relative;
+  margin-top: 20px;
+  width: 220px !important;
+  height: 48px;
 }
 
 .ui.button.DG-claim-button,
@@ -2491,8 +2581,10 @@ div.ui.grid.admin-balances-container {
 .ui.button.DG-play-now-button {
   color: white;
   background-color: #2085f4;
-  height: 34px;
+  height: 36px;
   min-width: 100% !important;
+  font-size: 18px !important;
+  border-radius: 12px;
 }
 
 .ui.button.balances-authorize-button {
@@ -2534,7 +2626,7 @@ div.ui.grid.admin-balances-container {
   margin-top: 18px;
   width: 210px !important;
   height: 27px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-right: 30px;
 }
 
@@ -2546,88 +2638,25 @@ div.ui.grid.admin-balances-container {
   margin-top: 18px;
   height: 27px;
   letter-spacing: 1.25px;
-  border-radius: 4px;
+  border-radius: 16px;
   margin-right: 15px;
   min-width: 15px !important;
   padding: 0px 6px 0px 6px;
-}
-
-.ui.button.more-dropdown-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  margin-top: 18px;
-  height: 27px;
-  margin-right: 30px;
-  margin-left: 15px;
-  max-width: 27px !important;
-  min-width: 27px !important;
-  padding: 0px 0px 0px 0px;
-}
-
-.ui.button.theme-mode-button {
-  background-color: #2085f4;
-  color: white;
-  font-size: 14px !important;
-  font-weight: 600;
-  margin-top: 12px;
-  height: 33px;
-  letter-spacing: 1.25px;
-  border-radius: 4px;
-  margin-right: 30px;
-  min-width: 100% !important;
-  padding: 3px 4px 0px 5px;
-}
-
-.ui.button.theme-mode-button:focus,
-.ui.button.more-dropdown-button:focus {
-  background-color: #2085f4 !important;
 }
 
 .ui.button.mailchimp-submit-button {
   position: relative;
   background-color: #2085f4 !important;
   color: white;
-  width: 180px !important;
+  width: 220px !important;
   margin-left: 15px;
-  height: 34px;
+  height: 48px;
   padding: 0 0 0 0;
-  border-radius: 4px !important;
+  border-radius: 16px !important;
   margin-top: 9px;
 }
 
 .ui.blue.button.how-to-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  position: relative;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-  padding: 0 0 0 0;
-}
-
-a.ui.blue.button.earn-dg-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  position: relative;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
-a.ui.blue.button.metamask-how-button {
-  background-color: white;
-  color: black;
-  width: 180px;
-  position: relative;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
-.ui.blue.button.casinos-button {
   background-color: white;
   color: black;
   width: 180px;
@@ -2659,38 +2688,21 @@ a.ui.blue.button.dg-learn-button {
   padding: 0 0 0 0;
 }
 
-a.ui.blue.button.play-button,
-.ui.blue.button.play-button {
-  position: relative;
-  background-color: #2085f4 !important;
-  color: white;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
-.ui.blue.button.roadmap-button {
-  position: relative;
-  background-color: transparent;
-  border: 1px solid #2085f4 !important;
-  color: #2085f4;
-  margin-top: 20px;
-  width: 180px !important;
-  height: 34px;
-}
-
 .ui.blue.button.nft-button {
-  color: white;
+  position: relative;
   background-color: #2085f4;
+  color: white;
+  margin-top: 8px;
+  height: 48px;
   width: 48.5% !important;
 }
 
 .ui.button.nft-read-button {
   background-color: transparent;
   border: 1px solid #2085f4;
-  padding: 10px 0 0 0;
   color: #2085f4;
-  height: 34px;
+  margin-top: 8px;
+  height: 48px;
   width: 48.5% !important;
 }
 
@@ -2708,6 +2720,7 @@ a.ui.blue.button.play-button,
 
 .ui.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
+  font-size: 12px;
   border: 1px solid #2085f4;
   color: #2085f4;
   margin-bottom: -2px;
@@ -2721,13 +2734,14 @@ a.ui.blue.button.play-button,
 
 .ui.button.etherscan-button-green {
   background-color: rgba(255, 255, 255, 0);
+  font-size: 12px;
   border: 1px solid #16c784;
   color: #16c784;
-  height: 27px;
-  margin-top: 0.7rem;
+  height: 24px;
+  margin-top: 8px;
+  line-height: 0px;
   max-width: 100px !important;
   min-width: 100px;
-  padding: 0 0 0 0;
   opacity: 100% !important;
 }
 
@@ -2751,7 +2765,7 @@ a.ui.blue.button.play-button,
   margin-bottom: 9px;
   height: 34px;
   padding: 11px 30px 0px 30px;
-  border-radius: 4px !important;
+  border-radius: 16px !important;
   margin-right: 12px;
 }
 
@@ -2764,7 +2778,7 @@ a.ui.blue.button.play-button,
   margin-bottom: 9px;
   height: 34px;
   padding: 10px 30px 0px 30px;
-  border-radius: 4px !important;
+  border-radius: 16px !important;
 }
 
 .ui.disabled.button.balances-top-button,
@@ -2790,20 +2804,27 @@ a.ui.blue.button.play-button,
   padding: 0 0 0 0;
 }
 
+#balances-padding-correct-two {
+  padding: 3px 0 0 0;
+}
+
 .ui.button.DG-stake-button {
   color: white;
   background-color: #2085f4;
-  height: 34px;
+  height: 36px;
   min-width: 48.5% !important;
+  font-size: 18px;
+  border-radius: 12px;
 }
 
 .ui.button.DG-stake-button-balancer {
   background-color: white;
   border: 1px solid #2085f4;
   color: #2085f4;
-  height: 34px;
+  height: 36px;
   min-width: 100% !important;
   margin-top: 15px;
+  border-radius: 12px;
 }
 
 .ui.button.DG-stake-button-balancer-enabled {

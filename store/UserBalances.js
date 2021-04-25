@@ -5,7 +5,6 @@ import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
 import Global from '../components/Constants';
-import Fetch from '../common/Fetch';
 import Transactions from '../common/Transactions';
 
 function UserBalances() {
@@ -19,88 +18,87 @@ function UserBalances() {
 
   useEffect(() => {
     if (state.userStatus >= 4) {
-      web3 = new Web3(state.walletProvider); // pass wallet provider to Web3 constructor
+      web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
+        console.log('Fetching user balances: ' + state.refreshTokens);
+
         balances = await getTokenBalances();
 
         dispatch({
           type: 'update_balances',
           data: balances,
         });
-
-        // ping token contract to get new balances
-        if (state.tokenPings === 1) dataInterval();
       }
 
       fetchData();
     }
-  }, [state.userStatus, state.tokenPings]);
+  }, [state.userStatus, state.refreshTokens]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function dataInterval() {
-    async function fetchData() {
-      const response = await getTokenBalances();
+  // function dataInterval() {
+  //   async function fetchData() {
+  //     const response = await getTokenBalances();
 
-      // as soon as the balance updates on Matic display deposit/withdraw confirmation
-      if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
-        console.log('Matic balances have updated: deposit');
+  //     // as soon as the balance updates on Matic display deposit/withdraw confirmation
+  //     if (response[0][1] > balances[0][1] || response[1][1] > balances[1][1]) {
+  //       console.log('Matic balances have updated: deposit');
 
-        dispatch({
-          type: 'token_pings',
-          data: 3,
-        });
-        const amount = response[1][1] - balances[1][1];
-        updateHistory(amount, 'Deposit', 'Confirmed');
+  //       dispatch({
+  //         type: 'token_pings',
+  //         data: 3,
+  //       });
+  //       const amount = response[1][1] - balances[1][1];
+  //       updateHistory(amount, 'Deposit', 'Confirmed');
 
-        clearInterval(interval);
-      } else if (
-        response[0][1] < balances[0][1] ||
-        response[1][1] < balances[1][1]
-      ) {
-        console.log('Matic balances have updated: withdrawal');
+  //       clearInterval(interval);
+  //     } else if (
+  //       response[0][1] < balances[0][1] ||
+  //       response[1][1] < balances[1][1]
+  //     ) {
+  //       console.log('Matic balances have updated: withdrawal');
 
-        dispatch({
-          type: 'token_pings',
-          data: 4,
-        });
-        const amount = balances[1][1] - response[1][1];
-        updateHistory(amount, 'Withdraw', 'Confirmed');
+  //       dispatch({
+  //         type: 'token_pings',
+  //         data: 4,
+  //       });
+  //       const amount = balances[1][1] - response[1][1];
+  //       updateHistory(amount, 'Withdraw', 'Confirmed');
 
-        clearInterval(interval);
-      }
-    }
+  //       clearInterval(interval);
+  //     }
+  //   }
 
-    // call token contract every 10 seconds to get new balances
-    const interval = setInterval(() => {
-      fetchData();
-    }, 10000);
+  //   // call token contract every 10 seconds to get new balances
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 10000);
 
-    return () => clearInterval(interval);
-  }
+  //   return () => clearInterval(interval);
+  // }
 
   // update transaction history in the database
-  async function updateHistory(amount, type, _state) {
-    console.log('Writing transaction to database: ' + type);
+  // async function updateHistory(amount, type, _state) {
+  //   console.log('Writing transaction to database: ' + type);
 
-    try {
-      const response = await Fetch.POST_HISTORY(
-        state.userAddress,
-        amount,
-        type,
-        _state,
-        state.txHash,
-        state.userStatus
-      );
+  //   try {
+  //     const response = await Fetch.POST_HISTORY(
+  //       state.userAddress,
+  //       amount,
+  //       type,
+  //       _state,
+  //       state.txHash,
+  //       state.userStatus
+  //     );
 
-      const json = await response.json();
-      console.log('Update history complete: ' + json.status);
-    } catch (error) {
-      console.log('Update history error: ' + error);
-    }
-  }
+  //     const json = await response.json();
+  //     console.log('Update history complete: ' + json.status);
+  //   } catch (error) {
+  //     console.log('Update history error: ' + error);
+  //   }
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -110,6 +108,7 @@ function UserBalances() {
       ABI_ROOT_TOKEN,
       Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
     );
+
     const tokenContractChild = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_MANA,
       Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
@@ -120,12 +119,28 @@ function UserBalances() {
       Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
     );
 
+    const USDTContractChild = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_DAI,
+      '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+    );
+
+    const ATRIContractChild = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_DAI,
+      '0xb140665dde25c644c6b418e417c930de8a8a6ac9'
+    );
+
+    const WETHContractChild = new maticWeb3.eth.Contract(
+      ABI_CHILD_TOKEN_DAI,
+      '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
+    );
+
     try {
       const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
         state.userAddress,
         0
       );
+
       const amountMANA2 = await Transactions.balanceOfToken(
         tokenContractChild,
         state.userAddress,
@@ -138,10 +153,41 @@ function UserBalances() {
         0
       );
 
+      const amountUSDT = await Transactions.balanceOfToken(
+        USDTContractChild,
+        state.userAddress,
+        0
+      ); 
+
+      // get user or contract token balance from MetaMask
+      async function balanceOfAtari(tokenContract, userOrContractAddress, units) {
+        try {
+          const amount = await tokenContract.methods
+            .balanceOf(userOrContractAddress)
+            .call();
+
+          return amount;
+        } catch (error) {
+          console.log('Get balance failed', error);
+        }
+      }
+
+      const amountATRI = await balanceOfAtari(
+        ATRIContractChild,
+        state.userAddress,
+        0
+      ); 
+
+      const amountWETH = await Transactions.balanceOfToken(
+        WETHContractChild,
+        state.userAddress,
+        3
+      );
+
       return [
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
-        [0, 0],
+        [0, amountUSDT, amountATRI, amountWETH],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

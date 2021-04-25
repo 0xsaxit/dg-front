@@ -14,11 +14,12 @@ const EventData = () => {
   // define local variables
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [eventOngoing, setEventOngoing] = useState(false);
 
   useEffect(() => {
     (async function () {
-      // get user nfts statistics
-      let response = await Fetch.EVENTS();
+      // get events from dcl
+      let response = await Fetch.EVENTS(state.userAddress);
       let json = await response.json();
 
       var events = [];
@@ -26,16 +27,24 @@ const EventData = () => {
       var i;
 
       for (i = 0; i < json.data.length; i++) {
-        if (json.data[i].user == "0xe2be94b59a3a4aef2f66eb0dd73079da00315bf0") {
+        if (json.data[i].user == "0x154620ddfdcd6ab15dd9c1682386debad1eef536") {
           var date = new Date(json.data[i].next_start_at);
           json.data[i].next_start_at = date.toUTCString().replace("GMT", "UTC");
           events.push(json.data[i]);
         }
       }
 
+      const event_date = new Date(json.data[0].next_start_at).getTime();
+      const current_date = new Date().getTime()
+
+      if (event_date > current_date) {
+        setEventOngoing(true);
+      } else {
+        setEventOngoing(false);
+      }
+
       setEvents(events);
       setLoading(false);
-      console.log(events);
     })();
   }, []);
 
@@ -44,6 +53,24 @@ const EventData = () => {
     var f = ss.slice(0, 1).join('!') + '!';
     return f;
   }
+
+  // // Renderer callback with condition
+  // const renderer = ({ days, hours, minutes, seconds }) => {
+  //   // Render a countdown
+  //   if (days) {
+  //     return (
+  //       <span className="nft-other-h3 countdown2">
+  //         {days} days, {hours} hours, {minutes} minutes, {seconds} seconds
+  //       </span>
+  //     );
+  //   } else {
+  //     return (
+  //       <span className="nft-other-h3 countdown3">
+  //         {hours} hours, {minutes} minutes, {seconds} seconds
+  //       </span>
+  //     );
+  //   }
+  // };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -57,13 +84,17 @@ const EventData = () => {
               <span className="account-hover active events">
                 <b>FEATURED EVENT</b>
               </span>
-              <span style={{ display: 'flex' }}>
-                <h3 className="nft-other-h3 countdown1"> Next Event:</h3>
-                <Countdown 
-                  className="nft-other-h3 countdown2"
-                  date={events[0].next_start_at} 
-                />
-              </span>
+              {eventOngoing ? (
+                <h3 className="nft-other-h3 countdown1"> Next Event: Now</h3>
+              ) : (
+                <span style={{ display: 'flex' }}>
+                  <h3 className="nft-other-h3 countdown1"> Next Event: </h3>
+                  <Countdown 
+                    className="nft-other-h3 countdown2"
+                    date={events[0].next_start_at}
+                  />
+                </span>
+              )}
             </span>
           </div>
         </div>

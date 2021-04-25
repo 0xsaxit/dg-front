@@ -13,6 +13,7 @@ function DGBalances() {
 
   // define local variables
   const [pointerContract, setPointerContract] = useState({});
+  const [pointerContractNew, setPointerContractNew] = useState({});
   const [stakingContractPool1, setStakingContractPool1] = useState({});
   const [stakingContractPool2, setStakingContractPool2] = useState({});
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
@@ -39,13 +40,17 @@ function DGBalances() {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (state.userStatus >= 4) {
-      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
       async function fetchData() {
         // this is for mining DG
         const pointerContract = await Transactions.pointerContract(maticWeb3);
         setPointerContract(pointerContract);
+
+        // this is for affiliates
+        const pointerContractNew = await Transactions.pointerContractNew(maticWeb3);
+        setPointerContractNew(pointerContractNew);
 
         // set up dg token contract (same for both pools)
         const DGTokenContract = await Transactions.DGTokenContract(web3);
@@ -286,21 +291,10 @@ function DGBalances() {
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
-      // calculate price of mana locked in balancer
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      let temp = json.market_data.current_price.usd;
-      const TOTAL_MANA = temp * BALANCE_BP_MANA;
-
-      // // get BPT supply of pool 1
-      // let response_2 = await Fetch.BPT_SUPPLY_1();
-      // let json_2 = await response_2.json();
-      // const SUPPLY_BPT_1 = json_2.result / Global.CONSTANTS.FACTOR;
-
-      // // get BPT supply of pool 2
-      // let response_3 = await Fetch.BPT_SUPPLY_2();
-      // let json_3 = await response_3.json();
-      // const SUPPLY_BPT_2 = json_3.result / Global.CONSTANTS.FACTOR;
+      console.log('????');
+      const BALANCE_AFFILIATES = await getAffiliateBalances();
+      console.log(BALANCE_AFFILIATES);
+      console.log(BALANCE_MINING_DG);
 
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
@@ -318,9 +312,6 @@ function DGBalances() {
         BALANCE_STAKING_UNISWAP: BALANCE_STAKING_UNISWAP,
         BALANCE_MINING_DG: BALANCE_MINING_DG,
         BALANCE_KEEPER_DG: BALANCE_KEEPER_DG,
-        TOTAL_MANA: TOTAL_MANA,
-        // SUPPLY_BPT_1: SUPPLY_BPT_1,
-        // SUPPLY_BPT_2: SUPPLY_BPT_2,
         CEO_MANA: CEO_MANA,
         CEO_DAI: CEO_DAI,
         BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
@@ -358,6 +349,19 @@ function DGBalances() {
       console.log('No DG keeper balance found: ' + error);
     }
   }
+
+  // get user's affiliate balances
+  async function getAffiliateBalances() {
+    try {
+      const amount = await pointerContractNew.methods
+        .profitPagination(state.userAddress, '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50);
+
+      return amount;
+    } catch (error) {
+      console.log('Affiliate array not found: ' + error);
+    }
+  }
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

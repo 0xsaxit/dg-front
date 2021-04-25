@@ -61,7 +61,7 @@
 
 @media (max-width: 499px) {
   .ui.blue.button.metamask-mobile-button {
-    margin-right: 21px !important;
+    margin-right: 39px !important;
   }
   .right-menu-items {
     margin-right: -9px;
@@ -160,8 +160,8 @@ div#dropdown-menu-items.item.right-menu-text {
   text-transform: uppercase; 
   padding-top: 21px;
   padding-bottom: 21px;
-  width: calc(100vw);
-  margin-left: -20px;
+  width: calc(100vw + 42px);
+  margin-left: -42px;
   padding-left: 100px;
 }
 
@@ -176,7 +176,7 @@ div#dropdown-menu-items.item.right-menu-text {
     padding-top: 21px;
     padding-bottom: 21px;
     width: calc(100vw);
-    margin-left: -20px;
+    margin-left: -33px;
     padding-left: 81px;
   }  
 }
@@ -193,7 +193,7 @@ div#dropdown-menu-items.item.right-menu-text {
   padding-top: 0px;
   border-radius: 0px;
   width: calc(100vw + 9px);
-  margin-left: -81px;
+  margin-left: -60px;
 }
 
 @media (max-width: 499px) {
@@ -204,10 +204,10 @@ div#dropdown-menu-items.item.right-menu-text {
     padding-top: 0px;
     border-radius: 0px;
     max-width: calc(100vw + 1px);
-    margin-left: -100% !important;
+    margin-left: -48px !important;
   }
   a.get-metamask {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -707,27 +707,27 @@ span#mobile-time-select.account-select.dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 912px) {
   td.account-col-2,
   th.account-col-2 {
     display: none;
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 767px) {
   th:nth-child(4),
   td:nth-child(4) {
     display: none;
   }
 }
 
-@media (min-width: 568px) {
+@media (min-width: 588px) {
   .ui.button.etherscan-button-mobile {
     display: none;
   }
 }
 
-@media (max-width: 567px) {
+@media (max-width: 587px) {
   .ui.button.etherscan-button {
     display: none;
   }
@@ -791,16 +791,48 @@ span#mobile-time-select.account-select.dropdown {
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
+.referral-desktop,
+.referral-tablet,
+.referral-mobile {
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+@media (min-width: 1031px) {
+  .referral-mobile,
+  .referral-tablet {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .referral-desktop,
+  .referral-tablet {
+    display: none;
+  }
+  .referral-mobile {
+    display: inherit !important;
+  }
+}
+
 @media (max-width: 1030px) {
   .DG-liquidity-container,
   .DG-top-container {
     flex-direction: column;
+  }
+  .referral-desktop,
+  .referral-mobile {
+    display: none;
   }
   .DG-tablet-container-gov {
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
     flex-direction: row !important;
+    width: 100%;
+  }
+  .mining-container-outter {
+    margin-top: 30px;
     width: 100%;
   }
   .DG-column.unclaimed,
@@ -838,6 +870,9 @@ span#mobile-time-select.account-select.dropdown {
     justify-content: space-between;
     flex-direction: column !important;
     width: 100%;
+  }
+  .mining-container-inner {
+    flex-direction: column;
   }
   .DG-column.one,
   .DG-column-treasury.one {
@@ -941,4 +976,3 @@ span#mobile-time-select.account-select.dropdown {
     margin-right: 21px;
   }
 }
-

@@ -48,7 +48,6 @@ const ContentLeaderboard = (props) => {
           gameData.blackjack.play,
           gameData.roulette.play,
           gameData.slot.play,
-          // gameData.backgammon.play,
         ];
       } else if (props.gameSelect === 'dai') {
         selected = [
@@ -56,7 +55,6 @@ const ContentLeaderboard = (props) => {
           gameData.blackjack.dai,
           gameData.roulette.dai,
           gameData.slot.dai,
-          // gameData.backgammon.dai,
         ];
       } else if (props.gameSelect === 'mana') {
         selected = [
@@ -64,7 +62,6 @@ const ContentLeaderboard = (props) => {
           gameData.blackjack.mana,
           gameData.roulette.mana,
           gameData.slot.mana,
-          // gameData.backgammon.mana,
         ];
       }
 
@@ -99,14 +96,6 @@ const ContentLeaderboard = (props) => {
           winnings: row.winnings,
         });
       });
-
-      // selected[4].map((row) => {
-      //   game5.push({
-      //     name: row.name,
-      //     address: row.address,
-      //     winnings: row.winnings,
-      //   });
-      // });
 
       setDataGames([game1, game2, game3, game4]);
     }
@@ -144,7 +133,7 @@ const ContentLeaderboard = (props) => {
                     .join(',');
                   return (
                     <Table.Row key={index}>
-                      <Table.Cell className="leaders-col-1">
+                      <Table.Cell>
                         {index + 1}.{' '}
                         <img
                           className="avatar-picture"

@@ -16,13 +16,17 @@ const Images = {
   CHECK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png',
   MANA_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Bitmap_1_cwsnkg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
   DAI_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/5_hgyzty.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
   ETH_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608268265/image_qpyarp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
   PLAY_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_play_ufvdet.png',
+  USDT_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
+  ATRI_CIRCLE:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
   ICON_PLAY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   MATIC_TOP:

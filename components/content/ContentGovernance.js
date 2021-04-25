@@ -44,7 +44,6 @@ const ContentGovernance = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
   function length(obj) {
     return Object.keys(obj).length;
   }
@@ -68,7 +67,6 @@ const ContentGovernance = (props) => {
       fetchData();
     }
   }, [state.userStatus]);
-
 
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
@@ -123,14 +121,13 @@ const ContentGovernance = (props) => {
 
   useEffect(() => {
     (async function () {
-
       // get snapshot statistics
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      setGovOne(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload);
-      setLinkOne(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash);
-      let temp_one = json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
+      setGovOne(json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload);
+      setLinkOne(json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.authorIpfsHash);
+      let temp_one = json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload.end;
 
       if (temp_one * 1000 < Date.now()) {
         setPassedOne(true);
@@ -138,12 +135,12 @@ const ContentGovernance = (props) => {
         setPassedOne(false);
       }
 
-      var date = new Date(temp_one * 1000);
+      var date = new Date(govOne.end * 1000);
       setEndOne(date.toDateString());
 
-      setGovTwo(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
-      setLinkTwo(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
-      let temp_two = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
+      setGovTwo(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload);
+      setLinkTwo(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash);
+      let temp_two = json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
 
       if (temp_two * 1000 < Date.now()) {
         setPassedTwo(true);
@@ -151,12 +148,12 @@ const ContentGovernance = (props) => {
         setPassedTwo(false);
       }
 
-      var date = new Date(govTwo.end * 1000);
+      var date = new Date(temp_two * 1000);
       setEndTwo(date.toDateString());
 
-      setGovThree(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload);
-      setLinkThree(json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.authorIpfsHash);
-      let temp_three = json.QmZ2Ab4nhxNH1ps8WuCM7cTs1PTAd9q32yT6E9n5Rbvk8m.msg.payload.end;
+      setGovThree(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload);
+      setLinkThree(json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.authorIpfsHash);
+      let temp_three = json.QmNPsxruVDzWPu3jCuXhkLrkhMNDz9afnYe27BGWvuGiSv.msg.payload.end;
 
       if (temp_three * 1000 < Date.now()) {
         setPassedThree(true);
@@ -178,13 +175,11 @@ const ContentGovernance = (props) => {
   }
 
   function contentGovernance() {
-
     return (
       <Aux>
-
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed">
-            <p className="earned-amount">Unclaimed</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>Unclaimed</p>
 
             <Divider className="divider-dg-top" />
 
@@ -218,7 +213,14 @@ const ContentGovernance = (props) => {
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+              <p className="earned-amount"> ${priceUSD} </p>
+            </span>
+
+            <Divider className="divider-dg-top" />
 
             <p style={{ fontSize: '18px' }}>
               Stake $DG tokens, govern the treasury, and earn
@@ -250,11 +252,11 @@ const ContentGovernance = (props) => {
                   id="balances-padding-correct"
                   onClick={() => props.reward(stakeContractGovernance)}
                 >
-                  CLAIM $DG
+                  Claim
                 </Button>
               ) : (
                 <Button disabled className="DG-claim-button">
-                  CLAIM $DG
+                  Claim
                 </Button>
               )}
             </span>
@@ -268,7 +270,7 @@ const ContentGovernance = (props) => {
                 height: '100%',
               }}
             >
-            <p className="earned-amount">Governance Staking</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>Governance Staking</p>
 
             <Divider className="divider-dg-top" />
 
@@ -316,7 +318,7 @@ const ContentGovernance = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {APYGovernance ? (
-                      <p className="earned-amount">{APYGovernance}%</p>
+                      <p className="earned-amount stat">{APYGovernance}%</p>
                     ) : (
                       <Loader
                         active
@@ -349,7 +351,7 @@ const ContentGovernance = (props) => {
                   >
                     <p className="earned-text">% of gov pool</p>
                     {percentGovernanceContract ? (
-                      <p className="earned-amount">
+                      <p className="earned-amount stat">
                         {percentGovernanceContract}%
                       </p>
                     ) : (
@@ -406,7 +408,7 @@ const ContentGovernance = (props) => {
                 </p>
               </span>
 
-              <span className="DG-button-span" style={{ paddingTop: '8px' }}>
+              <span className="DG-button-span" style={{ paddingTop: '2px' }}>
                 {Number(amountInput) ? (
                   <Button
                     className="DG-stake-button"
@@ -421,11 +423,11 @@ const ContentGovernance = (props) => {
                       setAmountInput('');
                     }}
                   >
-                    STAKE $DG
+                    Stake
                   </Button>
                 ) : (
                   <Button disabled className="DG-stake-button">
-                    STAKE $DG
+                    Stake
                   </Button>
                 )}
 
@@ -438,11 +440,11 @@ const ContentGovernance = (props) => {
                       setAmountInput('');
                     }}
                   >
-                    UNSTAKE $DG
+                    Unstake
                   </Button>
                 ) : (
                   <Button disabled className="DG-stake-button">
-                    UNSTAKE $DG
+                    Unstake
                   </Button>
                 )}
               </span>
@@ -455,7 +457,7 @@ const ContentGovernance = (props) => {
                 height: '100%',
               }}
             >
-            <p className="earned-amount">Governance Proposals</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>Governance Proposals</p>
 
             <Divider className="divider-dg-top" />
 
@@ -472,7 +474,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>ONGOING ∙ {endOne}</p>
+                    <p className="earned-text" style={{ marginTop: '4px', paddingLeft: '8px' }}>ONGOING ∙ {endOne}</p>
                   </span>
                 </div>
               </a>
@@ -492,7 +494,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>QUEUED ∙ {endTwo}</p>
+                    <p className="earned-text" style={{ marginTop: '4px', paddingLeft: '8px' }}>EXECUTED ∙ {endTwo}</p>
                   </span>
                 </div>
               </a>
@@ -512,7 +514,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '9px', paddingLeft: '9px' }}>EXECUTED ∙ {endThree}</p>
+                    <p className="earned-text" style={{ marginTop: '4px', paddingLeft: '8px' }}>EXECUTED ∙ {endThree}</p>
                   </span>
                 </div>
               </a>
@@ -524,15 +526,17 @@ const ContentGovernance = (props) => {
                   href="https://gov.decentral.games"
                   target="_blank"
                   className="DG-stake-button"
+                  id="balances-padding-correct-two"
                 >
-                  DISCUSSION
+                  Discussion
                 </Button>
                 <Button
                   href="https://snapshot.page/#/decentralgames.eth"
                   target="_blank"
                   className="DG-stake-button"
+                  id="balances-padding-correct-two"
                 >
-                  ALL PROPOSALS
+                  All Proposals
                 </Button>
               </span>
             </div>

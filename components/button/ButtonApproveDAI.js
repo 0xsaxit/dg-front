@@ -3,7 +3,6 @@ import { GlobalContext } from '../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import Aux from '../_Aux';
 import ABI_CHILD_TOKEN_DAI from '../ABI/ABIChildTokenDAI';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
@@ -17,25 +16,25 @@ function ButtonApproveMANA() {
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // if the user has also authorized MANA set status value to 8, otherwise 6
-  useEffect(() => {
-    if (state.userStatus >= 4) {
-      if (state.userStatus === 7) {
-        setValue(8);
-      } else {
-        setValue(6);
-      }
-    }
-  }, [state.userStatus]);
+  // useEffect(() => {
+  //   if (state.userStatus >= 4) {
+  //     if (state.userStatus === 7) {
+  //       setValue(8);
+  //     } else {
+  //       setValue(6);
+  //     }
+  //   }
+  // }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
-      const web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
       const biconomy = new Biconomy(
@@ -70,8 +69,8 @@ function ButtonApproveMANA() {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function dispatchActiveStatus(txHash) {
-    console.log('Updating user status to: ' + value);
+  async function dispatchActiveStatus(txHash) {
+    console.log('Updating active status to true');
 
     // update global state active status
     dispatch({
@@ -79,15 +78,23 @@ function ButtonApproveMANA() {
       data: true,
     });
 
-    // update global state user status
-    dispatch({
-      type: 'update_status',
-      data: value,
-    });
+    // dispatch({
+    //   type: 'update_status',
+    //   data: value,
+    // });
 
-    // update user status in database
-    console.log('Posting user status to db: ' + value);
-    Fetch.USER_VERIFY(state.userAddress, value, state.affiliateAddress);
+    // update user's token array in database
+    console.log("Updating user's token array in database: DAI");
+
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 0);
+
+    // update global state user information
+    const refresh = !state.updateInfo;
+
+    dispatch({
+      type: 'update_info',
+      data: refresh,
+    });
 
     // post authorization to database
     console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');
@@ -105,6 +112,12 @@ function ButtonApproveMANA() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
+
+      dispatch({
+        type: 'set_daiLoading',
+        data: true,
+      });
+
       console.log('authorize amount: ' + Global.CONSTANTS.MAX_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
@@ -122,28 +135,42 @@ function ButtonApproveMANA() {
 
       if (txHash === false) {
         console.log('Biconomy meta-transaction failed');
+
+        dispatch({
+          type: 'set_daiLoading',
+          data: false,
+        });
+
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
         dispatchActiveStatus(txHash);
+
+        dispatch({
+          type: 'set_daiLoading',
+          data: false,
+        });
+        
       }
     } catch (error) {
       console.log(error);
+
+      dispatch({
+        type: 'set_daiLoading',
+        data: false,
+      });
+
     }
   }
 
   return (
-    <Aux>
-      <span>
-        <Button
-          className="balances-authorize-button"
-          id="balances-padding-correct"
-          onClick={() => metaTransaction()}
-        >
-          ENABLE DAI
-        </Button>
-      </span>
-    </Aux>
+    <Button
+      className="balances-authorize-button"
+      id="balances-padding-correct"
+      onClick={() => metaTransaction()}
+    >
+      ENABLE DAI
+    </Button>
   );
 }
 

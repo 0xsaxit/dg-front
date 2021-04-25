@@ -2,8 +2,9 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { Button } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
+import Aux from '../_Aux';
 
-const ButtonPlayVerify = () => {
+const ButtonPlayNow = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -39,7 +40,7 @@ const ButtonPlayVerify = () => {
 
       // set global user status based on value stored in database
       // if new wallet update user status to 4 both locally and in the database
-      // (/verifyAddress API call will return error with new wallet address)
+      // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
 
       if (response) {
@@ -54,8 +55,11 @@ const ButtonPlayVerify = () => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
+      // const responseIP = await Fetch.IP_ADDRESS();
+      // const jsonIP = await responseIP.json();
+
       // update user status in database
-      await Fetch.USER_VERIFY(userAddress, value, state.affiliateAddress);
+      await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({
@@ -72,27 +76,27 @@ const ButtonPlayVerify = () => {
   }
 
   async function getUserStatus() {
+    console.log('Get user status: Play Now');
+
     try {
-      const response = await Fetch.USER_STATUS(userAddress);
-      const json = await response.json();
+      // const responseIP = await Fetch.IP_ADDRESS();
+      // const jsonIP = await responseIP.json();
 
-      if (json.status === 'ok') {
-        if (json.result === 'false') {
-          return false;
-        }
+      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
+      const jsonStatus = await responseStatus.json();
 
-        const stepValue = parseInt(json.result);
-        return stepValue;
-      }
+      if (!jsonStatus.status) return false;
+
+      return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: Verify');
+      console.log('Unregistered wallet: Play Now');
 
-      return 0;
+      return false;
     }
   }
 
   return (
-    <span>
+    <Aux>
       {metamaskEnabled ? (
         <Button
           content="PLAY NOW"
@@ -102,8 +106,8 @@ const ButtonPlayVerify = () => {
           onClick={() => openMetaMask()}
         />
       ) : null}
-    </span>
+    </Aux>
   );
 };
 
-export default ButtonPlayVerify;
+export default ButtonPlayNow;
