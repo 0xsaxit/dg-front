@@ -49,7 +49,9 @@ function DGBalances() {
         setPointerContract(pointerContract);
 
         // this is for affiliates
-        const pointerContractNew = await Transactions.pointerContractNew(maticWeb3);
+        const pointerContractNew = await Transactions.pointerContractNew(
+          maticWeb3
+        );
         setPointerContractNew(pointerContractNew);
 
         // set up dg token contract (same for both pools)
@@ -354,14 +356,19 @@ function DGBalances() {
   async function getAffiliateBalances() {
     try {
       const amount = await pointerContractNew.methods
-        .profitPagination(state.userAddress, '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4', 0, 50);
+        .profitPagination(
+          '0x1E4cE2eB8aba93384c55d70c87ca3D1744735285',
+          '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+          0,
+          5
+        )
+        .call();
 
       return amount;
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

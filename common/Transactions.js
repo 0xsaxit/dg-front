@@ -45,7 +45,7 @@ async function pointerContract(web3Default) {
 async function pointerContractNew(web3Default) {
   const DGPointerContractNew = new web3Default.eth.Contract(
     ABI_DG_POINTER_NEW,
-    '0x11e46DB40d4438D1c64f68993CA43b03Ac1B6A6B'
+    Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW
   );
 
   return DGPointerContractNew;
