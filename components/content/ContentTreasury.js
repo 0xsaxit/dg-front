@@ -30,9 +30,15 @@ const ContentTreasury = (props) => {
   const [treasuryTotal, setTreasuryTotal] = useState(0);
   const [statsUSDX, setStatsUSDX] = useState('');
   const [statsUSDY, setStatsUSDY] = useState('');
+  const [statsUSDX1, setStatsUSDX1] = useState('');
+  const [statsUSDY1, setStatsUSDY1] = useState('');
+  const [statsUSDX2, setStatsUSDX2] = useState('');
+  const [statsUSDY2, setStatsUSDY2] = useState('');
 
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
   const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
+
+  const [weeklyChange, setWeeklyChange] = useState(0);
 
   const [gameplayAll, setGameplayAll] = useState(0);
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
@@ -106,23 +112,23 @@ const ContentTreasury = (props) => {
           console.log('coingecko api error: ' + error);
         }
 
+        // hourly 
         let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
         let json_3 = await response_3.json();
 
-        // All Time Graph
         let usd = json_3.totalBalanceUSD.graph;
         var xAxis = [];
         var yAxis = [];
         var i;
         var j;
 
-        for (i = 0; i < usd.length; i+= 3) {
+        for (i = 0; i < usd.length; i += 2) {
           var temp_x = new Date(usd[i].primary);
           var temp_x2 = temp_x.toDateString();
           xAxis.push(temp_x2);
         }
 
-        for (j = 0; j < usd.length; j+= 3) {
+        for (j = 0; j < usd.length; j += 2) {
           var temp_y = usd[j].secondary
           yAxis.push(temp_y.toFixed(2));
         }
@@ -138,6 +144,12 @@ const ContentTreasury = (props) => {
 
         let totalUSD = json_4.totalBalanceUSD.graph;
         setTreasuryTotal(formatPrice(totalUSD.slice(-1)[0].secondary, 0));
+
+        let temp_start = totalUSD[0].secondary;
+        let temp_end = totalUSD.slice(-1)[0].secondary;
+        let change = (temp_end - temp_start);
+
+        setWeeklyChange(change);
 
         let gameplayTotal = json_4.allTimeGameplayUSD;
         setGameplayAll(formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0));
@@ -206,13 +218,13 @@ const ContentTreasury = (props) => {
   let data;
   let axes;
 
-  const test = {
+  const hourly = {
     labels: statsUSDX,
     datasets: [
       {
         fill: true,
         lineTension: 0.5,
-        backgroundColor: '#e5fbf3',
+        backgroundColor: '#000000',
         borderColor: '#16c784',
         borderWidth: 2,
         data: statsUSDY,
@@ -309,553 +321,569 @@ const ContentTreasury = (props) => {
 
   function contentTreasury() {
     const series = {
-      showPoints: false,
+      showPoints: true,
       type: 'line',
     };
 
     return (
       <Aux>
 
-        <div className="DG-liquidity-container">
-          <div className="DG-column treasury-all">
-            <p className="earned-amount" style={{ paddingLeft: '18px', paddingTop: '2px' }}>Treasury All Time</p>
+        <div>
 
-            <Divider/>
-
-            <span style={{ display: 'flex', paddingLeft: '18px' }}>
-              <img
-                src={Images.DG_COIN_LOGO}
-                className="farming-logo-small"
-                alt="Decentral Games Coin Logo"
-              />
-              <span className="farming-pool-span">
-                <p className="welcome-text-top">Total</p>
-                {treasuryTotal ? (
-                  <p className="earned-amount">${treasuryTotal}</p>
-                ) : (
-                  <Loader
-                    active
-                    inline
-                    size="small"
-                    style={{
-                      fontSize: '12px',
-                      marginTop: '3px',
-                      marginLeft: '0px',
-                    }}
-                  />
-                )}
-              </span>
+            <span style={{ display: 'flex', justifyContent: 'center' }}>
+              {treasuryTotal ? (
+                <p style={{ fontSize: '72px', letterSpacing: '-0.7px', fontWeight: '800', paddingTop: '30px' }}>${treasuryTotal}</p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="large"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '48px',
+                    marginBottom: '32px',
+                    marginLeft: '0px',
+                  }}
+                />
+              )}
             </span>
 
-            <Divider />
+            <span style={{ display: 'flex', justifyContent: 'center' }}>
+              {weeklyChange > 0 ? (
+                <Table.Cell textAlign="right">
+                  <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <p className="earned-percent pos">
+                      +${weeklyChange.toLocaleString()}
+                    </p>
+                    <p className="earned-week-text">
+                      This Week
+                    </p>
+                  </span>
+                </Table.Cell>
+              ) : (
+                <Table.Cell textAlign="right">
+                  <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <p className="earned-percent neg">
+                      -${((weeklyChange)*(-1)).toLocaleString()}
+                    </p>
+                    <p className="earned-week-text">
+                      This Week
+                    </p>
+                  </span>
+                </Table.Cell>
+              )}
+            </span>
 
-            <div>
-              <Line
-                height={210}
-                data={test}
-                options={{
-                  maintainAspectRatio: false,
-                  title: { display: false },
-                  legend: { display: false },
-                  scales: { 
-                    xAxes: [{ display: false }],
-                    yAxes: [{ display: false }],
-                  },                
-                  elements: {
-                    point:{ radius: 2 },
-                  },
-                }}
-              />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <span style={{ width: '600px', padding: '20px 0px 20px 0px' }}>
+                <Line
+                  height={150}
+                  data={hourly}
+                  options={{
+                    maintainAspectRatio: false,
+                    title: { display: false },
+                    legend: { display: false },
+                    scales: { 
+                      xAxes: [{ display: false }],
+                      yAxes: [{ display: false }],
+                    },                
+                    elements: {
+                      point:{ radius: 0 },
+                    },
+                  }}
+                />
+              </span>
             </div>
-          </div>
 
-            <div
-              className="DG-column treasury-stats"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
-            >
+            <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <div
+                className="treasury-stats"
+                style={{
+                  position: 'relative',
+                  height: '100%',
+                }}
+              >
 
-            <Table unstackable>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>Name</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right" className="treasury-left-padding">Amount</Table.HeaderCell>
-                  <Table.HeaderCell textAlign="right">Weekly</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
+              <Table unstackable>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>Name</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="right" className="treasury-left-padding">Amount</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="right">Weekly</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
 
-              <Table.Body>
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      Gameplay All
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
-                          <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
-                          />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">
-                            {' '}
-                            All time gameplay earnings, not counting earnings
-                            allocated elsewhere by the DG DAO (not used in
-                            total treasury calculation)
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                        Gameplay All
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              {' '}
+                              All time gameplay earnings, not counting earnings
+                              allocated elsewhere by the DG DAO (not used in
+                              total treasury calculation)
+                            </p>
+                          </div>
+                        </Popup>
+                      </span>
+                    </Table.Cell>
+
+                    {gameplayAll ? (
+                      <Table.Cell textAlign="right">
+                        ${gameplayAll}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
+                      </Table.Cell>
+                    )}
+
+                    {gameplayAllPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {gameplayAllPercent}%
                           </p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
-
-                  {gameplayAll ? (
-                    <Table.Cell textAlign="right">
-                      ${gameplayAll}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {gameplayAllPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {gameplayAllPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
-                      </span>
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {gameplayAllPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
-                        />
-                      </span>
-                    </Table.Cell>
-                  )}
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      Gameplay
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
                           <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
+                            name="caret up"
+                            className="percent-icon pos"
                           />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">DAI: {daiBalance}</p>
-                          <p className="earned-text">MANA: {manaBalance}</p>
-                          <p className="earned-text">USDT: {usdtBalance}</p>
-                          <p className="earned-text">ATRI: {atriBalance}</p>
-                          <p className="earned-text">ETH: {ethBalance}</p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
-
-                  {gameplayTreasury ? (
-                    <Table.Cell textAlign="right">
-                      ${gameplayTreasury}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {gameplayAllPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {gameplayTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
-                      </span>
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {gameplayTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
-                        />
-                      </span>
-                    </Table.Cell>
-                  )}
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      $DG Token
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
-                          <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
-                          />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">
-                            Treasury holdings of $DG calculated as {dgBalance}{' '}
-                            $DG at market price{' '}
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {gameplayAllPercent}%
                           </p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
-
-                  {dgTreasury ? (
-                    <Table.Cell textAlign="right">
-                      ${dgTreasury}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {dgTreasuryPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {dgTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
-                      </span>
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {dgTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
-                        />
-                      </span>
-                    </Table.Cell>
-                  )}
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      DCL LAND
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
                           <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
+                            name="caret down"
+                            className="percent-icon neg"
                           />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">
-                            Treasury holdings of LAND calculated as 1,007
-                            parcels times T30 avg LAND price{' '}
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                        Gameplay
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">DAI: {daiBalance}</p>
+                            <p className="earned-text">MANA: {manaBalance}</p>
+                            <p className="earned-text">USDT: {usdtBalance}</p>
+                            <p className="earned-text">ATRI: {atriBalance}</p>
+                            <p className="earned-text">ETH: {ethBalance}</p>
+                          </div>
+                        </Popup>
+                      </span>
+                    </Table.Cell>
+
+                    {gameplayTreasury ? (
+                      <Table.Cell textAlign="right">
+                        ${gameplayTreasury}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
+                      </Table.Cell>
+                    )}
+
+                    {gameplayAllPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {gameplayTreasuryPercent}%
                           </p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
-
-                  {landTreasury ? (
-                    <Table.Cell textAlign="right">
-                      ${landTreasury}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {landTreasuryPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {landTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
-                      </span>
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {landTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
-                        />
-                      </span>
-                    </Table.Cell>
-                  )}
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                    Wearables
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
                           <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
+                            name="caret up"
+                            className="percent-icon pos"
                           />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">
-                            Treasury holdings of wearable NFTs calculated as
-                            210 wearables times average bid at current MANA
-                            price{' '}
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {gameplayTreasuryPercent}%
                           </p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
-
-                  {nftTreasury ? (
-                    <Table.Cell textAlign="right">
-                      ${nftTreasury}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {nftTreasuryPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {nftTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
-                      </span>
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {nftTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
-                        />
-                      </span>
-                    </Table.Cell>
-                  )}
-                </Table.Row>  
-
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      Uniswap LP
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
                           <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
+                            name="caret down"
+                            className="percent-icon neg"
                           />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">
-                            Treasury holdings of ETH-DG Uniswap LP calculated
-                            as {percentageUniswap}% of the UNI V2 ETH-DG pool
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                        $DG Token
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              Treasury holdings of $DG calculated as {dgBalance}{' '}
+                              $DG at market price{' '}
+                            </p>
+                          </div>
+                        </Popup>
+                      </span>
+                    </Table.Cell>
+
+                    {dgTreasury ? (
+                      <Table.Cell textAlign="right">
+                        ${dgTreasury}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
+                      </Table.Cell>
+                    )}
+
+                    {dgTreasuryPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {dgTreasuryPercent}%
                           </p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
-
-                  {uniTreasury ? (
-                    <Table.Cell textAlign="right">
-                      ${uniTreasury}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {uniTreasuryPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {uniTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
-                      </span>
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {uniTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
-                        />
-                      </span>
-                    </Table.Cell>
-                  )}
-                </Table.Row>  
-
-                <Table.Row>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      Matic Node
-                      <Popup
-                        className="dai-mana-popup"
-                        trigger={
                           <Icon
-                            className="dai-mana-icon"
-                            name="info circle"
-                            style={{ fontSize: '10px', marginLeft: '6px' }}
+                            name="caret up"
+                            className="percent-icon pos"
                           />
-                        }
-                      >
-                        <div>
-                          <p className="earned-text">
-                            Calculated as {Number(maticTokens).toLocaleString()} delegated tokens times current Matic token price{' '}
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {dgTreasuryPercent}%
                           </p>
-                        </div>
-                      </Popup>
-                    </span>
-                  </Table.Cell>
+                          <Icon
+                            name="caret down"
+                            className="percent-icon neg"
+                          />
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
 
-                  {maticTreasury ? (
-                    <Table.Cell textAlign="right">
-                      ${maticTreasury}
-                    </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        className="treasury-loader"
-                      />
-                    </Table.Cell>
-                  )}
-
-                  {maticTreasuryPercent > 0 ? (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent pos">
-                          {maticTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret up"
-                          className="percent-icon pos"
-                        />
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                        DCL LAND
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              Treasury holdings of LAND calculated as 1,007
+                              parcels times T30 avg LAND price{' '}
+                            </p>
+                          </div>
+                        </Popup>
                       </span>
                     </Table.Cell>
-                  ) : (
-                    <Table.Cell textAlign="right">
-                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <p className="earned-percent neg">
-                          {maticTreasuryPercent}%
-                        </p>
-                        <Icon
-                          name="caret down"
-                          className="percent-icon neg"
+
+                    {landTreasury ? (
+                      <Table.Cell textAlign="right">
+                        ${landTreasury}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
                         />
+                      </Table.Cell>
+                    )}
+
+                    {landTreasuryPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {landTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret up"
+                            className="percent-icon pos"
+                          />
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {landTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret down"
+                            className="percent-icon neg"
+                          />
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                      Wearables
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              Treasury holdings of wearable NFTs calculated as
+                              210 wearables times average bid at current MANA
+                              price{' '}
+                            </p>
+                          </div>
+                        </Popup>
                       </span>
                     </Table.Cell>
-                  )}
-                </Table.Row>       
 
-              </Table.Body>
-            </Table>
+                    {nftTreasury ? (
+                      <Table.Cell textAlign="right">
+                        ${nftTreasury}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
+                      </Table.Cell>
+                    )}
 
-          </div>
+                    {nftTreasuryPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {nftTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret up"
+                            className="percent-icon pos"
+                          />
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {nftTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret down"
+                            className="percent-icon neg"
+                          />
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>  
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                        Uniswap LP
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              Treasury holdings of ETH-DG Uniswap LP calculated
+                              as {percentageUniswap}% of the UNI V2 ETH-DG pool
+                            </p>
+                          </div>
+                        </Popup>
+                      </span>
+                    </Table.Cell>
+
+                    {uniTreasury ? (
+                      <Table.Cell textAlign="right">
+                        ${uniTreasury}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
+                      </Table.Cell>
+                    )}
+
+                    {uniTreasuryPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {uniTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret up"
+                            className="percent-icon pos"
+                          />
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {uniTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret down"
+                            className="percent-icon neg"
+                          />
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>  
+
+                  <Table.Row>
+                    <Table.Cell>
+                      <span style={{ display: 'flex' }}>
+                        Matic Node
+                        <Popup
+                          className="dai-mana-popup"
+                          trigger={
+                            <Icon
+                              className="dai-mana-icon"
+                              name="info circle"
+                              style={{ fontSize: '10px', marginLeft: '6px' }}
+                            />
+                          }
+                        >
+                          <div>
+                            <p className="earned-text">
+                              Calculated as {Number(maticTokens).toLocaleString()} delegated tokens times current Matic token price{' '}
+                            </p>
+                          </div>
+                        </Popup>
+                      </span>
+                    </Table.Cell>
+
+                    {maticTreasury ? (
+                      <Table.Cell textAlign="right">
+                        ${maticTreasury}
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
+                      </Table.Cell>
+                    )}
+
+                    {maticTreasuryPercent > 0 ? (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent pos">
+                            {maticTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret up"
+                            className="percent-icon pos"
+                          />
+                        </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <p className="earned-percent neg">
+                            {maticTreasuryPercent}%
+                          </p>
+                          <Icon
+                            name="caret down"
+                            className="percent-icon neg"
+                          />
+                        </span>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>       
+
+                </Table.Body>
+              </Table>
+            </div>
+
+          </span>
         </div>
       </Aux>
     );

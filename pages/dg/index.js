@@ -28,7 +28,7 @@ const DG = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG | Governance'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Treasury'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
@@ -40,7 +40,7 @@ const DG = () => {
           You must connect your wallet to view this page
         </div>
       ) : (
-        <Farming DGState={'governance'} />
+        <Farming DGState={'treasury'} />
       )}
     </Layout>
   );

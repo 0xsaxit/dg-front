@@ -79,7 +79,7 @@ const Chateau = () => {
           </div>
           <h1
             className="home-dashboard-main-h1"
-            style={{ marginBottom: '-12px' }}
+            style={{ marginBottom: '-32px' }}
           >
             Play the games and be the house
           </h1>
@@ -117,7 +117,7 @@ const Chateau = () => {
                       .start()
                   }
                 >
-                  GET STARTED
+                  Get Started
                 </Button>
               ) : (
                 <Button

@@ -27,7 +27,7 @@ const Fetch = {
 
   TREASURY_STATS_GRAPH: (address) => {
     return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/day?address=${address}`,
       {
         method: 'GET',
         headers: {
@@ -40,7 +40,7 @@ const Fetch = {
 
   TREASURY_STATS_NUMBERS: (address) => {
     return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/hour?address=${address}`,
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
       {
         method: 'GET',
         headers: {

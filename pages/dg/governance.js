@@ -7,7 +7,7 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 import Spinner from '../../components/Spinner';
 
-const Treasury = () => {
+const Governance = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -28,7 +28,7 @@ const Treasury = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG | Treasury'}
+        title={Global.CONSTANTS.TITLE + ' | $DG | Governance'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
@@ -40,10 +40,10 @@ const Treasury = () => {
           You must connect your wallet to view this page
         </div>
       ) : (
-        <Farming DGState={'treasury'} />
+        <Farming DGState={'governance'} />
       )}
     </Layout>
   );
 };
 
-export default Treasury;
+export default Governance;

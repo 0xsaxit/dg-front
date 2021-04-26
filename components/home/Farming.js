@@ -218,14 +218,14 @@ const Farming = (props) => {
     return (
       <div>
         <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
-          {DGState === 'governance' ? (
+          {DGState === 'treasury' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <span className="account-hover active">
-                <b>GOVERNANCE</b>
+                <b>TREASURY</b>
               </span>
-              <Link href="/dg/treasury">
+              <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  <b>GOVERNANCE</b>
                 </span>
               </Link>
               <Link href="/dg/mining">
@@ -245,15 +245,15 @@ const Farming = (props) => {
                 </span>
               </Link>
             </p>
-          ) : DGState === 'treasury' ? (
+          ) : DGState === 'governance' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  <b>TREASURY</b>
                 </span>
               </Link>
               <span className="account-hover active">
-                <b>TREASURY</b>
+                <b>GOVERNANCE</b>
               </span>
               <Link href="/dg/mining">
                 <span className="account-hover">
@@ -276,12 +276,12 @@ const Farming = (props) => {
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  <b>TREASURY</b>
                 </span>
               </Link>
-              <Link href="/dg/treasury">
+              <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  <b>GOVERNANCE</b>
                 </span>
               </Link>
               <span className="account-hover active">
@@ -303,12 +303,12 @@ const Farming = (props) => {
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  <b>TREASURY</b>
                 </span>
               </Link>
-              <Link href="/dg/treasury">
+              <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  <b>GOVERNANCE</b>
                 </span>
               </Link>
               <Link href="/dg/mining">
