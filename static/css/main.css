@@ -381,13 +381,16 @@ div.item.sidebar-menu-text.blog:hover {
 .menu-info-modal {
   max-width: 400px !important;
   border-radius: 8px !important;
+  margin-top: 48px !important;
 }
 
 .menu-info-container {
   margin: 0px 30px 0px 30px;
+  border-radius: 8px;
 }
 
 .menu-info-inner-span {
+  background: black;
   display: flex;
   justify-content: space-between;
   padding: 0px 12px 0px 12px;
@@ -485,7 +488,9 @@ a.menu-info-label-link:hover {
 }
 
 .mailchimp-close {
-  margin-left: -6px;
+  background: rgb(0, 0, 0);
+  border-radius: 100%;
+  padding: 8px 4px 8px 8px;
   cursor: pointer;
 }
 
@@ -614,7 +619,7 @@ i.chevron.down.icon {
 
 .ui.dimmer,
 .transak_modal-overlay {
-  background-color: rgba(0, 0, 0, 0.48) !important;
+  background: radial-gradient(rgba(26, 26, 26, 0.65), rgba(0, 0, 0, 0.65));
 }
 
 .logged-out-button-span {
@@ -2187,8 +2192,6 @@ i.copy.icon.affiliate-icon:hover {
 .DG-column-game {
   font-family: 'Lato', sans-serif !important;
   border-radius: 8px;
-  border: 1px solid #edf2f9;
-  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
   padding: 12px 18px 18px 18px !important;
   background-color: white;
 }
@@ -2656,6 +2659,7 @@ a.ui.blue.button.casinos {
   padding: 7px 6px 0px 6px;
   width: 48.5%;
   opacity: 100% !important;
+  padding: 3px 0 0 0;
 }
 
 .ui.button.withdraw-dg-button {

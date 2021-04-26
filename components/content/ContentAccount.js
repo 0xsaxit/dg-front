@@ -1295,7 +1295,7 @@ const ContentAccount = (props) => {
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <p style={{ fontSize: '18px' }}> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
-              <span style={{ display: 'flex', justifyContent: 'space-between',border: '1px solid rgb(229, 232, 235', borderRadius: '4px', padding: '3px 6px 6px 6px' }}>
+              <span style={{ display: 'flex', justifyContent: 'space-between', border: '1px solid rgb(8, 10, 12)', borderRadius: '8px', padding: '3px 6px 6px 6px' }}>
                 <p className="referral-desktop"> https://decentral...</p>
                 <p className="referral-tablet"> https://decentral.games/{state.userInfo.id}</p>
                 <p className="referral-mobile"> https://decentral.games/{state.userInfo.id}</p>
@@ -1317,17 +1317,17 @@ const ContentAccount = (props) => {
                   id="balances-padding-correct"
                   onClick={() => metaTransaction()}
                 >
-                  CLAIM REFERRAL BONUS
+                  CLAIM
                 </Button>
               ) : (
                 <Button disabled className="DG-claim-button">
-                  CLAIM REFERRAL BONUS
+                  CLAIM
                 </Button>
               )}
             </span>
           </div>
 
-          <span className="DG-column treasury-stats" style={{ height: '100%' }}>
+          <span className="treasury-stats" style={{ height: '100%', marginTop: '-15px' }}>
             <Table unstackable>
               <Table.Header>
                 <Table.Row>
@@ -1339,22 +1339,64 @@ const ContentAccount = (props) => {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>
+                    {state.DGBalances.BALANCE_AFFILIATES[0][1]}
                   </Table.Cell>
                   <Table.Cell>
+                    <span style={{ display: 'flex' }}>
+                      <img
+                        src={Images.MANA_CIRCLE}
+                        style={{
+                          width: '21px',
+                          marginRight: '6px',
+                          verticalAlign: 'middle',
+                          marginTop: '-2px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                      {(state.DGBalances.BALANCE_AFFILIATES[0][0] / 1000000000000000000).toFixed(3)} MANA
+                    </span>
                   </Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
                   <Table.Cell>
+                    {state.DGBalances.BALANCE_AFFILIATES[1][1]}
                   </Table.Cell>
                   <Table.Cell>
+                    <span style={{ display: 'flex' }}>
+                      <img
+                        src={Images.DAI_CIRCLE}
+                        style={{
+                          width: '21px',
+                          marginRight: '6px',
+                          verticalAlign: 'middle',
+                          marginTop: '-2px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                      {(state.DGBalances.BALANCE_AFFILIATES[1][0] / 1000000000000000000).toFixed(3)} DAI
+                    </span>
                   </Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
                   <Table.Cell>
+                    {state.DGBalances.BALANCE_AFFILIATES[2][1]}
                   </Table.Cell>
                   <Table.Cell>
+                    <span style={{ display: 'flex' }}>
+                      <img
+                        src={Images.USDT_CIRCLE}
+                        style={{
+                          width: '21px',
+                          marginRight: '6px',
+                          verticalAlign: 'middle',
+                          marginTop: '-2px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                      {(state.DGBalances.BALANCE_AFFILIATES[2][0] / 1000000000000000000).toFixed(3)} USDT
+                    </span>
                   </Table.Cell>
                 </Table.Row>
 

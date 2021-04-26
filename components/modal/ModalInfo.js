@@ -127,15 +127,13 @@ const ModalInfo = () => {
         </span>
       }
     >
-      <div style={{ margin: '21px 30px 0px 30px' }}>
+      <div style={{ marginTop: '-32px' }}>
         <span className="mailchimp-close" onClick={() => setOpen(false)}>
           <Icon name="close" />
         </span>
       </div>
 
-      <p className="mailchimp-header-text"> Your $DG Breakdown </p>
-
-      <Divider style={{ marginTop: '-15px' }} />
+      <h3 style={{ textAlign: 'center', margin: '32px 0px 8px 0px' }}> Your $DG Breakdown </h3>
 
       <div>
         <span style={{ display: 'flex', justifyContent: 'center' }}>
@@ -187,7 +185,7 @@ const ModalInfo = () => {
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            padding: '0px 30px 0px 30px',
+            padding: '8px 30px 0px 30px',
           }}
         >
           <Button
@@ -195,23 +193,16 @@ const ModalInfo = () => {
             href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
             target="_blank"
           >
-            BUY WITH CRYPTO
+            BUY
           </Button>
           <Button
             className="get-dg-button"
-            style={{ padding: '0 0 0 0' }}
-            onClick={() => show_transak_3()}
+            href="https://wallet.matic.network/bridge"
+            target="_blank"
           >
-            BUY WITH FIAT
+            WITHDRAW
           </Button>
         </span>
-        <Button
-          className="withdraw-dg-button"
-          href="https://wallet.matic.network/bridge"
-          target="_blank"
-        >
-          WITHDRAW MATIC $DG
-        </Button>
       </div>
 
       <div className="menu-info-container" style={{ marginTop: '24px' }}>
@@ -261,9 +252,8 @@ const ModalInfo = () => {
           <div
             className="menu-info-container"
             style={{
-              marginTop: '12px',
+              marginTop: '24px',
               marginBottom: '12px',
-              paddingTop: '12px',
             }}
           >
             {gov_unclaimed > 0 ? (
@@ -282,24 +272,6 @@ const ModalInfo = () => {
                 <p className="menu-info-label">unclaimed $dg - gameplay</p>
                 <p className="menu-info-text">
                   {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
-                </p>
-              </span>
-            ) : null}
-
-            {state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ? (
-              <span className="menu-info-inner-span">
-                <p className="menu-info-label">unclaimed $dg - balancer 1</p>
-                <p className="menu-info-text">
-                  {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_1, 3)}
-                </p>
-              </span>
-            ) : null}
-
-            {state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ? (
-              <span className="menu-info-inner-span">
-                <p className="menu-info-label">unclaimed $dg - balancer 2</p>
-                <p className="menu-info-text">
-                  {formatPrice(state.DGBalances.BALANCE_STAKING_BALANCER_2, 3)}
                 </p>
               </span>
             ) : null}

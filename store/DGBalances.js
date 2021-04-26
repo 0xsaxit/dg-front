@@ -296,7 +296,6 @@ function DGBalances() {
       console.log('????');
       const BALANCE_AFFILIATES = await getAffiliateBalances();
       console.log(BALANCE_AFFILIATES);
-      console.log(BALANCE_MINING_DG);
 
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
@@ -317,6 +316,7 @@ function DGBalances() {
         CEO_MANA: CEO_MANA,
         CEO_DAI: CEO_DAI,
         BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
+        BALANCE_AFFILIATES: BALANCE_AFFILIATES,
       };
     } catch (error) {
       console.log('Token balances error: ' + error);
@@ -355,16 +355,35 @@ function DGBalances() {
   // get user's affiliate balances
   async function getAffiliateBalances() {
     try {
-      const amount = await pointerContractNew.methods
+      const amountMana = await pointerContractNew.methods
         .profitPagination(
-          '0x1E4cE2eB8aba93384c55d70c87ca3D1744735285',
+          state.userAddress,
           '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
           0,
-          5
+          50
         )
         .call();
 
-      return amount;
+      const amountDai = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+          0,
+          50
+        )
+        .call();
+
+      const amountUsdt = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+          0,
+          50
+        )
+        .call();
+
+
+      return [amountMana, amountDai, amountUsdt];
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
