@@ -57,7 +57,8 @@ export const GlobalStyles = createGlobalStyle`
   .hljs,
   .mailchimp-other-inner-p.subtext,
   .ui.checkbox+label, 
-  .ui.checkbox label {
+  .ui.checkbox label,
+  .nft-other-h3 {
     color: ${({ theme }) => theme.text} !important;
   }
 
@@ -109,10 +110,9 @@ export const GlobalStyles = createGlobalStyle`
   .hljs,
   code strong, kbd, samp,
   #airdrop-number-1,
-  #airdrop-number-2 {
+  #airdrop-number-2,
+  .post-info.featured {
     background: ${({ theme }) => theme.card};
-    border: ${({ theme }) => theme.cardBorder};
-    box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
   .poap-pic {

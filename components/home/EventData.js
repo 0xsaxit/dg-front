@@ -78,10 +78,10 @@ const EventData = () => {
     return (
       <span>
 
-        <div className="account-other-tabs" style={{ paddingTop: '15px' }}>
+        <div className="account-other-tabs" style={{ paddingTop: '15px', marginBottom: '-16px' }}>
           <div style={{ marginLeft: '0px' }}>
             <span className="account-other-p" style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span className="account-hover active events">
+              <span className="account-hover active events" style={{ marginTop: '32px', marginBottom: '16px' }}>
                 <b>FEATURED EVENT</b>
               </span>
               {eventOngoing ? (

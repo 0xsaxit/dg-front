@@ -68,11 +68,12 @@ a:hover {
   background-color: white;
   display: flex;
   flex-direction: row;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .post-info.featured {
   padding-top: 20px;
+  border-radius: 0px 8px 8px 0px;
 }
 
 @media (max-width: 991px) {
@@ -120,13 +121,13 @@ a:hover {
   margin-bottom: 45px;
   border: 1px solid #edf2f9;
   transition: transform 0.25s ease 0s;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .featured-blog-container {
   margin-bottom: 45px;
   transition: transform 0.25s ease 0s;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .post-info {
