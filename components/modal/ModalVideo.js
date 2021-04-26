@@ -5,12 +5,9 @@ const ModalVideo = () => {
     <Modal
       trigger={
         <Button
-          color="blue"
           className="demo-button"
-          style={{ marginRight: '18px' }}
         >
-          {' '}
-          DEMO{' '}
+          DEMO
         </Button>
       }
       basic

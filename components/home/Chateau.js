@@ -85,51 +85,44 @@ const Chateau = () => {
           </h1>
           <span className="home-button-span">
           </span>
-          <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+          <p className="home-dashboard-p">
             By owning $DG, the first-ever metaverse casino is now yours. Vote on
             treasury management, economic policy, and new game development.
           </p>
             {state.userStatus === 0 ? (
               <span>
-                <ButtonPlayNow />
-                <ModalVideo />
-              </span>
-            ) : (
-              <Button
-                color="blue"
-                className="play-button"
-                href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
-                target="_blank"
-              >
-                Play Now
-              </Button>
-            )}
-            <span>
-              {state.userStatus < 4 ? (
                 <Button
                   color="blue"
-                  className="how-to-button"
-                  onClick={() =>
-                    introJs()
-                      .setOptions({
-                        showBullets: false,
-                      })
-                      .start()
-                  }
+                  className="earn-dg-button"
+                  href="https://docs.decentral.games/getting-started/play-to-mine"
+                  target="_blank"
+                  style={{ marginRight: '16px' }}
                 >
-                  Get Started
+                  DEMO
                 </Button>
-              ) : (
+                <ButtonPlayNow />
+              </span>
+            ) : (
+              <span>
                 <Button
                   color="blue"
                   className="earn-dg-button"
                   href="https://docs.decentral.games/getting-started/play-to-mine"
                   target="_blank"
                 >
-                  Earn $DG
+                  Learn More
                 </Button>
-              )}
-            </span>
+                <Button
+                  color="blue"
+                  className="play-button"
+                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
+                  target="_blank"
+                  style={{ marginLeft: '16px' }}
+                >
+                  Play Now
+                </Button>
+              </span>
+            )}
           <p className="scroll-down-icon">
             <Icon name="chevron down" />
           </p>
