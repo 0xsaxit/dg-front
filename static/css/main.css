@@ -627,7 +627,7 @@ i.chevron.down.icon {
   justify-content: center;
 }
 
-p.home-dashboard-p {
+.home-dashboard-p {
   color: rgba(255, 255, 255, 0.9) !important;
   letter-spacing: 0.15px;
   text-shadow: 1px 1px 5px black;
@@ -635,7 +635,7 @@ p.home-dashboard-p {
   padding-right: 30px;
   padding-top: 30px !important;
   padding-bottom: 0px !important;
-  margin-bottom: 12px !important;
+  margin-bottom: 16px !important;
 }
 
 .featured-casino-text {

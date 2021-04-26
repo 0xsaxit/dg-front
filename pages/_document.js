@@ -10,12 +10,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head> 
-          <style>
-            body {
-               background-color: black;
-             }
-          </style>       
+        <Head>       
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#000000" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />

@@ -28,6 +28,11 @@ class Application extends App {
 
     return (
       <Provider store={store}>
+        <style jsx global>{`
+          body {
+            background: black;
+          }
+        `}</style>
         <Segment />
         <UserStatus />
         <UserBalances />
