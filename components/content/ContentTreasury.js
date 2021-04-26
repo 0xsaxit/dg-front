@@ -349,7 +349,7 @@ const ContentTreasury = (props) => {
             </span>
 
             <span style={{ display: 'flex', justifyContent: 'center' }}>
-              {weeklyChange > 0 ? (
+              {weeklyChange > 0 && treasuryTotal ? (
                 <Table.Cell textAlign="right">
                   <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p className="earned-percent pos">
@@ -360,7 +360,7 @@ const ContentTreasury = (props) => {
                     </p>
                   </span>
                 </Table.Cell>
-              ) : (
+              ) : treasuryTotal ? (
                 <Table.Cell textAlign="right">
                   <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p className="earned-percent neg">
@@ -371,6 +371,8 @@ const ContentTreasury = (props) => {
                     </p>
                   </span>
                 </Table.Cell>
+              ) : (
+                null
               )}
             </span>
 
@@ -455,7 +457,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {gameplayAllPercent > 0 ? (
+                    {gameplayAllPercent > 0 && gameplayAll ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -467,7 +469,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : gameplayAll ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -478,6 +480,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>
@@ -522,7 +533,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {gameplayAllPercent > 0 ? (
+                    {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -534,7 +545,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : gameplayTreasury? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -545,6 +556,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>
@@ -588,7 +608,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {dgTreasuryPercent > 0 ? (
+                    {dgTreasuryPercent > 0 && dgTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -600,7 +620,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : dgTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -611,6 +631,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>
@@ -654,7 +683,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {landTreasuryPercent > 0 ? (
+                    {landTreasuryPercent > 0 && landTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -666,7 +695,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : landTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -677,6 +706,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>
@@ -721,7 +759,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {nftTreasuryPercent > 0 ? (
+                    {nftTreasuryPercent > 0 && nftTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -733,7 +771,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : nftTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -744,6 +782,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>  
@@ -787,7 +834,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {uniTreasuryPercent > 0 ? (
+                    {uniTreasuryPercent > 0 && uniTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -799,7 +846,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : uniTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -810,6 +857,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>  
@@ -852,7 +908,7 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {maticTreasuryPercent > 0 ? (
+                    {maticTreasuryPercent > 0 && maticTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent pos">
@@ -864,7 +920,7 @@ const ContentTreasury = (props) => {
                           />
                         </span>
                       </Table.Cell>
-                    ) : (
+                    ) : maticTreasury ? (
                       <Table.Cell textAlign="right">
                         <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                           <p className="earned-percent neg">
@@ -875,6 +931,15 @@ const ContentTreasury = (props) => {
                             className="percent-icon neg"
                           />
                         </span>
+                      </Table.Cell>
+                    ) : (
+                      <Table.Cell textAlign="right">
+                        <Loader
+                          active
+                          inline
+                          size="small"
+                          className="treasury-loader"
+                        />
                       </Table.Cell>
                     )}
                   </Table.Row>       

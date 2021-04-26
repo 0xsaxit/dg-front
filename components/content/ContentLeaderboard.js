@@ -118,7 +118,7 @@ const ContentLeaderboard = (props) => {
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>{game}</Table.HeaderCell>
-                  <Table.HeaderCell className="leaders-col-2">WIN</Table.HeaderCell>
+                  <Table.HeaderCell>WIN</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -155,7 +155,7 @@ const ContentLeaderboard = (props) => {
                             row.address.substr(-4)
                           : row.name}
                       </Table.Cell>
-                      <Table.Cell className="leaders-col-2">{amount}</Table.Cell>
+                      <Table.Cell>{amount}</Table.Cell>
                     </Table.Row>
                   );
                 })}
