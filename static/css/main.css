@@ -539,7 +539,7 @@ a.menu-info-label-link:hover {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: -2;
   overflow: hidden !important;
 }
@@ -547,8 +547,8 @@ a.menu-info-label-link:hover {
 .home-video-container video {
   min-width: 100%;
   min-height: 100%;
-  width: auto;
-  height: auto;
+  width: 112%;
+  height: 100%;
   position: absolute;
   filter: brightness(60%);
 }
