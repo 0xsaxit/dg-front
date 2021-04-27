@@ -123,9 +123,9 @@ const Chateau = () => {
                 </Button>
               </span>
             )}
-          <p className="scroll-down-icon">
+          {/*<p className="scroll-down-icon">
             <Icon name="chevron down" />
-          </p>
+          </p>*/}
         </div>
       </Aux>
     );
@@ -629,11 +629,6 @@ const Chateau = () => {
   return (
     <div className="home-dashboard">
       {sectionOne()}
-      {sectionTwo()}
-      {sectionThree()}
-      {sectionFour()}
-      {sectionFive()}
-      {sectionSix()}
     </div>
   );
 };

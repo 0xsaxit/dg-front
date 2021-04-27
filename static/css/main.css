@@ -67,14 +67,14 @@ p {
 }
 
 .ui.button {
-  font-family: 'Larsseit-Medium' !important;
-  font-size: 14px;
-  text-transform: uppercase;
+  font-family: 'Larsseit-Bold' !important;
+  font-size: 24px;
   letter-spacing: 1px;
   font-weight: 600;
-  border-radius: 8px;
-  height: 36px !important;
-  line-height: 30px;
+  border-radius: 16px;
+  height: 64px !important;
+  width: 230px;
+  line-height: 54px;
   margin: 0 0 0 0;
 }
 
@@ -560,7 +560,7 @@ a.menu-info-label-link:hover {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 35vh;
+  padding-top: 33vh;
   height: 100vh;
 }
 
@@ -627,8 +627,11 @@ i.chevron.down.icon {
   justify-content: center;
 }
 
-.home-dashboard-p {
+p.home-dashboard-p {
   color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.home-dashboard-p {
   letter-spacing: 0.15px;
   text-shadow: 1px 1px 5px black;
   max-width: 640px;
@@ -2562,8 +2565,6 @@ a.ui.blue.button.play-button,
   background-color: #2085f4 !important;
   color: white;
   margin-top: 8px;
-  width: 180px !important;
-  height: 36px;
   padding: 4px 0 0 0;
 }
 
@@ -2572,19 +2573,14 @@ a.ui.blue.button.metamask-how-button {
   color: black;
   position: relative;
   margin-top: 20px;
-  width: 180px !important;
-  height: 36px;
   padding: 4px 0 0 0;
 }
 
 a.ui.blue.button.earn-dg-button {
   background-color: white;
   color: black;
-  width: 180px;
   position: relative;
   margin-top: 8px;
-  width: 180px !important;
-  height: 36px;
   padding: 4px 0 0 0;
 }
 
@@ -2598,8 +2594,6 @@ a.ui.blue.button.touch {
   background-color: #2085f4;
   color: white;
   margin-top: 20px;
-  width: 180px !important;
-  height: 36px;
   padding: 4px 0 0 0;
 }
 
@@ -2610,8 +2604,6 @@ a.ui.blue.button.roadmap {
   margin-left: 20px;
   border: 1px solid #2085f4;
   margin-top: 20px;
-  width: 180px !important;
-  height: 36px;
   padding: 3px 0 0 0;
 }
 
@@ -2621,8 +2613,6 @@ a.ui.blue.button.casinos {
   color: black;
   margin-left: 20px;
   margin-top: 20px;
-  width: 180px !important;
-  height: 36px;
   padding: 4px 0 0 0;
 }
 
@@ -2630,8 +2620,6 @@ a.ui.blue.button.casinos {
   background: white;
   color: black;
   margin-top: 20px;
-  width: 180px !important;
-  height: 36px;
   padding: 0 0 0 0;
 }
 
@@ -2700,7 +2688,7 @@ a.ui.blue.button.casinos {
   letter-spacing: 1.25px;
   border-radius: 8px;
   margin-right: 15px;
-  min-width: 15px !important;
+  width: 64px;
   padding: 0px 6px 0px 6px;
 }
 
