@@ -65,15 +65,13 @@ const ModalAcceptATRI = () => {
         </span> 
       }
     >
-      <div style={{ margin: '21px 30px 0px 30px' }}>
+      <div style={{ marginTop: '-32px' }}>
         <span className="mailchimp-close" onClick={() => setOpen(false)}>
           <Icon name="close" />
         </span>
       </div>
 
-      <p className="mailchimp-header-text"> Terms of Service </p>
-
-      <Divider style={{ marginTop: '-15px' }} />
+      <h3 style={{ textAlign: 'left', margin: '42px 0px 8px 30px' }}>  Terms of Service </h3>
 
       <div style={{ padding: '10px 30px 30px 30px' }}>
         <p>

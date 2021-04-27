@@ -37,13 +37,14 @@
 .blog-category,
 .post-date,
 .post-category {
+  text-transform: uppercase;
   font-size: 12px !important;
   font-weight: bold;
   letter-spacing: 1.5px;
   padding: 3px 6px 3px 6px;
-  margin-right: 12px;
-  margin-top: -1px !important;
-  text-transform: uppercase !important;
+  margin-top: -3px !important;
+  border-radius: 8px;
+  margin-right: 8px;
 }
 
 a:hover {
@@ -119,7 +120,6 @@ a:hover {
 .post {
   background-color: white;
   margin-bottom: 45px;
-  border: 1px solid #edf2f9;
   transition: transform 0.25s ease 0s;
   border-radius: 8px;
 }
@@ -270,18 +270,16 @@ img.logo-image {
 
 .blogdetail-page-container .post__content p,
 .summary_content {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Larsseit-Medium' !important;
   -webkit-font-smoothing: antialiased !important;
-  margin-top: 20px;
-  word-break: break-word;
-  line-height: 1.7 !important;
-  font-size: 20px !important;
-  margin-bottom: 0;
-  font-weight: normal !important;
+  font-size: 21px;
+  font-weight: normal;
+  letter-spacing: 0.5;
+  line-height: 1.4;
 }
 
 .blogdetail-page-container .post__content li {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Larsseit-Regular' !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 12px;
   word-break: break-word;
@@ -296,7 +294,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content blockquote {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Larsseit-Regular' !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 20px;
   word-break: break-word;
@@ -308,7 +306,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content h6 {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Larsseit-Regular' !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: -18px !important;
   margin-bottom: 42px !important;

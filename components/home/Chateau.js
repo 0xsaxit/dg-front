@@ -53,7 +53,7 @@ const Chateau = () => {
       <div className="home-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619468476/testLanding_mmi1lj.webm"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619553291/PlayLandingWebm_ih4rgb.webm"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -98,7 +98,7 @@ const Chateau = () => {
                   target="_blank"
                   style={{ marginRight: '16px' }}
                 >
-                  DEMO
+                  Demo
                 </Button>
                 <ButtonPlayNow />
               </span>
@@ -334,7 +334,7 @@ const Chateau = () => {
                     className="deposit"
                     href="/account"
                   >
-                    Deposit Crypto
+                    Deposit
                   </Button>
                 </Link>
                 <Button
@@ -346,7 +346,7 @@ const Chateau = () => {
                   Metamask
                 </Button>
               </span>
-              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              <p className="home-dashboard-p">
                 Play blackjack, roulette, slots, and backgammon with MANA or
                 DAI. Enjoy $DG gameplay mining rewards on all bets.
               </p>
@@ -478,7 +478,7 @@ const Chateau = () => {
                   </Button>
                 </Link>
               </span>
-              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              <p className="home-dashboard-p">
                 The metaverse is poised to explode in 2021. 3D virtual
                 blackjack, roulette, and poker accessible from anywhere in the
                 world will change online gaming forever.
@@ -629,6 +629,11 @@ const Chateau = () => {
   return (
     <div className="home-dashboard">
       {sectionOne()}
+      {sectionTwo()}
+      {sectionThree()}
+      {sectionFour()}
+      {sectionFive()}
+      {sectionSix()}
     </div>
   );
 };

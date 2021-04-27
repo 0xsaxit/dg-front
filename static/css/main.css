@@ -20,6 +20,14 @@ h1 {
   line-height: 1.2;
 }
 
+h2 {
+  font-family: 'Larsseit-ExtraBold' !important;
+  font-size: 32px;
+  margin-bottom: 16px;
+  letter-spacing: 0px;
+  line-height: 1.4;
+}
+
 h3 {
   font-family: 'Larsseit-ExtraBold' !important;
   font-size: 32px;
@@ -546,7 +554,6 @@ a.menu-info-label-link:hover {
   width: 112%;
   height: 100%;
   position: absolute;
-  filter: brightness(60%);
 }
 
 .home-dashboard-content {
@@ -2575,7 +2582,8 @@ a.ui.blue.button.metamask-how-button {
   height: 48px !important;
   width: 200px;
   line-height: 16px;
-  font-size: 20px !important;}
+  font-size: 20px !important;
+}
 
 a.ui.blue.button.earn-dg-button {
   background-color: white;
@@ -2598,7 +2606,10 @@ a.ui.blue.button.touch {
   background-color: #2085f4;
   color: white;
   margin-top: 20px;
-  padding: 4px 0 0 0;
+  height: 48px !important;
+  width: 200px;
+  line-height: 16px;
+  font-size: 20px !important;
 }
 
 a.ui.blue.button.docs,
@@ -2608,7 +2619,10 @@ a.ui.blue.button.roadmap {
   margin-left: 20px;
   border: 1px solid #2085f4;
   margin-top: 20px;
-  padding: 3px 0 0 0;
+  height: 48px !important;
+  width: 200px;
+  line-height: 15px;
+  font-size: 20px !important;
 }
 
 a.ui.blue.button.metamask,
@@ -2617,14 +2631,20 @@ a.ui.blue.button.casinos {
   color: black;
   margin-left: 20px;
   margin-top: 20px;
-  padding: 4px 0 0 0;
+  height: 48px !important;
+  width: 200px;
+  line-height: 16px;
+  font-size: 20px !important;
 }
 
 .ui.blue.button.how-to-button {
   background: white;
   color: black;
   margin-top: 20px;
-  padding: 0 0 0 0;
+  height: 48px !important;
+  width: 200px;
+  line-height: 16px;
+  font-size: 20px !important;
 }
 
 .ui.button.DG-claim-button,
@@ -2647,6 +2667,7 @@ a.ui.blue.button.casinos {
   height: 36px !important;
   line-height: 8px;
   font-size: 16px !important;
+  border-radius: 8px;
 }
 
 .ui.button.get-dg-button {
@@ -2731,6 +2752,7 @@ a.ui.blue.button.dg-learn-button {
   height: 36px !important;
   line-height: 8px;
   font-size: 16px !important;
+  border-radius: 8px;
 }
 
 .ui.button.nft-read-button {
@@ -2742,6 +2764,7 @@ a.ui.blue.button.dg-learn-button {
   height: 36px !important;
   line-height: 8px;
   font-size: 16px !important;
+  border-radius: 8px;
 }
 
 .ui.button.reload-button {
@@ -2763,10 +2786,12 @@ a.ui.blue.button.dg-learn-button {
   color: #2085f4;
   margin-bottom: -2px;
   margin-top: -3px;
-  height: 27px;
-  max-width: 150px !important;
-  min-width: 150px;
-  padding: 7px 6px 0px 6px;
+  height: 24px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  max-width: 180px !important;
+  min-width: 180px;
+  line-height: 4px;
   opacity: 100% !important;
 }
 
@@ -2825,25 +2850,27 @@ a.ui.blue.button.dg-learn-button {
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid #2085f4;
   color: #2085f4;
-  height: 27px !important;
-  padding: 0 0 0 0 !important;
-  max-width: 60px !important;
-  min-width: 60px;
-  opacity: 100% !important;
+  height: 24px !important;
+  font-size: 12px;
+  border-radius: 8px;
   line-height: 0px;
+  max-width: 64px !important;
+  min-width: 64px;
+  opacity: 100% !important;
 }
 
 a.ui.button.balances-top-button {
-  padding: 13px 0 0 0 !important;
-  line-height: 0px;
+  line-height: 8px;
 }
 
 .ui.button.balances-play-button {
   color: white;
   background-color: #2085f4;
-  height: 34px;
-  min-width: 48.5% !important;
-  padding: 4px 0 0 0;
+  width: 48.5% !important;
+  height: 36px !important;
+  line-height: 8px;
+  font-size: 16px !important;
+  border-radius: 8px;
 }
 
 .ui.button.DG-stake-button {

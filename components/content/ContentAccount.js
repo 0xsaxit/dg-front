@@ -47,6 +47,7 @@ const ContentAccount = (props) => {
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
   const [link, setLink] = useState('');
+  const [tempClass, setTempClass] = useState(true);
 
   const onCopy = () => {
     navigator.clipboard.writeText(
@@ -874,7 +875,7 @@ const ContentAccount = (props) => {
 
                   return (
                     <Table.Body key={i}>
-                      <Table.Row>
+                      <Table.Row >
                         <Table.Cell>
                           {row.type.includes('DAI') ? (
                             <img

@@ -9,6 +9,7 @@
 
 .snow {
   position: absolute;
+  background: black;
   width: 100%;
   height: calc(100% - 210px);
   top: 210px;

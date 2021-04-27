@@ -93,23 +93,9 @@ const AccountData = (props) => {
             style={{
               display: 'flex',
               justifyContent: 'flex-end',
-              margin: '-123px 0px 90px 0px',
+              margin: '-78px 0px 90px 0px',
             }}
           >
-            <Popup
-              position="top center"
-              className="account-popup"
-              onClick={() => introJs().start()}
-              trigger={
-                <span className="account-icon-hover">
-                  <Icon name="help circle" className="submenu-icon" />
-                </span>
-              }
-            >
-              <div>
-                <p className="earned-text">COMING SOON</p>
-              </div>
-            </Popup>
           </span>
         </div>
 
