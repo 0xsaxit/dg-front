@@ -96,7 +96,7 @@ const detailsShop = {
 
 const detailsNFTs = {
   mink_coat: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_3_ywc2cq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed_y8ozak.png',
     'nft-pic',
     'DG Fur Mink',
     'LEGENDARY',
@@ -105,7 +105,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_top: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_2_lu5fwe.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566941/unnamed-1_anqn8z.png',
     'nft-pic',
     'DG Tracksuit Jacket',
     'LEGENDARY',
@@ -114,7 +114,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_bottom: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_4_meqpkq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-2_eiirjc.png',
     'nft-pic',
     'DG Tracksuit Pants',
     'LEGENDARY',
@@ -123,7 +123,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   shades: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-3_ey4xpe.png',
     'nft-pic',
     'DG Flip Up Spectacles',
     'LEGENDARY',
@@ -132,7 +132,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   yeezies: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_5_lijr1y.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-4_ccrxbx.png',
     'nft-pic',
     'DG Deezys',
     'LEGENDARY',
@@ -141,7 +141,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   slides: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_6_iujl4o.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
     'nft-pic',
     'DG Slides',
     'LEGENDARY',

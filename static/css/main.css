@@ -979,8 +979,8 @@ p.home-dashboard-p {
 .nft-pic {
   height: 100%;
   width: 100%;
-  max-height: 270px;
-  min-height: 270px;
+  max-height: 300px;
+  min-height: 400px;
   object-fit: cover;
   margin-bottom: 4px !important;
   border-radius: 8px 8px 0px 0px !important;
@@ -2042,7 +2042,7 @@ i.copy.icon.affiliate-icon:hover {
 
 .ui.input > input {
   border-radius: 8px;
-  height: 38px;
+  height: 48px;
   transition: none;
 }
 
@@ -2727,9 +2727,10 @@ a.ui.blue.button.casinos {
   color: white;
   width: 180px !important;
   margin-left: 15px;
-  height: 36px;
-  padding: 0 0 0 0;
-  border-radius: 8px !important;
+  height: 48px !important;
+  width: 200px;
+  line-height: 16px;
+  font-size: 20px !important;
   margin-top: 9px;
 }
 
