@@ -617,7 +617,7 @@ const Chateau = () => {
                 target="_blank"
                 style={{ marginTop: '9px' }}
               >
-                Get in Touch
+                Contact
               </Button>
             </span>
 

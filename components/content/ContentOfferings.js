@@ -177,7 +177,7 @@ const ContentOfferings = (props) => {
                       target="_blank"
                       href={props.detailsNFTs[item][5]}
                     >
-                      Purchase NFT
+                      Purchase
                     </Button>
                     <Button
                       className="nft-read-button"
