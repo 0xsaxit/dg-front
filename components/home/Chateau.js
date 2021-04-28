@@ -85,16 +85,24 @@ const Chateau = () => {
           </h1>
           <span className="home-button-span">
           </span>
-          <p className="home-dashboard-p">
+          <p className="home-dashboard-p centered">
             By owning $DG, the first-ever metaverse casino is now yours. Vote on
             treasury management, economic policy, and new game development.
           </p>
+            <Button
+              color="blue"
+              className="play-now-button-demo"
+              href="https://www.youtube.com/embed/1NxYpUsxhC0"
+              target="_blank"
+            >
+              Demo
+            </Button>
             {state.userStatus === 0 ? (
               <span className="mobile-center-span">
                 <Button
                   color="blue"
                   className="earn-dg-button"
-                  href="https://docs.decentral.games/getting-started/play-to-mine"
+                  href="https://www.youtube.com/embed/1NxYpUsxhC0"
                   target="_blank"
                   style={{ marginRight: '16px' }}
                 >
@@ -157,7 +165,7 @@ const Chateau = () => {
                       className="announcement"
                       href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                     >
-                      Announcement
+                      Read more
                     </Button>
                   </Link>
                   <Button
@@ -166,7 +174,7 @@ const Chateau = () => {
                     target="_blank"
                     href="https://docs.decentral.games/ecosystem"
                   >
-                    Read Docs
+                    Docs
                   </Button>
                 </span>
               </span>
@@ -474,7 +482,7 @@ const Chateau = () => {
                     className="casinos"
                     href="/games/casinos"
                   >
-                    Our Casinos
+                    Casinos
                   </Button>
                 </Link>
               </span>

@@ -606,7 +606,7 @@ a.menu-info-label-link:hover {
     max-width: 100% !important;
     text-align: center;
   }
-  .home-dashboard-p {
+  .home-dashboard-p.centered {
     max-width: 100% !important;
     text-align: center;
   }
@@ -687,7 +687,6 @@ p.home-dashboard-p {
   letter-spacing: 0.15px;
   text-shadow: 1px 1px 5px black;
   max-width: 640px;
-  padding-right: 30px;
   padding-top: 30px !important;
   padding-bottom: 0px !important;
   margin-bottom: 16px !important;
@@ -2660,6 +2659,26 @@ a.ui.blue.button.touch {
   width: 200px;
   line-height: 16px;
   font-size: 20px !important;
+}
+
+@media (min-width: 500px) {
+  a.ui.blue.button.play-now-button-demo {
+    display: none;
+  }
+}
+
+@media (max-width: 499px) {
+  a.ui.blue.button.play-now-button-demo {
+    width: 100% !important;
+    position: relative;
+    background-color: #2085f4;
+    color: white;
+    margin-top: 8px;
+    height: 48px !important;
+    width: 200px;
+    line-height: 16px;
+    font-size: 20px !important;
+  }
 }
 
 a.ui.blue.button.docs,

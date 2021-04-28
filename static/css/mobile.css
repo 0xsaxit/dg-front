@@ -186,6 +186,7 @@ div#dropdown-menu-items.item.right-menu-text {
 
 .ui.dropdown .menu,
 .ui.menu .dropdown.item .menu {
+  background: #15181c;
   border: 0px;
   box-shadow: none;
   padding-top: 0px;
@@ -336,19 +337,25 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .dashboard-image-container,
   #mobile-casino-text,
-  video#myVideo.home-dashboard-video,
-  .home-video-container,
-  .home-video-container video {
+  video#myVideo.home-dashboard-video {
     display: none !important;
   }
   .home-dashboard-content {
     position: relative;
     height: 100vh;
-    padding-top: 33vh !important;
-    padding-right: 21px !important;
+    padding-top: 12vh !important;
+  }
+  .home-video-container video {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: -75px;
+    margin-left: 0px;
+    position: absolute;
   }
   .home-dashboard-p {
-    width: 100%;
+    width: 100vw !important;
   }
   div.ui.vertical.segment {
     top: 0px !important;
@@ -374,19 +381,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .mailchimp-input {
     width: 100%;
-  }
-  .home-dashboard {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.5)
-      ),
-      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
-    background-position: 75% !important;
-    background-color: transparent;
-    background-size: cover !important;
-    height: 100vh !important;
-    width: 100vw;
   }
   .home-button-span {
     display: flex;
