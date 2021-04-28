@@ -90,7 +90,7 @@ const Chateau = () => {
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            Enjoy a Dillon Francis live set. Complete for over $20,000 USD in prizes. Grab a free wearable NFT. 
+            Enjoy a Dillon Francis live set. Compete for over $20,000 USD in prizes. Grab a free wearable NFT. 
           </p>
             <Button
               color="blue"
@@ -170,7 +170,7 @@ const Chateau = () => {
                       className="announcement"
                       href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                     >
-                      Read more
+                      Learn
                     </Button>
                   </Link>
                   <Button
