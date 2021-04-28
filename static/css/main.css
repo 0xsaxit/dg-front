@@ -2906,17 +2906,28 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
-  font-size: 12px;
   border: 1px solid #2085f4;
   color: #2085f4;
-  margin-bottom: -2px;
-  margin-top: -3px;
   height: 24px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  max-width: 180px !important;
-  min-width: 180px;
-  line-height: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
+  max-width: 60px !important;
+  min-width: 60px;
+  line-height: 0px;
+  opacity: 100% !important;
+}
+
+.ui.button.etherscan-button-ptxid {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #2085f4;
+  color: #2085f4;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-right: 0px !important;
+  height: 24px;
+  max-width: 120px !important;
+  min-width: 120px;
+  line-height: 0px;
   opacity: 100% !important;
 }
 

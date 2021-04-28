@@ -733,22 +733,23 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 @media (max-width: 587px) {
-  .ui.button.etherscan-button {
+  .ui.button.etherscan-button-ptxid {
     display: none;
   }
   .ui.button.etherscan-button-mobile {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid #2085f4;
     color: #2085f4;
-    margin-bottom: -2px;
-    margin-top: -3px;
-    height: 27px;
-    max-width: 60px !important;
-    min-width: 60px;
-    padding: 7px 6px 0px 6px;
+    line-height: 0px;
+    height: 24px;
+    max-width: 70px !important;
+    min-width: 70px;
+    padding-left: 6px;
+    padding-right: 6px;
     opacity: 100% !important;
   }
 }
+
 /* ----------------------------------------- */
 /*           ACCOUNT BALANCES CSS            */
 /* ----------------------------------------- */

@@ -90,7 +90,7 @@ const Chateau = () => {
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.
+            Enjoy a Dillon Francis live set. Complete for over $20,000 USD in prizes. Grab a free wearable NFT. 
           </p>
             <Button
               color="blue"

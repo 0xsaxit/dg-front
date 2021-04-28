@@ -389,7 +389,7 @@ const MenuTop = (props) => {
                         state.userAddress.substr(-4)}
                     </p>
                   ) : (
-                    <p style={{ marginTop: '-1px' }} className={menuStyle[1]}>
+                    <p style={{ marginTop: '-1px', textTransform: 'uppercase' }} className={menuStyle[1]}>
                       {state.userInfo.name}
                     </p>
                   )}

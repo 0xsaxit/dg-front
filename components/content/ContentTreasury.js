@@ -352,7 +352,7 @@ const ContentTreasury = (props) => {
                 <Table.Cell textAlign="right">
                   <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p className="earned-percent pos">
-                      +${weeklyChange.toLocaleString()}
+                      +${weeklyChange.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
                     <p className="earned-week-text">
                       This Week
@@ -363,7 +363,7 @@ const ContentTreasury = (props) => {
                 <Table.Cell textAlign="right">
                   <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p className="earned-percent neg">
-                      -${((weeklyChange)*(-1)).toLocaleString()}
+                      -${((weeklyChange)*(-1)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
                     <p className="earned-week-text">
                       This Week
