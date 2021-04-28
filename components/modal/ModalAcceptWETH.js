@@ -44,7 +44,7 @@ const ModalAcceptWETH = () => {
               className="balances-authorize-button"
               id="balances-padding-correct"
             >
-              ENABLE ETH
+              Enable ETH
             </Button>
           ) : (
             <Button
@@ -104,7 +104,7 @@ const ModalAcceptWETH = () => {
             id="balances-padding-correct"
             disabled
           >
-            ENABLE ETH
+            Enable ETH
           </Button>
         )}
       </div>

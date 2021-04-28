@@ -158,9 +158,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .menu-info-container {
-    background: ${({ theme }) => theme.card};
-    border: ${({ theme }) => theme.cardBorder};
-    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
+    background: ${({ theme }) => theme.card}; 
   }
 
   .matic-widget-button,

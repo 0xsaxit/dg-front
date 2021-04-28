@@ -169,7 +169,7 @@ function ButtonApproveWETH() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE ETH
+      Enable ETH
     </Button>
   );
 }

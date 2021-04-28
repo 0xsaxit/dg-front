@@ -240,7 +240,7 @@ const ContentAccount = (props) => {
               href="https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber"
               target="_blank"
             >
-              PLAY NOW
+              Play Now
             </Button>
             {state.userInfo.count === 2 ? (
               <Button disabled className="balances-play-button">
@@ -252,7 +252,7 @@ const ContentAccount = (props) => {
                 className="balances-play-button"
                 id="balances-padding-correct"
               >
-                TOP UP
+                Top Up
               </Button>
             )}
           </span>
@@ -304,7 +304,7 @@ const ContentAccount = (props) => {
                 onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
                 style={{ padding: '0 0 0 0' }}
               >
-                DEPOSIT
+                Deposit
               </Button>
 
               <ConnextModal
@@ -332,7 +332,7 @@ const ContentAccount = (props) => {
                 onClick={() => setStateAndEvent(2, true, 'MANA Withdrawal')}
                 style={{ padding: '0 0 0 0' }}
               >
-                WITHDRAW
+                Withdraw
               </Button>
 
               <ConnextModal
@@ -405,7 +405,7 @@ const ContentAccount = (props) => {
                 onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
                 style={{ padding: '0 0 0 0' }}
               >
-                DEPOSIT
+                Deposit
               </Button>
 
               <ConnextModal
@@ -433,7 +433,7 @@ const ContentAccount = (props) => {
                 onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
                 style={{ padding: '0 0 0 0' }}
               >
-                WITHDRAW
+                Withdraw
               </Button>
 
               <ConnextModal
@@ -508,7 +508,7 @@ const ContentAccount = (props) => {
                 onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
                 style={{ padding: '0 0 0 0' }}
               >
-                DEPOSIT
+                Deposit
               </Button>
 
               <ConnextModal
@@ -536,7 +536,7 @@ const ContentAccount = (props) => {
                 onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
                 style={{ padding: '0 0 0 0' }}
               >
-                WITHDRAW
+                Withdraw
               </Button>
 
               <ConnextModal
@@ -610,7 +610,7 @@ const ContentAccount = (props) => {
                 href="https://wallet.matic.network/bridge/"
                 target="_blank"
               >
-                DEPOSIT
+                Deposit
               </Button>
 
               <Button
@@ -618,7 +618,7 @@ const ContentAccount = (props) => {
                 href="https://wallet.matic.network/bridge/"
                 target="_blank"
               >
-                WITHDRAW
+                Withdraw
               </Button>
             </span>
           ) : (
@@ -669,7 +669,7 @@ const ContentAccount = (props) => {
                 href="https://wallet.matic.network/bridge/"
                 target="_blank"
               >
-                DEPOSIT
+                Deposit
               </Button>
 
               <Button
@@ -677,7 +677,7 @@ const ContentAccount = (props) => {
                 href="https://wallet.matic.network/bridge/"
                 target="_blank"
               >
-                WITHDRAW
+                Withdraw
               </Button>
             </span>
           ) : (
@@ -876,7 +876,7 @@ const ContentAccount = (props) => {
 
                   let style = '';
                   {
-                    i % 2 === 0 ? (style = '#00ff00') : (style = '#0000ff');
+                    i % 2 === 0 ? (style = '#15181c') : (style = 'black');
                   }
 
                   return (
@@ -893,7 +893,7 @@ const ContentAccount = (props) => {
 
   function renderRow(row, timestamp, amount, sign, style) {
     return (
-      <Table.Row style={{ color: style }}>
+      <Table.Row style={{ background: style }}>
         <Table.Cell>
           {row.type.includes('DAI') ? (
             <img

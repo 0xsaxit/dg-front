@@ -44,7 +44,7 @@ const ModalAcceptMana = () => {
               className="balances-authorize-button"
               id="balances-padding-correct"
             >
-              ENABLE MANA
+              Enable MANA
             </Button>
           ) : (
             <Button
@@ -104,7 +104,7 @@ const ModalAcceptMana = () => {
             id="balances-padding-correct"
             disabled
           >
-            ENABLE MANA
+            Enable MANA
           </Button>
         )}
       </div>

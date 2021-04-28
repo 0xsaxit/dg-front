@@ -44,7 +44,7 @@ const ModalAcceptATRI = () => {
               className="balances-authorize-button"
               id="balances-padding-correct"
             >
-              ENABLE ATRI
+              Enable ATRI
             </Button>
           ) : (
             <Button
@@ -104,7 +104,7 @@ const ModalAcceptATRI = () => {
             id="balances-padding-correct"
             disabled
           >
-            ENABLE ATRI
+            Enable ATRI
           </Button>
         )}
       </div>

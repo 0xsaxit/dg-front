@@ -44,7 +44,7 @@ const ModalAcceptUSDT = () => {
               className="balances-authorize-button"
               id="balances-padding-correct"
             >
-              ENABLE USDT
+              Enable USDT
             </Button>
           ) : (
             <Button
@@ -104,7 +104,7 @@ const ModalAcceptUSDT = () => {
             id="balances-padding-correct"
             disabled
           >
-            ENABLE USDT
+            Enable USDT
           </Button>
         )}
       </div>

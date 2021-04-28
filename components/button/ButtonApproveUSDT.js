@@ -157,7 +157,7 @@ function ButtonApproveUSDT() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE USDT
+      Enable USDT
     </Button>
   );
 }
