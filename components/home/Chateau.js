@@ -85,12 +85,12 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Hit the tables in the DG Atari Casino
+            Play games and be the house
           </h1>
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            Fully immersive blackjack and roulette. On-chain, non-custodial gameplay. Immediately payouts.
+            Fully immersive blackjack and roulette. On-chain, non-custodial gameplay. Immediate payouts.
           </p>
             <Button
               color="blue"

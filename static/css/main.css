@@ -2709,13 +2709,13 @@ a.ui.blue.button.touch {
 
 @media (max-width: 499px) {
   a.ui.blue.button.play-now-button-demo {
-    width: 100% !important;
+    width: 220px !important;
+    margin-left: calc(50vw - 132px);
     position: relative;
     background-color: #2085f4;
     color: white;
     margin-top: 8px;
     height: 48px !important;
-    width: 200px;
     line-height: 16px;
     font-size: 20px !important;
   }
