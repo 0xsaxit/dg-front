@@ -2097,6 +2097,7 @@ i.copy.icon.affiliate-icon:hover {
 
 .ui.input.down input, .ui.input>input:active {
   background: #15181c !important;
+  color: black !important;
 }
 
 .ui.action.input > .button,

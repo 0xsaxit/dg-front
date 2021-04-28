@@ -50,7 +50,6 @@ export const GlobalStyles = createGlobalStyle`
   div.divider.text,
   .more-text,
   .spanbox,
-  .ui.input>input,
   .matic-header-text,
   .menu-info-close,
   .mailchimp-close,
