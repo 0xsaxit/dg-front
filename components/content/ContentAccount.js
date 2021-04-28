@@ -13,7 +13,6 @@ import ModalAcceptATRI from '../modal/ModalAcceptATRI';
 import ModalAcceptWETH from '../modal/ModalAcceptWETH';
 import Aux from '../_Aux';
 
-
 const connext = {
   routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
   chainProviderInfura:
@@ -63,54 +62,58 @@ const ContentAccount = (props) => {
 
   const ramp1 = new RampInstantSDK({
     hostAppName: 'Buy Mana Directly',
-    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
     swapAsset: 'MANA',
   });
 
   function show_ramp1() {
-    ramp1.show()
+    ramp1.show();
   }
 
   const ramp2 = new RampInstantSDK({
     hostAppName: 'Buy DAI Directly',
-    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
 
   function show_ramp2() {
-    ramp2.show()
+    ramp2.show();
   }
 
   const ramp3 = new RampInstantSDK({
     hostAppName: 'Buy USDT Directly',
-    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
     swapAsset: 'USDT',
   });
 
   function show_ramp3() {
-    ramp3.show()
+    ramp3.show();
   }
 
   const ramp4 = new RampInstantSDK({
     hostAppName: 'Buy ATRI Directly',
-    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
     swapAsset: 'ATRI',
   });
 
   function show_ramp4() {
-    ramp4.show()
+    ramp4.show();
   }
 
   const ramp5 = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
-    hostLogoUrl: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
     swapAsset: 'ETH',
   });
 
   function show_ramp5() {
-    ramp5.show()
+    ramp5.show();
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +201,6 @@ const ContentAccount = (props) => {
       );
     }
   }, [event, txHash, amount]);
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -637,7 +639,7 @@ const ContentAccount = (props) => {
               }}
             >
               <p className="welcome-text-top">ETH</p>
-              <p className="earned-amount">{(state.userBalances[2][3])}</p>
+              <p className="earned-amount">{state.userBalances[2][3]}</p>
             </span>
           </span>
 
@@ -682,7 +684,6 @@ const ContentAccount = (props) => {
             <ModalAcceptWETH />
           )}
         </div>
-
       </div>
     );
   }
@@ -873,148 +874,147 @@ const ContentAccount = (props) => {
                     sign = '-';
                   }
 
+                  let style = '';
+                  {
+                    i % 2 === 0 ? (style = '#00ff00') : (style = '#0000ff');
+                  }
+
                   return (
                     <Table.Body key={i}>
-                      <Table.Row >
-                        <Table.Cell>
-                          {row.type.includes('DAI') ? (
-                            <img
-                              src={Images.DAI_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '6px',
-                                verticalAlign: 'middle',
-                                marginTop: '-2px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.type.includes('MANA') ? (
-                            <img
-                              src={Images.MANA_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '6px',
-                                verticalAlign: 'middle',
-                                marginTop: '-2px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.type.includes('USDT') ? (
-                            <img
-                              src={Images.USDT_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '6px',
-                                verticalAlign: 'middle',
-                                marginTop: '-2px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.type.includes('ATRI') ? (
-                            <img
-                              src={Images.ATRI_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '6px',
-                                verticalAlign: 'middle',
-                                marginTop: '-2px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.type.includes('WETH') ? (
-                            <img
-                              src={Images.ETH_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '6px',
-                                verticalAlign: 'middle',
-                                marginTop: '-2px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : (
-                            <img
-                              src={Images.DG_COIN_LOGO}
-                              style={{
-                                width: '21px',
-                                marginRight: '6px',
-                                verticalAlign: 'middle',
-                                marginTop: '-2px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          )}
-                          {row.type}
-                        </Table.Cell>
-                        <Table.Cell className="account-col-2">
-                          {row.type.includes('DAI') ? (
-                            <span>
-                              {sign}
-                              {amount > 1000000000000000000000000
-                                ? 'N/A'
-                                : (amount / 1000000000000000000).toFixed(2) +
-                                  ' DAI'}
-                            </span>
-                          ) : (
-                            <span>
-                              {amount > 1000000000000000000000000
-                                ? 'N/A'
-                                : (amount / 1000000000000000000).toFixed(2) +
-                                  ' MANA'}
-                            </span>
-                          )}
-                        </Table.Cell>
-                        <Table.Cell>{row.status}</Table.Cell>
-                        <Table.Cell className="account-col-4">
-                          {timestamp}
-                        </Table.Cell>
-                        <Table.Cell>
-                          <span
-                            style={{ float: 'right', paddingRight: '12px' }}
-                          >
-                            <Button
-                              href={
-                                Global.CONSTANTS.MATIC_EXPLORER +
-                                `/tx/${row.txid}`
-                              }
-                              target="_blank"
-                              className="etherscan-button"
-                            >
-                              blockchain tx
-                              <Icon
-                                name="external alternate"
-                                style={{
-                                  marginLeft: '6px',
-                                  marginRight: '-2px',
-                                }}
-                              />
-                            </Button>
-                            <Button
-                              href={
-                                Global.CONSTANTS.MATIC_EXPLORER +
-                                `/tx/${row.txid}`
-                              }
-                              target="_blank"
-                              className="etherscan-button-mobile"
-                            >
-                              tx
-                              <Icon
-                                name="external alternate"
-                                style={{
-                                  marginLeft: '6px',
-                                  marginRight: '-2px',
-                                }}
-                              />
-                            </Button>
-                          </span>
-                        </Table.Cell>
-                      </Table.Row>
+                      {renderRow(row, timestamp, amount, sign, style)}
                     </Table.Body>
                   );
                 })}
           </Table>
         </div>
       </div>
+    );
+  }
+
+  function renderRow(row, timestamp, amount, sign, style) {
+    return (
+      <Table.Row style={{ color: style }}>
+        <Table.Cell>
+          {row.type.includes('DAI') ? (
+            <img
+              src={Images.DAI_CIRCLE}
+              style={{
+                width: '21px',
+                marginRight: '6px',
+                verticalAlign: 'middle',
+                marginTop: '-2px',
+                borderRadius: '100%',
+              }}
+            />
+          ) : row.type.includes('MANA') ? (
+            <img
+              src={Images.MANA_CIRCLE}
+              style={{
+                width: '21px',
+                marginRight: '6px',
+                verticalAlign: 'middle',
+                marginTop: '-2px',
+                borderRadius: '100%',
+              }}
+            />
+          ) : row.type.includes('USDT') ? (
+            <img
+              src={Images.USDT_CIRCLE}
+              style={{
+                width: '21px',
+                marginRight: '6px',
+                verticalAlign: 'middle',
+                marginTop: '-2px',
+                borderRadius: '100%',
+              }}
+            />
+          ) : row.type.includes('ATRI') ? (
+            <img
+              src={Images.ATRI_CIRCLE}
+              style={{
+                width: '21px',
+                marginRight: '6px',
+                verticalAlign: 'middle',
+                marginTop: '-2px',
+                borderRadius: '100%',
+              }}
+            />
+          ) : row.type.includes('WETH') ? (
+            <img
+              src={Images.ETH_CIRCLE}
+              style={{
+                width: '21px',
+                marginRight: '6px',
+                verticalAlign: 'middle',
+                marginTop: '-2px',
+                borderRadius: '100%',
+              }}
+            />
+          ) : (
+            <img
+              src={Images.DG_COIN_LOGO}
+              style={{
+                width: '21px',
+                marginRight: '6px',
+                verticalAlign: 'middle',
+                marginTop: '-2px',
+                borderRadius: '100%',
+              }}
+            />
+          )}
+          {row.type}
+        </Table.Cell>
+        <Table.Cell className="account-col-2">
+          {row.type.includes('DAI') ? (
+            <span>
+              {sign}
+              {amount > 1000000000000000000000000
+                ? 'N/A'
+                : (amount / 1000000000000000000).toFixed(2) + ' DAI'}
+            </span>
+          ) : (
+            <span>
+              {amount > 1000000000000000000000000
+                ? 'N/A'
+                : (amount / 1000000000000000000).toFixed(2) + ' MANA'}
+            </span>
+          )}
+        </Table.Cell>
+        <Table.Cell>{row.status}</Table.Cell>
+        <Table.Cell className="account-col-4">{timestamp}</Table.Cell>
+        <Table.Cell>
+          <span style={{ float: 'right', paddingRight: '12px' }}>
+            <Button
+              href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+              target="_blank"
+              className="etherscan-button"
+            >
+              blockchain tx
+              <Icon
+                name="external alternate"
+                style={{
+                  marginLeft: '6px',
+                  marginRight: '-2px',
+                }}
+              />
+            </Button>
+            <Button
+              href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
+              target="_blank"
+              className="etherscan-button-mobile"
+            >
+              tx
+              <Icon
+                name="external alternate"
+                style={{
+                  marginLeft: '6px',
+                  marginRight: '-2px',
+                }}
+              />
+            </Button>
+          </span>
+        </Table.Cell>
+      </Table.Row>
     );
   }
 
@@ -1273,7 +1273,6 @@ const ContentAccount = (props) => {
   function contentReferrals() {
     return (
       <Aux>
-
         <div className="DG-liquidity-container top">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
             <p className="earned-amount">Unclaimed</p>
@@ -1292,23 +1291,49 @@ const ContentAccount = (props) => {
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
 
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p style={{ fontSize: '18px' }}> Copy your unique referral link. Any time a new user deposits crypto, you'll earn 10% of their expected losses.</p>              
-              <span style={{ display: 'flex', justifyContent: 'space-between', border: '1px solid rgb(8, 10, 12)', borderRadius: '8px', padding: '3px 6px 6px 6px' }}>
+              <p style={{ fontSize: '18px' }}>
+                {' '}
+                Copy your unique referral link. Any time a new user deposits
+                crypto, you'll earn 10% of their expected losses.
+              </p>
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  border: '1px solid rgb(8, 10, 12)',
+                  borderRadius: '8px',
+                  padding: '3px 6px 6px 6px',
+                }}
+              >
                 <p className="referral-desktop"> https://decentral...</p>
-                <p className="referral-tablet"> https://decentral.games/{state.userInfo.id}</p>
-                <p className="referral-mobile"> https://decentral.games/{state.userInfo.id}</p>
+                <p className="referral-tablet">
+                  {' '}
+                  https://decentral.games/{state.userInfo.id}
+                </p>
+                <p className="referral-mobile">
+                  {' '}
+                  https://decentral.games/{state.userInfo.id}
+                </p>
                 {copied == false ? (
-                  <Icon className="affiliate-icon" onClick={() => onCopy()} name="copy" />
+                  <Icon
+                    className="affiliate-icon"
+                    onClick={() => onCopy()}
+                    name="copy"
+                  />
                 ) : (
-                  <Icon className="affiliate-icon" onClick={() => onCopy()} name="check" />
+                  <Icon
+                    className="affiliate-icon"
+                    onClick={() => onCopy()}
+                    name="check"
+                  />
                 )}
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_MINING_DG) ? (
@@ -1328,7 +1353,10 @@ const ContentAccount = (props) => {
             </span>
           </div>
 
-          <span className="treasury-stats" style={{ height: '100%', marginTop: '-15px' }}>
+          <span
+            className="treasury-stats"
+            style={{ height: '100%', marginTop: '-15px' }}
+          >
             <Table unstackable>
               <Table.Header>
                 <Table.Row>
@@ -1354,7 +1382,11 @@ const ContentAccount = (props) => {
                           borderRadius: '100%',
                         }}
                       />
-                      {(state.DGBalances.BALANCE_AFFILIATES[0][0] / 1000000000000000000).toFixed(3)} MANA
+                      {(
+                        state.DGBalances.BALANCE_AFFILIATES[0][0] /
+                        1000000000000000000
+                      ).toFixed(3)}{' '}
+                      MANA
                     </span>
                   </Table.Cell>
                 </Table.Row>
@@ -1375,7 +1407,11 @@ const ContentAccount = (props) => {
                           borderRadius: '100%',
                         }}
                       />
-                      {(state.DGBalances.BALANCE_AFFILIATES[1][0] / 1000000000000000000).toFixed(3)} DAI
+                      {(
+                        state.DGBalances.BALANCE_AFFILIATES[1][0] /
+                        1000000000000000000
+                      ).toFixed(3)}{' '}
+                      DAI
                     </span>
                   </Table.Cell>
                 </Table.Row>
@@ -1396,16 +1432,18 @@ const ContentAccount = (props) => {
                           borderRadius: '100%',
                         }}
                       />
-                      {(state.DGBalances.BALANCE_AFFILIATES[2][0] / 1000000000000000000).toFixed(3)} USDT
+                      {(
+                        state.DGBalances.BALANCE_AFFILIATES[2][0] /
+                        1000000000000000000
+                      ).toFixed(3)}{' '}
+                      USDT
                     </span>
                   </Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
-                  <Table.Cell>
-                  </Table.Cell>
-                  <Table.Cell>
-                  </Table.Cell>
+                  <Table.Cell></Table.Cell>
+                  <Table.Cell></Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
@@ -1427,6 +1465,7 @@ const ContentAccount = (props) => {
     return contentGameplay();
   } else if (props.content === 'referrals') {
     return contentReferrals();
-  }};
+  }
+};
 
 export default ContentAccount;
