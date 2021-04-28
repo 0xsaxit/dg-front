@@ -129,6 +129,7 @@ const Chateau = () => {
                   className="play-button"
                   href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
                   target="_blank"
+                  id="mobile-button-hide"
                   style={{ marginLeft: '16px' }}
                 >
                   Play Now
