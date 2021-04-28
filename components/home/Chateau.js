@@ -53,7 +53,7 @@ const Chateau = () => {
       <div className="home-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619565460/-Option_1_Play_sparkles_coins_high_res_rwxl3n.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619567725/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -81,7 +81,7 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Play the games and be the house
+            Play games and be the house
           </h1>
           <span className="home-button-span">
           </span>
@@ -90,7 +90,7 @@ const Chateau = () => {
             treasury management, economic policy, and new game development.
           </p>
             {state.userStatus === 0 ? (
-              <span>
+              <span className="mobile-center-span">
                 <Button
                   color="blue"
                   className="earn-dg-button"
@@ -103,7 +103,7 @@ const Chateau = () => {
                 <ButtonPlayNow />
               </span>
             ) : (
-              <span>
+              <span className="mobile-center-span">
                 <Button
                   color="blue"
                   className="earn-dg-button"
@@ -448,7 +448,7 @@ const Chateau = () => {
       <Aux>
         <Parallax
           blur={0}
-          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/tominoya_v1w0zk.jpg"
+          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1619567714/image_icgve3.png"
           strength={100}
         >
           <div className="home-section-2-outter">
