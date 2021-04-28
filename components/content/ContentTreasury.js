@@ -329,10 +329,9 @@ const ContentTreasury = (props) => {
       <Aux>
 
         <div>
-
             <span style={{ display: 'flex', justifyContent: 'center' }}>
               {treasuryTotal ? (
-                <p style={{ fontSize: '72px', letterSpacing: '-0.7px', fontWeight: '800', paddingTop: '30px' }}>${treasuryTotal}</p>
+                <p className="treasury-amount">${treasuryTotal}</p>
               ) : (
                 <Loader
                   active
@@ -377,7 +376,7 @@ const ContentTreasury = (props) => {
             </span>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <span style={{ width: '600px', padding: '20px 0px 20px 0px' }}>
+              <span className="treasury-graph">
                 <Line
                   height={150}
                   data={hourly}
@@ -397,7 +396,7 @@ const ContentTreasury = (props) => {
               </span>
             </div>
 
-            <span style={{ display: 'flex', justifyContent: 'center' }}>
+            <span style={{ display: 'flex', justifyContent: 'center' }} className="treasury-table">
               <div
                 className="treasury-stats"
                 style={{
@@ -406,7 +405,7 @@ const ContentTreasury = (props) => {
                 }}
               >
 
-              <Table unstackable>
+              <Table unstackable className="treasury-table">
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>Name</Table.HeaderCell>

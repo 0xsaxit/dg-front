@@ -77,6 +77,10 @@ const Chateau = () => {
               data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
             />
           </div>
+          <img 
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
+            className="home-gif"
+          />
           <h1
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
@@ -86,8 +90,7 @@ const Chateau = () => {
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            By owning $DG, the first-ever metaverse casino is now yours. Vote on
-            treasury management, economic policy, and new game development.
+            Fully immersive blackjack and roulette. On-chain, non-custodial gameplay. Immediate payouts.
           </p>
             <Button
               color="blue"
@@ -102,6 +105,7 @@ const Chateau = () => {
                 <Button
                   color="blue"
                   className="earn-dg-button"
+                  id="mobile-button-hide"
                   href="https://www.youtube.com/embed/1NxYpUsxhC0"
                   target="_blank"
                   style={{ marginRight: '16px' }}
