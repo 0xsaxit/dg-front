@@ -270,7 +270,7 @@ img.logo-image {
 
 .blogdetail-page-container .post__content p,
 .summary_content {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Regular' !important;
   -webkit-font-smoothing: antialiased !important;
   font-size: 21px;
   font-weight: normal;
@@ -279,7 +279,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content li {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Regular' !important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 12px;
   word-break: break-word;

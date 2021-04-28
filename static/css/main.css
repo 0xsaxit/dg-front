@@ -14,7 +14,7 @@ a {
 }
 
 h1 {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 60px;
   margin-bottom: 0px;
@@ -22,7 +22,7 @@ h1 {
 }
 
 h2 {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 16px;
@@ -31,7 +31,7 @@ h2 {
 }
 
 h3 {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 0px;
@@ -40,14 +40,14 @@ h3 {
 }
 
 .nft-other-h3 {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 32px;
   line-height: 1.4;
 }
 
 h4 {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Regular';
   font-weight: 800 !important;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -58,7 +58,7 @@ h4 {
 }
 
 h5 {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Regular';
   font-weight: 600 !important;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -69,7 +69,7 @@ h5 {
 }
 
 p {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Regular';
   font-size: 21px;
   font-weight: normal;
   letter-spacing: 0.5;
@@ -77,15 +77,16 @@ p {
 }
 
 .account-hover {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Regular';
 }
 
 .ui.button {
-  font-family: Lato, sans-serif! important;
+  font-family: 'Larsseit-Bold';
   letter-spacing: 1px;
   font-weight: 800 !important;
   border-radius: 4px;
   margin: 0 0 0 0;
+  text-transform: uppercase;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -2670,8 +2671,8 @@ a.ui.blue.button.play-button,
   margin-top: 8px;
   height: 48px !important;
   width: 200px;
-  line-height: 16px;
-  font-size: 20px !important;
+  line-height: 20px;
+  font-size: 18px !important;
 }
 
 a.ui.blue.button.metamask-how-button {
@@ -2681,8 +2682,8 @@ a.ui.blue.button.metamask-how-button {
   margin-top: 20px;
   height: 48px !important;
   width: 200px;
-  line-height: 16px;
-  font-size: 20px !important;
+  line-height: 20px;
+  font-size: 18px !important;
 }
 
 a.ui.blue.button.earn-dg-button {
@@ -2692,8 +2693,8 @@ a.ui.blue.button.earn-dg-button {
   margin-top: 8px;
   height: 48px !important;
   width: 200px;
-  line-height: 16px;
-  font-size: 20px !important;
+  line-height: 20px;
+  font-size: 18px !important;
 }
 
 a.ui.blue.button.announcement,
@@ -2708,8 +2709,8 @@ a.ui.blue.button.touch {
   margin-top: 20px;
   height: 48px !important;
   width: 200px;
-  line-height: 16px;
-  font-size: 20px !important;
+  line-height: 20px;
+  font-size: 18px !important;
 }
 
 @media (min-width: 500px) {
@@ -2727,8 +2728,8 @@ a.ui.blue.button.touch {
     color: white;
     margin-top: 8px;
     height: 48px !important;
-    line-height: 16px;
-    font-size: 20px !important;
+    line-height: 20px;
+    font-size: 18px !important;
   }
 }
 
@@ -2741,8 +2742,8 @@ a.ui.blue.button.roadmap {
   margin-top: 20px;
   height: 48px !important;
   width: 200px;
-  line-height: 15px;
-  font-size: 20px !important;
+  line-height: 18px;
+  font-size: 18px !important;
 }
 
 a.ui.blue.button.metamask,
@@ -2753,8 +2754,8 @@ a.ui.blue.button.casinos {
   margin-top: 20px;
   height: 48px !important;
   width: 200px;
-  line-height: 16px;
-  font-size: 20px !important;
+  line-height: 20px;
+  font-size: 18px !important;
 }
 
 .ui.blue.button.how-to-button {
@@ -2775,7 +2776,7 @@ a.ui.blue.button.casinos {
   min-width: 100% !important;
   border-radius: 4px;
   height: 36px !important;
-  line-height: 8px;
+  line-height: 10px;
   font-size: 16px !important;
 }
 
@@ -2852,8 +2853,8 @@ a.ui.blue.button.casinos {
   margin-left: 15px;
   height: 48px !important;
   width: 200px;
-  line-height: 16px;
-  font-size: 20px !important;
+  line-height: 20px;
+  font-size: 18px !important;
   margin-top: 9px;
 }
 
@@ -2874,7 +2875,7 @@ a.ui.blue.button.dg-learn-button {
   margin-top: 8px;
   width: 48.5% !important;
   height: 36px !important;
-  line-height: 8px;
+  line-height: 10px;
   font-size: 16px !important;
   border-radius: 4px;
 }
@@ -3005,7 +3006,7 @@ a.ui.button.balances-top-button {
   min-width: 48.5% !important;
   border-radius: 4px;
   height: 36px !important;
-  line-height: 8px;
+  line-height: 10px;
   font-size: 16px !important;
 }
 
