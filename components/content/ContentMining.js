@@ -278,7 +278,7 @@ const ContentMining = (props) => {
 
                 <span className="DG-button-span">
                   <Button
-                    href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
+                    href="{`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}"
                     className="DG-play-now-button"
                     target="_blank"
                     id="balances-padding-correct-two"
@@ -369,7 +369,7 @@ const ContentMining = (props) => {
 
                 <span className="DG-button-span">
                   <Button
-                    href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
+                    href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
                     className="DG-play-now-button"
                     id="balances-padding-correct-two"
                     target="_blank"
@@ -460,7 +460,7 @@ const ContentMining = (props) => {
 
                 <span className="DG-button-span">
                   <Button
-                    href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
+                    href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
                     className="DG-play-now-button"
                     id="balances-padding-correct-two"
                     target="_blank"
@@ -549,7 +549,7 @@ const ContentMining = (props) => {
                 <span className="DG-button-span">
                   <Button
                     id="balances-padding-correct-two"
-                    href={`https://play.decentraland.org/?position=-120%2C135&realm=fenrir-amber${utm}`}
+                    href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
                     className="DG-play-now-button"
                     target="_blank"
                   >

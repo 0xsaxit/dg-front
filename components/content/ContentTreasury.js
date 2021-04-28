@@ -340,7 +340,7 @@ const ContentTreasury = (props) => {
                   style={{
                     fontSize: '12px',
                     marginTop: '48px',
-                    marginBottom: '32px',
+                    marginBottom: '48px',
                     marginLeft: '0px',
                   }}
                 />
@@ -350,7 +350,7 @@ const ContentTreasury = (props) => {
             <span style={{ display: 'flex', justifyContent: 'center' }}>
               {weeklyChange > 0 && treasuryTotal ? (
                 <Table.Cell textAlign="right">
-                  <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <span style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-6px', paddingBottom: '9px' }}>
                     <p className="earned-percent pos">
                       +${weeklyChange.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
@@ -418,12 +418,12 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                        Gameplay All
+                        all time gameplay profits
                         <Popup
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon one"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />
@@ -495,12 +495,12 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                        Gameplay
+                        Gameplay hot wallet
                         <Popup
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon two"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />
@@ -576,7 +576,7 @@ const ContentTreasury = (props) => {
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon three"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />
@@ -646,12 +646,12 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                        DCL LAND
+                        Decentraland LAND
                         <Popup
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon four"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />
@@ -721,12 +721,12 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                      Wearables
+                      $DG Wearables
                         <Popup
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon five"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />
@@ -797,12 +797,12 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                        Uniswap LP
+                        Uniswap ETH-DG LP
                         <Popup
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon six"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />
@@ -872,12 +872,12 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                        Matic Node
+                        Matic staked in Matic Node
                         <Popup
                           className="dai-mana-popup"
                           trigger={
                             <Icon
-                              className="dai-mana-icon"
+                              className="dai-mana-icon seven"
                               name="info circle"
                               style={{ fontSize: '10px', marginLeft: '6px' }}
                             />

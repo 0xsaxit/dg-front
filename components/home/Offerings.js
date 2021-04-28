@@ -17,7 +17,7 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
@@ -27,7 +27,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110,
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -37,7 +37,7 @@ const detailsGames = {
     'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
     '1 PLAYER',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/slots',
   ],
   Backgammon: [
@@ -47,7 +47,7 @@ const detailsGames = {
     'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
     '2 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/backgammon',
   ],
 };

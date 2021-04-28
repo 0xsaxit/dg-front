@@ -797,6 +797,42 @@ span#mobile-time-select.account-select.dropdown {
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
+@media (max-width: 499px) {
+  i.info.circle.icon.dai-mana-icon.one {
+    margin-right: 15px;
+  }
+  i.info.circle.icon.dai-mana-icon.two {
+    margin-right: 45px;
+  }
+  i.info.circle.icon.dai-mana-icon.four {
+    margin-right: 40px;
+  }
+  i.info.circle.icon.dai-mana-icon.seven {
+    margin-right: 34px;
+  }
+}
+
+@media (max-width: 376px) {
+  i.info.circle.icon.dai-mana-icon.one {
+    margin-right: 33px;
+  }
+  i.info.circle.icon.dai-mana-icon.two {
+    margin-right: 4px;
+  }
+  i.info.circle.icon.dai-mana-icon.four {
+    margin-right: 0px;
+  }
+  i.info.circle.icon.dai-mana-icon.five {
+    margin-right: 24px;
+  }
+  i.info.circle.icon.dai-mana-icon.six {
+    margin-right: 9px;
+  }
+  i.info.circle.icon.dai-mana-icon.seven {
+    margin-right: 6px;
+  }
+}
+
 .referral-desktop,
 .referral-tablet,
 .referral-mobile {
