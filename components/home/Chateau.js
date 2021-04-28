@@ -127,7 +127,7 @@ const Chateau = () => {
                 <Button
                   color="blue"
                   className="play-button"
-                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
+                  href="https://play.decentraland.org/?position=-96%2C110"
                   target="_blank"
                   id="mobile-button-hide"
                   style={{ marginLeft: '16px' }}
@@ -476,7 +476,7 @@ const Chateau = () => {
                 <Button
                   color="blue"
                   className="hop"
-                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
+                  href="https://play.decentraland.org/?position=-96%2C110"
                   target="_blank"
                 >
                   Hop In
