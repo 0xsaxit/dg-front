@@ -27,7 +27,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-96%2C110,
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
