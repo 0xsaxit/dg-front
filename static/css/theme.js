@@ -29,7 +29,7 @@ export const darkTheme = {
 }
 
 export const lightTheme = {
-  body: 'rgb(8, 10, 12)',
+  body: 'rgb(0, 0, 0)',
   text: 'rgba(255, 255, 255, .87)',
   menuText: 'rgba(255, 255, 255, .55)',
   homeText: 'white',
@@ -47,7 +47,7 @@ export const lightTheme = {
   homeMenuColor: '#191919',
 	homeDivider: '1px solid #120d06',
   input: 'rgb(8, 10, 12)',
-  loader: 'rgb(8, 10, 12)',
+  loader: 'rgb(0, 0, 0)',
   zoom: '150em solid rgb(8, 10, 12)',
   modal: 'rgb(21, 24, 28)',
   modalCard: 'rgb(8, 10, 12)',
