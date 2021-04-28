@@ -376,7 +376,7 @@ const MenuTop = (props) => {
           <Link href="/account">
             <span className="menu-account-info">
               <p className={menuStyle[1]} id="add-funds-mobile-padding">
-                ADD TOKENS
+                Account
               </p>
 
               <span className="menu-avatar-background" id="add-funds-mobile">

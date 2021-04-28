@@ -1259,12 +1259,14 @@ table {
   background: black;
 } 
 
-tr:nth-child(even) {
+tr:nth-child(even),
+tr.account-table-even {
   background: black;
   color: rgba(255, 255, 255, 0.6);
 }
 
-tr:nth-child(odd) {
+tr:nth-child(odd),
+tr.account-table-odd {
   background: rgb(21, 24, 28);
   color: rgba(255, 255, 255, 0.6);
   border-radius: 8px !important;
@@ -2253,6 +2255,44 @@ i.copy.icon.affiliate-icon:hover {
   background-color: white;
 }
 
+.treasury-amount {
+  font-size: 72px;
+  letter-spacing: -0.7px;
+  font-weight: 800;
+  padding-top: 30px;
+}
+
+.treasury-graph {
+  width: 600px;
+  padding: 20px 0px 20px 0px;
+}
+
+span.treasury-table {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1030px) {
+  span.treasury-table {
+    justify-content: flex-start !important;
+  }
+  .treasury-stats {
+    width: 100%;
+  }
+}
+
+@media (max-width: 699px) {
+  .treasury-graph {
+    width: 100%;
+  }
+}
+
+@media (max-width: 499px) {
+  .treasury-amount {
+    font-size: 60px;
+  }
+}
+
 .DG-game-container {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -2733,6 +2773,7 @@ a.ui.blue.button.casinos {
   background-color: #2085f4;
   min-width: 100% !important;
   margin-top: 3px;
+  margin-bottom: 6px;
   height: 36px !important;
   line-height: 8px;
   font-size: 16px !important;
@@ -2741,14 +2782,17 @@ a.ui.blue.button.casinos {
 
 .ui.button.get-dg-button {
   background-color: rgba(255, 255, 255, 0);
+  font-size: 12px;
   border: 1px solid #2085f4;
   color: #2085f4;
-  height: 27px;
-  margin-top: 15px;
-  padding: 7px 6px 0px 6px;
+  margin-bottom: -2px;
+  margin-top: 8px;
+  height: 24px;
+  text-transform: uppercase;
+  border-radius: 8px;
   width: 48.5%;
+  line-height: 4px;
   opacity: 100% !important;
-  padding: 3px 0 0 0;
 }
 
 .ui.button.withdraw-dg-button {

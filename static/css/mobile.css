@@ -345,14 +345,9 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     height: 100vh;
     padding-top: 12vh !important;
   }
-  .home-video-container video {
-    min-width: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    margin-top: -75px;
-    margin-left: 0px;
-    position: absolute;
+  .home-video-container video,
+  .home-video-container {
+    display: none;
   }
   .home-dashboard-p {
     width: 100vw !important;
@@ -378,6 +373,15 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .home-button-span.dg {
     min-width: calc(100vw - 42px);
+  }
+  .home-gif {
+    margin-top: -200px;
+    width: 100%;
+    position: relative;
+    z-index: -2;
+  }
+  .home-dashboard-main-h1 {
+    margin-top: -120px;
   }
   .mailchimp-input {
     width: 100%;
@@ -686,6 +690,9 @@ span#mobile-time-select.account-select.dropdown {
   }
   .ui.blue.button.games-button {
     width: 50%;
+  }
+  .ui.blue.button#mobile-button-hide {
+    display: none;
   }
 }
 
