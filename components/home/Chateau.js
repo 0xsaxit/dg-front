@@ -137,7 +137,7 @@ const Chateau = () => {
         <div>
           <div
             className="section-4-outter-header"
-            style={{ marginTop: '-90px' }}
+            style={{ marginTop: '-120px' }}
           >
             <div
               className="home-section-4-header"
@@ -455,7 +455,7 @@ const Chateau = () => {
             <div className="home-section-2 inner">
               <h1
                 className="home-dashboard-h1"
-                style={{ marginBottom: '-12px' }}
+                style={{ marginBottom: '-12px', maxWidth: '600px' }}
               >
                 The Metaverse is the next frontier
               </h1>

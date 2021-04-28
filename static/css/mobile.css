@@ -43,18 +43,16 @@
   }
   .ui.blue.button.metamask-mobile-button {
     background-color: #2085f4;
-    position: relative;
     background-color: #2085f4 !important;
     color: white;
+    font-size: 14px;
     font-weight: 600;
-    margin-top: 18px;
-    padding-top: 8px;
-    min-width: 150px !important;
-    padding-left: 0px;
-    padding-right: 0px;
-    height: 27px;
+    margin-top: 14px;
+    min-width: 130px !important;
+    padding: 0px;
+    height: 34px;
     letter-spacing: 0.5px;
-    border-radius: 4px;
+    border-radius: 8px;
     margin-right: 30px !important;
   }
 }
