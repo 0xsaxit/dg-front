@@ -376,14 +376,14 @@ const MenuTop = (props) => {
           <Link href="/account">
             <span className="menu-account-info">
               <p className={menuStyle[1]} id="add-funds-mobile-padding">
-                Account
+                ACCOUNT
               </p>
 
               <span className="menu-avatar-background" id="add-funds-mobile">
                 <span className="mobile-display-none-name">
                   {state.userInfo.name === null ||
                   state.userInfo.name === '' ? (
-                    <p className={menuStyle[1]} style={{ marginTop: '-1px' }}>
+                    <p className={menuStyle[1]} style={{ marginTop: '-1px', textTransform: 'uppercase' }}>
                       {state.userAddress.substr(0, 4) +
                         '...' +
                         state.userAddress.substr(-4)}
