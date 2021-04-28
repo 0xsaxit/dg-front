@@ -135,9 +135,9 @@ const Chateau = () => {
                 </Button>
               </span>
             )}
-          {/*<p className="scroll-down-icon">
+          <p className="scroll-down-icon">
             <Icon name="chevron down" />
-          </p>*/}
+          </p>
         </div>
       </Aux>
     );
