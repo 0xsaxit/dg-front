@@ -135,22 +135,37 @@ const ButtonConnect = () => {
             target="_blank"
             className={menuStyle[0]}
             id="need-help-text"
+            style={{ color: 'rgba(255, 255, 255)' }}
           >
             Need help?
           </a>
           <Button
-            content="CONNECT METAMASK"
             color="blue"
             className="metamask-button"
             onClick={() => openMetaMask()}
-          />
+          >
+            <span>
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png"
+                style={{ height: '14px', paddingRight: '12px', marginBottom: '-2px' }} 
+              />
+              Connect Metamask
+            </span>
+          </Button>
           <Button
-            content="CONNECT"
             color="blue"
             className="metamask-mobile-button"
             id="balances-padding-correct"
             onClick={() => openMetaMask()}
-          />
+          >
+            <span>
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png"
+                style={{ height: '14px', paddingRight: '12px', marginBottom: '-2px'  }} 
+              />
+              Connect
+            </span>
+          </Button>
         </span>
       ) : null}
     </Aux>

@@ -99,7 +99,8 @@ const ButtonPlayNow = () => {
     <Aux>
       {metamaskEnabled ? (
         <Button
-          content="PLAY NOW"
+          id="mobile-button-hide"
+          content="Play Now"
           color="blue"
           className="play-button verify"
           style={{ padding: '0 0 0 0' }}

@@ -13,6 +13,7 @@ function DGBalances() {
 
   // define local variables
   const [pointerContract, setPointerContract] = useState({});
+  const [pointerContractNew, setPointerContractNew] = useState({});
   const [stakingContractPool1, setStakingContractPool1] = useState({});
   const [stakingContractPool2, setStakingContractPool2] = useState({});
   const [stakingContractUniswap, setStakingContractUniswap] = useState({});
@@ -46,6 +47,12 @@ function DGBalances() {
         // this is for mining DG
         const pointerContract = await Transactions.pointerContract(maticWeb3);
         setPointerContract(pointerContract);
+
+        // this is for affiliates
+        const pointerContractNew = await Transactions.pointerContractNew(
+          maticWeb3
+        );
+        setPointerContractNew(pointerContractNew);
 
         // set up dg token contract (same for both pools)
         const DGTokenContract = await Transactions.DGTokenContract(web3);
@@ -286,6 +293,10 @@ function DGBalances() {
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
+      console.log('????');
+      const BALANCE_AFFILIATES = await getAffiliateBalances();
+      console.log(BALANCE_AFFILIATES);
+
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
         BALANCE_BP_DG_2: BALANCE_BP_DG_2,
@@ -305,6 +316,7 @@ function DGBalances() {
         CEO_MANA: CEO_MANA,
         CEO_DAI: CEO_DAI,
         BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
+        BALANCE_AFFILIATES: BALANCE_AFFILIATES,
       };
     } catch (error) {
       console.log('Token balances error: ' + error);
@@ -337,6 +349,43 @@ function DGBalances() {
       return balanceAdjusted;
     } catch (error) {
       console.log('No DG keeper balance found: ' + error);
+    }
+  }
+
+  // get user's affiliate balances
+  async function getAffiliateBalances() {
+    try {
+      const amountMana = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+          0,
+          50
+        )
+        .call();
+
+      const amountDai = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+          0,
+          50
+        )
+        .call();
+
+      const amountUsdt = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+          0,
+          50
+        )
+        .call();
+
+
+      return [amountMana, amountDai, amountUsdt];
+    } catch (error) {
+      console.log('Affiliate array not found: ' + error);
     }
   }
 

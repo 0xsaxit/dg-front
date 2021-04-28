@@ -53,7 +53,7 @@ const Chateau = () => {
       <div className="home-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/q_auto/v1613592503/DG_Background_video_kfiogn.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619567725/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -77,60 +77,65 @@ const Chateau = () => {
               data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
             />
           </div>
-          <p className="featured-casino-text">DECENTRAL GAMES</p>
+          <img 
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
+            className="home-gif"
+          />
           <h1
             className="home-dashboard-main-h1"
-            style={{ marginBottom: '-12px' }}
+            style={{ marginBottom: '-32px' }}
           >
-            Be The House
+            Hit the tables in the DG Atari Casino
           </h1>
           <span className="home-button-span">
+          </span>
+          <p className="home-dashboard-p centered">
+            Enjoy a Dillon Francis live set. Complete for over $20,000 USD in prizes. Grab a free wearable NFT. 
+          </p>
+            <Button
+              color="blue"
+              className="play-now-button-demo"
+              href="https://www.youtube.com/embed/1NxYpUsxhC0"
+              target="_blank"
+            >
+              Demo
+            </Button>
             {state.userStatus === 0 ? (
-              <span>
-                <ButtonPlayNow />
-                <ModalVideo />
-              </span>
-            ) : (
-              <Button
-                color="blue"
-                className="play-button"
-                href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}${utm}`}
-                target="_blank"
-              >
-                PLAY NOW
-              </Button>
-            )}
-            <span>
-              {state.userStatus < 4 ? (
+              <span className="mobile-center-span">
                 <Button
                   color="blue"
-                  className="how-to-button"
-                  onClick={() =>
-                    introJs()
-                      .setOptions({
-                        showBullets: false,
-                      })
-                      .start()
-                  }
+                  className="earn-dg-button"
+                  id="mobile-button-hide"
+                  href="https://www.youtube.com/embed/1NxYpUsxhC0"
+                  target="_blank"
+                  style={{ marginRight: '16px' }}
                 >
-                  GET STARTED
+                  Demo
                 </Button>
-              ) : (
+                <ButtonPlayNow />
+              </span>
+            ) : (
+              <span className="mobile-center-span">
                 <Button
                   color="blue"
                   className="earn-dg-button"
                   href="https://docs.decentral.games/getting-started/play-to-mine"
                   target="_blank"
                 >
-                  EARN $DG
+                  Learn More
                 </Button>
-              )}
-            </span>
-          </span>
-          <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
-            By owning $DG, the first-ever metaverse casino is now yours. Vote on
-            treasury management, economic policy, and new game development.
-          </p>
+                <Button
+                  color="blue"
+                  className="play-button"
+                  href="https://play.decentraland.org/?position=-96%2C110"
+                  target="_blank"
+                  id="mobile-button-hide"
+                  style={{ marginLeft: '16px' }}
+                >
+                  Play Now
+                </Button>
+              </span>
+            )}
           <p className="scroll-down-icon">
             <Icon name="chevron down" />
           </p>
@@ -145,7 +150,7 @@ const Chateau = () => {
         <div>
           <div
             className="section-4-outter-header"
-            style={{ marginTop: '-90px' }}
+            style={{ marginTop: '-120px' }}
           >
             <div
               className="home-section-4-header"
@@ -160,17 +165,21 @@ const Chateau = () => {
                 </h1>
                 <span className="home-button-span ecosystem">
                   <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
-                    <Button color="blue" className="play-button ecosystem">
-                      ANNOUNCEMENT
+                    <Button
+                      color="blue" 
+                      className="announcement"
+                      href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                    >
+                      Read more
                     </Button>
                   </Link>
                   <Button
                     color="blue"
-                    className="roadmap-button ecosystem"
+                    className="docs"
                     target="_blank"
                     href="https://docs.decentral.games/ecosystem"
                   >
-                    READ DOCS
+                    Docs
                   </Button>
                 </span>
               </span>
@@ -207,9 +216,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -248,9 +256,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -289,9 +296,8 @@ const Chateau = () => {
 
                       <Divider
                         style={{
-                          margin: '10px 0px 15px 0px',
-                          width: 'calc(100% + 60px)',
-                          marginLeft: '-30px',
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
                         }}
                       />
 
@@ -336,20 +342,24 @@ const Chateau = () => {
               </h1>
               <span className="home-button-span">
                 <Link href="/account">
-                  <Button color="blue" className="play-button deposit">
-                    DEPOSIT CRYPTO
+                  <Button 
+                    color="blue" 
+                    className="deposit"
+                    href="/account"
+                  >
+                    Deposit
                   </Button>
                 </Link>
                 <Button
                   color="blue"
-                  className="metamask-how-button"
+                  className="metamask"
                   href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                   target="_blank"
                 >
-                  METAMASK
+                  Metamask
                 </Button>
               </span>
-              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              <p className="home-dashboard-p">
                 Play blackjack, roulette, slots, and backgammon with MANA or
                 DAI. Enjoy $DG gameplay mining rewards on all bets.
               </p>
@@ -408,24 +418,24 @@ const Chateau = () => {
                   className="home-footer-h1 avatars"
                   style={{ marginBottom: '0px' }}
                 >
-                  Learn more about the Decentral Games ecosystem
+                  Learn more about our ecosystem
                 </h1>
                 <span className="home-button-span avatars">
                   <Button
                     color="blue"
-                    className="play-button avatars"
+                    className="partners"
                     href="https://docs.decentral.games/info/partners"
                     target="_blank"
                   >
-                    PARTNERS
+                    Partners
                   </Button>
                   <Button
                     color="blue"
-                    className="roadmap-button avatars"
+                    className="roadmap"
                     href="https://docs.decentral.games/info/roadmap"
                     target="_blank"
                   >
-                    ROADMAP
+                    Roadmap
                   </Button>
                 </span>
                 <p
@@ -451,34 +461,37 @@ const Chateau = () => {
       <Aux>
         <Parallax
           blur={0}
-          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/tominoya_v1w0zk.jpg"
+          bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1619567714/image_icgve3.png"
           strength={100}
         >
           <div className="home-section-2-outter">
             <div className="home-section-2 inner">
               <h1
                 className="home-dashboard-h1"
-                style={{ marginBottom: '-12px' }}
+                style={{ marginBottom: '-12px', maxWidth: '600px' }}
               >
                 The Metaverse is the next frontier
               </h1>
               <span className="home-button-span">
                 <Button
                   color="blue"
-                  className="play-button"
-                  href={`https://play.decentraland.org/?position=-119%2C133&realm=${realm}`}
-                  id="play-now-button-home"
+                  className="hop"
+                  href="https://play.decentraland.org/?position=-96%2C110"
                   target="_blank"
                 >
-                  HOP IN
+                  Hop In
                 </Button>
                 <Link href="/games/casinos">
-                  <Button color="blue" className="casinos-button">
-                    OUR CASINOS
+                  <Button 
+                    color="blue" 
+                    className="casinos"
+                    href="/games/casinos"
+                  >
+                    Casinos
                   </Button>
                 </Link>
               </span>
-              <p className="home-dashboard-p" style={{ marginTop: '18px' }}>
+              <p className="home-dashboard-p">
                 The metaverse is poised to explode in 2021. 3D virtual
                 blackjack, roulette, and poker accessible from anywhere in the
                 world will change online gaming forever.
@@ -600,12 +613,12 @@ const Chateau = () => {
               </p>
               <Button
                 color="blue"
-                className="play-button"
+                className="touch"
                 href="https://decentral.games/discord"
                 target="_blank"
                 style={{ marginTop: '9px' }}
               >
-                GET IN TOUCH
+                Contact
               </Button>
             </span>
 

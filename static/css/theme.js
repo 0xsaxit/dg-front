@@ -1,4 +1,4 @@
-export const lightTheme = {
+export const darkTheme = {
   body: '#f9fbfd',
   text: 'black',
   menuText: 'rgba(92, 95, 97, 1)',
@@ -28,8 +28,8 @@ export const lightTheme = {
   leaderboardSelect: 'rgb(229, 232, 235)',
 }
 
-export const darkTheme = {
-  body: 'rgb(8, 10, 12)',
+export const lightTheme = {
+  body: 'rgb(0, 0, 0)',
   text: 'rgba(255, 255, 255, .87)',
   menuText: 'rgba(255, 255, 255, .55)',
   homeText: 'white',
@@ -47,7 +47,7 @@ export const darkTheme = {
   homeMenuColor: '#191919',
 	homeDivider: '1px solid #120d06',
   input: 'rgb(8, 10, 12)',
-  loader: 'rgb(8, 10, 12)',
+  loader: 'black',
   zoom: '150em solid rgb(8, 10, 12)',
   modal: 'rgb(21, 24, 28)',
   modalCard: 'rgb(8, 10, 12)',

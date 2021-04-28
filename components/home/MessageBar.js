@@ -64,13 +64,13 @@ const MessageBar = () => {
       setMessage('Please use Brave, Chrome or Firefox to play games');
     } else if (!state.networkID && !isMobile) {
       setMessage(
-        'Please connect your wallet to play, for help, click "Get Started"'
+        'Please connect your wallet to play'
       );
     } else if (!state.networkID && isMobile) {
       setMessage('Please connect your wallet on desktop to play');
     } else if (!state.userStatus && !isMobile) {
       setMessage(
-        'Please connect your wallet to play, for help, click "Get Started"'
+        'Please connect your wallet to play'
       );
     } else if (!state.userStatus && isMobile) {
       setMessage('Please connect your wallet on desktop to play');

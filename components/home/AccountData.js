@@ -68,9 +68,9 @@ const AccountData = (props) => {
                   display: 'flex',
                   marginTop: '-18px',
                 }}
-              /> 
-              <a 
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
+              />
+              <a
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                 target="_blank"
                 className="avatar-edit-circle"
               >
@@ -93,23 +93,9 @@ const AccountData = (props) => {
             style={{
               display: 'flex',
               justifyContent: 'flex-end',
-              margin: '-123px 0px 90px 0px',
+              margin: '-78px 0px 90px 0px',
             }}
           >
-            <Popup
-              position="top center"
-              className="account-popup"
-              onClick={() => introJs().start()}
-              trigger={
-                <span className="account-icon-hover">
-                  <Icon name="help circle" className="submenu-icon" />
-                </span>
-              }
-            >
-              <div>
-                <p className="earned-text">COMING SOON</p>
-              </div>
-            </Popup>
           </span>
         </div>
 
@@ -178,7 +164,18 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              <ModalAffiliates />
+
+              {/*{dataType === 'referrals' ? (
+                <span className="account-hover active">
+                  <b>REFERRALS</b>
+                </span>
+              ) : (
+                <Link href="/account/referrals">
+                  <span className="account-hover">
+                    <b>REFERRALS</b>
+                  </span>
+                </Link>
+              )}*/}
             </span>
           </div>
         </div>

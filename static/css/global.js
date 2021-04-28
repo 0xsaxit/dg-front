@@ -50,14 +50,14 @@ export const GlobalStyles = createGlobalStyle`
   div.divider.text,
   .more-text,
   .spanbox,
-  .ui.input>input,
   .matic-header-text,
   .menu-info-close,
   .mailchimp-close,
   .hljs,
   .mailchimp-other-inner-p.subtext,
   .ui.checkbox+label, 
-  .ui.checkbox label {
+  .ui.checkbox label,
+  .nft-other-h3 {
     color: ${({ theme }) => theme.text} !important;
   }
 
@@ -110,10 +110,9 @@ export const GlobalStyles = createGlobalStyle`
   .hljs,
   code strong, kbd, samp,
   #airdrop-number-1,
-  #airdrop-number-2 {
+  #airdrop-number-2,
+  .post-info.featured {
     background: ${({ theme }) => theme.card};
-    border: ${({ theme }) => theme.cardBorder};
-    box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
   .poap-pic {
@@ -142,10 +141,9 @@ export const GlobalStyles = createGlobalStyle`
   .ui.modal,
   .matic-overlay,
   .mailchimp-outter-container {
-    background: ${({ theme }) => theme.card};
-    border: ${({ theme }) => theme.cardBorder};
+    background: ${({ theme }) => theme.body};
     box-shadow: none !important;  
-    border-radius: 4px !important;
+    border-radius: 8px !important;
   }
 
   .ui.bottom.right.popup,
@@ -161,9 +159,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .menu-info-container {
-    background: ${({ theme }) => theme.card};
-    border: ${({ theme }) => theme.cardBorder};
-    box-shadow: ${({ theme }) => theme.boxShadow} !important; 
+    background: ${({ theme }) => theme.card}; 
   }
 
   .matic-widget-button,
@@ -195,8 +191,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   i.info.circle.icon.dai-mana-icon {
-    color: black;
-    margin-top: -3px;
+    color: #ffffff99;
+    margin-top: -4px;
     font-size: 8px !important;
   }
 
@@ -265,18 +261,6 @@ export const GlobalStyles = createGlobalStyle`
 
   .gameplay-left-column {
     border-right: ${({ theme }) => theme.globalDividers};
-  }
-
-  table {
-    border: ${({ theme }) => theme.globalDividers} !important;
-    box-shadow: ${({ theme }) => theme.boxShadow}; 
-  }
-
-  .table-body-text-1.first,
-  .table-body-text-1,
-  .table-body-text-2, 
-  .table-body-text-2.games {
-    border-top: ${({ theme }) => theme.globalDividers};
   }
 
   .account-select.play,

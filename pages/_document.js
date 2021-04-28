@@ -10,9 +10,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>          
+        <Head>       
           <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="#000000" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
           <link
             rel="shortcut icon"
@@ -57,6 +57,12 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
             rel="stylesheet"
             disabled
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/MyFontsWebfontsKit.css"
+            rel="stylesheet" 
+            type="text/css" 
           />
         </Head>
 

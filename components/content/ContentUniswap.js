@@ -146,7 +146,7 @@ const ContentUniswap = (props) => {
       <Aux>
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-            <p className="earned-amount">Unclaimed</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>Unclaimed</p>
 
             <Divider className="divider-dg-top" />
 
@@ -213,11 +213,11 @@ const ContentUniswap = (props) => {
                   id="balances-padding-correct"
                   onClick={() => props.reward(stakingContractUniswap)}
                 >
-                  CLAIM UNISWAP $DG
+                  Claim
                 </Button>
               ) : (
                 <Button disabled className="DG-claim-button">
-                  CLAIM UNISWAP $DG
+                  Claim
                 </Button>
               )}
             </span>
@@ -231,7 +231,7 @@ const ContentUniswap = (props) => {
                 height: '100%',
               }}
             >
-              <p className="earned-amount">Liquidity Provision</p>
+              <p className="earned-amount" style={{ paddingTop: '2px' }}>Liquidity Provision</p>
 
               <Divider className="divider-dg-top" />
 
@@ -243,7 +243,7 @@ const ContentUniswap = (props) => {
                   alt="Decentral Games Coin Logo"
                 />
                 <span className="farming-pool-span">
-                  <p className="earned-text">Uniswap</p>
+                  <p className="welcome-text-top">Uniswap</p>
                   <p className="earned-amount">ETH-DG</p>
                 </span>
               </span>
@@ -274,7 +274,7 @@ const ContentUniswap = (props) => {
                   >
                     <p className="earned-text">APY</p>
                     {APYUniswap ? (
-                      <p className="earned-amount">{APYUniswap}%</p>
+                      <p className="earned-amount stat">{APYUniswap}%</p>
                     ) : (
                       <Loader
                         active
@@ -306,7 +306,7 @@ const ContentUniswap = (props) => {
                     }}
                   >
                     <p className="earned-text">% of pool</p>
-                    <p className="earned-amount">
+                    <p className="earned-amount stat">
                       {percentageUniswap ? (
                         <p className="earned-amount">{percentageUniswap}%</p>
                       ) : (
@@ -381,11 +381,11 @@ const ContentUniswap = (props) => {
                       setAmountInput('');
                     }}
                   >
-                    STAKE UNI-V2
+                    Stake Uni V2
                   </Button>
                 ) : (
                   <Button disabled className="DG-stake-button">
-                    STAKE UNI-V2
+                    Stake Uni v2
                   </Button>
                 )}
 
@@ -398,11 +398,11 @@ const ContentUniswap = (props) => {
                       setAmountInput('');
                     }}
                   >
-                    UNSTAKE UNI-V2
+                    Unstake Uni v2
                   </Button>
                 ) : (
                   <Button disabled className="DG-stake-button">
-                    UNSTAKE UNI-V2
+                    Unstake Uni v2
                   </Button>
                 )}
               </span>

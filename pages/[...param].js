@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
-import Farming from '../components/home/Farming';
+import AccountData from '../components/home/AccountData';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
@@ -16,6 +16,7 @@ const Wildcard = () => {
   // define local variables
   const [affiliateAddress, setAffiliateAddress] = useState(false);
   const [isErrorMessage, setIsErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
 
@@ -36,6 +37,7 @@ const Wildcard = () => {
         });
       }
     }
+    setIsLoading(false);
   }, [router]);
 
   useEffect(() => {
@@ -51,20 +53,19 @@ const Wildcard = () => {
       {affiliateAddress ? (
         <Aux>
           <Header
-            title={Global.CONSTANTS.TITLE + ' | $DG'}
+            title={Global.CONSTANTS.TITLE + ' | Account | Balances'}
             description={Global.CONSTANTS.DESCRIPTION}
             image={Images.SOCIAL_SHARE}
           />
 
-          {isErrorMessage ? (
-            <div
-              className="account-other-inner-p"
-              style={{ paddingTop: '20px' }}
-            >
-              You must log in with Metamask to view this page
+          {isLoading === true ? (
+            <Spinner background={1} />
+          ) : isErrorMessage === true ? (
+            <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+              You must connect your wallet to view this page
             </div>
           ) : (
-            <Farming DGState={'governance'} />
+            <AccountData dataType={'balances'} />
           )}
         </Aux>
       ) : (

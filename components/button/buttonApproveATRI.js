@@ -169,7 +169,7 @@ function ButtonApproveATRI() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE ATRI
+      Enable ATRI
     </Button>
   );
 }

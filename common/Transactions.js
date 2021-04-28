@@ -1,5 +1,6 @@
 import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
 import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
+import ABI_DG_POINTER_NEW from '../components/ABI/ABIDGPointerNew';
 import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
@@ -31,7 +32,7 @@ async function getActiveStatus(userAddress, web3Default) {
   }
 }
 
-// set pointer contract instance
+// set pointer contract instances
 async function pointerContract(web3Default) {
   const DGPointerContract = new web3Default.eth.Contract(
     ABI_DG_POINTER,
@@ -39,6 +40,15 @@ async function pointerContract(web3Default) {
   );
 
   return DGPointerContract;
+}
+
+async function pointerContractNew(web3Default) {
+  const DGPointerContractNew = new web3Default.eth.Contract(
+    ABI_DG_POINTER_NEW,
+    Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW
+  );
+
+  return DGPointerContractNew;
 }
 
 // set DG main contract instance
@@ -181,6 +191,7 @@ export default {
   treasuryContract,
   getActiveStatus,
   pointerContract,
+  pointerContractNew,
   DGTokenContract,
   stakingContractGovernance,
   stakingContractPool1,

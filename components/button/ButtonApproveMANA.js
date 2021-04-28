@@ -169,7 +169,7 @@ function ButtonApproveMANA() {
       id="balances-padding-correct"
       onClick={() => metaTransaction()}
     >
-      ENABLE MANA
+      Enable MANA
     </Button>
   );
 }

@@ -22,6 +22,12 @@
   font-size: 18px !important; 
 }
 
+@media (min-width: 500px) {
+  .home-gif {
+    display: none;
+  }
+}
+
 @media (max-width: 599px) {
   .menu-info-to-hide {
     display: none;
@@ -43,18 +49,16 @@
   }
   .ui.blue.button.metamask-mobile-button {
     background-color: #2085f4;
-    position: relative;
     background-color: #2085f4 !important;
     color: white;
+    font-size: 14px;
     font-weight: 600;
-    margin-top: 18px;
-    padding-top: 8px;
-    min-width: 150px !important;
-    padding-left: 0px;
-    padding-right: 0px;
-    height: 27px;
+    margin-top: 14px;
+    min-width: 130px !important;
+    padding: 0px;
+    height: 34px;
     letter-spacing: 0.5px;
-    border-radius: 4px;
+    border-radius: 8px;
     margin-right: 30px !important;
   }
 }
@@ -188,6 +192,7 @@ div#dropdown-menu-items.item.right-menu-text {
 
 .ui.dropdown .menu,
 .ui.menu .dropdown.item .menu {
+  background: #15181c;
   border: 0px;
   box-shadow: none;
   padding-top: 0px;
@@ -338,19 +343,20 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   .dashboard-image-container,
   #mobile-casino-text,
-  video#myVideo.home-dashboard-video,
-  .home-video-container,
-  .home-video-container video {
+  video#myVideo.home-dashboard-video {
     display: none !important;
   }
   .home-dashboard-content {
     position: relative;
     height: 100vh;
-    padding-top: 33vh !important;
-    padding-right: 21px !important;
+    padding-top: 12vh !important;
+  }
+  .home-video-container video,
+  .home-video-container {
+    display: none;
   }
   .home-dashboard-p {
-    width: 100%;
+    width: 100vw !important;
   }
   div.ui.vertical.segment {
     top: 0px !important;
@@ -374,21 +380,17 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-button-span.dg {
     min-width: calc(100vw - 42px);
   }
+  .home-gif {
+    margin-top: -200px;
+    width: 100%;
+    position: relative;
+    z-index: -2;
+  }
+  .home-dashboard-main-h1 {
+    margin-top: -120px;
+  }
   .mailchimp-input {
     width: 100%;
-  }
-  .home-dashboard {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.5)
-      ),
-      url('https://res.cloudinary.com/dnzambf4m/image/upload/v1598490479/ezgif.com-optimize_1_fp44rx.gif');
-    background-position: 75% !important;
-    background-color: transparent;
-    background-size: cover !important;
-    height: 100vh !important;
-    width: 100vw;
   }
   .home-button-span {
     display: flex;
@@ -695,6 +697,9 @@ span#mobile-time-select.account-select.dropdown {
   .ui.blue.button.games-button {
     width: 50%;
   }
+  .ui.blue.button#mobile-button-hide {
+    display: none;
+  }
 }
 
 @media (max-width: 499px) {
@@ -735,16 +740,16 @@ span#mobile-time-select.account-select.dropdown {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid #2085f4;
     color: #2085f4;
-    margin-bottom: -2px;
-    margin-top: -3px;
-    height: 27px;
-    max-width: 66px !important;
-    min-width: 66px;
-    padding: 7px 6px 0px 6px;
+    line-height: 0px;
+    height: 24px;
+    max-width: 70px !important;
+    min-width: 70px;
+    padding-left: 6px;
+    padding-right: 6px;
     opacity: 100% !important;
-    margin-right: 0px !important;
   }
 }
+
 /* ----------------------------------------- */
 /*           ACCOUNT BALANCES CSS            */
 /* ----------------------------------------- */
@@ -792,6 +797,42 @@ span#mobile-time-select.account-select.dropdown {
 /*            DG PAGE MOBILE CSS             */
 /* ----------------------------------------- */
 
+@media (max-width: 499px) {
+  i.info.circle.icon.dai-mana-icon.one {
+    margin-right: 15px;
+  }
+  i.info.circle.icon.dai-mana-icon.two {
+    margin-right: 45px;
+  }
+  i.info.circle.icon.dai-mana-icon.four {
+    margin-right: 40px;
+  }
+  i.info.circle.icon.dai-mana-icon.seven {
+    margin-right: 34px;
+  }
+}
+
+@media (max-width: 376px) {
+  i.info.circle.icon.dai-mana-icon.one {
+    margin-right: 33px;
+  }
+  i.info.circle.icon.dai-mana-icon.two {
+    margin-right: 4px;
+  }
+  i.info.circle.icon.dai-mana-icon.four {
+    margin-right: 0px;
+  }
+  i.info.circle.icon.dai-mana-icon.five {
+    margin-right: 24px;
+  }
+  i.info.circle.icon.dai-mana-icon.six {
+    margin-right: 9px;
+  }
+  i.info.circle.icon.dai-mana-icon.seven {
+    margin-right: 6px;
+  }
+}
+
 .referral-desktop,
 .referral-tablet,
 .referral-mobile {
@@ -832,6 +873,10 @@ span#mobile-time-select.account-select.dropdown {
     flex-direction: row !important;
     width: 100%;
   }
+  .mining-container-outter {
+    margin-top: 30px;
+    width: 100%;
+  }
   .DG-column.unclaimed,
   .DG-column.treasury-all,
   .DG-column.treasury-stats {
@@ -867,6 +912,9 @@ span#mobile-time-select.account-select.dropdown {
     justify-content: space-between;
     flex-direction: column !important;
     width: 100%;
+  }
+  .mining-container-inner {
+    flex-direction: column;
   }
   .DG-column.one,
   .DG-column-treasury.one {

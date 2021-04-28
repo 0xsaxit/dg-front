@@ -17,17 +17,17 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/roulette_whagvm.png',
     'games-pic',
     'Roulette',
-    'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows. There is also a variant with a floating wheel that displays the spin and outcome in addition to the table wheel.',
+    'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -37,7 +37,7 @@ const detailsGames = {
     'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
     '1 PLAYER',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/slots',
   ],
   Backgammon: [
@@ -47,7 +47,7 @@ const detailsGames = {
     'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
     '2 PLAYERS',
     'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=85%2C-20&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-96%2C110',
     'https://docs.decentral.games/games/backgammon',
   ],
 };
@@ -96,7 +96,7 @@ const detailsShop = {
 
 const detailsNFTs = {
   mink_coat: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_3_ywc2cq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed_y8ozak.png',
     'nft-pic',
     'DG Fur Mink',
     'LEGENDARY',
@@ -105,7 +105,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_top: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_2_lu5fwe.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566941/unnamed-1_anqn8z.png',
     'nft-pic',
     'DG Tracksuit Jacket',
     'LEGENDARY',
@@ -114,7 +114,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   tracksuit_bottom: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_4_meqpkq.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-2_eiirjc.png',
     'nft-pic',
     'DG Tracksuit Pants',
     'LEGENDARY',
@@ -123,7 +123,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   shades: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532141/x_7_hvlegg.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-3_ey4xpe.png',
     'nft-pic',
     'DG Flip Up Spectacles',
     'LEGENDARY',
@@ -132,7 +132,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   yeezies: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_5_lijr1y.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-4_ccrxbx.png',
     'nft-pic',
     'DG Deezys',
     'LEGENDARY',
@@ -141,7 +141,7 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   slides: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1601532142/x_6_iujl4o.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
     'nft-pic',
     'DG Slides',
     'LEGENDARY',
