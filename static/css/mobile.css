@@ -22,6 +22,12 @@
   font-size: 18px !important; 
 }
 
+@media (min-width: 500px) {
+  .home-gif {
+    display: none;
+  }
+}
+
 @media (max-width: 599px) {
   .menu-info-to-hide {
     display: none;
