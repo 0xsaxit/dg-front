@@ -38,7 +38,7 @@ code {
 
 b,
 strong {
-  font-weight: 800 !important;
+  font-weight: 800;
 }
 
 .hljs {

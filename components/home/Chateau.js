@@ -85,12 +85,12 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Play games and be the house
+            Hit the tables in the DG Atari Casino
           </h1>
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            Fully immersive blackjack and roulette. On-chain, non-custodial gameplay. Immediate payouts.
+            With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.
           </p>
             <Button
               color="blue"

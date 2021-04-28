@@ -43,7 +43,7 @@
   letter-spacing: 1.5px;
   padding: 3px 6px 3px 6px;
   margin-top: -3px !important;
-  border-radius: 8px;
+  border-radius: 4px;
   margin-right: 8px;
 }
 
@@ -69,12 +69,12 @@ a:hover {
   background-color: white;
   display: flex;
   flex-direction: row;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .post-info.featured {
   padding-top: 20px;
-  border-radius: 0px 8px 8px 0px;
+  border-radius: 0px 4px 4px 0px;
 }
 
 @media (max-width: 991px) {
@@ -121,13 +121,13 @@ a:hover {
   background-color: white;
   margin-bottom: 45px;
   transition: transform 0.25s ease 0s;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .featured-blog-container {
   margin-bottom: 45px;
   transition: transform 0.25s ease 0s;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .post-info {
@@ -270,7 +270,7 @@ img.logo-image {
 
 .blogdetail-page-container .post__content p,
 .summary_content {
-  font-family: 'Larsseit-Medium' !important;
+  font-family: Lato, sans-serif! important;
   -webkit-font-smoothing: antialiased !important;
   font-size: 21px;
   font-weight: normal;
@@ -279,7 +279,7 @@ img.logo-image {
 }
 
 .blogdetail-page-container .post__content li {
-  font-family: 'Larsseit-Regular' !important;
+  font-family: Lato, sans-serif! important;
   -webkit-font-smoothing: antialiased !important;
   margin-top: 12px;
   word-break: break-word;
