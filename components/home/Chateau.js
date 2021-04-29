@@ -122,7 +122,7 @@ const Chateau = () => {
                   href="https://docs.decentral.games/getting-started/play-to-mine"
                   target="_blank"
                 >
-                  Learn
+                  Learn More
                 </Button>
                 <Button
                   color="blue"
@@ -170,7 +170,7 @@ const Chateau = () => {
                       className="announcement"
                       href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                     >
-                      Read more
+                      Learn
                     </Button>
                   </Link>
                   <Button

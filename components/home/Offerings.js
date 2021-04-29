@@ -60,7 +60,7 @@ const detailsCasinos = {
     'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE, BLACKJACK, SLOTS',
     'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
-    'https://docs.decentral.games/casinos/tominoya',
+    'https://docs.decentral.games/operators/tominoya',
   ],
   Chateau: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1608510345/Screen_Shot_2020-12-20_at_4.16.40_PM_zjxuia_nuotdx.png',
@@ -69,7 +69,7 @@ const detailsCasinos = {
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'ROULETTE, BLACKJACK',
     'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
-    'https://docs.decentral.games/casinos/chateau-satoshi',
+    'https://docs.decentral.games/operators/chateau-satoshi',
   ],
 };
 
