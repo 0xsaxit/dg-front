@@ -14,12 +14,14 @@ function UserBalances() {
   // define local variables
   let web3 = {};
   let maticWeb3 = {};
+  let binance = {};
   let balances = [];
 
   useEffect(() => {
     if (state.userStatus >= 4) {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      binance = new Web3(window.BinanceChain);
 
       async function fetchData() {
         console.log('Fetching user balances: ' + state.refreshTokens);
@@ -134,6 +136,11 @@ function UserBalances() {
       '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
     );
 
+    const BUSDContract = new binance.eth.Contract(
+      ABI_ROOT_TOKEN,
+      '0xe9e7cea3dedca5984780bafc599bd69add087d56'
+    );
+
     try {
       const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
@@ -184,10 +191,17 @@ function UserBalances() {
         3
       );
 
+      const amountBNB_temp = await binance.eth.getBalance(state.userAddress) / 1000000000000000000;
+      const amountBNB = amountBNB_temp.toFixed(3);
+
+      const amountBUSD_temp = await BUSDContract.methods.balanceOf(state.userAddress).call() / 1000000000000000000;
+      const amountBUSD = amountBUSD_temp.toFixed(2);
+
       return [
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
         [0, amountUSDT, amountATRI, amountWETH],
+        [amountBNB, amountBUSD],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

@@ -3136,3 +3136,64 @@ a.ui.button.balances-top-button {
 .referral-modal {
   max-width: 630px;
 }
+
+/* ----------------------------------------- */
+/*                BINANCE CSS                */
+/* ----------------------------------------- */
+
+@media (min-width: 500px) {
+  .ui.blue.button.demo-button-binance {
+    display: none;
+  }
+}
+
+a.ui.blue.button.play-button-binance,
+.ui.blue.button.play-button-binance {
+  position: relative;
+  background-color: #F1CD50 !important;
+  color: black;
+  margin-top: 8px;
+  height: 48px !important;
+  width: 200px;
+  line-height: 20px;
+  font-size: 18px !important;
+}
+
+.menu-account-info.binance {
+  background: #F1CD50;
+}
+
+.menu-avatar-background.binance {
+  border: 1px solid #F1CD50;
+  background: #FFEDAE;
+}
+
+.right-menu-text.blog.binance {
+  color: black !important;
+}
+
+.menu-container-binance {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.binance-video-container {
+  background-position: top right; 
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden !important;
+}
+
+.binance-video-container video {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 82%;
+  transform: translateX(-82%);
+}
+
+
+

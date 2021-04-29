@@ -210,7 +210,7 @@ export const GlobalStyles = createGlobalStyle`
   div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu,
   .menu-container.blog,
   .dashboard-menu-container#top {
-    background: ${({ theme }) => theme.menuColor} !important;
+    background: ${({ theme }) => theme.menuColor};
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 

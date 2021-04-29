@@ -20,6 +20,7 @@ const MenuTop = (props) => {
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
+  const [binance, setBinance] = useState(false);
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -75,6 +76,14 @@ const MenuTop = (props) => {
       'dashboard-menu-container',
       'top',
     ];
+  } else if (router.pathname.includes('binance')) {
+    menuStyle = [
+      'mobile-menu-icon',
+      'right-menu-text blog',
+      'sidebar-menu-text blog',
+      'binance-menu-container',
+      'top',
+    ];
   } else {
     menuStyle = [
       'mobile-menu-icon',
@@ -84,16 +93,6 @@ const MenuTop = (props) => {
       '',
     ];
   }
-
-  // useEffect(() => {
-  //   const localTheme = window.localStorage.getItem('theme');
-
-  //   if (localTheme === 'dark') {
-  //     setDarkMode(true);
-  //   } else {
-  //     setDarkMode(false);
-  //   }
-  // });
 
   function menuOpen() {
     if (open == true) {
@@ -174,6 +173,14 @@ const MenuTop = (props) => {
       return '';
     }
   }
+
+  useEffect(() => {
+    if (router.pathname.includes('binance')) {
+      setBinance(true);
+    } else {
+      setBinance(false);
+    }
+  }, []);
 
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
@@ -371,25 +378,30 @@ const MenuTop = (props) => {
     } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
-          <ModalInfo />
+
+          {!binance ? (
+            <ModalInfo />
+          ) : (
+            null
+          )}
 
           <Link href="/account">
-            <span className="menu-account-info">
-              <p className={menuStyle[1]} id="add-funds-mobile-padding">
+            <span className={binance ? "menu-account-info binance" : "menu-account-info"}>
+              <p className={binance ? "right-menu-text blog binance" : "right-menu-text blog"} id="add-funds-mobile-padding">
                 ACCOUNT
               </p>
 
-              <span className="menu-avatar-background" id="add-funds-mobile">
+              <span className={binance ? "menu-avatar-background binance" : "menu-avatar-background"} id="add-funds-mobile">
                 <span className="mobile-display-none-name">
                   {state.userInfo.name === null ||
                   state.userInfo.name === '' ? (
-                    <p className={menuStyle[1]} style={{ marginTop: '-1px', textTransform: 'uppercase' }}>
+                    <p className={binance ? "right-menu-text blog binance" : "right-menu-text blog"} style={{ marginTop: '-1px', textTransform: 'uppercase' }}>
                       {state.userAddress.substr(0, 4) +
                         '...' +
                         state.userAddress.substr(-4)}
                     </p>
                   ) : (
-                    <p style={{ marginTop: '-1px', textTransform: 'uppercase' }} className={menuStyle[1]}>
+                    <p style={{ marginTop: '-1px', textTransform: 'uppercase' }} className={binance ? "right-menu-text blog binance" : "right-menu-text blog"}>
                       {state.userInfo.name}
                     </p>
                   )}
@@ -444,7 +456,7 @@ const MenuTop = (props) => {
               {balancesAndButtons()}
             </Menu>
           ) : (
-            <Menu className="menu-container-dark blog" icon="labeled">
+            <Menu className={binance ? "menu-container-binance" : "menu-container-dark blog"} icon="labeled">
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}
