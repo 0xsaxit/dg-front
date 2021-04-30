@@ -60,11 +60,22 @@ export default class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="./static/fonts/MyFontsWebfontsKit.css"
-            rel="stylesheet" 
-            type="text/css" 
+            href="./static/fonts/webFonts/LarsseitExtraBold/font.woff"
+            as="font"
+            crossOrigin=""
           />
-          <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100&display=swap" rel="stylesheet" />
+          <link
+            rel="preload"
+            href="./static/fonts/webFonts/LarsseitBold/font.woff"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/webFonts/LarsseitRegular/font.woff"
+            as="font"
+            crossOrigin=""
+          />
         </Head>
 
         <body>
