@@ -2106,11 +2106,7 @@ i.copy.icon.affiliate-icon:hover {
   border-radius: 4px;
   height: 48px;
   transition: none;
-}
-
-.ui.input.down input, .ui.input>input:active {
-  background: #15181c !important;
-  color: black !important;
+  color: white;
 }
 
 .ui.action.input > .button,

@@ -85,12 +85,12 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Hit the tables in the DG Atari Casino
+            Hit the tables in a metaverse Casino
           </h1>
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            Enjoy a Dillon Francis live set. Compete for over $20,000 USD in prizes. Grab a free wearable NFT. 
+            With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing. 
           </p>
             <Button
               color="blue"
@@ -309,9 +309,7 @@ const Chateau = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Stake $DG to govern the casino bankroll. When the
-                        treasury hits $500K USD stakers may vote to allocate
-                        funds.
+                        Stake $DG to govern the casino bankroll. Vote on treasury management, economic policy, and new game development
                       </p>
                     </div>
                   </a>
