@@ -7,7 +7,6 @@ import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
-import introJs from 'intro.js';
 import ButtonPlayNow from '../button/ButtonPlayNow';
 
 const Chateau = () => {
@@ -70,13 +69,6 @@ const Chateau = () => {
         {homeVideo()}
 
         <div className="home-dashboard-content">
-          <div style={{ maxWidth: '1400px' }}>
-            <div
-              className="account-intro"
-              data-title="Welcome! 👋"
-              data-intro="Connect your Metamask wallet on the right, then click 'add tokens' to go to the account page. For help depositing, click the '?' icon on account."
-            />
-          </div>
           <img 
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
             className="home-gif"
@@ -90,7 +82,7 @@ const Chateau = () => {
           <span className="home-button-span">
           </span>
           <p className="home-dashboard-p centered">
-            With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing. 
+            Non-custodial, provably fair slots, roulette, blackjack and poker playable with crypto in Decentraland.
           </p>
             <Button
               color="blue"
