@@ -11,7 +11,6 @@ import ModalAcceptDai from '../modal/ModalAcceptDai';
 import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
 import ModalAcceptATRI from '../modal/ModalAcceptATRI';
 import ModalAcceptWETH from '../modal/ModalAcceptWETH';
-import ModalAffiliates from '../modal/ModalAffiliates';
 import Aux from '../_Aux';
 
 const connext = {
@@ -48,6 +47,9 @@ const ContentAccount = (props) => {
   const [open, setOpen] = useState(false);
   const [link, setLink] = useState('');
   const [tempClass, setTempClass] = useState(true);
+  const [affiliate, setAffiliates] = useState([]);
+  const [affiliateMana, setAffiliateMana] = useState([]);
+  const [affiliateDai, setAffiliateDai] = useState([]);
 
   const onCopy = () => {
     navigator.clipboard.writeText(
@@ -144,6 +146,38 @@ const ContentAccount = (props) => {
       setWearables(wearables);
     })();
   }, []);
+
+  // get affiliate data
+  useEffect(() => {
+    (async function () {
+      let response = await Fetch.MANA_PRICE();
+      let json = await response.json();
+      const priceMANA = json.market_data.current_price.usd;
+
+      let affiliates = [];
+      let mana = [];
+      let dai = [];
+
+      let i;
+      for (i = 0; i < state.DGBalances.BALANCE_AFFILIATES.length; i++) {
+        affiliates.push(state.DGBalances.BALANCE_AFFILIATES[i][1]);
+      }
+
+      let j;
+      for (j = 0; j < state.DGBalances.BALANCE_AFFILIATES.length; j++) {
+        mana.push(state.DGBalances.BALANCE_AFFILIATES[i][1]);
+      }
+
+      let i;
+      for (i = 0; i < state.DGBalances.BALANCE_AFFILIATES.length; i++) {
+        affiliates.push(state.DGBalances.BALANCE_AFFILIATES[i][1]);
+      }
+
+    })();
+  }, []);
+
+  console.log('???');
+  console.log(state.DGBalances.BALANCE_AFFILIATES.length);
 
   // get user poaps
   useEffect(() => {
@@ -1022,9 +1056,7 @@ const ContentAccount = (props) => {
                 <Table.HeaderCell className="account-col-4">
                   Date
                 </Table.HeaderCell>
-                <Table.HeaderCell style={{ textAlign: 'right', paddingRight: '21px' }}>
-                  transactions
-                </Table.HeaderCell>
+                <Table.HeaderCell />
               </Table.Row>
             </Table.Header>
 
@@ -1347,7 +1379,8 @@ const ContentAccount = (props) => {
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Affiliate</Table.HeaderCell>
-                  <Table.HeaderCell>Amount</Table.HeaderCell>
+                  <Table.HeaderCell>Mana</Table.HeaderCell>
+                  <Table.HeaderCell>Dai</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -1372,14 +1405,7 @@ const ContentAccount = (props) => {
                         state.DGBalances.BALANCE_AFFILIATES[0][0] /
                         1000000000000000000
                       ).toFixed(3)}{' '}
-                      MANA
                     </span>
-                  </Table.Cell>
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell>
-                    {state.DGBalances.BALANCE_AFFILIATES[1][1]}
                   </Table.Cell>
                   <Table.Cell>
                     <span style={{ display: 'flex' }}>
@@ -1397,40 +1423,10 @@ const ContentAccount = (props) => {
                         state.DGBalances.BALANCE_AFFILIATES[1][0] /
                         1000000000000000000
                       ).toFixed(3)}{' '}
-                      DAI
-                    </span>
+                     </span>
                   </Table.Cell>
                 </Table.Row>
 
-                <Table.Row>
-                  <Table.Cell>
-                    {state.DGBalances.BALANCE_AFFILIATES[2][1]}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.USDT_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                      {(
-                        state.DGBalances.BALANCE_AFFILIATES[2][0] /
-                        1000000000000000000
-                      ).toFixed(3)}{' '}
-                      USDT
-                    </span>
-                  </Table.Cell>
-                </Table.Row>
-
-                <Table.Row>
-                  <Table.Cell></Table.Cell>
-                  <Table.Cell></Table.Cell>
-                </Table.Row>
               </Table.Body>
             </Table>
           </span>
