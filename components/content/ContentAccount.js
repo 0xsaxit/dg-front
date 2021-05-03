@@ -145,23 +145,6 @@ const ContentAccount = (props) => {
     })();
   }, []);
 
-  // get affiliate data
-  useEffect(() => {
-    (async function () {
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      const priceMANA = json.market_data.current_price.usd;
-
-      let affiliates = [];
-      let i;
-
-
-    })();
-  }, []);
-
-  console.log('???');
-  console.log(state.DGBalances.BALANCE_AFFILIATES.length);
-
   // get user poaps
   useEffect(() => {
     (async function () {
