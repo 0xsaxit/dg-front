@@ -147,38 +147,6 @@ const ContentAccount = (props) => {
     })();
   }, []);
 
-  // get affiliate data
-  useEffect(() => {
-    (async function () {
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      const priceMANA = json.market_data.current_price.usd;
-
-      let affiliates = [];
-      let mana = [];
-      let dai = [];
-
-      let i;
-      for (i = 0; i < state.DGBalances.BALANCE_AFFILIATES.length; i++) {
-        affiliates.push(state.DGBalances.BALANCE_AFFILIATES[i][1]);
-      }
-
-      let j;
-      for (j = 0; j < state.DGBalances.BALANCE_AFFILIATES.length; j++) {
-        mana.push(state.DGBalances.BALANCE_AFFILIATES[i][1]);
-      }
-
-      let i;
-      for (i = 0; i < state.DGBalances.BALANCE_AFFILIATES.length; i++) {
-        affiliates.push(state.DGBalances.BALANCE_AFFILIATES[i][1]);
-      }
-
-    })();
-  }, []);
-
-  console.log('???');
-  console.log(state.DGBalances.BALANCE_AFFILIATES.length);
-
   // get user poaps
   useEffect(() => {
     (async function () {
