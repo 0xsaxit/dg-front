@@ -13,6 +13,21 @@ a {
   -webkit-font-smoothing: antialiased !important;
 }
 
+@font-face {
+  font-family:  'Larsseit-ExtraBold';
+  src: url("/static/fonts/webFonts/LarsseitExtraBold/font.woff2");
+}
+
+@font-face {
+  font-family: 'Larsseit-Bold';
+  src: url("/static/fonts/webFonts/LarsseitBold/font.woff2");
+}
+
+@font-face {
+  font-family: 'Larsseit-Regular';
+  src: url("/static/fonts/webFonts/LarsseitRegular/font.woff2");
+}
+
 h1 {
   font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;

@@ -179,6 +179,30 @@ function UserBalances() {
         }
       }
 
+      // get user or contract token balance from MetaMask
+      async function balanceOfBNB() {
+        try {
+          const amount = await binance.eth.getBalance(state.userAddress);
+
+          return amount;
+        } catch (error) {
+          console.log('BNB balance get balance failed', error);
+        }
+      }
+
+      // get user or contract token balance from MetaMask
+      async function balanceOfBUSD(tokenContract, userOrContractAddress, units) {
+        try {
+          const amount = await BUSDContract.methods
+            .balanceOf(state.userAddress)
+            .call();
+
+          return amount;
+        } catch (error) {
+          console.log('BUSD balance get balance failed', error);
+        }
+      }
+
       const amountATRI = await balanceOfAtari(
         ATRIContractChild,
         state.userAddress,
@@ -191,17 +215,10 @@ function UserBalances() {
         3
       );
 
-      const amountBNB_temp = await binance.eth.getBalance(state.userAddress) / 1000000000000000000;
-      const amountBNB = amountBNB_temp.toFixed(3);
-
-      const amountBUSD_temp = await BUSDContract.methods.balanceOf(state.userAddress).call() / 1000000000000000000;
-      const amountBUSD = amountBUSD_temp.toFixed(2);
-
       return [
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
         [0, amountUSDT, amountATRI, amountWETH],
-        [amountBNB, amountBUSD],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

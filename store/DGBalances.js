@@ -293,8 +293,8 @@ function DGBalances() {
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
-      console.log('????');
-      const BALANCE_AFFILIATES = await getAffiliateBalances();
+      const BALANCE_AFFILIATES = await getAffiliateBalances(); // affiliate balances
+
       console.log(BALANCE_AFFILIATES);
 
       return {
@@ -373,21 +373,13 @@ function DGBalances() {
         )
         .call();
 
-      const amountUsdt = await pointerContractNew.methods
-        .profitPagination(
-          state.userAddress,
-          '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
-          0,
-          50
-        )
-        .call();
 
-
-      return [amountMana, amountDai, amountUsdt];
+      return [amountMana, amountDai];
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
   }
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

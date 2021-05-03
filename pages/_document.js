@@ -60,9 +60,21 @@ export default class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="./static/fonts/MyFontsWebfontsKit.css"
-            rel="stylesheet" 
-            type="text/css" 
+            href="./static/fonts/webFonts/LarsseitExtraBold/font.woff"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/webFonts/LarsseitBold/font.woff"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/webFonts/LarsseitRegular/font.woff"
+            as="font"
+            crossOrigin=""
           />
         </Head>
 
