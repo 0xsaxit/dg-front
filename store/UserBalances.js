@@ -21,7 +21,7 @@ function UserBalances() {
     if (state.userStatus >= 4) {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-      binance = new Web3(window.BinanceChain);
+      binance = new Web3('https://bsc-dataseed1.binance.org:443');
 
       async function fetchData() {
         console.log('Fetching user balances: ' + state.refreshTokens);
@@ -166,6 +166,19 @@ function UserBalances() {
         0
       ); 
 
+      async function balanceOfBNB() {
+        try {
+          const result = await binance.eth.getBalance(state.userAddress);
+          const amount = result / 1000000000000000000;
+
+          return amount
+        } catch (error) {
+          console.log('Get BNB balance failed', error);
+        }
+      }
+
+      const amountBNB = await balanceOfBNB();
+
       // get user or contract token balance from MetaMask
       async function balanceOfAtari(tokenContract, userOrContractAddress, units) {
         try {
@@ -176,30 +189,6 @@ function UserBalances() {
           return amount;
         } catch (error) {
           console.log('Get balance failed', error);
-        }
-      }
-
-      // get user or contract token balance from MetaMask
-      async function balanceOfBNB() {
-        try {
-          const amount = await binance.eth.getBalance(state.userAddress);
-
-          return amount;
-        } catch (error) {
-          console.log('BNB balance get balance failed', error);
-        }
-      }
-
-      // get user or contract token balance from MetaMask
-      async function balanceOfBUSD(tokenContract, userOrContractAddress, units) {
-        try {
-          const amount = await BUSDContract.methods
-            .balanceOf(state.userAddress)
-            .call();
-
-          return amount;
-        } catch (error) {
-          console.log('BUSD balance get balance failed', error);
         }
       }
 
@@ -219,6 +208,7 @@ function UserBalances() {
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
         [0, amountUSDT, amountATRI, amountWETH],
+        [0, amountBNB],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

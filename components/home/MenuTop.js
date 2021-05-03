@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Icon, Dropdown } from 'semantic-ui-react';
+import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
@@ -193,7 +193,11 @@ const MenuTop = (props) => {
   function DGLogo() {
     return (
       <Link href="/">
-        <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
+        {!binance ? (
+          <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
+        ) : (
+          <img id="menu-logo" alt="Decentral Games Logo" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png" />
+        )}
       </Link>
     );
   }
@@ -382,49 +386,84 @@ const MenuTop = (props) => {
           {!binance ? (
             <ModalInfo />
           ) : (
-            null
+            <div className="bnb-balance-box">
+              <p className="right-menu-text bnb">
+                {state.userBalances[3][1]} BNB{' '}
+              </p>             
+            </div>
           )}
 
-          <Link href="/account">
-            <span className={binance ? "menu-account-info binance" : "menu-account-info"}>
-              <p className={binance ? "right-menu-text blog binance" : "right-menu-text blog"} id="add-funds-mobile-padding">
-                ACCOUNT
-              </p>
-
-              <span className={binance ? "menu-avatar-background binance" : "menu-avatar-background"} id="add-funds-mobile">
-                <span className="mobile-display-none-name">
-                  {state.userInfo.name === null ||
-                  state.userInfo.name === '' ? (
-                    <p className={binance ? "right-menu-text blog binance" : "right-menu-text blog"} style={{ marginTop: '-1px', textTransform: 'uppercase' }}>
-                      {state.userAddress.substr(0, 4) +
-                        '...' +
-                        state.userAddress.substr(-4)}
-                    </p>
-                  ) : (
-                    <p style={{ marginTop: '-1px', textTransform: 'uppercase' }} className={binance ? "right-menu-text blog binance" : "right-menu-text blog"}>
+          <div>
+            <Popup
+              pinned
+              on='click'
+              position='bottom right'
+              className="account-popup"
+              trigger={
+                <Button
+                  className="account-button"
+                >
+                  <Icon className="account-icon" name="user circle outline" />
+                  My Account
+                </Button>
+              }
+            >
+              <span>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    className="avatar-picture-home"
+                    src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                  />
+                  <span style={{ display: 'flex', flexDirection: 'column' }}>
+                    <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
                       {state.userInfo.name}
-                    </p>
-                  )}
+                    </h4>
+                    <span style={{ display: 'flex' }}>
+                      <p className="account-address">
+                        {state.userAddress.substr(0, 8) +
+                        '...' +
+                        state.userAddress.substr(-8)}
+                      </p>
+                      <Icon 
+                        name="copy outline" 
+                        style={{ 
+                          color: 'rgba(225, 255, 255, 0.5)', 
+                          fontSize: '16px',
+                          padding: '2px 0px 0px 8px',
+                        }}
+                      />
+                    </span>
+                  </span>
                 </span>
-
-                <img
-                  className="avatar-picture"
-                  id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-                  style={{
-                    width: '18px',
-                    height: '18px',
-                    display: 'flex',
-                    border: '1px solid rgb(227, 232, 238)',
-                    marginTop: '4px',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                    backgroundColor: 'white',
-                  }}
-                />
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <Button className="casino-balance-button">
+                    <p className="casino-balance-text"> Casino Balance </p>
+                    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <p className="casino-balance-text two"> $49,822.01 </p>
+                      <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
+                    </span>
+                  </Button>
+                  <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px' }}>
+                    <Button className="account-deposit-button">
+                      Deposit
+                    </Button>
+                    <Button className="account-withdraw-button">
+                      Withdraw
+                    </Button>
+                  </span>
+                  <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
+                  <p className="account-dropdown-item"> My Items </p>
+                  <p className="account-dropdown-item"> Gameplay History </p>
+                  <p className="account-dropdown-item"> Referrals </p>
+                  <p className="account-dropdown-item"> Disconnect </p>
+                  <Button className="buy-dg-button">
+                    Buy $DG
+                  </Button>
+                </span>
               </span>
-            </span>
-          </Link>
+            </Popup>
+          </div>
+
 
           {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>

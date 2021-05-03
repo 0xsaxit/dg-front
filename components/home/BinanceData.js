@@ -64,7 +64,7 @@ const BinanceData = () => {
       <Aux>
         {homeVideo()}
 
-        <div className="home-dashboard-content" style={{ marginTop: '-90px' }}>
+        <div className="home-dashboard-content" style={{ marginTop: '-63px' }}>
           <img 
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
             className="home-gif"

@@ -28,6 +28,7 @@ const initialState = {
   userBalances: [
     [0, 0],
     [0, 0],
+    [0, 0, 0, 0],
     [0, 0],
   ],
   transactions: [{}, {}],
