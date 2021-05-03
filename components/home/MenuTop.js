@@ -415,9 +415,16 @@ const MenuTop = (props) => {
                     src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
                   />
                   <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                      {state.userInfo.name}
-                    </h4>
+                    {state.userInfo.name === null ||
+                    state.userInfo.name === '' ? (
+                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                        Unnamed
+                      </h4>
+                    ) : (
+                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                        {state.userInfo.name}
+                      </h4>
+                    )}
                     <span style={{ display: 'flex' }}>
                       <p className="account-address">
                         {state.userAddress.substr(0, 8) +
