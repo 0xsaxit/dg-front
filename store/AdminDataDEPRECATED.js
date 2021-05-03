@@ -7,7 +7,7 @@ function AdminData() {
   const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {
-    if (state.userStatus >= 4) {
+    if (state.userStatus === 16) {
       (async function () {
         const responseHistory = await Fetch.ADMIN_HISTORY(state.userAddress);
         const jsonHistory = await responseHistory.json();

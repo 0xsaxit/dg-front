@@ -1,74 +1,82 @@
-import { Table, Divider, Grid } from 'semantic-ui-react';
+import { Divider, Grid, Table } from 'semantic-ui-react';
+import ButtonPause from '../button/ButtonPause';
 import ModalFunds from '../modal/ModalFunds';
-import Global from '../Constants';
 import Images from '../../common/Images';
+import Aux from '../_Aux';
 
 const ContentAdmin = (props) => {
-  // define local variables
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
-  let game = '';
 
-  // function contentLabels() {
-  //   if (props.type === 'balances') {
-  //     return null;
-  //   } else if (props.type === 'machines') {
-  //     return (
-  //       <tbody>
-  //         <tr className="table-header">
-  //           <td className="table-header-text account">GAME</td>
-  //           <td className="table-header-text-1 bet">GLOBAL ID</td>
-  //           <td className="table-header-text-1 date">TOTAL BETS</td>
-  //           <td className="table-header-text-1">TOTAL PAYOUTS</td>
-  //           <td className="table-header-text-1 date">LAST SESSION</td>
-  //         </tr>
-  //       </tbody>
-  //     );
-  //   } else if (props.type === 'history') {
-  //     return (
-  //       <tbody>
-  //         <tr className="table-header">
-  //           <td className="table-header-text account">GAME</td>
-  //           <td className="table-header-text-1 bet">GLOBAL ID</td>
-  //           <td className="table-header-text-1">PLAYER</td>
-  //           <td className="table-header-text-1 date">BET</td>
-  //           <td className="table-header-text-1">PAYOUT</td>
-  //           <td className="table-header-text-1 date">TIMESTAMP</td>
-  //         </tr>
-  //       </tbody>
-  //     );
-  //   }
-  //   // } else if (props.type === 'nft') {
-  //   //   return (
-  //   //     <tbody>
-  //   //       <tr className="table-header">
-  //   //         <td className="table-header-text-1 bet">MACHINE IDs</td>
-  //   //         <td className="table-header-text-1 date">PARCEL LOCATION</td>
-  //   //         <td className="table-header-text-1">PARCEL VOLUME</td>
-  //   //         <td className="table-header-text-1 date">
-  //   //           REVENUE (C. MONTH) (L. MONTH) (TOTAL)
-  //   //         </td>
-  //   //       </tr>
-  //   //     </tbody>
-  //   //   );
-  //   // }
-  // }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   function contentBalances() {
     return (
-      <Grid className="admin-balances-container">
-        <Grid.Row>
-          {games.slice(0, 4).map((game, i) => {
-            return balanceBox(game, i);
-          })}
-        </Grid.Row>
-      </Grid>
+      <Aux>
+        <Grid className="account-connected-grid">
+          <Grid.Row>
+            <Grid.Column
+              floated="right"
+              width={16}
+              className="balances-column zero"
+            >
+              <span style={{ display: 'flex' }}>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className="welcome-text" style={{ paddingLeft: '0px' }}>
+                    Matic ETH balance
+                  </p>
+                  <p className="earn-text" style={{ paddingTop: '9px' }}>
+                    {props.ethBalance}
+                  </p>
+                </span>
+
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className="welcome-text">Treasury Balances</p>
+                  <p
+                    className="earn-text"
+                    style={{ paddingLeft: '21px', paddingTop: '9px' }}
+                  >
+                    {props.adminBalances[0][0]} DAI
+                  </p>
+                  <p
+                    className="earn-text"
+                    style={{ paddingLeft: '21px', marginTop: '-21px' }}
+                  >
+                    {props.adminBalances[0][1]} MANA
+                  </p>
+                </span>
+              </span>
+
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  marginTop: '-87px',
+                  marginBottom: '60px',
+                }}
+              >
+                <ButtonPause
+                  isPaused={props.isPaused}
+                  dataInterval={props.dataInterval}
+                />
+              </span>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+        <Grid className="admin-balances-container">
+          <Grid.Row>
+            {games.slice(0, 4).map((game, i) => {
+              return balanceBox(game, i);
+            })}
+          </Grid.Row>
+        </Grid>
+      </Aux>
     );
   }
 
   function balanceBox(game, i) {
     let number;
+
     if (i === 1) {
       number = 'one';
     } else if (i === 2) {
@@ -78,7 +86,7 @@ const ContentAdmin = (props) => {
     }
 
     return (
-      <span className={`admin-balances-column ${number}`}>
+      <span className={`admin-balances-column ${number}`} key={i}>
         <span className="name-purchase-span">
           <p
             className="welcome-text"
@@ -114,7 +122,7 @@ const ContentAdmin = (props) => {
             }}
           >
             <p className="welcome-text">dai</p>
-            <p className="account-name">{props.adminBalances[1][i][0]}</p>
+            <p className="account-name">{props.data[1][i][0]}</p>
           </span>
         </span>
 
@@ -138,7 +146,7 @@ const ContentAdmin = (props) => {
             }}
           >
             <p className="welcome-text">mana</p>
-            <p className="account-name">{props.adminBalances[1][i][1]}</p>
+            <p className="account-name">{props.data[1][i][1]}</p>
           </span>
         </span>
 
@@ -150,233 +158,59 @@ const ContentAdmin = (props) => {
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentMachines() {
+  ///////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////
+  function contentUsers() {
     return (
-      <tbody>
-        {props.dataPage.map((row, i) => {
-          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
-          switch (row_type) {
-            case '001':
-              game = 'Slots';
-              break;
-            case '002':
-              game = 'Roulette';
-              break;
-            case '003':
-              game = 'Backgammon';
-              break;
-            case '004':
-              game = 'Blackjack';
-              break;
-            case '005':
-              game = 'Poker';
-              break;
-            default:
-              game = 'Slots';
-          }
-          let bets = (
-            Number(row.totalBetAmount) / Global.CONSTANTS.FACTOR
-          ).toFixed(0);
-          let payouts = (
-            Number(row.totalAmountWin) / Global.CONSTANTS.FACTOR
-          ).toFixed(0);
-
-          // later we should provide the coinName property in the data
-          let coinName = 'MANA';
-          let coinImage = '';
-          if (coinName === 'PLAY') {
-            coinImage = Images.PLAY_CIRCLE;
-          } else if (coinName === 'MANA') {
-            coinImage = Images.ICON_MANA;
-          } else if (coinName === 'DAI') {
-            coinImage = Images.ICON_DAI;
-          }
-
-          let date = new Date(row.latestSessionDate);
-          let timestamp = date.toLocaleString();
-          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-
+      <Table.Body>
+        {props.data.map((row, i) => {
           return (
-            <tr className="table-body">
-              <td className="table-body-text-1 first">
-                <img
-                  style={{
-                    width: '21px',
-                    marginRight: '6px',
-                    verticalAlign: 'middle',
-                    marginTop: '-3px',
-                    borderRadius: '100%',
-                  }}
-                  src={coinImage}
-                />
-                <span style={{ textAlign: 'left', marginLeft: '10px' }}>
-                  {game}
-                </span>
-              </td>
-
-              <td className="table-body-text-1">{row.globalID}</td>
-
-              <td className="table-body-text-1">{bets} MANA</td>
-
-              <td className="table-body-text-1">{payouts} MANA</td>
-
-              <td className="table-body-text-1">{timestamp}</td>
-            </tr>
+            <Table.Row key={i}>
+              <Table.Cell>{row[0]}</Table.Cell>
+              <Table.Cell>{row[1]}</Table.Cell>
+              <Table.Cell>{row[2]}</Table.Cell>
+            </Table.Row>
           );
         })}
-      </tbody>
+
+        <Divider className="tab-divider" />
+
+        <Table.Row>
+          <Table.Cell>4: Normal Users</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>6: High Rollers</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>8: Whales</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>10: Hosts</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>12: Guests (Invitees)</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>14: General Team Members</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>16: Marketing Team</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>18: Developers</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>20: Admins</Table.Cell>
+        </Table.Row>
+      </Table.Body>
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentHistory() {
-    return (
-      <tbody>
-        {props.dataPage.map((row, i) => {
-          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
-          if (row.betAmount) {
-            switch (row_type) {
-              case '001':
-                game = 'Slots';
-                break;
-              case '002':
-                game = 'Roulette';
-                break;
-              case '003':
-                game = 'Backgammon';
-                break;
-              case '004':
-                game = 'Blackjack';
-                break;
-              case '005':
-                game = 'Poker';
-                break;
-              default:
-                game = 'Slots';
-            }
-            let amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-            let payout = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
-            let coinName = row.coinName;
-
-            let coinImage = '';
-            if (coinName === 'PLAY') {
-              coinImage = Images.PLAY_CIRCLE;
-            } else if (coinName === 'MANA') {
-              coinImage = Images.ICON_MANA;
-            } else if (coinName === 'DAI') {
-              coinImage = Images.ICON_DAI;
-            }
-
-            let date = new Date(row.createdAt);
-            let timestamp = date.toLocaleString();
-            timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-
-            return (
-              <tr className="table-body">
-                <td className="table-body-text-1 first">
-                  <img
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-3px',
-                      borderRadius: '100%',
-                    }}
-                    src={coinImage}
-                  />
-                  <span
-                    style={{
-                      textAlign: 'left',
-                      marginLeft: '10px',
-                    }}
-                  >
-                    {game}
-                  </span>
-                </td>
-
-                <td className="table-body-text-1">{row.globalID}</td>
-
-                <td className="table-body-text-1">
-                  <a
-                    style={{ color: '#2085f4' }}
-                    target="_blank"
-                    href={
-                      Global.CONSTANTS.MATIC_EXPLORER +
-                      `/address/${row.address}`
-                    }
-                  >
-                    {row.address.substr(0, 6) + '...' + row.address.substr(-4)}
-                  </a>
-                </td>
-
-                <td className="table-body-text-1">
-                  {amount} {coinName}
-                </td>
-
-                <td className="table-body-text-1">
-                  {payout} {coinName}
-                </td>
-
-                <td className="table-body-text-1">{timestamp}</td>
-              </tr>
-            );
-          }
-        })}
-      </tbody>
-    );
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // function contentNFTs() {
-  //   return (
-  //     <tbody>
-  //       {props.dataPage.map((row, i) => {
-  //         return (
-  //           <Table.Row>
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {row.machineIDs.map((machineID, j) =>
-  //                 j !== row.machineIDs.length - 1 ? machineID + ', ' : machineID
-  //               )}
-  //             </Table.Cell>
-
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {row.parcelLocation[0]}, {row.parcelLocation[1]},{' '}
-  //               {row.parcelLocation[2]}
-  //             </Table.Cell>
-
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {row.parcelRevenue[0]}, {row.parcelRevenue[1]},{' '}
-  //               {row.parcelRevenue[2]}
-  //             </Table.Cell>
-
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {parseFloat(row.parcelVolume[0]).toFixed(3)},{' '}
-  //               {parseFloat(row.parcelVolume[1]).toFixed(3)},{' '}
-  //               {parseFloat(row.parcelVolume[2]).toFixed(3)}
-  //             </Table.Cell>
-  //           </Table.Row>
-  //         );
-  //       })}
-  //     </tbody>
-  //   );
-  // }
-
-  // if (props.content === 'labels') {
-  //   return contentLabels();
   if (props.content === 'balances') {
     return contentBalances();
-  } else if (props.content === 'machines') {
-    return contentMachines();
-  } else if (props.content === 'history') {
-    return contentHistory();
+  } else if (props.content === 'users') {
+    return contentUsers();
   }
-  // } else if (props.content === 'nft') {
-  //   return contentNFTs();
-  // }
 };
 
 export default ContentAdmin;

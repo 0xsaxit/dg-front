@@ -6,7 +6,7 @@ import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
 function AdminBalances() {
-  // dispatch user's token balances to the Context API store
+  // dispatch worker ETH and treasury balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -15,7 +15,7 @@ function AdminBalances() {
   let balances = [];
 
   useEffect(() => {
-    if (state.whitelistedAdmin) {
+    if (state.userStatus === 16) {
       web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
@@ -40,7 +40,7 @@ function AdminBalances() {
 
       fetchData();
     }
-  }, [state.whitelistedAdmin, state.tokenPings]);
+  }, [state.userStatus, state.tokenPings]);
 
   // get worker address ETH balance on Matic Network
   async function getEthBalance() {

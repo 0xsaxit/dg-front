@@ -1,47 +1,37 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Table, Divider, Grid } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
 import Web3 from 'web3';
-// import Spinner from '../Spinner';
-import ButtonPause from '../button/ButtonPause';
+import Link from 'next/link';
 import ContentAdmin from '../content/ContentAdmin';
-// import Pagination from './Pagination';
-import Aux from '../_Aux';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 
-const Administration = () => {
+const Administration = (props) => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  // const dataHistory = state.adminHistory[0];
-  // const dataMachines = state.adminHistory[1];
 
   // define local variables
-  // const [maximumCount, setMaximumCount] = useState(0);
-  const [dataType, setDataType] = useState('balances');
-  // const [dataLength, setDataLength] = useState(0);
-  const [dataPage, setDataPage] = useState(true);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [dataPage, setDataPage] = useState('');
   const [isPaused, setIsPaused] = useState(false);
   const [parentContract, setParentContract] = useState({});
   const [instances, setInstances] = useState(false);
 
-  // useEffect(() => {
-  //   if (state.userStatus) {
-  //     const frameHeight = window.innerHeight;
-  //     setMaximumCount(Math.floor(frameHeight * 0.01575));
-  //   }
-  // }, [state.userStatus]);
+  const dataType = props.dataType;
 
-  // useEffect(() => {
-  //   const allTransactions = state.transactions[0].length;
-  //   const allParcelData = Object.keys(state.parcelDataAll).length;
-
-  //   if (allTransactions && allParcelData) {
-  //     setIsLoading(false);
-  //   }
-  // }, [state.transactions, state.parcelDataAll]);
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (props.dataType === 'balances') {
+      setDataPage(state.adminBalances);
+    } else if (props.dataType === 'users') {
+      setDataPage([
+        ['0x6ecf85221e1552b0592e82cbc2635097a3db273f', 'Chelep#273f', 4],
+        ['0x847b811535be2b81f353394c46634c35410106e1', 'Jack#06e1', 18],
+        ['0x1c183b78b4891b855c467e5866dad94a6a520eb5', 'adamsun#0eb5', 12],
+      ]);
+    }
+  }, [state.adminBalances]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -114,153 +104,45 @@ const Administration = () => {
   // helper functions
   function topLinks() {
     return (
-      <Aux>
-        <div className="account-other-tabs">
-          <Grid className="account-connected-grid">
-            <Grid.Row>
-              <Grid.Column
-                floated="right"
-                width={16}
-                className="balances-column zero"
-              >
-                <span style={{ display: 'flex' }}>
-                  <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p className="welcome-text" style={{ paddingLeft: '0px' }}>
-                      Matic ETH balance
-                    </p>
-                    <p className="earn-text" style={{ paddingTop: '9px' }}>
-                      {state.ethBalance}
-                    </p>
-                  </span>
-
-                  <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p className="welcome-text">Treasury Balances</p>
-                    <p
-                      className="earn-text"
-                      style={{ paddingLeft: '21px', paddingTop: '9px' }}
-                    >
-                      {state.adminBalances[0][0]} DAI
-                    </p>
-                    <p
-                      className="earn-text"
-                      style={{ paddingLeft: '21px', marginTop: '-21px' }}
-                    >
-                      {state.adminBalances[0][1]} MANA
-                    </p>
-                  </span>
-                </span>
-
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginTop: '-87px',
-                    marginBottom: '60px',
-                  }}
-                >
-                  <ButtonPause
-                    isPaused={isPaused}
-                    dataInterval={dataInterval}
-                  />
-                </span>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-
-          {/* <div style={{ marginLeft: '0px' }}>
-            <p className="account-other-p">
-              {dataType === 'balances' ? (
-                <b className="account-hover active">GAME BALANCES</b>
-              ) : (
-                <abbr
-                  className="account-hover"
-                  onClick={() => setUserData('balances', 1)}
-                >
+      <div className="account-other-tabs">
+        <div style={{ marginLeft: '0px' }}>
+          <p className="account-other-p">
+            {dataType === 'balances' ? (
+              <span className="account-hover active">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
                   GAME BALANCES
-                </abbr>
-              )}
+                </b>
+              </span>
+            ) : (
+              <Link href="/admin">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    GAME BALANCES
+                  </b>
+                </span>
+              </Link>
+            )}
 
-              {dataType === 'machines' ? (
-                <b className="account-hover active">MACHINE HISTORY</b>
-              ) : (
-                <abbr
-                  className="account-hover"
-                  onClick={() => setUserData('machines', 1)}
-                >
-                  MACHINE HISTORY
-                </abbr>
-              )}
-
-              {dataType === 'history' ? (
-                <b className="account-hover active">TRANSACTIONS</b>
-              ) : (
-                <abbr
-                  className="account-hover"
-                  onClick={() => setUserData('history', 1)}
-                >
-                  TRANSACTIONS
-                </abbr>
-              )} */}
-
-          {/* {dataType === 'nft' ? (
-                <b className="account-hover active">NFT HOLDERS</b>
-              ) : (
-                <abbr
-                  className="account-hover"
-                  onClick={() => setUserData('nft', 1)}
-                >
-                  NFT HOLDERS
-                </abbr>
-              )} */}
-          {/* </p>
-          </div> */}
+            {dataType === 'users' ? (
+              <span className="account-hover active">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                  USER STATUS LIST
+                </b>
+              </span>
+            ) : (
+              <Link href="/admin/users">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    USER STATUS LIST
+                  </b>
+                </span>
+              </Link>
+            )}
+          </p>
         </div>
 
-        {/* <Divider className="tab-divider" /> */}
-      </Aux>
-    );
-  }
-
-  // function setUserData(type, page) {
-  //   // if (!isLoading) {
-  //   let result = [];
-  //   const indexStart = (page - 1) * maximumCount;
-  //   const indexEnd = indexStart + maximumCount;
-  //   let dataLength = 0;
-
-  //   if (type === 'balances') {
-  //     result = true;
-  //     dataLength = 0;
-  //   } else if (type === 'history') {
-  //     result = dataHistory.slice(indexStart, indexEnd);
-  //     dataLength = dataHistory.length;
-  //   } else if (type === 'machines') {
-  //     result = dataMachines.slice(indexStart, indexEnd);
-  //     dataLength = dataMachines.length;
-  //   }
-  //   // } else if (type === 'nft') {
-  //   //   result = state.parcelDataAll.slice(indexStart, indexEnd);
-  //   //   dataLength = state.parcelDataAll.length;
-  //   // }
-
-  //   setDataType(type);
-  //   setDataPage(result);
-  //   setDataLength(dataLength);
-  //   setCurrentPage(page);
-  //   // }
-  // }
-
-  function noTxHistory() {
-    return (
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell colSpan={5}>
-            <div className="account-other-inner-p">
-              Please swith MetaMask to admin account
-            </div>
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
+        <Divider className="tab-divider" />
+      </div>
     );
   }
 
@@ -271,29 +153,19 @@ const Administration = () => {
           {topLinks()}
 
           <div id="tx-box-history-2">
-            {dataPage !== 'false' ? (
-              <table className="account-table">
-                {/* <ContentAdmin content={'labels'} type={dataType} /> */}
+            <table className="account-table">
+              {dataPage ? (
                 <ContentAdmin
                   content={dataType}
-                  dataPage={dataPage}
+                  data={dataPage}
+                  ethBalance={state.ethBalance}
                   adminBalances={state.adminBalances}
+                  isPaused={isPaused}
+                  dataInterval={dataInterval}
                 />
-              </table>
-            ) : (
-              noTxHistory()
-            )}
+              ) : null}
+            </table>
           </div>
-
-          {/* {dataType !== 'balances' ? (
-            <Pagination
-              currentPage={currentPage}
-              dataType={dataType}
-              dataLength={dataLength}
-              maximumCount={maximumCount}
-              setUserData={setUserData}
-            />
-          ) : null} */}
         </div>
       </div>
     </div>

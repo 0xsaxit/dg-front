@@ -293,9 +293,9 @@ function DGBalances() {
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
-      console.log('????');
+      // console.log('????');
       const BALANCE_AFFILIATES = await getAffiliateBalances();
-      console.log(BALANCE_AFFILIATES);
+      // console.log(BALANCE_AFFILIATES);
 
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
@@ -381,7 +381,6 @@ function DGBalances() {
           50
         )
         .call();
-
 
       return [amountMana, amountDai, amountUsdt];
     } catch (error) {

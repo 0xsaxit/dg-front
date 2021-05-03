@@ -34,7 +34,7 @@ const initialState = {
   txHash: '',
   tokenPings: 0,
   // parcelDataAll: {},
-  parcelDataUser: {},
+  // parcelDataUser: {},
   gameRecords: {},
   balancesOverlay: 0,
   networkID: 0,
@@ -89,9 +89,9 @@ const initialState = {
   updateInfo: true,
   stakeTime: 0,
   affiliateAddress: '',
-  toggleTheme: 'light',
-  whitelistedAdmin: false,
-  whitelistedIntel: false,
+  // toggleTheme: 'light',
+  // whitelistedAdmin: false,
+  // whitelistedIntel: false,
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
@@ -161,11 +161,11 @@ const reducer = (state, action) => {
     //     parcelDataAll: action.data,
     //   };
 
-    case 'parcel_data_user':
-      return {
-        ...state,
-        parcelDataUser: action.data,
-      };
+    // case 'parcel_data_user':
+    //   return {
+    //     ...state,
+    //     parcelDataUser: action.data,
+    //   };
 
     case 'update_records':
       return {
@@ -251,23 +251,23 @@ const reducer = (state, action) => {
         affiliateAddress: action.data,
       };
 
-    case 'toggle_theme':
-      return {
-        ...state,
-        theme: action.data,
-      };
+    // case 'toggle_theme':
+    //   return {
+    //     ...state,
+    //     theme: action.data,
+    //   };
 
-    case 'set_whitelisted_admin':
-      return {
-        ...state,
-        whitelistedAdmin: action.data,
-      };
+    // case 'set_whitelisted_admin':
+    //   return {
+    //     ...state,
+    //     whitelistedAdmin: action.data,
+    //   };
 
-    case 'set_whitelisted_intel':
-      return {
-        ...state,
-        whitelistedIntel: action.data,
-      };
+    // case 'set_whitelisted_intel':
+    //   return {
+    //     ...state,
+    //     whitelistedIntel: action.data,
+    //   };
 
     case 'set_manaLoading':
       return {

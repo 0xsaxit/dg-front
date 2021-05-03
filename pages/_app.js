@@ -12,7 +12,7 @@ import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
 // import BalancesEvents from '../store/BalancesEvents';
 import Transactions from '../store/Transactions';
-import ParcelData from '../store/ParcelData';
+// import ParcelData from '../store/ParcelData';
 import GameRecords from '../store/GameRecords';
 // import Location from '../store/Location';
 import ActiveStatus from '../store/ActiveStatus';
@@ -20,7 +20,7 @@ import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
 // import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
-import Whitelist from '../store/Whitelist';
+// import Whitelist from '../store/Whitelist';
 
 class Application extends App {
   render() {
@@ -37,13 +37,11 @@ class Application extends App {
         <UserStatus />
         <UserBalances />
         <Transactions />
-        <ParcelData />
         <GameRecords />
         <ActiveStatus />
         <UserInfo />
         <AdminBalances />
         <DGBalances />
-        <Whitelist />
 
         <Component {...pageProps} />
       </Provider>
