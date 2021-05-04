@@ -409,18 +409,17 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .menu-info-modal {
-  max-width: 400px !important;
-  border-radius: 4px !important;
-  margin-top: 48px !important;
+  max-width: 400px;
+  padding: 30px;
 }
 
 .menu-info-container {
-  margin: 0px 30px 0px 30px;
-  border-radius: 4px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 
 .menu-info-inner-span {
-  background: black;
+  background: transparent;
   display: flex;
   justify-content: space-between;
   padding: 0px 12px 0px 12px;
@@ -450,7 +449,7 @@ a.menu-info-label-link:hover {
   font-weight: 700;
   letter-spacing: 0.5px;
   color: black;
-  padding-top: 2px;
+  padding-top: 0px;
 }
 
 .menu-info-close {
@@ -518,7 +517,7 @@ a.menu-info-label-link:hover {
 }
 
 .mailchimp-close {
-  background: rgb(0, 0, 0);
+  background: #1f1f1f;
   border-radius: 100%;
   padding: 8px 4px 8px 8px;
   cursor: pointer;
@@ -3228,22 +3227,22 @@ a.ui.blue.button.play-button-binance,
   width: 85px;
   height: 40px;
   margin-top: 16px;
-  background-color: #1F1F1F;
   border-radius: 16px;
   margin-right: 16px;
 }
 
 .ui.button.account-button {
   height: 40px;
-  margin-top: 16px;
+  margin-top: 12px;
   background-color: #1F1F1F;
   border-radius: 16px;
   color: white;
-  margin-right: 30px;
+  margin-right: 16px;
 }
 
 .right-menu-text.bnb {
-  line-height: 32px;
+  line-height: 0px;
+  padding-top: 1px;
 }
 
 img.avatar-picture-home {
@@ -3267,7 +3266,7 @@ img.avatar-picture-home {
   font-size: 18px;
   color: rgba(255, 255, 255, 0.5) !important;
   padding-left: 8px;
-  margin-top: -4px;
+  margin-top: -4px !important;
 }
 
 .ui.button.casino-balance-button {
@@ -3302,6 +3301,15 @@ img.avatar-picture-home {
   font-size: 16px;
 }
 
+.ui.button.modal-button {
+  height: 48px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #2085f4;
+  color: white;
+  font-size: 16px;
+}
+
 .ui.button.account-withdraw-button {
   height: 48px;
   width: 48.5%;
@@ -3319,11 +3327,29 @@ img.avatar-picture-home {
 }
 
 .ui.button.buy-dg-button {
-  height: 48px;
+  height: 64px;
   width: 100%;
   border-radius: 12px;
   background: #F1CD50;
   color: black;
   font-size: 16px; 
   margin-top: 24px;
+}
+
+.ui.button.get-dg-button-binance {
+  height: 48px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #F1CD50;
+  color: black;
+  font-size: 16px;
+}
+
+.ui.button.get-dg-button-binance-two {
+  height: 48px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  font-size: 16px;
 }

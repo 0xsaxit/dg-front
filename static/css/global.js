@@ -140,9 +140,9 @@ export const GlobalStyles = createGlobalStyle`
   .ui.modal,
   .matic-overlay,
   .mailchimp-outter-container {
-    background: ${({ theme }) => theme.body};
+    background: ${({ theme }) => theme.card};
     box-shadow: none !important;  
-    border-radius: 8px !important;
+    border-radius: 24px !important;
   }
 
   .ui.bottom.right.popup,

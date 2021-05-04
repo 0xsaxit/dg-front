@@ -383,15 +383,7 @@ const MenuTop = (props) => {
       return (
         <span className="right-menu-items">
 
-          {!binance ? (
-            <ModalInfo />
-          ) : (
-            <div className="bnb-balance-box">
-              <p className="right-menu-text bnb">
-                {state.userBalances[3][1]} BNB{' '}
-              </p>             
-            </div>
-          )}
+          <ModalInfo />
 
           <div>
             <Popup
@@ -436,7 +428,7 @@ const MenuTop = (props) => {
                         style={{ 
                           color: 'rgba(225, 255, 255, 0.5)', 
                           fontSize: '16px',
-                          padding: '2px 0px 0px 8px',
+                          padding: '0px 0px 0px 8px',
                         }}
                       />
                     </span>
