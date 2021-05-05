@@ -373,6 +373,24 @@ function DGBalances() {
         )
         .call();
 
+      const wrappedResult = amountMana._players.map((address, index) => {
+        return [{
+          address,
+          profit: amountMana._profits[index]
+        }, {
+          address,
+          profit: amountDai._profits[index]
+        }, {
+          address,
+          profit: amountDai._profits[index]
+        }, {
+          address,
+          profit: amountDai._profits[index]
+        }, {
+          address,
+          profit: amountDai._profits[index]
+        }];
+      }).flat();
 
       return [amountMana, amountDai];
     } catch (error) {
