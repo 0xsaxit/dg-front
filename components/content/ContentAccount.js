@@ -1357,13 +1357,13 @@ const ContentAccount = (props) => {
               </Table.Header>
 
               <Table.Body>
-                {state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
+                {state.DGBalances.BALANCE_AFFILIATES.map((affiliate, affiliateIndex) => {
                   return (
-                    <Table.Row>
+                    <Table.Row key={`table_row_${affiliateIndex}`}>
                       <Table.Cell>{affiliate['address']}</Table.Cell>
                       {coins.map((coin, index) => {
                         return (
-                          <Table.Cell key={`table_cell_${index}`}>
+                          <Table.Cell key={`table_cell_${affiliateIndex}_${index}`}>
                             <span style={{ display: 'flex' }}>
                               <img
                                 src={Images[`${coin.toUpperCase()}_CIRCLE`]}
