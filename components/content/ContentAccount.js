@@ -1255,6 +1255,8 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentReferrals() {
+    const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
+    console.log('--------', state.DGBalances.BALANCE_AFFILIATES);
     return (
       <Aux>
         <div className="DG-liquidity-container top">
@@ -1289,7 +1291,7 @@ const ContentAccount = (props) => {
                   justifyContent: 'space-between',
                   border: '1px solid rgb(8, 10, 12)',
                   borderRadius: '8px',
-                  padding: '3px 6px 6px 6px',
+                  padding: '3px 6px 6px 6px'
                 }}
               >
                 <p className="referral-desktop"> https://decentral...</p>
@@ -1345,54 +1347,45 @@ const ContentAccount = (props) => {
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Affiliate</Table.HeaderCell>
-                  <Table.HeaderCell>Mana</Table.HeaderCell>
-                  <Table.HeaderCell>Dai</Table.HeaderCell>
+                  {coins.map((coin, index) => {
+                    return (
+                      <Table.HeaderCell key={`table_header_${index}`}>
+                        {coin.charAt(0).toUpperCase() + coin.slice(1)}
+                      </Table.HeaderCell>
+                    );
+                  })}
                 </Table.Row>
               </Table.Header>
 
               <Table.Body>
-                <Table.Row>
-                  <Table.Cell>
-                    {state.DGBalances.BALANCE_AFFILIATES[0][1]}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.MANA_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                      {(
-                        state.DGBalances.BALANCE_AFFILIATES[0][0] /
-                        1000000000000000000
-                      ).toFixed(3)}{' '}
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <span style={{ display: 'flex' }}>
-                      <img
-                        src={Images.DAI_CIRCLE}
-                        style={{
-                          width: '21px',
-                          marginRight: '6px',
-                          verticalAlign: 'middle',
-                          marginTop: '-2px',
-                          borderRadius: '100%',
-                        }}
-                      />
-                      {(
-                        state.DGBalances.BALANCE_AFFILIATES[1][0] /
-                        1000000000000000000
-                      ).toFixed(3)}{' '}
-                     </span>
-                  </Table.Cell>
-                </Table.Row>
-
+                {state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
+                  return (
+                    <Table.Row>
+                      <Table.Cell>{affiliate['address']}</Table.Cell>
+                      {coins.map((coin, index) => {
+                        return (
+                          <Table.Cell key={`table_cell_${index}`}>
+                            <span style={{ display: 'flex' }}>
+                              <img
+                                src={Images[`${coin.toUpperCase()}_CIRCLE`]}
+                                style={{
+                                  width: '21px',
+                                  marginRight: '6px',
+                                  verticalAlign: 'middle',
+                                  marginTop: '-2px',
+                                  borderRadius: '100%'
+                                }}
+                              />
+                              {(
+                                Number(affiliate[coin]) / 1000000000000000000
+                              ).toFixed(3)}{' '}
+                            </span>
+                          </Table.Cell>
+                        );
+                      })}
+                    </Table.Row>
+                  );
+                })}
               </Table.Body>
             </Table>
           </span>
