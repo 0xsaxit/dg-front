@@ -1256,7 +1256,6 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentReferrals() {
     const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
-    console.log('--------', state.DGBalances.BALANCE_AFFILIATES);
     return (
       <Aux>
         <div className="DG-liquidity-container top">
