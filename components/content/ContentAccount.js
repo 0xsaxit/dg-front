@@ -1,8 +1,10 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
+import Web3 from 'web3';
 import { ConnextModal } from '@connext/vector-modal';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
+import ABI_DG_TOKEN from '../ABI/ABIDGToken.json';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
@@ -48,6 +50,71 @@ const ContentAccount = (props) => {
   const [link, setLink] = useState('');
   const [tempClass, setTempClass] = useState(true);
   const [affiliates, setAffiliates] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    const web3 = new Web3(window.ethereum);
+
+    async function fetchData () {
+      try {
+        if (state.userAddress) {
+          let amount; 
+          const USDT_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT
+          );
+          amount = await USDT_UNI.methods.balanceOf(state.userAddress).call();
+          const usdtAmount = web3.utils.fromWei(amount, 'mwei');
+          
+          const MANA_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
+          );
+          amount = await MANA_UNI.methods.balanceOf(state.userAddress).call();
+          let manaRes = await Fetch.MANA_PRICE();
+          let manaJson = await manaRes.json();
+
+          const priceMANA = manaJson.market_data.current_price.usd;
+          const manaAmount = priceMANA * web3.utils.fromWei(amount, 'ether');
+
+          const ATRI_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_ATRI
+          );
+          amount = await ATRI_UNI.methods.balanceOf(state.userAddress).call();
+          let atriRes = await Fetch.ATRI_PRICE();
+          let atriJson = await atriRes.json();
+
+          const priceATRI = atriJson.market_data.current_price.usd;
+          const atriAmount = priceATRI * web3.utils.fromWei(amount, 'wei');
+
+          const DAI_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
+          );
+          amount = await DAI_UNI.methods.balanceOf(state.userAddress).call();
+          const daiAmount = web3.utils.fromWei(amount, 'ether');
+
+          amount = await new web3.eth.getBalance(state.userAddress);
+          let ethRes = await Fetch.ETH_PRICE();
+          let ethJson = await ethRes.json();
+
+          const priceETH = ethJson.market_data.current_price.usd;
+          const ethAmount = priceETH * web3.utils.fromWei(amount, 'ether');
+      
+          setTotalAmount(Number(usdtAmount) + Number(manaAmount) + Number(atriAmount) + Number(daiAmount) + Number(ethAmount));
+        }
+      } catch (error) {
+        console.log('Get balance error', error);
+      }
+    };
+
+    fetchData();
+  }, [state.userAddress]);
+
+  const metaTransaction = () => {
+    console.log('-------here------');
+  };
 
   const onCopy = () => {
     navigator.clipboard.writeText(
@@ -1272,7 +1339,7 @@ const ContentAccount = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text-top">Affiliate Balance</p>
-                <p className="earned-amount">0.00</p>
+                <p className="earned-amount">{Number(totalAmount).toFixed(2)}</p>
               </span>
             </span>
 
@@ -1293,15 +1360,7 @@ const ContentAccount = (props) => {
                   padding: '3px 6px 6px 6px'
                 }}
               >
-                <p className="referral-desktop"> https://decentral...</p>
-                <p className="referral-tablet">
-                  {' '}
-                  https://decentral.games/{state.userInfo.id}
-                </p>
-                <p className="referral-mobile">
-                  {' '}
-                  https://decentral.games/{state.userInfo.id}
-                </p>
+                <p className="referral-link">https://decentral.games/{state.userInfo.id}</p>
                 {copied == false ? (
                   <Icon
                     className="affiliate-icon"
@@ -1321,20 +1380,14 @@ const ContentAccount = (props) => {
             <Divider className="divider-dg-top" />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances.BALANCE_MINING_DG) ? (
                 <Button
-                  disabled
+                  disabled={!totalAmount}
                   className="DG-claim-button"
                   id="balances-padding-correct"
                   onClick={() => metaTransaction()}
                 >
                   CLAIM
                 </Button>
-              ) : (
-                <Button disabled className="DG-claim-button">
-                  CLAIM
-                </Button>
-              )}
             </span>
           </div>
 
