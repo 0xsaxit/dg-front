@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
-import { Button } from 'semantic-ui-react';
+import { Button, Modal, Icon } from 'semantic-ui-react';
+import { useRouter } from 'next/router';
 import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';
 
@@ -10,8 +11,23 @@ const ButtonPlayNow = () => {
 
   // define local variables
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [binance, setBinance] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openTwo, setOpenTwo] = useState(false);
+  const [connectPressed, setConnectPressed] = useState(false);
+  const [connectedPlay, setConnectedPlay] = useState();
+  const [secondOpen, setSecondOpen] = useState(false);
 
+  const router = useRouter();
   let userAddress = '';
+
+  useEffect(() => {
+    if (router.pathname.includes('binance')) {
+      setBinance(true);
+    } else {
+      setBinance(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (window.ethereum) {
@@ -20,6 +36,29 @@ const ButtonPlayNow = () => {
       setMetamaskEnabled(false);
     }
   });
+
+  function pressed() {
+    setConnectPressed(true);
+  };
+
+  useEffect(() => {
+    (async function () {
+      if (metamaskEnabled) {
+        // open MetaMask for login then get the user's wallet address
+        await window.ethereum.enable();
+        userAddress = window.ethereum.selectedAddress;
+        
+        if (connectPressed && userAddress) {
+          setConnectedPlay(true);
+        } 
+      }
+    })();
+  }, []);
+
+  console.log('?????');
+  console.log(connectPressed);
+  console.log(connectedPlay);
+  console.log(state.userStatus);
 
   async function openMetaMask() {
     if (metamaskEnabled) {
@@ -97,16 +136,61 @@ const ButtonPlayNow = () => {
 
   return (
     <Aux>
-      {metamaskEnabled ? (
-        <Button
-          id="mobile-button-hide"
-          content="Play Now"
-          color="blue"
-          className="play-button verify"
-          style={{ padding: '0 0 0 0' }}
-          onClick={() => openMetaMask()}
-        />
-      ) : null}
+      {1 > 0 ? (
+        <Modal
+          className="connect-metamask-modal"
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          open={true}
+        >
+          <div style={{ margin: '-60px 0px 50px -30px' }}>
+            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+              <Icon name="close" />
+            </span>
+          </div>
+
+          <h3 style={{ textAlign: 'left' }}>  Connect Your Wallet </h3>
+
+          <Button
+            color="blue"
+            className={binance ? "metamask-button binance big" : "metamask-button big"}
+            onClick={() => {
+              openMetaMask();
+              pressed();
+            }}
+          >
+            <span>
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                style={{ height: '36px', paddingRight: '24px', marginBottom: '-12px' }} 
+              />
+              Connect Metamask
+            </span>
+          </Button>
+
+          <div>
+            <p className="modal-text-small">
+              {' '}
+              We currently only support{' '}
+              <a className="modal-a" href="https://metamask.io"> Metamask wallets </a>. We will never have access to your private keys and we can not access your funds without your direct confirmation.{' '}
+            </p>
+            <p className="modal-text-small" style={{ marginBottom: '-10px' }}>
+              {' '}
+              For the other casinos,{' '}
+              <a className="modal-a" href="https://metamask.io"> click here </a>.
+            </p>
+          </div>
+        </Modal>
+      ) : <div> imma poos </div>}
+
+      {state.userAddress ? (
+        <Modal
+          onClose={() => setOpenTwo(false)}
+          open={true}
+        >
+          <div> imma poos </div>
+        </Modal>
+      ) : <p> hello </p>}
     </Aux>
   );
 };
