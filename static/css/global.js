@@ -9,10 +9,6 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.body};
   }
 
-  .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
-    background: ${({ theme }) => theme.toggle};
-  }
-
   .avatar-picture.main {
     border: ${({ theme }) => theme.globalDividers};
     border-radius: 100%;
@@ -140,7 +136,7 @@ export const GlobalStyles = createGlobalStyle`
   .ui.modal,
   .matic-overlay,
   .mailchimp-outter-container {
-    background: ${({ theme }) => theme.card};
+    background: black;
     box-shadow: none !important;  
     border-radius: 24px !important;
   }

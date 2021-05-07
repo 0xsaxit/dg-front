@@ -6,7 +6,6 @@ import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
 import '../static/css/mobile.css';
-import '../static/css/introjs.scss';
 import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
