@@ -18,7 +18,7 @@ const Users = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus === 16 ? (
+      {state.userStatus === 28 ? (
         <Administration dataType={'users'} />
       ) : (
         <div className="account-other-inner-p">

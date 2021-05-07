@@ -15,7 +15,7 @@ function AdminBalances() {
   let balances = [];
 
   useEffect(() => {
-    if (state.userStatus === 16) {
+    if (state.userStatus === 28) {
       web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
