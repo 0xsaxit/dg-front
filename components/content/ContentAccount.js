@@ -8,6 +8,7 @@ import ABI_DG_TOKEN from '../ABI/ABIDGToken.json';
 import Global from '../Constants';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
+import Transactions from '../../common/Transactions';
 import ModalAcceptMana from '../modal/ModalAcceptMana';
 import ModalAcceptDai from '../modal/ModalAcceptDai';
 import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
@@ -51,12 +52,19 @@ const ContentAccount = (props) => {
   const [tempClass, setTempClass] = useState(true);
   const [affiliates, setAffiliates] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [pointerContractNew, setPointerContractNew] = useState({});
 
   useEffect(() => {
     const web3 = new Web3(window.ethereum);
 
     async function fetchData () {
       try {
+        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); 
+        const pointerContractNew = await Transactions.pointerContractNew(
+          maticWeb3
+        );
+        setPointerContractNew(pointerContractNew);
+
         if (state.userAddress) {
           let amount; 
           const USDT_UNI = new web3.eth.Contract(
@@ -112,8 +120,25 @@ const ContentAccount = (props) => {
     fetchData();
   }, [state.userAddress]);
 
-  const metaTransaction = () => {
-    console.log('-------here------');
+  const metaTransaction = async () => {
+    try {
+      const res = await pointerContractNew.methods
+        .distributeAllTokens(
+          state.userAddress,
+          [
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT, 
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+          ]
+        )
+        .call();
+      
+        console.log('------------res--------', res);
+    } catch (error) {
+      console.log('Affiliate array not found: ' + error);
+    }
   };
 
   const onCopy = () => {
