@@ -17,6 +17,7 @@ const BinanceData = () => {
   const [scrollState, setScrollState] = useState('top');
   const [binance, setBinance] = useState(false);
   const [open, setOpen] = useState(false);
+  const [secondOpen, setSecondOpen] = useState(false);
   const [connectPressed, setConnectPressed] = useState(false);
   const [continuePressed, setContinuePressed] = useState(false);
   const [checkedOne, setCheckedOne] = useState(false);
@@ -312,6 +313,10 @@ const BinanceData = () => {
               <Button
                 color="blue"
                 className={binance ? "terms-button binance big" : "terms-button big"}
+                onClick={() => {
+                  setOpen(false);
+                  setSecondOpen(true);
+                }}
               >
                 Continue
               </Button>
@@ -326,18 +331,11 @@ const BinanceData = () => {
             )}
           </div>
         </Modal>
-      </Aux>
-    );
-  }
 
-  function modalThree() {
-    return (
-      <Aux>
         <Modal
-          className="connect-metamask-modal"
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
+          className="busd-modal"
+          onClose={() => setSecondOpen(false)}
+          open={secondOpen}
         >
           <div style={{ margin: '-60px 0px 50px -30px' }}>
             <span className="mailchimp-close" onClick={() => setOpen(false)}>
@@ -345,33 +343,79 @@ const BinanceData = () => {
             </span>
           </div>
 
-          <h3 style={{ textAlign: 'left' }}>  TEST TEST TEST TEST </h3>
+          <h3 style={{ textAlign: 'center' }}>  Send BUSD to your address </h3>
 
-          <Button
-            color="blue"
-            className={binance ? "metamask-button binance big" : "metamask-button big"}
-          >
-            <span>
-              <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                style={{ height: '36px', paddingRight: '24px', marginBottom: '-12px' }} 
+          <p className="modal-text-small" style={{ textAlign: 'center' }}>
+            (The address below is your Metamask wallet)
+          </p>
+
+          <Button className="busd-button">
+            <span style={{ display: 'flex', flexDirection: 'row' }}>
+              <img
+                className="busd-picture"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
               />
-              Connect Metamask
+              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-3px' }}>
+                <span style={{ display: 'flex' }}>
+                  <h3 className="deposit-twentyfour">
+                    {state.userAddress.substr(0, 8) +
+                    '...' +
+                    state.userAddress.substr(-12)}
+                  </h3>
+                </span>
+                <p className="modal-text-small-two">
+                  Your Metamask Address
+                </p>
+              </span>
+              <Icon 
+                name="clone outline" 
+                style={{ 
+                  color: 'rgba(225, 255, 255, 1)', 
+                  fontSize: '24px',
+                  margin: '14px 0px 0px 40px',
+                }}
+              />
             </span>
           </Button>
 
-          <div>
-            <p className="modal-text-small">
-              {' '}
-              We currently only support{' '}
-              <a className="modal-a" href="https://metamask.io"> Metamask wallets </a>. We will never have access to your private keys and we can not access your funds without your direct confirmation.{' '}
-            </p>
-            <p className="modal-text-small" style={{ marginBottom: '-10px' }}>
-              {' '}
-              For the other casinos,{' '}
-              <a className="modal-a" href="https://metamask.io"> click here </a>.
-            </p>
-          </div>
+          <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
+            <img
+              className="busd-picture two"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+            />
+            <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-4px' }}>
+              <span style={{ display: 'flex' }}>
+                <h3 className="deposit-twentyfour">
+                  BUSD
+                </h3>
+              </span>
+              <p className="modal-text-small-three">
+                Balance
+              </p>
+            </span>
+            <span style={{ display: 'flex', flexDirection: 'column', margin: '-4px 0px 0px 150px' }}>
+              <span style={{ display: 'flex' }}>
+                <h3 className="deposit-twentyfour" style={{ textAlign: 'right' }}>
+                 0 BUSD
+                </h3>
+              </span>
+              <p className="modal-text-small-four">
+                $0.00
+              </p>
+            </span>
+          </span>
+          
+          <Button
+            color="blue"
+            className={binance ? "terms-button binance big" : "terms-button big"}
+          >
+            Copy Wallet Address
+          </Button>
+
+          <h3 className="deposit-twentyfour" style={{ textAlign: 'center', marginLeft: '0px' }}>
+            Continue to Casino
+          </h3>
+
         </Modal>
       </Aux>
     );

@@ -424,7 +424,7 @@ const MenuTop = (props) => {
                         state.userAddress.substr(-8)}
                       </p>
                       <Icon 
-                        name="copy outline" 
+                        name="clone outline" 
                         style={{ 
                           color: 'rgba(225, 255, 255, 0.5)', 
                           fontSize: '16px',

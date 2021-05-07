@@ -154,7 +154,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .menu-info-container {
-    background: ${({ theme }) => theme.card}; 
+    background: black; 
   }
 
   .matic-widget-button,

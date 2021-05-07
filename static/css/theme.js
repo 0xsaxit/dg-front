@@ -30,7 +30,7 @@ export const darkTheme = {
 
 export const lightTheme = {
   body: 'rgb(0, 0, 0)',
-  text: 'rgba(255, 255, 255, .87)',
+  text: 'rgba(255, 255, 255, 1)',
   menuText: 'rgba(255, 255, 255, .55)',
   homeText: 'white',
   card: '#1f1f1f',

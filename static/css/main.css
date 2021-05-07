@@ -3396,6 +3396,7 @@ img.avatar-picture-home {
   margin: 0px 0px 0px 0px;
   background-color: #F1CD50;
   color: black;
+  border-radius: 16px !important;
 }
 
 .connect-metamask-modal {
@@ -3412,6 +3413,28 @@ img.avatar-picture-home {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.5) !important;
   line-height: 22px;
+}
+
+.modal-text-small-two {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+  margin: -4px 0px 0px -36px;
+}
+
+.modal-text-small-three {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+  margin: -4px 0px 0px 20px;
+}
+
+.modal-text-small-four {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+  margin: -4px 0px 0px 20px;
+  text-align: right;
 }
 
 .modal-text-medium {
@@ -3452,4 +3475,31 @@ img.avatar-picture-home {
   height: 48px !important;
   border-radius: 16px;
   margin-right: 30px;
+}
+
+.busd-modal {
+  padding: 20px 30px 40px 30px;
+  width: 470px !important;
+}
+
+.ui.button.busd-button {
+  height: 80px;
+  width: 100%;
+  border-radius: 24px;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  margin-top: 12px;
+}
+
+.busd-picture {
+  width: 32px;
+  height: 32px;
+  margin-top: 6px;
+}
+
+h3.deposit-twentyfour {
+  font-size: 24px  !important;
+  font-family: Larsseit-Regular !important;
+  margin-left: 20px;
 }
