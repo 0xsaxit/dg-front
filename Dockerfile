@@ -16,11 +16,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm audit --audit-level=high
+RUN npm audit --audit-level=critical
 
 RUN npm install --production --no-fund
 
-# web3 1.3.4 affected https://www.npmjs.com/advisories/877/versions , so we use 1.3.4-rc.2
+# web3 1.3.5 affected https://www.npmjs.com/advisories/877/versions , so we use 1.3.5-rc.0
 RUN npm outdated || true
 
 COPY . .
