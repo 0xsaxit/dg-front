@@ -196,9 +196,6 @@ a.get-metamask-scroll:hover {
   line-height: 27px;
 }
 
-.ui.checkbox .box:hover {
-  color: red;
-}
 
 .ui.checkbox label::before,
 .ui.checkbox label::after {
@@ -206,11 +203,9 @@ a.get-metamask-scroll:hover {
   background: transparent;
 }
 
-.ui.checkbox label:hover,
-.ui.checkbox label::active {
-  background-color: red !important;
+label::before:active {
+  background: transparent;
 }
-
 
 .other-menu-container.blog {
   padding-left: 0px;
@@ -2137,11 +2132,6 @@ i.copy.icon.affiliate-icon:hover {
   transition: none;
 }
 
-.ui.input.down input, .ui.input>input:active {
-  background: #15181c !important;
-  color: black !important;
-}
-
 .ui.action.input > .button,
 .ui.action.input > .buttons {
   min-width: 12px;
@@ -3261,7 +3251,13 @@ img.avatar-picture-home {
   width: 46px;
   height: 46px;
   border-radius: 100%;
-  background-color: #F1CD50;
+  background: linear-gradient(
+    162deg, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 1) 40%, 
+    #F1CD50 40.1%,  
+    #F1CD50 100%
+  );
 }
 
 .ui.bottom.right.popup.transition.visible.account-popup {
@@ -3415,6 +3411,13 @@ img.avatar-picture-home {
   line-height: 22px;
 }
 
+.modal-text-small.white {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75) !important;
+  line-height: 22px;
+  padding-left: 4px;
+}
+
 .modal-text-small-two {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.5) !important;
@@ -3499,7 +3502,90 @@ img.avatar-picture-home {
 }
 
 h3.deposit-twentyfour {
-  font-size: 24px  !important;
+  font-size: 24px !important;
   font-family: Larsseit-Regular !important;
   margin-left: 20px;
+}
+
+h3.deposit-twentyfour.casino {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.withdraw-twentyfour {
+  color: rgba(255, 255, 255, 0.5) !important;
+  padding-left: 20px;
+}
+
+.ui.button.binance-deposit-button {
+  background: black;
+  color: white;
+  font-size: 24px;
+  margin: -25px 0px 24px -30px;
+  border-radius: 24px 0px 0px 0px;
+  width: calc(50% + 30px);
+  height: 80px;
+}
+
+.ui.button.binance-deposit-button.grey {
+  background: #0B0B0B;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ui.button.binance-withdraw-button {
+  background: #0B0B0B;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 24px;
+  margin: -25px -30px 0px 0px;
+  border-radius: 0px 24px 0px 0px;
+  width: calc(50% + 30px);
+  height: 80px;
+}
+
+.ui.button.binance-withdraw-button.grey {
+  background: black;
+  color: white;
+}
+
+.withdraw-busd-amount {
+  text-align: center;
+  font-size: 60px;
+  font-family: Larsseit-Bold;
+  padding-top: 5px;
+  margin-top: -16px !important;
+}
+
+.ui.input > input {
+  background: transparent !important;
+  height: 72px;
+  width: 100%;
+  border-radius: 24px;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+  background: transparent;
+  font-size: 24px;
+}
+
+.ui.input>input {
+  color: white !important;
+  text-align: center;
+}
+
+.ui.button.max-busd-button {
+  height: 44px;
+  background: transparent;
+  text-transform: uppercase;
+  width: 68px;
+  border-radius: 15px;
+  border: 1.5px solid white !important;
+  color: white;
+  font-size: 18px;
+  padding: 0px;
+  font-family: Larsseit-Regular;
+  right: 30px;
+  position: absolute;
+  margin-top: 4px;
+}
+
+.terms-a:hover {
+  color: rgba(241, 205, 80, 0.8) !important;
 }

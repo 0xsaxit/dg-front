@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import { Button, Divider, Image, Icon, Modal, Checkbox } from 'semantic-ui-react';
+import { Button, Divider, Image, Icon, Modal, Checkbox, Input } from 'semantic-ui-react';
 import Aux from '../_Aux';
 import { useRouter } from 'next/router';
 import Fetch from '../../common/Fetch';
@@ -23,6 +23,7 @@ const BinanceData = () => {
   const [checkedOne, setCheckedOne] = useState(false);
   const [checkedTwo, setCheckedTwo] = useState(false);
   const [checkedThree, setCheckedThree] = useState(false);
+  const [withdrawSelected, setWithdrawSelected] = useState(false);
 
   const router = useRouter();
   let menuStyle = [];
@@ -178,6 +179,17 @@ const BinanceData = () => {
     }
   }
 
+  useEffect(() => {
+    if (!open) {
+      setCheckedOne(false);
+      setCheckedTwo(false);
+      setCheckedThree(false);
+    }
+  }, [open, checkedOne, checkedTwo, checkedThree]);
+
+  console.log('!?!?');
+  console.log(withdrawSelected);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -309,7 +321,7 @@ const BinanceData = () => {
               label="I have read and accepted the Terms of Service"
             />
 
-            {checkedOne && isCheckedTwo && checkedThree ? (
+            {checkedOne && checkedTwo && checkedThree ? (
               <Button
                 color="blue"
                 className={binance ? "terms-button binance big" : "terms-button big"}
@@ -336,85 +348,176 @@ const BinanceData = () => {
           className="busd-modal"
           onClose={() => setSecondOpen(false)}
           open={secondOpen}
+          close
         >
           <div style={{ margin: '-60px 0px 50px -30px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className="mailchimp-close" onClick={() => setSecondOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
 
-          <h3 style={{ textAlign: 'center' }}>  Send BUSD to your address </h3>
+          <span style={{ display: 'flex' }}>
+            <Button 
+              className={withdrawSelected ? "binance-deposit-button grey" : "binance-deposit-button"}
+              onClick={() => setWithdrawSelected(false)}
+            >
+              Deposit
+            </Button>
+            <Button 
+              className={withdrawSelected ? "binance-withdraw-button grey" : "binance-withdraw-button"}
+              onClick={() => setWithdrawSelected(true)}
+            >
+              Withdraw
+            </Button>
+          </span>
 
-          <p className="modal-text-small" style={{ textAlign: 'center' }}>
-            (The address below is your Metamask wallet)
-          </p>
+          {!withdrawSelected ? (
+            <span>
+              <h3 style={{ textAlign: 'center' }}>  Send BUSD to your address </h3>
 
-          <Button className="busd-button">
-            <span style={{ display: 'flex', flexDirection: 'row' }}>
-              <img
-                className="busd-picture"
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
-              />
-              <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-3px' }}>
-                <span style={{ display: 'flex' }}>
-                  <h3 className="deposit-twentyfour">
-                    {state.userAddress.substr(0, 8) +
-                    '...' +
-                    state.userAddress.substr(-12)}
-                  </h3>
+              <p className="modal-text-small" style={{ textAlign: 'center' }}>
+                (The address below is your Metamask wallet)
+              </p>
+
+              <Button className="busd-button">
+                <span style={{ display: 'flex', flexDirection: 'row' }}>
+                  <img
+                    className="busd-picture"
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+                  />
+                  <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-3px' }}>
+                    <span style={{ display: 'flex' }}>
+                      <h3 className="deposit-twentyfour">
+                        {state.userAddress.substr(0, 8) +
+                        '...' +
+                        state.userAddress.substr(-12)}
+                      </h3>
+                    </span>
+                    <p className="modal-text-small-two">
+                      Your Metamask Address
+                    </p>
+                  </span>
+                  <Icon 
+                    name="clone outline" 
+                    style={{ 
+                      color: 'rgba(225, 255, 255, 1)', 
+                      fontSize: '24px',
+                      margin: '16px 0px 0px 40px',
+                    }}
+                  />
                 </span>
-                <p className="modal-text-small-two">
-                  Your Metamask Address
+              </Button>
+
+              <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
+                <img
+                  className="busd-picture two"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+                />
+                <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                  <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-4px' }}>
+                    <h3 className="deposit-twentyfour">
+                      BUSD
+                    </h3>
+                    <p className="modal-text-small-three">
+                      Balance
+                    </p>
+                  </span>
+                  <span style={{ display: 'flex', flexDirection: 'column', margin: '-4px 0px 0px 0px' }}>
+                    <h3 className="deposit-twentyfour" style={{ textAlign: 'right' }}>
+                     {state.userBalances[3][1].toFixed(2)} BUSD
+                    </h3>
+                    <p className="modal-text-small-four">
+                      ${state.userBalances[3][1].toFixed(2)}
+                    </p>
+                  </span>
+                </span>
+              </span>
+              
+              <Button
+                color="blue"
+                className={binance ? "terms-button binance big" : "terms-button big"}
+              >
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  Copy Wallet Address
+                  <Icon 
+                    name="clone" 
+                    style={{ 
+                      color: 'rgba(0, 0, 0, 1)', 
+                      fontSize: '24px',
+                      paddingLeft: '12px',
+                    }}
+                  />
+                </span>
+              </Button>
+
+              <h3 className="deposit-twentyfour casino" style={{ textAlign: 'center', marginLeft: '0px' }}>
+                Continue to Casino
+              </h3>
+            </span>
+          ) : (
+            <span>
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <h1 className="withdraw-busd-amount"> 0 BUSD </h1>
+                  <Button className="max-busd-button">
+                    Max
+                  </Button>
+                </span>
+
+                <p className="modal-text-small" style={{ textAlign: 'center', marginTop: '-8px' }}>
+                  $0.00
+                </p>
+
+
+              <Input
+                className="busd-withdraw-button"
+                style={{ marginTop: '32px' }}
+                fluid
+                placeholder="To: Paste BUSD Address Here"
+              />
+
+
+              <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
+                <img
+                  className="busd-picture two"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
+                />
+                <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                  <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-4px' }}>
+                    <h3 className="deposit-twentyfour">
+                      BUSD
+                    </h3>
+                    <p className="modal-text-small-three">
+                      Balance
+                    </p>
+                  </span>
+                  <span style={{ display: 'flex', flexDirection: 'column', margin: '-4px 0px 0px 0px' }}>
+                    <h3 className="deposit-twentyfour" style={{ textAlign: 'right' }}>
+                     {state.userBalances[3][1].toFixed(2)} BUSD
+                    </h3>
+                    <p className="modal-text-small-four">
+                      ${state.userBalances[3][1].toFixed(2)}
+                    </p>
+                  </span>
+                </span>
+              </span>
+              
+              <Button
+                color="blue"
+                className={binance ? "terms-button binance big" : "terms-button big"}
+              >
+                Continue to Metamask
+              </Button>
+
+              <span style={{ display: 'flex', justifyContent: 'center', paddingTop: '16px' }}>
+                <p className="modal-text-small">
+                  Gas Fee:
+                </p>
+                <p className="modal-text-small white">
+                  0.0 BUSD ($0.00)
                 </p>
               </span>
-              <Icon 
-                name="clone outline" 
-                style={{ 
-                  color: 'rgba(225, 255, 255, 1)', 
-                  fontSize: '24px',
-                  margin: '14px 0px 0px 40px',
-                }}
-              />
             </span>
-          </Button>
-
-          <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
-            <img
-              className="busd-picture two"
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
-            />
-            <span style={{ display: 'flex', flexDirection: 'column', marginTop: '-4px' }}>
-              <span style={{ display: 'flex' }}>
-                <h3 className="deposit-twentyfour">
-                  BUSD
-                </h3>
-              </span>
-              <p className="modal-text-small-three">
-                Balance
-              </p>
-            </span>
-            <span style={{ display: 'flex', flexDirection: 'column', margin: '-4px 0px 0px 150px' }}>
-              <span style={{ display: 'flex' }}>
-                <h3 className="deposit-twentyfour" style={{ textAlign: 'right' }}>
-                 0 BUSD
-                </h3>
-              </span>
-              <p className="modal-text-small-four">
-                $0.00
-              </p>
-            </span>
-          </span>
-          
-          <Button
-            color="blue"
-            className={binance ? "terms-button binance big" : "terms-button big"}
-          >
-            Copy Wallet Address
-          </Button>
-
-          <h3 className="deposit-twentyfour" style={{ textAlign: 'center', marginLeft: '0px' }}>
-            Continue to Casino
-          </h3>
+          )}
 
         </Modal>
       </Aux>

@@ -438,7 +438,7 @@ const MenuTop = (props) => {
                   <Button className="casino-balance-button">
                     <p className="casino-balance-text"> Casino Balance </p>
                     <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <p className="casino-balance-text two"> $49,822.01 </p>
+                      <p className="casino-balance-text two"> ${state.userBalances[3][1].toFixed(2)} </p>
                       <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
                     </span>
                   </Button>
