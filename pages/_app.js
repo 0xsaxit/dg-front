@@ -20,6 +20,7 @@ import AdminBalances from '../store/AdminBalances';
 // import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
 import Whitelist from '../store/Whitelist';
+import '../static/scss/base.scss';
 
 class Application extends App {
   render() {

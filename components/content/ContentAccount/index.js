@@ -1,20 +1,23 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store/index';
+import { GlobalContext } from 'store/index';
 import Web3 from 'web3';
+import cn from 'classnames';
 import { ConnextModal } from '@connext/vector-modal';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
-import ABI_DG_TOKEN from '../ABI/ABIDGToken.json';
-import Global from '../Constants';
-import Images from '../../common/Images';
-import Fetch from '../../common/Fetch';
-import Transactions from '../../common/Transactions';
-import ModalAcceptMana from '../modal/ModalAcceptMana';
-import ModalAcceptDai from '../modal/ModalAcceptDai';
-import ModalAcceptUSDT from '../modal/ModalAcceptUSDT';
-import ModalAcceptATRI from '../modal/ModalAcceptATRI';
-import ModalAcceptWETH from '../modal/ModalAcceptWETH';
-import Aux from '../_Aux';
+import ABI_DG_TOKEN from 'components/ABI/ABIDGToken.json';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+import Fetch from 'common/Fetch';
+import Transactions from 'common/Transactions';
+import ModalAcceptMana from 'components/modal/ModalAcceptMana';
+import ModalAcceptDai from 'components/modal/ModalAcceptDai';
+import ModalAcceptUSDT from 'components/modal/ModalAcceptUSDT';
+import ModalAcceptATRI from 'components/modal/ModalAcceptATRI';
+import ModalAcceptWETH from 'components/modal/ModalAcceptWETH';
+import Aux from 'components/_Aux';
+
+import styles from './ContentAccount.module.scss';
 
 const connext = {
   routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
@@ -134,8 +137,6 @@ const ContentAccount = (props) => {
           ]
         )
         .call();
-      
-        console.log('------------res--------', res);
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
@@ -817,21 +818,6 @@ const ContentAccount = (props) => {
   async function topUp() {
     await Fetch.TOP_UP_USER(state.userAddress);
 
-    // let responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
-    // let json = await responseInfo.json();
-
-    // let arrayInfo = state.userInfo;
-    // arrayInfo[3] = json.callCount;
-
-    // let objectInfo = state.userInfo;
-    // objectInfo.count = json.callCount;
-
-    // dispatch({
-    //   type: 'user_info',
-    //   data: objectInfo,
-    // });
-
-    // update global state user information
     const refresh = !state.updateInfo;
 
     dispatch({
