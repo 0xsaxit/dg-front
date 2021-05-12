@@ -8,6 +8,10 @@
 			font-weight: 800;
 			line-height: 59px;
 			letter-spacing: -0.7px;
+
+			@include mq($until: medium) {
+				width: 100%;
+			}
 		}
 
 		&_subtitle {
@@ -47,6 +51,8 @@
 		.gift_image {
 			min-width: 260px;
 			min-height: 260px;
+			width: 260px;
+			height: 260px;
 		}
 	}
 
@@ -71,6 +77,10 @@
 				font-weight: bold;
 				font-size: 24px;
 				line-height: 33px;
+				max-width: calc(100% - 300px);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 
 			.total_price {

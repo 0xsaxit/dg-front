@@ -8,12 +8,14 @@ import Images from '../../../common/Images';
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
 
-const ModalBreakdown = ({ breakdown }) => {
-	// get user's unclaimed DG balance from the Context API store
+const ModalBreakdown = ({ breakdown = {}, address = null }) => {
+  // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-	const totalAmount = coins.reduce((total, item) => {
-		return total + Number(state.DGPrices[item]) * Number(breakdown[item]);
-	}, 0).toFixed(2);
+  const totalAmount = coins
+    .reduce((total, item) => {
+      return total + Number(state.DGPrices[item]) * Number(breakdown[item]);
+    }, 0)
+    .toFixed(2);
   // define local variables
   const [open, setOpen] = useState(false);
 
@@ -27,12 +29,20 @@ const ModalBreakdown = ({ breakdown }) => {
       size="tiny"
       centered={true}
       trigger={
-        <button
-          disabled={!totalAmount}
-          className={cn('btn btn-primary', styles.claim_button)}
-        >
-          Deposit Unclaimed Total (${Number(totalAmount).toFixed(2)})
-        </button>
+        !address ? (
+          <button
+            disabled={!totalAmount}
+            className={cn('btn btn-primary', styles.claim_button)}
+          >
+            Deposit Unclaimed Total (${Number(totalAmount).toFixed(2)})
+          </button>
+        ) : (
+          <button
+            className={cn('btn btn-dark', styles.claim_button)}
+          >
+						See Breakdown
+          </button>
+        )
       }
     >
       <div className={styles.button_close}>
@@ -41,11 +51,13 @@ const ModalBreakdown = ({ breakdown }) => {
         </span>
       </div>
       <div>
-        <h1 className={styles.title}>Total Earnings</h1>
+        <h1 className={styles.title}>{address ? address.slice(0, 5) + '...' + address.slice(-5) : 'Total Earnings'}</h1>
         <p className={styles.subtitle}>Referral Earnings Breakdown</p>
         {coins.map((coin, index) => {
           return (
-            <div className={cn("d-flex justify-content-between", styles.coin_line)}>
+            <div
+              className={cn('d-flex justify-content-between', styles.coin_line)}
+            >
               <div className="d-flex align-items-center">
                 <img
                   className={styles.circle_icon}
@@ -71,28 +83,36 @@ const ModalBreakdown = ({ breakdown }) => {
             </div>
           );
         })}
-				<div className={cn("d-flex justify-content-between mb-3", styles.coin_line, styles.active)}>
-					<div className="d-flex align-items-center">
-						<img
-							className={styles.circle_icon}
-							src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
-						/>
-						<div className="d-flex flex-column">
-							<span className={cn('mb-0', styles.coin_title)}>
-								USD
-							</span>
-							<span className={cn('mb-0', styles.coin_subtitle)}>
-								Total Value
-							</span>
-						</div>
-					</div>
-					<div className="d-flex flex-column align-items-end">
-						<span className={cn('mb-0', styles.coin_title)}>
-							${totalAmount}
-						</span>
-					</div>
-				</div>
-				<button className={cn("btn btn-primary w-100", styles.claim_button)}>Claim ${totalAmount}</button>
+        <div
+          className={cn(
+            'd-flex justify-content-between mb-3',
+            styles.coin_line,
+            styles.active
+          )}
+        >
+          <div className="d-flex align-items-center">
+            <img
+              className={styles.circle_icon}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
+            />
+            <div className="d-flex flex-column">
+              <span className={cn('mb-0', styles.coin_title)}>USD</span>
+              <span className={cn('mb-0', styles.coin_subtitle)}>
+                Total Value
+              </span>
+            </div>
+          </div>
+          <div className="d-flex flex-column align-items-end">
+            <span className={cn('mb-0', styles.coin_title)}>
+              ${totalAmount}
+            </span>
+          </div>
+        </div>
+        {!address && (
+          <button className={cn('btn btn-primary w-100', styles.claim_button)}>
+            Claim ${totalAmount}
+          </button>
+        )}
       </div>
     </Modal>
   );

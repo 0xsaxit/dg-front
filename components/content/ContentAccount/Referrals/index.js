@@ -124,7 +124,7 @@ function ContentReferrals({ state, totalAmount }) {
             </span>
           </div>
 
-          <span className="d-flex">
+          <span className="d-md-flex d-none align-items-center">
             <img
               src="/images/gift.png"
               className={cn('ms-10', styles.gift_image)}
@@ -154,22 +154,20 @@ function ContentReferrals({ state, totalAmount }) {
                         {affiliate['address']}
                       </div>
                       <div className="d-flex align-items-center">
-                        <div className={styles.total_price}>
+                        <div className={cn('me-2', styles.total_price)}>
                           $
                           {coins.reduce((total, coin) => {
                             return (
                               Number(total) +
-                              (
-                                Number(affiliate[coin]) / 1000000000000000000
-                              ).toFixed(3)
+                              Number(affiliate[coin]) *
+                                Number(state.DGPrices[coin])
                             );
-                          }, 0)}
+                          }, 0).toFixed(2)}
                         </div>
-                        <button
-                          className={cn('btn btn-dark', styles.breakdown)}
-                        >
-                          See Breakdown
-                        </button>
+                        <ModalBreakdown
+                          breakdown={affiliate}
+                          address={affiliate['address']}
+                        />
                       </div>
                     </>
                   )}
