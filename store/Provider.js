@@ -72,6 +72,13 @@ const initialState = {
     SUPPLY_BPT_2: 0,
     BALANCE_AFFILIATES: [0, 0],
   },
+  DGPrices: {
+    eth: 0,
+    mana: 0,
+    dai: 1,
+    atri: 0,
+    usdt: 1
+  },
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
     BALANCE_CONTRACT_BPT_2: 0,
@@ -215,6 +222,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         DGBalances: action.data,
+      };
+
+    case 'dg_prices': 
+      return {
+        ...state,
+        DGPrices: action.data
       };
 
     case 'staking_balances':

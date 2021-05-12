@@ -1,13 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
+import Web3 from 'web3';
 import Global from 'components/Constants';
+import ABI_DG_TOKEN from 'components/ABI/ABIDGToken.json';
+import Transactions from 'common/Transactions';
 import { Icon } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
+import ModalBreakdown from 'components/modal/ModalBreakdown';
+
+const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 
 function ContentReferrals({ state, totalAmount }) {
-  const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
   const [copied, setCopied] = useState(false);
+	const [breakdown, setBreakdown] = useState({
+		usdt: 0,
+		eth: 0,
+		dai: 0,
+		mana: 0,
+		atri: 0
+	});
+
+	useEffect(() => {
+    const web3 = new Web3(window.ethereum);
+
+    async function fetchData () {
+      try {
+        if (state.userAddress) {
+          let amount; 
+          const USDT_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT
+          );
+          amount = await USDT_UNI.methods.balanceOf(state.userAddress).call();
+          const usdtAmount = web3.utils.fromWei(amount, 'mwei');
+          
+          const MANA_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
+          );
+          amount = await MANA_UNI.methods.balanceOf(state.userAddress).call();
+          const manaAmount = web3.utils.fromWei(amount, 'ether');
+
+          const ATRI_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_ATRI
+          );
+          amount = await ATRI_UNI.methods.balanceOf(state.userAddress).call();
+          const atriAmount = web3.utils.fromWei(amount, 'wei');
+
+          const DAI_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
+          );
+          amount = await DAI_UNI.methods.balanceOf(state.userAddress).call();
+          const daiAmount = web3.utils.fromWei(amount, 'ether');
+
+          amount = await new web3.eth.getBalance(state.userAddress);
+          const ethAmount = web3.utils.fromWei(amount, 'ether');
+
+					setBreakdown({
+						eth: ethAmount,
+						dai: daiAmount,
+						atri: atriAmount,
+						mana: manaAmount,
+						usdt: usdtAmount
+					});
+        }
+      } catch (error) {
+        console.log('Get amount error', error);
+      }
+    };
+
+    fetchData();
+  }, [state.userAddress]);
 
   const onCopy = () => {
     navigator.clipboard.writeText(
@@ -68,13 +134,7 @@ function ContentReferrals({ state, totalAmount }) {
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
           <h3 className="mb-0">Your referrals</h3>
-          <button
-            disabled={!totalAmount}
-            className={cn('btn btn-primary', styles.claim_button)}
-            onClick={() => metaTransaction()}
-          >
-            Deposit Unclaimed Total (${Number(totalAmount).toFixed(2)})
-          </button>
+					<ModalBreakdown totalAmount={totalAmount} breakdown={breakdown} />
         </span>
 
         <span className={styles.referrals_body}>

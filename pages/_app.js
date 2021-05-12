@@ -19,6 +19,7 @@ import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
 // import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
+import Prices from '../store/Prices';
 import Whitelist from '../store/Whitelist';
 import '../styles/bootstrap-overrides.scss';
 
@@ -43,6 +44,7 @@ class Application extends App {
         <UserInfo />
         <AdminBalances />
         <DGBalances />
+        <Prices />
         <Whitelist />
 
         <Component {...pageProps} />
