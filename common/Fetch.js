@@ -85,16 +85,23 @@ const Fetch = {
   },
 
   EVENTS: (address) => {
-    return fetch(
-      `https://api.decentral.games/players/getEvents?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    return fetch(`${API_BASE_URL}/players/getEvents?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  USERS_LIST: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getUsersList?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   },
 
   // ADMIN_HISTORY: () => {

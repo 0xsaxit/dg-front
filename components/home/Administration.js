@@ -8,7 +8,7 @@ import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 
 const Administration = (props) => {
-  // get user status from the Context API store
+  // get smart contract balances and user status' from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -25,13 +25,9 @@ const Administration = (props) => {
     if (props.dataType === 'balances') {
       setDataPage(state.adminBalances);
     } else if (props.dataType === 'users') {
-      setDataPage([
-        ['0x6ecf85221e1552b0592e82cbc2635097a3db273f', 'Chelep#273f', 4],
-        ['0x847b811535be2b81f353394c46634c35410106e1', 'Jack#06e1', 18],
-        ['0x1c183b78b4891b855c467e5866dad94a6a520eb5', 'adamsun#0eb5', 12],
-      ]);
+      setDataPage(state.usersList);
     }
-  }, [state.adminBalances]);
+  }, [state.adminBalances, state.usersList]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -126,14 +122,14 @@ const Administration = (props) => {
             {dataType === 'users' ? (
               <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  USER STATUS LIST
+                  USERS LIST
                 </b>
               </span>
             ) : (
               <Link href="/admin/users">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    USER STATUS LIST
+                    USERS LIST
                   </b>
                 </span>
               </Link>

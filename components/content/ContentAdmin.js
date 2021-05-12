@@ -7,7 +7,15 @@ import Aux from '../_Aux';
 const ContentAdmin = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
+  const games = ['slots', 'roulette', 'blackjack', 'poker'];
+  const numbers = ['one', 'two', 'three'];
+  const logoStyle = {
+    width: '21px',
+    marginRight: '6px',
+    verticalAlign: 'middle',
+    marginTop: '-2px',
+    borderRadius: '100%',
+  };
 
   function contentBalances() {
     return (
@@ -75,18 +83,18 @@ const ContentAdmin = (props) => {
   }
 
   function balanceBox(game, i) {
-    let number;
+    // let number;
 
-    if (i === 1) {
-      number = 'one';
-    } else if (i === 2) {
-      number = 'two';
-    } else if (i === 3) {
-      number = 'three';
-    }
+    // if (i === 1) {
+    //   number = 'one';
+    // } else if (i === 2) {
+    //   number = 'two';
+    // } else if (i === 3) {
+    //   number = 'three';
+    // }
 
     return (
-      <span className={`admin-balances-column ${number}`} key={i}>
+      <span className={`admin-balances-column ${numbers[i + 1]}`} key={i}>
         <span className="name-purchase-span">
           <p
             className="welcome-text"
@@ -104,50 +112,16 @@ const ContentAdmin = (props) => {
 
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
-            <img
-              src={Images.DAI_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                paddingTop: '12px',
-                paddingBottom: '9px',
-              }}
-            />
+            <img src={Images.DAI_CIRCLE} style={logoStyle} />
           </span>
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              marginTop: '7px',
-            }}
-          >
-            <p className="welcome-text">dai</p>
-            <p className="account-name">{props.data[1][i][0]}</p>
-          </span>
+          <p className="welcome-text">{props.data[1][i][0]} dai</p>
         </span>
 
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
-            <img
-              src={Images.MANA_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                paddingTop: '12px',
-                paddingBottom: '9px',
-              }}
-            />
+            <img src={Images.MANA_CIRCLE} style={logoStyle} />
           </span>
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              marginTop: '7px',
-            }}
-          >
-            <p className="welcome-text">mana</p>
-            <p className="account-name">{props.data[1][i][1]}</p>
-          </span>
+          <p className="welcome-text">{props.data[1][i][1]} mana</p>
         </span>
 
         <span className="balances-button-span">
@@ -166,9 +140,9 @@ const ContentAdmin = (props) => {
         {props.data.map((row, i) => {
           return (
             <Table.Row key={i}>
-              <Table.Cell>{row[0]}</Table.Cell>
-              <Table.Cell>{row[1]}</Table.Cell>
-              <Table.Cell>{row[2]}</Table.Cell>
+              <Table.Cell>{row.address}</Table.Cell>
+              <Table.Cell>{row.avatarName}</Table.Cell>
+              <Table.Cell>{row.verifyStep}</Table.Cell>
             </Table.Row>
           );
         })}
@@ -185,22 +159,22 @@ const ContentAdmin = (props) => {
           <Table.Cell>8: Whales</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>10: Hosts</Table.Cell>
+          <Table.Cell>12: Hosts</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>12: Guests (Invitees)</Table.Cell>
+          <Table.Cell>14: Guests (Invitees)</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>14: General Team Members</Table.Cell>
+          <Table.Cell>22: General Team Members</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>16: Marketing Team</Table.Cell>
+          <Table.Cell>24: Marketing Team/PR</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>18: Developers</Table.Cell>
+          <Table.Cell>26: Developers/DevOps</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>20: Admins</Table.Cell>
+          <Table.Cell>28: Admins</Table.Cell>
         </Table.Row>
       </Table.Body>
     );

@@ -69,7 +69,7 @@ const Chateau = () => {
         {homeVideo()}
 
         <div className="home-dashboard-content">
-          <img 
+          <img
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
             className="home-gif"
           />
@@ -79,55 +79,55 @@ const Chateau = () => {
           >
             Hit the tables in a metaverse Casino
           </h1>
-          <span className="home-button-span">
-          </span>
+          <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
-            Non-custodial, provably fair slots, roulette, blackjack and poker playable with crypto in Decentraland.
+            Non-custodial, provably fair slots, roulette, blackjack and poker
+            playable with crypto in Decentraland.
           </p>
-            <Button
-              color="blue"
-              className="play-now-button-demo"
-              href="https://www.youtube.com/embed/1NxYpUsxhC0"
-              target="_blank"
-            >
-              Demo
-            </Button>
-            {state.userStatus === 0 ? (
-              <span className="mobile-center-span">
-                <Button
-                  color="blue"
-                  className="earn-dg-button"
-                  id="mobile-button-hide"
-                  href="https://www.youtube.com/embed/1NxYpUsxhC0"
-                  target="_blank"
-                  style={{ marginRight: '16px' }}
-                >
-                  Demo
-                </Button>
-                <ButtonPlayNow />
-              </span>
-            ) : (
-              <span className="mobile-center-span">
-                <Button
-                  color="blue"
-                  className="earn-dg-button"
-                  href="https://docs.decentral.games/getting-started/play-to-mine"
-                  target="_blank"
-                >
-                  Learn More
-                </Button>
-                <Button
-                  color="blue"
-                  className="play-button"
-                  href="https://play.decentraland.org/?position=-96%2C110"
-                  target="_blank"
-                  id="mobile-button-hide"
-                  style={{ marginLeft: '16px' }}
-                >
-                  Play Now
-                </Button>
-              </span>
-            )}
+          <Button
+            color="blue"
+            className="play-now-button-demo"
+            href="https://www.youtube.com/embed/1NxYpUsxhC0"
+            target="_blank"
+          >
+            Demo
+          </Button>
+          {state.userStatus === 0 ? (
+            <span className="mobile-center-span">
+              <Button
+                color="blue"
+                className="earn-dg-button"
+                id="mobile-button-hide"
+                href="https://www.youtube.com/embed/1NxYpUsxhC0"
+                target="_blank"
+                style={{ marginRight: '16px' }}
+              >
+                Demo
+              </Button>
+              <ButtonPlayNow />
+            </span>
+          ) : (
+            <span className="mobile-center-span">
+              <Button
+                color="blue"
+                className="earn-dg-button"
+                href="https://docs.decentral.games/getting-started/play-to-mine"
+                target="_blank"
+              >
+                Learn More
+              </Button>
+              <Button
+                color="blue"
+                className="play-button"
+                href="https://play.decentraland.org/?position=-96%2C110"
+                target="_blank"
+                id="mobile-button-hide"
+                style={{ marginLeft: '16px' }}
+              >
+                Play Now
+              </Button>
+            </span>
+          )}
           <p className="scroll-down-icon">
             <Icon name="chevron down" />
           </p>
@@ -158,7 +158,7 @@ const Chateau = () => {
                 <span className="home-button-span ecosystem">
                   <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
                     <Button
-                      color="blue" 
+                      color="blue"
                       className="announcement"
                       href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                     >
@@ -301,7 +301,9 @@ const Chateau = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Stake $DG to govern the casino bankroll. Vote on treasury management, economic policy, and new game development
+                        Stake $DG to govern the casino bankroll. Vote on
+                        treasury management, economic policy, and new game
+                        development
                       </p>
                     </div>
                   </a>
@@ -332,11 +334,7 @@ const Chateau = () => {
               </h1>
               <span className="home-button-span">
                 <Link href="/account">
-                  <Button 
-                    color="blue" 
-                    className="deposit"
-                    href="/account"
-                  >
+                  <Button color="blue" className="deposit" href="/account">
                     Deposit
                   </Button>
                 </Link>
@@ -472,8 +470,8 @@ const Chateau = () => {
                   Hop In
                 </Button>
                 <Link href="/games/casinos">
-                  <Button 
-                    color="blue" 
+                  <Button
+                    color="blue"
                     className="casinos"
                     href="/games/casinos"
                   >

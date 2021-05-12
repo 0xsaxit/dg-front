@@ -21,8 +21,7 @@ const CONSTANTS = {
   MATIC_URL: 'https://misty-patient-sky.matic.quiknode.pro/13b04819a5839524bf7724512e22ff0f5e613899/', // 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
-  DESCRIPTION:
-    'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
+  DESCRIPTION: 'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
 };

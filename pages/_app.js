@@ -10,17 +10,13 @@ import '../static/css/introjs.scss';
 import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
-// import BalancesEvents from '../store/BalancesEvents';
 import Transactions from '../store/Transactions';
-// import ParcelData from '../store/ParcelData';
 import GameRecords from '../store/GameRecords';
-// import Location from '../store/Location';
 import ActiveStatus from '../store/ActiveStatus';
 import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
-// import AdminData from '../store/AdminData';
+import UsersList from '../store/UsersList';
 import DGBalances from '../store/DGBalances';
-// import Whitelist from '../store/Whitelist';
 
 class Application extends App {
   render() {
@@ -41,6 +37,7 @@ class Application extends App {
         <ActiveStatus />
         <UserInfo />
         <AdminBalances />
+        <UsersList />
         <DGBalances />
 
         <Component {...pageProps} />
