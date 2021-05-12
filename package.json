@@ -33,6 +33,7 @@
     "ethers": "^5.1.4",
     "html-to-react": "^1.4.5",
     "intro.js": "^3.4.0",
+    "lodash": "^4.17.21",
     "next": "^10.2.0",
     "next-seo": "^4.24.0",
     "prop-types": "^15.7.2",

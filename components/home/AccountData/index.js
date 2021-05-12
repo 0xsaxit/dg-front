@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Link from 'next/link';
 import { Parallax } from 'react-parallax';
 import { Divider, Icon, Popup } from 'semantic-ui-react';
-import ModalAffiliates from '../modal/ModalAffiliates';
-import Spinner from '../Spinner';
-import ContentAccount from '../content/ContentAccount';
-import Aux from '../_Aux';
+import Spinner from 'components/Spinner';
+import ContentAccount from 'components/content/ContentAccount';
+import Aux from 'components/_Aux';
+
+import './AccountData.module.scss';
 
 const AccountData = (props) => {
   // get user's transaction history from the Context API store
@@ -77,16 +78,6 @@ const AccountData = (props) => {
                 <Icon name="pencil" className="edit-icon" />
               </a>
             </span>
-            {state.userInfo.name === null || state.userInfo.name === '' ? (
-              <p className="account-name-2">
-                {state.userAddress.substr(0, 4) +
-                  '...' +
-                  state.userAddress.substr(-4)}
-              </p>
-            ) : (
-              <p className="account-name-2">{state.userInfo.name}</p>
-            )}
-            <p className="welcome-text-2"> {state.userAddress} </p>
           </span>
 
           <span
@@ -100,8 +91,8 @@ const AccountData = (props) => {
         </div>
 
         <div className="account-other-tabs" id="account-mobile-tabs">
-          <div style={{ marginLeft: '0px' }}>
-            <span className="account-other-p" style={{ display: 'flex' }}>
+          <div className="ml-0">
+            <span className="account-other-p d-flex justify-content-center">
               {dataType === 'balances' ? (
                 <span className="account-hover active">
                   <b>BALANCES</b>

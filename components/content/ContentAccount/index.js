@@ -18,6 +18,7 @@ import ModalAcceptWETH from 'components/modal/ModalAcceptWETH';
 import Aux from 'components/_Aux';
 
 import styles from './ContentAccount.module.scss';
+import ContentReferrals from './Referrals';
 
 const connext = {
   routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
@@ -140,16 +141,6 @@ const ContentAccount = (props) => {
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
-  };
-
-  const onCopy = () => {
-    navigator.clipboard.writeText(
-      Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id
-    );
-    setCopied(true);
-
-    // track 'Affiliate Link' button click event
-    analytics.track('Clicked AFFILIATE LINK button');
   };
 
   const buttonPlay = document.getElementById('play-now-button-balances');
@@ -1332,130 +1323,6 @@ const ContentAccount = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function contentReferrals() {
-    const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
-    return (
-      <Aux>
-        <div className="DG-liquidity-container top">
-          <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-            <p className="earned-amount">Unclaimed</p>
-
-            <Divider className="divider-dg-top" />
-
-            <span style={{ display: 'flex' }}>
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1610421682/rwugnpwexjpfzfaiwdv1.png"
-                className="farming-logo-small"
-                alt="Decentral Games Coin Logo"
-              />
-              <span className="farming-pool-span">
-                <p className="welcome-text-top">Affiliate Balance</p>
-                <p className="earned-amount">{Number(totalAmount).toFixed(2)}</p>
-              </span>
-            </span>
-
-            <Divider className="divider-dg-top" />
-
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <p style={{ fontSize: '18px' }}>
-                {' '}
-                Copy your unique referral link. Any time a new user deposits
-                crypto, you'll earn 10% of their expected losses.
-              </p>
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  border: '1px solid rgb(8, 10, 12)',
-                  borderRadius: '8px',
-                  padding: '3px 6px 6px 6px'
-                }}
-              >
-                <p className="referral-link">https://decentral.games/{state.userInfo.id}</p>
-                {copied == false ? (
-                  <Icon
-                    className="affiliate-icon"
-                    onClick={() => onCopy()}
-                    name="copy"
-                  />
-                ) : (
-                  <Icon
-                    className="affiliate-icon"
-                    onClick={() => onCopy()}
-                    name="check"
-                  />
-                )}
-              </span>
-            </span>
-
-            <Divider className="divider-dg-top" />
-
-            <span className="DG-button-span">
-                <Button
-                  disabled={!totalAmount}
-                  className="DG-claim-button"
-                  id="balances-padding-correct"
-                  onClick={() => metaTransaction()}
-                >
-                  CLAIM
-                </Button>
-            </span>
-          </div>
-
-          <span
-            className="treasury-stats"
-            style={{ height: '100%', marginTop: '-15px' }}
-          >
-            <Table unstackable>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>Affiliate</Table.HeaderCell>
-                  {coins.map((coin, index) => {
-                    return (
-                      <Table.HeaderCell key={`table_header_${index}`}>
-                        {coin.charAt(0).toUpperCase() + coin.slice(1)}
-                      </Table.HeaderCell>
-                    );
-                  })}
-                </Table.Row>
-              </Table.Header>
-
-              <Table.Body>
-                {state.DGBalances.BALANCE_AFFILIATES.map((affiliate, affiliateIndex) => {
-                  return (
-                    <Table.Row key={`table_row_${affiliateIndex}`}>
-                      <Table.Cell>{affiliate['address']}</Table.Cell>
-                      {coins.map((coin, index) => {
-                        return (
-                          <Table.Cell key={`table_cell_${affiliateIndex}_${index}`}>
-                            <span style={{ display: 'flex' }}>
-                              <img
-                                src={Images[`${coin.toUpperCase()}_CIRCLE`]}
-                                style={{
-                                  width: '21px',
-                                  marginRight: '6px',
-                                  verticalAlign: 'middle',
-                                  marginTop: '-2px',
-                                  borderRadius: '100%'
-                                }}
-                              />
-                              {(
-                                Number(affiliate[coin]) / 1000000000000000000
-                              ).toFixed(3)}{' '}
-                            </span>
-                          </Table.Cell>
-                        );
-                      })}
-                    </Table.Row>
-                  );
-                })}
-              </Table.Body>
-            </Table>
-          </span>
-        </div>
-      </Aux>
-    );
-  }
 
   if (props.content === 'balances') {
     return contentAccount();
@@ -1468,7 +1335,7 @@ const ContentAccount = (props) => {
   } else if (props.content === 'play') {
     return contentGameplay();
   } else if (props.content === 'referrals') {
-    return contentReferrals();
+    return <ContentReferrals state={state} totalAmount={totalAmount} />;
   }
 };
 
