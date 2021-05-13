@@ -119,7 +119,7 @@ const Chateau = () => {
               <Button
                 color="blue"
                 className="play-button"
-                href="https://play.decentraland.org/?position=-96%2C110"
+                href="https://play.decentraland.org/?position=-118%2C135"
                 target="_blank"
                 id="mobile-button-hide"
                 style={{ marginLeft: '16px' }}
