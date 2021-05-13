@@ -8,7 +8,7 @@ import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
-// import PopUpLinks from './PopUpLinks';
+
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -20,7 +20,6 @@ const MenuTop = (props) => {
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
-  const [binance, setBinance] = useState(false);
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -74,14 +73,6 @@ const MenuTop = (props) => {
       'right-menu-text blog',
       'sidebar-menu-text blog',
       'dashboard-menu-container',
-      'top',
-    ];
-  } else if (router.pathname.includes('binance')) {
-    menuStyle = [
-      'mobile-menu-icon',
-      'right-menu-text blog',
-      'sidebar-menu-text blog',
-      'binance-menu-container',
       'top',
     ];
   } else {
@@ -174,14 +165,6 @@ const MenuTop = (props) => {
     }
   }
 
-  useEffect(() => {
-    if (router.pathname.includes('binance')) {
-      setBinance(true);
-    } else {
-      setBinance(false);
-    }
-  }, []);
-
   // close the message box popup and open and close mobile dropdown menu
   function handleDismiss() {
     dispatch({
@@ -193,11 +176,7 @@ const MenuTop = (props) => {
   function DGLogo() {
     return (
       <Link href="/">
-        {!binance ? (
-          <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
-        ) : (
-          <img id="menu-logo" alt="Decentral Games Logo" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png" />
-        )}
+        <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
       </Link>
     );
   }
@@ -450,10 +429,18 @@ const MenuTop = (props) => {
                       Withdraw
                     </Button>
                   </span>
-                  <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
-                  <p className="account-dropdown-item"> My Items </p>
-                  <p className="account-dropdown-item"> Gameplay History </p>
-                  <p className="account-dropdown-item"> Referrals </p>
+                  <a href="/account">
+                    <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
+                  </a>
+                  <a href="/account/nfts">
+                    <p className="account-dropdown-item"> My Items </p>
+                  </a>
+                  <a href="/account/history">
+                    <p className="account-dropdown-item"> Gameplay History </p>
+                  </a>
+                  <a href="/account/referrals">
+                    <p className="account-dropdown-item"> Referrals </p>
+                  </a>
                   <p className="account-dropdown-item"> Disconnect </p>
                   <Button className="buy-dg-button">
                     Buy $DG
@@ -462,17 +449,12 @@ const MenuTop = (props) => {
               </span>
             </Popup>
           </div>
-
-
-          {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>
       );
     } else {
       return (
         <span className="right-menu-items">
           <ButtonConnect />
-
-          {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>
       );
     }
@@ -494,7 +476,7 @@ const MenuTop = (props) => {
               {balancesAndButtons()}
             </Menu>
           ) : (
-            <Menu className={binance ? "menu-container-binance" : "menu-container-dark blog"} icon="labeled">
+            <Menu className="menu-container-dark blog" icon="labeled">
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}
