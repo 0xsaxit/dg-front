@@ -139,7 +139,7 @@ function ContentReferrals({ state, totalAmount }) {
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
           <h3 className="mb-0">
-            {!!state.DGBalances.BALANCE_AFFILIATES.length && totalAmount
+            {!!state.DGBalances.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}
           </h3>
