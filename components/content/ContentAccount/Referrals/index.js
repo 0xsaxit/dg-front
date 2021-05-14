@@ -147,17 +147,18 @@ function ContentReferrals({ state, totalAmount }) {
         </span>
 
         <div className={styles.referrals_body}>
-          {state.DGBalances.BALANCE_AFFILIATES.map(
-            (affiliate, affiliateIndex) => {
-              return (
-                <Segment className={styles.segment} loading={!affiliate['address']} key={`table_row_${affiliateIndex}`}>
-                  <div
-                    className={cn(
-                      'd-flex justify-content-between align-items-center mb-2',
-                      styles.affiliate_row
-                    )}
-                  >
-                    {!!affiliate['address'] && (
+          <Segment className={styles.segment} loading={!!state.DGBalances.BALANCE_AFFILIATES.length && !state.DGBalances.BALANCE_AFFILIATES[0]['address']} >
+            {state.DGBalances.BALANCE_AFFILIATES.map(
+              (affiliate, affiliateIndex) => {
+                return (
+                  !!affiliate['address'] ? (
+                    <div
+                      className={cn(
+                        'd-flex justify-content-between align-items-center mb-2',
+                        styles.affiliate_row
+                      )}
+                      key={`table_row_${affiliateIndex}`}
+                    >
                       <>
                         <div className={styles.address}>
                           {affiliate['address']}
@@ -181,12 +182,12 @@ function ContentReferrals({ state, totalAmount }) {
                           />
                         </div>
                       </>
-                    )}
-                  </div>
-                </Segment>
-              );
-            }
-          )}
+                    </div>
+                  ): <></>
+                );
+              }
+            )}
+          </Segment>
           <div className={cn(styles.toast, isToastShow ? '' : styles.hidden)}>
             Unique Referral Link Copied!
           </div>
