@@ -138,13 +138,29 @@ const ContentAdmin = (props) => {
     return (
       <Table.Body>
         {props.data.map((row, i) => {
-          return (
-            <Table.Row key={i}>
-              <Table.Cell>{row.address}</Table.Cell>
-              <Table.Cell>{row.avatarName}</Table.Cell>
-              <Table.Cell>{row.verifyStep}</Table.Cell>
-            </Table.Row>
-          );
+          if (row.verifyStep === 28) {
+            return (
+              <Table.Row key={i}>
+                <Table.Cell>{row.address}</Table.Cell>
+                <Table.Cell>{row.avatarName}</Table.Cell>
+                <Table.Cell>{row.verifyStep}</Table.Cell>
+              </Table.Row>
+            );
+          }
+        })}
+
+        <Divider className="tab-divider" />
+
+        {props.data.map((row, i) => {
+          if (row.verifyStep === 20) {
+            return (
+              <Table.Row key={i}>
+                <Table.Cell>{row.address}</Table.Cell>
+                <Table.Cell>{row.avatarName}</Table.Cell>
+                <Table.Cell>{row.verifyStep}</Table.Cell>
+              </Table.Row>
+            );
+          }
         })}
 
         <Divider className="tab-divider" />
@@ -159,13 +175,25 @@ const ContentAdmin = (props) => {
           <Table.Cell>8: Whales</Table.Cell>
         </Table.Row>
         <Table.Row>
+          <Table.Cell>10: Guests (Invitees)</Table.Cell>
+        </Table.Row>
+        <Table.Row>
           <Table.Cell>12: Hosts</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>14: Guests (Invitees)</Table.Cell>
+          <Table.Cell>14: Community Managers</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>22: General Team Members</Table.Cell>
+          <Table.Cell>16: Streamers/Content Creators</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>18: Floor Supervisors</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>20: General Team Members</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>22:</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>24: Marketing Team/PR</Table.Cell>

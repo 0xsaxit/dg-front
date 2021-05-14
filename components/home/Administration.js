@@ -26,6 +26,9 @@ const Administration = (props) => {
       setDataPage(state.adminBalances);
     } else if (props.dataType === 'users') {
       setDataPage(state.usersList);
+
+      console.log('user status list...');
+      console.log(state.usersList);
     }
   }, [state.adminBalances, state.usersList]);
 
