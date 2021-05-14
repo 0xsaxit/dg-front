@@ -102,8 +102,6 @@ p {
 
 .ui.button {
   font-family: 'Larsseit-Bold';
-  letter-spacing: 1px;
-  font-weight: 800 !important;
   border-radius: 16px;
   margin: 0 0 0 0;
 }
@@ -3278,18 +3276,19 @@ img.avatar-picture-home {
 }
 
 .ui.button.casino-balance-button {
-  height: 48px;
+  height: 54px;
   width: 300px;
   border-radius: 12px;
   color: white;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   background: transparent;
   margin-top: 8px;
+  padding: 12px 24px 12px 24px;
 }
 
 .casino-balance-text {
   float: left;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
   font-family: Larsseit-Bold;
 }
@@ -3301,12 +3300,13 @@ img.avatar-picture-home {
 }
 
 .ui.button.account-deposit-button {
-  height: 48px;
+  height: 54px;
   width: 48.5%;
   border-radius: 12px;
   background: #2085f4;
   color: white;
-  font-size: 16px;
+  font-size: 18px !important;
+  padding-top: 17px;
 }
 
 .ui.button.modal-button {
@@ -3319,12 +3319,13 @@ img.avatar-picture-home {
 }
 
 .ui.button.account-withdraw-button {
-  height: 48px;
+  height: 54px;
   width: 48.5%;
   border-radius: 12px;
   background: white;
   color: black;
-  font-size: 16px;
+  font-size: 18px !important;
+  padding-top: 17px;
 }
 
 .account-dropdown-item {
@@ -3340,8 +3341,9 @@ img.avatar-picture-home {
   border-radius: 12px;
   background: #2085f4;
   color: white;
-  font-size: 16px; 
+  font-size: 18px; 
   margin-top: 24px;
+  padding-top: 21px;
 }
 
 .ui.button.get-dg-button-binance {
