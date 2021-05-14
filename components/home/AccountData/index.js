@@ -155,8 +155,7 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-
-              {/*{dataType === 'referrals' ? (
+              {dataType === 'referrals' ? (
                 <span className="account-hover active">
                   <b>REFERRALS</b>
                 </span>
@@ -166,7 +165,7 @@ const AccountData = (props) => {
                     <b>REFERRALS</b>
                   </span>
                 </Link>
-              )}*/}
+              )}
             </span>
           </div>
         </div>
