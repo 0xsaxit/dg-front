@@ -112,7 +112,10 @@ const ContentTreasury = (props) => {
           console.log('coingecko api error: ' + error);
         }
 
-        // weekly 
+        // use for both the graph and the stats
+        // that'll just be week? to match discord bot 'in the past week'
+        // that data will include the percent changes for both daily/weekly in the changes object
+        // call .weekly to match labels
         let response_3 = await Fetch.TREASURY_STATS_NUMBERS(state.userAddress);
         let json_3 = await response_3.json();
 
@@ -150,12 +153,12 @@ const ContentTreasury = (props) => {
 
         let gameplayTotal = json_3.allTimeGameplayUSD;
         setGameplayAll(formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0));
-        let gameplayTotal_temp = (gameplayTotal.changes.daily.percent).toFixed(2);
+        let gameplayTotal_temp = (gameplayTotal.changes.weekly.percent).toFixed(2);
         setGameplayAllPercent(Number(gameplayTotal_temp));
 
         let gameplay = json_3.totalGameplayUSD;
         setGameplayTreasury(formatPrice(gameplay.graph.slice(-1)[0].secondary, 0));
-        let gameplay_temp = (gameplay.changes.daily.percent).toFixed(2)
+        let gameplay_temp = (gameplay.changes.weekly.percent).toFixed(2)
         setGameplayTreasuryPercent(Number(gameplay_temp));
 
         let mana = json_3.manaBalance.graph;
@@ -175,29 +178,29 @@ const ContentTreasury = (props) => {
 
         let land = json_3.totalLandUSD;
         setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));
-        let land_temp = (land.changes.daily.percent).toFixed(2);
+        let land_temp = (land.changes.weekly.percent).toFixed(2);
         setLandTreasuryPercent(Number(land_temp));
 
         let wearables = json_3.totalWearablesUSD;
         setNftTreasury(formatPrice(wearables.graph.slice(-1)[0].secondary, 0));
-        let wearables_temp = (wearables.changes.daily.percent).toFixed(2);
+        let wearables_temp = (wearables.changes.weekly.percent).toFixed(2);
         setNftTreasuryPercent(Number(wearables_temp));
 
         let dg = json_3.totalDgUSD;
         setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
-        let dg_temp = (dg.changes.daily.percent).toFixed(2);
+        let dg_temp = (dg.changes.weekly.percent).toFixed(2);
         setDgTreasuryPercent(Number(dg_temp));
 
         let uni = json_3.totalDgEthUniswapBalance;
         setUniTreasury(formatPrice(uni.graph.slice(-1)[0].secondary, 0));
-        let uni_temp = (uni.changes.daily.percent).toFixed(2);
+        let uni_temp = (uni.changes.weekly.percent).toFixed(2);
         setUniTreasuryPercent(Number(uni_temp));
 
         let maticBal = json_3.totalMaticUSD;
         setMaticTreasury(formatPrice(maticBal.graph.slice(-1)[0].secondary, 0));
         let maticTemp = (json_3.maticBalance.graph.slice(-1)[0].secondary.toFixed(0));
         setMaticTokens(maticTemp);
-        let matic_temp = (maticBal.changes.daily.percent).toFixed(2);
+        let matic_temp = (maticBal.changes.weekly.percent).toFixed(2);
         setMaticTreasuryPercent(Number(matic_temp));
 
         let dgbal = json_3.dgBalance.graph;
