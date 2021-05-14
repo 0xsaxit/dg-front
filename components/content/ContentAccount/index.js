@@ -124,25 +124,6 @@ const ContentAccount = (props) => {
     fetchData();
   }, [state.userAddress]);
 
-  const metaTransaction = async () => {
-    try {
-      const res = await pointerContractNew.methods
-        .distributeAllTokens(
-          state.userAddress,
-          [
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT, 
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
-          ]
-        )
-        .call();
-    } catch (error) {
-      console.log('Affiliate array not found: ' + error);
-    }
-  };
-
   const buttonPlay = document.getElementById('play-now-button-balances');
 
   const ramp1 = new RampInstantSDK({

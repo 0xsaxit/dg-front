@@ -3,8 +3,7 @@ import cn from 'classnames';
 import Web3 from 'web3';
 import Global from 'components/Constants';
 import ABI_DG_TOKEN from 'components/ABI/ABIDGToken.json';
-import Transactions from 'common/Transactions';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Segment } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
@@ -13,28 +12,29 @@ const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 
 function ContentReferrals({ state, totalAmount }) {
   const [copied, setCopied] = useState(false);
-	const [breakdown, setBreakdown] = useState({
-		usdt: 0,
-		eth: 0,
-		dai: 0,
-		mana: 0,
-		atri: 0
-	});
+  const [isToastShow, setIsToastShow] = useState(false);
+  const [breakdown, setBreakdown] = useState({
+    usdt: 0,
+    eth: 0,
+    dai: 0,
+    mana: 0,
+    atri: 0
+  });
 
-	useEffect(() => {
+  useEffect(() => {
     const web3 = new Web3(window.ethereum);
 
-    async function fetchData () {
+    async function fetchData() {
       try {
         if (state.userAddress) {
-          let amount; 
+          let amount;
           const USDT_UNI = new web3.eth.Contract(
             ABI_DG_TOKEN,
             Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT
           );
           amount = await USDT_UNI.methods.balanceOf(state.userAddress).call();
           const usdtAmount = web3.utils.fromWei(amount, 'mwei');
-          
+
           const MANA_UNI = new web3.eth.Contract(
             ABI_DG_TOKEN,
             Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
@@ -59,18 +59,18 @@ function ContentReferrals({ state, totalAmount }) {
           amount = await new web3.eth.getBalance(state.userAddress);
           const ethAmount = web3.utils.fromWei(amount, 'ether');
 
-					setBreakdown({
-						eth: ethAmount,
-						dai: daiAmount,
-						atri: atriAmount,
-						mana: manaAmount,
-						usdt: usdtAmount
-					});
+          setBreakdown({
+            eth: parseInt(Number(ethAmount) * 1000) / 1000,
+            dai: parseInt(Number(daiAmount) * 1000) / 1000,
+            atri: parseInt(Number(atriAmount) * 1000) / 1000,
+            mana: parseInt(Number(manaAmount) * 1000) / 1000,
+            usdt: parseInt(Number(usdtAmount) * 1000) / 1000
+          });
         }
       } catch (error) {
         console.log('Get amount error', error);
       }
-    };
+    }
 
     fetchData();
   }, [state.userAddress]);
@@ -80,6 +80,11 @@ function ContentReferrals({ state, totalAmount }) {
       Global.CONSTANTS.BASE_URL + '/' + state.userInfo.id
     );
     setCopied(true);
+    setIsToastShow(true);
+
+    setTimeout(() => {
+      setIsToastShow(false);
+    }, 3000);
 
     // track 'Affiliate Link' button click event
     analytics.track('Clicked AFFILIATE LINK button');
@@ -110,7 +115,7 @@ function ContentReferrals({ state, totalAmount }) {
                 className="me-2"
                 alt="Referral Link"
               />
-              <span clsasName="d-flex">
+              <span className="d-flex flex-column">
                 <p className={styles.referral_link}>
                   https://decentral.games/{state.userInfo.id}
                 </p>
@@ -133,49 +138,59 @@ function ContentReferrals({ state, totalAmount }) {
           </span>
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="mb-0">Your referrals</h3>
-					<ModalBreakdown totalAmount={totalAmount} breakdown={breakdown} />
+          <h3 className="mb-0">
+            {!!state.DGBalances.BALANCE_AFFILIATES.length && totalAmount
+              ? 'Your referrals'
+              : 'No Referrals Yet'}
+          </h3>
+          <ModalBreakdown totalAmount={totalAmount} breakdown={breakdown} />
         </span>
 
-        <span className={styles.referrals_body}>
+        <div className={styles.referrals_body}>
           {state.DGBalances.BALANCE_AFFILIATES.map(
             (affiliate, affiliateIndex) => {
               return (
-                <div
-                  className={cn(
-                    'd-flex justify-content-between align-items-center mb-2',
-                    styles.affiliate_row
-                  )}
-                  key={`table_row_${affiliateIndex}`}
-                >
-                  {!!affiliate['address'] && (
-                    <>
-                      <div className={styles.address}>
-                        {affiliate['address']}
-                      </div>
-                      <div className="d-flex align-items-center">
-                        <div className={cn('me-2', styles.total_price)}>
-                          $
-                          {coins.reduce((total, coin) => {
-                            return (
-                              Number(total) +
-                              Number(affiliate[coin]) *
-                                Number(state.DGPrices[coin])
-                            );
-                          }, 0).toFixed(2)}
+                <Segment className={styles.segment} loading={!affiliate['address']} key={`table_row_${affiliateIndex}`}>
+                  <div
+                    className={cn(
+                      'd-flex justify-content-between align-items-center mb-2',
+                      styles.affiliate_row
+                    )}
+                  >
+                    {!!affiliate['address'] && (
+                      <>
+                        <div className={styles.address}>
+                          {affiliate['address']}
                         </div>
-                        <ModalBreakdown
-                          breakdown={affiliate}
-                          address={affiliate['address']}
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
+                        <div className="d-flex align-items-center">
+                          <div className={cn('me-2', styles.total_price)}>
+                            $
+                            {coins
+                              .reduce((total, coin) => {
+                                return (
+                                  Number(total) +
+                                  Number(affiliate[coin]) *
+                                    Number(state.DGPrices[coin])
+                                );
+                              }, 0)
+                              .toFixed(2)}
+                          </div>
+                          <ModalBreakdown
+                            breakdown={affiliate}
+                            address={affiliate['address']}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </Segment>
               );
             }
           )}
-        </span>
+          <div className={cn(styles.toast, isToastShow ? '' : styles.hidden)}>
+            Unique Referral Link Copied!
+          </div>
+        </div>
       </div>
     </Aux>
   );

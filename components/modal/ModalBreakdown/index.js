@@ -1,7 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import cn from 'classnames';
 import { Modal, Icon } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import Transactions from 'common/Transactions';
+import Global from 'components/Constants';
 import styles from './ModalBreakdown.module.scss';
 import Images from '../../../common/Images';
 
@@ -11,13 +13,49 @@ const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
 const ModalBreakdown = ({ breakdown = {}, address = null }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const totalAmount = coins
+  const totalAmount = Number(coins
     .reduce((total, item) => {
       return total + Number(state.DGPrices[item]) * Number(breakdown[item]);
-    }, 0)
-    .toFixed(2);
+    }, 0));
+  
   // define local variables
   const [open, setOpen] = useState(false);
+  const [pointerContractNew, setPointerContractNew] = useState({});
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); 
+        const pointerContractNew = await Transactions.pointerContractNew(
+          maticWeb3
+        );
+        setPointerContractNew(pointerContractNew);
+      } catch (error) {
+        console.log(error);
+      }
+
+      fetchData();
+    }
+  }, []);
+
+  const metaTransaction = async () => {
+    try {
+      await pointerContractNew.methods
+        .distributeAllTokens(
+          state.userAddress,
+          [
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT, 
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+          ]
+        )
+        .call();
+    } catch (error) {
+      console.log('Affiliate array not found: ' + error);
+    }
+  };
 
   return (
     <Modal
@@ -31,10 +69,10 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
       trigger={
         !address ? (
           <button
-            disabled={!totalAmount}
+            disabled={!state.DGBalances.BALANCE_AFFILIATES.length || !totalAmount}
             className={cn('btn btn-primary', styles.claim_button)}
           >
-            Deposit Unclaimed Total (${Number(totalAmount).toFixed(2)})
+            Claim Referral Earnings (${Number(totalAmount).toFixed(2)})
           </button>
         ) : (
           <button
@@ -74,7 +112,7 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
               </div>
               <div className="d-flex flex-column align-items-end">
                 <span className={cn('mb-0', styles.coin_title)}>
-                  {Number(breakdown[coin]).toFixed(4)}
+                  {Number(breakdown[coin])}
                 </span>
                 <span className={cn('mb-0', styles.coin_subtitle)}>
                   ${Number(state.DGPrices[coin] * breakdown[coin]).toFixed(2)}
@@ -104,13 +142,13 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
           </div>
           <div className="d-flex flex-column align-items-end">
             <span className={cn('mb-0', styles.coin_title)}>
-              ${totalAmount}
+              ${totalAmount.toFixed(2)}
             </span>
           </div>
         </div>
         {!address && (
-          <button className={cn('btn btn-primary w-100', styles.claim_button)}>
-            Claim ${totalAmount}
+          <button className={cn('btn btn-primary w-100', styles.claim_button)} onClick={metaTransaction}>
+            Claim ${totalAmount.toFixed(2)}
           </button>
         )}
       </div>
