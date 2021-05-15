@@ -112,10 +112,10 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
               </div>
               <div className="d-flex flex-column align-items-end">
                 <span className={cn('mb-0', styles.coin_title)}>
-                  {Number(breakdown[coin])}
+                  {Number(breakdown[coin]).toFixed(3)}
                 </span>
                 <span className={cn('mb-0', styles.coin_subtitle)}>
-                  ${Number(state.DGPrices[coin] * breakdown[coin]).toFixed(2)}
+                  ${Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3)}
                 </span>
               </div>
             </div>

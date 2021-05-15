@@ -150,6 +150,14 @@ function ContentReferrals({ state, totalAmount }) {
           <Segment className={styles.segment} loading={!!state.DGBalances.BALANCE_AFFILIATES.length && !state.DGBalances.BALANCE_AFFILIATES[0]['address']} >
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
+                const _breakdown = {
+                  usdt: affiliate.usdt / 1000000000000000000,
+                  eth: affiliate.eth / 1000000000000000000,
+                  dai: affiliate.dai / 1000000000000000000,
+                  mana: affiliate.mana / 1000000000000000000,
+                  atri: affiliate.atri / 1000000000000000000
+                };
+
                 return (
                   !!affiliate['address'] ? (
                     <div
@@ -171,13 +179,13 @@ function ContentReferrals({ state, totalAmount }) {
                                 return (
                                   Number(total) +
                                   Number(affiliate[coin]) *
-                                    Number(state.DGPrices[coin])
+                                    Number(state.DGPrices[coin]) / 1000000000000000000
                                 );
                               }, 0)
-                              .toFixed(2)}
+                              .toFixed(3)}
                           </div>
                           <ModalBreakdown
-                            breakdown={affiliate}
+                            breakdown={_breakdown}
                             address={affiliate['address']}
                           />
                         </div>
