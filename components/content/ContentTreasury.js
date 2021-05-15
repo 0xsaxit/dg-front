@@ -112,8 +112,11 @@ const ContentTreasury = (props) => {
           console.log('coingecko api error: ' + error);
         }
 
-        // hourly 
-        let response_3 = await Fetch.TREASURY_STATS_GRAPH(state.userAddress);
+        // use for both the graph and the stats
+        // that'll just be week? to match discord bot 'in the past week'
+        // that data will include the percent changes for both daily/weekly in the changes object
+        // call .weekly to match labels
+        let response_3 = await Fetch.TREASURY_STATS_NUMBERS(state.userAddress);
         let json_3 = await response_3.json();
 
         let usd = json_3.totalBalanceUSD.graph;
@@ -139,10 +142,7 @@ const ContentTreasury = (props) => {
         let gameplayAll = json_3.allTimeGameplayUSD.graph;
         setGameplayAllStats(gameplayAll);
 
-        let response_4 = await Fetch.TREASURY_STATS_NUMBERS(state.userAddress);
-        let json_4 = await response_4.json();
-
-        let totalUSD = json_4.totalBalanceUSD.graph;
+        let totalUSD = json_3.totalBalanceUSD.graph;
         setTreasuryTotal(formatPrice(totalUSD.slice(-1)[0].secondary, 0));
 
         let temp_start = totalUSD[0].secondary;
@@ -151,59 +151,59 @@ const ContentTreasury = (props) => {
 
         setWeeklyChange(change);
 
-        let gameplayTotal = json_4.allTimeGameplayUSD;
+        let gameplayTotal = json_3.allTimeGameplayUSD;
         setGameplayAll(formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0));
-        let gameplayTotal_temp = (gameplayTotal.changes.daily.percent).toFixed(2);
+        let gameplayTotal_temp = (gameplayTotal.changes.weekly.percent).toFixed(2);
         setGameplayAllPercent(Number(gameplayTotal_temp));
 
-        let gameplay = json_4.totalGameplayUSD;
+        let gameplay = json_3.totalGameplayUSD;
         setGameplayTreasury(formatPrice(gameplay.graph.slice(-1)[0].secondary, 0));
-        let gameplay_temp = (gameplay.changes.daily.percent).toFixed(2)
+        let gameplay_temp = (gameplay.changes.weekly.percent).toFixed(2)
         setGameplayTreasuryPercent(Number(gameplay_temp));
 
-        let mana = json_4.manaBalance.graph;
+        let mana = json_3.manaBalance.graph;
         setManaBalance(formatPrice(mana.slice(-1)[0].secondary, 0));
 
-        let dai = json_4.daiBalance.graph;
+        let dai = json_3.daiBalance.graph;
         setDaiBalance(formatPrice(dai.slice(-1)[0].secondary, 0));
 
         let usdt = 149746;
         setUSDTBalance(formatPrice(usdt, 0));
 
-        let atri = json_4.atriBalance.graph;
+        let atri = json_3.atriBalance.graph;
         setAtriBalance(formatPrice(atri.slice(-1)[0].secondary, 0));
 
-        let eth = json_4.ethBalance.graph;
+        let eth = json_3.ethBalance.graph;
         setEthBalance(formatPrice(eth.slice(-1)[0].secondary, 3));
 
-        let land = json_4.totalLandUSD;
+        let land = json_3.totalLandUSD;
         setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));
-        let land_temp = (land.changes.daily.percent).toFixed(2);
+        let land_temp = (land.changes.weekly.percent).toFixed(2);
         setLandTreasuryPercent(Number(land_temp));
 
-        let wearables = json_4.totalWearablesUSD;
+        let wearables = json_3.totalWearablesUSD;
         setNftTreasury(formatPrice(wearables.graph.slice(-1)[0].secondary, 0));
-        let wearables_temp = (wearables.changes.daily.percent).toFixed(2);
+        let wearables_temp = (wearables.changes.weekly.percent).toFixed(2);
         setNftTreasuryPercent(Number(wearables_temp));
 
-        let dg = json_4.totalDgUSD;
+        let dg = json_3.totalDgUSD;
         setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
-        let dg_temp = (dg.changes.daily.percent).toFixed(2);
+        let dg_temp = (dg.changes.weekly.percent).toFixed(2);
         setDgTreasuryPercent(Number(dg_temp));
 
-        let uni = json_4.totalDgEthUniswapBalance;
+        let uni = json_3.totalDgEthUniswapBalance;
         setUniTreasury(formatPrice(uni.graph.slice(-1)[0].secondary, 0));
-        let uni_temp = (uni.changes.daily.percent).toFixed(2);
+        let uni_temp = (uni.changes.weekly.percent).toFixed(2);
         setUniTreasuryPercent(Number(uni_temp));
 
-        let maticBal = json_4.totalMaticUSD;
+        let maticBal = json_3.totalMaticUSD;
         setMaticTreasury(formatPrice(maticBal.graph.slice(-1)[0].secondary, 0));
-        let maticTemp = (json_4.maticBalance.graph.slice(-1)[0].secondary.toFixed(0));
+        let maticTemp = (json_3.maticBalance.graph.slice(-1)[0].secondary.toFixed(0));
         setMaticTokens(maticTemp);
-        let matic_temp = (maticBal.changes.daily.percent).toFixed(2);
+        let matic_temp = (maticBal.changes.weekly.percent).toFixed(2);
         setMaticTreasuryPercent(Number(matic_temp));
 
-        let dgbal = json_4.dgBalance.graph;
+        let dgbal = json_3.dgBalance.graph;
         setDgBalance(formatPrice(dgbal.slice(-1)[0].secondary, 0));
 
         setTreasuryDG(formatPrice(state.DGBalances.BALANCE_TREASURY_DG));
@@ -218,7 +218,7 @@ const ContentTreasury = (props) => {
   let data;
   let axes;
 
-  const hourly = {
+  const weekly = {
     labels: statsUSDX,
     datasets: [
       {
@@ -379,7 +379,7 @@ const ContentTreasury = (props) => {
               <span className="treasury-graph">
                 <Line
                   height={150}
-                  data={hourly}
+                  data={weekly}
                   options={{
                     maintainAspectRatio: false,
                     title: { display: false },

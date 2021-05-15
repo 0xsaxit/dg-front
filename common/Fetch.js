@@ -25,19 +25,6 @@ const Fetch = {
     });
   },
 
-  TREASURY_STATS_GRAPH: (address) => {
-    return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/day?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  },
-
   TREASURY_STATS_NUMBERS: (address) => {
     return fetch(
       `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
