@@ -24,11 +24,14 @@ const Administration = (props) => {
   useEffect(() => {
     if (props.dataType === 'balances') {
       setDataPage(state.adminBalances);
+
+      // console.log('admin balances...');
+      // console.log(state.adminBalances);
+
+      // console.log(state.adminBalances[0][0]);
+      // console.log(state.adminBalances[1][0]);
     } else if (props.dataType === 'users') {
       setDataPage(state.usersList);
-
-      console.log('user status list...');
-      console.log(state.usersList);
     }
   }, [state.adminBalances, state.usersList]);
 
@@ -157,8 +160,6 @@ const Administration = (props) => {
                 <ContentAdmin
                   content={dataType}
                   data={dataPage}
-                  ethBalance={state.ethBalance}
-                  adminBalances={state.adminBalances}
                   isPaused={isPaused}
                   dataInterval={dataInterval}
                 />

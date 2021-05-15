@@ -33,18 +33,15 @@ const initialState = {
   txHash: '',
   tokenPings: 0,
   gameRecords: {},
-  balancesOverlay: 0,
+  // balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
-  ethBalance: 0,
+  // ethBalance: 0,
   adminBalances: [
-    [0, 0],
-    [
-      [0, 0],
-      [0, 0],
-      [0, 0],
-      [0, 0],
-    ],
+    [0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
   ],
   usersList: [],
   DGBalances: {
@@ -84,8 +81,8 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   updateInfo: true,
-  stakeTime: 0,
   affiliateAddress: '',
+  stakeTime: 0,
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
@@ -155,11 +152,11 @@ const reducer = (state, action) => {
         gameRecords: action.data,
       };
 
-    case 'balances_overlay':
-      return {
-        ...state,
-        balancesOverlay: action.data,
-      };
+    // case 'balances_overlay':
+    //   return {
+    //     ...state,
+    //     balancesOverlay: action.data,
+    //   };
 
     case 'network_id':
       return {
@@ -173,11 +170,11 @@ const reducer = (state, action) => {
         activeStatus: action.data,
       };
 
-    case 'eth_balance':
-      return {
-        ...state,
-        ethBalance: action.data,
-      };
+    // case 'eth_balance':
+    //   return {
+    //     ...state,
+    //     ethBalance: action.data,
+    //   };
 
     case 'admin_balances':
       return {
