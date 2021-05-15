@@ -72,7 +72,7 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
             disabled={!state.DGBalances.BALANCE_AFFILIATES.length || !totalAmount}
             className={cn('btn btn-primary', styles.claim_button)}
           >
-            Claim Referral Earnings (${Number(totalAmount).toFixed(2)})
+            Claim Referral Earnings (${Number(totalAmount).toFixed(3)})
           </button>
         ) : (
           <button
@@ -142,13 +142,13 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
           </div>
           <div className="d-flex flex-column align-items-end">
             <span className={cn('mb-0', styles.coin_title)}>
-              ${totalAmount.toFixed(2)}
+              ${totalAmount.toFixed(3)}
             </span>
           </div>
         </div>
         {!address && (
           <button className={cn('btn btn-primary w-100', styles.claim_button)} onClick={metaTransaction}>
-            Claim ${totalAmount.toFixed(2)}
+            Claim ${totalAmount.toFixed(3)}
           </button>
         )}
       </div>
