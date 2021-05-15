@@ -414,18 +414,22 @@ const MenuTop = (props) => {
                   </span>
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Button className="casino-balance-button">
+                  <Button 
+                    className="casino-balance-button" 
+                    href="https://play.decentraland.org/?position=-118%2C135"
+                    target="_blank"
+                  >
                     <p className="casino-balance-text"> Casino Balance </p>
                     <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <p className="casino-balance-text two"> ${state.userBalances[3][1].toFixed(2)} </p>
+                      {/*<p className="casino-balance-text two"> ${state.userBalances[3][1].toFixed(2)} </p>*/}
                       <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
                     </span>
                   </Button>
                   <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px' }}>
-                    <Button className="account-deposit-button">
+                    <Button className="account-deposit-button" href="/account">
                       Deposit
                     </Button>
-                    <Button className="account-withdraw-button">
+                    <Button className="account-withdraw-button" href="/account">
                       Withdraw
                     </Button>
                   </span>
@@ -433,16 +437,25 @@ const MenuTop = (props) => {
                     <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
                   </a>
                   <a href="/account/nfts">
-                    <p className="account-dropdown-item"> My Items </p>
+                    <p className="account-dropdown-item"> My NFTs </p>
+                  </a>
+                  <a href="/account/poaps">
+                    <p className="account-dropdown-item"> My POAPs </p>
+                  </a>
+                  <a href="/account/play">
+                    <p className="account-dropdown-item"> Gameplay History </p>
                   </a>
                   <a href="/account/history">
-                    <p className="account-dropdown-item"> Gameplay History </p>
+                    <p className="account-dropdown-item"> Transactions </p>
                   </a>
                   <a href="/account/referrals">
                     <p className="account-dropdown-item"> Referrals </p>
                   </a>
-                  <p className="account-dropdown-item"> Disconnect </p>
-                  <Button className="buy-dg-button">
+                  <Button 
+                    className="buy-dg-button"
+                    href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
+                    target="_blank"
+                  >
                     Buy $DG
                   </Button>
                 </span>
