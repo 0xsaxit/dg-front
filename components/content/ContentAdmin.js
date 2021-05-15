@@ -152,7 +152,7 @@ const ContentAdmin = (props) => {
         <Divider className="tab-divider" />
 
         {props.data.map((row, i) => {
-          if (row.verifyStep === 20) {
+          if (row.verifyStep === 22) {
             return (
               <Table.Row key={i}>
                 <Table.Cell>{row.address}</Table.Cell>
@@ -190,10 +190,10 @@ const ContentAdmin = (props) => {
           <Table.Cell>18: Floor Supervisors</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>20: General Team Members</Table.Cell>
+          <Table.Cell>20: DG Investors</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>22:</Table.Cell>
+          <Table.Cell>22: General Team Members</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>24: Marketing Team/PR</Table.Cell>
