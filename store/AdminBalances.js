@@ -23,11 +23,8 @@ function AdminBalances() {
         // const balance = await getEthBalance();
         balances = await getTokenBalances();
 
-        // update global state eth balance and treasury token balances
-        // dispatch({
-        //   type: 'eth_balance',
-        //   data: balance,
-        // });
+        // console.log('balances...');
+        // console.log(balances);
 
         dispatch({
           type: 'admin_balances',
@@ -41,24 +38,6 @@ function AdminBalances() {
       fetchData();
     }
   }, [state.userStatus, state.tokenPings]);
-
-  // get worker address ETH balance on Matic Network
-  // async function getEthBalance() {
-  //   // console.log('Worker address ETH balance on Matic Network');
-
-  //   try {
-  //     const amount = await maticWeb3.eth.getBalance(
-  //       Global.ADDRESSES.WORKER_WALLET_ADDRESS
-  //     );
-
-  //     const amountEth = web3.utils.fromWei(amount, 'ether') + ' ETH';
-  //     const amountNumber = parseFloat(amountEth).toFixed(4);
-
-  //     return amountNumber;
-  //   } catch (error) {
-  //     console.log('Get ETH balance error', error);
-  //   }
-  // }
 
   function dataInterval() {
     async function fetchData() {
@@ -115,12 +94,7 @@ function AdminBalances() {
     );
 
     try {
-      let arrayAmounts = [
-        [0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-      ];
+      let arrayAmounts = state.adminBalances;
 
       // get Worker address ETH balance on Matic Network
       const amount = await maticWeb3.eth.getBalance(
@@ -135,14 +109,10 @@ function AdminBalances() {
         Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
         3
       );
-      arrayAmounts[0] = [amountNumber, 0, amountTreasury];
+      arrayAmounts.treasury = [amountNumber, 0, amountTreasury];
 
       // get game balances by calling checkGameTokens() on smart contract
       const gameTypes = [1, 8, 7]; // slots, roulette, blackjack
-      // let arrayGameAmounts = [];
-
-      // console.log('about to fetch...');
-      // console.log(gameTypes);
 
       await gameTypes.forEach(async (gameType, i) => {
         const amount1 = await getTokensGame(gameType, 0);
@@ -151,34 +121,15 @@ function AdminBalances() {
         const amount4 = await getTokensGame(gameType, 3);
         const amount5 = await getTokensGame(gameType, 4);
 
-        // console.log('fething from blockchain...');
-        // console.log(
-        //   amount1,
-        //   +'...' + amount2,
-        //   +'...' + amount3,
-        //   +'...' + amount4,
-        //   +'...' + amount5
-        // );
-
-        arrayAmounts[i + 1] = [amount1, amount2, amount3, amount4, amount5, 0];
-
-        // return [amount1, amount2, amount3, amount4, amount5, 0];
+        arrayAmounts[Object.keys(state.adminBalances)[i + 1]] = [
+          amount1,
+          amount2,
+          amount3,
+          amount4,
+          amount5,
+          0,
+        ];
       });
-
-      // await arrayAmounts.push(foo);
-
-      // const amountRoulette1 = await getTokensGame(8, 0);
-      // const amountBlackjack1 = await getTokensGame(7, 0);
-
-      // let arrayGameAmounts = [];
-      // arrayGameAmounts.push([0, amountSlots1]);
-      // arrayGameAmounts.push([0, amountRoulette1]);
-      // arrayGameAmounts.push([0, amountBlackjack1]);
-
-      // arrayAmounts.push(arrayGameAmounts);
-
-      // console.log('array amoounts...');
-      // console.log(arrayAmounts);
 
       return arrayAmounts;
     } catch (error) {
@@ -187,13 +138,6 @@ function AdminBalances() {
   }
 
   async function getTokensGame(gameIndex, tokenIndex) {
-    // console.log(
-    //   'Get tokens for game index: ' +
-    //     gameIndex +
-    //     ' & token index: ' +
-    //     tokenIndex
-    // );
-
     const parentContract = await Transactions.treasuryContract(maticWeb3);
     try {
       const amount = await parentContract.methods

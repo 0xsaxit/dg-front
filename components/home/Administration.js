@@ -27,9 +27,6 @@ const Administration = (props) => {
 
       // console.log('admin balances...');
       // console.log(state.adminBalances);
-
-      // console.log(state.adminBalances[0][0]);
-      // console.log(state.adminBalances[1][0]);
     } else if (props.dataType === 'users') {
       setDataPage(state.usersList);
     }

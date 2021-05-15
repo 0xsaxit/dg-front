@@ -37,12 +37,12 @@ const initialState = {
   networkID: 0,
   activeStatus: true,
   // ethBalance: 0,
-  adminBalances: [
-    [0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-  ],
+  adminBalances: {
+    treasury: [0, 0, 0],
+    slots: [0, 0, 0, 0, 0, 0],
+    roulette: [0, 0, 0, 0, 0, 0],
+    blackjack: [0, 0, 0, 0, 0, 0],
+  },
   usersList: [],
   DGBalances: {
     BALANCE_BP_DG_1: 0,

@@ -7,7 +7,10 @@ import Aux from '../_Aux';
 const ContentAdmin = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  const games = ['slots', 'roulette', 'blackjack'];
+
+  // const games = ['slots', 'roulette', 'blackjack'];
+  const keys = Object.keys(props.data);
+
   const numbers = ['one', 'two', 'three'];
   const logoStyle = {
     width: '21px',
@@ -33,7 +36,7 @@ const ContentAdmin = (props) => {
                     Matic ETH balance
                   </p>
                   <p className="earn-text" style={{ paddingTop: '9px' }}>
-                    {props.data[0][0]}
+                    {props.data.treasury[0]}
                   </p>
                 </span>
 
@@ -43,13 +46,13 @@ const ContentAdmin = (props) => {
                     className="earn-text"
                     style={{ paddingLeft: '21px', paddingTop: '9px' }}
                   >
-                    {props.data[0][1]} DAI
+                    {props.data.treasury[1]} DAI
                   </p>
                   <p
                     className="earn-text"
                     style={{ paddingLeft: '21px', marginTop: '-21px' }}
                   >
-                    {props.data[0][2]} MANA
+                    {props.data.treasury[2]} MANA
                   </p>
                 </span>
               </span>
@@ -73,13 +76,8 @@ const ContentAdmin = (props) => {
 
         <Grid className="admin-balances-container">
           <Grid.Row>
-            {games.map((game, i) => {
-              // console.log('game...');
-              // console.log(game);
-              // console.log(i);
-              // console.log(props.data);
-
-              return balanceBox(game, i + 1);
+            {keys.map((key, i) => {
+              return balanceBox(key, i);
             })}
           </Grid.Row>
         </Grid>
@@ -88,8 +86,10 @@ const ContentAdmin = (props) => {
   }
 
   function balanceBox(game, i) {
+    // console.log(game + ' foo ' + i);
+
     return (
-      <span className={`admin-balances-column ${numbers[i]}`} key={i}>
+      <span className={`admin-balances-column ${numbers[i + 1]}`} key={i}>
         <span className="name-purchase-span">
           <p
             className="welcome-text"
@@ -105,39 +105,35 @@ const ContentAdmin = (props) => {
 
         <Divider className="balances-divider" />
 
-        {/* {console.log('iterating...')}
-        {console.log(props.data)}
-        {console.log(i)} */}
-
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img src={Images.MANA_CIRCLE} style={logoStyle} />
           </span>
-          <p className="welcome-text">{props.data[i][0]} mana</p>
+          <p className="welcome-text">{props.data[game][0]} mana</p>
         </span>
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img src={Images.DAI_CIRCLE} style={logoStyle} />
           </span>
-          <p className="welcome-text">{props.data[i][1]} dai</p>
+          <p className="welcome-text">{props.data[game][1]} dai</p>
         </span>
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img src={Images.USDT_CIRCLE} style={logoStyle} />
           </span>
-          <p className="welcome-text">{props.data[i][2]} usdt</p>
+          <p className="welcome-text">{props.data[game][2]} usdt</p>
         </span>
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img src={Images.ATRI_CIRCLE} style={logoStyle} />
           </span>
-          <p className="welcome-text">{props.data[i][3]} atri</p>
+          <p className="welcome-text">{props.data[game][3]} atri</p>
         </span>
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
             <img src={Images.ETH_CIRCLE} style={logoStyle} />
           </span>
-          <p className="welcome-text">{props.data[i][4]} weth</p>
+          <p className="welcome-text">{props.data[game][4]} weth</p>
         </span>
 
         <span className="balances-button-span">
