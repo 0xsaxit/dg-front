@@ -13,10 +13,13 @@ const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
 const ModalBreakdown = ({ breakdown = {}, address = null }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const totalAmount = Number(coins
-    .reduce((total, item) => {
-      return total + Number(state.DGPrices[item]) * Number(breakdown[item]);
-    }, 0));
+  let totalAmount = 0;
+  state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
+    coins.map(coin => {
+      totalAmount += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
+    })
+  });
+  totalAmount = totalAmount.toFixed(3);
   
   // define local variables
   const [open, setOpen] = useState(false);
@@ -142,13 +145,13 @@ const ModalBreakdown = ({ breakdown = {}, address = null }) => {
           </div>
           <div className="d-flex flex-column align-items-end">
             <span className={cn('mb-0', styles.coin_title)}>
-              ${totalAmount.toFixed(3)}
+              ${Number(totalAmount).toFixed(3)}
             </span>
           </div>
         </div>
         {!address && (
           <button className={cn('btn btn-primary w-100', styles.claim_button)} onClick={metaTransaction}>
-            Claim ${totalAmount.toFixed(3)}
+            Claim ${Number(totalAmount).toFixed(3)}
           </button>
         )}
       </div>

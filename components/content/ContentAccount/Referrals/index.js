@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
-import Web3 from 'web3';
 import Global from 'components/Constants';
-import ABI_DG_TOKEN from 'components/ABI/ABIDGToken.json';
 import { Icon, Segment } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
@@ -10,70 +8,22 @@ import ModalBreakdown from 'components/modal/ModalBreakdown';
 
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 
-function ContentReferrals({ state, totalAmount }) {
+function ContentReferrals({ state }) {
   const [copied, setCopied] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
-  const [breakdown, setBreakdown] = useState({
-    usdt: 0,
-    eth: 0,
-    dai: 0,
-    mana: 0,
-    atri: 0
+  const breakdown = {};
+
+  let totalAmount = 0;
+  coins.map(coin => {
+    let totalAmountByCoin = 0;
+    state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
+      totalAmount += Number(state.DGPrices[coin] * affiliate[coin]).toFixed(3);
+      totalAmountByCoin += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
+    });
+    breakdown[coin] = totalAmountByCoin.toFixed(3);
   });
 
-  useEffect(() => {
-    const web3 = new Web3(window.ethereum);
 
-    async function fetchData() {
-      try {
-        if (state.userAddress) {
-          let amount;
-          const USDT_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT
-          );
-          amount = await USDT_UNI.methods.balanceOf(state.userAddress).call();
-          const usdtAmount = web3.utils.fromWei(amount, 'mwei');
-
-          const MANA_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
-          );
-          amount = await MANA_UNI.methods.balanceOf(state.userAddress).call();
-          const manaAmount = web3.utils.fromWei(amount, 'ether');
-
-          const ATRI_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_ATRI
-          );
-          amount = await ATRI_UNI.methods.balanceOf(state.userAddress).call();
-          const atriAmount = web3.utils.fromWei(amount, 'wei');
-
-          const DAI_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
-          );
-          amount = await DAI_UNI.methods.balanceOf(state.userAddress).call();
-          const daiAmount = web3.utils.fromWei(amount, 'ether');
-
-          amount = await new web3.eth.getBalance(state.userAddress);
-          const ethAmount = web3.utils.fromWei(amount, 'ether');
-
-          setBreakdown({
-            eth: parseInt(Number(ethAmount) * 1000) / 1000,
-            dai: parseInt(Number(daiAmount) * 1000) / 1000,
-            atri: parseInt(Number(atriAmount) * 1000) / 1000,
-            mana: parseInt(Number(manaAmount) * 1000) / 1000,
-            usdt: parseInt(Number(usdtAmount) * 1000) / 1000
-          });
-        }
-      } catch (error) {
-        console.log('Get amount error', error);
-      }
-    }
-
-    fetchData();
-  }, [state.userAddress]);
 
   const onCopy = () => {
     navigator.clipboard.writeText(
@@ -150,13 +100,6 @@ function ContentReferrals({ state, totalAmount }) {
           <Segment className={styles.segment} loading={!!state.DGBalances.BALANCE_AFFILIATES.length && !state.DGBalances.BALANCE_AFFILIATES[0]['address']} >
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
-                const _breakdown = {
-                  usdt: affiliate.usdt / 1000000000000000000,
-                  eth: affiliate.eth / 1000000000000000000,
-                  dai: affiliate.dai / 1000000000000000000,
-                  mana: affiliate.mana / 1000000000000000000,
-                  atri: affiliate.atri / 1000000000000000000
-                };
 
                 return (
                   !!affiliate['address'] ? (
@@ -179,13 +122,13 @@ function ContentReferrals({ state, totalAmount }) {
                                 return (
                                   Number(total) +
                                   Number(affiliate[coin]) *
-                                    Number(state.DGPrices[coin]) / 1000000000000000000
+                                    Number(state.DGPrices[coin])
                                 );
                               }, 0)
                               .toFixed(3)}
                           </div>
                           <ModalBreakdown
-                            breakdown={_breakdown}
+                            breakdown={affiliate}
                             address={affiliate['address']}
                           />
                         </div>

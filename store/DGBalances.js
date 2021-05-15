@@ -401,11 +401,11 @@ function DGBalances() {
       const wrappedResult = amountMana._players.map((address, index) => {
         return {
           address,
-          mana: amountMana._profits[index],
-          dai: amountDai._profits[index],
-          usdt: amountUSDT._profits[index],
-          atri: amountAtri._profits[index],
-          eth: amountEth._profits[index]
+          mana: amountMana._profits[index] / 1000000000000000000,
+          dai: amountDai._profits[index] / 1000000000000000000,
+          usdt: amountUSDT._profits[index] / 1000000000000000000,
+          atri: amountAtri._profits[index] / 1000000000000000000,
+          eth: amountEth._profits[index] / 1000000000000000000
         };
       });
 
