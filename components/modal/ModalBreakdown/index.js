@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import cn from 'classnames';
+import Web3 from 'web3';
 import { Modal, Icon } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Transactions from 'common/Transactions';
@@ -16,26 +17,14 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
   
   // define local variables
   const [open, setOpen] = useState(false);
-  const [pointerContractNew, setPointerContractNew] = useState({});
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); 
-        const pointerContractNew = await Transactions.pointerContractNew(
-          maticWeb3
-        );
-        setPointerContractNew(pointerContractNew);
-      } catch (error) {
-        console.log(error);
-      }
-
-      fetchData();
-    }
-  }, []);
 
   const metaTransaction = async () => {
     try {
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); 
+      const pointerContractNew = await Transactions.pointerContractNew(
+        maticWeb3
+      );
+
       await pointerContractNew.methods
         .distributeAllTokens(
           state.userAddress,
@@ -48,6 +37,8 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
           ]
         )
         .call();
+      
+        setOpen(false);
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
