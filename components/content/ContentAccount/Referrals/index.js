@@ -59,9 +59,7 @@ function ContentReferrals({ state }) {
 
   let totalAmount = 0;
   coins.map(coin => {
-    state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
-      totalAmount += Number(state.DGPrices[coin] * affiliate[coin]).toFixed(3);
-    });
+    totalAmount += Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3);
   });
 
   const onCopy = () => {
