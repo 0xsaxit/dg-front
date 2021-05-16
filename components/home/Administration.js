@@ -12,6 +12,7 @@ const Administration = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [ethBalance, setEthBalance] = useState(0);
   const [dataPage, setDataPage] = useState('');
   const [isPaused, setIsPaused] = useState(false);
   const [parentContract, setParentContract] = useState({});
@@ -23,14 +24,12 @@ const Administration = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     if (props.dataType === 'balances') {
+      setEthBalance(state.ethBalance);
       setDataPage(state.adminBalances);
-
-      // console.log('admin balances...');
-      // console.log(state.adminBalances);
     } else if (props.dataType === 'users') {
       setDataPage(state.usersList);
     }
-  }, [state.adminBalances, state.usersList]);
+  }, [state.ethBalance, state.adminBalances, state.usersList]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -156,6 +155,7 @@ const Administration = (props) => {
               {dataPage ? (
                 <ContentAdmin
                   content={dataType}
+                  ethBalance={ethBalance}
                   data={dataPage}
                   isPaused={isPaused}
                   dataInterval={dataInterval}

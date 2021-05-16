@@ -36,9 +36,9 @@ const initialState = {
   // balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
-  // ethBalance: 0,
+  ethBalance: 0,
   adminBalances: {
-    treasury: [0, 0, 0],
+    treasury: [0, 0, 0, 0, 0, 0],
     slots: [0, 0, 0, 0, 0, 0],
     roulette: [0, 0, 0, 0, 0, 0],
     blackjack: [0, 0, 0, 0, 0, 0],
@@ -170,11 +170,11 @@ const reducer = (state, action) => {
         activeStatus: action.data,
       };
 
-    // case 'eth_balance':
-    //   return {
-    //     ...state,
-    //     ethBalance: action.data,
-    //   };
+    case 'eth_balance':
+      return {
+        ...state,
+        ethBalance: action.data,
+      };
 
     case 'admin_balances':
       return {

@@ -33,27 +33,12 @@ const ContentAdmin = (props) => {
               <span style={{ display: 'flex' }}>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <p className="welcome-text" style={{ paddingLeft: '0px' }}>
-                    Matic ETH balance
-                  </p>
-                  <p className="earn-text" style={{ paddingTop: '9px' }}>
-                    {props.data.treasury[0]}
+                    Worker wallet ETH balance:
                   </p>
                 </span>
 
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className="welcome-text">Treasury Balances</p>
-                  <p
-                    className="earn-text"
-                    style={{ paddingLeft: '21px', paddingTop: '9px' }}
-                  >
-                    {props.data.treasury[1]} DAI
-                  </p>
-                  <p
-                    className="earn-text"
-                    style={{ paddingLeft: '21px', marginTop: '-21px' }}
-                  >
-                    {props.data.treasury[2]} MANA
-                  </p>
+                  <p className="earn-text">{props.ethBalance}</p>
                 </span>
               </span>
 
