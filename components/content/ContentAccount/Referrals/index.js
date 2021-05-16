@@ -59,7 +59,7 @@ function ContentReferrals({ state }) {
 
   let totalAmount = 0;
   coins.map(coin => {
-    totalAmount += Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3);
+    totalAmount += +Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3);
   });
 
   const onCopy = () => {
@@ -137,6 +137,10 @@ function ContentReferrals({ state }) {
           <Segment className={styles.segment} loading={!!state.DGBalances.BALANCE_AFFILIATES.length && !state.DGBalances.BALANCE_AFFILIATES[0]['address']} >
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
+                let amount = 0;
+                coins.map(coin => {
+                  amount += +(Number(state.DGPrices[coin]) * Number(affiliate[coin])).toFixed(3);
+                });
 
                 return (
                   !!affiliate['address'] ? (
@@ -166,6 +170,7 @@ function ContentReferrals({ state }) {
                           </div>
                           <ModalBreakdown
                             breakdown={affiliate}
+                            totalAmount={amount}
                             address={affiliate['address']}
                           />
                         </div>

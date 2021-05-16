@@ -10,16 +10,9 @@ import Images from '../../../common/Images';
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
 
-const ModalBreakdown = ({ breakdown = {}, address = null }) => {
+const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  let totalAmount = 0;
-  state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
-    coins.map(coin => {
-      totalAmount += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
-    })
-  });
-  totalAmount = totalAmount.toFixed(3);
   
   // define local variables
   const [open, setOpen] = useState(false);
