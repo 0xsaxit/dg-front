@@ -75,7 +75,7 @@
 		.segment {
 			background: transparent;
 			padding: 0;
-			height: 10rem;
+			min-height: 10rem;
 
 			&::before {
 				background: transparent;
