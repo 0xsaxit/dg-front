@@ -18,11 +18,11 @@ const Airdrop = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus >= 20 ? (
+      {state.userStatus ? (
         <Farming DGState={'airdrop'} />
       ) : (
         <div className="account-other-inner-p">
-          Please ensure you've connected using a team member wallet address
+          You must connect your wallet to view this page
         </div>
       )}
     </Layout>
