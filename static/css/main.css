@@ -1894,6 +1894,10 @@ i.pencil.icon.edit-icon:hover {
   color: #ea3943 !important;
 }
 
+.earned-percent.neutral {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
 i.caret.up.icon.percent-icon.pos,
 i.caret.down.icon.percent-icon.neg {
   font-size: 10px !important;

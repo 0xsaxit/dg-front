@@ -61,9 +61,11 @@ const ContentTreasury = (props) => {
   const [nftTreasury, setNftTreasury] = useState(0);
   const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
 
+  const [liquidityTreasury, setLiquidityTreasury] = useState(0);
+  const [liquidityTreasuryPercent, setLiquidityTreasuryPercent] = useState(0);
+
   const [uniTreasury, setUniTreasury] = useState(0);
-  const [percentageUniswap, setPercentageUniswap] = useState(0);
-  const [uniTreasuryPercent, setUniTreasuryPercent] = useState(0);
+  const [mviTreasury, setMviTreasury] = useState(0);
 
   const [maticTreasury, setMaticTreasury] = useState(0);
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
@@ -84,13 +86,6 @@ const ContentTreasury = (props) => {
       if (state.userStatus 
         && state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY 
         && state.stakingBalances.BALANCE_CONTRACT_UNISWAP) {
-
-        const percentageTreasuryUniswap = Number(
-          (state.stakingBalances.BALANCE_STAKED_UNISWAP_TREASURY /
-            state.stakingBalances.BALANCE_CONTRACT_UNISWAP)
-        );
-
-        setPercentageUniswap((percentageTreasuryUniswap * 100).toFixed(2));
 
         try {
           const response = await Fetch.ETH_PRICE();
@@ -191,10 +186,16 @@ const ContentTreasury = (props) => {
         let dg_temp = (dg.changes.weekly.percent).toFixed(2);
         setDgTreasuryPercent(Number(dg_temp));
 
+        let liq = json_3.totalLiquidityProvided;
+        setLiquidityTreasury(formatPrice(liq.graph.slice(-1)[0].secondary, 0));
+        console.log(liq.changes.weekly.percent);
+        setLiquidityTreasuryPercent(0);
+
         let uni = json_3.totalDgEthUniswapBalance;
         setUniTreasury(formatPrice(uni.graph.slice(-1)[0].secondary, 0));
-        let uni_temp = (uni.changes.weekly.percent).toFixed(2);
-        setUniTreasuryPercent(Number(uni_temp));
+
+        let mvi = json_3.totalMviEthLPBalance;
+        setMviTreasury(formatPrice(mvi.graph.slice(-1)[0].secondary, 0));
 
         let maticBal = json_3.totalMaticUSD;
         setMaticTreasury(formatPrice(maticBal.graph.slice(-1)[0].secondary, 0));
@@ -797,7 +798,7 @@ const ContentTreasury = (props) => {
                   <Table.Row>
                     <Table.Cell>
                       <span style={{ display: 'flex' }}>
-                        Uniswap ETH-DG LP
+                        Liquidity Provided
                         <Popup
                           className="dai-mana-popup"
                           trigger={
@@ -809,18 +810,16 @@ const ContentTreasury = (props) => {
                           }
                         >
                           <div>
-                            <p className="earned-text">
-                              Treasury holdings of ETH-DG Uniswap LP calculated
-                              as {percentageUniswap}% of the UNI V2 ETH-DG pool
-                            </p>
+                            <p className="earned-text"> ETH-DG v3: ${uniTreasury} </p>
+                            <p className="earned-text"> MVI-DG v2: ${mviTreasury} </p>
                           </div>
                         </Popup>
                       </span>
                     </Table.Cell>
 
-                    {uniTreasury ? (
+                    {liquidityTreasury ? (
                       <Table.Cell textAlign="right">
-                        ${uniTreasury}
+                        ${liquidityTreasury}
                       </Table.Cell>
                     ) : (
                       <Table.Cell textAlign="right">
@@ -833,40 +832,13 @@ const ContentTreasury = (props) => {
                       </Table.Cell>
                     )}
 
-                    {uniTreasuryPercent > 0 && uniTreasury ? (
-                      <Table.Cell textAlign="right">
-                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                          <p className="earned-percent pos">
-                            {uniTreasuryPercent}%
-                          </p>
-                          <Icon
-                            name="caret up"
-                            className="percent-icon pos"
-                          />
-                        </span>
-                      </Table.Cell>
-                    ) : uniTreasury ? (
-                      <Table.Cell textAlign="right">
-                        <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                          <p className="earned-percent neg">
-                            {uniTreasuryPercent}%
-                          </p>
-                          <Icon
-                            name="caret down"
-                            className="percent-icon neg"
-                          />
-                        </span>
-                      </Table.Cell>
-                    ) : (
-                      <Table.Cell textAlign="right">
-                        <Loader
-                          active
-                          inline
-                          size="small"
-                          className="treasury-loader"
-                        />
-                      </Table.Cell>
-                    )}
+                    <Table.Cell textAlign="right">
+                      <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <p className="earned-percent neutral">
+                          0.00%
+                        </p>
+                      </span>
+                    </Table.Cell>
                   </Table.Row>  
 
                   <Table.Row>
