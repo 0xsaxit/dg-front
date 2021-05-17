@@ -6,7 +6,7 @@ import { Menu, Icon, Dropdown } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
-import MessageBox from './MessageBox';
+// import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 // import PopUpLinks from './PopUpLinks';
 
@@ -176,12 +176,12 @@ const MenuTop = (props) => {
   }
 
   // close the message box popup and open and close mobile dropdown menu
-  function handleDismiss() {
-    dispatch({
-      type: 'token_pings',
-      data: 0,
-    });
-  }
+  // function handleDismiss() {
+  //   dispatch({
+  //     type: 'token_pings',
+  //     data: 0,
+  //   });
+  // }
 
   function DGLogo() {
     return (
@@ -383,13 +383,19 @@ const MenuTop = (props) => {
                 <span className="mobile-display-none-name">
                   {state.userInfo.name === null ||
                   state.userInfo.name === '' ? (
-                    <p className={menuStyle[1]} style={{ marginTop: '-1px', textTransform: 'uppercase' }}>
+                    <p
+                      className={menuStyle[1]}
+                      style={{ marginTop: '-1px', textTransform: 'uppercase' }}
+                    >
                       {state.userAddress.substr(0, 4) +
                         '...' +
                         state.userAddress.substr(-4)}
                     </p>
                   ) : (
-                    <p style={{ marginTop: '-1px', textTransform: 'uppercase' }} className={menuStyle[1]}>
+                    <p
+                      style={{ marginTop: '-1px', textTransform: 'uppercase' }}
+                      className={menuStyle[1]}
+                    >
                       {state.userInfo.name}
                     </p>
                   )}
@@ -451,7 +457,7 @@ const MenuTop = (props) => {
             </Menu>
           )}
 
-          <MessageBox handleDismiss={handleDismiss} />
+          {/* <MessageBox handleDismiss={handleDismiss} /> */}
         </div>
       </span>
     );

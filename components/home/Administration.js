@@ -14,7 +14,9 @@ const Administration = (props) => {
   // define local variables
   const [ethBalance, setEthBalance] = useState(0);
   const [dataPage, setDataPage] = useState('');
-  const [isPaused, setIsPaused] = useState(false);
+
+  const [isPausedTreasury, setIsPausedTreasury] = useState(false);
+
   const [parentContract, setParentContract] = useState({});
   const [instances, setInstances] = useState(false);
 
@@ -45,57 +47,65 @@ const Administration = (props) => {
     }
   }, [state.userStatus]);
 
-  // get treasury contract's paused status (true or false)
-  useEffect(() => {
-    if (instances) {
-      (async () => {
-        const pauseStatus = await parentContract.methods.paused().call();
-        setIsPaused(pauseStatus);
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // get treasury contract's and all games' paused status (true or false)
+  // useEffect(() => {
+  //   if (instances) {
+  //     (async () => {
+  //       const pauseStatusTreasury = await parentContract.methods
+  //         .paused()
+  //         .call();
+  //       setIsPausedTreasury(pauseStatusTreasury);
 
-        console.log('Pause status: ' + pauseStatus);
-      })();
-    }
-  }, [instances]);
+  //       console.log('Pause status (Treasury): ' + pauseStatusTreasury);
+
+  //       // const pauseStatusSlots = await parentContract.methods.paused().call();
+  //       // setIsPausedSlots(pauseStatusSlots);
+
+  //       console.log('Pause status (Treasury): ' + pauseStatusTreasury);
+  //     })();
+  //   }
+  // }, [instances]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // ping the treasury contract for pause status
-  async function dataInterval() {
-    async function fetchData() {
-      const response = await parentContract.methods.paused().call();
+  // async function dataInterval() {
+  //   async function fetchData() {
+  //     const responseTreasury = await parentContract.methods.paused().call();
+  //     console.log('Response status: ' + responseTreasury);
+  //     console.log('Current status: ' + isPausedTreasury);
 
-      console.log('Response status: ' + response);
-      console.log('Current status: ' + isPaused);
+  //     if (response !== isPausedTreasury) {
+  //       // display the pause status confirmation
+  //       // if (!response) {
+  //       //   dispatch({
+  //       //     type: 'token_pings',
+  //       //     data: 5,
+  //       //   });
+  //       // } else {
+  //       //   dispatch({
+  //       //     type: 'token_pings',
+  //       //     data: 6,
+  //       //   });
+  //       // }
 
-      if (response !== isPaused) {
-        // display the pause status confirmation
-        if (!response) {
-          dispatch({
-            type: 'token_pings',
-            data: 5,
-          });
-        } else {
-          dispatch({
-            type: 'token_pings',
-            data: 6,
-          });
-        }
+  //       // change the button type (pause or unpause)
+  //       setIsPaused(responseTreasury);
+  //       console.log('Pause status (updated): ' + responseTreasury);
 
-        // change the button type (pause or unpause)
-        setIsPaused(response);
-        console.log('Pause status (updated): ' + response);
+  //       clearInterval(interval);
+  //     }
+  //   }
 
-        clearInterval(interval);
-      }
-    }
+  //   // call token contract every 1 second to get new pause status
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 1000);
 
-    // call token contract every 1 second to get new pause status
-    const interval = setInterval(() => {
-      fetchData();
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }
+  //   return () => clearInterval(interval);
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -157,8 +167,8 @@ const Administration = (props) => {
                   content={dataType}
                   ethBalance={ethBalance}
                   data={dataPage}
-                  isPaused={isPaused}
-                  dataInterval={dataInterval}
+                  // isPausedTreasury={isPausedTreasury}
+                  // dataInterval={dataInterval}
                 />
               ) : null}
             </table>

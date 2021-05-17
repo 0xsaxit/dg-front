@@ -108,57 +108,57 @@ function AdminBalances() {
         });
 
         // if deposit or withdrawal start pinging the token contract for changed balances
-        if (state.tokenPings === 2) dataInterval();
+        // if (state.tokenPings === 2) dataInterval();
       }
 
       fetchData();
     }
   }, [instances, state.tokenPings]);
 
-  function dataInterval() {
-    async function fetchData() {
-      const response = await getTokenBalances();
+  // function dataInterval() {
+  //   async function fetchData() {
+  //     const response = await getTokenBalances();
 
-      // as soon as the balance updates on Matic display confirmation & stop pings
-      if (
-        response[0][1] !== balanceTokens[0][1] ||
-        response[1][1] !== balanceTokens[1][1]
-      ) {
-        if (
-          response[0][1] > balanceTokens[0][1] ||
-          response[1][1] > balanceTokens[1][1]
-        ) {
-          console.log('Matic balances have updated: deposit');
+  //     // as soon as the balance updates on Matic display confirmation & stop pings
+  //     if (
+  //       response[0][1] !== balanceTokens[0][1] ||
+  //       response[1][1] !== balanceTokens[1][1]
+  //     ) {
+  //       if (
+  //         response[0][1] > balanceTokens[0][1] ||
+  //         response[1][1] > balanceTokens[1][1]
+  //       ) {
+  //         console.log('Matic balances have updated: deposit');
 
-          dispatch({
-            type: 'token_pings',
-            data: 3,
-          });
+  //         dispatch({
+  //           type: 'token_pings',
+  //           data: 3,
+  //         });
 
-          clearInterval(interval);
-        } else if (
-          response[0][1] < balanceTokens[0][1] ||
-          response[1][1] < balanceTokens[1][1]
-        ) {
-          console.log('Matic balances have updated: withdrawal');
+  //         clearInterval(interval);
+  //       } else if (
+  //         response[0][1] < balanceTokens[0][1] ||
+  //         response[1][1] < balanceTokens[1][1]
+  //       ) {
+  //         console.log('Matic balances have updated: withdrawal');
 
-          dispatch({
-            type: 'token_pings',
-            data: 4,
-          });
+  //         dispatch({
+  //           type: 'token_pings',
+  //           data: 4,
+  //         });
 
-          clearInterval(interval);
-        }
-      }
-    }
+  //         clearInterval(interval);
+  //       }
+  //     }
+  //   }
 
-    // call token contract every 3 seconds to get new balances
-    const interval = setInterval(() => {
-      fetchData();
-    }, 3000);
+  //   // call token contract every 3 seconds to get new balances
+  //   const interval = setInterval(() => {
+  //     fetchData();
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }
+  //   return () => clearInterval(interval);
+  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

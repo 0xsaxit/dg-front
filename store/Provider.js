@@ -31,7 +31,7 @@ const initialState = {
   ],
   transactions: [{}, {}],
   txHash: '',
-  tokenPings: 0,
+  // tokenPings: 0,
   gameRecords: {},
   // balancesOverlay: 0,
   networkID: 0,
@@ -140,11 +140,11 @@ const reducer = (state, action) => {
         txHash: action.data,
       };
 
-    case 'token_pings':
-      return {
-        ...state,
-        tokenPings: action.data,
-      };
+    // case 'token_pings':
+    //   return {
+    //     ...state,
+    //     tokenPings: action.data,
+    //   };
 
     case 'update_records':
       return {

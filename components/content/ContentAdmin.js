@@ -1,6 +1,6 @@
 import { Divider, Grid, Table } from 'semantic-ui-react';
-import ButtonPause from '../button/ButtonPause';
-import ModalFunds from '../modal/ModalFunds';
+// import ButtonPause from '../button/ButtonPause';
+// import ModalAdminFunds from '../modal/ModalAdminFunds';
 import Images from '../../common/Images';
 import Aux from '../_Aux';
 
@@ -31,18 +31,12 @@ const ContentAdmin = (props) => {
               className="balances-column zero"
             >
               <span style={{ display: 'flex' }}>
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className="welcome-text" style={{ paddingLeft: '0px' }}>
-                    Worker wallet ETH balance:
-                  </p>
-                </span>
-
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className="earn-text">{props.ethBalance}</p>
-                </span>
+                <p className="earn-text" style={{ paddingLeft: '0px' }}>
+                  Worker wallet balance: {props.ethBalance} ETH
+                </p>
               </span>
 
-              <span
+              {/* <span
                 style={{
                   display: 'flex',
                   justifyContent: 'flex-end',
@@ -51,10 +45,10 @@ const ContentAdmin = (props) => {
                 }}
               >
                 <ButtonPause
-                  isPaused={props.isPaused}
+                  isPausedTreasury={props.isPausedTreasury}
                   dataInterval={props.dataInterval}
                 />
-              </span>
+              </span> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -71,19 +65,10 @@ const ContentAdmin = (props) => {
   }
 
   function balanceBox(game, i) {
-    // console.log(game + ' foo ' + i);
-
     return (
       <span className={`admin-balances-column ${numbers[i + 1]}`} key={i}>
-        <span className="name-purchase-span">
-          <p
-            className="welcome-text"
-            style={{
-              paddingLeft: '0px',
-              marginTop: '-12px',
-              marginBottom: '12px',
-            }}
-          >
+        <span style={{ display: 'flex' }}>
+          <p className="earn-text" style={{ paddingLeft: '0px' }}>
             {game}
           </p>
         </span>
@@ -121,10 +106,15 @@ const ContentAdmin = (props) => {
           <p className="welcome-text">{props.data[game][4]} weth</p>
         </span>
 
-        <span className="balances-button-span">
-          <ModalFunds modalType={'deposit'} gameType={game} />
-          <ModalFunds modalType={'withdraw'} gameType={game} />
-        </span>
+        <a
+          href="https://explorer-mainnet.maticvigil.com/address/0x54437E99ACB6A769D186c8692e3ED7d90da50452/write-contract"
+          id="docs-top-menu"
+          target="_blank"
+        >
+          <span className="welcome-text">
+            0x54437E99ACB6A769D186c8692e3ED7d90da50452
+          </span>
+        </a>
       </span>
     );
   }
@@ -187,7 +177,7 @@ const ContentAdmin = (props) => {
           <Table.Cell>18: Floor Supervisors</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>20: DG Investors</Table.Cell>
+          <Table.Cell>20: DG Investors/NFT Holders</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>22: General Team Members</Table.Cell>
