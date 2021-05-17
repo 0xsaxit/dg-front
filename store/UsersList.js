@@ -8,7 +8,7 @@ function UsersList() {
 
   useEffect(() => {
     if (state.userStatus === 28) {
-      (async function () {
+      (async () => {
         const response = await Fetch.USERS_LIST(state.userAddress);
         const json = await response.json();
 

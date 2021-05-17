@@ -21,7 +21,7 @@ function UserBalances() {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
-      async function fetchData() {
+      (async () => {
         console.log('Fetching user balances: ' + state.refreshTokens);
 
         balances = await getTokenBalances();
@@ -30,9 +30,7 @@ function UserBalances() {
           type: 'update_balances',
           data: balances,
         });
-      }
-
-      fetchData();
+      })();
     }
   }, [state.userStatus, state.refreshTokens]);
 
@@ -157,10 +155,14 @@ function UserBalances() {
         USDTContractChild,
         state.userAddress,
         0
-      ); 
+      );
 
       // get user or contract token balance from MetaMask
-      async function balanceOfAtari(tokenContract, userOrContractAddress, units) {
+      async function balanceOfAtari(
+        tokenContract,
+        userOrContractAddress,
+        units
+      ) {
         try {
           const amount = await tokenContract.methods
             .balanceOf(userOrContractAddress)
@@ -176,7 +178,7 @@ function UserBalances() {
         ATRIContractChild,
         state.userAddress,
         0
-      ); 
+      );
 
       const amountWETH = await Transactions.balanceOfToken(
         WETHContractChild,

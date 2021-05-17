@@ -38,10 +38,10 @@ const initialState = {
   activeStatus: true,
   ethBalance: 0,
   adminBalances: {
-    treasury: [0, 0, 0, 0, 0, 0],
-    slots: [0, 0, 0, 0, 0, 0],
-    roulette: [0, 0, 0, 0, 0, 0],
-    blackjack: [0, 0, 0, 0, 0, 0],
+    treasury: [0, 0, 0, 0, 0, 0, ''],
+    slots: [0, 0, 0, 0, 0, 0, ''],
+    roulette: [0, 0, 0, 0, 0, 0, ''],
+    blackjack: [0, 0, 0, 0, 0, 0, ''],
   },
   usersList: [],
   DGBalances: {

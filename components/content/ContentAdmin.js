@@ -7,9 +7,7 @@ import Aux from '../_Aux';
 const ContentAdmin = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
-  // const games = ['slots', 'roulette', 'blackjack'];
-  const keys = Object.keys(props.data);
+  const games = Object.keys(props.data);
 
   const numbers = ['one', 'two', 'three'];
   const logoStyle = {
@@ -55,8 +53,8 @@ const ContentAdmin = (props) => {
 
         <Grid className="admin-balances-container">
           <Grid.Row>
-            {keys.map((key, i) => {
-              return balanceBox(key, i);
+            {games.map((game, i) => {
+              return balanceBox(game, i);
             })}
           </Grid.Row>
         </Grid>
@@ -69,7 +67,7 @@ const ContentAdmin = (props) => {
       <span className={`admin-balances-column ${numbers[i + 1]}`} key={i}>
         <span style={{ display: 'flex' }}>
           <p className="earn-text" style={{ paddingLeft: '0px' }}>
-            {game}
+            {game.toUpperCase()}
           </p>
         </span>
 
@@ -106,14 +104,14 @@ const ContentAdmin = (props) => {
           <p className="welcome-text">{props.data[game][4]} weth</p>
         </span>
 
+        <Divider className="balances-divider" />
+
         <a
-          href="https://explorer-mainnet.maticvigil.com/address/0x54437E99ACB6A769D186c8692e3ED7d90da50452/write-contract"
+          href={`https://explorer-mainnet.maticvigil.com/address/${props.data[game][6]}/write-contract`}
           id="docs-top-menu"
           target="_blank"
         >
-          <span className="welcome-text">
-            0x54437E99ACB6A769D186c8692e3ED7d90da50452
-          </span>
+          <span className="welcome-text">{props.data[game][6]}</span>
         </a>
       </span>
     );

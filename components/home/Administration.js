@@ -15,10 +15,9 @@ const Administration = (props) => {
   const [ethBalance, setEthBalance] = useState(0);
   const [dataPage, setDataPage] = useState('');
 
-  const [isPausedTreasury, setIsPausedTreasury] = useState(false);
-
-  const [parentContract, setParentContract] = useState({});
-  const [instances, setInstances] = useState(false);
+  // const [isPausedTreasury, setIsPausedTreasury] = useState(false);
+  // const [parentContract, setParentContract] = useState({});
+  // const [instances, setInstances] = useState(false);
 
   const dataType = props.dataType;
 
@@ -38,12 +37,12 @@ const Administration = (props) => {
       // initialize maticWeb3 provider and create treasury contract instance
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
-      (async function () {
-        const parentContract = await Transactions.treasuryContract(maticWeb3);
-        setParentContract(parentContract);
+      // (async function () {
+      //   const parentContract = await Transactions.treasuryContract(maticWeb3);
+      //   setParentContract(parentContract);
 
-        setInstances(true);
-      })();
+      //   setInstances(true);
+      // })();
     }
   }, [state.userStatus]);
 

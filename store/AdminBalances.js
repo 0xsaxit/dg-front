@@ -8,6 +8,7 @@ import ABI_CHILD_TOKEN_ATRI from '../components/ABI/ABIChildTokenATRI';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
+import { getContractAddress } from 'ethers/lib/utils';
 
 function AdminBalances() {
   // dispatch worker ETH and treasury balances to the Context API store
@@ -23,20 +24,11 @@ function AdminBalances() {
   const [tokenContractWETH, setTokenContractWETH] = useState({});
   const [instances, setInstances] = useState(false);
 
-  // let web3;
-  // let maticWeb3 = {};
-  let balanceTokens = [];
+  // let balanceTokens = [];
   let arrayAmounts = state.adminBalances;
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
-  // useEffect(() => {
-  //   if (state.userStatus === 28) {
-  //     maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-  //   }
-  // }, [state.userStatus]);
-
   useEffect(() => {
     if (state.userStatus === 28) {
       // web3 = new Web3(state.walletProvider); // pass MetaMask provider to Web3 constructor
@@ -44,7 +36,7 @@ function AdminBalances() {
       const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
       setMaticWeb3(maticWeb3);
 
-      async function fetchData() {
+      (async () => {
         // maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
 
         const parentContract = await Transactions.treasuryContract(maticWeb3);
@@ -81,20 +73,15 @@ function AdminBalances() {
         setTokenContractWETH(tokenContractWETH);
 
         setInstances(true); // contract instantiation complete
-      }
-
-      fetchData();
+      })();
     }
   }, [state.userStatus]);
 
   useEffect(() => {
     if (instances) {
-      // web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
-      // maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
-
-      async function fetchData() {
+      (async () => {
         const balanceETH = await getEthBalance();
-        balanceTokens = await getTokenBalances();
+        const balanceTokens = await getTokenBalances();
 
         // update global state ETH balance and treasury token balances
         dispatch({
@@ -109,9 +96,7 @@ function AdminBalances() {
 
         // if deposit or withdrawal start pinging the token contract for changed balances
         // if (state.tokenPings === 2) dataInterval();
-      }
-
-      fetchData();
+      })();
     }
   }, [instances, state.tokenPings]);
 
@@ -162,21 +147,14 @@ function AdminBalances() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get total funds and individual game amounts
-
   // get Worker address ETH balance on Matic Network
   async function getEthBalance() {
-    // console.log('Worker address ETH balance on Matic Network');
-    // web3 = new Web3(state.walletProvider); // pass provider to Web3 constructor
-
     try {
       const amount = await maticWeb3.eth.getBalance(
         Global.ADDRESSES.WORKER_WALLET_ADDRESS
       );
-
-      // const amountEth = web3.fromWei(amount, 'ether') + ' ETH';
       const amountEth = amount / Global.CONSTANTS.FACTOR;
-      const amountNumber = parseFloat(amountEth).toFixed(4);
+      const amountNumber = parseFloat(amountEth).toFixed(3);
 
       return amountNumber;
     } catch (error) {
@@ -184,15 +162,9 @@ function AdminBalances() {
     }
   }
 
+  // get treasury balances and individual game balances
   async function getTokenBalances() {
     try {
-      // get Worker address ETH balance on Matic Network
-      // const amount = await maticWeb3.eth.getBalance(
-      //   Global.ADDRESSES.WORKER_WALLET_ADDRESS
-      // );
-      // const amountEth = web3.utils.fromWei(amount, 'ether') + ' ETH';
-      // const amountNumber = parseFloat(amountEth).toFixed(4);
-
       // get treasury balances from token contracts
       arrayAmounts.treasury = await getTokensTreasury();
 
@@ -205,6 +177,7 @@ function AdminBalances() {
         const amount3 = await getTokensGame(gameType, 2);
         const amount4 = await getTokensGame(gameType, 3);
         const amount5 = await getTokensGame(gameType, 4);
+        const contractAddress = await getContractAddress(gameType);
 
         arrayAmounts[Object.keys(state.adminBalances)[i + 1]] = [
           amount1,
@@ -213,6 +186,7 @@ function AdminBalances() {
           amount4,
           amount5,
           0,
+          contractAddress,
         ];
       });
 
@@ -228,11 +202,19 @@ function AdminBalances() {
       Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
       3
     );
+    const amountTreasuryMANAAdjusted = amountTreasuryMANA.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ','
+    );
 
     const amountTreasuryDAI = await Transactions.balanceOfToken(
       tokenContractDAI,
       Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
       3
+    );
+    const amountTreasuryDAIAdjusted = amountTreasuryDAI.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ','
     );
 
     const amountTreasuryUSDT = await Transactions.balanceOfToken(
@@ -240,11 +222,19 @@ function AdminBalances() {
       Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
       3
     );
+    const amountTreasuryUSDTAdjusted = amountTreasuryUSDT.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ','
+    );
 
     const amountTreasuryATRI = await Transactions.balanceOfToken(
       tokenContractATRI,
       Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
       3
+    );
+    const amountTreasuryATRIAdjusted = amountTreasuryATRI.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ','
     );
 
     const amountTreasuryWETH = await Transactions.balanceOfToken(
@@ -252,31 +242,48 @@ function AdminBalances() {
       Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
       3
     );
+    const amountTreasuryWETHAdjusted = amountTreasuryWETH.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ','
+    );
 
     return (arrayAmounts.treasury = [
-      amountTreasuryMANA,
-      amountTreasuryDAI,
-      amountTreasuryUSDT,
-      amountTreasuryATRI,
-      amountTreasuryWETH,
+      amountTreasuryMANAAdjusted,
+      amountTreasuryDAIAdjusted,
+      amountTreasuryUSDTAdjusted,
+      amountTreasuryATRIAdjusted,
+      amountTreasuryWETHAdjusted,
+      0,
+      '0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3',
     ]);
   }
 
   async function getTokensGame(gameIndex, tokenIndex) {
-    // const parentContract = await Transactions.treasuryContract(maticWeb3);
-
     try {
       const amount = await parentContract.methods
         .checkGameTokens(gameIndex, tokenIndex)
         .call();
 
       const amountAdjusted = (amount / Global.CONSTANTS.FACTOR)
-        .toFixed(0)
+        .toFixed(3)
         .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return amountAdjusted;
     } catch (error) {
       console.log('Get tokens per game failed', error);
+    }
+  }
+
+  // get each game's deployed contract address
+  async function getContractAddress(gameType) {
+    try {
+      const returnArray = await parentContract.methods
+        .treasuryGames(gameType)
+        .call();
+
+      return returnArray[0];
+    } catch (error) {
+      console.log('Get game contract address failed: ', error);
     }
   }
 
