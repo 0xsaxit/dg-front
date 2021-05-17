@@ -142,8 +142,13 @@
 			transform: translateX(-50%);
 			bottom: 30px;
 			position: fixed;
-			transition: all 0.5s ease;
+			transition: opacity 0.5s ease;
+			white-space: nowrap;
 			opacity: 1;
+
+			@include mq($until: large) {
+				padding: 14px 20px;
+			}
 		
 			&.hidden {
 				opacity: 0;
