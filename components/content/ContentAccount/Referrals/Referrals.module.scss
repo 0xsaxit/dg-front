@@ -142,10 +142,11 @@
 			transform: translateX(-50%);
 			bottom: 30px;
 			position: fixed;
-			transition: all 0.3s ease-in;
+			transition: all 0.5s ease;
+			opacity: 1;
 		
 			&.hidden {
-				bottom: -150px;
+				opacity: 0;
 			}
 		}
 	}
