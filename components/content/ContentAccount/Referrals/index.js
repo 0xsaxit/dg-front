@@ -25,23 +25,38 @@ function ContentReferrals({ state }) {
           maticWeb3
         );
         const atri = await pointerContractNew.methods
-          .pointsBalancer(state.userAddress, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI)
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI
+          )
           .call();
 
         const usdt = await pointerContractNew.methods
-          .pointsBalancer(state.userAddress, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT)
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT
+          )
           .call();
 
         const mana = await pointerContractNew.methods
-          .pointsBalancer(state.userAddress, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA)
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+          )
           .call();
 
         const dai = await pointerContractNew.methods
-          .pointsBalancer(state.userAddress, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI)
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
+          )
           .call();
 
         const eth = await pointerContractNew.methods
-          .pointsBalancer(state.userAddress, Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH)
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+          )
           .call();
 
         setBreakdown({
@@ -58,7 +73,7 @@ function ContentReferrals({ state }) {
   }, [state.userStatus]);
 
   let totalAmount = 0;
-  coins.map(coin => {
+  coins.map((coin) => {
     totalAmount += +Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3);
   });
 
@@ -79,16 +94,15 @@ function ContentReferrals({ state }) {
 
   return (
     <Aux>
-      <div className={cn('container', styles.referrals_container)}>
+      <div className={cn('container-fluid', styles.referrals_container)}>
         <div className={cn('d-flex my-10', styles.referrals_header)}>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column w-100">
             <h2 className={cn('mb-2', styles.referrals_header_title)}>
-              Refer a friend and receive a %* of their wagers, forever
+              Refer a friend and receive a % of their wagers, forever
             </h2>
             <p className={styles.referrals_header_subtitle}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo
-              ridiculus potenti tellus turpis nibh in cras venenatis senectus.
-              Porta enim ac ullamcorper mauris.
+              The percentage of their wagers you receive varies based on the
+              game, targeting ~10% of the house edge.
             </p>
 
             <span
@@ -96,6 +110,7 @@ function ContentReferrals({ state }) {
                 'd-flex align-items-center px-4 py-2',
                 styles.referrals_header_clipboard
               )}
+              onClick={onCopy}
             >
               <img
                 src="/images/link_icon.png"
@@ -110,16 +125,15 @@ function ContentReferrals({ state }) {
               </span>
               <Icon
                 className={styles.affiliate_icon}
-                onClick={onCopy}
                 name={!copied ? 'copy' : 'check'}
               />
             </span>
           </div>
 
-          <span className="d-md-flex d-none align-items-center">
+          <span className="d-lg-flex d-none align-items-center">
             <img
               src="/images/gift.png"
-              className={cn('ms-10', styles.gift_image)}
+              className={cn('ms-lg-10 ms-4', styles.gift_image)}
               alt="Gift"
             />
           </span>
@@ -134,49 +148,57 @@ function ContentReferrals({ state }) {
         </span>
 
         <div className={styles.referrals_body}>
-          <Segment className={styles.segment} loading={!!state.DGBalances.BALANCE_AFFILIATES.length && !state.DGBalances.BALANCE_AFFILIATES[0]['address']} >
+          <Segment
+            className={styles.segment}
+            loading={
+              !!state.DGBalances.BALANCE_AFFILIATES.length &&
+              !state.DGBalances.BALANCE_AFFILIATES[0]['address']
+            }
+          >
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
                 let amount = 0;
-                coins.map(coin => {
-                  amount += +(Number(state.DGPrices[coin]) * Number(affiliate[coin])).toFixed(3);
+                coins.map((coin) => {
+                  amount += +(
+                    Number(state.DGPrices[coin]) * Number(affiliate[coin])
+                  ).toFixed(3);
                 });
 
-                return (
-                  !!affiliate['address'] ? (
-                    <div
-                      className={cn(
-                        'd-flex justify-content-between align-items-center mb-2',
-                        styles.affiliate_row
-                      )}
-                      key={`table_row_${affiliateIndex}`}
-                    >
-                      <>
-                        <div className={styles.address}>
-                          {affiliate['address']}
+                return !!affiliate['address'] ? (
+                  <div
+                    className={cn(
+                      'd-flex justify-content-between align-items-center mb-2',
+                      styles.affiliate_row
+                    )}
+                    key={`table_row_${affiliateIndex}`}
+                  >
+                    <>
+                      <div className={styles.address}>
+                        {affiliate['address']}
+                      </div>
+                      <div className="d-flex align-items-center">
+                        <div className={cn('me-2', styles.total_price)}>
+                          $
+                          {coins
+                            .reduce((total, coin) => {
+                              return (
+                                Number(total) +
+                                Number(affiliate[coin]) *
+                                  Number(state.DGPrices[coin])
+                              );
+                            }, 0)
+                            .toFixed(3)}
                         </div>
-                        <div className="d-flex align-items-center">
-                          <div className={cn('me-2', styles.total_price)}>
-                            $
-                            {coins
-                              .reduce((total, coin) => {
-                                return (
-                                  Number(total) +
-                                  Number(affiliate[coin]) *
-                                    Number(state.DGPrices[coin])
-                                );
-                              }, 0)
-                              .toFixed(3)}
-                          </div>
-                          <ModalBreakdown
-                            breakdown={affiliate}
-                            totalAmount={amount}
-                            address={affiliate['address']}
-                          />
-                        </div>
-                      </>
-                    </div>
-                  ): <></>
+                        <ModalBreakdown
+                          breakdown={affiliate}
+                          totalAmount={amount}
+                          address={affiliate['address']}
+                        />
+                      </div>
+                    </>
+                  </div>
+                ) : (
+                  <></>
                 );
               }
             )}

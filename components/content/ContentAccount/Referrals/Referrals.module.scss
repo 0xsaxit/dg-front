@@ -1,9 +1,11 @@
 @import "styles/base.scss";
 
 .referrals_container {
+	max-width: 1000px;
+
 	.referrals_header {
 		&_title {
-			width: calc(75% - 100px);
+			max-width: 100%;
 			font-size: 48px;
 			font-weight: 800;
 			line-height: 59px;
@@ -25,12 +27,23 @@
 			box-sizing: border-box;
 			border-radius: 32px;
 			width: fit-content;
+			transition: all 0.3s ease-in;
+			cursor: pointer;
+
+			&:hover {
+				border: 2px solid rgba(255, 255, 255, 0.5);
+			}
 
 			.referral_link {
 				font-weight: bold;
 				font-size: 24px;
 				margin-bottom: 0;
 				line-height: 33px;
+
+				@include mq($until: medium) {
+					font-size: 20px;
+					line-height: 28px;
+				}
 			}
 
 			.referral_sublink {

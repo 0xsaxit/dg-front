@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon } from 'semantic-ui-react';
@@ -14,31 +14,28 @@ const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
 const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  
+
   // define local variables
   const [open, setOpen] = useState(false);
 
   const metaTransaction = async () => {
     try {
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); 
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
       const pointerContractNew = await Transactions.pointerContractNew(
         maticWeb3
       );
 
       await pointerContractNew.methods
-        .distributeAllTokens(
-          state.userAddress,
-          [
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT, 
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
-            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
-          ]
-        )
+        .distributeAllTokens(state.userAddress, [
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+        ])
         .call();
-      
-        setOpen(false);
+
+      setOpen(false);
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
@@ -56,16 +53,21 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
       trigger={
         !address ? (
           <button
-            disabled={!state.DGBalances.BALANCE_AFFILIATES.length || !totalAmount}
+            disabled={
+              !state.DGBalances.BALANCE_AFFILIATES.length || !totalAmount
+            }
             className={cn('btn btn-primary', styles.claim_button)}
           >
-            Claim Referral Earnings (${Number(totalAmount).toFixed(3)})
+            <span className="d-md-flex d-none">
+              Claim Referral Earnings (${Number(totalAmount).toFixed(3)})
+            </span>
+            <span className="d-md-none d-flex">
+              Claim (${Number(totalAmount).toFixed(2)})
+            </span>
           </button>
         ) : (
-          <button
-            className={cn('btn btn-dark', styles.claim_button)}
-          >
-						See Breakdown
+          <button className={cn('btn btn-dark', styles.claim_button)}>
+            See Breakdown
           </button>
         )
       }
@@ -76,7 +78,11 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
         </span>
       </div>
       <div>
-        <h1 className={styles.title}>{address ? address.slice(0, 5) + '...' + address.slice(-5) : 'Total Earnings'}</h1>
+        <h1 className={styles.title}>
+          {address
+            ? address.slice(0, 5) + '...' + address.slice(-5)
+            : 'Total Earnings'}
+        </h1>
         <p className={styles.subtitle}>Referral Earnings Breakdown</p>
         {coins.map((coin, index) => {
           return (
@@ -134,7 +140,10 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
           </div>
         </div>
         {!address && (
-          <button className={cn('btn btn-primary w-100', styles.claim_button)} onClick={metaTransaction}>
+          <button
+            className={cn('btn btn-primary w-100', styles.claim_button)}
+            onClick={metaTransaction}
+          >
             Claim ${Number(totalAmount).toFixed(3)}
           </button>
         )}
