@@ -811,7 +811,7 @@ const ContentTreasury = (props) => {
                         >
                           <div>
                             <p className="earned-text"> ETH-DG v3: ${uniTreasury} </p>
-                            <p className="earned-text"> MVI-DG v2: ${mviTreasury} </p>
+                            <p className="earned-text"> MVI-ETH v2: ${mviTreasury} </p>
                           </div>
                         </Popup>
                       </span>
