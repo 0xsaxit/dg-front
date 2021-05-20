@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon } from 'semantic-ui-react';
@@ -6,7 +6,10 @@ import { GlobalContext } from 'store';
 import Transactions from 'common/Transactions';
 import Global from 'components/Constants';
 import styles from './ModalBreakdown.module.scss';
+import MetaTx from '../../../common/MetaTx';
 import Images from '../../../common/Images';
+import Biconomy from '@biconomy/mexa';
+
 
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
@@ -17,15 +20,45 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
 
   // define local variables
   const [open, setOpen] = useState(false);
+  const [pointerContractNew, setPointerContractNew] = useState('');
+  const [web3, setWeb3] = useState({});
 
-  const metaTransaction = async () => {
-    try {
-      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
-      const pointerContractNew = await Transactions.pointerContractNew(
-        maticWeb3
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      // initialize Web3 providers and create contract instance
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
+
+      const biconomy = new Biconomy(
+        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
+        {
+          apiKey: Global.KEYS.BICONOMY_API,
+          debug: true,
+        }
       );
+      const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      await pointerContractNew.methods
+      async function fetchData() {
+        const pointerContractNew = await Transactions.pointerContractNew(getWeb3);
+        setPointerContractNew(pointerContractNew);
+      }
+
+      fetchData();
+
+      biconomy
+        .onEvent(biconomy.READY, () => {
+          console.log('Mexa is Ready: Gameplay Rewards');
+        })
+        .onEvent(biconomy.ERROR, (error, message) => {
+          console.error(error);
+        });
+    }
+  }, [state.userStatus]);
+
+  async function metaTransaction() {
+    try {
+
+      let functionSignature = pointerContractNew.methods
         .distributeAllTokens(state.userAddress, [
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
@@ -34,6 +67,20 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
         ])
         .call();
+
+      const txHash = await MetaTx.executeMetaTransaction(
+        2,
+        functionSignature,
+        pointerContractNew,
+        state.userAddress,
+        web3
+      );
+
+      if (txHash === false) {
+        console.log('Biconomy meta-transaction failed');
+      } else {
+        console.log('Biconomy meta-transaction hash: ' + txHash);
+      }
 
       setOpen(false);
     } catch (error) {
