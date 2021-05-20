@@ -8,6 +8,7 @@ import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
 import MessageBox from './MessageBox';
 import Images from '../../common/Images';
+import Fetch from '../../common/Fetch';
 
 
 const MenuTop = (props) => {
@@ -20,6 +21,8 @@ const MenuTop = (props) => {
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [casinoBalance, setCasinoBalance] = useState('');
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -30,6 +33,31 @@ const MenuTop = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    (async function () {
+      // get coin prices
+      let response = await Fetch.MANA_PRICE();
+      let json = await response.json();
+      const mana = Number(json.market_data.current_price.usd * state.userBalances[1][1]);
+
+      let response2 = await Fetch.ETH_PRICE();
+      let json2 = await response2.json();
+      const eth = Number(json2.market_data.current_price.usd * state.userBalances[2][3]);
+
+      let response3 = await Fetch.ATRI_PRICE();
+      let json3 = await response3.json();
+      const atri = Number(json3.market_data.current_price.usd * state.userBalances[2][2]);
+
+      const dai = Number(state.userBalances[0][1]);
+      const usdt = Number(state.userBalances[2][1] * 1000000000000);
+      const balance = mana + eth + atri + dai + usdt;
+
+      setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+
+    })()
+  }, []);
+
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');
   }, []);
@@ -92,6 +120,15 @@ const MenuTop = (props) => {
       setOpen(true);
     }
   }
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(state.userAddress);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 10000);
+  };
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
@@ -176,7 +213,7 @@ const MenuTop = (props) => {
   function DGLogo() {
     return (
       <Link href="/">
-        <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
+        <img id="menu-logo" alt="Decentral Games Logo" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png" />
       </Link>
     );
   }
@@ -402,14 +439,26 @@ const MenuTop = (props) => {
                         '...' +
                         state.userAddress.substr(-8)}
                       </p>
-                      <Icon 
-                        name="clone outline" 
-                        style={{ 
-                          color: 'rgba(225, 255, 255, 0.5)', 
-                          fontSize: '16px',
-                          padding: '0px 0px 0px 8px',
-                        }}
-                      />
+                      {copied ? (
+                        <Icon 
+                          name="check" 
+                          style={{ 
+                            color: 'rgba(225, 255, 255, 0.5)', 
+                            fontSize: '16px',
+                            padding: '0px 0px 0px 8px',
+                          }}
+                        />
+                      ) : (
+                        <Icon 
+                          onClick={() => onCopy()}
+                          name="clone outline" 
+                          style={{ 
+                            color: 'rgba(225, 255, 255, 0.5)', 
+                            fontSize: '16px',
+                            padding: '0px 0px 0px 8px',
+                          }}
+                        />
+                      )}
                     </span>
                   </span>
                 </span>
@@ -421,7 +470,7 @@ const MenuTop = (props) => {
                   >
                     <p className="casino-balance-text"> Casino Balance </p>
                     <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      {/*<p className="casino-balance-text two"> ${state.userBalances[3][1].toFixed(2)} </p>*/}
+                      <p className="casino-balance-text two"> ${casinoBalance} </p>
                       <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
                     </span>
                   </Button>

@@ -15,22 +15,27 @@ a {
 
 @font-face {
   font-family: 'Larsseit-ExtraBold';
-  src: url("/static/fonts/webFonts/LarsseitExtraBold/font.woff2");
+  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
 }
 
 @font-face {
   font-family: 'Larsseit-Bold';
-  src: url("/static/fonts/webFonts/LarsseitBold/font.woff2");
+  src: url("/static/fonts/Larsseit/Larsseit16.otf");
 }
 
 @font-face {
   font-family: 'Larsseit-Medium';
-  src: url("/static/fonts/webFonts/LarsseitMedium/font.woff2");
+  src: url("/static/fonts/Larsseit/Larsseit2.ttf");
 }
 
 @font-face {
   font-family: 'Larsseit-Regular';
-  src: url("/static/fonts/webFonts/LarsseitRegular/font.woff2");
+  src: url("/static/fonts/Larsseit/Larsseit13.ttf");
+}
+
+@font-face {
+  font-family: 'Larsseit-Light';
+  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
 }
 
 h1 {
@@ -46,7 +51,6 @@ h2 {
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 16px;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -55,7 +59,6 @@ h3 {
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 0px;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -73,7 +76,6 @@ h4 {
   margin-bottom: 0px;
   font-size: 24px;
   font-weight: 500;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -84,7 +86,6 @@ h5 {
   margin-bottom: 0px;
   font-size: 24px;
   font-weight: normal;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -92,7 +93,6 @@ p {
   font-family: 'Larsseit-Regular';
   font-size: 21px;
   font-weight: normal;
-  letter-spacing: 0.5;
   line-height: 1.4;
 }
 
@@ -336,6 +336,7 @@ div.item.sidebar-menu-text.blog:hover {
 .sidebar-menu-text:hover {
   color: rgba(255, 255, 255, 1) !important;
   font-weight: 800 !important;
+  transition: all linear 0.1s;
 }
 
 .sidebar-menu-text.active {
@@ -353,6 +354,7 @@ div.item.sidebar-menu-text.blog:hover {
   padding-right: 12px !important;
   position: relative;
   z-index: 3;
+  transition: all linear 0.1s;
 }
 
 .right-menu-text {
@@ -2674,6 +2676,11 @@ div.ui.grid.admin-balances-container {
 .ui.button:hover {
   transform: translateY(0px);
   filter: brightness(0.9) !important;
+  transition: all linear 0.1s;
+}
+
+.ui.button {
+  transition: all linear 0.1s;
 }
 
 .ui.disabled.button {
@@ -2686,10 +2693,10 @@ a.ui.blue.button.play-button,
   background-color: #2085f4 !important;
   color: white;
   margin-top: 8px;
-  height: 48px !important;
+  height: 64px !important;
   width: 200px;
-  line-height: 20px;
-  font-size: 18px !important;
+  line-height: 32px;
+  font-size: 20px !important;
 }
 
 a.ui.blue.button.metamask-how-button {
@@ -2704,14 +2711,14 @@ a.ui.blue.button.metamask-how-button {
 }
 
 a.ui.blue.button.earn-dg-button {
-  background-color: white;
-  color: black;
+  background-color: #2B2B2B;
+  color: white;
   position: relative;
   margin-top: 8px;
-  height: 48px !important;
+  height: 64px !important;
   width: 200px;
-  line-height: 20px;
-  font-size: 18px !important;
+  line-height: 32px;
+  font-size: 20px !important;
 }
 
 a.ui.blue.button.announcement,
@@ -3284,6 +3291,12 @@ img.avatar-picture-home {
   background: transparent;
   margin-top: 8px;
   padding: 12px 24px 12px 24px;
+  transition: all linear 0.1s;
+}
+
+.ui.button.casino-balance-button:hover {
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: all linear 0.1s;
 }
 
 .casino-balance-text {
@@ -3333,6 +3346,22 @@ img.avatar-picture-home {
   font-family: Larsseit-Medium;
   margin: 0;
   padding-top: 16px;
+  transition: all linear 0.1s;
+}
+
+.account-dropdown-item:hover {
+  opacity: 70%;
+  transition: all linear 0.1s;
+}
+
+i.clone.outline.icon {
+  transition: all linear 0.1s;
+}
+
+i.clone.outline.icon:hover {
+  cursor: pointer;
+  color: white !important;
+  transition: all linear 0.1s;
 }
 
 .ui.button.buy-dg-button {
@@ -3562,9 +3591,9 @@ h3.deposit-twentyfour.casino {
 
 .ui.input > input {
   background: transparent !important;
-  height: 72px;
+  height: 48px;
   width: 100%;
-  border-radius: 24px;
+  border-radius: 16px;
   color: white;
   border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
   background: transparent;

@@ -54,31 +54,32 @@ export default class MyDocument extends Document {
             crossOrigin="use-credentials"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
-            rel="stylesheet"
-            disabled
-          />
-          <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitExtraBold/font.woff"
+            href="./static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitBold/font.woff"
+            href="./static/fonts/Larsseit/Larsseit16.otf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitMedium/font.woff"
+            href="./static/fonts/Larsseit/Larsseit13.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitRegular/font.woff"
+            href="./static/fonts/Larsseit/Larsseit2.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
