@@ -22,7 +22,10 @@ const MenuTop = (props) => {
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
   const [copied, setCopied] = useState(false);
-  const [casinoBalance, setCasinoBalance] = useState('');
+  const [manaPrice, setManaPrice] = useState(0);
+  const [ethPrice, setEthPrice] = useState(0);
+  const [atriPrice, setAtriPrice] = useState(0);
+  const [casinoBalance, setCasinoBalance] = useState(0);
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -39,24 +42,33 @@ const MenuTop = (props) => {
       // get coin prices
       let response = await Fetch.MANA_PRICE();
       let json = await response.json();
-      const mana = Number(json.market_data.current_price.usd * state.userBalances[1][1]);
+      setManaPrice(json.market_data.current_price.usd);
 
       let response2 = await Fetch.ETH_PRICE();
       let json2 = await response2.json();
-      const eth = Number(json2.market_data.current_price.usd * state.userBalances[2][3]);
+      setEthPrice(json2.market_data.current_price.usd);
 
       let response3 = await Fetch.ATRI_PRICE();
       let json3 = await response3.json();
-      const atri = Number(json3.market_data.current_price.usd * state.userBalances[2][2]);
-
-      const dai = Number(state.userBalances[0][1]);
-      const usdt = Number(state.userBalances[2][1] * 1000000000000);
-      const balance = mana + eth + atri + dai + usdt;
-
-      setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+      setAtriPrice(json3.market_data.current_price.usd);
 
     })()
-  }, [casinoBalance]);
+  }, [manaPrice, ethPrice, atriPrice]);
+
+  useEffect(() => {
+    const mana = Number(manaPrice * state.userBalances[1][1]);
+    const eth = Number(ethPrice * state.userBalances[2][3]);
+    const atri = Number(atriPrice * state.userBalances[2][2]);
+    const dai = Number(state.userBalances[0][1]);
+    const usdt = Number(state.userBalances[2][1] * 1000000000000);
+    const balance = mana + eth + atri + dai + usdt;
+
+    setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  }, [state.userBalances[1][1], 
+      state.userBalances[2][3], 
+      state.userBalances[2][2],
+      state.userBalances[0][1],
+      state.userBalances[2][1]]);
 
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');

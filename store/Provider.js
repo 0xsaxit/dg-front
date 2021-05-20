@@ -29,7 +29,7 @@ const initialState = {
     [0, 0],
     [0, 0],
     [0, 0, 0, 0],
-    [0, 0, 0],
+    [0, 0],
   ],
   transactions: [{}, {}],
   txHash: '',
