@@ -56,7 +56,7 @@ const MenuTop = (props) => {
       setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 
     })()
-  }, []);
+  }, [casinoBalance]);
 
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');
