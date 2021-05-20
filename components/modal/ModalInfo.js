@@ -173,7 +173,7 @@ const ModalInfo = () => {
                   <Button className="modal-button">
                     Claim $DG
                   </Button>
-                  <Button className="account-withdraw-button">
+                  <Button className="modal-learn-button">
                     Learn More
                   </Button>
                 </span>
