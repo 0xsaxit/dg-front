@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Web3 from 'web3';
 import Link from 'next/link';
-import { Menu, Divider, Input } from 'semantic-ui-react';
+import { Divider, Input } from 'semantic-ui-react';
 import ContentGovernance from '../content/ContentGovernance';
 import ContentMining from '../content/ContentMining';
 import ContentBalancer from '../content/ContentBalancer';
@@ -11,7 +11,6 @@ import ContentAirdrop from '../content/ContentAirdrop';
 import ContentTreasury from '../content/ContentTreasury';
 import ButtonReward1 from '../button/ButtonReward1';
 import ButtonReward2 from '../button/ButtonReward2';
-import ModalAffiliates from '../modal/ModalAffiliates';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
@@ -452,7 +451,7 @@ const Farming = (props) => {
               reward={reward}
             />
           ) : DGState === 'treasury' ? (
-            <ContentTreasury />
+            <ContentTreasury formatPrice={formatPrice} />
           ) : DGState === 'airdrop' ? (
             <ContentAirdrop price={price} formatPrice={formatPrice} />
           ) : DGState === 'admin' ? (

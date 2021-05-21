@@ -11,6 +11,7 @@ import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
 import Transactions from '../store/Transactions';
+import TreasuryNumbers from '../store/TreasuryNumbers';
 import GameRecords from '../store/GameRecords';
 import ActiveStatus from '../store/ActiveStatus';
 import UserInfo from '../store/UserInfo';
@@ -33,6 +34,7 @@ class Application extends App {
         <UserStatus />
         <UserBalances />
         <Transactions />
+        <TreasuryNumbers />
         <GameRecords />
         <ActiveStatus />
         <UserInfo />

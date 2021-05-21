@@ -30,6 +30,7 @@ const initialState = {
     [0, 0],
   ],
   transactions: [{}, {}],
+  treasuryNumbers: {},
   txHash: '',
   // tokenPings: 0,
   gameRecords: {},
@@ -132,6 +133,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         transactions: action.data,
+      };
+
+    case 'treasury_numbers':
+      return {
+        ...state,
+        treasuryNumbers: action.data,
       };
 
     case 'tx_hash':
