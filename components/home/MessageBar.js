@@ -60,19 +60,9 @@ const MessageBar = () => {
   }, [state.networkID]);
 
   useEffect(() => {
-    if (isSafari) {
-      setMessage('Please use Brave, Chrome or Firefox to play games');
-    } else if (!state.networkID && !isMobile) {
-      setMessage(
-        'Please connect your wallet to play'
-      );
-    } else if (!state.networkID && isMobile) {
-      setMessage('Please connect your wallet on desktop to play');
-    } else if (!state.userStatus && !isMobile) {
-      setMessage(
-        'Please connect your wallet to play'
-      );
-    } else if (!state.userStatus && isMobile) {
+    if (!state.networkID || !state.userStatus) {
+      setMessage('');
+    } else if (isMobile) {
       setMessage('Please connect your wallet on desktop to play');
     } else if (adminError) {
       setMessage(
@@ -124,14 +114,14 @@ const MessageBar = () => {
         id="message-bar"
         className="mobile-message-bar"
         style={{
-          fontFamily: 'Lato, sans-serif',
+          fontFamily: 'Larsseit-Regular',
           color: 'white',
           textAlign: 'center',
           padding: '10px 30px 9px 30px',
           fontSize: '14px',
           letterSpacing: '0.5px',
           fontWeight: 500,
-          backgroundColor: '#2085f4',
+          backgroundColor: '#006EFF',
           minHeight: '38px',
         }}
       >

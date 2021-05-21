@@ -141,19 +141,30 @@ const ButtonConnect = () => {
   return (
     <Aux>
       {metamaskEnabled ? (
-        <Button
-          color="blue"
-          className={binance ? "metamask-button binance-top" : "metamask-button top"}
-          onClick={() => openMetaMask()}
-        >
-          <span>
-            <img 
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-              style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
-            />
-            Connect Metamask
-          </span>
-        </Button>
+        <span>
+          <a
+            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+            target="_blank"
+            className={menuStyle[0]}
+            id="need-help-text"
+            style={{ color: 'rgba(255, 255, 255)' }}
+          >
+            Need help?
+          </a>
+          <Button
+            color="blue"
+            className={binance ? "metamask-button binance-top" : "metamask-button top"}
+            onClick={() => openMetaMask()}
+          >
+            <span>
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+                style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
+              />
+              Connect Metamask
+            </span>
+          </Button>
+        </span>
       ) : null}
     </Aux>
   );

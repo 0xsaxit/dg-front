@@ -13,3 +13,9 @@ $mq-breakpoints: (
   large: 992px,
   extra-large: 1200px,
 );
+
+.btn-primary:active, 
+.btn-primary:hover,
+.btn-primary:focus {
+	color: white !important;
+}

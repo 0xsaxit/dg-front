@@ -21,19 +21,19 @@ export default class MyDocument extends Document {
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593694291/apple-touch-icon_tmocum.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/apple-touch-icon_xrz57z.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-32x32_kuowrj.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-32x32_uljekk.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-16x16_btdy9a.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-16x16_qjnn8u.png"
           />
           <link rel="manifest" href="/static/js/site.webmanifest" />
           <link

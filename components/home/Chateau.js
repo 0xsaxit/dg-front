@@ -7,7 +7,8 @@ import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
-import ButtonPlayNow from '../button/ButtonPlayNow';
+import ModalLogin from 'components/modal/ModalLogin';
+
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -100,11 +101,10 @@ const Chateau = () => {
                 id="mobile-button-hide"
                 href="https://www.youtube.com/embed/1NxYpUsxhC0"
                 target="_blank"
-                style={{ marginRight: '16px' }}
               >
                 Demo
               </Button>
-              <ButtonPlayNow />
+              <ModalLogin />
             </span>
           ) : (
             <span className="mobile-center-span">

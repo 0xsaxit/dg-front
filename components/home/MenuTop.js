@@ -139,7 +139,7 @@ const MenuTop = (props) => {
 
     setTimeout(() => {
       setCopied(false);
-    }, 10000);
+    }, 3000);
   };
 
   // close menu automatically if left open for desktop screen sizes
@@ -451,34 +451,22 @@ const MenuTop = (props) => {
                         '...' +
                         state.userAddress.substr(-8)}
                       </p>
-                      {copied ? (
-                        <Icon 
-                          name="check" 
-                          style={{ 
-                            color: 'rgba(225, 255, 255, 0.5)', 
-                            fontSize: '16px',
-                            padding: '0px 0px 0px 8px',
-                          }}
-                        />
-                      ) : (
-                        <Icon 
-                          onClick={() => onCopy()}
-                          name="clone outline" 
-                          style={{ 
-                            color: 'rgba(225, 255, 255, 0.5)', 
-                            fontSize: '16px',
-                            padding: '0px 0px 0px 8px',
-                          }}
-                        />
-                      )}
+                      <Icon 
+                        onClick={() => onCopy()}
+                        name="clone outline" 
+                        style={{ 
+                          color: 'rgba(225, 255, 255, 0.5)', 
+                          fontSize: '16px',
+                          padding: '0px 0px 0px 8px',
+                        }}
+                      />
                     </span>
                   </span>
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
                   <Button 
                     className="casino-balance-button" 
-                    href="https://play.decentraland.org/?position=-118%2C135"
-                    target="_blank"
+                    href="/account"
                   >
                     <p className="casino-balance-text"> Casino Balance </p>
                     <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -522,6 +510,16 @@ const MenuTop = (props) => {
                 </span>
               </span>
             </Popup>
+
+            {copied ? (
+              <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
+                <h3 className="copied-text">
+                  Wallet address copied!
+                </h3>
+              </div>
+            ) : (
+              null
+            )}
           </div>
         </span>
       );
