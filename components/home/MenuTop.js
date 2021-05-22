@@ -445,21 +445,24 @@ const MenuTop = (props) => {
                         {state.userInfo.name}
                       </h4>
                     )}
-                    <span style={{ display: 'flex' }}>
+                    <span
+                      className="account-copy" 
+                      style={{ display: 'flex' }} 
+                      onClick={() => onCopy()}
+                    >
                       <p className="account-address">
                         {state.userAddress.substr(0, 8) +
                         '...' +
                         state.userAddress.substr(-8)}
+                        <Icon 
+                          name="clone outline" 
+                          style={{ 
+                            color: 'rgba(225, 255, 255, 0.5)', 
+                            fontSize: '16px',
+                            padding: '0px 0px 0px 8px',
+                          }}
+                        />
                       </p>
-                      <Icon 
-                        onClick={() => onCopy()}
-                        name="clone outline" 
-                        style={{ 
-                          color: 'rgba(225, 255, 255, 0.5)', 
-                          fontSize: '16px',
-                          padding: '0px 0px 0px 8px',
-                        }}
-                      />
                     </span>
                   </span>
                 </span>

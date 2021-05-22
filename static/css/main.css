@@ -3368,11 +3368,22 @@ img.avatar-picture-home {
   transition: all linear 0.1s;
 }
 
-i.clone.outline.icon {
+.account-copy {
+  margin-bottom: 12px;
+}
+
+i.clone.outline.icon,
+.account-address {
   transition: all linear 0.1s;
 }
 
-i.clone.outline.icon:hover {
+.account-address:hover {
+  cursor: pointer;
+  color: white !important;
+  transition: all linear 0.1s;
+}
+
+.account-address:hover > i.clone.outline.icon {
   cursor: pointer;
   color: white !important;
   transition: all linear 0.1s;
@@ -3401,7 +3412,7 @@ i.clone.outline.icon:hover {
 .copied-toast {
   background-color: #1f1f1f;
   position: fixed;
-  bottom: 75px;
+  bottom: 60px;
   left: calc(50% - 165px);
   width: 330px;
   height: 75px;

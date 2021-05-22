@@ -69,7 +69,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
         .call();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        2,
+        7,
         functionSignature,
         pointerContractNew,
         state.userAddress,
