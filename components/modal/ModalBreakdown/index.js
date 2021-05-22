@@ -66,7 +66,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
         ])
-        .call();
+        .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
         7,
