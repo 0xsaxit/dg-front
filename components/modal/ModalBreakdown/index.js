@@ -130,7 +130,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
             ? address.slice(0, 5) + '...' + address.slice(-5)
             : 'Total Earnings'}
         </h1>
-        <p className={styles.subtitle}>Referral Earnings Breakdown</p>
+        <p className={styles.subtitle}>All Time Referral Earnings</p>
         {coins.map((coin, index) => {
           return (
             <div

@@ -125,7 +125,7 @@ function ContentReferrals({ state }) {
               </span>
               <Icon
                 className={styles.affiliate_icon}
-                name={!copied ? 'copy' : 'check'}
+                name={!copied ? 'clone outline' : 'check'}
               />
             </span>
           </div>

@@ -27,7 +27,7 @@
 			box-sizing: border-box;
 			border-radius: 32px;
 			width: fit-content;
-			transition: all 0.3s ease-in;
+			transition: all 0.1s ease-in;
 			cursor: pointer;
 
 			&:hover {
@@ -131,18 +131,20 @@
 
 		.toast {
 			background: #1F1F1F;
-			padding: 28px 40px;
+		  position: fixed;
+		  bottom: 60px;
+		  width: 390px;
+		  height: 75px;
 			border-radius: 32px;
 			color: white;
 			font-weight: bold;
 			font-size: 24px;
-			line-height: 33px;
+			padding-top: 25px;
 			text-align: center;
 			left: 50%;
 			transform: translateX(-50%);
-			bottom: 30px;
+			bottom: 60px;
 			position: fixed;
-			transition: opacity 0.5s ease;
 			white-space: nowrap;
 			opacity: 1;
 
