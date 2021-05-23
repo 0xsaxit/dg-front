@@ -10,6 +10,7 @@ const initialState = {
   },
   userStatus: 0,
   userAddress: '',
+  // ipAddress: '',
   userInfo: {
     name: '',
     index: 0,
@@ -31,21 +32,25 @@ const initialState = {
     [0, 0],
   ],
   transactions: [{}, {}],
-  treasuryNumbers: {},
   txHash: '',
-  // tokenPings: 0,
+  tokenPings: 0,
+  // parcelDataAll: {},
+  parcelDataUser: {},
   gameRecords: {},
-  // balancesOverlay: 0,
+  balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
   ethBalance: 0,
-  adminBalances: {
-    treasury: [0, 0, 0, 0, 0, 0, ''],
-    slots: [0, 0, 0, 0, 0, 0, ''],
-    roulette: [0, 0, 0, 0, 0, 0, ''],
-    blackjack: [0, 0, 0, 0, 0, 0, ''],
-  },
-  usersList: [],
+  adminBalances: [
+    [0, 0],
+    [
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+    ],
+  ],
+  // adminHistory: [[], []],
   DGBalances: {
     BALANCE_BP_DG_1: 0,
     BALANCE_BP_DG_2: 0,
@@ -91,8 +96,11 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   updateInfo: true,
-  affiliateAddress: '',
   stakeTime: 0,
+  affiliateAddress: '',
+  toggleTheme: 'light',
+  whitelistedAdmin: false,
+  whitelistedIntel: false,
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
@@ -144,23 +152,29 @@ const reducer = (state, action) => {
         transactions: action.data,
       };
 
-    case 'treasury_numbers':
-      return {
-        ...state,
-        treasuryNumbers: action.data,
-      };
-
     case 'tx_hash':
       return {
         ...state,
         txHash: action.data,
       };
 
-    // case 'token_pings':
+    case 'token_pings':
+      return {
+        ...state,
+        tokenPings: action.data,
+      };
+
+    // case 'parcel_data_all':
     //   return {
     //     ...state,
-    //     tokenPings: action.data,
+    //     parcelDataAll: action.data,
     //   };
+
+    case 'parcel_data_user':
+      return {
+        ...state,
+        parcelDataUser: action.data,
+      };
 
     case 'update_records':
       return {
@@ -168,11 +182,11 @@ const reducer = (state, action) => {
         gameRecords: action.data,
       };
 
-    // case 'balances_overlay':
-    //   return {
-    //     ...state,
-    //     balancesOverlay: action.data,
-    //   };
+    case 'balances_overlay':
+      return {
+        ...state,
+        balancesOverlay: action.data,
+      };
 
     case 'network_id':
       return {
@@ -198,11 +212,11 @@ const reducer = (state, action) => {
         adminBalances: action.data,
       };
 
-    case 'users_list':
-      return {
-        ...state,
-        usersList: action.data,
-      };
+    // case 'admin_history':
+    //   return {
+    //     ...state,
+    //     adminHistory: action.data,
+    //   };
 
     case 'dg_balances':
       return {
@@ -252,6 +266,24 @@ const reducer = (state, action) => {
         affiliateAddress: action.data,
       };
 
+    case 'toggle_theme':
+      return {
+        ...state,
+        theme: action.data,
+      };
+
+    case 'set_whitelisted_admin':
+      return {
+        ...state,
+        whitelistedAdmin: action.data,
+      };
+
+    case 'set_whitelisted_intel':
+      return {
+        ...state,
+        whitelistedIntel: action.data,
+      };
+
     case 'set_manaLoading':
       return {
         ...state,
@@ -281,6 +313,12 @@ const reducer = (state, action) => {
         ...state,
         wethLoading: action.data,
       };
+
+    // case 'ip_address':
+    //   return {
+    //     ...state,
+    //     ipAddress: action.data,
+    //   };
 
     default:
       throw new Error('Wrong action type got dispatched');

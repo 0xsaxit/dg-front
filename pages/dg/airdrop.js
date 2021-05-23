@@ -1,14 +1,29 @@
 import { GlobalContext } from '../../store';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Farming from '../../components/home/Farming';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
+import Spinner from '../../components/Spinner';
 
 const Airdrop = () => {
-  // get user status from the Context API store
+  // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (state.userStatus) {
+      setIsErrorMessage(false);
+      setIsLoading(false);
+    } else {
+      setIsErrorMessage(true);
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
 
   return (
     <Layout>
@@ -18,12 +33,14 @@ const Airdrop = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus ? (
-        <Farming DGState={'airdrop'} />
-      ) : (
-        <div className="account-other-inner-p">
+      {isLoading === true ? (
+        <Spinner background={1} />
+      ) : isErrorMessage === true ? (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
           You must connect your wallet to view this page
         </div>
+      ) : (
+        <Farming DGState={'airdrop'} />
       )}
     </Layout>
   );

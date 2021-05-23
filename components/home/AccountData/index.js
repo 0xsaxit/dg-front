@@ -69,9 +69,9 @@ const AccountData = (props) => {
                   display: 'flex',
                   marginTop: '-18px',
                 }}
-              />
-              <a
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+              /> 
+              <a 
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
                 target="_blank"
                 className="avatar-edit-circle"
               >

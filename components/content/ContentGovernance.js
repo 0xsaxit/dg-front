@@ -121,13 +121,13 @@ const ContentGovernance = (props) => {
 
   useEffect(() => {
     (async function () {
-      // get snapshot statistics
+// get snapshot statistics
       let response = await Fetch.PROPOSALS();
       let json = await response.json();
 
-      setGovOne(json.QmUnrXbxkcHJkPBzua9Weq2posDh7YoGpjAqsRWLPJ6Phc.msg.payload);
-      setLinkOne(json.QmUnrXbxkcHJkPBzua9Weq2posDh7YoGpjAqsRWLPJ6Phc.authorIpfsHash);
-      let temp_one = json.QmUnrXbxkcHJkPBzua9Weq2posDh7YoGpjAqsRWLPJ6Phc.msg.payload.end;
+      setGovOne(json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.msg.payload);
+      setLinkOne(json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.authorIpfsHash);
+      let temp_one = json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.msg.payload.end;
 
       if (temp_one * 1000 < Date.now()) {
         setPassedOne(true);
@@ -138,9 +138,9 @@ const ContentGovernance = (props) => {
       var date = new Date(govOne.end * 1000);
       setEndOne(date.toDateString());
 
-      setGovTwo(json.QmZiBkyv856RBZfQmspUX1B6mKRMs9jtV8x3gAaTJfufHi.msg.payload);
-      setLinkTwo(json.QmZiBkyv856RBZfQmspUX1B6mKRMs9jtV8x3gAaTJfufHi.authorIpfsHash);
-      let temp_two = json.QmZiBkyv856RBZfQmspUX1B6mKRMs9jtV8x3gAaTJfufHi.msg.payload.end;
+      setGovTwo(json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload);
+      setLinkTwo(json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.authorIpfsHash);
+      let temp_two = json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload.end;
 
       if (temp_two * 1000 < Date.now()) {
         setPassedTwo(true);
@@ -148,12 +148,12 @@ const ContentGovernance = (props) => {
         setPassedTwo(false);
       }
 
-      var date = new Date(temp_two * 1000);
+      var date = new Date(govTwo.end * 1000);
       setEndTwo(date.toDateString());
 
-      setGovThree(json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.msg.payload);
-      setLinkThree(json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.authorIpfsHash);
-      let temp_three = json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.msg.payload.end;
+      setGovThree(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload);
+      setLinkThree(json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash);
+      let temp_three = json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
 
       if (temp_three * 1000 < Date.now()) {
         setPassedThree(true);
@@ -161,7 +161,7 @@ const ContentGovernance = (props) => {
         setPassedThree(false);
       }
 
-      var date = new Date(govThree.end * 1000);
+      var date = new Date(temp_three * 1000);
       setEndThree(date.toDateString());
 
     })()
@@ -474,7 +474,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '6px', paddingLeft: '8px' }}> ONGOING ∙ {endOne}</p>
+                    <p className="earned-text" style={{ marginTop: '6px', paddingLeft: '8px' }}> EXECUTED ∙ {endOne}</p>
                   </span>
                 </div>
               </a>
@@ -494,7 +494,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '6px', paddingLeft: '8px' }}> ONGOING ∙ {endTwo}</p>
+                    <p className="earned-text" style={{ marginTop: '6px', paddingLeft: '8px' }}>EXECUTED ∙ {endTwo}</p>
                   </span>
                 </div>
               </a>
@@ -514,7 +514,7 @@ const ContentGovernance = (props) => {
                         ACTIVE
                       </Button>   
                     )}
-                    <p className="earned-text" style={{ marginTop: '6px', paddingLeft: '8px' }}> EXECUTED ∙ {endThree}</p>
+                    <p className="earned-text" style={{ marginTop: '6px', paddingLeft: '8px' }}>EXECUTED ∙ {endThree}</p>
                   </span>
                 </div>
               </a>

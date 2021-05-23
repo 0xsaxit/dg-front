@@ -5,15 +5,15 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls
-  // GET_ADDRESSES: (address) => {
-  //   return fetch(`${API_BASE_URL}/addresses?address=${address}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
+  GET_ADDRESSES: (address) => {
+    return fetch(`${API_BASE_URL}/addresses?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
 
   GAME_RECORDS: (address) => {
     return fetch(`${API_BASE_URL}/admin/getTotalRecords?address=${address}`, {
@@ -23,6 +23,19 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
     });
+  },
+
+  TREASURY_STATS_GRAPH: (address) => {
+    return fetch(
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/day?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   TREASURY_STATS_NUMBERS: (address) => {
@@ -38,18 +51,18 @@ const Fetch = {
     );
   },
 
-  // PARCEL_DATA: (landID, tokenID, address) => {
-  //   return fetch(
-  //     `${API_BASE_URL}/nft/${landID}/${tokenID}?address=${address}`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   );
-  // },
+  PARCEL_DATA: (landID, tokenID, address) => {
+    return fetch(
+      `${API_BASE_URL}/nft/${landID}/${tokenID}?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  },
 
   PLAYER_INFO: (address) => {
     return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
@@ -72,23 +85,16 @@ const Fetch = {
   },
 
   EVENTS: (address) => {
-    return fetch(`${API_BASE_URL}/players/getEvents?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-  },
-
-  USERS_LIST: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getUsersList?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return fetch(
+      `https://api.decentral.games/players/getEvents?address=${address}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   },
 
   // ADMIN_HISTORY: () => {

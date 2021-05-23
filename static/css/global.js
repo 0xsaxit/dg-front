@@ -98,7 +98,6 @@ export const GlobalStyles = createGlobalStyle`
   .post,
   .DG-column,
   .DG-column-treasury,
-  .DG-column-game,
   .read-next-button:first-child,
   .read-next-button:last-child,
   .admin-balances-column,

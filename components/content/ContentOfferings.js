@@ -200,137 +200,71 @@ const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentCasinos() {
     return (
-      <div>
-        <a
-          href="https://play.decentraland.org/?position=-96%2C110"
-          target="_blank"
-          className="games-container"
-          style={{ width: '100%', marginBottom: '30px' }}
-        >
-          <span
-            style={{ display: 'flex', justifyContent: 'center' }}
-            className="nft-image"
-            style={{ height: '400px' }}
+      <div className="outter-games-container">
+        {Object.keys(props.detailsCasinos).map((item, i) => (
+          <a
+            href={props.detailsCasinos[item][5] + utm}
+            target="_blank"
+            className="games-container"
           >
-            <Image
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620072433/render7_nakteh.png"
-              className="games-pic"
-              style={{ borderRadius: '4px', minHeight: '400px', objectPosition: 'bottom' }}
-            />
-          </span>
-          <div className="nft-description">
-            <h3 className="nft-other-h3">Atari Casino</h3>
-            <span style={{ display: 'flex', justifyContent: 'center' }}>
-              <p className="nfts-info">ROULETTE, BLACKJACK</p>
-            </span>
-
-            <Divider
-              style={{
-                margin: '10px 0px 15px 0px',
-                width: 'calc(100% + 60px)',
-                marginLeft: '-30px',
-              }}
-            />
-
-            <p
-              className="nft-other-p"
-              style={{
-                marginTop: '-12px',
-                paddingTop: '15px',
-                textAlign: 'center',
-              }}
-            >
-              Atari Casino, a 20 parcel casino estate, is found in the Casino Quarter of Vegas City, Decentraland. This partnership brings a host of benefits to Decentral Games’ community and $DG hodlers with 88% of the profit share contributing to DG DAO Treasury. Atari Casino features Atari-themed games and the addition of the Atari token (ATRI).
-            </p>
-
             <span
-              style={{ display: 'flex', justifyContent: 'space-between' }}
+              style={{ display: 'flex', justifyContent: 'center' }}
+              className="nft-image"
             >
-              <Button
-                id="play-now-button-casinos-3"
-                color="blue"
-                className="nft-button"
-                target="_blank"
-                href="https://play.decentraland.org/?position=-96%2C110"
-              >
-                Play Now
-              </Button>
-              <Button
-                className="nft-read-button two"
-                target="_blank"
-                href="https://docs.decentral.games/operators/tominoya"
-              >
-                Read More
-              </Button>
+              <Image
+                src={props.detailsCasinos[item][0]}
+                className={props.detailsCasinos[item][1]}
+                style={{ borderRadius: '4px' }}
+              />
             </span>
-          </div>
-        </a>
-        <div className="outter-games-container">
-          {Object.keys(props.detailsCasinos).map((item, i) => (
-            <a
-              href={props.detailsCasinos[item][5] + utm}
-              target="_blank"
-              className="games-container"
-            >
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="nft-image"
-              >
-                <Image
-                  src={props.detailsCasinos[item][0]}
-                  className={props.detailsCasinos[item][1]}
-                  style={{ borderRadius: '4px' }}
-                />
+            <div className="nft-description">
+              <h3 className="nft-other-h3">{props.detailsCasinos[item][2]}</h3>
+              <span style={{ display: 'flex', justifyContent: 'center' }}>
+                <p className="nfts-info">{props.detailsCasinos[item][4]}</p>
               </span>
-              <div className="nft-description">
-                <h3 className="nft-other-h3">{props.detailsCasinos[item][2]}</h3>
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className="nfts-info">{props.detailsCasinos[item][4]}</p>
-                </span>
 
-                <Divider
-                  style={{
-                    margin: '10px 0px 15px 0px',
-                    width: 'calc(100% + 60px)',
-                    marginLeft: '-30px',
-                  }}
-                />
+              <Divider
+                style={{
+                  margin: '10px 0px 15px 0px',
+                  width: 'calc(100% + 60px)',
+                  marginLeft: '-30px',
+                }}
+              />
 
-                <p
-                  className="nft-other-p"
-                  style={{
-                    marginTop: '-12px',
-                    paddingTop: '15px',
-                    textAlign: 'center',
-                  }}
+              <p
+                className="nft-other-p"
+                style={{
+                  marginTop: '-12px',
+                  paddingTop: '15px',
+                  textAlign: 'center',
+                }}
+              >
+                {props.detailsCasinos[item][3]}
+              </p>
+
+              <span
+                style={{ display: 'flex', justifyContent: 'space-between' }}
+              >
+                <Button
+                  id={`play-now-button-casinos-${i + 1}`}
+                  color="blue"
+                  className="nft-button"
+                  target="_blank"
+                  href={props.detailsCasinos[item][5] + utm}
                 >
-                  {props.detailsCasinos[item][3]}
-                </p>
-
-                <span
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  Play Now
+                </Button>
+                <Button
+                  className="nft-read-button two"
+                  target="_blank"
+                  href={props.detailsCasinos[item][6]}
                 >
-                  <Button
-                    id={`play-now-button-casinos-${i + 1}`}
-                    color="blue"
-                    className="nft-button"
-                    target="_blank"
-                    href={props.detailsCasinos[item][5] + utm}
-                  >
-                    Play Now
-                  </Button>
-                  <Button
-                    className="nft-read-button two"
-                    target="_blank"
-                    href={props.detailsCasinos[item][6]}
-                  >
-                    Read More
-                  </Button>
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
+                  Read More
+                </Button>
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
     );
   }

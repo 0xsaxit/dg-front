@@ -3,19 +3,20 @@ import { GlobalContext } from '../store';
 import { initGA, logPageView } from './Analytics';
 import MenuTop from './home/MenuTop';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme } from '../static/css/theme';
+import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
 
+
 const Layout = (props) => {
-  // get user's address and status from the Context API store
+  // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   // define local variables
   // change second "lightTheme" to "darkTheme" when theme jump is fixed
-  // const themeMode = state.theme === 'light' ? lightTheme : lightTheme;
+  const themeMode = state.theme === 'light' ? lightTheme : lightTheme;
 
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
@@ -26,14 +27,14 @@ const Layout = (props) => {
     logPageView();
   }, []);
 
-  // useEffect(() => {
-  //   if (state.userStatus > 3) {
-  //     setIsLoading(false);
-  //   }
-  // }, [state.userStatus]);
+  useEffect(() => {
+    if (state.userStatus > 3) {
+      setIsLoading(false);
+    }
+  }, [state.userStatus]);
 
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={themeMode}>
       <GlobalStyles />
 
       {router.pathname === '/' ? (
@@ -43,6 +44,7 @@ const Layout = (props) => {
       )}
 
       {props.children}
+
     </ThemeProvider>
   );
 };
