@@ -293,9 +293,9 @@ function DGBalances() {
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
-      // console.log('????');
-      const BALANCE_AFFILIATES = await getAffiliateBalances();
-      // console.log(BALANCE_AFFILIATES);
+      const BALANCE_AFFILIATES = await getAffiliateBalances(); // affiliate balances
+
+      console.log(BALANCE_AFFILIATES);
 
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
@@ -373,20 +373,48 @@ function DGBalances() {
         )
         .call();
 
-      const amountUsdt = await pointerContractNew.methods
+      const amountUSDT = await pointerContractNew.methods
         .profitPagination(
           state.userAddress,
-          '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+          '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
+          0,
+          50
+        )
+        .call();
+      const amountAtri = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0xb140665dde25c644c6b418e417c930de8a8a6ac9',
+          0,
+          50
+        )
+        .call();
+      const amountEth = await pointerContractNew.methods
+        .profitPagination(
+          state.userAddress,
+          '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
           0,
           50
         )
         .call();
 
-      return [amountMana, amountDai, amountUsdt];
+      const wrappedResult = amountMana._players.map((address, index) => {
+        return {
+          address,
+          mana: amountMana._profits[index] / 1000000000000000000,
+          dai: amountDai._profits[index] / 1000000000000000000,
+          usdt: amountUSDT._profits[index] / 1000000000000000000,
+          atri: amountAtri._profits[index] / 1000000000000000000,
+          eth: amountEth._profits[index] / 1000000000000000000
+        };
+      });
+
+      return wrappedResult;
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
   }
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

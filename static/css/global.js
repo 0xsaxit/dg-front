@@ -9,10 +9,6 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.body};
   }
 
-  .ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
-    background: ${({ theme }) => theme.toggle};
-  }
-
   .avatar-picture.main {
     border: ${({ theme }) => theme.globalDividers};
     border-radius: 100%;
@@ -141,9 +137,9 @@ export const GlobalStyles = createGlobalStyle`
   .ui.modal,
   .matic-overlay,
   .mailchimp-outter-container {
-    background: ${({ theme }) => theme.body};
+    background: black;
     box-shadow: none !important;  
-    border-radius: 8px !important;
+    border-radius: 24px !important;
   }
 
   .ui.bottom.right.popup,
@@ -159,7 +155,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .menu-info-container {
-    background: ${({ theme }) => theme.card}; 
+    background: black; 
   }
 
   .matic-widget-button,
@@ -211,7 +207,7 @@ export const GlobalStyles = createGlobalStyle`
   div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu,
   .menu-container.blog,
   .dashboard-menu-container#top {
-    background: ${({ theme }) => theme.menuColor} !important;
+    background: ${({ theme }) => theme.menuColor};
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
 

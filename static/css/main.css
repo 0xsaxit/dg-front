@@ -14,18 +14,28 @@ a {
 }
 
 @font-face {
-  font-family:  'Larsseit-ExtraBold';
-  src: url("/static/fonts/webFonts/LarsseitExtraBold/font.woff2");
+  font-family: 'Larsseit-ExtraBold';
+  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
 }
 
 @font-face {
   font-family: 'Larsseit-Bold';
-  src: url("/static/fonts/webFonts/LarsseitBold/font.woff2");
+  src: url("/static/fonts/Larsseit/Larsseit16.otf");
+}
+
+@font-face {
+  font-family: 'Larsseit-Medium';
+  src: url("/static/fonts/Larsseit/Larsseit2.ttf");
 }
 
 @font-face {
   font-family: 'Larsseit-Regular';
-  src: url("/static/fonts/webFonts/LarsseitRegular/font.woff2");
+  src: url("/static/fonts/Larsseit/Larsseit13.ttf");
+}
+
+@font-face {
+  font-family: 'Larsseit-Light';
+  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
 }
 
 h1 {
@@ -41,7 +51,6 @@ h2 {
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 16px;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -50,7 +59,6 @@ h3 {
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 0px;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -62,13 +70,12 @@ h3 {
 }
 
 h4 {
-  font-family: 'Larsseit-Regular';
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 24px;
   font-weight: 500;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -79,7 +86,6 @@ h5 {
   margin-bottom: 0px;
   font-size: 24px;
   font-weight: normal;
-  letter-spacing: 0px;
   line-height: 1.4;
 }
 
@@ -87,8 +93,12 @@ p {
   font-family: 'Larsseit-Regular';
   font-size: 21px;
   font-weight: normal;
-  letter-spacing: 0.5;
   line-height: 1.4;
+}
+
+.modal-a:hover {
+  color: white;
+  filter: brightness(0.75);
 }
 
 .account-hover {
@@ -97,11 +107,8 @@ p {
 
 .ui.button {
   font-family: 'Larsseit-Bold';
-  letter-spacing: 1px;
-  font-weight: 800 !important;
-  border-radius: 4px;
+  border-radius: 16px;
   margin: 0 0 0 0;
-  text-transform: uppercase;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -187,14 +194,20 @@ a.get-metamask-scroll:hover {
 
 .ui.checkbox .box,
 .ui.checkbox label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
-  line-height: 1.4;
+  line-height: 27px;
 }
+
 
 .ui.checkbox label::before,
 .ui.checkbox label::after {
   margin-top: 6px;
+  background: transparent;
+}
+
+label::before:active {
+  background: transparent;
 }
 
 .other-menu-container.blog {
@@ -288,7 +301,7 @@ div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: pointer !important;
   font-weight: 700 !important;
-  border-bottom: 3px solid #2085f4;
+  border-bottom: 3px solid #006EFF;
   padding-bottom: 22px !important;
 }
 
@@ -297,7 +310,7 @@ div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: default;
   font-weight: 700 !important;
-  border-bottom: 3px solid #2085f4;
+  border-bottom: 3px solid #006EFF;
   padding-bottom: 18px !important;
 }
 
@@ -328,6 +341,7 @@ div.item.sidebar-menu-text.blog:hover {
 .sidebar-menu-text:hover {
   color: rgba(255, 255, 255, 1) !important;
   font-weight: 800 !important;
+  transition: all linear 0.1s;
 }
 
 .sidebar-menu-text.active {
@@ -345,6 +359,7 @@ div.item.sidebar-menu-text.blog:hover {
   padding-right: 12px !important;
   position: relative;
   z-index: 3;
+  transition: all linear 0.1s;
 }
 
 .right-menu-text {
@@ -368,7 +383,7 @@ div.item.sidebar-menu-text.blog:hover {
 
 .right-menu-items {
   width: calc(100% - 60px);
-  margin-left: 60px;
+  margin-right: 15px;
   display: flex !important;
   justify-content: flex-end !important;
   position: relative;
@@ -380,7 +395,7 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .menu-account-info {
-  background-color: #2085f4;
+  background-color: #006EFF;
   border-radius: 4px;
   margin-top: 18px;
   height: 27px !important;
@@ -395,7 +410,7 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .menu-avatar-background {
-  border: 1px solid #2085f4;
+  border: 1px solid #006EFF;
   display: flex;
   background-color: #165daa;
   padding-right: 15px;
@@ -405,18 +420,17 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .menu-info-modal {
-  max-width: 400px !important;
-  border-radius: 4px !important;
-  margin-top: 48px !important;
+  max-width: 400px;
+  padding: 30px;
 }
 
 .menu-info-container {
-  margin: 0px 30px 0px 30px;
-  border-radius: 4px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 
 .menu-info-inner-span {
-  background: black;
+  background: transparent;
   display: flex;
   justify-content: space-between;
   padding: 0px 12px 0px 12px;
@@ -434,7 +448,7 @@ p.menu-info-label-link,
 p.menu-info-label-link:hover,
 a.menu-info-label-link,
 a.menu-info-label-link:hover {
-  color: #2085f4 !important;
+  color: #006EFF !important;
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
@@ -446,7 +460,7 @@ a.menu-info-label-link:hover {
   font-weight: 700;
   letter-spacing: 0.5px;
   color: black;
-  padding-top: 2px;
+  padding-top: 0px;
 }
 
 .menu-info-close {
@@ -514,7 +528,7 @@ a.menu-info-label-link:hover {
 }
 
 .mailchimp-close {
-  background: rgb(0, 0, 0);
+  background: black;
   border-radius: 100%;
   padding: 8px 4px 8px 8px;
   cursor: pointer;
@@ -613,7 +627,7 @@ a.menu-info-label-link:hover {
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 32vh;
+  padding-top: 30vh;
   height: 100vh;
 }
 
@@ -873,12 +887,12 @@ p.home-dashboard-p {
 }
 
 .home-more-nav-top {
-  color: #2085f4 !important;
+  color: #006EFF !important;
   margin-top: 7px !important;
 }
 
 .home-more-nav {
-  color: #2085f4 !important;
+  color: #006EFF !important;
   margin-top: 20px !important;
 }
 
@@ -1143,7 +1157,7 @@ p.home-dashboard-p {
 }
 
 .ui.dropdown > .dropdown.icon {
-  color: #2085f4;
+  color: #006EFF;
 }
 
 .ui.dropdown > .text {
@@ -1769,11 +1783,11 @@ i.pencil.icon.edit-icon:hover {
 .top-right-gameplay-text {
   border-radius: 4px;
   background-color: white;
-  border: 1px solid #2085f4;
+  border: 1px solid #006EFF;
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
-  color: #2085f4;
+  color: #006EFF;
   text-transform: uppercase;
   padding: 3px 6px 2px 6px;
   margin-top: -75px !important;
@@ -1821,7 +1835,7 @@ i.pencil.icon.edit-icon:hover {
   padding-top: 16px;
   margin-bottom: -14px;
   padding-bottom: 16px;
-  border-left: 3px solid #2085f4 !important;
+  border-left: 3px solid #006EFF !important;
 }
 
 .ui.top.left.popup:before,
@@ -1892,10 +1906,6 @@ i.pencil.icon.edit-icon:hover {
 
 .earned-percent.neg {
   color: #ea3943 !important;
-}
-
-.earned-percent.neutral {
-  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 i.caret.up.icon.percent-icon.pos,
@@ -2084,7 +2094,7 @@ div.ui.grid.balances-container {
 
 i.check.icon.affiliate-icon,
 i.copy.icon.affiliate-icon {
-  color: #2085f4;
+  color: #006EFF;
   padding-top: 6px;
 }
 
@@ -2125,11 +2135,6 @@ i.copy.icon.affiliate-icon:hover {
   border-radius: 4px;
   height: 48px;
   transition: none;
-  color: white;
-}
-
-section {
-  background-color: black !important;
 }
 
 .ui.action.input > .button,
@@ -2356,7 +2361,7 @@ span.treasury-table {
 
 .ui.toggle.checkbox.checked input.hidden + label:before,
 .ui.toggle.checkbox.checked input.hidden:focus + label:before {
-  background-color: #2085f4 !important;
+  background-color: #006EFF !important;
 }
 
 /* ----------------------------------------- */
@@ -2676,6 +2681,11 @@ div.ui.grid.admin-balances-container {
 .ui.button:hover {
   transform: translateY(0px);
   filter: brightness(0.9) !important;
+  transition: all linear 0.1s;
+}
+
+.ui.button {
+  transition: all linear 0.1s;
 }
 
 .ui.disabled.button {
@@ -2685,13 +2695,13 @@ div.ui.grid.admin-balances-container {
 a.ui.blue.button.play-button,
 .ui.blue.button.play-button {
   position: relative;
-  background-color: #2085f4 !important;
+  background-color: #006EFF !important;
   color: white;
   margin-top: 8px;
-  height: 48px !important;
+  height: 64px !important;
   width: 200px;
-  line-height: 20px;
-  font-size: 18px !important;
+  line-height: 32px;
+  font-size: 20px !important;
 }
 
 a.ui.blue.button.metamask-how-button {
@@ -2706,14 +2716,14 @@ a.ui.blue.button.metamask-how-button {
 }
 
 a.ui.blue.button.earn-dg-button {
-  background-color: white;
-  color: black;
+  background-color: #2B2B2B;
+  color: white;
   position: relative;
   margin-top: 8px;
-  height: 48px !important;
+  height: 64px !important;
   width: 200px;
-  line-height: 20px;
-  font-size: 18px !important;
+  line-height: 32px;
+  font-size: 20px !important;
 }
 
 a.ui.blue.button.announcement,
@@ -2723,7 +2733,7 @@ a.ui.blue.button.partners,
 a.ui.blue.button.hop,
 a.ui.blue.button.touch {
   position: relative;
-  background-color: #2085f4;
+  background-color: #006EFF;
   color: white;
   margin-top: 20px;
   height: 48px !important;
@@ -2743,7 +2753,7 @@ a.ui.blue.button.touch {
     width: 220px !important;
     margin-left: calc(50vw - 132px);
     position: relative;
-    background-color: #2085f4;
+    background-color: #006EFF;
     color: white;
     margin-top: 8px;
     height: 48px !important;
@@ -2755,9 +2765,9 @@ a.ui.blue.button.touch {
 a.ui.blue.button.docs,
 a.ui.blue.button.roadmap {
   background: transparent;
-  color: #2085f4;
+  color: #006EFF;
   margin-left: 20px;
-  border: 1px solid #2085f4;
+  border: 1px solid #006EFF;
   margin-top: 20px;
   height: 48px !important;
   width: 200px;
@@ -2791,7 +2801,7 @@ a.ui.blue.button.casinos {
 .ui.button.DG-deposit-button,
 .ui.button.DG-play-now-button {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   min-width: 100% !important;
   border-radius: 4px;
   height: 36px !important;
@@ -2801,7 +2811,7 @@ a.ui.blue.button.casinos {
 
 .ui.button.balances-authorize-button {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   min-width: 100% !important;
   margin-top: 3px;
   margin-bottom: 6px;
@@ -2814,8 +2824,8 @@ a.ui.blue.button.casinos {
 .ui.button.get-dg-button {
   background-color: rgba(255, 255, 255, 0);
   font-size: 12px;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-bottom: -2px;
   margin-top: 8px;
   height: 24px;
@@ -2828,8 +2838,8 @@ a.ui.blue.button.casinos {
 
 .ui.button.withdraw-dg-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   height: 27px;
   margin-top: 15px;
   padding: 7px 6px 0px 6px;
@@ -2839,20 +2849,21 @@ a.ui.blue.button.casinos {
 }
 
 .ui.blue.button.metamask-button {
-  font-size: 14px;
+  font-size: 18px;
   position: relative;
-  background-color: #2085f4 !important;
-  padding: 0px;
+  background-color: #006EFF !important;
   color: white;
-  margin-top: 14px;
-  width: 210px !important;
-  height: 34px !important;
-  border-radius: 4px;
+  padding: 0px;
+  line-height: 24px;
+  margin-top: 12px;
+  min-width: 250px !important;
+  height: 40px !important;
+  border-radius: 16px;
   margin-right: 30px;
 }
 
 .ui.button.modal-info-button {
-  background-color: #2085f4;
+  background-color: #006EFF;
   color: white;
   font-size: 14px !important;
   font-weight: 800 !important;
@@ -2866,7 +2877,7 @@ a.ui.blue.button.casinos {
 
 .ui.button.mailchimp-submit-button {
   position: relative;
-  background-color: #2085f4 !important;
+  background-color: #006EFF !important;
   color: white;
   width: 180px !important;
   margin-left: 15px;
@@ -2879,8 +2890,8 @@ a.ui.blue.button.casinos {
 
 a.ui.blue.button.dg-learn-button {
   background-color: transparent;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   position: relative;
   margin-top: 20px;
   width: 180px !important;
@@ -2889,7 +2900,7 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.blue.button.nft-button {
   position: relative;
-  background-color: #2085f4;
+  background-color: #006EFF;
   color: white;
   margin-top: 8px;
   width: 48.5% !important;
@@ -2901,8 +2912,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.nft-read-button {
   background-color: transparent;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-top: 8px;
   width: 48.5% !important;
   height: 36px !important;
@@ -2913,8 +2924,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.reload-button {
   background-color: transparent;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-top: -5px;
   margin-left: 24px;
   height: 27px;
@@ -2925,8 +2936,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   height: 24px;
   padding-left: 6px;
   padding-right: 6px;
@@ -2938,8 +2949,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button-ptxid {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   padding-left: 6px;
   padding-right: 6px;
   margin-right: 0px !important;
@@ -2967,8 +2978,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.button.etherscan-button-blue {
   background-color: rgba(255, 255, 255, 0);
   font-size: 12px;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   height: 24px !important;
   margin-top: 8px;
   line-height: 0px;
@@ -2980,7 +2991,7 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.blue.button.our-blog-button {
   position: relative;
-  background-color: #2085f4 !important;
+  background-color: #006EFF !important;
   color: white;
   margin-top: 9px;
   margin-bottom: 9px;
@@ -2993,8 +3004,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.blue.button.learn-more-button {
   position: relative;
   background-color: transparent !important;
-  color: #2085f4;
-  border: 1px solid #2085f4;
+  color: #006EFF;
+  border: 1px solid #006EFF;
   margin-top: 9px;
   margin-bottom: 9px;
   height: 34px;
@@ -3005,8 +3016,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.disabled.button.balances-top-button,
 .ui.button.balances-top-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   height: 24px !important;
   font-size: 12px;
   border-radius: 4px;
@@ -3022,7 +3033,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.balances-play-button {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   width: 48.5% !important;
   height: 36px !important;
   line-height: 8px;
@@ -3032,7 +3043,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   min-width: 48.5% !important;
   border-radius: 4px;
   height: 36px !important;
@@ -3042,8 +3053,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button-balancer {
   background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   height: 36px;
   min-width: 100% !important;
   margin-top: 15px;
@@ -3052,8 +3063,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button-balancer-enabled {
   background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   height: 34px;
   min-width: 100% !important;
   margin-top: 15px;
@@ -3066,8 +3077,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.affiliate-copy-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-top: -45px;
   height: 27px;
   max-width: 150px !important;
@@ -3078,8 +3089,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.affiliate-copied-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-top: -45px;
   height: 27px;
   max-width: 100px !important;
@@ -3090,8 +3101,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.balancer-top-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-top: -45px;
   height: 27px;
   max-width: 81px !important;
@@ -3113,7 +3124,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-airdrop-button {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   height: 34px;
   padding-left: 45px;
   padding-right: 45px;
@@ -3122,7 +3133,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button-two {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   margin-top: 18px;
   margin-bottom: 6px;
   height: 34px;
@@ -3131,8 +3142,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-liquidity-button {
   background-color: white;
-  border: 1px solid #2085f4;
-  color: #2085f4;
+  border: 1px solid #006EFF;
+  color: #006EFF;
   margin-top: 27px;
   height: 27px;
   max-width: 150px !important;
@@ -3141,7 +3152,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.not-found-button {
   color: white;
-  background-color: #2085f4;
+  background-color: #006EFF;
   height: 34px;
   min-width: 180px;
   margin-top: 12px;
@@ -3154,4 +3165,462 @@ a.ui.button.balances-top-button {
 
 .referral-modal {
   max-width: 630px;
+}
+
+/* ----------------------------------------- */
+/*                BINANCE CSS                */
+/* ----------------------------------------- */
+
+@media (min-width: 500px) {
+  .ui.blue.button.demo-button-binance {
+    display: none;
+  }
+}
+
+a.ui.blue.button.play-button-binance,
+.ui.blue.button.play-button-binance {
+  position: relative;
+  background-color: #F1CD50 !important;
+  color: black;
+  margin-top: 8px;
+  height: 48px !important;
+  width: 200px;
+  line-height: 20px;
+  font-size: 18px !important;
+}
+
+.menu-account-info.binance {
+  background: #F1CD50;
+}
+
+.menu-avatar-background.binance {
+  border: 1px solid #F1CD50;
+  background: #FFEDAE;
+}
+
+.right-menu-text.blog.binance {
+  color: black !important;
+}
+
+.menu-container-binance {
+  display: flex !important;
+  flex-direction: row !important;
+  border: none;
+  overflow: hidden;
+  z-index: 3 !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.binance-video-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  object-fit: fill;
+  z-index: -2;
+}
+
+.binance-video-container video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bnb-balance-box {
+  width: 85px;
+  height: 40px;
+  margin-top: 16px;
+  border-radius: 16px;
+  margin-right: 16px;
+}
+
+.ui.button.account-button {
+  height: 40px;
+  margin-top: 12px;
+  background-color: #1F1F1F;
+  border-radius: 16px;
+  color: white;
+  margin-right: 16px;
+}
+
+.right-menu-text.bnb {
+  line-height: 0px;
+  padding-top: 1px;
+}
+
+img.avatar-picture-home {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+  background: linear-gradient(
+    162deg, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 1) 40%, 
+    #006EFF 40.1%,  
+    #006EFF 100%
+  );
+}
+
+.ui.bottom.right.popup.transition.visible.account-popup {
+  width: 360px;
+  height: 100%;
+  box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.04);
+  border-radius: 24px;
+  background-color: #1F1F1F;
+  padding: 30px;
+  border: 0px solid white;
+}
+
+.account-address {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  padding-left: 8px;
+  margin-top: -4px !important;
+}
+
+.ui.button.casino-balance-button {
+  height: 54px;
+  width: 300px;
+  border-radius: 12px;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  margin-top: 8px;
+  padding: 12px 24px 12px 24px;
+  transition: all linear 0.1s;
+}
+
+.ui.button.casino-balance-button:hover {
+  border: 2px solid rgba(255, 255, 255, 1);
+  transition: all linear 0.1s;
+}
+
+.casino-balance-text {
+  float: left;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: Larsseit-Bold;
+}
+
+.casino-balance-text.two {
+  float: right;
+  font-size: 16px;
+  font-family: Larsseit-Bold;
+}
+
+.ui.button.account-deposit-button {
+  height: 54px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #006EFF;
+  color: white;
+  font-size: 18px !important;
+  padding-top: 17px;
+}
+
+.ui.button.modal-button {
+  height: 48px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #006EFF;
+  color: white;
+  font-size: 16px;
+}
+
+.ui.button.modal-learn-button {
+  height: 48px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  font-size: 16px;
+}
+
+.ui.button.account-withdraw-button {
+  height: 54px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  font-size: 18px !important;
+  padding-top: 17px;
+}
+
+.account-dropdown-item {
+  font-size: 20px;
+  font-family: Larsseit-Medium;
+  margin: 0;
+  padding-top: 16px;
+  transition: all linear 0.1s;
+}
+
+.account-dropdown-item:hover {
+  opacity: 70%;
+  transition: all linear 0.1s;
+}
+
+.account-copy {
+  margin-bottom: 12px;
+}
+
+i.clone.outline.icon,
+.account-address {
+  transition: all linear 0.1s;
+}
+
+.account-address:hover {
+  cursor: pointer;
+  color: white !important;
+  transition: all linear 0.1s;
+}
+
+.account-address:hover > i.clone.outline.icon {
+  cursor: pointer;
+  color: white !important;
+  transition: all linear 0.1s;
+}
+
+.ui.button.buy-dg-button {
+  height: 64px;
+  width: 100%;
+  border-radius: 12px;
+  background: #006EFF;
+  color: white;
+  font-size: 18px; 
+  margin-top: 24px;
+  padding-top: 21px;
+}
+
+.ui.button.get-dg-button-binance {
+  height: 48px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #F1CD50;
+  color: black;
+  font-size: 16px;
+}
+
+.copied-toast {
+  background-color: #1f1f1f;
+  position: fixed;
+  bottom: 60px;
+  left: calc(50% - 165px);
+  width: 330px;
+  height: 75px;
+  border-radius: 32px;
+}
+
+.copied-text {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 19px;
+}
+
+.connect-metamask-modal {
+  padding: 20px 30px 40px 30px;
+  width: 470px !important;
+}
+
+.terms-of-service-modal {
+  padding: 20px 30px 40px 30px;
+  width: 360px !important;
+}
+
+.modal-text-small {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+}
+
+.modal-text-small.white {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75) !important;
+  line-height: 22px;
+  padding-left: 4px;
+}
+
+.modal-text-small-two {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+  margin: -4px 0px 0px -36px;
+}
+
+.modal-text-small-three {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+  margin: -4px 0px 0px 20px;
+}
+
+.modal-text-small-four {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  line-height: 22px;
+  margin: -4px 0px 0px 20px;
+  text-align: right;
+}
+
+.modal-text-medium {
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 4px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.modal-a {
+  color: white;
+}
+
+.terms-a {
+  color: #F1CD50;
+}
+
+.ui.checkbox input:checked~.box:before, .ui.checkbox input:checked~label:before,
+.ui.checkbox .box:hover::before, .ui.checkbox label:hover::before,
+.ui.checkbox input:checked~.box:before, .ui.checkbox input:checked~label:before {
+  background-color: black !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+}
+
+.ui.checkbox input:checked~.box:after, .ui.checkbox input:checked~label:after {
+  margin-top: 1px !important;
+  color: #F1CD50 !important;
+}
+
+.ui.blue.button.metamask-button.binance-top {
+  font-size: 18px;
+  position: relative;
+  background-color: #F1CD50 !important;
+  color: black;
+  padding: 0px;
+  line-height: 24px;
+  margin-top: 14px;
+  min-width: 250px !important;
+  height: 48px !important;
+  border-radius: 16px;
+  margin-right: 30px;
+}
+
+.busd-modal {
+  padding: 20px 30px 40px 30px;
+  width: 470px !important;
+}
+
+.ui.button.busd-button {
+  height: 80px;
+  width: 100%;
+  border-radius: 24px;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  margin-top: 12px;
+}
+
+.busd-picture {
+  width: 32px;
+  height: 32px;
+  margin-top: 6px;
+}
+
+h3.deposit-twentyfour {
+  font-size: 24px !important;
+  font-family: Larsseit-Regular !important;
+  margin-left: 20px;
+}
+
+h3.deposit-twentyfour.casino {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.withdraw-twentyfour {
+  color: rgba(255, 255, 255, 0.5) !important;
+  padding-left: 20px;
+}
+
+.ui.button.binance-deposit-button {
+  background: black;
+  color: white;
+  font-size: 24px;
+  margin: -25px 0px 24px -30px;
+  border-radius: 24px 0px 0px 0px;
+  width: calc(50% + 30px);
+  height: 80px;
+}
+
+.ui.button.binance-deposit-button.grey {
+  background: #0B0B0B;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ui.button.binance-withdraw-button {
+  background: #0B0B0B;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 24px;
+  margin: -25px -30px 0px 0px;
+  border-radius: 0px 24px 0px 0px;
+  width: calc(50% + 30px);
+  height: 80px;
+}
+
+.ui.button.binance-withdraw-button.grey {
+  background: black;
+  color: white;
+}
+
+.withdraw-busd-amount {
+  text-align: center;
+  font-size: 60px;
+  font-family: Larsseit-Bold;
+  padding-top: 5px;
+  margin-top: -16px !important;
+}
+
+.ui.input > input {
+  background: transparent !important;
+  height: 48px;
+  width: 100%;
+  border-radius: 16px;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+  background: transparent;
+  font-size: 24px;
+}
+
+.ui.input>input {
+  color: white !important;
+  text-align: center;
+}
+
+.ui.button.max-busd-button {
+  height: 44px;
+  background: transparent;
+  text-transform: uppercase;
+  width: 68px;
+  border-radius: 15px;
+  border: 1.5px solid white !important;
+  color: white;
+  font-size: 18px;
+  padding: 0px;
+  font-family: Larsseit-Regular;
+  right: 30px;
+  position: absolute;
+  margin-top: 4px;
+}
+
+.terms-a:hover {
+  color: rgba(241, 205, 80, 0.8) !important;
 }

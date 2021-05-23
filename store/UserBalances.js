@@ -7,6 +7,7 @@ import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
+
 function UserBalances() {
   // dispatch user's token balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -14,14 +15,16 @@ function UserBalances() {
   // define local variables
   let web3 = {};
   let maticWeb3 = {};
+  let binance = {};
   let balances = [];
 
   useEffect(() => {
     if (state.userStatus >= 4) {
       web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+      binance = new Web3('https://bsc-dataseed1.binance.org:443');
 
-      (async () => {
+      async function fetchData() {
         console.log('Fetching user balances: ' + state.refreshTokens);
 
         balances = await getTokenBalances();
@@ -30,7 +33,9 @@ function UserBalances() {
           type: 'update_balances',
           data: balances,
         });
-      })();
+      }
+
+      fetchData();
     }
   }, [state.userStatus, state.refreshTokens]);
 
@@ -132,6 +137,11 @@ function UserBalances() {
       '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
     );
 
+    const BUSDContract = new binance.eth.Contract(
+      ABI_ROOT_TOKEN,
+      '0xe9e7cea3dedca5984780bafc599bd69add087d56'
+    );
+
     try {
       const amountMANA1 = await Transactions.balanceOfToken(
         tokenContractRoot,
@@ -155,14 +165,29 @@ function UserBalances() {
         USDTContractChild,
         state.userAddress,
         0
-      );
+      ); 
 
       // get user or contract token balance from MetaMask
-      async function balanceOfAtari(
-        tokenContract,
-        userOrContractAddress,
-        units
-      ) {
+      async function balanceOfBUSD(tokenContract, userOrContractAddress, units) {
+        try {
+          const amount = await tokenContract.methods
+            .balanceOf(userOrContractAddress)
+            .call();
+
+          return amount / 1000000000000000000;
+        } catch (error) {
+          console.log('Get balance failed', error);
+        }
+      }
+
+      const amountBUSD = await balanceOfBUSD(
+        BUSDContract,
+        state.userAddress,
+        0
+      ); 
+
+      // get user or contract token balance from MetaMask
+      async function balanceOfAtari(tokenContract, userOrContractAddress, units) {
         try {
           const amount = await tokenContract.methods
             .balanceOf(userOrContractAddress)
@@ -178,7 +203,7 @@ function UserBalances() {
         ATRIContractChild,
         state.userAddress,
         0
-      );
+      ); 
 
       const amountWETH = await Transactions.balanceOfToken(
         WETHContractChild,
@@ -190,6 +215,7 @@ function UserBalances() {
         [0, amountDAI2],
         [amountMANA1, amountMANA2],
         [0, amountUSDT, amountATRI, amountWETH],
+        [0, amountBUSD],
       ];
     } catch (error) {
       console.log('Get user balances error: ' + error);

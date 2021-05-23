@@ -6,18 +6,22 @@ import '../static/css/agate.css';
 import '../static/css/blog.css';
 import '../static/css/spinner.css';
 import '../static/css/mobile.css';
-import '../static/css/introjs.scss';
 import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';
 import UserBalances from '../store/UserBalances';
+// import BalancesEvents from '../store/BalancesEvents';
 import Transactions from '../store/Transactions';
-import TreasuryNumbers from '../store/TreasuryNumbers';
+import ParcelData from '../store/ParcelData';
 import GameRecords from '../store/GameRecords';
+// import Location from '../store/Location';
 import ActiveStatus from '../store/ActiveStatus';
 import UserInfo from '../store/UserInfo';
 import AdminBalances from '../store/AdminBalances';
-import UsersList from '../store/UsersList';
+// import AdminData from '../store/AdminData';
 import DGBalances from '../store/DGBalances';
+import Prices from '../store/Prices';
+import Whitelist from '../store/Whitelist';
+import '../styles/bootstrap-overrides.scss';
 
 class Application extends App {
   render() {
@@ -34,13 +38,14 @@ class Application extends App {
         <UserStatus />
         <UserBalances />
         <Transactions />
-        <TreasuryNumbers />
+        <ParcelData />
         <GameRecords />
         <ActiveStatus />
         <UserInfo />
         <AdminBalances />
-        <UsersList />
         <DGBalances />
+        <Prices />
+        <Whitelist />
 
         <Component {...pageProps} />
       </Provider>

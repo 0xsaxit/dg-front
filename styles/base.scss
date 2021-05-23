@@ -1,0 +1,21 @@
+@import '~sass-mq/mq';
+
+$spacer: 1rem;
+$color-blue: #006EFF;
+$color-lightgray: #2F2F2F;
+$color-dark: #1F1F1F;
+$color-white: #ffffff;
+
+// sass-mq variables
+$mq-breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  extra-large: 1200px,
+);
+
+.btn-primary:active, 
+.btn-primary:hover,
+.btn-primary:focus {
+	color: white !important;
+}

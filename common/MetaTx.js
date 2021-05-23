@@ -12,7 +12,10 @@ let childTokenAddressATRI = '';
 let childTokenAddressWETH = '';
 
 let treasuryAddress = '';
+
 let dgPointerAddress = '';
+let dgPointerAddressNew = '';
+
 let arrayDomainType = [];
 let arrayDomainData = [];
 let metaTransactionType = [];
@@ -25,7 +28,9 @@ childTokenAddressATRI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI;
 childTokenAddressWETH = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH;
 
 treasuryAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
+
 dgPointerAddress = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS;
+dgPointerAddressNew = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW;
 
 const domainTypeToken = [
   { name: 'name', type: 'string' },
@@ -48,6 +53,7 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
+arrayDomainType.push(domeinTypeTreasury);
 
 metaTransactionType.push(
   { name: 'nonce', type: 'uint256' },
@@ -104,6 +110,13 @@ const domainDataTokenWETH = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
+const domainDataDGPointerNew = {
+  name: 'NEW',
+  version: 'V6',
+  chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
+  verifyingContract: dgPointerAddressNew,
+};
+
 arrayDomainData.push(domainDataTokenMANA);
 arrayDomainData.push(domainDataTreasury);
 arrayDomainData.push(domainDataDGPointer);
@@ -111,6 +124,7 @@ arrayDomainData.push(domainDataTokenDAI);
 arrayDomainData.push(domainDataTokenUSDT);
 arrayDomainData.push(domainDataTokenATRI);
 arrayDomainData.push(domainDataTokenWETH);
+arrayDomainData.push(domainDataDGPointerNew);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

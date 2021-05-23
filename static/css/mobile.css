@@ -833,38 +833,19 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
-.referral-desktop,
-.referral-tablet,
-.referral-mobile {
+.referral-link {
   font-size: 18px;
   margin-bottom: 0px;
-}
-
-@media (min-width: 1031px) {
-  .referral-mobile,
-  .referral-tablet {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .referral-desktop,
-  .referral-tablet {
-    display: none;
-  }
-  .referral-mobile {
-    display: inherit !important;
-  }
+  max-width: calc(100% - 16px);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (max-width: 1030px) {
   .DG-liquidity-container,
   .DG-top-container {
     flex-direction: column;
-  }
-  .referral-desktop,
-  .referral-mobile {
-    display: none;
   }
   .DG-tablet-container-gov {
     margin-top: 30px;

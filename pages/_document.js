@@ -21,19 +21,19 @@ export default class MyDocument extends Document {
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593694291/apple-touch-icon_tmocum.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/apple-touch-icon_xrz57z.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-32x32_kuowrj.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-32x32_uljekk.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691629/favicon-16x16_btdy9a.png"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/favicon-16x16_qjnn8u.png"
           />
           <link rel="manifest" href="/static/js/site.webmanifest" />
           <link
@@ -54,25 +54,32 @@ export default class MyDocument extends Document {
             crossOrigin="use-credentials"
           />
           <link
-            href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap"
-            rel="stylesheet"
-            disabled
-          />
-          <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitExtraBold/font.woff"
+            href="./static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitBold/font.woff"
+            href="./static/fonts/Larsseit/Larsseit16.otf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/webFonts/LarsseitRegular/font.woff"
+            href="./static/fonts/Larsseit/Larsseit13.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/Larsseit/Larsseit2.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="./static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />

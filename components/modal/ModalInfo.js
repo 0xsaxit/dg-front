@@ -118,8 +118,8 @@ const ModalInfo = () => {
         <span>
           {state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : state.DGBalances
               .BALANCE_MINING_DG ? (
-            <Button color="blue" className="modal-info-button">
-              <p className="right-menu-text dg">
+            <Button className="account-button">
+              <p className="right-menu-text bnb">
                 {DGTotal.toLocaleString()} DG{' '}
               </p>
             </Button>
@@ -127,196 +127,173 @@ const ModalInfo = () => {
         </span>
       }
     >
-      <div style={{ marginTop: '-32px' }}>
+      <div style={{ marginTop: '-60px', marginBottom: '45px', marginLeft: '-30px' }}>
         <span className="mailchimp-close" onClick={() => setOpen(false)}>
           <Icon name="close" />
         </span>
       </div>
 
-      <h3 style={{ textAlign: 'center', margin: '32px 0px 8px 0px' }}> Your $DG Breakdown </h3>
-
       <div>
-        <span style={{ display: 'flex', justifyContent: 'center' }}>
-          <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1604946498/RotateY_05_250x250_Alpha_vkitya.gif"
-            className="farming-logo"
-            alt="Decentral Games Coin Logo"
-          />
-        </span>
+  
+            <span>
+              <span style={{ display: 'flex' }}>
+                <img
+                  className="avatar-picture-home"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png"
+                />
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
+                    <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                      0.000
+                    </h4>
+                  ) : (
+                    <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                      {formatPrice(DGTotal_2, 3)}
+                    </h4>
+                  )}
+                  <span style={{ display: 'flex' }}>
+                    <p className="account-address">
+                      USD Value: ${unclaimedUSD}
+                    </p>
+                  </span>
+                </span>
+              </span>
 
-        <span style={{ display: 'flex', justifyContent: 'center' }}>
-          {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-            <p
-              className="account-name"
-              style={{
-                marginLeft: '0px',
-                paddingLeft: '0px',
-                textAlign: 'center',
-              }}
-            >
-              0.000
-            </p>
-          ) : (
-            <p
-              className="account-name"
-              style={{
-                marginLeft: '0px',
-                paddingLeft: '0px',
-                textAlign: 'center',
-              }}
-            >
-              {formatPrice(DGTotal_2, 3)}
-            </p>
-          )}
-        </span>
-        <span style={{ display: 'flex', justifyContent: 'center' }}>
-          <p
-            className="menu-info-text"
-            style={{
-              marginLeft: '0px',
-              paddingLeft: '0px',
-              textAlign: 'center',
-            }}
-          >
-            ${unclaimedUSD}
-          </p>
-        </span>
-        <span
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '8px 30px 0px 30px',
-          }}
-        >
-          <Button
-            className="get-dg-button"
-            href="https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
-            target="_blank"
-          >
-            BUY
-          </Button>
-          <Button
-            className="get-dg-button"
-            href="https://wallet.matic.network/bridge"
-            target="_blank"
-          >
-            WITHDRAW
-          </Button>
-        </span>
-      </div>
+              <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <span>
+                  <Button className="casino-balance-button" style={{ marginTop: '28px', width: '100%' }}>
+                    <p className="casino-balance-text"> Withdraw Matic $DG </p>
+                    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
+                    </span>
+                  </Button>
+                </span>
 
-      <div className="menu-info-container" style={{ marginTop: '24px' }}>
-        <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">$DG staked in gov</p>
-          <p className="menu-info-text">
-            {gov_staked.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">
-            <a
-              className="menu-info-label-link"
-              href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0"
-              target="_blank"
-            >
-              mainchain $DG
-            </a>{' '}
-            balance
-          </p>
-          <p className="menu-info-text">
-            {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">
-            <a
-              className="menu-info-label-link"
-              href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/"
-              target="_blank"
-            >
-              matic $DG
-            </a>{' '}
-            balance
-          </p>
-          <p className="menu-info-text">{state.DGBalances.BALANCE_CHILD_DG}</p>
-        </span>
-      </div>
+                <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', marginBottom: '8px' }}>
+                  <Button className="modal-button">
+                    Claim $DG
+                  </Button>
+                  <Button className="modal-learn-button">
+                    Learn More
+                  </Button>
+                </span>
 
-      <div>
-        {gov_unclaimed > 0 ||
-        state.DGBalances.BALANCE_MINING_DG > 0 ||
-        state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ||
-        state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ||
-        state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ||
-        state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
-          <div
-            className="menu-info-container"
-            style={{
-              marginTop: '24px',
-              marginBottom: '12px',
-            }}
-          >
-            {gov_unclaimed > 0 ? (
-              <span className="menu-info-inner-span">
-                <p className="menu-info-label">unclaimed $dg - gov</p>
+            <div className="menu-info-container" style={{ marginTop: '24px' }}>
+              <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+                <p className="menu-info-label">$DG staked in gov</p>
                 <p className="menu-info-text">
-                  {gov_unclaimed
-                    .toFixed(3)
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  {gov_staked.toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </p>
               </span>
-            ) : null}
-
-            {state.DGBalances.BALANCE_MINING_DG > 0 ? (
               <span className="menu-info-inner-span">
-                <p className="menu-info-label">unclaimed $dg - gameplay</p>
+                <p className="menu-info-label">
+                  <a
+                    className="menu-info-label-link"
+                    href="https://etherscan.io/token/0xee06a81a695750e71a662b51066f2c74cf4478a0"
+                    target="_blank"
+                  >
+                    mainchain $DG
+                  </a>{' '}
+                  balance
+                </p>
                 <p className="menu-info-text">
-                  {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+                  {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
                 </p>
               </span>
-            ) : null}
-
-            {state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ? (
               <span className="menu-info-inner-span">
-                <p className="menu-info-label">unclaimed $dg - uniswap</p>
+                <p className="menu-info-label">
+                  <a
+                    className="menu-info-label-link"
+                    href="https://explorer-mainnet.maticvigil.com/address/0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4/"
+                    target="_blank"
+                  >
+                    matic $DG
+                  </a>{' '}
+                  balance
+                </p>
+                <p className="menu-info-text">{state.DGBalances.BALANCE_CHILD_DG}</p>
+              </span>
+            </div>
+
+            <div>
+              {gov_unclaimed > 0 ||
+              state.DGBalances.BALANCE_MINING_DG > 0 ||
+              state.DGBalances.BALANCE_STAKING_BALANCER_1 > 0 ||
+              state.DGBalances.BALANCE_STAKING_BALANCER_2 > 0 ||
+              state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ||
+              state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
+                <div
+                  className="menu-info-container"
+                  style={{
+                    marginTop: '16px',
+                    marginBottom: '4px',
+                  }}
+                >
+                  {gov_unclaimed > 0 ? (
+                    <span className="menu-info-inner-span">
+                      <p className="menu-info-label">unclaimed $dg - gov</p>
+                      <p className="menu-info-text">
+                        {gov_unclaimed
+                          .toFixed(3)
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      </p>
+                    </span>
+                  ) : null}
+
+                  {state.DGBalances.BALANCE_MINING_DG > 0 ? (
+                    <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+                      <p className="menu-info-label">unclaimed $dg - gameplay</p>
+                      <p className="menu-info-text">
+                        {formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+                      </p>
+                    </span>
+                  ) : null}
+
+                  {state.DGBalances.BALANCE_STAKING_UNISWAP > 0 ? (
+                    <span className="menu-info-inner-span">
+                      <p className="menu-info-label">unclaimed $dg - uniswap</p>
+                      <p className="menu-info-text">
+                        {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
+                      </p>
+                    </span>
+                  ) : null}
+
+                  {state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
+                    <span className="menu-info-inner-span">
+                      <p className="menu-info-label">unclaimed $DG - airdrop</p>
+                      <p className="menu-info-text">
+                        {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
+                      </p>
+                    </span>
+                  ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : null}
+                </div>
+              ) : (
+                <div style={{ marginTop: '12px' }} />
+              )}
+            </div>
+
+            <div className="menu-info-container" style={{ marginTop: '12px' }}>
+              <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
+                <p className="menu-info-label">price</p>
+                <p className="menu-info-text">${DGPrice.toFixed(2)}</p>
+              </span>
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">circulating supply</p>
                 <p className="menu-info-text">
-                  {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
+                  {supply.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </p>
               </span>
-            ) : null}
-
-            {state.DGBalances.BALANCE_KEEPER_DG > 0 ? (
               <span className="menu-info-inner-span">
-                <p className="menu-info-label">unclaimed $DG - airdrop</p>
-                <p className="menu-info-text">
-                  {formatPrice(state.DGBalances.BALANCE_KEEPER_DG, 3)}
-                </p>
+                <p className="menu-info-label">market capitalization</p>
+                <p className="menu-info-text">${marketCap}</p>
               </span>
-            ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : null}
-          </div>
-        ) : (
-          <div style={{ marginTop: '12px' }} />
-        )}
-      </div>
+              <span className="menu-info-inner-span">
+                <p className="menu-info-label">supply cap</p>
+                <p className="menu-info-text">1,000,000</p>
+              </span>
+            </div>
 
-      <div className="menu-info-container" style={{ marginBottom: '30px' }}>
-        <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
-          <p className="menu-info-label">price</p>
-          <p className="menu-info-text">${DGPrice.toFixed(2)}</p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">circulating supply</p>
-          <p className="menu-info-text">
-            {supply.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          </p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">market capitalization</p>
-          <p className="menu-info-text">${marketCap}</p>
-        </span>
-        <span className="menu-info-inner-span">
-          <p className="menu-info-label">supply cap</p>
-          <p className="menu-info-text">1,000,000</p>
+          </span>
         </span>
       </div>
     </Modal>

@@ -2,13 +2,14 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Icon, Dropdown } from 'semantic-ui-react';
+import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
-// import MessageBox from './MessageBox';
+import MessageBox from './MessageBox';
 import Images from '../../common/Images';
-// import PopUpLinks from './PopUpLinks';
+import Fetch from '../../common/Fetch';
+
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -20,6 +21,11 @@ const MenuTop = (props) => {
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [manaPrice, setManaPrice] = useState(0);
+  const [ethPrice, setEthPrice] = useState(0);
+  const [atriPrice, setAtriPrice] = useState(0);
+  const [casinoBalance, setCasinoBalance] = useState(0);
 
   const DAI_BALANCE = parseInt(state.userBalances[0][1]);
   const MANA_BALANCE = parseInt(state.userBalances[1][1]);
@@ -30,6 +36,40 @@ const MenuTop = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    (async function () {
+      // get coin prices
+      let response = await Fetch.MANA_PRICE();
+      let json = await response.json();
+      setManaPrice(json.market_data.current_price.usd);
+
+      let response2 = await Fetch.ETH_PRICE();
+      let json2 = await response2.json();
+      setEthPrice(json2.market_data.current_price.usd);
+
+      let response3 = await Fetch.ATRI_PRICE();
+      let json3 = await response3.json();
+      setAtriPrice(json3.market_data.current_price.usd);
+
+    })()
+  }, [manaPrice, ethPrice, atriPrice]);
+
+  useEffect(() => {
+    const mana = Number(manaPrice * state.userBalances[1][1]);
+    const eth = Number(ethPrice * state.userBalances[2][3]);
+    const atri = Number(atriPrice * state.userBalances[2][2]);
+    const dai = Number(state.userBalances[0][1]);
+    const usdt = Number(state.userBalances[2][1] * 1000000000000);
+    const balance = mana + eth + atri + dai + usdt;
+
+    setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  }, [state.userBalances[1][1], 
+      state.userBalances[2][3], 
+      state.userBalances[2][2],
+      state.userBalances[0][1],
+      state.userBalances[2][1]]);
+
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');
   }, []);
@@ -85,16 +125,6 @@ const MenuTop = (props) => {
     ];
   }
 
-  // useEffect(() => {
-  //   const localTheme = window.localStorage.getItem('theme');
-
-  //   if (localTheme === 'dark') {
-  //     setDarkMode(true);
-  //   } else {
-  //     setDarkMode(false);
-  //   }
-  // });
-
   function menuOpen() {
     if (open == true) {
       setOpen(false);
@@ -102,6 +132,15 @@ const MenuTop = (props) => {
       setOpen(true);
     }
   }
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(state.userAddress);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+  };
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {
@@ -176,17 +215,17 @@ const MenuTop = (props) => {
   }
 
   // close the message box popup and open and close mobile dropdown menu
-  // function handleDismiss() {
-  //   dispatch({
-  //     type: 'token_pings',
-  //     data: 0,
-  //   });
-  // }
+  function handleDismiss() {
+    dispatch({
+      type: 'token_pings',
+      data: 0,
+    });
+  }
 
   function DGLogo() {
     return (
       <Link href="/">
-        <img id="menu-logo" alt="Decentral Games Logo" src={Images.LOGO} />
+        <img id="menu-logo" alt="Decentral Games Logo" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png" />
       </Link>
     );
   }
@@ -371,64 +410,126 @@ const MenuTop = (props) => {
     } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
+
           <ModalInfo />
 
-          <Link href="/account">
-            <span className="menu-account-info">
-              <p className={menuStyle[1]} id="add-funds-mobile-padding">
-                ACCOUNT
-              </p>
-
-              <span className="menu-avatar-background" id="add-funds-mobile">
-                <span className="mobile-display-none-name">
-                  {state.userInfo.name === null ||
-                  state.userInfo.name === '' ? (
-                    <p
-                      className={menuStyle[1]}
-                      style={{ marginTop: '-1px', textTransform: 'uppercase' }}
+          <div>
+            <Popup
+              pinned
+              on='click'
+              position='bottom right'
+              className="account-popup"
+              trigger={
+                <Button
+                  className="account-button"
+                >
+                  <Icon className="account-icon" name="user circle outline" />
+                  My Account
+                </Button>
+              }
+            >
+              <span>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    className="avatar-picture-home"
+                    src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                  />
+                  <span style={{ display: 'flex', flexDirection: 'column' }}>
+                    {state.userInfo.name === null ||
+                    state.userInfo.name === '' ? (
+                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                        Unnamed
+                      </h4>
+                    ) : (
+                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                        {state.userInfo.name}
+                      </h4>
+                    )}
+                    <span
+                      className="account-copy" 
+                      style={{ display: 'flex' }} 
+                      onClick={() => onCopy()}
                     >
-                      {state.userAddress.substr(0, 4) +
+                      <p className="account-address">
+                        {state.userAddress.substr(0, 8) +
                         '...' +
-                        state.userAddress.substr(-4)}
-                    </p>
-                  ) : (
-                    <p
-                      style={{ marginTop: '-1px', textTransform: 'uppercase' }}
-                      className={menuStyle[1]}
-                    >
-                      {state.userInfo.name}
-                    </p>
-                  )}
+                        state.userAddress.substr(-8)}
+                        <Icon 
+                          name="clone outline" 
+                          style={{ 
+                            color: 'rgba(225, 255, 255, 0.5)', 
+                            fontSize: '16px',
+                            padding: '0px 0px 0px 8px',
+                          }}
+                        />
+                      </p>
+                    </span>
+                  </span>
                 </span>
-
-                <img
-                  className="avatar-picture"
-                  id="mobile-avatar-picture"
-                  src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-                  style={{
-                    width: '18px',
-                    height: '18px',
-                    display: 'flex',
-                    border: '1px solid rgb(227, 232, 238)',
-                    marginTop: '4px',
-                    borderRadius: '100%',
-                    boxShadow: '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                    backgroundColor: 'white',
-                  }}
-                />
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <Button 
+                    className="casino-balance-button" 
+                    href="/account"
+                  >
+                    <p className="casino-balance-text"> Casino Balance </p>
+                    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <p className="casino-balance-text two"> ${casinoBalance} </p>
+                      <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
+                    </span>
+                  </Button>
+                  <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px' }}>
+                    <Button className="account-deposit-button" href="/account">
+                      Deposit
+                    </Button>
+                    <Button className="account-withdraw-button" href="/account">
+                      Withdraw
+                    </Button>
+                  </span>
+                  <a href="/account">
+                    <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
+                  </a>
+                  <a href="/account/nfts">
+                    <p className="account-dropdown-item"> My NFTs </p>
+                  </a>
+                  <a href="/account/poaps">
+                    <p className="account-dropdown-item"> My POAPs </p>
+                  </a>
+                  <a href="/account/play">
+                    <p className="account-dropdown-item"> Gameplay History </p>
+                  </a>
+                  <a href="/account/history">
+                    <p className="account-dropdown-item"> Transactions </p>
+                  </a>
+                  <a href="/account/referrals">
+                    <p className="account-dropdown-item"> Referrals </p>
+                  </a>
+                  <Button 
+                    className="buy-dg-button"
+                    href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
+                    target="_blank"
+                  >
+                    Buy $DG
+                  </Button>
+                </span>
               </span>
-            </span>
-          </Link>
+            </Popup>
 
-          {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
+            {copied ? (
+              <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
+                <h3 className="copied-text">
+                  Wallet address copied!
+                </h3>
+              </div>
+            ) : (
+              null
+            )}
+          </div>
         </span>
       );
     } else {
       return (
         <span className="right-menu-items">
           <ButtonConnect />
-
-          {/*<PopUpLinks isDarkMode={isDarkMode} />*/}
         </span>
       );
     }
@@ -457,7 +558,7 @@ const MenuTop = (props) => {
             </Menu>
           )}
 
-          {/* <MessageBox handleDismiss={handleDismiss} /> */}
+          <MessageBox handleDismiss={handleDismiss} />
         </div>
       </span>
     );

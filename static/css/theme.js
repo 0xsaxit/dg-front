@@ -30,10 +30,10 @@ export const darkTheme = {
 
 export const lightTheme = {
   body: 'rgb(0, 0, 0)',
-  text: 'rgba(255, 255, 255, .87)',
+  text: 'rgba(255, 255, 255, 1)',
   menuText: 'rgba(255, 255, 255, .55)',
   homeText: 'white',
-  card: 'rgb(21, 24, 28)',
+  card: '#1f1f1f',
   menuColor: 'rgba(21, 24, 28)',
   cardBorder: '1px solid rgb(8, 10, 12)',
   boxShadow: '0 0.75rem 1.5rem rgba(21, 24, 28, 0.03)',

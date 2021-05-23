@@ -2,6 +2,7 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+const path = require('path')
 
 module.exports = {
   webpack: (config, { isServer }) => {
@@ -15,5 +16,8 @@ module.exports = {
     }
 
     return config
-  }
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
 }

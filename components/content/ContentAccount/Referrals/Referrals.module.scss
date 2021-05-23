@@ -1,0 +1,160 @@
+@import "styles/base.scss";
+
+.referrals_container {
+	max-width: 1000px;
+
+	.referrals_header {
+		&_title {
+			max-width: 100%;
+			font-size: 48px;
+			font-weight: 800;
+			line-height: 59px;
+			letter-spacing: -0.7px;
+
+			@include mq($until: medium) {
+				width: 100%;
+			}
+		}
+
+		&_subtitle {
+			font-weight: normal;
+			font-size: 21px;
+			line-height: 30px;
+		}
+
+		&_clipboard {
+			border: 2px solid rgba(255, 255, 255, 0.15);
+			box-sizing: border-box;
+			border-radius: 32px;
+			width: fit-content;
+			transition: all 0.1s ease-in;
+			cursor: pointer;
+
+			&:hover {
+				border: 2px solid rgba(255, 255, 255, 0.5);
+			}
+
+			.referral_link {
+				font-weight: bold;
+				font-size: 24px;
+				margin-bottom: 0;
+				line-height: 33px;
+
+				@include mq($until: medium) {
+					font-size: 20px;
+					line-height: 28px;
+				}
+			}
+
+			.referral_sublink {
+				font-weight: bold;
+				font-size: 18px;
+				line-height: 24px;
+				opacity: 0.75;
+			}
+
+			.affiliate_icon {
+				margin-left: 28px;
+				line-height: 22px;
+				color: white;
+				font-size: 24px;
+			}
+		}
+
+		.gift_image {
+			min-width: 260px;
+			min-height: 260px;
+			width: 260px;
+			height: 260px;
+		}
+	}
+
+	.claim_button {
+		padding: 9px 33px;
+		border-radius: 16px;
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 24px;
+		color: white !important;
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	.referrals_body {
+		position: relative;
+
+		.segment {
+			background: transparent;
+			padding: 0;
+			min-height: 10rem;
+
+			&::before {
+				background: transparent;
+			}
+		}
+
+		.affiliate_row {
+			border: 2px solid rgba(255, 255, 255, 0.15);
+			box-sizing: border-box;
+			border-radius: 32px;
+			padding: 24px;
+			color: white;
+			height: 114px;
+
+			.address {
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 33px;
+				max-width: calc(100% - 300px);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.total_price {
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 33px;
+			}
+
+			.breakdown {
+				border-radius: 16px;
+				color: white;
+				margin-left: 24px;
+				font-weight: bold;
+				font-size: 18px;
+				line-height: 24px;
+			}
+		}
+
+		.toast {
+			background: #1F1F1F;
+		  position: fixed;
+		  bottom: 60px;
+		  width: 390px;
+		  height: 75px;
+			border-radius: 32px;
+			color: white;
+			font-weight: bold;
+			font-size: 24px;
+			padding-top: 25px;
+			text-align: center;
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 60px;
+			position: fixed;
+			white-space: nowrap;
+			opacity: 1;
+
+			@include mq($until: large) {
+				padding: 14px 20px;
+			}
+		
+			&.hidden {
+				opacity: 0;
+			}
+		}
+	}
+}
