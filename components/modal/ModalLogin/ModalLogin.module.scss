@@ -12,6 +12,12 @@
 	margin-left: 16px;
 }
 
+@media (max-width: 499px) {
+	.play_now_modal {
+		display: none;
+	}
+}
+
 .connect_metamask_modal {
 	width: 496px !important;
 	padding: 40px;

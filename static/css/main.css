@@ -2756,15 +2756,16 @@ a.ui.blue.button.touch {
 
 @media (max-width: 499px) {
   a.ui.blue.button.play-now-button-demo {
-    width: 220px !important;
+    width: 210px !important;
     margin-left: calc(50vw - 132px);
     position: relative;
     background-color: #006EFF;
     color: white;
     margin-top: 8px;
-    height: 48px !important;
-    line-height: 20px;
-    font-size: 18px !important;
+    height: 64px !important;
+    line-height: 30px;
+    font-size: 20px !important;
+    font-weight: 700;
   }
 }
 

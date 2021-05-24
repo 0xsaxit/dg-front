@@ -200,14 +200,18 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card} !important;
   }
 
-  .menu-container-dark.blog,
-  .other-menu-container.blog,
   .ui.visible.top.overlay.sidebar,
   div.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu,
-  .menu-container.blog,
-  .dashboard-menu-container#top {
+  .menu-container.blog {
     background: ${({ theme }) => theme.menuColor};
     box-shadow: ${({ theme }) => theme.boxShadow};
+  }
+
+  .dashboard-menu-container#top,
+  .menu-container-dark.blog,
+  .other-menu-container.blog {
+    background-color: black;
+    border-bottom: 1px solid rgb(21,24,28);
   }
 
   div#home-mobile-background.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu {
