@@ -49,7 +49,7 @@ const ContentMining = (props) => {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API_1,
+          apiKey: Global.KEYS.BICONOMY_API_2,
           debug: true,
         }
       );
