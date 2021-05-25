@@ -6,7 +6,6 @@ import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import ModalInfo from '../modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
-import MessageBox from './MessageBox';
 import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 
