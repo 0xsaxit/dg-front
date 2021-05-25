@@ -224,7 +224,7 @@ div#dropdown-menu-items.item.right-menu-text {
 }
 
 div#dropdown-menu-items.item:hover {
-  background: #2B2B2B;
+  background: #1F1F1F;
 }
 
 @media (max-width: 1100px) {
