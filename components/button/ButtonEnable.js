@@ -33,7 +33,7 @@ function ButtonEnable() {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API,
+          apiKey: Global.KEYS.BICONOMY_API_1,
           debug: true,
         }
       );

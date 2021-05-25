@@ -3,7 +3,7 @@ import { GlobalContext } from './index';
 import Fetch from '../common/Fetch';
 
 function TreasuryNumbers() {
-  // dispatch user's treasury contract active status to the Context API store
+  // dispatch treasury balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   useEffect(() => {

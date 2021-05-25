@@ -28,7 +28,7 @@ function ButtonApproveUSDT() {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API,
+          apiKey: Global.KEYS.BICONOMY_API_1,
           debug: true,
         }
       );
@@ -100,7 +100,6 @@ function ButtonApproveUSDT() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
-
       dispatch({
         type: 'set_usdtLoading',
         data: true,
@@ -128,7 +127,6 @@ function ButtonApproveUSDT() {
           type: 'set_usdtLoading',
           data: false,
         });
-
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -138,7 +136,6 @@ function ButtonApproveUSDT() {
           type: 'set_usdtLoading',
           data: false,
         });
-
       }
     } catch (error) {
       console.log('Biconomy metatransaction error: ' + error);
@@ -147,7 +144,6 @@ function ButtonApproveUSDT() {
         type: 'set_usdtLoading',
         data: false,
       });
-      
     }
   }
 
