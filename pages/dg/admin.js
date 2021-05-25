@@ -7,7 +7,7 @@ import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
 const Admin = () => {
-  // get whitelisted value from the Context API store
+  // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   return (
@@ -18,11 +18,11 @@ const Admin = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.whitelistedAdmin ? (
+      {state.userStatus === 28 ? (
         <Farming DGState={'admin'} />
       ) : (
         <div className="account-other-inner-p">
-          Please check you've connected using a whitelisted address
+          Please ensure you've connected using an admin wallet address
         </div>
       )}
     </Layout>
