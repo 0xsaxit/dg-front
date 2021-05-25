@@ -597,6 +597,7 @@ a.menu-info-label-link:hover {
 
 @media (max-width: 930px) {
   .home-dashboard-content {
+    margin-top: -150px !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -613,6 +614,9 @@ a.menu-info-label-link:hover {
   .mobile-center-span {
     display: flex;
     justify-content: center;
+  }
+  .ModalDepositBinance_deposit_modal_binance__2LhiT {
+    margin-top: 8px !important;
   }
 }
 

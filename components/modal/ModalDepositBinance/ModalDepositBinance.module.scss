@@ -79,7 +79,8 @@
 		padding: 0 21px 1px 22px;
 	}
 
-	.outline_button:hover {
+	.outline_button:hover,
+	.outline_button:focus {
 		border: 2px solid rgba(255, 255, 255, 0.30);
 		background: black;
 	}
@@ -141,7 +142,7 @@
 
 	.continue_subtitle {
 		font-size: 18px;
-		font-weight: 600;
+		font-family: Larsseit-Bold;
 		text-align: center;
 		color: rgba(255, 255, 255, 0.5) !important;
 		margin-top: 18px;

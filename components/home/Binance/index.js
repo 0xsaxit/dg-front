@@ -118,9 +118,6 @@ const BinanceHome = () => {
               <ModalDepositBinance />
             </span>
           )}
-          <p className="scroll-down-icon">
-            <Icon name="chevron down" />
-          </p>
         </div>
       </Aux>
     );
