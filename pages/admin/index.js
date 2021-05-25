@@ -1,6 +1,6 @@
-import { GlobalContext } from '../../store';
 import { useContext } from 'react';
-import Farming from '../../components/home/Farming';
+import { GlobalContext } from '../../store';
+import Administration from '../../components/home/Administration';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -13,13 +13,13 @@ const Admin = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | $DG | Admin'}
+        title={Global.CONSTANTS.TITLE + ' | Admin'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
       {state.userStatus === 28 ? (
-        <Farming DGState={'admin'} />
+        <Administration dataType={'balances'} />
       ) : (
         <div className="account-other-inner-p">
           Please ensure you've connected using an admin wallet address

@@ -19,3 +19,7 @@ $mq-breakpoints: (
 .btn-primary:focus {
 	color: white !important;
 }
+
+.btn:hover {
+	filter: brightness(0.9);
+}

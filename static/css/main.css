@@ -584,42 +584,6 @@ a.menu-info-label-link:hover {
   overflow: hidden !important;
 }
 
-@media (min-width: 1230px) {
-  .home-video-container video {
-    min-width: 90%;
-    min-height: 90%;
-    max-width: 90%;
-    max-height: 90%;
-    margin-top: 60px;
-    margin-left: 390px;
-    position: absolute;
-  }
-}
-
-@media (max-width: 1229px) {
-  .home-video-container video {
-    min-width: 70%;
-    min-height: 70%;
-    max-width: 70%;
-    max-height: 70%;
-    margin-top: 90px;
-    margin-left: 40%;
-    position: absolute;
-  }
-}
-
-@media (max-width: 930px) {
-  .home-video-container video {
-    min-width: 450px;
-    min-height: 450px;
-    max-width: 450px;
-    max-height: 450px;
-    margin-top: 90px;
-    margin-left: calc(50% - 225px);
-    position: absolute;
-  }
-}
-
 .home-dashboard-content {
   position: relative;
   padding-left: 30px;
@@ -3178,16 +3142,6 @@ a.ui.button.balances-top-button {
 }
 
 a.ui.blue.button.play-button-binance,
-.ui.blue.button.play-button-binance {
-  position: relative;
-  background-color: #F1CD50 !important;
-  color: black;
-  margin-top: 8px;
-  height: 48px !important;
-  width: 200px;
-  line-height: 20px;
-  font-size: 18px !important;
-}
 
 .menu-account-info.binance {
   background: #F1CD50;
@@ -3215,24 +3169,13 @@ a.ui.blue.button.play-button-binance,
   background: rgba(0, 0, 0, 0) !important;
 }
 
-.binance-video-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  object-fit: fill;
-  z-index: -2;
-}
-
 .binance-video-container video {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
 }
 
 .bnb-balance-box {
@@ -3267,6 +3210,19 @@ img.avatar-picture-home {
     rgba(0, 0, 0, 1) 40%, 
     #006EFF 40.1%,  
     #006EFF 100%
+  );
+}
+
+img.avatar-picture-binance {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+  background: linear-gradient(
+    162deg, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 1) 40%, 
+    #F1CD50 40.1%,  
+    #F1CD50 100%
   );
 }
 
@@ -3323,6 +3279,16 @@ img.avatar-picture-home {
   border-radius: 12px;
   background: #006EFF;
   color: white;
+  font-size: 18px !important;
+  padding-top: 17px;
+}
+
+.ui.button.account-deposit-button.binance {
+  height: 54px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #F1CD50;
+  color: black;
   font-size: 18px !important;
   padding-top: 17px;
 }
@@ -3395,6 +3361,17 @@ i.clone.outline.icon,
   border-radius: 12px;
   background: #006EFF;
   color: white;
+  font-size: 18px; 
+  margin-top: 24px;
+  padding-top: 21px;
+}
+
+.ui.button.buy-dg-button.binance {
+  height: 64px;
+  width: 100%;
+  border-radius: 12px;
+  background: #F1CD50;
+  color: black;
   font-size: 18px; 
   margin-top: 24px;
   padding-top: 21px;
@@ -3508,9 +3485,9 @@ a {
   color: black;
   padding: 0px;
   line-height: 24px;
-  margin-top: 14px;
+  margin-top: 12px;
   min-width: 250px !important;
-  height: 48px !important;
+  height: 40px !important;
   border-radius: 16px;
   margin-right: 30px;
 }
@@ -3554,11 +3531,11 @@ h3.deposit-twentyfour.casino {
 .ui.button.binance-deposit-button {
   background: black;
   color: white;
-  font-size: 24px;
-  margin: -25px 0px 24px -30px;
+  font-size: 18px;
+  margin: -34px 0px 24px -30px;
   border-radius: 24px 0px 0px 0px;
   width: calc(50% + 30px);
-  height: 80px;
+  height: 64px;
 }
 
 .ui.button.binance-deposit-button.grey {
@@ -3569,11 +3546,11 @@ h3.deposit-twentyfour.casino {
 .ui.button.binance-withdraw-button {
   background: #0B0B0B;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 24px;
-  margin: -25px -30px 0px 0px;
+  font-size: 18px;
+  margin: -34px -30px 0px 0px;
   border-radius: 0px 24px 0px 0px;
   width: calc(50% + 30px);
-  height: 80px;
+  height: 64px;
 }
 
 .ui.button.binance-withdraw-button.grey {
@@ -3581,28 +3558,26 @@ h3.deposit-twentyfour.casino {
   color: white;
 }
 
-.withdraw-busd-amount {
-  text-align: center;
-  font-size: 60px;
-  font-family: Larsseit-Bold;
-  padding-top: 5px;
-  margin-top: -16px !important;
-}
-
 .ui.input > input {
-  background: transparent !important;
-  height: 48px;
-  width: 100%;
-  border-radius: 16px;
+  background: black !important;
+  border: 0px solid white !important;
   color: white;
-  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
-  background: transparent;
-  font-size: 24px;
+  text-align: center;
 }
 
-.ui.input>input {
-  color: white !important;
-  text-align: center;
+.ui.input > input:focus,
+.ui.input > input:active {
+  color: white;
+  border: 0px solid white !important;
+}
+
+div.ui.input.withdraw_input > input {
+  font-family: Larsseit-Bold;
+  width: 220px;
+  height: 24px;
+  font-weight: 800 !important;
+  margin-top: -6px;
+  font-size: 24px;
 }
 
 .ui.button.max-busd-button {
@@ -3619,8 +3594,4 @@ h3.deposit-twentyfour.casino {
   right: 30px;
   position: absolute;
   margin-top: 4px;
-}
-
-.terms-a:hover {
-  color: rgba(241, 205, 80, 0.8) !important;
 }

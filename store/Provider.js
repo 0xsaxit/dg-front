@@ -10,7 +10,6 @@ const initialState = {
   },
   userStatus: 0,
   userAddress: '',
-  // ipAddress: '',
   userInfo: {
     name: '',
     index: 0,
@@ -32,25 +31,21 @@ const initialState = {
     [0, 0],
   ],
   transactions: [{}, {}],
+  treasuryNumbers: {},
   txHash: '',
-  tokenPings: 0,
-  // parcelDataAll: {},
-  parcelDataUser: {},
+  // tokenPings: 0,
   gameRecords: {},
-  balancesOverlay: 0,
+  // balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
   ethBalance: 0,
-  adminBalances: [
-    [0, 0],
-    [
-      [0, 0],
-      [0, 0],
-      [0, 0],
-      [0, 0],
-    ],
-  ],
-  // adminHistory: [[], []],
+  adminBalances: {
+    treasury: [0, 0, 0, 0, 0, 0, ''],
+    slots: [0, 0, 0, 0, 0, 0, ''],
+    roulette: [0, 0, 0, 0, 0, 0, ''],
+    blackjack: [0, 0, 0, 0, 0, 0, ''],
+  },
+  usersList: [],
   DGBalances: {
     BALANCE_BP_DG_1: 0,
     BALANCE_BP_DG_2: 0,
@@ -70,14 +65,13 @@ const initialState = {
     TOTAL_MANA: 0,
     SUPPLY_BPT_1: 0,
     SUPPLY_BPT_2: 0,
-    BALANCE_AFFILIATES: [0, 0],
   },
   DGPrices: {
     eth: 0,
     mana: 0,
     dai: 1,
     atri: 0,
-    usdt: 1
+    usdt: 1,
   },
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
@@ -96,11 +90,8 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   updateInfo: true,
-  stakeTime: 0,
   affiliateAddress: '',
-  toggleTheme: 'light',
-  whitelistedAdmin: false,
-  whitelistedIntel: false,
+  stakeTime: 0,
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
@@ -152,29 +143,23 @@ const reducer = (state, action) => {
         transactions: action.data,
       };
 
+    case 'treasury_numbers':
+      return {
+        ...state,
+        treasuryNumbers: action.data,
+      };
+
     case 'tx_hash':
       return {
         ...state,
         txHash: action.data,
       };
 
-    case 'token_pings':
-      return {
-        ...state,
-        tokenPings: action.data,
-      };
-
-    // case 'parcel_data_all':
+    // case 'token_pings':
     //   return {
     //     ...state,
-    //     parcelDataAll: action.data,
+    //     tokenPings: action.data,
     //   };
-
-    case 'parcel_data_user':
-      return {
-        ...state,
-        parcelDataUser: action.data,
-      };
 
     case 'update_records':
       return {
@@ -182,11 +167,11 @@ const reducer = (state, action) => {
         gameRecords: action.data,
       };
 
-    case 'balances_overlay':
-      return {
-        ...state,
-        balancesOverlay: action.data,
-      };
+    // case 'balances_overlay':
+    //   return {
+    //     ...state,
+    //     balancesOverlay: action.data,
+    //   };
 
     case 'network_id':
       return {
@@ -212,11 +197,11 @@ const reducer = (state, action) => {
         adminBalances: action.data,
       };
 
-    // case 'admin_history':
-    //   return {
-    //     ...state,
-    //     adminHistory: action.data,
-    //   };
+    case 'users_list':
+      return {
+        ...state,
+        usersList: action.data,
+      };
 
     case 'dg_balances':
       return {
@@ -224,10 +209,10 @@ const reducer = (state, action) => {
         DGBalances: action.data,
       };
 
-    case 'dg_prices': 
+    case 'dg_prices':
       return {
         ...state,
-        DGPrices: action.data
+        DGPrices: action.data,
       };
 
     case 'staking_balances':
@@ -266,24 +251,6 @@ const reducer = (state, action) => {
         affiliateAddress: action.data,
       };
 
-    case 'toggle_theme':
-      return {
-        ...state,
-        theme: action.data,
-      };
-
-    case 'set_whitelisted_admin':
-      return {
-        ...state,
-        whitelistedAdmin: action.data,
-      };
-
-    case 'set_whitelisted_intel':
-      return {
-        ...state,
-        whitelistedIntel: action.data,
-      };
-
     case 'set_manaLoading':
       return {
         ...state,
@@ -313,12 +280,6 @@ const reducer = (state, action) => {
         ...state,
         wethLoading: action.data,
       };
-
-    // case 'ip_address':
-    //   return {
-    //     ...state,
-    //     ipAddress: action.data,
-    //   };
 
     default:
       throw new Error('Wrong action type got dispatched');

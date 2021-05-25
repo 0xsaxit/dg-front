@@ -50,10 +50,10 @@ const Chateau = () => {
   // helper functions
   function homeVideo() {
     return (
-      <div className="home-video-container">
+      <div className="binance-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619567725/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619719236/-Full_Screen_BG_nq4suo.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}

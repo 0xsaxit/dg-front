@@ -40,7 +40,7 @@ function ButtonApproveWETH() {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API,
+          apiKey: Global.KEYS.BICONOMY_API_1,
           debug: true,
         }
       );
@@ -112,7 +112,6 @@ function ButtonApproveWETH() {
   // Biconomy API meta-transaction. User must authorize treasury contract to access their funds
   async function metaTransaction() {
     try {
-
       dispatch({
         type: 'set_wethLoading',
         data: true,
@@ -140,7 +139,6 @@ function ButtonApproveWETH() {
           type: 'set_wethLoading',
           data: false,
         });
-
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -150,7 +148,6 @@ function ButtonApproveWETH() {
           type: 'set_wethLoading',
           data: false,
         });
-        
       }
     } catch (error) {
       console.log(error);
@@ -159,7 +156,6 @@ function ButtonApproveWETH() {
         type: 'set_wethLoading',
         data: false,
       });
-        
     }
   }
 

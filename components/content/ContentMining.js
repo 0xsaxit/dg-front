@@ -9,7 +9,6 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Global from '../Constants';
 
-
 const ContentMining = (props) => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -50,7 +49,7 @@ const ContentMining = (props) => {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API,
+          apiKey: Global.KEYS.BICONOMY_API_2,
           debug: true,
         }
       );
@@ -125,7 +124,9 @@ const ContentMining = (props) => {
       <Aux>
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-            <p className="earned-amount" style={{ paddingTop: '2px' }}>Unclaimed</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>
+              Unclaimed
+            </p>
 
             <Divider className="divider-dg-top" />
 
@@ -157,19 +158,27 @@ const ContentMining = (props) => {
               </span>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
-              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                paddingBottom: '3px',
+              }}
+            >
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}>
+                {' '}
+                TOTAL USD{' '}
+              </p>
               <p className="earned-amount"> ${gameplayUSD} </p>
             </span>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
 
             <p style={{ fontSize: '18px' }}>
               Mine $DG by playing games with MANA or DAI. Earn bonuses by
-              playing with friends, wearing $DG NFTs, and referring
-              friends. {' '}
+              playing with friends, wearing $DG NFTs, and referring friends.{' '}
               <a
                 href="https://decentral-games-1.gitbook.io/dg/allocation"
                 target="_blank"
@@ -180,7 +189,7 @@ const ContentMining = (props) => {
               .
             </p>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_MINING_DG) ? (
@@ -208,21 +217,21 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
+                <p className="earned-amount" style={{ paddingTop: '2px' }}>
+                  Gameplay Rewards
+                </p>
 
-              <Divider className="divider-dg-top" />
+                <Divider className="divider-dg-top" />
 
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.MANA_CIRCLE}
-                  className="farming-logo-small"
-                  alt="MANA Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coin</p>
-                    <p className="earned-amount">
-                      MANA
-                    </p>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    src={Images.MANA_CIRCLE}
+                    className="farming-logo-small"
+                    alt="MANA Coin Logo"
+                  />
+                  <span className="farming-pool-span">
+                    <p className="welcome-text-top">Coin</p>
+                    <p className="earned-amount">MANA</p>
                   </span>
                 </span>
 
@@ -251,7 +260,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Roulette Rate / 1 DG</p>
-                      <p className="earned-amount stat">28,000</p>
+                      <p className="earned-amount stat">14,200</p>
                     </span>
                   </span>
 
@@ -270,7 +279,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      <p className="earned-amount stat">95,000</p>
+                      <p className="earned-amount stat">48,000</p>
                     </span>
                   </span>
                 </div>
@@ -296,24 +305,27 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
+                <p className="earned-amount" style={{ paddingTop: '2px' }}>
+                  Gameplay Rewards
+                </p>
 
-              <Divider className="divider-dg-top" />
+                <Divider className="divider-dg-top" />
 
-              <span style={{ display: 'flex' }}>
                 <span style={{ display: 'flex' }}>
-                  <img src={Images.DAI_CIRCLE} className="farming-logo-small" />
-                  <img
-                    src={Images.USDT_CIRCLE}
-                    className="farming-logo-small two"
-                    alt="Decentral Games Coin Logo"
-                  />
-                </span>
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coins</p>
-                    <p className="earned-amount">
-                      DAI, USDT
-                    </p>
+                  <span style={{ display: 'flex' }}>
+                    <img
+                      src={Images.DAI_CIRCLE}
+                      className="farming-logo-small"
+                    />
+                    <img
+                      src={Images.USDT_CIRCLE}
+                      className="farming-logo-small two"
+                      alt="Decentral Games Coin Logo"
+                    />
+                  </span>
+                  <span className="farming-pool-span">
+                    <p className="welcome-text-top">Coins</p>
+                    <p className="earned-amount">DAI, USDT</p>
                   </span>
                 </span>
 
@@ -342,7 +354,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Roulette Rate / 1 DG</p>
-                      <p className="earned-amount stat">36,000</p>
+                      <p className="earned-amount stat">9,300</p>
                     </span>
                   </span>
 
@@ -361,7 +373,7 @@ const ContentMining = (props) => {
                       }}
                     >
                       <p className="earned-text">Blackjack Rate / 1 DG</p>
-                      <p className="earned-amount stat">121,000</p>
+                      <p className="earned-amount stat">31,200</p>
                     </span>
                   </span>
                 </div>
@@ -381,8 +393,7 @@ const ContentMining = (props) => {
               </div>
             </div>
 
-
-             <div className="mining-container-inner">
+            <div className="mining-container-inner">
               <div
                 className="DG-column-treasury two"
                 style={{
@@ -390,21 +401,21 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
+                <p className="earned-amount" style={{ paddingTop: '2px' }}>
+                  Gameplay Rewards
+                </p>
 
-              <Divider className="divider-dg-top" />
+                <Divider className="divider-dg-top" />
 
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.ATRI_CIRCLE}
-                  className="farming-logo-small"
-                  alt="MANA Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coin</p>
-                    <p className="earned-amount">
-                      ATRI
-                    </p>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    src={Images.ATRI_CIRCLE}
+                    className="farming-logo-small"
+                    alt="MANA Coin Logo"
+                  />
+                  <span className="farming-pool-span">
+                    <p className="welcome-text-top">Coin</p>
+                    <p className="earned-amount">ATRI</p>
                   </span>
                 </span>
 
@@ -478,21 +489,21 @@ const ContentMining = (props) => {
                   height: '100%',
                 }}
               >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>Gameplay Rewards</p>
+                <p className="earned-amount" style={{ paddingTop: '2px' }}>
+                  Gameplay Rewards
+                </p>
 
-              <Divider className="divider-dg-top" />
+                <Divider className="divider-dg-top" />
 
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.ETH_CIRCLE}
-                  className="farming-logo-small"
-                  alt="MANA Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coin</p>
-                    <p className="earned-amount">
-                      ETH
-                    </p>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    src={Images.ETH_CIRCLE}
+                    className="farming-logo-small"
+                    alt="MANA Coin Logo"
+                  />
+                  <span className="farming-pool-span">
+                    <p className="welcome-text-top">Coin</p>
+                    <p className="earned-amount">ETH</p>
                   </span>
                 </span>
 
@@ -559,7 +570,6 @@ const ContentMining = (props) => {
                 </span>
               </div>
             </div>
-
           </div>
         </div>
       </Aux>

@@ -10,7 +10,6 @@ import MetaTx from '../../../common/MetaTx';
 import Images from '../../../common/Images';
 import Biconomy from '@biconomy/mexa';
 
-
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
 
@@ -32,14 +31,16 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API,
+          apiKey: Global.KEYS.BICONOMY_API_1,
           debug: true,
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
-        const pointerContractNew = await Transactions.pointerContractNew(getWeb3);
+        const pointerContractNew = await Transactions.pointerContractNew(
+          getWeb3
+        );
         setPointerContractNew(pointerContractNew);
       }
 
@@ -57,14 +58,13 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
 
   async function metaTransaction() {
     try {
-
       let functionSignature = pointerContractNew.methods
         .distributeAllTokens(state.userAddress, [
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
-          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH,
         ])
         .encodeABI();
 
@@ -86,7 +86,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
     } catch (error) {
       console.log('Affiliate array not found: ' + error);
     }
-  };
+  }
 
   return (
     <Modal

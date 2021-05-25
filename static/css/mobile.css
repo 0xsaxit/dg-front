@@ -192,9 +192,9 @@ div#dropdown-menu-items.item.right-menu-text {
 
 .ui.dropdown .menu,
 .ui.menu .dropdown.item .menu {
-  background: #15181c;
-  border: 0px;
-  box-shadow: none;
+  background: black;
+  border-bottom: 1px solid rgb(21,24,28);
+  margin-top: 15px;
   padding-top: 0px;
   border-radius: 0px;
   width: calc(100vw + 9px);
@@ -222,6 +222,10 @@ div#dropdown-menu-items.item.right-menu-text {
 .ui.menu a.item:hover,
 .ui.menu .ui.dropdown .menu>.item:hover {
   background: none !important;
+}
+
+div#dropdown-menu-items.item:hover {
+  background: #1F1F1F;
 }
 
 @media (max-width: 1100px) {

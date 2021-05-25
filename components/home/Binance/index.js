@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import ModalVideo from '../../modal/ModalVideo';
 import Aux from '../../_Aux';
-import ModalLogin from 'components/modal/ModalLogin';
+import ModalLoginBinance from 'components/modal/ModalLoginBinance';
+import ModalDepositBinance from 'components/modal/ModalDepositBinance';
 
 
 const BinanceHome = () => {
@@ -17,6 +18,7 @@ const BinanceHome = () => {
 
   const realm = 'fenrir-amber';
   let buttonPlay = '';
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -47,10 +49,10 @@ const BinanceHome = () => {
   // helper functions
   function homeVideo() {
     return (
-      <div className="home-video-container">
+      <div className="binance-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619567725/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619719236/-Full_Screen_BG_nq4suo.mp4"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -66,7 +68,7 @@ const BinanceHome = () => {
       <Aux>
         {homeVideo()}
 
-        <div className="home-dashboard-content">
+        <div className="home-dashboard-content" style={{ marginTop: '-63px' }}>
           <img
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
             className="home-gif"
@@ -75,7 +77,7 @@ const BinanceHome = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            This is where Binance information will go
+            Play at the Binance Casino with zero fees
           </h1>
           <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
@@ -101,7 +103,7 @@ const BinanceHome = () => {
               >
                 Demo
               </Button>
-              <ModalLogin />
+              <ModalLoginBinance />
             </span>
           ) : (
             <span className="mobile-center-span">
@@ -113,16 +115,7 @@ const BinanceHome = () => {
               >
                 Learn More
               </Button>
-              <Button
-                color="blue"
-                className="play-button"
-                href="https://play.decentraland.org/?position=-118%2C135"
-                target="_blank"
-                id="mobile-button-hide"
-                style={{ marginLeft: '16px' }}
-              >
-                Play Now
-              </Button>
+              <ModalDepositBinance />
             </span>
           )}
           <p className="scroll-down-icon">

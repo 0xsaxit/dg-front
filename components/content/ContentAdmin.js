@@ -1,94 +1,56 @@
-import { Table, Divider, Grid } from 'semantic-ui-react';
-import ModalFunds from '../modal/ModalFunds';
-import Global from '../Constants';
+import { Divider, Grid, Table } from 'semantic-ui-react';
 import Images from '../../common/Images';
+import Aux from '../_Aux';
 
 const ContentAdmin = (props) => {
-  // define local variables
-  const games = ['slots', 'roulette', 'backgammon', 'blackjack'];
-  let game = '';
-
-  // function contentLabels() {
-  //   if (props.type === 'balances') {
-  //     return null;
-  //   } else if (props.type === 'machines') {
-  //     return (
-  //       <tbody>
-  //         <tr className="table-header">
-  //           <td className="table-header-text account">GAME</td>
-  //           <td className="table-header-text-1 bet">GLOBAL ID</td>
-  //           <td className="table-header-text-1 date">TOTAL BETS</td>
-  //           <td className="table-header-text-1">TOTAL PAYOUTS</td>
-  //           <td className="table-header-text-1 date">LAST SESSION</td>
-  //         </tr>
-  //       </tbody>
-  //     );
-  //   } else if (props.type === 'history') {
-  //     return (
-  //       <tbody>
-  //         <tr className="table-header">
-  //           <td className="table-header-text account">GAME</td>
-  //           <td className="table-header-text-1 bet">GLOBAL ID</td>
-  //           <td className="table-header-text-1">PLAYER</td>
-  //           <td className="table-header-text-1 date">BET</td>
-  //           <td className="table-header-text-1">PAYOUT</td>
-  //           <td className="table-header-text-1 date">TIMESTAMP</td>
-  //         </tr>
-  //       </tbody>
-  //     );
-  //   }
-  //   // } else if (props.type === 'nft') {
-  //   //   return (
-  //   //     <tbody>
-  //   //       <tr className="table-header">
-  //   //         <td className="table-header-text-1 bet">MACHINE IDs</td>
-  //   //         <td className="table-header-text-1 date">PARCEL LOCATION</td>
-  //   //         <td className="table-header-text-1">PARCEL VOLUME</td>
-  //   //         <td className="table-header-text-1 date">
-  //   //           REVENUE (C. MONTH) (L. MONTH) (TOTAL)
-  //   //         </td>
-  //   //       </tr>
-  //   //     </tbody>
-  //   //   );
-  //   // }
-  // }
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  const games = Object.keys(props.data);
+  const numbers = ['one', 'two', 'three'];
+  const logoStyle = {
+    width: '21px',
+    marginRight: '6px',
+    verticalAlign: 'middle',
+    marginTop: '-2px',
+    borderRadius: '100%',
+  };
+
   function contentBalances() {
     return (
-      <Grid className="admin-balances-container">
-        <Grid.Row>
-          {games.slice(0, 4).map((game, i) => {
-            return balanceBox(game, i);
-          })}
-        </Grid.Row>
-      </Grid>
+      <Aux>
+        <Grid className="account-connected-grid">
+          <Grid.Row>
+            <Grid.Column
+              floated="right"
+              width={16}
+              className="balances-column zero"
+            >
+              <span style={{ display: 'flex' }}>
+                <p className="earn-text" style={{ paddingLeft: '0px' }}>
+                  Worker wallet balance: {props.ethBalance} ETH
+                </p>
+              </span>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+        <Grid className="admin-balances-container">
+          <Grid.Row>
+            {games.map((game, i) => {
+              return balanceBox(game, i);
+            })}
+          </Grid.Row>
+        </Grid>
+      </Aux>
     );
   }
 
   function balanceBox(game, i) {
-    let number;
-    if (i === 1) {
-      number = 'one';
-    } else if (i === 2) {
-      number = 'two';
-    } else if (i === 3) {
-      number = 'three';
-    }
-
     return (
-      <span className={`admin-balances-column ${number}`}>
-        <span className="name-purchase-span">
-          <p
-            className="welcome-text"
-            style={{
-              paddingLeft: '0px',
-              marginTop: '-12px',
-              marginBottom: '12px',
-            }}
-          >
-            {game}
+      <span className={`admin-balances-column ${numbers[i]}`} key={i}>
+        <span style={{ display: 'flex' }}>
+          <p className="earn-text" style={{ paddingLeft: '0px' }}>
+            {game.toUpperCase()}
           </p>
         </span>
 
@@ -96,287 +58,129 @@ const ContentAdmin = (props) => {
 
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
-            <img
-              src={Images.DAI_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                paddingTop: '12px',
-                paddingBottom: '9px',
-              }}
-            />
+            <img src={Images.MANA_CIRCLE} style={logoStyle} />
           </span>
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              marginTop: '7px',
-            }}
-          >
-            <p className="welcome-text">dai</p>
-            <p className="account-name">{props.adminBalances[1][i][0]}</p>
-          </span>
+          <p className="welcome-text">{props.data[game][0]} mana</p>
         </span>
-
         <span style={{ display: 'flex' }}>
           <span className="avatar-picture">
-            <img
-              src={Images.MANA_CIRCLE}
-              style={{
-                width: '60px',
-                display: 'flex',
-                paddingTop: '12px',
-                paddingBottom: '9px',
-              }}
-            />
+            <img src={Images.DAI_CIRCLE} style={logoStyle} />
           </span>
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              marginTop: '7px',
-            }}
-          >
-            <p className="welcome-text">mana</p>
-            <p className="account-name">{props.adminBalances[1][i][1]}</p>
+          <p className="welcome-text">{props.data[game][1]} dai</p>
+        </span>
+        <span style={{ display: 'flex' }}>
+          <span className="avatar-picture">
+            <img src={Images.USDT_CIRCLE} style={logoStyle} />
           </span>
+          <p className="welcome-text">{props.data[game][2]} usdt</p>
+        </span>
+        <span style={{ display: 'flex' }}>
+          <span className="avatar-picture">
+            <img src={Images.ATRI_CIRCLE} style={logoStyle} />
+          </span>
+          <p className="welcome-text">{props.data[game][3]} atri</p>
+        </span>
+        <span style={{ display: 'flex' }}>
+          <span className="avatar-picture">
+            <img src={Images.ETH_CIRCLE} style={logoStyle} />
+          </span>
+          <p className="welcome-text">{props.data[game][4]} weth</p>
         </span>
 
-        <span className="balances-button-span">
-          <ModalFunds modalType={'deposit'} gameType={game} />
-          <ModalFunds modalType={'withdraw'} gameType={game} />
-        </span>
+        <Divider className="balances-divider" />
+
+        <a
+          href={`https://explorer-mainnet.maticvigil.com/address/${props.data[game][6]}/write-contract`}
+          id="docs-top-menu"
+          target="_blank"
+        >
+          <span className="welcome-text">{props.data[game][6]}</span>
+        </a>
       </span>
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentMachines() {
+  ///////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////
+  function contentUsers() {
     return (
-      <tbody>
-        {props.dataPage.map((row, i) => {
-          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
-          switch (row_type) {
-            case '001':
-              game = 'Slots';
-              break;
-            case '002':
-              game = 'Roulette';
-              break;
-            case '003':
-              game = 'Backgammon';
-              break;
-            case '004':
-              game = 'Blackjack';
-              break;
-            case '005':
-              game = 'Poker';
-              break;
-            default:
-              game = 'Slots';
-          }
-          let bets = (
-            Number(row.totalBetAmount) / Global.CONSTANTS.FACTOR
-          ).toFixed(0);
-          let payouts = (
-            Number(row.totalAmountWin) / Global.CONSTANTS.FACTOR
-          ).toFixed(0);
-
-          // later we should provide the coinName property in the data
-          let coinName = 'MANA';
-          let coinImage = '';
-          if (coinName === 'PLAY') {
-            coinImage = Images.PLAY_CIRCLE;
-          } else if (coinName === 'MANA') {
-            coinImage = Images.ICON_MANA;
-          } else if (coinName === 'DAI') {
-            coinImage = Images.ICON_DAI;
-          }
-
-          let date = new Date(row.latestSessionDate);
-          let timestamp = date.toLocaleString();
-          timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-
-          return (
-            <tr className="table-body">
-              <td className="table-body-text-1 first">
-                <img
-                  style={{
-                    width: '21px',
-                    marginRight: '6px',
-                    verticalAlign: 'middle',
-                    marginTop: '-3px',
-                    borderRadius: '100%',
-                  }}
-                  src={coinImage}
-                />
-                <span style={{ textAlign: 'left', marginLeft: '10px' }}>
-                  {game}
-                </span>
-              </td>
-
-              <td className="table-body-text-1">{row.globalID}</td>
-
-              <td className="table-body-text-1">{bets} MANA</td>
-
-              <td className="table-body-text-1">{payouts} MANA</td>
-
-              <td className="table-body-text-1">{timestamp}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    );
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentHistory() {
-    return (
-      <tbody>
-        {props.dataPage.map((row, i) => {
-          let row_type = row.globalID.substr(row.globalID.length - 6, 3);
-          if (row.betAmount) {
-            switch (row_type) {
-              case '001':
-                game = 'Slots';
-                break;
-              case '002':
-                game = 'Roulette';
-                break;
-              case '003':
-                game = 'Backgammon';
-                break;
-              case '004':
-                game = 'Blackjack';
-                break;
-              case '005':
-                game = 'Poker';
-                break;
-              default:
-                game = 'Slots';
-            }
-            let amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-            let payout = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
-            let coinName = row.coinName;
-
-            let coinImage = '';
-            if (coinName === 'PLAY') {
-              coinImage = Images.PLAY_CIRCLE;
-            } else if (coinName === 'MANA') {
-              coinImage = Images.ICON_MANA;
-            } else if (coinName === 'DAI') {
-              coinImage = Images.ICON_DAI;
-            }
-
-            let date = new Date(row.createdAt);
-            let timestamp = date.toLocaleString();
-            timestamp = timestamp.replace(timestamp.substr(-2), '').trim();
-
+      <Table.Body>
+        {props.data.map((row, i) => {
+          if (row.verifyStep === 28) {
             return (
-              <tr className="table-body">
-                <td className="table-body-text-1 first">
-                  <img
-                    style={{
-                      width: '21px',
-                      marginRight: '6px',
-                      verticalAlign: 'middle',
-                      marginTop: '-3px',
-                      borderRadius: '100%',
-                    }}
-                    src={coinImage}
-                  />
-                  <span
-                    style={{
-                      textAlign: 'left',
-                      marginLeft: '10px',
-                    }}
-                  >
-                    {game}
-                  </span>
-                </td>
-
-                <td className="table-body-text-1">{row.globalID}</td>
-
-                <td className="table-body-text-1">
-                  <a
-                    style={{ color: '#2085f4' }}
-                    target="_blank"
-                    href={
-                      Global.CONSTANTS.MATIC_EXPLORER +
-                      `/address/${row.address}`
-                    }
-                  >
-                    {row.address.substr(0, 6) + '...' + row.address.substr(-4)}
-                  </a>
-                </td>
-
-                <td className="table-body-text-1">
-                  {amount} {coinName}
-                </td>
-
-                <td className="table-body-text-1">
-                  {payout} {coinName}
-                </td>
-
-                <td className="table-body-text-1">{timestamp}</td>
-              </tr>
+              <Table.Row key={i}>
+                <Table.Cell>{row.address}</Table.Cell>
+                <Table.Cell>{row.avatarName}</Table.Cell>
+                <Table.Cell>{row.verifyStep}</Table.Cell>
+              </Table.Row>
             );
           }
         })}
-      </tbody>
+
+        <Divider className="tab-divider" />
+
+        {props.data.map((row, i) => {
+          if (row.verifyStep === 22) {
+            return (
+              <Table.Row key={i}>
+                <Table.Cell>{row.address}</Table.Cell>
+                <Table.Cell>{row.avatarName}</Table.Cell>
+                <Table.Cell>{row.verifyStep}</Table.Cell>
+              </Table.Row>
+            );
+          }
+        })}
+
+        <Divider className="tab-divider" />
+
+        <Table.Row>
+          <Table.Cell>4: Normal Users</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>6: High Rollers</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>8: Whales</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>10: Guests (Invitees)</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>12: Hosts</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>14: Community Managers</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>16: Streamers/Content Creators</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>18: Floor Supervisors</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>20: DG Investors/NFT Holders</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>22: General Team Members</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>24: Marketing Team/Intel</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>26: Developers/DevOps</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>28: Admins</Table.Cell>
+        </Table.Row>
+      </Table.Body>
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // function contentNFTs() {
-  //   return (
-  //     <tbody>
-  //       {props.dataPage.map((row, i) => {
-  //         return (
-  //           <Table.Row>
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {row.machineIDs.map((machineID, j) =>
-  //                 j !== row.machineIDs.length - 1 ? machineID + ', ' : machineID
-  //               )}
-  //             </Table.Cell>
-
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {row.parcelLocation[0]}, {row.parcelLocation[1]},{' '}
-  //               {row.parcelLocation[2]}
-  //             </Table.Cell>
-
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {row.parcelRevenue[0]}, {row.parcelRevenue[1]},{' '}
-  //               {row.parcelRevenue[2]}
-  //             </Table.Cell>
-
-  //             <Table.Cell style={{ paddingLeft: '20px' }}>
-  //               {parseFloat(row.parcelVolume[0]).toFixed(3)},{' '}
-  //               {parseFloat(row.parcelVolume[1]).toFixed(3)},{' '}
-  //               {parseFloat(row.parcelVolume[2]).toFixed(3)}
-  //             </Table.Cell>
-  //           </Table.Row>
-  //         );
-  //       })}
-  //     </tbody>
-  //   );
-  // }
-
-  // if (props.content === 'labels') {
-  //   return contentLabels();
   if (props.content === 'balances') {
     return contentBalances();
-  } else if (props.content === 'machines') {
-    return contentMachines();
-  } else if (props.content === 'history') {
-    return contentHistory();
+  } else if (props.content === 'users') {
+    return contentUsers();
   }
-  // } else if (props.content === 'nft') {
-  //   return contentNFTs();
-  // }
 };
 
 export default ContentAdmin;

@@ -4,9 +4,9 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // GET API calls
-  GET_ADDRESSES: (address) => {
-    return fetch(`${API_BASE_URL}/addresses?address=${address}`, {
+  // GET API calls (no wallet address necessary)
+  TREASURY_STATS_NUMBERS: (period) => {
+    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/${period}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -15,6 +15,9 @@ const Fetch = {
     });
   },
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // GET API calls (wallet address necessary)
   GAME_RECORDS: (address) => {
     return fetch(`${API_BASE_URL}/admin/getTotalRecords?address=${address}`, {
       method: 'GET',
@@ -23,45 +26,6 @@ const Fetch = {
         'Content-Type': 'application/json',
       },
     });
-  },
-
-  TREASURY_STATS_GRAPH: (address) => {
-    return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/day?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  },
-
-  TREASURY_STATS_NUMBERS: (address) => {
-    return fetch(
-      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/week?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  },
-
-  PARCEL_DATA: (landID, tokenID, address) => {
-    return fetch(
-      `${API_BASE_URL}/nft/${landID}/${tokenID}?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
   },
 
   PLAYER_INFO: (address) => {
@@ -97,25 +61,15 @@ const Fetch = {
     );
   },
 
-  // ADMIN_HISTORY: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getHistory?address=${address}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
-  // MACHINE_DATA: () => {
-  //   return fetch(`${API_BASE_URL}/admin/getMachine?address=${address}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
+  USERS_LIST: (address) => {
+    return fetch(`${API_BASE_URL}/admin/getUsersList?address=${address}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -148,20 +102,6 @@ const Fetch = {
       }),
     });
   },
-
-  // UPDATE_STATUS: (address, step) => {
-  //   return fetch(`${API_BASE_URL}/order/updateStatus`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address: address,
-  //       verifyStep: step,
-  //     }),
-  //   });
-  // },
 
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return fetch(`${API_BASE_URL}/order/updateTokenArray`, {
@@ -241,10 +181,6 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
-  // IP_ADDRESS: () => {
-  //   return fetch(`https://ipapi.co/json`);
-  // },
-
   NFTS_1: (address) => {
     return fetch(
       `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0xbf53c33235cbfc22cef5a61a83484b86342679c5&order_direction=desc&offset=0&limit=10`,
