@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import Global from '../components/Constants';
+import ReactOneSignal from './reactOneSignal';
 
 export default class MyDocument extends Document {
   static async getServerSideProps(ctx) {
@@ -83,6 +84,7 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
+          <ReactOneSignal />
         </Head>
 
         <body>
