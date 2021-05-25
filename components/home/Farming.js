@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
 import ContentGovernance from '../content/ContentGovernance';
 import ContentMining from '../content/ContentMining';
+import ContentMiningV1 from '../content/ContentMiningV1';
 import ContentBalancer from '../content/ContentBalancer';
 import ContentUniswap from '../content/ContentUniswap';
 import ContentAirdrop from '../content/ContentAirdrop';
@@ -456,6 +457,8 @@ const Farming = (props) => {
             <ContentAirdrop price={price} formatPrice={formatPrice} />
           ) : DGState === 'admin' ? (
             contentAdmin()
+          ) : DGState === 'miningv1' ? (
+            <ContentMiningV1 price={price} formatPrice={formatPrice} />
           ) : null}
         </div>
       </div>
