@@ -64,6 +64,7 @@ const initialState = {
     TOTAL_MANA: 0,
     SUPPLY_BPT_1: 0,
     SUPPLY_BPT_2: 0,
+    BALANCE_AFFILIATES: [0, 0],
   },
   DGPrices: {
     eth: 0,
