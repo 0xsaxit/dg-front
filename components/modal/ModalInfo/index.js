@@ -210,20 +210,19 @@ const ModalInfo = () => {
           </span>
 
           <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '24px' }}>
-            <button 
-              className={cn('btn btn-primary', styles.buy_button)}
-              href="https://docs.decentral.games/faq"
-              target="_blank"
-            >
-              Buy $DG
-            </button>
-            <button 
-              className={cn('btn', styles.learn_button)}
+            <a href="https://docs.decentral.games/faq" target="_blank">
+              <button className={cn('btn', styles.buy_button)}>
+                Buy $DG
+              </button>
+            </a> 
+            <a 
               href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
               target="_blank"
             >
-              Learn More
-            </button>
+              <button className={cn('btn', styles.learn_button)}>
+                Learn More
+              </button>
+            </a>
           </span>
 
         </span>
