@@ -53,7 +53,7 @@ const Chateau = () => {
       <div className="home-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619567725/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
