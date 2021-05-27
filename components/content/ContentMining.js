@@ -14,7 +14,7 @@ const ContentMining = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [pointerContract, setPointerContract] = useState({});
+  const [pointerContractNew, setPointerContractNew] = useState({});
   const [gameplayUSD, setGameplayUSD] = useState(0);
   const [web3, setWeb3] = useState({});
   const [utm, setUtm] = useState('');
@@ -49,15 +49,15 @@ const ContentMining = (props) => {
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
-          apiKey: Global.KEYS.BICONOMY_API_2,
+          apiKey: Global.KEYS.BICONOMY_API_1,
           debug: true,
         }
       );
       const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
       async function fetchData() {
-        const pointerContract = await Transactions.pointerContract(getWeb3);
-        setPointerContract(pointerContract);
+        const pointerContractNew = await Transactions.pointerContractNew(getWeb3);
+        setPointerContractNew(pointerContractNew);
       }
 
       fetchData();
@@ -73,13 +73,13 @@ const ContentMining = (props) => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    if (props.price && state.DGBalances.BALANCE_MINING_DG) {
-      const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG;
+    if (props.price && state.DGBalances.BALANCE_MINING_DG_V2) {
+      const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG_V2;
       const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
 
       setGameplayUSD(gameplayUSDFormatted);
     }
-  }, [props.price, state.DGBalances.BALANCE_MINING_DG]);
+  }, [props.price, state.DGBalances.BALANCE_MINING_DG_V2]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -89,12 +89,12 @@ const ContentMining = (props) => {
       console.log('Dispatching DG tokens to address: ' + state.userAddress);
 
       // get function signature and send Biconomy API meta-transaction
-      let functionSignature = pointerContract.methods.getMyTokens().encodeABI();
+      let functionSignature = pointerContractNew.methods.distributeTokensForPlayer(state.userAddress).encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        2,
+        7,
         functionSignature,
-        pointerContract,
+        pointerContractNew,
         state.userAddress,
         web3
       );
@@ -138,9 +138,9 @@ const ContentMining = (props) => {
               />
               <span className="farming-pool-span">
                 <p className="welcome-text-top">$DG Balance</p>
-                {state.DGBalances.BALANCE_MINING_DG ? (
+                {state.DGBalances.BALANCE_MINING_DG_V2 ? (
                   <p className="earned-amount">
-                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
                   </p>
                 ) : (
                   <Loader
@@ -177,14 +177,14 @@ const ContentMining = (props) => {
             <Divider className="divider-dg-top" />
 
             <p style={{ fontSize: '18px' }}>
-              Mine $DG by playing games with MANA or DAI. Earn bonuses by
-              playing with friends, wearing $DG NFTs, and referring friends.{' '}
+              Mine $DG by playing games with crypto. Earn bonuses by
+              playing with friends, wearing $DG NFTs, and referring friends. For V1 rewards, click{' '}
               <a
-                href="https://decentral-games-1.gitbook.io/dg/allocation"
+                href="/dg/miningv1"
                 target="_blank"
                 style={{ color: '#2085f4' }}
               >
-                Read more
+                here
               </a>
               .
             </p>
@@ -192,7 +192,7 @@ const ContentMining = (props) => {
             <Divider className="divider-dg-top" />
 
             <span className="DG-button-span">
-              {Number(state.DGBalances.BALANCE_MINING_DG) ? (
+              {Number(state.DGBalances.BALANCE_MINING_DG_V2) ? (
                 <Button
                   className="DG-claim-button"
                   id="balances-padding-correct"

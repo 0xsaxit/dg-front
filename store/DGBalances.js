@@ -289,7 +289,9 @@ function DGBalances() {
         3
       );
 
-      const BALANCE_MINING_DG = await getDGBalanceGameplay(); // gameplay mining balance
+      const BALANCE_MINING_DG = await getDGBalanceGameplay(); // gameplay mining balance v1
+
+      const BALANCE_MINING_DG_V2 = await getDGBalanceGameplayV2(); // gameplay mining balance v2
 
       const BALANCE_KEEPER_DG = await getDGBalanceKeeper(); // airdrop balance
 
@@ -312,6 +314,7 @@ function DGBalances() {
         BALANCE_STAKING_GOVERNANCE: BALANCE_STAKING_GOVERNANCE,
         BALANCE_STAKING_UNISWAP: BALANCE_STAKING_UNISWAP,
         BALANCE_MINING_DG: BALANCE_MINING_DG,
+        BALANCE_MINING_DG_V2: BALANCE_MINING_DG_V2,
         BALANCE_KEEPER_DG: BALANCE_KEEPER_DG,
         CEO_MANA: CEO_MANA,
         CEO_DAI: CEO_DAI,
@@ -328,6 +331,21 @@ function DGBalances() {
     try {
       const amount = await pointerContract.methods
         .pointsBalancer(state.userAddress)
+        .call();
+
+      const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
+
+      return pointsAdjusted;
+    } catch (error) {
+      console.log('No DG points found: ' + error);
+    }
+  }
+
+  // get user's DG points balance from smart contract for gameplay mining
+  async function getDGBalanceGameplayV2() {
+    try {
+      const amount = await pointerContractNew.methods
+        .pointsBalancer(state.userAddress, '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4')
         .call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
