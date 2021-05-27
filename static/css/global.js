@@ -138,7 +138,7 @@ export const GlobalStyles = createGlobalStyle`
   .mailchimp-outter-container {
     background: black;
     box-shadow: none !important;  
-    border-radius: 24px !important;
+    border-radius: 16px !important;
   }
 
   .ui.bottom.right.popup,

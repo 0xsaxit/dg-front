@@ -3,7 +3,7 @@ import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
-import ModalInfo from '../modal/ModalInfo';
+import ModalInfo from 'components/modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
 import Images from '../../common/Images';

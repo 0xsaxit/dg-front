@@ -60,23 +60,11 @@ const MessageBar = () => {
   // }, [state.networkID]);
 
   useEffect(() => {
-    if (isSafari) {
-      setMessage('Please use Brave, Chrome or Firefox to play games');
-    } else if (!state.networkID && !isMobile) {
-      setMessage('Please connect your wallet to play');
-    } else if (!state.networkID && isMobile) {
-      setMessage('Please connect your wallet on desktop to play');
-    } else if (!state.userStatus && !isMobile) {
-      setMessage('Please connect your wallet to play');
-    } else if (!state.userStatus && isMobile) {
-      setMessage('Please connect your wallet on desktop to play');
-      // } else if (adminError) {
-      //   setMessage(
-      //     'You must switch to Matic Network to deposit and withdraw funds'
-      //   );
+    if (!state.NetworkID && !state.userStatus) {
+      return null;
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
-    } else if (!state.userInfo.tokenArray.includes(true)) {
+    } else if (!state.userInfo.tokenArray.includes(true) && state.userStatus) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
       );
@@ -120,14 +108,14 @@ const MessageBar = () => {
         id="message-bar"
         className="mobile-message-bar"
         style={{
-          fontFamily: 'Lato, sans-serif',
+          fontFamily: 'Larsseit-Regular',
           color: 'white',
           textAlign: 'center',
           padding: '10px 30px 9px 30px',
           fontSize: '14px',
           letterSpacing: '0.5px',
           fontWeight: 500,
-          backgroundColor: '#2085f4',
+          backgroundColor: '#006EFF',
           minHeight: '38px',
         }}
       >
