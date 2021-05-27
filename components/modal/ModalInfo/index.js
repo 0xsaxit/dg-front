@@ -17,7 +17,6 @@ const ModalInfo = () => {
   const [DGTotal_2, setDGTotal_2] = useState(0);
   const [supply, setSupply] = useState(0);
   const [DGPrice, setDGPrice] = useState(0);
-  const [unclaimed, setUnclaimed] = useState(0);
 
   useEffect(() => {
     const totalDG =
@@ -43,13 +42,10 @@ const ModalInfo = () => {
   }, [state.DGBalances, state.userBalances, state.stakingBalances]);
 
   // total unclaimed
-  useEffect(() => {
-    const temp = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) 
-               + Number(state.DGBalances.BALANCE_STAKING_UNISWAP)
-               + Number(state.DGBalances.BALANCE_MINING_DG)
-               + Number(state.DGBalances.BALANCE_KEEPER_DG);
-    setUnclaimed(temp);
-  }, [unclaimed]);
+  const unclaimed = Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) 
+             + Number(state.DGBalances.BALANCE_STAKING_UNISWAP)
+             + Number(state.DGBalances.BALANCE_MINING_DG)
+             + Number(state.DGBalances.BALANCE_KEEPER_DG);
 
   // fetch circulating supply
   useEffect(() => {
