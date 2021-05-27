@@ -134,49 +134,62 @@ const ModalInfo = () => {
       </div>
 
       <div>
-  
-            <span>
+        <span>
+          <span style={{ display: 'flex' }}>
+            <img
+              className="avatar-picture-home"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-192x192_qh4ig7.png"
+            />
+            <span style={{ display: 'flex', flexDirection: 'column' }}>
+              {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
+                <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                  0.000
+                </h4>
+              ) : (
+                <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                  {formatPrice(DGTotal_2, 3)}
+                </h4>
+              )}
               <span style={{ display: 'flex' }}>
-                <img
-                  className="avatar-picture-home"
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png"
-                />
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
-                    <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                      0.000
-                    </h4>
-                  ) : (
-                    <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                      {formatPrice(DGTotal_2, 3)}
-                    </h4>
-                  )}
-                  <span style={{ display: 'flex' }}>
-                    <p className="account-address">
-                      USD Value: ${unclaimedUSD}
-                    </p>
-                  </span>
-                </span>
+                <p className="account-address">
+                  USD Value: ${unclaimedUSD}
+                </p>
               </span>
+            </span>
+          </span>
 
-              <span style={{ display: 'flex', flexDirection: 'column' }}>
-                <span>
-                  <Button className="casino-balance-button" style={{ marginTop: '28px', width: '100%' }}>
-                    <p className="casino-balance-text"> Withdraw Matic $DG </p>
-                    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
-                    </span>
-                  </Button>
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <span>
+              <Button 
+                className="casino-balance-button" 
+                style={{ marginTop: '28px', width: '100%' }}
+                href="https://wallet.matic.network/"
+                target="_blank"
+              >
+                <p className="casino-balance-text"> Withdraw Matic $DG </p>
+                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
                 </span>
+              </Button>
+            </span>
 
-                <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', marginBottom: '8px' }}>
-                  <Button className="modal-button">
-                    Claim $DG
-                  </Button>
-                  <Button className="modal-learn-button">
-                    Learn More
-                  </Button>
-                </span>
+            <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px', marginBottom: '8px' }}>
+              <Button 
+                className="modal-button"
+                href="/dg/governance"
+                style={{ padding: '16px 0 0 0' }}
+              >
+                Claim $DG
+              </Button>
+              <Button 
+                className="modal-learn-button"
+                href="https://docs.decentral.games/faq"
+                target="_blank"
+                style={{ padding: '16px 0 0 0' }}
+              >
+                Learn More
+              </Button>
+            </span>
 
             <div className="menu-info-container" style={{ marginTop: '24px' }}>
               <span className="menu-info-inner-span" style={{ paddingTop: '12px' }}>
@@ -227,6 +240,7 @@ const ModalInfo = () => {
                   style={{
                     marginTop: '16px',
                     marginBottom: '4px',
+                    paddingTop: '12px'
                   }}
                 >
                   {gov_unclaimed > 0 ? (
