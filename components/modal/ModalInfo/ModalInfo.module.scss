@@ -54,12 +54,13 @@
 	}
 
 	.buy_button {
+		background: #006EFF;
 		color: white;
 		font-size: 18px;
 		font-family: Larsseit-Bold;
 		height: 54px;
 		border-radius: 12px;
-		width: 48%;
+		width: 142px;
 	}
 
 	.learn_button {
@@ -69,6 +70,12 @@
 		font-family: Larsseit-Bold;
 		height: 54px;
 		border-radius: 12px;
-		width: 48%;
+		width: 142px;
+	}
+
+	.buy_button:focus,
+	.learn_button:focus {
+		box-shadow: none;
+		border: 0px solid black;
 	}
 }
