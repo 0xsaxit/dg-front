@@ -5,7 +5,7 @@ import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
-import Fetch from '../common/Fetch';
+// import Fetch from '../common/Fetch';
 
 function DGBalances() {
   // dispatch user's unclaimed DG balance to the Context API store
@@ -108,9 +108,8 @@ function DGBalances() {
         const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
-        const stakeContractGovernance = await Transactions.stakingContractGovernance(
-          web3
-        );
+        const stakeContractGovernance =
+          await Transactions.stakingContractGovernance(web3);
         setStakeContractGovernance(stakeContractGovernance);
 
         const BPTContract1 = await Transactions.BPTContract1(web3);
@@ -119,9 +118,8 @@ function DGBalances() {
         const BPTContract2 = await Transactions.BPTContract2(web3);
         setBPTContract2(BPTContract2);
 
-        const stakingContractUniswap = await Transactions.stakingContractUniswap(
-          web3
-        );
+        const stakingContractUniswap =
+          await Transactions.stakingContractUniswap(web3);
         setStakingContractUniswap(stakingContractUniswap);
 
         const uniswapContract = await Transactions.uniswapContract(web3);
@@ -345,7 +343,10 @@ function DGBalances() {
   async function getDGBalanceGameplayV2() {
     try {
       const amount = await pointerContractNew.methods
-        .pointsBalancer(state.userAddress, '0x2a93172c8DCCbfBC60a39d56183B7279a2F647b4')
+        .pointsBalancer(
+          state.userAddress,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG
+        )
         .call();
 
       const pointsAdjusted = (amount / Global.CONSTANTS.FACTOR).toFixed(3);
@@ -376,7 +377,7 @@ function DGBalances() {
       const amountMana = await pointerContractNew.methods
         .profitPagination(
           state.userAddress,
-          '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
           0,
           50
         )
@@ -385,7 +386,7 @@ function DGBalances() {
       const amountDai = await pointerContractNew.methods
         .profitPagination(
           state.userAddress,
-          '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
           0,
           50
         )
@@ -419,11 +420,11 @@ function DGBalances() {
       const wrappedResult = amountMana._players.map((address, index) => {
         return {
           address,
-          mana: amountMana._profits[index] / 1000000000000000000,
-          dai: amountDai._profits[index] / 1000000000000000000,
-          usdt: amountUSDT._profits[index] / 1000000000000000000,
-          atri: amountAtri._profits[index] / 1000000000000000000,
-          eth: amountEth._profits[index] / 1000000000000000000
+          mana: amountMana._profits[index] / Global.CONSTANTS.FACTOR,
+          dai: amountDai._profits[index] / Global.CONSTANTS.FACTOR,
+          usdt: amountUSDT._profits[index] / Global.CONSTANTS.FACTOR,
+          atri: amountAtri._profits[index] / Global.CONSTANTS.FACTOR,
+          eth: amountEth._profits[index] / Global.CONSTANTS.FACTOR,
         };
       });
 
@@ -432,7 +433,6 @@ function DGBalances() {
       console.log('Affiliate array not found: ' + error);
     }
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

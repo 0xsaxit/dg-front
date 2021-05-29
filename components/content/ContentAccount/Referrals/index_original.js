@@ -1,29 +1,80 @@
-import React, { useState, useContext } from 'react';
-import { GlobalContext } from 'store/index';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
+import Web3 from 'web3';
+import Transactions from 'common/Transactions';
 import Global from 'components/Constants';
 import { Icon, Segment } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
 
-function Referrals() {
-  // get token prices and breakdowns from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
+const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 
-  // define local variables
+function ContentReferrals() {
   const [copied, setCopied] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
+  const [breakdown, setBreakdown] = useState({});
 
-  const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); // pass Matic provider URL to Web3 constructor
+
+      async function fetchData() {
+        // this is for affiliates
+        const pointerContractNew = await Transactions.pointerContractNew(
+          maticWeb3
+        );
+        const atri = await pointerContractNew.methods
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI
+          )
+          .call();
+
+        const usdt = await pointerContractNew.methods
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT
+          )
+          .call();
+
+        const mana = await pointerContractNew.methods
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+          )
+          .call();
+
+        const dai = await pointerContractNew.methods
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
+          )
+          .call();
+
+        const eth = await pointerContractNew.methods
+          .pointsBalancer(
+            state.userAddress,
+            Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+          )
+          .call();
+
+        setBreakdown({
+          atri: atri / 1000000000000000000,
+          usdt: usdt / 1000000000000000000,
+          mana: mana / 1000000000000000000,
+          dai: dai / 1000000000000000000,
+          eth: eth / 1000000000000000000,
+        });
+      }
+
+      fetchData();
+    }
+  }, [state.userStatus]);
+
   let totalAmount = 0;
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   coins.map((coin) => {
-    totalAmount += +Number(
-      state.DGPrices[coin] * state.DGBreakdown[coin]
-    ).toFixed(3);
+    totalAmount += +Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3);
   });
 
   const onCopy = () => {
@@ -93,10 +144,7 @@ function Referrals() {
               ? 'Your referrals'
               : 'No Referrals Yet'}
           </h3>
-          <ModalBreakdown
-            totalAmount={totalAmount}
-            breakdown={state.DGBreakdown}
-          />
+          <ModalBreakdown totalAmount={totalAmount} breakdown={breakdown} />
         </span>
 
         <div className={styles.referrals_body}>
@@ -155,7 +203,6 @@ function Referrals() {
               }
             )}
           </Segment>
-
           <div className={cn(styles.toast, isToastShow ? '' : styles.hidden)}>
             Unique Referral Link Copied!
           </div>
@@ -165,4 +212,4 @@ function Referrals() {
   );
 }
 
-export default Referrals;
+export default ContentReferrals;

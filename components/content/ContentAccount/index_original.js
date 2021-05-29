@@ -1,29 +1,36 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from 'store/index';
+import Web3 from 'web3';
+import cn from 'classnames';
 import { ConnextModal } from '@connext/vector-modal';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
+import ABI_DG_TOKEN from 'components/ABI/ABIDGToken.json';
 import Global from 'components/Constants';
 import Images from 'common/Images';
+import Fetch from 'common/Fetch';
+import Transactions from 'common/Transactions';
 import ModalAcceptMana from 'components/modal/ModalAcceptMana';
 import ModalAcceptDai from 'components/modal/ModalAcceptDai';
 import ModalAcceptUSDT from 'components/modal/ModalAcceptUSDT';
 import ModalAcceptATRI from 'components/modal/ModalAcceptATRI';
 import ModalAcceptWETH from 'components/modal/ModalAcceptWETH';
-import Referrals from './Referrals';
 import Aux from 'components/_Aux';
 
+import styles from './ContentAccount.module.scss';
+import ContentReferrals from './Referrals';
+
 const connext = {
-  routerPublicID: Global.CONSTANTS.CONNEXT_PUBLIC_ID,
+  routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
   chainProviderInfura:
     'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
   chainProviderMatic: 'https://rpc-mainnet.matic.network',
-  assetID_1_MANA: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA,
-  assetID_2_MANA: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
-  assetID_1_DAI: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI,
-  assetID_2_DAI: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
-  assetID_1_USDT: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT,
-  assetID_2_USDT: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
+  assetID_1_MANA: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',
+  assetID_2_MANA: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+  assetID_1_DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+  assetID_2_DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+  assetID_1_USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+  assetID_2_USDT: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
 };
 
 const ContentAccount = (props) => {
@@ -40,21 +47,135 @@ const ContentAccount = (props) => {
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
+  const [wearables, setWearables] = useState([]);
+  const [poaps, setPoaps] = useState([]);
+  const [injectedProvider, setInjectedProvider] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [link, setLink] = useState('');
+  const [tempClass, setTempClass] = useState(true);
+  const [affiliates, setAffiliates] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [pointerContractNew, setPointerContractNew] = useState({});
 
-  const injectedProvider = window.ethereum;
+  useEffect(() => {
+    const web3 = new Web3(window.ethereum);
+
+    async function fetchData() {
+      try {
+        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL);
+        const pointerContractNew = await Transactions.pointerContractNew(
+          maticWeb3
+        );
+        setPointerContractNew(pointerContractNew);
+
+        if (state.userAddress) {
+          let amount;
+          const USDT_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT
+          );
+          amount = await USDT_UNI.methods.balanceOf(state.userAddress).call();
+          const usdtAmount = web3.utils.fromWei(amount, 'mwei');
+
+          const MANA_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
+          );
+          amount = await MANA_UNI.methods.balanceOf(state.userAddress).call();
+          let manaRes = await Fetch.MANA_PRICE();
+          let manaJson = await manaRes.json();
+
+          const priceMANA = manaJson.market_data.current_price.usd;
+          const manaAmount = priceMANA * web3.utils.fromWei(amount, 'ether');
+
+          const ATRI_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_ATRI
+          );
+          amount = await ATRI_UNI.methods.balanceOf(state.userAddress).call();
+          let atriRes = await Fetch.ATRI_PRICE();
+          let atriJson = await atriRes.json();
+
+          const priceATRI = atriJson.market_data.current_price.usd;
+          const atriAmount = priceATRI * web3.utils.fromWei(amount, 'wei');
+
+          const DAI_UNI = new web3.eth.Contract(
+            ABI_DG_TOKEN,
+            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
+          );
+          amount = await DAI_UNI.methods.balanceOf(state.userAddress).call();
+          const daiAmount = web3.utils.fromWei(amount, 'ether');
+
+          amount = await new web3.eth.getBalance(state.userAddress);
+          let ethRes = await Fetch.ETH_PRICE();
+          let ethJson = await ethRes.json();
+
+          const priceETH = ethJson.market_data.current_price.usd;
+          const ethAmount = priceETH * web3.utils.fromWei(amount, 'ether');
+
+          setTotalAmount(
+            Number(usdtAmount) +
+              Number(manaAmount) +
+              Number(atriAmount) +
+              Number(daiAmount) +
+              Number(ethAmount)
+          );
+        }
+      } catch (error) {
+        console.log('Get balance error', error);
+      }
+    }
+
+    fetchData();
+  }, [state.userAddress]);
+
   const buttonPlay = document.getElementById('play-now-button-balances');
+
+  const ramp1 = new RampInstantSDK({
+    hostAppName: 'Buy Mana Directly',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
+    swapAsset: 'MANA',
+  });
+
+  function show_ramp1() {
+    ramp1.show();
+  }
+
   const ramp2 = new RampInstantSDK({
     hostAppName: 'Buy DAI Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
+
+  function show_ramp2() {
+    ramp2.show();
+  }
+
   const ramp3 = new RampInstantSDK({
     hostAppName: 'Buy USDT Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
     swapAsset: 'USDT',
   });
+
+  function show_ramp3() {
+    ramp3.show();
+  }
+
+  const ramp4 = new RampInstantSDK({
+    hostAppName: 'Buy ATRI Directly',
+    hostLogoUrl:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
+    swapAsset: 'ATRI',
+  });
+
+  function show_ramp4() {
+    ramp4.show();
+  }
+
   const ramp5 = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
@@ -62,8 +183,57 @@ const ContentAccount = (props) => {
     swapAsset: 'ETH',
   });
 
+  function show_ramp5() {
+    ramp5.show();
+  }
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    setInjectedProvider(window.ethereum);
+  }, []);
+
+  // get user nfts statistics
+  useEffect(() => {
+    (async function () {
+      let response = await Fetch.NFTS_1(state.userAddress);
+      let json = await response.json();
+
+      let response_2 = await Fetch.NFTS_2(state.userAddress);
+      let json_2 = await response_2.json();
+
+      let wearables = [];
+      let i;
+      for (i = 0; i < json.assets.length; i++) {
+        wearables.push(json.assets[i]);
+      }
+      let j;
+      for (j = 0; j < json_2.assets.length; j++) {
+        wearables.push(json_2.assets[j]);
+      }
+
+      setWearables(wearables);
+    })();
+  }, []);
+
+  // get user poaps
+  useEffect(() => {
+    (async function () {
+      let response_1 = await Fetch.POAPS(state.userAddress);
+      let json_1 = await response_1.json();
+
+      let poaps = [];
+      let k;
+      for (k = 0; k < json_1.length; k++) {
+        if (json_1[k].event.name.includes('Decentral Games')) {
+          poaps.push(json_1[k].event);
+        }
+      }
+
+      setPoaps(poaps);
+    })();
+  }, []);
+
   // send tracking data to Segment
   useEffect(() => {
     if (buttonPlay) {
@@ -284,7 +454,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button two"
-              onClick={() => ramp2.show()}
+              onClick={() => show_ramp2()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -387,7 +557,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => ramp3.show()}
+              onClick={() => show_ramp3()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -548,7 +718,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => ramp5.show()}
+              onClick={() => show_ramp5()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -639,7 +809,7 @@ const ContentAccount = (props) => {
   function contentWearables() {
     return (
       <Grid style={{ marginBottom: '90px' }}>
-        {state.wearables.map((wearable, i) => (
+        {wearables.map((wearable, i) => (
           <Grid.Column
             computer={5}
             tablet={8}
@@ -648,61 +818,62 @@ const ContentAccount = (props) => {
             key={i}
           >
             <a href={wearable.permalink} className="my-nft-container">
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="nft-image"
-              >
-                <Image
-                  src={wearable.image_url}
-                  className="nft-pic"
-                  style={{ borderRadius: '4px' }}
-                />
-              </span>
-
-              <div className="nft-description">
-                <h3 className="nft-other-h3">{wearable.name}</h3>
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className="nfts-info">{wearable.asset_contract.name}</p>
-                </span>
-
-                <Divider
-                  style={{
-                    margin: '10px 0px 15px 0px',
-                    width: 'calc(100% + 60px)',
-                    marginLeft: '-30px',
-                  }}
-                />
-
-                <p
-                  className="nft-other-p"
-                  style={{
-                    marginTop: '-12px',
-                    paddingTop: '15px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {wearable.description}
-                </p>
-
+              <div>
                 <span
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
                 >
-                  <Button
-                    color="blue"
-                    className="nft-button"
-                    target="_blank"
-                    href={wearable.permalink}
-                  >
-                    SELL NFT
-                  </Button>
-                  <Button
-                    className="nft-read-button"
-                    target="_blank"
-                    href={wearable.permalink}
-                  >
-                    READ MORE
-                  </Button>
+                  <Image
+                    src={wearable.image_url}
+                    className="nft-pic"
+                    style={{ borderRadius: '4px' }}
+                  />
                 </span>
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{wearable.name}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className="nfts-info">{wearable.asset_contract.name}</p>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {wearable.description}
+                  </p>
+
+                  <span
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <Button
+                      color="blue"
+                      className="nft-button"
+                      target="_blank"
+                      href={wearable.permalink}
+                    >
+                      SELL NFT
+                    </Button>
+                    <Button
+                      className="nft-read-button"
+                      target="_blank"
+                      href={wearable.permalink}
+                    >
+                      READ MORE
+                    </Button>
+                  </span>
+                </div>
               </div>
             </a>
           </Grid.Column>
@@ -716,7 +887,7 @@ const ContentAccount = (props) => {
   function contentPoaps() {
     return (
       <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
-        {state.poaps.map((poap, i) => (
+        {poaps.map((poap, i) => (
           <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
             <Image src={poap.image_url} className="poap-pic" />
           </Grid.Column>
@@ -767,7 +938,7 @@ const ContentAccount = (props) => {
 
                   return (
                     <Table.Body key={i}>
-                      {renderRowHistory(row, timestamp, amount, sign, style)}
+                      {renderRow(row, timestamp, amount, sign, style)}
                     </Table.Body>
                   );
                 })}
@@ -777,7 +948,7 @@ const ContentAccount = (props) => {
     );
   }
 
-  function renderRowHistory(row, timestamp, amount, sign, style) {
+  function renderRow(row, timestamp, amount, sign, style) {
     return (
       <Table.Row style={{ background: style }}>
         <Table.Cell>
@@ -856,13 +1027,13 @@ const ContentAccount = (props) => {
               {sign}
               {amount > 1000000000000000000000000
                 ? 'N/A'
-                : (amount / Global.CONSTANTS.FACTOR).toFixed(2) + ' DAI'}
+                : (amount / 1000000000000000000).toFixed(2) + ' DAI'}
             </span>
           ) : (
             <span>
               {amount > 1000000000000000000000000
                 ? 'N/A'
-                : (amount / Global.CONSTANTS.FACTOR).toFixed(2) + ' MANA'}
+                : (amount / 1000000000000000000).toFixed(2) + ' MANA'}
             </span>
           )}
         </Table.Cell>
@@ -939,7 +1110,7 @@ const ContentAccount = (props) => {
 
                   return (
                     <Table.Body key={i}>
-                      {renderRowPlay(
+                      {renderRow2(
                         row,
                         timestamp,
                         amount,
@@ -956,7 +1127,7 @@ const ContentAccount = (props) => {
     );
   }
 
-  function renderRowPlay(row, timestamp, amount, result, action, style) {
+  function renderRow2(row, timestamp, amount, result, action, style) {
     return (
       <Table.Row style={{ background: style }}>
         <Table.Cell>
@@ -1134,6 +1305,7 @@ const ContentAccount = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
   if (props.content === 'balances') {
     return contentAccount();
   } else if (props.content === 'wearables') {
@@ -1145,7 +1317,7 @@ const ContentAccount = (props) => {
   } else if (props.content === 'play') {
     return contentGameplay();
   } else if (props.content === 'referrals') {
-    return <Referrals />;
+    return <ContentReferrals state={state} totalAmount={totalAmount} />;
   }
 };
 

@@ -7,7 +7,6 @@ import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 
-
 function UserBalances() {
   // dispatch user's token balances to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -124,7 +123,7 @@ function UserBalances() {
 
     const USDTContractChild = new maticWeb3.eth.Contract(
       ABI_CHILD_TOKEN_DAI,
-      '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+      Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT
     );
 
     const ATRIContractChild = new maticWeb3.eth.Contract(
@@ -165,16 +164,20 @@ function UserBalances() {
         USDTContractChild,
         state.userAddress,
         0
-      ); 
+      );
 
       // get user or contract token balance from MetaMask
-      async function balanceOfBUSD(tokenContract, userOrContractAddress, units) {
+      async function balanceOfBUSD(
+        tokenContract,
+        userOrContractAddress,
+        units
+      ) {
         try {
           const amount = await tokenContract.methods
             .balanceOf(userOrContractAddress)
             .call();
 
-          return amount / 1000000000000000000;
+          return amount / Global.CONSTANTS.FACTOR;
         } catch (error) {
           console.log('Get balance failed', error);
         }
@@ -184,10 +187,14 @@ function UserBalances() {
         BUSDContract,
         state.userAddress,
         0
-      ); 
+      );
 
       // get user or contract token balance from MetaMask
-      async function balanceOfAtari(tokenContract, userOrContractAddress, units) {
+      async function balanceOfAtari(
+        tokenContract,
+        userOrContractAddress,
+        units
+      ) {
         try {
           const amount = await tokenContract.methods
             .balanceOf(userOrContractAddress)
@@ -203,7 +210,7 @@ function UserBalances() {
         ATRIContractChild,
         state.userAddress,
         0
-      ); 
+      );
 
       const amountWETH = await Transactions.balanceOfToken(
         WETHContractChild,

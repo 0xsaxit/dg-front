@@ -32,9 +32,7 @@ const initialState = {
   transactions: [{}, {}],
   treasuryNumbers: {},
   txHash: '',
-  // tokenPings: 0,
   gameRecords: {},
-  // balancesOverlay: 0,
   networkID: 0,
   activeStatus: true,
   ethBalance: 0,
@@ -69,10 +67,19 @@ const initialState = {
   DGPrices: {
     eth: 0,
     mana: 0,
-    dai: 1,
+    dai: 0,
     atri: 0,
-    usdt: 1,
+    usdt: 0,
   },
+  DGBreakdown: {
+    eth: 0,
+    mana: 0,
+    dai: 0,
+    atri: 0,
+    usdt: 0,
+  },
+  wearables: [],
+  poaps: [],
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
     BALANCE_CONTRACT_BPT_2: 0,
@@ -155,23 +162,11 @@ const reducer = (state, action) => {
         txHash: action.data,
       };
 
-    // case 'token_pings':
-    //   return {
-    //     ...state,
-    //     tokenPings: action.data,
-    //   };
-
     case 'update_records':
       return {
         ...state,
         gameRecords: action.data,
       };
-
-    // case 'balances_overlay':
-    //   return {
-    //     ...state,
-    //     balancesOverlay: action.data,
-    //   };
 
     case 'network_id':
       return {
@@ -213,6 +208,24 @@ const reducer = (state, action) => {
       return {
         ...state,
         DGPrices: action.data,
+      };
+
+    case 'dg_breakdown':
+      return {
+        ...state,
+        DGBreakdown: action.data,
+      };
+
+    case 'wearables':
+      return {
+        ...state,
+        wearables: action.data,
+      };
+
+    case 'poaps':
+      return {
+        ...state,
+        poaps: action.data,
       };
 
     case 'staking_balances':

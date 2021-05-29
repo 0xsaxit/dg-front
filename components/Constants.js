@@ -6,6 +6,7 @@ const KEYS = {
   GOOGLE_ANALYTICS: 'UA-146057069-1',
   BUTTER_TOKEN: 'd7d6d8425656d3cfe5f45d7a0a3a8470ef09d434',
   SEGMENT_WRITE_KEY: 'pK03oncLYCxY1DJtTmnJnuwLByq2RlAb',
+  CONNEXT_PUBLIC_ID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np'
 };
 
 // common constant values
