@@ -458,21 +458,23 @@ const MenuTop = (props) => {
                   </span>
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Button className="casino-balance-button" href="/account">
-                    <p className="casino-balance-text"> Casino Balance </p>
-                    <span
-                      style={{ display: 'flex', justifyContent: 'flex-end' }}
-                    >
-                      <p className="casino-balance-text two">
-                        {' '}
-                        ${casinoBalance}{' '}
-                      </p>
-                      <Icon
-                        className="arrow right"
-                        style={{ paddingLeft: '8px', paddingTop: '5px' }}
-                      />
-                    </span>
-                  </Button>
+                  <Link href="/account">
+                    <Button className="casino-balance-button">
+                      <p className="casino-balance-text"> Casino Balance </p>
+
+                      <span
+                        style={{ display: 'flex', justifyContent: 'flex-end' }}
+                      >
+                        <p className="casino-balance-text two">
+                          ${casinoBalance}
+                        </p>
+                        <Icon
+                          className="arrow right"
+                          style={{ paddingLeft: '8px', paddingTop: '5px' }}
+                        />
+                      </span>
+                    </Button>
+                  </Link>
 
                   <span
                     style={{
@@ -481,12 +483,16 @@ const MenuTop = (props) => {
                       marginTop: '12px',
                     }}
                   >
-                    <Button className="account-deposit-button" href="/account">
-                      Deposit
-                    </Button>
-                    <Button className="account-withdraw-button" href="/account">
-                      Withdraw
-                    </Button>
+                    <Link href="/account">
+                      <Button className="account-deposit-button">
+                        Deposit
+                      </Button>
+                    </Link>
+                    <Link href="/account">
+                      <Button className="account-withdraw-button">
+                        Withdraw
+                      </Button>
+                    </Link>
                   </span>
 
                   <Link href="/account">
