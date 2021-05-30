@@ -3,12 +3,10 @@ import { GlobalContext } from '../../store';
 import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
-import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
 import ModalLogin from 'components/modal/ModalLogin';
-
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -71,7 +69,7 @@ const Chateau = () => {
 
         <div className="home-dashboard-content">
           <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
             className="home-gif"
           />
           <h1
@@ -456,7 +454,11 @@ const Chateau = () => {
             <div className="home-section-2 inner">
               <h1
                 className="home-dashboard-h1"
-                style={{ marginBottom: '-12px', maxWidth: '600px', fontSize: '48px' }}
+                style={{
+                  marginBottom: '-12px',
+                  maxWidth: '600px',
+                  fontSize: '48px',
+                }}
               >
                 The Metaverse is the next frontier
               </h1>
@@ -497,7 +499,9 @@ const Chateau = () => {
         <div className="section-4-header" style={{ marginTop: '15px' }}>
           <div className="home-section-4-header">
             <span className="outter-dashboard-span">
-              <h1 className="dg-powered-h1" style={{ fontSize: '48px' }}>Get Started</h1>
+              <h1 className="dg-powered-h1" style={{ fontSize: '48px' }}>
+                Get Started
+              </h1>
               <a href="https://docs.decentral.games" target="_blank">
                 <p className="home-more-nav">Visit Our Docs »</p>
               </a>
@@ -593,7 +597,9 @@ const Chateau = () => {
         <div className="home-section-6">
           <span className="outter-footer-container">
             <span className="inner-footer-container top">
-              <h1 className="home-footer-h1" style={{ fontSize: '48px' }}>Contact Us</h1>
+              <h1 className="home-footer-h1" style={{ fontSize: '48px' }}>
+                Contact Us
+              </h1>
               <p>
                 {' '}
                 You’ll find us at all hours on Discord. You can also reach us
@@ -611,7 +617,9 @@ const Chateau = () => {
             </span>
 
             <span className="inner-footer-container bottom">
-              <h1 className="home-footer-h1" style={{ fontSize: '48px' }}>Sign Up</h1>
+              <h1 className="home-footer-h1" style={{ fontSize: '48px' }}>
+                Sign Up
+              </h1>
               <p>
                 {' '}
                 Register here to recieve the latest news and updates from

@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import Web3 from 'web3';
-import { useRouter } from 'next/router';
 import { GlobalContext } from '../../store';
 import Global from '../Constants';
 
@@ -10,13 +9,13 @@ const MessageBar = () => {
 
   // define local variables
   const [message, setMessage] = useState('');
-  // const [adminError, setAdminError] = useState(false);
   const [isMobile, setMobile] = useState(false);
 
   let isSafari = false;
   let web3 = {};
-  const router = useRouter();
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // using Safari browser
   useEffect(() => {
     if (window.safari !== undefined) {
@@ -47,17 +46,6 @@ const MessageBar = () => {
       })();
     }
   }, []);
-
-  // notify admins to switch to Matic Network
-  // useEffect(() => {
-  //   if (router.pathname === '/admin') {
-  //     if (state.networkID !== Global.CONSTANTS.MATIC_NETWORK_ID) {
-  //       setAdminError(true);
-  //     } else {
-  //       setAdminError(false);
-  //     }
-  //   }
-  // }, [state.networkID]);
 
   useEffect(() => {
     if (!state.NetworkID && !state.userStatus) {

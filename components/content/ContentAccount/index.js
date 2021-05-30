@@ -11,6 +11,7 @@ import ModalAcceptUSDT from 'components/modal/ModalAcceptUSDT';
 import ModalAcceptATRI from 'components/modal/ModalAcceptATRI';
 import ModalAcceptWETH from 'components/modal/ModalAcceptWETH';
 import Referrals from './Referrals';
+import styles from './ContentAccount.module.scss';
 import Aux from 'components/_Aux';
 
 const connext = {
@@ -637,92 +638,112 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentWearables() {
-    return (
-      <Grid style={{ marginBottom: '90px' }}>
-        {state.wearables.map((wearable, i) => (
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="leaderboard-column"
-            key={i}
-          >
-            <a href={wearable.permalink} className="my-nft-container">
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="nft-image"
-              >
-                <Image
-                  src={wearable.image_url}
-                  className="nft-pic"
-                  style={{ borderRadius: '4px' }}
-                />
-              </span>
-
-              <div className="nft-description">
-                <h3 className="nft-other-h3">{wearable.name}</h3>
-                <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className="nfts-info">{wearable.asset_contract.name}</p>
-                </span>
-
-                <Divider
-                  style={{
-                    margin: '10px 0px 15px 0px',
-                    width: 'calc(100% + 60px)',
-                    marginLeft: '-30px',
-                  }}
-                />
-
-                <p
-                  className="nft-other-p"
-                  style={{
-                    marginTop: '-12px',
-                    paddingTop: '15px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {wearable.description}
-                </p>
-
+    if (state.wearables.length !== 0) {
+      return (
+        <Grid style={{ marginBottom: '90px' }}>
+          {state.wearables.map((wearable, i) => (
+            <Grid.Column
+              computer={5}
+              tablet={8}
+              mobile={16}
+              className="leaderboard-column"
+              key={i}
+            >
+              <a href={wearable.permalink} className="my-nft-container">
                 <span
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                  className="nft-image"
                 >
-                  <Button
-                    color="blue"
-                    className="nft-button"
-                    target="_blank"
-                    href={wearable.permalink}
-                  >
-                    SELL NFT
-                  </Button>
-                  <Button
-                    className="nft-read-button"
-                    target="_blank"
-                    href={wearable.permalink}
-                  >
-                    READ MORE
-                  </Button>
+                  <Image
+                    src={wearable.image_url}
+                    className="nft-pic"
+                    style={{ borderRadius: '4px' }}
+                  />
                 </span>
-              </div>
-            </a>
-          </Grid.Column>
-        ))}
-      </Grid>
-    );
+
+                <div className="nft-description">
+                  <h3 className="nft-other-h3">{wearable.name}</h3>
+                  <span style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p className="nfts-info">{wearable.asset_contract.name}</p>
+                  </span>
+
+                  <Divider
+                    style={{
+                      margin: '10px 0px 15px 0px',
+                      width: 'calc(100% + 60px)',
+                      marginLeft: '-30px',
+                    }}
+                  />
+
+                  <p
+                    className="nft-other-p"
+                    style={{
+                      marginTop: '-12px',
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {wearable.description}
+                  </p>
+
+                  <span
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <Button
+                      color="blue"
+                      className="nft-button"
+                      target="_blank"
+                      href={wearable.permalink}
+                    >
+                      SELL NFT
+                    </Button>
+                    <Button
+                      className="nft-read-button"
+                      target="_blank"
+                      href={wearable.permalink}
+                    >
+                      READ MORE
+                    </Button>
+                  </span>
+                </div>
+              </a>
+            </Grid.Column>
+          ))}
+        </Grid>
+      );
+    } else {
+      return (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          <p className={styles.referrals_header_subtitle}>
+            You do not own any wearable NFTs
+          </p>
+        </div>
+      );
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentPoaps() {
-    return (
-      <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
-        {state.poaps.map((poap, i) => (
-          <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
-            <Image src={poap.image_url} className="poap-pic" />
-          </Grid.Column>
-        ))}
-      </Grid>
-    );
+    if (state.poaps.length !== 0) {
+      return (
+        <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
+          {state.poaps.map((poap, i) => (
+            <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
+              <Image src={poap.image_url} className="poap-pic" />
+            </Grid.Column>
+          ))}
+        </Grid>
+      );
+    } else {
+      return (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          <p className={styles.referrals_header_subtitle}>
+            You do not own any POAPS
+          </p>
+        </div>
+      );
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -1145,7 +1166,7 @@ const ContentAccount = (props) => {
   } else if (props.content === 'play') {
     return contentGameplay();
   } else if (props.content === 'referrals') {
-    return <Referrals />;
+    return <Referrals state={state} />;
   }
 };
 

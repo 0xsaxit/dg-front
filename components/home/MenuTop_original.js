@@ -3,13 +3,10 @@ import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
-import ModalInfo from '../modal/ModalInfo';
+import ModalInfo from 'components/modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
-import MessageBox from './MessageBox';
-import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
-
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -51,8 +48,7 @@ const MenuTop = (props) => {
       let response3 = await Fetch.ATRI_PRICE();
       let json3 = await response3.json();
       setAtriPrice(json3.market_data.current_price.usd);
-
-    })()
+    })();
   }, [manaPrice, ethPrice, atriPrice]);
 
   useEffect(() => {
@@ -64,11 +60,13 @@ const MenuTop = (props) => {
     const balance = mana + eth + atri + dai + usdt;
 
     setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-  }, [state.userBalances[1][1], 
-      state.userBalances[2][3], 
-      state.userBalances[2][2],
-      state.userBalances[0][1],
-      state.userBalances[2][1]]);
+  }, [
+    state.userBalances[1][1],
+    state.userBalances[2][3],
+    state.userBalances[2][2],
+    state.userBalances[0][1],
+    state.userBalances[2][1],
+  ]);
 
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');
@@ -169,14 +167,6 @@ const MenuTop = (props) => {
 
   // store affiliate address in localStorage
   function setAffiliateState() {
-    // if (localStorage.getItem('ref') === '') {
-    //   console.log('affiliate address parameter: blank');
-    // } else {
-    //   console.log(
-    //     'affiliate address parameter: ' + localStorage.getItem('ref')
-    //   );
-    // }
-
     dispatch({
       type: 'affiliate_address',
       data: localStorage.getItem('ref'),
@@ -225,7 +215,11 @@ const MenuTop = (props) => {
   function DGLogo() {
     return (
       <Link href="/">
-        <img id="menu-logo" alt="Decentral Games Logo" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png" />
+        <img
+          id="menu-logo"
+          alt="Decentral Games Logo"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png"
+        />
       </Link>
     );
   }
@@ -410,19 +404,16 @@ const MenuTop = (props) => {
     } else if (state.userStatus >= 4) {
       return (
         <span className="right-menu-items">
-
           <ModalInfo />
 
           <div>
             <Popup
               pinned
-              on='click'
-              position='bottom right'
+              on="click"
+              position="bottom right"
               className="account-popup"
               trigger={
-                <Button
-                  className="account-button"
-                >
+                <Button className="account-button">
                   <Icon className="account-icon" name="user circle outline" />
                   My Account
                 </Button>
@@ -446,18 +437,18 @@ const MenuTop = (props) => {
                       </h4>
                     )}
                     <span
-                      className="account-copy" 
-                      style={{ display: 'flex' }} 
+                      className="account-copy"
+                      style={{ display: 'flex' }}
                       onClick={() => onCopy()}
                     >
                       <p className="account-address">
                         {state.userAddress.substr(0, 8) +
-                        '...' +
-                        state.userAddress.substr(-8)}
-                        <Icon 
-                          name="clone outline" 
-                          style={{ 
-                            color: 'rgba(225, 255, 255, 0.5)', 
+                          '...' +
+                          state.userAddress.substr(-8)}
+                        <Icon
+                          name="clone outline"
+                          style={{
+                            color: 'rgba(225, 255, 255, 0.5)',
                             fontSize: '16px',
                             padding: '0px 0px 0px 8px',
                           }}
@@ -467,17 +458,28 @@ const MenuTop = (props) => {
                   </span>
                 </span>
                 <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Button 
-                    className="casino-balance-button" 
-                    href="/account"
-                  >
+                  <Button className="casino-balance-button" href="/account">
                     <p className="casino-balance-text"> Casino Balance </p>
-                    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <p className="casino-balance-text two"> ${casinoBalance} </p>
-                      <Icon className="arrow right" style={{ paddingLeft: '8px', paddingTop: '5px' }}/>
+                    <span
+                      style={{ display: 'flex', justifyContent: 'flex-end' }}
+                    >
+                      <p className="casino-balance-text two">
+                        {' '}
+                        ${casinoBalance}{' '}
+                      </p>
+                      <Icon
+                        className="arrow right"
+                        style={{ paddingLeft: '8px', paddingTop: '5px' }}
+                      />
                     </span>
                   </Button>
-                  <span style={{ display: 'flex', justifyContent: 'space-between', marginTop: '12px' }}>
+                  <span
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginTop: '12px',
+                    }}
+                  >
                     <Button className="account-deposit-button" href="/account">
                       Deposit
                     </Button>
@@ -486,7 +488,13 @@ const MenuTop = (props) => {
                     </Button>
                   </span>
                   <a href="/account">
-                    <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
+                    <p
+                      className="account-dropdown-item"
+                      style={{ marginTop: '8px' }}
+                    >
+                      {' '}
+                      My Account{' '}
+                    </p>
                   </a>
                   <a href="/account/nfts">
                     <p className="account-dropdown-item"> My NFTs </p>
@@ -503,7 +511,7 @@ const MenuTop = (props) => {
                   <a href="/account/referrals">
                     <p className="account-dropdown-item"> Referrals </p>
                   </a>
-                  <Button 
+                  <Button
                     className="buy-dg-button"
                     href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
                     target="_blank"
@@ -516,13 +524,9 @@ const MenuTop = (props) => {
 
             {copied ? (
               <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
-                <h3 className="copied-text">
-                  Wallet address copied!
-                </h3>
+                <h3 className="copied-text">Wallet address copied!</h3>
               </div>
-            ) : (
-              null
-            )}
+            ) : null}
           </div>
         </span>
       );
@@ -557,8 +561,6 @@ const MenuTop = (props) => {
               {balancesAndButtons()}
             </Menu>
           )}
-
-          <MessageBox handleDismiss={handleDismiss} />
         </div>
       </span>
     );

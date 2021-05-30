@@ -166,243 +166,273 @@ const ContentBalancer = (props) => {
     setAmountInputDAI(e.target.value);
   }
 
-  function contentBalancer() {
-    return (
-      <Aux>
-        <div className="DG-liquidity-container top">
-          <div className="DG-column top">
-            <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
-              <p>
-                Balancer LP rewards have now ended following this{' '}
-                <a
-                  href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
-                  style={{ color: '#2085f4' }}
-                  target="_blank"
-                >
-                  gov proposal
-                </a>
-                . The Uniswap LP rewards are still active and have been increased.{' '}
-              </p>
+  return (
+    <Aux>
+      <div className="DG-liquidity-container top">
+        <div className="DG-column top">
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
+            <p>
+              Balancer LP rewards have now ended following this{' '}
+              <a
+                href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
+                style={{ color: '#2085f4' }}
+                target="_blank"
+              >
+                gov proposal
+              </a>
+              . The Uniswap LP rewards are still active and have been increased.{' '}
+            </p>
+          </span>
+        </div>
+      </div>
+
+      <div className="DG-liquidity-container">
+        <div className="DG-column unclaimed">
+          <span style={{ display: 'flex' }}>
+            <img
+              src={Images.DG_COIN_LOGO}
+              className="farming-logo"
+              alt="Decentral Games Coin Logo"
+            />
+            <span className="farming-pool-span">
+              {pool1 ? (
+                <span>
+                  <span style={{ display: 'flex' }}>
+                    <p className="welcome-text">unclaimed 1</p>
+                    <Icon
+                      name="sort"
+                      id="pool-select-icon"
+                      onClick={() => setPool1(!pool1)}
+                    />
+                  </span>
+                  <p className="account-name">
+                    {state.DGBalances.BALANCE_STAKING_BALANCER_1 ? (
+                      props.formatPrice(
+                        state.DGBalances.BALANCE_STAKING_BALANCER_1,
+                        3
+                      )
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '1px',
+                          marginBottom: '2px',
+                        }}
+                      />
+                    )}
+                  </p>
+                </span>
+              ) : (
+                <span>
+                  <span style={{ display: 'flex' }}>
+                    <p className="welcome-text">unclaimed 2</p>
+                    <Icon
+                      name="sort"
+                      id="pool-select-icon"
+                      onClick={() => setPool1(!pool1)}
+                    />
+                  </span>
+                  <p className="account-name">
+                    {state.DGBalances.BALANCE_STAKING_BALANCER_2 ? (
+                      props.formatPrice(
+                        state.DGBalances.BALANCE_STAKING_BALANCER_2,
+                        3
+                      )
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '1px',
+                          marginBottom: '2px',
+                        }}
+                      />
+                    )}
+                  </p>
+                </span>
+              )}
             </span>
-          </div>
+          </span>
+
+          <Divider />
+
+          {pool1 ? (
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingTop: '12px',
+                paddingBottom: '12px',
+              }}
+            >
+              <p className="earned-text">Value USD</p>
+              {pool1USD ? (
+                <p className="earned-amount">${pool1USD}</p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px',
+                  }}
+                />
+              )}
+            </span>
+          ) : (
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                paddingTop: '12px',
+                paddingBottom: '12px',
+              }}
+            >
+              <p className="earned-text">Value USD</p>
+              {pool2USD ? (
+                <p className="earned-amount">${pool2USD}</p>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '1px',
+                    marginBottom: '2px',
+                  }}
+                />
+              )}
+            </span>
+          )}
+
+          <Divider />
+
+          {pool1 ? (
+            <span className="DG-button-span">
+              {Number(state.DGBalances.BALANCE_STAKING_BALANCER_1) ? (
+                <Button
+                  className="DG-claim-button"
+                  id="balances-padding-correct"
+                  onClick={() => props.reward(props.stakingContractPool1)}
+                >
+                  CLAIM BALANCER 1 $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM BALANCER 1 $DG
+                </Button>
+              )}
+            </span>
+          ) : (
+            <span className="DG-button-span">
+              {Number(state.DGBalances.BALANCE_STAKING_BALANCER_2) ? (
+                <Button
+                  className="DG-claim-button"
+                  id="balances-padding-correct"
+                  onClick={() => props.reward(props.stakingContractPool2)}
+                >
+                  CLAIM BALANCER 2 $DG
+                </Button>
+              ) : (
+                <Button disabled className="DG-claim-button">
+                  CLAIM BALANCER 2 $DG
+                </Button>
+              )}
+            </span>
+          )}
         </div>
 
-        <div className="DG-liquidity-container">
-          <div className="DG-column unclaimed">
+        <span className="DG-tablet-container">
+          <div
+            className="DG-column one"
+            id="DG-column-hover"
+            style={{ position: 'relative', height: '100%' }}
+          >
             <span style={{ display: 'flex' }}>
+              <img
+                src={Images.MANA_CIRCLE}
+                className="farming-logo"
+                alt="Decentraland Logo"
+              />
               <img
                 src={Images.DG_COIN_LOGO}
                 className="farming-logo"
                 alt="Decentral Games Coin Logo"
               />
               <span className="farming-pool-span">
-                {pool1 ? (
-                  <span>
-                    <span style={{ display: 'flex' }}>
-                      <p className="welcome-text">unclaimed 1</p>
-                      <Icon
-                        name="sort"
-                        id="pool-select-icon"
-                        onClick={() => setPool1(!pool1)}
-                      />
-                    </span>
-                    <p className="account-name">
-                      {state.DGBalances.BALANCE_STAKING_BALANCER_1 ? (
-                        props.formatPrice(
-                          state.DGBalances.BALANCE_STAKING_BALANCER_1,
-                          3
-                        )
-                      ) : (
-                        <Loader
-                          active
-                          inline
-                          size="small"
-                          style={{
-                            fontSize: '12px',
-                            marginTop: '1px',
-                            marginBottom: '2px',
-                          }}
-                        />
-                      )}
-                    </p>
-                  </span>
-                ) : (
-                  <span>
-                    <span style={{ display: 'flex' }}>
-                      <p className="welcome-text">unclaimed 2</p>
-                      <Icon
-                        name="sort"
-                        id="pool-select-icon"
-                        onClick={() => setPool1(!pool1)}
-                      />
-                    </span>
-                    <p className="account-name">
-                      {state.DGBalances.BALANCE_STAKING_BALANCER_2 ? (
-                        props.formatPrice(
-                          state.DGBalances.BALANCE_STAKING_BALANCER_2,
-                          3
-                        )
-                      ) : (
-                        <Loader
-                          active
-                          inline
-                          size="small"
-                          style={{
-                            fontSize: '12px',
-                            marginTop: '1px',
-                            marginBottom: '2px',
-                          }}
-                        />
-                      )}
-                    </p>
-                  </span>
-                )}
+                <p className="welcome-text">balancer 1</p>
+                <p className="account-name">MANA-DG</p>
               </span>
+            </span>
+
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <a
+                href="https://pools.balancer.exchange/#/pool/0xca54c398195fce98856888b0fd97a9470a140f71/"
+                target="_blank"
+                style={{ marginTop: '-75px', marginRight: '0px' }}
+              >
+                <Icon className="more-text" name="external square alternate" />
+              </a>
             </span>
 
             <Divider />
 
-            {pool1 ? (
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingTop: '12px',
-                  paddingBottom: '12px',
-                }}
-              >
-                <p className="earned-text">Value USD</p>
-                {pool1USD ? (
-                  <p className="earned-amount">${pool1USD}</p>
-                ) : (
-                  <Loader
-                    active
-                    inline
-                    size="small"
-                    style={{
-                      fontSize: '12px',
-                      marginTop: '1px',
-                      marginBottom: '2px',
-                    }}
-                  />
-                )}
-              </span>
-            ) : (
-              <span
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingTop: '12px',
-                  paddingBottom: '12px',
-                }}
-              >
-                <p className="earned-text">Value USD</p>
-                {pool2USD ? (
-                  <p className="earned-amount">${pool2USD}</p>
-                ) : (
-                  <Loader
-                    active
-                    inline
-                    size="small"
-                    style={{
-                      fontSize: '12px',
-                      marginTop: '1px',
-                      marginBottom: '2px',
-                    }}
-                  />
-                )}
-              </span>
-            )}
-
-            <Divider />
-
-            {pool1 ? (
-              <span className="DG-button-span">
-                {Number(state.DGBalances.BALANCE_STAKING_BALANCER_1) ? (
-                  <Button
-                    className="DG-claim-button"
-                    id="balances-padding-correct"
-                    onClick={() => props.reward(props.stakingContractPool1)}
-                  >
-                    CLAIM BALANCER 1 $DG
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-claim-button">
-                    CLAIM BALANCER 1 $DG
-                  </Button>
-                )}
-              </span>
-            ) : (
-              <span className="DG-button-span">
-                {Number(state.DGBalances.BALANCE_STAKING_BALANCER_2) ? (
-                  <Button
-                    className="DG-claim-button"
-                    id="balances-padding-correct"
-                    onClick={() => props.reward(props.stakingContractPool2)}
-                  >
-                    CLAIM BALANCER 2 $DG
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-claim-button">
-                    CLAIM BALANCER 2 $DG
-                  </Button>
-                )}
-              </span>
-            )}
-          </div>
-
-          <span className="DG-tablet-container">
-            <div
-              className="DG-column one"
-              id="DG-column-hover"
-              style={{ position: 'relative', height: '100%' }}
-            >
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.MANA_CIRCLE}
-                  className="farming-logo"
-                  alt="Decentraland Logo"
-                />
-                <img
-                  src={Images.DG_COIN_LOGO}
-                  className="farming-logo"
-                  alt="Decentral Games Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">balancer 1</p>
-                  <p className="account-name">MANA-DG</p>
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <p className="earned-text">APY</p>
+                  {APYMANA ? (
+                    <p className="earned-amount">N/A</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="small"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '5px',
+                        marginLeft: '-1px',
+                        marginBottom: '-3px',
+                      }}
+                    />
+                  )}
                 </span>
               </span>
 
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://pools.balancer.exchange/#/pool/0xca54c398195fce98856888b0fd97a9470a140f71/"
-                  target="_blank"
-                  style={{ marginTop: '-75px', marginRight: '0px' }}
+              <span
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
+              >
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
                 >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
-                  />
-                </a>
-              </span>
-
-              <Divider />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">APY</p>
-                    {APYMANA ? (
+                  <p className="earned-text">% of balancer 1</p>
+                  <p className="earned-amount">
+                    {poolPercentage1 ? (
                       <p className="earned-amount">N/A</p>
                     ) : (
                       <Loader
@@ -417,326 +447,273 @@ const ContentBalancer = (props) => {
                         }}
                       />
                     )}
-                  </span>
+                  </p>
                 </span>
-
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">% of balancer 1</p>
-                    <p className="earned-amount">
-                      {poolPercentage1 ? (
-                        <p className="earned-amount">N/A</p>
-                      ) : (
-                        <Loader
-                          active
-                          inline
-                          size="small"
-                          style={{
-                            fontSize: '12px',
-                            marginTop: '5px',
-                            marginLeft: '-1px',
-                            marginBottom: '-3px',
-                          }}
-                        />
-                      )}
-                    </p>
-                  </span>
-                </span>
-              </div>
-
-              <Divider />
-
-              <Input
-                className="liquidity-input"
-                fluid
-                placeholder="Amount"
-                value={amountInputMANA}
-                onChange={handleChangeMANA}
-              />
-
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
-                <p
-                  className="bpt-text"
-                  onClick={() =>
-                    setAmountInputMANA(
-                      state.stakingBalances.BALANCE_WALLET_BPT_1
-                    )
-                  }
-                >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_WALLET_BPT_1,
-                    3
-                  )}{' '}
-                  BPT
-                </p>
-                <p
-                  className="bpt-text"
-                  onClick={() =>
-                    setAmountInputMANA(
-                      state.stakingBalances.BALANCE_STAKED_BPT_1
-                    )
-                  }
-                >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_STAKED_BPT_1,
-                    3
-                  )}{' '}
-                  BPT staked
-                </p>
-              </span>
-
-              <span className="DG-button-span">
-                {Number(amountInputMANA) ? (
-                  <Button
-                    className="DG-stake-button"
-                    id="balances-padding-correct"
-                    onClick={() => {
-                      props.staking(
-                        BPTContract1,
-                        Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1,
-                        props.stakingContractPool1,
-                        amountInputMANA
-                      );
-                      setAmountInputMANA('');
-                    }}
-                  >
-                    STAKE BPT
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-stake-button">
-                    STAKE BPT
-                  </Button>
-                )}
-
-                {percentagePool1 && Number(amountInputMANA) ? (
-                  <Button
-                    className="DG-stake-button"
-                    id="balances-padding-correct"
-                    onClick={() => {
-                      props.withdrawal(
-                        props.stakingContractPool1,
-                        amountInputMANA
-                      );
-                      setAmountInputMANA('');
-                    }}
-                  >
-                    UNSTAKE BPT
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-stake-button">
-                    UNSTAKE BPT
-                  </Button>
-                )}
               </span>
             </div>
 
-            <div
-              className="DG-column two"
-              style={{ position: 'relative', height: '100%' }}
-            >
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.DAI_CIRCLE}
-                  className="farming-logo"
-                  alt="Dai Logo"
-                />
-                <img
-                  src={Images.DG_COIN_LOGO}
-                  className="farming-logo"
-                  alt="Decentral Games Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text">balancer 2</p>
-                  <p className="account-name">DAI-DG</p>
-                </span>
-              </span>
+            <Divider />
 
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://pools.balancer.exchange/#/pool/0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d/"
-                  target="_blank"
-                  style={{ marginTop: '-75px', marginRight: '0px' }}
+            <Input
+              className="liquidity-input"
+              fluid
+              placeholder="Amount"
+              value={amountInputMANA}
+              onChange={handleChangeMANA}
+            />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p
+                className="bpt-text"
+                onClick={() =>
+                  setAmountInputMANA(state.stakingBalances.BALANCE_WALLET_BPT_1)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_WALLET_BPT_1,
+                  3
+                )}{' '}
+                BPT
+              </p>
+              <p
+                className="bpt-text"
+                onClick={() =>
+                  setAmountInputMANA(state.stakingBalances.BALANCE_STAKED_BPT_1)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_STAKED_BPT_1,
+                  3
+                )}{' '}
+                BPT staked
+              </p>
+            </span>
+
+            <span className="DG-button-span">
+              {Number(amountInputMANA) ? (
+                <Button
+                  className="DG-stake-button"
+                  id="balances-padding-correct"
+                  onClick={() => {
+                    props.staking(
+                      BPTContract1,
+                      Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_1,
+                      props.stakingContractPool1,
+                      amountInputMANA
+                    );
+                    setAmountInputMANA('');
+                  }}
                 >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
-                  />
-                </a>
+                  STAKE BPT
+                </Button>
+              ) : (
+                <Button disabled className="DG-stake-button">
+                  STAKE BPT
+                </Button>
+              )}
+
+              {percentagePool1 && Number(amountInputMANA) ? (
+                <Button
+                  className="DG-stake-button"
+                  id="balances-padding-correct"
+                  onClick={() => {
+                    props.withdrawal(
+                      props.stakingContractPool1,
+                      amountInputMANA
+                    );
+                    setAmountInputMANA('');
+                  }}
+                >
+                  UNSTAKE BPT
+                </Button>
+              ) : (
+                <Button disabled className="DG-stake-button">
+                  UNSTAKE BPT
+                </Button>
+              )}
+            </span>
+          </div>
+
+          <div
+            className="DG-column two"
+            style={{ position: 'relative', height: '100%' }}
+          >
+            <span style={{ display: 'flex' }}>
+              <img
+                src={Images.DAI_CIRCLE}
+                className="farming-logo"
+                alt="Dai Logo"
+              />
+              <img
+                src={Images.DG_COIN_LOGO}
+                className="farming-logo"
+                alt="Decentral Games Coin Logo"
+              />
+              <span className="farming-pool-span">
+                <p className="welcome-text">balancer 2</p>
+                <p className="account-name">DAI-DG</p>
               </span>
+            </span>
 
-              <Divider />
+            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <a
+                href="https://pools.balancer.exchange/#/pool/0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d/"
+                target="_blank"
+                style={{ marginTop: '-75px', marginRight: '0px' }}
+              >
+                <Icon className="more-text" name="external square alternate" />
+              </a>
+            </span>
 
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">APY</p>
-                    {APYDAI ? (
-                      <p className="earned-amount">N/A</p>
-                    ) : (
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '5px',
-                          marginLeft: '-1px',
-                          marginBottom: '-2px',
-                        }}
-                      />
-                    )}
-                  </span>
-                </span>
+            <Divider />
 
+            <div style={{ display: 'flex' }}>
+              <span className="gameplay-left-column">
                 <span
                   style={{
                     display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
+                    flexDirection: 'column',
+                    alignItems: 'center',
                   }}
                 >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">% of balancer 2</p>
-                    {poolPercentage2 ? (
-                      <p className="earned-amount">N/A</p>
-                    ) : (
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '5px',
-                          marginLeft: '-1px',
-                          marginBottom: '-2px',
-                        }}
-                      />
-                    )}
-                  </span>
+                  <p className="earned-text">APY</p>
+                  {APYDAI ? (
+                    <p className="earned-amount">N/A</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="small"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '5px',
+                        marginLeft: '-1px',
+                        marginBottom: '-2px',
+                      }}
+                    />
+                  )}
                 </span>
-              </div>
-
-              <Divider />
-
-              <Input
-                className="liquidity-input"
-                fluid
-                placeholder="Amount"
-                value={amountInputDAI}
-                onChange={handleChangeDAI}
-              />
+              </span>
 
               <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '50%',
+                }}
               >
-                <p
-                  className="bpt-text"
-                  onClick={() =>
-                    setAmountInputDAI(
-                      state.stakingBalances.BALANCE_WALLET_BPT_2
-                    )
-                  }
+                <span
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
                 >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_WALLET_BPT_2,
-                    3
-                  )}{' '}
-                  BPT
-                </p>
-                <p
-                  className="bpt-text"
-                  onClick={() =>
-                    setAmountInputDAI(
-                      state.stakingBalances.BALANCE_STAKED_BPT_2
-                    )
-                  }
-                >
-                  {props.formatPrice(
-                    state.stakingBalances.BALANCE_STAKED_BPT_2,
-                    3
-                  )}{' '}
-                  BPT staked
-                </p>
-              </span>
-
-              <span className="DG-button-span">
-                {Number(amountInputDAI) ? (
-                  <Button
-                    className="DG-stake-button"
-                    id="balances-padding-correct"
-                    onClick={() => {
-                      props.staking(
-                        BPTContract2,
-                        Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2,
-                        props.stakingContractPool2,
-                        amountInputDAI
-                      );
-                      setAmountInputDAI('');
-                    }}
-                  >
-                    STAKE BPT
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-stake-button">
-                    STAKE BPT
-                  </Button>
-                )}
-
-                {percentagePool2 && Number(amountInputDAI) ? (
-                  <Button
-                    className="DG-stake-button"
-                    id="balances-padding-correct"
-                    onClick={() => {
-                      props.withdrawal(
-                        props.stakingContractPool2,
-                        amountInputDAI
-                      );
-                      setAmountInputDAI('');
-                    }}
-                  >
-                    UNSTAKE BPT
-                  </Button>
-                ) : (
-                  <Button disabled className="DG-stake-button">
-                    UNSTAKE BPT
-                  </Button>
-                )}
+                  <p className="earned-text">% of balancer 2</p>
+                  {poolPercentage2 ? (
+                    <p className="earned-amount">N/A</p>
+                  ) : (
+                    <Loader
+                      active
+                      inline
+                      size="small"
+                      style={{
+                        fontSize: '12px',
+                        marginTop: '5px',
+                        marginLeft: '-1px',
+                        marginBottom: '-2px',
+                      }}
+                    />
+                  )}
+                </span>
               </span>
             </div>
-          </span>
 
-        </div>
-      </Aux>
-    );
-  }
+            <Divider />
 
-  return contentBalancer();
+            <Input
+              className="liquidity-input"
+              fluid
+              placeholder="Amount"
+              value={amountInputDAI}
+              onChange={handleChangeDAI}
+            />
+
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p
+                className="bpt-text"
+                onClick={() =>
+                  setAmountInputDAI(state.stakingBalances.BALANCE_WALLET_BPT_2)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_WALLET_BPT_2,
+                  3
+                )}{' '}
+                BPT
+              </p>
+              <p
+                className="bpt-text"
+                onClick={() =>
+                  setAmountInputDAI(state.stakingBalances.BALANCE_STAKED_BPT_2)
+                }
+              >
+                {props.formatPrice(
+                  state.stakingBalances.BALANCE_STAKED_BPT_2,
+                  3
+                )}{' '}
+                BPT staked
+              </p>
+            </span>
+
+            <span className="DG-button-span">
+              {Number(amountInputDAI) ? (
+                <Button
+                  className="DG-stake-button"
+                  id="balances-padding-correct"
+                  onClick={() => {
+                    props.staking(
+                      BPTContract2,
+                      Global.ADDRESSES.DG_STAKING_BALANCER_ADDRESS_2,
+                      props.stakingContractPool2,
+                      amountInputDAI
+                    );
+                    setAmountInputDAI('');
+                  }}
+                >
+                  STAKE BPT
+                </Button>
+              ) : (
+                <Button disabled className="DG-stake-button">
+                  STAKE BPT
+                </Button>
+              )}
+
+              {percentagePool2 && Number(amountInputDAI) ? (
+                <Button
+                  className="DG-stake-button"
+                  id="balances-padding-correct"
+                  onClick={() => {
+                    props.withdrawal(
+                      props.stakingContractPool2,
+                      amountInputDAI
+                    );
+                    setAmountInputDAI('');
+                  }}
+                >
+                  UNSTAKE BPT
+                </Button>
+              ) : (
+                <Button disabled className="DG-stake-button">
+                  UNSTAKE BPT
+                </Button>
+              )}
+            </span>
+          </div>
+        </span>
+      </div>
+    </Aux>
+  );
 };
 
 export default ContentBalancer;

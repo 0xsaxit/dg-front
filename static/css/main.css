@@ -21,27 +21,27 @@ a {
 
 @font-face {
   font-family: 'Larsseit-ExtraBold';
-  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
+  src: url('/static/fonts/Larsseit/Larsseit5.ttf');
 }
 
 @font-face {
   font-family: 'Larsseit-Bold';
-  src: url("/static/fonts/Larsseit/Larsseit16.otf");
+  src: url('/static/fonts/Larsseit/Larsseit16.otf');
 }
 
 @font-face {
   font-family: 'Larsseit-Medium';
-  src: url("/static/fonts/Larsseit/Larsseit2.ttf");
+  src: url('/static/fonts/Larsseit/Larsseit2.ttf');
 }
 
 @font-face {
   font-family: 'Larsseit-Regular';
-  src: url("/static/fonts/Larsseit/Larsseit13.ttf");
+  src: url('/static/fonts/Larsseit/Larsseit13.ttf');
 }
 
 @font-face {
   font-family: 'Larsseit-Light';
-  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
+  src: url('/static/fonts/Larsseit/Larsseit5.ttf');
 }
 
 h1 {
@@ -205,7 +205,6 @@ a.get-metamask-scroll:hover {
   line-height: 27px;
 }
 
-
 .ui.checkbox label::before,
 .ui.checkbox label::after {
   margin-top: 6px;
@@ -301,22 +300,21 @@ div.ui.segment.transparent-menu-segment {
   padding-right: 15px !important;
 }
 
-
 div.item.sidebar-menu-text.blog#active,
 div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: pointer !important;
   font-weight: 700 !important;
-  border-bottom: 3px solid #006EFF;
+  border-bottom: 3px solid #006eff;
   padding-bottom: 22px !important;
 }
 
-.sidebar-menu-text.blog#active, 
+.sidebar-menu-text.blog#active,
 .sidebar-menu-text.blog:hover {
   color: black;
   cursor: default;
   font-weight: 700 !important;
-  border-bottom: 3px solid #006EFF;
+  border-bottom: 3px solid #006eff;
   padding-bottom: 18px !important;
 }
 
@@ -401,7 +399,7 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .menu-account-info {
-  background-color: #006EFF;
+  background-color: #006eff;
   border-radius: 4px;
   margin-top: 18px;
   height: 27px !important;
@@ -416,7 +414,7 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .menu-avatar-background {
-  border: 1px solid #006EFF;
+  border: 1px solid #006eff;
   display: flex;
   background-color: #165daa;
   padding-right: 15px;
@@ -454,7 +452,7 @@ p.menu-info-label-link,
 p.menu-info-label-link:hover,
 a.menu-info-label-link,
 a.menu-info-label-link:hover {
-  color: #006EFF !important;
+  color: #006eff !important;
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
@@ -524,7 +522,6 @@ a.menu-info-label-link:hover {
   max-width: 500px;
   padding-bottom: 60px;
 }
-
 
 .mailchimp-outter-container {
   top: 106px;
@@ -858,12 +855,12 @@ p.home-dashboard-p {
 }
 
 .home-more-nav-top {
-  color: #006EFF !important;
+  color: #006eff !important;
   margin-top: 7px !important;
 }
 
 .home-more-nav {
-  color: #006EFF !important;
+  color: #006eff !important;
   margin-top: 20px !important;
 }
 
@@ -1128,7 +1125,7 @@ p.home-dashboard-p {
 }
 
 .ui.dropdown > .dropdown.icon {
-  color: #006EFF;
+  color: #006eff;
 }
 
 .ui.dropdown > .text {
@@ -1264,7 +1261,7 @@ table {
   border-radius: 4px;
   border: 0px solid white !important;
   background: black;
-} 
+}
 
 tr:nth-child(even),
 tr.account-table-even {
@@ -1284,13 +1281,13 @@ tr.account-table-odd {
 }
 
 td:first-child {
-  border-top-left-radius: 10px; 
+  border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
 td:last-child {
-  border-bottom-right-radius: 10px; 
-  border-top-right-radius: 10px; 
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .ui.table thead th {
@@ -1319,7 +1316,7 @@ td:last-child {
 .tx-box-overflow {
   max-height: 50vh !important;
   overflow: auto;
-  margin-bottom: 90px; 
+  margin-bottom: 90px;
   border: 0px solid #edf2f9 !important;
   border-radius: 8px !important;
 }
@@ -1359,9 +1356,8 @@ td:last-child {
 
 .ui.table tr td.leaders-col-2 {
   padding-top: 18px !important;
-  padding-bottom: 17px !important; 
+  padding-bottom: 17px !important;
 }
-
 
 /* ----------------------------------------- */
 /*            ACCOUNT SECTION CSS            */
@@ -1754,11 +1750,11 @@ i.pencil.icon.edit-icon:hover {
 .top-right-gameplay-text {
   border-radius: 4px;
   background-color: white;
-  border: 1px solid #006EFF;
+  border: 1px solid #006eff;
   font-size: 12px;
   font-weight: bold !important;
   letter-spacing: 0.5px;
-  color: #006EFF;
+  color: #006eff;
   text-transform: uppercase;
   padding: 3px 6px 2px 6px;
   margin-top: -75px !important;
@@ -1806,7 +1802,7 @@ i.pencil.icon.edit-icon:hover {
   padding-top: 16px;
   margin-bottom: -14px;
   padding-bottom: 16px;
-  border-left: 3px solid #006EFF !important;
+  border-left: 3px solid #006eff !important;
 }
 
 .ui.top.left.popup:before,
@@ -1987,7 +1983,6 @@ div.ui.grid.balances-container {
   }
 }
 
-
 .top-balances-column {
   border: 1px solid #edf2f9;
   box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
@@ -2065,7 +2060,7 @@ div.ui.grid.balances-container {
 
 i.check.icon.affiliate-icon,
 i.copy.icon.affiliate-icon {
-  color: #006EFF;
+  color: #006eff;
   padding-top: 6px;
 }
 
@@ -2332,7 +2327,7 @@ span.treasury-table {
 
 .ui.toggle.checkbox.checked input.hidden + label:before,
 .ui.toggle.checkbox.checked input.hidden:focus + label:before {
-  background-color: #006EFF !important;
+  background-color: #006eff !important;
 }
 
 /* ----------------------------------------- */
@@ -2666,7 +2661,7 @@ div.ui.grid.admin-balances-container {
 a.ui.blue.button.play-button,
 .ui.blue.button.play-button {
   position: relative;
-  background-color: #006EFF !important;
+  background-color: #006eff !important;
   color: white;
   margin-top: 8px;
   height: 64px !important;
@@ -2687,7 +2682,7 @@ a.ui.blue.button.metamask-how-button {
 }
 
 a.ui.blue.button.earn-dg-button {
-  background-color: #2B2B2B;
+  background-color: #2b2b2b;
   color: white;
   position: relative;
   margin-top: 8px;
@@ -2704,7 +2699,7 @@ a.ui.blue.button.partners,
 a.ui.blue.button.hop,
 a.ui.blue.button.touch {
   position: relative;
-  background-color: #006EFF;
+  background-color: #006eff;
   color: white;
   margin-top: 20px;
   height: 48px !important;
@@ -2724,7 +2719,7 @@ a.ui.blue.button.touch {
     width: 210px !important;
     margin-left: calc(50vw - 132px);
     position: relative;
-    background-color: #006EFF;
+    background-color: #006eff;
     color: white;
     margin-top: 8px;
     height: 64px !important;
@@ -2737,9 +2732,9 @@ a.ui.blue.button.touch {
 a.ui.blue.button.docs,
 a.ui.blue.button.roadmap {
   background: transparent;
-  color: #006EFF;
+  color: #006eff;
   margin-left: 20px;
-  border: 1px solid #006EFF;
+  border: 1px solid #006eff;
   margin-top: 20px;
   height: 48px !important;
   width: 200px;
@@ -2773,7 +2768,7 @@ a.ui.blue.button.casinos {
 .ui.button.DG-deposit-button,
 .ui.button.DG-play-now-button {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   min-width: 100% !important;
   border-radius: 4px;
   height: 36px !important;
@@ -2783,7 +2778,7 @@ a.ui.blue.button.casinos {
 
 .ui.button.balances-authorize-button {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   min-width: 100% !important;
   margin-top: 3px;
   margin-bottom: 6px;
@@ -2796,8 +2791,8 @@ a.ui.blue.button.casinos {
 .ui.button.get-dg-button {
   background-color: rgba(255, 255, 255, 0);
   font-size: 12px;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-bottom: -2px;
   margin-top: 8px;
   height: 24px;
@@ -2810,8 +2805,8 @@ a.ui.blue.button.casinos {
 
 .ui.button.withdraw-dg-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   height: 27px;
   margin-top: 15px;
   padding: 7px 6px 0px 6px;
@@ -2823,7 +2818,7 @@ a.ui.blue.button.casinos {
 .ui.blue.button.metamask-button {
   font-size: 18px;
   position: relative;
-  background-color: #006EFF !important;
+  background-color: #006eff !important;
   color: white;
   padding: 0px;
   line-height: 24px;
@@ -2835,7 +2830,7 @@ a.ui.blue.button.casinos {
 }
 
 .ui.button.modal-info-button {
-  background-color: #006EFF;
+  background-color: #006eff;
   color: white;
   font-size: 14px !important;
   font-weight: 800 !important;
@@ -2849,7 +2844,7 @@ a.ui.blue.button.casinos {
 
 .ui.button.mailchimp-submit-button {
   position: relative;
-  background-color: #006EFF !important;
+  background-color: #006eff !important;
   color: white;
   width: 180px !important;
   margin-left: 15px;
@@ -2862,8 +2857,8 @@ a.ui.blue.button.casinos {
 
 a.ui.blue.button.dg-learn-button {
   background-color: transparent;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   position: relative;
   margin-top: 20px;
   width: 180px !important;
@@ -2872,7 +2867,7 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.blue.button.nft-button {
   position: relative;
-  background-color: #006EFF;
+  background-color: #006eff;
   color: white;
   margin-top: 8px;
   width: 48.5% !important;
@@ -2884,8 +2879,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.nft-read-button {
   background-color: transparent;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-top: 8px;
   width: 48.5% !important;
   height: 36px !important;
@@ -2896,8 +2891,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.reload-button {
   background-color: transparent;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-top: -5px;
   margin-left: 24px;
   height: 27px;
@@ -2908,8 +2903,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   height: 24px;
   padding-left: 6px;
   padding-right: 6px;
@@ -2921,8 +2916,8 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.button.etherscan-button-ptxid {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   padding-left: 6px;
   padding-right: 6px;
   margin-right: 0px !important;
@@ -2950,8 +2945,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.button.etherscan-button-blue {
   background-color: rgba(255, 255, 255, 0);
   font-size: 12px;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   height: 24px !important;
   margin-top: 8px;
   line-height: 0px;
@@ -2963,7 +2958,7 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.blue.button.our-blog-button {
   position: relative;
-  background-color: #006EFF !important;
+  background-color: #006eff !important;
   color: white;
   margin-top: 9px;
   margin-bottom: 9px;
@@ -2976,8 +2971,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.blue.button.learn-more-button {
   position: relative;
   background-color: transparent !important;
-  color: #006EFF;
-  border: 1px solid #006EFF;
+  color: #006eff;
+  border: 1px solid #006eff;
   margin-top: 9px;
   margin-bottom: 9px;
   height: 34px;
@@ -2988,8 +2983,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.disabled.button.balances-top-button,
 .ui.button.balances-top-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   height: 24px !important;
   font-size: 12px;
   border-radius: 4px;
@@ -3005,7 +3000,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.balances-play-button {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   width: 48.5% !important;
   height: 36px !important;
   line-height: 8px;
@@ -3015,7 +3010,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   min-width: 48.5% !important;
   border-radius: 4px;
   height: 36px !important;
@@ -3025,8 +3020,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button-balancer {
   background-color: white;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   height: 36px;
   min-width: 100% !important;
   margin-top: 15px;
@@ -3035,8 +3030,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button-balancer-enabled {
   background-color: white;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   height: 34px;
   min-width: 100% !important;
   margin-top: 15px;
@@ -3049,8 +3044,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.affiliate-copy-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-top: -45px;
   height: 27px;
   max-width: 150px !important;
@@ -3061,8 +3056,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.affiliate-copied-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-top: -45px;
   height: 27px;
   max-width: 100px !important;
@@ -3073,8 +3068,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.balancer-top-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-top: -45px;
   height: 27px;
   max-width: 81px !important;
@@ -3096,7 +3091,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-airdrop-button {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   height: 34px;
   padding-left: 45px;
   padding-right: 45px;
@@ -3105,7 +3100,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-stake-button-two {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   margin-top: 18px;
   margin-bottom: 6px;
   height: 34px;
@@ -3114,8 +3109,8 @@ a.ui.button.balances-top-button {
 
 .ui.button.DG-liquidity-button {
   background-color: white;
-  border: 1px solid #006EFF;
-  color: #006EFF;
+  border: 1px solid #006eff;
+  color: #006eff;
   margin-top: 27px;
   height: 27px;
   max-width: 150px !important;
@@ -3124,7 +3119,7 @@ a.ui.button.balances-top-button {
 
 .ui.button.not-found-button {
   color: white;
-  background-color: #006EFF;
+  background-color: #006eff;
   height: 34px;
   min-width: 180px;
   margin-top: 12px;
@@ -3152,7 +3147,7 @@ a.ui.button.balances-top-button {
 a.ui.blue.button.play-button-binance,
 .ui.blue.button.play-button-binance {
   position: relative;
-  background-color: #F1CD50 !important;
+  background-color: #f1cd50 !important;
   color: black;
   margin-top: 8px;
   height: 48px !important;
@@ -3162,12 +3157,12 @@ a.ui.blue.button.play-button-binance,
 }
 
 .menu-account-info.binance {
-  background: #F1CD50;
+  background: #f1cd50;
 }
 
 .menu-avatar-background.binance {
-  border: 1px solid #F1CD50;
-  background: #FFEDAE;
+  border: 1px solid #f1cd50;
+  background: #ffedae;
 }
 
 .right-menu-text.blog.binance {
@@ -3218,7 +3213,7 @@ a.ui.blue.button.play-button-binance,
 .ui.button.account-button {
   height: 40px;
   margin-top: 12px;
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   border-radius: 16px;
   color: white;
   margin-right: 16px;
@@ -3234,11 +3229,11 @@ img.avatar-picture-home {
   height: 46px;
   border-radius: 100%;
   background: linear-gradient(
-    162deg, 
-    rgba(0, 0, 0, 1) 0%, 
-    rgba(0, 0, 0, 1) 40%, 
-    #006EFF 40.1%,  
-    #006EFF 100%
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #006eff 40.1%,
+    #006eff 100%
   );
 }
 
@@ -3247,7 +3242,7 @@ img.avatar-picture-home {
   height: 100%;
   box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.04);
   border-radius: 24px;
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   padding: 30px;
   border: 0px solid white;
 }
@@ -3293,7 +3288,7 @@ img.avatar-picture-home {
   height: 54px;
   width: 48.5%;
   border-radius: 12px;
-  background: #006EFF;
+  background: #006eff;
   color: white;
   font-size: 18px !important;
   padding-top: 17px;
@@ -3303,7 +3298,7 @@ img.avatar-picture-home {
   height: 48px;
   width: 48.5%;
   border-radius: 12px;
-  background: #006EFF;
+  background: #006eff;
   color: white;
   font-size: 16px;
 }
@@ -3336,6 +3331,7 @@ img.avatar-picture-home {
 }
 
 .account-dropdown-item:hover {
+  cursor: pointer;
   opacity: 70%;
   transition: all linear 0.1s;
 }
@@ -3365,9 +3361,9 @@ i.clone.outline.icon,
   height: 64px;
   width: 100%;
   border-radius: 12px;
-  background: #006EFF;
+  background: #006eff;
   color: white;
-  font-size: 18px; 
+  font-size: 18px;
   margin-top: 24px;
   padding-top: 21px;
 }
@@ -3376,7 +3372,7 @@ i.clone.outline.icon,
   height: 48px;
   width: 48.5%;
   border-radius: 12px;
-  background: #F1CD50;
+  background: #f1cd50;
   color: black;
   font-size: 16px;
 }
@@ -3458,25 +3454,29 @@ a {
 }
 
 .terms-a {
-  color: #F1CD50;
+  color: #f1cd50;
 }
 
-.ui.checkbox input:checked~.box:before, .ui.checkbox input:checked~label:before,
-.ui.checkbox .box:hover::before, .ui.checkbox label:hover::before,
-.ui.checkbox input:checked~.box:before, .ui.checkbox input:checked~label:before {
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before,
+.ui.checkbox .box:hover::before,
+.ui.checkbox label:hover::before,
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before {
   background-color: black !important;
   border: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 
-.ui.checkbox input:checked~.box:after, .ui.checkbox input:checked~label:after {
+.ui.checkbox input:checked ~ .box:after,
+.ui.checkbox input:checked ~ label:after {
   margin-top: 1px !important;
-  color: #F1CD50 !important;
+  color: #f1cd50 !important;
 }
 
 .ui.blue.button.metamask-button.binance-top {
   font-size: 18px;
   position: relative;
-  background-color: #F1CD50 !important;
+  background-color: #f1cd50 !important;
   color: black;
   padding: 0px;
   line-height: 24px;
@@ -3534,12 +3534,12 @@ h3.deposit-twentyfour.casino {
 }
 
 .ui.button.binance-deposit-button.grey {
-  background: #0B0B0B;
+  background: #0b0b0b;
   color: rgba(255, 255, 255, 0.5);
 }
 
 .ui.button.binance-withdraw-button {
-  background: #0B0B0B;
+  background: #0b0b0b;
   color: rgba(255, 255, 255, 0.5);
   font-size: 24px;
   margin: -25px -30px 0px 0px;
@@ -3572,7 +3572,7 @@ h3.deposit-twentyfour.casino {
   font-size: 24px;
 }
 
-.ui.input>input {
+.ui.input > input {
   color: white !important;
   text-align: center;
 }

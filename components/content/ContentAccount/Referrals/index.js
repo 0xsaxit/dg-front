@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { GlobalContext } from 'store/index';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import Global from 'components/Constants';
 import { Icon, Segment } from 'semantic-ui-react';
@@ -7,10 +6,7 @@ import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
 
-function Referrals() {
-  // get token prices and breakdowns from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
-
+function Referrals({ state }) {
   // define local variables
   const [copied, setCopied] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
