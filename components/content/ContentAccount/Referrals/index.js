@@ -64,7 +64,7 @@ function Referrals({ state }) {
               />
               <span className="d-flex flex-column">
                 <p className={styles.referral_link}>
-                  https://decentral.games/{state.userInfo.id}
+                  {Global.CONSTANTS.BASE_URL}/{state.userInfo.id}
                 </p>
                 <p className={styles.sublink}>Your Unique Referral Link</p>
               </span>

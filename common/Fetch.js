@@ -15,11 +15,18 @@ const Fetch = {
     });
   },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // GET API calls (wallet address necessary)
-  GAME_RECORDS: (address) => {
-    return fetch(`${API_BASE_URL}/admin/getTotalRecords?address=${address}`, {
+  // EVENTS: () => {
+  //   return fetch(`${API_BASE_URL}/players/getEvents`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
+
+  EVENTS: () => {
+    return fetch('https://events.decentraland.org/api/events/', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -27,6 +34,29 @@ const Fetch = {
       },
     });
   },
+
+  GAME_RECORDS: () => {
+    return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  },
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // GET API calls (wallet address necessary)
+  // GAME_RECORDS: (address) => {
+  //   return fetch(`${API_BASE_URL}/admin/getTotalRecords?address=${address}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   PLAYER_INFO: (address) => {
     return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
@@ -48,18 +78,18 @@ const Fetch = {
     });
   },
 
-  EVENTS: (address) => {
-    return fetch(
-      `https://api.decentral.games/players/getEvents?address=${address}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  },
+  // EVENTS: (address) => {
+  //   return fetch(
+  //     `https://api.decentral.games/players/getEvents?address=${address}`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   );
+  // },
 
   USERS_LIST: (address) => {
     return fetch(`${API_BASE_URL}/admin/getUsersList?address=${address}`, {

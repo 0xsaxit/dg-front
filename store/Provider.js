@@ -80,6 +80,7 @@ const initialState = {
   },
   wearables: [],
   poaps: [],
+  eventsData: {},
   stakingBalances: {
     BALANCE_CONTRACT_BPT_1: 0,
     BALANCE_CONTRACT_BPT_2: 0,
@@ -226,6 +227,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         poaps: action.data,
+      };
+
+    case 'events_data':
+      return {
+        ...state,
+        eventsData: action.data,
       };
 
     case 'staking_balances':

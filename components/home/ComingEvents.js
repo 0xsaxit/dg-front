@@ -1,14 +1,12 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store/index';
-import { Button, Divider, Grid, Icon, Image } from 'semantic-ui-react';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
+import { Button, Divider, Grid, Image } from 'semantic-ui-react';
 import Spinner from '../Spinner';
 import Countdown from 'react-countdown';
+import Global from '../Constants';
 
-
-const EventData = () => {
-  // get token balances from the Context API store
+const ComingEvents = () => {
+  // get DCL events data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -16,26 +14,30 @@ const EventData = () => {
   const [loading, setLoading] = useState(true);
   const [eventOngoing, setEventOngoing] = useState(false);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    (async function () {
-      // get events from dcl
-      let response = await Fetch.EVENTS(state.userAddress);
-      let json = await response.json();
+    if (Object.keys(state.eventsData).length !== 0) {
+      let events = [];
+      let i;
 
-      var events = [];
-      var temp = [];
-      var i;
-
-      for (i = 0; i < json.data.length; i++) {
-        if (json.data[i].user == "0x154620ddfdcd6ab15dd9c1682386debad1eef536") {
-          var date = new Date(json.data[i].next_start_at);
-          json.data[i].next_start_at = date.toUTCString().replace("GMT", "UTC");
-          events.push(json.data[i]);
+      for (i = 0; i < state.eventsData.data.length; i++) {
+        if (
+          state.eventsData.data[i].user ==
+          Global.ADDRESSES.DECENTRAL_GAMES_EVENTS
+        ) {
+          const date = new Date(state.eventsData.data[i].next_start_at);
+          state.eventsData.data[i].next_start_at = date
+            .toUTCString()
+            .replace('GMT', 'UTC');
+          events.push(state.eventsData.data[i]);
         }
       }
 
-      const event_date = new Date(json.data[0].next_start_at).getTime();
-      const current_date = new Date().getTime()
+      const event_date = new Date(
+        state.eventsData.data[0].next_start_at
+      ).getTime();
+      const current_date = new Date().getTime();
 
       if (event_date > current_date) {
         setEventOngoing(true);
@@ -45,43 +47,33 @@ const EventData = () => {
 
       setEvents(events);
       setLoading(false);
-    })();
-  }, []);
+    }
+  }, [state.eventsData]);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function getSentences(str) {
     var ss = str.split('!');
     var f = ss.slice(0, 1).join('!') + '!';
     return f;
   }
 
-  // // Renderer callback with condition
-  // const renderer = ({ days, hours, minutes, seconds }) => {
-  //   // Render a countdown
-  //   if (days) {
-  //     return (
-  //       <span className="nft-other-h3 countdown2">
-  //         {days} days, {hours} hours, {minutes} minutes, {seconds} seconds
-  //       </span>
-  //     );
-  //   } else {
-  //     return (
-  //       <span className="nft-other-h3 countdown3">
-  //         {hours} hours, {minutes} minutes, {seconds} seconds
-  //       </span>
-  //     );
-  //   }
-  // };
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   function contentEvents() {
     return (
       <span>
-
-        <div className="account-other-tabs" style={{ paddingTop: '15px', marginBottom: '-16px' }}>
+        <div
+          className="account-other-tabs"
+          style={{ paddingTop: '15px', marginBottom: '-16px' }}
+        >
           <div style={{ marginLeft: '0px' }}>
-            <span className="account-other-p" style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span className="account-hover active events" style={{ marginTop: '32px', marginBottom: '16px' }}>
+            <span
+              className="account-other-p"
+              style={{ display: 'flex', justifyContent: 'space-between' }}
+            >
+              <span
+                className="account-hover active events"
+                style={{ marginTop: '32px', marginBottom: '16px' }}
+              >
                 <b>FEATURED EVENT</b>
               </span>
               {eventOngoing ? (
@@ -89,7 +81,7 @@ const EventData = () => {
               ) : (
                 <span style={{ display: 'flex' }}>
                   <h3 className="nft-other-h3 countdown1"> Next Event: </h3>
-                  <Countdown 
+                  <Countdown
                     className="nft-other-h3 countdown2"
                     date={events[0].next_start_at}
                   />
@@ -111,30 +103,36 @@ const EventData = () => {
                   className="nft-other-h3 featured"
                   style={{
                     paddingBottom: '9px',
-                    paddingTop: '9px'
+                    paddingTop: '9px',
                   }}
                 >
                   {events[0].name}
                 </h3>
                 <span className="featured-info">
-                  <p className="nfts-info">
-                    {events[0].next_start_at}
-                  </p>
+                  <p className="nfts-info">{events[0].next_start_at}</p>
                 </span>
 
-                <Divider className="events-featured-divider" style={{ margin: '10px 0px 15px 0px' }}/>
+                <Divider
+                  className="events-featured-divider"
+                  style={{ margin: '10px 0px 15px 0px' }}
+                />
 
                 <p
                   style={{
                     lineHeight: '1.3',
-                    paddingTop: '3px'
+                    paddingTop: '3px',
                   }}
                   className="events-featured-p"
                 >
                   {getSentences(events[0].description)}
                 </p>
                 <span
-                  style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0px', paddingBottom: '39px' }}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    paddingTop: '0px',
+                    paddingBottom: '39px',
+                  }}
                 >
                   <Button
                     color="blue"
@@ -176,7 +174,7 @@ const EventData = () => {
               tablet={8}
               mobile={16}
               className="leaderboard-column"
-              id='nine-nine-one'
+              id="nine-nine-one"
               key={i}
             >
               <a href={event.url} className="my-nft-container">
@@ -217,7 +215,10 @@ const EventData = () => {
                     </p>
 
                     <span
-                      style={{ display: 'flex', justifyContent: 'space-between' }}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
                     >
                       <Button
                         color="blue"
@@ -258,4 +259,4 @@ const EventData = () => {
   );
 };
 
-export default EventData;
+export default ComingEvents;

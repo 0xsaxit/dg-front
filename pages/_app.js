@@ -20,6 +20,7 @@ import UsersList from '../store/UsersList';
 import DGBalances from '../store/DGBalances';
 import PricesBreakdown from '../store/PricesBreakdown';
 import NFTSPOAPS from '../store/NFTSPOAPS';
+import EventsData from '../store/EventsData';
 
 class Application extends App {
   render() {
@@ -45,6 +46,7 @@ class Application extends App {
         <DGBalances />
         <PricesBreakdown />
         <NFTSPOAPS />
+        <EventsData />
 
         <Component {...pageProps} />
       </Provider>
