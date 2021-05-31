@@ -26,6 +26,9 @@
   .home-gif {
     display: none;
   }
+  .ui.blue.button.metamask-button-mobile {
+    display: none;
+  }
 }
 
 @media (max-width: 599px) {
@@ -47,19 +50,18 @@
   .ui.blue.button.metamask-button {
     display: none;
   }
-  .ui.blue.button.metamask-mobile-button {
-    background-color: #2085f4;
-    background-color: #2085f4 !important;
+  .ui.blue.button.metamask-button-mobile {
+    font-size: 18px;
+    position: relative;
+    background-color: #006eff !important;
     color: white;
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 14px;
-    min-width: 130px !important;
     padding: 0px;
-    height: 34px;
-    letter-spacing: 0.5px;
-    border-radius: 8px;
-    margin-right: 30px !important;
+    line-height: 24px;
+    margin-top: 12px;
+    min-width: 150px !important;
+    height: 40px !important;
+    border-radius: 16px;
+    margin-right: 18px;
   }
 }
 

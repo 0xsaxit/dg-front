@@ -250,11 +250,14 @@ const ModalInfo = () => {
               marginTop: '24px',
             }}
           >
-            <a href="https://docs.decentral.games/faq" target="_blank">
+            <a 
+              href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
+              target="_blank"
+            >
               <button className={cn('btn', styles.buy_button)}>Buy $DG</button>
             </a>
             <a
-              href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
+              href="https://docs.decentral.games/faq"
               target="_blank"
             >
               <button className={cn('btn', styles.learn_button)}>

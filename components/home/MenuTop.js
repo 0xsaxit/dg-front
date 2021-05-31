@@ -511,7 +511,7 @@ const MenuTop = (props) => {
                   </Link>
                   <Button
                     className="buy-dg-button"
-                    href={`https://info.uniswap.org/pair/${Global.ADDRESSES.UNISWAP_ADDRESS_STAKING}`}
+                    href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
                     target="_blank"
                   >
                     Buy $DG

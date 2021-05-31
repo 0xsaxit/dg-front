@@ -109,7 +109,7 @@ const Chateau = () => {
               <Button
                 color="blue"
                 className="earn-dg-button"
-                href="https://docs.decentral.games/getting-started/play-to-mine"
+                href="https://docs.decentral.games/"
                 target="_blank"
               >
                 Learn More
@@ -266,7 +266,7 @@ const Chateau = () => {
                   </a>
                 </Link>
 
-                <Link href="/dg">
+                <Link href="/dg/governance">
                   <a className="dg-powered-container three">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
