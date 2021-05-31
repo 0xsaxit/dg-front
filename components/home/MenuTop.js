@@ -7,6 +7,7 @@ import ModalInfo from 'components/modal/ModalInfo';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
 import Fetch from '../../common/Fetch';
+import Global from '../Constants';
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -510,7 +511,7 @@ const MenuTop = (props) => {
                   </Link>
                   <Button
                     className="buy-dg-button"
-                    href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
+                    href={`https://info.uniswap.org/pair/${Global.ADDRESSES.UNISWAP_ADDRESS_STAKING}`}
                     target="_blank"
                   >
                     Buy $DG

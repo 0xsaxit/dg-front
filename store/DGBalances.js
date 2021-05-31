@@ -395,7 +395,7 @@ function DGBalances() {
       const amountUSDT = await pointerContractNew.methods
         .profitPagination(
           state.userAddress,
-          '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
           0,
           50
         )
@@ -403,7 +403,7 @@ function DGBalances() {
       const amountAtri = await pointerContractNew.methods
         .profitPagination(
           state.userAddress,
-          '0xb140665dde25c644c6b418e417c930de8a8a6ac9',
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI,
           0,
           50
         )
@@ -411,7 +411,7 @@ function DGBalances() {
       const amountEth = await pointerContractNew.methods
         .profitPagination(
           state.userAddress,
-          '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH,
           0,
           50
         )

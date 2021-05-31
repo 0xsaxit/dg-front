@@ -378,7 +378,7 @@ const ContentBalancer = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <a
-                href="https://pools.balancer.exchange/#/pool/0xca54c398195fce98856888b0fd97a9470a140f71/"
+                href={`https://pools.balancer.exchange/#/pool/${Global.ADDRESSES.BP_TOKEN_ADDRESS_1}`}
                 target="_blank"
                 style={{ marginTop: '-75px', marginRight: '0px' }}
               >
@@ -557,7 +557,7 @@ const ContentBalancer = (props) => {
 
             <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <a
-                href="https://pools.balancer.exchange/#/pool/0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d/"
+                href={`https://pools.balancer.exchange/#/pool/${Global.ADDRESSES.BP_TOKEN_ADDRESS_2}`}
                 target="_blank"
                 style={{ marginTop: '-75px', marginRight: '0px' }}
               >

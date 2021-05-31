@@ -8,7 +8,6 @@ import ABI_CHILD_TOKEN_ATRI from '../components/ABI/ABIChildTokenATRI';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
-// import { getContractAddress } from 'ethers/lib/utils';
 
 function AdminBalances() {
   // dispatch worker ETH and treasury balances to the Context API store
@@ -24,7 +23,6 @@ function AdminBalances() {
   const [tokenContractWETH, setTokenContractWETH] = useState({});
   const [instances, setInstances] = useState(false);
 
-  // let balanceTokens = [];
   let arrayAmounts = state.adminBalances;
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -93,57 +91,9 @@ function AdminBalances() {
           type: 'admin_balances',
           data: balanceTokens,
         });
-
-        // if deposit or withdrawal start pinging the token contract for changed balances
-        // if (state.tokenPings === 2) dataInterval();
       })();
     }
   }, [instances]);
-
-  // function dataInterval() {
-  //   async function fetchData() {
-  //     const response = await getTokenBalances();
-
-  //     // as soon as the balance updates on Matic display confirmation & stop pings
-  //     if (
-  //       response[0][1] !== balanceTokens[0][1] ||
-  //       response[1][1] !== balanceTokens[1][1]
-  //     ) {
-  //       if (
-  //         response[0][1] > balanceTokens[0][1] ||
-  //         response[1][1] > balanceTokens[1][1]
-  //       ) {
-  //         console.log('Matic balances have updated: deposit');
-
-  //         dispatch({
-  //           type: 'token_pings',
-  //           data: 3,
-  //         });
-
-  //         clearInterval(interval);
-  //       } else if (
-  //         response[0][1] < balanceTokens[0][1] ||
-  //         response[1][1] < balanceTokens[1][1]
-  //       ) {
-  //         console.log('Matic balances have updated: withdrawal');
-
-  //         dispatch({
-  //           type: 'token_pings',
-  //           data: 4,
-  //         });
-
-  //         clearInterval(interval);
-  //       }
-  //     }
-  //   }
-
-  //   // call token contract every 3 seconds to get new balances
-  //   const interval = setInterval(() => {
-  //     fetchData();
-  //   }, 3000);
-
-  //   return () => clearInterval(interval);
-  // }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -254,7 +204,7 @@ function AdminBalances() {
       amountTreasuryATRIAdjusted,
       amountTreasuryWETHAdjusted,
       0,
-      '0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3',
+      Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
     ]);
   }
 

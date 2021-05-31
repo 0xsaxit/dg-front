@@ -12,6 +12,7 @@ const DG = () => {
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
+
       <Farming DGState={'treasury'} />
     </Layout>
   );

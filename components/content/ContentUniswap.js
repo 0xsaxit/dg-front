@@ -8,7 +8,6 @@ import Fetch from '../../common/Fetch';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 
-
 const ContentUniswap = (props) => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -35,7 +34,6 @@ const ContentUniswap = (props) => {
   const [BPTContract2, setBPTContract2] = useState({});
   const [open, setOpen] = useState(false);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -43,9 +41,8 @@ const ContentUniswap = (props) => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
 
       async function fetchData() {
-        const stakingContractUniswap = await Transactions.stakingContractUniswap(
-          web3
-        );
+        const stakingContractUniswap =
+          await Transactions.stakingContractUniswap(web3);
         setStakingContractUniswap(stakingContractUniswap);
 
         const uniswapContract = await Transactions.uniswapContract(web3);
@@ -114,7 +111,6 @@ const ContentUniswap = (props) => {
     state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
   ]);
 
-
   useEffect(() => {
     if (instances) {
       (async () => {
@@ -134,7 +130,6 @@ const ContentUniswap = (props) => {
     }
   }, [instances, state.stakingBalances.BALANCE_STAKED_UNISWAP]);
 
-  
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(e) {
@@ -146,7 +141,9 @@ const ContentUniswap = (props) => {
       <Aux>
         <div className="DG-liquidity-container">
           <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-            <p className="earned-amount" style={{ paddingTop: '2px' }}>Unclaimed</p>
+            <p className="earned-amount" style={{ paddingTop: '2px' }}>
+              Unclaimed
+            </p>
 
             <Divider className="divider-dg-top" />
 
@@ -183,8 +180,17 @@ const ContentUniswap = (props) => {
 
             <Divider className="divider-dg-top" />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '3px' }}>
-              <p className="welcome-text" style={{ paddingLeft: '0px' }}> TOTAL USD </p>
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                paddingBottom: '3px',
+              }}
+            >
+              <p className="welcome-text" style={{ paddingLeft: '0px' }}>
+                {' '}
+                TOTAL USD{' '}
+              </p>
               <p className="earned-amount"> ${priceUSD} </p>
             </span>
 
@@ -201,10 +207,10 @@ const ContentUniswap = (props) => {
                 {' '}
                 Read more
               </a>
-                .
+              .
             </p>
 
-            <Divider className="divider-dg-top"/>
+            <Divider className="divider-dg-top" />
 
             <span className="DG-button-span">
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
@@ -231,7 +237,9 @@ const ContentUniswap = (props) => {
                 height: '100%',
               }}
             >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>Liquidity Provision</p>
+              <p className="earned-amount" style={{ paddingTop: '2px' }}>
+                Liquidity Provision
+              </p>
 
               <Divider className="divider-dg-top" />
 
@@ -250,7 +258,7 @@ const ContentUniswap = (props) => {
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <a
-                  href="https://info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
+                  href={`https://info.uniswap.org/pair/${Global.ADDRESSES.UNISWAP_ADDRESS_STAKING}`}
                   target="_blank"
                   style={{ marginTop: '-60px', marginRight: '-4px' }}
                 >

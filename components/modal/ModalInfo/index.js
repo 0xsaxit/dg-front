@@ -4,6 +4,7 @@ import { GlobalContext } from '../../../store';
 import Fetch from '../../../common/Fetch';
 import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
+import Global from '../../Constants';
 
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -253,7 +254,7 @@ const ModalInfo = () => {
               <button className={cn('btn', styles.buy_button)}>Buy $DG</button>
             </a>
             <a
-              href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
+              href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
               target="_blank"
             >
               <button className={cn('btn', styles.learn_button)}>
