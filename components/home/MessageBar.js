@@ -48,8 +48,10 @@ const MessageBar = () => {
   }, []);
 
   useEffect(() => {
-    if (!state.NetworkID && !state.userStatus) {
-      return null;
+    if (isSafari) {
+      setMessage('Please use Brave, Chrome, or Firefox to play games');
+    } else if (!state.userStatus) {
+      setMessage('Please connect your wallet to play');
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
     } else if (!state.userInfo.tokenArray.includes(true)) {

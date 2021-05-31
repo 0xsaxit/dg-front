@@ -12,6 +12,7 @@ const Events = () => {
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
+
       <ComingEvents />
     </Layout>
   );

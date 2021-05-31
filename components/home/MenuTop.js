@@ -24,8 +24,6 @@ const MenuTop = (props) => {
   const [atriPrice, setAtriPrice] = useState(0);
   const [casinoBalance, setCasinoBalance] = useState(0);
 
-  const DAI_BALANCE = parseInt(state.userBalances[0][1]);
-  const MANA_BALANCE = parseInt(state.userBalances[1][1]);
   const router = useRouter();
   let menuStyle = [];
   let listener = null;
@@ -202,14 +200,6 @@ const MenuTop = (props) => {
     } else {
       return '';
     }
-  }
-
-  // close the message box popup and open and close mobile dropdown menu
-  function handleDismiss() {
-    dispatch({
-      type: 'token_pings',
-      data: 0,
-    });
   }
 
   function DGLogo() {

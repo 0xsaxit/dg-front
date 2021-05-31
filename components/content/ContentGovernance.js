@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../store';
 import Web3 from 'web3';
-import { Button, Divider, Input, Loader, Popup, Icon } from 'semantic-ui-react';
+import { Button, Divider, Input, Loader } from 'semantic-ui-react';
 import Transactions from '../../common/Transactions';
 import Aux from '../_Aux';
 import Images from '../../common/Images';
@@ -20,8 +20,6 @@ const ContentGovernance = (props) => {
   const [priceUSD, setPriceUSD] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
-  const [dgBalance, setDgBalance] = useState(0);
-  const [gameplayMana, setGameplayMana] = useState(0);
   const [instances, setInstances] = useState(false);
 
   // governance variables
