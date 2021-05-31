@@ -15,18 +15,8 @@ const Fetch = {
     });
   },
 
-  // EVENTS: () => {
-  //   return fetch(`${API_BASE_URL}/players/getEvents`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  // },
-
   EVENTS: () => {
-    return fetch('https://events.decentraland.org/api/events/', {
+    return fetch(`${API_BASE_URL}/players/getEvents`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -34,6 +24,16 @@ const Fetch = {
       },
     });
   },
+
+  // EVENTS: () => {
+  //   return fetch('https://events.decentraland.org/api/events/', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
+  // },
 
   GAME_RECORDS: () => {
     return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
