@@ -217,7 +217,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 depositAssetId={connext.assetID_1_MANA}
                 depositChainId={1}
                 depositChainProvider={connext.chainProviderInfura}
@@ -245,7 +245,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 withdrawAssetId={connext.assetID_1_MANA}
                 withdrawChainId={1}
                 withdrawChainProvider={connext.chainProviderInfura}
@@ -318,7 +318,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 depositAssetId={connext.assetID_1_DAI}
                 depositChainId={1}
                 depositChainProvider={connext.chainProviderInfura}
@@ -346,7 +346,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 withdrawAssetId={connext.assetID_1_DAI}
                 withdrawChainId={1}
                 withdrawChainProvider={connext.chainProviderInfura}
@@ -421,7 +421,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 depositAssetId={connext.assetID_1_USDT}
                 depositChainId={1}
                 depositChainProvider={connext.chainProviderInfura}
@@ -449,7 +449,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 withdrawAssetId={connext.assetID_1_USDT}
                 withdrawChainId={1}
                 withdrawChainProvider={connext.chainProviderInfura}
