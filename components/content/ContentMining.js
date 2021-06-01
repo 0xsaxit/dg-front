@@ -258,7 +258,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">14,200</p>
+                    <p className="earned-amount stat">14,600</p>
                   </span>
                 </span>
 
@@ -277,7 +277,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">48,000</p>
+                    <p className="earned-amount stat">49,300</p>
                   </span>
                 </span>
               </div>
@@ -349,7 +349,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">9,300</p>
+                    <p className="earned-amount stat">12,600</p>
                   </span>
                 </span>
 
@@ -368,7 +368,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">31,200</p>
+                    <p className="earned-amount stat">42,500</p>
                   </span>
                 </span>
               </div>
@@ -527,7 +527,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">N/A</p>
+                    <p className="earned-amount stat">5</p>
                   </span>
                 </span>
 
@@ -546,7 +546,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">N/A</p>
+                    <p className="earned-amount stat">15</p>
                   </span>
                 </span>
               </div>
