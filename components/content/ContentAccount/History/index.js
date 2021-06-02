@@ -330,15 +330,7 @@ function History({ props }) {
                                 </Button>
                               </Aux>
                             ) : (
-                              <Aux>
-                                <Button
-                                  disabled
-                                  className="etherscan-button"
-                                  style={{ marginRight: '12px' }}
-                                >
-                                  tx
-                                </Button>
-                              </Aux>
+                              null
                             )}
 
                             {row.coinName !== 'PLAY' ? (
@@ -365,14 +357,7 @@ function History({ props }) {
                                 </Button>
                               </Aux>
                             ) : (
-                              <Aux>
-                                <Button
-                                  disabled
-                                  className="etherscan-button-ptxid"
-                                >
-                                  payout tx
-                                </Button>
-                              </Aux>
+                              null
                             )}
                           </span>
                         </Table.Cell>
