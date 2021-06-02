@@ -7,3 +7,4 @@ coverage
 
 #ignore specific files
 Constants.js
+node_modules/**
