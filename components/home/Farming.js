@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
 import ContentGovernance from '../content/ContentGovernance';
 import ContentMining from '../content/ContentMining';
+import ContentMiningV1 from '../content/ContentMiningV1';
 import ContentBalancer from '../content/ContentBalancer';
 import ContentUniswap from '../content/ContentUniswap';
 import ContentAirdrop from '../content/ContentAirdrop';
@@ -298,7 +299,7 @@ const Farming = (props) => {
                 </span>
               </Link>
             </p>
-          ) : (
+          ) : DGState === 'liquidity' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
@@ -324,6 +325,33 @@ const Farming = (props) => {
                 </b>
                 <b>PROVISION</b>
               </span>
+            </p>
+          ) : (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>TREASURY</b>
+                </span>
+              </Link>
+              <Link href="/dg/governance">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <span className="account-hover active">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                  GAMEPLAY
+                </b>
+                <b>REWARDS</b>
+              </span>
+              <Link href="/dg/liquidity">
+                <span className="account-hover">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
             </p>
           )}
         </div>
@@ -456,6 +484,8 @@ const Farming = (props) => {
             <ContentAirdrop price={price} formatPrice={formatPrice} />
           ) : DGState === 'admin' ? (
             contentAdmin()
+          ) : DGState === 'miningv1' ? (
+            <ContentMiningV1 price={price} formatPrice={formatPrice} />
           ) : null}
         </div>
       </div>
