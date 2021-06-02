@@ -1262,7 +1262,6 @@ table {
 
 .ui.table {
   margin-top: 0px;
-  border-radius: 4px;
   border: 0px solid white !important;
   background: black;
 }
@@ -1285,26 +1284,23 @@ tr.account-table-odd {
 }
 
 td:first-child {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+  height: 75px;
 }
 
 td:last-child {
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+  border-bottom-right-radius: 32px;
+  border-top-right-radius: 32px;
 }
 
 .ui.table thead th {
+  font-weight: 700 !important;
   background: black !important;
   border: 0px solid white !important;
-  background: white;
-  padding: 15px 18px 15px 18px;
-  font-size: 12px;
-  font-weight: bold !important;
-  letter-spacing: 0.5px;
+  padding: 12px 18px 15px 18px;
+  font-size: 18px;
   color: rgba(255, 255, 255);
-  text-transform: uppercase;
-  padding-top: 18px !important;
   margin-bottom: 0px;
 }
 
@@ -1318,7 +1314,7 @@ td:last-child {
 }
 
 .tx-box-overflow {
-  max-height: 50vh !important;
+  max-height: 600px !important;
   overflow: auto;
   margin-bottom: 90px;
   border: 0px solid #edf2f9 !important;
@@ -1346,11 +1342,12 @@ td:last-child {
 }
 
 .ui.table tr td {
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  padding-top: 16px;
+  font-weight: 700 !important;
+  border: 0px solid white !important;
+  padding: 15px 18px 15px 18px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0px;
 }
 
 .ui.table tr td.leaders-col-1 {
@@ -1395,7 +1392,6 @@ td:last-child {
 .account-other-tabs {
   color: black;
   text-align: left;
-  padding-top: 30px;
   display: flex;
   width: 100%;
   overflow: auto;
@@ -1418,9 +1414,10 @@ td:last-child {
 
 .account-other-tabs {
   display: flex;
+  padding-top: 10px;
+  margin-top: 90px;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 90px;
   position: relative !important;
   z-index: 5 !important;
 }
@@ -2905,31 +2902,68 @@ a.ui.blue.button.dg-learn-button {
   padding: 5px 0 3px 0;
 }
 
-.ui.button.etherscan-button {
+button.ui.disabled.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006eff;
-  color: #006eff;
-  height: 24px;
-  padding-left: 6px;
-  padding-right: 6px;
-  max-width: 60px !important;
-  min-width: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  padding: 0px 0px 0px 0px !important;
+  max-width: 75px !important;
+  min-width: 75px;
   line-height: 0px;
   opacity: 100% !important;
 }
 
-.ui.button.etherscan-button-ptxid {
+button.ui.disabled.button.etherscan-button-ptxid {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006eff;
-  color: #006eff;
-  padding-left: 6px;
-  padding-right: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  padding: 0px 0px 0px 0px !important;
+  max-width: 150px !important;
+  min-width: 150px;
   margin-right: 0px !important;
-  height: 24px;
-  max-width: 120px !important;
-  min-width: 120px;
   line-height: 0px;
   opacity: 100% !important;
+}
+
+.ui.button.etherscan-button {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  padding: 12px 0px 0px 0px;
+  max-width: 75px !important;
+  min-width: 75px;
+  line-height: 0px;
+  opacity: 100% !important;
+  text-transform: capitalize;
+}
+
+.ui.button.etherscan-button-ptxid {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  padding: 12px 0px 0px 0px;
+  max-width: 150px !important;
+  min-width: 150px;
+  line-height: 0px;
+  opacity: 100% !important;
+  text-transform: capitalize;
+}
+
+.ui.button.etherscan-button:hover,
+.ui.button.etherscan-button-ptxid:hover {
+  border: 2px solid white;
 }
 
 .ui.button.etherscan-button-green {

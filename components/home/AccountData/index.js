@@ -54,11 +54,11 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '5' }}>
+        <div style={{ position: 'relative', zIndex: '0' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span
               className="avatar-picture"
-              style={{ alignSelf: 'center', marginTop: '-60px' }}
+              style={{ alignSelf: 'center' }}
             >
               <img
                 className="avatar-picture main"
@@ -67,7 +67,7 @@ const AccountData = (props) => {
                   backgroundColor: 'white',
                   width: '120px',
                   display: 'flex',
-                  marginTop: '-18px',
+                  margin: '90px 0px 0px 0px'
                 }}
               /> 
               <a 
@@ -79,18 +79,9 @@ const AccountData = (props) => {
               </a>
             </span>
           </span>
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              margin: '-78px 0px 90px 0px',
-            }}
-          >
-          </span>
         </div>
 
-        <div className="account-other-tabs" id="account-mobile-tabs">
+        <div className="account-other-tabs" id="account-mobile-tabs" style={{ marginTop: '0px' }}>
           <div className="ml-0">
             <span className="account-other-p d-flex justify-content-center">
               {dataType === 'balances' ? (
@@ -131,26 +122,12 @@ const AccountData = (props) => {
 
               {dataType === 'play' ? (
                 <span className="account-hover active">
-                  <b style={{ marginRight: '4px' }}>GAME</b>
                   <b>HISTORY</b>
                 </span>
               ) : (
                 <Link href="/account/play">
                   <span className="account-hover">
-                    <b style={{ marginRight: '4px' }}>GAME</b>
                     <b>HISTORY</b>
-                  </span>
-                </Link>
-              )}
-
-              {dataType === 'history' ? (
-                <span className="account-hover active">
-                  <b>TRANSACTIONS</b>
-                </span>
-              ) : (
-                <Link href="/account/history">
-                  <span className="account-hover">
-                    <b>TRANSACTIONS</b>
                   </span>
                 </Link>
               )}
@@ -169,8 +146,6 @@ const AccountData = (props) => {
             </span>
           </div>
         </div>
-
-        <Divider className="tab-divider" />
       </Aux>
     );
   }
@@ -181,16 +156,6 @@ const AccountData = (props) => {
         <Spinner background={1} />
       ) : (
         <div>
-          <div style={{ maxWidth: '100vw', marginTop: '60px' }}>
-            <Parallax
-              blur={0}
-              bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1614574769/Image_from_iOS_coebmd.png"
-              strength={100}
-            >
-              <div style={{ height: '180px' }} />
-            </Parallax>
-          </div>
-
           <div className="page-container">
             <div className="account-other-inner-container">
               {topLinks()}
