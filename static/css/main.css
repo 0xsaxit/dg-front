@@ -1284,14 +1284,14 @@ tr.account-table-odd {
 }
 
 td:first-child {
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
-  height: 75px;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  height: 68px;
 }
 
 td:last-child {
-  border-bottom-right-radius: 32px;
-  border-top-right-radius: 32px;
+  border-bottom-right-radius: 24px;
+  border-top-right-radius: 24px;
 }
 
 .ui.table thead th {
@@ -1302,6 +1302,17 @@ td:last-child {
   font-size: 18px;
   color: rgba(255, 255, 255);
   margin-bottom: 0px;
+}
+
+.ui.table thead th:nth-child(2),
+.ui.table thead th:nth-child(3),
+.ui.table thead th:nth-child(4) {
+  text-align: center;
+  padding-left: 0px;
+}
+
+.ui.table thead th:nth-child(5) {
+  text-align: center;
 }
 
 .ui.table thead {

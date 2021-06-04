@@ -299,7 +299,7 @@ const Farming = (props) => {
                 </span>
               </Link>
             </p>
-          ) : DGState === 'liquidity' ? (
+          ) : DGState === 'uniswap' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">

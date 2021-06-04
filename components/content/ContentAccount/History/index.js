@@ -50,8 +50,10 @@ function History({ props }) {
       setDataPage(history);
       setDataPageTwo(resultTwo);
     }
-  }, [isLoading]);
+  }, [isLoading, dataPage, dataPageTwo]);
 
+  console.log('!!!');
+  console.log(dataPage);
   console.log(dataPageTwo);
 
   return (
@@ -78,14 +80,14 @@ function History({ props }) {
                   >
                     <div className={styles.history_column}>
                       {row.type.includes('Deposit') ? (
-                        <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="25" height="25" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="16.5002" cy="16.5" r="16.5" fill="#1F1F1F"/>
                           <path d="M21.75 22.75H11.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M12.75 14.5L16.5 18.25L20.25 14.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M16.5 18.25V9.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                       ) : (
-                        <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="25" height="25" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="16.5002" cy="16.5" r="16.5" fill="#1F1F1F"/>
                           <path d="M21.75 22.75H11.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M20.25 13L16.5 9.25L12.75 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -134,7 +136,7 @@ function History({ props }) {
                 <Table.HeaderCell className="account-col-4">
                   Date
                 </Table.HeaderCell>
-                <Table.HeaderCell style={{ textAlign: 'right' }}>
+                <Table.HeaderCell>
                   Transactions
                 </Table.HeaderCell>
               </Table.Row>
