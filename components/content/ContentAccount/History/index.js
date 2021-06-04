@@ -10,7 +10,6 @@ import ModalBreakdown from 'components/modal/ModalBreakdown';
 
 function History({ state }) {
   // get user's transaction history from the Context API store
-  const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
 
@@ -20,7 +19,6 @@ function History({ state }) {
   const [isLoading, setIsLoading] = useState(true);
   const [utm, setUtm] = useState('');
 
-  const dataType = props.dataType;
   const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
 
   /////////////////////////////////////////////////////////////////////////////////////////
