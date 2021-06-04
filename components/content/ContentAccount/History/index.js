@@ -8,7 +8,7 @@ import Aux from 'components/_Aux';
 import styles from './History.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
 
-function History({ props }) {
+function History({ state }) {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
@@ -50,11 +50,7 @@ function History({ props }) {
       setDataPage(history);
       setDataPageTwo(resultTwo);
     }
-  }, [isLoading, dataPage, dataPageTwo]);
-
-  console.log('!!!');
-  console.log(dataPage);
-  console.log(dataPageTwo);
+  }, [isLoading]);
 
   return (
     <Aux>

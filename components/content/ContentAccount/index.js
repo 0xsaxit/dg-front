@@ -757,7 +757,7 @@ const ContentAccount = (props) => {
   } else if (props.content === 'poaps') {
     return contentPoaps();
   } else if (props.content === 'play') {
-    return <History props={props} />;
+    return <History state={state} />;
   } else if (props.content === 'referrals') {
     return <Referrals state={state} />;
   }
