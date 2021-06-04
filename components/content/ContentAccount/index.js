@@ -1,36 +1,31 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from 'store/index';
-import Web3 from 'web3';
-import cn from 'classnames';
 import { ConnextModal } from '@connext/vector-modal';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { Button, Divider, Grid, Icon, Image, Table } from 'semantic-ui-react';
-import ABI_DG_TOKEN from 'components/ABI/ABIDGToken.json';
 import Global from 'components/Constants';
 import Images from 'common/Images';
-import Fetch from 'common/Fetch';
-import Transactions from 'common/Transactions';
 import ModalAcceptMana from 'components/modal/ModalAcceptMana';
 import ModalAcceptDai from 'components/modal/ModalAcceptDai';
 import ModalAcceptUSDT from 'components/modal/ModalAcceptUSDT';
 import ModalAcceptATRI from 'components/modal/ModalAcceptATRI';
 import ModalAcceptWETH from 'components/modal/ModalAcceptWETH';
+import Referrals from './Referrals';
+import History from './History';
+import styles from './ContentAccount.module.scss';
 import Aux from 'components/_Aux';
 
-import styles from './ContentAccount.module.scss';
-import ContentReferrals from './Referrals';
-
 const connext = {
-  routerPublicID: 'vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np',
+  routerPublicID: Global.CONSTANTS.CONNEXT_PUBLIC_ID,
   chainProviderInfura:
     'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
   chainProviderMatic: 'https://rpc-mainnet.matic.network',
-  assetID_1_MANA: '0x0F5D2fB29fb7d3CFeE444a200298f468908cC942',
-  assetID_2_MANA: '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
-  assetID_1_DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-  assetID_2_DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
-  assetID_1_USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-  assetID_2_USDT: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+  assetID_1_MANA: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA,
+  assetID_2_MANA: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
+  assetID_1_DAI: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI,
+  assetID_2_DAI: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI,
+  assetID_1_USDT: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT,
+  assetID_2_USDT: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
 };
 
 const ContentAccount = (props) => {
@@ -47,129 +42,21 @@ const ContentAccount = (props) => {
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
-  const [wearables, setWearables] = useState([]);
-  const [poaps, setPoaps] = useState([]);
-  const [injectedProvider, setInjectedProvider] = useState('');
-  const [copied, setCopied] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [link, setLink] = useState('');
-  const [tempClass, setTempClass] = useState(true);
-  const [affiliates, setAffiliates] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [pointerContractNew, setPointerContractNew] = useState({});
 
-  useEffect(() => {
-    const web3 = new Web3(window.ethereum);
-
-    async function fetchData () {
-      try {
-        const maticWeb3 = new Web3(Global.CONSTANTS.MATIC_URL); 
-        const pointerContractNew = await Transactions.pointerContractNew(
-          maticWeb3
-        );
-        setPointerContractNew(pointerContractNew);
-
-        if (state.userAddress) {
-          let amount; 
-          const USDT_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_USDT
-          );
-          amount = await USDT_UNI.methods.balanceOf(state.userAddress).call();
-          const usdtAmount = web3.utils.fromWei(amount, 'mwei');
-          
-          const MANA_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA
-          );
-          amount = await MANA_UNI.methods.balanceOf(state.userAddress).call();
-          let manaRes = await Fetch.MANA_PRICE();
-          let manaJson = await manaRes.json();
-
-          const priceMANA = manaJson.market_data.current_price.usd;
-          const manaAmount = priceMANA * web3.utils.fromWei(amount, 'ether');
-
-          const ATRI_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_ATRI
-          );
-          amount = await ATRI_UNI.methods.balanceOf(state.userAddress).call();
-          let atriRes = await Fetch.ATRI_PRICE();
-          let atriJson = await atriRes.json();
-
-          const priceATRI = atriJson.market_data.current_price.usd;
-          const atriAmount = priceATRI * web3.utils.fromWei(amount, 'wei');
-
-          const DAI_UNI = new web3.eth.Contract(
-            ABI_DG_TOKEN,
-            Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI
-          );
-          amount = await DAI_UNI.methods.balanceOf(state.userAddress).call();
-          const daiAmount = web3.utils.fromWei(amount, 'ether');
-
-          amount = await new web3.eth.getBalance(state.userAddress);
-          let ethRes = await Fetch.ETH_PRICE();
-          let ethJson = await ethRes.json();
-
-          const priceETH = ethJson.market_data.current_price.usd;
-          const ethAmount = priceETH * web3.utils.fromWei(amount, 'ether');
-      
-          setTotalAmount(Number(usdtAmount) + Number(manaAmount) + Number(atriAmount) + Number(daiAmount) + Number(ethAmount));
-        }
-      } catch (error) {
-        console.log('Get balance error', error);
-      }
-    };
-
-    fetchData();
-  }, [state.userAddress]);
-
+  const injectedProvider = window.ethereum;
   const buttonPlay = document.getElementById('play-now-button-balances');
-
-  const ramp1 = new RampInstantSDK({
-    hostAppName: 'Buy Mana Directly',
-    hostLogoUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
-    swapAsset: 'MANA',
-  });
-
-  function show_ramp1() {
-    ramp1.show();
-  }
-
   const ramp2 = new RampInstantSDK({
     hostAppName: 'Buy DAI Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
-
-  function show_ramp2() {
-    ramp2.show();
-  }
-
   const ramp3 = new RampInstantSDK({
     hostAppName: 'Buy USDT Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
     swapAsset: 'USDT',
   });
-
-  function show_ramp3() {
-    ramp3.show();
-  }
-
-  const ramp4 = new RampInstantSDK({
-    hostAppName: 'Buy ATRI Directly',
-    hostLogoUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
-    swapAsset: 'ATRI',
-  });
-
-  function show_ramp4() {
-    ramp4.show();
-  }
-
   const ramp5 = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
@@ -177,57 +64,8 @@ const ContentAccount = (props) => {
     swapAsset: 'ETH',
   });
 
-  function show_ramp5() {
-    ramp5.show();
-  }
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  useEffect(() => {
-    setInjectedProvider(window.ethereum);
-  }, []);
-
-  // get user nfts statistics
-  useEffect(() => {
-    (async function () {
-      let response = await Fetch.NFTS_1(state.userAddress);
-      let json = await response.json();
-
-      let response_2 = await Fetch.NFTS_2(state.userAddress);
-      let json_2 = await response_2.json();
-
-      let wearables = [];
-      let i;
-      for (i = 0; i < json.assets.length; i++) {
-        wearables.push(json.assets[i]);
-      }
-      let j;
-      for (j = 0; j < json_2.assets.length; j++) {
-        wearables.push(json_2.assets[j]);
-      }
-
-      setWearables(wearables);
-    })();
-  }, []);
-
-  // get user poaps
-  useEffect(() => {
-    (async function () {
-      let response_1 = await Fetch.POAPS(state.userAddress);
-      let json_1 = await response_1.json();
-
-      let poaps = [];
-      let k;
-      for (k = 0; k < json_1.length; k++) {
-        if (json_1[k].event.name.includes('Decentral Games')) {
-          poaps.push(json_1[k].event);
-        }
-      }
-
-      setPoaps(poaps);
-    })();
-  }, []);
-
   // send tracking data to Segment
   useEffect(() => {
     if (buttonPlay) {
@@ -380,7 +218,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 depositAssetId={connext.assetID_1_MANA}
                 depositChainId={1}
                 depositChainProvider={connext.chainProviderInfura}
@@ -408,7 +246,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 withdrawAssetId={connext.assetID_1_MANA}
                 withdrawChainId={1}
                 withdrawChainProvider={connext.chainProviderInfura}
@@ -448,7 +286,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button two"
-              onClick={() => show_ramp2()}
+              onClick={() => ramp2.show()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -481,7 +319,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 depositAssetId={connext.assetID_1_DAI}
                 depositChainId={1}
                 depositChainProvider={connext.chainProviderInfura}
@@ -509,7 +347,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 withdrawAssetId={connext.assetID_1_DAI}
                 withdrawChainId={1}
                 withdrawChainProvider={connext.chainProviderInfura}
@@ -551,7 +389,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => show_ramp3()}
+              onClick={() => ramp3.show()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -584,7 +422,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 depositAssetId={connext.assetID_1_USDT}
                 depositChainId={1}
                 depositChainProvider={connext.chainProviderInfura}
@@ -612,7 +450,7 @@ const ContentAccount = (props) => {
                   console.log('MODAL IS READY =======>', params)
                 }
                 withdrawalAddress={state.userAddress}
-                routerPublicIdentifier={connext.routerPublicID}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
                 withdrawAssetId={connext.assetID_1_USDT}
                 withdrawChainId={1}
                 withdrawChainProvider={connext.chainProviderInfura}
@@ -712,7 +550,7 @@ const ContentAccount = (props) => {
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
               className="balances-top-button"
-              onClick={() => show_ramp5()}
+              onClick={() => ramp5.show()}
               style={{ marginTop: '-60px' }}
             >
               BUY
@@ -801,18 +639,18 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentWearables() {
-    return (
-      <Grid style={{ marginBottom: '90px' }}>
-        {wearables.map((wearable, i) => (
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className="leaderboard-column"
-            key={i}
-          >
-            <a href={wearable.permalink} className="my-nft-container">
-              <div>
+    if (state.wearables.length !== 0) {
+      return (
+        <Grid style={{ marginBottom: '90px' }}>
+          {state.wearables.map((wearable, i) => (
+            <Grid.Column
+              computer={5}
+              tablet={8}
+              mobile={16}
+              className="leaderboard-column"
+              key={i}
+            >
+              <a href={wearable.permalink} className="my-nft-container">
                 <span
                   style={{ display: 'flex', justifyContent: 'center' }}
                   className="nft-image"
@@ -823,6 +661,7 @@ const ContentAccount = (props) => {
                     style={{ borderRadius: '4px' }}
                   />
                 </span>
+
                 <div className="nft-description">
                   <h3 className="nft-other-h3">{wearable.name}</h3>
                   <span style={{ display: 'flex', justifyContent: 'center' }}>
@@ -868,455 +707,59 @@ const ContentAccount = (props) => {
                     </Button>
                   </span>
                 </div>
-              </div>
-            </a>
-          </Grid.Column>
-        ))}
-      </Grid>
-    );
+              </a>
+            </Grid.Column>
+          ))}
+        </Grid>
+      );
+    } else {
+      return (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          <p className={styles.referrals_header_subtitle}>
+            You do not own any wearable NFTs
+          </p>
+        </div>
+      );
+    }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentPoaps() {
-    return (
-      <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
-        {poaps.map((poap, i) => (
-          <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
-            <Image src={poap.image_url} className="poap-pic" />
-          </Grid.Column>
-        ))}
-      </Grid>
-    );
-  }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentHistory() {
-    return (
-      <div style={{ paddingTop: '12px' }}>
-        <div className="tx-box-overflow">
-          <Table unstackable>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Action</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-2">
-                  Amount
-                </Table.HeaderCell>
-                <Table.HeaderCell>Status</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-4">
-                  Date
-                </Table.HeaderCell>
-                <Table.HeaderCell />
-              </Table.Row>
-            </Table.Header>
-
-            {props.dataPage === 'false'
-              ? 'No data to display'
-              : props.dataPage.map((row, i) => {
-                  const date = new Date(row.createdAt);
-                  const timestamp = date.toLocaleString();
-                  const amount = row.amount;
-
-                  let sign = '';
-                  if (row.type.includes('Deposit')) {
-                    sign = '+';
-                  } else if (row.type.includes('Withdrawal')) {
-                    sign = '-';
-                  }
-
-                  let style = '';
-                  {
-                    i % 2 === 0 ? (style = '#15181c') : (style = 'black');
-                  }
-
-                  return (
-                    <Table.Body key={i}>
-                      {renderRow(row, timestamp, amount, sign, style)}
-                    </Table.Body>
-                  );
-                })}
-          </Table>
+    if (state.poaps.length !== 0) {
+      return (
+        <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
+          {state.poaps.map((poap, i) => (
+            <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
+              <Image src={poap.image_url} className="poap-pic" />
+            </Grid.Column>
+          ))}
+        </Grid>
+      );
+    } else {
+      return (
+        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+          <p className={styles.referrals_header_subtitle}>
+            You do not own any POAPS
+          </p>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
-  function renderRow(row, timestamp, amount, sign, style) {
-    return (
-      <Table.Row style={{ background: style }}>
-        <Table.Cell>
-          {row.type.includes('DAI') ? (
-            <img
-              src={Images.DAI_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.type.includes('MANA') ? (
-            <img
-              src={Images.MANA_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.type.includes('USDT') ? (
-            <img
-              src={Images.USDT_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.type.includes('ATRI') ? (
-            <img
-              src={Images.ATRI_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.type.includes('WETH') ? (
-            <img
-              src={Images.ETH_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : (
-            <img
-              src={Images.DG_COIN_LOGO}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          )}
-          {row.type}
-        </Table.Cell>
-        <Table.Cell className="account-col-2">
-          {row.type.includes('DAI') ? (
-            <span>
-              {sign}
-              {amount > 1000000000000000000000000
-                ? 'N/A'
-                : (amount / 1000000000000000000).toFixed(2) + ' DAI'}
-            </span>
-          ) : (
-            <span>
-              {amount > 1000000000000000000000000
-                ? 'N/A'
-                : (amount / 1000000000000000000).toFixed(2) + ' MANA'}
-            </span>
-          )}
-        </Table.Cell>
-        <Table.Cell>{row.status}</Table.Cell>
-        <Table.Cell className="account-col-4">{timestamp}</Table.Cell>
-        <Table.Cell>
-          <span style={{ float: 'right', paddingRight: '12px' }}>
-            <Button
-              href={Global.CONSTANTS.MATIC_EXPLORER + `/tx/${row.txid}`}
-              target="_blank"
-              className="etherscan-button"
-            >
-              tx
-              <Icon
-                name="external alternate"
-                style={{
-                  marginLeft: '6px',
-                  marginRight: '-2px',
-                }}
-              />
-            </Button>
-          </span>
-        </Table.Cell>
-      </Table.Row>
-    );
-  }
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  function contentGameplay() {
-    return (
-      <div style={{ paddingTop: '12px' }}>
-        <div className="tx-box-overflow">
-          <Table unstackable>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Game</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-2">
-                  Bet
-                </Table.HeaderCell>
-                <Table.HeaderCell>Payout</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-4">
-                  Date
-                </Table.HeaderCell>
-                <Table.HeaderCell />
-              </Table.Row>
-            </Table.Header>
-
-            {props.dataPage === 'false'
-              ? 'No data to display'
-              : props.dataPage.map((row, i) => {
-                  const date = new Date(row.createdAt);
-                  const timestamp = date.toLocaleString();
-                  const amount =
-                    Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-                  const result =
-                    Number(row.amountWin) / Global.CONSTANTS.FACTOR;
-
-                  let action = '';
-                  if (row.gameType === 1) {
-                    action = 'Slots';
-                  } else if (row.gameType === 8 || row.gameType === 2) {
-                    action = 'Roulette';
-                  } else if (row.gameType === 3) {
-                    action = 'Backgammon';
-                  } else if (row.gameType === 7 || row.gameType === 4) {
-                    action = 'Blackjack';
-                  }
-
-                  let style = '';
-                  {
-                    i % 2 === 0 ? (style = '#15181c') : (style = 'black');
-                  }
-
-                  return (
-                    <Table.Body key={i}>
-                      {renderRow2(row, timestamp, amount, result, action, style)}
-                    </Table.Body>
-                  );
-                })}
-          </Table>
-        </div>
-      </div>
-    );
-  }
-
-  function renderRow2(row, timestamp, amount, result, action, style) {
-    return (
-      <Table.Row style={{ background: style }}>
-        <Table.Cell>
-          {row.coinName === 'DAI' ? (
-            <img
-              src={Images.DAI_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.coinName === 'MANA' ? (
-            <img
-              src={Images.MANA_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.coinName === 'USDT' ? (
-            <img
-              src={Images.USDT_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.coinName === 'ATRI' ? (
-            <img
-              src={Images.ATRI_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : row.coinName === 'WETH' ? (
-            <img
-              src={Images.ETH_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          ) : (
-            <img
-              src={Images.PLAY_CIRCLE}
-              style={{
-                width: '21px',
-                marginRight: '6px',
-                verticalAlign: 'middle',
-                marginTop: '-2px',
-                borderRadius: '100%',
-              }}
-            />
-          )}
-          {action}
-        </Table.Cell>
-        <Table.Cell className="account-col-2">
-          -{amount} {row.coinName}
-        </Table.Cell>
-        <Table.Cell>
-          +{result} {row.coinName}
-        </Table.Cell>
-        <Table.Cell className="account-col-4">
-          {timestamp}
-        </Table.Cell>
-        <Table.Cell>
-          <span style={{ float: 'right' }}>
-            {row.coinName !== 'PLAY' ? (
-              <Aux>
-                <Button
-                  href={
-                    Global.CONSTANTS.MATIC_EXPLORER +
-                    `/tx/${row.txid}`
-                  }
-                  target="_blank"
-                  className="etherscan-button"
-                  style={{ marginRight: '12px' }}
-                >
-                  tx
-                  <Icon
-                    name="external alternate"
-                    style={{
-                      marginLeft: '6px',
-                      marginRight: '-2px',
-                    }}
-                  />
-                </Button>
-              </Aux>
-            ) : (
-              <Aux>
-                <Button
-                  disabled
-                  className="etherscan-button"
-                  style={{ marginRight: '12px', padding: '2px 0px 0px 0px', }}
-                >
-                  tx
-                  <Icon
-                    name="external alternate"
-                    style={{
-                      marginLeft: '6px',
-                      marginRight: '-2px',
-                    }}
-                  />
-                </Button>
-              </Aux>
-            )}
-
-            {row.coinName !== 'PLAY' ? (
-              <Aux>
-                <Button
-                  href={
-                    Global.CONSTANTS.MATIC_EXPLORER +
-                    `/tx/${row.ptxid}`
-                  }
-                  target="_blank"
-                  className="etherscan-button-ptxid"
-                  style={{ marginRight: '12px' }}
-                >
-                  payout tx
-                  <Icon
-                    name="external alternate"
-                    style={{
-                      marginLeft: '6px',
-                      marginRight: '-2px',
-                    }}
-                  />
-                </Button>
-                <Button
-                  href={
-                    Global.CONSTANTS.MATIC_EXPLORER +
-                    `/tx/${row.ptxid}`
-                  }
-                  target="_blank"
-                  className="etherscan-button-mobile"
-                  style={{ marginRight: '12px' }}
-                >
-                  p tx
-                  <Icon
-                    name="external alternate"
-                    style={{
-                      marginLeft: '6px',
-                      marginRight: '-2px',
-                    }}
-                  />
-                </Button>
-
-              </Aux>
-            ) : (
-              <Aux>
-                <Button
-                  disabled
-                  className="etherscan-button-ptxid"
-                  style={{ padding: '2px 0px 0px 0px', marginRight: '12px' }}
-                >
-                  payout tx
-                  <Icon
-                    name="external alternate"
-                    style={{
-                      marginLeft: '6px',
-                      marginRight: '-2px',
-                    }}
-                  />
-                </Button>
-              </Aux>
-            )}
-          </span>
-        </Table.Cell>
-      </Table.Row>
-    );
-  }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-
   if (props.content === 'balances') {
     return contentAccount();
   } else if (props.content === 'wearables') {
     return contentWearables();
   } else if (props.content === 'poaps') {
     return contentPoaps();
-  } else if (props.content === 'history') {
-    return contentHistory();
   } else if (props.content === 'play') {
-    return contentGameplay();
+    return <History state={state} />;
   } else if (props.content === 'referrals') {
-    return <ContentReferrals state={state} totalAmount={totalAmount} />;
+    return <Referrals state={state} />;
   }
 };
 

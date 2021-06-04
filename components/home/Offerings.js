@@ -1,12 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import Link from 'next/link';
-import { Menu, Button, Divider, Dropdown, Icon } from 'semantic-ui-react';
+import { Divider, Icon } from 'semantic-ui-react';
 import ContentOfferings from '../content/ContentOfferings';
 import ContentLeaderboard from '../content/ContentLeaderboard';
-import Spinner from '../Spinner';
+// import Spinner from '../Spinner'; // ********** should we add the spinner to this page??? **********
 import Images from '../../common/Images';
-import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';
 
 const detailsGames = {
@@ -152,15 +151,17 @@ const detailsNFTs = {
 };
 
 const Offerings = (props) => {
-  // get user's NFT data from the Context API store
+  // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
-  const [gameState, setGameState] = useState(props.gameState);
-  const [gameRecordsRefresh, setGameRecordsRefresh] = useState(false);
 
+  const gameState = props.gameState;
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(value) {
     var gameSelect = '';
     if (value === 'play') {
@@ -197,37 +198,6 @@ const Offerings = (props) => {
     }
   }
 
-  function Leaderboard() {
-    if (gameRecordsRefresh) {
-      return <Spinner background={1} />;
-    } else {
-      return (
-        <ContentLeaderboard
-          gameRecords={state.gameRecords}
-          gameSelect={gameSelect}
-          timePeriod={timePeriod}
-        />
-      );
-    }
-  }
-
-  // async function refreshLeaderboard() {
-  //   console.log('Re-fetching game records');
-  //   setGameRecordsRefresh(true);
-
-  //   const response = await Fetch.GAME_RECORDS(state.userAddress);
-  //   const jsonRecords = await response.json();
-
-  //   setGameRecordsRefresh(false);
-
-  //   dispatch({
-  //     type: 'update_records',
-  //     data: jsonRecords,
-  //   });
-  // }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // tab select and coin select area
   function submenu() {
     return (
@@ -586,7 +556,11 @@ const Offerings = (props) => {
           {submenu()}
 
           {gameState === 'leaderboard' ? (
-            Leaderboard()
+            <ContentLeaderboard
+              gameRecords={state.gameRecords}
+              gameSelect={gameSelect}
+              timePeriod={timePeriod}
+            />
           ) : (
             <ContentOfferings
               gameState={gameState}

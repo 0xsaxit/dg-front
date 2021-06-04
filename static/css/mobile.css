@@ -19,11 +19,14 @@
   background-color: transparent;
   left: 60px;
   z-index: 10;
-  font-size: 18px !important; 
+  font-size: 18px !important;
 }
 
 @media (min-width: 500px) {
   .home-gif {
+    display: none;
+  }
+  .ui.blue.button.metamask-button-mobile {
     display: none;
   }
 }
@@ -47,19 +50,18 @@
   .ui.blue.button.metamask-button {
     display: none;
   }
-  .ui.blue.button.metamask-mobile-button {
-    background-color: #2085f4;
-    background-color: #2085f4 !important;
+  .ui.blue.button.metamask-button-mobile {
+    font-size: 18px;
+    position: relative;
+    background-color: #006eff !important;
     color: white;
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 14px;
-    min-width: 130px !important;
     padding: 0px;
-    height: 34px;
-    letter-spacing: 0.5px;
-    border-radius: 8px;
-    margin-right: 30px !important;
+    line-height: 24px;
+    margin-top: 12px;
+    min-width: 150px !important;
+    height: 40px !important;
+    border-radius: 16px;
+    margin-right: 18px;
   }
 }
 
@@ -161,7 +163,7 @@ div#dropdown-menu-items.item.right-menu-text {
   letter-spacing: 1.25px;
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase; 
+  text-transform: uppercase;
   padding-top: 21px;
   padding-bottom: 21px;
   width: calc(100vw + 42px);
@@ -176,16 +178,16 @@ div#dropdown-menu-items.item.right-menu-text {
     letter-spacing: 1.25px;
     font-size: 14px;
     font-weight: 600;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     padding-top: 21px;
     padding-bottom: 21px;
     width: calc(100vw);
     margin-left: -33px;
     padding-left: 81px;
-  }  
+  }
 }
 
-.ui.top.attached.menu>.item:first-child {
+.ui.top.attached.menu > .item:first-child {
   margin-top: 76px;
   border: 0px solid white;
 }
@@ -193,7 +195,7 @@ div#dropdown-menu-items.item.right-menu-text {
 .ui.dropdown .menu,
 .ui.menu .dropdown.item .menu {
   background: black;
-  border-bottom: 1px solid rgb(21,24,28);
+  border-bottom: 1px solid rgb(21, 24, 28);
   margin-top: 15px;
   padding-top: 0px;
   border-radius: 0px;
@@ -204,8 +206,7 @@ div#dropdown-menu-items.item.right-menu-text {
 @media (max-width: 499px) {
   .ui.dropdown .menu,
   .ui.menu .dropdown.item .menu {
-    border: 0px;
-    box-shadow: none;
+    border-bottom: 1px solid rgb(21, 24, 28);
     padding-top: 0px;
     border-radius: 0px;
     max-width: calc(100vw + 1px);
@@ -216,11 +217,11 @@ div#dropdown-menu-items.item.right-menu-text {
   }
 }
 
-.ui.link.menu .item:hover, 
-.ui.menu .dropdown.item:hover, 
-.ui.menu .link.item:hover, 
+.ui.link.menu .item:hover,
+.ui.menu .dropdown.item:hover,
+.ui.menu .link.item:hover,
 .ui.menu a.item:hover,
-.ui.menu .ui.dropdown .menu>.item:hover {
+.ui.menu .ui.dropdown .menu > .item:hover {
   background: none !important;
 }
 
@@ -255,7 +256,7 @@ div.ui.top.attached.menu {
 @media (min-width: 1101px) {
   #mobile-menu-icon,
   #mobile-menu-icon-home,
-  div.ui.top.attached.menu  {
+  div.ui.top.attached.menu {
     display: none !important;
   }
 }
@@ -277,12 +278,11 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
 }
 
-
 /* ----------------------------------------- */
 /*         DEPOSIT MODAL MOBILE CSS          */
 /* ----------------------------------------- */
 
-@media (max-width: 499px) { 
+@media (max-width: 499px) {
   .matic-overlay {
     width: 100vw;
   }
@@ -312,7 +312,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   }
   a.ui.blue.button.play-button,
   .ui.blue.button.play-button,
-  .ui.blue.button.demo-button  {
+  .ui.blue.button.demo-button {
     margin-right: 21px;
   }
   .ui.blue.button.demo-button {
@@ -373,7 +373,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     min-width: 48.5%;
     padding: 11px 0 0 0;
   }
-  .ui.blue.button.learn-more-button  {
+  .ui.blue.button.learn-more-button {
     min-width: 48.5%;
     padding: 10px 0 0 0;
   }
@@ -624,13 +624,19 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 @media (max-width: 1101px) {
-.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+  .ui.column.grid > [class*='sixteen wide'].column,
+  .ui.grid > .column.row > [class*='sixteen wide'].column,
+  .ui.grid > .row > [class*='sixteen wide'].column,
+  .ui.grid > [class*='sixteen wide'].column {
     width: 50% !important;
   }
 }
 
 @media (max-width: 768px) {
-.ui.column.grid > [class*='sixteen wide'].column, .ui.grid > .column.row > [class*='sixteen wide'].column, .ui.grid > .row > [class*='sixteen wide'].column, .ui.grid > [class*='sixteen wide'].column {
+  .ui.column.grid > [class*='sixteen wide'].column,
+  .ui.grid > .column.row > [class*='sixteen wide'].column,
+  .ui.grid > .row > [class*='sixteen wide'].column,
+  .ui.grid > [class*='sixteen wide'].column {
     width: 100% !important;
   }
 }
@@ -794,7 +800,7 @@ span#mobile-time-select.account-select.dropdown {
 @media (min-width: 601px) {
   .account-authorize-span-mobile {
     display: none;
-  } 
+  }
 }
 
 /* ----------------------------------------- */
@@ -918,7 +924,7 @@ span#mobile-time-select.account-select.dropdown {
     flex-direction: column;
   }
   .DG-column.three {
-    max-width: 100% !important;  
+    max-width: 100% !important;
   }
   .DG-column.four {
     max-width: 100% !important;
@@ -957,7 +963,7 @@ span#mobile-time-select.account-select.dropdown {
     min-width: 100% !important;
   }
   .ui.button.affiliate-copy-button,
-  .ui.button.affiliate-copied-button { 
+  .ui.button.affiliate-copied-button {
     display: none;
   }
 }

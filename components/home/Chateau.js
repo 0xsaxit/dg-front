@@ -3,12 +3,10 @@ import { GlobalContext } from '../../store';
 import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
-import ModalVideo from '../modal/ModalVideo';
 import Mailchimp from '../Mailchimp';
 import Aux from '../_Aux';
 import Footer from './Footer';
 import ModalLogin from 'components/modal/ModalLogin';
-
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -53,7 +51,7 @@ const Chateau = () => {
       <div className="binance-video-container">
         <video
           id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619719236/-Full_Screen_BG_nq4suo.mp4"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
           type="video/mp4"
           frameBorder="0"
           autoPlay={videoPlay}
@@ -71,7 +69,7 @@ const Chateau = () => {
 
         <div className="home-dashboard-content">
           <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
             className="home-gif"
           />
           <h1
@@ -111,7 +109,7 @@ const Chateau = () => {
               <Button
                 color="blue"
                 className="earn-dg-button"
-                href="https://docs.decentral.games/getting-started/play-to-mine"
+                href="https://docs.decentral.games/"
                 target="_blank"
               >
                 Learn More
@@ -151,7 +149,7 @@ const Chateau = () => {
               <span className="powered-dg-span">
                 <h1
                   className="home-footer-h1 ecosystem"
-                  style={{ marginBottom: '0px' }}
+                  style={{ marginBottom: '0px', fontSize: '48px' }}
                 >
                   An ecosystem powered by $DG
                 </h1>
@@ -268,7 +266,7 @@ const Chateau = () => {
                   </a>
                 </Link>
 
-                <Link href="/dg">
+                <Link href="/dg/governance">
                   <a className="dg-powered-container three">
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
@@ -328,7 +326,7 @@ const Chateau = () => {
             <div className="home-section-2 inner">
               <h1
                 className="home-dashboard-h1"
-                style={{ marginBottom: '-12px' }}
+                style={{ marginBottom: '-12px', fontSize: '48px' }}
               >
                 Play games, earn $DG
               </h1>
@@ -347,7 +345,7 @@ const Chateau = () => {
                   Metamask
                 </Button>
               </span>
-              <p className="home-dashboard-p">
+              <p className="home-dashboard-p" style={{ marginTop: '-8px' }}>
                 Play blackjack, roulette, slots, and backgammon with MANA or
                 DAI. Enjoy $DG gameplay mining rewards on all bets.
               </p>
@@ -404,7 +402,7 @@ const Chateau = () => {
               <span className="learn-more-dg-span">
                 <h1
                   className="home-footer-h1 avatars"
-                  style={{ marginBottom: '0px' }}
+                  style={{ marginBottom: '0px', fontSize: '48px' }}
                 >
                   Learn more about our ecosystem
                 </h1>
@@ -456,7 +454,11 @@ const Chateau = () => {
             <div className="home-section-2 inner">
               <h1
                 className="home-dashboard-h1"
-                style={{ marginBottom: '-12px', maxWidth: '600px' }}
+                style={{
+                  marginBottom: '-12px',
+                  maxWidth: '600px',
+                  fontSize: '48px',
+                }}
               >
                 The Metaverse is the next frontier
               </h1>
@@ -479,7 +481,7 @@ const Chateau = () => {
                   </Button>
                 </Link>
               </span>
-              <p className="home-dashboard-p">
+              <p className="home-dashboard-p" style={{ marginTop: '-8px' }}>
                 The metaverse is poised to explode in 2021. 3D virtual
                 blackjack, roulette, and poker accessible from anywhere in the
                 world will change online gaming forever.
@@ -497,7 +499,9 @@ const Chateau = () => {
         <div className="section-4-header" style={{ marginTop: '15px' }}>
           <div className="home-section-4-header">
             <span className="outter-dashboard-span">
-              <h1 className="dg-powered-h1">Get Started</h1>
+              <h1 className="dg-powered-h1" style={{ fontSize: '48px' }}>
+                Get Started
+              </h1>
               <a href="https://docs.decentral.games" target="_blank">
                 <p className="home-more-nav">Visit Our Docs »</p>
               </a>
@@ -593,7 +597,9 @@ const Chateau = () => {
         <div className="home-section-6">
           <span className="outter-footer-container">
             <span className="inner-footer-container top">
-              <h1 className="home-footer-h1">Contact Us</h1>
+              <h1 className="home-footer-h1" style={{ fontSize: '48px' }}>
+                Contact Us
+              </h1>
               <p>
                 {' '}
                 You’ll find us at all hours on Discord. You can also reach us
@@ -611,7 +617,9 @@ const Chateau = () => {
             </span>
 
             <span className="inner-footer-container bottom">
-              <h1 className="home-footer-h1">Sign Up</h1>
+              <h1 className="home-footer-h1" style={{ fontSize: '48px' }}>
+                Sign Up
+              </h1>
               <p>
                 {' '}
                 Register here to recieve the latest news and updates from

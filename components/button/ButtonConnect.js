@@ -164,6 +164,15 @@ const ButtonConnect = () => {
               Connect Metamask
             </span>
           </Button>
+          <Button
+            color="blue"
+            className={binance ? "metamask-button-mobile binance-top" : "metamask-button-mobile top"}
+            onClick={() => openMetaMask()}
+          >
+            <span>
+              Connect
+            </span>
+          </Button>
         </span>
       ) : null}
     </Aux>

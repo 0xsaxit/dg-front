@@ -148,10 +148,7 @@ const ModalPopup = () => {
               <p className="account-dropdown-item"> My POAPs </p>
             </a>
             <a href="/account/play">
-              <p className="account-dropdown-item"> Gameplay History </p>
-            </a>
-            <a href="/account/history">
-              <p className="account-dropdown-item"> Transactions </p>
+              <p className="account-dropdown-item"> History </p>
             </a>
             <a href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
