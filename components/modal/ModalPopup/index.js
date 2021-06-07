@@ -72,20 +72,27 @@ const ModalPopup = () => {
         trigger={
           <Button
             className="account-button"
+            style={{ paddingLeft: '24px', paddingRight: '24px' }}
           >
-            <svg style={{ margin: '0px 4px -2px 0px' }} width="14" height="14" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.88965 18.9707C14.9961 18.9707 19.1973 14.7695 19.1973 9.66309C19.1973 4.54785 14.9961 0.34668 9.88086 0.34668C4.76562 0.34668 0.573242 4.54785 0.573242 9.66309C0.573242 14.7695 4.77441 18.9707 9.88965 18.9707ZM9.88965 12.7832C7.68359 12.7832 5.96094 13.5479 4.95898 14.5322C3.72852 13.2842 2.97266 11.5615 2.97266 9.66309C2.97266 5.82227 6.04883 2.7373 9.88086 2.7373C13.7129 2.7373 16.8066 5.82227 16.8066 9.66309C16.8066 11.5615 16.0508 13.2842 14.8115 14.5322C13.8096 13.5479 12.0957 12.7832 9.88965 12.7832ZM9.88965 11.4297C11.6123 11.4385 12.9395 9.96191 12.9395 8.08984C12.9395 6.32324 11.5947 4.82031 9.88965 4.82031C8.18457 4.82031 6.82227 6.32324 6.83984 8.08984C6.83984 9.96191 8.16699 11.4209 9.88965 11.4297Z" fill="white"/>
-            </svg>
-            My Account
+            <span>
+              <svg style={{ marginRight: '6px', marginBottom: '-2px' }} width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.88965 18.9707C14.9961 18.9707 19.1973 14.7695 19.1973 9.66309C19.1973 4.54785 14.9961 0.34668 9.88086 0.34668C4.76562 0.34668 0.573242 4.54785 0.573242 9.66309C0.573242 14.7695 4.77441 18.9707 9.88965 18.9707ZM9.88965 12.7832C7.68359 12.7832 5.96094 13.5479 4.95898 14.5322C3.72852 13.2842 2.97266 11.5615 2.97266 9.66309C2.97266 5.82227 6.04883 2.7373 9.88086 2.7373C13.7129 2.7373 16.8066 5.82227 16.8066 9.66309C16.8066 11.5615 16.0508 13.2842 14.8115 14.5322C13.8096 13.5479 12.0957 12.7832 9.88965 12.7832ZM9.88965 11.4297C11.6123 11.4385 12.9395 9.96191 12.9395 8.08984C12.9395 6.32324 11.5947 4.82031 9.88965 4.82031C8.18457 4.82031 6.82227 6.32324 6.83984 8.08984C6.83984 9.96191 8.16699 11.4209 9.88965 11.4297Z" fill="white"/>
+              </svg>
+            </span>
+            <span>
+              My Account
+            </span>
           </Button>
         }
       >
         <span>
           <span style={{ display: 'flex' }}>
-            <img
-              className={binance ? "avatar-picture-binance" : "avatar-picture-home"}
-              src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-            />
+            <a href="/account">
+              <img
+                className={binance ? "avatar-picture-binance" : "avatar-picture-home"}
+                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+              />
+            </a>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               {state.userInfo.name === null ||
               state.userInfo.name === '' ? (
