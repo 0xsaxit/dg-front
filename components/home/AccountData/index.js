@@ -86,60 +86,48 @@ const AccountData = (props) => {
             <span className="account-other-p d-flex justify-content-center">
               {dataType === 'balances' ? (
                 <span className="account-hover active">
-                  <b>BALANCES</b>
+                  Balances
                 </span>
               ) : (
                 <Link href="/account">
                   <span className="account-hover">
-                    <b>BALANCES</b>
+                    Balances
                   </span>
                 </Link>
               )}
 
               {dataType === 'wearables' ? (
                 <span className="account-hover active">
-                  <b>NFTS</b>
+                  My Items
                 </span>
               ) : (
                 <Link href="/account/nfts">
                   <span className="account-hover">
-                    <b>NFTS</b>
-                  </span>
-                </Link>
-              )}
-
-              {dataType === 'poaps' ? (
-                <span className="account-hover active">
-                  <b>POAPS</b>
-                </span>
-              ) : (
-                <Link href="/account/poaps">
-                  <span className="account-hover">
-                    <b>POAPS</b>
+                    My Items
                   </span>
                 </Link>
               )}
 
               {dataType === 'play' ? (
                 <span className="account-hover active">
-                  <b>HISTORY</b>
+                  History
                 </span>
               ) : (
                 <Link href="/account/play">
                   <span className="account-hover">
-                    <b>HISTORY</b>
+                    History
                   </span>
                 </Link>
               )}
 
               {dataType === 'referrals' ? (
                 <span className="account-hover active">
-                  <b>REFERRALS</b>
+                  Referrals
                 </span>
               ) : (
                 <Link href="/account/referrals">
                   <span className="account-hover">
-                    <b>REFERRALS</b>
+                    Referrals
                   </span>
                 </Link>
               )}

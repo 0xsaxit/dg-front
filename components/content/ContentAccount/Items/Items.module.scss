@@ -1,0 +1,96 @@
+@import "styles/base.scss";
+
+.items_container {
+	max-width: 75%;
+	margin-left: auto !important;
+	margin-right: auto !important;
+
+	.nft_grid {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.nft_column {
+		width: 31%;
+		display: flex;
+	}
+
+	.nft_description {
+		padding: 30px;
+	}
+
+	.title {
+		font-size: 24px;
+		font-family: Larsseit-ExtraBold;
+		margin: 60px 0px 24px 0px;
+	}
+
+	.all_button {
+		font-size: 14px;
+		width: 80px;
+		background: #1F1F1F;
+		border-radius: 12px;
+		color: white;
+		font-family: Larsseit-Bold;
+		margin-bottom: -124px;
+	}
+
+	.my_nfts {
+		background: #1F1F1F;
+		width: 100%;
+		border-radius: 24px;
+		height: 100%;
+	}
+
+	.nft_image {
+		border-radius: 24px 24px 0px 0px;
+	}
+
+	.nft_number {
+		position: relative;
+		margin-top: -300px;
+		margin-bottom: 300px;
+		float: right;
+		font-size: 12px;
+		font-family: Larsseit-Bold;
+		padding: 4px 8px 4px 8px;
+		background-color: rgba(0, 0, 0, 0.5);
+		border-radius: 8px;
+		margin-right: 12px;
+	}
+
+	.nft_subheader {
+		font-size: 12px;
+		font-family: Larsseit-Bold;
+		color: rgba(255, 255, 255, 0.75) !important;
+		text-transform: uppercase;
+	}
+
+	.nft_name {
+		font-size: 24px;
+		font-family: Larsseit-ExtraBold;
+		margin-top: 4px;
+	}
+
+	.read_button {
+		font-size: 16px;
+		font-family: Larsseit-Bold;
+		width: 120px;
+		height: 48px;
+		color: white;
+		background-color: #2B2B2B;
+		border-radius: 12px;
+	}
+
+	.sell_button {
+		font-size: 16px;
+		font-family: Larsseit-Bold;
+		width: 120px;
+		height: 48px;
+		color: white;
+		background-color: #006EFF;
+		border-radius: 12px;
+	}
+}
+

@@ -108,7 +108,14 @@ p {
 }
 
 .account-hover {
-  font-family: 'Larsseit-Regular';
+  font-family: 'Larsseit-Bold';
+  font-size: 18px !important;
+  cursor: pointer;
+  margin-left: 18px;
+  margin-right: 18px !important;
+  padding: 0px 6px 0px 6px;
+  color: rgb(92, 95, 97);
+  margin-top: 18px;
 }
 
 .ui.button {
@@ -164,8 +171,8 @@ a.get-metamask-scroll:hover {
 }
 
 #menu-logo {
-  width: 33px;
-  padding-top: 15px;
+  width: 36px;
+  padding-top: 18px;
   padding-bottom: 15px;
   margin-right: 9px;
   margin-left: 24px;
@@ -265,6 +272,7 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .dashboard-menu-container {
+  height: 76px;
   position: fixed;
   z-index: 8;
   width: 100%;
@@ -288,6 +296,7 @@ div.ui.segment.transparent-menu-segment {
 
 .other-menu-container {
   position: relative;
+  height: 76px;
 }
 
 .ui.labeled.icon.menu .item {
@@ -296,17 +305,15 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .ui.menu .item {
-  padding-left: 15px;
-  padding-right: 15px !important;
+  font-family: Larsseit-Regular;
+  padding-left: 24px;
+  padding-right: 24px !important;
 }
 
 div.item.sidebar-menu-text.blog#active,
 div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: pointer !important;
-  font-weight: 700 !important;
-  border-bottom: 3px solid #006eff;
-  padding-bottom: 22px !important;
 }
 
 .sidebar-menu-text.blog#active,
@@ -314,8 +321,6 @@ div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: default;
   font-weight: 700 !important;
-  border-bottom: 3px solid #006eff;
-  padding-bottom: 18px !important;
 }
 
 .ui.labeled.icon.menu .item:hover,
@@ -353,14 +358,12 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .sidebar-menu-text {
+  font-family: Larsseit-Bold !important;
   color: rgba(155, 155, 155, 1) !important;
-  margin-top: 15px;
+  margin-top: 24px;
   border: none;
   box-shadow: none;
-  letter-spacing: 1.25px;
-  font-size: 14px;
-  font-weight: bold !important;
-  padding-right: 12px !important;
+  font-size: 18px;
   position: relative;
   z-index: 3;
   transition: all linear 0.1s;
@@ -370,8 +373,8 @@ div.item.sidebar-menu-text.blog:hover {
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  font-family: Larsseit-Bold;
   padding: 4px 6px 0px 6px;
 }
 
@@ -379,7 +382,7 @@ div.item.sidebar-menu-text.blog:hover {
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   padding: 0px 6px 0px 6px;
   text-transform: uppercase;
@@ -1401,8 +1404,10 @@ td:last-child {
 }
 
 .account-other-tabs {
+  margin-top: 30px !important;
+  padding: 0px 0px 30px 0px;
   color: black;
-  text-align: left;
+  text-align: center;
   display: flex;
   width: 100%;
   overflow: auto;
@@ -1464,23 +1469,6 @@ td:last-child {
   flex-direction: row;
 }
 
-.account-hover {
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  font-size: 15px;
-  font-weight: 200 !important;
-  padding: 9px 12px 9px 12px;
-  letter-spacing: 1.25px !important;
-  margin-right: 15px;
-  color: rgb(92, 95, 97);
-  margin-top: 18px;
-}
-
-b,
-.account-hover {
-  font-weight: 600 !important;
-}
-
 .account-hover-time {
   letter-spacing: 0.5px;
   font-size: 15px;
@@ -1523,15 +1511,14 @@ i.help.circle.icon.submenu-icon {
 .account-hover.active {
   color: black;
   cursor: default;
-  font-weight: 700 !important;
-  background-color: rgba(21, 24, 28, 1);
-  border-radius: 4px;
-  padding: 9px 12px 9px 12px;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 12px;
 }
 
 .account-hover:hover {
-  background-color: rgba(42, 48, 56, 1);
-  border-radius: 4px;
+  cursor: pointer;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 12px !important;
   color: black;
 }
 
@@ -3249,12 +3236,15 @@ a.ui.blue.button.play-button-binance,
 }
 
 .ui.button.account-button {
-  height: 40px;
+  padding-right: 16px;
+  padding-left: 16px;
+  height: 48px;
   margin-top: 12px;
   background-color: #1f1f1f;
   border-radius: 16px;
   color: white;
   margin-right: 16px;
+  font-size: 18px !important;
 }
 
 .right-menu-text.bnb {

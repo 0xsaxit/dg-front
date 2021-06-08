@@ -12,6 +12,7 @@ import ModalAcceptATRI from 'components/modal/ModalAcceptATRI';
 import ModalAcceptWETH from 'components/modal/ModalAcceptWETH';
 import Referrals from './Referrals';
 import History from './History';
+import Items from './Items';
 import styles from './ContentAccount.module.scss';
 import Aux from 'components/_Aux';
 
@@ -753,9 +754,7 @@ const ContentAccount = (props) => {
   if (props.content === 'balances') {
     return contentAccount();
   } else if (props.content === 'wearables') {
-    return contentWearables();
-  } else if (props.content === 'poaps') {
-    return contentPoaps();
+    return <Items state={state} />;
   } else if (props.content === 'play') {
     return <History state={state} />;
   } else if (props.content === 'referrals') {

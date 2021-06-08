@@ -236,7 +236,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      PLAY
+                      Play
                     </Menu.Item>
                   </Link>
 
@@ -245,7 +245,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      $DG
+                      Token Ecoystem
                     </Menu.Item>
                   </Link>
 
@@ -254,7 +254,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      GAMES
+                      Games
                     </Menu.Item>
                   </Link>
 
@@ -263,7 +263,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      EVENTS
+                      Events
                     </Menu.Item>
                   </Link>
 
@@ -272,21 +272,9 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      BLOG
+                      News & Blog
                     </Menu.Item>
                   </Link>
-
-                  <a
-                    href="https://decentralgames.substack.com/"
-                    target="_blank"
-                  >
-                    <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
-                    >
-                      NEWS
-                    </Menu.Item>
-                  </a>
 
                   <a
                     href="https://docs.decentral.games"
@@ -297,20 +285,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      DOCS
-                    </Menu.Item>
-                  </a>
-
-                  <a
-                    href="https://snapshot.page/#/decentralgames.eth"
-                    id="docs-top-menu"
-                    target="_blank"
-                  >
-                    <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
-                    >
-                      GOV
+                      Docs
                     </Menu.Item>
                   </a>
                 </span>
@@ -328,43 +303,33 @@ const MenuTop = (props) => {
       <div className="menu-items-to-hide">
         <Link href={`/${utm}`}>
           <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
-            PLAY
+            Play
           </Menu.Item>
         </Link>
 
         <Link href="/dg">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
-            $DG
+            Token Ecosystem
           </Menu.Item>
         </Link>
 
         <Link href="/games">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/games')}>
-            GAMES
+            Games
           </Menu.Item>
         </Link>
 
         <Link href="/events">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/events')}>
-            EVENTS
+            Events
           </Menu.Item>
         </Link>
 
         <Link href="/blog">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
-            BLOG
+            News & Blog
           </Menu.Item>
         </Link>
-
-        <a
-          href="https://decentralgames.substack.com/"
-          target="_blank"
-          id="docs-top-menu"
-        >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/news')}>
-            NEWS
-          </Menu.Item>
-        </a>
 
         <a
           href="https://docs.decentral.games"
@@ -372,17 +337,7 @@ const MenuTop = (props) => {
           target="_blank"
         >
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
-            DOCS
-          </Menu.Item>
-        </a>
-
-        <a
-          href="https://snapshot.page/#/decentralgames.eth"
-          id="docs-top-menu"
-          target="_blank"
-        >
-          <Menu.Item className={menuStyle[2]}>
-            GOV
+            Docs
           </Menu.Item>
         </a>
       </div>
