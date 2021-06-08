@@ -80,7 +80,7 @@ const ContentUniswap = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
-        const uni_num = 51 * 225 * props.price;
+        const uni_num = 52 * 225 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
 
