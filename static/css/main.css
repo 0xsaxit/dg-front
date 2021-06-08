@@ -110,6 +110,12 @@ p {
 .account-hover {
   font-family: 'Larsseit-Bold';
   font-size: 18px !important;
+  cursor: pointer;
+  margin-left: 18px;
+  margin-right: 18px !important;
+  padding: 0px 6px 0px 6px;
+  color: rgb(92, 95, 97);
+  margin-top: 18px;
 }
 
 .ui.button {
@@ -1398,8 +1404,8 @@ td:last-child {
 }
 
 .account-other-tabs {
-  margin-top: 120px !important;
-  padding: 0px 0px 60px 0px;
+  margin-top: 30px !important;
+  padding: 0px 0px 30px 0px;
   color: black;
   text-align: center;
   display: flex;
@@ -1461,21 +1467,6 @@ td:last-child {
 .tx-history-select {
   display: flex;
   flex-direction: row;
-}
-
-.account-hover {
-  cursor: pointer;
-  font-weight: 200 !important;
-  margin-left: 18px;
-  margin-right: 18px !important;
-  padding: 0px 6px 0px 6px;
-  color: rgb(92, 95, 97);
-  margin-top: 18px;
-}
-
-b,
-.account-hover {
-  font-weight: 600 !important;
 }
 
 .account-hover-time {

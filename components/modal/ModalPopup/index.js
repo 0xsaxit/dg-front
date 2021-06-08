@@ -149,16 +149,16 @@ const ModalPopup = () => {
               <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
             </a>
             <a href="/account/nfts">
-              <p className="account-dropdown-item"> My NFTs </p>
-            </a>
-            <a href="/account/poaps">
-              <p className="account-dropdown-item"> My POAPs </p>
+              <p className="account-dropdown-item"> My Items </p>
             </a>
             <a href="/account/play">
-              <p className="account-dropdown-item"> History </p>
+              <p className="account-dropdown-item"> Gameplay History </p>
             </a>
             <a href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
+            </a>            
+            <a href="/account/referrals">
+              <p className="account-dropdown-item"> Disconnect </p>
             </a>
             <Button 
               className={binance ? "buy-dg-button binance" : "buy-dg-button"}
