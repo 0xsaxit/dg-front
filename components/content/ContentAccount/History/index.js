@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from 'store/index';
 import cn from 'classnames';
+import { get } from 'lodash';
 import Global from 'components/Constants';
 import Images from 'common/Images';
 import { Icon, Button, Grid, Table } from 'semantic-ui-react';
@@ -40,7 +41,8 @@ function History({ state }) {
       resultTwo = dataPlay.slice(0, maximumCount);
 
       for (i = 0; i < result.length; i++) {
-        if (result[i].type.includes('Deposit') || result[i].type.includes('Withdrawal')) {
+        const resultType = get(result, `${i}.type`, '');
+        if (resultType.includes('Deposit') || resultType.includes('Withdrawal')) {
           history.push(result[i]);
         }
       }
