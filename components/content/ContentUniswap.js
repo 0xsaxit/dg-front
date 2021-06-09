@@ -258,7 +258,7 @@ const ContentUniswap = (props) => {
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <a
-                  href={`https://info.uniswap.org/pair/${Global.ADDRESSES.UNISWAP_ADDRESS_STAKING}`}
+                  href="https://v2.info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                   target="_blank"
                   style={{ marginTop: '-60px', marginRight: '-4px' }}
                 >
