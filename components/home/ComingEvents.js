@@ -66,21 +66,43 @@ const ComingEvents = () => {
           style={{ paddingTop: '15px', marginBottom: '-16px' }}
         >
           <div style={{ marginLeft: '0px' }}>
-            <span
-              className="account-other-p"
-              style={{ display: 'flex', justifyContent: 'space-between' }}
-            >
-              <span
-                className="account-hover active events"
-                style={{ marginTop: '32px', marginBottom: '16px' }}
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span 
+                style={{ 
+                  margin: '100px 0px 0px 0px',
+                  fontSize: '24px',
+                  fontFamily: 'Larsseit-ExtraBold',
+                  margin: '90px 0px 0px 0px',
+                  color: 'white'
+                }}
               >
-                <b>FEATURED EVENT</b>
+                Featured Event
               </span>
               {eventOngoing ? (
-                <h3 className="nft-other-h3 countdown1"> Next Event: Now</h3>
+                <span 
+                  style={{ 
+                    margin: '100px 0px 0px 0px',
+                    fontSize: '24px',
+                    fontFamily: 'Larsseit-ExtraBold',
+                    margin: '90px 0px 0px 0px',
+                    color: 'white'
+                  }}
+                >
+                  Next Event: Now
+                </span>
               ) : (
                 <span style={{ display: 'flex' }}>
-                  <h3 className="nft-other-h3 countdown1"> Next Event: </h3>
+                  <span 
+                    style={{ 
+                      margin: '100px 0px 0px 0px',
+                      fontSize: '24px',
+                      fontFamily: 'Larsseit-ExtraBold',
+                      margin: '90px 0px 0px 0px',
+                      color: 'white'
+                    }}
+                  >
+                    Next Event:
+                  </span>
                   <Countdown
                     className="nft-other-h3 countdown2"
                     date={events[0].next_start_at}
@@ -90,8 +112,6 @@ const ComingEvents = () => {
             </span>
           </div>
         </div>
-
-        <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
         <div>
           <a href={events[0].url} className="my-nft-container">
@@ -155,17 +175,21 @@ const ComingEvents = () => {
           </a>
         </div>
 
-        <div className="account-other-tabs" style={{ marginTop: '30px' }}>
+        <div className="account-other-tabs">
           <div style={{ marginLeft: '0px' }}>
-            <span className="account-other-p" style={{ display: 'flex' }}>
-              <span className="account-hover active events">
-                <b>ALL EVENTS</b>
-              </span>
+            <span 
+              style={{ 
+                fontSize: '24px',
+                fontFamily: 'Larsseit-ExtraBold',
+                margin: '48px 0px -12px 0px',
+                color: 'white',
+                float: 'left'
+              }}
+            >
+              All Events
             </span>
           </div>
         </div>
-
-        <Divider className="tab-divider" />
 
         <Grid>
           {events.slice(1).map((event, i) => (

@@ -30,15 +30,22 @@ function blogCategory() {
         <div style={{ marginLeft: '0px' }}>
           <span className="account-other-p" style={{ display: 'flex' }}>
             <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <span className="account-hover active events">
+              <span 
+                style={{ 
+                  margin: '100px 0px 0px 0px',
+                  fontSize: '24px',
+                  fontFamily: 'Larsseit-ExtraBold',
+                  margin: '0px 0px 0px 0px',
+                  color: 'white',
+                  float: 'left'
+                }}
+              >
                 {category}
               </span>
             </span>
           </span>
         </div>
       </div>
-
-      <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
       <div className="posts">
         {filteredPages.map((page) =>

@@ -88,7 +88,7 @@ function Referrals({ state }) {
           </span>
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="mb-0">
+          <h3 className={styles.title_two}>
             {!!state.DGBalances.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}

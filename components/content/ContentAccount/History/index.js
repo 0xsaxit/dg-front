@@ -61,12 +61,14 @@ function History({ state }) {
     <Aux>
       <div className={styles.history_container}>
         <h1 className={styles.title}>Recent transactions</h1>
-        <div>
-          <Grid>
-            {!dataPage.length ? (
-              <span className={styles.no_data}>No data to display</span>
-            ) : (
-              dataPage.map((row, i) => {
+          {!dataPage.length ? 
+            <div className={styles.error_container}>
+              <p className={styles.error_state}>
+                No Recent Transactions
+              </p>
+            </div>
+          : <Grid>
+              {dataPage.map((row, i) => {
                 const date = new Date(row.createdAt);
                 const timestamp = date.toDateString();
                 const amount = (row.amount / 100000000000000000).toFixed(2);
@@ -176,58 +178,67 @@ function History({ state }) {
                   </Grid.Column>
                 );
               })
-            )}
+            }}
           </Grid>
-        </div>
+        }
       </div>
 
       <div className={styles.history_container}>
         <h1 className={styles.title}>Gameplay History</h1>
         <div className="tx-box-overflow">
-          <Table unstackable>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>Game</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-2">
-                  Bet
-                </Table.HeaderCell>
-                <Table.HeaderCell>Payout</Table.HeaderCell>
-                <Table.HeaderCell className="account-col-4">
-                  Date
-                </Table.HeaderCell>
-                <Table.HeaderCell>Transactions</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
+          {dataPageTwo === 'false' 
+          ? null
+          : <Table unstackable>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Game</Table.HeaderCell>
+                  <Table.HeaderCell className="account-col-2">
+                    Bet
+                  </Table.HeaderCell>
+                  <Table.HeaderCell>Payout</Table.HeaderCell>
+                  <Table.HeaderCell className="account-col-4">
+                    Date
+                  </Table.HeaderCell>
+                  <Table.HeaderCell>Transactions</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+            </Table>
+          }
 
-            {dataPageTwo === 'false'
-              ? <span className={styles.no_data}>No data to display</span>
-              : dataPageTwo.map((row, i) => {
-                  const date = new Date(row.createdAt);
-                  const timestamp = date.toLocaleString();
-                  const amount =
-                    Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-                  const result =
-                    Number(row.amountWin) / Global.CONSTANTS.FACTOR;
+          {dataPageTwo === 'false'
+            ? <div className={styles.error_container}>
+                <p className={styles.error_state}>
+                  No Recent Gameplay History
+                </p>
+              </div>
+            : dataPageTwo.map((row, i) => {
+                const date = new Date(row.createdAt);
+                const timestamp = date.toLocaleString();
+                const amount =
+                  Number(row.betAmount) / Global.CONSTANTS.FACTOR;
+                const result =
+                  Number(row.amountWin) / Global.CONSTANTS.FACTOR;
 
-                  let action = '';
-                  if (row.gameType === 1) {
-                    action = 'Slots';
-                  } else if (row.gameType === 8 || row.gameType === 2) {
-                    action = 'Roulette';
-                  } else if (row.gameType === 3) {
-                    action = 'Backgammon';
-                  } else if (row.gameType === 7 || row.gameType === 4) {
-                    action = 'Blackjack';
-                  }
+                let action = '';
+                if (row.gameType === 1) {
+                  action = 'Slots';
+                } else if (row.gameType === 8 || row.gameType === 2) {
+                  action = 'Roulette';
+                } else if (row.gameType === 3) {
+                  action = 'Backgammon';
+                } else if (row.gameType === 7 || row.gameType === 4) {
+                  action = 'Blackjack';
+                }
 
-                  let style = '';
-                  {
-                    i % 2 === 0
-                      ? (style = 'rgba(255, 255, 255, 0.08)')
-                      : (style = 'black');
-                  }
+                let style = '';
+                {
+                  i % 2 === 0
+                    ? (style = 'rgba(255, 255, 255, 0.08)')
+                    : (style = 'black');
+                }
 
-                  return (
+                return (
+                  <Table unstackable>
                     <Table.Body key={i}>
                       <Table.Row style={{ background: style }}>
                         <Table.Cell>{action}</Table.Cell>
@@ -459,9 +470,9 @@ function History({ state }) {
                         </Table.Cell>
                       </Table.Row>
                     </Table.Body>
-                  );
-                })}
-          </Table>
+                  </Table>
+                );
+              })}
         </div>
       </div>
     </Aux>

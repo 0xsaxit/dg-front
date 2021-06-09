@@ -92,5 +92,16 @@
 		background-color: #006EFF;
 		border-radius: 12px;
 	}
+
+	.error_container {
+		padding-top: 20px;
+	}
+
+	.error_state {
+		font-family: Larsseit-Bold;
+		font-size: 18px;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.6) !important;
+	}
 }
 

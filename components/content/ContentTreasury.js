@@ -196,7 +196,7 @@ const ContentTreasury = (props) => {
       <Table.Row>
         <Table.Cell>
           <span style={{ display: 'flex' }}>
-            all time gameplay profits
+            All Time Gameplay Profits
             {getPopUp('one')}
           </span>
         </Table.Cell>
@@ -243,7 +243,7 @@ const ContentTreasury = (props) => {
       <Table.Row>
         <Table.Cell>
           <span style={{ display: 'flex' }}>
-            Gameplay hot wallet
+            Gameplay Hot Wallet
             {getPopUp('two')}
           </span>
         </Table.Cell>
@@ -456,7 +456,7 @@ const ContentTreasury = (props) => {
       <Table.Row>
         <Table.Cell>
           <span style={{ display: 'flex' }}>
-            Matic staked in Matic Node
+            Matic Staked in Matic Node
             {getPopUp('seven')}
           </span>
         </Table.Cell>
@@ -638,10 +638,11 @@ const ContentTreasury = (props) => {
                 <Table.HeaderCell
                   textAlign="right"
                   className="treasury-left-padding"
+                  style={{ textAlign: 'right' }}
                 >
                   Amount
                 </Table.HeaderCell>
-                <Table.HeaderCell textAlign="right">Weekly</Table.HeaderCell>
+                <Table.HeaderCell style={{ textAlign: "right" }}>Weekly</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 

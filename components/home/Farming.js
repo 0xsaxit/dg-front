@@ -216,32 +216,32 @@ const Farming = (props) => {
   // helper functions
   function submenu() {
     return (
-      <div>
-        <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
+      <div style={{ margin: '120px 0px 00px 0px' }}>
+        <div className="account-other-tabs">
           {DGState === 'treasury' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <span className="account-hover active">
-                <b>TREASURY</b>
+                Treasury
               </span>
               <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  Governance
                 </span>
               </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    GAMEPLAY
+                    Gameplay
                   </b>
-                  <b>REWARDS</b>
+                  <b>Rewards</b>
                 </span>
               </Link>
               <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
+                    Liquidity
                   </b>
-                  <b>PROVISION</b>
+                  <b>Provision</b>
                 </span>
               </Link>
             </p>
@@ -249,26 +249,26 @@ const Farming = (props) => {
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  Treasury
                 </span>
               </Link>
               <span className="account-hover active">
-                <b>GOVERNANCE</b>
+                Governance
               </span>
               <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    GAMEPLAY
+                    Gameplay
                   </b>
-                  <b>REWARDS</b>
+                  <b>Rewards</b>
                 </span>
               </Link>
               <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
+                    Liquidity
                   </b>
-                  <b>PROVISION</b>
+                  <b>Provision</b>
                 </span>
               </Link>
             </p>
@@ -276,26 +276,26 @@ const Farming = (props) => {
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  Treasury
                 </span>
               </Link>
               <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  Governance
                 </span>
               </Link>
               <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  GAMEPLAY
+                  Gameplay
                 </b>
-                <b>REWARDS</b>
+                <b>Rewards</b>
               </span>
               <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
+                    Liquidity
                   </b>
-                  <b>PROVISION</b>
+                  <b>Provision</b>
                 </span>
               </Link>
             </p>
@@ -303,60 +303,58 @@ const Farming = (props) => {
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  Treasury
                 </span>
               </Link>
               <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  Governance
                 </span>
               </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    GAMEPLAY
+                    Gameplay
                   </b>
-                  <b>REWARDS</b>
+                  <b>Rewards</b>
                 </span>
               </Link>
               <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  LIQUIDITY
+                  Liquidity
                 </b>
-                <b>PROVISION</b>
+                <b>Provision</b>
               </span>
             </p>
           ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
                 <span className="account-hover">
-                  <b>TREASURY</b>
+                  Treasury
                 </span>
               </Link>
               <Link href="/dg/governance">
                 <span className="account-hover">
-                  <b>GOVERNANCE</b>
+                  Governance
                 </span>
               </Link>
               <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                  GAMEPLAY
+                  Gameplay
                 </b>
-                <b>REWARDS</b>
+                <b>Rewards</b>
               </span>
               <Link href="/dg/liquidity">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
-                    LIQUIDITY
+                    Liquidity
                   </b>
-                  <b>PROVISION</b>
+                  <b>Provision</b>
                 </span>
               </Link>
             </p>
           )}
         </div>
-
-        <Divider className="tab-divider" style={{ paddingTop: '21px' }} />
       </div>
     );
   }

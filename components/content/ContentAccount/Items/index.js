@@ -63,9 +63,9 @@ function Items({ state }) {
             ))}
           </span>
         ) : (
-          <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-            <p className={styles.referrals_header_subtitle}>
-              You do not own any wearable NFTs
+          <div className={styles.error_container}>
+            <p className={styles.error_state}>
+              No Wearable NFTs
             </p>
           </div>
         )}
@@ -84,9 +84,9 @@ function Items({ state }) {
             ))}
           </Grid>
         ) : (
-          <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-            <p className={styles.referrals_header_subtitle}>
-              You do not own any wearable NFTs
+          <div className={styles.error_container}>
+            <p className={styles.error_state}>
+              No POAPs
             </p>
           </div>
         )}
