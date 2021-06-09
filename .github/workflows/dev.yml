@@ -7,7 +7,7 @@ on:
 
 env:
   CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME_DEV }}
-  API_URL: ${{ secrets.API_URL_DEV }}
+  API_URL: ${{ secrets.API_URL_PROD }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   DOCKER_BUILDKIT: 1
   HOST: ${{ secrets.HOST_DEV }}
