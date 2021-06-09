@@ -92,7 +92,7 @@ const Screen = ({
         >
           <a
             className="twitter-share-button"
-            href="https://twitter.com/share?url="
+            href={`https://twitter.com/share?url=https://decentral.games/blog/${slug}`}
             target="_blank"
           >
             <Icon
@@ -101,7 +101,7 @@ const Screen = ({
               name="twitter square"
             />
           </a>
-          <a href="http://www.facebook.com/share.php?url=">
+          <a href={`http://www.facebook.com/share.php?url=https://decentral.games/blog/${slug}`}>
             <Icon
               className="share-icon"
               style={{
@@ -111,7 +111,7 @@ const Screen = ({
               name="facebook"
             />
           </a>
-          <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=">
+          <a href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://decentral.games/blog/${slug}`}>
             <Icon className="share-icon"style={{ fontSize: '34px' }} name="linkedin" />
           </a>
         </span>

@@ -38,6 +38,7 @@ const ContentGovernance = (props) => {
   const [endThree, setEndThree] = useState('');
   const [linkThree, setLinkThree] = useState('');
 
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function length(obj) {
@@ -121,13 +122,13 @@ const ContentGovernance = (props) => {
       let json = await response.json();
 
       setGovOne(
-        json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.msg.payload
+        json.QmVbSn433qDFo7cF1Ci57T8rmNeAJzTd25dRGKUjoPsv4p.msg.payload
       );
       setLinkOne(
-        json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.authorIpfsHash
+        json.QmVbSn433qDFo7cF1Ci57T8rmNeAJzTd25dRGKUjoPsv4p.authorIpfsHash
       );
       let temp_one =
-        json.QmYnVzkg6gQcw5Zukj7icDjSVg5nbeuJG3irhmSkCzEQHM.msg.payload.end;
+        json.QmVbSn433qDFo7cF1Ci57T8rmNeAJzTd25dRGKUjoPsv4p.msg.payload.end;
 
       if (temp_one * 1000 < Date.now()) {
         setPassedOne(true);
@@ -139,13 +140,13 @@ const ContentGovernance = (props) => {
       setEndOne(date.toDateString());
 
       setGovTwo(
-        json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload
+        json.QmZj2oFNnuR7Pd5jbsyCs7fzGd3NCy4GDbK4fj66b1uJnE.msg.payload
       );
       setLinkTwo(
-        json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.authorIpfsHash
+        json.QmZj2oFNnuR7Pd5jbsyCs7fzGd3NCy4GDbK4fj66b1uJnE.authorIpfsHash
       );
       let temp_two =
-        json.QmY3QdaajkMmNq5PsQLpUKFDV9hhxcXeD1E3DMTnPtQbXn.msg.payload.end;
+        json.QmZj2oFNnuR7Pd5jbsyCs7fzGd3NCy4GDbK4fj66b1uJnE.msg.payload.end;
 
       if (temp_two * 1000 < Date.now()) {
         setPassedTwo(true);
@@ -157,13 +158,13 @@ const ContentGovernance = (props) => {
       setEndTwo(date.toDateString());
 
       setGovThree(
-        json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload
+        json.QmdoJMQ9zscDiLrpuwy7sPYTRtiosM2s15oDLkEqUrSJ4V.msg.payload
       );
       setLinkThree(
-        json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.authorIpfsHash
+        json.QmdoJMQ9zscDiLrpuwy7sPYTRtiosM2s15oDLkEqUrSJ4V.authorIpfsHash
       );
       let temp_three =
-        json.QmXFBUZkrXAxz8h1jMummzLkW1yfeV3F5dep2WBzFpinsH.msg.payload.end;
+        json.QmdoJMQ9zscDiLrpuwy7sPYTRtiosM2s15oDLkEqUrSJ4V.msg.payload.end;
 
       if (temp_three * 1000 < Date.now()) {
         setPassedThree(true);
