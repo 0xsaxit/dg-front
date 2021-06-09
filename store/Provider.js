@@ -131,7 +131,7 @@ const reducer = (state, action) => {
     case 'user_address':
       return {
         ...state,
-        userAddress: '0xd8856cCe3F878d3Ea03964F80B18987fF1919272',
+        userAddress: action.data,
       };
 
     case 'user_info':
