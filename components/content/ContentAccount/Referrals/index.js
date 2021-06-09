@@ -13,13 +13,17 @@ function Referrals({ state }) {
 
   const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
   let totalAmount = 0;
+  const breakdown = {};
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  coins.map((coin) => {
-    totalAmount += +Number(
-      state.DGPrices[coin] * state.DGBreakdown[coin]
-    ).toFixed(3);
+  coins.map(coin => {
+    let totalAmountByCoin = 0;
+    state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
+      totalAmount += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
+      totalAmountByCoin += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
+    });
+    breakdown[coin] = totalAmountByCoin.toFixed(3);
   });
 
   const onCopy = () => {
@@ -91,7 +95,7 @@ function Referrals({ state }) {
           </h3>
           <ModalBreakdown
             totalAmount={totalAmount}
-            breakdown={state.DGBreakdown}
+            breakdown={breakdown}
           />
         </span>
 
