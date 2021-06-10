@@ -8,13 +8,15 @@ import Header from '../components/Header';
 import Aux from '../components/_Aux';
 import Global from '../components/Constants';
 import Images from '../common/Images';
+import Spinner from '../components/Spinner';
+
 
 const Wildcard = () => {
   // dispatch affiliate referral address to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [affiliateAddress, setAffiliateAddress] = useState(false);
+  const [affiliateAddress, setAffiliateAddress] = useState(true);
   const [isErrorMessage, setIsErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,14 +29,14 @@ const Wildcard = () => {
       const re = /[0-9A-Fa-f]{6}/g;
 
       if (re.test(parameter) && parameter.length === 6) {
-        setAffiliateAddress(true);
-
-        console.log('Affiliate address received: ' + parameter);
-
         dispatch({
           type: 'affiliate_address',
           data: parameter,
         });
+
+        console.log('Affiliate address received: ' + parameter);
+      } else {
+        setAffiliateAddress(false);
       }
     }
     setIsLoading(false);
@@ -50,7 +52,7 @@ const Wildcard = () => {
 
   return (
     <Layout>
-      {affiliateAddress ? (
+      {affiliateAddress == true ? (
         <Aux>
           <Header
             title={Global.CONSTANTS.TITLE + ' | Account | Balances'}
