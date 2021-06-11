@@ -753,9 +753,9 @@ const ContentAccount = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   if (props.content === 'balances') {
     return contentAccount();
-  } else if (props.content === 'wearables') {
+  } else if (props.content === 'items') {
     return <Items state={state} />;
-  } else if (props.content === 'play') {
+  } else if (props.content === 'history') {
     return <History state={state} />;
   } else if (props.content === 'referrals') {
     return <Referrals state={state} />;

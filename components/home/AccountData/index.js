@@ -96,24 +96,24 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              {dataType === 'wearables' ? (
+              {dataType === 'items' ? (
                 <span className="account-hover active">
                   My Items
                 </span>
               ) : (
-                <Link href="/account/nfts">
+                <Link href="/account/items">
                   <span className="account-hover">
                     My Items
                   </span>
                 </Link>
               )}
 
-              {dataType === 'play' ? (
+              {dataType === 'history' ? (
                 <span className="account-hover active">
                   History
                 </span>
               ) : (
-                <Link href="/account/play">
+                <Link href="/account/history">
                   <span className="account-hover">
                     History
                   </span>

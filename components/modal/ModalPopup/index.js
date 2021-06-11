@@ -148,10 +148,10 @@ const ModalPopup = () => {
             <a href="/account">
               <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
             </a>
-            <a href="/account/nfts">
+            <a href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
             </a>
-            <a href="/account/play">
+            <a href="/account/history">
               <p className="account-dropdown-item"> Gameplay History </p>
             </a>
             <a href="/account/referrals">
