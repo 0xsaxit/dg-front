@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from 'react';
-import { Modal, Button, Divider, Icon, Checkbox, Loader } from 'semantic-ui-react';
-import { GlobalContext } from '../../store';
-import ButtonApproveWETH from '../button/buttonApproveWETH';
+import { useState, useContext } from 'react';
+import { Modal, Button, Icon, Checkbox, Loader } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
+import ButtonApprove from 'components/button/ButtonApprove';
 
-const ModalAcceptWETH = () => {
+const ModalAccept = ({ coinLabel = 'dai' }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -12,8 +12,6 @@ const ModalAcceptWETH = () => {
   const [checkedOne, setCheckedOne] = useState(false);
   const [checkedTwo, setCheckedTwo] = useState(false);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   function isCheckedOne() {
     if (checkedOne === true) {
       setCheckedOne(false);
@@ -39,18 +37,12 @@ const ModalAcceptWETH = () => {
       close
       trigger={
         <span>
-          {!state.wethLoading ? (
-            <Button
-              className="balances-authorize-button"
-              id="balances-padding-correct"
-            >
-              Enable ETH
+          {!state[`${coinLabel}Loading`] ? (
+            <Button id="balances-padding-correct">
+              Enable {coinLabel.toUpperCase()}
             </Button>
           ) : (
-            <Button
-              className="balances-authorize-button"
-              id="balances-padding-correct"
-            >
+            <Button id="balances-padding-correct">
               <Loader
                 active
                 inline
@@ -60,7 +52,7 @@ const ModalAcceptWETH = () => {
                   fontSize: '12px',
                 }}
               />
-            </Button>  
+            </Button>
           )}
         </span>
       }
@@ -71,15 +63,16 @@ const ModalAcceptWETH = () => {
         </span>
       </div>
 
-      <h3 style={{ textAlign: 'left', margin: '42px 0px 8px 30px' }}>  Terms of Service </h3>
+      <h3 style={{ textAlign: 'left', margin: '42px 0px 8px 30px' }}>
+        Terms of Service
+      </h3>
 
       <div style={{ padding: '10px 30px 30px 30px' }}>
         <p>
-          {' '}
-          Please take a few minutes to read and understand our{' '}
+          Please take a few minutes to read and understand our&nbsp;
           <a href="https://docs.decentral.games/disclaimer"> disclaimer</a>. To
           continue, you'll need to accept the following Terms of Service by
-          checking each box.{' '}
+          checking each box.
         </p>
 
         <Checkbox
@@ -96,15 +89,11 @@ const ModalAcceptWETH = () => {
 
         {checkedOne === true && checkedTwo === true ? (
           <span onClick={() => setOpen(false)}>
-            <ButtonApproveWETH />
+            <ButtonApprove coinLabel={coinLabel} />
           </span>
         ) : (
-          <Button
-            className="balances-authorize-button"
-            id="balances-padding-correct"
-            disabled
-          >
-            Enable ETH
+          <Button id="balances-padding-correct" disabled>
+            Enable {coinLabel.toUpperCase()}
           </Button>
         )}
       </div>
@@ -112,4 +101,4 @@ const ModalAcceptWETH = () => {
   );
 };
 
-export default ModalAcceptWETH;
+export default ModalAccept;

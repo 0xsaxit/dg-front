@@ -1,35 +1,51 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_MANA from '../ABI/ABIChildTokenMANA';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
-import MetaTx from '../../common/MetaTx';
+import ABI_CHILD_TOKEN_DAI from 'components/ABI/ABIChildTokenDAI';
+import ABI_CHILD_TOKEN_MANA from 'components/ABI/ABIChildTokenMANA';
+import ABI_CHILD_TOKEN_USDT from 'components/ABI/ABIChildTokenUSDT';
+import ABI_CHILD_TOKEN_WETH from 'components/ABI/ABIChildTokenWETH';
+import ABI_CHILD_TOKEN_ATRI from 'components/ABI/ABIChildTokenATRI';
+import Global from 'components/Constants';
+import Fetch from 'common/Fetch';
+import MetaTx from 'common/MetaTx';
 
-function ButtonApproveMANA() {
+const mapping = {
+  dai: {
+    abi: ABI_CHILD_TOKEN_DAI,
+    tokenNumber: 0,
+    metaNumber: 3,
+  },
+  mana: {
+    abi: ABI_CHILD_TOKEN_MANA,
+    tokenNumber: 1,
+    metaNumber: 0,
+  },
+  usdt: {
+    abi: ABI_CHILD_TOKEN_USDT,
+    tokenNumber: 2,
+    metaNumber: 4,
+  },
+  atri: {
+    abi: ABI_CHILD_TOKEN_ATRI,
+    tokenNumber: 3,
+    metaNumber: 5,
+  },
+  weth: {
+    abi: ABI_CHILD_TOKEN_WETH,
+    tokenNumber: 4,
+    metaNumber: 6,
+  },
+};
+
+function ButtonApprove({ coinLabel = 'dai' }) {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
-  // const [value, setValue] = useState(0);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // if the user has also authorized DAI set status value to 8, otherwise 7
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     if (state.userStatus === 6) {
-  //       setValue(8);
-  //     } else {
-  //       setValue(7);
-  //     }
-  //   }
-  // }, [state.userStatus]);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -50,15 +66,15 @@ function ButtonApproveMANA() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_MANA,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
+        mapping[coinLabel].abi,
+        Global.ADDRESSES[`CHILD_TOKEN_ADDRESS_${coinLabel.toUpperCase()}`]
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve MANA');
+          console.log(`Mexa is Ready: Approve ${coinLabel.toUpperCase()}`);
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -78,15 +94,15 @@ function ButtonApproveMANA() {
       data: true,
     });
 
-    // dispatch({
-    //   type: 'update_status',
-    //   data: value,
-    // });
-
     // update user's token array in database
-    console.log("Updating user's token array in database: MANA");
+    console.log(
+      `Updating user's token array in database: ${coinLabel.toUpperCase()}`
+    );
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 1);
+    await Fetch.UPDATE_TOKEN_ARRAY(
+      state.userAddress,
+      mapping[coinLabel].tokenNumber
+    );
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -97,12 +113,14 @@ function ButtonApproveMANA() {
     });
 
     // post authorization to database
-    console.log('Posting MANA authorization transaction to db: MAX_AMOUNT');
+    console.log(
+      `Posting ${coinLabel.toUpperCase()} authorization transaction to db: MAX_AMOUNT`
+    );
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'MANA Authorization',
+      `${coinLabel.toUpperCase()} Authorization`,
       'Confirmed',
       txHash,
       state.userStatus
@@ -113,7 +131,7 @@ function ButtonApproveMANA() {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_manaLoading',
+        type: `set_${coinLabel}Loading`,
         data: true,
       });
 
@@ -125,7 +143,7 @@ function ButtonApproveMANA() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        0,
+        mapping[coinLabel].metaNumber,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -136,7 +154,7 @@ function ButtonApproveMANA() {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_manaLoading',
+          type: `set_${coinLabel}Loading`,
           data: false,
         });
       } else {
@@ -145,30 +163,25 @@ function ButtonApproveMANA() {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_manaLoading',
+          type: `set_${coinLabel}Loading`,
           data: false,
         });
       }
     } catch (error) {
-      console.log('Biconomy metatransaction error: ' + error);
+      console.log(error);
 
       dispatch({
-        type: 'set_manaLoading',
+        type: `set_${coinLabel}Loading`,
         data: false,
       });
     }
   }
 
   return (
-    <Button
-      className="balances-authorize-button"
-      id="balances-padding-correct"
-      onClick={() => metaTransaction()}
-    >
-      Enable MANA
+    <Button id="balances-padding-correct" onClick={() => metaTransaction()}>
+      {`Enable ${coinLabel.toUpperCase()}`}
     </Button>
   );
 }
 
-export default ButtonApproveMANA;
-
+export default ButtonApprove;
