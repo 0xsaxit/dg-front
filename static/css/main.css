@@ -181,6 +181,11 @@ a.get-metamask-scroll:hover {
   cursor: pointer;
 }
 
+#message-bar {
+  position: relative;
+  z-index: 999;
+}
+
 .ui.dropdown .menu .item .dropdown.icon:before {
   display: none;
 }
@@ -2644,7 +2649,6 @@ a.ui.blue.button.earn-dg-button {
   background-color: #2b2b2b;
   color: white;
   position: relative;
-  margin-top: 8px;
   height: 64px !important;
   width: 200px;
   line-height: 32px;
@@ -2769,7 +2773,7 @@ a.ui.blue.button.casinos {
   color: white;
   padding: 0px;
   line-height: 24px;
-  margin-top: 12px;
+  margin-top: 14.5px;
   min-width: 250px !important;
   height: 40px !important;
   border-radius: 16px;
