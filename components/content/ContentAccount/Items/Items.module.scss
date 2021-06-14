@@ -1,6 +1,7 @@
 @import "styles/base.scss";
 
 .items_container {
+	margin-top: -30px;
 	max-width: 75%;
 	margin-left: auto !important;
 	margin-right: auto !important;
@@ -49,7 +50,7 @@
 
 	.nft_number {
 		position: relative;
-		margin-top: -300px;
+		margin-top: -288px;
 		margin-bottom: 300px;
 		float: right;
 		font-size: 12px;

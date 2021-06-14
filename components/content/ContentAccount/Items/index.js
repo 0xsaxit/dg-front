@@ -72,7 +72,7 @@ function Items({ state }) {
       </div>
 
       <div className={styles.items_container}>
-        <h1 className={styles.title}>
+        <h1 className={styles.title} style={{ marginTop: '90px' }}>
           POAPs
         </h1>
         {state.poaps.length !== 0 ? (

@@ -11,7 +11,7 @@ const ContentAccount = props => {
 
   if (props.content === 'balances') {
     return <Balances />;
-  } else if (props.content === 'wearables') {
+  } else if (props.content === 'items') {
     return <Items state={state} />;
   } else if (props.content === 'history') {
     return <History state={state} />;
