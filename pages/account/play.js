@@ -6,20 +6,20 @@ import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Play = () => {
+const History = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Account | Game History'}
+        title={Global.CONSTANTS.TITLE + ' | Account | History'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
       {state.userStatus ? (
-        <AccountData dataType={'play'} />
+        <AccountData dataType={'history'} />
       ) : (
         <div className="account-other-inner-p">
           You must connect your wallet to view this page
@@ -29,4 +29,4 @@ const Play = () => {
   );
 };
 
-export default Play;
+export default History;

@@ -13,7 +13,7 @@ const ContentAccount = props => {
     return <Balances />;
   } else if (props.content === 'wearables') {
     return <Items state={state} />;
-  } else if (props.content === 'play') {
+  } else if (props.content === 'history') {
     return <History state={state} />;
   } else if (props.content === 'referrals') {
     return <Referrals state={state} />;

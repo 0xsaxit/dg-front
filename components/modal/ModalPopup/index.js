@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
+import Web3 from 'web3';
 import { Popup, Icon, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
@@ -17,6 +18,7 @@ const ModalPopup = () => {
   const [atriPrice, setAtriPrice] = useState(0);
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
+  const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -56,11 +58,15 @@ const ModalPopup = () => {
     const balance = mana + eth + atri + dai + usdt;
 
     setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-  }, [state.userBalances[1][1], 
-      state.userBalances[2][3], 
+  }, [state.userBalances[1][1],
+      state.userBalances[2][3],
       state.userBalances[2][2],
       state.userBalances[0][1],
       state.userBalances[2][1]]);
+
+  async function disconnectMetaMask() {
+    
+  }
 
   return (
     <div>
@@ -148,19 +154,19 @@ const ModalPopup = () => {
             <a href="/account">
               <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
             </a>
-            <a href="/account/nfts">
+            <a href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
             </a>
-            <a href="/account/play">
+            <a href="/account/history">
               <p className="account-dropdown-item"> Gameplay History </p>
             </a>
             <a href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
-            </a>            
-            <a href="/account/referrals">
+            </a>
+            <a onClick={() => disconnectMetaMask()}>
               <p className="account-dropdown-item"> Disconnect </p>
             </a>
-            <Button 
+            <Button
               className={binance ? "buy-dg-button binance" : "buy-dg-button"}
               href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
               target="_blank"
