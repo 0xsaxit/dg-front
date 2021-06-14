@@ -272,7 +272,6 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .dashboard-menu-container {
-  height: 76px;
   position: fixed;
   z-index: 8;
   width: 100%;
