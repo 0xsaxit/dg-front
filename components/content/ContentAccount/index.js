@@ -18,7 +18,7 @@ const connext = {
   routerPublicID: Global.CONSTANTS.CONNEXT_PUBLIC_ID,
   chainProviderInfura:
     'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
-  chainProviderMatic: 'https://rpc-mainnet.matic.network',
+  chainProviderMatic: 'https://rpc-mainnet.maticvigil.com',
   assetID_1_MANA: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA,
   assetID_2_MANA: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
   assetID_1_DAI: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI,
