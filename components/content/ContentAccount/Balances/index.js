@@ -184,8 +184,8 @@ function Balances() {
 
         <div className={styles.float_right}>
           <span className={styles.balance_column_header}>
-            <p>{state.userInfo.balancePLAY}</p>
-            <p> {state.userInfo.totalPLAY} </p>
+            <p>{state.userInfo.balancePLAY} FREE</p>
+            <p> {state.userInfo.totalPLAY}</p>
           </span>
 
           <>
@@ -215,8 +215,15 @@ function Balances() {
 
             <div className={styles.float_right}>
               <span className={styles.balance_column_header}>
-                <p>{coin.balance(state.userBalances)}</p>
-                <p>{state.userInfo[`total${coin.coinKey.toUpperCase()}`]}</p>
+                <p>
+                  {coin.balance(state.userBalances)}&nbsp;{coin.coin}
+                </p>
+                <p>
+                  $
+                  {Number(
+                    state.userInfo[`total${coin.coinKey.toUpperCase()}`]
+                  ).toFixed(2)}
+                </p>
               </span>
 
               <div>

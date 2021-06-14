@@ -15,9 +15,27 @@
 		padding: 30px 20px 30px 40px;
 		margin-bottom: 16px;
 
+		@include mq($until: medium) {
+			flex-direction: column;
+			height: 180px;
+		}
+
 		.float_left {
 			display: flex;
 			align-items: center;
+
+			@include mq($until: medium) {
+				width: 100%;
+				justify-content: space-between;
+			}
+
+			.balance_column_header {
+				& p:last-child {
+					@include mq($until: medium) {
+						text-align: right;
+					}
+				}
+			}
 		}
 		
 		.balance_column_header {
@@ -32,6 +50,10 @@
 				font-weight: 700;
 				color: white;
 				margin-bottom: 0;
+
+				@include mq($until: medium) {
+					text-align: left;
+				}
 			}
 
 			p:last-child {
@@ -40,6 +62,14 @@
 				text-transform: uppercase;
 				color: rgba(255, 255, 255, 0.75);
 				margin-bottom: 0;
+
+				@include mq($until: medium) {
+					text-align: left;
+				}
+			}
+
+			@include mq($until: medium) {
+				margin: 0;
 			}
 		}
 
@@ -61,6 +91,16 @@
 			display: flex;
 			align-items: center;
 
+			.balance_column_header {
+				& p:last-child {
+					text-align: right;
+
+					@include mq($until: medium) {
+						text-align: left;
+					}
+				}
+			}
+
 			& > div {
 				width: 286px;
 				display: flex;
@@ -71,11 +111,28 @@
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
+
+					& > button.ui.button {
+						margin-right: 1rem;
+					}
+				}
+
+				@include mq($until: medium) {
+					width: 260px;
 				}
 			}
 
 			.topUp {
 				width: 286px;
+
+				@include mq($until: medium) {
+					width: 260px;
+				}
+			}
+
+			@include mq($until: medium) {
+				width: 100%;
+				justify-content: space-between;
 			}
 		}
 
