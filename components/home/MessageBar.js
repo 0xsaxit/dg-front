@@ -10,9 +10,17 @@ const MessageBar = () => {
   // define local variables
   const [message, setMessage] = useState('');
   const [isMobile, setMobile] = useState(false);
+  const [pause, setPause] = useState(false);
 
   let isSafari = false;
   let web3 = {};
+
+  useEffect(() => {
+    let timer = setTimeout(() => setPause(true), 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -54,7 +62,7 @@ const MessageBar = () => {
       setMessage('Please connect your wallet to play');
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
-    } else if (!state.userInfo.tokenArray.includes(true)) {
+    } else if (pause && !state.userInfo.tokenArray.includes(true)) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
       );
