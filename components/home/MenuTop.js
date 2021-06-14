@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import ModalInfo from 'components/modal/ModalInfo';
-import ModalPopup from 'components/modal/ModalPopup';
 import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
 import Fetch from '../../common/Fetch';
@@ -197,7 +196,7 @@ const MenuTop = (props) => {
       } else {
         return '';
       }
-    } else if(router.pathname.includes(path)) {
+    } else if (router.pathname.includes(path)) {
       return 'active';
     } else {
       return '';
@@ -245,7 +244,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      Token Ecoystem
+                      Token Ecosystem
                     </Menu.Item>
                   </Link>
 
@@ -352,7 +351,136 @@ const MenuTop = (props) => {
       return (
         <span className="right-menu-items">
           <ModalInfo />
-          <ModalPopup />
+
+          <div>
+            <Popup
+              pinned
+              on="click"
+              position="bottom right"
+              className="account-popup"
+              trigger={
+                <Button className="account-button">
+                  <Icon className="account-icon" name="user circle outline" />
+                  My Account
+                </Button>
+              }
+            >
+              <span>
+                <span style={{ display: 'flex' }}>
+                  <img
+                    className="avatar-picture-home"
+                    src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                  />
+                  <span style={{ display: 'flex', flexDirection: 'column' }}>
+                    {state.userInfo.name === null ||
+                    state.userInfo.name === '' ? (
+                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                        Unnamed
+                      </h4>
+                    ) : (
+                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                        {state.userInfo.name}
+                      </h4>
+                    )}
+                    <span
+                      className="account-copy"
+                      style={{ display: 'flex' }}
+                      onClick={() => onCopy()}
+                    >
+                      <p className="account-address">
+                        {state.userAddress.substr(0, 8) +
+                          '...' +
+                          state.userAddress.substr(-8)}
+                        <Icon
+                          name="clone outline"
+                          style={{
+                            color: 'rgba(225, 255, 255, 0.5)',
+                            fontSize: '16px',
+                            padding: '0px 0px 0px 8px',
+                          }}
+                        />
+                      </p>
+                    </span>
+                  </span>
+                </span>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <Link href="/account">
+                    <Button className="casino-balance-button">
+                      <p className="casino-balance-text"> Casino Balance </p>
+
+                      <span
+                        style={{ display: 'flex', justifyContent: 'flex-end' }}
+                      >
+                        <p className="casino-balance-text two">
+                          ${casinoBalance}
+                        </p>
+                        <Icon
+                          className="arrow right"
+                          style={{ paddingLeft: '8px', paddingTop: '5px' }}
+                        />
+                      </span>
+                    </Button>
+                  </Link>
+
+                  <span
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginTop: '12px',
+                    }}
+                  >
+                    <Link href="/account">
+                      <Button className="account-deposit-button">
+                        Deposit
+                      </Button>
+                    </Link>
+                    <Link href="/account">
+                      <Button className="account-withdraw-button">
+                        Withdraw
+                      </Button>
+                    </Link>
+                  </span>
+
+                  <Link href="/account">
+                    <p
+                      className="account-dropdown-item"
+                      style={{ marginTop: '8px' }}
+                    >
+                      My Account
+                    </p>
+                  </Link>
+                  <Link href="/account/nfts">
+                    <p className="account-dropdown-item">My NFTs</p>
+                  </Link>
+                  <Link href="/account/poaps">
+                    <p className="account-dropdown-item">My POAPs</p>
+                  </Link>
+                  <Link href="/account/play">
+                    <p className="account-dropdown-item">Gameplay History</p>
+                  </Link>
+                  <Link href="/account/history">
+                    <p className="account-dropdown-item">Transactions</p>
+                  </Link>
+                  <Link href="/account/referrals">
+                    <p className="account-dropdown-item">Referrals</p>
+                  </Link>
+                  <Button
+                    className="buy-dg-button"
+                    href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
+                    target="_blank"
+                  >
+                    Buy $DG
+                  </Button>
+                </span>
+              </span>
+            </Popup>
+
+            {copied ? (
+              <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
+                <h3 className="copied-text">Wallet address copied!</h3>
+              </div>
+            ) : null}
+          </div>
         </span>
       );
     } else {
@@ -393,4 +521,3 @@ const MenuTop = (props) => {
 };
 
 export default MenuTop;
-

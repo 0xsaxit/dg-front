@@ -183,6 +183,7 @@ export const GlobalStyles = createGlobalStyle`
   .other-menu-container.blog {
     background-color: black;
     border-bottom: 1px solid rgb(21,24,28);
+    padding-bottom: 2px;
   }
   div#home-mobile-background.ui.vertical.labeled.icon.ui.overlay.top.sidebar.menu {
     background: ${({ theme }) => theme.homeMenuColor} !important;

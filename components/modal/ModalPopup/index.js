@@ -100,16 +100,18 @@ const ModalPopup = () => {
               />
             </a>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              {state.userInfo.name === null ||
-              state.userInfo.name === '' ? (
-                <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                  Unnamed
-                </h4>
-              ) : (
-                <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                  {state.userInfo.name}
-                </h4>
-              )}
+              <a href="/account">
+                {state.userInfo.name === null ||
+                state.userInfo.name === '' ? (
+                  <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                    Unnamed
+                  </h4>
+                ) : (
+                  <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
+                    {state.userInfo.name}
+                  </h4>
+                )}
+              </a>
               <span
                 className="account-copy" 
                 style={{ display: 'flex' }} 
@@ -163,9 +165,9 @@ const ModalPopup = () => {
             <a href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
             </a>
-            <a onClick={() => disconnectMetaMask()}>
+            {/*<a onClick={() => disconnectMetaMask()}>
               <p className="account-dropdown-item"> Disconnect </p>
-            </a>
+            </a>*/}
             <Button
               className={binance ? "buy-dg-button binance" : "buy-dg-button"}
               href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"

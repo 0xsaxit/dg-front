@@ -622,7 +622,7 @@ const Chateau = () => {
               </h1>
               <p>
                 {' '}
-                Register here to recieve the latest news and updates from
+                Register here to receive the latest news and updates from
                 Decentral Games.{' '}
               </p>
               <Mailchimp />

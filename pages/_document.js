@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />
           <link
             rel="shortcut icon"
-            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1593691630/favicon_ofugym.ico"
+            href="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630041/favicon_wuwh9j.ico"
           />
           <link
             rel="apple-touch-icon"
