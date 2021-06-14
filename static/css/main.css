@@ -121,7 +121,6 @@ p {
 .ui.button {
   font-family: 'Larsseit-Bold';
   border-radius: 16px;
-  margin: 0 0 0 0;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -1893,21 +1892,6 @@ div.ui.grid.balances-container {
   margin-right: auto !important;
 }
 
-.balances-container {
-  margin-top: 15px !important;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-bottom: 90px !important;
-}
-
-@media (max-width: 991px) {
-  .balances-container {
-    padding-bottom: 30px !important;
-  }
-}
-
 @media (min-width: 1027px) {
   .leaderboard-coin-select {
     margin-bottom: -9px !important;
@@ -1919,11 +1903,6 @@ div.ui.grid.balances-container {
 
 .leaderboard-column {
   width: 100%;
-}
-
-.balances-container {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 @media (min-width: 1401px) {
@@ -2755,18 +2734,6 @@ a.ui.blue.button.casinos {
   height: 36px !important;
   line-height: 10px;
   font-size: 16px !important;
-}
-
-.ui.button.balances-authorize-button {
-  color: white;
-  background-color: #006eff;
-  min-width: 100% !important;
-  margin-top: 3px;
-  margin-bottom: 6px;
-  height: 36px !important;
-  line-height: 8px;
-  font-size: 16px !important;
-  border-radius: 4px;
 }
 
 .ui.button.get-dg-button {

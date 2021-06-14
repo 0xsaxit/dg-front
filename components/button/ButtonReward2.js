@@ -50,19 +50,11 @@ function ButtonReward(props) {
   return (
     <Aux>
       {disabled ? (
-        <Button
-          disabled
-          className="balances-authorize-button"
-          id="balances-padding-correct"
-        >
+        <Button disabled id="balances-padding-correct">
           START REWARD CYCLE (Pool 2)
         </Button>
       ) : (
-        <Button
-          className="balances-authorize-button"
-          id="balances-padding-correct"
-          onClick={transactionReward}
-        >
+        <Button id="balances-padding-correct" onClick={transactionReward}>
           START REWARD CYCLE (Pool 2)
         </Button>
       )}
