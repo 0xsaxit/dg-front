@@ -6,21 +6,27 @@
   position: relative;
   color: black;
   background-color: transparent;
-  top: -17px;
   left: 60px;
   z-index: 10;
   font-size: 18px !important;
+  top: 17px;
 }
 
 #mobile-menu-icon-home {
   position: relative;
   color: white;
-  top: -17px;
+  top: 17px;
   background-color: transparent;
   left: 60px;
   z-index: 10;
   font-size: 18px !important;
 }
+
+/* @media (max-width: 500px) {
+  #mobile-menu-icon-home {
+    top: 10px;
+  }
+} */
 
 @media (min-width: 500px) {
   .home-gif {
@@ -107,11 +113,11 @@
   #add-funds-mobile-padding {
     display: none;
   }
-  #mobile-menu-icon,
+  /* #mobile-menu-icon,
   #mobile-menu-icon-home {
-    position: relative;
+    position: absolute;
     left: 50px;
-  }
+  } */
   .right-menu-items.outter {
     position: absolute;
     width: 50vw;
@@ -188,7 +194,6 @@ a#dropdown-menu-items.item.right-menu-text {
 }
 
 .ui.top.attached.menu > .item:first-child {
-  margin-top: 76px;
   border: 0px solid white;
 }
 
@@ -234,9 +239,9 @@ a#dropdown-menu-items.item.right-menu-text:hover {
   .menu-items-to-hide {
     display: none;
   }
-  .mobile-height-fix {
+  /* .mobile-height-fix {
     margin-top: -70px;
-  }
+  } */
 }
 
 @media (max-width: 650px) {
@@ -250,8 +255,8 @@ div.ui.top.attached.menu {
   margin-left: -3px;
   width: 0px;
   height: 0px;
-  margin-top: 30px;
   border: 0px solid white;
+  min-height: 0px;
 }
 
 @media (min-width: 1101px) {
@@ -609,9 +614,9 @@ span#mobile-time-select.account-select.dropdown {
     margin-top: -27px;
     margin-bottom: -6px !important;
   }
-  .ui.dropdown {
+  /* .ui.dropdown {
     margin-bottom: 30px !important;
-  }
+  } */
   .coin-select-divider {
     margin-top: 18px !important;
     padding-bottom: 15px;
