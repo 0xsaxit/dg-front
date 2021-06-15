@@ -278,6 +278,8 @@ div.ui.segment.transparent-menu-segment {
 .dashboard-menu-container {
   z-index: 8;
   width: 100%;
+  position: sticky;
+  top: 0px;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
@@ -2627,7 +2629,6 @@ a.ui.blue.button.play-button,
   position: relative;
   background-color: #006eff !important;
   color: white;
-  /* margin-top: 8px; */
   height: 64px !important;
   width: 200px;
   line-height: 32px;

@@ -181,7 +181,10 @@ export const GlobalStyles = createGlobalStyle`
   .dashboard-menu-container#top,
   .menu-container-dark.blog,
   .other-menu-container.blog {
-    background-color: black;
+    opacity: 1;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    background-color: black !important;
     border-bottom: 1px solid rgb(21,24,28);
     padding-bottom: 2px;
   }
