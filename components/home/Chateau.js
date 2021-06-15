@@ -81,7 +81,7 @@ const Chateau = () => {
           <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
             Earn $DG by playing non-custodial slots, roulette, blackjack and poker
-            in the Metaverse. Stake $DG to be The House.
+            in the Metaverse. Stake $DG to Be The House.
           </p>
           <Button
             color="blue"
