@@ -1,18 +1,27 @@
 @import "styles/base.scss";
 
 .referrals_container {
-	max-width: 75%;
+	@include mq($until: medium) {
+		max-width: 100%;
+	}
+
+	@include mq($from: medium) {
+		max-width: 75%;
+	}
 
 	.referrals_header {
 		&_title {
 			max-width: 100%;
-			font-size: 48px;
 			font-weight: 800;
 			line-height: 59px;
 			letter-spacing: -0.7px;
 
 			@include mq($until: medium) {
-				width: 100%;
+				font-size: 42px;
+			}
+
+			@include mq($from: medium) {
+				font-size: 48px;
 			}
 		}
 

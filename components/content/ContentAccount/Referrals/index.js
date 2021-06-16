@@ -46,9 +46,9 @@ function Referrals({ state }) {
       <div className={cn('container-fluid', styles.referrals_container)}>
         <div className={cn('d-flex my-10', styles.referrals_header)}>
           <div className="d-flex flex-column w-100">
-            <h2 className={cn('mb-2', styles.referrals_header_title)}>
+            <p className={cn('mb-2', styles.referrals_header_title)}>
               Refer a friend and receive a % of their wagers, forever
-            </h2>
+            </p>
             <p className={styles.referrals_header_subtitle}>
               The percentage of their wagers you receive varies based on the
               game, targeting ~10% of the house edge.
