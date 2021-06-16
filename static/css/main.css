@@ -1316,7 +1316,7 @@ td:last-child {
 
 .tx-box-overflow {
   max-height: 600px !important;
-  overflow: auto;
+  overflow-y: auto;
   margin-bottom: 90px;
   border: 0px solid #edf2f9 !important;
   border-radius: 8px !important;
@@ -1333,7 +1333,7 @@ td:last-child {
 }
 
 .tx-box-overflow::-webkit-scrollbar {
-  display: none;
+  background: white;
 }
 
 .ui.table thead th,
