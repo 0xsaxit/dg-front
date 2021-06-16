@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
-import Global from 'components/Constants';
-import { Icon, Segment, Grid, Image, Button, Divider } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import styles from './Items.module.scss';
 
-
 function Items({ state }) {
   // define local variables
-
   return (
     <Aux>
       <div className={styles.items_container}>
@@ -28,9 +25,9 @@ function Items({ state }) {
           </a>
         </span>
         {state.wearables.length !== 0 ? (
-          <span className={styles.nft_grid}>
+          <div className={styles.nft_grid}>
             {state.wearables.slice(0, 3).map((wearable, i) => (
-              <span key={i} className={styles.nft_column}>
+              <div key={i} className={styles.nft_column}>
                 <a href={wearable.permalink}> 
                   <div className={styles.my_nfts}>
                     <span>
@@ -39,8 +36,8 @@ function Items({ state }) {
                     </span>
 
                     <div className={styles.nft_description}>
-                      <h4 className={styles.nft_subheader}> {wearable.asset_contract.name} </h4>
-                      <h3 className={styles.nft_name}>{wearable.name}</h3>
+                      <p className={styles.nft_subheader}> {wearable.asset_contract.name} </p>
+                      <p className={styles.nft_name}>{wearable.name}</p>
 
                       <span
                         style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}
@@ -59,9 +56,9 @@ function Items({ state }) {
                     </div>
                   </div>
                 </a>
-              </span>
+              </div>
             ))}
-          </span>
+          </div>
         ) : (
           <div className={styles.error_container}>
             <p className={styles.error_state}>
