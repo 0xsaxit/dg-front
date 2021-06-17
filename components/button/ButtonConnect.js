@@ -6,7 +6,6 @@ import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';
 import ModalLoginTop from '../modal/ModalLoginTop';
 
-
 const ButtonConnect = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -32,7 +31,7 @@ const ButtonConnect = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
+    listener = document.addEventListener('scroll', e => {
       let scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {
@@ -155,25 +154,33 @@ const ButtonConnect = () => {
           </a>
           <Button
             color="blue"
-            className={binance ? "metamask-button binance-top" : "metamask-button top"}
+            className={
+              binance ? 'metamask-button binance-top' : 'metamask-button top'
+            }
             onClick={() => openMetaMask()}
           >
             <span>
-              <img 
+              <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
+                style={{
+                  height: '24px',
+                  paddingRight: '8px',
+                  marginBottom: '-7px',
+                }}
               />
               Connect Metamask
             </span>
           </Button>
           <Button
             color="blue"
-            className={binance ? "metamask-button-mobile binance-top" : "metamask-button-mobile top"}
+            className={
+              binance
+                ? 'metamask-button-mobile binance-top'
+                : 'metamask-button-mobile top'
+            }
             onClick={() => openMetaMask()}
           >
-            <span>
-              Connect
-            </span>
+            <span>Connect</span>
           </Button>
         </span>
       ) : (
@@ -184,5 +191,3 @@ const ButtonConnect = () => {
 };
 
 export default ButtonConnect;
-
-

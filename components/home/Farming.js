@@ -16,7 +16,7 @@ import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 import Fetch from '../../common/Fetch';
 
-const Farming = (props) => {
+const Farming = props => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -220,13 +220,9 @@ const Farming = (props) => {
         <div className="account-other-tabs">
           {DGState === 'treasury' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
-              <span className="account-hover active">
-                Treasury
-              </span>
+              <span className="account-hover active">Treasury</span>
               <Link href="/dg/governance">
-                <span className="account-hover">
-                  Governance
-                </span>
+                <span className="account-hover">Governance</span>
               </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
@@ -248,13 +244,9 @@ const Farming = (props) => {
           ) : DGState === 'governance' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
-                <span className="account-hover">
-                  Treasury
-                </span>
+                <span className="account-hover">Treasury</span>
               </Link>
-              <span className="account-hover active">
-                Governance
-              </span>
+              <span className="account-hover active">Governance</span>
               <Link href="/dg/mining">
                 <span className="account-hover">
                   <b style={{ marginRight: '4px', paddingTop: '1px' }}>
@@ -275,14 +267,10 @@ const Farming = (props) => {
           ) : DGState === 'mining' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
-                <span className="account-hover">
-                  Treasury
-                </span>
+                <span className="account-hover">Treasury</span>
               </Link>
               <Link href="/dg/governance">
-                <span className="account-hover">
-                  Governance
-                </span>
+                <span className="account-hover">Governance</span>
               </Link>
               <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>
@@ -302,14 +290,10 @@ const Farming = (props) => {
           ) : DGState === 'uniswap' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
-                <span className="account-hover">
-                  Treasury
-                </span>
+                <span className="account-hover">Treasury</span>
               </Link>
               <Link href="/dg/governance">
-                <span className="account-hover">
-                  Governance
-                </span>
+                <span className="account-hover">Governance</span>
               </Link>
               <Link href="/dg/mining">
                 <span className="account-hover">
@@ -329,14 +313,10 @@ const Farming = (props) => {
           ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
-                <span className="account-hover">
-                  Treasury
-                </span>
+                <span className="account-hover">Treasury</span>
               </Link>
               <Link href="/dg/governance">
-                <span className="account-hover">
-                  Governance
-                </span>
+                <span className="account-hover">Governance</span>
               </Link>
               <span className="account-hover active">
                 <b style={{ marginRight: '4px', paddingTop: '1px' }}>
@@ -425,14 +405,14 @@ const Farming = (props) => {
               <ButtonReward1
                 stakingContractPool1={stakingContractPool1}
                 rewardAmount={amountInput}
-                rewardData={(amount) => rewardData(amount)}
+                rewardData={amount => rewardData(amount)}
               />
             </p>
             <p>
               <ButtonReward2
                 stakingContractPool2={stakingContractPool2}
                 rewardAmount={amountInput}
-                rewardData={(amount) => rewardData(amount)}
+                rewardData={amount => rewardData(amount)}
               />
             </p>
           </span>

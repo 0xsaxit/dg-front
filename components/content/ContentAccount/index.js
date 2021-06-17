@@ -9,8 +9,8 @@ const ContentAccount = props => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
-              console.log('!!!');
-        console.log(state.userInfo.tokenArray);
+  console.log('!!!');
+  console.log(state.userInfo.tokenArray);
 
   if (props.content === 'balances') {
     return <Balances />;

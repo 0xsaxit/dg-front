@@ -8,7 +8,7 @@ import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Global from '../Constants';
 
-const ContentGovernance = (props) => {
+const ContentGovernance = props => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 

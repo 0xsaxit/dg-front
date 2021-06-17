@@ -7,7 +7,7 @@ import ContentAdmin from '../content/ContentAdmin';
 import Global from '../Constants';
 import Transactions from '../../common/Transactions';
 
-const Administration = (props) => {
+const Administration = props => {
   // get smart contract balances and user status' from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 

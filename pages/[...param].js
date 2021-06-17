@@ -61,7 +61,10 @@ const Wildcard = () => {
           {isLoading === true ? (
             <Spinner background={1} />
           ) : isErrorMessage === true ? (
-            <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+            <div
+              className="account-other-inner-p"
+              style={{ paddingTop: '20px' }}
+            >
               You must connect your wallet to view this page
             </div>
           ) : (

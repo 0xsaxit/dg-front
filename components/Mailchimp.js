@@ -93,7 +93,7 @@ class Mailchimp extends Component {
             <CustomForm
               status={status}
               message={message}
-              onValidated={(formData) => subscribe(formData)}
+              onValidated={formData => subscribe(formData)}
             />
           )}
         />

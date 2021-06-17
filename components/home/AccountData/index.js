@@ -9,7 +9,7 @@ import Aux from 'components/_Aux';
 
 import './AccountData.module.scss';
 
-const AccountData = (props) => {
+const AccountData = props => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const dataHistory = state.transactions[0];
@@ -56,10 +56,7 @@ const AccountData = (props) => {
       <Aux>
         <div style={{ position: 'relative', zIndex: '0' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <span
-              className="avatar-picture"
-              style={{ alignSelf: 'center' }}
-            >
+            <span className="avatar-picture" style={{ alignSelf: 'center' }}>
               <img
                 className="avatar-picture main"
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
@@ -67,11 +64,11 @@ const AccountData = (props) => {
                   backgroundColor: 'white',
                   width: '120px',
                   display: 'flex',
-                  margin: '90px 0px 0px 0px'
+                  margin: '90px 0px 0px 0px',
                 }}
-              /> 
-              <a 
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
+              />
+              <a
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                 target="_blank"
                 className="avatar-edit-circle"
               >
@@ -81,54 +78,42 @@ const AccountData = (props) => {
           </span>
         </div>
 
-        <div className="account-other-tabs" id="account-mobile-tabs" style={{ marginTop: '0px' }}>
+        <div
+          className="account-other-tabs"
+          id="account-mobile-tabs"
+          style={{ marginTop: '0px' }}
+        >
           <div className="ml-0">
             <span className="account-other-p d-flex justify-content-center">
               {dataType === 'balances' ? (
-                <span className="account-hover active">
-                  Balances
-                </span>
+                <span className="account-hover active">Balances</span>
               ) : (
                 <Link href="/account">
-                  <span className="account-hover">
-                    Balances
-                  </span>
+                  <span className="account-hover">Balances</span>
                 </Link>
               )}
 
               {dataType === 'items' ? (
-                <span className="account-hover active">
-                  My Items
-                </span>
+                <span className="account-hover active">My Items</span>
               ) : (
                 <Link href="/account/items">
-                  <span className="account-hover">
-                    My Items
-                  </span>
+                  <span className="account-hover">My Items</span>
                 </Link>
               )}
 
               {dataType === 'history' ? (
-                <span className="account-hover active">
-                  History
-                </span>
+                <span className="account-hover active">History</span>
               ) : (
                 <Link href="/account/history">
-                  <span className="account-hover">
-                    History
-                  </span>
+                  <span className="account-hover">History</span>
                 </Link>
               )}
 
               {dataType === 'referrals' ? (
-                <span className="account-hover active">
-                  Referrals
-                </span>
+                <span className="account-hover active">Referrals</span>
               ) : (
                 <Link href="/account/referrals">
-                  <span className="account-hover">
-                    Referrals
-                  </span>
+                  <span className="account-hover">Referrals</span>
                 </Link>
               )}
             </span>

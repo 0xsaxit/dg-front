@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 import Aux from './_Aux';
 import Global from './Constants';
 
-const Header = (props) => {
+const Header = props => {
   function segmentSnippet() {
     // create a queue, but don't obliterate an existing one
     var analytics = (window.analytics = window.analytics || []);

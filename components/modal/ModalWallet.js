@@ -19,7 +19,7 @@ const ModalWallet = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
+    listener = document.addEventListener('scroll', e => {
       let scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {
@@ -38,13 +38,9 @@ const ModalWallet = () => {
   }, [scrollState]);
 
   if (scrollState == 'top') {
-    menuStyle = [
-      'get-metamask'
-    ];
+    menuStyle = ['get-metamask'];
   } else {
-    menuStyle = [
-      'get-metamask-scroll',
-    ];
+    menuStyle = ['get-metamask-scroll'];
   }
 
   return (
@@ -56,11 +52,11 @@ const ModalWallet = () => {
       close
       trigger={
         <span className="right-menu-items">
-          <a 
+          <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
             target="_blank"
             className={menuStyle[0]}
-          > 
+          >
             Need help?
           </a>
           <Button
@@ -87,11 +83,13 @@ const ModalWallet = () => {
 
       <Divider style={{ marginTop: '-15px' }} />
 
-      <p style={{ margin: '21px 30px 15px 30px', textAlign: 'center' }}> Choose a method to connect</p>
+      <p style={{ margin: '21px 30px 15px 30px', textAlign: 'center' }}>
+        {' '}
+        Choose a method to connect
+      </p>
 
       <ButtonVerify />
       <ButtonVerifyFortmatic />
-
     </Modal>
   );
 };

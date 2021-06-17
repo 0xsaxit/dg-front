@@ -4,7 +4,7 @@ import Global from '../Constants';
 import Spinner from '../Spinner';
 import Images from '../../common/Images';
 
-const ContentLeaderboard = (props) => {
+const ContentLeaderboard = props => {
   // get game score records from the Context API store
   // const [state, dispatch] = useContext(GlobalContext);
 
@@ -65,7 +65,7 @@ const ContentLeaderboard = (props) => {
         ];
       }
 
-      selected[0].map((row) => {
+      selected[0].map(row => {
         game1.push({
           name: row.name,
           address: row.address,
@@ -73,7 +73,7 @@ const ContentLeaderboard = (props) => {
         });
       });
 
-      selected[1].map((row) => {
+      selected[1].map(row => {
         game2.push({
           name: row.name,
           address: row.address,
@@ -81,7 +81,7 @@ const ContentLeaderboard = (props) => {
         });
       });
 
-      selected[2].map((row) => {
+      selected[2].map(row => {
         game3.push({
           name: row.name,
           address: row.address,
@@ -89,7 +89,7 @@ const ContentLeaderboard = (props) => {
         });
       });
 
-      selected[3].map((row) => {
+      selected[3].map(row => {
         game4.push({
           name: row.name,
           address: row.address,
@@ -149,7 +149,7 @@ const ContentLeaderboard = (props) => {
                               '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
                           }}
                         />
-                        {row.name === null || row.name === '' 
+                        {row.name === null || row.name === ''
                           ? row.address.substr(0, 6) +
                             '...' +
                             row.address.substr(-4)

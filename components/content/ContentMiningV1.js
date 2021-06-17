@@ -9,7 +9,7 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Global from '../Constants';
 
-const ContentMiningV1 = (props) => {
+const ContentMiningV1 = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 

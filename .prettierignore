@@ -1,6 +1,7 @@
 # ignore artifacts:
 build
 coverage
+.next/**
 
 # ignore all HTML files:
 *.html

@@ -2,7 +2,7 @@ import { Divider, Grid, Table } from 'semantic-ui-react';
 import Images from '../../common/Images';
 import Aux from '../_Aux';
 
-const ContentAdmin = (props) => {
+const ContentAdmin = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   const games = Object.keys(props.data);

@@ -8,7 +8,7 @@ import Fetch from '../../common/Fetch';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 
-const ContentUniswap = (props) => {
+const ContentUniswap = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 

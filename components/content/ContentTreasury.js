@@ -4,7 +4,7 @@ import { Loader, Popup, Icon, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import Aux from '../_Aux';
 
-const ContentTreasury = (props) => {
+const ContentTreasury = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -642,7 +642,9 @@ const ContentTreasury = (props) => {
                 >
                   Amount
                 </Table.HeaderCell>
-                <Table.HeaderCell style={{ textAlign: "right" }}>Weekly</Table.HeaderCell>
+                <Table.HeaderCell style={{ textAlign: 'right' }}>
+                  Weekly
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
 

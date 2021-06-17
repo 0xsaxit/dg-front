@@ -67,38 +67,38 @@ const ComingEvents = () => {
         >
           <div style={{ marginLeft: '0px' }}>
             <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span 
-                style={{ 
+              <span
+                style={{
                   margin: '100px 0px 0px 0px',
                   fontSize: '24px',
                   fontFamily: 'Larsseit-ExtraBold',
                   margin: '90px 0px 0px 0px',
-                  color: 'white'
+                  color: 'white',
                 }}
               >
                 Featured Event
               </span>
               {eventOngoing ? (
-                <span 
-                  style={{ 
+                <span
+                  style={{
                     margin: '100px 0px 0px 0px',
                     fontSize: '24px',
                     fontFamily: 'Larsseit-ExtraBold',
                     margin: '90px 0px 0px 0px',
-                    color: 'white'
+                    color: 'white',
                   }}
                 >
                   Next Event: Now
                 </span>
               ) : (
                 <span style={{ display: 'flex' }}>
-                  <span 
-                    style={{ 
+                  <span
+                    style={{
                       margin: '100px 0px 0px 0px',
                       fontSize: '24px',
                       fontFamily: 'Larsseit-ExtraBold',
                       margin: '90px 0px 0px 0px',
-                      color: 'white'
+                      color: 'white',
                     }}
                   >
                     Next Event:
@@ -177,13 +177,13 @@ const ComingEvents = () => {
 
         <div className="account-other-tabs">
           <div style={{ marginLeft: '0px' }}>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '24px',
                 fontFamily: 'Larsseit-ExtraBold',
                 margin: '48px 0px -12px 0px',
                 color: 'white',
-                float: 'left'
+                float: 'left',
               }}
             >
               All Events

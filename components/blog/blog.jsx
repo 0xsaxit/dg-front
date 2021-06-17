@@ -4,7 +4,7 @@ import Screen from './screen';
 import { GlobalContext } from '../../store';
 import ButterCMS from '../../common/ButterCMS';
 
-const Blog = (Paths) => {
+const Blog = Paths => {
   const [state, dispatch] = useContext(GlobalContext);
   const paths = Paths.Paths[0].split(/[/]/);
   const category =

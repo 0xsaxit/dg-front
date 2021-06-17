@@ -6,7 +6,7 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Transactions from '../../common/Transactions';
 
-const ContentAirdrop = (props) => {
+const ContentAirdrop = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 

@@ -7,7 +7,6 @@ import Aux from '../../_Aux';
 import ModalLoginBinance from 'components/modal/ModalLoginBinance';
 import ModalDepositBinance from 'components/modal/ModalDepositBinance';
 
-
 const BinanceHome = () => {
   // get user's onboard status the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -18,7 +17,6 @@ const BinanceHome = () => {
 
   const realm = 'fenrir-amber';
   let buttonPlay = '';
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -123,11 +121,7 @@ const BinanceHome = () => {
     );
   }
 
-  return (
-    <div className="home-dashboard">
-      {sectionOne()}
-    </div>
-  );
+  return <div className="home-dashboard">{sectionOne()}</div>;
 };
 
 export default BinanceHome;

@@ -1,8 +1,7 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 
-
-const ContentOfferings = (props) => {
+const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
 
@@ -121,7 +120,6 @@ const ContentOfferings = (props) => {
       </div>
     );
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -273,7 +271,7 @@ const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentShop() {
     return (
-       <div className="outter-games-container">
+      <div className="outter-games-container">
         {Object.keys(props.detailsShop).map((item, i) => (
           <a
             href={props.detailsShop[item][6] + utm}

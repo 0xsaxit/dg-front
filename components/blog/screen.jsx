@@ -10,7 +10,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
   const filteredPages =
     category === 'All'
       ? pages
-      : pages.filter((page) =>
+      : pages.filter(page =>
           page.categories.length > 0
             ? page.categories[0].name === category
             : false
@@ -19,7 +19,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
   const [results, setResults] = useState([]);
   const [value, setValue] = useState('');
   const [state, dispatch] = useContext(GlobalContext);
-  const blogs = state.pages.data.map((blog) => {
+  const blogs = state.pages.data.map(blog => {
     return {
       title: blog.title,
       image: blog.featured_image,
@@ -44,7 +44,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
       }
 
       const re = new RegExp(_.escapeRegExp(value), 'i');
-      const isMatch = (result) => re.test(result.title);
+      const isMatch = result => re.test(result.title);
 
       setLoading(false);
       setResults(_.filter(blogs, isMatch));
@@ -290,7 +290,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
           style={{ paddingBottom: '60px' }}
         >
           <div className="posts">
-            {filteredPages.map((page) => (
+            {filteredPages.map(page => (
               <Link
                 href="/blog/[id]"
                 key={page.created}

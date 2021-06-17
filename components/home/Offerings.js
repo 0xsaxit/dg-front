@@ -150,7 +150,7 @@ const detailsNFTs = {
   ],
 };
 
-const Offerings = (props) => {
+const Offerings = props => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -202,7 +202,10 @@ const Offerings = (props) => {
   function submenu() {
     return (
       <div>
-        <div className="account-other-tabs" style={{ padding: '100px 0px 60px 0px' }}>
+        <div
+          className="account-other-tabs"
+          style={{ padding: '100px 0px 60px 0px' }}
+        >
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////  tab select area   //////////////////////////////// */}

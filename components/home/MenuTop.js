@@ -10,8 +10,7 @@ import Fetch from '../../common/Fetch';
 import Global from '../Constants';
 import ModalPopup from 'components/modal/ModalPopup';
 
-
-const MenuTop = (props) => {
+const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -80,7 +79,7 @@ const MenuTop = (props) => {
   }, [linkDocs]);
 
   useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
+    listener = document.addEventListener('scroll', e => {
       let scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {

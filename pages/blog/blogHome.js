@@ -36,14 +36,14 @@ function blog() {
     <div className="blog-home-container">
       <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
         <div style={{ marginLeft: '0px' }}>
-          <span 
-            style={{ 
+          <span
+            style={{
               margin: '100px 0px 0px 0px',
               fontSize: '24px',
               fontFamily: 'Larsseit-ExtraBold',
               margin: '0px 0px 0px 0px',
               color: 'white',
-              float: 'left'
+              float: 'left',
             }}
           >
             Featured Post
@@ -52,7 +52,10 @@ function blog() {
       </div>
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-partners-with-video-game-pioneer-atari">
+        <Link
+          href="/blog/[id]"
+          as="blog/decentral-games-partners-with-video-game-pioneer-atari"
+        >
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
@@ -67,7 +70,7 @@ function blog() {
                     <h4
                       style={{
                         paddingBottom: '9px',
-                        paddingTop: '9px'
+                        paddingTop: '9px',
                       }}
                     >
                       Decentral Games Partners With Video Game Pioneer Atari
@@ -75,10 +78,12 @@ function blog() {
                     <p
                       style={{
                         lineHeight: '1.3',
-                        paddingTop: '3px'
+                        paddingTop: '3px',
                       }}
                     >
-                      We are thrilled to announce that we have partnered up with Atari to launch Atari Casino powered by Decentral Games this May!
+                      We are thrilled to announce that we have partnered up with
+                      Atari to launch Atari Casino powered by Decentral Games
+                      this May!
                     </p>
                   </div>
                 </div>
@@ -96,13 +101,19 @@ function blog() {
               <div className="account-other-tabs" style={{ marginTop: '0px' }}>
                 <div style={{ marginLeft: '0px' }}>
                   <span className="account-other-p" style={{ display: 'flex' }}>
-                    <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                      <span 
-                        style={{ 
+                    <span
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                      }}
+                    >
+                      <span
+                        style={{
                           fontSize: '24px',
                           fontFamily: 'Larsseit-ExtraBold',
                           margin: '48px 0px 0px 0px',
-                          color: 'white'
+                          color: 'white',
                         }}
                       >
                         {category}
@@ -116,8 +127,18 @@ function blog() {
                           <Button className="all-button">
                             <span>
                               See All
-                              <svg style={{ marginLeft: '4px' }} width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M5.56543 4.82715C5.56104 4.59424 5.48193 4.40967 5.29297 4.2251L1.98389 0.990723C1.84326 0.854492 1.68066 0.78418 1.47852 0.78418C1.07422 0.78418 0.740234 1.11377 0.740234 1.51367C0.740234 1.71582 0.82373 1.90039 0.977539 2.0542L3.84277 4.82275L0.977539 7.6001C0.82373 7.74951 0.740234 7.93408 0.740234 8.14062C0.740234 8.54053 1.07422 8.87012 1.47852 8.87012C1.67627 8.87012 1.84326 8.8042 1.98389 8.66357L5.29297 5.4292C5.48193 5.24463 5.56543 5.05566 5.56543 4.82715Z" fill="white"/>
+                              <svg
+                                style={{ marginLeft: '4px' }}
+                                width="6"
+                                height="9"
+                                viewBox="0 0 6 9"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5.56543 4.82715C5.56104 4.59424 5.48193 4.40967 5.29297 4.2251L1.98389 0.990723C1.84326 0.854492 1.68066 0.78418 1.47852 0.78418C1.07422 0.78418 0.740234 1.11377 0.740234 1.51367C0.740234 1.71582 0.82373 1.90039 0.977539 2.0542L3.84277 4.82275L0.977539 7.6001C0.82373 7.74951 0.740234 7.93408 0.740234 8.14062C0.740234 8.54053 1.07422 8.87012 1.47852 8.87012C1.67627 8.87012 1.84326 8.8042 1.98389 8.66357L5.29297 5.4292C5.48193 5.24463 5.56543 5.05566 5.56543 4.82715Z"
+                                  fill="white"
+                                />
                               </svg>
                             </span>
                           </Button>
@@ -131,7 +152,7 @@ function blog() {
               <div className="posts">
                 {
                   ((count = 0),
-                  filteredPages.map((page) =>
+                  filteredPages.map(page =>
                     category === 'ALL' ? (
                       <Link
                         href="/blog/[id]"
@@ -266,7 +287,7 @@ function blog() {
       )}
 
       <div className="posts">
-        {filteredPages.map((page) => (
+        {filteredPages.map(page => (
           <Link href="/blog/[id]" key={page.created} as={`/blog/${page.slug}`}>
             <a className="post">
               <div className="post-div">

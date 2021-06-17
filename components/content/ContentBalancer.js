@@ -7,7 +7,7 @@ import Images from '../../common/Images';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 
-const ContentBalancer = (props) => {
+const ContentBalancer = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 

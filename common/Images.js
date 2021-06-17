@@ -1,6 +1,5 @@
 const Images = {
-  LOGO:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
+  LOGO: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
   SOCIAL_SHARE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1607984535/feat_u522ov.png',
   LOADING_SPINNER:
@@ -11,8 +10,7 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Bitmap_1_cwsnkg.png',
   ICON_ETH:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959917/eth_ua2hza.png',
-  BOX:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/box_mjulo4.png',
+  BOX: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/box_mjulo4.png',
   CHECK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png',
   MANA_CIRCLE:
@@ -35,11 +33,11 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
   FEATURED_IMAGE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1615173711/Screen_Shot_2021-03-07_at_7.21.12_PM_so67xj.png',
-  DG_COIN_LOGO: 
+  DG_COIN_LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
   METAMASK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png',
-  TRANSAK: 
+  TRANSAK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/transak_lzhhwn.png',
 };
 

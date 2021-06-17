@@ -5,7 +5,7 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (no wallet address necessary)
-  TREASURY_STATS_NUMBERS: (period) => {
+  TREASURY_STATS_NUMBERS: period => {
     return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/${period}`, {
       method: 'GET',
       headers: {
@@ -38,7 +38,7 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address necessary)
-  PLAYER_INFO: (address) => {
+  PLAYER_INFO: address => {
     return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
       method: 'GET',
       headers: {
@@ -48,7 +48,7 @@ const Fetch = {
     });
   },
 
-  PLAYER_DATA: (address) => {
+  PLAYER_DATA: address => {
     return fetch(`${API_BASE_URL}/admin/getCryptoRecords?address=${address}`, {
       method: 'GET',
       headers: {
@@ -58,7 +58,7 @@ const Fetch = {
     });
   },
 
-  USERS_LIST: (address) => {
+  USERS_LIST: address => {
     return fetch(`${API_BASE_URL}/admin/getUsersList?address=${address}`, {
       method: 'GET',
       headers: {
@@ -113,7 +113,7 @@ const Fetch = {
     });
   },
 
-  TOP_UP_USER: (address) => {
+  TOP_UP_USER: address => {
     return fetch(`${API_BASE_URL}/order/topup`, {
       method: 'POST',
       headers: {
@@ -126,7 +126,7 @@ const Fetch = {
     });
   },
 
-  HISTORY_DATA: (address) => {
+  HISTORY_DATA: address => {
     return fetch(`${API_BASE_URL}/order/getHistory`, {
       method: 'POST',
       headers: {
@@ -141,7 +141,7 @@ const Fetch = {
     });
   },
 
-  PLAY_DATA: (address) => {
+  PLAY_DATA: address => {
     return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
       method: 'POST',
       headers: {
@@ -177,7 +177,7 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
-  NFTS_1: (address) => {
+  NFTS_1: address => {
     return fetch(
       `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0xbf53c33235cbfc22cef5a61a83484b86342679c5&order_direction=desc&offset=0&limit=10`,
       {
@@ -190,7 +190,7 @@ const Fetch = {
     );
   },
 
-  NFTS_2: (address) => {
+  NFTS_2: address => {
     return fetch(
       `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0x7038e9d2c6f5f84469a84cf9bc5f4909bb6ac5e0&order_direction=desc&offset=0&limit=10`,
       {
@@ -203,7 +203,7 @@ const Fetch = {
     );
   },
 
-  AVATAR_IMAGE: (address) => {
+  AVATAR_IMAGE: address => {
     return fetch(`https://peer.decentraland.org/lambdas/profile/${address}`, {
       method: 'GET',
       headers: {
@@ -276,7 +276,7 @@ const Fetch = {
     );
   },
 
-  POAPS: (address) => {
+  POAPS: address => {
     return fetch(`https://api.poap.xyz/actions/scan/${address}`, {
       method: 'GET',
       headers: {

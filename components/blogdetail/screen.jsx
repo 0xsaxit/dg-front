@@ -112,7 +112,11 @@ const Screen = ({
             />
           </a>
           <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=">
-            <Icon className="share-icon"style={{ fontSize: '34px' }} name="linkedin" />
+            <Icon
+              className="share-icon"
+              style={{ fontSize: '34px' }}
+              name="linkedin"
+            />
           </a>
         </span>
       </div>
@@ -189,7 +193,7 @@ const Screen = ({
 
             <div className="read-next-div">
               {randomfilteredPages &&
-                randomfilteredPages.map((page) => (
+                randomfilteredPages.map(page => (
                   <Button className="read-next-button" href={page.slug}>
                     {page.title}
                   </Button>

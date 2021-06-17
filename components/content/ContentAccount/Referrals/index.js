@@ -19,9 +19,11 @@ function Referrals({ state }) {
   /////////////////////////////////////////////////////////////////////////////////////////
   coins.map(coin => {
     let totalAmountByCoin = 0;
-    state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
+    state.DGBalances.BALANCE_AFFILIATES.map(affiliate => {
       totalAmount += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
-      totalAmountByCoin += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
+      totalAmountByCoin += Number(
+        state.DGPrices[coin] * (affiliate[coin] || 0)
+      );
     });
     breakdown[coin] = totalAmountByCoin.toFixed(3);
   });
@@ -93,10 +95,7 @@ function Referrals({ state }) {
               ? 'Your referrals'
               : 'No Referrals Yet'}
           </h3>
-          <ModalBreakdown
-            totalAmount={totalAmount}
-            breakdown={breakdown}
-          />
+          <ModalBreakdown totalAmount={totalAmount} breakdown={breakdown} />
         </span>
 
         <div className={styles.referrals_body}>
@@ -110,7 +109,7 @@ function Referrals({ state }) {
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
                 let amount = 0;
-                coins.map((coin) => {
+                coins.map(coin => {
                   amount += +(
                     Number(state.DGPrices[coin]) * Number(affiliate[coin])
                   ).toFixed(3);

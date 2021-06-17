@@ -29,15 +29,21 @@ function blogCategory() {
       <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
         <div style={{ marginLeft: '0px' }}>
           <span className="account-other-p" style={{ display: 'flex' }}>
-            <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <span 
-                style={{ 
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}
+            >
+              <span
+                style={{
                   margin: '100px 0px 0px 0px',
                   fontSize: '24px',
                   fontFamily: 'Larsseit-ExtraBold',
                   margin: '0px 0px 0px 0px',
                   color: 'white',
-                  float: 'left'
+                  float: 'left',
                 }}
               >
                 {category}
@@ -48,7 +54,7 @@ function blogCategory() {
       </div>
 
       <div className="posts">
-        {filteredPages.map((page) =>
+        {filteredPages.map(page =>
           page.categories[0].name.toLowerCase() === category ? (
             <Link
               href="/blog/[id]"

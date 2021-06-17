@@ -3,13 +3,7 @@ import { Modal, Button } from 'semantic-ui-react';
 const ModalVideo = () => {
   return (
     <Modal
-      trigger={
-        <Button
-          className="demo-button"
-        >
-          DEMO
-        </Button>
-      }
+      trigger={<Button className="demo-button">DEMO</Button>}
       basic
       size="small"
     >
