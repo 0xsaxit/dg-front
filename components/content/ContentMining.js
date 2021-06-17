@@ -286,7 +286,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  href="{`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}"
+                  href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
                   id="balances-padding-correct-two"
