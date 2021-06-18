@@ -114,7 +114,7 @@
 			// }
 		}
 
-		&_button_ptxid {	
+		&_button_ptxid {
 			@include mq($until: small) {
 				display: none;
 			}
@@ -160,16 +160,19 @@
 			}
 
 			@include mq($until: small) {
+				margin-right: 12px;
 				background-color: rgba(255, 255, 255, 0);
-				border: 1px solid #2085f4;
-				color: #2085f4;
+				font-size: 18px;
+				font-weight: bold;
+				border: 2px solid rgba(255, 255, 255, 0.08);
+				color: white;
+				height: 40px;
+				padding: 12px 0px 0px 0px;
+				max-width: 75px;
+				min-width: 75px;
 				line-height: 0px;
-				height: 24px;
-				max-width: 70px;
-				min-width: 70px;
-				padding-left: 6px;
-				padding-right: 6px;
 				opacity: 100%;
+				text-transform: capitalize
 			}
 		}
 	}
