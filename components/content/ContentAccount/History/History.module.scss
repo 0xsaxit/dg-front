@@ -29,10 +29,16 @@
 		padding: 19px 40px 30px 40px;
 	}
 
+	.column_container {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.row_type {
 		font-size: 18px;
 		font-family: Larsseit-Bold;
 		margin: -38px 0px -30px 40px;
+		text-align: right;
 	}
 
 	.row_date {
@@ -40,6 +46,7 @@
 		font-family: Larsseit-Bold;
 		color: rgba(255, 255, 255, 0.75) !important;
 		margin: 28px 0px 0px 40px;
+		text-align: right;
 	}
 
 	.error_container {
@@ -51,5 +58,17 @@
 		font-size: 18px;
 		text-align: center;
 		color: rgba(255, 255, 255, 0.6) !important;
+	}
+
+	.etherscan_button {
+		margin-right: 12px;
+	}
+
+	.token_image {
+		width: 21px;
+		margin-right: 8px;
+		vertical-align: middle;
+		margin-top: -4px;
+		border-radius: 100%;
 	}
 }

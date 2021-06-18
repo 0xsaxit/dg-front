@@ -34,6 +34,7 @@
     "@connext/vector-modal": "^1.0.6-beta.0",
     "@next/bundle-analyzer": "^10.2.0",
     "@ramp-network/ramp-instant-sdk": "^2.4.2",
+    "@svgr/webpack": "^5.5.0",
     "@transak/transak-sdk": "^1.0.28",
     "bootstrap": "^5.0.0",
     "bootstrap-icons": "^1.5.0",

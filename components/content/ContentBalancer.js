@@ -154,13 +154,13 @@ const ContentBalancer = props => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function handleChangeMANA(e) {
+  const handleChangeMANA = (e) => {
     console.log('New amount (MANA): ' + e.target.value);
 
     setAmountInputMANA(e.target.value);
   }
 
-  function handleChangeDAI(e) {
+  const handleChangeDAI = (e) => {
     console.log('New amount (DAI): ' + e.target.value);
 
     setAmountInputDAI(e.target.value);

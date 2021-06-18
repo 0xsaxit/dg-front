@@ -6,6 +6,12 @@ const path = require('path');
 
 module.exports = {
   webpack: (config, { isServer }) => {
+    //Added for svg files
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
+
     // Fixes npm packages that depend on `fs` module
     if (!isServer) {
       config.node = {
