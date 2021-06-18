@@ -231,36 +231,6 @@ function Balances() {
                   <div>
                     <Button
                       onClick={() =>
-                        setStateAndEvent(false, `${coin.coin} Withdrawl`)
-                      }
-                    >
-                      Withdraw
-                    </Button>
-                    {['mana', 'dai', 'usdt'].includes(coin.coinKey) && (
-                      <ConnextModal
-                        showModal={showModal}
-                        onClose={() =>
-                          setStateAndEvent(false, `${coin.coin} Withdrawal`)
-                        }
-                        onReady={params =>
-                          console.log('MODAL IS READY =======>', params)
-                        }
-                        withdrawalAddress={state.userAddress}
-                        routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                        withdrawAssetId={connext[`assetID_1_${coin.coin}`]}
-                        withdrawChainId={1}
-                        withdrawChainProvider={connext.chainProviderInfura}
-                        depositAssetId={connext[`assetID_2_${coin.coin}`]}
-                        depositChainId={137}
-                        depositChainProvider={connext.chainProviderMatic}
-                        injectedProvider={injectedProvider}
-                        loginProvider={injectedProvider}
-                        onWithdrawalTxCreated={getWithdrawalTransaction}
-                        onFinished={getWithdrawalAmount}
-                      />
-                    )}
-                    <Button
-                      onClick={() =>
                         setStateAndEvent(true, `${coin.coin} Deposit`)
                       }
                     >
@@ -289,6 +259,37 @@ function Balances() {
                         onFinished={getWithdrawalAmount}
                       />
                     )}
+                    <Button
+                      onClick={() =>
+                        setStateAndEvent(false, `${coin.coin} Withdrawl`)
+                      }
+                    >
+                      Withdraw
+                    </Button>
+                    {['mana', 'dai', 'usdt'].includes(coin.coinKey) && (
+                      <ConnextModal
+                        showModal={showModal}
+                        onClose={() =>
+                          setStateAndEvent(false, `${coin.coin} Withdrawal`)
+                        }
+                        onReady={params =>
+                          console.log('MODAL IS READY =======>', params)
+                        }
+                        withdrawalAddress={state.userAddress}
+                        routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                        withdrawAssetId={connext[`assetID_1_${coin.coin}`]}
+                        withdrawChainId={1}
+                        withdrawChainProvider={connext.chainProviderInfura}
+                        depositAssetId={connext[`assetID_2_${coin.coin}`]}
+                        depositChainId={137}
+                        depositChainProvider={connext.chainProviderMatic}
+                        injectedProvider={injectedProvider}
+                        loginProvider={injectedProvider}
+                        onWithdrawalTxCreated={getWithdrawalTransaction}
+                        onFinished={getWithdrawalAmount}
+                      />
+                    )}
+                    
                   </div>
                 ) : (
                   <ModalAccept coinLabel={coin.coinKey} />
