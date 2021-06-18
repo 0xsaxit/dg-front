@@ -10,10 +10,10 @@ function NFTSPOAPS() {
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async () => {
-        let response = await Fetch.NFTS_1(state.userAddress);
+        let response = await Fetch.NFTS_1('0xd8856cCe3F878d3Ea03964F80B18987fF1919272');
         let json = await response.json();
 
-        let response_2 = await Fetch.NFTS_2(state.userAddress);
+        let response_2 = await Fetch.NFTS_2('0xd8856cCe3F878d3Ea03964F80B18987fF1919272');
         let json_2 = await response_2.json();
 
         let wearables = [];
@@ -38,7 +38,7 @@ function NFTSPOAPS() {
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async () => {
-        let response_1 = await Fetch.POAPS(state.userAddress);
+        let response_1 = await Fetch.POAPS('0xd8856cCe3F878d3Ea03964F80B18987fF1919272');
         let json_1 = await response_1.json();
 
         let poaps = [];

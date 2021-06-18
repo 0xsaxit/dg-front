@@ -21,6 +21,11 @@
 		}
 	}
 
+	&_nfts {
+		display: flex;
+		justify-content: space-between;
+	}
+
 
 	.nft_column {
 		justify-content: center;
