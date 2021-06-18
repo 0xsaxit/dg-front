@@ -173,6 +173,7 @@ function Balances() {
 
   return (
     <div className={styles.balances_container}>
+      <h2 className={styles.balances_container_title}>Your Assets</h2>
       <div className={styles.balance_column}>
         <span className={styles.float_left}>
           <img src={Images.PLAY_CIRCLE} />
@@ -185,17 +186,17 @@ function Balances() {
         <div className={styles.float_right}>
           <span className={styles.balance_column_header}>
             <p>{state.userInfo.balancePLAY} FREE</p>
-            <p> {state.userInfo.totalPLAY}</p>
+            <p>${state.userInfo.totalPLAY}</p>
           </span>
 
           <>
             {state.userInfo.count === 2 ? (
               <Button className={styles.topUp} disabled>
-                TOP UP
+                Top Up Free Tokens
               </Button>
             ) : (
               <Button className={styles.topUp} onClick={() => topUp()}>
-                Top Up
+                Top Up Free Tokens
               </Button>
             )}
           </>
@@ -219,10 +220,7 @@ function Balances() {
                   {coin.balance(state.userBalances)}&nbsp;{coin.coin}
                 </p>
                 <p>
-                  $
-                  {Number(
-                    state.userInfo[`total${coin.coinKey.toUpperCase()}`]
-                  ).toFixed(2)}
+                  ${state.userInfo[`total${coin.coinKey.toUpperCase()}`]}
                 </p>
               </span>
 
