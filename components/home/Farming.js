@@ -326,6 +326,33 @@ const Farming = (props) => {
                 <b>PROVISION</b>
               </span>
             </p>
+          ) : DGState === 'uniswap' ? (
+            <p className="account-other-p" style={{ width: '100%' }}>
+              <Link href="/dg">
+                <span className="account-hover">
+                  <b>TREASURY</b>
+                </span>
+              </Link>
+              <Link href="/dg/governance">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <span className="account-hover">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                  GAMEPLAY
+                </b>
+                <b>REWARDS</b>
+              </span>
+              <Link href="/dg/liquidity">
+                <span className="account-hover active">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
+            </p>
           ) : (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">

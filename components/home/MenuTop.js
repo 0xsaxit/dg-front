@@ -380,7 +380,7 @@ const MenuTop = (props) => {
           id="docs-top-menu"
           target="_blank"
         >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/gov')}>
+          <Menu.Item className={menuStyle[2]}>
             GOV
           </Menu.Item>
         </a>
