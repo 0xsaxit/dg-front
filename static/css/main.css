@@ -1314,14 +1314,6 @@ td:last-child {
   border: 0px solid white !important;
 }
 
-.tx-box-overflow {
-  max-height: 600px !important;
-  overflow-y: auto;
-  margin-bottom: 90px;
-  border: 0px solid #edf2f9 !important;
-  border-radius: 8px !important;
-}
-
 .table.ui.unstackable.table.leaders-table {
   border: 0px solid #edf2f9 !important;
   border-radius: 8px !important;
@@ -1330,10 +1322,6 @@ td:last-child {
 .leaders-col-2 {
   display: flex;
   justify-content: flex-end;
-}
-
-.tx-box-overflow::-webkit-scrollbar {
-  background: white;
 }
 
 .ui.table thead th,

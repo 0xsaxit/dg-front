@@ -17,9 +17,17 @@
 		margin: 60px 0px 24px 0px;
 	}
 	
-	.tx-box-overflow {
+	.tx_box_overflow {
 		height: 100%;
 		overflow-y: auto;
+		max-height: 600px;
+		margin-bottom: 90px;
+		border: 0px solid #edf2f9;
+		border-radius: 8px;
+	
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 
 	.history_column {

@@ -134,7 +134,7 @@ const History = ({ state }) => {
 
       <div className={styles.history_container}>
         <p className={styles.title}>Gameplay History</p>
-        <div className="tx-box-overflow">
+        <div className={styles.tx_box_overflow}>
           {dataPageTwo === 'false' ? null : (
             <Table unstackable>
               <Table.Header>
@@ -209,7 +209,7 @@ const History = ({ state }) => {
                                   `/tx/${row.txid}`
                                 }
                                 target="_blank"
-                                className={styles.etherscan_button}
+                                className="etherscan_button"
                               >
                                 tx
                                 <TopRightArrow />
