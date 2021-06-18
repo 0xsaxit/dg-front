@@ -12,7 +12,7 @@
 	.referrals_header {
 		&_title {
 			max-width: 100%;
-			font-weight: 800;
+			font-family: Larsseit-ExtraBold;
 			line-height: 59px;
 			letter-spacing: -0.7px;
 
@@ -27,7 +27,7 @@
 
 		&_subtitle {
 			font-weight: normal;
-			font-size: 21px;
+			font-size: 20px;
 			line-height: 30px;
 		}
 
@@ -38,6 +38,7 @@
 			width: fit-content;
 			transition: all 0.1s ease-in;
 			cursor: pointer;
+			padding-bottom: 18px !important;
 
 			&:hover {
 				border: 2px solid rgba(255, 255, 255, 0.5);
@@ -55,11 +56,11 @@
 				}
 			}
 
-			.referral_sublink {
+			.sublink {
 				font-weight: bold;
 				font-size: 18px;
 				line-height: 24px;
-				opacity: 0.75;
+				color: rgba(255, 255, 255, 0.75) !important;
 			}
 
 			.affiliate_icon {
@@ -75,6 +76,12 @@
 			min-height: 260px;
 			width: 260px;
 			height: 260px;
+		}
+
+		@media (max-width: 1192px) {
+			.gift_image {
+				display: none;
+			}
 		}
 	}
 

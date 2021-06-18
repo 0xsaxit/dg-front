@@ -595,19 +595,21 @@ a.menu-info-label-link:hover {
 
 .home-dashboard-content {
   position: relative;
-  padding-left: 30px;
+  padding-left: 90px;
   padding-right: 30px;
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 30vh;
+  padding-top: 24vh;
   height: 100vh;
 }
 
 @media (max-width: 930px) {
   .home-dashboard-content {
-    margin-top: -150px !important;
+    margin-top: -180px !important;
+    margin-bottom: 150px;
     display: flex;
+    padding-left:  30px !important;
     flex-direction: column;
     justify-content: center;
     min-width: 100%;
@@ -623,9 +625,20 @@ a.menu-info-label-link:hover {
   .mobile-center-span {
     display: flex;
     justify-content: center;
+    margin-right:  -18px !important;
   }
   .ModalDepositBinance_deposit_modal_binance__2LhiT {
     margin-top: 8px !important;
+  }
+  i.chevron.down.icon {
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    opacity: 75%;
+    left: calc(50% - 14px) !important;
+    position: absolute;
+    bottom: -60px !important;
+    animation: bounce 0.75s infinite alternate;
+    -webkit-animation: bounce 0.75s infinite alternate;
   }
 }
 
@@ -633,12 +646,13 @@ i.chevron.down.icon {
   color: white;
   text-shadow: 1px 1px 5px black;
   opacity: 75%;
-  bottom: 42px;
-  left: calc(50% - 13px);
+  left: calc(50% - 14px);
   position: absolute;
+  bottom: 120px;
   animation: bounce 0.75s infinite alternate;
   -webkit-animation: bounce 0.75s infinite alternate;
 }
+
 
 @keyframes bounce {
   from {
