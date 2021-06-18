@@ -6,18 +6,18 @@
   position: relative;
   color: black;
   background-color: transparent;
-  left: 60px;
+  left: 56px;
   z-index: 10;
   font-size: 18px !important;
-  top: 17px;
+  top: 18px;
 }
 
 #mobile-menu-icon-home {
   position: relative;
   color: white;
-  top: 17px;
+  top: 18px;
   background-color: transparent;
-  left: 60px;
+  left: 56px;
   z-index: 10;
   font-size: 18px !important;
 }
