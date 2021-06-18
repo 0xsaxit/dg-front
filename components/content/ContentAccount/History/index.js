@@ -184,7 +184,7 @@ const History = ({ state }) => {
               }
 
               return (
-                <Table unstackable>
+                <Table className={styles.etherscan} unstackable>
                   <Table.Body key={i}>
                     <Table.Row style={{ background: style }}>
                       <Table.Cell>{action}</Table.Cell>
@@ -196,11 +196,11 @@ const History = ({ state }) => {
                         <CoinCell coinName={row.coinName} />
                         +{result} {row.coinName}
                       </Table.Cell>
-                      <Table.Cell className="account-col-4">
+                      <Table.Cell>
                         {timestamp}
                       </Table.Cell>
                       <Table.Cell>
-                        <span style={{ float: 'right' }}>
+                        <span className={styles.tx_title}>
                           {row.coinName !== 'PLAY' ? (
                             <Aux>
                               <Button
@@ -209,7 +209,7 @@ const History = ({ state }) => {
                                   `/tx/${row.txid}`
                                 }
                                 target="_blank"
-                                className="etherscan_button"
+                                className={styles.etherscan_button}
                               >
                                 tx
                                 <TopRightArrow />
@@ -225,7 +225,7 @@ const History = ({ state }) => {
                                   `/tx/${row.ptxid}`
                                 }
                                 target="_blank"
-                                className="etherscan-button-ptxid"
+                                className={styles.etherscan_button_ptxid}
                               >
                                 payout tx
                                 <TopRightArrow />
@@ -236,7 +236,7 @@ const History = ({ state }) => {
                                   `/tx/${row.ptxid}`
                                 }
                                 target="_blank"
-                                className="etherscan-button-mobile"
+                                className={styles.etherscan_button_mobile}
                               >
                                 p tx
                                 <TopRightArrow />

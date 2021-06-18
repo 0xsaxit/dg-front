@@ -728,41 +728,12 @@ span#mobile-time-select.account-select.dropdown {
 /*              DATA TABLE CSS               */
 /* ----------------------------------------- */
 
-@media (max-width: 912px) {
-  td.account-col-2,
-  th.account-col-2 {
-    display: none;
-  }
-}
+
 
 @media (max-width: 767px) {
   th:nth-child(4),
   td:nth-child(4) {
     display: none;
-  }
-}
-
-@media (min-width: 588px) {
-  .ui.button.etherscan-button-mobile {
-    display: none;
-  }
-}
-
-@media (max-width: 587px) {
-  .ui.button.etherscan-button-ptxid {
-    display: none;
-  }
-  .ui.button.etherscan-button-mobile {
-    background-color: rgba(255, 255, 255, 0);
-    border: 1px solid #2085f4;
-    color: #2085f4;
-    line-height: 0px;
-    height: 24px;
-    max-width: 70px !important;
-    min-width: 70px;
-    padding-left: 6px;
-    padding-right: 6px;
-    opacity: 100% !important;
   }
 }
 
