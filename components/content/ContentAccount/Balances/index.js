@@ -176,7 +176,7 @@ function Balances() {
       <h2 className={styles.balances_container_title}>Your Assets</h2>
       <div className={styles.balance_column}>
         <span className={styles.float_left}>
-          <img src={Images.PLAY_CIRCLE} />
+          <div className={styles.free_icon}>FREE</div>
           <span className={styles.balance_column_header}>
             <p>Free Play</p>
             <p>Free</p>
@@ -207,7 +207,9 @@ function Balances() {
         return (
           <div className={styles.balance_column}>
             <span className={styles.float_left}>
-              <img src={Images[`${coin.coin}_CIRCLE`]} />
+              <span className={styles.img_left}>
+                <img src={Images[`${coin.coin}_CIRCLE`]} />
+              </span>
               <span className={styles.balance_column_header}>
                 <p>{coin.coinName}</p>
                 <p>{coin.coin}</p>

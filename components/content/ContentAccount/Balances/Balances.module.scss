@@ -26,12 +26,32 @@
 
 		@include mq($until: medium) {
 			flex-direction: column;
-			height: 180px;
+			height: 150px;
+			padding: 15px 20px 15px 20px;
 		}
 
 		.float_left {
 			display: flex;
 			align-items: center;
+
+			.img_left {
+				width: 32px;
+				height: 32px;	
+				display: flex;
+				justify-content: center;
+			}
+
+			.free_icon {
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				background: #006EFF;
+				color: white;
+				font-size: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
 			@include mq($until: medium) {
 				width: 100%;
@@ -40,6 +60,9 @@
 
 			.balance_column_header {
 				& p:last-child {
+					color: rgba(255, 255, 255, 0.75) !important;
+					font-weight: 700;
+
 					@include mq($until: medium) {
 						text-align: right;
 					}
@@ -63,6 +86,7 @@
 
 				@include mq($until: medium) {
 					text-align: left;
+					font-size: 20px;
 				}
 			}
 
@@ -70,11 +94,13 @@
 				font-size: 18px;
 				line-height: 24px;
 				text-transform: uppercase;
-				color: rgba(255, 255, 255, 0.75);
+				font-weight: 700;
+				color: rgba(255, 255, 255, 0.75) !important;
 				margin-bottom: 0;
 
 				@include mq($until: medium) {
 					text-align: left;
+					font-size: 16px;
 				}
 			}
 
@@ -104,6 +130,7 @@
 			.balance_column_header {
 				& p:last-child {
 					text-align: right;
+					font-weight: 700;
 
 					@include mq($until: medium) {
 						text-align: left;
@@ -172,7 +199,6 @@
 
 
 		img {
-			width: 32px;
 			height: 32px;	
 		}
 	}
