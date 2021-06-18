@@ -47,14 +47,14 @@ function blog() {
       <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-partners-with-video-game-pioneer-atari">
+        <Link href="/blog/[id]" as="/blog/decentral-games-raises-5m">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">
-                  <span className="blog-date">7 MAR 2021</span>
+                  <span className="blog-date">18 JUN 2021</span>
                   <span className="blog-category">Announcements</span>
                 </div>
                 <div className="bottom">
@@ -65,7 +65,7 @@ function blog() {
                         paddingTop: '9px'
                       }}
                     >
-                      Decentral Games Partners With Video Game Pioneer Atari
+                      Decentral Games Raises $5M to cement itself as the leading Metaverse-native DAO
                     </h4>
                     <p
                       style={{
@@ -73,7 +73,7 @@ function blog() {
                         paddingTop: '3px'
                       }}
                     >
-                      We are thrilled to announce that we have partnered up with Atari to launch Atari Casino powered by Decentral Games this May!
+                      Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital.
                     </p>
                   </div>
                 </div>
