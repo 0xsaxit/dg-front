@@ -73,7 +73,7 @@ function blog() {
                         paddingTop: '3px'
                       }}
                     >
-                      Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital.
+                      Decentral Games welcomes partners Collab_Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital, amongst others.
                     </p>
                   </div>
                 </div>
