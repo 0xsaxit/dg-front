@@ -6,6 +6,7 @@ import Images from 'common/Images';
 import { ConnextModal } from '@connext/vector-modal';
 import Global from 'components/Constants';
 import ModalAccept from 'components/modal/ModalAccept';
+import BuyArrow from 'assets/svg/buyarrow.svg';
 import styles from './Balances.module.scss';
 
 const connext = {
@@ -59,7 +60,7 @@ const coins = [
   },
 ];
 
-function Balances() {
+const Balances = () => {
   const [state, dispatch] = useContext(GlobalContext);
   const [showModal, setShowModal] = useState(false);
   const [event, setEvent] = useState('');
@@ -116,12 +117,14 @@ function Balances() {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
+
   const rampUSDT = new RampInstantSDK({
     hostAppName: 'Buy USDT Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
     swapAsset: 'USDT',
   });
+
   const rampETH = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
@@ -144,23 +147,22 @@ function Balances() {
   };
 
   // set modal state and event type
-  function setStateAndEvent(state, type) {
+  const setStateAndEvent = (state, type) => {
     setShowModal(state);
-
     setEvent(type);
   }
 
   // handle Connext deposit/withdrawal events
-  async function getWithdrawalTransaction(params) {
+  const getWithdrawalTransaction = async (params) => {
     setTxHash(params);
   }
 
-  function getWithdrawalAmount(params) {
+  const getWithdrawalAmount = (params) => {
     setAmount(params);
   }
 
   // top up user to 5000 play tokens
-  async function topUp() {
+  const topUp = async () => {
     await Fetch.TOP_UP_USER(state.userAddress);
 
     const refresh = !state.updateInfo;
@@ -298,19 +300,7 @@ function Balances() {
                   onClick={() => handleClick(coin.coinKey)}
                 >
                   Buy
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-arrow-up-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"
-                    />
-                  </svg>
+                  <BuyArrow />
                 </Button>
               </div>
             </div>
