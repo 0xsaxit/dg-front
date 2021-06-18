@@ -6,7 +6,7 @@ import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
 
-function Referrals({ state }) {
+const Referrals = ({ state }) => {
   // define local variables
   const [copied, setCopied] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
