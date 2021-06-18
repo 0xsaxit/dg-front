@@ -29,7 +29,7 @@
 
 	.nft_column {
 		justify-content: center;
-    	padding: 10px;
+    padding: 10px;
 		display: flex;
 
 		@media (max-width: 1065px) {
@@ -45,6 +45,12 @@
 		font-size: 24px;
 		font-family: Larsseit-ExtraBold;
 		margin: 60px 0px 24px 0px;
+		margin-top: 90px;
+
+		&-grid {
+			margin-bottom: 90px;
+			margin-top: 9px;
+		}
 	}
 
 	.all_button {
@@ -119,6 +125,12 @@
 		color: white;
 		background-color: #006EFF;
 		border-radius: 12px;
+	}
+
+	.nft_wearable {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 16px;
 	}
 
 	.error_container {
