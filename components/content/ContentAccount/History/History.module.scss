@@ -29,7 +29,7 @@
 			display: none;
 		}
 
-		@media (max-width: 912px) {
+		@include mq($until: large) {
 			td.account-col-2,
 			th.account-col-2 {
 				display: none;
