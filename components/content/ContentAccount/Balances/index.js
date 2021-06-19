@@ -186,7 +186,7 @@ function Balances() {
         <div className={styles.float_right}>
           <span className={styles.balance_column_header}>
             <p>{state.userInfo.balancePLAY} FREE</p>
-            <p>${state.userInfo.totalPLAY}</p>
+            <p>$0</p>
           </span>
 
           <>
@@ -261,7 +261,7 @@ function Balances() {
                     )}
                     <Button
                       onClick={() =>
-                        setStateAndEvent(false, `${coin.coin} Withdrawl`)
+                        setStateAndEvent(true, `${coin.coin} Withdrawal`)
                       }
                     >
                       Withdraw

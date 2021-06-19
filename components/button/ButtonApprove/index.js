@@ -11,6 +11,8 @@ import ABI_CHILD_TOKEN_ATRI from 'components/ABI/ABIChildTokenATRI';
 import Global from 'components/Constants';
 import Fetch from 'common/Fetch';
 import MetaTx from 'common/MetaTx';
+import styles from './ButtonApprove.module.scss';
+
 
 const mapping = {
   dai: {
@@ -178,7 +180,7 @@ function ButtonApprove({ coinLabel = 'dai' }) {
   }
 
   return (
-    <Button id="balances-padding-correct" onClick={() => metaTransaction()}>
+    <Button className={styles.enabled_button} onClick={() => metaTransaction()}>
       {`Enable ${coinLabel.toUpperCase()}`}
     </Button>
   );

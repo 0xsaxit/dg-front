@@ -2,6 +2,40 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
+.ui.checkbox {
+  margin-top: 4px;
+  margin-right: 24px;
+}
+
+.ui.checkbox .box:before, .ui.checkbox label:before {
+  border: 2px solid white;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+}
+
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before,
+.ui.checkbox .box:hover::before,
+.ui.checkbox label:hover::before,
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before {
+  background-color: transparent !important;
+  border: 2px solid white;
+}
+
+.ui.checkbox input:checked ~ .box:after,
+.ui.checkbox input:checked ~ label:after {
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  padding-top: 3px;
+  font-size: 14px;
+  background: #0d6efd;
+  color: white !important;
+}
+
 section#modalContent.sc-bqGGPW.jMpqDL,
 .iPexDg.iPexDg.iPexDg,
 .jMpqDL.jMpqDL.jMpqDL {
@@ -207,23 +241,6 @@ a.get-metamask-scroll:hover {
   font-size: 14px !important;
   font-weight: 600 !important;
   padding: 7px 6px 0px 6px;
-}
-
-.ui.checkbox .box,
-.ui.checkbox label {
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 27px;
-}
-
-.ui.checkbox label::before,
-.ui.checkbox label::after {
-  margin-top: 6px;
-  background: transparent;
-}
-
-label::before:active {
-  background: transparent;
 }
 
 .other-menu-container.blog {
@@ -1154,7 +1171,7 @@ p.home-dashboard-p {
 
 .ui.dropdown .menu {
   margin-top: 15px;
-  padding: 9px 0px 9px 0px;
+  padding: 9px 0px 3px 0px;
   border-radius: 4px;
 }
 
@@ -3484,22 +3501,6 @@ a {
 
 .terms-a {
   color: #f1cd50;
-}
-
-.ui.checkbox input:checked ~ .box:before,
-.ui.checkbox input:checked ~ label:before,
-.ui.checkbox .box:hover::before,
-.ui.checkbox label:hover::before,
-.ui.checkbox input:checked ~ .box:before,
-.ui.checkbox input:checked ~ label:before {
-  background-color: black !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-}
-
-.ui.checkbox input:checked ~ .box:after,
-.ui.checkbox input:checked ~ label:after {
-  margin-top: 1px !important;
-  color: #f1cd50 !important;
 }
 
 .ui.blue.button.metamask-button.binance-top {

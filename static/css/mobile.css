@@ -201,11 +201,11 @@ a#dropdown-menu-items.item.right-menu-text {
 .ui.menu .dropdown.item .menu {
   background: black;
   border-bottom: 1px solid rgb(21, 24, 28);
-  margin-top: 15px;
+  margin-top: 23px;
   padding-top: 0px;
   border-radius: 0px;
   width: calc(100vw + 9px);
-  margin-left: -60px;
+  margin-left: -52px;
 }
 
 @media (max-width: 499px) {
