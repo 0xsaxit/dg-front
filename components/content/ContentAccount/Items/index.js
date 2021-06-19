@@ -9,7 +9,7 @@ function Items({ state }) {
   return (
     <Aux>
       <div className={styles.items_container}>
-        <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <span>
           <h1 className={styles.title}>
             NFTs
           </h1>
@@ -69,11 +69,11 @@ function Items({ state }) {
       </div>
 
       <div className={styles.items_container}>
-        <h1 className={styles.title} style={{ marginTop: '90px' }}>
+        <h1 className={styles.title} style={{ marginTop: '50px' }}>
           POAPs
         </h1>
         {state.poaps.length !== 0 ? (
-          <Grid style={{ marginBottom: '90px', marginTop: '9px' }}>
+          <Grid className={styles.padding}>
             {state.poaps.map((poap, i) => (
               <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
                 <Image src={poap.image_url} className="poap-pic" />

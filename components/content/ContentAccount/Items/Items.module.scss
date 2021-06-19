@@ -3,12 +3,28 @@
 .items_container {
 	margin-top: -30px;
 	margin: auto;
+
+	& > span {
+		display: flex;
+		justify-content: space-between;
+		padding: 0 10px;
+	}
+
+	& > h1 {
+		padding: 0 10px;
+	}
+
+	.padding {
+		margin-bottom: 90px;
+		margin-top: 9px;
+		padding: 0 10px;
+	}
 	
-	@media (max-width: 1400px) {
+	@include mq($until: extra-large) {
 		width: 100%;
 	}
 
-	@media (min-width: 1400px) {
+	@include mq($from: extra-large) {
 		width: 75%;
 	}
 
@@ -16,7 +32,7 @@
 		display: flex;
 		flex-direction: row;
 
-		@media (max-width: 1065px) {
+		@include mq($until: large) {
 			flex-wrap: wrap;
 		}
 	}
@@ -27,7 +43,7 @@
     	padding: 10px;
 		display: flex;
 
-		@media (max-width: 1065px) {
+		@include mq($until: large) {
 			margin: auto;
 		}
 	}
@@ -39,7 +55,7 @@
 	.title {
 		font-size: 24px;
 		font-family: Larsseit-ExtraBold;
-		margin: 60px 0px 24px 0px;
+		margin: 30px 0px 12px 0px;
 	}
 
 	.all_button {
@@ -49,7 +65,7 @@
 		border-radius: 12px;
 		color: white;
 		font-family: Larsseit-Bold;
-		margin-bottom: -124px;
+		margin-bottom: -62px;
 	}
 
 	.my_nfts {
@@ -87,11 +103,11 @@
 		font-family: Larsseit-ExtraBold;
 		margin-top: 4px;
 
-		@media (max-width: 1065px) {
+		@include mq($until: large) {
 			font-size: 20px;
 		}
 
-		@media (min-width: 1065px) {
+		@include mq($from: large) {
 			font-size: 24px;
 		}
 	}
