@@ -1,9 +1,9 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store/index';
+import { GlobalContext } from '../../../store/index';
 import { Button, Divider, Grid, Image } from 'semantic-ui-react';
-import Spinner from '../Spinner';
+import Spinner from '../../Spinner';
 import Countdown from 'react-countdown';
-import Global from '../Constants';
+import Global from '../../Constants';
 
 const ComingEvents = () => {
   // get DCL events data from the Context API store
@@ -52,11 +52,6 @@ const ComingEvents = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function getSentences(str) {
-    var ss = str.split('!');
-    var f = ss.slice(0, 1).join('!') + '!';
-    return f;
-  }
 
   function contentEvents() {
     return (
@@ -124,7 +119,7 @@ const ComingEvents = () => {
                   }}
                   className="events-featured-p"
                 >
-                  {getSentences(events[0].description)}
+                  {events[0].description.split(' ').slice(0, 20).join(' ')}...
                 </p>
                 <span
                   style={{
@@ -211,7 +206,7 @@ const ComingEvents = () => {
                         textAlign: 'center',
                       }}
                     >
-                      {getSentences(event.description)}
+                      {event.description.split(' ').slice(0, 20).join(' ')}...
                     </p>
 
                     <span

@@ -1,4 +1,4 @@
-import ComingEvents from '../components/home/ComingEvents';
+import ComingEvents from '../components/home/Events/index';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Global from '../components/Constants';
