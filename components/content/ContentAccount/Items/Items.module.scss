@@ -50,6 +50,10 @@
 
 	.nft_description {
 		padding: 30px;
+
+		& > span > a {
+			width: calc(50% - 4px);
+		}
 	}
 
 	.title {
@@ -115,7 +119,7 @@
 	.read_button {
 		font-size: 16px;
 		font-family: Larsseit-Bold;
-		width: 120px;
+		width: 100%;
 		height: 48px;
 		color: white;
 		background-color: #2B2B2B;
@@ -125,7 +129,7 @@
 	.sell_button {
 		font-size: 16px;
 		font-family: Larsseit-Bold;
-		width: 120px;
+		width: 100%;
 		height: 48px;
 		color: white;
 		background-color: #006EFF;
