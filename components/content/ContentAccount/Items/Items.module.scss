@@ -3,6 +3,7 @@
 .items_container {
 	margin-top: -30px;
 	margin: auto;
+	max-width: 1200px;
 
 	& > span {
 		display: flex;
@@ -20,31 +21,27 @@
 		padding: 0 10px;
 	}
 	
-	@include mq($until: extra-large) {
-		width: 100%;
-	}
-
-	@include mq($from: extra-large) {
-		width: 75%;
-	}
 
 	.nft_grid {
 		display: flex;
 		flex-direction: row;
-
-		@include mq($until: large) {
-			flex-wrap: wrap;
-		}
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 
 	.nft_column {
 		justify-content: center;
-    	padding: 10px;
+		padding: 10px;
 		display: flex;
+		width: 400px;
 
 		@include mq($until: large) {
 			margin: auto;
+		}
+		
+		@include mq($until: medium) {
+			width: 100%;
 		}
 	}
 
@@ -77,6 +74,7 @@
 		width: 100%;
 		border-radius: 24px;
 		height: 100%;
+		position: relative;
 	}
 
 	.nft_image {
@@ -84,16 +82,15 @@
 	}
 
 	.nft_number {
-		position: relative;
-		margin-top: -288px;
-		margin-bottom: 300px;
+		position: absolute;
+		top: 14px;
 		float: right;
 		font-size: 12px;
 		font-family: Larsseit-Bold;
 		padding: 4px 8px 4px 8px;
 		background-color: rgba(0, 0, 0, 0.5);
 		border-radius: 8px;
-		margin-right: 12px;
+		right: 14px;
 	}
 
 	.nft_subheader {
