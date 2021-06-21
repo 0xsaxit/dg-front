@@ -1,11 +1,11 @@
 import { Button } from 'semantic-ui-react';
 import styles from './Content404.module.scss';
 
-const content404 = () => {
+const Content404 = () => {
   return (
-    <div className={styles.not-found}>
-      <p className={styles.not-found-header-text}> 404 </p>
-      <p className={styles.not-found-middle-text}> Page not found </p>
+    <div className={styles.not_found}>
+      <p className={styles.not_found_header_text}> 404 </p>
+      <p className={styles.not_found_middle_text}> Page not found </p>
       <p> The requested page could not be found. </p>
 
       <Button className="not-found-button" href="/">
@@ -15,4 +15,4 @@ const content404 = () => {
   );
 };
 
-export default content404;
+export default Content404;
