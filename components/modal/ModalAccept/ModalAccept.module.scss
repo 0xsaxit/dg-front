@@ -1,5 +1,15 @@
 @import "styles/base.scss";
 
+.disabled_enable {
+	min-width: 100% !important;
+	border-radius: 12px;
+	height: 68px;
+	color: white;
+	font-size: 18px;
+	font-family: Larsseit-Bold;
+	background: #006EFF;
+}
+
 .terms_modal {
 	width: 360px !important;
 	padding: 30px;
@@ -43,7 +53,6 @@
 	}
 
 	.disabled_enable {
-		width: 100%;
 		border-radius: 12px;
 		height: 68px;
 		color: white;

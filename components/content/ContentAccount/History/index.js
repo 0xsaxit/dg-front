@@ -70,7 +70,7 @@ function History({ state }) {
           : <Grid>
               {dataPage.map((row, i) => {
                 const date = new Date(row.createdAt);
-                const timestamp = date.toDateString();
+                const timestamp = date.toISOString();
                 const amount = (row.amount / 100000000000000000).toFixed(2);
 
                 return (
@@ -188,18 +188,18 @@ function History({ state }) {
         <div className="tx-box-overflow">
           {dataPageTwo === 'false' 
           ? null
-          : <Table unstackable>
+          : <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Game</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-2">
+                  <Table.HeaderCell style={{ width: '120px' }}>Game</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '180px' }}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Payout</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-4">
+                  <Table.HeaderCell style={{ width: '180px' }}>Payout</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '240px' }}>
                     Date
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Transactions</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '270px' }}>Transactions</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>
@@ -238,11 +238,11 @@ function History({ state }) {
                 }
 
                 return (
-                  <Table unstackable>
+                  <Table fixed unstackable>
                     <Table.Body key={i}>
                       <Table.Row style={{ background: style }}>
-                        <Table.Cell>{action}</Table.Cell>
-                        <Table.Cell className="account-col-2">
+                        <Table.Cell style={{ width: '120px' }}>{action}</Table.Cell>
+                        <Table.Cell style={{ width: '180px' }}>
                           {row.coinName === 'DAI' ? (
                             <img
                               src={Images.DAI_CIRCLE}
@@ -312,7 +312,7 @@ function History({ state }) {
                           )}
                           -{amount} {row.coinName}
                         </Table.Cell>
-                        <Table.Cell>
+                        <Table.Cell style={{ width: '180px' }}>
                           {row.coinName === 'DAI' ? (
                             <img
                               src={Images.DAI_CIRCLE}
@@ -382,11 +382,11 @@ function History({ state }) {
                           )}
                           +{result} {row.coinName}
                         </Table.Cell>
-                        <Table.Cell className="account-col-4">
+                        <Table.Cell style={{ width: '240px' }}>
                           {timestamp}
                         </Table.Cell>
-                        <Table.Cell>
-                          <span style={{ float: 'right' }}>
+                        <Table.Cell style={{ width: '270px' }}>
+                          <span>
                             {row.coinName !== 'PLAY' ? (
                               <Aux>
                                 <Button
@@ -414,7 +414,7 @@ function History({ state }) {
                                   </svg>
                                 </Button>
                               </Aux>
-                            ) : null}
+                            ) : null }
 
                             {row.coinName !== 'PLAY' ? (
                               <Aux>
@@ -426,7 +426,7 @@ function History({ state }) {
                                   target="_blank"
                                   className="etherscan-button-ptxid"
                                 >
-                                  payout tx
+                                  payout
                                   <svg
                                     style={{ marginLeft: '4px' }}
                                     width="13"
@@ -465,7 +465,7 @@ function History({ state }) {
                                   </svg>
                                 </Button>
                               </Aux>
-                            ) : null}
+                            ) : null }
                           </span>
                         </Table.Cell>
                       </Table.Row>

@@ -2,7 +2,9 @@ const Images = {
   LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
   SOCIAL_SHARE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1607984535/feat_u522ov.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402416/all-dg_f5sknc.png',
+  SOCIAL_SHARE_2:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402567/referral-dg_oncc6j.png',   
   LOADING_SPINNER:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif',
   ICON_DAI:

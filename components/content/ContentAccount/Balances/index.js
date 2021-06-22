@@ -5,7 +5,7 @@ import { GlobalContext } from 'store/index';
 import Images from 'common/Images';
 import { ConnextModal } from '@connext/vector-modal';
 import Global from 'components/Constants';
-import ModalAccept from 'components/modal/ModalAccept';
+import ModalAcceptUSDT from 'components/modal/ModalAccept/USDT';
 import styles from './Balances.module.scss';
 
 const connext = {
@@ -21,51 +21,20 @@ const connext = {
   assetID_2_USDT: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
 };
 
-const coins = [
-  {
-    coinKey: 'weth',
-    coin: 'ETH',
-    coinName: 'Ethereum',
-    tokenNumber: 4,
-    balance: a => parseInt(a[2][3]).toLocaleString(),
-  },
-  {
-    coinKey: 'mana',
-    coin: 'MANA',
-    coinName: 'Decentraland',
-    tokenNumber: 1,
-    balance: a => parseInt(a[1][1]).toLocaleString(),
-  },
-  {
-    coinKey: 'usdt',
-    coin: 'USDT',
-    coinName: 'Tether',
-    tokenNumber: 2,
-    balance: a => parseInt(a[2][1] * 1000000000000).toLocaleString(),
-  },
-  {
-    coinKey: 'dai',
-    coin: 'DAI',
-    coinName: 'Dai',
-    tokenNumber: 0,
-    balance: a => parseInt(a[0][1]).toLocaleString(),
-  },
-  {
-    coinKey: 'atri',
-    coin: 'ATRI',
-    coinName: 'Atri',
-    tokenNumber: 3,
-    balance: a => parseInt(a[2][2]).toLocaleString(),
-  },
-];
-
 function Balances() {
+  // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+
+  // define local variables
   const [showModal, setShowModal] = useState(false);
+  const [showModal_2, setShowModal_2] = useState(false);
+  const [showModal_3, setShowModal_3] = useState(false);
+  const [showModal_4, setShowModal_4] = useState(false);
+  const [showModal_5, setShowModal_5] = useState(false);
+  const [showModal_6, setShowModal_6] = useState(false);
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
-
   const buttonPlay = document.getElementById('play-now-button-balances');
 
   // send tracking data to Segment
@@ -178,14 +147,14 @@ function Balances() {
         <span className={styles.float_left}>
           <div className={styles.free_icon}>FREE</div>
           <span className={styles.balance_column_header}>
-            <p>Free Play</p>
+            <p className={styles.bold_text}>Free Play</p>
             <p>Free</p>
           </span>
         </span>
 
         <div className={styles.float_right}>
           <span className={styles.balance_column_header}>
-            <p>{state.userInfo.balancePLAY} FREE</p>
+            <p className={styles.bold_text}>{state.userInfo.balancePLAY} FREE</p>
             <p>$0</p>
           </span>
 
@@ -203,121 +172,244 @@ function Balances() {
         </div>
       </div>
 
-      {coins.map(coin => {
-        return (
-          <div className={styles.balance_column}>
-            <span className={styles.float_left}>
-              <span className={styles.img_left}>
-                <img src={Images[`${coin.coin}_CIRCLE`]} />
-              </span>
-              <span className={styles.balance_column_header}>
-                <p>{coin.coinName}</p>
-                <p>{coin.coin}</p>
-              </span>
+
+      {/* ////// ETHEREUM ////// */}
+      <div className={styles.balance_column}>
+        <span className={styles.float_left}>
+          <span className={styles.img_left}>
+            <img src={Images[`ETH_CIRCLE`]} />
+          </span>
+          <span className={styles.balance_column_header}>
+            <p className={styles.bold_text}>Ethereum</p>
+            <p>ETH</p>
+          </span>
+        </span>
+
+        <div className={styles.float_right}>
+          <span className={styles.balance_column_header}>
+            <p className={styles.bold_text}>{parseInt(state.userBalances[2][3]).toLocaleString()} ETH</p>
+            <p></p>
+          </span>
+
+          <div>
+            {state.userInfo.tokenArray[4] ? (
+            <span>
+              <Button
+                className={styles.deposit_button}
+                href="https://wallet.matic.network/bridge/"
+                target="_blank"
+              >
+                Deposit
+              </Button>
+
+              <Button
+                className={styles.deposit_button}
+                href="https://wallet.matic.network/bridge/"
+                target="_blank"
+              >
+                Withdraw
+              </Button>
             </span>
-
-            <div className={styles.float_right}>
-              <span className={styles.balance_column_header}>
-                <p>
-                  {coin.balance(state.userBalances)}&nbsp;{coin.coin}
-                </p>
-                <p>
-                  ${state.userInfo[`total${coin.coinKey.toUpperCase()}`]}
-                </p>
-              </span>
-
-              <div>
-                {state.userInfo.tokenArray[coin.tokenNumber] ? (
-                  <div>
-                    <Button
-                      onClick={() =>
-                        setStateAndEvent(true, `${coin.coin} Deposit`)
-                      }
-                    >
-                      Deposit
-                    </Button>
-                    {['mana', 'dai', 'usdt'].includes(coin.coinKey) && (
-                      <ConnextModal
-                        showModal={showModal}
-                        onClose={() =>
-                          setStateAndEvent(false, `${coin.coin} Deposit`)
-                        }
-                        onReady={params =>
-                          console.log('MODAL IS READY =======>', params)
-                        }
-                        withdrawalAddress={state.userAddress}
-                        routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                        depositAssetId={connext[`assetID_1_${coin.coin}`]}
-                        depositChainId={1}
-                        depositChainProvider={connext.chainProviderInfura}
-                        withdrawAssetId={connext[`assetID_2_${coin.coin}`]}
-                        withdrawChainId={137}
-                        withdrawChainProvider={connext.chainProviderMatic}
-                        injectedProvider={injectedProvider}
-                        loginProvider={injectedProvider}
-                        onWithdrawalTxCreated={getWithdrawalTransaction}
-                        onFinished={getWithdrawalAmount}
-                      />
-                    )}
-                    <Button
-                      onClick={() =>
-                        setStateAndEvent(true, `${coin.coin} Withdrawal`)
-                      }
-                    >
-                      Withdraw
-                    </Button>
-                    {['mana', 'dai', 'usdt'].includes(coin.coinKey) && (
-                      <ConnextModal
-                        showModal={showModal}
-                        onClose={() =>
-                          setStateAndEvent(false, `${coin.coin} Withdrawal`)
-                        }
-                        onReady={params =>
-                          console.log('MODAL IS READY =======>', params)
-                        }
-                        withdrawalAddress={state.userAddress}
-                        routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                        withdrawAssetId={connext[`assetID_1_${coin.coin}`]}
-                        withdrawChainId={1}
-                        withdrawChainProvider={connext.chainProviderInfura}
-                        depositAssetId={connext[`assetID_2_${coin.coin}`]}
-                        depositChainId={137}
-                        depositChainProvider={connext.chainProviderMatic}
-                        injectedProvider={injectedProvider}
-                        loginProvider={injectedProvider}
-                        onWithdrawalTxCreated={getWithdrawalTransaction}
-                        onFinished={getWithdrawalAmount}
-                      />
-                    )}
-                    
-                  </div>
-                ) : (
-                  <ModalAccept coinLabel={coin.coinKey} />
-                )}
-                <Button
-                  className={styles.newLink}
-                  onClick={() => handleClick(coin.coinKey)}
-                >
-                  Buy
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-arrow-up-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"
-                    />
-                  </svg>
-                </Button>
-              </div>
-            </div>
+          ) : (
+            <ModalAccept />
+          )}
+            <Button
+              className={styles.newLink}
+              onClick={() => handleClick(coin.coinKey)}
+            >
+              Buy
+              <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+              </svg>
+            </Button>
           </div>
-        );
-      })}
+        </div>
+      </div>
+
+
+      {/* ////// MANA ////// */}
+      <div className={styles.balance_column}>
+        <span className={styles.float_left}>
+          <span className={styles.img_left}>
+            <img src={Images[`MANA_CIRCLE`]} />
+          </span>
+          <span className={styles.balance_column_header}>
+            <p className={styles.bold_text}>Decentraland</p>
+            <p>MANA</p>
+          </span>
+        </span>
+
+        <div className={styles.float_right}>
+          <span className={styles.balance_column_header}>
+            <p className={styles.bold_text}>{parseInt(state.userBalances[1][1]).toLocaleString()} MANA</p>
+            <p>${state.userInfo.totalMANA}</p>
+          </span>
+
+          <div>
+            {state.userInfo.tokenArray[1] ? (
+            <span>
+              <Button
+                className={styles.deposit_button}
+                onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
+              >
+                Deposit
+              </Button>
+
+              <ConnextModal
+                showModal={showModal}
+                onClose={() => setStateAndEvent(1, false, 'MANA Deposit')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                depositAssetId={connext.assetID_1_MANA}
+                depositChainId={1}
+                depositChainProvider={connext.chainProviderInfura}
+                withdrawAssetId={connext.assetID_2_MANA}
+                withdrawChainId={137}
+                withdrawChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+
+              <Button
+                className={styles.deposit_button}
+                onClick={() => setStateAndEvent(2, true, 'MANA Withdrawal')}
+              >
+                Withdraw
+              </Button>
+
+              <ConnextModal
+                showModal={showModal_2}
+                onClose={() => setStateAndEvent(2, false, 'MANA Withdrawal')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                withdrawAssetId={connext.assetID_1_MANA}
+                withdrawChainId={1}
+                withdrawChainProvider={connext.chainProviderInfura}
+                depositAssetId={connext.assetID_2_MANA}
+                depositChainId={137}
+                depositChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+            </span>
+          ) : (
+            <ModalAccept />
+          )}
+            <Button
+              className={styles.newLink}
+              onClick={() => handleClick(coinKey)}
+            >
+              Buy
+              <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+              </svg>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* ////// MANA ////// */}
+      <div className={styles.balance_column}>
+        <span className={styles.float_left}>
+          <span className={styles.img_left}>
+            <img src={Images[`USDT_CIRCLE`]} />
+          </span>
+          <span className={styles.balance_column_header}>
+            <p className={styles.bold_text}>Tether</p>
+            <p>USDT</p>
+          </span>
+        </span>
+
+        <div className={styles.float_right}>
+          <span className={styles.balance_column_header}>
+            <p className={styles.bold_text}>                
+              {parseInt(
+                state.userBalances[2][1] * 1000000000000
+              ).toLocaleString()} USDT
+            </p>
+            <p>${state.userInfo.totalUSDT}</p>
+          </span>
+
+          <div>
+          {state.userInfo.tokenArray[2] ? (
+            <span>
+              <Button
+                onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
+              >
+                Deposit
+              </Button>
+
+              <ConnextModal
+                showModal={showModal_5}
+                onClose={() => setStateAndEvent(5, false, 'USDT Deposit')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                depositAssetId={connext.assetID_1_USDT}
+                depositChainId={1}
+                depositChainProvider={connext.chainProviderInfura}
+                withdrawAssetId={connext.assetID_2_USDT}
+                withdrawChainId={137}
+                withdrawChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+
+              <Button
+                onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
+              >
+                Withdraw
+              </Button>
+
+              <ConnextModal
+                showModal={showModal_6}
+                onClose={() => setStateAndEvent(6, false, 'USDT Withdrawal')}
+                onReady={(params) =>
+                  console.log('MODAL IS READY =======>', params)
+                }
+                withdrawalAddress={state.userAddress}
+                routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                withdrawAssetId={connext.assetID_1_USDT}
+                withdrawChainId={1}
+                withdrawChainProvider={connext.chainProviderInfura}
+                depositAssetId={connext.assetID_2_USDT}
+                depositChainId={137}
+                depositChainProvider={connext.chainProviderMatic}
+                injectedProvider={injectedProvider}
+                loginProvider={injectedProvider}
+                onWithdrawalTxCreated={getWithdrawalTransaction}
+                onFinished={getWithdrawalAmount}
+              />
+            </span>
+          ) : (
+            <ModalAcceptUSDT />
+          )}
+            <Button
+              className={styles.newLink}
+              onClick={() => handleClick(coin.coinKey)}
+            >
+              Buy
+              <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+              </svg>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

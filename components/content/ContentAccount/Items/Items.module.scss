@@ -31,20 +31,22 @@
 	.nft_grid {
 		display: flex;
 		flex-direction: row;
-
-		@include mq($until: large) {
-			flex-wrap: wrap;
-		}
+		flex-wrap: wrap;
+		justify-content: space-between;
 	}
 
 
 	.nft_column {
-		justify-content: center;
-    	padding: 10px;
+    padding: 10px;
 		display: flex;
+		width: 32.5%;
 
-		@include mq($until: large) {
-			margin: auto;
+		@include mq($until: medium) {
+			width: 50%;
+		}
+
+		@include mq($until: small) {
+			width: 100%;
 		}
 	}
 
