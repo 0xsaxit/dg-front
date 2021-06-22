@@ -2,11 +2,8 @@ import { Divider, Grid, Table } from 'semantic-ui-react';
 import Images from '../../common/Images';
 import Aux from '../_Aux';
 
-const ContentAdmin = props => {
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  const games = Object.keys(props.data);
-  const numbers = ['one', 'two', 'three'];
+const CoinImage = props => {
+  const { data, image, title } = props;
   const logoStyle = {
     width: '21px',
     marginRight: '6px',
@@ -15,7 +12,24 @@ const ContentAdmin = props => {
     borderRadius: '100%',
   };
 
-  function contentBalances() {
+  return (
+    <span style={{ display: 'flex' }}>
+      <span className="avatar-picture">
+        <img src={image} style={logoStyle} />
+      </span>
+      <p className="welcome-text">{data} {title}</p>
+    </span>
+  )
+}
+
+const ContentAdmin = props => {
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  const { ethBalance, data, content } = props;
+  const games = Object.keys(data);
+  const numbers = ['one', 'two', 'three'];
+
+  const contentBalances = () => {
     return (
       <Aux>
         <Grid className="account-connected-grid">
@@ -27,7 +41,7 @@ const ContentAdmin = props => {
             >
               <span style={{ display: 'flex' }}>
                 <p className="earn-text" style={{ paddingLeft: '0px' }}>
-                  Worker wallet balance: {props.ethBalance} ETH
+                  Worker wallet balance: {ethBalance} ETH
                 </p>
               </span>
             </Grid.Column>
@@ -45,7 +59,7 @@ const ContentAdmin = props => {
     );
   }
 
-  function balanceBox(game, i) {
+  const balanceBox = (game, i) => {
     return (
       <span className={`admin-balances-column ${numbers[i]}`} key={i}>
         <span style={{ display: 'flex' }}>
@@ -55,46 +69,21 @@ const ContentAdmin = props => {
         </span>
 
         <Divider className="balances-divider" />
-
-        <span style={{ display: 'flex' }}>
-          <span className="avatar-picture">
-            <img src={Images.MANA_CIRCLE} style={logoStyle} />
-          </span>
-          <p className="welcome-text">{props.data[game][0]} mana</p>
-        </span>
-        <span style={{ display: 'flex' }}>
-          <span className="avatar-picture">
-            <img src={Images.DAI_CIRCLE} style={logoStyle} />
-          </span>
-          <p className="welcome-text">{props.data[game][1]} dai</p>
-        </span>
-        <span style={{ display: 'flex' }}>
-          <span className="avatar-picture">
-            <img src={Images.USDT_CIRCLE} style={logoStyle} />
-          </span>
-          <p className="welcome-text">{props.data[game][2]} usdt</p>
-        </span>
-        <span style={{ display: 'flex' }}>
-          <span className="avatar-picture">
-            <img src={Images.ATRI_CIRCLE} style={logoStyle} />
-          </span>
-          <p className="welcome-text">{props.data[game][3]} atri</p>
-        </span>
-        <span style={{ display: 'flex' }}>
-          <span className="avatar-picture">
-            <img src={Images.ETH_CIRCLE} style={logoStyle} />
-          </span>
-          <p className="welcome-text">{props.data[game][4]} weth</p>
-        </span>
+        
+        <CoinImage image={Images.MANA_CIRCLE} data={data[game][0]} title="mana" /> 
+        <CoinImage image={Images.DAI_CIRCLE} data={data[game][1]} title="dai" />
+        <CoinImage image={Images.USDT_CIRCLE} data={data[game][2]} title="usdt" />
+        <CoinImage image={Images.ATRI_CIRCLE} data={data[game][3]} title="atri" />
+        <CoinImage image={Images.ETH_CIRCLE} data={data[game][4]} title="weth" />
 
         <Divider className="balances-divider" />
 
         <a
-          href={`https://explorer-mainnet.maticvigil.com/address/${props.data[game][6]}/write-contract`}
+          href={`https://explorer-mainnet.maticvigil.com/address/${data[game][6]}/write-contract`}
           id="docs-top-menu"
           target="_blank"
         >
-          <span className="welcome-text">{props.data[game][6]}</span>
+          <span className="welcome-text">{data[game][6]}</span>
         </a>
       </span>
     );
@@ -102,10 +91,10 @@ const ContentAdmin = props => {
 
   ///////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////
-  function contentUsers() {
+  const contentUsers = () => {
     return (
       <Table.Body>
-        {props.data.map((row, i) => {
+        {data.map((row, i) => {
           if (row.verifyStep === 28) {
             return (
               <Table.Row key={i}>
@@ -119,7 +108,7 @@ const ContentAdmin = props => {
 
         <Divider className="tab-divider" />
 
-        {props.data.map((row, i) => {
+        {data.map((row, i) => {
           if (row.verifyStep === 22) {
             return (
               <Table.Row key={i}>
@@ -176,9 +165,9 @@ const ContentAdmin = props => {
     );
   }
 
-  if (props.content === 'balances') {
+  if (content === 'balances') {
     return contentBalances();
-  } else if (props.content === 'users') {
+  } else if (content === 'users') {
     return contentUsers();
   }
 };

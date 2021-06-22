@@ -1705,11 +1705,6 @@ i.pencil.icon.edit-icon:hover {
   margin-bottom: 0px;
 }
 
-.ui.divider.divider-dg-top {
-  margin-left: -18px;
-  width: calc(100% + 36px);
-}
-
 .welcome-text-2 {
   font-size: 14px;
   font-weight: bold !important;

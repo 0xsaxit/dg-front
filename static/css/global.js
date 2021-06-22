@@ -97,6 +97,11 @@ export const GlobalStyles = createGlobalStyle`
   .post-info.featured {
     background: ${({ theme }) => theme.card};
   }
+
+  .dg_column_unclaimed {
+    background: ${({ theme }) => theme.card};
+  }
+
   .poap-pic {
     border-radius: 100%;
     border: ${({ theme }) => theme.cardBorder};
@@ -160,6 +165,12 @@ export const GlobalStyles = createGlobalStyle`
   .account-other-inner-p {
     color: ${({ theme }) => theme.offColorText} !important;   
   }
+
+  .welcome_text,
+  .earned_text {
+    color: ${({ theme }) => theme.offColorText} !important;
+  }
+
   i.info.circle.icon.dai-mana-icon {
     color: #ffffff99;
     margin-top: -4px;

@@ -27,7 +27,7 @@ $mq-breakpoints: (
   extra-large: 1200px,
 );
 
-.btn-primary:active, 
+.btn-primary:active,
 .btn-primary:hover,
 .btn-primary:focus {
 	color: white !important;
@@ -37,4 +37,84 @@ $mq-breakpoints: (
 .btn-primary:hover {
 	background: #006EFF;
 	filter: brightness(0.9);
+}
+
+.dg_column_unclaimed {
+  font-family: 'Lato', sans-serif;
+  border-radius: 4px;
+  padding: 12px 18px 18px 18px;
+  background-color: #1f1f1f;
+
+  @include mq($from: large) {
+    width: 23%;
+    height: 100%;
+  }
+
+  @include mq($until: large) {
+    width: 100%;
+  }
+}
+
+.earned_amount {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: black;
+  padding-top: 2px;
+  margin: 0 0;
+}
+
+.earned_text {
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
+}
+
+.divider_dg_top {
+  margin-left: -18px;
+  width: calc(100% + 36px);
+}
+
+.dg_button_span {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dg_claim_button {
+  color: white !important;
+  background-color: #006eff !important;
+  min-width: 100%;
+  border-radius: 4px !important;
+  height: 36px;
+  line-height: 10px;
+  font-size: 16px;
+}
+
+.farming_logo_small {
+  max-width: 42px;
+  max-height: 42px;
+  margin-top: 12px;
+  margin-bottom: 9px;
+  margin-right: 12px;
+  border-radius: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.farming_pool_span {
+  margin-top: 6px;
+}
+
+.welcome_text_top {
+  font-size: 12px;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
+  color: rgb(92, 95, 97) !important;
+  text-transform: uppercase;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
 }
