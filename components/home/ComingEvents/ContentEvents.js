@@ -16,8 +16,8 @@ const ContentEvents = ({ events, eventOngoing }) => {
   const isWideScreen = useMediaQuery('(min-width: 1200px)');
 
   return (
-    <span className={styles.custom_events}>
-      <div className={styles.account_other_tabs}>
+    <span className={styles.custom_events} >
+      <div className={styles.account_other_tabs} style={{ marginTop: '-10px' }}>
         <div className="ml-0">
           <span className="d-flex justify-content-between">
             {eventOngoing ? (
@@ -78,7 +78,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
         </a>
       </div>
 
-      <div className={styles.account_other_tabs}>
+      <div className={styles.account_other_tabs} style={{ paddingTop: '26px'}}>
         <div className="ml-0">
           <span className={styles.all_events}>All Upcoming Events</span>
         </div>

@@ -236,10 +236,6 @@ export const GlobalStyles = createGlobalStyle`
   .table-header,
   .nfts-info,
   .nfts-info-2,
-  .blog-date,
-  .blog-category,
-  .post-date,
-  .post-category,
   .post-date-blogdetail{
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;

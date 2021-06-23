@@ -219,7 +219,7 @@ const Offerings = (props) => {
               </Link>
               <Link href="/games/nfts">
                 <span className="account-hover">
-                  <b>Nfts</b>
+                  <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
@@ -242,7 +242,7 @@ const Offerings = (props) => {
               </span>
               <Link href="/games/nfts">
                 <span className="account-hover">
-                  <b>Nfts</b>
+                  <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
@@ -266,7 +266,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
               <span className="account-hover active">
-                <b>Nfts</b>
+                <b>NFTs</b>
               </span>
               <Link href="/games/shop">
                 <span className="account-hover">
@@ -290,7 +290,7 @@ const Offerings = (props) => {
               </Link>
               <Link href="/games/nfts">
                 <span className="account-hover">
-                  <b>Nfts</b>
+                  <b>NFTs</b>
                 </span>
               </Link>
               <span className="account-hover active">
@@ -315,7 +315,7 @@ const Offerings = (props) => {
                   </Link>
                   <Link href="/games/nfts">
                     <span className="account-hover">
-                      <b>Nfts</b>
+                      <b>NFTs</b>
                     </span>
                   </Link>
                   <Link href="/games/shop">

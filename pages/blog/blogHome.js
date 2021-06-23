@@ -59,23 +59,26 @@ function blog() {
 
               <div className="post-info featured">
                 <div className="top">
+                  <span className="blog-category">Announcements </span>
+                  <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
                   <span className="blog-date">7 MAR 2021</span>
-                  <span className="blog-category">Announcements</span>
                 </div>
                 <div className="bottom">
                   <div className="blog-title">
-                    <h4
+                    <h4 
                       style={{
-                        paddingBottom: '9px',
-                        paddingTop: '9px'
+                        fontSize: '24px',
+                        fontfamily: 'LarsseitBold',
+                        marginTop: '4px',
                       }}
                     >
                       Decentral Games Partners With Video Game Pioneer Atari
                     </h4>
                     <p
                       style={{
-                        lineHeight: '1.3',
-                        paddingTop: '3px'
+                        fontFamily: 'Larsseit-Regular',
+                        fontSize: '18px',
+                        paddingTop: '8px',
                       }}
                     >
                       We are thrilled to announce that we have partnered up with Atari to launch Atari Casino powered by Decentral Games this May!
@@ -151,6 +154,16 @@ function blog() {
                                 className="bottom-info"
                                 style={{ display: 'flex' }}
                               >
+                                <div
+                                  className="post-category"
+                                >
+                                  <span>
+                                    {page.categories &&
+                                      page.categories[0] &&
+                                      page.categories[0].name}
+                                  </span>
+                                </div>
+                                <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
                                 <div className="post-date">
                                   <span>
                                     {new Date(page.created).toLocaleDateString(
@@ -163,26 +176,22 @@ function blog() {
                                     )}
                                   </span>
                                 </div>
-                                <div
-                                  className="post-category"
-                                  style={{ color: 'rgb(97, 97, 97)' }}
-                                >
-                                  <span>
-                                    {page.categories &&
-                                      page.categories[0] &&
-                                      page.categories[0].name}
-                                  </span>
-                                </div>
                               </span>
                               <div className="bottom">
                                 <div className="blog-title">
-                                  <h4 style={{ paddingBottom: '9px' }}>
+                                  <h4
+                                    style={{
+                                      fontSize: '24px',
+                                      fontfamily: 'LarsseitBold',
+                                    }}
+                                  >
                                     {page.title}
                                   </h4>
                                   <p
                                     style={{
-                                      color: 'rgb(97, 97, 97)',
+                                      fontFamily: 'Larsseit-Regular',
                                       fontSize: '18px',
+                                      paddingTop: '8px',
                                     }}
                                   >
                                     {page.summary.split('.', 1)[0]}
@@ -210,41 +219,49 @@ function blog() {
                                 />
                               </div>
                               <div className="post-info">
-                                <span
-                                  className="bottom-info"
-                                  style={{ display: 'flex' }}
+                               <span
+                                className="bottom-info"
+                                style={{ display: 'flex' }}
+                              >
+                                <div
+                                  className="post-category"
                                 >
-                                  <div className="post-date">
-                                    <span>
-                                      {new Date(
-                                        page.created
-                                      ).toLocaleDateString('en-DE', {
+                                  <span>
+                                    {page.categories &&
+                                      page.categories[0] &&
+                                      page.categories[0].name}
+                                  </span>
+                                </div>
+                                <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                                <div className="post-date">
+                                  <span>
+                                    {new Date(page.created).toLocaleDateString(
+                                      'en-DE',
+                                      {
                                         day: 'numeric',
                                         month: 'short',
                                         year: 'numeric',
-                                      })}
-                                    </span>
-                                  </div>
-                                  <div
-                                    className="post-category"
-                                    style={{ color: 'rgb(97, 97, 97)' }}
-                                  >
-                                    <span>
-                                      {page.categories &&
-                                        page.categories[0] &&
-                                        page.categories[0].name}
-                                    </span>
-                                  </div>
-                                </span>
+                                      }
+                                    )}
+                                  </span>
+                                </div>
+                              </span>
                                 <div className="bottom">
                                   <div className="blog-title">
-                                    <h4 style={{ paddingBottom: '9px' }}>
+                                    <h4
+                                      style={{
+                                        fontSize: '24px',
+                                        fontfamily: 'LarsseitBold',
+                                        marginTop: '0px'
+                                      }}
+                                    >
                                       {page.title}
                                     </h4>
                                     <p
                                       style={{
-                                        color: 'rgb(97, 97, 97)',
+                                        fontFamily: 'Larsseit-Regular',
                                         fontSize: '18px',
+                                        paddingTop: '8px',
                                       }}
                                     >
                                       {page.summary.split('.', 1)[0]}
@@ -274,19 +291,12 @@ function blog() {
                   <img src={page.featured_image || page.banner} alt="" />
                 </div>
                 <div className="post-info">
-                  <span className="bottom-info" style={{ display: 'flex' }}>
-                    <div className="post-date">
-                      <span>
-                        {new Date(page.created).toLocaleDateString('en-DE', {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                        })}
-                      </span>
-                    </div>
+                  <span
+                    className="bottom-info"
+                    style={{ display: 'flex' }}
+                  >
                     <div
                       className="post-category"
-                      style={{ color: 'rgb(97, 97, 97)' }}
                     >
                       <span>
                         {page.categories &&
@@ -294,14 +304,35 @@ function blog() {
                           page.categories[0].name}
                       </span>
                     </div>
+                    <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                    <div className="post-date">
+                      <span>
+                        {new Date(page.created).toLocaleDateString(
+                          'en-DE',
+                          {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          }
+                        )}
+                      </span>
+                    </div>
                   </span>
                   <div className="bottom">
                     <div className="blog-title">
-                      <h4 style={{ paddingBottom: '9px' }}>{page.title}</h4>
+                      <h4
+                        style={{
+                          fontSize: '24px',
+                          fontfamily: 'LarsseitBold',
+                        }}
+                      >
+                        {page.title}
+                      </h4>
                       <p
                         style={{
-                          color: 'rgb(97, 97, 97)',
+                          fontFamily: 'Larsseit-Regular',
                           fontSize: '18px',
+                          paddingTop: '4px',
                         }}
                       >
                         {page.summary.split('.', 1)[0]}
