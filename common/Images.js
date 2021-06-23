@@ -1,6 +1,8 @@
 const Images = {
   LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
+  SPINNING_LOGO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif',
   SOCIAL_SHARE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402416/all-dg_f5sknc.png',
   SOCIAL_SHARE_2:
