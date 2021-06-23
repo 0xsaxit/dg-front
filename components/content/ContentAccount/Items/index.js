@@ -43,7 +43,7 @@ function Items({ state }) {
                       >
                         <a href={wearable.permalink}>
                           <button className={cn('btn', styles.read_button)}>
-                            Learn
+                            Info
                           </button>
                         </a>
                         <a href={wearable.permalink}>

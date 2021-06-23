@@ -30,6 +30,7 @@ const ContentTreasury = (props) => {
   const [nftTreasury, setNftTreasury] = useState(0);
   const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
   const [liquidityTreasury, setLiquidityTreasury] = useState(0);
+  const [liquidityTreasuryPercent, setLiquidityTreasuryPercent] = useState(0);
   const [uniTreasury, setUniTreasury] = useState(0);
   const [mviTreasury, setMviTreasury] = useState(0);
   const [maticTreasury, setMaticTreasury] = useState(0);
@@ -127,6 +128,9 @@ const ContentTreasury = (props) => {
         props.formatPrice(liq.graph.slice(-1)[0].secondary, 0)
       );
 
+      const liq_temp = liq.changes.weekly.percent.toFixed(2);
+      setLiquidityTreasuryPercent(Number(liq_temp));
+
       const uni = state.treasuryNumbers.totalDgEthUniswapBalance;
       setUniTreasury(props.formatPrice(uni.graph.slice(-1)[0].secondary, 0));
 
@@ -190,6 +194,7 @@ const ContentTreasury = (props) => {
       </span>
     );
   }
+
 
   function allTimeEarnings() {
     return (
@@ -442,11 +447,33 @@ const ContentTreasury = (props) => {
           getLoader()
         )}
 
-        <Table.Cell textAlign="right">
-          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <p className="earned-percent neutral">0.00%</p>
-          </span>
-        </Table.Cell>
+        {liquidityTreasuryPercent > 0 && liquidityTreasury ? (
+          <Table.Cell textAlign="right">
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <p className="earned-percent pos">{liquidityTreasuryPercent}%</p>
+              <Icon name="caret up" className="percent-icon pos" />
+            </span>
+          </Table.Cell>
+        ) : liquidityTreasury ? (
+          <Table.Cell textAlign="right">
+            <span
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <p className="earned-percent neg">{liquidityTreasuryPercent}%</p>
+              <Icon name="caret down" className="percent-icon neg" />
+            </span>
+          </Table.Cell>
+        ) : (
+          getLoader()
+        )}
       </Table.Row>
     );
   }
@@ -510,6 +537,7 @@ const ContentTreasury = (props) => {
     return (
       <Popup
         className="dai-mana-popup"
+        style={{ background: 'rgb(21, 24, 28)', color: 'rgba(255, 255, 255, 0.6)' }}
         trigger={
           <Icon
             className={`dai-mana-icon ${number}`}
@@ -569,7 +597,7 @@ const ContentTreasury = (props) => {
         lineTension: 0.5,
         backgroundColor: '#000000',
         borderColor: '#16c784',
-        borderWidth: 2,
+        borderWidth: 4,
         data: statsUSDY,
       },
     ],

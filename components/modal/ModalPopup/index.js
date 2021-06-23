@@ -4,7 +4,6 @@ import Web3 from 'web3';
 import { Popup, Icon, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
-import Fetch from '../../../common/Fetch';
 
 
 const ModalPopup = () => {
@@ -13,9 +12,6 @@ const ModalPopup = () => {
 
   // define local variables
   const [copied, setCopied] = useState(false);
-  const [manaPrice, setManaPrice] = useState(0);
-  const [ethPrice, setEthPrice] = useState(0);
-  const [atriPrice, setAtriPrice] = useState(0);
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
   const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
@@ -32,27 +28,9 @@ const ModalPopup = () => {
   }, []);
 
   useEffect(() => {
-    (async function () {
-      // get coin prices
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      setManaPrice(json.market_data.current_price.usd);
-
-      let response2 = await Fetch.ETH_PRICE();
-      let json2 = await response2.json();
-      setEthPrice(json2.market_data.current_price.usd);
-
-      let response3 = await Fetch.ATRI_PRICE();
-      let json3 = await response3.json();
-      setAtriPrice(json3.market_data.current_price.usd);
-
-    })()
-  }, [manaPrice, ethPrice, atriPrice]);
-
-  useEffect(() => {
-    const mana = Number(manaPrice * state.userBalances[1][1]);
-    const eth = Number(ethPrice * state.userBalances[2][3]);
-    const atri = Number(atriPrice * state.userBalances[2][2]);
+    const mana = Number(state.DGPrices.mana * state.userBalances[1][1]);
+    const eth = Number(state.DGPrices.eth * state.userBalances[2][3]);
+    const atri = Number(state.DGPrices.atri * state.userBalances[2][2]);
     const dai = Number(state.userBalances[0][1]);
     const usdt = Number(state.userBalances[2][1] * 1000000000000);
     const balance = mana + eth + atri + dai + usdt;
@@ -63,10 +41,6 @@ const ModalPopup = () => {
       state.userBalances[2][2],
       state.userBalances[0][1],
       state.userBalances[2][1]]);
-
-  async function disconnectMetaMask() {
-    
-  }
 
   return (
     <div>
