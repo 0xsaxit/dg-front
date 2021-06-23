@@ -1,12 +1,14 @@
 import { useEffect, useContext, useState, React } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Web3 from 'web3';
 import { Button, Divider, Input, Loader } from 'semantic-ui-react';
-import Transactions from '../../common/Transactions';
-import Aux from '../_Aux';
-import Images from '../../common/Images';
-import Fetch from '../../common/Fetch';
-import Global from '../Constants';
+import Transactions from 'common/Transactions';
+import Aux from 'components/_Aux';
+import Images from 'common/Images';
+import Fetch from 'common/Fetch';
+import Global from 'components/Constants';
+
+import styles from './ContentGovernance.module.scss';
 
 const ContentGovernance = props => {
   // get user's unclaimed DG balance from the Context API store

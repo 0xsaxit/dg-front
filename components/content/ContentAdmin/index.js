@@ -1,6 +1,6 @@
 import { Divider, Grid, Table } from 'semantic-ui-react';
-import Images from '../../common/Images';
-import Aux from '../_Aux';
+import Images from 'common/Images';
+import Aux from 'components/_Aux';
 
 const CoinImage = props => {
   const { data, image, title } = props;

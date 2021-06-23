@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Grid, Table } from 'semantic-ui-react';
-import Global from '../Constants';
-import Spinner from '../Spinner';
-import Images from '../../common/Images';
+import Global from 'components/Constants';
+import Spinner from 'components/Spinner';
+import Images from 'common/Images';
+
+import styles from './ContentLeaderboard.module.scss';
 
 const ContentLeaderboard = props => {
   // get game score records from the Context API store

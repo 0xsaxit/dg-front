@@ -1,12 +1,14 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Web3 from 'web3';
 import { Button, Divider, Loader, Icon, Input, Modal } from 'semantic-ui-react';
-import Aux from '../_Aux';
-import Images from '../../common/Images';
-import Fetch from '../../common/Fetch';
-import Transactions from '../../common/Transactions';
-import Global from '../Constants';
+import Aux from 'components/_Aux';
+import Images from 'common/Images';
+import Fetch from 'common/Fetch';
+import Transactions from 'common/Transactions';
+import Global from 'components/Constants';
+
+import styles from './ContentUniswap.module.scss';
 
 const ContentUniswap = props => {
   // get user's status from the Context API store

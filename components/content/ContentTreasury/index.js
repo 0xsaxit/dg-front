@@ -1,8 +1,10 @@
 import { useEffect, useContext, useState, React } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { Loader, Popup, Icon, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
-import Aux from '../_Aux';
+import Aux from 'components/_Aux';
+
+import styles from "./ContentTreasury.module.scss";
 
 const ContentTreasury = props => {
   // get the treasury's balances numbers from the Context API store
