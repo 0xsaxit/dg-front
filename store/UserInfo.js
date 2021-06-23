@@ -50,15 +50,6 @@ function UserInfo() {
         const responseData = await Fetch.PLAYER_DATA(state.userAddress);
         const jsonData = await responseData.json();
 
-        const totalPLAY = (
-          jsonData.PLAY.payout_player / Global.CONSTANTS.FACTOR
-        ).toLocaleString();
-        const totalDAI = Number(state.userBalances[0][1]).toFixed(2);
-        const totalMANA = Number(manaPrice * state.userBalances[1][1]).toFixed(2);
-        const totalUSDT = Number(state.userBalances[2][1]).toFixed(2);
-        const totalATRI = Number(atriPrice * state.userBalances[2][2]).toFixed(2);
-        const totalWETH = Number(ethPrice * state.userBalances[2][3]).toFixed(2);
-
         const data = {
           name: name,
           id: id,
@@ -66,12 +57,6 @@ function UserInfo() {
           count: count,
           email: email,
           playersList: playersList,
-          totalPLAY: totalPLAY,
-          totalDAI: totalDAI,
-          totalMANA: totalMANA,
-          totalUSDT: totalUSDT,
-          totalATRI: totalATRI,
-          totalWETH: totalWETH,
           tokenArray: tokenArray,
         };
 

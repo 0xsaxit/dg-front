@@ -321,6 +321,7 @@ const Chateau = () => {
           blur={0}
           bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/roulette_zuawjl.jpg"
           strength={100}
+          className="test"
         >
           <div className="home-section-2-outter">
             <div className="home-section-2 inner">

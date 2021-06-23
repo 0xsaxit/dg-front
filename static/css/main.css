@@ -2,6 +2,10 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
+img.react-parallax-bgimage {
+  object-fit: cover;
+}
+
 .ui.checkbox {
   margin-top: 4px;
   margin-right: 24px;

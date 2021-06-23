@@ -42,6 +42,8 @@ function History({ state }) {
       result = dataHistory.slice(0, maximumCount);
       resultTwo = dataPlay.slice(0, maximumCount);
 
+      console.log(resultTwo);
+
       for (i = 0; i < result.length; i++) {
         const resultType = get(result, `${i}.type`, '');
         if (
@@ -70,7 +72,7 @@ function History({ state }) {
           : <Grid>
               {dataPage.map((row, i) => {
                 const date = new Date(row.createdAt);
-                const timestamp = date.toISOString();
+                const timestamp = date.toDateString();
                 const amount = (row.amount / 100000000000000000).toFixed(2);
 
                 return (
@@ -166,12 +168,35 @@ function History({ state }) {
                           >
                             {amount}
                           </h2>
-                          <h3
-                            className={styles.row_date}
-                            style={{ textAlign: 'right' }}
-                          >
-                            $0.00
-                          </h3>
+                          {row.type.includes('DAI') || row.type.includes('USDT') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.dai).toFixed(2)}
+                            </h3>
+                          ) : row.type.includes('MANA') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.mana).toFixed(2)}
+                            </h3>
+                          ) : row.type.includes('ETH') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.eth).toFixed(2)}
+                            </h3>
+                          ) :  (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.atri).toFixed(2)}
+                            </h3>
+                          )}
                         </span>
                       </span>
                     </div>
@@ -199,7 +224,7 @@ function History({ state }) {
                   <Table.HeaderCell style={{ width: '240px' }}>
                     Date
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '270px' }}>Transactions</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '270px', textAlign: 'right' }}>Transactions</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>
@@ -385,7 +410,7 @@ function History({ state }) {
                         <Table.Cell style={{ width: '240px' }}>
                           {timestamp}
                         </Table.Cell>
-                        <Table.Cell style={{ width: '270px' }}>
+                        <Table.Cell style={{ width: '270px', textAlign: 'right' }}>
                           <span>
                             {row.coinName !== 'PLAY' ? (
                               <Aux>
