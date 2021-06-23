@@ -42,7 +42,7 @@
         }
 
         .title {
-          font-size: 32px;
+          font-size: 24px;
           color: white;
           margin-top: 67px;
 
@@ -52,7 +52,7 @@
         }
 
         .countdown {
-          font-size: 32px;
+          font-size: 24px;
           color: white;
           margin-top: 67px;
 
@@ -62,7 +62,7 @@
         }
 
         .all_events {
-          font-size: 32px;
+          font-size: 24px;
           color: white;
           float: left;
           margin-top: 20px;
@@ -92,7 +92,7 @@
           flex-direction: row;
           border-radius: 14px;
           overflow: hidden;
-          max-height: 365px;
+          max-height: 420px;
 
           @include mq($until: medium) {
             flex-direction: column;
@@ -259,7 +259,7 @@
         z-index: 1;
         object-fit: cover;
         width: 100%;
-        height: 180px;
+        height: 200px;
 
         &.featured {
           width: 66%;
@@ -284,6 +284,10 @@
 
       .leaderboard_column {
         min-width: 33.33%;
+
+        .nft_container {
+          margin-top: 0;
+        }
 
         @include mq($from: medium) {
           width: 100%;

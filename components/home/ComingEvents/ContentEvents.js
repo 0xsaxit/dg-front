@@ -1,6 +1,7 @@
 import React from 'react';
 import Countdown from 'react-countdown';
 import cn from 'classnames';
+import { useMediaQuery } from 'hooks';
 import { Button, Grid, Image } from 'semantic-ui-react';
 
 import styles from './ComingEvents.module.scss';
@@ -12,6 +13,8 @@ function getSentences(str) {
 }
 
 const ContentEvents = ({ events, eventOngoing }) => {
+  const isWideScreen = useMediaQuery('(min-width: 1200px)');
+
   return (
     <span className={styles.custom_events}>
       <div className={styles.account_other_tabs}>
@@ -33,7 +36,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
       </div>
 
       <div>
-        <a href={events[0].url} className={styles.nft_container}>
+        <a href={events[0].url} className={cn('mt-0', styles.nft_container)}>
           <span className={styles.featured_event_grid}>
             <Image
               src={events[0].image}
@@ -59,7 +62,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
                   target="_blank"
                   href={`https://events.decentraland.org/en/?event=${events[0].id}`}
                 >
-                  Learn More
+                  {isWideScreen ? 'Learn More' : 'Info'}
                 </Button>
                 <Button
                   color="blue"
@@ -67,7 +70,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
                   target="_blank"
                   href={events[0].url}
                 >
-                  Go To Location
+                  {isWideScreen ? 'Go To Location' : 'Hop In'}
                 </Button>
               </span>
             </div>
@@ -90,7 +93,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
             className={styles.leaderboard_column}
             key={i}
           >
-            <a href={event.url} className={styles.nft_container}>
+            <a href={event.url} className={cn(styles.nft_container, 'mt-0')}>
               <div>
                 <span>
                   <Image src={event.image} className={styles.event_pic} />

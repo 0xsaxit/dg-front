@@ -1,9 +1,9 @@
 @import '~sass-mq/mq';
 
 $spacer: 1rem;
-$color-blue: #006EFF;
-$color-lightgray: #2F2F2F;
-$color-dark: #1F1F1F;
+$color-blue: #006eff;
+$color-lightgray: #2f2f2f;
+$color-dark: #1f1f1f;
 $color-white: #ffffff;
 
 // sass-mq variables
@@ -14,14 +14,14 @@ $mq-breakpoints: (
   extra-large: 1200px,
 );
 
-.btn-primary:active, 
+.btn-primary:active,
 .btn-primary:hover,
 .btn-primary:focus {
-	color: white !important;
+  color: white !important;
 }
 
 .btn:hover,
 .btn-primary:hover {
-	background: #006EFF;
-	filter: brightness(0.9);
+  background: #006eff;
+  filter: brightness(0.9);
 }
