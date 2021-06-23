@@ -1,11 +1,84 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Web3 from 'web3';
 import { Button, Divider, Loader, Icon, Input } from 'semantic-ui-react';
-import Aux from '../_Aux';
-import Images from '../../common/Images';
-import Transactions from '../../common/Transactions';
-import Global from '../Constants';
+import Aux from 'components/_Aux';
+import Images from 'common/Images';
+import Transactions from 'common/Transactions';
+import Global from 'components/Constants';
+import styles from './ContentBalancer.module.scss';
+
+const UnClaimedBalancer = ({pool1, setPool1, balancer, formatPrice }) => {
+  return (
+    <>
+      <span className={styles.farming_pool_span_detail}>
+        <p className={styles.welcome_text}>unclaimed 1</p>
+        <Icon
+          name="sort"
+          id="pool-select-icon"
+          onClick={() => setPool1(!pool1)}
+        />
+      </span>
+      <p className={styles.account_name}>
+        {balancer ? (
+          formatPrice(
+            balancer,
+            3
+          )
+        ) : (
+          <Loader
+            className={styles.loader}
+            active
+            inline
+            size="small"
+          />
+        )}
+      </p>
+    </>
+  )
+}
+
+const PoolUSDValue = ({ poolUSD }) => {
+  return (
+    <>
+      <span className={styles.dg_column_flex_space_between}>
+        <p className={styles.earned_text}>Value USD</p>
+        {poolUSD ? (
+          <p className={styles.earned_amount}>${poolUSD}</p>
+        ) : (
+          <Loader
+            className={styles.loader}
+            active
+            inline
+            size="small"
+          />
+        )}
+      </span>
+    </>
+  )
+}
+
+const ClaimBalancer = ({ balancer, reward, contractPool, title}) => {
+  return (
+    <>
+      <span className={styles.dg_button_span}>
+        {Number(balancer) ? (
+          <Button
+            className={styles.dg_claim_button}
+            id="balances-padding-correct"
+            onClick={() => reward(contractPool)}
+          >
+            {title}
+          </Button>
+        ) : (
+          <Button disabled className={styles.dg_claim_button}>
+            {title}
+          </Button>
+        )}
+      </span>
+    </>
+  )
+}
 
 const ContentBalancer = props => {
   // get user's status from the Context API store
@@ -168,15 +241,15 @@ const ContentBalancer = props => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container top">
-        <div className="DG-column top">
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
+      <div className={styles.dg_liquidity_container_top}>
+        <div className={styles.dg_column_top}>
+          <span className={styles.dg_column_top_dg_title}>
+            <h3>$DG Balancer Liquidity Incentives</h3>
             <p>
               Balancer LP rewards have now ended following this{' '}
               <a
+                className={styles.dg_column_top_dg_title_link}
                 href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
-                style={{ color: '#2085f4' }}
                 target="_blank"
               >
                 gov proposal
@@ -187,179 +260,49 @@ const ContentBalancer = props => {
         </div>
       </div>
 
-      <div className="DG-liquidity-container">
-        <div className="DG-column unclaimed">
-          <span style={{ display: 'flex' }}>
+      <div className={styles.dg_liquidity_container}>
+        <div className={styles.dg_column_unclaimed}>
+          <span className={styles.dg_column_flex}>
             <img
               src={Images.DG_COIN_LOGO}
-              className="farming-logo"
+              className={styles.farming_logo}
               alt="Decentral Games Coin Logo"
             />
-            <span className="farming-pool-span">
-              {pool1 ? (
-                <span>
-                  <span style={{ display: 'flex' }}>
-                    <p className="welcome-text">unclaimed 1</p>
-                    <Icon
-                      name="sort"
-                      id="pool-select-icon"
-                      onClick={() => setPool1(!pool1)}
-                    />
-                  </span>
-                  <p className="account-name">
-                    {state.DGBalances.BALANCE_STAKING_BALANCER_1 ? (
-                      props.formatPrice(
-                        state.DGBalances.BALANCE_STAKING_BALANCER_1,
-                        3
-                      )
-                    ) : (
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '1px',
-                          marginBottom: '2px',
-                        }}
-                      />
-                    )}
-                  </p>
-                </span>
-              ) : (
-                <span>
-                  <span style={{ display: 'flex' }}>
-                    <p className="welcome-text">unclaimed 2</p>
-                    <Icon
-                      name="sort"
-                      id="pool-select-icon"
-                      onClick={() => setPool1(!pool1)}
-                    />
-                  </span>
-                  <p className="account-name">
-                    {state.DGBalances.BALANCE_STAKING_BALANCER_2 ? (
-                      props.formatPrice(
-                        state.DGBalances.BALANCE_STAKING_BALANCER_2,
-                        3
-                      )
-                    ) : (
-                      <Loader
-                        active
-                        inline
-                        size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '1px',
-                          marginBottom: '2px',
-                        }}
-                      />
-                    )}
-                  </p>
-                </span>
-              )}
+            <span className={styles.farming_pool_span}>
+              <UnClaimedBalancer
+                pool1={pool1}
+                setPool1={setPool1}
+                formatPrice={props.formatPrice}
+                balancer={pool1 ? state.DGBalances.BALANCE_STAKING_BALANCER_1 : state.DGBalances.BALANCE_STAKING_BALANCER_2}
+              />
             </span>
           </span>
-
+          <Divider />
+          <PoolUSDValue poolUSD={pool1 ? pool1USD : pool2USD} />
           <Divider />
 
-          {pool1 ? (
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">Value USD</p>
-              {pool1USD ? (
-                <p className="earned-amount">${pool1USD}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '1px',
-                    marginBottom: '2px',
-                  }}
-                />
-              )}
-            </span>
-          ) : (
-            <span
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-              }}
-            >
-              <p className="earned-text">Value USD</p>
-              {pool2USD ? (
-                <p className="earned-amount">${pool2USD}</p>
-              ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '1px',
-                    marginBottom: '2px',
-                  }}
-                />
-              )}
-            </span>
-          )}
-
-          <Divider />
-
-          {pool1 ? (
-            <span className="DG-button-span">
-              {Number(state.DGBalances.BALANCE_STAKING_BALANCER_1) ? (
-                <Button
-                  className="DG-claim-button"
-                  id="balances-padding-correct"
-                  onClick={() => props.reward(props.stakingContractPool1)}
-                >
-                  CLAIM BALANCER 1 $DG
-                </Button>
-              ) : (
-                <Button disabled className="DG-claim-button">
-                  CLAIM BALANCER 1 $DG
-                </Button>
-              )}
-            </span>
-          ) : (
-            <span className="DG-button-span">
-              {Number(state.DGBalances.BALANCE_STAKING_BALANCER_2) ? (
-                <Button
-                  className="DG-claim-button"
-                  id="balances-padding-correct"
-                  onClick={() => props.reward(props.stakingContractPool2)}
-                >
-                  CLAIM BALANCER 2 $DG
-                </Button>
-              ) : (
-                <Button disabled className="DG-claim-button">
-                  CLAIM BALANCER 2 $DG
-                </Button>
-              )}
-            </span>
-          )}
+          {pool1 ? 
+            <ClaimBalancer
+              balancer={state.DGBalances.BALANCE_STAKING_BALANCER_1}
+              reward={props.reward}
+              contractPool={props.stakingContractPool1}
+              title="CLAIM BALANCER 1 $DG"
+            /> 
+            : <ClaimBalancer
+                blanacer={state.DGBalances.BALANCER_STAKING_BALANCER_2}
+                reward={props.reward}
+                contractPool={props.stakingContractPool2}
+                title="CLAIM BALANCER 2 $DG"
+            />}
         </div>
 
-        <span className="DG-tablet-container">
+        <span clasName={styles.dg_tablet_container}>
           <div
             className="DG-column one"
             id="DG-column-hover"
             style={{ position: 'relative', height: '100%' }}
           >
-            <span style={{ display: 'flex' }}>
+            <span className={styles.dg_column_flex}>
               <img
                 src={Images.MANA_CIRCLE}
                 className="farming-logo"
@@ -388,63 +331,35 @@ const ContentBalancer = props => {
 
             <Divider />
 
-            <div style={{ display: 'flex' }}>
+            <div className={styles.dg_column_flex}>
               <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
+                <span className={styles.dg_column_flex_center}>
                   <p className="earned-text">APY</p>
                   {APYMANA ? (
                     <p className="earned-amount">N/A</p>
                   ) : (
                     <Loader
+                      className={styles.loader2}
                       active
                       inline
                       size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-3px',
-                      }}
                     />
                   )}
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
+              <span className={styles.dg_column_flex_justify_content}>
+                <span className={styles.dg_column_flex_center}>
                   <p className="earned-text">% of balancer 1</p>
                   <p className="earned-amount">
                     {poolPercentage1 ? (
                       <p className="earned-amount">N/A</p>
                     ) : (
                       <Loader
+                        className={styles.loader2}
                         active
                         inline
                         size="small"
-                        style={{
-                          fontSize: '12px',
-                          marginTop: '5px',
-                          marginLeft: '-1px',
-                          marginBottom: '-3px',
-                        }}
                       />
                     )}
                   </p>
@@ -538,7 +453,7 @@ const ContentBalancer = props => {
             className="DG-column two"
             style={{ position: 'relative', height: '100%' }}
           >
-            <span style={{ display: 'flex' }}>
+            <span className={styles.dg_column_flex}>
               <img
                 src={Images.DAI_CIRCLE}
                 className="farming-logo"
@@ -567,7 +482,7 @@ const ContentBalancer = props => {
 
             <Divider />
 
-            <div style={{ display: 'flex' }}>
+            <div className={styles.dg_column_flex}>
               <span className="gameplay-left-column">
                 <span
                   style={{
@@ -581,48 +496,26 @@ const ContentBalancer = props => {
                     <p className="earned-amount">N/A</p>
                   ) : (
                     <Loader
+                      className={styles.loader2}
                       active
                       inline
                       size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-2px',
-                      }}
                     />
                   )}
                 </span>
               </span>
 
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '50%',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
+              <span className={styles.dg_column_flex_justify_content}>
+                <span clasName={styles.dg_column_flex_center}>
                   <p className="earned-text">% of balancer 2</p>
                   {poolPercentage2 ? (
                     <p className="earned-amount">N/A</p>
                   ) : (
                     <Loader
+                      className={styles.loader2}
                       active
                       inline
                       size="small"
-                      style={{
-                        fontSize: '12px',
-                        marginTop: '5px',
-                        marginLeft: '-1px',
-                        marginBottom: '-2px',
-                      }}
                     />
                   )}
                 </span>

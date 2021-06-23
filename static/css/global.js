@@ -98,6 +98,9 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
   }
 
+  
+  .dg_column,
+  .dg_column_top,
   .dg_column_unclaimed {
     background: ${({ theme }) => theme.card};
   }

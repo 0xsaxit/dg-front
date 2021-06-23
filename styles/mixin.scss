@@ -1,0 +1,14 @@
+@mixin dg_column_style {
+  font-family: 'Lato', sans-serif;
+  border-radius: 4px;
+  padding: 12px 18px 18px 18px;
+  background-color: #1f1f1f;
+}
+
+@mixin welcome_text_style {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: rgb(92, 95, 97);
+  text-transform: uppercase;
+}

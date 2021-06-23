@@ -40,7 +40,7 @@ const Farming = props => {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
       setWeb3(web3);
 
-      async function fetchData() {
+      const fetchData = async () => {
         const stakingContractPool1 = await Transactions.stakingContractPool1(
           web3
         );
@@ -60,7 +60,7 @@ const Farming = props => {
 
   // fetch circulating supply
   useEffect(() => {
-    (async function () {
+    (async () => {
       const response = await Fetch.DG_SUPPLY_GECKO();
       const json = await response.json();
       setPrice(json.market_data.current_price.usd);
@@ -90,7 +90,7 @@ const Farming = props => {
     }
   }, [instances]);
 
-  function formatPrice(balanceDG, units) {
+  const formatPrice = (balanceDG, units) => {
     const priceFormatted = Number(balanceDG)
       .toFixed(units)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -101,7 +101,7 @@ const Farming = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // stake, withdraw, and get reward from staking contracts
-  function getAmounts(amount) {
+  const getAmounts = (amount) => {
     const amountAdjusted = amount * Global.CONSTANTS.FACTOR;
     const re = new RegExp('^-?\\d+(?:.\\d{0,' + (10 || -1) + '})?');
     const truncated = amount.toString().match(re)[0];
@@ -110,12 +110,12 @@ const Farming = props => {
     return { amountAdjusted, amountToString };
   }
 
-  async function staking(
+  const staking = async (
     tokenContract,
     contractAddress,
     stakingContract,
     amount
-  ) {
+  ) => {
     console.log('Call stake() function to stake tokens');
 
     const { amountAdjusted, amountToString } = getAmounts(amount);
@@ -163,7 +163,7 @@ const Farming = props => {
     }
   }
 
-  async function withdrawal(stakingContract, amount) {
+  const withdrawal = async (stakingContract, amount) => {
     console.log('Call withdraw() function to unstake tokens');
 
     const { amountAdjusted, amountToString } = getAmounts(amount);
@@ -189,7 +189,7 @@ const Farming = props => {
     }
   }
 
-  async function reward(stakingContract) {
+  const reward = async (stakingContract) => {
     console.log('Call getReward() function to claim tokens');
 
     try {
@@ -214,7 +214,7 @@ const Farming = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function submenu() {
+  const submenu = () => {
     return (
       <div style={{ margin: '120px 0px 00px 0px' }}>
         <div className="account-other-tabs">
@@ -339,11 +339,11 @@ const Farming = props => {
     );
   }
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     setAmountInput(e.target.value);
   }
 
-  async function rewardData(amountReward) {
+  const rewardData = async (amountReward) => {
     const timestamp = await getPeriodFinish();
 
     const date = new Date(timestamp * 1000);
@@ -363,7 +363,7 @@ const Farming = props => {
     });
   }
 
-  async function getPeriodFinish() {
+  const getPeriodFinish = async () => {
     try {
       const timestamp = await stakingContractPool1.methods
         .periodFinish()
@@ -375,7 +375,7 @@ const Farming = props => {
     }
   }
 
-  function contentAdmin() {
+  const contentAdmin = () => {
     return (
       <div className="DG-liquidity-container top">
         <div className="DG-column top">

@@ -1,17 +1,6 @@
 @import "styles/base.scss";
 
 .dg_liquidity_container {
-	@include mq($until: large) {
-    flex-direction: column;
-	}
-
-  @include mq($from: large) {
-    max-width: 1343px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-
   .dg_liquidity_avatar {
     display: flex;
 
