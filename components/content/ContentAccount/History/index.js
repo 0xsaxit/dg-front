@@ -42,6 +42,8 @@ function History({ state }) {
       result = dataHistory.slice(0, maximumCount);
       resultTwo = dataPlay.slice(0, maximumCount);
 
+      console.log(resultTwo);
+
       for (i = 0; i < result.length; i++) {
         const resultType = get(result, `${i}.type`, '');
         if (
@@ -166,12 +168,35 @@ function History({ state }) {
                           >
                             {amount}
                           </h2>
-                          <h3
-                            className={styles.row_date}
-                            style={{ textAlign: 'right' }}
-                          >
-                            $0.00
-                          </h3>
+                          {row.type.includes('DAI') || row.type.includes('USDT') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.dai).toFixed(2)}
+                            </h3>
+                          ) : row.type.includes('MANA') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.mana).toFixed(2)}
+                            </h3>
+                          ) : row.type.includes('ETH') ? (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.eth).toFixed(2)}
+                            </h3>
+                          ) :  (
+                            <h3
+                              className={styles.row_date}
+                              style={{ textAlign: 'right' }}
+                            >
+                              ${(amount * state.DGPrices.atri).toFixed(2)}
+                            </h3>
+                          )}
                         </span>
                       </span>
                     </div>
@@ -188,18 +213,18 @@ function History({ state }) {
         <div className="tx-box-overflow">
           {dataPageTwo === 'false' 
           ? null
-          : <Table unstackable>
+          : <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Game</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-2">
+                  <Table.HeaderCell style={{ width: '120px' }}>Game</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '180px' }}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Payout</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-4">
+                  <Table.HeaderCell style={{ width: '180px' }}>Payout</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '240px' }}>
                     Date
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Transactions</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '270px', textAlign: 'right' }}>Transactions</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>
@@ -238,11 +263,11 @@ function History({ state }) {
                 }
 
                 return (
-                  <Table unstackable>
+                  <Table fixed unstackable>
                     <Table.Body key={i}>
                       <Table.Row style={{ background: style }}>
-                        <Table.Cell>{action}</Table.Cell>
-                        <Table.Cell className="account-col-2">
+                        <Table.Cell style={{ width: '120px' }}>{action}</Table.Cell>
+                        <Table.Cell style={{ width: '180px' }}>
                           {row.coinName === 'DAI' ? (
                             <img
                               src={Images.DAI_CIRCLE}
@@ -312,7 +337,7 @@ function History({ state }) {
                           )}
                           -{amount} {row.coinName}
                         </Table.Cell>
-                        <Table.Cell>
+                        <Table.Cell style={{ width: '180px' }}>
                           {row.coinName === 'DAI' ? (
                             <img
                               src={Images.DAI_CIRCLE}
@@ -382,11 +407,11 @@ function History({ state }) {
                           )}
                           +{result} {row.coinName}
                         </Table.Cell>
-                        <Table.Cell className="account-col-4">
+                        <Table.Cell style={{ width: '240px' }}>
                           {timestamp}
                         </Table.Cell>
-                        <Table.Cell>
-                          <span style={{ float: 'right' }}>
+                        <Table.Cell style={{ width: '270px', textAlign: 'right' }}>
+                          <span>
                             {row.coinName !== 'PLAY' ? (
                               <Aux>
                                 <Button
@@ -414,7 +439,7 @@ function History({ state }) {
                                   </svg>
                                 </Button>
                               </Aux>
-                            ) : null}
+                            ) : null }
 
                             {row.coinName !== 'PLAY' ? (
                               <Aux>
@@ -426,7 +451,7 @@ function History({ state }) {
                                   target="_blank"
                                   className="etherscan-button-ptxid"
                                 >
-                                  payout tx
+                                  payout
                                   <svg
                                     style={{ marginLeft: '4px' }}
                                     width="13"
@@ -465,7 +490,7 @@ function History({ state }) {
                                   </svg>
                                 </Button>
                               </Aux>
-                            ) : null}
+                            ) : null }
                           </span>
                         </Table.Cell>
                       </Table.Row>

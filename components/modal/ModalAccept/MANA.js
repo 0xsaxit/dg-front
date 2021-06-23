@@ -7,10 +7,10 @@ import Global from 'components/Constants';
 import styles from './ModalAccept.module.scss';
 import Images from '../../../common/Images';
 import Fetch from '../../../common/Fetch';
-import ButtonApprove from 'components/button/ButtonApprove';
+import ButtonApproveMANA from 'components/button/ButtonApprove/MANA';
 
 
-const ModalAccept = ({ coinLabel = 'dai' }) => {
+const MANA = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -53,12 +53,12 @@ const ModalAccept = ({ coinLabel = 'dai' }) => {
       close
       trigger={
         <span>
-          {!state[`${coinLabel}Loading`] ? (
-            <Button id="balances-padding-correct">
-              Enable {coinLabel.toUpperCase()}
+          {!state.manaLoading ? (
+            <Button className={styles.disabled_enable}>
+              Enable MANA
             </Button>
           ) : (
-            <Button id="balances-padding-correct">
+            <Button className={styles.disabled_enable}>
               <Loader
                 active
                 inline
@@ -96,7 +96,7 @@ const ModalAccept = ({ coinLabel = 'dai' }) => {
         </span>
       </div>
 
-        <h4 className={styles.title}>  Terms of Service </h4>
+        <h4 className={styles.title}> Terms of Service </h4>
 
         <div>
           <p className={styles.subtitle}>
@@ -130,11 +130,11 @@ const ModalAccept = ({ coinLabel = 'dai' }) => {
 
         {checkedOne === true && checkedTwo === true && checkedThree === true ? (
           <span onClick={() => setOpen(false)}>
-            <ButtonApprove coinLabel={coinLabel} />
+            <ButtonApproveMANA />
           </span>
         ) : (
           <Button className={styles.disabled_enable} disabled>
-            Enable {coinLabel.toUpperCase()}
+            Enable MANA
           </Button>
         )}
       </div>
@@ -142,4 +142,4 @@ const ModalAccept = ({ coinLabel = 'dai' }) => {
   );
 };
 
-export default ModalAccept;
+export default MANA;

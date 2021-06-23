@@ -123,7 +123,7 @@ const ContentMining = (props) => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container">
+      <div className="DG-liquidity-container" style={{ paddingTop: '42px' }}>
         <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
           <p className="earned-amount" style={{ paddingTop: '2px' }}>
             Unclaimed

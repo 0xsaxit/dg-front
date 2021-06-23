@@ -2,6 +2,10 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
+img.react-parallax-bgimage {
+  object-fit: cover;
+}
+
 .ui.checkbox {
   margin-top: 4px;
   margin-right: 24px;
@@ -1275,17 +1279,6 @@ td:last-child {
   margin-bottom: 0px;
 }
 
-.ui.table thead th:nth-child(2),
-.ui.table thead th:nth-child(3),
-.ui.table thead th:nth-child(4) {
-  text-align: center;
-  padding-left: 0px;
-}
-
-.ui.table thead th:nth-child(5) {
-  text-align: center;
-}
-
 .ui.table thead {
   position: relative;
   z-index: 1;
@@ -1297,7 +1290,7 @@ td:last-child {
 
 .tx-box-overflow {
   max-height: 600px !important;
-  overflow-y: auto;
+  overflow-y: scroll;
   margin-bottom: 90px;
   border: 0px solid #edf2f9 !important;
   border-radius: 8px !important;
@@ -1311,10 +1304,6 @@ td:last-child {
 .leaders-col-2 {
   display: flex;
   justify-content: flex-end;
-}
-
-.tx-box-overflow::-webkit-scrollbar {
-  background: white;
 }
 
 .ui.table thead th,
@@ -2885,9 +2874,7 @@ button.ui.disabled.button.etherscan-button-ptxid {
   border: 2px solid rgba(255, 255, 255, 0.08);
   color: white;
   height: 40px;
-  padding: 12px 0px 0px 0px;
-  max-width: 150px !important;
-  min-width: 150px;
+  padding: 12px 16px 0px 16px;
   line-height: 0px;
   opacity: 100% !important;
   text-transform: capitalize;

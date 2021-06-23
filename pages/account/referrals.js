@@ -13,9 +13,9 @@ const Referrals = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Account | Referrals'}
+        title="Join Decentral Games with my referral link"
         description={Global.CONSTANTS.DESCRIPTION}
-        image={Images.SOCIAL_SHARE}
+        image={Images.SOCIAL_SHARE_2}
       />
 
       {state.userStatus ? (

@@ -32,7 +32,6 @@ function Items({ state }) {
                   <div className={styles.my_nfts}>
                     <span>
                       <Image className={styles.nft_image} src={wearable.image_url} />                    
-                      <p className={styles.nft_number}> {wearable.description.split(" ").slice(-1)}</p>
                     </span>
 
                     <div className={styles.nft_description}>
@@ -44,12 +43,12 @@ function Items({ state }) {
                       >
                         <a href={wearable.permalink}>
                           <button className={cn('btn', styles.read_button)}>
-                            Learn More
+                            Learn
                           </button>
                         </a>
                         <a href={wearable.permalink}>
                           <button className={cn('btn', styles.sell_button)}>
-                            Sell NFT
+                            Sell
                           </button>
                         </a>
                       </span>
