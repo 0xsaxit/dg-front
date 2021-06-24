@@ -76,12 +76,11 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Hit the tables in a metaverse Casino
+            Play Games and Be the House
           </h1>
           <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
-            Non-custodial, provably fair slots, roulette, blackjack and poker
-            playable with crypto in Decentraland.
+            Earn $DG by playing non-custodial slots, roulette, blackjack and poker in the Metaverse. Stake $DG to Be The House.
           </p>
           <Button
             color="blue"

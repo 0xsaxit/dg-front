@@ -13,17 +13,13 @@ function Referrals({ state }) {
 
   const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
   let totalAmount = 0;
-  const breakdown = {};
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  coins.map(coin => {
-    let totalAmountByCoin = 0;
-    state.DGBalances.BALANCE_AFFILIATES.map((affiliate) => {
-      totalAmount += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
-      totalAmountByCoin += Number(state.DGPrices[coin] * (affiliate[coin] || 0));
-    });
-    breakdown[coin] = totalAmountByCoin.toFixed(3);
+  coins.map((coin) => {
+    totalAmount += +Number(
+      state.DGPrices[coin] * state.DGBreakdown[coin]
+    ).toFixed(3);
   });
 
   const onCopy = () => {
@@ -46,9 +42,9 @@ function Referrals({ state }) {
       <div className={cn('container-fluid', styles.referrals_container)}>
         <div className={cn('d-flex my-10', styles.referrals_header)}>
           <div className="d-flex flex-column w-100">
-            <p className={cn('mb-2', styles.referrals_header_title)}>
+            <h2 className={cn('mb-2', styles.referrals_header_title)}>
               Refer a friend and receive a % of their wagers, forever
-            </p>
+            </h2>
             <p className={styles.referrals_header_subtitle}>
               The percentage of their wagers you receive varies based on the
               game, targeting ~10% of the house edge.
@@ -88,14 +84,14 @@ function Referrals({ state }) {
           </span>
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className={styles.title_two}>
+          <h3 className="mb-0">
             {!!state.DGBalances.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}
           </h3>
           <ModalBreakdown
             totalAmount={totalAmount}
-            breakdown={breakdown}
+            breakdown={state.DGBreakdown}
           />
         </span>
 

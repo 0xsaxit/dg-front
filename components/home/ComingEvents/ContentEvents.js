@@ -62,7 +62,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
                   target="_blank"
                   href={`https://events.decentraland.org/en/?event=${events[0].id}`}
                 >
-                  {isWideScreen ? 'Learn More' : 'Info'}
+                  Info
                 </Button>
                 <Button
                   color="blue"
@@ -70,7 +70,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
                   target="_blank"
                   href={events[0].url}
                 >
-                  {isWideScreen ? 'Go To Location' : 'Hop In'}
+                  Hop In
                 </Button>
               </span>
             </div>

@@ -190,8 +190,9 @@ p {
 /* ----------------------------------------- */
 
 a.get-metamask {
-  margin: 21px 15px 0px 0px;
+  margin: 0px 8px 0px 0px !important;
   color: white;
+  font-family: Larsseit-Bold;
 }
 
 a.get-metamask:hover {
@@ -3521,7 +3522,9 @@ h3.deposit-twentyfour.casino {
   background: black !important;
   border: 0px solid white !important;
   color: white;
+  border-radius: 16px;
   text-align: center;
+  font-family: Larsseit-Bold;
 }
 
 .ui.input > input:focus,

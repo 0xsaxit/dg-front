@@ -16,7 +16,9 @@ $mq-breakpoints: (
 
 .btn-primary:active,
 .btn-primary:hover,
-.btn-primary:focus {
+.btn-primary:focus,
+.btn-primary:disabled, 
+.btn-primary.disabled {
   color: white !important;
 }
 
