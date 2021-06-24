@@ -80,7 +80,7 @@ const ContentUniswap = (props) => {
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
         const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
-        const uni_num = 51 * 225 * props.price;
+        const uni_num = 52 * 225 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
 
@@ -258,7 +258,7 @@ const ContentUniswap = (props) => {
 
               <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <a
-                  href={`https://info.uniswap.org/pair/${Global.ADDRESSES.UNISWAP_ADDRESS_STAKING}`}
+                  href="https://v2.info.uniswap.org/pair/0x44c21f5dcb285d92320ae345c92e8b6204be8cdf"
                   target="_blank"
                   style={{ marginTop: '-60px', marginRight: '-4px' }}
                 >
