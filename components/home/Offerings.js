@@ -228,7 +228,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : gameState === 'casinos' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -251,7 +251,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : gameState == 'nfts' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -274,7 +274,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : gameState == 'shop' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -297,7 +297,7 @@ const Offerings = (props) => {
                 <b>Shop</b>
               </span>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : (
             <div style={{ width: '100%' }}>
@@ -324,11 +324,11 @@ const Offerings = (props) => {
                     </span>
                   </Link>
 
-                  {leaderboardLink(false)}
+                  {/*{leaderboardLink(false)}*/}
                 </p>
               </span>
 
-              {coinSelect()}
+              {/*{coinSelect()}*/}
             </div>
           )}
         </div>
