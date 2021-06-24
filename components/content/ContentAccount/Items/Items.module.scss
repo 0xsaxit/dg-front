@@ -40,10 +40,6 @@
     @include mq($until: small) {
       width: 100%;
     }
-
-    @include mq($until: medium) {
-      width: 100%;
-    }
   }
 
   .nft_description {
