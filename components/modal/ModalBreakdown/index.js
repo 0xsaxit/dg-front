@@ -103,7 +103,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
             disabled={
               !state.DGBalances.BALANCE_AFFILIATES.length || !totalAmount
             }
-            className={cn('btn btn-primary', styles.claim_button)}
+            className={cn('btn btn-primary', styles.claim_button_amount)}
           >
             <span className="d-md-flex d-none">
               Claim Referral Earnings (${Number(totalAmount).toFixed(3)})
@@ -113,15 +113,32 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
             </span>
           </button>
         ) : (
-          <button className={cn('btn btn-dark', styles.claim_button)}>
+          <button className={cn('btn btn-dark', styles.breakdown_button)}>
             See Breakdown
           </button>
         )
       }
     >
-      <div className={styles.button_close}>
-        <span onClick={() => setOpen(false)}>
-          <Icon name="close" />
+      <div
+        style={{
+          marginTop: '-60px',
+          marginBottom: '45px',
+          marginLeft: '-48px',
+        }}
+      >
+        <span className={styles.button_close} onClick={() => setOpen(false)}>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
+              fill="white"
+            />
+          </svg>
         </span>
       </div>
       <div>
@@ -155,7 +172,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
                   {Number(breakdown[coin]).toFixed(3)}
                 </span>
                 <span className={cn('mb-0', styles.coin_subtitle)}>
-                  ${Number(state.DGPrices[coin] * breakdown[coin]).toFixed(3)}
+                  ${Number(state.DGPrices[coin] * breakdown[coin]).toFixed(2)}
                 </span>
               </div>
             </div>
@@ -188,7 +205,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
         </div>
         {!address && (
           <button
-            className={cn('btn btn-primary w-100', styles.claim_button)}
+            className={cn('btn btn-primary', styles.claim_button)}
             onClick={metaTransaction}
           >
             Claim ${Number(totalAmount).toFixed(3)}

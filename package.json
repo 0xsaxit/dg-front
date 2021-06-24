@@ -15,7 +15,18 @@
     "heroku-postbuild": "next build",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint '*/**/*.{js,jsx}' --fix"
+    ]
   },
   "dependencies": {
     "@babel/core": "^7.14.0",
@@ -59,5 +70,15 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0"
+  }
 }

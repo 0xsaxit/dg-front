@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { Button, Icon, Modal } from 'semantic-ui-react';
 import Fetch from '../../common/Fetch';
 import Aux from '../_Aux';
+import ModalLoginTop from '../modal/ModalLoginTop';
+
 
 const ButtonConnect = () => {
   // dispatch new user status to Context API store
@@ -174,9 +176,13 @@ const ButtonConnect = () => {
             </span>
           </Button>
         </span>
-      ) : null}
+      ) : (
+        <ModalLoginTop />
+      )}
     </Aux>
   );
 };
 
 export default ButtonConnect;
+
+

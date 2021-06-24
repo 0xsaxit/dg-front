@@ -8,6 +8,8 @@ import MessageBar from './MessageBar';
 import ButtonConnect from '../button/ButtonConnect';
 import Fetch from '../../common/Fetch';
 import Global from '../Constants';
+import ModalPopup from 'components/modal/ModalPopup';
+
 
 const MenuTop = (props) => {
   // get token balances from the Context API store
@@ -235,7 +237,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      PLAY
+                      Play
                     </Menu.Item>
                   </Link>
 
@@ -244,7 +246,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      $DG
+                      Token Ecosystem
                     </Menu.Item>
                   </Link>
 
@@ -253,7 +255,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      GAMES
+                      Games
                     </Menu.Item>
                   </Link>
 
@@ -262,7 +264,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      EVENTS
+                      Events
                     </Menu.Item>
                   </Link>
 
@@ -271,21 +273,9 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      BLOG
+                      News & Blog
                     </Menu.Item>
                   </Link>
-
-                  <a
-                    href="https://decentralgames.substack.com/"
-                    target="_blank"
-                  >
-                    <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
-                    >
-                      NEWS
-                    </Menu.Item>
-                  </a>
 
                   <a
                     href="https://docs.decentral.games"
@@ -296,20 +286,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      DOCS
-                    </Menu.Item>
-                  </a>
-
-                  <a
-                    href="https://snapshot.page/#/decentralgames.eth"
-                    id="docs-top-menu"
-                    target="_blank"
-                  >
-                    <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
-                    >
-                      GOV
+                      Docs
                     </Menu.Item>
                   </a>
                 </span>
@@ -327,43 +304,33 @@ const MenuTop = (props) => {
       <div className="menu-items-to-hide">
         <Link href={`/${utm}`}>
           <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
-            PLAY
+            Play
           </Menu.Item>
         </Link>
 
         <Link href="/dg">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
-            $DG
+            Token Ecosystem
           </Menu.Item>
         </Link>
 
         <Link href="/games">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/games')}>
-            GAMES
+            Games
           </Menu.Item>
         </Link>
 
         <Link href="/events">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/events')}>
-            EVENTS
+            Events
           </Menu.Item>
         </Link>
 
         <Link href="/blog">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
-            BLOG
+            News & Blog
           </Menu.Item>
         </Link>
-
-        <a
-          href="https://decentralgames.substack.com/"
-          target="_blank"
-          id="docs-top-menu"
-        >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/news')}>
-            NEWS
-          </Menu.Item>
-        </a>
 
         <a
           href="https://docs.decentral.games"
@@ -371,17 +338,7 @@ const MenuTop = (props) => {
           target="_blank"
         >
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
-            DOCS
-          </Menu.Item>
-        </a>
-
-        <a
-          href="https://snapshot.page/#/decentralgames.eth"
-          id="docs-top-menu"
-          target="_blank"
-        >
-          <Menu.Item className={menuStyle[2]}>
-            GOV
+            Docs
           </Menu.Item>
         </a>
       </div>
@@ -396,136 +353,7 @@ const MenuTop = (props) => {
       return (
         <span className="right-menu-items">
           <ModalInfo />
-
-          <div>
-            <Popup
-              pinned
-              on="click"
-              position="bottom right"
-              className="account-popup"
-              trigger={
-                <Button className="account-button">
-                  <Icon className="account-icon" name="user circle outline" />
-                  My Account
-                </Button>
-              }
-            >
-              <span>
-                <span style={{ display: 'flex' }}>
-                  <img
-                    className="avatar-picture-home"
-                    src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-                  />
-                  <span style={{ display: 'flex', flexDirection: 'column' }}>
-                    {state.userInfo.name === null ||
-                    state.userInfo.name === '' ? (
-                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                        Unnamed
-                      </h4>
-                    ) : (
-                      <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
-                        {state.userInfo.name}
-                      </h4>
-                    )}
-                    <span
-                      className="account-copy"
-                      style={{ display: 'flex' }}
-                      onClick={() => onCopy()}
-                    >
-                      <p className="account-address">
-                        {state.userAddress.substr(0, 8) +
-                          '...' +
-                          state.userAddress.substr(-8)}
-                        <Icon
-                          name="clone outline"
-                          style={{
-                            color: 'rgba(225, 255, 255, 0.5)',
-                            fontSize: '16px',
-                            padding: '0px 0px 0px 8px',
-                          }}
-                        />
-                      </p>
-                    </span>
-                  </span>
-                </span>
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <Link href="/account">
-                    <Button className="casino-balance-button">
-                      <p className="casino-balance-text"> Casino Balance </p>
-
-                      <span
-                        style={{ display: 'flex', justifyContent: 'flex-end' }}
-                      >
-                        <p className="casino-balance-text two">
-                          ${casinoBalance}
-                        </p>
-                        <Icon
-                          className="arrow right"
-                          style={{ paddingLeft: '8px', paddingTop: '5px' }}
-                        />
-                      </span>
-                    </Button>
-                  </Link>
-
-                  <span
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginTop: '12px',
-                    }}
-                  >
-                    <Link href="/account">
-                      <Button className="account-deposit-button">
-                        Deposit
-                      </Button>
-                    </Link>
-                    <Link href="/account">
-                      <Button className="account-withdraw-button">
-                        Withdraw
-                      </Button>
-                    </Link>
-                  </span>
-
-                  <Link href="/account">
-                    <p
-                      className="account-dropdown-item"
-                      style={{ marginTop: '8px' }}
-                    >
-                      My Account
-                    </p>
-                  </Link>
-                  <Link href="/account/nfts">
-                    <p className="account-dropdown-item">My NFTs</p>
-                  </Link>
-                  <Link href="/account/poaps">
-                    <p className="account-dropdown-item">My POAPs</p>
-                  </Link>
-                  <Link href="/account/play">
-                    <p className="account-dropdown-item">Gameplay History</p>
-                  </Link>
-                  <Link href="/account/history">
-                    <p className="account-dropdown-item">Transactions</p>
-                  </Link>
-                  <Link href="/account/referrals">
-                    <p className="account-dropdown-item">Referrals</p>
-                  </Link>
-                  <Button
-                    className="buy-dg-button"
-                    href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
-                    target="_blank"
-                  >
-                    Buy $DG
-                  </Button>
-                </span>
-              </span>
-            </Popup>
-
-            {copied ? (
-              <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
-                <h3 className="copied-text">Wallet address copied!</h3>
-              </div>
-            ) : null}
-          </div>
+          <ModalPopup />
         </span>
       );
     } else {
@@ -566,3 +394,4 @@ const MenuTop = (props) => {
 };
 
 export default MenuTop;
+

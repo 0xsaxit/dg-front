@@ -55,9 +55,9 @@ const Wildcard = () => {
       {affiliateAddress == true ? (
         <Aux>
           <Header
-            title={Global.CONSTANTS.TITLE + ' | Account | Balances'}
+            title="Join Decentral Games with my referral link"
             description={Global.CONSTANTS.DESCRIPTION}
-            image={Images.SOCIAL_SHARE}
+            image={Images.SOCIAL_SHARE_2}
           />
 
           {isLoading === true ? (

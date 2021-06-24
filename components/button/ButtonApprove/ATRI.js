@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_USDT from '../ABI/ABIChildTokenUSDT';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
-import MetaTx from '../../common/MetaTx';
+import ABI_CHILD_TOKEN_ATRI from '../../ABI/ABIChildTokenATRI';
+import Global from '../../Constants';
+import Fetch from '../../../common/Fetch';
+import MetaTx from '../../../common/MetaTx';
+import styles from './ButtonApprove.module.scss';
 
-function ButtonApproveUSDT() {
+function ATRI() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -38,15 +39,15 @@ function ButtonApproveUSDT() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_USDT,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT
+        ABI_CHILD_TOKEN_ATRI,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve USDT');
+          console.log('Mexa is Ready: Approve ATRI');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -72,9 +73,9 @@ function ButtonApproveUSDT() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: USDT");
+    console.log("Updating user's token array in database: ATRI");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 2);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 3);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -85,12 +86,12 @@ function ButtonApproveUSDT() {
     });
 
     // post authorization to database
-    console.log('Posting USDT authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting ATRI authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'USDT Authorization',
+      'ATRI Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -101,7 +102,7 @@ function ButtonApproveUSDT() {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_usdtLoading',
+        type: 'set_atriLoading',
         data: true,
       });
 
@@ -113,7 +114,7 @@ function ButtonApproveUSDT() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        4,
+        5,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -124,7 +125,7 @@ function ButtonApproveUSDT() {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_usdtLoading',
+          type: 'set_atriLoading',
           data: false,
         });
       } else {
@@ -133,7 +134,7 @@ function ButtonApproveUSDT() {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_usdtLoading',
+          type: 'set_atriLoading',
           data: false,
         });
       }
@@ -141,7 +142,7 @@ function ButtonApproveUSDT() {
       console.log('Biconomy metatransaction error: ' + error);
 
       dispatch({
-        type: 'set_usdtLoading',
+        type: 'set_atriLoading',
         data: false,
       });
     }
@@ -149,13 +150,12 @@ function ButtonApproveUSDT() {
 
   return (
     <Button
-      className="balances-authorize-button"
-      id="balances-padding-correct"
+      className={styles.enabled_button}
       onClick={() => metaTransaction()}
     >
-      Enable USDT
+      Enable ATRI
     </Button>
   );
 }
 
-export default ButtonApproveUSDT;
+export default ATRI;

@@ -202,7 +202,7 @@ const Offerings = (props) => {
   function submenu() {
     return (
       <div>
-        <div className="account-other-tabs" style={{ paddingBottom: '9px' }}>
+        <div className="account-other-tabs" style={{ padding: '100px 0px 60px 0px' }}>
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////  tab select area   //////////////////////////////// */}
@@ -210,94 +210,94 @@ const Offerings = (props) => {
           {gameState === 'games' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <span className="account-hover active">
-                <b>GAMES</b>
+                <b>Games</b>
               </span>
               <Link href="/games/casinos">
                 <span className="account-hover">
-                  <b>CASINOS</b>
+                  <b>Casinos</b>
                 </span>
               </Link>
               <Link href="/games/nfts">
                 <span className="account-hover">
-                  <b>NFTS</b>
+                  <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
                 <span className="account-hover">
-                  <b>SHOP</b>
+                  <b>Shop</b>
                 </span>
               </Link>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : gameState === 'casinos' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/games">
                 <span className="account-hover">
-                  <b>GAMES</b>
+                  <b>Games</b>
                 </span>
               </Link>
               <span className="account-hover active">
-                <b>CASINOS</b>
+                <b>Casinos</b>
               </span>
               <Link href="/games/nfts">
                 <span className="account-hover">
-                  <b>NFTS</b>
+                  <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
                 <span className="account-hover">
-                  <b>SHOP</b>
+                  <b>Shop</b>
                 </span>
               </Link>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : gameState == 'nfts' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/games">
                 <span className="account-hover">
-                  <b>GAMES</b>
+                  <b>Games</b>
                 </span>
               </Link>
               <Link href="/games/casinos">
                 <span className="account-hover">
-                  <b>CASINOS</b>
+                  <b>Casinos</b>
                 </span>
               </Link>
               <span className="account-hover active">
-                <b>NFTS</b>
+                <b>NFTs</b>
               </span>
               <Link href="/games/shop">
                 <span className="account-hover">
-                  <b>SHOP</b>
+                  <b>Shop</b>
                 </span>
               </Link>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : gameState == 'shop' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/games">
                 <span className="account-hover">
-                  <b>GAMES</b>
+                  <b>Games</b>
                 </span>
               </Link>
               <Link href="/games/casinos">
                 <span className="account-hover">
-                  <b>CASINOS</b>
+                  <b>Casinos</b>
                 </span>
               </Link>
               <Link href="/games/nfts">
                 <span className="account-hover">
-                  <b>NFTS</b>
+                  <b>NFTs</b>
                 </span>
               </Link>
               <span className="account-hover active">
-                <b>SHOP</b>
+                <b>Shop</b>
               </span>
 
-              {leaderboardLink(true)}
+              {/*{leaderboardLink(true)}*/}
             </p>
           ) : (
             <div style={{ width: '100%' }}>
@@ -305,35 +305,33 @@ const Offerings = (props) => {
                 <p className="account-other-p">
                   <Link href="/games">
                     <span className="account-hover">
-                      <b>GAMES</b>
+                      <b>Games</b>
                     </span>
                   </Link>
                   <Link href="/games/casinos">
                     <span className="account-hover">
-                      <b>CASINOS</b>
+                      <b>Casinos</b>
                     </span>
                   </Link>
                   <Link href="/games/nfts">
                     <span className="account-hover">
-                      <b>NFTS</b>
+                      <b>NFTs</b>
                     </span>
                   </Link>
                   <Link href="/games/shop">
                     <span className="account-hover">
-                      <b>SHOP</b>
+                      <b>Shop</b>
                     </span>
                   </Link>
 
-                  {leaderboardLink(false)}
+                  {/*{leaderboardLink(false)}*/}
                 </p>
               </span>
 
-              {coinSelect()}
+              {/*{coinSelect()}*/}
             </div>
           )}
         </div>
-
-        <Divider className="tab-divider" style={{ paddingTop: '21px' }} />
       </div>
     );
   }
@@ -344,14 +342,14 @@ const Offerings = (props) => {
         return (
           <Link href="/games/leaderboard">
             <span className="account-hover">
-              <b>LEADERBOARD</b>
+              <b>Leaderboard</b>
             </span>
           </Link>
         );
       } else {
         return (
           <span className="account-hover active">
-            <b>LEADERBOARD</b>
+            <b>Leaderboard</b>
           </span>
         );
       }

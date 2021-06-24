@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_WETH from '../ABI/ABIChildTokenWETH';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
-import MetaTx from '../../common/MetaTx';
+import ABI_CHILD_TOKEN_MANA from '../../ABI/ABIChildTokenMANA';
+import Global from '../../Constants';
+import Fetch from '../../../common/Fetch';
+import MetaTx from '../../../common/MetaTx';
+import styles from './ButtonApprove.module.scss';
 
-function ButtonApproveWETH() {
+function MANA() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -20,13 +21,13 @@ function ButtonApproveWETH() {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // if the user has also authorized MANA set status value to 8, otherwise 6
+  // if the user has also authorized DAI set status value to 8, otherwise 7
   // useEffect(() => {
   //   if (state.userStatus >= 4) {
-  //     if (state.userStatus === 7) {
+  //     if (state.userStatus === 6) {
   //       setValue(8);
   //     } else {
-  //       setValue(6);
+  //       setValue(7);
   //     }
   //   }
   // }, [state.userStatus]);
@@ -50,15 +51,15 @@ function ButtonApproveWETH() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_WETH,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+        ABI_CHILD_TOKEN_MANA,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve ETH');
+          console.log('Mexa is Ready: Approve MANA');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,9 +85,9 @@ function ButtonApproveWETH() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: ETH");
+    console.log("Updating user's token array in database: MANA");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 1);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -97,12 +98,12 @@ function ButtonApproveWETH() {
     });
 
     // post authorization to database
-    console.log('Posting ETH authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting MANA authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'ETH Authorization',
+      'MANA Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -113,7 +114,7 @@ function ButtonApproveWETH() {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_wethLoading',
+        type: 'set_manaLoading',
         data: true,
       });
 
@@ -125,7 +126,7 @@ function ButtonApproveWETH() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        6,
+        0,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -136,7 +137,7 @@ function ButtonApproveWETH() {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_wethLoading',
+          type: 'set_manaLoading',
           data: false,
         });
       } else {
@@ -145,15 +146,15 @@ function ButtonApproveWETH() {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_wethLoading',
+          type: 'set_manaLoading',
           data: false,
         });
       }
     } catch (error) {
-      console.log(error);
+      console.log('Biconomy metatransaction error: ' + error);
 
       dispatch({
-        type: 'set_wethLoading',
+        type: 'set_manaLoading',
         data: false,
       });
     }
@@ -161,13 +162,12 @@ function ButtonApproveWETH() {
 
   return (
     <Button
-      className="balances-authorize-button"
-      id="balances-padding-correct"
+      className={styles.enabled_button}
       onClick={() => metaTransaction()}
     >
-      Enable ETH
+      Enable MANA
     </Button>
   );
 }
 
-export default ButtonApproveWETH;
+export default MANA;

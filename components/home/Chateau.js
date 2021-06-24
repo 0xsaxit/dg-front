@@ -48,7 +48,7 @@ const Chateau = () => {
   // helper functions
   function homeVideo() {
     return (
-      <div className="home-video-container">
+      <div className="binance-video-container">
         <video
           id="my-video"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
@@ -80,8 +80,7 @@ const Chateau = () => {
           </h1>
           <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
-            Earn $DG by playing non-custodial slots, roulette, blackjack and poker
-            in the Metaverse. Stake $DG to Be The House.
+            Earn $DG by playing non-custodial slots, roulette, blackjack and poker in the Metaverse. Stake $DG to Be The House.
           </p>
           <Button
             color="blue"
@@ -219,7 +218,8 @@ const Chateau = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Mine $DG with every bet in MANA, DAI, USDT, ETH, and ATRI.
+                        Mine $DG by playing games with MANA and DAI. Refer
+                        friends and enjoy up to 10% of the $DG they mine.
                       </p>
                     </div>
                   </a>
@@ -258,8 +258,8 @@ const Chateau = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Earn $DG liquidity rewards by providing liquidity on
-                        Uniswap.
+                        Earn $DG liquidity incentives by providing liquidity in
+                        Balancer or Uniswap AMM pools.
                       </p>
                     </div>
                   </a>
@@ -298,8 +298,9 @@ const Chateau = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Stake $DG to manage the DAO treasury, economic policy, and new game
-                        development.
+                        Stake $DG to govern the casino bankroll. Vote on
+                        treasury management, economic policy, and new game
+                        development
                       </p>
                     </div>
                   </a>
@@ -319,6 +320,7 @@ const Chateau = () => {
           blur={0}
           bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/roulette_zuawjl.jpg"
           strength={100}
+          className="test"
         >
           <div className="home-section-2-outter">
             <div className="home-section-2 inner">
@@ -344,8 +346,8 @@ const Chateau = () => {
                 </Button>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '-8px' }}>
-                Play slots, roulette, blackjack, and poker with MANA,
-                DAI, USDT, ETH, or ATRI. Enjoy $DG gameplay mining rewards on all bets.
+                Play blackjack, roulette, slots, and backgammon with MANA or
+                DAI. Enjoy $DG gameplay mining rewards on all bets.
               </p>
             </div>
           </div>
@@ -426,8 +428,11 @@ const Chateau = () => {
                   className="home-footer-p avatars"
                   style={{ marginTop: '27px' }}
                 >
-                  We’ve strategically partnered with projects that help deliver a seamless user experience. 
-                  Check out our roadmap to see what is next for Decentral Games.
+                  We’ve strategically partnered with projects that help bolster
+                  our offerings and make our user experience as seamless as
+                  possible. Check out our partnerships to learn more and our
+                  roadmap to see what’s in store for the future of Decentral
+                  Games.
                 </p>
               </span>
             </span>
@@ -477,8 +482,8 @@ const Chateau = () => {
                 </Link>
               </span>
               <p className="home-dashboard-p" style={{ marginTop: '-8px' }}>
-                The metaverse is poised to explode. 3D non-custodial slots, roulette,
-                blackjack, and poker accessible from anywhere in the
+                The metaverse is poised to explode in 2021. 3D virtual
+                blackjack, roulette, and poker accessible from anywhere in the
                 world will change online gaming forever.
               </p>
             </div>
@@ -597,7 +602,8 @@ const Chateau = () => {
               </h1>
               <p>
                 {' '}
-                We are avaialble 24/7 on Discord and in the Metaverse.{' '}
+                You’ll find us at all hours on Discord. You can also reach us
+                through the usual channels.{' '}
               </p>
               <Button
                 color="blue"
@@ -616,7 +622,8 @@ const Chateau = () => {
               </h1>
               <p>
                 {' '}
-                Register here to recieve our weekly newsletter.{' '}
+                Register here to receive the latest news and updates from
+                Decentral Games.{' '}
               </p>
               <Mailchimp />
             </span>
@@ -641,3 +648,4 @@ const Chateau = () => {
 };
 
 export default Chateau;
+

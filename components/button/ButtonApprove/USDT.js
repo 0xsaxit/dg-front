@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_ATRI from '../ABI/ABIChildTokenATRI';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
-import MetaTx from '../../common/MetaTx';
+import ABI_CHILD_TOKEN_USDT from '../../ABI/ABIChildTokenUSDT';
+import Global from '../../Constants';
+import Fetch from '../../../common/Fetch';
+import MetaTx from '../../../common/MetaTx';
+import styles from './ButtonApprove.module.scss';
 
-function ButtonApproveATRI() {
+function USDT() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -16,21 +17,9 @@ function ButtonApproveATRI() {
   const [tokenContract, setTokenContract] = useState({});
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
-  // const [value, setValue] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // if the user has also authorized MANA set status value to 8, otherwise 6
-  // useEffect(() => {
-  //   if (state.userStatus >= 4) {
-  //     if (state.userStatus === 7) {
-  //       setValue(8);
-  //     } else {
-  //       setValue(6);
-  //     }
-  //   }
-  // }, [state.userStatus]);
-
   useEffect(() => {
     if (state.userStatus >= 4) {
       // initialize Web3 providers and create token contract instance
@@ -50,15 +39,15 @@ function ButtonApproveATRI() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_ATRI,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI
+        ABI_CHILD_TOKEN_USDT,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve ATRI');
+          console.log('Mexa is Ready: Approve USDT');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,9 +73,9 @@ function ButtonApproveATRI() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: ATRI");
+    console.log("Updating user's token array in database: USDT");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 3);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 2);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -97,12 +86,12 @@ function ButtonApproveATRI() {
     });
 
     // post authorization to database
-    console.log('Posting ATRI authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting USDT authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'ATRI Authorization',
+      'USDT Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -113,7 +102,7 @@ function ButtonApproveATRI() {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_atriLoading',
+        type: 'set_usdtLoading',
         data: true,
       });
 
@@ -125,7 +114,7 @@ function ButtonApproveATRI() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        5,
+        4,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -136,7 +125,7 @@ function ButtonApproveATRI() {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_atriLoading',
+          type: 'set_usdtLoading',
           data: false,
         });
       } else {
@@ -145,15 +134,15 @@ function ButtonApproveATRI() {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_atriLoading',
+          type: 'set_usdtLoading',
           data: false,
         });
       }
     } catch (error) {
-      console.log(error);
+      console.log('Biconomy metatransaction error: ' + error);
 
       dispatch({
-        type: 'set_atriLoading',
+        type: 'set_usdtLoading',
         data: false,
       });
     }
@@ -161,13 +150,12 @@ function ButtonApproveATRI() {
 
   return (
     <Button
-      className="balances-authorize-button"
-      id="balances-padding-correct"
+      className={styles.enabled_button}
       onClick={() => metaTransaction()}
     >
-      Enable ATRI
+      Enable USDT
     </Button>
   );
 }
 
-export default ButtonApproveATRI;
+export default USDT;
