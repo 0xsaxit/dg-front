@@ -286,7 +286,7 @@ const ContentMining = (props) => {
 
               <span className="DG-button-span">
                 <Button
-                  href="{`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}"
+                  href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
                   className="DG-play-now-button"
                   target="_blank"
                   id="balances-padding-correct-two"
@@ -439,7 +439,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">N/A</p>
+                    <p className="earned-amount stat">86,000</p>
                   </span>
                 </span>
 
@@ -458,7 +458,7 @@ const ContentMining = (props) => {
                     }}
                   >
                     <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">N/A</p>
+                    <p className="earned-amount stat">290,000</p>
                   </span>
                 </span>
               </div>
