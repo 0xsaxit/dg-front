@@ -2,45 +2,37 @@ import { Divider, Grid, Table } from 'semantic-ui-react';
 import Images from 'common/Images';
 import Aux from 'components/_Aux';
 
-const CoinImage = props => {
-  const { data, image, title } = props;
-  const logoStyle = {
-    width: '21px',
-    marginRight: '6px',
-    verticalAlign: 'middle',
-    marginTop: '-2px',
-    borderRadius: '100%',
-  };
+import styles from './ContentAdmin.module.scss';
 
+const CoinImage = ({ data, image, title }) => {
   return (
-    <span style={{ display: 'flex' }}>
-      <span className="avatar-picture">
-        <img src={image} style={logoStyle} />
+    <div className="d-flex">
+      <span className={styles.avatar_picture}>
+        <img src={image} className={styles.coin_image} />
       </span>
-      <p className="welcome-text">{data} {title}</p>
-    </span>
+      <p className={styles.welcome_text}>{data} {title}</p>
+    </div>
   )
 }
 
-const ContentAdmin = props => {
+const ContentAdmin = ({ ethBalance, data, content }) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  const { ethBalance, data, content } = props;
   const games = Object.keys(data);
   const numbers = ['one', 'two', 'three'];
 
   const contentBalances = () => {
     return (
       <Aux>
-        <Grid className="account-connected-grid">
+        <Grid className={styles.account_connected_grid}>
           <Grid.Row>
             <Grid.Column
               floated="right"
               width={16}
               className="balances-column zero"
             >
-              <span style={{ display: 'flex' }}>
-                <p className="earn-text" style={{ paddingLeft: '0px' }}>
+              <span className="d-flex">
+                <p className="pl-0">
                   Worker wallet balance: {ethBalance} ETH
                 </p>
               </span>
@@ -61,9 +53,9 @@ const ContentAdmin = props => {
 
   const balanceBox = (game, i) => {
     return (
-      <span className={`admin-balances-column ${numbers[i]}`} key={i}>
-        <span style={{ display: 'flex' }}>
-          <p className="earn-text" style={{ paddingLeft: '0px' }}>
+      <div className={`admin-balances-column ${numbers[i]}`} key={i}>
+        <span className="d-flex">
+          <p className="pl-0">
             {game.toUpperCase()}
           </p>
         </span>
@@ -85,7 +77,7 @@ const ContentAdmin = props => {
         >
           <span className="welcome-text">{data[game][6]}</span>
         </a>
-      </span>
+      </div>
     );
   }
 

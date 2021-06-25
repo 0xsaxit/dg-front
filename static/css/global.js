@@ -11,6 +11,12 @@ export const GlobalStyles = createGlobalStyle`
     border: ${({ theme }) => theme.globalDividers};
     border-radius: 100%;
   }
+
+  .avatar_picture.main {
+    border: ${({ theme }) => theme.globalDividers};
+    border-radius: 100%;
+  }
+
   .snow,
   .black,
   .full-white {
@@ -64,6 +70,12 @@ export const GlobalStyles = createGlobalStyle`
   .ui.divider#blog-divider {
     border-color: ${({ theme }) => theme.darkModeDivider} !important;
   }
+
+
+  .ui.divider.tab_divider {
+    border-color: ${({ theme}) => theme.darkModeDivider} !important;
+  }
+
   .home-dashboard-p,
   .home-dashboard-mission,
   .home-dashboard-h2,
@@ -98,7 +110,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
   }
 
-  
+  .balances_column_zero,
   .dg_column,
   .dg_column_top,
   .dg_column_unclaimed {

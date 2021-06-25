@@ -1,24 +1,10 @@
 @import '~sass-mq/mq';
+@import './buttons';
+@import './colors';
 @import './mixin';
+@import './common.scss';
 
 $spacer: 1rem;
-
-$color-blue: #006eff;
-$color-darkblue: #183863;
-$color-lightblue: #165daa;
-$color-dark: #1f1f1f;
-$color-black: #000000;
-$color-lightblack: #2b2b2b;
-$color-white: #ffffff;
-$color-darkgray: #333;
-$color-lightgray: #2f2f2f;
-$color-gray: #929597;
-$color-lightgreen: #16c784;
-$color-lightred: #ea3943;
-$color-darkwhite: #edf2f9;
-$color-yellow: #f1cd50;
-$color-blurryyellow: #ffedae;
-
 
 // sass-mq variables
 $mq-breakpoints: (
@@ -28,16 +14,36 @@ $mq-breakpoints: (
   extra-large: 1200px,
 );
 
-.btn-primary:active,
-.btn-primary:hover,
-.btn-primary:focus {
-	color: white !important;
-}
 
-.btn:hover,
-.btn-primary:hover {
-	background: #006EFF;
-	filter: brightness(0.9);
+.avatar_picture {
+  &_home {
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    background: linear-gradient(
+      162deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 40%,
+      #006eff 40.1%,
+      #006eff 100%
+    );
+  }
+
+  &_binance {
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    background: linear-gradient(
+      162deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 40%,
+      #F1CD50 40.1%,
+      #F1CD50 100%
+    );
+  }
+}
+.avatar_picture_home {
+  
 }
 
 .earned_amount {
