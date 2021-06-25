@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
+import Link from 'next/link';
 import { Popup, Icon, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
@@ -67,14 +68,14 @@ const ModalPopup = () => {
       >
         <span>
           <span style={{ display: 'flex' }}>
-            <a href="/account">
+            <Link href="/account">
               <img
                 className={binance ? "avatar-picture-binance" : "avatar-picture-home"}
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
               />
-            </a>
+            </Link>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <a href="/account">
+              <Link href="/account">
                 {state.userInfo.name === null ||
                 state.userInfo.name === '' ? (
                   <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
@@ -85,7 +86,7 @@ const ModalPopup = () => {
                     {state.userInfo.name}
                   </h4>
                 )}
-              </a>
+              </Link>
               <span
                 className="account-copy" 
                 style={{ display: 'flex' }} 
@@ -127,18 +128,18 @@ const ModalPopup = () => {
                 Withdraw
               </Button>
             </span>
-            <a href="/account">
+            <Link href="/account">
               <p className="account-dropdown-item" style={{ marginTop: '8px' }}> My Account </p>
-            </a>
-            <a href="/account/items">
+            </Link>
+            <Link href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
-            </a>
-            <a href="/account/history">
+            </Link>
+            <Link href="/account/history">
               <p className="account-dropdown-item"> Gameplay History </p>
-            </a>
-            <a href="/account/referrals">
+            </Link>
+            <Link href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
-            </a>
+            </Link>
             {/*<a onClick={() => disconnectMetaMask()}>
               <p className="account-dropdown-item"> Disconnect </p>
             </a>*/}
