@@ -214,8 +214,8 @@ a#dropdown-menu-items.item.right-menu-text {
     border-bottom: 1px solid rgb(21, 24, 28);
     padding-top: 0px;
     border-radius: 0px;
-    max-width: calc(100vw + 1px);
-    margin-left: -48px !important;
+    max-width: calc(100vw - 1px);
+    top: 30px;
   }
   a.get-metamask {
     display: none !important;
@@ -359,14 +359,17 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
   .home-dashboard-content {
     position: relative;
     height: 100vh;
-    padding-top: 12vh !important;
+    padding-top: 0px;
+    margin-top: -270px !important;
+    position:  relative;
+    z-index: -1 !important;
   }
-  .home-video-container video,
-  .home-video-container {
+  .binance-video-container video,
+  .binance-video-container {
     display: none;
   }
   .home-dashboard-p {
-    width: 100vw !important;
+    width: 100% !important;
   }
   div.ui.vertical.segment {
     top: 0px !important;
@@ -391,7 +394,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     min-width: calc(100vw - 42px);
   }
   .home-gif {
-    margin-top: -200px;
+    margin-top: 0px;
     width: 100%;
     position: relative;
     z-index: -2;
@@ -715,6 +718,9 @@ span#mobile-time-select.account-select.dropdown {
   }
   .ui.blue.button#mobile-button-hide {
     display: none;
+  }
+  .scroll-down-icon {
+    margin-top: -210px !important;
   }
 }
 

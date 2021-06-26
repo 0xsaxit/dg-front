@@ -58,6 +58,8 @@ const MessageBar = () => {
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome, or Firefox to play games');
+    } else if (isMobile) {
+      setMessage('');
     } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
     } else if (pause && !state.userInfo.tokenArray.includes(true)) {
@@ -69,7 +71,7 @@ const MessageBar = () => {
         'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
     } else {
-      setMessage('');
+      setMessage('');   
     }
   }, [
     isSafari,

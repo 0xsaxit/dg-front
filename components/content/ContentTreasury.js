@@ -657,10 +657,10 @@ const ContentTreasury = (props) => {
             height: '100%',
           }}
         >
-          <Table unstackable className="treasury-table">
+          <Table unstackable fixed className="treasury-table">
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>
+                <Table.HeaderCell>
                   Name
                 </Table.HeaderCell>
                 <Table.HeaderCell

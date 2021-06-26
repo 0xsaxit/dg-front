@@ -69,7 +69,7 @@ const Chateau = () => {
 
         <div className="home-dashboard-content">
           <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624746105/Screen_Shot_2021-06-26_at_3.21.36_PM_se8dcr.png"
             className="home-gif"
           />
           <h1

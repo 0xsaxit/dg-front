@@ -16,6 +16,11 @@
 	.play_now_modal {
 		display: none;
 	}
+	.connect_metamask_modal {
+    -ms-transform: scale(0.7, 0.7); /* IE 9 */
+    -webkit-transform: scale(0.7, 0.7); /* Safari */
+    transform: scale(0.7, 0.7);
+	}
 }
 
 .connect_metamask_modal {
