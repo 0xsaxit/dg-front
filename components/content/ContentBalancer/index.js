@@ -289,7 +289,7 @@ const ContentBalancer = props => {
               reward={props.reward}
               contractPool={props.stakingContractPool1}
               title="CLAIM BALANCER 1 $DG"
-            /> 
+            />
             : <ClaimBalancer
                 blanacer={state.DGBalances.BALANCER_STAKING_BALANCER_2}
                 reward={props.reward}
@@ -324,7 +324,7 @@ const ContentBalancer = props => {
               <a
                 href={`https://pools.balancer.exchange/#/pool/${Global.ADDRESSES.BP_TOKEN_ADDRESS_1}`}
                 target="_blank"
-                className={styles.dg_margin}
+                className={styles.dg_content_balancer_title}
               >
                 <Icon className={styles.more_text} name="external square alternate" />
               </a>
@@ -426,7 +426,7 @@ const ContentBalancer = props => {
                 <Button disabled className={styles.dg_stake_button}>
                   STAKE BPT
                 </Button>
-              )}
+              )}  
 
               {percentagePool1 && Number(amountInputMANA) ? (
                 <Button
@@ -452,50 +452,42 @@ const ContentBalancer = props => {
 
           <div
             className={styles.dg_column_one}
-            className="DG-column two"
-            style={{ position: 'relative', height: '100%' }}
           >
             <span className={styles.dg_flex}>
               <img
                 src={Images.DAI_CIRCLE}
-                className="farming-logo"
+                className={styles.farming_logo}
                 alt="Dai Logo"
               />
               <img
                 src={Images.DG_COIN_LOGO}
-                className="farming-logo"
+                className={styles.farming_logo}
                 alt="Decentral Games Coin Logo"
               />
-              <span className="farming-pool-span">
-                <p className="welcome-text">balancer 2</p>
-                <p className="account-name">DAI-DG</p>
+              <span className={styles.farming_pool_span}>
+                <p className={styles.welcome_text}>balancer 2</p>
+                <p className={styles.account_name}>DAI-DG</p>
               </span>
             </span>
 
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <span className={styles.dg_flex_justify_content_end}>
               <a
                 href={`https://pools.balancer.exchange/#/pool/${Global.ADDRESSES.BP_TOKEN_ADDRESS_2}`}
                 target="_blank"
-                style={{ marginTop: '-75px', marginRight: '0px' }}
+                className={styles.dg_content_balancer_title}
               >
-                <Icon className="more-text" name="external square alternate" />
+                <Icon className={styles.more_text} name="external square alternate" />
               </a>
             </span>
 
             <Divider />
 
             <div className={styles.dg_flex}>
-              <span className="gameplay-left-column">
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <p className="earned-text">APY</p>
+              <span className={styles.gameplay_left_column}>
+                <span className={styles.dg_flex_center}>
+                  <p className={styles.earned_text}>APY</p>
                   {APYDAI ? (
-                    <p className="earned-amount">N/A</p>
+                    <p className={styles.earned_amount}>N/A</p>
                   ) : (
                     <Loader
                       className={styles.loader2}
@@ -509,9 +501,9 @@ const ContentBalancer = props => {
 
               <span className={styles.dg_flex_justify_content_center}>
                 <span className={styles.dg_flex_center}>
-                  <p className="earned-text">% of balancer 2</p>
+                  <p className={styles.earned_text}>% of balancer 2</p>
                   {poolPercentage2 ? (
-                    <p className="earned-amount">N/A</p>
+                    <p className={styles.earned_amount}>N/A</p>
                   ) : (
                     <Loader
                       className={styles.loader2}
@@ -527,14 +519,14 @@ const ContentBalancer = props => {
             <Divider />
 
             <Input
-              className="liquidity-input"
+              className={styles.liquidity_input}
               fluid
               placeholder="Amount"
               value={amountInputDAI}
               onChange={handleChangeDAI}
             />
 
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span className={styles.dg_amount_mana}>
               <p
                 className={styles.bpt_text}
                 onClick={() =>
@@ -561,10 +553,10 @@ const ContentBalancer = props => {
               </p>
             </span>
 
-            <span className="DG-button-span">
+            <span className={styles.dg_button_span}>
               {Number(amountInputDAI) ? (
                 <Button
-                  className="DG-stake-button"
+                  className={styles.dg_stake_button}
                   id="balances-padding-correct"
                   onClick={() => {
                     props.staking(
@@ -579,14 +571,14 @@ const ContentBalancer = props => {
                   STAKE BPT
                 </Button>
               ) : (
-                <Button disabled className="DG-stake-button">
+                <Button disabled className={styles.dg_stake_button}>
                   STAKE BPT
                 </Button>
               )}
 
               {percentagePool2 && Number(amountInputDAI) ? (
                 <Button
-                  className="DG-stake-button"
+                  className={styles.dg_stake_button}
                   id="balances-padding-correct"
                   onClick={() => {
                     props.withdrawal(
@@ -599,7 +591,7 @@ const ContentBalancer = props => {
                   UNSTAKE BPT
                 </Button>
               ) : (
-                <Button disabled className="DG-stake-button">
+                <Button disabled className={styles.dg_stake_button}>
                   UNSTAKE BPT
                 </Button>
               )}
