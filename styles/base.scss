@@ -15,6 +15,45 @@ $mq-breakpoints: (
 );
 
 
+////////// Position //////////
+
+.dg_flex {
+  display: flex;
+}
+
+.dg_flex_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dg_flex_end {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+} 
+
+.dg_flex_justify_content_center {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.dg_flex_justify_content_end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dg_flex_space_between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+//////////////////////////////
+
 .avatar_picture {
   &_home {
     width: 46px;
@@ -41,9 +80,6 @@ $mq-breakpoints: (
       #F1CD50 100%
     );
   }
-}
-.avatar_picture_home {
-  
 }
 
 .earned_amount {
@@ -73,7 +109,37 @@ $mq-breakpoints: (
   margin-top: 18px;
   display: flex;
   justify-content: space-between;
+  
+  .dg_stake_button {
+    color: white;
+    background-color: #006eff;
+    min-width: 48.5% !important;
+    border-radius: 4px;
+    height: 36px !important;
+    line-height: 10px;
+    font-size: 16px !important;
+  
+    &_balancer {
+      border: 1px solid #006eff;
+      color: #006eff;
+      height: 36px;
+      min-width: 100%;
+      margin-top: 15px;
+      border-radius: 4px;
+  
+      &_enabled {
+        background-color: white;
+        border: 1px solid #006eff;
+        color: #006eff;
+        height: 34px;
+        min-width: 100%;
+        margin-top: 15px;
+        padding: 0 0 0 0;
+      }
+    }
+  }
 }
+
 
 .dg_claim_button {
   color: white !important;
@@ -157,10 +223,13 @@ $mq-breakpoints: (
 .dg_column {
   &_one {
     width: 100%;
+    background-color: #1f1f1f;
+    padding: 12px 18px 18px 18px;
+    height: 100%;
+
     @include mq($until: large) {
       min-width: 100%;
       margin-bottom: 30px;
-      height: 100px;
     }
 
     @include mq($until: extra-large) {
@@ -186,4 +255,34 @@ $mq-breakpoints: (
       width: 100%;
     }
   }
+}
+
+.more_text {
+  margin-top: 27px;
+  cursor: pointer;
+}
+
+.gameplay_left_column {
+  display: flex;
+  justify-content: center;
+  width: calc(50% + 1px);
+  border-right: 1px solid #edf2f9;
+  margin-top: -15px;
+  padding-top: 15px;
+  margin-bottom: -15px;
+}
+
+.liquidity-input {
+  padding-top: 6px;
+}
+
+.bpt_text {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold !important;
+  text-decoration: underline;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 9px 16px 0px 16px;
+  margin-bottom: -9px !important;
 }

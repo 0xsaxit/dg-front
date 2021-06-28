@@ -56,9 +56,19 @@ export const GlobalStyles = createGlobalStyle`
   .nft-other-h3 {
     color: ${({ theme }) => theme.text} !important;
   }
+
+  .more_text {
+    color: ${({ theme}) => theme.text} !important;
+  }
+
   .bpt-text {
     color: ${({ theme }) => theme.bptText} !important;
   }
+
+  .bpt_text {
+    color: ${({ theme }) => theme.bptText} !important;
+  }
+
   .hljs {
     border-left: ${({ theme }) => theme.codeBorder} !important;
   }
@@ -112,6 +122,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .balances_column_zero,
   .dg_column,
+  .dg_column_one,
   .dg_column_top,
   .dg_column_unclaimed {
     background: ${({ theme }) => theme.card};
@@ -254,6 +265,11 @@ export const GlobalStyles = createGlobalStyle`
   .gameplay-left-column {
     border-right: ${({ theme }) => theme.globalDividers};
   }
+
+  .gameplay_left_column {
+    border-right: ${({ theme }) => theme.globalDividers};
+  }
+
   .account-select.play,
   .account-select.mana,
   .account-select.dai {
