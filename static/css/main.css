@@ -1427,15 +1427,31 @@ td:last-child {
   flex-direction: row;
 }
 
-.account-hover-time {
-  letter-spacing: 0.5px;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 9px 12px 9px 12px;
-  letter-spacing: 0.5px !important;
-  margin-right: 15px;
-  color: rgb(92, 95, 97);
-  margin-top: 18px;
+span.account-hover-time {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 34px !important;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 32px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.account-hover-time.active {
+  color:  white;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 14px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.account-hover-time:hover {
+  cursor: pointer;
+  color:  white;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 14px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .time-select-icon {
@@ -1865,15 +1881,6 @@ div.ui.grid.balances-container {
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
-}
-
-@media (min-width: 1027px) {
-  .leaderboard-coin-select {
-    margin-bottom: -9px !important;
-  }
-  .coin-select-divider {
-    display: none;
-  }
 }
 
 .leaderboard-column {

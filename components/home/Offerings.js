@@ -168,8 +168,14 @@ const Offerings = (props) => {
       gameSelect = 'play';
     } else if (value === 'mana') {
       gameSelect = 'mana';
-    } else {
+    } else if (value === 'dai') {
       gameSelect = 'dai';
+    } else if (value === 'eth') {
+      gameSelect = 'eth'
+    } else if (value === 'usdt') {
+      gameSelect = 'usdt'
+    } else {
+      gameSelect = 'atri'
     }
     setGameSelect(gameSelect);
   }
@@ -228,7 +234,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : gameState === 'casinos' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -251,7 +257,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : gameState == 'nfts' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -274,7 +280,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : gameState == 'shop' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -297,12 +303,11 @@ const Offerings = (props) => {
                 <b>Shop</b>
               </span>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : (
-            <div style={{ width: '100%' }}>
-              <span style={{ display: 'flex', width: '100%' }}>
-                <p className="account-other-p">
+              <div>
+                <p className="account-other-p" style={{ width: '100%' }}>
                   <Link href="/games">
                     <span className="account-hover">
                       <b>Games</b>
@@ -324,11 +329,10 @@ const Offerings = (props) => {
                     </span>
                   </Link>
 
-                  {/*{leaderboardLink(false)}*/}
+                  {leaderboardLink(false)}
                 </p>
-              </span>
 
-              {/*{coinSelect()}*/}
+              {coinSelect()}
             </div>
           )}
         </div>
@@ -361,102 +365,7 @@ const Offerings = (props) => {
   function coinSelect() {
     return (
       <Aux>
-        {/* ////////////////////////////////////////////////////////////////////////////////
-      ////////////////////////////////////////////////////////////////////////////////
-      ///////////////////////////  desktop coin select  ////////////////////////////// */}
-
-        <span
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginRight: '-15px',
-          }}
-          className="leaderboard-coin-select"
-        >
-          <span
-            className={
-              gameSelect === 'play' ? 'account-hover active' : 'account-hover'
-            }
-            onClick={() => handleChange('play')}
-          >
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-3px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Images.PLAY_CIRCLE}
-            />
-            PLAY
-          </span>
-
-          <span
-            className={
-              gameSelect === 'mana' ? 'account-hover active' : 'account-hover'
-            }
-            onClick={() => handleChange('mana')}
-          >
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-3px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Images.MANA_CIRCLE}
-            />
-            MANA
-          </span>
-          <span
-            className={
-              gameSelect === 'dai' ? 'account-hover active' : 'account-hover'
-            }
-            onClick={() => handleChange('dai')}
-          >
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-3px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Images.DAI_CIRCLE}
-            />
-            DAI
-          </span>
-          <span className="account-hover-time" style={{ marginRight: '-6px' }}>
-            <Icon
-              className="time-select-icon"
-              name="angle left"
-              onClick={timeChangeBackward}
-            />
-            {timePeriod}
-            <Icon
-              className="time-select-icon"
-              name="angle right"
-              style={{ marginLeft: '4px' }}
-              onClick={timeChangeForward}
-            />
-          </span>
-        </span>
-
-        <Divider className="coin-select-divider" />
-
-        {/* ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////// mobile coin select //////////////////////////////// */}
-
-        <span style={{ display: 'flex', width: '100%' }}>
+        <span style={{ display: 'flex', width: '100%', minWidth: '861px' }}>
           <span
             style={{
               display: 'flex',
@@ -466,7 +375,7 @@ const Offerings = (props) => {
           >
             <span
               className={
-                gameSelect === 'play' ? 'account-hover active' : 'account-hover'
+                gameSelect === 'play' ? 'account-hover-time active' : 'account-hover-time'
               }
               id="account-select-play"
               onClick={() => handleChange('play')}
@@ -482,11 +391,31 @@ const Offerings = (props) => {
                 height="21px"
                 src={Images.PLAY_CIRCLE}
               />
-              PLAY
+              FREE
             </span>
             <span
               className={
-                gameSelect === 'mana' ? 'account-hover active' : 'account-hover'
+                gameSelect === 'eth' ? 'account-hover-time active' : 'account-hover-time'
+              }
+              style={{ fontFamily: 'Larsseit-Bold' }}
+              onClick={() => handleChange('eth')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.ETH_CIRCLE}
+              />
+              ETH
+            </span>
+            <span
+              className={
+                gameSelect === 'mana' ? 'account-hover-time active' : 'account-hover-time'
               }
               onClick={() => handleChange('mana')}
             >
@@ -505,8 +434,29 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'dai' ? 'account-hover active' : 'account-hover'
+                gameSelect === 'usdt' ? 'account-hover-time active' : 'account-hover-time'
               }
+              style={{ fontFamily: 'Larsseit-Bold' }}
+              onClick={() => handleChange('usdt')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.USDT_CIRCLE}
+              />
+              USDT
+            </span>
+            <span
+              className={
+                gameSelect === 'dai' ? 'account-hover-time active' : 'account-hover-time'
+              }
+              style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('dai')}
             >
               <img
@@ -522,13 +472,29 @@ const Offerings = (props) => {
               />
               DAI
             </span>
+            <span
+              className={
+                gameSelect === 'atri' ? 'account-hover-time active' : 'account-hover-time'
+              }
+              style={{ fontFamily: 'Larsseit-Bold' }}
+              onClick={() => handleChange('atri')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.ATRI_CIRCLE}
+              />
+              ATRI
+            </span>
           </span>
 
-          {/* ////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////  send time select to own row  ///////////////////////// */}
-
-          <span className="account-hover-time tablet">
+          <span className="account-hover-time-tablet">
             <Icon
               className="time-select-icon"
               name="angle left"
