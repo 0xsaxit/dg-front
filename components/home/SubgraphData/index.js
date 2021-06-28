@@ -5,7 +5,7 @@ import Spinner from 'components/Spinner';
 import ContentSubgraphs from 'components/content/ContentSubgraphs';
 import Aux from 'components/_Aux';
 
-const SubgraphData = (props) => {
+const SubgraphData = props => {
   // get subgraph data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -28,28 +28,28 @@ const SubgraphData = (props) => {
       // let subgraphArray = [];
 
       const subgraphData = await axios.post(
-        `https://api.thegraph.com/subgraphs/name/decentralgames/treasury`,
+        `https://api.thegraph.com/subgraphs/name/mobiman1/dg-pointer-lax`,
         {
           query: `{
-            gravatars(first: 5) {
+            exampleEntities(first: 5) {
               id
-              owner
-              displayName
-              imageUrl
+              count
+              affiliate
+              player
             }
           }`,
         }
       );
 
       console.log('the graph data...');
-      console.log(subgraphData.data.data.gravatars);
+      console.log(subgraphData.data.data.exampleEntities);
 
       // subgraphArray.push(subgraphData.data.data.pairs);
 
       // console.log('the graph array...');
       // console.log(subgraphArray);
 
-      setSubgraphData(subgraphData.data.data.gravatars);
+      setSubgraphData(subgraphData.data.data.exampleEntities);
     })();
   }, []);
 
