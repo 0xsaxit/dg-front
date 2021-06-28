@@ -2,6 +2,45 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
+img.react-parallax-bgimage {
+  object-fit: cover;
+}
+
+.ui.checkbox {
+  margin-top: 4px;
+  margin-right: 24px;
+}
+
+.ui.checkbox .box:before,
+.ui.checkbox label:before {
+  border: 2px solid white;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+}
+
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before,
+.ui.checkbox .box:hover::before,
+.ui.checkbox label:hover::before,
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before {
+  background-color: transparent !important;
+  border: 2px solid white;
+}
+
+.ui.checkbox input:checked ~ .box:after,
+.ui.checkbox input:checked ~ label:after {
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  padding-top: 3px;
+  font-size: 14px;
+  background: #0d6efd;
+  color: white !important;
+}
+
 section#modalContent.sc-bqGGPW.jMpqDL,
 .iPexDg.iPexDg.iPexDg,
 .jMpqDL.jMpqDL.jMpqDL {
@@ -108,13 +147,19 @@ p {
 }
 
 .account-hover {
-  font-family: 'Larsseit-Regular';
+  font-family: 'Larsseit-Bold';
+  font-size: 18px !important;
+  cursor: pointer;
+  margin-left: 18px;
+  margin-right: 18px !important;
+  padding: 0px 6px 0px 6px;
+  color: rgb(92, 95, 97);
+  margin-top: 18px;
 }
 
 .ui.button {
   font-family: 'Larsseit-Bold';
   border-radius: 16px;
-  margin: 0 0 0 0;
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
@@ -145,8 +190,9 @@ p {
 /* ----------------------------------------- */
 
 a.get-metamask {
-  margin: 21px 15px 0px 0px;
+  margin: 0px 8px 0px 0px !important;
   color: white;
+  font-family: Larsseit-Bold;
 }
 
 a.get-metamask:hover {
@@ -164,8 +210,8 @@ a.get-metamask-scroll:hover {
 }
 
 #menu-logo {
-  width: 33px;
-  padding-top: 15px;
+  width: 36px;
+  padding-top: 18px;
   padding-bottom: 15px;
   margin-right: 9px;
   margin-left: 24px;
@@ -173,6 +219,11 @@ a.get-metamask-scroll:hover {
   position: relative;
   z-index: 7;
   cursor: pointer;
+}
+
+#message-bar {
+  position: relative;
+  z-index: 999;
 }
 
 .ui.dropdown .menu .item .dropdown.icon:before {
@@ -196,23 +247,6 @@ a.get-metamask-scroll:hover {
   font-size: 14px !important;
   font-weight: 600 !important;
   padding: 7px 6px 0px 6px;
-}
-
-.ui.checkbox .box,
-.ui.checkbox label {
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 27px;
-}
-
-.ui.checkbox label::before,
-.ui.checkbox label::after {
-  margin-top: 6px;
-  background: transparent;
-}
-
-label::before:active {
-  background: transparent;
 }
 
 .other-menu-container.blog {
@@ -265,9 +299,10 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .dashboard-menu-container {
-  position: fixed;
   z-index: 8;
   width: 100%;
+  position: sticky;
+  top: 0px;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
@@ -296,17 +331,15 @@ div.ui.segment.transparent-menu-segment {
 }
 
 .ui.menu .item {
-  padding-left: 15px;
-  padding-right: 15px !important;
+  font-family: Larsseit-Regular;
+  padding-left: 24px;
+  padding-right: 24px !important;
 }
 
 div.item.sidebar-menu-text.blog#active,
 div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: pointer !important;
-  font-weight: 700 !important;
-  border-bottom: 3px solid #006eff;
-  padding-bottom: 22px !important;
 }
 
 .sidebar-menu-text.blog#active,
@@ -314,8 +347,6 @@ div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: default;
   font-weight: 700 !important;
-  border-bottom: 3px solid #006eff;
-  padding-bottom: 18px !important;
 }
 
 .ui.labeled.icon.menu .item:hover,
@@ -353,14 +384,12 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .sidebar-menu-text {
+  font-family: Larsseit-Bold !important;
   color: rgba(155, 155, 155, 1) !important;
-  margin-top: 15px;
+  margin-top: 24px;
   border: none;
   box-shadow: none;
-  letter-spacing: 1.25px;
-  font-size: 14px;
-  font-weight: bold !important;
-  padding-right: 12px !important;
+  font-size: 18px;
   position: relative;
   z-index: 3;
   transition: all linear 0.1s;
@@ -370,8 +399,8 @@ div.item.sidebar-menu-text.blog:hover {
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  font-family: Larsseit-Bold;
   padding: 4px 6px 0px 6px;
 }
 
@@ -379,7 +408,7 @@ div.item.sidebar-menu-text.blog:hover {
   border: none;
   box-shadow: none;
   letter-spacing: 1.25px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   padding: 0px 6px 0px 6px;
   text-transform: uppercase;
@@ -589,18 +618,21 @@ a.menu-info-label-link:hover {
 
 .home-dashboard-content {
   position: relative;
-  padding-left: 30px;
+  padding-left: 90px;
   padding-right: 30px;
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 30vh;
+  padding-top: 24vh;
   height: 100vh;
 }
 
 @media (max-width: 930px) {
   .home-dashboard-content {
+    margin-top: -180px !important;
+    margin-bottom: 150px;
     display: flex;
+    padding-left: 30px !important;
     flex-direction: column;
     justify-content: center;
     min-width: 100%;
@@ -616,6 +648,20 @@ a.menu-info-label-link:hover {
   .mobile-center-span {
     display: flex;
     justify-content: center;
+    margin-right: -18px !important;
+  }
+  .ModalDepositBinance_deposit_modal_binance__2LhiT {
+    margin-top: 8px !important;
+  }
+  i.chevron.down.icon {
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    opacity: 75%;
+    left: calc(50% - 14px) !important;
+    position: absolute;
+    bottom: -60px !important;
+    animation: bounce 0.75s infinite alternate;
+    -webkit-animation: bounce 0.75s infinite alternate;
   }
 }
 
@@ -623,9 +669,9 @@ i.chevron.down.icon {
   color: white;
   text-shadow: 1px 1px 5px black;
   opacity: 75%;
-  bottom: 42px;
-  left: calc(50% - 13px);
+  left: calc(50% - 14px);
   position: absolute;
+  bottom: 120px;
   animation: bounce 0.75s infinite alternate;
   -webkit-animation: bounce 0.75s infinite alternate;
 }
@@ -959,68 +1005,13 @@ p.home-dashboard-p {
 /*              EVENTS PAGE CSS              */
 /* ----------------------------------------- */
 
-.account-hover.active.events {
-  text-transform: uppercase;
-}
-
 .account-hover.active.events:hover {
-  text-transform: uppercase;
   background-color: rgb(229, 232, 235);
 }
 
-.event-pic.featured {
-  z-index: 1;
-  object-fit: cover;
-  width: 66%;
-  border-radius: 4px 0px 0px 4px;
-}
-
-.featured-event-grid {
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  border-radius: 4px;
-}
-
-.featured-info {
-  display: flex;
-  margin-top: 3px;
-}
-
 @media (max-width: 1100px) {
-  .event-pic.featured {
-    width: 100%;
-    height: 100%;
-    border-radius: 4px 4px 0px 0px;
-  }
-  .featured-event-grid {
-    flex-direction: column !important;
-  }
-  .featured-info {
-    justify-content: center;
-    margin-top: 0px;
-  }
-  .events-featured-p,
   .nft-other-h3.featured {
     text-align: center !important;
-  }
-  .events-featured-divider {
-    margin: 10px 0px 15px -19px !important;
-    width: calc(100% + 38px);
-  }
-}
-
-#event-container {
-  padding: 0px 30px 120px 30px;
-}
-
-@media (max-width: 499px) {
-  #event-container {
-    padding: 0px 21px 120px 21px;
-  }
-  .event-pic {
-    width: 100%;
-    height: 100%;
   }
 }
 
@@ -1135,7 +1126,7 @@ p.home-dashboard-p {
 
 .ui.dropdown .menu {
   margin-top: 15px;
-  padding: 9px 0px 9px 0px;
+  padding: 9px 0px 3px 0px;
   border-radius: 4px;
 }
 
@@ -1208,22 +1199,11 @@ p.home-dashboard-p {
   padding-top: 12px;
 }
 
-.nft-other-h3.featured {
-  padding-bottom: 12px;
-  text-align: left;
-  padding-top: 12px;
-}
-
-.nft-other-h3.countdown1 {
-  padding-bottom: 0px;
-  margin: 16px 0px 0px 0px;
-  overflow: hidden !important;
-}
-
 .nft-other-h3.countdown2 {
-  margin: 16px 0px 0px 6px;
-  min-width: 170px;
-  overflow: hidden !important;
+  margin: 71px 0px -30px 8px;
+  font-size: 24px;
+  font-family: Larsseit-ExtraBold;
+  color: white;
 }
 
 @media (max-width: 599px) {
@@ -1258,7 +1238,6 @@ table {
 
 .ui.table {
   margin-top: 0px;
-  border-radius: 4px;
   border: 0px solid white !important;
   background: black;
 }
@@ -1281,26 +1260,23 @@ tr.account-table-odd {
 }
 
 td:first-child {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  height: 68px;
 }
 
 td:last-child {
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+  border-bottom-right-radius: 24px;
+  border-top-right-radius: 24px;
 }
 
 .ui.table thead th {
+  font-weight: 700 !important;
   background: black !important;
   border: 0px solid white !important;
-  background: white;
-  padding: 15px 18px 15px 18px;
-  font-size: 12px;
-  font-weight: bold !important;
-  letter-spacing: 0.5px;
+  padding: 12px 18px 15px 18px;
+  font-size: 18px;
   color: rgba(255, 255, 255);
-  text-transform: uppercase;
-  padding-top: 18px !important;
   margin-bottom: 0px;
 }
 
@@ -1314,8 +1290,8 @@ td:last-child {
 }
 
 .tx-box-overflow {
-  max-height: 50vh !important;
-  overflow: auto;
+  max-height: 600px !important;
+  overflow-y: scroll;
   margin-bottom: 90px;
   border: 0px solid #edf2f9 !important;
   border-radius: 8px !important;
@@ -1331,10 +1307,6 @@ td:last-child {
   justify-content: flex-end;
 }
 
-.tx-box-overflow::-webkit-scrollbar {
-  display: none;
-}
-
 .ui.table thead th,
 .ui.table thead th:only-child {
   position: sticky;
@@ -1342,11 +1314,12 @@ td:last-child {
 }
 
 .ui.table tr td {
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  padding-top: 16px;
+  font-weight: 700 !important;
+  border: 0px solid white !important;
+  padding: 15px 18px 15px 18px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0px;
 }
 
 .ui.table tr td.leaders-col-1 {
@@ -1389,9 +1362,10 @@ td:last-child {
 }
 
 .account-other-tabs {
+  margin-top: 30px !important;
+  padding: 0px 0px 30px 0px;
   color: black;
-  text-align: left;
-  padding-top: 30px;
+  text-align: center;
   display: flex;
   width: 100%;
   overflow: auto;
@@ -1414,9 +1388,10 @@ td:last-child {
 
 .account-other-tabs {
   display: flex;
+  padding-top: 10px;
+  margin-top: 90px;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 90px;
   position: relative !important;
   z-index: 5 !important;
 }
@@ -1450,23 +1425,6 @@ td:last-child {
 .tx-history-select {
   display: flex;
   flex-direction: row;
-}
-
-.account-hover {
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  font-size: 15px;
-  font-weight: 200 !important;
-  padding: 9px 12px 9px 12px;
-  letter-spacing: 1.25px !important;
-  margin-right: 15px;
-  color: rgb(92, 95, 97);
-  margin-top: 18px;
-}
-
-b,
-.account-hover {
-  font-weight: 600 !important;
 }
 
 .account-hover-time {
@@ -1511,15 +1469,14 @@ i.help.circle.icon.submenu-icon {
 .account-hover.active {
   color: black;
   cursor: default;
-  font-weight: 700 !important;
-  background-color: rgba(21, 24, 28, 1);
-  border-radius: 4px;
-  padding: 9px 12px 9px 12px;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 12px;
 }
 
 .account-hover:hover {
-  background-color: rgba(42, 48, 56, 1);
-  border-radius: 4px;
+  cursor: pointer;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 12px !important;
   color: black;
 }
 
@@ -1762,21 +1719,20 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-text {
-  font-size: 12px;
-  font-weight: bold !important;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-family: Larsseit-Bold;
+  text-transform: normal;
   padding-top: 6px !important;
   margin-bottom: 0px;
 }
 
 .earned-week-text {
-  color: white;
-  font-size: 12px;
-  font-weight: bold !important;
-  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 18px;
+  font-family: Larsseit-Bold;
   padding-top: 3px !important;
   margin-bottom: 0px;
+  padding-left: 2px;
 }
 
 .governance-block,
@@ -1859,9 +1815,8 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-percent {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 18px;
+  font-family: Larsseit-Bold;
   padding-top: 3px !important;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
@@ -1883,7 +1838,7 @@ i.caret.down.icon.percent-icon.neg {
 .percent-icon {
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 1px !important;
+  padding-top: 6px !important;
   margin-right: -3px !important;
 }
 
@@ -1912,21 +1867,6 @@ div.ui.grid.balances-container {
   margin-right: auto !important;
 }
 
-.balances-container {
-  margin-top: 15px !important;
-  display: flex;
-  justify-content: space-between;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-bottom: 90px !important;
-}
-
-@media (max-width: 991px) {
-  .balances-container {
-    padding-bottom: 30px !important;
-  }
-}
-
 @media (min-width: 1027px) {
   .leaderboard-coin-select {
     margin-bottom: -9px !important;
@@ -1938,11 +1878,6 @@ div.ui.grid.balances-container {
 
 .leaderboard-column {
   width: 100%;
-}
-
-.balances-container {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 @media (min-width: 1401px) {
@@ -2259,8 +2194,7 @@ i.copy.icon.affiliate-icon:hover {
 
 .treasury-amount {
   font-size: 72px;
-  letter-spacing: -0.7px;
-  font-weight: 800;
+  font-family: Larsseit-ExtraBold;
   padding-top: 30px;
 }
 
@@ -2663,7 +2597,6 @@ a.ui.blue.button.play-button,
   position: relative;
   background-color: #006eff !important;
   color: white;
-  margin-top: 8px;
   height: 64px !important;
   width: 200px;
   line-height: 32px;
@@ -2685,7 +2618,6 @@ a.ui.blue.button.earn-dg-button {
   background-color: #2b2b2b;
   color: white;
   position: relative;
-  margin-top: 8px;
   height: 64px !important;
   width: 200px;
   line-height: 32px;
@@ -2776,18 +2708,6 @@ a.ui.blue.button.casinos {
   font-size: 16px !important;
 }
 
-.ui.button.balances-authorize-button {
-  color: white;
-  background-color: #006eff;
-  min-width: 100% !important;
-  margin-top: 3px;
-  margin-bottom: 6px;
-  height: 36px !important;
-  line-height: 8px;
-  font-size: 16px !important;
-  border-radius: 4px;
-}
-
 .ui.button.get-dg-button {
   background-color: rgba(255, 255, 255, 0);
   font-size: 12px;
@@ -2822,7 +2742,7 @@ a.ui.blue.button.casinos {
   color: white;
   padding: 0px;
   line-height: 24px;
-  margin-top: 12px;
+  margin-top: 14.5px;
   min-width: 250px !important;
   height: 40px !important;
   border-radius: 16px;
@@ -2901,31 +2821,66 @@ a.ui.blue.button.dg-learn-button {
   padding: 5px 0 3px 0;
 }
 
-.ui.button.etherscan-button {
+button.ui.disabled.button.etherscan-button {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006eff;
-  color: #006eff;
-  height: 24px;
-  padding-left: 6px;
-  padding-right: 6px;
-  max-width: 60px !important;
-  min-width: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  padding: 0px 0px 0px 0px !important;
+  max-width: 75px !important;
+  min-width: 75px;
   line-height: 0px;
   opacity: 100% !important;
 }
 
-.ui.button.etherscan-button-ptxid {
+button.ui.disabled.button.etherscan-button-ptxid {
   background-color: rgba(255, 255, 255, 0);
-  border: 1px solid #006eff;
-  color: #006eff;
-  padding-left: 6px;
-  padding-right: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  padding: 0px 0px 0px 0px !important;
+  max-width: 150px !important;
+  min-width: 150px;
   margin-right: 0px !important;
-  height: 24px;
-  max-width: 120px !important;
-  min-width: 120px;
   line-height: 0px;
   opacity: 100% !important;
+}
+
+.ui.button.etherscan-button {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  padding: 12px 0px 0px 0px;
+  max-width: 75px !important;
+  min-width: 75px;
+  line-height: 0px;
+  opacity: 100% !important;
+  text-transform: capitalize;
+}
+
+.ui.button.etherscan-button-ptxid {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  padding: 12px 16px 0px 16px;
+  line-height: 0px;
+  opacity: 100% !important;
+  text-transform: capitalize;
+}
+
+.ui.button.etherscan-button:hover,
+.ui.button.etherscan-button-ptxid:hover {
+  border: 2px solid white;
 }
 
 .ui.button.etherscan-button-green {
@@ -3182,24 +3137,13 @@ a.ui.blue.button.play-button-binance,
   background: rgba(0, 0, 0, 0) !important;
 }
 
-.binance-video-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  object-fit: fill;
-  z-index: -2;
-}
-
 .binance-video-container video {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
 }
 
 .bnb-balance-box {
@@ -3211,12 +3155,15 @@ a.ui.blue.button.play-button-binance,
 }
 
 .ui.button.account-button {
-  height: 40px;
+  padding-right: 16px;
+  padding-left: 16px;
+  height: 48px;
   margin-top: 12px;
   background-color: #1f1f1f;
   border-radius: 16px;
   color: white;
   margin-right: 16px;
+  font-size: 18px !important;
 }
 
 .right-menu-text.bnb {
@@ -3234,6 +3181,19 @@ img.avatar-picture-home {
     rgba(0, 0, 0, 1) 40%,
     #006eff 40.1%,
     #006eff 100%
+  );
+}
+
+img.avatar-picture-binance {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+  background: linear-gradient(
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #f1cd50 40.1%,
+    #f1cd50 100%
   );
 }
 
@@ -3290,6 +3250,16 @@ img.avatar-picture-home {
   border-radius: 12px;
   background: #006eff;
   color: white;
+  font-size: 18px !important;
+  padding-top: 17px;
+}
+
+.ui.button.account-deposit-button.binance {
+  height: 54px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #f1cd50;
+  color: black;
   font-size: 18px !important;
   padding-top: 17px;
 }
@@ -3363,6 +3333,17 @@ i.clone.outline.icon,
   border-radius: 12px;
   background: #006eff;
   color: white;
+  font-size: 18px;
+  margin-top: 24px;
+  padding-top: 21px;
+}
+
+.ui.button.buy-dg-button.binance {
+  height: 64px;
+  width: 100%;
+  border-radius: 12px;
+  background: #f1cd50;
+  color: black;
   font-size: 18px;
   margin-top: 24px;
   padding-top: 21px;
@@ -3457,22 +3438,6 @@ a {
   color: #f1cd50;
 }
 
-.ui.checkbox input:checked ~ .box:before,
-.ui.checkbox input:checked ~ label:before,
-.ui.checkbox .box:hover::before,
-.ui.checkbox label:hover::before,
-.ui.checkbox input:checked ~ .box:before,
-.ui.checkbox input:checked ~ label:before {
-  background-color: black !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-}
-
-.ui.checkbox input:checked ~ .box:after,
-.ui.checkbox input:checked ~ label:after {
-  margin-top: 1px !important;
-  color: #f1cd50 !important;
-}
-
 .ui.blue.button.metamask-button.binance-top {
   font-size: 18px;
   position: relative;
@@ -3480,9 +3445,9 @@ a {
   color: black;
   padding: 0px;
   line-height: 24px;
-  margin-top: 14px;
+  margin-top: 12px;
   min-width: 250px !important;
-  height: 48px !important;
+  height: 40px !important;
   border-radius: 16px;
   margin-right: 30px;
 }
@@ -3526,11 +3491,11 @@ h3.deposit-twentyfour.casino {
 .ui.button.binance-deposit-button {
   background: black;
   color: white;
-  font-size: 24px;
-  margin: -25px 0px 24px -30px;
+  font-size: 18px;
+  margin: -34px 0px 24px -30px;
   border-radius: 24px 0px 0px 0px;
   width: calc(50% + 30px);
-  height: 80px;
+  height: 64px;
 }
 
 .ui.button.binance-deposit-button.grey {
@@ -3541,11 +3506,11 @@ h3.deposit-twentyfour.casino {
 .ui.button.binance-withdraw-button {
   background: #0b0b0b;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 24px;
-  margin: -25px -30px 0px 0px;
+  font-size: 18px;
+  margin: -34px -30px 0px 0px;
   border-radius: 0px 24px 0px 0px;
   width: calc(50% + 30px);
-  height: 80px;
+  height: 64px;
 }
 
 .ui.button.binance-withdraw-button.grey {
@@ -3553,28 +3518,28 @@ h3.deposit-twentyfour.casino {
   color: white;
 }
 
-.withdraw-busd-amount {
-  text-align: center;
-  font-size: 60px;
-  font-family: Larsseit-Bold;
-  padding-top: 5px;
-  margin-top: -16px !important;
-}
-
 .ui.input > input {
-  background: transparent !important;
-  height: 48px;
-  width: 100%;
-  border-radius: 16px;
+  background: black !important;
+  border: 0px solid white !important;
   color: white;
-  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
-  background: transparent;
-  font-size: 24px;
+  border-radius: 16px;
+  text-align: center;
+  font-family: Larsseit-Bold;
 }
 
-.ui.input > input {
-  color: white !important;
-  text-align: center;
+.ui.input > input:focus,
+.ui.input > input:active {
+  color: white;
+  border: 0px solid white !important;
+}
+
+div.ui.input.withdraw_input > input {
+  font-family: Larsseit-Bold;
+  width: 220px;
+  height: 24px;
+  font-weight: 800 !important;
+  margin-top: -6px;
+  font-size: 24px;
 }
 
 .ui.button.max-busd-button {
@@ -3591,8 +3556,4 @@ h3.deposit-twentyfour.casino {
   right: 30px;
   position: absolute;
   margin-top: 4px;
-}
-
-.terms-a:hover {
-  color: rgba(241, 205, 80, 0.8) !important;
 }

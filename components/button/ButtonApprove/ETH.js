@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from '../../../store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_DAI from '../ABI/ABIChildTokenDAI';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
-import MetaTx from '../../common/MetaTx';
+import ABI_CHILD_TOKEN_WETH from '../../ABI/ABIChildTokenWETH';
+import Global from '../../Constants';
+import Fetch from '../../../common/Fetch';
+import MetaTx from '../../../common/MetaTx';
+import styles from './ButtonApprove.module.scss';
 
-function ButtonApproveMANA() {
+function ETH() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -50,15 +51,15 @@ function ButtonApproveMANA() {
       setSpenderAddress(spenderAddress);
 
       const tokenContract = new getWeb3.eth.Contract(
-        ABI_CHILD_TOKEN_DAI,
-        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI
+        ABI_CHILD_TOKEN_WETH,
+        Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
       );
 
       setTokenContract(tokenContract);
 
       biconomy
         .onEvent(biconomy.READY, () => {
-          console.log('Mexa is Ready: Approve DAI');
+          console.log('Mexa is Ready: Approve ETH');
         })
         .onEvent(biconomy.ERROR, (error, message) => {
           console.error(error);
@@ -84,9 +85,9 @@ function ButtonApproveMANA() {
     // });
 
     // update user's token array in database
-    console.log("Updating user's token array in database: DAI");
+    console.log("Updating user's token array in database: ETH");
 
-    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 0);
+    await Fetch.UPDATE_TOKEN_ARRAY(state.userAddress, 4);
 
     // update global state user information
     const refresh = !state.updateInfo;
@@ -97,12 +98,12 @@ function ButtonApproveMANA() {
     });
 
     // post authorization to database
-    console.log('Posting DAI authorization transaction to db: MAX_AMOUNT');
+    console.log('Posting ETH authorization transaction to db: MAX_AMOUNT');
 
     Fetch.POST_HISTORY(
       state.userAddress,
       Global.CONSTANTS.MAX_AMOUNT,
-      'DAI Authorization',
+      'ETH Authorization',
       'Confirmed',
       txHash,
       state.userStatus
@@ -113,7 +114,7 @@ function ButtonApproveMANA() {
   async function metaTransaction() {
     try {
       dispatch({
-        type: 'set_daiLoading',
+        type: 'set_wethLoading',
         data: true,
       });
 
@@ -125,7 +126,7 @@ function ButtonApproveMANA() {
         .encodeABI();
 
       const txHash = await MetaTx.executeMetaTransaction(
-        3,
+        6,
         functionSignature,
         tokenContract,
         state.userAddress,
@@ -136,7 +137,7 @@ function ButtonApproveMANA() {
         console.log('Biconomy meta-transaction failed');
 
         dispatch({
-          type: 'set_daiLoading',
+          type: 'set_wethLoading',
           data: false,
         });
       } else {
@@ -145,7 +146,7 @@ function ButtonApproveMANA() {
         dispatchActiveStatus(txHash);
 
         dispatch({
-          type: 'set_daiLoading',
+          type: 'set_wethLoading',
           data: false,
         });
       }
@@ -153,7 +154,7 @@ function ButtonApproveMANA() {
       console.log(error);
 
       dispatch({
-        type: 'set_daiLoading',
+        type: 'set_wethLoading',
         data: false,
       });
     }
@@ -161,13 +162,12 @@ function ButtonApproveMANA() {
 
   return (
     <Button
-      className="balances-authorize-button"
-      id="balances-padding-correct"
+      className={styles.enabled_button}
       onClick={() => metaTransaction()}
     >
-      Enable DAI
+      Enable ETH
     </Button>
   );
 }
 
-export default ButtonApproveMANA;
+export default ETH;

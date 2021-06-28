@@ -30,15 +30,22 @@ function blogCategory() {
         <div style={{ marginLeft: '0px' }}>
           <span className="account-other-p" style={{ display: 'flex' }}>
             <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <span className="account-hover active events">
+              <span 
+                style={{ 
+                  margin: '100px 0px 0px 0px',
+                  fontSize: '24px',
+                  fontFamily: 'Larsseit-ExtraBold',
+                  margin: '0px 0px 0px 0px',
+                  color: 'white',
+                  float: 'left'
+                }}
+              >
                 {category}
               </span>
             </span>
           </span>
         </div>
       </div>
-
-      <Divider className="tab-divider" style={{ marginBottom: '35px' }} />
 
       <div className="posts">
         {filteredPages.map((page) =>
@@ -54,19 +61,12 @@ function blogCategory() {
                     <img src={page.featured_image || page.banner} alt="" />
                   </div>
                   <div className="post-info">
-                    <span className="bottom-info" style={{ display: 'flex' }}>
-                      <div className="post-date">
-                        <span>
-                          {new Date(page.created).toLocaleDateString('en-DE', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                          })}
-                        </span>
-                      </div>
+                    <span
+                      className="bottom-info"
+                      style={{ display: 'flex' }}
+                    >
                       <div
                         className="post-category"
-                        style={{ color: 'rgb(97, 97, 97)' }}
                       >
                         <span>
                           {page.categories &&
@@ -74,16 +74,37 @@ function blogCategory() {
                             page.categories[0].name}
                         </span>
                       </div>
+                      <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                      <div className="post-date">
+                        <span>
+                          {new Date(page.created).toLocaleDateString(
+                            'en-DE',
+                            {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric',
+                            }
+                          )}
+                        </span>
+                      </div>
                     </span>
                     <div className="bottom">
                       <div className="blog-title">
-                        <h4 style={{ paddingBottom: '9px' }}>{page.title}</h4>
-                        <p
-                          style={{
-                            color: 'rgb(97, 97, 97)',
-                            fontSize: '18px',
-                          }}
-                        >
+                          <h4
+                            style={{
+                              fontSize: '24px',
+                              fontfamily: 'LarsseitBold',
+                            }}
+                          >
+                            {page.title}
+                          </h4>
+                          <p
+                            style={{
+                              fontFamily: 'Larsseit-Regular',
+                              fontSize: '18px',
+                              paddingTop: '8px',
+                            }}
+                          >
                           {page.summary.split('.', 1)[0]}
                         </p>
                       </div>

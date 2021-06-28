@@ -1,8 +1,12 @@
 const Images = {
   LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
+  SPINNING_LOGO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif',
   SOCIAL_SHARE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1607984535/feat_u522ov.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402416/all-dg_f5sknc.png',
+  SOCIAL_SHARE_2:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402567/referral-dg_oncc6j.png',   
   LOADING_SPINNER:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif',
   ICON_DAI:
@@ -16,17 +20,17 @@ const Images = {
   CHECK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1593959916/check_diebqd.png',
   MANA_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_mana_vhgbv7.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png',
   DAI_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/DAI_xbso2s.png',
   ETH_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413786/ETH_r8vy0w.png',
   PLAY_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_play_ufvdet.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1621629997/Group_8_tvdkqo.png',
   USDT_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png',
   ATRI_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_ATRI_p686vc.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/ATARI_ttfcry.png',
   ICON_PLAY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1599762928/Group_qxqvxl.png',
   MATIC_TOP:

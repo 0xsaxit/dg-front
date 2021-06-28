@@ -138,7 +138,7 @@ const ModalInfo = () => {
               <h3 className={styles.title}>Your DG Breakdown</h3>
               <img
                 className={styles.dg_image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-192x192_qh4ig7.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
               />
               {state.DGBalances.BALANCE_KEEPER_DG == 10 ? (
                 <h4 className={styles.subtitle_1}>0.000 DG</h4>
