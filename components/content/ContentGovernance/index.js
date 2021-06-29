@@ -10,11 +10,35 @@ import Global from 'components/Constants';
 
 import styles from './ContentGovernance.module.scss';
 
-const GovernanceProposalsItem = () => {
+const GovernanceProposalsItem = ({ passed, link, govName, end }) => {
   return (
-    <>
-
-    </>
+    <a
+      target="_blank"
+      href={`https://snapshot.org/#/decentralgames.eth/proposal/${link}`}
+    >
+      <div
+        className={`${
+          passed ? styles.governance_block : styles.governance_block_blue
+        }`}
+      >
+        <p className={styles.earned_amount}>{govName}</p>
+        <span className={styles.dg_flex}>
+          {passed == true ? (
+            <Button className={styles.etherscan_button_green} disabled>
+              PASSED
+            </Button>
+          ) : (
+            <Button className={styles.etherscan_button_blue} disabled>
+              ACTIVE
+            </Button>
+          )}
+          <p className={styles.earned_text}>
+            {' '}
+            EXECUTED ∙ {end}
+          </p>
+        </span>
+      </div>
+    </a>
   );
 };
 
@@ -432,102 +456,11 @@ const ContentGovernance = props => {
               </p>
 
               <Divider className={styles.divider_dg_top} />
-
-              <a
-                target="_blank"
-                href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkOne}`}
-              >
-                <div
-                  className={`${
-                    passedOne ? styles.governance_block : styles.governance_block_blue
-                  }`}
-                >
-                  <p className={styles.earned_amount}>{govOne.name}</p>
-                  <span className={styles.dg_flex}>
-                    {passedOne == true ? (
-                      <Button className={styles.etherscan_button_green} disabled>
-                        PASSED
-                      </Button>
-                    ) : (
-                      <Button className={styles.etherscan_button_blue} disabled>
-                        ACTIVE
-                      </Button>
-                    )}
-                    <p
-                      className={styles.earned_text}
-                      style={{ marginTop: '6px', paddingLeft: '8px' }}
-                    >
-                      {' '}
-                      EXECUTED ∙ {endOne}
-                    </p>
-                  </span>
-                </div>
-              </a>
-
+              <GovernanceProposalsItem passed={passedOne} link={linkOne} govName={govOne.name} end={endOne} />
               <Divider className={styles.divdier_dg_top} />
-
-              <a
-                target="_blank"
-                href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkTwo}`}
-              >
-                <div
-                  className={`${
-                    passedTwo ? styles.governance_block : styles.governance_block_blue
-                  }`}
-                >
-                  <p className={styles.earned_amount}>{govTwo.name}</p>
-                  <span className={styles.dg_flex}>
-                    {passedTwo == true ? (
-                      <Button className={styles.etherscan_button_green} disabled>
-                        PASSED
-                      </Button>
-                    ) : (
-                      <Button className={styles.etherscan_button_blue} disabled>
-                        ACTIVE
-                      </Button>
-                    )}
-                    <p
-                      className={styles.earned_text}
-                      style={{ marginTop: '6px', paddingLeft: '8px' }}
-                    >
-                      EXECUTED ∙ {endTwo}
-                    </p>
-                  </span>
-                </div>
-              </a>
-
+              <GovernanceProposalsItem passed={passedTwo} link={linkTwo} govName={govTwo.name} end={endTwo} />
               <Divider className={styles.divider_dg_top} />
-
-              <a
-                target="_blank"
-                href={`https://snapshot.org/#/decentralgames.eth/proposal/${linkThree}`}
-              >
-                <div
-                  className={`${
-                    passedThree ? styles.governance_block : styles.governance_block_blue
-                  }`}
-                >
-                  <p className={styles.earned_amount}>{govThree.name}</p>
-                  <span className={styles.dg_flex}>
-                    {passedThree == true ? (
-                      <Button className={styles.etherscan_button_green} disabled>
-                        PASSED
-                      </Button>
-                    ) : (
-                      <Button className={styles.etherscan_button_blue} disabled>
-                        ACTIVE
-                      </Button>
-                    )}
-                    <p
-                      className={styles.earned_text}
-                      style={{ marginTop: '6px', paddingLeft: '8px' }}
-                    >
-                      EXECUTED ∙ {endThree}
-                    </p>
-                  </span>
-                </div>
-              </a>
-
+              <GovernanceProposalsItem passed={passedThree} link={linkThree} govName={govThree.name} end={endThree} />
               <Divider className={styles.divider_dg_top} />
 
               <span className={styles.dg_button_span}>
