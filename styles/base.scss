@@ -31,7 +31,7 @@ $mq-breakpoints: (
   display: flex;
   flex-direction: column;
   align-items: end;
-} 
+}
 
 .dg_flex_justify_content_center {
   display: flex;
@@ -229,6 +229,45 @@ $mq-breakpoints: (
     }
   }
 
+  &_treasury {
+    @include mq($until: large) {
+      width: 48.5%;
+    }
+
+    &_one {
+      @include mq($until: medium) {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+
+    &_two {
+      @include dg_column_style;
+      position: relative;
+
+      @include mq($from: medium) {
+        width: 48.5%;
+      }
+      
+      @include mq($until: medium) {
+        width: 100%;
+      }
+    }
+
+    &_three {
+      @include dg_column_style;
+
+      @include mq($from: medium) {
+        width: 48.5%;
+      }
+
+      @include mq($until: medium) {
+        width: 100%;
+        margin-top: 30px;
+      }
+    }
+  }
+
   &_top {
     @include dg_column_style;
     max-width: 48.5%;
@@ -265,9 +304,18 @@ $mq-breakpoints: (
   margin-bottom: -15px;
 }
 
+.gameplay_right_column {
+  display: flex;
+  justify-content: center;
+  width: calc(50% + 1px);
+  margin-top: -15px;
+  padding-top: 15px;
+  margin-bottom: -15px;
+}
+
 .liquidity_input {
   padding-top: 6px;
-  border-radius: 14px;
+  border-radius: 14px !important;
 }
 
 .bpt_text {
@@ -276,4 +324,17 @@ $mq-breakpoints: (
   text-decoration: underline;
   padding: 9px 16px 0px 16px;
   margin-bottom: -9px !important;
+}
+
+.dg_tablet_container_gov {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row !important;
+  width: 74.75%;
+  height: 100%;
+
+  @include mq($until: large) {
+    margin-top: 30px;
+    width: 100%;
+  }
 }

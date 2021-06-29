@@ -12,3 +12,12 @@
   color: rgb(92, 95, 97) !important;
   text-transform: uppercase;
 }
+
+@mixin governance_block_style {
+  margin-left: -18px;
+  padding-left: 15px;
+  margin-top: -14px;
+  padding-top: 16px;
+  margin-bottom: -14px;
+  padding-bottom: 16px;
+}

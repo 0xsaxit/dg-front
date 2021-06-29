@@ -124,6 +124,7 @@ export const GlobalStyles = createGlobalStyle`
   .dg_column,
   .dg_column_one,
   .dg_column_top,
+  .dg_column_treasury,
   .dg_column_unclaimed {
     background: ${({ theme }) => theme.card};
   }
