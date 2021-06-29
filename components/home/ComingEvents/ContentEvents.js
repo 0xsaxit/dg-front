@@ -68,7 +68,7 @@ const ContentEvents = ({ events, eventOngoing }) => {
                   color="blue"
                   className={styles.nft_button}
                   target="_blank"
-                  href={events[0].url}
+                  href="https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber"
                 >
                   Hop In
                 </Button>
