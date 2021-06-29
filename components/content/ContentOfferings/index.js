@@ -1,6 +1,8 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 
+import styles from './ContentOfferings.module.scss';
+
 const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');

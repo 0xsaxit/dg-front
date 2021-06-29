@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Grid, Table } from 'semantic-ui-react';
 import Global from 'components/Constants';
 import Spinner from 'components/Spinner';
-import Images from 'common/Images';
 
 import styles from './ContentLeaderboard.module.scss';
 
@@ -106,7 +105,7 @@ const ContentLeaderboard = props => {
   if (isLoading) return <Spinner background={0} />;
 
   return (
-    <Grid>
+    <Grid className={styles.content_leaderboard_container}>
       {games.map((game, index) => {
         return (
           <Grid.Column
@@ -114,9 +113,9 @@ const ContentLeaderboard = props => {
             tablet={8}
             mobile={16}
             key={index}
-            className="leaderboard-column"
+            className={styles.leaderboard_column}
           >
-            <Table unstackable className="leaders-table">
+            <Table unstackable className={styles.leaders_table}>
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>{game}</Table.HeaderCell>
@@ -138,18 +137,8 @@ const ContentLeaderboard = props => {
                       <Table.Cell>
                         {index + 1}.{' '}
                         <img
-                          className="avatar-picture"
+                          className={styles.avatar_picture}
                           src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
-                          style={{
-                            width: '24px',
-                            marginRight: '6px',
-                            verticalAlign: 'middle',
-                            marginTop: '-2px',
-                            border: '1px solid rgb(227, 232, 238)',
-                            borderRadius: '100%',
-                            boxShadow:
-                              '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
-                          }}
                         />
                         {row.name === null || row.name === ''
                           ? row.address.substr(0, 6) +

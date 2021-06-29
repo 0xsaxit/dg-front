@@ -1,1 +1,18 @@
 @import "styles/base.scss";
+
+.content_leaderboard_container {
+  .leaders_table {
+    border: 0px solid #edf2f9;
+    border-radius: 8px;
+  }
+
+  .avatar_picture {
+    width: 24px;
+    margin-right: 6px;
+    vertical-align: middle;
+    margin-top: -2px;
+    border: 1px solid rgb(227, 232, 238);
+    border-radius: 100%;
+    box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  }
+}

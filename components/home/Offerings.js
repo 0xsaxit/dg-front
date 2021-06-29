@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Link from 'next/link';
 import { Divider, Icon } from 'semantic-ui-react';
-import ContentOfferings from '../content/ContentOfferings';
-import ContentLeaderboard from '../content/ContentLeaderboard';
+import ContentOfferings from 'components/content/ContentOfferings';
+import ContentLeaderboard from 'components/content/ContentLeaderboard';
 // import Spinner from '../Spinner'; // ********** should we add the spinner to this page??? **********
-import Images from '../../common/Images';
-import Aux from '../_Aux';
+import Images from 'common/Images';
+import Aux from 'components/_Aux';
 
 const detailsGames = {
   BlackJack: [
