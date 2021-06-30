@@ -9,6 +9,8 @@ import Aux from 'components/_Aux';
 import Images from 'common/Images';
 import Global from 'components/Constants';
 
+import styles from './ContentMiningV1.module.scss';
+
 const ContentMiningV1 = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -119,93 +121,84 @@ const ContentMiningV1 = props => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container">
-        <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-          <p className="earned-amount" style={{ paddingTop: '2px' }}>
-            Unclaimed
-          </p>
+      <div className={styles.contentmining_v1_container}>
+        <div className={styles.dg_liquidity_container}>
+          <div className={styles.dg_column_unclaimed}>
+            <p className={styles.earned_amount}>
+              Unclaimed
+            </p>
 
-          <Divider className="divider-dg-top" />
+            <Divider className={styles.divider_dg_top} />
 
-          <span style={{ display: 'flex' }}>
-            <img
-              src={Images.DG_COIN_LOGO}
-              className="farming-logo-small"
-              alt="Decentral Games Coin Logo"
-            />
-            <span className="farming-pool-span">
-              <p className="welcome-text-top">$DG Balance</p>
-              {state.DGBalances.BALANCE_MINING_DG ? (
-                <p className="earned-amount">
-                  {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
-                </p>
+            <span className={styles.dg_flex}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className={styles.farming_logo_small}
+                alt="Decentral Games Coin Logo"
+              />
+              <span className={styles.farming_pool_span}>
+                <p className={styles.welcome_text_top}>$DG Balance</p>
+                {state.DGBalances.BALANCE_MINING_DG ? (
+                  <p className={styles.earned_amount}>
+                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG, 3)}
+                  </p>
+                ) : (
+                  <Loader
+                    className={styles.dg_balance_loader}
+                    active
+                    inline
+                    size="small"
+                  />
+                )}
+              </span>
+            </span>
+
+            <Divider className={styles.divider_dg_top} />
+
+            <span className={styles.dg_flex_justify_content_space}>
+              <p className={styles.welcome_text}>
+                {' '}
+                TOTAL USD{' '}
+              </p>
+              <p className={styles.earned_amount}> ${gameplayUSD} </p>
+            </span>
+
+            <Divider className={styles.divider_dg_top} />
+
+            <p className={styles.dg_column_body}>
+              Mine $DG by playing games with MANA or DAI. Earn bonuses by playing
+              with friends, wearing $DG NFTs, and referring friends.{' '}
+              <a
+                className={styles.dg_column_body_href}
+                href="https://decentral-games-1.gitbook.io/dg/allocation"
+                target="_blank"
+              >
+                Read more
+              </a>
+              .
+            </p>
+
+            <Divider className={styles.divider_dg_top} />
+
+            <span className={styles.dg_button_span}>
+              {Number(state.DGBalances.BALANCE_MINING_DG) ? (
+                <Button
+                  className={styles.dg_claim_button}
+                  id="balances-padding-correct"
+                  onClick={() => metaTransaction()}
+                >
+                  Claim
+                </Button>
               ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '5px',
-                    marginLeft: '-1px',
-                    marginBottom: '-2px',
-                  }}
-                />
+                <Button disabled className={styles.dg_claim_button}>
+                  Claim
+                </Button>
               )}
             </span>
-          </span>
+          </div>
 
-          <Divider className="divider-dg-top" />
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              paddingBottom: '3px',
-            }}
-          >
-            <p className="welcome-text" style={{ paddingLeft: '0px' }}>
-              {' '}
-              TOTAL USD{' '}
-            </p>
-            <p className="earned-amount"> ${gameplayUSD} </p>
-          </span>
-
-          <Divider className="divider-dg-top" />
-
-          <p style={{ fontSize: '18px' }}>
-            Mine $DG by playing games with MANA or DAI. Earn bonuses by playing
-            with friends, wearing $DG NFTs, and referring friends.{' '}
-            <a
-              href="https://decentral-games-1.gitbook.io/dg/allocation"
-              target="_blank"
-              style={{ color: '#2085f4' }}
-            >
-              Read more
-            </a>
-            .
-          </p>
-
-          <Divider className="divider-dg-top" />
-
-          <span className="DG-button-span">
-            {Number(state.DGBalances.BALANCE_MINING_DG) ? (
-              <Button
-                className="DG-claim-button"
-                id="balances-padding-correct"
-                onClick={() => metaTransaction()}
-              >
-                Claim
-              </Button>
-            ) : (
-              <Button disabled className="DG-claim-button">
-                Claim
-              </Button>
-            )}
-          </span>
+          <div className={styles.mining_container_outter} />
         </div>
-
-        <div className="mining-container-outter" />
       </div>
     </Aux>
   );

@@ -33,6 +33,12 @@ $mq-breakpoints: (
   align-items: end;
 }
 
+.dg_flex_justify_content_space {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3px;
+}
+
 .dg_flex_justify_content_center {
   display: flex;
   justify-content: center;
@@ -97,7 +103,7 @@ $mq-breakpoints: (
 
 .divider_dg_top {
   margin-left: -18px;
-  width: calc(100% + 36px);
+  width: calc(100%);
 }
 
 .dg_button_span {
@@ -137,6 +143,13 @@ $mq-breakpoints: (
   height: 36px;
   line-height: 10px;
   font-size: 16px;
+}
+
+.dg_balance_loader {
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: -1px;
+  margin-bottom: -2px;
 }
 
 .farming {

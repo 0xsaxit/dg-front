@@ -1,1 +1,23 @@
 @import 'styles/base.scss';
+
+.contentmining_v1_container {
+  .dg_column_unclaimed {
+    max-height: 100%;
+  }
+
+  .earned_amount {
+    padding-top: 2px;
+  }
+
+  .welcome_text {
+    padding-left: 0px;
+  }
+
+  .dg_column_body {
+    font-size: 18px;
+
+    &_href {
+      color: #2085f4;
+    }
+  }
+}

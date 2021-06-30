@@ -176,7 +176,7 @@ const Offerings = props => {
 
   const timePeriods = ['ALL TIME', 'WEEKLY', 'DAILY', 'COMPETITION'];
 
-  function timeChangeForward() {
+  const timeChangeForward = () => {
     var i = timePeriod;
     var j = timePeriods.indexOf(i);
     if (j < 3) {
