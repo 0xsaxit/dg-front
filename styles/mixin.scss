@@ -21,3 +21,12 @@
   margin-bottom: -14px;
   padding-bottom: 16px;
 }
+
+@mixin dg_logo_style {
+  max-width: 42px;
+  max-height: 42px;
+  margin-top: 12px;
+  margin-bottom: 9px;
+  margin-right: 12px;
+  border-radius: 100%; 
+}

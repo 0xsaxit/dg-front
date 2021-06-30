@@ -125,446 +125,341 @@ const ContentMining = props => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container">
-        <div className="DG-column unclaimed" style={{ maxHeight: '100%' }}>
-          <p className="earned-amount" style={{ paddingTop: '2px' }}>
-            Unclaimed
-          </p>
+      <div className={styles.dg_content_mining_container}>
+        <div className={styles.dg_liquidity_container}>
+          <div className={styles.dg_column_unclaimed}>
+            <p className={styles.earned_amount}>
+              Unclaimed
+            </p>
 
-          <Divider className="divider-dg-top" />
+            <Divider className={styles.divider_dg_top} />
 
-          <span style={{ display: 'flex' }}>
-            <img
-              src={Images.DG_COIN_LOGO}
-              className="farming-logo-small"
-              alt="Decentral Games Coin Logo"
-            />
-            <span className="farming-pool-span">
-              <p className="welcome-text-top">$DG Balance</p>
-              {state.DGBalances.BALANCE_MINING_DG_V2 ? (
-                <p className="earned-amount">
-                  {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
-                </p>
+            <span className={styles.dg_flex}>
+              <img
+                src={Images.DG_COIN_LOGO}
+                className={styles.farming_logo_small}
+                alt="Decentral Games Coin Logo"
+              />
+              <span className={styles.farming_pool_span}>
+                <p className={styles.welcome_text_top}>$DG Balance</p>
+                {state.DGBalances.BALANCE_MINING_DG_V2 ? (
+                  <p className={styles.earned_amount}>
+                    {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
+                  </p>
+                ) : (
+                  <Loader
+                    className={styles.dg_balance_loader}
+                    active
+                    inline
+                    size="small"
+                  />
+                )}
+              </span>
+            </span>
+
+            <Divider className={styles.divdier_dg_top} />
+
+            <span className={styles.dg_flex_space_between}>
+              <p className={styles.welcome_text}>
+                {' '}
+                TOTAL USD{' '}
+              </p>
+              <p className={styles.earned_amount}> ${gameplayUSD} </p>
+            </span>
+
+            <Divider className={styles.divider_dg_top} />
+
+            <p className={styles.dg_column_body}>
+              Mine $DG by playing games with crypto. Earn bonuses by playing with
+              friends, wearing $DG NFTs, and referring friends. For V1 rewards,
+              click{' '}
+              <a className={styles.dg_column_body_href} href="/dg/miningv1" target="_blank">
+                here
+              </a>
+              .
+            </p>
+
+            <Divider className={styles.divider_dg_top} />
+
+            <span className={styles.dg_button_span}>
+              {Number(state.DGBalances.BALANCE_MINING_DG_V2) ? (
+                <Button
+                  className={styles.dg_claim_button}
+                  id="balances-padding-correct"
+                  onClick={() => metaTransaction()}
+                >
+                  Claim
+                </Button>
               ) : (
-                <Loader
-                  active
-                  inline
-                  size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '5px',
-                    marginLeft: '-1px',
-                    marginBottom: '-2px',
-                  }}
-                />
+                <Button className={styles.dg_claim_button} disabled>
+                  Claim
+                </Button>
               )}
             </span>
-          </span>
-
-          <Divider className="divider-dg-top" />
-
-          <span
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              paddingBottom: '3px',
-            }}
-          >
-            <p className="welcome-text" style={{ paddingLeft: '0px' }}>
-              {' '}
-              TOTAL USD{' '}
-            </p>
-            <p className="earned-amount"> ${gameplayUSD} </p>
-          </span>
-
-          <Divider className="divider-dg-top" />
-
-          <p style={{ fontSize: '18px' }}>
-            Mine $DG by playing games with crypto. Earn bonuses by playing with
-            friends, wearing $DG NFTs, and referring friends. For V1 rewards,
-            click{' '}
-            <a href="/dg/miningv1" target="_blank" style={{ color: '#2085f4' }}>
-              here
-            </a>
-            .
-          </p>
-
-          <Divider className="divider-dg-top" />
-
-          <span className="DG-button-span">
-            {Number(state.DGBalances.BALANCE_MINING_DG_V2) ? (
-              <Button
-                className="DG-claim-button"
-                id="balances-padding-correct"
-                onClick={() => metaTransaction()}
-              >
-                Claim
-              </Button>
-            ) : (
-              <Button disabled className="DG-claim-button">
-                Claim
-              </Button>
-            )}
-          </span>
-        </div>
-
-        <div className="mining-container-outter">
-          <div className="mining-container-inner">
-            <div
-              className="DG-column-treasury two"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
-            >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>
-                Gameplay Rewards
-              </p>
-
-              <Divider className="divider-dg-top" />
-
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.MANA_CIRCLE}
-                  className="farming-logo-small"
-                  alt="MANA Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coin</p>
-                  <p className="earned-amount">MANA</p>
-                </span>
-              </span>
-
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://docs.decentral.games/allocation#community"
-                  target="_blank"
-                  style={{ marginTop: '-60px', marginRight: '-4px' }}
-                >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
-                  />
-                </a>
-              </span>
-
-              <Divider className="divider-dg-top" />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">14,600</p>
-                  </span>
-                </span>
-
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">49,300</p>
-                  </span>
-                </span>
-              </div>
-
-              <Divider className="divider-dg-top" />
-
-              <span className="DG-button-span">
-                <Button
-                  href="{`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}"
-                  className="DG-play-now-button"
-                  target="_blank"
-                  id="balances-padding-correct-two"
-                >
-                  Play Now
-                </Button>
-              </span>
-            </div>
-
-            <div
-              className="DG-column-treasury three"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
-            >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>
-                Gameplay Rewards
-              </p>
-
-              <Divider className="divider-dg-top" />
-
-              <span style={{ display: 'flex' }}>
-                <span style={{ display: 'flex' }}>
-                  <img src={Images.DAI_CIRCLE} className="farming-logo-small" />
-                  <img
-                    src={Images.USDT_CIRCLE}
-                    className="farming-logo-small two"
-                    alt="Decentral Games Coin Logo"
-                  />
-                </span>
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coins</p>
-                  <p className="earned-amount">DAI, USDT</p>
-                </span>
-              </span>
-
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://docs.decentral.games/allocation#community"
-                  target="_blank"
-                  style={{ marginTop: '-60px', marginRight: '-4px' }}
-                >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
-                  />
-                </a>
-              </span>
-
-              <Divider className="divider-dg-top" />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">12,600</p>
-                  </span>
-                </span>
-
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">42,500</p>
-                  </span>
-                </span>
-              </div>
-
-              <Divider className="divider-dg-top" />
-
-              <span className="DG-button-span">
-                <Button
-                  href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
-                  className="DG-play-now-button"
-                  id="balances-padding-correct-two"
-                  target="_blank"
-                >
-                  Play Now
-                </Button>
-              </span>
-            </div>
           </div>
 
-          <div className="mining-container-inner">
-            <div
-              className="DG-column-treasury two"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
-            >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>
-                Gameplay Rewards
-              </p>
+          <div className={styles.mining_container_outter}>
+            <div className={styles.mining_container_inner}>
+              <div className={styles.dg_column_treasury_two}>
+                <p className={styles.earned_amount}>
+                  Gameplay Rewards
+                </p>
 
-              <Divider className="divider-dg-top" />
+                <Divider className={styles.divider_dg_top} />
 
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.ATRI_CIRCLE}
-                  className="farming-logo-small"
-                  alt="MANA Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coin</p>
-                  <p className="earned-amount">ATRI</p>
-                </span>
-              </span>
-
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://docs.decentral.games/allocation#community"
-                  target="_blank"
-                  style={{ marginTop: '-60px', marginRight: '-4px' }}
-                >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
+                <div className={styles.dg_flex}>
+                  <img
+                    src={Images.MANA_CIRCLE}
+                    className={styles.farming_logo_small}
+                    alt="MANA Coin Logo"
                   />
-                </a>
-              </span>
-
-              <Divider className="divider-dg-top" />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">N/A</p>
+                  <span className={styles.farming_pool_span}>
+                    <p className={styles.welcome_text_top}>Coin</p>
+                    <p className={styles.earned_amount}>MANA</p>
                   </span>
+                </div>
+
+                <span className={styles.dg_flex_justify_content_end}>
+                  <a
+                    className={styles.dg_flex_margin}
+                    href="https://docs.decentral.games/allocation#community"
+                    target="_blank"
+                  >
+                    <Icon
+                      className={styles.more_text}
+                      name="external square alternate"
+                    />
+                  </a>
                 </span>
 
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">N/A</p>
+                <Divider className={styles.divider_dg_top} />
+
+                <div className={styles.dg_flex}>
+                  <span className={styles.gameplay_left_column}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>14,600</p>
+                    </span>
                   </span>
+
+                  <span className={styles.dg_flex_justify_content_center}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>49,300</p>
+                    </span>
+                  </span>
+                </div>
+
+                <Divider className={styles.divider_dg_top} />
+
+                <span className={styles.dg_button_span}>
+                  <Button
+                    href="{`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}"
+                    className={styles.dg_play_now_button}
+                    target="_blank"
+                    id="balances-padding-correct-two"
+                  >
+                    Play Now
+                  </Button>
                 </span>
               </div>
 
-              <Divider className="divider-dg-top" />
+              <div className={styles.dg_column_treasury_three}>
+                <p className={styles.earned_amount}>
+                  Gameplay Rewards
+                </p>
 
-              <span className="DG-button-span">
-                <Button
-                  href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
-                  className="DG-play-now-button"
-                  id="balances-padding-correct-two"
-                  target="_blank"
-                >
-                  Play Now
-                </Button>
-              </span>
+                <Divider className={styles.divider_dg_top} />
+
+                <div className={styles.dg_flex}>
+                  <span className={styles.dg_flex}>
+                    <img src={Images.DAI_CIRCLE} className={styles.farming_logo_small} />
+                    <img
+                      src={Images.USDT_CIRCLE}
+                      className={styles.farming_logo_small_two}
+                      alt="Decentral Games Coin Logo"
+                    />
+                  </span>
+                  <span className={styles.farming_pool_span}>
+                    <p className={styles.welcome_text_top}>Coins</p>
+                    <p className={styles.earned_amount}>DAI, USDT</p>
+                  </span>
+                </div>
+
+                <span className={styles.dg_flex_justify_content_end}>
+                  <a
+                    className={styles.dg_flex_margin}
+                    href="https://docs.decentral.games/allocation#community"
+                    target="_blank"
+                  >
+                    <Icon
+                      className={styles.more_text}
+                      name="external square alternate"
+                    />
+                  </a>
+                </span>
+
+                <Divider className={styles.divider_dg_top} />
+
+                <div className={styles.dg_flex}>
+                  <span className={styles.gameplay_left_column}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>12,600</p>
+                    </span>
+                  </span>
+
+                  <span className={styles.dg_flex_justify_content_center}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>42,500</p>
+                    </span>
+                  </span>
+                </div>
+
+                <Divider className={styles.divdier_dg_top} />
+
+                <span className={styles.dg_button_span}>
+                  <Button
+                    href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
+                    className={styles.dg_play_now_button}
+                    id="balances-padding-correct-two"
+                    target="_blank"
+                  >
+                    Play Now
+                  </Button>
+                </span>
+              </div>
             </div>
 
-            <div
-              className="DG-column-treasury three"
-              style={{
-                position: 'relative',
-                height: '100%',
-              }}
-            >
-              <p className="earned-amount" style={{ paddingTop: '2px' }}>
-                Gameplay Rewards
-              </p>
+            <div className={styles.mining_container_inner}>
+              <div className={styles.dg_column_treasury_two}>
+                <p className={styles.earned_amount}>
+                  Gameplay Rewards
+                </p>
 
-              <Divider className="divider-dg-top" />
+                <Divider className={styles.divider_dg_top} />
 
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={Images.ETH_CIRCLE}
-                  className="farming-logo-small"
-                  alt="MANA Coin Logo"
-                />
-                <span className="farming-pool-span">
-                  <p className="welcome-text-top">Coin</p>
-                  <p className="earned-amount">ETH</p>
-                </span>
-              </span>
-
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <a
-                  href="https://docs.decentral.games/allocation#community"
-                  target="_blank"
-                  style={{ marginTop: '-60px', marginRight: '-4px' }}
-                >
-                  <Icon
-                    className="more-text"
-                    name="external square alternate"
+                <span className={styles.dg_flex}>
+                  <img
+                    src={Images.ATRI_CIRCLE}
+                    className={styles.farming_logo_small}
+                    alt="MANA Coin Logo"
                   />
-                </a>
-              </span>
-
-              <Divider className="divider-dg-top" />
-
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <p className="earned-text">Roulette Rate / 1 DG</p>
-                    <p className="earned-amount stat">5</p>
+                  <span className={styles.farming_pool_span}>
+                    <p className={styles.welcome_text_top}>Coin</p>
+                    <p className={styles.earned_amount}>ATRI</p>
                   </span>
                 </span>
 
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '50%',
-                  }}
-                >
-                  <span
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                    }}
+                <span className={styles.dg_flex_justify_content_end}>
+                  <a
+                    className={styles.dg_flex_margin}
+                    href="https://docs.decentral.games/allocation#community"
+                    target="_blank"
                   >
-                    <p className="earned-text">Blackjack Rate / 1 DG</p>
-                    <p className="earned-amount stat">15</p>
+                    <Icon
+                      className={styles.more_text}
+                      name="external square alternate"
+                    />
+                  </a>
+                </span>
+
+                <Divider className={styles.divider_dg_top} />
+
+                <div className={styles.dg_flex}>
+                  <span className={styles.gameplay_left_column}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>N/A</p>
+                    </span>
                   </span>
+
+                  <span className={styles.dg_flex_justify_content_center}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>N/A</p>
+                    </span>
+                  </span>
+                </div>
+
+                <Divider className={styles.divider_dg_top} />
+
+                <span className={styles.dg_button_span}>
+                  <Button
+                    href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
+                    className={styles.dg_play_now_button}
+                    id="balances-padding-correct-two"
+                    target="_blank"
+                  >
+                    Play Now
+                  </Button>
                 </span>
               </div>
 
-              <Divider className="divider-dg-top" />
+              <div className={styles.dg_column_treasury_three}>
+                <p className={styles.earned_amount}>
+                  Gameplay Rewards
+                </p>
 
-              <span className="DG-button-span">
-                <Button
-                  id="balances-padding-correct-two"
-                  href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
-                  className="DG-play-now-button"
-                  target="_blank"
-                >
-                  Play Now
-                </Button>
-              </span>
+                <Divider className={styles.divider_dg_top} />
+
+                <span className={styles.dg_flex}>
+                  <img
+                    className={styles.farming_logo_small}
+                    src={Images.ETH_CIRCLE}
+                    alt="MANA Coin Logo"
+                  />
+                  <span className={styles.farming_pool_span}>
+                    <p className={styles.welcome_text_top}>Coin</p>
+                    <p className={styles.earned_amount}>ETH</p>
+                  </span>
+                </span>
+
+                <span className={styles.dg_flex_justify_content_end}>
+                  <a
+                    className={styles.dg_flex_margin}
+                    href="https://docs.decentral.games/allocation#community"
+                    target="_blank"
+                  >
+                    <Icon
+                      className={styles.more_text}
+                      name="external square alternate"
+                    />
+                  </a>
+                </span>
+
+                <Divider className={styles.divider_dg_top} />
+
+                <div className={styles.dg_flex}>
+                  <span className={styles.gameplay_left_column}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>5</p>
+                    </span>
+                  </span>
+
+                  <span className={styles.dg_flex_justify_content_center}>
+                    <span className={styles.dg_flex_center}>
+                      <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
+                      <p className={styles.earned_amount}>15</p>
+                    </span>
+                  </span>
+                </div>
+
+                <Divider className={styles.divider_dg_top} />
+
+                <span className={styles.dg_button_span}>
+                  <Button
+                    id="balances-padding-correct-two"
+                    href={`https://play.decentraland.org/?position=-96%2C110&realm=fenrir-amber${utm}`}
+                    className={styles.dg_play_now_button}
+                    target="_blank"
+                  >
+                    Play Now
+                  </Button>
+                </span>
+              </div>
             </div>
           </div>
         </div>

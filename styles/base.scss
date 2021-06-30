@@ -48,8 +48,6 @@ $mq-breakpoints: (
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 12px;
-  padding-bottom: 12px;
 }
 
 //////////////////////////////
@@ -131,7 +129,6 @@ $mq-breakpoints: (
   }
 }
 
-
 .dg_claim_button {
   color: white !important;
   background-color: #006eff !important;
@@ -159,14 +156,15 @@ $mq-breakpoints: (
   }
 
   &_logo_small {
-    max-width: 42px;
-    max-height: 42px;
-    margin-top: 12px;
-    margin-bottom: 9px;
-    margin-right: 12px;
-    border-radius: 100%;
+    @include dg_logo_style;
     position: relative;
     z-index: 3;
+
+    &_two {
+      @include dg_logo_style;
+      margin-left: -24px;
+      z-index: 2;
+    }
   }
 
   &_pool_span {
@@ -230,7 +228,7 @@ $mq-breakpoints: (
   }
 
   &_treasury {
-    @include mq($until: large) {
+    @include mq($until: medium) {
       width: 48.5%;
     }
 
@@ -243,7 +241,6 @@ $mq-breakpoints: (
 
     &_two {
       @include dg_column_style;
-      position: relative;
 
       @include mq($from: medium) {
         width: 48.5%;
@@ -342,4 +339,26 @@ $mq-breakpoints: (
 .leaderboard_column {
   min-width: 33.33% !important;
   width: 100%;
+}
+
+.mining_container_outter {
+  display: flex;
+  flex-direction: column;
+  width: 74.75%;
+
+  @include mq($until: large) {
+    margin-top: 30px;
+    width: 100%;
+  }
+}
+
+.mining_container_inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  @include mq($until: medium) {
+    flex-direction: column;
+  }
 }
