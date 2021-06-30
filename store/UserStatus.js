@@ -52,7 +52,7 @@ function UserStatus() {
   // async function getUserStatus() {
   //   try {
   //     const response = await Fetch.USER_STATUS(userAddress);
-  //     const json = await response.json();
+  //     const json = await response.data;
 
   //     if (json.status === 'ok') {
   //       if (json.result === 'false') {
@@ -74,10 +74,9 @@ function UserStatus() {
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.data;
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
-      const jsonStatus = await responseStatus.json();
+      const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
       if (!jsonStatus.status) return false;
 

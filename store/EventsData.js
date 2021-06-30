@@ -9,8 +9,7 @@ function EventsData() {
   // get events from dcl
   useEffect(() => {
     (async () => {
-      let response = await Fetch.EVENTS();
-      let json = await response.json();
+      let json = await Fetch.EVENTS();
 
       dispatch({
         type: 'events_data',

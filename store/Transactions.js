@@ -9,12 +9,10 @@ function Transactions() {
   useEffect(() => {
     if (state.userStatus >= 4) {
       (async function () {
-        const responseHistory = await Fetch.HISTORY_DATA(state.userAddress);
-        const jsonHistory = await responseHistory.json();
+        const jsonHistory = await Fetch.HISTORY_DATA(state.userAddress);
         const dataHistory = jsonHistory.result;
 
-        const responsePlay = await Fetch.PLAY_DATA(state.userAddress);
-        const jsonPlay = await responsePlay.json();
+        const jsonPlay = await Fetch.PLAY_DATA(state.userAddress);
         const dataPlay = jsonPlay.result;
 
         const response = [dataHistory, dataPlay];
