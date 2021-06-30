@@ -18,12 +18,19 @@ $mq-breakpoints: (
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:disabled, 
-.btn-primary.disabled {
+.btn-primary.disabled,
+.btn:active,
+.btn:hover,
+.btn:focus,
+.btn:disabled, 
+.btn.disabled {
   color: white !important;
+  background-color: #006eff !important;
+  border: 0px solid white !important;
+  box-shadow: none !important;
 }
 
 .btn:hover,
 .btn-primary:hover {
-  background: #006eff;
   filter: brightness(0.9);
 }
