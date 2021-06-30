@@ -108,10 +108,11 @@ h3 {
 }
 
 .nft-other-h3 {
-  font-family: 'Larsseit-ExtraBold';
+  font-family: 'Larsseit-Bold';
   font-weight: 800 !important;
-  font-size: 32px;
-  line-height: 1.4;
+  font-size: 30px;
+  padding: 2px 0px 3px 0px;
+  margin-top: 0px;
 }
 
 h4 {
@@ -183,6 +184,12 @@ p {
 
 .account-other-inner-p {
   min-height: calc(100vh - 250px);
+}
+
+.nft-other-p {
+  text-align: left;
+  font-size: 18px;
+  font-family: Larsseit-Regular;
 }
 
 /* ----------------------------------------- */
@@ -1026,7 +1033,7 @@ p.home-dashboard-p {
   min-height: 400px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 20px 20px 0px 0px !important;
 }
 
 .games-pic {
@@ -1036,7 +1043,7 @@ p.home-dashboard-p {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 20px 20px 0px 0px !important;
 }
 
 .my-nft-pic {
@@ -1092,7 +1099,7 @@ p.home-dashboard-p {
   display: flex;
   flex-direction: column !important;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .shop-container {
@@ -1160,26 +1167,13 @@ p.home-dashboard-p {
 
 .nfts-info,
 .nfts-info-2 {
-  text-transform: uppercase;
-  font-size: 12px !important;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  padding: 3px 6px 3px 6px;
-  margin-top: -3px !important;
-  border-radius: 4px;
-}
-
-.nfts-info {
-  margin-bottom: 14px !important;
+  font-size: 15px !important;
+  font-family: Larsseit-Bold;
+  color:  rgba(255, 255, 255, 0.75) !important;
 }
 
 .nfts-info.mine {
   margin-top: -18px !important;
-}
-
-.nfts-info-2 {
-  margin-left: 12px;
-  margin-bottom: 14px !important;
 }
 
 .nft-bold-content {
@@ -1191,12 +1185,6 @@ p.home-dashboard-p {
 .nft-number-content {
   font-size: 0.9em;
   padding-bottom: 3px;
-}
-
-.nft-other-h3 {
-  padding-bottom: 12px;
-  text-align: center;
-  padding-top: 12px;
 }
 
 .nft-other-h3.countdown2 {
@@ -1213,7 +1201,7 @@ p.home-dashboard-p {
 }
 
 .nft-description {
-  padding: 0px 30px 30px 30px;
+  padding: 20px 30px 30px 30px;
 }
 
 .tominoya-pic {
@@ -2794,26 +2782,25 @@ a.ui.blue.button.dg-learn-button {
 
 .ui.blue.button.nft-button {
   position: relative;
-  background-color: #006eff;
+  background-color: #006EFF;
   color: white;
-  margin-top: 8px;
+  margin-top: 24px;
   width: 48.5% !important;
-  height: 36px !important;
-  line-height: 10px;
-  font-size: 16px !important;
-  border-radius: 4px;
+  height: 56px !important;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  border-radius: 12px;
 }
 
 .ui.button.nft-read-button {
-  background-color: transparent;
-  border: 1px solid #006eff;
-  color: #006eff;
-  margin-top: 8px;
+  background-color: #2A2A2A;
+  color: white;
+  margin-top: 24px;
   width: 48.5% !important;
-  height: 36px !important;
-  line-height: 8px;
-  font-size: 16px !important;
-  border-radius: 4px;
+  height: 56px !important;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  border-radius: 12px;
 }
 
 .ui.button.reload-button {

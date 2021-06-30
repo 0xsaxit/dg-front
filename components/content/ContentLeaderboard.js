@@ -127,7 +127,7 @@ const ContentLeaderboard = (props) => {
   console.log(dataGames);
 
   return (
-    <Grid>
+    <Grid style={{ paddingBottom: '48px' }}>
       {games.map((game, index) => {
         return (
           <Grid.Column
