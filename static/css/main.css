@@ -115,6 +115,15 @@ h3 {
   margin-top: 0px;
 }
 
+.home-other-h3 {
+  font-family: 'Larsseit-Bold';
+  font-weight: 800 !important;
+  font-size: 30px;
+  padding: 2px 0px 3px 0px;
+  margin-top: 0px;
+  text-align: center;
+}
+
 h4 {
   font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
