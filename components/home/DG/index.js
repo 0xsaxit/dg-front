@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
 import Aux from '../../_Aux';
-import Footer from 'components/home/Footer';
+import Footer from 'components/home/Footer/index.js';
 import ModalLogin from 'components/modal/ModalLogin';
 import styles from './DG.module.scss';
 
@@ -247,6 +247,7 @@ const DGHome = () => {
     <div className="home-dashboard">
       {sectionOne()}
       {sectionTwo()}
+      <Footer />
     </div>
   );
 };

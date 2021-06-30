@@ -1,0 +1,134 @@
+@import "styles/base.scss";
+
+.footer_container {
+	background: #121212;
+	border-top: 2px solid #353945;
+	
+	.grid_container {
+		max-width: 1400px;
+		margin: auto;
+		padding: 122px 72px 112px 72px;
+		display: flex;
+		justify-content: space-between;
+
+		.grid_column {
+			width: 18%;
+		}
+
+		.footer_header {
+			font-family: Larsseit-Bold;
+			font-size: 24px;
+			padding-bottom: 20px;
+			color: white;
+		}
+
+		.footer_link {
+			font-family: Larsseit-Regular;
+			font-size: 20px;
+			color: #777E91 !important;
+			padding-bottom: 4px;
+			min-width: 100px;
+		
+			&:hover {
+				cursor: pointer;
+				filter: brightness(0.9);
+			}
+		}
+
+		.footer_text {
+			font-family: Larsseit-Regular;
+			font-size: 20px;
+			color: white !important;
+			padding-bottom: 4px;
+		}
+	}
+
+	.grid_newsletter {
+		display: flex;
+		flex-direction: column;
+
+		.footer_header {
+			font-family: Larsseit-Bold;
+			font-size: 24px;
+			padding-bottom: 20px;
+			color: white;
+		}
+
+		.footer_text {
+			font-family: Larsseit-Regular;
+			font-size: 20px;
+			color: white !important;
+			padding-bottom: 4px;
+		}
+
+		.input_placeholder {
+		  border: 2px solid #353945;
+		  background: transparent !important;
+		  border-radius: 128px;
+		  height: 68px;
+		}
+	}
+
+	@media (max-width: 1250px) {
+		.grid_column {
+			width: 20%;
+		}
+		.grid_newsletter {
+			display: none;
+		}
+	}
+
+	@media (min-width: 1251px) {
+		.grid_newsletter_tablet {
+			display: none;
+		}
+	}
+
+	.grid_newsletter_tablet {
+		max-width: 1400px;
+		margin-top: -48px;
+		padding: 0px 72px 60px 72px;
+
+		.footer_header {
+			font-family: Larsseit-Bold;
+			font-size: 24px;
+			padding-bottom: 20px;
+			padding-top: 48px;
+			color: white;
+			border-top: 1px solid #353945;
+		}
+
+		.footer_text {
+			font-family: Larsseit-Regular;
+			font-size: 20px;
+			color: white !important;
+			padding-bottom: 4px;
+		}
+
+		.input_placeholder {
+		  border: 2px solid #353945;
+		  background: transparent !important;
+		  border-radius: 128px;
+		  height: 68px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.grid_container {
+			flex-direction: column;
+			padding: 90px 30px 112px 30px;
+		}
+
+		.grid_column {
+			width: 100%;
+		}
+
+		.footer_header {
+			padding-top: 38px;
+		}
+
+		.grid_newsletter_tablet {
+			padding: 0px 30px 60px 30px;
+		}
+	}
+}

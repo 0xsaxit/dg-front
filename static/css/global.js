@@ -102,10 +102,6 @@ export const GlobalStyles = createGlobalStyle`
     border: ${({ theme }) => theme.cardBorder};
     box-shadow: ${({ theme }) => theme.boxShadow};
   }
-  .ui.input>input {
-    background: ${({ theme }) => theme.card}; 
-    border: ${({ theme }) => theme.cardBorder};
-  }
   .tutorial-info,
   .tutorial-info-2 {
     background: ${({ theme }) => theme.tutorialColor};
