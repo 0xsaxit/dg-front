@@ -2781,11 +2781,10 @@ a.ui.blue.button.dg-learn-button {
 }
 
 .ui.blue.button.nft-button {
-  position: relative;
   background-color: #006EFF;
   color: white;
   margin-top: 24px;
-  width: 48.5% !important;
+  width: calc(50% - 8px) !important;
   height: 56px !important;
   font-size: 20px !important;
   font-family: Larsseit-Bold;
@@ -2795,8 +2794,8 @@ a.ui.blue.button.dg-learn-button {
 .ui.button.nft-read-button {
   background-color: #2A2A2A;
   color: white;
-  margin-top: 24px;
-  width: 48.5% !important;
+  margin-top: auto !important;
+  width: calc(50% - 8px) !important;
   height: 56px !important;
   font-size: 20px !important;
   font-family: Larsseit-Bold;

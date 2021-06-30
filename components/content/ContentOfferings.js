@@ -79,9 +79,7 @@ const ContentOfferings = (props) => {
                 {props.detailsGames[item][3]}
               </p>
 
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
+              <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between' }}>
                 <Button
                   id={`play-now-button-games-${i + 1}`}
                   color="blue"
@@ -89,16 +87,16 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsGames[item][6] + utm}
                 >
-                  Play Now
+                  Play
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
                   href={props.detailsGames[item][7]}
                 >
-                  Read More
+                  Info
                 </Button>
-              </span>
+              </div>
             </div>
           </a>
         ))}
@@ -146,14 +144,14 @@ const ContentOfferings = (props) => {
                       target="_blank"
                       href={props.detailsNFTs[item][5]}
                     >
-                      Purchase
+                      Buy
                     </Button>
                     <Button
                       className="nft-read-button"
                       target="_blank"
                       href={props.detailsNFTs[item][6]}
                     >
-                      Read More
+                      Info
                     </Button>
                   </span>
                 </div>
@@ -205,14 +203,14 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsCasinos[item][5] + utm}
                 >
-                  Play Now
+                  Play
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
                   href={props.detailsCasinos[item][6]}
                 >
-                  Read More
+                  Info
                 </Button>
               </span>
             </div>
@@ -262,14 +260,14 @@ const ContentOfferings = (props) => {
                   target="_blank"
                   href={props.detailsShop[item][5] + utm}
                 >
-                  Shop Now
+                  Shop
                 </Button>
                 <Button
                   className="nft-read-button two"
                   target="_blank"
                   href={props.detailsShop[item][6]}
                 >
-                  Read More
+                  Info
                 </Button>
               </span>
             </div>
