@@ -122,43 +122,28 @@ const ContentOfferings = props => {
                   />
                 </span>
                 <div className={styles.nft_description}>
-                  <h3 className="nft-other-h3">{props.detailsNFTs[item][2]}</h3>
-                  <span style={{ display: 'flex', justifyContent: 'center' }}>
-                    <p className="nfts-info">{props.detailsNFTs[item][3]}</p>
+                  <p className={styles.nft_other_h3}>{props.detailsNFTs[item][2]}</p>
+                  <span className={styles.dg_flex_justify_content_center}>
+                    <p className={styles.nfts_info}>{props.detailsNFTs[item][3]}</p>
                   </span>
 
-                  <Divider
-                    style={{
-                      margin: '10px 0px 15px 0px',
-                      width: 'calc(100% + 60px)',
-                      marginLeft: '-30px',
-                    }}
-                  />
+                  <Divider className={styles.divider_dg_card} />
 
-                  <p
-                    className="nft-other-p"
-                    style={{
-                      marginTop: '-12px',
-                      paddingTop: '15px',
-                      textAlign: 'center',
-                    }}
-                  >
+                  <p className={styles.nft_other_p}>
                     {props.detailsNFTs[item][4]}
                   </p>
 
-                  <span
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
-                  >
+                  <span className={styles.dg_flex_justify_content_center}>
                     <Button
+                      className={styles.nft_button}
                       color="blue"
-                      className="nft-button"
                       target="_blank"
                       href={props.detailsNFTs[item][5]}
                     >
                       Purchase
                     </Button>
                     <Button
-                      className="nft-read-button"
+                      className={styles.nft_read_button}
                       target="_blank"
                       href={props.detailsNFTs[item][6]}
                     >
@@ -178,62 +163,43 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   const contentCasinos = () => {
     return (
-      <div className="outter-games-container">
+      <div className={styles.outter_games_container}>
         {Object.keys(props.detailsCasinos).map((item, i) => (
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className="games-container"
+            className={styles.games_container}
           >
-            <span
-              style={{ display: 'flex', justifyContent: 'center' }}
-              className="nft-image"
-            >
+            <span className={styles.nft_image}>
               <Image
                 src={props.detailsCasinos[item][0]}
                 className={props.detailsCasinos[item][1]}
-                style={{ borderRadius: '4px' }}
               />
             </span>
-            <div className="nft-description">
-              <h3 className="nft-other-h3">{props.detailsCasinos[item][2]}</h3>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <p className="nfts-info">{props.detailsCasinos[item][4]}</p>
+            <div className={styles.nft_description}>
+              <h3 className={styles.nft_other_h3}>{props.detailsCasinos[item][2]}</h3>
+              <span className={styles.dg_flex_justify_content_center}>
+                <p className={styles.nfts_info}>{props.detailsCasinos[item][4]}</p>
               </span>
 
-              <Divider
-                style={{
-                  margin: '10px 0px 15px 0px',
-                  width: 'calc(100% + 60px)',
-                  marginLeft: '-30px',
-                }}
-              />
+              <Divider className={styles.divider_dg_card} />
 
-              <p
-                className="nft-other-p"
-                style={{
-                  marginTop: '-12px',
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                }}
-              >
+              <p className={styles.nft_other_p}>
                 {props.detailsCasinos[item][3]}
               </p>
 
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
+              <span className={styles.dg_flex_justify_content_space_between}>
                 <Button
                   id={`play-now-button-casinos-${i + 1}`}
                   color="blue"
-                  className="nft-button"
+                  className={styles.nft_button}
                   target="_blank"
                   href={props.detailsCasinos[item][5] + utm}
                 >
                   Play Now
                 </Button>
                 <Button
-                  className="nft-read-button two"
+                  className={styles.nft_read_button}
                   target="_blank"
                   href={props.detailsCasinos[item][6]}
                 >
@@ -251,61 +217,40 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   const contentShop = () => {
     return (
-      <div className="outter-games-container">
+      <div className={styles.outter_games_container}>
         {Object.keys(props.detailsShop).map((item, i) => (
           <a
             href={props.detailsShop[item][6] + utm}
             target="_blank"
-            className="games-container"
+            className={styles.games_container}
           >
-            <span
-              style={{ display: 'flex', justifyContent: 'center' }}
-              className="nft-image"
-            >
+            <span className={styles.nft_image}>
               <Image
                 src={props.detailsShop[item][0]}
                 className={props.detailsShop[item][1]}
-                style={{ borderRadius: '4px' }}
               />
             </span>
-            <div className="nft-description">
-              <h3 className="nft-other-h3">{props.detailsShop[item][2]}</h3>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
-                <p className="nfts-info">{props.detailsShop[item][4]}</p>
+            <div className={styles.nft_description}>
+              <h3 className={styles.nft_other_h3}>{props.detailsShop[item][2]}</h3>
+              <span className={styles.dg_flex_justify_content_center}>
+                <p className={styles.nfts_info}>{props.detailsShop[item][4]}</p>
               </span>
 
-              <Divider
-                style={{
-                  margin: '10px 0px 15px 0px',
-                  width: 'calc(100% + 60px)',
-                  marginLeft: '-30px',
-                }}
-              />
+              <Divider className={styles.divider_dg_card} />
 
-              <p
-                className="nft-other-p"
-                style={{
-                  marginTop: '-12px',
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                }}
-              >
-                {props.detailsShop[item][3]}
-              </p>
+              <p className={styles.nft_other_p}>{props.detailsShop[item][3]}</p>
 
-              <span
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
+              <span className={styles.dg_flex_justify_content_space_between}>
                 <Button
+                  className={styles.nft_button}
                   color="blue"
-                  className="nft-button"
                   target="_blank"
                   href={props.detailsShop[item][5] + utm}
                 >
                   Shop Now
                 </Button>
                 <Button
-                  className="nft-read-button two"
+                  className={styles.nft_read_button}
                   target="_blank"
                   href={props.detailsShop[item][6]}
                 >

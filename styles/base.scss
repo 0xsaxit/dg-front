@@ -404,36 +404,6 @@ $mq-breakpoints: (
       display: flex;
       justify-content: center;
     }
-
-    .nft_button {
-      position: relative;
-      background-color: #006eff;
-      color: white;
-      margin-top: 8px;
-      width: 48.5%;
-      border-radius: 4px;
-      height: 36px;
-      line-height: 10px;
-      font-size: 16px;
-    }
-
-    .nft_read_button {
-      background-color: transparent;
-      border: 1px solid #006eff;
-      color: #006eff;
-      margin-top: 8px;
-      width: 48.5%;
-      height: 36px;
-      line-height: 8px;
-      font-size: 16px;
-      border-radius: 4px;
-    }
-
-    .nft_other_p {
-      margin-top: -12px;
-      padding-top: 15px;
-      text-align: center;
-    }
   }
 }
 
@@ -445,10 +415,19 @@ $mq-breakpoints: (
     font-weight: 800;
     font-size: 32px;
     line-height: 1.4;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
 
     &.featured {
       text-align: center;
     }
+  }
+
+  .nft_other_p {
+    margin-top: -12px;
+    padding-top: 15px;
+    text-align: center;
   }
 
   .nfts_info {
@@ -459,6 +438,30 @@ $mq-breakpoints: (
       margin-left: 12px;
       margin-bottom: 14px;
     }
+  }
+  
+  .nft_button {
+    position: relative;
+    background-color: #006eff;
+    color: white;
+    margin-top: 8px;
+    width: 48.5%;
+    border-radius: 4px;
+    height: 36px;
+    line-height: 10px;
+    font-size: 16px;
+  }
+
+  .nft_read_button {
+    background-color: transparent;
+    border: 1px solid #006eff;
+    color: #006eff;
+    margin-top: 8px;
+    width: 48.5%;
+    height: 36px;
+    line-height: 8px;
+    font-size: 16px;
+    border-radius: 4px;
   }
 }
 

@@ -6,12 +6,6 @@
     justify-content: center;
   }
 
-  .divider_dg_card {
-    margin: 10px 0 15px 0;
-    width: calc(100% + 60px);
-    margin-left: -30px;
-  }
-
   .nft_description {
     text-align: center;
     background-color: #1f1f1f;
@@ -49,4 +43,10 @@
       width: 100%;
     }
   }
+}
+
+.divider_dg_card {
+  margin: 10px 0 15px 0;
+  width: calc(100% + 60px);
+  margin-left: -30px;
 }
