@@ -120,6 +120,11 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.card};
   }
 
+  .games_container,
+  .nft_container {
+    background: ${({ theme }) => theme.card};
+  }
+
   .balances_column_zero,
   .dg_column,
   .dg_column_one,

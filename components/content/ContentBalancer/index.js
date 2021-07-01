@@ -43,7 +43,7 @@ const UnClaimedBalancer = ({pool1, setPool1, balancer, formatPrice }) => {
 const PoolUSDValue = ({ poolUSD }) => {
   return (
     <>
-      <span className={styles.dg_flex_space_between}>
+      <span className={styles.dg_flex_direction_space_between}>
         <p className={styles.earned_text}>Value USD</p>
         {poolUSD ? (
           <p className={styles.earned_amount}>${poolUSD}</p>

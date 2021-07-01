@@ -30,3 +30,14 @@
   margin-right: 12px;
   border-radius: 100%; 
 }
+
+@mixin nfts_info_style {
+  background-color: #040506;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 3px 6px 3px 6px;
+  margin-top: -3px;
+  border-radius: 4px;
+}

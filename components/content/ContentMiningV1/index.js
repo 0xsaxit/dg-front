@@ -155,7 +155,7 @@ const ContentMiningV1 = props => {
 
             <Divider className={styles.divider_dg_top} />
 
-            <span className={styles.dg_flex_justify_content_space}>
+            <span className={styles.dg_flex_justify_content_space_between}>
               <p className={styles.welcome_text}>
                 {' '}
                 TOTAL USD{' '}
