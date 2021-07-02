@@ -8,8 +8,12 @@
 	font-weight: 700;
 	font-size: 20px;
 	color: white;
-	margin-top: -6px;
-	margin-left: 16px;
+	margin-top: -8px !important;
+	margin-left: 16px !important;
+	background: #006EFF !important;
+	color: white !important;
+	font-size: 20px !important;
+	font-family: Larsseit-Bold;
 }
 
 @media (max-width: 499px) {
@@ -30,6 +34,11 @@
 	.button_close {
 		color: white;
 		cursor: pointer;
+		width: 36px;
+		height: 36px;
+		background: black;
+		border-radius: 100%;
+		padding: 8px 10px 8px 10px;
 	}
 
 	.title {

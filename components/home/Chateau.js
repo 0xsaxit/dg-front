@@ -198,7 +198,7 @@ const Chateau = () => {
                       />
                     </span>
                     <div className="nft-description">
-                      <h3 className="nft-other-h3">Gameplay</h3>
+                      <h3 className="home-other-h3">Gameplay</h3>
                       <span
                         style={{ display: 'flex', justifyContent: 'center' }}
                       ></span>
@@ -238,7 +238,7 @@ const Chateau = () => {
                       />
                     </span>
                     <div className="nft-description">
-                      <h3 className="nft-other-h3">Liquidity</h3>
+                      <h3 className="home-other-h3">Liquidity</h3>
                       <span
                         style={{ display: 'flex', justifyContent: 'center' }}
                       ></span>
@@ -278,7 +278,7 @@ const Chateau = () => {
                       />
                     </span>
                     <div className="nft-description">
-                      <h3 className="nft-other-h3">Governance</h3>
+                      <h3 className="home-other-h3">Governance</h3>
                       <span
                         style={{ display: 'flex', justifyContent: 'center' }}
                       ></span>
