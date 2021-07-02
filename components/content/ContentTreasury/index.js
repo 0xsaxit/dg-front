@@ -6,6 +6,21 @@ import Aux from 'components/_Aux';
 
 import styles from "./ContentTreasury.module.scss";
 
+const ContentTreasuryTableBody = props => {
+  const { tokenTitle } = props;
+
+  return (
+    <Table.Row>
+      <Table.Cell>
+        <span className={styles.dg_flex}>
+          {tokenTitle}
+
+        </span>
+      </Table.Cell>
+    </Table.Row>
+  )
+};
+
 const ContentTreasury = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -156,9 +171,9 @@ const ContentTreasury = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function getWeeklyChange() {
+  const getWeeklyChange = () => {
     return (
-      <span style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className={styles.dg_flex_justify_content_center}>
         {weeklyChange > 0 && treasuryTotal ? (
           <Table.Cell textAlign="right">
             <span
@@ -189,11 +204,11 @@ const ContentTreasury = props => {
             </span>
           </Table.Cell>
         ) : null}
-      </span>
+      </div>
     );
   }
 
-  function allTimeEarnings() {
+  const allTimeEarnings = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -240,7 +255,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function gameplayHotWallet() {
+  const gameplayHotWallet = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -287,7 +302,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function dgToken() {
+  const dgToken = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -334,7 +349,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function decentralandLand() {
+  const decentralandLand = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -381,7 +396,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function dgWearables() {
+  const dgWearables = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -428,7 +443,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function liquidityProvided() {
+  const liquidityProvided = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -453,7 +468,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function maticStaked() {
+  const maticStaked = () => {
     return (
       <Table.Row>
         <Table.Cell>
@@ -500,7 +515,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function getLoader() {
+  const getLoader = () => {
     return (
       <Table.Cell textAlign="right">
         <Loader active inline size="small" className="treasury-loader" />
@@ -508,7 +523,7 @@ const ContentTreasury = props => {
     );
   }
 
-  function getPopUp(number) {
+  const getPopUp = (number) => {
     return (
       <Popup
         className="dai-mana-popup"

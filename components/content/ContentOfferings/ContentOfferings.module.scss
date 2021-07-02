@@ -11,6 +11,33 @@
     background-color: #1f1f1f;
     border-radius: 0 0 4px 4px;
   }
+
+  .games_container {
+    margin-top: 21px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+    border-radius: 4px;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+      transition: all 0.1s ease 0s;
+    }
+
+    .nft_image {
+      display: flex;
+      justify-content: center;
+    }
+
+    @include mq($from: large) {
+      width: 48.5%;
+    }
+
+    @include mq($until: large) {
+      width: 100%;
+    }
+  }
 }
 
 .outter_nft_container {
@@ -28,22 +55,23 @@
     flex-direction: column;
     margin-bottom: 6px;
     border-radius: 4px;
-
+  
     &:hover {
       transform: translateY(-1px);
       box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
       transition: all 0.1s ease 0s;
     }
-
+  
     @include mq($until: extra-large) {
       width: 48.5%;
     }
-
+  
     @include mq($until: medium) {
       width: 100%;
     }
   }
 }
+
 
 .divider_dg_card {
   margin: 10px 0 15px 0;

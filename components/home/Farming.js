@@ -216,7 +216,7 @@ const Farming = props => {
   // helper functions
   const submenu = () => {
     return (
-      <div style={{ margin: '120px 0px 00px 0px' }}>
+      <div style={{ margin: '120px 0px 0px 0px' }}>
         <div className="account-other-tabs">
           {DGState === 'treasury' ? (
             <p className="account-other-p" style={{ width: '100%' }}>

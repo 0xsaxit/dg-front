@@ -385,26 +385,6 @@ $mq-breakpoints: (
   justify-content: space-between;
   margin-top: -15px;
   margin-bottom: 30px;
-
-  .games_container {
-    width: 48.5%;
-    margin-top: 21px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 6px;
-    border-radius: 4px;
-
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
-      transition: all 0.1s ease 0s;
-    }
-
-    .nft_image {
-      display: flex;
-      justify-content: center;
-    }
-  }
 }
 
 .nft_description {
