@@ -21,6 +21,7 @@ import DGBalances from '../store/DGBalances';
 import PricesBreakdown from '../store/PricesBreakdown';
 import NFTSPOAPS from '../store/NFTSPOAPS';
 import EventsData from '../store/EventsData';
+import SubgraphQuery from '../store/SubgraphQuery';
 
 class Application extends App {
   render() {
@@ -47,6 +48,7 @@ class Application extends App {
         <PricesBreakdown />
         <NFTSPOAPS />
         <EventsData />
+        <SubgraphQuery />
 
         <Component {...pageProps} />
       </Provider>

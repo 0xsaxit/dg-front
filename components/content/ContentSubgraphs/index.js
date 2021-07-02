@@ -1,46 +1,48 @@
-// import axios from 'axios';
-// import { useState, useEffect, useContext } from 'react';
-// import { GlobalContext } from 'store/index';
 import styles from './ContentSubgraphs.module.scss';
 import Aux from 'components/_Aux';
 
 const ContentAccount = props => {
-  // ... the Context API store
-  // const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function contentTreasury() {
+  function contentPoints() {
     return (
-      <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-        {props.subgraphData.map((data, i) => (
-          <Aux>
-            <p className={styles.referrals_header_subtitle} key={i}>
-              {data.id}
-            </p>
-            <p className={styles.referrals_header_subtitle} key={i}>
-              {data.count}
-            </p>
-            <p className={styles.referrals_header_subtitle} key={i}>
-              {data.affiliate}
-            </p>
+      <Aux>
+        <div style={{ paddingTop: '80px' }}>
+          <p className={styles.referrals_header_subtitle}>
+            Count: {props.subgraphData.length}
+          </p>
+        </div>
 
-            <p className={styles.referrals_header_subtitle} key={i}>
-              {data.player}
-            </p>
-          </Aux>
-        ))}
-      </div>
+        <div style={{ paddingTop: '50px' }}>
+          {props.subgraphData.map((data, i) => (
+            <Aux key={i}>
+              <p className={styles.referrals_header_subtitle}>
+                Affiliate: {data.affiliate}
+              </p>
+              <p className={styles.referrals_header_subtitle}>
+                Player: {data.player}
+              </p>
+              <p className={styles.referrals_header_subtitle}>
+                Points: {data.points}
+              </p>
+              <p className={styles.referrals_header_subtitle}>
+                Total: {data.total}
+              </p>
+              <p className={styles.referrals_header_subtitle}>
+                ----------------------------------------------
+              </p>
+            </Aux>
+          ))}
+        </div>
+      </Aux>
     );
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  if (props.content === 'treasury') {
-    return contentTreasury();
-  } else if (props.content === 'wearables') {
+  if (props.content === 'points') {
+    return contentPoints();
+  } else if (props.content === 'profit') {
     return contentPointer();
   }
 };

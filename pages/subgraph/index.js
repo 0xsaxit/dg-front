@@ -4,18 +4,18 @@ import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Subgraphs = () => {
+const Subgraph = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Subgraphs'}
+        title={Global.CONSTANTS.TITLE + ' | Subgraph'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
 
-      <SubgraphData dataType={'treasury'} />
+      <SubgraphData dataType={'points'} />
     </Layout>
   );
 };
 
-export default Subgraphs;
+export default Subgraph;
