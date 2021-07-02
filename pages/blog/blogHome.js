@@ -75,7 +75,7 @@ function blog() {
       </div>
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-partners-with-video-game-pioneer-atari">
+        <Link href="/blog/[id]" as="blog/decentral-games-raises-5m">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />

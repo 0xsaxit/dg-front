@@ -503,7 +503,7 @@ const Balances = (props) => {
             )}
               <Button
                 className={styles.newLink}
-                href="https://www.ataritokens.com/myportal/home"
+                href="http://defi.atarichain.com/"
                 target="_blank"
               >
                 Buy
