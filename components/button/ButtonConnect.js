@@ -7,6 +7,29 @@ import call from 'common/API';
 import Aux from '../_Aux';
 import ModalLoginTop from '../modal/ModalLoginTop';
 
+const assignToken = async () => {
+  const userAddress = window.ethereum.selectedAddress;
+  const user = await Fetch.PLAYER_INFO(userAddress);
+
+  const msg = window.web3.utils.utf8ToHex(
+    `I am signing my one-time nonce: ${user.nonce}`
+  );
+  const signature = await window.web3.eth.personal.sign(
+    msg,
+    window.ethereum.selectedAddress,
+    null
+  );
+
+  const token = await call(
+    `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&msg=${msg}`,
+    'GET',
+    false
+  );
+
+  localStorage.setItem('token', token);
+  localStorage.setItem('expiretime', new Date().getTime() / 1000 + 12 * 3600);
+};
+
 const ButtonConnect = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -60,6 +83,14 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     if (window.ethereum) {
+      const currentTimestamp = new Date().getTime() / 1000;
+      const expiredTimestamp =
+        localStorage.getItem('expiretime') || Number.MAX_SAFE_INTEGER;
+
+      if (currentTimestamp > expiredTimestamp) {
+        assignToken();
+      }
+
       setMetamaskEnabled(true);
     } else {
       setMetamaskEnabled(false);
@@ -78,24 +109,7 @@ const ButtonConnect = () => {
       });
 
       if (!localStorage.getItem('token')) {
-        const user = await Fetch.PLAYER_INFO(userAddress);
-
-        const msg = window.web3.utils.utf8ToHex(
-          `I am signing my one-time nonce: ${user.nonce}`
-        );
-        const signature = await window.web3.eth.personal.sign(
-          msg,
-          window.ethereum.selectedAddress,
-          null
-        );
-
-        const token = await call(
-          `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&msg=${msg}`,
-          'GET',
-          false
-        );
-
-        localStorage.setItem('token', token);
+        assignToken();
       }
 
       // dispatch user address to the Context API store
