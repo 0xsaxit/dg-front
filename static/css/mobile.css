@@ -78,6 +78,9 @@
   .right-menu-items {
     margin-right: -9px;
   }
+  .mobile-center-span {
+    display: none;
+  }
 }
 
 #mobile-menu-icon:hover,

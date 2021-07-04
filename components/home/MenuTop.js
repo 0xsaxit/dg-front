@@ -246,7 +246,7 @@ const MenuTop = (props) => {
                       className={menuStyle[1]}
                       id="dropdown-menu-items"
                     >
-                      Token Ecosystem
+                      DG Ecosystem
                     </Menu.Item>
                   </Link>
 
@@ -310,7 +310,7 @@ const MenuTop = (props) => {
 
         <Link href="/dg">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
-            Token Ecosystem
+            DG Ecosystem
           </Menu.Item>
         </Link>
 
