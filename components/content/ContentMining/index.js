@@ -221,7 +221,7 @@ const ContentMining = props => {
 
                 <span className={styles.dg_flex_justify_content_end}>
                   <a
-                    className={styles.dg_flex_margin}
+                    className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
                     target="_blank"
                   >
@@ -288,7 +288,7 @@ const ContentMining = props => {
 
                 <span className={styles.dg_flex_justify_content_end}>
                   <a
-                    className={styles.dg_flex_margin}
+                    className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
                     target="_blank"
                   >
@@ -354,7 +354,7 @@ const ContentMining = props => {
 
                 <span className={styles.dg_flex_justify_content_end}>
                   <a
-                    className={styles.dg_flex_margin}
+                    className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
                     target="_blank"
                   >
@@ -418,7 +418,7 @@ const ContentMining = props => {
 
                 <span className={styles.dg_flex_justify_content_end}>
                   <a
-                    className={styles.dg_flex_margin}
+                    className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
                     target="_blank"
                   >

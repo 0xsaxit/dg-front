@@ -225,6 +225,19 @@ $mq-breakpoints: (
 }
 
 .dg_column {
+  &_body {
+    font-size: 18px;
+
+    &_href {
+      color: #2085f4;
+    }
+
+    &_margin {
+      margin-top: -60px;
+      margin-right: -4px;
+    }
+  }
+
   &_one {
     width: 100%;
     background-color: #1f1f1f;
@@ -462,4 +475,14 @@ $mq-breakpoints: (
   min-height: 270px;
   object-fit: cover;
   border-radius: 4px 4px 0 0;
+}
+
+.gameplay_left_column,
+.gameplay_right_column {
+  &_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 17px;
+  }
 }

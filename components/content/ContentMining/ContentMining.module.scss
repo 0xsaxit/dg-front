@@ -32,14 +32,6 @@
     .welcome_text {
       padding-left: 0px;
     }
-
-    .dg_column_body {
-      font-size: 18px;
-
-      &_href {
-        color: #2085f4;
-      }
-    }
   }
 
   .mining_container_outter {
@@ -72,13 +64,7 @@
     }
   }
 
-
   .divider_dg_top {
     width: calc(100%);
-  }
-
-  .dg_flex_margin {
-    margin-top: -60px;
-    margin-right: -4px;
   }
 }

@@ -51,16 +51,6 @@
     margin-bottom: -2px;
   }
 
-  .gameplay_left_column,
-  .gameplay_right_column {
-    &_text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 17px;
-    }
-  }
-
   .governance_staking_button {
     display: flex;
     justify-content: space-between;
