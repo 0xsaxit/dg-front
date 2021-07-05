@@ -43,11 +43,6 @@ $mq-breakpoints: (
   justify-content: center;
 }
 
-.dg_flex_justify_content_center {
-  display: flex;
-  justify-content: center;
-}
-
 .dg_flex_justify_content_end {
   display: flex;
   justify-content: flex-end;
@@ -57,6 +52,10 @@ $mq-breakpoints: (
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.text_align_right {
+  text-align: right !important;
 }
 
 //////////////////////////////
@@ -277,6 +276,17 @@ $mq-breakpoints: (
       @include mq($until: medium) {
         width: 100%;
         margin-top: 30px;
+      }
+    }
+
+    &_amount {
+      font-size: 72px;
+      letter-spacing: -0.7px;
+      font-weight: 800;
+      padding-top: 30px;
+
+      @include mq($until: small) {
+        font-size: 60px;
       }
     }
   }

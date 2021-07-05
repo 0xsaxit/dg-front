@@ -41,3 +41,11 @@
   margin-top: -3px;
   border-radius: 4px;
 }
+
+@mixin earned_table_style {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-top: 3px;
+  padding-right: 3px;
+  margin: 0 0 1px 0;
+}

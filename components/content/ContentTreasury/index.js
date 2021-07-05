@@ -6,27 +6,131 @@ import Aux from 'components/_Aux';
 
 import styles from "./ContentTreasury.module.scss";
 
-const ContentTreasuryTableBody = props => {
-  const { tokenTitle } = props;
+const GetLoader = () => {
+  return (
+    <Table.Cell textAlign="right">
+      <Loader active inline size="small" classNmae="treasury-loader" />
+    </Table.Cell>
+  );
+}
+
+const GetPopUp = (props) => {
+  const { 
+    number,
+    balance,
+    treasury,
+    maticTokens,
+  } = props;
+
+  return (
+    <Popup
+      trigger={
+        <Icon
+          className={`styles.dai-mana-icon_${number}`}
+          name="info circle"
+        />
+      }
+    >
+      {number === 'one' ? (
+        <p className={styles.earned_text}>
+          All time gameplay earnings, not counting earnings allocated
+          elsewhere by the DG DAO (not used in total treasury calculation)
+        </p>
+      ) : number === 'two' ? (
+        <Aux>
+          <p className={styles.earned_text}>DAI: {balance.daiBalance}</p>
+          <p className={styles.earned_text}>MANA: {balance.manaBalance}</p>
+          <p className={styles.earned_text}>USDT: {balance.usdtBalance}</p>
+          <p className={styles.earned_text}>ATRI: {balance.atriBalance}</p>
+          <p className={styles.earned_text}>ETH: {balance.ethBalance}</p>
+        </Aux>
+      ) : number === 'three' ? (
+        <p className={styles.earned_text}>
+          Treasury holdings of $DG calculated as {balance.dgBalance} $DG at market
+          price
+        </p>
+      ) : number === 'four' ? (
+        <p className={styles.earned_text}>
+          Treasury holdings of LAND calculated as 1,007 parcels times T30 avg
+          LAND price
+        </p>
+      ) : number === 'five' ? (
+        <p className={styles.earned_text}>
+          Treasury holdings of wearable NFTs calculated as 210 wearables times
+          average bid at current MANA price
+        </p>
+      ) : number === 'six' ? (
+        <Aux>
+          <p className={styles.earned_text}> ETH-DG v3: ${treasury.uniTreasury} </p>
+          <p className={styles.earned_text}> MVI-ETH v2: ${treasury.mviTreasury} </p>
+        </Aux>
+      ) : number === 'seven' ? (
+        <p className={styles.earned_text}>
+          Calculated as {Number(maticTokens).toLocaleString()} delegated
+          tokens times current Matic token price
+        </p>
+      ) : null}
+    </Popup>
+  );
+}
+
+const ContentTableBody = props => {
+  const {
+    number,
+    contentTitle,
+    contentBody,
+    contentPercent,
+    balance,
+    treasury,
+    maticTokens, 
+  } = props;
 
   return (
     <Table.Row>
       <Table.Cell>
         <span className={styles.dg_flex}>
-          {tokenTitle}
-
+          {contentTitle}
+          <GetPopUp 
+            number={number}
+            balance={balance}
+            treasury={treasury}
+            maticTokens={maticTokens}
+          />
         </span>
       </Table.Cell>
+
+      {contentBody ? (
+        <Table.Cell textAlign="right">${contentBody}</Table.Cell>
+      ) : (
+        <GetLoader />
+      )}
+
+      {contentPercent > 0 && contentBody ? (
+        <Table.Cell textAlign="right">
+          <span className={styles.dg_flex_justify_content_end}>
+            <p className={styles.earned_percent_pos}>{contentPercent}%</p>
+            <Icon className={styles.percent_icon_pos} name="caret up" />
+          </span>
+        </Table.Cell>
+      ) : contentBody ? (
+        <Table.Cell textAlign="right">
+          <span className={styles.dg_flex_justify_content_end}>
+            <p className={styles.earned_percent_neg}>{contentPercent}%</p>
+            <Icon className={styles.percent_icon_neg} name="caret down" />
+          </span>
+        </Table.Cell>
+      ) : (
+        <GetLoader />
+      )}
     </Table.Row>
   )
-};
+}
 
 const ContentTreasury = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [dgBalance, setDgBalance] = useState(0);
   const [treasuryTotal, setTreasuryTotal] = useState(0);
   const [statsUSDX, setStatsUSDX] = useState([]);
   const [statsUSDY, setStatsUSDY] = useState([]);
@@ -35,20 +139,15 @@ const ContentTreasury = props => {
   const [weeklyChange, setWeeklyChange] = useState(0);
   const [gameplayAll, setGameplayAll] = useState(0);
   const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
-  const [manaBalance, setManaBalance] = useState(0);
-  const [daiBalance, setDaiBalance] = useState(0);
-  const [usdtBalance, setUSDTBalance] = useState(0);
-  const [atriBalance, setAtriBalance] = useState(0);
-  const [ethBalance, setEthBalance] = useState(0);
+  const [balance, setBalance] = useState({});
+  const [treasury, setTreasury] = useState({});
   const [dgTreasury, setDgTreasury] = useState(0);
+  const [nftTreasury, setNftTreasury] = useState(0);
+  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
   const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
-  const [nftTreasury, setNftTreasury] = useState(0);
-  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
   const [liquidityTreasury, setLiquidityTreasury] = useState(0);
-  const [uniTreasury, setUniTreasury] = useState(0);
-  const [mviTreasury, setMviTreasury] = useState(0);
   const [maticTreasury, setMaticTreasury] = useState(0);
   const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
   const [maticTokens, setMaticTokens] = useState(0);
@@ -105,19 +204,34 @@ const ContentTreasury = props => {
       setGameplayTreasuryPercent(Number(gameplay_temp));
 
       const mana = state.treasuryNumbers.manaBalance.graph;
-      setManaBalance(props.formatPrice(mana.slice(-1)[0].secondary, 0));
+      setBalance({
+        ...balance,
+        manaBalance: props.formatPrice(mana.slice(-1)[0].secondary, 0)
+      });
 
       const dai = state.treasuryNumbers.daiBalance.graph;
-      setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
+      setBalance({
+        ...balance,
+        daiBalance: props.formatPrice(dai.slice(-1)[0].secondary, 0)
+      });
 
       const usdt = 149746;
-      setUSDTBalance(props.formatPrice(usdt, 0));
+      setBalance({
+        ...balance,
+        usdtBalance: props.formatPrice(usdt, 0)
+      });
 
       const atri = state.treasuryNumbers.atriBalance.graph;
-      setAtriBalance(props.formatPrice(atri.slice(-1)[0].secondary, 0));
+      setBalance({
+        ...balance,
+        atriBalance: props.formatPrice(atri.slice(-1)[0].secondary, 0)
+      })
 
       const eth = state.treasuryNumbers.ethBalance.graph;
-      setEthBalance(props.formatPrice(eth.slice(-1)[0].secondary, 3));
+      setBalance({
+        ...balance,
+        ethBalance: props.formatPrice(eth.slice(-1)[0].secondary, 3)
+      });
 
       const land = state.treasuryNumbers.totalLandUSD;
       setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
@@ -145,10 +259,16 @@ const ContentTreasury = props => {
       );
 
       const uni = state.treasuryNumbers.totalDgEthUniswapBalance;
-      setUniTreasury(props.formatPrice(uni.graph.slice(-1)[0].secondary, 0));
+      setTreasury({
+        ...treasury,
+        uniTreasury: props.formatPrice(uni.graph.slice(-1)[0].secondary, 0)
+      });
 
       const mvi = state.treasuryNumbers.totalMviEthLPBalance;
-      setMviTreasury(props.formatPrice(mvi.graph.slice(-1)[0].secondary, 0));
+      setTreasury({
+        ...treasury,
+        mviTreasury: props.formatPrice(mvi.graph.slice(-1)[0].secondary, 0)
+      });
 
       const maticBal = state.treasuryNumbers.totalMaticUSD;
       setMaticTreasury(
@@ -164,7 +284,10 @@ const ContentTreasury = props => {
       setMaticTreasuryPercent(Number(matic_temp));
 
       const dgbal = state.treasuryNumbers.dgBalance.graph;
-      setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
+      setBalance({
+        ...balance,
+        dgBalance: props.formatPrice(dgbal.slice(-1)[0].secondary, 0)
+      });
     }
   }, [state.treasuryNumbers]);
 
@@ -176,405 +299,28 @@ const ContentTreasury = props => {
       <div className={styles.dg_flex_justify_content_center}>
         {weeklyChange > 0 && treasuryTotal ? (
           <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                marginTop: '-6px',
-                paddingBottom: '9px',
-              }}
-            >
-              <p className="earned-percent pos">
+            <span className={styles.table_weekly_field}>
+              <p className={styles.earned_percent_pos}>
                 +$
                 {weeklyChange.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </p>
-              <p className="earned-week-text">This Week</p>
+              <p className={styles.earned_week_text}>This Week</p>
             </span>
           </Table.Cell>
         ) : treasuryTotal ? (
           <Table.Cell textAlign="right">
-            <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <p className="earned-percent neg">
+            <span className={styles.dg_flex_justify_content_end}>
+              <p className={styles.earned_percent_neg}>
                 -$
                 {(weeklyChange * -1)
                   .toFixed(2)
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </p>
-              <p className="earned-week-text">This Week</p>
+              <p className={styles.earned_week_text}>This Week</p>
             </span>
           </Table.Cell>
         ) : null}
       </div>
-    );
-  }
-
-  const allTimeEarnings = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            All Time Gameplay Profits
-            {getPopUp('one')}
-          </span>
-        </Table.Cell>
-
-        {gameplayAll ? (
-          <Table.Cell textAlign="right">${gameplayAll}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        {gameplayAllPercent > 0 && gameplayAll ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent pos">{gameplayAllPercent}%</p>
-              <Icon name="caret up" className="percent-icon pos" />
-            </span>
-          </Table.Cell>
-        ) : gameplayAll ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent neg">{gameplayAllPercent}%</p>
-              <Icon name="caret down" className="percent-icon neg" />
-            </span>
-          </Table.Cell>
-        ) : (
-          getLoader()
-        )}
-      </Table.Row>
-    );
-  }
-
-  const gameplayHotWallet = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            Gameplay Hot Wallet
-            {getPopUp('two')}
-          </span>
-        </Table.Cell>
-
-        {gameplayTreasury ? (
-          <Table.Cell textAlign="right">${gameplayTreasury}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent pos">{gameplayTreasuryPercent}%</p>
-              <Icon name="caret up" className="percent-icon pos" />
-            </span>
-          </Table.Cell>
-        ) : gameplayTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent neg">{gameplayTreasuryPercent}%</p>
-              <Icon name="caret down" className="percent-icon neg" />
-            </span>
-          </Table.Cell>
-        ) : (
-          getLoader()
-        )}
-      </Table.Row>
-    );
-  }
-
-  const dgToken = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            $DG Token
-            {getPopUp('three')}
-          </span>
-        </Table.Cell>
-
-        {dgTreasury ? (
-          <Table.Cell textAlign="right">${dgTreasury}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        {dgTreasuryPercent > 0 && dgTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent pos">{dgTreasuryPercent}%</p>
-              <Icon name="caret up" className="percent-icon pos" />
-            </span>
-          </Table.Cell>
-        ) : dgTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent neg">{dgTreasuryPercent}%</p>
-              <Icon name="caret down" className="percent-icon neg" />
-            </span>
-          </Table.Cell>
-        ) : (
-          getLoader()
-        )}
-      </Table.Row>
-    );
-  }
-
-  const decentralandLand = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            Decentraland LAND
-            {getPopUp('four')}
-          </span>
-        </Table.Cell>
-
-        {landTreasury ? (
-          <Table.Cell textAlign="right">${landTreasury}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        {landTreasuryPercent > 0 && landTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent pos">{landTreasuryPercent}%</p>
-              <Icon name="caret up" className="percent-icon pos" />
-            </span>
-          </Table.Cell>
-        ) : landTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent neg">{landTreasuryPercent}%</p>
-              <Icon name="caret down" className="percent-icon neg" />
-            </span>
-          </Table.Cell>
-        ) : (
-          getLoader()
-        )}
-      </Table.Row>
-    );
-  }
-
-  const dgWearables = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            $DG Wearables
-            {getPopUp('five')}
-          </span>
-        </Table.Cell>
-
-        {nftTreasury ? (
-          <Table.Cell textAlign="right">${nftTreasury}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        {nftTreasuryPercent > 0 && nftTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent pos">{nftTreasuryPercent}%</p>
-              <Icon name="caret up" className="percent-icon pos" />
-            </span>
-          </Table.Cell>
-        ) : nftTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent neg">{nftTreasuryPercent}%</p>
-              <Icon name="caret down" className="percent-icon neg" />
-            </span>
-          </Table.Cell>
-        ) : (
-          getLoader()
-        )}
-      </Table.Row>
-    );
-  }
-
-  const liquidityProvided = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            Liquidity Provided
-            {getPopUp('six')}
-          </span>
-        </Table.Cell>
-
-        {liquidityTreasury ? (
-          <Table.Cell textAlign="right">${liquidityTreasury}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        <Table.Cell textAlign="right">
-          <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <p className="earned-percent neutral">0.00%</p>
-          </span>
-        </Table.Cell>
-      </Table.Row>
-    );
-  }
-
-  const maticStaked = () => {
-    return (
-      <Table.Row>
-        <Table.Cell>
-          <span style={{ display: 'flex' }}>
-            Matic Staked in Matic Node
-            {getPopUp('seven')}
-          </span>
-        </Table.Cell>
-
-        {maticTreasury ? (
-          <Table.Cell textAlign="right">${maticTreasury}</Table.Cell>
-        ) : (
-          getLoader()
-        )}
-
-        {maticTreasuryPercent > 0 && maticTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent pos">{maticTreasuryPercent}%</p>
-              <Icon name="caret up" className="percent-icon pos" />
-            </span>
-          </Table.Cell>
-        ) : maticTreasury ? (
-          <Table.Cell textAlign="right">
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <p className="earned-percent neg">{maticTreasuryPercent}%</p>
-              <Icon name="caret down" className="percent-icon neg" />
-            </span>
-          </Table.Cell>
-        ) : (
-          getLoader()
-        )}
-      </Table.Row>
-    );
-  }
-
-  const getLoader = () => {
-    return (
-      <Table.Cell textAlign="right">
-        <Loader active inline size="small" className="treasury-loader" />
-      </Table.Cell>
-    );
-  }
-
-  const getPopUp = (number) => {
-    return (
-      <Popup
-        className="dai-mana-popup"
-        trigger={
-          <Icon
-            className={`dai-mana-icon ${number}`}
-            name="info circle"
-            style={{ fontSize: '10px', marginLeft: '6px' }}
-          />
-        }
-      >
-        {number === 'one' ? (
-          <p className="earned-text">
-            All time gameplay earnings, not counting earnings allocated
-            elsewhere by the DG DAO (not used in total treasury calculation)
-          </p>
-        ) : number === 'two' ? (
-          <Aux>
-            <p className="earned-text">DAI: {daiBalance}</p>
-            <p className="earned-text">MANA: {manaBalance}</p>
-            <p className="earned-text">USDT: {usdtBalance}</p>
-            <p className="earned-text">ATRI: {atriBalance}</p>
-            <p className="earned-text">ETH: {ethBalance}</p>
-          </Aux>
-        ) : number === 'three' ? (
-          <p className="earned-text">
-            Treasury holdings of $DG calculated as {dgBalance} $DG at market
-            price
-          </p>
-        ) : number === 'four' ? (
-          <p className="earned-text">
-            Treasury holdings of LAND calculated as 1,007 parcels times T30 avg
-            LAND price
-          </p>
-        ) : number === 'five' ? (
-          <p className="earned-text">
-            Treasury holdings of wearable NFTs calculated as 210 wearables times
-            average bid at current MANA price
-          </p>
-        ) : number === 'six' ? (
-          <Aux>
-            <p className="earned-text"> ETH-DG v3: ${uniTreasury} </p>
-            <p className="earned-text"> MVI-ETH v2: ${mviTreasury} </p>
-          </Aux>
-        ) : number === 'seven' ? (
-          <p className="earned-text">
-            Calculated as {Number(maticTokens).toLocaleString()} delegated
-            tokens times current Matic token price
-          </p>
-        ) : null}
-      </Popup>
     );
   }
 
@@ -594,89 +340,120 @@ const ContentTreasury = props => {
 
   return (
     <Aux>
-      <span style={{ display: 'flex', justifyContent: 'center' }}>
-        {treasuryTotal ? (
-          <p className="treasury-amount">${treasuryTotal}</p>
-        ) : (
-          <Loader
-            active
-            inline
-            size="large"
-            style={{
-              fontSize: '12px',
-              marginTop: '48px',
-              marginBottom: '48px',
-              marginLeft: '0px',
-            }}
-          />
-        )}
-      </span>
+      <div className={styles.content_treasury_container}>
+        <span className={styles.dg_flex_justify_content_center}>
+          {treasuryTotal ? (
+            <p className={styles.treasury_amount}>${treasuryTotal}</p>
+          ) : (
+            <Loader
+              className={styles.content_treasury_loader}
+              active
+              inline
+              size="large"
+            />
+          )}
+        </span>
 
-      {getWeeklyChange()}
+        {getWeeklyChange()}
 
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <span className="treasury-graph">
-          <Line
-            height={150}
-            data={weekly}
-            options={{
-              maintainAspectRatio: false,
-              title: { display: false },
-              legend: { display: false },
-              scales: {
-                xAxes: [{ display: false }],
-                yAxes: [{ display: false }],
-              },
-              elements: {
-                point: { radius: 0 },
-              },
-            }}
-          />
+        <div className={styles.dg_flex_justify_content_center}>
+          <span className={styles.treasury_graph}>
+            <Line
+              height={150}
+              data={weekly}
+              options={{
+                maintainAspectRatio: false,
+                title: { display: false },
+                legend: { display: false },
+                scales: {
+                  xAxes: [{ display: false }],
+                  yAxes: [{ display: false }],
+                },
+                elements: {
+                  point: { radius: 0 },
+                },
+              }}
+            />
+          </span>
+        </div>
+
+        <span className={styles.treasury_table}>
+          <div className={styles.treasury_stats}>
+            <Table unstackable>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>
+                    Name
+                  </Table.HeaderCell>
+                  <Table.HeaderCell className={styles.text_align_right}>
+                    Amount
+                  </Table.HeaderCell>
+                  <Table.HeaderCell className={styles.text_align_right}>
+                    Weekly
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+
+              <Table.Body>
+                <ContentTableBody
+                  number="one"
+                  contentTitle="All Time Gameplay Profits"
+                  contentBody={gameplayAll}
+                  contentPercent={gameplayAllPercent}
+                  balance={balance}
+                  treasury={treasury}
+                  maticTokens={maticTokens}
+                />
+                <ContentTableBody
+                  number="two"
+                  contentTitle="Gameplay Hot Wallet"
+                  contentBody={gameplayTreasury}
+                  contentPercent={gameplayTreasuryPercent}
+                  treasury={treasury}
+                  balance={balance}
+                  maticTokens={maticTokens}
+                />
+                <ContentTableBody
+                  number="three"
+                  contentTitle="$DG Token"
+                  contentBody={dgTreasury}
+                  contentPercent={dgTreasuryPercent}
+                  treasury={treasury}
+                  balance={balance}
+                  maticTokens={maticTokens}
+                />
+                <ContentTableBody
+                  number="four"
+                  contentTitle="Decentraland LAND"
+                  contentBody={landTreasury}
+                  contentPercent={landTreasuryPercent}
+                  treasury={treasury}
+                  balance={balance}
+                  maticTokens={maticTokens}
+                />
+                <ContentTableBody
+                  number="five"
+                  contentTitle="Liquidity Provided"
+                  contentBody={liquidityTreasury}
+                  contentPercent="0.00"
+                  treasury={treasury}
+                  balance={balance}
+                  maticTokens={maticTokens}
+                />
+                <ContentTableBody
+                  number="six"
+                  contentTitle="Matic Staked in Matic Node"
+                  contentBody={maticTreasury}
+                  contentPercent={maticTreasuryPercent}
+                  treasury={treasury}
+                  balance={balance}
+                  maticTokens={maticTokens}
+                />
+              </Table.Body>
+            </Table>
+          </div>
         </span>
       </div>
-
-      <span
-        style={{ display: 'flex', justifyContent: 'center' }}
-        className="treasury-table"
-      >
-        <div
-          className="treasury-stats"
-          style={{
-            position: 'relative',
-            height: '100%',
-          }}
-        >
-          <Table unstackable className="treasury-table">
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell style={{ paddingRight: '22.5vw' }}>
-                  Name
-                </Table.HeaderCell>
-                <Table.HeaderCell
-                  textAlign="right"
-                  className="treasury-left-padding"
-                  style={{ textAlign: 'right' }}
-                >
-                  Amount
-                </Table.HeaderCell>
-                <Table.HeaderCell style={{ textAlign: 'right' }}>
-                  Weekly
-                </Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>
-              {allTimeEarnings()}
-              {gameplayHotWallet()}
-              {dgToken()}
-              {decentralandLand()}
-              {dgWearables()}
-              {liquidityProvided()}
-              {maticStaked()}
-            </Table.Body>
-          </Table>
-        </div>
-      </span>
     </Aux>
   );
 };
