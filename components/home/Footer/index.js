@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
-import Global from '../Constants';
+import Global from 'components/Constants';
 
 const Footer = () => {
   // define local variables

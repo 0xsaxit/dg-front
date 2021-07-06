@@ -1,1 +1,41 @@
 @import 'styles/base.scss';
+
+.account_data_container {
+  position: relative;
+  z-index: 0;
+
+  .avatar_picture {
+    align-self: center;
+
+    &_main {
+      border-radius: 100%;
+      background-color: white;
+      width: 120px;
+      display: flex;
+      margin: 90px 0 0 0;
+    }
+  }
+
+  .avatar_edit_circle {
+    border: 1px solid #edf2f9;
+    background-color: white;
+    position: relative;
+    z-index: 3;
+    width: 27px;
+    height: 27px;
+    border-radius: 100%;
+    float: right;
+    margin-top: -27px;
+    margin-right: 9px;
+  }
+
+  .edit_icon {
+    color: #5c5e61;
+    margin-left: 4px;
+    margin-top: 3px;
+
+    &:hover {
+      color: black;
+    }
+  }
+}

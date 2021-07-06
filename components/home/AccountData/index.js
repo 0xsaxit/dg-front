@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
 import Link from 'next/link';
-import { Parallax } from 'react-parallax';
-import { Divider, Icon, Popup } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import Spinner from 'components/Spinner';
+import cx from 'classnames';
 import ContentAccount from 'components/content/ContentAccount';
 import Aux from 'components/_Aux';
 
-import './AccountData.module.scss';
+import styles from './AccountData.module.scss';
 
 const AccountData = props => {
   // get user's transaction history from the Context API store
@@ -54,66 +54,59 @@ const AccountData = props => {
   const topLinks = () => {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '0' }}>
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <span className="avatar-picture" style={{ alignSelf: 'center' }}>
+        <div className={styles.account_data_container}>
+          <span className={cx("d-flex flex-column")}>
+            <span className={styles.avatar_picture}>
               <img
-                className="avatar-picture main"
+                className={styles.avatar_picture_main}
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-                style={{
-                  backgroundColor: 'white',
-                  width: '120px',
-                  display: 'flex',
-                  margin: '90px 0px 0px 0px',
-                }}
               />
               <a
+                className={styles.avatar_edit_circle}
                 href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                 target="_blank"
-                className="avatar-edit-circle"
               >
-                <Icon name="pencil" className="edit-icon" />
+                <Icon className={styles.edit_icon} name="pencil" />
               </a>
             </span>
           </span>
         </div>
 
         <div
-          className="account-other-tabs"
+          className={styles.account_other_tabs}
           id="account-mobile-tabs"
-          style={{ marginTop: '0px' }}
         >
-          <div className="ml-0">
-            <span className="account-other-p d-flex justify-content-center">
+          <div>
+            <span className={cx("d-flex justify-content-center")}>
               {dataType === 'balances' ? (
-                <span className="account-hover active">Balances</span>
+                <span className={styles.account_hover_active}>Balances</span>
               ) : (
                 <Link href="/account">
-                  <span className="account-hover">Balances</span>
+                  <span className={styles.account_hover}>Balances</span>
                 </Link>
               )}
 
               {dataType === 'items' ? (
-                <span className="account-hover active">My Items</span>
+                <span className={styles.account_hover_active}>My Items</span>
               ) : (
                 <Link href="/account/items">
-                  <span className="account-hover">My Items</span>
+                  <span className={styles.account_hover}>My Items</span>
                 </Link>
               )}
 
               {dataType === 'history' ? (
-                <span className="account-hover active">History</span>
+                <span className={styles.account_hover_active}>History</span>
               ) : (
                 <Link href="/account/history">
-                  <span className="account-hover">History</span>
+                  <span className={styles.account_hover}>History</span>
                 </Link>
               )}
 
               {dataType === 'referrals' ? (
-                <span className="account-hover active">Referrals</span>
+                <span className={styles.account_hover_active}>Referrals</span>
               ) : (
                 <Link href="/account/referrals">
-                  <span className="account-hover">Referrals</span>
+                  <span className={styles.account_hover}>Referrals</span>
                 </Link>
               )}
             </span>
@@ -124,13 +117,13 @@ const AccountData = props => {
   }
 
   return (
-    <div className="main-container">
+    <div className={styles.main_container}>
       {isLoading ? (
         <Spinner background={1} />
       ) : (
         <div>
-          <div className="page-container">
-            <div className="account-other-inner-container">
+          <div className={styles.page_container}>
+            <div className={styles.account_other_inner_container}>
               {topLinks()}
 
               <div id="tx-box-history-2">

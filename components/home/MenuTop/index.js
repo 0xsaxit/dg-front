@@ -1,13 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import ModalInfo from 'components/modal/ModalInfo';
-import MessageBar from './MessageBar';
-import ButtonConnect from '../button/ButtonConnect';
-import Fetch from '../../common/Fetch';
-import Global from '../Constants';
+import MessageBar from '../MessageBar';
+import ButtonConnect from 'components/button/ButtonConnect';
+import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 
 const MenuTop = props => {

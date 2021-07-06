@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
 import { Menu, Button, Popup, Icon, Checkbox } from 'semantic-ui-react';
-import { UseDarkMode } from '../UseDarkMode';
+import { GlobalContext } from 'store';
+import { UseDarkMode } from 'components/UseDarkMode';
 
 const PopUpLinks = props => {
   // dispatch theme (light or dark mode) to the Context API store

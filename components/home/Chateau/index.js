@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
-import Mailchimp from '../Mailchimp';
-import Aux from '../_Aux';
-import Footer from './Footer';
+import Mailchimp from 'components/Mailchimp';
+import Aux from 'components/_Aux';
+import Footer from 'components/Footer';
 import ModalLogin from 'components/modal/ModalLogin';
 
 const Chateau = () => {

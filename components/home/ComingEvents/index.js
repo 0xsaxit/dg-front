@@ -1,9 +1,9 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from '../../store/index';
+import { GlobalContext } from 'store/index';
 import { Button, Divider, Grid, Image } from 'semantic-ui-react';
-import Spinner from '../Spinner';
+import Spinner from 'components/Spinner';
 import Countdown from 'react-countdown';
-import Global from '../Constants';
+import Global from 'components/Constants';
 
 const ComingEvents = () => {
   // get DCL events data from the Context API store

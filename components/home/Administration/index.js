@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { Divider } from 'semantic-ui-react';
 import Web3 from 'web3';
 import Link from 'next/link';
-import ContentAdmin from '../content/ContentAdmin';
-import Global from '../Constants';
-import Transactions from '../../common/Transactions';
+import ContentAdmin from 'components/content/ContentAdmin';
+import Global from 'components/Constants';
 
 const Administration = props => {
   // get smart contract balances and user status' from the Context API store
