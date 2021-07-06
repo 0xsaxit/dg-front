@@ -15,10 +15,6 @@ const Administration = props => {
   const [ethBalance, setEthBalance] = useState(0);
   const [dataPage, setDataPage] = useState('');
 
-  // const [isPausedTreasury, setIsPausedTreasury] = useState(false);
-  // const [parentContract, setParentContract] = useState({});
-  // const [instances, setInstances] = useState(false);
-
   const dataType = props.dataType;
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -48,68 +44,8 @@ const Administration = props => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // get treasury contract's and all games' paused status (true or false)
-  // useEffect(() => {
-  //   if (instances) {
-  //     (async () => {
-  //       const pauseStatusTreasury = await parentContract.methods
-  //         .paused()
-  //         .call();
-  //       setIsPausedTreasury(pauseStatusTreasury);
-
-  //       console.log('Pause status (Treasury): ' + pauseStatusTreasury);
-
-  //       // const pauseStatusSlots = await parentContract.methods.paused().call();
-  //       // setIsPausedSlots(pauseStatusSlots);
-
-  //       console.log('Pause status (Treasury): ' + pauseStatusTreasury);
-  //     })();
-  //   }
-  // }, [instances]);
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // ping the treasury contract for pause status
-  // async function dataInterval() {
-  //   async function fetchData() {
-  //     const responseTreasury = await parentContract.methods.paused().call();
-  //     console.log('Response status: ' + responseTreasury);
-  //     console.log('Current status: ' + isPausedTreasury);
-
-  //     if (response !== isPausedTreasury) {
-  //       // display the pause status confirmation
-  //       // if (!response) {
-  //       //   dispatch({
-  //       //     type: 'token_pings',
-  //       //     data: 5,
-  //       //   });
-  //       // } else {
-  //       //   dispatch({
-  //       //     type: 'token_pings',
-  //       //     data: 6,
-  //       //   });
-  //       // }
-
-  //       // change the button type (pause or unpause)
-  //       setIsPaused(responseTreasury);
-  //       console.log('Pause status (updated): ' + responseTreasury);
-
-  //       clearInterval(interval);
-  //     }
-  //   }
-
-  //   // call token contract every 1 second to get new pause status
-  //   const interval = setInterval(() => {
-  //     fetchData();
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function topLinks() {
+  const topLinks = () => {
     return (
       <div className="account-other-tabs">
         <div style={{ marginLeft: '0px' }}>

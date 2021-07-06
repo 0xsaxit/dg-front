@@ -59,7 +59,8 @@ $mq-breakpoints: (
 }
 
 //////////////////////////////
-
+/// Content
+//////////////////////////////
 .avatar_picture {
   &_home {
     width: 46px;
@@ -486,3 +487,150 @@ $mq-breakpoints: (
     padding-bottom: 17px;
   }
 }
+
+///////////////////////////
+// home
+///////////////////////////
+
+.binance_video_container video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.home_dashboard {
+
+
+  &_content {
+    position: relative;
+    padding-left: 30px;
+    padding-right: 30px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30vh;
+    height: 100vh;
+    margin-top: -63px;
+  
+    @include mq($until: medium) {
+      margin-top: -150px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 100%;
+    }
+  
+    @include mq($until: small) {
+      position: relative;
+      height: 100vh;
+      padding-top: 12vh !important;
+      padding-left: 21px !important;
+      padding-right: 21px !important;
+    }
+  }
+}
+
+.home_gif {
+  @include mq($from: small) {
+    display: none;
+  }
+
+  @include mq($until: small) {
+    margin-top: -200px;
+    width: 100%;
+    position: relative;
+    z-index: -2;
+  }
+}
+
+.home_dashboard_p {
+  &_centered {
+    letter-spacing: 0.15px;
+    text-shadow: 1px 1px 5px black;
+    max-width: 640px;
+    padding-top: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.9);
+
+    @include mq($until: medium) {
+      max-width: 100%;
+      text-align: center;
+    }
+  }
+
+  @include mq($until: small) {
+    width: 100vw;
+    font-size: 18px;
+  }
+}
+
+.home_dashboard_main_h1 {
+  color: white;
+  padding-bottom: 12px;
+  text-shadow: 1px 1px 5px black;
+  margin: -12px 0 -32px -2px;
+  max-width: 600px;
+
+  @include mq($until: medium) {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  @include mq($until: small) {
+    font-size: 48px;
+    margin-top: -120px;
+  }
+}
+
+.home_button_span_ecosystem {
+  display: flex;
+  align-self: center;
+}
+
+.play_now_button_demo {
+  @include mq($from: small) {
+    display: none !important;
+  }
+
+  @include mq($until: small) {
+    width: 210px;
+    position: relative;
+    background-color: #006eff;
+    color: white;
+    margin-top: 8px !important;
+    height: 64px;
+    line-height: 30px;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.earn_dg_button {
+  @include mq($from: small) {
+    background-color: #2b2b2b;
+    color: white;
+    position: relative;
+    height: 64px;
+    width: 200px;
+    line-height: 32px !important;
+    font-size: 20px !important;
+  }
+
+  @include mq($until: small) {
+    display: none !important;
+  }
+}
+
+.mobile_center_span {
+  @include mq($until: small) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
