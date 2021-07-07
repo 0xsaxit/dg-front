@@ -2655,8 +2655,9 @@ a.ui.blue.button.touch {
 @media (max-width: 499px) {
   a.ui.blue.button.play-now-button-demo {
     width: 210px !important;
-    margin-left: calc(50vw - 132px);
+    margin-left: calc(50vw - 128px);
     position: relative;
+    z-index:  999;
     background-color: #006eff;
     color: white;
     margin-top: 8px;

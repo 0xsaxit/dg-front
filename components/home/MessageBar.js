@@ -58,6 +58,8 @@ const MessageBar = () => {
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome, or Firefox to play games');
+    } else if (isMobile) {
+       setMessage('Please configure metamask on a desktop browser');
     } else if (!isMobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
     } else if (!isMobile && pause && !state.userInfo.tokenArray.includes(true)) {

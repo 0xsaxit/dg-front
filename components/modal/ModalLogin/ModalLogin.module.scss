@@ -55,6 +55,15 @@
 		font-weight: 700;
 		font-size: 24px;
 		color: white;
+		background: #006eff;
+		width: 100%;
+		line-height: 50px;
+	
+		&:hover {		
+			color: white;
+			background: #006eff;
+			filter: brightness(0.9) !important;
+		}
 	}
 
 	.subtitle {
