@@ -1,10 +1,9 @@
 import { useEffect, useContext, useState } from 'react';
-// import cn from 'classnames';
-// import Web3 from 'web3';
 import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-// import Global from 'components/Constants';
+import Global from 'components/Constants';
+
 
 const ModalPopup = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -15,6 +14,19 @@ const ModalPopup = () => {
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
   const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [isToastShow, setIsToastShow] = useState(false);
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(state.userAddress);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+
+    // track 'Affiliate Link' button click event
+    analytics.track('Clicked AFFILIATE LINK button');
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

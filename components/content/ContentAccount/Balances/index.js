@@ -99,7 +99,7 @@ const Balances = (props) => {
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335594/COIN_-_ETH_ji9yyj.png',
-    swapAsset: 'ETH',
+    swapAsset: 'MATIC_ETH',
   });
 
   function Balances() {
