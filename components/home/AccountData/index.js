@@ -126,7 +126,7 @@ const AccountData = props => {
             <div className={styles.account_other_inner_container}>
               {topLinks()}
 
-              <div id="tx-box-history-2">
+              <div className={styles.tx_box_history_2} id="tx-box-history-2">
                 <ContentAccount content={dataType} dataPage={dataPage} />
               </div>
             </div>

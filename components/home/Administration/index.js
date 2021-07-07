@@ -6,6 +6,8 @@ import Link from 'next/link';
 import ContentAdmin from 'components/content/ContentAdmin';
 import Global from 'components/Constants';
 
+import styles from './Administration.module.scss';
+
 const Administration = props => {
   // get smart contract balances and user status' from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -46,19 +48,19 @@ const Administration = props => {
   // helper functions
   const topLinks = () => {
     return (
-      <div className="account-other-tabs">
-        <div style={{ marginLeft: '0px' }}>
-          <p className="account-other-p">
+      <div className={styles.account_other_tabs}>
+        <div>
+          <p>
             {dataType === 'balances' ? (
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+              <span className={styles.account_hover_active}>
+                <b className={styles.account_hover_active_title}>
                   GAME BALANCES
                 </b>
               </span>
             ) : (
               <Link href="/admin">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.account_hover_active_title}>
                     GAME BALANCES
                   </b>
                 </span>
@@ -66,15 +68,15 @@ const Administration = props => {
             )}
 
             {dataType === 'users' ? (
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+              <span className={styles.account_hover_active}>
+                <b className={styles.account_hover_active_title}>
                   USERS LIST
                 </b>
               </span>
             ) : (
               <Link href="/admin/users">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.account_hover_active_title}>
                     USERS LIST
                   </b>
                 </span>
@@ -83,26 +85,24 @@ const Administration = props => {
           </p>
         </div>
 
-        <Divider className="tab-divider" />
+        <Divider className={styles.tab_divider} />
       </div>
     );
   }
 
   return (
-    <div className="main-container">
-      <div className="page-container">
-        <div className="account-other-inner-container">
+    <div className={styles.main_container}>
+      <div className={styles.page_container}>
+        <div className={styles.account_other_inner_container}>
           {topLinks()}
 
-          <div id="tx-box-history-2">
-            <table className="account-table">
+          <div className={styles.tx_box_history_2} id="tx-box-history-2">
+            <table className={styles.account_table}>
               {dataPage ? (
                 <ContentAdmin
                   content={dataType}
                   ethBalance={ethBalance}
                   data={dataPage}
-                  // isPausedTreasury={isPausedTreasury}
-                  // dataInterval={dataInterval}
                 />
               ) : null}
             </table>

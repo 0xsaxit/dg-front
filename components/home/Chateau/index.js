@@ -5,8 +5,10 @@ import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
 import Mailchimp from 'components/Mailchimp';
 import Aux from 'components/_Aux';
-import Footer from 'components/Footer';
+import Footer from 'components/home/Footer';
 import ModalLogin from 'components/modal/ModalLogin';
+
+import styles from './Chateau.module.scss';
 
 const Chateau = () => {
   // get user's onboard status the Context API store
@@ -46,9 +48,9 @@ const Chateau = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function homeVideo() {
+  const homeVideo = () => {
     return (
-      <div className="binance-video-container">
+      <div className={styles.binance_video_container}>
         <video
           id="my-video"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
@@ -62,15 +64,15 @@ const Chateau = () => {
     );
   }
 
-  function sectionOne() {
+  const sectionOne = () => {
     return (
       <Aux>
         {homeVideo()}
 
-        <div className="home-dashboard-content">
+        <div className={styles.home_dashboard_content}>
           <img
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
-            className="home-gif"
+            className={styles.home_gif}
           />
           <h1
             className="home-dashboard-main-h1"
@@ -134,7 +136,7 @@ const Chateau = () => {
     );
   }
 
-  function sectionTwo() {
+  const sectionTwo = () => {
     return (
       <Aux>
         <div>
@@ -314,7 +316,7 @@ const Chateau = () => {
     );
   }
 
-  function sectionThree() {
+  const sectionThree = () => {
     return (
       <Aux>
         <Parallax
@@ -356,7 +358,7 @@ const Chateau = () => {
     );
   }
 
-  function sectionFour() {
+  const sectionFour = () => {
     return (
       <Aux>
         <div
@@ -442,7 +444,7 @@ const Chateau = () => {
     );
   }
 
-  function sectionFive() {
+  const sectionFive = () => {
     return (
       <Aux>
         <Parallax
@@ -493,7 +495,7 @@ const Chateau = () => {
     );
   }
 
-  function sectionSix() {
+  const sectionSix = () => {
     return (
       <Aux>
         <div className="section-4-header" style={{ marginTop: '15px' }}>
