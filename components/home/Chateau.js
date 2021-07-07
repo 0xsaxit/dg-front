@@ -76,11 +76,11 @@ const Chateau = () => {
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Hit the Tables
+            Hit the tables in a metaverse casino
           </h1>
           <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
-            With Decentral Games Token, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.
+            Earn $DG by playing non-custodial slots, roulette, blackjack and poker in the Metaverse. Stake $DG to Be The House.
           </p>
           {state.userStatus === 0 ? (
             <span className="mobile-center-span">
