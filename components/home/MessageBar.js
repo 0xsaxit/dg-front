@@ -32,7 +32,7 @@ const MessageBar = () => {
   }, []);
 
   useEffect(() => {
-    if (typeof window.orientation !== 'undefined') {
+    if (window.innerWidth < 499) {
       setMobile(true);
     } else {
       setMobile(false);
