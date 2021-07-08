@@ -12,7 +12,8 @@ const assignToken = async () => {
   const user = await Fetch.PLAYER_INFO(userAddress);
 
   const msg = window.web3.utils.utf8ToHex(
-    `I am signing my one-time nonce: ${user.nonce}`
+    `Decentral Games Login
+     Nonce: ${user.nonce}`
   );
   const signature = await window.web3.eth.personal.sign(
     msg,
@@ -45,6 +46,10 @@ const ButtonConnect = () => {
   let listener = null;
 
   useEffect(() => {
+    window.ethereum.on('accountsChanged', () => {
+      assignToken();
+    });
+
     if (router.pathname.includes('binance')) {
       setBinance(true);
     } else {
