@@ -5,7 +5,7 @@ import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
 
 function SectionOne(props) {
-  const mobile = useMediaQuery('(max-width: 576px)');
+  const mobile = useMediaQuery('(max-width: 768px)');
 
   return (
     <Aux>
@@ -21,19 +21,19 @@ function SectionOne(props) {
       ></video>
 
       <div className={cn(styles.home_dashboard_content, 'container')}>
-        <div className="row">
+        <div className={cn('row', mobile ? 'text-center' : 'text-left')}>
           <div className="col-md-6">
             <h1>
               {mobile
                 ? 'Hit the Tables'
                 : 'Hit the tables in a metaverse Casino'}
             </h1>
-            <p className={styles.content}>
+            <p className={cn(styles.content, mobile ? 'px-6' : 'px-0')}>
               {mobile
                 ? 'With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.'
                 : 'Non-custodial, probably fair slots, roulette, blackjack and poker playable with crypto in Decentraland'}
             </p>
-            <span className={styles.button_group}>
+            <span className={cn(styles.button_group, 'd-md-flex d-none')}>
               <Button
                 color="blue"
                 className={styles.earn_dg_button}
@@ -54,7 +54,7 @@ function SectionOne(props) {
           </div>
         </div>
 
-        <p>
+        <p className={styles.chevron_down}>
           <Icon name="chevron down" />
         </p>
       </div>

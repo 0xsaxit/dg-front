@@ -1,21 +1,39 @@
 import { Button } from 'semantic-ui-react';
 import cn from 'classnames';
+import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
 
 function SectionTwo() {
+  const mobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <Aux>
       <div className="container">
-        <div className={cn('row', styles.image_span)}>
-          <div className="col-md-6">
+        <div
+          className={cn(
+            'row flex-md-row flex-column-reverse',
+            styles.image_span
+          )}
+        >
+          <div
+            className={cn(
+              mobile
+                ? 'col-md-6'
+                : 'col-md-6 d-flex flex-column justify-content-center'
+            )}
+          >
             <h1 className={styles.section_h1}>Play to Earn</h1>
             <p className={styles.section_p}>
               Play games in the metaverse and earn rewards of up to 50% of your
               expected losses back in the $DG token.
             </p>
 
-            <span className="mobile-center-span">
+            <span
+              className={cn(
+                mobile ? 'w-100 d-flex justify-content-center' : ''
+              )}
+            >
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
@@ -50,13 +68,23 @@ function SectionTwo() {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624651335/Wallet_w5odv4.png"
             />
           </div>
-          <div className="col-md-6">
+          <div
+            className={cn(
+              mobile
+                ? 'col-md-6'
+                : 'col-md-6 d-flex flex-column justify-content-center'
+            )}
+          >
             <h1 className={styles.section_h1}>Earn APY%</h1>
             <p className={styles.section_p}>
               Stake $DG in governance and earn up to 40% in yeild rewards.
             </p>
 
-            <span>
+            <span
+              className={cn(
+                mobile ? 'w-100 d-flex justify-content-center' : ''
+              )}
+            >
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"
@@ -78,7 +106,13 @@ function SectionTwo() {
 
       <div className="container">
         <div className={cn('row', styles.image_span)}>
-          <div className="col-md-6">
+          <div
+            className={cn(
+              mobile
+                ? 'col-md-6'
+                : 'col-md-6 d-flex flex-column justify-content-center'
+            )}
+          >
             <h1 className={styles.section_h1}>
               Vote in the DAO <br /> (Be The House)
             </h1>
@@ -87,7 +121,11 @@ function SectionTwo() {
               vote for new games and proposals.
             </p>
 
-            <span className="mobile-center-span">
+            <span
+              className={cn(
+                mobile ? 'w-100 d-flex justify-content-center' : ''
+              )}
+            >
               <Button
                 className={styles.grey_button}
                 href="https://docs.decentral.games/"

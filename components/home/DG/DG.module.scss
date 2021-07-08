@@ -2,21 +2,32 @@
 
 .home_dashboard {
   .image_span {
+    margin-top: 150px;
+    margin-bottom: 150px;
+
     .section_h1 {
       font-size: 48px;
       font-family: Larsseit-Bold;
       margin: 0;
       padding: 0;
+
+      @include mq($until: medium) {
+        font-size: 32px;
+        text-align: center;
+      }
     }
 
     .section_p {
       font-size: 24px;
-      font-family: Larsseit-Regular;
-      color: rgba(255, 255, 255, 0.75);
-      padding-top: 16px;
-      padding-bottom: 24px;
-      margin: 0;
-      max-width: 420px;
+      font-family: Larsseit-Light;
+      color: rgba(255, 255, 255, 0.75) !important;
+      margin-top: 32px;
+      margin-bottom: 32px;
+
+      @include mq($until: medium) {
+        font-size: 16px;
+        text-align: center;
+      }
     }
 
     .grey_button {
@@ -43,7 +54,10 @@
     }
 
     .image {
-      margin-top: -100px;
+      height: 500px;
+      object-fit: cover;
+      position: relative;
+      margin-left: -50px;
     }
   }
 
@@ -55,14 +69,14 @@
     top: 0;
     left: 0;
 
-    @include mq($until: small) {
+    @include mq($until: medium) {
       display: none;
     }
   }
 
   .home_dashboard_content {
     position: relative;
-    padding-top: 24vh;
+    padding-top: 320px;
     height: 100vh;
 
     @include mq($until: medium) {
@@ -70,6 +84,7 @@
       flex-direction: column;
       justify-content: center;
       min-width: 100%;
+      height: auto;
     }
 
     h1 {
@@ -80,17 +95,23 @@
       @include mq($until: large) {
         max-width: 100%;
         text-align: center;
+        font-size: 42px;
+        margin-bottom: 16px;
       }
     }
 
     p.content {
       color: rgba(255, 255, 255, 0.9);
       letter-spacing: 0.15px;
+      font-family: 'Larsseit-Light';
       text-shadow: 1px 1px 5px black;
       max-width: 640px;
-      padding-top: 0;
-      padding-bottom: 0px;
-      margin-bottom: 16px;
+      margin-bottom: 32px;
+      margin-top: 16px;
+
+      @include mq($until: medium) {
+        font-size: 16px;
+      }
     }
 
     .button_group {
@@ -118,6 +139,12 @@
         line-height: 32px;
         font-size: 20px;
         margin-left: 16px;
+      }
+    }
+
+    .chevron_down {
+      @include mq($until: medium) {
+        display: none;
       }
     }
   }
