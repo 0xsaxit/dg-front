@@ -1,9 +1,12 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from 'store/index';
-import { Button, Divider, Grid, Image } from 'semantic-ui-react';
+import cn from 'classnames';
+import { Divider, Grid, Image } from 'semantic-ui-react';
 import Spinner from 'components/Spinner';
 import Countdown from 'react-countdown';
 import Global from 'components/Constants';
+
+import styles from './ComingEvents.module.scss';
 
 const ComingEvents = () => {
   // get DCL events data from the Context API store
@@ -52,213 +55,130 @@ const ComingEvents = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function getSentences(str) {
+  const getSentences = (str) => {
     var ss = str.match(/.*?[?!.]/g);
     var f = ss.slice(0, 1).join('!');
     return f;
   }
 
-  function contentEvents() {
+  const contentEvents = () => {
     return (
-      <span>
-        <div
-          className="account-other-tabs"
-          style={{ paddingTop: '15px', marginBottom: '-16px' }}
-        >
-          <div style={{ marginLeft: '0px' }}>
-            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span
-                style={{
-                  margin: '100px 0px 0px 0px',
-                  fontSize: '24px',
-                  fontFamily: 'Larsseit-ExtraBold',
-                  margin: '90px 0px 0px 0px',
-                  color: 'white',
-                }}
-              >
-                Featured Event
+      <div>
+        <div className={styles.account_other_tabs}>
+          <span className={cn("d-flex justify-content-between")}>
+            <p className={styles.content_event_title}>
+              Featured Event
+            </p>
+            {eventOngoing ? (
+              <p className={styles.content_event_title}>
+                Next Event: Now
+              </p>
+            ) : (
+              <span className={cn("d-flex")}>
+                <p className={styles.content_event_title}>
+                  Next Event:
+                </p>
+                <Countdown
+                  className={styles.nft_other_h3_countdown2}
+                  date={events[0].next_start_at}
+                />
               </span>
-              {eventOngoing ? (
-                <span
-                  style={{
-                    margin: '100px 0px 0px 0px',
-                    fontSize: '24px',
-                    fontFamily: 'Larsseit-ExtraBold',
-                    margin: '90px 0px 0px 0px',
-                    color: 'white',
-                  }}
-                >
-                  Next Event: Now
-                </span>
-              ) : (
-                <span style={{ display: 'flex' }}>
-                  <span
-                    style={{
-                      margin: '100px 0px 0px 0px',
-                      fontSize: '24px',
-                      fontFamily: 'Larsseit-ExtraBold',
-                      margin: '90px 0px 0px 0px',
-                      color: 'white',
-                    }}
-                  >
-                    Next Event:
-                  </span>
-                  <Countdown
-                    className="nft-other-h3 countdown2"
-                    date={events[0].next_start_at}
-                  />
-                </span>
-              )}
-            </span>
-          </div>
+            )}
+          </span>
         </div>
 
         <div>
-          <a href={events[0].url} className="my-nft-container">
-            <span className="featured-event-grid">
-              <Image src={events[0].image} className="event-pic featured" />
+          <a href={events[0].url} className={styles.my_nft_container}>
+            <span className={styles.featured_event_grid}>
+              <Image className={styles.event_pic_featured} src={events[0].image} />
 
-              <div className="post-info featured">
-                <h3
-                  className="nft-other-h3 featured"
-                  style={{
-                    paddingBottom: '9px',
-                    paddingTop: '9px',
-                  }}
-                >
+              <div className={styles.post_info_featured}>
+                <h3 className={styles.nft_other_h3_featured}>
                   {events[0].name}
                 </h3>
-                <span className="featured-info">
-                  <p className="nfts-info">{events[0].next_start_at}</p>
+                <span className={styles.featured_info}>
+                  <p className={styles.nfts_info}>{events[0].next_start_at}</p>
                 </span>
 
-                <Divider
-                  className="events-featured-divider"
-                  style={{ margin: '10px 0px 15px 0px' }}
-                />
+                <Divider className={styles.events_featured_divider} />
 
-                <p
-                  style={{
-                    lineHeight: '1.3',
-                    paddingTop: '3px',
-                  }}
-                  className="events-featured-p"
-                >
+                <p className={styles.events_featured_p}>
                   {getSentences(events[0].description)}
                 </p>
-                <span
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    paddingTop: '0px',
-                    paddingBottom: '39px',
-                  }}
-                >
-                  <Button
+                <span className={styles.events_featured_button}>
+                  <button
                     color="blue"
-                    className="nft-button"
+                    className={styles.nft_button}
                     target="_blank"
                     href={events[0].url}
                   >
                     HOP IN
-                  </Button>
-                  <Button
-                    className="nft-read-button"
+                  </button>
+                  <button
+                    className={styles.nft_read_button}
                     target="_blank"
                     href={`https://events.decentraland.org/en/?event=${events[0].id}`}
                   >
                     RSVP
-                  </Button>
+                  </button>
                 </span>
               </div>
             </span>
           </a>
         </div>
 
-        <div className="account-other-tabs">
-          <div style={{ marginLeft: '0px' }}>
-            <span
-              style={{
-                fontSize: '24px',
-                fontFamily: 'Larsseit-ExtraBold',
-                margin: '48px 0px -12px 0px',
-                color: 'white',
-                float: 'left',
-              }}
-            >
-              All Events
-            </span>
-          </div>
+        <div className={styles.account_other_tabs}>
+          <p className={styles.content_event_title}>
+            All Events
+          </p>
         </div>
 
         <Grid>
           {events.slice(1).map((event, i) => (
             <Grid.Column
+              className={styles.leaderboard_column}
               computer={5}
               tablet={8}
               mobile={16}
-              className="leaderboard-column"
               id="nine-nine-one"
               key={i}
             >
-              <a href={event.url} className="my-nft-container">
+              <a href={event.url} className={styles.my_nft_container}>
                 <div>
-                  <span
-                    style={{ display: 'flex', justifyContent: 'center' }}
-                    className="event-image"
-                  >
+                  <span className={cn("d-flex justify-content-center")}>
                     <Image
+                      className={styles.event_pic}
                       src={event.image}
-                      className="event-pic"
-                      style={{ borderRadius: '4px 4px 0px 0px' }}
                     />
                   </span>
-                  <div className="nft-description">
-                    <h3 className="nft-other-h3">{event.name}</h3>
-                    <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <div className={styles.nft_description}>
+                    <p className={styles.nft_other_h3}>{event.name}</p>
+                    <span className={cn("d-flex justify-content-center")}>
                       <p className="nfts-info">{event.next_start_at}</p>
                     </span>
 
-                    <Divider
-                      style={{
-                        margin: '10px 0px 15px 0px',
-                        width: 'calc(100% + 60px)',
-                        marginLeft: '-30px',
-                      }}
-                    />
+                    <Divider className={styles.nft_divider} />
 
-                    <p
-                      className="nft-other-p"
-                      style={{
-                        marginTop: '-12px',
-                        paddingTop: '15px',
-                        textAlign: 'center',
-                      }}
-                    >
+                    <p className={styles.nft_other_p}>
                       {getSentences(event.description)}
                     </p>
 
-                    <span
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <Button
+                    <span className={cn("d-flex justify-content-between")}>
+                      <button
+                        className={styles.nft_button}
                         color="blue"
-                        className="nft-button"
                         target="_blank"
                         href={event.url}
                       >
                         HOP IN
-                      </Button>
-                      <Button
-                        className="nft-read-button"
+                      </button>
+                      <button
+                        className={styles.nft_read_button}
                         target="_blank"
                         href={`https://events.decentraland.org/en/?event=${event.id}`}
                       >
                         RSVP
-                      </Button>
+                      </button>
                     </span>
                   </div>
                 </div>
@@ -266,17 +186,19 @@ const ComingEvents = () => {
             </Grid.Column>
           ))}
         </Grid>
-      </span>
+      </div>
     );
   }
 
   return (
-    <div className="main-container">
+    <div className={styles.main_container}>
       {loading === true ? (
         <Spinner background={1} />
       ) : (
-        <div className="page-container" id="event-container">
-          {contentEvents()}
+        <div className={styles.coming_events_container}>
+          <div className={styles.page_container}>
+            {contentEvents()}
+          </div>
         </div>
       )}
     </div>

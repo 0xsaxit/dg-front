@@ -418,60 +418,61 @@ $mq-breakpoints: (
 
 .nft_description {
   padding: 0px 30px 30px 30px;
+}
 
-  .nft_other_h3 {
-    font-family: 'Larsseit-ExtraBold';
-    font-weight: 800;
-    font-size: 32px;
-    line-height: 1.4;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
+.nft_other_h3 {
+  font-family: 'Larsseit-ExtraBold';
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.4;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
 
-    &.featured {
-      text-align: center;
-    }
-  }
-
-  .nft_other_p {
-    margin-top: -12px;
-    padding-top: 15px;
+  &.featured {
     text-align: center;
   }
+}
 
-  .nfts_info {
+.nft_other_p {
+  margin-top: -12px;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.nfts_info {
+  @include nfts_info_style;
+
+  &_2 {
     @include nfts_info_style;
+    margin-left: 12px;
+    margin-bottom: 14px;
+  }
+}
 
-    &_2 {
-      @include nfts_info_style;
-      margin-left: 12px;
-      margin-bottom: 14px;
-    }
-  }
-  
-  .nft_button {
-    position: relative;
-    background-color: #006eff;
-    color: white;
-    margin-top: 8px;
-    width: 48.5%;
-    border-radius: 4px;
-    height: 36px;
-    line-height: 10px;
-    font-size: 16px;
-  }
+.nft_button {
+  border: 0px;
+  position: relative;
+  background-color: #006eff;
+  color: white;
+  margin-top: 8px;
+  width: 48.5%;
+  height: 36px;
+  line-height: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+}
 
-  .nft_read_button {
-    background-color: transparent;
-    border: 1px solid #006eff;
-    color: #006eff;
-    margin-top: 8px;
-    width: 48.5%;
-    height: 36px;
-    line-height: 8px;
-    font-size: 16px;
-    border-radius: 4px;
-  }
+.nft_read_button {
+  background-color: transparent;
+  border: 1px solid #006eff;
+  color: #006eff;
+  margin-top: 8px;
+  width: 48.5%;
+  height: 36px;
+  line-height: 8px;
+  font-size: 16px;
+  border-radius: 4px;
 }
 
 .games_pic {
@@ -594,6 +595,24 @@ $mq-breakpoints: (
   align-self: center;
 }
 
+.play_button {
+  @include mq($from: small) {
+    position: relative;
+    background-color: #006eff !important;
+    color: white;
+    height: 64px !important;
+    width: 200px;
+    line-height: 32px;
+    font-size: 20px !important;
+    margin-right: 21px;
+    margin-left: 16px;
+  }
+ 
+  @include mq($until: small) {
+    display: none !important;
+  }
+}
+
 .play_now_button_demo {
   @include mq($from: small) {
     display: none !important;
@@ -616,7 +635,7 @@ $mq-breakpoints: (
 
 .earn_dg_button {
   @include mq($from: small) {
-    background-color: #2b2b2b;
+    background-color: #2b2b2b !important;
     color: white;
     position: relative;
     height: 64px;
@@ -631,7 +650,7 @@ $mq-breakpoints: (
 }
 
 .mobile_center_span {
-  @include mq($until: small) {
+  @include mq($until: medium) {
     display: flex;
     justify-content: center;
   }
@@ -720,4 +739,16 @@ $mq-breakpoints: (
   border-radius: 4px;
   margin-top: 30px;
   padding-bottom: 10px;
+}
+
+
+.post_info_featured {
+  padding: 6px 18px 18px 18px;
+
+  &_featured {
+    background-color: #1f1f1f;
+    padding: 6px 18px 18px 18px;
+    padding-top: 20px;
+    border-radius: 0 24px 24px 0; 
+  }
 }

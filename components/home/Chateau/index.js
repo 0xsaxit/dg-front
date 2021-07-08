@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
+import cn from 'classnames';
 import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
@@ -18,7 +19,6 @@ const Chateau = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
 
-  const realm = 'fenrir-amber';
   let buttonPlay = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -74,30 +74,27 @@ const Chateau = () => {
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
             className={styles.home_gif}
           />
-          <h1
-            className="home-dashboard-main-h1"
-            style={{ marginBottom: '-32px' }}
-          >
+          <h1 className={styles.home_dashboard_main_h1}>
             Hit the tables in a metaverse Casino
           </h1>
-          <span className="home-button-span"></span>
-          <p className="home-dashboard-p centered">
+          <span className={cn("d-flex justify-content-between")}></span>
+          <p className={styles.home_dashboard_p_centered}>
             Non-custodial, provably fair slots, roulette, blackjack and poker
             playable with crypto in Decentraland.
           </p>
           <Button
             color="blue"
-            className="play-now-button-demo"
+            className={styles.play_now_button_demo}
             href="https://www.youtube.com/embed/1NxYpUsxhC0"
             target="_blank"
           >
             Demo
           </Button>
           {state.userStatus === 0 ? (
-            <span className="mobile-center-span">
+            <span className={styles.mobile_center_span}>
               <Button
                 color="blue"
-                className="earn-dg-button"
+                className={styles.earn_dg_button}
                 id="mobile-button-hide"
                 href="https://www.youtube.com/embed/1NxYpUsxhC0"
                 target="_blank"
@@ -107,10 +104,10 @@ const Chateau = () => {
               <ModalLogin />
             </span>
           ) : (
-            <span className="mobile-center-span">
+            <span className={styles.mobile_center_span}>
               <Button
                 color="blue"
-                className="earn-dg-button"
+                className={styles.earn_dg_button}
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
@@ -118,19 +115,16 @@ const Chateau = () => {
               </Button>
               <Button
                 color="blue"
-                className="play-button"
+                className={styles.play_button}
                 href="https://play.decentraland.org/?position=-118%2C135"
                 target="_blank"
                 id="mobile-button-hide"
-                style={{ marginLeft: '16px' }}
               >
                 Play Now
               </Button>
             </span>
           )}
-          <p className="scroll-down-icon">
-            <Icon name="chevron down" />
-          </p>
+          <Icon name="chevron down" />
         </div>
       </Aux>
     );
@@ -139,177 +133,175 @@ const Chateau = () => {
   const sectionTwo = () => {
     return (
       <Aux>
-        <div>
+        <div
+          className="section-4-outter-header"
+          style={{ marginTop: '-120px' }}
+        >
           <div
-            className="section-4-outter-header"
-            style={{ marginTop: '-120px' }}
+            className="home-section-4-header"
+            style={{ paddingBottom: '30px' }}
           >
-            <div
-              className="home-section-4-header"
-              style={{ paddingBottom: '30px' }}
-            >
-              <span className="powered-dg-span">
-                <h1
-                  className="home-footer-h1 ecosystem"
-                  style={{ marginBottom: '0px', fontSize: '48px' }}
-                >
-                  An ecosystem powered by $DG
-                </h1>
-                <span className="home-button-span ecosystem">
-                  <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
-                    <Button
-                      color="blue"
-                      className="announcement"
-                      href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
-                    >
-                      Learn
-                    </Button>
-                  </Link>
+            <span className="powered-dg-span">
+              <h1
+                className="home-footer-h1 ecosystem"
+                style={{ marginBottom: '0px', fontSize: '48px' }}
+              >
+                An ecosystem powered by $DG
+              </h1>
+              <span className="home-button-span ecosystem">
+                <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
                   <Button
                     color="blue"
-                    className="docs"
-                    target="_blank"
-                    href="https://docs.decentral.games/ecosystem"
+                    className="announcement"
+                    href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
                   >
-                    Docs
+                    Learn
                   </Button>
-                </span>
+                </Link>
+                <Button
+                  color="blue"
+                  className="docs"
+                  target="_blank"
+                  href="https://docs.decentral.games/ecosystem"
+                >
+                  Docs
+                </Button>
               </span>
-            </div>
+            </span>
           </div>
+        </div>
 
-          <div className="section-4-outter" style={{ paddingBottom: '60px' }}>
-            <div className="home-section-4">
-              <span
-                className="outter-games-container"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginTop: '30px',
-                }}
-              >
-                <Link href="/dg/mining">
-                  <a className="dg-powered-container one">
+        <div className="section-4-outter" style={{ paddingBottom: '60px' }}>
+          <div className="home-section-4">
+            <span
+              className="outter-games-container"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: '30px',
+              }}
+            >
+              <Link href="/dg/mining">
+                <a className="dg-powered-container one">
+                  <span
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                    className="nft-image"
+                  >
+                    <Image
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555540/1f3b0_2x_pvkxvc.png"
+                      className="dg-powered-pic"
+                      style={{ borderRadius: '4px' }}
+                    />
+                  </span>
+                  <div className="nft-description">
+                    <h3 className="nft-other-h3">Gameplay</h3>
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
-                      className="nft-image"
+                    ></span>
+
+                    <Divider
+                      style={{
+                        margin: '4px 0px 20px -60px',
+                        width: 'calc(100% + 120px)',
+                      }}
+                    />
+
+                    <p
+                      className="nft-other-p"
+                      style={{
+                        marginTop: '-12px',
+                        paddingTop: '15px',
+                        textAlign: 'center',
+                      }}
                     >
-                      <Image
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555540/1f3b0_2x_pvkxvc.png"
-                        className="dg-powered-pic"
-                        style={{ borderRadius: '4px' }}
-                      />
-                    </span>
-                    <div className="nft-description">
-                      <h3 className="nft-other-h3">Gameplay</h3>
-                      <span
-                        style={{ display: 'flex', justifyContent: 'center' }}
-                      ></span>
+                      Mine $DG by playing games with MANA and DAI. Refer
+                      friends and enjoy up to 10% of the $DG they mine.
+                    </p>
+                  </div>
+                </a>
+              </Link>
 
-                      <Divider
-                        style={{
-                          margin: '4px 0px 20px -60px',
-                          width: 'calc(100% + 120px)',
-                        }}
-                      />
-
-                      <p
-                        className="nft-other-p"
-                        style={{
-                          marginTop: '-12px',
-                          paddingTop: '15px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Mine $DG by playing games with MANA and DAI. Refer
-                        friends and enjoy up to 10% of the $DG they mine.
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-
-                <Link href="/dg/liquidity">
-                  <a className="dg-powered-container two">
+              <Link href="/dg/liquidity">
+                <a className="dg-powered-container two">
+                  <span
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                    className="nft-image"
+                  >
+                    <Image
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f4b0_2x_s22ysr.png"
+                      className="dg-powered-pic"
+                      style={{ borderRadius: '4px' }}
+                    />
+                  </span>
+                  <div className="nft-description">
+                    <h3 className="nft-other-h3">Liquidity</h3>
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
-                      className="nft-image"
+                    ></span>
+
+                    <Divider
+                      style={{
+                        margin: '4px 0px 20px -60px',
+                        width: 'calc(100% + 120px)',
+                      }}
+                    />
+
+                    <p
+                      className="nft-other-p"
+                      style={{
+                        marginTop: '-12px',
+                        paddingTop: '15px',
+                        textAlign: 'center',
+                      }}
                     >
-                      <Image
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f4b0_2x_s22ysr.png"
-                        className="dg-powered-pic"
-                        style={{ borderRadius: '4px' }}
-                      />
-                    </span>
-                    <div className="nft-description">
-                      <h3 className="nft-other-h3">Liquidity</h3>
-                      <span
-                        style={{ display: 'flex', justifyContent: 'center' }}
-                      ></span>
+                      Earn $DG liquidity incentives by providing liquidity in
+                      Balancer or Uniswap AMM pools.
+                    </p>
+                  </div>
+                </a>
+              </Link>
 
-                      <Divider
-                        style={{
-                          margin: '4px 0px 20px -60px',
-                          width: 'calc(100% + 120px)',
-                        }}
-                      />
-
-                      <p
-                        className="nft-other-p"
-                        style={{
-                          marginTop: '-12px',
-                          paddingTop: '15px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Earn $DG liquidity incentives by providing liquidity in
-                        Balancer or Uniswap AMM pools.
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-
-                <Link href="/dg/governance">
-                  <a className="dg-powered-container three">
+              <Link href="/dg/governance">
+                <a className="dg-powered-container three">
+                  <span
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                    className="nft-image"
+                  >
+                    <Image
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f3db-fe0f_2x_muszls.png"
+                      className="dg-powered-pic"
+                      style={{ borderRadius: '4px' }}
+                    />
+                  </span>
+                  <div className="nft-description">
+                    <h3 className="nft-other-h3">Governance</h3>
                     <span
                       style={{ display: 'flex', justifyContent: 'center' }}
-                      className="nft-image"
+                    ></span>
+
+                    <Divider
+                      style={{
+                        margin: '4px 0px 20px -60px',
+                        width: 'calc(100% + 120px)',
+                      }}
+                    />
+
+                    <p
+                      className="nft-other-p"
+                      style={{
+                        marginTop: '-12px',
+                        paddingTop: '15px',
+                        textAlign: 'center',
+                      }}
                     >
-                      <Image
-                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f3db-fe0f_2x_muszls.png"
-                        className="dg-powered-pic"
-                        style={{ borderRadius: '4px' }}
-                      />
-                    </span>
-                    <div className="nft-description">
-                      <h3 className="nft-other-h3">Governance</h3>
-                      <span
-                        style={{ display: 'flex', justifyContent: 'center' }}
-                      ></span>
-
-                      <Divider
-                        style={{
-                          margin: '4px 0px 20px -60px',
-                          width: 'calc(100% + 120px)',
-                        }}
-                      />
-
-                      <p
-                        className="nft-other-p"
-                        style={{
-                          marginTop: '-12px',
-                          paddingTop: '15px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Stake $DG to govern the casino bankroll. Vote on
-                        treasury management, economic policy, and new game
-                        development
-                      </p>
-                    </div>
-                  </a>
-                </Link>
-              </span>
-            </div>
+                      Stake $DG to govern the casino bankroll. Vote on
+                      treasury management, economic policy, and new game
+                      development
+                    </p>
+                  </div>
+                </a>
+              </Link>
+            </span>
           </div>
         </div>
       </Aux>

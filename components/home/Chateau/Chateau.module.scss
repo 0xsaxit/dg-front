@@ -1,1 +1,55 @@
 @import 'styles/base.scss';
+
+.home_dashboard_content {
+  .section_4_outter_header_container {
+    margin-top: -120px;
+
+    .home_section_4_header {
+      padding-bottom: 30px;
+      position: relative;
+      padding: 90px 30px 30px 30px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2px;
+
+      @include mq($until: small) {
+        padding: 0 21px 0 21px;
+      }
+    }
+
+    .powered_dg_span {
+      margin-top: 90px;
+      order: 1;
+      display: flex;
+      min-width: 100%;
+      flex-direction: column;
+      margin-top: 150px;
+    }
+
+    .home_footer_h1_ecosystem {
+      font-weight: 600;
+      margin-left: -2px;
+      margin-bottom: 15px;
+
+      @include mq($until: small) {
+        font-size: 40px;
+      }
+    }
+
+    .home_button_span_ecosystem {
+      display: flex;
+      align-self: center;
+
+      @include mq($until: medium) {
+        align-self: start;
+      }
+
+      @include mq($until: small) {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
