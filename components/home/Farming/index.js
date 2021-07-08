@@ -14,7 +14,10 @@ import ButtonReward1 from 'components/button/ButtonReward1';
 import ButtonReward2 from 'components/button/ButtonReward2';
 import Global from 'components/Constants';
 import Transactions from 'common/Transactions';
+import cn from 'classnames';
 import Fetch from 'common/Fetch';
+
+import styles from './Farming.module.scss';
 
 const Farming = props => {
   // get user's state from the Context API store
@@ -216,123 +219,123 @@ const Farming = props => {
   // helper functions
   const submenu = () => {
     return (
-      <div style={{ margin: '120px 0px 0px 0px' }}>
-        <div className="account-other-tabs">
+      <div className={styles.farming_submenu_container}>
+        <div className={styles.account_other_tabs}>
           {DGState === 'treasury' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <span className="account-hover active">Treasury</span>
+            <div className={cn("w-100")}>
+              <span className={styles.account_hover_active}>Treasury</span>
               <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
+                <span className={styles.account_hover}>Governance</span>
               </Link>
               <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Gameplay
                   </b>
                   <b>Rewards</b>
                 </span>
               </Link>
               <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
               </Link>
-            </p>
+            </div>
           ) : DGState === 'governance' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <div className={cn("w-100")}>
               <Link href="/dg">
-                <span className="account-hover">Treasury</span>
+                <span className={styles.account_hover}>Treasury</span>
               </Link>
-              <span className="account-hover active">Governance</span>
+              <span className={styles.account_hover_active}>Governance</span>
               <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Gameplay
                   </b>
                   <b>Rewards</b>
                 </span>
               </Link>
               <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
               </Link>
-            </p>
+            </div>
           ) : DGState === 'mining' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <div className={cn("w-100")}>
               <Link href="/dg">
-                <span className="account-hover">Treasury</span>
+                <span className={styles.account_hover}>Treasury</span>
               </Link>
               <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
+                <span className={styles.account_hover}>Governance</span>
               </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+              <span className={styles.account_hover_active}>
+                <b className={styles.acccount_hover_title}>
                   Gameplay
                 </b>
                 <b>Rewards</b>
               </span>
               <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
               </Link>
-            </p>
+            </div>
           ) : DGState === 'uniswap' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <div className={cn("w-100")}>
               <Link href="/dg">
-                <span className="account-hover">Treasury</span>
+                <span className={styles.account_hover}>Treasury</span>
               </Link>
               <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
+                <span className={styles.account_hover}>Governance</span>
               </Link>
               <Link href="/dg/mining">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Gameplay
                   </b>
                   <b>Rewards</b>
                 </span>
               </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+              <span className={styles.account_hover_active}>
+                <b className={styles.acccount_hover_title}>
                   Liquidity
                 </b>
                 <b>Provision</b>
               </span>
-            </p>
+            </div>
           ) : (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <div className={cn("w-100")}>
               <Link href="/dg">
-                <span className="account-hover">Treasury</span>
+                <span className={styles.account_hover}>Treasury</span>
               </Link>
               <Link href="/dg/governance">
-                <span className="account-hover">Governance</span>
+                <span className={styles.account_hover}>Governance</span>
               </Link>
-              <span className="account-hover active">
-                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+              <span className={styles.account_hover_active}>
+                <b className={styles.acccount_hover_title}>
                   Gameplay
                 </b>
                 <b>Rewards</b>
               </span>
               <Link href="/dg/liquidity">
-                <span className="account-hover">
-                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                <span className={styles.account_hover}>
+                  <b className={styles.acccount_hover_title}>
                     Liquidity
                   </b>
                   <b>Provision</b>
                 </span>
               </Link>
-            </p>
+            </div>
           )}
         </div>
       </div>
@@ -377,9 +380,9 @@ const Farming = props => {
 
   const contentAdmin = () => {
     return (
-      <div className="DG-liquidity-container top">
-        <div className="DG-column top">
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className={styles.dg_liquidity_container_top}>
+        <div className={styles.dg_column_top}>
+          <span className={cn("d-flex flex-column")}>
             <p>
               BPT balance in contract:{' '}
               {formatPrice(state.stakingBalances.BALANCE_CONTRACT_BPT_1, 3)}
@@ -392,7 +395,7 @@ const Farming = props => {
             <p>Reward period finish time: {finishTime}</p>
 
             <Input
-              className="liquidity-input"
+              className={styles.liquidity_input}
               fluid
               placeholder="Amount"
               value={amountInput}
@@ -422,9 +425,9 @@ const Farming = props => {
   }
 
   return (
-    <div className="main-container">
-      <div className="page-container">
-        <div className="account-other-inner-container">
+    <div className={styles.main_container}>
+      <div className={styles.page_container}>
+        <div className={styles.account_other_inner_container}>
           {submenu()}
 
           {DGState === 'governance' ? (

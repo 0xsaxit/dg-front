@@ -244,6 +244,10 @@ $mq-breakpoints: (
     }
   }
 
+  &_top {
+    width: 48.5%;
+  }
+
   &_one {
     width: 100%;
     background-color: #1f1f1f;
@@ -704,10 +708,11 @@ $mq-breakpoints: (
     cursor: default;
     border-bottom: 3px solid #006eff;
     padding-bottom: 12px;
+  }
 
-    &_active:hover {
-      background-color: rgb(229, 232, 235);
-    }
+  &_title {
+    margin-right: 4px;
+    padding-top: 1px;
   }
 
   &:hover {
