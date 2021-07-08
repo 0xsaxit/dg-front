@@ -1,52 +1,59 @@
 import { Button, Icon } from 'semantic-ui-react';
+import cn from 'classnames';
+import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
 
 function SectionOne(props) {
+  const mobile = useMediaQuery('(max-width: 576px)');
+
   return (
     <Aux>
-      <div>
-        <video
-          className={styles.video}
-          id="my-video"
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
-          type="video/mp4"
-          frameBorder="0"
-          autoPlay={props.autoPlay}
-          loop
-          muted
-        ></video>
-      </div>
+      <video
+        className={styles.video}
+        id="my-video"
+        src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
+        type="video/mp4"
+        frameBorder="0"
+        autoPlay={props.autoPlay}
+        loop
+        muted
+      ></video>
 
-      <div className={styles.home_dashboard_content}>
-        <img
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
-          className={styles.home_gif}
-        />
-        <h1>Hit the tables in a metaverse Casino</h1>
-        <p className={styles.content}>
-          Non-custodial, probably fair slots, roulette, blackjack and poker
-          playable with crypto in Decentraland
-        </p>
+      <div className={cn(styles.home_dashboard_content, 'container')}>
+        <div className="row">
+          <div className="col-md-6">
+            <h1>
+              {mobile
+                ? 'Hit the Tables'
+                : 'Hit the tables in a metaverse Casino'}
+            </h1>
+            <p className={styles.content}>
+              {mobile
+                ? 'With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.'
+                : 'Non-custodial, probably fair slots, roulette, blackjack and poker playable with crypto in Decentraland'}
+            </p>
+            <span className={styles.button_group}>
+              <Button
+                color="blue"
+                className={styles.earn_dg_button}
+                href="https://docs.decentral.games/"
+                target="_blank"
+              >
+                Learn More
+              </Button>
+              <Button
+                color="blue"
+                className={styles.play_button}
+                href="https://play.decentraland.org/?position=-118%2C135"
+                target="_blank"
+              >
+                Play Now
+              </Button>
+            </span>
+          </div>
+        </div>
 
-        <span className={styles.button_group}>
-          <Button
-            color="blue"
-            className={styles.earn_dg_button}
-            href="https://docs.decentral.games/"
-            target="_blank"
-          >
-            Learn More
-          </Button>
-          <Button
-            color="blue"
-            className={styles.play_button}
-            href="https://play.decentraland.org/?position=-118%2C135"
-            target="_blank"
-          >
-            Play Now
-          </Button>
-        </span>
         <p>
           <Icon name="chevron down" />
         </p>
