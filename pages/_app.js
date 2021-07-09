@@ -1,5 +1,6 @@
 import { Provider } from '../store';
 import App from 'next/app';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import 'semantic-ui-css/semantic.min.css';
 import '../static/css/main.css';
 import '../static/css/agate.css';
@@ -27,29 +28,31 @@ class Application extends App {
     const { Component, pageProps, store } = this.props;
 
     return (
-      <Provider store={store}>
-        <style jsx global>{`
-          body {
-            background: black;
-          }
-        `}</style>
-        <Segment />
-        <UserStatus />
-        <UserBalances />
-        <Transactions />
-        <TreasuryNumbers />
-        <GameRecords />
-        <ActiveStatus />
-        <UserInfo />
-        <AdminBalances />
-        <UsersList />
-        <DGBalances />
-        <PricesBreakdown />
-        <NFTSPOAPS />
-        <EventsData />
+      <ParallaxProvider>
+        <Provider store={store}>
+          <style jsx global>{`
+            body {
+              background: black;
+            }
+          `}</style>
+          <Segment />
+          <UserStatus />
+          <UserBalances />
+          <Transactions />
+          <TreasuryNumbers />
+          <GameRecords />
+          <ActiveStatus />
+          <UserInfo />
+          <AdminBalances />
+          <UsersList />
+          <DGBalances />
+          <PricesBreakdown />
+          <NFTSPOAPS />
+          <EventsData />
 
-        <Component {...pageProps} />
-      </Provider>
+          <Component {...pageProps} />
+        </Provider>
+      </ParallaxProvider>
     );
   }
 }
