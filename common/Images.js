@@ -66,6 +66,8 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625819988/image_45_Traced_wrmih8.svg',
   DG_BACK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625820076/image_52_u6oiyf.jpg',
+  ANIMATED_BACKGROUND:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1625837406/Full_Screen_Background_Animation_uo9h6b_tgv9jq.gif',
 };
 
 export default Images;
