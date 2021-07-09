@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Footer from 'components/home/Footer';
 import SectionOne from './SectionOne';
 import SectionTwo from './SectionTwo';
+import SectionThree from './SectionThree';
 import styles from './DG.module.scss';
 
 const DGHome = () => {
@@ -35,6 +36,7 @@ const DGHome = () => {
     <div className={styles.home_dashboard}>
       <SectionOne autoPlay={videoPlay} />
       <SectionTwo />
+      <SectionThree />
       <Footer />
     </div>
   );
