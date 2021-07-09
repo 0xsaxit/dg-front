@@ -31,7 +31,6 @@
   "dependencies": {
     "@babel/core": "^7.14.0",
     "@biconomy/mexa": "^1.5.15",
-    "@connext/vector-modal": "^1.0.6-beta.0",
     "@next/bundle-analyzer": "^10.2.0",
     "@ramp-network/ramp-instant-sdk": "^2.4.2",
     "@transak/transak-sdk": "^1.0.28",
@@ -42,6 +41,7 @@
     "chart.js": "^2.9.4",
     "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
+    "dg-modal-widget": "^1.0.5",
     "eth-sig-util": "^3.0.1",
     "ethers": "^5.1.4",
     "html-to-react": "^1.4.5",
