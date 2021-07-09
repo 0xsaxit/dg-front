@@ -87,7 +87,7 @@ const Footer = () => {
           </a>
 
           <a href={Global.CONSTANTS.DISCORD_URL} target="_blank">
-            <span clasName={styles.social_icons_link}>
+            <span className={styles.social_icons_link}>
               <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
                   className={styles.social_icons}
@@ -101,7 +101,7 @@ const Footer = () => {
             href={`https://t.me/${Global.CONSTANTS.SOCIAL_HANDLE}`}
             target="_blank"
           >
-            <span clasName={styles.social_icons_link}>
+            <span className={styles.social_icons_link}>
               <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
                   className={styles.social_icons}
@@ -115,7 +115,7 @@ const Footer = () => {
             href={`https://twitter.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}
             target="_blank"
           >
-            <span clasName={styles.social_icons_link}>
+            <span className={styles.social_icons_link}>
               <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
                   className={styles.social_icons}

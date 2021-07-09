@@ -3,10 +3,9 @@ import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
-import styles from '../ModalLogin/ModalLogin.module.scss';
-import Images from '../../../common/Images';
-import Fetch from '../../../common/Fetch';
+import Fetch from 'common/Fetch';
+
+import styles from 'components/modal//ModalLogin/ModalLogin.module.scss';
 
 const ModalLogin = () => {
   // get user's unclaimed DG balance from the Context API store

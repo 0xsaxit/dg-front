@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { Modal, Button, Divider, Icon, Checkbox } from 'semantic-ui-react';
-import { GlobalContext } from '../../store';
+import { Modal, Button, Divider, Icon } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
 import ButtonVerify from '../button/ButtonVerify';
 import ButtonVerifyFortmatic from '../button/ButtonVerifyFortmatic';
 

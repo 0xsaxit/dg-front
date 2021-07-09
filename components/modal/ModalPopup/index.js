@@ -1,10 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
-import cn from 'classnames';
-import Web3 from 'web3';
-import { Popup, Icon, Button } from 'semantic-ui-react';
+import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
-import Fetch from '../../../common/Fetch';
+import Fetch from 'common/Fetch';
 
 const ModalPopup = () => {
   // get user's unclaimed DG balance from the Context API store
