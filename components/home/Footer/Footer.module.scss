@@ -162,12 +162,41 @@
       width: 100%;
     }
 
-    .footer_header {
-      padding-top: 38px;
+    .grid_newsletter_tablet {
+      padding: 0px 30px 30px 30px;
+
+      .footer_header {
+        padding-top: 32px;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .footer_text {
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      .input_placeholder {
+        height: 48px;
+        width: 100%;
+        color: #777e90;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 10px 16px;
+      }
     }
 
-    .grid_newsletter_tablet {
-      padding: 0px 30px 60px 30px;
+    .cookie_container_tablet {
+      padding: 24px 0;
+      border-top: 1px solid #353945;
+      display: flex;
+      justify-content: center;
+
+      .copyright {
+        font-size: 12px;
+        color: #777e90;
+        line-height: 20px;
+      }
     }
   }
 }

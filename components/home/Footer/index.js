@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import cn from 'classnames';
-import { Menu, Grid, Input, Button, Icon } from 'semantic-ui-react';
-import Global from '../../Constants';
+import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
   // define local variables
   let linkDocs = '';
+  const mobile = useMediaQuery('(max-width: 768px)');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -95,17 +95,19 @@ const Footer = () => {
               <div className={styles.input_placeholder}>Enter your email</div>
             </div>
           </div>
-          <div className={styles.cookie_container}>
-            <span className={styles.copyright}>
-              Copyright © 2021 Web4 LLC. All rights reserved
-            </span>
-            <div className="d-flex justify-content-between">
-              <p className={styles.description}>
-                We use cookies to create a better experience.
-              </p>
-              <span className={styles.accept}>Accept</span>
+          {!mobile && (
+            <div className={styles.cookie_container}>
+              <span className={styles.copyright}>
+                Copyright © 2021 Web4 LLC. All rights reserved
+              </span>
+              <div className="d-flex justify-content-between">
+                <p className={styles.description}>
+                  We use cookies to create a better experience.
+                </p>
+                <span className={styles.accept}>Accept</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className={styles.grid_newsletter_tablet}>
@@ -120,6 +122,14 @@ const Footer = () => {
 
           <div className={styles.input_placeholder}>Enter your email</div>
         </div>
+
+        {mobile && (
+          <div className={styles.cookie_container_tablet}>
+            <span className={styles.copyright}>
+              Copyright © 2021 Web4 LLC. All rights reserved
+            </span>
+          </div>
+        )}
       </div>
     </>
   );

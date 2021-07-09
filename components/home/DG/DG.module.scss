@@ -5,6 +5,11 @@
     margin-top: 150px;
     margin-bottom: 150px;
 
+    @include mq($until: medium) {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+
     .section_h1 {
       font-size: 48px;
       font-family: Larsseit-Bold;
@@ -162,12 +167,21 @@
   .our_partners {
     padding: 96px 0;
 
+    @include mq($until: medium) {
+      padding: 24px 0;
+    }
+
     h1 {
       line-height: 50px;
       font-size: 40px;
       font-family: 'Larsseit-Bold';
       text-align: center;
       margin-bottom: 70px;
+
+      @include mq($until: medium) {
+        margin-bottom: 24px;
+        font-size: 32px;
+      }
     }
   }
 
@@ -177,6 +191,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    @include mq($until: medium) {
+      padding: 24px 0;
+    }
 
     .sub_title {
       line-height: 20px;
