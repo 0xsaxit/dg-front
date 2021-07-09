@@ -1,1 +1,12 @@
 @import 'styles/base.scss';
+
+.footer_container {
+  .social_icons_link {
+    margin-bottom: 6px;
+  }
+
+  .social_icons {
+    margin-left: -5px;
+    margin-right: 10px;
+  }
+}

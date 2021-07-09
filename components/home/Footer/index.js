@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import Global from 'components/Constants';
+import cn from 'classnames';
+
+import styles from './Footer.module.scss';
 
 const Footer = () => {
   // define local variables
@@ -19,42 +22,42 @@ const Footer = () => {
   }, [linkDocs]);
 
   return (
-    <span className="footer-container">
-      <Menu className="inner-footer-container-2" icon="labeled">
-        <div className="footer-menu-items">
+    <span className={styles.footer_container}>
+      <Menu className={styles.inner_footer_container_2} icon="labeled">
+        <div className={styles.footer_menu_items}>
           <a href="/">
-            <Menu.Item className="sidebar-menu-text blog">PLAY</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text}>PLAY</Menu.Item>
           </a>
 
           <a href="https://docs.decentral.games/info/risks" target="_blank">
-            <Menu.Item className="sidebar-menu-text blog">RISKS</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text}>RISKS</Menu.Item>
           </a>
 
           <a
             href="https://docs.decentral.games/info/disclaimer"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">DISCLAIMER</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text}>DISCLAIMER</Menu.Item>
           </a>
 
           <a
             href="https://docs.decentral.games/info/privacy-policy"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">
+            <Menu.Item className={styles.sidebar_menu_text}>
               PRIVACY POLICY
             </Menu.Item>
           </a>
 
           <a href="https://decentralgames.substack.com/" target="_blank">
-            <Menu.Item className="sidebar-menu-text blog">NEWSLETTER</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text}>NEWSLETTER</Menu.Item>
           </a>
 
           <a
             href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">PRESS KIT</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text}>PRESS KIT</Menu.Item>
           </a>
 
           <a
@@ -62,21 +65,21 @@ const Footer = () => {
             id="docs-footer"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">DOCS</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text}>DOCS</Menu.Item>
           </a>
         </div>
       </Menu>
 
-      <Menu className="inner-footer-container-2" icon="labeled">
-        <div className="footer-menu-items">
+      <Menu className={cn("justify-content-center")} icon="labeled">
+        <div className={cn("d-flex flex-wrap justify-content-center")}>
           <a
             href={`https://github.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}
             target="_blank"
           >
-            <span style={{ display: 'flex', marginBottom: '6px' }}>
-              <Menu.Item className="right-menu-text" id="dropdown-more-items">
+            <span className={styles.social_icons_link}>
+              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
-                  style={{ marginLeft: '-6px', marginRight: '11px' }}
+                  className={styles.social_icons}
                   name="github"
                 />
               </Menu.Item>
@@ -84,10 +87,10 @@ const Footer = () => {
           </a>
 
           <a href={Global.CONSTANTS.DISCORD_URL} target="_blank">
-            <span style={{ display: 'flex', marginBottom: '6px' }}>
-              <Menu.Item className="right-menu-text" id="dropdown-more-items">
+            <span clasName={styles.social_icons_link}>
+              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
-                  style={{ marginLeft: '-5px', marginRight: '10px' }}
+                  className={styles.social_icons}
                   name="discord"
                 />
               </Menu.Item>
@@ -98,10 +101,10 @@ const Footer = () => {
             href={`https://t.me/${Global.CONSTANTS.SOCIAL_HANDLE}`}
             target="_blank"
           >
-            <span style={{ display: 'flex', marginBottom: '6px' }}>
-              <Menu.Item className="right-menu-text" id="dropdown-more-items">
+            <span clasName={styles.social_icons_link}>
+              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
-                  style={{ marginLeft: '-5px', marginRight: '10px' }}
+                  className={styles.social_icons}
                   name="telegram"
                 />
               </Menu.Item>
@@ -112,10 +115,10 @@ const Footer = () => {
             href={`https://twitter.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}
             target="_blank"
           >
-            <span style={{ display: 'flex', marginBottom: '6px' }}>
-              <Menu.Item className="right-menu-text" id="dropdown-more-items">
+            <span clasName={styles.social_icons_link}>
+              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
                 <Icon
-                  style={{ marginLeft: '-5px', marginRight: '10px' }}
+                  className={styles.social_icons}
                   name="twitter"
                 />
               </Menu.Item>
