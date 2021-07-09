@@ -3,6 +3,8 @@ import Web3 from 'web3';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 
+import styles from './MessageBar.module.scss';
+
 const MessageBar = () => {
   // get user's network, location, and active status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -85,21 +87,7 @@ const MessageBar = () => {
     return null;
   } else if (message !== '') {
     return (
-      <div
-        id="message-bar"
-        className="mobile-message-bar"
-        style={{
-          fontFamily: 'Larsseit-Regular',
-          color: 'white',
-          textAlign: 'center',
-          padding: '10px 30px 9px 30px',
-          fontSize: '14px',
-          letterSpacing: '0.5px',
-          fontWeight: 500,
-          backgroundColor: '#006EFF',
-          minHeight: '38px',
-        }}
-      >
+      <div className={styles.mobile_message_bar} id="message-bar">
         {message}
       </div>
     );

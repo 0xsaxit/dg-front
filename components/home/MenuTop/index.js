@@ -2,12 +2,15 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
+import { Menu, Icon, Dropdown } from 'semantic-ui-react';
 import ModalInfo from 'components/modal/ModalInfo';
 import MessageBar from '../MessageBar';
 import ButtonConnect from 'components/button/ButtonConnect';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
+import cn from 'classnames';
+
+import styles from './MenuTop.module.scss';
 
 const MenuTop = props => {
   // get token balances from the Context API store
@@ -98,31 +101,31 @@ const MenuTop = props => {
 
   if (props.isHomePage && scrollState == 'top') {
     menuStyle = [
-      'mobile-menu-icon-home',
-      'right-menu-text',
-      'sidebar-menu-text',
-      'dashboard-menu-container',
+      'mobile_menu_icon_home',
+      'right_menu_text',
+      'sidebar_menu_text',
+      'dashboard_menu_container',
       '',
     ];
   } else if (props.isHomePage && scrollState == 'amir') {
     menuStyle = [
-      'mobile-menu-icon',
-      'right-menu-text blog',
-      'sidebar-menu-text blog',
-      'dashboard-menu-container',
+      'mobile_menu_icon',
+      'right_menu_text blog',
+      'sidebar_menu_text blog',
+      'dashboard_menu_container',
       'top',
     ];
   } else {
     menuStyle = [
-      'mobile-menu-icon',
-      'right-menu-text blog',
-      'sidebar-menu-text blog',
-      'other-menu-container blog',
+      'mobile_menu_icon',
+      'right_menu_text blog',
+      'sidebar_menu_text blog',
+      'other_menu_container blog',
       '',
     ];
   }
 
-  function menuOpen() {
+  const menuOpen = () => {
     if (open == true) {
       setOpen(false);
     } else {
@@ -165,7 +168,7 @@ const MenuTop = props => {
   }, [utm]);
 
   // store affiliate address in localStorage
-  function setAffiliateState() {
+  const setAffiliateState = () => {
     dispatch({
       type: 'affiliate_address',
       data: localStorage.getItem('ref'),
@@ -189,7 +192,7 @@ const MenuTop = props => {
   // helper functions
 
   // get path and render appropriate styles
-  function getLinkStyles(path) {
+  const getLinkStyles = (path) => {
     if (path === '/') {
       if (path === router.pathname) {
         return 'active';
@@ -203,7 +206,7 @@ const MenuTop = props => {
     }
   }
 
-  function DGLogo() {
+  const DGLogo = () => {
     return (
       <Link href="/">
         <img
@@ -216,7 +219,7 @@ const MenuTop = props => {
   }
 
   // dropdown menu for mobile
-  function dropdownMenu() {
+  const dropdownMenu = () => {
     return (
       <div className="mobile-height-fix">
         <Menu attached="top" className="mobile-menu-popup">
@@ -297,7 +300,7 @@ const MenuTop = props => {
   }
 
   // links are shown or hidden based on user's display resolution
-  function shownOrHiddenItems() {
+  const shownOrHiddenItems = () => {
     return (
       <div className="menu-items-to-hide">
         <Link href={`/${utm}`}>
@@ -344,7 +347,7 @@ const MenuTop = props => {
   }
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
-  function balancesAndButtons() {
+  const balancesAndButtons = () => {
     if (state.userStatus === 3) {
       return null;
     } else if (state.userStatus >= 4) {
@@ -373,13 +376,13 @@ const MenuTop = props => {
           {dropdownMenu()}
 
           {props.isHomePage && !open ? (
-            <Menu className="menu-container" icon="labeled">
+            <Menu className={styles.menu_container} icon="labeled">
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}
             </Menu>
           ) : (
-            <Menu className="menu-container-dark blog" icon="labeled">
+            <Menu className={styles.mneu_container} icon="labeled">
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}

@@ -17,6 +17,10 @@ $mq-breakpoints: (
 
 ////////// Position //////////
 
+.top {
+  width: 48.5%;
+}
+
 .dg_flex {
   display: flex;
 }
@@ -812,6 +816,13 @@ $mq-breakpoints: (
   &:hover {
     color: rgba(255, 255, 255, 1);
     font-weight: 800;
+  }
+
+  &_blog {
+    &:active &:hover {
+      color: black;
+      cursor: pointer !important;
+    }
   }
 }
 

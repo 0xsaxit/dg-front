@@ -343,7 +343,7 @@ const Offerings = props => {
     );
   }
 
-  function leaderboardLink(link) {
+  const leaderboardLink = (link) => {
     if (state.userStatus >= 4) {
       if (link) {
         return (
@@ -365,7 +365,7 @@ const Offerings = props => {
     }
   }
 
-  function coinSelect() {
+  const coinSelect = () => {
     return (
       <Aux>
         {/* ////////////////////////////////////////////////////////////////////////////////
