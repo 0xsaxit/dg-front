@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import cn from 'classnames';
+import { Accordion } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
 import styles from './Footer.module.scss';
@@ -25,7 +26,7 @@ const Footer = () => {
     <>
       <div className={styles.footer_container}>
         <div className={cn(styles.grid_container, 'd-flex flex-column')}>
-          <div className="d-flex flex-row w-100 mb-6">
+          <div className="d-flex flex-md-row flex-column w-100 mb-6">
             <span className={styles.grid_column}>
               <p className={styles.footer_header}> Token </p>
               <Link href="/dg">
@@ -81,7 +82,6 @@ const Footer = () => {
                 <p className={styles.footer_link}> All Events </p>
               </Link>
             </span>
-
             <div className={styles.grid_newsletter}>
               <p className={styles.footer_header}> Join Our Newsletter! </p>
               <Link href="/events">

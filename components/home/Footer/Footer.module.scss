@@ -13,6 +13,12 @@
 
     .grid_column {
       width: 18%;
+
+      @include mq($until: medium) {
+        width: 100%;
+        padding-top: 32px;
+        border-top: 1px solid #353945;
+      }
     }
 
     .footer_header {
@@ -20,6 +26,13 @@
       font-size: 24px;
       padding-bottom: 20px;
       color: white;
+
+      @include mq($until: medium) {
+        padding-bottom: 0;
+        margin-bottom: 30px;
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
 
     .footer_link {
@@ -32,6 +45,13 @@
       &:hover {
         cursor: pointer;
         filter: brightness(0.9);
+      }
+
+      @include mq($until: medium) {
+        padding-bottom: 0;
+        margin-bottom: 24px;
+        font-size: 14px;
+        line-height: 16px;
       }
     }
 
@@ -155,7 +175,7 @@
   @media (max-width: 768px) {
     .grid_container {
       flex-direction: column;
-      padding: 90px 30px 112px 30px;
+      padding: 60px 30px 40px 30px;
     }
 
     .grid_column {
