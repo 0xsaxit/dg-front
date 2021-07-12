@@ -9,11 +9,10 @@ import ModalLoginTop from '../modal/ModalLoginTop';
 
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
-  const user = await Fetch.PLAYER_INFO(userAddress);
+  const timestamp = Date.now();
 
   const msg = window.web3.utils.utf8ToHex(
-    `Decentral Games Login
-     Nonce: ${user.nonce}`
+    `Decentral Games Login\nTimestamp: ${timestamp}`
   );
   const signature = await window.web3.eth.personal.sign(
     msg,
@@ -22,7 +21,7 @@ const assignToken = async () => {
   );
 
   const token = await call(
-    `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&msg=${msg}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
     'GET',
     false
   );
