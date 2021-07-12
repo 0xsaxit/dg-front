@@ -27,7 +27,10 @@ const assignToken = async () => {
   );
 
   localStorage.setItem('token', token);
-  localStorage.setItem('expiretime', new Date().getTime() / 1000 + 12 * 3600);
+  localStorage.setItem(
+    'expiretime',
+    Number(new Date().getTime() / 1000 + 12 * 3600)
+  );
 };
 
 const ButtonConnect = () => {
@@ -46,7 +49,9 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     window.ethereum.on('accountsChanged', () => {
-      assignToken();
+      if (window.ethereum && window.ethereum.selectedAddress) {
+        assignToken();
+      }
     });
 
     if (router.pathname.includes('binance')) {
@@ -89,7 +94,7 @@ const ButtonConnect = () => {
     if (window.ethereum) {
       const currentTimestamp = new Date().getTime() / 1000;
       const expiredTimestamp =
-        localStorage.getItem('expiretime') || Number.MAX_SAFE_INTEGER;
+        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
 
       if (currentTimestamp > expiredTimestamp) {
         assignToken();
