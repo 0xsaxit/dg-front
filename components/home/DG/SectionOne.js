@@ -22,7 +22,7 @@ function SectionOne(props) {
 
       <div className={cn(styles.home_dashboard_content, 'container')}>
         <div className={cn('row', mobile ? 'text-center' : 'text-left')}>
-          <div className="col-md-6">
+          <div className="col-md-9 col-lg-6">
             <h1>
               {mobile
                 ? 'Hit the Tables'

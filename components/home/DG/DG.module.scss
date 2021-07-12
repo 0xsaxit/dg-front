@@ -87,7 +87,7 @@
 
   .home_dashboard_content {
     position: relative;
-    padding-top: 320px;
+    padding-top: 160px;
     height: 100vh;
 
     @include mq($until: medium) {
@@ -107,11 +107,15 @@
       text-shadow: 1px 1px 5px black;
       max-width: 600px;
 
-      @include mq($until: large) {
+      @include mq($until: medium) {
         max-width: 100%;
         text-align: center;
         font-size: 42px;
         margin-bottom: 16px;
+      }
+
+      @include mq($until: large) {
+        font-size: 48px;
       }
     }
 
@@ -124,7 +128,7 @@
       margin-bottom: 32px;
       margin-top: 16px;
 
-      @include mq($until: medium) {
+      @include mq($until: large) {
         font-size: 16px;
       }
     }
