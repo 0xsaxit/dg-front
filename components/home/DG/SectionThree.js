@@ -62,7 +62,15 @@ const FunctionThree = () => {
         >
           Start Here
         </Button>
-        <img src={images.DG_BACK} className={styles.dg_back} alt="DG_BACK" />
+        <video
+          className={styles.dg_video}
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,w_1400/v1626139762/macbook_animation_lkh0ut.mov"
+          type="video/mp4"
+          frameBorder="0"
+          autoPlay={true}
+          loop
+          muted
+        ></video>
       </div>
     </>
   );

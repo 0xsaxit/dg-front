@@ -65,7 +65,7 @@ function SectionTwo() {
           <div className="col-md-6 d-flex justify-content-center">
             <img
               className={styles.image}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624651335/Wallet_w5odv4.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626139760/wallet_ghs41e.png"
             />
           </div>
 
@@ -142,7 +142,7 @@ function SectionTwo() {
           <div className="col-md-6 d-flex justify-content-center">
             <img
               className={styles.image_coins}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624651335/Yes_No_DAO_meuobj.png"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626139760/coin_za17qr.png"
             />
           </div>
         </div>
