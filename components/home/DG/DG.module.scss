@@ -26,12 +26,14 @@
       font-size: 24px;
       font-family: Larsseit-Light;
       color: rgba(255, 255, 255, 0.75) !important;
-      margin-top: 32px;
-      margin-bottom: 32px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      max-width: 560px;
 
       @include mq($until: medium) {
         font-size: 16px;
         text-align: center;
+        padding: 0 24px;
       }
     }
 
@@ -60,7 +62,7 @@
 
     .image {
       height: 500px;
-      object-fit: cover;
+      object-fit: contain;
       position: relative;
       margin-left: -50px;
 
@@ -87,19 +89,25 @@
 
   .home_dashboard_content {
     position: relative;
-    padding-top: 160px;
-    height: 100vh;
+    height: calc(100vh - 72px);
+
+    .row {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
 
     @include mq($until: medium) {
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-width: 100%;
-      height: auto;
+      height: 600px;
       background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1625837406/Full_Screen_Background_Animation_uo9h6b_tgv9jq.gif');
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: right;
+      background-position: right -50px top 0;
     }
 
     h1 {
@@ -219,6 +227,7 @@
       font-family: 'Larsseit-Bold';
       text-align: center;
       margin-bottom: 16px;
+      margin-top: 12px;
       z-index: 3;
     }
 
@@ -227,7 +236,7 @@
       color: white;
       height: 48px;
       width: 256px;
-      line-height: 24px;
+      line-height: 20px;
       font-size: 18px;
       margin: 0;
       z-index: 3;

@@ -21,7 +21,13 @@ function SectionOne(props) {
       ></video>
 
       <div className={cn(styles.home_dashboard_content, 'container')}>
-        <div className={cn('row', mobile ? 'text-center' : 'text-left')}>
+        <div
+          className={cn(
+            'row',
+            styles.row,
+            mobile ? 'text-center' : 'text-left'
+          )}
+        >
           <div className="col-md-9 col-lg-6">
             <h1>
               {mobile

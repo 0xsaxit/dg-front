@@ -7,6 +7,7 @@ import styles from './DG.module.scss';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 768px)');
+  const tablet = useMediaQuery('(max-width: 992px)');
 
   return (
     <Aux>
@@ -106,7 +107,12 @@ function SectionTwo() {
       </div>
 
       <div className="container">
-        <div className={cn('row', styles.image_span)}>
+        <div
+          className={cn(
+            'row flex-md-row flex-column-reverse',
+            styles.image_span
+          )}
+        >
           <div
             className={cn(
               mobile
@@ -135,13 +141,13 @@ function SectionTwo() {
                 Learn More
               </Button>
               <Button className={styles.blue_button} href="/dg/">
-                Explore Treasury
+                {tablet ? 'Explore' : 'Explore Treasury'}
               </Button>
             </span>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
             <img
-              className={styles.image_coins}
+              className={styles.image}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626139760/coin_za17qr.png"
             />
           </div>

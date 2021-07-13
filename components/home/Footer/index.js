@@ -9,6 +9,9 @@ const Footer = () => {
   // define local variables
   let linkDocs = '';
   const mobile = useMediaQuery('(max-width: 768px)');
+  const onlyTablet = useMediaQuery(
+    '(min-width: 768px) and (max-width: 1200px)'
+  );
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -95,7 +98,7 @@ const Footer = () => {
               <div className={styles.input_placeholder}>Enter your email</div>
             </div>
           </div>
-          {!mobile && (
+          {!onlyTablet && !mobile && (
             <div className={styles.cookie_container}>
               <span className={styles.copyright}>
                 Copyright © 2021 Web4 LLC. All rights reserved
@@ -128,6 +131,19 @@ const Footer = () => {
             <span className={styles.copyright}>
               Copyright © 2021 Web4 LLC. All rights reserved
             </span>
+          </div>
+        )}
+        {onlyTablet && (
+          <div className={styles.cookie_container}>
+            <span className={styles.copyright}>
+              Copyright © 2021 Web4 LLC. All rights reserved
+            </span>
+            <div className="d-flex justify-content-between">
+              <p className={styles.description}>
+                We use cookies to create a better experience.
+              </p>
+              <span className={styles.accept}>Accept</span>
+            </div>
           </div>
         )}
       </div>

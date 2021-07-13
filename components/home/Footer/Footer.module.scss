@@ -61,38 +61,6 @@
       color: white !important;
       padding-bottom: 4px;
     }
-
-    .cookie_container {
-      border-top: 1px solid #353945;
-      padding: 45px 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-
-      .copyright {
-        margin-bottom: 0;
-        color: #777e90;
-        font-size: 17px;
-        line-height: 29px;
-        font-family: Larsseit-Regular;
-      }
-
-      .description {
-        font-size: 17px;
-        line-height: 29px;
-        font-family: Larsseit-Regular;
-        color: white;
-        margin-right: 32px;
-      }
-
-      .accept {
-        font-family: Larsseit-Bold;
-        font-size: 17px;
-        line-height: 29px;
-        color: #3772ff;
-        cursor: pointer;
-      }
-    }
   }
 
   .grid_newsletter {
@@ -126,7 +94,7 @@
     }
   }
 
-  @media (max-width: 1250px) {
+  @include mq($until: extra-large) {
     .grid_column {
       width: 20%;
     }
@@ -135,7 +103,7 @@
     }
   }
 
-  @media (min-width: 1251px) {
+  @include mq($from: extra-large) {
     .grid_newsletter_tablet {
       display: none;
     }
@@ -143,7 +111,6 @@
 
   .grid_newsletter_tablet {
     max-width: 1400px;
-    margin-top: -48px;
     padding: 0px 72px 60px 72px;
 
     .footer_header {
@@ -172,7 +139,44 @@
     }
   }
 
-  @media (max-width: 768px) {
+  .cookie_container {
+    border-top: 1px solid #353945;
+    padding: 32px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .copyright {
+      margin-bottom: 0;
+      color: #777e90;
+      font-size: 17px;
+      line-height: 29px;
+      font-family: Larsseit-Regular;
+    }
+
+    .description {
+      font-size: 17px;
+      line-height: 29px;
+      font-family: Larsseit-Regular;
+      color: white;
+      margin-right: 32px;
+    }
+
+    .accept {
+      font-family: Larsseit-Bold;
+      font-size: 17px;
+      line-height: 29px;
+      color: #3772ff;
+      cursor: pointer;
+    }
+
+    @include mq($until: extra-large) {
+      margin: 0 72px;
+      width: calc(100% - 144px);
+    }
+  }
+
+  @include mq($until: medium) {
     .grid_container {
       flex-direction: column;
       padding: 60px 30px 40px 30px;
