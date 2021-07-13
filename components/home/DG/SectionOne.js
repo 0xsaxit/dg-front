@@ -9,16 +9,18 @@ function SectionOne(props) {
 
   return (
     <Aux>
-      <video
-        className={styles.video}
-        id="my-video"
-        src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
-        type="video/mp4"
-        frameBorder="0"
-        autoPlay={props.autoPlay}
-        loop
-        muted
-      ></video>
+      {!mobile && (
+        <video
+          className={styles.video}
+          id="my-video"
+          src="https://res.cloudinary.com/dnzambf4m/video/upload/v1622134332/Full_Screen_Background_Animation_uo9h6b.webm"
+          type="video/mp4"
+          frameBorder="0"
+          autoPlay={props.autoPlay}
+          loop
+          muted
+        ></video>
+      )}
 
       <div className={cn(styles.home_dashboard_content, 'container')}>
         <div

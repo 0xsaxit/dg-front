@@ -81,10 +81,6 @@
     position: absolute;
     top: 0;
     left: 0;
-
-    @include mq($until: medium) {
-      display: none;
-    }
   }
 
   .home_dashboard_content {
