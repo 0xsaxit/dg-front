@@ -50,11 +50,11 @@ const ButtonConnect = () => {
   let listener = null;
 
   useEffect(() => {
-    window.ethereum.on('accountsChanged', () => {
-      if (window.ethereum && window.ethereum.selectedAddress) {
+    if (window.ethereum && window.ethereum.selectedAddress) {
+      window.ethereum.on('accountsChanged', () => {
         assignToken();
-      }
-    });
+      });
+    }
 
     if (router.pathname.includes('binance')) {
       setBinance(true);
