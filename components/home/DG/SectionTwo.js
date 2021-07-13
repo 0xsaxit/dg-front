@@ -1,6 +1,5 @@
 import { Button } from 'semantic-ui-react';
 import cn from 'classnames';
-import { Parallax } from 'react-scroll-parallax';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';

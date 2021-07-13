@@ -1,9 +1,12 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
+import { useMediaQuery } from 'hooks';
 import images from 'common/Images';
 import styles from './DG.module.scss';
 
 const FunctionThree = () => {
+  const mobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <>
       <div className={styles.our_partners}>
@@ -62,15 +65,24 @@ const FunctionThree = () => {
         >
           Start Here
         </Button>
-        <video
-          className={styles.dg_video}
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,w_1400/v1626139762/macbook_animation_lkh0ut.mov"
-          type="video/mp4"
-          frameBorder="0"
-          autoPlay={true}
-          loop
-          muted
-        ></video>
+        {!mobile && (
+          <video
+            className={styles.dg_video}
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,w_1400/v1626139762/macbook_animation_lkh0ut.mov"
+            type="video/mp4"
+            frameBorder="0"
+            autoPlay={true}
+            loop
+            muted
+          ></video>
+        )}
+        {mobile && (
+          <img
+            className={styles.dg_video}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625834463/image_52_u6oiyf.jpg"
+            alt="desktop"
+          />
+        )}
       </div>
     </>
   );
