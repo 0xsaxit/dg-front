@@ -1,7 +1,9 @@
 import { useEffect, useContext, useState } from 'react';
+import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Fetch from 'common/Fetch';
+import Global from 'components/Constants';
+
 
 const ModalPopup = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -9,12 +11,22 @@ const ModalPopup = () => {
 
   // define local variables
   const [copied, setCopied] = useState(false);
-  const [manaPrice, setManaPrice] = useState(0);
-  const [ethPrice, setEthPrice] = useState(0);
-  const [atriPrice, setAtriPrice] = useState(0);
   const [casinoBalance, setCasinoBalance] = useState(0);
   const [binance, setBinance] = useState(false);
   const [meatamaskEnabled, setMetamaskEnabled] = useState(false);
+  const [isToastShow, setIsToastShow] = useState(false);
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(state.userAddress);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+
+    // track 'Affiliate Link' button click event
+    analytics.track('Clicked AFFILIATE LINK button');
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -28,26 +40,9 @@ const ModalPopup = () => {
   }, []);
 
   useEffect(() => {
-    (async function () {
-      // get coin prices
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
-      setManaPrice(json.market_data.current_price.usd);
-
-      let response2 = await Fetch.ETH_PRICE();
-      let json2 = await response2.json();
-      setEthPrice(json2.market_data.current_price.usd);
-
-      let response3 = await Fetch.ATRI_PRICE();
-      let json3 = await response3.json();
-      setAtriPrice(json3.market_data.current_price.usd);
-    })();
-  }, [manaPrice, ethPrice, atriPrice]);
-
-  useEffect(() => {
-    const mana = Number(manaPrice * state.userBalances[1][1]);
-    const eth = Number(ethPrice * state.userBalances[2][3]);
-    const atri = Number(atriPrice * state.userBalances[2][2]);
+    const mana = Number(state.DGPrices.mana * state.userBalances[1][1]);
+    const eth = Number(state.DGPrices.eth * state.userBalances[2][3]);
+    const atri = Number(state.DGPrices.atri * state.userBalances[2][2]);
     const dai = Number(state.userBalances[0][1]);
     const usdt = Number(state.userBalances[2][1] * 1000000000000);
     const balance = mana + eth + atri + dai + usdt;
@@ -60,8 +55,6 @@ const ModalPopup = () => {
     state.userBalances[0][1],
     state.userBalances[2][1],
   ]);
-
-  async function disconnectMetaMask() {}
 
   return (
     <div>
@@ -96,16 +89,16 @@ const ModalPopup = () => {
       >
         <span>
           <span style={{ display: 'flex' }}>
-            <a href="/account">
+            <Link href="/account">
               <img
                 className={
                   binance ? 'avatar-picture-binance' : 'avatar-picture-home'
                 }
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
               />
-            </a>
+            </Link>
             <span style={{ display: 'flex', flexDirection: 'column' }}>
-              <a href="/account">
+              <Link href="/account">
                 {state.userInfo.name === null || state.userInfo.name === '' ? (
                   <h4 style={{ paddingLeft: '8px', marginTop: '-4px' }}>
                     Unnamed
@@ -115,7 +108,7 @@ const ModalPopup = () => {
                     {state.userInfo.name}
                   </h4>
                 )}
-              </a>
+              </Link>
               <span
                 className="account-copy"
                 style={{ display: 'flex' }}
@@ -144,32 +137,38 @@ const ModalPopup = () => {
             </span>
           </span>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <Button className="casino-balance-button" href="/account">
-              <p className="casino-balance-text"> Casino Balance </p>
-              <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                {binance ? (
-                  <p className="casino-balance-text two">
-                    {' '}
-                    ${state.userBalances[3][1].toFixed(2)}{' '}
-                  </p>
-                ) : (
-                  <p className="casino-balance-text two"> ${casinoBalance} </p>
-                )}
-                <svg
-                  style={{ margin: '4px 0px 0px 8px' }}
-                  width="9"
-                  height="14"
-                  viewBox="0 0 9 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8.21289 7.06445C8.20605 6.70215 8.08301 6.41504 7.78906 6.12793L2.6416 1.09668C2.42285 0.884766 2.16992 0.775391 1.85547 0.775391C1.22656 0.775391 0.707031 1.28809 0.707031 1.91016C0.707031 2.22461 0.836914 2.51172 1.07617 2.75098L5.5332 7.05762L1.07617 11.3779C0.836914 11.6104 0.707031 11.8975 0.707031 12.2188C0.707031 12.8408 1.22656 13.3535 1.85547 13.3535C2.16309 13.3535 2.42285 13.251 2.6416 13.0322L7.78906 8.00098C8.08301 7.71387 8.21289 7.41992 8.21289 7.06445Z"
-                    fill="white"
-                  />
-                </svg>
-              </span>
-            </Button>
+            <Link href="/account">
+              <Button className="casino-balance-button">
+                <p className="casino-balance-text"> Casino Balance </p>
+                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  {binance ? (
+                    <p className="casino-balance-text two">
+                      {' '}
+                      ${state.userBalances[3][1].toFixed(2)}{' '}
+                    </p>
+                  ) : (
+                    <p className="casino-balance-text two">
+                      {' '}
+                      ${casinoBalance}{' '}
+                    </p>
+                  )}
+                  <svg
+                    style={{ margin: '4px 0px 0px 8px' }}
+                    width="9"
+                    height="14"
+                    viewBox="0 0 9 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.21289 7.06445C8.20605 6.70215 8.08301 6.41504 7.78906 6.12793L2.6416 1.09668C2.42285 0.884766 2.16992 0.775391 1.85547 0.775391C1.22656 0.775391 0.707031 1.28809 0.707031 1.91016C0.707031 2.22461 0.836914 2.51172 1.07617 2.75098L5.5332 7.05762L1.07617 11.3779C0.836914 11.6104 0.707031 11.8975 0.707031 12.2188C0.707031 12.8408 1.22656 13.3535 1.85547 13.3535C2.16309 13.3535 2.42285 13.251 2.6416 13.0322L7.78906 8.00098C8.08301 7.71387 8.21289 7.41992 8.21289 7.06445Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+              </Button>
+            </Link>
+
             <span
               style={{
                 display: 'flex',
@@ -177,35 +176,38 @@ const ModalPopup = () => {
                 marginTop: '12px',
               }}
             >
-              <Button
-                className={
-                  binance
-                    ? 'account-deposit-button binance'
-                    : 'account-deposit-button'
-                }
-                href="/account"
-              >
-                Deposit
-              </Button>
-              <Button className="account-withdraw-button" href="/account">
-                Withdraw
-              </Button>
+              <Link href="/account">
+                <Button
+                  className={
+                    binance
+                      ? 'account-deposit-button binance'
+                      : 'account-deposit-button'
+                  }
+                >
+                  Deposit
+                </Button>
+              </Link>
+
+              <Link href="/account">
+                <Button className="account-withdraw-button">Withdraw</Button>
+              </Link>
             </span>
-            <a href="/account">
+
+            <Link href="/account">
               <p className="account-dropdown-item" style={{ marginTop: '8px' }}>
                 {' '}
                 My Account{' '}
               </p>
-            </a>
-            <a href="/account/items">
+            </Link>
+            <Link href="/account/items">
               <p className="account-dropdown-item"> My Items </p>
-            </a>
-            <a href="/account/history">
+            </Link>
+            <Link href="/account/history">
               <p className="account-dropdown-item"> Gameplay History </p>
-            </a>
-            <a href="/account/referrals">
+            </Link>
+            <Link href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
-            </a>
+            </Link>
             {/*<a onClick={() => disconnectMetaMask()}>
               <p className="account-dropdown-item"> Disconnect </p>
             </a>*/}

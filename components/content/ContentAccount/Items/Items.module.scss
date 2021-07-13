@@ -1,147 +1,143 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .items_container {
-	margin-top: -30px;
-	margin: auto;
-	
-	@media (max-width: 1400px) {
-		width: 100%;
-	}
+  margin-top: -30px;
+  margin: auto;
+  max-width: 1200px;
 
-	@media (min-width: 1400px) {
-		width: 75%;
-	}
+  & > span {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
 
-	.nft_grid {
-		display: flex;
-		flex-direction: row;
+  & > h1 {
+    padding: 0 10px;
+  }
 
-		@media (max-width: 1065px) {
-			flex-wrap: wrap;
-		}
-	}
+  .padding {
+    margin-bottom: 90px;
+    margin-top: 9px;
+    padding: 0 10px;
+  }
 
-	&_nfts {
-		display: flex;
-		justify-content: space-between;
-	}
+  .nft_grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-
-	.nft_column {
-		justify-content: center;
+  .nft_column {
     padding: 10px;
-		display: flex;
+    display: flex;
+    width: 32.5%;
 
-		@media (max-width: 1065px) {
-			margin: auto;
-		}
-	}
+    @include mq($until: medium) {
+      width: 50%;
+    }
 
-	.nft_description {
-		padding: 30px;
-	}
+    @include mq($until: small) {
+      width: 100%;
+    }
+  }
 
-	.title {
-		font-size: 24px;
-		font-family: Larsseit-ExtraBold;
-		margin: 60px 0px 24px 0px;
-		margin-top: 90px;
+  .nft_description {
+    padding: 30px;
 
-		&-grid {
-			margin-bottom: 90px;
-			margin-top: 9px;
-		}
-	}
+    & > span > a {
+      width: calc(50% - 4px);
+    }
+  }
 
-	.all_button {
-		font-size: 14px;
-		width: 80px;
-		background: #1F1F1F;
-		border-radius: 12px;
-		color: white;
-		font-family: Larsseit-Bold;
-		margin-bottom: -124px;
-	}
+  .title {
+    font-size: 24px;
+    font-family: Larsseit-ExtraBold;
+    margin: 30px 0px 12px 0px;
+  }
 
-	.my_nfts {
-		background: #1F1F1F;
-		width: 100%;
-		border-radius: 24px;
-		height: 100%;
-	}
+  .all_button {
+    font-size: 14px;
+    width: 80px;
+    background: #1f1f1f;
+    border-radius: 12px;
+    color: white;
+    font-family: Larsseit-Bold;
+    margin-bottom: -62px;
+  }
 
-	.nft_image {
-		border-radius: 24px 24px 0px 0px;
-	}
+  .my_nfts {
+    background: #1f1f1f;
+    width: 100%;
+    border-radius: 24px;
+    height: 100%;
+    position: relative;
+  }
 
-	.nft_number {
-		position: relative;
-		margin-top: -288px;
-		margin-bottom: 300px;
-		float: right;
-		font-size: 12px;
-		font-family: Larsseit-Bold;
-		padding: 4px 8px 4px 8px;
-		background-color: rgba(0, 0, 0, 0.5);
-		border-radius: 8px;
-		margin-right: 12px;
-	}
+  .nft_image {
+    border-radius: 24px 24px 0px 0px;
+  }
 
-	.nft_subheader {
-		font-size: 12px;
-		font-family: Larsseit-Bold;
-		color: rgba(255, 255, 255, 0.75) !important;
-		text-transform: uppercase;
-	}
+  .nft_number {
+    position: absolute;
+    top: 14px;
+    float: right;
+    font-size: 12px;
+    font-family: Larsseit-Bold;
+    padding: 4px 8px 4px 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    right: 14px;
+  }
 
-	.nft_name {
-		font-family: Larsseit-ExtraBold;
-		margin-top: 4px;
+  .nft_subheader {
+    font-size: 12px;
+    font-family: Larsseit-Bold;
+    color: rgba(255, 255, 255, 0.75) !important;
+    text-transform: uppercase;
+  }
 
-		@media (max-width: 1065px) {
-			font-size: 20px;
-		}
+  .nft_name {
+    font-family: Larsseit-ExtraBold;
+    margin-top: 4px;
 
-		@media (min-width: 1065px) {
-			font-size: 24px;
-		}
-	}
+    @include mq($until: large) {
+      font-size: 20px;
+    }
 
-	.read_button {
-		font-size: 16px;
-		font-family: Larsseit-Bold;
-		width: 120px;
-		height: 48px;
-		color: white;
-		background-color: #2B2B2B;
-		border-radius: 12px;
-	}
+    @include mq($from: large) {
+      font-size: 24px;
+    }
+  }
 
-	.sell_button {
-		font-size: 16px;
-		font-family: Larsseit-Bold;
-		width: 120px;
-		height: 48px;
-		color: white;
-		background-color: #006EFF;
-		border-radius: 12px;
-	}
+  .read_button {
+    font-size: 16px;
+    font-family: Larsseit-Bold;
+    width: 100%;
+    height: 48px;
+    color: white;
+    background-color: #2b2b2b;
+    border-radius: 12px;
+  }
 
-	.nft_wearable {
-		display: flex;
-		justify-content: space-between;
-		margin-top: 16px;
-	}
+  .sell_button {
+    font-size: 16px;
+    font-family: Larsseit-Bold;
+    width: 100%;
+    height: 48px;
+    color: white;
+    background-color: #006eff;
+    border-radius: 12px;
+  }
 
-	.error_container {
-		padding-top: 20px;
-	}
+  .error_container {
+    padding-top: 20px;
+  }
 
-	.error_state {
-		font-family: Larsseit-Bold;
-		font-size: 18px;
-		text-align: center;
-		color: rgba(255, 255, 255, 0.6) !important;
-	}
+  .error_state {
+    font-family: Larsseit-Bold;
+    font-size: 18px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
 }
-

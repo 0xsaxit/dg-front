@@ -295,8 +295,6 @@ function DGBalances() {
 
       const BALANCE_AFFILIATES = await getAffiliateBalances(); // affiliate balances
 
-      console.log(BALANCE_AFFILIATES);
-
       return {
         BALANCE_BP_DG_1: BALANCE_BP_DG_1,
         BALANCE_BP_DG_2: BALANCE_BP_DG_2,

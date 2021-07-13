@@ -2,6 +2,45 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
+img.react-parallax-bgimage {
+  object-fit: cover;
+}
+
+.ui.checkbox {
+  margin-top: 4px;
+  margin-right: 24px;
+}
+
+.ui.checkbox .box:before,
+.ui.checkbox label:before {
+  border: 2px solid white;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+}
+
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before,
+.ui.checkbox .box:hover::before,
+.ui.checkbox label:hover::before,
+.ui.checkbox input:checked ~ .box:before,
+.ui.checkbox input:checked ~ label:before {
+  background-color: transparent !important;
+  border: 2px solid white;
+}
+
+.ui.checkbox input:checked ~ .box:after,
+.ui.checkbox input:checked ~ label:after {
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  padding-top: 3px;
+  font-size: 14px;
+  background: #0d6efd;
+  color: white !important;
+}
+
 section#modalContent.sc-bqGGPW.jMpqDL,
 .iPexDg.iPexDg.iPexDg,
 .jMpqDL.jMpqDL.jMpqDL {
@@ -69,10 +108,20 @@ h3 {
 }
 
 .nft-other-h3 {
-  font-family: 'Larsseit-ExtraBold';
+  font-family: 'Larsseit-Bold';
   font-weight: 800 !important;
-  font-size: 32px;
-  line-height: 1.4;
+  font-size: 30px;
+  padding: 2px 0px 3px 0px;
+  margin-top: 0px;
+}
+
+.home-other-h3 {
+  font-family: 'Larsseit-Bold';
+  font-weight: 800 !important;
+  font-size: 30px;
+  padding: 2px 0px 3px 0px;
+  margin-top: 0px;
+  text-align: center;
 }
 
 h4 {
@@ -146,13 +195,20 @@ p {
   min-height: calc(100vh - 250px);
 }
 
+.nft-other-p {
+  text-align: left;
+  font-size: 18px;
+  font-family: Larsseit-Regular;
+}
+
 /* ----------------------------------------- */
 /*                 MENU CSS                  */
 /* ----------------------------------------- */
 
 a.get-metamask {
-  margin: 21px 15px 0px 0px;
+  margin: 0px 8px 0px 0px !important;
   color: white;
+  font-family: Larsseit-Bold;
 }
 
 a.get-metamask:hover {
@@ -161,8 +217,9 @@ a.get-metamask:hover {
 }
 
 a.get-metamask-scroll {
-  margin: 21px 15px 0px 0px;
-  color: black;
+  margin: 0px 8px 0px 0px !important;
+  color: white;
+  font-family: Larsseit-Bold;
 }
 
 a.get-metamask-scroll:hover {
@@ -207,23 +264,6 @@ a.get-metamask-scroll:hover {
   font-size: 14px !important;
   font-weight: 600 !important;
   padding: 7px 6px 0px 6px;
-}
-
-.ui.checkbox .box,
-.ui.checkbox label {
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 27px;
-}
-
-.ui.checkbox label::before,
-.ui.checkbox label::after {
-  margin-top: 6px;
-  background: transparent;
-}
-
-label::before:active {
-  background: transparent;
 }
 
 .other-menu-container.blog {
@@ -392,6 +432,7 @@ div.item.sidebar-menu-text.blog:hover {
 }
 
 .right-menu-items {
+  padding-top: 2px;
   width: calc(100% - 60px);
   margin-right: 15px;
   display: flex !important;
@@ -595,19 +636,21 @@ a.menu-info-label-link:hover {
 
 .home-dashboard-content {
   position: relative;
-  padding-left: 30px;
+  padding-left: 90px;
   padding-right: 30px;
   max-width: 1400px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-top: 30vh;
+  padding-top: 24vh;
   height: 100vh;
 }
 
 @media (max-width: 930px) {
   .home-dashboard-content {
-    margin-top: -150px !important;
+    margin-top: -180px !important;
+    margin-bottom: 150px;
     display: flex;
+    padding-left: 30px !important;
     flex-direction: column;
     justify-content: center;
     min-width: 100%;
@@ -623,9 +666,20 @@ a.menu-info-label-link:hover {
   .mobile-center-span {
     display: flex;
     justify-content: center;
+    margin-right: -18px !important;
   }
   .ModalDepositBinance_deposit_modal_binance__2LhiT {
     margin-top: 8px !important;
+  }
+  i.chevron.down.icon {
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    opacity: 75%;
+    left: calc(50% - 14px) !important;
+    position: absolute;
+    bottom: -60px !important;
+    animation: bounce 0.75s infinite alternate;
+    -webkit-animation: bounce 0.75s infinite alternate;
   }
 }
 
@@ -633,9 +687,9 @@ i.chevron.down.icon {
   color: white;
   text-shadow: 1px 1px 5px black;
   opacity: 75%;
-  bottom: 42px;
-  left: calc(50% - 13px);
+  left: calc(50% - 14px);
   position: absolute;
+  bottom: 120px;
   animation: bounce 0.75s infinite alternate;
   -webkit-animation: bounce 0.75s infinite alternate;
 }
@@ -969,63 +1023,13 @@ p.home-dashboard-p {
 /*              EVENTS PAGE CSS              */
 /* ----------------------------------------- */
 
-
 .account-hover.active.events:hover {
   background-color: rgb(229, 232, 235);
 }
 
-.event-pic.featured {
-  z-index: 1;
-  object-fit: cover;
-  width: 66%;
-  border-radius: 4px 0px 0px 4px;
-}
-
-.featured-event-grid {
-  display: flex;
-  flex-direction: row;
-  border-radius: 24px;
-}
-
-.featured-info {
-  display: flex;
-  margin-top: 3px;
-}
-
 @media (max-width: 1100px) {
-  .event-pic.featured {
-    width: 100%;
-    height: 100%;
-    border-radius: 4px 4px 0px 0px;
-  }
-  .featured-event-grid {
-    flex-direction: column !important;
-  }
-  .featured-info {
-    justify-content: center;
-    margin-top: 0px;
-  }
-  .events-featured-p,
   .nft-other-h3.featured {
     text-align: center !important;
-  }
-  .events-featured-divider {
-    margin: 10px 0px 15px -19px !important;
-    width: calc(100% + 38px);
-  }
-}
-
-#event-container {
-  padding: 0px 30px 120px 30px;
-}
-
-@media (max-width: 499px) {
-  #event-container {
-    padding: 0px 21px 120px 21px;
-  }
-  .event-pic {
-    width: 100%;
-    height: 100%;
   }
 }
 
@@ -1040,7 +1044,7 @@ p.home-dashboard-p {
   min-height: 400px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 20px 20px 0px 0px !important;
 }
 
 .games-pic {
@@ -1050,7 +1054,7 @@ p.home-dashboard-p {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 4px 4px 0px 0px !important;
+  border-radius: 20px 20px 0px 0px !important;
 }
 
 .my-nft-pic {
@@ -1106,7 +1110,7 @@ p.home-dashboard-p {
   display: flex;
   flex-direction: column !important;
   margin-bottom: 6px;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .shop-container {
@@ -1140,7 +1144,7 @@ p.home-dashboard-p {
 
 .ui.dropdown .menu {
   margin-top: 15px;
-  padding: 9px 0px 9px 0px;
+  padding: 9px 0px 3px 0px;
   border-radius: 4px;
 }
 
@@ -1174,26 +1178,13 @@ p.home-dashboard-p {
 
 .nfts-info,
 .nfts-info-2 {
-  text-transform: uppercase;
-  font-size: 12px !important;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  padding: 3px 6px 3px 6px;
-  margin-top: -3px !important;
-  border-radius: 4px;
-}
-
-.nfts-info {
-  margin-bottom: 14px !important;
+  font-size: 15px !important;
+  font-family: Larsseit-Bold;
+  color:  rgba(255, 255, 255, 0.75) !important;
 }
 
 .nfts-info.mine {
   margin-top: -18px !important;
-}
-
-.nfts-info-2 {
-  margin-left: 12px;
-  margin-bottom: 14px !important;
 }
 
 .nft-bold-content {
@@ -1205,12 +1196,6 @@ p.home-dashboard-p {
 .nft-number-content {
   font-size: 0.9em;
   padding-bottom: 3px;
-}
-
-.nft-other-h3 {
-  padding-bottom: 12px;
-  text-align: center;
-  padding-top: 12px;
 }
 
 .nft-other-h3.countdown2 {
@@ -1227,7 +1212,7 @@ p.home-dashboard-p {
 }
 
 .nft-description {
-  padding: 0px 30px 30px 30px;
+  padding: 20px 30px 30px 30px;
 }
 
 .tominoya-pic {
@@ -1294,17 +1279,6 @@ td:last-child {
   margin-bottom: 0px;
 }
 
-.ui.table thead th:nth-child(2),
-.ui.table thead th:nth-child(3),
-.ui.table thead th:nth-child(4) {
-  text-align: center;
-  padding-left: 0px;
-}
-
-.ui.table thead th:nth-child(5) {
-  text-align: center;
-}
-
 .ui.table thead {
   position: relative;
   z-index: 1;
@@ -1312,6 +1286,14 @@ td:last-child {
 
 .ui.table tr td {
   border: 0px solid white !important;
+}
+
+.tx-box-overflow {
+  max-height: 600px !important;
+  overflow-y: scroll;
+  margin-bottom: 90px;
+  border: 0px solid #edf2f9 !important;
+  border-radius: 8px !important;
 }
 
 .table.ui.unstackable.table.leaders-table {
@@ -1444,15 +1426,31 @@ td:last-child {
   flex-direction: row;
 }
 
-.account-hover-time {
-  letter-spacing: 0.5px;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 9px 12px 9px 12px;
-  letter-spacing: 0.5px !important;
-  margin-right: 15px;
-  color: rgb(92, 95, 97);
-  margin-top: 18px;
+span.account-hover-time {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 34px !important;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 32px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.account-hover-time.active {
+  color:  white;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 14px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.account-hover-time:hover {
+  cursor: pointer;
+  color:  white;
+  border-bottom: 3px solid #006eff;
+  padding-bottom: 14px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .time-select-icon {
@@ -1731,21 +1729,20 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-text {
-  font-size: 12px;
-  font-weight: bold !important;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-family: Larsseit-Bold;
+  text-transform: normal;
   padding-top: 6px !important;
   margin-bottom: 0px;
 }
 
 .earned-week-text {
-  color: white;
-  font-size: 12px;
-  font-weight: bold !important;
-  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 18px;
+  font-family: Larsseit-Bold;
   padding-top: 3px !important;
   margin-bottom: 0px;
+  padding-left: 2px;
 }
 
 .governance-block,
@@ -1828,9 +1825,8 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-percent {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 18px;
+  font-family: Larsseit-Bold;
   padding-top: 3px !important;
   padding-right: 3px;
   margin: 0 0 1px 0 !important;
@@ -1852,7 +1848,7 @@ i.caret.down.icon.percent-icon.neg {
 .percent-icon {
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding-top: 3px !important;
+  padding-top: 6px !important;
   margin-right: -3px !important;
 }
 
@@ -1879,15 +1875,6 @@ div.ui.grid.balances-container {
   max-width: 1343px;
   margin-left: auto !important;
   margin-right: auto !important;
-}
-
-@media (min-width: 1027px) {
-  .leaderboard-coin-select {
-    margin-bottom: -9px !important;
-  }
-  .coin-select-divider {
-    display: none;
-  }
 }
 
 .leaderboard-column {
@@ -2208,8 +2195,7 @@ i.copy.icon.affiliate-icon:hover {
 
 .treasury-amount {
   font-size: 72px;
-  letter-spacing: -0.7px;
-  font-weight: 800;
+  font-family: Larsseit-ExtraBold;
   padding-top: 30px;
 }
 
@@ -2640,8 +2626,9 @@ a.ui.blue.button.touch {
 @media (max-width: 499px) {
   a.ui.blue.button.play-now-button-demo {
     width: 210px !important;
-    margin-left: calc(50vw - 132px);
+    margin-left: calc(50vw - 128px);
     position: relative;
+    z-index:  999;
     background-color: #006eff;
     color: white;
     margin-top: 8px;
@@ -2733,7 +2720,7 @@ a.ui.blue.button.casinos {
   color: white;
   padding: 0px;
   line-height: 24px;
-  margin-top: 14.5px;
+  margin-top: 12.5px;
   min-width: 250px !important;
   height: 40px !important;
   border-radius: 16px;
@@ -2777,27 +2764,25 @@ a.ui.blue.button.dg-learn-button {
 }
 
 .ui.blue.button.nft-button {
-  position: relative;
-  background-color: #006eff;
+  background-color: #006EFF;
   color: white;
-  margin-top: 8px;
-  width: 48.5% !important;
-  height: 36px !important;
-  line-height: 10px;
-  font-size: 16px !important;
-  border-radius: 4px;
+  margin-top: 24px;
+  width: calc(50% - 8px) !important;
+  height: 56px !important;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  border-radius: 12px;
 }
 
 .ui.button.nft-read-button {
-  background-color: transparent;
-  border: 1px solid #006eff;
-  color: #006eff;
-  margin-top: 8px;
-  width: 48.5% !important;
-  height: 36px !important;
-  line-height: 8px;
-  font-size: 16px !important;
-  border-radius: 4px;
+  background-color: #2A2A2A;
+  color: white;
+  margin-top: auto !important;
+  width: calc(50% - 8px) !important;
+  height: 56px !important;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  border-radius: 12px;
 }
 
 .ui.button.reload-button {
@@ -2810,6 +2795,68 @@ a.ui.blue.button.dg-learn-button {
   max-width: 27px !important;
   min-width: 27px;
   padding: 5px 0 3px 0;
+}
+
+button.ui.disabled.button.etherscan-button {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  padding: 0px 0px 0px 0px !important;
+  max-width: 75px !important;
+  min-width: 75px;
+  line-height: 0px;
+  opacity: 100% !important;
+}
+
+button.ui.disabled.button.etherscan-button-ptxid {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  padding: 0px 0px 0px 0px !important;
+  max-width: 150px !important;
+  min-width: 150px;
+  margin-right: 0px !important;
+  line-height: 0px;
+  opacity: 100% !important;
+}
+
+.ui.button.etherscan-button {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  padding: 12px 0px 0px 0px;
+  max-width: 75px !important;
+  min-width: 75px;
+  line-height: 0px;
+  opacity: 100% !important;
+  text-transform: capitalize;
+}
+
+.ui.button.etherscan-button-ptxid {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  padding: 12px 16px 0px 16px;
+  line-height: 0px;
+  opacity: 100% !important;
+  text-transform: capitalize;
+}
+
+.ui.button.etherscan-button:hover,
+.ui.button.etherscan-button-ptxid:hover {
+  border: 2px solid white;
 }
 
 .ui.button.etherscan-button-green {
@@ -3118,11 +3165,11 @@ img.avatar-picture-binance {
   height: 46px;
   border-radius: 100%;
   background: linear-gradient(
-    162deg, 
-    rgba(0, 0, 0, 1) 0%, 
-    rgba(0, 0, 0, 1) 40%, 
-    #F1CD50 40.1%,  
-    #F1CD50 100%
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #f1cd50 40.1%,
+    #f1cd50 100%
   );
 }
 
@@ -3187,7 +3234,7 @@ img.avatar-picture-binance {
   height: 54px;
   width: 48.5%;
   border-radius: 12px;
-  background: #F1CD50;
+  background: #f1cd50;
   color: black;
   font-size: 18px !important;
   padding-top: 17px;
@@ -3271,9 +3318,9 @@ i.clone.outline.icon,
   height: 64px;
   width: 100%;
   border-radius: 12px;
-  background: #F1CD50;
+  background: #f1cd50;
   color: black;
-  font-size: 18px; 
+  font-size: 18px;
   margin-top: 24px;
   padding-top: 21px;
 }
@@ -3367,22 +3414,6 @@ a {
   color: #f1cd50;
 }
 
-.ui.checkbox input:checked ~ .box:before,
-.ui.checkbox input:checked ~ label:before,
-.ui.checkbox .box:hover::before,
-.ui.checkbox label:hover::before,
-.ui.checkbox input:checked ~ .box:before,
-.ui.checkbox input:checked ~ label:before {
-  background-color: black !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-}
-
-.ui.checkbox input:checked ~ .box:after,
-.ui.checkbox input:checked ~ label:after {
-  margin-top: 1px !important;
-  color: #f1cd50 !important;
-}
-
 .ui.blue.button.metamask-button.binance-top {
   font-size: 18px;
   position: relative;
@@ -3467,7 +3498,9 @@ h3.deposit-twentyfour.casino {
   background: black !important;
   border: 0px solid white !important;
   color: white;
+  border-radius: 16px;
   text-align: center;
+  font-family: Larsseit-Bold;
 }
 
 .ui.input > input:focus,

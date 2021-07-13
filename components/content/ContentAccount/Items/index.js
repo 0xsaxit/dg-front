@@ -28,14 +28,7 @@ function Items({ state }) {
                 <a href={wearable.permalink}>
                   <div className={styles.my_nfts}>
                     <span>
-                      <Image
-                        className={styles.nft_image}
-                        src={wearable.image_url}
-                      />
-                      <p className={styles.nft_number}>
-                        {' '}
-                        {wearable.description.split(' ').slice(-1)}
-                      </p>
+                      <Image className={styles.nft_image} src={wearable.image_url} />                    
                     </span>
 
                     <div className={styles.nft_description}>
@@ -48,12 +41,12 @@ function Items({ state }) {
                       <span className={styles.nft_wearable}>
                         <a href={wearable.permalink}>
                           <button className={cn('btn', styles.read_button)}>
-                            Learn More
+                            Info
                           </button>
                         </a>
                         <a href={wearable.permalink}>
                           <button className={cn('btn', styles.sell_button)}>
-                            Sell NFT
+                            Sell
                           </button>
                         </a>
                       </span>
@@ -75,10 +68,10 @@ function Items({ state }) {
           POAPs
         </h1>
         {state.poaps.length !== 0 ? (
-          <Grid className={styles.title_grid}>
+          <Grid className={styles.padding}>
             {state.poaps.map((poap, i) => (
               <Grid.Column computer={2} tablet={4} mobile={8} key={i}>
-                <Image src={poap.image_url} className="poap-pic" />
+                <Image src={poap.image_url} />
               </Grid.Column>
             ))}
           </Grid>

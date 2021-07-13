@@ -34,7 +34,7 @@ const MessageBar = () => {
   }, []);
 
   useEffect(() => {
-    if (typeof window.orientation !== 'undefined') {
+    if (window.innerWidth < 499) {
       setMobile(true);
     } else {
       setMobile(false);
@@ -60,11 +60,11 @@ const MessageBar = () => {
   useEffect(() => {
     if (isSafari) {
       setMessage('Please use Brave, Chrome, or Firefox to play games');
-    } else if (!state.userStatus) {
-      setMessage('Please connect your wallet to play');
-    } else if (state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+    } else if (isMobile) {
+       setMessage('Please configure metamask on a desktop browser');
+    } else if (!isMobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
-    } else if (pause && !state.userInfo.tokenArray.includes(true)) {
+    } else if (!isMobile && pause && !state.userInfo.tokenArray.includes(true)) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
       );
@@ -73,7 +73,7 @@ const MessageBar = () => {
         'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
       );
     } else {
-      setMessage('');
+      setMessage('');   
     }
   }, [
     isSafari,

@@ -225,8 +225,8 @@ export const GlobalStyles = createGlobalStyle`
   .menu-container-dark.blog,
   .other-menu-container.blog {
     opacity: 1;
-    transition: all 1s;
-    -webkit-transition: all 1s;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
     background-color: black !important;
     border-bottom: 1px solid rgb(21,24,28);
     padding-bottom: 2px;
@@ -282,12 +282,6 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.leaderboardSelect};   
   }
   .table-header,
-  .nfts-info,
-  .nfts-info-2,
-  .blog-date,
-  .blog-category,
-  .post-date,
-  .post-category,
   .post-date-blogdetail{
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;

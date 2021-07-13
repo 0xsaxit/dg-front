@@ -1,7 +1,12 @@
 const Images = {
-  LOGO: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
+  LOGO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1589058640/authorize_title_v3ze35.png',
+  SPINNING_LOGO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif',
   SOCIAL_SHARE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1607984535/feat_u522ov.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402416/all-dg_f5sknc.png',
+  SOCIAL_SHARE_2:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624402567/referral-dg_oncc6j.png',   
   LOADING_SPINNER:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1598491023/ezgif.com-optimize_1_a6yuus.gif',
   ICON_DAI:
@@ -18,7 +23,7 @@ const Images = {
   DAI_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/DAI_xbso2s.png',
   ETH_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413786/ETH_r8vy0w.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png',
   PLAY_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1621629997/Group_8_tvdkqo.png',
   USDT_CIRCLE:
@@ -32,8 +37,8 @@ const Images = {
   SNAPSHOT_ICON:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
   FEATURED_IMAGE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1615173711/Screen_Shot_2021-03-07_at_7.21.12_PM_so67xj.png',
-  DG_COIN_LOGO:
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624046027/pic3_qzgm2l.jpg',
+  DG_COIN_LOGO: 
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
   METAMASK:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602627513/metamask_uhgfwo.png',

@@ -3,7 +3,14 @@
 .balances_container {
   max-width: 900px;
 	margin: auto;
-	margin-top: 60px !important;
+	margin-top: 0;
+
+	&_title {
+		font-size: 24px;
+		margin-bottom: 16px;
+		padding-top: 24px;
+		color: white;
+	}
 
 	.balance_column {
 		display: flex;
@@ -18,12 +25,36 @@
 
 		@include mq($until: medium) {
 			flex-direction: column;
-			height: 180px;
+			height: 150px;
+			padding: 15px 20px 15px 20px;
+		}
+
+		.bold_text {
+			font-family: Larsseit-Bold;
 		}
 
 		.float_left {
 			display: flex;
 			align-items: center;
+
+			.img_left {
+				width: 32px;
+				height: 32px;	
+				display: flex;
+				justify-content: center;
+			}
+
+			.free_icon {
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				background: #006EFF;
+				color: white;
+				font-size: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
 			@include mq($until: medium) {
 				width: 100%;
@@ -32,6 +63,9 @@
 
 			.balance_column_header {
 				& p:last-child {
+					color: rgba(255, 255, 255, 0.75) !important;
+					font-weight: 700;
+
 					@include mq($until: medium) {
 						text-align: right;
 					}
@@ -51,9 +85,11 @@
 				font-weight: 700;
 				color: white;
 				margin-bottom: 0;
+				text-align: right;
 
 				@include mq($until: medium) {
 					text-align: left;
+					font-size: 20px;
 				}
 			}
 
@@ -61,11 +97,13 @@
 				font-size: 18px;
 				line-height: 24px;
 				text-transform: uppercase;
-				color: rgba(255, 255, 255, 0.75);
+				font-weight: 700;
+				color: rgba(255, 255, 255, 0.75) !important;
 				margin-bottom: 0;
 
 				@include mq($until: medium) {
 					text-align: left;
+					font-size: 16px;
 				}
 			}
 
@@ -74,18 +112,29 @@
 			}
 		}
 
+		.deposit_button,
 		button,
 		a {
 			border-radius: 16px;
 			height: 42px;
 			color: white;
-			padding: 9px;
+			padding: 8px 16px 8px 16px;
 			font-size: 18px;
 			font-weight: 700;
 			background: #1F1F1F;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+
+			&:hover {
+				background: #1F1F1F;
+				color: white;
+			}
+
+			&:focus {
+				background: #1F1F1F;
+				color: white;
+			}
 		}
 
 		.float_right {
@@ -95,6 +144,7 @@
 			.balance_column_header {
 				& p:last-child {
 					text-align: right;
+					font-weight: 700;
 
 					@include mq($until: medium) {
 						text-align: left;
@@ -103,28 +153,28 @@
 			}
 
 			& > div {
-				width: 286px;
+				width: 310px;
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
 
-				& > div {
+				& > div,
+				& > span {
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
-
-					& > button.ui.button {
-						margin-right: 1rem;
-					}
+					width: 100%;
+					margin-right: 8px;
 				}
 
 				@include mq($until: medium) {
-					width: 260px;
+					width: 310px;
 				}
 			}
 
 			.topUp {
-				width: 286px;
+				width: 310px;
+				margin-right: 0;
 
 				@include mq($until: medium) {
 					width: 260px;
@@ -143,13 +193,18 @@
 			background: transparent;
 			border: 2px solid #1F1F1F;
 			border-radius: 16px;
-			padding: 9px;
+			padding: 8px 16px 8px 16px;
 			font-size: 18px;
 			font-weight: 700;
+			margin-right: 0;
 			line-height: 24px;
 			display: flex;
-			width: 72px;
 			align-items: center;
+
+			&:hover {
+				border: 2px solid white;
+				background: transparent;				
+			}
 
 			svg {
 				margin-left: 4px;
@@ -158,9 +213,7 @@
 			}
 		}
 
-
 		img {
-			width: 32px;
 			height: 32px;	
 		}
 	}

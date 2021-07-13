@@ -1,22 +1,22 @@
 @import "styles/base.scss";
 
 .not_found {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 210px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - 210px);
 
-    &_header_text {
-        font-size: 80px;
-        font-weight: 800 !important;
-        letter-spacing: 0.25px;
-        margin-bottom: 0px;
-    }
+	&_header_text {
+		font-size: 80px;
+		font-weight: 800 !important;
+		letter-spacing: 0.25px;
+		margin-bottom: 0px;
+	}
 
-    &_middle_text {
-        font-size: 28px;
-        font-weight: 600;
-        margin-bottom: 9px;
-    }
+	&_middle_text {
+		font-size: 28px;
+		font-weight: 600;
+		margin-bottom: 9px;
+	}
 }

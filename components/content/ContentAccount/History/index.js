@@ -136,18 +136,18 @@ const History = ({ state }) => {
         <p className={styles.title}>Gameplay History</p>
         <div className={styles.tx_box_overflow}>
           {dataPageTwo === 'false' ? null : (
-            <Table unstackable>
+            <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Game</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-2">
+                  <Table.HeaderCell style={{ width: '120px' }}>Game</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '180px' }}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Payout</Table.HeaderCell>
-                  <Table.HeaderCell className="account-col-4">
+                  <Table.HeaderCell style={{ width: '180px' }}>Payout</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '240px' }}>
                     Date
                   </Table.HeaderCell>
-                  <Table.HeaderCell>Transactions</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '270px', textAlign: 'right' }}>Transactions</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>

@@ -71,25 +71,19 @@ const Chateau = () => {
 
         <div className={styles.home_dashboard_content}>
           <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
-            className={styles.home_gif}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624746105/Screen_Shot_2021-06-26_at_3.21.36_PM_se8dcr.png"
+            className="home-gif"
           />
-          <h1 className={styles.home_dashboard_main_h1}>
-            Hit the tables in a metaverse Casino
-          </h1>
-          <span className={cn("d-flex justify-content-between")}></span>
-          <p className={styles.home_dashboard_p_centered}>
-            Non-custodial, provably fair slots, roulette, blackjack and poker
-            playable with crypto in Decentraland.
-          </p>
-          <Button
-            color="blue"
-            className={styles.play_now_button_demo}
-            href="https://www.youtube.com/embed/1NxYpUsxhC0"
-            target="_blank"
+          <h1
+            className="home-dashboard-main-h1"
+            style={{ marginBottom: '-32px' }}
           >
-            Demo
-          </Button>
+            Hit the tables in a metaverse casino
+          </h1>
+          <span className="home-button-span"></span>
+          <p className="home-dashboard-p centered">
+            Earn $DG by playing non-custodial slots, roulette, blackjack and poker in the Metaverse. Stake $DG to Be The House.
+          </p>
           {state.userStatus === 0 ? (
             <span className={styles.mobile_center_span}>
               <Button
@@ -315,6 +309,7 @@ const Chateau = () => {
           blur={0}
           bgImage="https://res.cloudinary.com/dnzambf4m/image/upload/v1610852861/roulette_zuawjl.jpg"
           strength={100}
+          className="test"
         >
           <div className="home-section-2-outter">
             <div className="home-section-2 inner">
@@ -642,3 +637,4 @@ const Chateau = () => {
 };
 
 export default Chateau;
+

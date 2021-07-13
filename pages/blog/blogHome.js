@@ -34,10 +34,33 @@ function blog() {
 
   return (
     <div className="blog-home-container">
+
+      <div className="substack-container">
+        <img className="substack-img" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png" />
+        <h1 className="substack-header">
+          Stay in the loop with our weekly newsletter
+        </h1>
+        <Button 
+          className="substack-button"
+          href="https://decentralgames.substack.com/embed"
+          target="_blank"
+        >
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            Sign Up For Substack
+            <svg style={{ marginLeft: '12px' }} width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z" fill="white"/>
+            </svg>
+          </span>
+        </Button>
+        <a href="https://decentralgames.substack.com/" target="_blank" className="substack-link">
+          Read on Substack instead
+        </a>
+      </div>
+
       <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
         <div style={{ marginLeft: '0px' }}>
           <span
-            style={{
+            style={{ 
               margin: '100px 0px 0px 0px',
               fontSize: '24px',
               fontFamily: 'Larsseit-ExtraBold',
@@ -52,38 +75,36 @@ function blog() {
       </div>
 
       <div className="featured-blog-container">
-        <Link
-          href="/blog/[id]"
-          as="blog/decentral-games-partners-with-video-game-pioneer-atari"
-        >
+        <Link href="/blog/[id]" as="blog/decentral-games-raises-5m">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
 
               <div className="post-info featured">
                 <div className="top">
-                  <span className="blog-date">7 MAR 2021</span>
-                  <span className="blog-category">Announcements</span>
+                  <span className="blog-category">Announcements </span>
+                  <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
+                  <span className="blog-date">18 JUN 2021</span>
                 </div>
                 <div className="bottom">
                   <div className="blog-title">
-                    <h4
+                    <h4 
                       style={{
-                        paddingBottom: '9px',
-                        paddingTop: '9px',
+                        fontSize: '24px',
+                        fontfamily: 'LarsseitBold',
+                        marginTop: '4px',
                       }}
                     >
-                      Decentral Games Partners With Video Game Pioneer Atari
+                      Decentral Games Raises $5M To Cement Itself As The Leading Metaverse-native, Profitable DAO
                     </h4>
                     <p
                       style={{
-                        lineHeight: '1.3',
-                        paddingTop: '3px',
+                        fontFamily: 'Larsseit-Regular',
+                        fontSize: '18px',
+                        paddingTop: '8px',
                       }}
                     >
-                      We are thrilled to announce that we have partnered up with
-                      Atari to launch Atari Casino powered by Decentral Games
-                      this May!
+                      Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital, among others
                     </p>
                   </div>
                 </div>
@@ -101,19 +122,13 @@ function blog() {
               <div className="account-other-tabs" style={{ marginTop: '0px' }}>
                 <div style={{ marginLeft: '0px' }}>
                   <span className="account-other-p" style={{ display: 'flex' }}>
-                    <span
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                      }}
-                    >
-                      <span
-                        style={{
+                    <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                      <span 
+                        style={{ 
                           fontSize: '24px',
                           fontFamily: 'Larsseit-ExtraBold',
                           margin: '48px 0px 0px 0px',
-                          color: 'white',
+                          color: 'white'
                         }}
                       >
                         {category}
@@ -172,6 +187,16 @@ function blog() {
                                 className="bottom-info"
                                 style={{ display: 'flex' }}
                               >
+                                <div
+                                  className="post-category"
+                                >
+                                  <span>
+                                    {page.categories &&
+                                      page.categories[0] &&
+                                      page.categories[0].name}
+                                  </span>
+                                </div>
+                                <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
                                 <div className="post-date">
                                   <span>
                                     {new Date(page.created).toLocaleDateString(
@@ -184,26 +209,22 @@ function blog() {
                                     )}
                                   </span>
                                 </div>
-                                <div
-                                  className="post-category"
-                                  style={{ color: 'rgb(97, 97, 97)' }}
-                                >
-                                  <span>
-                                    {page.categories &&
-                                      page.categories[0] &&
-                                      page.categories[0].name}
-                                  </span>
-                                </div>
                               </span>
                               <div className="bottom">
                                 <div className="blog-title">
-                                  <h4 style={{ paddingBottom: '9px' }}>
+                                  <h4
+                                    style={{
+                                      fontSize: '24px',
+                                      fontfamily: 'LarsseitBold',
+                                    }}
+                                  >
                                     {page.title}
                                   </h4>
                                   <p
                                     style={{
-                                      color: 'rgb(97, 97, 97)',
+                                      fontFamily: 'Larsseit-Regular',
                                       fontSize: '18px',
+                                      paddingTop: '8px',
                                     }}
                                   >
                                     {page.summary.split('.', 1)[0]}
@@ -231,41 +252,49 @@ function blog() {
                                 />
                               </div>
                               <div className="post-info">
-                                <span
-                                  className="bottom-info"
-                                  style={{ display: 'flex' }}
+                               <span
+                                className="bottom-info"
+                                style={{ display: 'flex' }}
+                              >
+                                <div
+                                  className="post-category"
                                 >
-                                  <div className="post-date">
-                                    <span>
-                                      {new Date(
-                                        page.created
-                                      ).toLocaleDateString('en-DE', {
+                                  <span>
+                                    {page.categories &&
+                                      page.categories[0] &&
+                                      page.categories[0].name}
+                                  </span>
+                                </div>
+                                <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                                <div className="post-date">
+                                  <span>
+                                    {new Date(page.created).toLocaleDateString(
+                                      'en-DE',
+                                      {
                                         day: 'numeric',
                                         month: 'short',
                                         year: 'numeric',
-                                      })}
-                                    </span>
-                                  </div>
-                                  <div
-                                    className="post-category"
-                                    style={{ color: 'rgb(97, 97, 97)' }}
-                                  >
-                                    <span>
-                                      {page.categories &&
-                                        page.categories[0] &&
-                                        page.categories[0].name}
-                                    </span>
-                                  </div>
-                                </span>
+                                      }
+                                    )}
+                                  </span>
+                                </div>
+                              </span>
                                 <div className="bottom">
                                   <div className="blog-title">
-                                    <h4 style={{ paddingBottom: '9px' }}>
+                                    <h4
+                                      style={{
+                                        fontSize: '24px',
+                                        fontfamily: 'LarsseitBold',
+                                        marginTop: '0px'
+                                      }}
+                                    >
                                       {page.title}
                                     </h4>
                                     <p
                                       style={{
-                                        color: 'rgb(97, 97, 97)',
+                                        fontFamily: 'Larsseit-Regular',
                                         fontSize: '18px',
+                                        paddingTop: '8px',
                                       }}
                                     >
                                       {page.summary.split('.', 1)[0]}
@@ -295,19 +324,12 @@ function blog() {
                   <img src={page.featured_image || page.banner} alt="" />
                 </div>
                 <div className="post-info">
-                  <span className="bottom-info" style={{ display: 'flex' }}>
-                    <div className="post-date">
-                      <span>
-                        {new Date(page.created).toLocaleDateString('en-DE', {
-                          day: 'numeric',
-                          month: 'short',
-                          year: 'numeric',
-                        })}
-                      </span>
-                    </div>
+                  <span
+                    className="bottom-info"
+                    style={{ display: 'flex' }}
+                  >
                     <div
                       className="post-category"
-                      style={{ color: 'rgb(97, 97, 97)' }}
                     >
                       <span>
                         {page.categories &&
@@ -315,14 +337,35 @@ function blog() {
                           page.categories[0].name}
                       </span>
                     </div>
+                    <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                    <div className="post-date">
+                      <span>
+                        {new Date(page.created).toLocaleDateString(
+                          'en-DE',
+                          {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          }
+                        )}
+                      </span>
+                    </div>
                   </span>
                   <div className="bottom">
                     <div className="blog-title">
-                      <h4 style={{ paddingBottom: '9px' }}>{page.title}</h4>
+                      <h4
+                        style={{
+                          fontSize: '24px',
+                          fontfamily: 'LarsseitBold',
+                        }}
+                      >
+                        {page.title}
+                      </h4>
                       <p
                         style={{
-                          color: 'rgb(97, 97, 97)',
+                          fontFamily: 'Larsseit-Regular',
                           fontSize: '18px',
+                          paddingTop: '4px',
                         }}
                       >
                         {page.summary.split('.', 1)[0]}

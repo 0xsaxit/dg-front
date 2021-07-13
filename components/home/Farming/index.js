@@ -291,28 +291,32 @@ const Farming = props => {
               </Link>
             </div>
           ) : DGState === 'uniswap' ? (
-            <div className={cn("w-100")}>
+            <p className="account-other-p" style={{ width: '100%' }}>
               <Link href="/dg">
-                <span className={styles.account_hover}>Treasury</span>
-              </Link>
-              <Link href="/dg/governance">
-                <span className={styles.account_hover}>Governance</span>
-              </Link>
-              <Link href="/dg/mining">
-                <span className={styles.account_hover}>
-                  <b className={styles.acccount_hover_title}>
-                    Gameplay
-                  </b>
-                  <b>Rewards</b>
+                <span className="account-hover">
+                  <b>TREASURY</b>
                 </span>
               </Link>
-              <span className={styles.account_hover_active}>
-                <b className={styles.acccount_hover_title}>
-                  Liquidity
+              <Link href="/dg/governance">
+                <span className="account-hover">
+                  <b>GOVERNANCE</b>
+                </span>
+              </Link>
+              <span className="account-hover">
+                <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                  GAMEPLAY
                 </b>
-                <b>Provision</b>
+                <b>REWARDS</b>
               </span>
-            </div>
+              <Link href="/dg/liquidity">
+                <span className="account-hover active">
+                  <b style={{ marginRight: '4px', paddingTop: '1px' }}>
+                    LIQUIDITY
+                  </b>
+                  <b>PROVISION</b>
+                </span>
+              </Link>
+            </p>
           ) : (
             <div className={cn("w-100")}>
               <Link href="/dg">

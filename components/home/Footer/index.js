@@ -26,46 +26,38 @@ const Footer = () => {
       <Menu className={styles.inner_footer_container_2} icon="labeled">
         <div className={styles.footer_menu_items}>
           <a href="/">
-            <Menu.Item className={styles.sidebar_menu_text}>PLAY</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">Play</Menu.Item>
           </a>
 
           <a href="https://docs.decentral.games/info/risks" target="_blank">
-            <Menu.Item className={styles.sidebar_menu_text}>RISKS</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">Risks</Menu.Item>
           </a>
 
           <a
             href="https://docs.decentral.games/info/disclaimer"
             target="_blank"
           >
-            <Menu.Item className={styles.sidebar_menu_text}>DISCLAIMER</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">Disclaimer</Menu.Item>
           </a>
 
           <a
             href="https://docs.decentral.games/info/privacy-policy"
             target="_blank"
           >
-            <Menu.Item className={styles.sidebar_menu_text}>
-              PRIVACY POLICY
+            <Menu.Item className="sidebar-menu-text blog">
+              Privacy Policy
             </Menu.Item>
           </a>
 
           <a href="https://decentralgames.substack.com/" target="_blank">
-            <Menu.Item className={styles.sidebar_menu_text}>NEWSLETTER</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">Newsletter</Menu.Item>
           </a>
 
           <a
             href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC"
             target="_blank"
           >
-            <Menu.Item className={styles.sidebar_menu_text}>PRESS KIT</Menu.Item>
-          </a>
-
-          <a
-            href="https://docs.decentral.games"
-            id="docs-footer"
-            target="_blank"
-          >
-            <Menu.Item className={styles.sidebar_menu_text}>DOCS</Menu.Item>
+            <Menu.Item className="sidebar-menu-text blog">Press Kit</Menu.Item>
           </a>
         </div>
       </Menu>
