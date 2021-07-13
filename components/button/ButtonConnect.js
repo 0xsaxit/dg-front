@@ -9,28 +9,30 @@ import ModalLoginTop from '../modal/ModalLoginTop';
 
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
-  const timestamp = Date.now();
+  if (userAddress) {
+    const timestamp = Date.now();
 
-  const msg = window.web3.utils.utf8ToHex(
-    `Decentral Games Login\nTimestamp: ${timestamp}`
-  );
-  const signature = await window.web3.eth.personal.sign(
-    msg,
-    window.ethereum.selectedAddress,
-    null
-  );
+    const msg = window.web3.utils.utf8ToHex(
+      `Decentral Games Login\nTimestamp: ${timestamp}`
+    );
+    const signature = await window.web3.eth.personal.sign(
+      msg,
+      window.ethereum.selectedAddress,
+      null
+    );
 
-  const token = await call(
-    `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
-    'GET',
-    false
-  );
+    const token = await call(
+      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      'GET',
+      false
+    );
 
-  localStorage.setItem('token', token);
-  localStorage.setItem(
-    'expiretime',
-    Number(new Date().getTime() / 1000 + 12 * 3600)
-  );
+    localStorage.setItem('token', token);
+    localStorage.setItem(
+      'expiretime',
+      Number(new Date().getTime() / 1000 + 12 * 3600)
+    );
+  }
 };
 
 const ButtonConnect = () => {
