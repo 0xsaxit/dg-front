@@ -67,9 +67,10 @@
       margin-left: -50px;
 
       @include mq($until: medium) {
-        height: 200px;
+        height: auto;
         margin-left: 0;
-        margin-bottom: 50px;
+        margin-top: 50px;
+        margin-bottom: 24px;
       }
     }
   }

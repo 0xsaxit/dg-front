@@ -30,13 +30,13 @@ function SectionOne(props) {
             mobile ? 'text-center' : 'text-left'
           )}
         >
-          <div className="col-md-9 col-lg-6">
+          <div className="col-md-9 col-lg-6 d-flex flex-column">
             <h1>
               {mobile
                 ? 'Hit the Tables'
                 : 'Hit the tables in a metaverse Casino'}
             </h1>
-            <p className={cn(styles.content, mobile ? 'px-6' : 'px-0')}>
+            <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile
                 ? 'With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.'
                 : 'Non-custodial, probably fair slots, roulette, blackjack and poker playable with crypto in Decentraland'}
