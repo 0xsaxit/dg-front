@@ -14,6 +14,14 @@
     .grid_column {
       width: 18%;
 
+      &:first-of-type {
+        @include mq($until: medium) {
+          width: 100%;
+          padding-top: 0;
+          border-top: none;
+        }
+      }
+
       @include mq($until: medium) {
         width: 100%;
         padding-top: 32px;
@@ -80,18 +88,6 @@
       color: white !important;
       padding-bottom: 4px;
     }
-
-    .input_placeholder {
-      border: 2px solid #353945;
-      background: transparent !important;
-      color: #777e90;
-      font-size: 20px;
-      line-height: 34px;
-      border-radius: 128px;
-      height: 68px;
-      font-weight: bold;
-      padding: 16px 24px;
-    }
   }
 
   @include mq($until: extra-large) {
@@ -127,15 +123,6 @@
       font-size: 20px;
       color: white !important;
       padding-bottom: 4px;
-    }
-
-    .input_placeholder {
-      border: 2px solid #353945;
-      background: transparent !important;
-      border-radius: 128px;
-      height: 68px;
-      font-weight: bold;
-      padding: 16px 24px;
     }
   }
 
@@ -179,7 +166,7 @@
   @include mq($until: medium) {
     .grid_container {
       flex-direction: column;
-      padding: 60px 30px 40px 30px;
+      padding: 60px 30px 0 30px;
     }
 
     .grid_column {
@@ -199,15 +186,6 @@
         font-size: 14px;
         line-height: 24px;
       }
-
-      .input_placeholder {
-        height: 48px;
-        width: 100%;
-        color: #777e90;
-        font-size: 14px;
-        line-height: 24px;
-        padding: 10px 16px;
-      }
     }
 
     .cookie_container_tablet {
@@ -220,6 +198,23 @@
         font-size: 12px;
         color: #777e90;
         line-height: 20px;
+      }
+    }
+  }
+
+  .input_placeholder {
+    .sign_up_newsletter {
+      background: #006eff;
+      color: white;
+      height: 48px;
+      padding: 12px 26px 12px 26px;
+      line-height: 24px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-family: Larsseit-Bold;
+
+      svg {
+        margin-left: 12px;
       }
     }
   }
