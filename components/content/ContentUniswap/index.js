@@ -138,7 +138,7 @@ const ContentUniswap = props => {
 
               <Divider className={styles.divider_dg_top} />
 
-              <span className={styles.dg_flex}>
+              <span className="d_flex">
                 <img
                   src={Images.DG_COIN_LOGO}
                   className={styles.farming_logo_small}
@@ -166,7 +166,7 @@ const ContentUniswap = props => {
 
               <Divider className={styles.divdier_dg_top} />
 
-              <span className={styles.dg_flex_justify_content_space_between}>
+              <span className="d-flex justify-content-between flex-row">
                 <p className={styles.welcome_text}>
                   {' '}
                   TOTAL USD{' '}
@@ -217,7 +217,7 @@ const ContentUniswap = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <span className={styles.dg_flex}>
+                <span className="d_flex">
                   <img className={styles.farming_logo_small} src={Images.ETH_CIRCLE} />
                   <img
                     className={styles.farming_logo_small_two}
@@ -230,7 +230,7 @@ const ContentUniswap = props => {
                   </span>
                 </span>
 
-                <span className={styles.dg_flex_justify_content_end}>
+                <span className="d-flex justify-content-end">
                   <a
                     className={styles.dg_column_body_margin}
                     href={`https://info.uniswap.org/pair/${Global.ADDRESSES.UNISWAP_ADDRESS_STAKING}`}
@@ -245,7 +245,7 @@ const ContentUniswap = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
+                <div className="d_flex">
                   <div className={styles.gameplay_left_column}>
                     <span className={styles.gameplay_left_column_text}>
                       <p className={styles.earned_text}>APY</p>
@@ -291,7 +291,7 @@ const ContentUniswap = props => {
                   onChange={handleChange}
                 />
 
-                <span className={styles.dg_flex_justify_content_space_between}>
+                <span className="d-flex justify-content-between flex-row">
                   <p
                     className={styles.bpt_text}
                     onClick={() =>

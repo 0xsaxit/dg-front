@@ -134,7 +134,7 @@ const ContentMining = props => {
 
             <Divider className={styles.divider_dg_top} />
 
-            <span className={styles.dg_flex}>
+            <span className="d_flex">
               <img
                 src={Images.DG_COIN_LOGO}
                 className={styles.farming_logo_small}
@@ -159,7 +159,7 @@ const ContentMining = props => {
 
             <Divider className={styles.divdier_dg_top} />
 
-            <span className={styles.dg_flex_direction_space_between}>
+            <span className="d-flex flex-row justify-content-between">
               <p className={styles.welcome_text}>
                 {' '}
                 TOTAL USD{' '}
@@ -207,7 +207,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
+                <div className="d_flex">
                   <img
                     src={Images.MANA_CIRCLE}
                     className={styles.farming_logo_small}
@@ -219,7 +219,7 @@ const ContentMining = props => {
                   </span>
                 </div>
 
-                <span className={styles.dg_flex_justify_content_end}>
+                <span className="d-flex justify-content-end">
                   <a
                     className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
@@ -234,16 +234,16 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
+                <div className="d_flex">
                   <span className={styles.gameplay_left_column}>
-                    <span className={styles.dg_flex_center}>
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
                       <p className={styles.earned_amount}>14,600</p>
                     </span>
                   </span>
 
-                  <span className={styles.dg_flex_justify_content_center}>
-                    <span className={styles.dg_flex_center}>
+                  <span className="d-flex justify-content-center"}>
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
                       <p className={styles.earned_amount}>49,300</p>
                     </span>
@@ -271,8 +271,8 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
-                  <span className={styles.dg_flex}>
+                <div className="d_flex">
+                  <span className="d_flex">
                     <img src={Images.DAI_CIRCLE} className={styles.farming_logo_small} />
                     <img
                       src={Images.USDT_CIRCLE}
@@ -286,7 +286,7 @@ const ContentMining = props => {
                   </span>
                 </div>
 
-                <span className={styles.dg_flex_justify_content_end}>
+                <span className="d-flex justify-content-end">
                   <a
                     className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
@@ -301,16 +301,16 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
+                <div className="d_flex">
                   <span className={styles.gameplay_left_column}>
-                    <span className={styles.dg_flex_center}>
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
                       <p className={styles.earned_amount}>12,600</p>
                     </span>
                   </span>
 
-                  <span className={styles.dg_flex_justify_content_center}>
-                    <span className={styles.dg_flex_center}>
+                  <span className="d-flex justify-content-center">
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
                       <p className={styles.earned_amount}>42,500</p>
                     </span>
@@ -340,7 +340,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <span className={styles.dg_flex}>
+                <span className="d_flex">
                   <img
                     src={Images.ATRI_CIRCLE}
                     className={styles.farming_logo_small}
@@ -352,7 +352,7 @@ const ContentMining = props => {
                   </span>
                 </span>
 
-                <span className={styles.dg_flex_justify_content_end}>
+                <span className="d-flex justify-content-end">
                   <a
                     className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
@@ -367,16 +367,16 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
+                <div className="d_flex">
                   <span className={styles.gameplay_left_column}>
-                    <span className={styles.dg_flex_center}>
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
                       <p className={styles.earned_amount}>N/A</p>
                     </span>
                   </span>
 
-                  <span className={styles.dg_flex_justify_content_center}>
-                    <span className={styles.dg_flex_center}>
+                  <span className="d-flex justify-content-center">
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
                       <p className={styles.earned_amount}>N/A</p>
                     </span>
@@ -404,7 +404,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <span className={styles.dg_flex}>
+                <span className="d_flex">
                   <img
                     className={styles.farming_logo_small}
                     src={Images.ETH_CIRCLE}
@@ -416,7 +416,7 @@ const ContentMining = props => {
                   </span>
                 </span>
 
-                <span className={styles.dg_flex_justify_content_end}>
+                <span className="d-flex justify-content-end">
                   <a
                     className={styles.dg_column_body_margin}
                     href="https://docs.decentral.games/allocation#community"
@@ -431,16 +431,16 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className={styles.dg_flex}>
+                <div className="d_flex">
                   <span className={styles.gameplay_left_column}>
-                    <span className={styles.dg_flex_center}>
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
                       <p className={styles.earned_amount}>5</p>
                     </span>
                   </span>
 
-                  <span className={styles.dg_flex_justify_content_center}>
-                    <span className={styles.dg_flex_center}>
+                  <span className="d-flex justify-content-center">
+                    <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
                       <p className={styles.earned_amount}>15</p>
                     </span>

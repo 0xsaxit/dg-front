@@ -30,15 +30,11 @@
 		}
 
 		@include mq($until: large) {
-			td.account-col-2,
-			th.account-col-2 {
+			td.account_col_2,
+			th.account_col_2 {
 				display: none;
 			}
 		}
-	}
-
-	.tx_title {
-		float: right;
 	}
 
 	.history_column {
@@ -98,20 +94,6 @@
 			&:hover {
 				border: 2px solid white;
 			}
-
-			// button.ui.disabled.button.etherscan-button {
-			// 	background-color: rgba(255, 255, 255, 0);
-			// 	font-size: 18px;
-			// 	font-weight: bold;
-			// 	border: 2px solid rgba(255, 255, 255, 0.08);
-			// 	color: rgba(255, 255, 255, 0.08);
-			// 	height: 40px;
-			// 	padding: 0px 0px 0px 0px !important;
-			// 	max-width: 75px !important;
-			// 	min-width: 75px;
-			// 	line-height: 0px;
-			// 	opacity: 100% !important;
-			// }
 		}
 
 		&_button_ptxid {
@@ -137,21 +119,6 @@
 			&:hover {
 				border: 2px solid white;
 			}
-
-			// button.ui.disabled.button.etherscan-button-ptxid {
-			// 	background-color: rgba(255, 255, 255, 0);
-			// 	font-size: 18px;
-			// 	font-weight: bold;
-			// 	border: 2px solid rgba(255, 255, 255, 0.08);
-			// 	color: rgba(255, 255, 255, 0.08);
-			// 	height: 40px;
-			// 	padding: 0px 0px 0px 0px !important;
-			// 	max-width: 150px !important;
-			// 	min-width: 150px;
-			// 	margin-right: 0px !important;
-			// 	line-height: 0px;
-			// 	opacity: 100% !important;
-			// }
 		}
 
 		&_button_mobile {

@@ -1,14 +1,10 @@
 @import "styles/base.scss";
 
 .dg_liquidity_container {
-  .dg_liquidity_avatar {
-    display: flex;
-
-    .farming_pool_loader {
-      font-size: 12px;
-      margin-top: 12px;
-      margin-left: 15px;
-    }
+  .farming_pool_loader {
+    font-size: 12px;
+    margin-top: 12px;
+    margin-left: 15px;
   }
 
   .dg_liquidity_token {

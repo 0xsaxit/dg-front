@@ -62,7 +62,7 @@ const ContentOfferings = props => {
             target="_blank"
             className={styles.games_container}
           >
-            <span className={styles.dg_flex_justify_content_center}>
+            <span className="d-flex justify-content-center">
               <Image
                 src={props.detailsGames[item][0]}
                 className={props.detailsGames[item][1]}
@@ -112,7 +112,7 @@ const ContentOfferings = props => {
           {Object.keys(props.detailsNFTs).map((item, i) => (
             <a href={props.detailsNFTs[item][5]} className="games-container">
               <div key={i}>
-                <span className={styles.dg_flex_justify_content_center}>
+                <span className="d-flex justify-content-center">
                   <Image
                     src={props.detailsNFTs[item][0]}
                     className={props.detailsNFTs[item][1]}
@@ -128,7 +128,7 @@ const ContentOfferings = props => {
                     {props.detailsNFTs[item][4]}
                   </p>
 
-                  <span className={styles.dg_flex_justify_content_center}>
+                  <span className="d-flex justify-content-center">
                     <Button
                       className={styles.nft_button}
                       color="blue"
@@ -180,7 +180,7 @@ const ContentOfferings = props => {
                 {props.detailsCasinos[item][3]}
               </p>
 
-              <span className={styles.dg_flex_justify_content_space_between}>
+              <span className="d-flex justify-content-between flex-row">
                 <Button
                   id={`play-now-button-casinos-${i + 1}`}
                   color="blue"
@@ -232,7 +232,7 @@ const ContentOfferings = props => {
                 {props.detailsShop[item][3]}
               </p>
 
-              <span className={styles.dg_flex_justify_content_space_between}>
+              <span className="d-flex justify-content-between flex-row">
                 <Button
                   className={styles.nft_button}
                   color="blue"

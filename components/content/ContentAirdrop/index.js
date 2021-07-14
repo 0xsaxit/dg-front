@@ -75,7 +75,7 @@ const ContentAirdrop = props => {
 
           <Divider />
 
-          <span className={styles.dg_liquidity_avatar}>
+          <span className="d-flex">
             <img
               src={Images.DG_COIN_LOGO}
               className={styles.farming_logo_small}

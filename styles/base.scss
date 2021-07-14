@@ -18,62 +18,13 @@ $mq-breakpoints: (
   extra-large: 1200px,
 );
 
-
-////////// Position //////////
-
+//////////////////////////////
+/// Content
+//////////////////////////////
 .top {
   width: 48.5%;
 }
 
-.dg_flex {
-  display: flex;
-}
-
-.dg_flex_column {
-  display: flex;
-  flex-direction: column;
-}
-
-.dg_flex_center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.dg_flex_end {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-}
-
-.dg_flex_justify_content_space_between {
-  display: flex;
-  justify-content: space-between;
-}
-
-.dg_flex_justify_content_center {
-  display: flex;
-  justify-content: center;
-}
-
-.dg_flex_justify_content_end {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.dg_flex_direction_space_between {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.text_align_right {
-  text-align: right !important;
-}
-
-//////////////////////////////
-/// Content
-//////////////////////////////
 .avatar_picture {
   &_home {
     width: 46px;
@@ -115,6 +66,12 @@ $mq-breakpoints: (
   @include welcome_text_style;
   padding-top: 6px !important;
   margin-bottom: 0px;
+}
+
+.tab_divider {
+  position: relative;
+  z-index: 5;
+  margin-top: 21px;
 }
 
 .divider_dg_top {

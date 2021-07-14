@@ -22,7 +22,7 @@ const GovernanceProposalsItem = ({ passed, link, govName, end }) => {
         }`}
       >
         <p className={styles.earned_amount}>{govName}</p>
-        <span className={styles.dg_flex}>
+        <span className="d_flex">
           {passed == true ? (
             <Button className={styles.etherscan_button_green} disabled>
               PASSED
@@ -227,7 +227,7 @@ const ContentGovernance = props => {
 
             <Divider className={styles.divider_dg_top} />
 
-            <div className={styles.dg_flex}>
+            <div className="d_flex">
               <img
                 src={Images.DG_COIN_LOGO}
                 className={styles.farming_logo_small}
@@ -313,7 +313,7 @@ const ContentGovernance = props => {
 
               <Divider className={styles.divider_dg_top} />
 
-              <div className={styles.dg_flex}>
+              <div className="d_flex">
                 <img
                   src={Images.DG_COIN_LOGO}
                   className={styles.farming_logo_small}
@@ -341,7 +341,7 @@ const ContentGovernance = props => {
 
               <Divider className={styles.divider_dg_top} />
 
-              <div className={styles.dg_flex}>
+              <div className="d_flex">
                 <div className={styles.gameplay_left_column}>
                   <span className={styles.gameplay_left_column_text}>
                     <p className={styles.earned_text}>APY</p>

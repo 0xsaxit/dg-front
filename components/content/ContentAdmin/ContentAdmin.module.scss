@@ -30,6 +30,14 @@
   }
 }
 
+.balances_divider {
+  border-top: 1px solid #edf2f9;
+  border-bottom: 0px;
+  width: calc(100% + 36px);
+  margin-left: -18px;
+  margin-top: -6px;
+}
+
 .account_connected_grid {
   margin-top: 3px;
   display: flex;

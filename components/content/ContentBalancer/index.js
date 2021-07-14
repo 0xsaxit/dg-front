@@ -13,7 +13,7 @@ import styles from './ContentBalancer.module.scss';
 const UnClaimedBalancer = ({pool1, setPool1, balancer, formatPrice }) => {
   return (
     <>
-      <span className={styles.farming_pool_span_detail}>
+      <span className="d-flex">
         <p className={styles.welcome_text}>unclaimed 1</p>
         <Icon
           name="sort"
@@ -43,7 +43,7 @@ const UnClaimedBalancer = ({pool1, setPool1, balancer, formatPrice }) => {
 const PoolUSDValue = ({ poolUSD }) => {
   return (
     <>
-      <span className={styles.dg_flex_direction_space_between}>
+      <span className="d-flex justify-content-between flex-row">
         <p className={styles.earned_text}>Value USD</p>
         {poolUSD ? (
           <p className={styles.earned_amount}>${poolUSD}</p>
@@ -246,7 +246,7 @@ const ContentBalancer = props => {
       <div className={styles.content_balancer_container}>
         <div className={styles.dg_liquidity_container_top}>
           <div className={styles.dg_column_top}>
-            <span className={styles.dg_column_top_dg_title}>
+            <span className="d-flex flex-column">
               <h3>$DG Balancer Liquidity Incentives</h3>
               <p>
                 Balancer LP rewards have now ended following this{' '}
@@ -265,7 +265,7 @@ const ContentBalancer = props => {
 
         <div className={styles.dg_liquidity_container}>
           <div className={styles.dg_column_unclaimed}>
-            <span className={styles.dg_flex}>
+            <span className="d-flex">
               <img
                 src={Images.DG_COIN_LOGO}
                 className={styles.farming_logo}
@@ -304,7 +304,7 @@ const ContentBalancer = props => {
               className={styles.dg_column_one}
               id="DG-column-hover"
             >
-              <span className={styles.dg_flex}>
+              <span className="d_flex">
                 <img
                   src={Images.MANA_CIRCLE}
                   className={styles.farming_logo}
@@ -321,7 +321,7 @@ const ContentBalancer = props => {
                 </span>
               </span>
 
-              <span className={styles.dg_flex_justify_content_end}>
+              <span className="d-flex justify-content-end">
                 <a
                   href={`https://pools.balancer.exchange/#/pool/${Global.ADDRESSES.BP_TOKEN_ADDRESS_1}`}
                   target="_blank"
@@ -333,9 +333,9 @@ const ContentBalancer = props => {
 
               <Divider />
 
-              <div className={styles.dg_flex}>
+              <div className="d-flex">
                 <span className={styles.gameplay_left_column}>
-                  <span className={styles.dg_flex_center}>
+                  <span className="d-flex flex-column align-items-center">
                     <p className={styles.earned_text}>APY</p>
                     {APYMANA ? (
                       <p className={styles.earned_amount}>N/A</p>
@@ -350,8 +350,8 @@ const ContentBalancer = props => {
                   </span>
                 </span>
 
-                <span className={styles.dg_flex_justify_content_center}>
-                  <span className={styles.dg_flex_center}>
+                <span className="d-flex justify-content-center">
+                  <span className="d-flex flex-column align-items-center">
                     <p className={styles.earned_text}>% of balancer 1</p>
                     <p className={styles.earned_amount}>
                       {poolPercentage1 ? (
@@ -454,7 +454,7 @@ const ContentBalancer = props => {
             <div
               className={styles.dg_column_one}
             >
-              <span className={styles.dg_flex}>
+              <span className="d-flex">
                 <img
                   src={Images.DAI_CIRCLE}
                   className={styles.farming_logo}
@@ -471,7 +471,7 @@ const ContentBalancer = props => {
                 </span>
               </span>
 
-              <span className={styles.dg_flex_justify_content_end}>
+              <span className="d-flex justify-content-end">
                 <a
                   href={`https://pools.balancer.exchange/#/pool/${Global.ADDRESSES.BP_TOKEN_ADDRESS_2}`}
                   target="_blank"
@@ -483,9 +483,9 @@ const ContentBalancer = props => {
 
               <Divider />
 
-              <div className={styles.dg_flex}>
+              <div className="d-flex">
                 <span className={styles.gameplay_left_column}>
-                  <span className={styles.dg_flex_center}>
+                  <span className="d-flex flex-column align-items-center">
                     <p className={styles.earned_text}>APY</p>
                     {APYDAI ? (
                       <p className={styles.earned_amount}>N/A</p>
@@ -500,8 +500,8 @@ const ContentBalancer = props => {
                   </span>
                 </span>
 
-                <span className={styles.dg_flex_justify_content_center}>
-                  <span className={styles.dg_flex_center}>
+                <span className="d-flex justify-content-center">
+                  <span className="d-flex flex-column align-items-center">
                     <p className={styles.earned_text}>% of balancer 2</p>
                     {poolPercentage2 ? (
                       <p className={styles.earned_amount}>N/A</p>

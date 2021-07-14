@@ -88,7 +88,7 @@ const ContentTableBody = props => {
   return (
     <Table.Row>
       <Table.Cell>
-        <span className={styles.dg_flex}>
+        <span className="d_flex">
           {contentTitle}
           <GetPopUp 
             number={number}
@@ -107,14 +107,14 @@ const ContentTableBody = props => {
 
       {contentPercent > 0 && contentBody ? (
         <Table.Cell textAlign="right">
-          <span className={styles.dg_flex_justify_content_end}>
+          <span className="d-flex justify-content-end">
             <p className={styles.earned_percent_pos}>{contentPercent}%</p>
             <Icon className={styles.percent_icon_pos} name="caret up" />
           </span>
         </Table.Cell>
       ) : contentBody ? (
         <Table.Cell textAlign="right">
-          <span className={styles.dg_flex_justify_content_end}>
+          <span className="d-flex justify-content-end">
             <p className={styles.earned_percent_neg}>{contentPercent}%</p>
             <Icon className={styles.percent_icon_neg} name="caret down" />
           </span>
@@ -296,7 +296,7 @@ const ContentTreasury = props => {
   // helper functions
   const getWeeklyChange = () => {
     return (
-      <div className={styles.dg_flex_justify_content_center}>
+      <div className="d-flex justify-content-center">
         {weeklyChange > 0 && treasuryTotal ? (
           <Table.Cell textAlign="right">
             <span className={styles.table_weekly_field}>
@@ -309,7 +309,7 @@ const ContentTreasury = props => {
           </Table.Cell>
         ) : treasuryTotal ? (
           <Table.Cell textAlign="right">
-            <span className={styles.dg_flex_justify_content_end}>
+            <span className="d-flex justify-content-end">
               <p className={styles.earned_percent_neg}>
                 -$
                 {(weeklyChange * -1)
@@ -341,7 +341,7 @@ const ContentTreasury = props => {
   return (
     <Aux>
       <div className={styles.content_treasury_container}>
-        <span className={styles.dg_flex_justify_content_center}>
+        <span className="d-flex justify-content-center">
           {treasuryTotal ? (
             <p className={styles.treasury_amount}>${treasuryTotal}</p>
           ) : (
@@ -356,7 +356,7 @@ const ContentTreasury = props => {
 
         {getWeeklyChange()}
 
-        <div className={styles.dg_flex_justify_content_center}>
+        <div className="d-flex justify-content-center">
           <span className={styles.treasury_graph}>
             <Line
               height={150}
@@ -385,10 +385,10 @@ const ContentTreasury = props => {
                   <Table.HeaderCell>
                     Name
                   </Table.HeaderCell>
-                  <Table.HeaderCell className={styles.text_align_right}>
+                  <Table.HeaderCell className="text-end">
                     Amount
                   </Table.HeaderCell>
-                  <Table.HeaderCell className={styles.text_align_right}>
+                  <Table.HeaderCell className="text-end">
                     Weekly
                   </Table.HeaderCell>
                 </Table.Row>

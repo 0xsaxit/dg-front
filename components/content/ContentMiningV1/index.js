@@ -130,7 +130,7 @@ const ContentMiningV1 = props => {
 
             <Divider className={styles.divider_dg_top} />
 
-            <span className={styles.dg_flex}>
+            <span className="d_flex">
               <img
                 src={Images.DG_COIN_LOGO}
                 className={styles.farming_logo_small}
@@ -155,7 +155,7 @@ const ContentMiningV1 = props => {
 
             <Divider className={styles.divider_dg_top} />
 
-            <span className={styles.dg_flex_justify_content_space_between}>
+            <span className="d-flex justify-content-between flex-row">
               <p className={styles.welcome_text}>
                 {' '}
                 TOTAL USD{' '}

@@ -29,7 +29,7 @@ const ContentAdmin = ({ ethBalance, data, content }) => {
             <Grid.Column
               floated="right"
               width={16}
-              className="balances-column zero"
+              className={styles.balances_column}
             >
               <span className="d-flex">
                 <p className="pl-0">
@@ -60,7 +60,7 @@ const ContentAdmin = ({ ethBalance, data, content }) => {
           </p>
         </span>
 
-        <Divider className="balances-divider" />
+        <Divider className={styles.balances_divider} />
         
         <CoinImage image={Images.MANA_CIRCLE} data={data[game][0]} title="mana" /> 
         <CoinImage image={Images.DAI_CIRCLE} data={data[game][1]} title="dai" />
@@ -68,14 +68,14 @@ const ContentAdmin = ({ ethBalance, data, content }) => {
         <CoinImage image={Images.ATRI_CIRCLE} data={data[game][3]} title="atri" />
         <CoinImage image={Images.ETH_CIRCLE} data={data[game][4]} title="weth" />
 
-        <Divider className="balances-divider" />
+        <Divider className={styles.balances_divider} />
 
         <a
           href={`https://explorer-mainnet.maticvigil.com/address/${data[game][6]}/write-contract`}
           id="docs-top-menu"
           target="_blank"
         >
-          <span className="welcome-text">{data[game][6]}</span>
+          <span className={styles.welcome_text}>{data[game][6]}</span>
         </a>
       </div>
     );
@@ -98,7 +98,7 @@ const ContentAdmin = ({ ethBalance, data, content }) => {
           }
         })}
 
-        <Divider className="tab-divider" />
+        <Divider className={styles.tab_divider} />
 
         {data.map((row, i) => {
           if (row.verifyStep === 22) {
@@ -112,7 +112,7 @@ const ContentAdmin = ({ ethBalance, data, content }) => {
           }
         })}
 
-        <Divider className="tab-divider" />
+        <Divider className={styles.tab_divider} />
 
         <Table.Row>
           <Table.Cell>4: Normal Users</Table.Cell>

@@ -188,7 +188,7 @@ const History = ({ state }) => {
                   <Table.Body key={i}>
                     <Table.Row style={{ background: style }}>
                       <Table.Cell>{action}</Table.Cell>
-                      <Table.Cell className="account-col-2">
+                      <Table.Cell className="d-xs-none d-sm-none d-md-none d-lg-none">
                         <CoinCell coinName={row.coinName} />
                         -{amount} {row.coinName}
                       </Table.Cell>
@@ -200,7 +200,7 @@ const History = ({ state }) => {
                         {timestamp}
                       </Table.Cell>
                       <Table.Cell>
-                        <span className={styles.tx_title}>
+                        <span className="float-right">
                           {row.coinName !== 'PLAY' ? (
                             <Aux>
                               <Button
