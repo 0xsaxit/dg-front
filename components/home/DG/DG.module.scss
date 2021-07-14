@@ -2,8 +2,8 @@
 
 .home_dashboard {
   .image_span {
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin: 150px auto;
+    max-width: 1200px;
 
     @include mq($until: medium) {
       margin-top: 60px;
@@ -130,7 +130,7 @@
       font-family: 'Larsseit-Light';
       text-shadow: 1px 1px 5px black;
       max-width: 640px;
-      margin-bottom: 32px;
+      margin-bottom: 8px;
       margin-top: 16px;
 
       @include mq($until: large) {
@@ -167,6 +167,15 @@
     }
 
     .chevron_down {
+      bottom: -80px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      i {
+        font-size: 16px;
+      }
+
       @include mq($until: medium) {
         display: none;
       }
@@ -191,6 +200,11 @@
         margin-bottom: 24px;
         font-size: 32px;
       }
+    }
+
+    img {
+      width: 75%;
+      object-fit: contain;
     }
   }
 

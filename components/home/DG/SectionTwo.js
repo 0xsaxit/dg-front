@@ -44,7 +44,7 @@ function SectionTwo() {
               </Button>
               <Button
                 className={styles.blue_button}
-                href="https://play.decentraland.org/?position=-118%2C135"
+                href="/games"
                 target="_blank"
               >
                 See Games
@@ -95,7 +95,7 @@ function SectionTwo() {
               </Button>
               <Button
                 className={styles.blue_button}
-                href="https://play.decentraland.org/?position=-118%2C135"
+                href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
                 target="_blank"
               >
                 Earn APY%

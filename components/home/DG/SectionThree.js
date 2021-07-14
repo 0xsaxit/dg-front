@@ -60,7 +60,7 @@ const FunctionThree = () => {
         <Button
           color="blue"
           className={styles.start_here}
-          href="/"
+          href="https://docs.decentral.games/getting-started/play-to-mine"
           target="_blank"
         >
           Start Here
