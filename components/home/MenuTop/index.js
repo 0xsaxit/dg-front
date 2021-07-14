@@ -221,22 +221,21 @@ const MenuTop = props => {
   // dropdown menu for mobile
   const dropdownMenu = () => {
     return (
-      <div className="mobile-height-fix">
-        <Menu attached="top" className="mobile-menu-popup">
+      <div>
+        <Menu attached="top" className={styles.mobile_menu_popup}>
           <Dropdown
             item
             icon={open ? 'close' : 'bars'}
             onClick={() => menuOpen()}
-            id={open ? 'mobile-menu-icon' : menuStyle[0]}
+            id={open ? `${styles.mobile_menu_icon}` : menuStyle[0]}
           >
             <Dropdown.Menu>
               <Dropdown.Item>
                 <Icon name="dropdown" />
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <span className="d-flex flex-column">
                   <Link href={`/${utm}`}>
                     <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
+                      className={cn("dropdown_menu_items"), menuStyle[1]}
                     >
                       Play
                     </Menu.Item>
@@ -244,8 +243,7 @@ const MenuTop = props => {
 
                   <Link href="/dg">
                     <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
+                      className={cn("dropdown_menu_items"), menuStyle[1]}
                     >
                       DG Ecosystem
                     </Menu.Item>
@@ -253,8 +251,7 @@ const MenuTop = props => {
 
                   <Link href="/games">
                     <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
+                      className={cn("dropdown_menu_items"), menuStyle[1]}
                     >
                       Games
                     </Menu.Item>
@@ -262,8 +259,7 @@ const MenuTop = props => {
 
                   <Link href="/events">
                     <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
+                      className={cn("dropdown_menu_items"), menuStyle[1]}
                     >
                       Events
                     </Menu.Item>
@@ -271,8 +267,7 @@ const MenuTop = props => {
 
                   <Link href="/blog">
                     <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
+                      className={cn("dropdown_menu_items"), menuStyle[1]}
                     >
                       News & Blog
                     </Menu.Item>
@@ -284,8 +279,7 @@ const MenuTop = props => {
                     target="_blank"
                   >
                     <Menu.Item
-                      className={menuStyle[1]}
-                      id="dropdown-menu-items"
+                      className={cn("dropdown_menu_items"), menuStyle[1]}
                     >
                       Docs
                     </Menu.Item>
@@ -302,7 +296,7 @@ const MenuTop = props => {
   // links are shown or hidden based on user's display resolution
   const shownOrHiddenItems = () => {
     return (
-      <div className="menu-items-to-hide">
+      <div className={styles.menu_items_to_hide}>
         <Link href={`/${utm}`}>
           <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
             Play
@@ -352,14 +346,14 @@ const MenuTop = props => {
       return null;
     } else if (state.userStatus >= 4) {
       return (
-        <span className="right-menu-items">
+        <span className={styles.right_menu_items}>
           <ModalInfo />
           <ModalPopup />
         </span>
       );
     } else {
       return (
-        <span className="right-menu-items">
+        <span className={styles.right_menu_items}>
           <ButtonConnect />
         </span>
       );

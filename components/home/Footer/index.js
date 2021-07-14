@@ -26,38 +26,38 @@ const Footer = () => {
       <Menu className={styles.inner_footer_container_2} icon="labeled">
         <div className={styles.footer_menu_items}>
           <a href="/">
-            <Menu.Item className="sidebar-menu-text blog">Play</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text_blog}>Play</Menu.Item>
           </a>
 
           <a href="https://docs.decentral.games/info/risks" target="_blank">
-            <Menu.Item className="sidebar-menu-text blog">Risks</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text_blog}>Risks</Menu.Item>
           </a>
 
           <a
             href="https://docs.decentral.games/info/disclaimer"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">Disclaimer</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text_blog}>Disclaimer</Menu.Item>
           </a>
 
           <a
             href="https://docs.decentral.games/info/privacy-policy"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">
+            <Menu.Item className={styles.sidebar_menu_text_blog}>
               Privacy Policy
             </Menu.Item>
           </a>
 
           <a href="https://decentralgames.substack.com/" target="_blank">
-            <Menu.Item className="sidebar-menu-text blog">Newsletter</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text_blog}>Newsletter</Menu.Item>
           </a>
 
           <a
             href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC"
             target="_blank"
           >
-            <Menu.Item className="sidebar-menu-text blog">Press Kit</Menu.Item>
+            <Menu.Item className={styles.sidebar_menu_text_blog}>Press Kit</Menu.Item>
           </a>
         </div>
       </Menu>

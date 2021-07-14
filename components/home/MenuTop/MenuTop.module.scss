@@ -1,7 +1,6 @@
 @import 'styles/base.scss';
 
 .menu_container {
-
   display: flex;
   flex-direction: row;
   border: none;
@@ -9,6 +8,25 @@
   z-index: 3;
   max-width: 1400px;
   margin: auto !important;
+
+  .dropdown_menu_items {
+    width: calc(100vw - 41px);
+
+    &:hover {
+      background-color: #1f1f1f;
+    }
+  }
+
+  .mobile_menu_popup {
+    border: none;
+    min-width: calc(100vw + 1px);
+    border-radius: 0px;
+    padding-left: 0px;
+    height: 309px;
+    position: absolute;
+    top: 48px;
+    left: -25px;
+  }
 
   .mobile_menu_icon {
     position: relative;
@@ -31,17 +49,5 @@
   .other_menu_container_blog {
     position: relative;
     padding-left: 0px;
-  }
-
-  @include mq($from: large) {
-    .menu_items_to_hide {
-      display: flex;
-    }
-  }
-
-  @include mq($until: large) {
-    .menu_items_to_hide {
-      display: none;
-    }
   }
 }

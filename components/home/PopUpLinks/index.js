@@ -2,7 +2,6 @@ import { useEffect, useContext } from 'react';
 import { Menu, Button, Icon } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import { UseDarkMode } from 'components/UseDarkMode';
-import cn from 'classnames';
 
 import styles from 'PopUpLinks.module.scss';
 
@@ -24,11 +23,11 @@ const PopUpLinks = props => {
     <Button className={styles.more_dropdown_button} onClick={toggleTheme}>
       {props.isDarkMode ? (
         <Menu.Item className={styles.more_dropdown_menu_one}>
-          <Icon className={cn("text-white")} name="moon" />
+          <Icon className="text-white" name="moon" />
         </Menu.Item>
       ) : (
         <Menu.Item className={styles.more_dropdown_menu_two}>
-          <Icon className={cn("text-white")} name="sun" />
+          <Icon className="text-white" name="sun" />
         </Menu.Item>
       )}
     </Button>

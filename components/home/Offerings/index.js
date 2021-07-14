@@ -7,6 +7,9 @@ import ContentLeaderboard from 'components/content/ContentLeaderboard';
 // import Spinner from '../Spinner'; // ********** should we add the spinner to this page??? **********
 import Images from 'common/Images';
 import Aux from 'components/_Aux';
+import cn from 'classnames';
+
+import styles from './Offerings.module.scss';
 
 const detailsGames = {
   Poker: [
@@ -105,7 +108,7 @@ const detailsShop = {
 const detailsNFTs = {
   mink_coat: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed_y8ozak.png',
-    'nft-pic',
+    'nft_pic',
     'DG Fur Mink',
     'LEGENDARY',
     'An opulent fur coat made from minks #extrasaus',
@@ -114,7 +117,7 @@ const detailsNFTs = {
   ],
   tracksuit_top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566941/unnamed-1_anqn8z.png',
-    'nft-pic',
+    'nft_pic',
     'DG Tracksuit Jacket',
     'LEGENDARY',
     'The jacket of the decadent and elegant DG tracksuit #drip',
@@ -123,7 +126,7 @@ const detailsNFTs = {
   ],
   tracksuit_bottom: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-2_eiirjc.png',
-    'nft-pic',
+    'nft_pic',
     'DG Tracksuit Pants',
     'LEGENDARY',
     'The pants of the decadent and elegant DG tracksuit #drip',
@@ -132,7 +135,7 @@ const detailsNFTs = {
   ],
   shades: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-3_ey4xpe.png',
-    'nft-pic',
+    'nft_pic',
     'DG Flip Up Spectacles',
     'LEGENDARY',
     'Swaggy flip up shades designed to be wearable at any occassion. #ice',
@@ -141,7 +144,7 @@ const detailsNFTs = {
   ],
   yeezies: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-4_ccrxbx.png',
-    'nft-pic',
+    'nft_pic',
     'DG Deezys',
     'LEGENDARY',
     'Comfy and elegant sneekers #deezys',
@@ -150,7 +153,7 @@ const detailsNFTs = {
   ],
   slides: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
-    'nft-pic',
+    'nft_pic',
     'DG Slides',
     'LEGENDARY',
     'Lazy day designer slides complete with socks to keep your toes warm #cozyslides',
@@ -221,31 +224,28 @@ const Offerings = props => {
   const submenu = () => {
     return (
       <div>
-        <div
-          className="account-other-tabs"
-          style={{ padding: '100px 0px 60px 0px' }}
-        >
+        <div className={styles.account_other_tabs}>
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////  tab select area   //////////////////////////////// */}
 
           {gameState === 'games' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <span className="account-hover active">
+            <p className={cn("w-100"), styles.account_other_p}>
+              <span className={styles.account_hover_active}>
                 <b>Games</b>
               </span>
               <Link href="/games/casinos">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Casinos</b>
                 </span>
               </Link>
               <Link href="/games/nfts">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Shop</b>
                 </span>
               </Link>
@@ -253,22 +253,22 @@ const Offerings = props => {
               {leaderboardLink(true)}
             </p>
           ) : gameState === 'casinos' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <p className={cn("w-100"), styles.account_other_p}>
               <Link href="/games">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Games</b>
                 </span>
               </Link>
-              <span className="account-hover active">
+              <span className={styles.account_hover_active}>
                 <b>Casinos</b>
               </span>
               <Link href="/games/nfts">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Shop</b>
                 </span>
               </Link>
@@ -276,22 +276,22 @@ const Offerings = props => {
               {leaderboardLink(true)}
             </p>
           ) : gameState == 'nfts' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <p className={cn("w-100"), styles.account_other_p}>
               <Link href="/games">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Games</b>
                 </span>
               </Link>
               <Link href="/games/casinos">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Casinos</b>
                 </span>
               </Link>
-              <span className="account-hover active">
+              <span className={styles.account_hover_active}>
                 <b>NFTs</b>
               </span>
               <Link href="/games/shop">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Shop</b>
                 </span>
               </Link>
@@ -299,23 +299,23 @@ const Offerings = props => {
               {leaderboardLink(true)}
             </p>
           ) : gameState == 'shop' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <p className={cn("w-100"), styles.account_other_p}>
               <Link href="/games">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Games</b>
                 </span>
               </Link>
               <Link href="/games/casinos">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Casinos</b>
                 </span>
               </Link>
               <Link href="/games/nfts">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>NFTs</b>
                 </span>
               </Link>
-              <span className="account-hover active">
+              <span className={styles.account_hover_active}>
                 <b>Shop</b>
               </span>
 
@@ -323,24 +323,24 @@ const Offerings = props => {
             </p>
           ) : (
               <div>
-                <p className="account-other-p" style={{ width: '100%' }}>
+                <p className={cn("w-100"), styles.account_other_p}>
                   <Link href="/games">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>Games</b>
                     </span>
                   </Link>
                   <Link href="/games/casinos">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>Casinos</b>
                     </span>
                   </Link>
                   <Link href="/games/nfts">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>NFTs</b>
                     </span>
                   </Link>
                   <Link href="/games/shop">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>Shop</b>
                     </span>
                   </Link>
@@ -361,14 +361,14 @@ const Offerings = props => {
       if (link) {
         return (
           <Link href="/games/leaderboard">
-            <span className="account-hover">
+            <span className={styles.account_hover}>
               <b>Leaderboard</b>
             </span>
           </Link>
         );
       } else {
         return (
-          <span className="account-hover active">
+          <span className={styles.account_hover_active}>
             <b>Leaderboard</b>
           </span>
         );
@@ -381,22 +381,17 @@ const Offerings = props => {
   const coinSelect = () => {
     return (
       <Aux>
-        <span style={{ display: 'flex', width: '100%', minWidth: '861px' }}>
-          <span
-            style={{
-              display: 'flex',
-              marginBottom: '9px',
-            }}
-            className="leaderboard-coin-select-mobile"
-          >
+        <span className={styles.coin_select}>
+          <span className={styles.leaderboard_coin_select_mobile}>
             <span
               className={
-                gameSelect === 'play' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'play' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               id="account-select-play"
               onClick={() => handleChange('play')}
             >
               <img
+                
                 style={{
                   verticalAlign: 'middle',
                   marginRight: '6px',
@@ -411,7 +406,7 @@ const Offerings = props => {
             </span>
             <span
               className={
-                gameSelect === 'eth' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'eth' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('eth')}
@@ -431,7 +426,7 @@ const Offerings = props => {
             </span>
             <span
               className={
-                gameSelect === 'mana' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'mana' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               onClick={() => handleChange('mana')}
             >
@@ -450,7 +445,7 @@ const Offerings = props => {
             </span>
             <span
               className={
-                gameSelect === 'usdt' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'usdt' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('usdt')}
@@ -470,7 +465,7 @@ const Offerings = props => {
             </span>
             <span
               className={
-                gameSelect === 'dai' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'dai' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('dai')}
@@ -490,7 +485,7 @@ const Offerings = props => {
             </span>
             <span
               className={
-                gameSelect === 'atri' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'atri' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('atri')}

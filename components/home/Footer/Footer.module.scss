@@ -9,4 +9,27 @@
     margin-left: -5px;
     margin-right: 10px;
   }
+
+  .sidebar_menu_text_blog {
+    font-family: Larsseit-Bold;
+    color: rgba(155, 155, 155, 1) !important;
+    margin-top: 24px;
+    border: none;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: 800 !important;
+    position: relative;
+    z-index: 3;
+    transition: all linear 0.1s;
+
+    &:active {
+      color: rgba(255, 255, 255, 1) !important;
+    }
+
+    &:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      font-weight: 800;
+      transition: all linear 0.1s;
+    }
+  }
 }

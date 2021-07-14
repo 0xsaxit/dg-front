@@ -242,7 +242,7 @@ const ContentMining = props => {
                     </span>
                   </span>
 
-                  <span className="d-flex justify-content-center"}>
+                  <span className="d-flex justify-content-center">
                     <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Blackjack Rate / 1 DG</p>
                       <p className={styles.earned_amount}>49,300</p>
