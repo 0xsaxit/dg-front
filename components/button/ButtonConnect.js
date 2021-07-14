@@ -54,6 +54,14 @@ const ButtonConnect = () => {
       window.ethereum.on('accountsChanged', () => {
         assignToken();
       });
+
+      const currentTimestamp = new Date().getTime() / 1000;
+      const expiredTimestamp =
+        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
+
+      if (currentTimestamp > expiredTimestamp) {
+        assignToken();
+      }
     }
 
     if (router.pathname.includes('binance')) {
@@ -94,14 +102,6 @@ const ButtonConnect = () => {
 
   useEffect(() => {
     if (window.ethereum) {
-      const currentTimestamp = new Date().getTime() / 1000;
-      const expiredTimestamp =
-        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
-
-      if (currentTimestamp > expiredTimestamp) {
-        assignToken();
-      }
-
       setMetamaskEnabled(true);
     } else {
       setMetamaskEnabled(false);
