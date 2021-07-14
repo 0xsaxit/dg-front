@@ -88,7 +88,7 @@ const ContentTableBody = props => {
   return (
     <Table.Row>
       <Table.Cell>
-        <span className="d_flex">
+        <span className="d-flex">
           {contentTitle}
           <GetPopUp 
             number={number}

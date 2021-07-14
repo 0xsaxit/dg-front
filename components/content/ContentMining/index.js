@@ -134,7 +134,7 @@ const ContentMining = props => {
 
             <Divider className={styles.divider_dg_top} />
 
-            <span className="d_flex">
+            <span className="d-flex">
               <img
                 src={Images.DG_COIN_LOGO}
                 className={styles.farming_logo_small}
@@ -207,7 +207,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className="d_flex">
+                <div className="d-flex">
                   <img
                     src={Images.MANA_CIRCLE}
                     className={styles.farming_logo_small}
@@ -234,7 +234,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className="d_flex">
+                <div className="d-flex">
                   <span className={styles.gameplay_left_column}>
                     <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
@@ -271,8 +271,8 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className="d_flex">
-                  <span className="d_flex">
+                <div className="d-flex">
+                  <span className="d-flex">
                     <img src={Images.DAI_CIRCLE} className={styles.farming_logo_small} />
                     <img
                       src={Images.USDT_CIRCLE}
@@ -301,7 +301,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className="d_flex">
+                <div className="d-flex">
                   <span className={styles.gameplay_left_column}>
                     <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
@@ -340,7 +340,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <span className="d_flex">
+                <span className="d-flex">
                   <img
                     src={Images.ATRI_CIRCLE}
                     className={styles.farming_logo_small}
@@ -367,7 +367,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className="d_flex">
+                <div className="d-flex">
                   <span className={styles.gameplay_left_column}>
                     <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>
@@ -404,7 +404,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <span className="d_flex">
+                <span className="d-flex">
                   <img
                     className={styles.farming_logo_small}
                     src={Images.ETH_CIRCLE}
@@ -431,7 +431,7 @@ const ContentMining = props => {
 
                 <Divider className={styles.divider_dg_top} />
 
-                <div className="d_flex">
+                <div className="d-flex">
                   <span className={styles.gameplay_left_column}>
                     <span className="d-flex flex-column align-items-center">
                       <p className={styles.earned_text}>Roulette Rate / 1 DG</p>

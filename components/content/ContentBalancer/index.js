@@ -304,7 +304,7 @@ const ContentBalancer = props => {
               className={styles.dg_column_one}
               id="DG-column-hover"
             >
-              <span className="d_flex">
+              <span className="d-flex">
                 <img
                   src={Images.MANA_CIRCLE}
                   className={styles.farming_logo}
