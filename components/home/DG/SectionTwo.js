@@ -159,7 +159,7 @@ function SectionTwo() {
           </div>
           <div className="col-md-6 d-flex justify-content-center">
             <video
-              className={styles.image}
+              className={cn( mobile ? styles.image_mobile : styles.image )}
               src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Vote_DAO_zqaohw.webm"
               type="video/mp4"
               frameBorder="0"
