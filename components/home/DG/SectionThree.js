@@ -5,7 +5,7 @@ import images from 'common/Images';
 import styles from './DG.module.scss';
 
 const FunctionThree = () => {
-  const mobile = useMediaQuery('(max-width: 768px)');
+  const mobile = useMediaQuery('(max-width: 499px)');
 
   return (
     <>
@@ -58,7 +58,6 @@ const FunctionThree = () => {
         <p className={styles.sub_title}>How to start with $DG</p>
         <h2 className={styles.title}>Get Started</h2>
         <Button
-          color="blue"
           className={styles.start_here}
           href="https://docs.decentral.games/getting-started/play-to-mine"
           target="_blank"
@@ -77,11 +76,7 @@ const FunctionThree = () => {
           ></video>
         )}
         {mobile && (
-          <img
-            className={styles.dg_video}
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625834463/image_52_u6oiyf.jpg"
-            alt="desktop"
-          />
+          <div style={{ height: '100px' }} />
         )}
       </div>
     </>

@@ -128,13 +128,13 @@ const Footer = () => {
           {!onlyTablet && !mobile && (
             <div className={styles.cookie_container}>
               <span className={styles.copyright}>
-                Copyright © 2021 Web4 LLC. All rights reserved
+                Copyright © 2021 Web4 LTD. All rights reserved
               </span>
               <div className="d-flex justify-content-between">
                 <p className={styles.description}>
                   We use cookies to create a better experience.
                 </p>
-                <span className={styles.accept}>Accept</span>
+                {/*<span className={styles.accept}>Accept</span>*/}
               </div>
             </div>
           )}
@@ -178,20 +178,20 @@ const Footer = () => {
         {mobile && (
           <div className={styles.cookie_container_tablet}>
             <span className={styles.copyright}>
-              Copyright © 2021 Web4 LLC. All rights reserved
+              Copyright © 2021 Web4 LTD. All rights reserved
             </span>
           </div>
         )}
         {onlyTablet && (
           <div className={styles.cookie_container}>
             <span className={styles.copyright}>
-              Copyright © 2021 Web4 LLC. All rights reserved
+              Copyright © 2021 Web4 LTD. All rights reserved
             </span>
             <div className="d-flex justify-content-between">
               <p className={styles.description}>
                 We use cookies to create a better experience.
               </p>
-              <span className={styles.accept}>Accept</span>
+              {/*<span className={styles.accept}>Accept</span>*/}
             </div>
           </div>
         )}

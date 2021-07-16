@@ -31,7 +31,7 @@
       max-width: 560px;
 
       @include mq($until: medium) {
-        font-size: 16px;
+        font-size: 18px;
         text-align: center;
         padding: 0 24px;
       }
@@ -61,16 +61,22 @@
     }
 
     .image {
-      height: 500px;
+      height: 400px;
       object-fit: contain;
       position: relative;
       margin-left: -50px;
 
       @include mq($until: medium) {
-        height: auto;
+        height: 400px;
         margin-left: 0;
-        margin-top: 50px;
-        margin-bottom: 24px;
+        margin-top: 100px;
+        margin-bottom: 0px;
+      }
+    }
+
+    @media (max-width: 499px) {
+      .image {
+        height: 270px;
       }
     }
   }
@@ -84,6 +90,12 @@
     left: 0;
   }
 
+  @media (max-width: 499px) {
+    .video {
+      display: none;
+    }
+  }
+
   .home_dashboard_content {
     position: relative;
     height: calc(100vh - 72px);
@@ -95,7 +107,7 @@
       width: 100%;
     }
 
-    @include mq($until: medium) {
+    @media (max-width: 499px) {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -134,7 +146,7 @@
       margin-top: 16px;
 
       @include mq($until: large) {
-        font-size: 16px;
+        font-size: 18px;
       }
     }
 
@@ -186,7 +198,7 @@
     padding: 96px 0;
 
     @include mq($until: medium) {
-      padding: 24px 0;
+      display: none;
     }
 
     h1 {
@@ -258,11 +270,12 @@
       position: relative;
       max-width: 60%;
       width: 100%;
-      left: 1%;
+      left: 12px;
 
       @include mq($until: medium) {
         max-width: 90%;
-        left: 0;
+        left: 12px;
+        margin-bottom: 90px;
       }
     }
   }

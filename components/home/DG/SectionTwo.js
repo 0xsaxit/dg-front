@@ -23,6 +23,7 @@ function SectionTwo() {
                 ? 'col-md-6'
                 : 'col-md-6 d-flex flex-column justify-content-center'
             )}
+            style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>Play to Earn</h1>
             <p className={styles.section_p}>
@@ -52,10 +53,15 @@ function SectionTwo() {
             </span>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <img
+            <video
               className={styles.image}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624651327/Coins_fmq0km.png"
-            />
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
+              type="video/mp4"
+              frameBorder="0"
+              autoPlay={true}
+              loop
+              muted
+            ></video>
           </div>
         </div>
       </div>
@@ -63,10 +69,15 @@ function SectionTwo() {
       <div className="container">
         <div className={cn('row', styles.image_span)}>
           <div className="col-md-6 d-flex justify-content-center">
-            <img
+            <video
               className={styles.image}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_scale,h_338,w_600/v1626221777/wallet_ghs41e.png"
-            />
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Wallet_dhloo5.webm"
+              type="video/mp4"
+              frameBorder="0"
+              autoPlay={true}
+              loop
+              muted
+            ></video>
           </div>
 
           <div
@@ -75,6 +86,7 @@ function SectionTwo() {
                 ? 'col-md-6'
                 : 'col-md-6 d-flex flex-column justify-content-center'
             )}
+            style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>Earn APY%</h1>
             <p className={styles.section_p}>
@@ -118,6 +130,7 @@ function SectionTwo() {
                 ? 'col-md-6'
                 : 'col-md-6 d-flex flex-column justify-content-center'
             )}
+            style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
               Vote in the DAO <br /> (Be The House)
@@ -145,10 +158,15 @@ function SectionTwo() {
             </span>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <img
+            <video
               className={styles.image}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/c_crop,h_209,w_600/v1626139760/coin_za17qr.png"
-            />
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Vote_DAO_zqaohw.webm"
+              type="video/mp4"
+              frameBorder="0"
+              autoPlay={true}
+              loop
+              muted
+            ></video>
           </div>
         </div>
       </div>
