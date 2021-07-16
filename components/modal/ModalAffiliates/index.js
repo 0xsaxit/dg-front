@@ -3,6 +3,8 @@ import { GlobalContext } from '../../store';
 import { Icon, Modal, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
 
+import styles from './ModalAffiliates.module.scss';
+
 const ModalAffiliates = () => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -25,24 +27,24 @@ const ModalAffiliates = () => {
 
   return (
     <Modal
-      className="referral-modal"
+      className={styles.referral_modal}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       close
       trigger={
         <span>
-          <b className="account-hover">REFERRALS</b>
+          <b className={styles.account_hover}>REFERRALS</b>
         </span>
       }
     >
-      <div style={{ margin: '21px 30px 0px 30px' }}>
-        <span className="mailchimp-close" onClick={() => setOpen(false)}>
+      <div className={styles.mailchimp_margin}>
+        <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
           <Icon name="close" />
         </span>
       </div>
 
-      <p className="mailchimp-header-text">Refer a Friend</p>
+      <p className={styles.mailchimp_header_text}>Refer a Friend</p>
 
       <Divider style={{ marginTop: '-15px' }} />
 
@@ -56,7 +58,7 @@ const ModalAffiliates = () => {
         <b>Please Note:</b> This link will only earn you $DG when shared with a
         user who has not yet registered an account.
       </p>
-      <p className="welcome-text" style={{ marginLeft: '15px' }}>
+      <p className={styles.welcome_text} style={{ marginLeft: '15px' }}>
         {' '}
         Referral Link{' '}
       </p>
@@ -70,16 +72,16 @@ const ModalAffiliates = () => {
           padding: '3px 6px 6px 6px',
         }}
       >
-        <p style={{ marginBottom: '0px' }}>{referralLink}</p>
+        <p>{referralLink}</p>
         {copied == false ? (
           <Icon
-            className="affiliate-icon"
+            className={styles.affiliate_icon}
             onClick={() => onCopy()}
             name="copy"
           />
         ) : (
           <Icon
-            className="affiliate-icon"
+            className={styles.affiliate_icon}
             onClick={() => onCopy()}
             name="check"
           />

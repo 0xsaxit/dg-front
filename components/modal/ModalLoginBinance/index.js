@@ -142,7 +142,7 @@ const ModalLoginBinance = () => {
           }
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
@@ -154,7 +154,7 @@ const ModalLoginBinance = () => {
                 openMetaMask();
               }}
             >
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
                   style={{ height: '36px', margin: '0px 24px 0px -48px' }}

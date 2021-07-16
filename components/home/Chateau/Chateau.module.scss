@@ -1,6 +1,52 @@
 @import 'styles/base.scss';
 
 .home_dashboard_content {
+  .home_gif {
+    @include mq($from: small) {
+      display: none;
+    }
+
+    @include mq($until: small) {
+      margin-top: 0px;
+      width: 100%;
+      position: relative;
+      z-index: -2;
+    } 
+  }
+
+  .dg_powered_container {
+    width: 31.75%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -24px;
+    display: block;
+    margin-bottom: 6px;
+    padding: 30px 30px 0 30px;
+    border-radius: 4px;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+      transition: all 0.1s ease 0s;
+    }
+  }
+
+  .home_section_2 {
+    position: relative;
+    padding-left: 30px;
+    padding-right: 45px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 180px;
+    padding-bottom: 180px;
+  }
+
+  .home_section_2_outter {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
   .section_4_outter_header_container {
     margin-top: -120px;
 
@@ -36,20 +82,30 @@
         font-size: 40px;
       }
     }
+  }
 
-    .home_button_span_ecosystem {
+  .roadmap {
+    background: transparent;
+    color: #006eff;
+    margin-left: 20px;
+    border: 1px solid #006eff;
+    margin-top: 20px;
+    height: 48px;
+    width: 200px;
+    line-height: 18px;
+    font-size: 18px;
+  }
+
+  .home_footer_p_avatars {
+    @include mq($until: large) {
+      text-align: center;
+    }
+  }
+
+  @include mq($until: small) {
+    .home_button_span {
       display: flex;
-      align-self: center;
-
-      @include mq($until: medium) {
-        align-self: start;
-      }
-
-      @include mq($until: small) {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-      }
+      justify-content: center;
     }
   }
 }

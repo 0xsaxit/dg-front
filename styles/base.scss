@@ -560,7 +560,7 @@ $mq-breakpoints: (
   margin: -12px 0 -32px -2px;
   max-width: 600px;
 
-  @include mq($until: medium) {
+  @include mq($from: medium) {
     max-width: 100%;
     text-align: center;
   }
@@ -574,6 +574,15 @@ $mq-breakpoints: (
 .home_button_span_ecosystem {
   display: flex;
   align-self: center;
+
+  @include mq($until: medium) {
+    align-self: start;
+  }
+
+  @include mq($until: small) {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .play_button {
@@ -636,8 +645,6 @@ $mq-breakpoints: (
     justify-content: center;
   }
 }
-
-
 
 ///////////// AccountData
 
@@ -823,10 +830,65 @@ $mq-breakpoints: (
   }
 }
 
+.affiliate_icon {
+  margin-left: 28px;
+  line-height: 22px;
+  color: white;
+  font-size: 24px;
+}
+
 .menu_items_to_hide {
   display: flex !important;
 
   @include mq($until: large) {
     display: none !important;
   }
+}
+
+.mailchimp_close {
+  background: black;
+  border-radius: 100%;
+  padding: 8px 4px 8px 8px;
+  cursor: pointer;
+}
+
+.mailchim_margin {
+  margin: 21px 30px 0 30px;
+}
+
+.mailchimp_header_text {
+  margin-top: -22px;
+  padding-bottom: 12px;
+  font-weight: 800;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  color: black;
+}
+
+.auth_loader {
+  font-size: 12px;
+
+  &:after {
+    border-color: white;
+  }
+}
+
+.mailchimp_close {
+  background-color: black;
+  border-radius: 100%;
+  padding: 8px 4px 8px 8px;
+  cursor: pointer;
+}
+
+.account_button {
+  padding-right: 16px;
+  padding-left: 16px;
+  height: 48px;
+  margin-top: 12px;
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  color: white;
+  margin-right: 16px;
+  font-size: 18px;
 }

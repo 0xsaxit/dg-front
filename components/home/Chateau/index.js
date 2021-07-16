@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
-import cn from 'classnames';
 import Link from 'next/link';
 import { Button, Divider, Image, Icon } from 'semantic-ui-react';
 import { Parallax } from 'react-parallax';
@@ -72,16 +71,13 @@ const Chateau = () => {
         <div className={styles.home_dashboard_content}>
           <img
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624746105/Screen_Shot_2021-06-26_at_3.21.36_PM_se8dcr.png"
-            className="home-gif"
+            className={styles.home_gif}
           />
-          <h1
-            className="home-dashboard-main-h1"
-            style={{ marginBottom: '-32px' }}
-          >
+          <h1 className={styles.home_dashboard_main_h1}>
             Hit the tables in a metaverse casino
           </h1>
-          <span className="home-button-span"></span>
-          <p className="home-dashboard-p centered">
+          <span className={styles.home_button_span}></span>
+          <p className={styles.home_dashboard_p_centered}>
             Earn $DG by playing non-custodial slots, roulette, blackjack and poker in the Metaverse. Stake $DG to Be The House.
           </p>
           {state.userStatus === 0 ? (
@@ -135,7 +131,7 @@ const Chateau = () => {
             className="home-section-4-header"
             style={{ paddingBottom: '30px' }}
           >
-            <span className="powered-dg-span">
+            <span className={styles.powered_dg_span}>
               <h1
                 className="home-footer-h1 ecosystem"
                 style={{ marginBottom: '0px', fontSize: '48px' }}
@@ -168,7 +164,7 @@ const Chateau = () => {
         <div className="section-4-outter" style={{ paddingBottom: '60px' }}>
           <div className="home-section-4">
             <span
-              className="outter-games-container"
+              className={styles.outter_games_container}
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -176,22 +172,18 @@ const Chateau = () => {
               }}
             >
               <Link href="/dg/mining">
-                <a className="dg-powered-container one">
+                <a className={styles.dg_powered_container}>
                   <span
                     style={{ display: 'flex', justifyContent: 'center' }}
-                    className="nft-image"
+                    className={styles.nft_image}
                   >
                     <Image
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555540/1f3b0_2x_pvkxvc.png"
-                      className="dg-powered-pic"
                       style={{ borderRadius: '4px' }}
                     />
                   </span>
-                  <div className="nft-description">
-                    <h3 className="nft-other-h3">Gameplay</h3>
-                    <span
-                      style={{ display: 'flex', justifyContent: 'center' }}
-                    ></span>
+                  <div className={styles.nft_description}>
+                    <h3 className={styles.nft_other_h3}>Gameplay</h3>
 
                     <Divider
                       style={{
@@ -201,7 +193,7 @@ const Chateau = () => {
                     />
 
                     <p
-                      className="nft-other-p"
+                      className={styles.nft_other_p}
                       style={{
                         marginTop: '-12px',
                         paddingTop: '15px',
@@ -216,22 +208,18 @@ const Chateau = () => {
               </Link>
 
               <Link href="/dg/liquidity">
-                <a className="dg-powered-container two">
+                <a className={styles.dg_powered_container}>
                   <span
                     style={{ display: 'flex', justifyContent: 'center' }}
                     className="nft-image"
                   >
                     <Image
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f4b0_2x_s22ysr.png"
-                      className="dg-powered-pic"
                       style={{ borderRadius: '4px' }}
                     />
                   </span>
-                  <div className="nft-description">
-                    <h3 className="nft-other-h3">Liquidity</h3>
-                    <span
-                      style={{ display: 'flex', justifyContent: 'center' }}
-                    ></span>
+                  <div className={styles.nft_description}>
+                    <h3 className={styles.nft_other_h3}>Liquidity</h3>
 
                     <Divider
                       style={{
@@ -241,7 +229,7 @@ const Chateau = () => {
                     />
 
                     <p
-                      className="nft-other-p"
+                      className={styles.nft_other_p}
                       style={{
                         marginTop: '-12px',
                         paddingTop: '15px',
@@ -256,22 +244,18 @@ const Chateau = () => {
               </Link>
 
               <Link href="/dg/governance">
-                <a className="dg-powered-container three">
+                <a className={styles.dg_powered_container}>
                   <span
                     style={{ display: 'flex', justifyContent: 'center' }}
                     className="nft-image"
                   >
                     <Image
                       src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f3db-fe0f_2x_muszls.png"
-                      className="dg-powered-pic"
                       style={{ borderRadius: '4px' }}
                     />
                   </span>
-                  <div className="nft-description">
-                    <h3 className="nft-other-h3">Governance</h3>
-                    <span
-                      style={{ display: 'flex', justifyContent: 'center' }}
-                    ></span>
+                  <div className={styles.nft_description}>
+                    <h3 className={styles.nft_other_h3}>Governance</h3>
 
                     <Divider
                       style={{
@@ -281,7 +265,7 @@ const Chateau = () => {
                     />
 
                     <p
-                      className="nft-other-p"
+                      className={styles.nft_other_p}
                       style={{
                         marginTop: '-12px',
                         paddingTop: '15px',
@@ -406,7 +390,7 @@ const Chateau = () => {
                   </Button>
                   <Button
                     color="blue"
-                    className="roadmap"
+                    className={styles.roadmap}
                     href="https://docs.decentral.games/info/roadmap"
                     target="_blank"
                   >

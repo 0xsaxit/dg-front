@@ -40,7 +40,7 @@ const ContentAdmin = ({ ethBalance, data, content }) => {
           </Grid.Row>
         </Grid>
 
-        <Grid className="admin-balances-container">
+        <Grid className={styles.admin_balances_container}>
           <Grid.Row>
             {games.map((game, i) => {
               return balanceBox(game, i);

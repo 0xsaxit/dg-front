@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
+import styles from './ModalPopup.module.scss';
 
 
 const ModalPopup = () => {
@@ -65,7 +66,7 @@ const ModalPopup = () => {
         className="account-popup"
         trigger={
           <Button
-            className="account-button"
+            className={styles.account_button}
             style={{ paddingLeft: '24px', paddingRight: '24px' }}
           >
             <span>

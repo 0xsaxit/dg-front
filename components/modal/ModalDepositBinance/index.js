@@ -1,12 +1,8 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
-import Web3 from 'web3';
 import { Modal, Icon, Button, Checkbox, Input } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
 import styles from './ModalDepositBinance.module.scss';
-import Images from '../../../common/Images';
-import Fetch from '../../../common/Fetch';
 
 const ModalDepositBinance = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -27,7 +23,7 @@ const ModalDepositBinance = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function isCheckedOne() {
+  const isCheckedOne = () => {
     if (checkedOne === true) {
       setCheckedOne(false);
     } else {
@@ -35,7 +31,7 @@ const ModalDepositBinance = () => {
     }
   }
 
-  function isCheckedTwo() {
+  const isCheckedTwo = () => {
     if (checkedTwo === true) {
       setCheckedTwo(false);
     } else {
@@ -43,7 +39,7 @@ const ModalDepositBinance = () => {
     }
   }
 
-  function isCheckedThree() {
+  const isCheckedThree = () => {
     if (checkedThree === true) {
       setCheckedThree(false);
     } else {
@@ -61,11 +57,11 @@ const ModalDepositBinance = () => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function handleChange(e) {
+  const handleChange = (e) => {
     setAmountInput(e.target.value);
   }
 
-  function pressed() {
+  const pressed = () => {
     setConnectPressed(true);
   }
 
@@ -89,7 +85,7 @@ const ModalDepositBinance = () => {
         }
       >
         <div style={{ margin: '-60px 0px 50px -30px' }}>
-          <span className="mailchimp-close" onClick={() => setOpen(false)}>
+          <span className={styles.mailchim_close} onClick={() => setOpen(false)}>
             <Icon name="close" />
           </span>
         </div>
@@ -101,7 +97,7 @@ const ModalDepositBinance = () => {
             {' '}
             Please read our{' '}
             <a
-              className="terms-a"
+              className={styles.terms_a}
               href="https://docs.decentral.games/disclaimer"
             >
               {' '}
@@ -109,7 +105,7 @@ const ModalDepositBinance = () => {
             </a>
             . To continue, you'll need to accept the following{' '}
             <a
-              className="terms-a"
+              className={styles.terms_a}
               href="https://docs.decentral.games/disclaimer"
             >
               {' '}
@@ -118,7 +114,7 @@ const ModalDepositBinance = () => {
             by checking each box.
           </p>
 
-          <span style={{ display: 'flex' }}>
+          <span className="d-flex">
             <Checkbox
               style={{ padding: '0px 36px 0px 0px' }}
               onClick={() => isCheckedOne()}
@@ -129,7 +125,7 @@ const ModalDepositBinance = () => {
             </p>
           </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px' }}>
+          <span className="d-flex" style={{ paddingTop: '16px' }}>
             <Checkbox
               style={{ padding: '8px 36px 0px 0px' }}
               onClick={() => isCheckedTwo()}
@@ -140,13 +136,7 @@ const ModalDepositBinance = () => {
             </p>
           </span>
 
-          <span
-            style={{
-              display: 'flex',
-              paddingTop: '16px',
-              paddingBottom: '24px',
-            }}
-          >
+          <span className="d-flex" style={{ padding: '16px 0 24px 0' }}>
             <Checkbox
               style={{ padding: '8px 36px 0px 0px' }}
               onClick={() => isCheckedThree()}
@@ -155,7 +145,7 @@ const ModalDepositBinance = () => {
               {' '}
               I have read and accepted the{' '}
               <a
-                className="terms-a"
+                className={styles.terms_a}
                 href="https://docs.decentral.games/disclaimer"
               >
                 {' '}
@@ -190,14 +180,14 @@ const ModalDepositBinance = () => {
       >
         <div style={{ margin: '-60px 0px 50px -30px' }}>
           <span
-            className="mailchimp-close"
+            className={styles.mailchimp_close}
             onClick={() => setSecondOpen(false)}
           >
             <Icon name="close" />
           </span>
         </div>
 
-        <span style={{ display: 'flex' }}>
+        <span className="d-flex">
           <Button
             className={
               withdrawSelected
@@ -224,18 +214,18 @@ const ModalDepositBinance = () => {
           <span>
             <h3 className={styles.title}> Send BUSD to your address </h3>
 
-            <p className={styles.subtitle} style={{ textAlign: 'center' }}>
+            <p className={cn("text-center"), styles.subtitle}>
               (The address below is your Metamask wallet)
             </p>
 
             <Button className={styles.outline_button}>
-              <span style={{ display: 'flex', flexDirection: 'row' }}>
+              <span className="d-flex flex-row">
                 <img
                   className={styles.busd_img}
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
                 />
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ display: 'flex' }}>
+                <span className="d-flex flex-column">
+                  <span className="d-flex">
                     <h3 className={styles.deposit_address}>
                       {state.userAddress.substr(0, 8) +
                         '...' +
@@ -262,39 +252,18 @@ const ModalDepositBinance = () => {
               </span>
             </Button>
 
-            <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
+            <span className="d-flex" style={{ margin: '32px 24px 32px 24px' }}>
               <img
                 className={styles.busd_img_2}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
               />
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginTop: '-4px',
-                  }}
-                >
+              <span className="d-flex justify-content-between w-100">
+                <span className="d-flex flex-column" style={{ marginTop: '-4px' }}>
                   <h3 className={styles.deposit_address}>BUSD</h3>
                   <p className={styles.deposit_subtitle_2}>Balance</p>
                 </span>
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    margin: '-4px 0px 0px 0px',
-                  }}
-                >
-                  <h3
-                    className={styles.deposit_address_2}
-                    style={{ textAlign: 'right' }}
-                  >
+                <span className="d-flex flex-column" style={{ marginTop: '-4px' }}>
+                  <h3 className={cn("text-end"), styles.deposit_address_2}>
                     {state.userBalances[3][1].toFixed(2)} BUSD
                   </h3>
                   <p className={styles.deposit_subtitle_3}>
@@ -305,7 +274,7 @@ const ModalDepositBinance = () => {
             </span>
 
             <button className={cn('btn', styles.copy_binance)}>
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 Copy Wallet Address
                 <svg
                   style={{ marginLeft: '12px', marginTop: '4px' }}
@@ -327,22 +296,17 @@ const ModalDepositBinance = () => {
           </span>
         ) : (
           <span>
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                marginTop: '6px',
-              }}
+            <span className="d-flex justify-content-center" style={{ marginTop: '6px' }}
             >
               <Input
-                className="withdraw_input"
+                className={styles.withdraw_input}
                 placeholder="Amount"
                 value={amountInput}
                 onChange={handleChange}
               />
             </span>
 
-            <p className={styles.subtitle} style={{ textAlign: 'center' }}>
+            <p className={cn("text-center"), styles.subtitle}>
               ${amountInput}
             </p>
 
@@ -362,35 +326,18 @@ const ModalDepositBinance = () => {
               placeholder="To: Paste BUSD Address Here"
             />
 
-            <span style={{ display: 'flex', margin: '32px 24px 32px 24px' }}>
+            <span className="d-flex" style={{ margin: '32px 24px 32px 24px' }}>
               <img
                 className={styles.busd_img_2}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
               />
-              <span
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginTop: '-4px',
-                  }}
+              <span className="d-flex justify-content-between w-100">
+                <span className="d-flex flex-column" style={{ marginTop: '-4px' }}
                 >
                   <h3 className={styles.deposit_address}>BUSD</h3>
                   <p className={styles.deposit_subtitle_2}>Balance</p>
                 </span>
-                <span
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    margin: '-4px 0px 0px 0px',
-                  }}
-                >
+                <span className="d-flex flex-column" style={{ margin: '-4px 0px 0px 0px' }}>
                   <h3
                     className={styles.deposit_address_2}
                     style={{ textAlign: 'right' }}
