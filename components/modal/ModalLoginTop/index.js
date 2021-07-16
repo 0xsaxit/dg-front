@@ -1,7 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
-import cn from 'classnames';
 import Web3 from 'web3';
-import { Modal, Icon, Button } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Fetch from 'common/Fetch';
 

@@ -108,13 +108,7 @@ const ModalInfo = () => {
         </span>
       }
     >
-      <div
-        style={{
-          marginTop: '-60px',
-          marginBottom: '45px',
-          marginLeft: '-30px',
-        }}
-      >
+      <div style={{ margin: '-60px 0 45px -30px' }}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
           <svg
             width="12"

@@ -1,1 +1,48 @@
 @import "styles/base.scss";
+
+.account_copy {
+  margin-bottom: 12px;
+}
+
+.account_address {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+  padding-left: 8px;
+  margin-top: -4px;
+  transition: all linear 0.1s;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+  }
+}
+
+.casino_balance_button {
+  width: 300px;
+  height: 54px;
+  border-radius: 12px;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  margin-top: 8px;
+  padding: 12px 24px 12px 24px;
+  transition: all linear 0.1s;
+
+  &:hover {
+    border: 2px solid rgba(255, 255, 255, 1);
+    transition: all linear 0.1s;
+  }
+}
+
+.casino_balance_text {
+  float: left;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: Larsseit-Bold;
+
+  &_two {
+    float: right;
+    font-size: 16px;
+    font-family: Larsseit-Bold;
+  }
+}

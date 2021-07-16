@@ -1,12 +1,10 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
-import { Modal, Icon, Button } from 'semantic-ui-react';
+import { Modal, Icon } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
-import styles from './ModalLoginBinance.module.scss';
-import Images from '../../../common/Images';
 import Fetch from '../../../common/Fetch';
+import styles from './ModalLoginBinance.module.scss';
 
 const ModalLoginBinance = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -166,7 +164,7 @@ const ModalLoginBinance = () => {
               {' '}
               We currently only support{' '}
               <a
-                className="modal-a"
+                className={styles.modal_a}
                 href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                 target="_blank"
               >
@@ -197,7 +195,7 @@ const ModalLoginBinance = () => {
           }
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
@@ -208,7 +206,7 @@ const ModalLoginBinance = () => {
               href="https://brave.com/"
               target="_blank"
             >
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 Brave Browser
                 <Icon
                   style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }}
@@ -219,13 +217,13 @@ const ModalLoginBinance = () => {
             <p className={styles.subtitle}>
               {' '}
               We currently only support{' '}
-              <a className="modal-a" href="https://metamask.io" target="_blank">
+              <a className={styles.modal_a} href="https://metamask.io" target="_blank">
                 {' '}
                 Metamask{' '}
               </a>{' '}
               Enabled browsers. For more instructions on how to set up Metamask,{' '}
               <a
-                className="modal-a"
+                className={styles.modal_a}
                 href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                 target="_blank"
               >
@@ -252,7 +250,7 @@ const ModalLoginBinance = () => {
           }
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
@@ -264,7 +262,7 @@ const ModalLoginBinance = () => {
                 openMetaMask();
               }}
             >
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 Set Up Metamask
                 <Icon
                   style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }}
@@ -275,12 +273,12 @@ const ModalLoginBinance = () => {
             <p className={styles.subtitle}>
               {' '}
               We currently only support{' '}
-              <a className="modal-a" href="https://metamask.io">
+              <a className={styles.modal_a} href="https://metamask.io">
                 {' '}
                 Metamask wallets{' '}
               </a>
               . For more instructions on how to set up Metamask,{' '}
-              <a className="modal-a" href="https://metamask.io">
+              <a className={styles.modal_a} href="https://metamask.io">
                 {' '}
                 click here{' '}
               </a>
