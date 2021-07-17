@@ -6,7 +6,7 @@ import images from 'common/Images';
 import styles from './DG.module.scss';
 
 const FunctionThree = () => {
-  const mobile = useMediaQuery('(max-width: 499px)');
+  const mobile = useMediaQuery('(max-width: 576px)');
 
   return (
     <>
@@ -143,13 +143,6 @@ const FunctionThree = () => {
             loop
             muted
           ></video>
-        )}
-        {mobile && (
-          <img
-            className={styles.dg_video}
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625834463/image_52_u6oiyf.jpg"
-            alt="img"
-          />
         )}
       </div>
     </>

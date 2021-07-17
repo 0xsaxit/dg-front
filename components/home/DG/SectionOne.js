@@ -5,7 +5,7 @@ import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
 
 function SectionOne(props) {
-  const mobile = useMediaQuery('(max-width: 499px)');
+  const mobile = useMediaQuery('(max-width: 576px)');
 
   return (
     <Aux>
