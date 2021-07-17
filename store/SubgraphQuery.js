@@ -13,7 +13,7 @@ function SubgraphQuery() {
         `https://api.thegraph.com/subgraphs/name/mobiman1/dg-pointer-lax`,
         {
           query: `{
-            exampleEntities(first: 50) {
+            exampleEntities(first: 500) {
               id
               affiliate
               player
@@ -26,8 +26,8 @@ function SubgraphQuery() {
 
       const data = subgraphData.data.data.exampleEntities;
 
-      console.log('subgraph data');
-      console.log(data);
+      // console.log('subgraph data');
+      // console.log(data);
 
       dispatch({
         type: 'subgraph_data',
