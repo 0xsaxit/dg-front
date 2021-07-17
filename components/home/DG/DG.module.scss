@@ -94,10 +94,14 @@
   .video {
     object-fit: cover;
     width: 100vw;
-    height: 60vh;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
+
+    @include mq($until: medium) {
+      height: 60vh;
+    }
   }
 
   .home_dashboard_content {
