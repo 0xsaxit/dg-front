@@ -253,6 +253,8 @@ function History({ state }) {
                   action = 'Backgammon';
                 } else if (row.gameType === 7 || row.gameType === 4) {
                   action = 'Blackjack';
+                } else if (row.gameType === 9) {
+                  action = 'Poker';
                 }
 
                 let style = '';
