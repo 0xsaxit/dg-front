@@ -9,7 +9,6 @@ function SectionOne(props) {
 
   return (
     <Aux>
-
       <video
         className={styles.video}
         id="my-video"
@@ -36,26 +35,29 @@ function SectionOne(props) {
                 : 'Hit the tables in a metaverse Casino'}
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              With Decentral Games coin, you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.
+              With Decentral Games coin, you own the casino. Control the
+              profits. Vote on new games. Earn money back directly by playing.
             </p>
-            <span className={styles.button_group}>
-              <Button
-                color="blue"
-                className={styles.earn_dg_button}
-                href="https://docs.decentral.games/"
-                target="_blank"
-              >
-                Learn More
-              </Button>
-              <Button
-                color="blue"
-                className={styles.play_button}
-                href="https://play.decentraland.org/?position=-118%2C135"
-                target="_blank"
-              >
-                Play Now
-              </Button>
-            </span>
+            {!mobile && (
+              <span className={styles.button_group}>
+                <Button
+                  color="blue"
+                  className={styles.earn_dg_button}
+                  href="https://docs.decentral.games/"
+                  target="_blank"
+                >
+                  Learn More
+                </Button>
+                <Button
+                  color="blue"
+                  className={styles.play_button}
+                  href="https://play.decentraland.org/?position=-118%2C135"
+                  target="_blank"
+                >
+                  Play Now
+                </Button>
+              </span>
+            )}
           </div>
         </div>
 
