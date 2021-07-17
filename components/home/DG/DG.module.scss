@@ -136,7 +136,6 @@
 
       @include mq($until: medium) {
         max-width: 100%;
-        text-align: center;
         font-size: 42px;
         margin-bottom: 16px;
       }
@@ -209,6 +208,15 @@
 
     @include mq($until: medium) {
       display: none;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+
+      .image_section {
+        width: 160px;
+      }
     }
 
     h1 {

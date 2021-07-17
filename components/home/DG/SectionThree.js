@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { Button } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import images from 'common/Images';
@@ -12,44 +13,112 @@ const FunctionThree = () => {
       <div className={styles.our_partners}>
         <h1>Our Partners</h1>
         <div className="container">
-          <div className="row">
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+          <div className={styles.row}>
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.GBV} alt="GBV" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.DCG} alt="DCG" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.CLUSTER} alt="CLUSTER" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.AU21CAPITAL} alt="AU21CAPITAL" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.ID_THEORY} alt="ID THEORY" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.C_C} alt="C+C" />
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+          <div className={styles.row}>
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.POLYGON} alt="POLYGON" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.ATARI} alt="ATARI" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.DECENTRALAND} alt="DECENTRALAND" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.MAKER} alt="MAKER" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.BICONOMY} alt="BICONOMY" />
             </div>
-            <div className="col-md-2 col-sm-4 col-6 d-flex justify-content-center mb-5">
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.IBIZA} alt="IBIZA" />
+            </div>
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
+              <img src={images.HASHKEY} alt="HASHKEY" />
             </div>
           </div>
         </div>
@@ -67,7 +136,7 @@ const FunctionThree = () => {
         {!mobile && (
           <video
             className={styles.dg_video}
-            src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,w_1400/v1626139762/macbook_animation_lkh0ut.mov"
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,h_881,w_1920/v1626139762/macbook_animation_lkh0ut.mov"
             type="video/mp4"
             frameBorder="0"
             autoPlay={true}
@@ -75,9 +144,7 @@ const FunctionThree = () => {
             muted
           ></video>
         )}
-        {mobile && (
-          <div style={{ height: '100px' }} />
-        )}
+        {mobile && <div style={{ height: '100px' }} />}
       </div>
     </>
   );
