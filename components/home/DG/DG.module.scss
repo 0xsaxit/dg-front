@@ -104,12 +104,26 @@
     }
   }
 
+  @media (max-width: 499px) {
+    .video {
+      display: none;
+    }
+  }
+
   .home_dashboard_content {
     position: relative;
     height: calc(100vh - 72px);
 
     @media (max-width: 499px) {
-      height: calc(60vh - 72px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 100%;
+      height: 60vh;
+      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1626537261/Screen_Shot_2021-07-17_at_5.54.14_PM_wketcv.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     .row {
@@ -127,7 +141,7 @@
       @include mq($until: medium) {
         max-width: 100%;
         font-size: 42px;
-        margin-bottom: 16px;
+        margin-bottom: 0;
       }
 
       @include mq($until: large) {

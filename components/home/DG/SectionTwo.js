@@ -53,16 +53,26 @@ function SectionTwo() {
             </span>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <video
-              className={styles.image}
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
-              type="video/mp4"
-              frameBorder="0"
-              autoPlay={true}
-              loop
-              muted
-              style={{ marginTop: 0 }}
-            ></video>
+            {!mobile && (
+              <video
+                className={styles.image}
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
+                type="video/mp4"
+                frameBorder="0"
+                autoPlay={true}
+                loop
+                muted
+                style={{ marginTop: 0 }}
+              ></video>
+            )}
+            {mobile && (
+              <img
+                className={styles.image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.46.07_PM_p672iu.png"
+                style={{ marginTop: 0 }}
+                alt="img"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -70,15 +80,25 @@ function SectionTwo() {
       <div className="container">
         <div className={cn('row', styles.image_span)}>
           <div className="col-md-6 d-flex justify-content-center">
-            <video
-              className={styles.image}
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Wallet_dhloo5.webm"
-              type="video/mp4"
-              frameBorder="0"
-              autoPlay={true}
-              loop
-              muted
-            ></video>
+            {!mobile && (
+              <video
+                className={styles.image}
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Wallet_dhloo5.webm"
+                type="video/mp4"
+                frameBorder="0"
+                autoPlay={true}
+                loop
+                muted
+              ></video>
+            )}
+            {mobile && (
+              <img
+                className={styles.image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+                style={{ marginTop: 0 }}
+                alt="img"
+              />
+            )}
           </div>
 
           <div
@@ -159,15 +179,25 @@ function SectionTwo() {
             </span>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <video
-              className={cn(mobile ? styles.image_mobile : styles.image)}
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Vote_DAO_zqaohw.webm"
-              type="video/mp4"
-              frameBorder="0"
-              autoPlay={true}
-              loop
-              muted
-            ></video>
+            {!mobile && (
+              <video
+                className={cn(mobile ? styles.image_mobile : styles.image)}
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Vote_DAO_zqaohw.webm"
+                type="video/mp4"
+                frameBorder="0"
+                autoPlay={true}
+                loop
+                muted
+              ></video>
+            )}
+            {mobile && (
+              <img
+                className={styles.image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
+                style={{ marginTop: 0 }}
+                alt="img"
+              />
+            )}
           </div>
         </div>
       </div>

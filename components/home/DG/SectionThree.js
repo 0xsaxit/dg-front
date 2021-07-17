@@ -133,15 +133,24 @@ const FunctionThree = () => {
         >
           Start Here
         </Button>
-        <video
-          className={styles.dg_video}
-          src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,h_885,w_1920/v1626533688/macbook_animation_lkh0ut_1_wggkl1.webm"
-          type="video/mp4"
-          frameBorder="0"
-          autoPlay={true}
-          loop
-          muted
-        ></video>
+        {!mobile && (
+          <video
+            className={styles.dg_video}
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/c_crop,h_885,w_1920/v1626533688/macbook_animation_lkh0ut_1_wggkl1.webm"
+            type="video/mp4"
+            frameBorder="0"
+            autoPlay={true}
+            loop
+            muted
+          ></video>
+        )}
+        {mobile && (
+          <img
+            className={styles.dg_video}
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625834463/image_52_u6oiyf.jpg"
+            alt="img"
+          />
+        )}
       </div>
     </>
   );
