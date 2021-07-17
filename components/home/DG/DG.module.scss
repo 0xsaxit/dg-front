@@ -99,14 +99,18 @@
     top: 0;
     left: 0;
 
-    @include mq($until: medium) {
+    @media (max-width: 499px) {
       height: 60vh;
     }
   }
 
   .home_dashboard_content {
     position: relative;
-    height: calc(60vh - 72px);
+    height: calc(100vh - 72px);
+
+    @media (max-width: 499px) {
+      height: calc(60vh - 72px);
+    }
 
     .row {
       position: absolute;
