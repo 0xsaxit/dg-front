@@ -299,7 +299,7 @@ const Balances = (props) => {
                   state.userBalances[2][1] * 1000000000000
                 ).toLocaleString()} USDT
               </p>
-              <p className={styles.bold_text}>${(state.userBalances[2][1] * state.DGPrices.usdt).toFixed(2)}</p>
+              <p className={styles.bold_text}>${(state.userBalances[2][1] * 1000000000000).toFixed(2)}</p>
             </span>
 
             <div>
@@ -307,6 +307,7 @@ const Balances = (props) => {
               <span>
                 <Button
                   onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
+                  className={styles.deposit_button}
                 >
                   Deposit
                 </Button>
@@ -332,6 +333,7 @@ const Balances = (props) => {
 
                 <Button
                   onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
+                  className={styles.deposit_button}
                 >
                   Withdraw
                 </Button>
@@ -395,7 +397,10 @@ const Balances = (props) => {
             <div>
              {state.userInfo.tokenArray[0] ? (
               <span>
-                <Button onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}>
+                <Button 
+                  onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
+                  className={styles.deposit_button}
+                >
                   Deposit
                 </Button>
 
@@ -418,7 +423,10 @@ const Balances = (props) => {
                   onFinished={getWithdrawalAmount}
                 />
 
-                <Button onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}>
+                <Button 
+                  onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
+                  className={styles.deposit_button}
+                >
                   Withdraw
                 </Button>
 
