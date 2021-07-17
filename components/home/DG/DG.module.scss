@@ -1,6 +1,8 @@
 @import 'styles/base.scss';
 
+
 .home_dashboard {
+
   .image_span {
     margin: 150px auto;
     max-width: 1200px;
@@ -291,6 +293,10 @@
       margin: 0;
       z-index: 3;
       margin-bottom: 16px;
+
+      @include mq($until: medium) {
+        margin-bottom: 72px;
+      }
     }
 
     .dg_video {
@@ -306,3 +312,4 @@
     }
   }
 }
+
