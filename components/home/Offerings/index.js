@@ -230,7 +230,7 @@ const Offerings = props => {
               ////////////////////////////  tab select area   //////////////////////////////// */}
 
           {gameState === 'games' ? (
-            <p className={cn("w-100"), styles.account_other_p}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <span className={styles.account_hover_active}>
                 <b>Games</b>
               </span>
@@ -253,7 +253,7 @@ const Offerings = props => {
               {leaderboardLink(true)}
             </p>
           ) : gameState === 'casinos' ? (
-            <p className={cn("w-100"), styles.account_other_p}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <Link href="/games">
                 <span className={styles.account_hover}>
                   <b>Games</b>
@@ -276,7 +276,7 @@ const Offerings = props => {
               {leaderboardLink(true)}
             </p>
           ) : gameState == 'nfts' ? (
-            <p className={cn("w-100"), styles.account_other_p}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <Link href="/games">
                 <span className={styles.account_hover}>
                   <b>Games</b>
@@ -299,7 +299,7 @@ const Offerings = props => {
               {leaderboardLink(true)}
             </p>
           ) : gameState == 'shop' ? (
-            <p className={cn("w-100"), styles.account_other_p}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <Link href="/games">
                 <span className={styles.account_hover}>
                   <b>Games</b>
@@ -323,7 +323,7 @@ const Offerings = props => {
             </p>
           ) : (
               <div>
-                <p className={cn("w-100"), styles.account_other_p}>
+                <p className={cn("w-100", styles.account_other_p)}>
                   <Link href="/games">
                     <span className={styles.account_hover}>
                       <b>Games</b>

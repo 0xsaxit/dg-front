@@ -14,6 +14,22 @@
 	width: 360px !important;
 	padding: 30px;
 
+	&_open_icon {
+		margin: -60px 0 45px -30px;
+	}
+
+	&_second {
+		padding-top: 16px;
+	}
+
+	&_three {
+		padding: 16px 0 24px 0;
+	}
+
+	&_checkbox {
+		padding-top: 8px;
+	}
+
 	.button_close {
 		color: white;
 		cursor: pointer;

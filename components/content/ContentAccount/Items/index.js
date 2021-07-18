@@ -3,9 +3,10 @@ import cn from 'classnames';
 import { Grid, Image } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
 import GreaterThan from 'assets/svg/greaterthan.svg';
+
 import styles from './Items.module.scss';
 
-function Items({ state }) {
+const Items = ({ state }) => {
   // define local variables
   return (
     <Aux>

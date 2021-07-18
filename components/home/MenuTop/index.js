@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { Menu, Icon, Dropdown } from 'semantic-ui-react';
+import Link from 'next/link';
 import ModalInfo from 'components/modal/ModalInfo';
 import MessageBar from '../MessageBar';
 import ButtonConnect from 'components/button/ButtonConnect';
@@ -235,7 +235,7 @@ const MenuTop = props => {
                 <span className="d-flex flex-column">
                   <Link href={`/${utm}`}>
                     <Menu.Item
-                      className={cn("dropdown_menu_items"), menuStyle[1]}
+                      className={cn("dropdown_menu_items", menuStyle[1])}
                     >
                       Play
                     </Menu.Item>
@@ -243,7 +243,7 @@ const MenuTop = props => {
 
                   <Link href="/dg">
                     <Menu.Item
-                      className={cn("dropdown_menu_items"), menuStyle[1]}
+                      className={cn("dropdown_menu_items", menuStyle[1])}
                     >
                       DG Ecosystem
                     </Menu.Item>
@@ -251,7 +251,7 @@ const MenuTop = props => {
 
                   <Link href="/games">
                     <Menu.Item
-                      className={cn("dropdown_menu_items"), menuStyle[1]}
+                      className={cn("dropdown_menu_items", menuStyle[1])}
                     >
                       Games
                     </Menu.Item>
@@ -259,7 +259,7 @@ const MenuTop = props => {
 
                   <Link href="/events">
                     <Menu.Item
-                      className={cn("dropdown_menu_items"), menuStyle[1]}
+                      className={cn("dropdown_menu_items", menuStyle[1])}
                     >
                       Events
                     </Menu.Item>
@@ -267,7 +267,7 @@ const MenuTop = props => {
 
                   <Link href="/blog">
                     <Menu.Item
-                      className={cn("dropdown_menu_items"), menuStyle[1]}
+                      className={cn("dropdown_menu_items", menuStyle[1])}
                     >
                       News & Blog
                     </Menu.Item>
@@ -279,7 +279,7 @@ const MenuTop = props => {
                     target="_blank"
                   >
                     <Menu.Item
-                      className={cn("dropdown_menu_items"), menuStyle[1]}
+                      className={cn("dropdown_menu_items", menuStyle[1])}
                     >
                       Docs
                     </Menu.Item>

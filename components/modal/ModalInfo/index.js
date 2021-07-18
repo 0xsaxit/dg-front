@@ -154,10 +154,10 @@ const ModalInfo = () => {
           </span>
 
           <span className="d-flex flex-column">
-            <h5 className={cn("text-end"), styles.row_title}>
+            <h5 className={cn("text-end", styles.row_title)}>
               {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)}
             </h5>
-            <p className={cn("text-end"), styles.row_subtitle}>
+            <p className={cn("text-end", styles.row_subtitle)}>
               ${formatPrice(state.DGBalances.BALANCE_ROOT_DG * DGPrice, 2)}
             </p>
           </span>
@@ -173,10 +173,10 @@ const ModalInfo = () => {
           </span>
 
           <span className="d-flex flex-column">
-            <h5 className={cn("text-end"), styles.row_title}>
+            <h5 className={cn("text-end", styles.row_title)}>
               {formatPrice(state.DGBalances.BALANCE_CHILD_DG, 3)}
             </h5>
-            <p className={cn("text-end"), styles.row_subtitle}>
+            <p className={cn("text-end", styles.row_subtitle)}>
               ${formatPrice(state.DGBalances.BALANCE_CHILD_DG * DGPrice, 2)}
             </p>
           </span>
@@ -192,10 +192,10 @@ const ModalInfo = () => {
           </span>
 
           <span className="d-flex flex-column">
-            <h5 className={cn("text-end"), styles.row_title}>
+            <h5 className={cn("text-end", styles.row_title)}>
               {formatPrice(state.stakingBalances.BALANCE_USER_GOVERNANCE, 3)}
             </h5>
-            <p className={cn("text-end"), styles.row_subtitle}>
+            <p className={cn("text-end", styles.row_subtitle)}>
               $
               {formatPrice(
                 state.stakingBalances.BALANCE_USER_GOVERNANCE * DGPrice,
@@ -215,10 +215,10 @@ const ModalInfo = () => {
           </span>
 
           <span className="d-flex flex-column">
-            <h5 className={cn("text-end"), styles.row_title}>
+            <h5 className={cn("text-end", styles.row_title)}>
               {formatPrice(unclaimed, 3)}
             </h5>
-            <p className={cn("text-end"), styles.row_subtitle}>
+            <p className={cn("text-end", styles.row_subtitle)}>
               ${formatPrice(unclaimed * DGPrice, 2)}
             </p>
           </span>

@@ -214,7 +214,7 @@ const ModalDepositBinance = () => {
           <span>
             <h3 className={styles.title}> Send BUSD to your address </h3>
 
-            <p className={cn("text-center"), styles.subtitle}>
+            <p className={cn("text-center", styles.subtitle)}>
               (The address below is your Metamask wallet)
             </p>
 
@@ -263,7 +263,7 @@ const ModalDepositBinance = () => {
                   <p className={styles.deposit_subtitle_2}>Balance</p>
                 </span>
                 <span className="d-flex flex-column" style={{ marginTop: '-4px' }}>
-                  <h3 className={cn("text-end"), styles.deposit_address_2}>
+                  <h3 className={cn("text-end", styles.deposit_address_2)}>
                     {state.userBalances[3][1].toFixed(2)} BUSD
                   </h3>
                   <p className={styles.deposit_subtitle_3}>
@@ -306,7 +306,7 @@ const ModalDepositBinance = () => {
               />
             </span>
 
-            <p className={cn("text-center"), styles.subtitle}>
+            <p className={cn("text-center", styles.subtitle)}>
               ${amountInput}
             </p>
 

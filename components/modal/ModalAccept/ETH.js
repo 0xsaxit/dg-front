@@ -1,15 +1,9 @@
-import { useEffect, useContext, useState } from 'react';
-import cn from 'classnames';
-import Web3 from 'web3';
-import { Modal, Icon, Button, Checkbox, Input, Loader } from 'semantic-ui-react';
+import { useContext, useState } from 'react';
+import { Modal, Button, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
 import styles from './ModalAccept.module.scss';
-import Images from '../../../common/Images';
-import Fetch from '../../../common/Fetch';
 import ButtonApproveETH from 'components/button/ButtonApprove/ETH';
 import OpenIcon from 'assest/svg/open.svg';
-
 
 const ETH = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -21,7 +15,7 @@ const ETH = () => {
   const [checkedTwo, setCheckedTwo] = useState(false);
   const [checkedThree, setCheckedThree] = useState(false);
 
-  function isCheckedOne() {
+  const isCheckedOne = () => {
     if (checkedOne === true) {
       setCheckedOne(false);
     } else {
@@ -29,7 +23,7 @@ const ETH = () => {
     }
   }
 
-  function isCheckedTwo() {
+  const isCheckedTwo = () => {
     if (checkedTwo === true) {
       setCheckedTwo(false);
     } else {
@@ -37,7 +31,7 @@ const ETH = () => {
     }
   }
 
-  function isCheckedThree() {
+  const isCheckedThree = () => {
     if (checkedThree === true) {
       setCheckedThree(false);
     } else {
@@ -71,13 +65,7 @@ const ETH = () => {
         </span>
       }
     >
-      <div
-        style={{
-          marginTop: '-60px',
-          marginBottom: '45px',
-          marginLeft: '-30px',
-        }}
-      >
+      <div className={styles.terms_modal_open_icon}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
           <OpenIcon />
         </span>
@@ -92,24 +80,22 @@ const ETH = () => {
             <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Disclaimer</a>. To continue, you'll need to accept the following <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a> by checking each box.
           </p>
 
-          <span style={{ display: 'flex' }}>
-            <Checkbox
-              onClick={() => isCheckedOne()}
-            />
-            <p className={styles.subtitle_2} style={{ paddingTop: '3px' }}> I am at least 18 years old </p>
+          <span className="d-flex">
+            <Checkbox onClick={() => isCheckedOne()} />
+            <p className={styles.subtitle_2}> I am at least 18 years old </p>
           </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px' }}>
+          <span className={cn("d-flex", styles.terms_modal_second)}>
             <Checkbox
-              style={{ padding: '8px 0px 0px 0px' }}
+              className={styles.terms_modal_checkbox}
               onClick={() => isCheckedTwo()}
             />
             <p className={styles.subtitle_2}> I reside in a jurisdiction where online gambling is permitted </p>
           </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px', paddingBottom: '24px' }}>
+          <span className={cn("d-flex", styles.terms_modal_three)}>
             <Checkbox
-              style={{ padding: '8px 0px 0px 0px' }}
+              className={styles.terms_modal_checkbox}
               onClick={() => isCheckedThree()}
             />
             <p className={styles.subtitle_2}> I have read and accepted the <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a></p>

@@ -108,7 +108,7 @@ const ModalPopup = () => {
                 )}
               </Link>
               <span
-                className={cn("d-flex"), styles.account_copy}
+                className={cn("d-flex", styles.account_copy)}
                 onClick={() => onCopy()}
               >
                 <p className={styles.account_address}>

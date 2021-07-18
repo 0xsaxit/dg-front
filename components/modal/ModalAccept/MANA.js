@@ -1,15 +1,10 @@
-import { useEffect, useContext, useState } from 'react';
-import cn from 'classnames';
-import Web3 from 'web3';
-import { Modal, Icon, Button, Checkbox, Input, Loader } from 'semantic-ui-react';
+import { useContext, useState } from 'react';
+import { Modal, Button, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
-import styles from './ModalAccept.module.scss';
-import Images from '../../../common/Images';
-import Fetch from '../../../common/Fetch';
 import ButtonApproveMANA from 'components/button/ButtonApprove/MANA';
 import OpenIcon from 'assets/svg/open.svg';
 
+import styles from './ModalAccept.module.scss';
 
 const MANA = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -71,13 +66,7 @@ const MANA = () => {
         </span>
       }
     >
-      <div
-        style={{
-          marginTop: '-60px',
-          marginBottom: '45px',
-          marginLeft: '-30px',
-        }}
-      >
+      <div className={styles.terms_modal_open_icon}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
           <OpenIcon />
         </span>
@@ -93,23 +82,21 @@ const MANA = () => {
           </p>
 
           <span className="d-flex">
-            <Checkbox
-              onClick={() => isCheckedOne()}
-            />
-            <p className={styles.subtitle_2} style={{ paddingTop: '3px' }}> I am at least 18 years old </p>
+            <Checkbox onClick={() => isCheckedOne()} />
+            <p className={styles.subtitle_2}> I am at least 18 years old </p>
           </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px' }}>
+          <span className={cn("d-flex", styles.terms_modal_second)}>
             <Checkbox
-              style={{ padding: '8px 0px 0px 0px' }}
+              className={styles.terms_modal_checkbox}
               onClick={() => isCheckedTwo()}
             />
             <p className={styles.subtitle_2}> I reside in a jurisdiction where online gambling is permitted </p>
           </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px', paddingBottom: '24px' }}>
+          <span className={cn("d-flex", styles.terms_modal_second}>
             <Checkbox
-              style={{ padding: '8px 0px 0px 0px' }}
+              className={styles.terms_modal_checkbox}
               onClick={() => isCheckedThree()}
             />
             <p className={styles.subtitle_2}> I have read and accepted the <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a></p>
