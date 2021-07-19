@@ -662,6 +662,15 @@ $mq-breakpoints: (
 
 ///////////// AccountData
 
+.account_other_inner_p {
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  margin-top: 45px;
+  padding-bottom: 60px;
+  text-align: center;
+  color: gray;
+}
+
 .account_other_inner_container {
   width: calc(100% - 60px);
   margin-top: 20px;
@@ -942,7 +951,7 @@ $mq-breakpoints: (
 .mobile_button_hide {
   @include mq($until: small) {
     display: none;
-    
+
     position: relative;
     background-color: #006eff;
     color: white;

@@ -6,6 +6,8 @@ import Header from 'components/Header';
 import Global from 'components/Constants';
 import Images from 'common/Images';
 
+import styles from './account.module.scss';
+
 const Referrals = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -21,7 +23,7 @@ const Referrals = () => {
       {state.userStatus ? (
         <AccountData dataType={'referrals'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className={styles.account_other_inner_p}>
           You must connect your wallet to view this page
         </div>
       )}

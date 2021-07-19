@@ -7,6 +7,8 @@ import Global from 'components/Constants';
 import Images from 'common/Images';
 import Spinner from 'components/Spinner';
 
+import styles from './dg.module.scss';
+
 const MiningV1 = () => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -36,7 +38,7 @@ const MiningV1 = () => {
       {isLoading === true ? (
         <Spinner background={1} />
       ) : isErrorMessage === true ? (
-        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+        <div className={styles.account_other_inner_p} style={{ paddingTop: '20px' }}>
           You must connect your wallet to view this page
         </div>
       ) : (
