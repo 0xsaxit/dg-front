@@ -4,6 +4,7 @@ import SectionOne from './SectionOne';
 import SectionTwo from './SectionTwo';
 import SectionThree from './SectionThree';
 import styles from './DG.module.scss';
+import cn from 'classnames';
 
 const DGHome = () => {
   // define local variables
@@ -35,6 +36,10 @@ const DGHome = () => {
   return (
     <div className={styles.home_dashboard}>
       <SectionOne autoPlay={videoPlay} />
+      <div className={cn(
+            '',
+            styles.gradientLayout
+          )}/>
       <SectionTwo />
       <SectionThree />
       <Footer />

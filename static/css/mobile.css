@@ -208,7 +208,7 @@ a#dropdown-menu-items.item.right-menu-text {
   margin-left: -52px;
 }
 
-@media (max-width: 499px) {
+@media (max-width: 768px) {
   .ui.dropdown .menu,
   .ui.menu .dropdown.item .menu {
     border-bottom: 1px solid rgb(21, 24, 28);
