@@ -4,12 +4,25 @@
 .home_dashboard {
 
   .image_span {
-    margin: 150px auto;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    margin-left: 75px;
+    margin-right: 0px;
+
     max-width: 1200px;
 
     @include mq($until: medium) {
+      margin-left: 0px;
+      margin-right: 0px;
       margin-top: 60px;
       margin-bottom: 60px;
+    }
+
+    @include mq($until: small) {
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     .section_h1 {
@@ -103,6 +116,15 @@
 
     @include mq($until: small) {
       height: 100vh;
+    }
+  }
+  .gradientLayout {
+    background: linear-gradient(rgb(17 16 17), rgb(0 0 0));
+    height: 120px;
+    margin-top: -50px;
+
+    @include mq($until: small) {
+      margin-top: -75px;
     }
   }
 

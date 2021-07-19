@@ -62,7 +62,7 @@ function SectionTwo() {
                 autoPlay={true}
                 loop
                 muted
-                style={{ marginTop: 0 }}
+                style={{ marginTop: 0}}
               ></video>
             )}
             {mobile && (
@@ -194,7 +194,7 @@ function SectionTwo() {
               <img
                 className={styles.image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
-                style={{ marginTop: 0 }}
+                style={{ marginTop: 0, marginBottom: '-100px' }}
                 alt="img"
               />
             )}
