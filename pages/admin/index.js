@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../store';
-import Administration from '../../components/home/Administration';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import { GlobalContext } from 'store';
+import Administration from 'components/home/Administration';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
 
 const Admin = () => {
   // get user status from the Context API store

@@ -4,6 +4,8 @@ import { GlobalContext } from 'store';
 import ButtonVerify from '../button/ButtonVerify';
 import ButtonVerifyFortmatic from '../button/ButtonVerifyFortmatic';
 
+import styles from 'ModalWallet.module.scss';
+
 const ModalWallet = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -38,20 +40,20 @@ const ModalWallet = () => {
   }, [scrollState]);
 
   if (scrollState == 'top') {
-    menuStyle = ['get-metamask'];
+    menuStyle = ['get_metamask'];
   } else {
-    menuStyle = ['get-metamask-scroll'];
+    menuStyle = ['get_metamask_scroll'];
   }
 
   return (
     <Modal
-      className="wallet-modal"
+      className={styles.wallet_modal}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       close
       trigger={
-        <span className="right-menu-items">
+        <span className={styles.right_menu_items}>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
             target="_blank"
@@ -62,24 +64,24 @@ const ModalWallet = () => {
           <Button
             content="CONNECT WALLET"
             color="blue"
-            className="metamask-button"
+            className={styles.metamask_button}
           />
           <Button
             content="CONNECT"
             color="blue"
-            className="metamask-mobile-button"
+            className={styles.metamask_mobile_button}
             id="balances-padding-correct"
           />
         </span>
       }
     >
       <div style={{ margin: '21px 30px 0px 30px' }}>
-        <span className="mailchimp-close" onClick={() => setOpen(false)}>
+        <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
           <Icon name="close" />
         </span>
       </div>
 
-      <p className="mailchimp-header-text"> Sign in </p>
+      <p className={styles.mailchimp_header_text}> Sign in </p>
 
       <Divider style={{ marginTop: '-15px' }} />
 

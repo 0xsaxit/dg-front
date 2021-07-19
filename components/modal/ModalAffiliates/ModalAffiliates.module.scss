@@ -1,5 +1,30 @@
 @import "styles/base.scss";
 
-.referral-modal {
+.referral_modal {
   max-width: 630px;
+
+  &_divider {
+    margin-top: -15px;
+  }
+
+  &_copy_text {
+    margin: 21px 30px 15px 30px;
+  }
+
+  &_note_text {
+    margin: 12px 30px 30px 30px;
+  }
+
+  &_copy_check {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(229, 232, 235);
+    border-radius: 4px;
+    margin: 6px 30px 30px 30px;
+    padding: 3px 6px 6px 6px;
+  }
+
+  .welcome_text {
+    margin-left: 15px;
+  }
 }

@@ -19,6 +19,20 @@ $mq-breakpoints: (
 );
 
 //////////////////////////////
+///Page
+//////////////////////////////
+
+.account_other_inner_p {
+  min-height: calc(100vh - 250px);
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  margin-top: 45px;
+  padding-bottom: 60px;
+  text-align: center;
+  color: gray;
+}
+
+//////////////////////////////
 /// Content
 //////////////////////////////
 .top {
@@ -730,7 +744,6 @@ $mq-breakpoints: (
   padding-bottom: 10px;
 }
 
-
 .post_info_featured {
   padding: 6px 18px 18px 18px;
 
@@ -898,5 +911,44 @@ $mq-breakpoints: (
   
   &:hover {
     filter: brightness(0.75);
+  }
+}
+
+.get_metamask {
+  margin: 0 8px 0 0;
+  color: white;
+  font-family: Larsseit-Bold;
+
+  &:hover {
+    color: white;
+    filter: brightness(0.9);
+  }
+
+  @include mq($until: small) {
+    display: none;
+  }
+
+  &_scroll {
+    margin: 0 8px 0 0;
+    color: white;
+    font-family: Larsseit-Bold;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.75);
+    }
+  }
+}
+
+.mobile_button_hide {
+  @include mq($until: small) {
+    display: none;
+    
+    position: relative;
+    background-color: #006eff;
+    color: white;
+    height: 64px;
+    width: 200px;
+    line-height: 32px;
+    font-size: 20px;
   }
 }

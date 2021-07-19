@@ -1,7 +1,17 @@
 @import "styles/base.scss";
 
+.modal_title {
+  padding-left: 8px;
+  margin-top: -4px;
+}
+
 .account_copy {
   margin-bottom: 12px;
+}
+
+.account_button {
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .account_address {
@@ -45,4 +55,123 @@
     font-size: 16px;
     font-family: Larsseit-Bold;
   }
+}
+
+.account_popup {
+  width: 360px;
+  height: 100%;
+  box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.04);
+  border-radius: 24px;
+  background-color: #1f1f1f;
+  padding: 30px;
+  border: 0px solid white;
+}
+
+.account_dropdown_item {
+  font-size: 20px;
+  font-family: Larsseit-Medium;
+  margin: 0;
+  padding-top: 16px;
+  transition: all linear 0.1s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transition: all linear 0.1s;
+  }
+}
+
+.account_deposit_button {
+  height: 54px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: #006eff;
+  color: white;
+  font-size: 18px !important;
+  padding-top: 17px;
+
+  &_binanace {
+    height: 54px;
+    width: 48.5%;
+    border-radius: 12px;
+    background: #f1cd50;
+    color: black;
+    font-size: 18px !important;
+    padding-top: 17px;
+  }
+}
+
+.account_withdraw_button {
+  height: 54px;
+  width: 48.5%;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  font-size: 18px !important;
+  padding-top: 17px;
+}
+
+.buy_dg_button {
+  height: 64px;
+  width: 100%;
+  border-radius: 12px;
+  background: #006eff;
+  color: white;
+  font-size: 18px;
+  margin-top: 24px;
+  padding-top: 21px;
+}
+
+.buy_dg_button_binance {
+  height: 64px;
+  width: 100%;
+  border-radius: 12px;
+  background: #f1cd50;
+  color: black;
+  font-size: 18px;
+  margin-top: 24px;
+  padding-top: 21px;
+}
+
+.copied_toast {
+  background-color: #1f1f1f;
+  position: fixed;
+  bottom: 60px;
+  left: calc(50% - 165px);
+  width: 330px;
+  height: 75px;
+  border-radius: 32px;
+}
+
+.copied_text {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 19px;
+}
+
+.avatar_picture_binance {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+  background: linear-gradient(
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #f1cd50 40.1%,
+    #f1cd50 100%
+  );
+}
+
+.avatar_picture_home {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+  background: linear-gradient(
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #006eff 40.1%,
+    #006eff 100%
+  );
 }

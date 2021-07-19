@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import Global from '../Constants';
-import Fetch from '../../common/Fetch';
-import MetaTx from '../../common/MetaTx';
-import Aux from '../_Aux';
-import Transactions from '../../common/Transactions';
+import Global from 'components/Constants';
+import Fetch from 'common/Fetch';
+import MetaTx from 'common/MetaTx';
+import Aux from 'components/_Aux';
+import Transactions from 'common/Transactions';
 
-function ButtonEnable() {
+const ButtonEnable = () => {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -54,7 +54,7 @@ function ButtonEnable() {
     }
   }, [state.userStatus]);
 
-  function dispatchActiveStatus(status, txHash) {
+  const dispatchActiveStatus = (status, txHash) => {
     // update global state active status
     dispatch({
       type: 'active_status',
@@ -75,7 +75,7 @@ function ButtonEnable() {
   }
 
   // Biconomy API meta-transaction. User must re-authorize treasury contract after dormant period
-  async function metaTransaction() {
+  const metaTransaction = async () => {
     try {
       console.log('Session Duration: ' + sessionDuration);
 
@@ -112,16 +112,13 @@ function ButtonEnable() {
   return (
     <Aux>
       <span>
-        <Button
-          className="account-connected-play-button"
-          onClick={() => metaTransaction()}
-        >
+        <Button onClick={() => metaTransaction()}>
           REAUTHORIZE
         </Button>
       </span>
 
       <Button
-        className="account-connected-play-button-mobile"
+        className={styles.account_connected_play_button_mobile}
         onClick={() => metaTransaction()}
       >
         REAUTHORIZE

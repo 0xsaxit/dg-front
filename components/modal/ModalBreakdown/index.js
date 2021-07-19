@@ -1,15 +1,16 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
-import { Modal, Icon } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Transactions from 'common/Transactions';
 import Global from 'components/Constants';
-import styles from './ModalBreakdown.module.scss';
-import MetaTx from '../../../common/MetaTx';
-import Images from '../../../common/Images';
+import MetaTx from 'common/MetaTx';
+import Images from 'common/Images';
 import Biconomy from '@biconomy/mexa';
 import OpenIcon from 'assets/svg/open.svg';
+
+import styles from './ModalBreakdown.module.scss';
 
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];
@@ -120,13 +121,7 @@ const ModalBreakdown = ({ breakdown = {}, totalAmount, address = null }) => {
         )
       }
     >
-      <div
-        style={{
-          marginTop: '-60px',
-          marginBottom: '45px',
-          marginLeft: '-48px',
-        }}
-      >
+      <div className={styles.open_icon}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
           <OpenIcon />
         </span>

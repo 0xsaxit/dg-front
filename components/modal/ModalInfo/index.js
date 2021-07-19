@@ -1,10 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import { Modal, Button, Loader } from 'semantic-ui-react';
-import { GlobalContext } from '../../../store';
-import Fetch from '../../../common/Fetch';
-import styles from './ModalInfo.module.scss';
+import { GlobalContext } from 'store';
+import Fetch from 'common/Fetch';
 import cn from 'classnames';
-import Global from '../../Constants';
+import Global from 'components/Constants';
+import DGMetaMask from 'assets/svg/dgmetamask.svg';
+
+import styles from './ModalInfo.module.scss';
 
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -86,15 +88,10 @@ const ModalInfo = () => {
             <Button className={styles.account_button}>
               <p className={styles.right_menu_text}>
                 <Loader
+                  className={styles.info_modal_loader}
                   active
                   inline
                   size="small"
-                  style={{
-                    fontSize: '12px',
-                    marginTop: '-4px',
-                    marginLeft: '0px',
-                    marginBottom: '0px',
-                  }}
                 />
               </p>
             </Button>
@@ -108,20 +105,9 @@ const ModalInfo = () => {
         </span>
       }
     >
-      <div style={{ margin: '-60px 0 45px -30px' }}>
+      <div className={styles.button_close} style={{ margin: '-60px 0 45px -30px' }}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
-              fill="white"
-            />
-          </svg>
+          <DGMetaMask />
         </span>
       </div>
 
@@ -144,10 +130,7 @@ const ModalInfo = () => {
           </span>
         </span>
 
-        <span
-          className="d-flex justify-content-between"
-          style={{ padding: '6px 12px 0 12px' }}
-        >
+        <span className={cn("d-flex justify-content-between", styles.machain_dg_element)}>
           <span className="d-flex flex-column">
             <h5 className={styles.row_title}>Mainchain DG</h5>
             <p className={styles.row_subtitle}>ETH Mainnet Total</p>
@@ -163,10 +146,7 @@ const ModalInfo = () => {
           </span>
         </span>
 
-        <span
-          className="d-flex justify-content-between"
-          style={{ padding: '0 12px 0 12px' }}
-        >
+        <span className={cn("d-flex justify-content-between", styles.staked_dg_element)}>
           <span className="d-flex flex-column">
             <h5 className={styles.row_title}>Polygon Wallet DG</h5>
             <p className={styles.row_subtitle}>Polygon Network Total</p>
@@ -182,10 +162,7 @@ const ModalInfo = () => {
           </span>
         </span>
 
-        <span
-          className="d-flex justify-content-between"
-          style={{ padding: '0 12px 0 12px' }}
-        >
+        <span className={cn("d-flex justify-content-between", styles.staked_dg_element)}>
           <span className="d-flex flex-column">
             <h5 className={styles.row_title}>Staked DG</h5>
             <p className={styles.row_subtitle}>Staked in Governance</p>
@@ -205,10 +182,7 @@ const ModalInfo = () => {
           </span>
         </span>
 
-        <span
-          className="d-flex justify-content-between"
-          style={{ padding: '0 12px 6px 12px' }}
-        >
+        <span className={cn("d-flex justify-content-between", styles.unclaimed_element)}>
           <span className="d-flex flex-column">
             <h5 className={styles.row_title}>Unclaimed DG</h5>
             <p className={styles.row_subtitle}>Total From All Sources</p>
@@ -224,10 +198,7 @@ const ModalInfo = () => {
           </span>
         </span>
 
-        <span
-          className="d-flex justify-content-between"
-          style={{ marginTop: '24px' }}
-        >
+        <span className={cn("d-flex justify-content-between", styles.buy_dg_element)}>
           <a
             href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
             target="_blank"

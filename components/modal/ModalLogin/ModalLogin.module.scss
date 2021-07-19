@@ -31,6 +31,17 @@
 	width: 496px !important;
 	padding: 40px;
 
+	&_svg {
+		margin-top: -72px;
+		margin-bottom: 58px;
+		margin-left: -38px;
+	}
+
+	.metamask_img {
+		height: 36px;
+		margin: 0 24px 0 -48px;
+	}
+
 	.button_close {
 		color: white;
 		cursor: pointer;

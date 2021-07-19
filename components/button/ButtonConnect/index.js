@@ -1,10 +1,12 @@
 import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
-import { Button, Icon, Modal } from 'semantic-ui-react';
-import Fetch from '../../common/Fetch';
-import Aux from '../_Aux';
-import ModalLoginTop from '../modal/ModalLoginTop';
+import { Button } from 'semantic-ui-react';
+import Fetch from 'common/Fetch';
+import Aux from 'components/_Aux';
+import ModalLoginTop from 'components/modal/ModalLoginTop';
+
+import styles from './ButtonConnect.module.scss';
 
 const ButtonConnect = () => {
   // dispatch new user status to Context API store
@@ -50,9 +52,9 @@ const ButtonConnect = () => {
   }, [scrollState]);
 
   if (scrollState == 'top') {
-    menuStyle = ['get-metamask'];
+    menuStyle = ['get_metamask'];
   } else {
-    menuStyle = ['get-metamask-scroll'];
+    menuStyle = ['get_metamask_scroll'];
   }
 
   let userAddress = '';
@@ -65,7 +67,7 @@ const ButtonConnect = () => {
     }
   });
 
-  async function openMetaMask() {
+  const openMetaMask = async () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
@@ -95,7 +97,7 @@ const ButtonConnect = () => {
     }
   }
 
-  async function updateStatus(value, post) {
+  const updateStatus = async (value, post) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
@@ -119,7 +121,7 @@ const ButtonConnect = () => {
     }
   }
 
-  async function getUserStatus() {
+  const getUserStatus = async () => {
     console.log('Get user status: Connect');
 
     try {
@@ -155,18 +157,14 @@ const ButtonConnect = () => {
           <Button
             color="blue"
             className={
-              binance ? 'metamask-button binance-top' : 'metamask-button top'
+              binance ? styles.binanace_top : styles.metamask_button
             }
             onClick={() => openMetaMask()}
           >
             <span>
               <img
+                className={styles.open_metamask_img}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                style={{
-                  height: '24px',
-                  paddingRight: '8px',
-                  marginBottom: '-7px',
-                }}
               />
               Connect Metamask
             </span>
@@ -175,8 +173,8 @@ const ButtonConnect = () => {
             color="blue"
             className={
               binance
-                ? 'metamask-button-mobile binance-top'
-                : 'metamask-button-mobile top'
+                ? styles.binanace_top
+                : styles.metamask_mobile_button
             }
             onClick={() => openMetaMask()}
           >

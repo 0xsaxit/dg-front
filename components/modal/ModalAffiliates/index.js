@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { Icon, Modal, Divider } from 'semantic-ui-react';
 import Global from '../Constants';
 
@@ -46,31 +46,23 @@ const ModalAffiliates = () => {
 
       <p className={styles.mailchimp_header_text}>Refer a Friend</p>
 
-      <Divider style={{ marginTop: '-15px' }} />
+      <Divider className={styles.referral_modal_divider} />
 
-      <p style={{ margin: '21px 30px 15px 30px' }}>
+      <p className={styles.referral_modal_copy_text}>
         {' '}
         Copy your unique referral link and share it far and wide. Any time a new
         user deposits crypto, you'll earn 10% of the $DG they mine.
       </p>
-      <p style={{ margin: '12px 30px 30px 30px' }}>
+      <p className={styles.referral_modal_note_text}>
         {' '}
         <b>Please Note:</b> This link will only earn you $DG when shared with a
         user who has not yet registered an account.
       </p>
-      <p className={styles.welcome_text} style={{ marginLeft: '15px' }}>
+      <p className={styles.welcome_text}>
         {' '}
         Referral Link{' '}
       </p>
-      <span
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          border: '1px solid rgb(229, 232, 235',
-          borderRadius: '4px',
-          margin: '6px 30px 30px 30px',
-          padding: '3px 6px 6px 6px',
-        }}
+      <span className={styles.referral_modal_copy_check}
       >
         <p>{referralLink}</p>
         {copied == false ? (

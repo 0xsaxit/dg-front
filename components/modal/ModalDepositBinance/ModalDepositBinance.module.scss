@@ -17,6 +17,10 @@
 	width: 360px !important;
 	padding: 30px;
 
+	.close_icon {
+		margin: -60px 0 50px -30px;
+	}
+
 	.button_close {
 		color: white;
 		cursor: pointer;
@@ -52,12 +56,56 @@
 		border: 0px solid white;
 		width: 100%;
 	}
+
+	.modal_checkbox_first {
+		padding-right: 36px;
+	}
+	
+	.modal_checkbox_second {
+		padding-top: 16px;
+	
+		&_padding {
+			padding: 8px 36px 0 0;
+		}
+	}
+	
+	.modal_checkbox_third {
+		padding: 16px 0 24px 0;
+	
+		&_padding {
+			padding: 8px 36px 0 0;
+		}
+	}
 }
+
 
 .busd_modal {
 	width: 400px !important;
 	border-radius: 24px;
 	padding: 30px;
+
+	&_second_open {
+		margin: -60px 0 50px -30px;
+	}
+
+	&_img {
+		margin: 32px 24px 32px 24px;
+	}
+
+	.binanace_deposit_button {
+		background: black;
+		color: white;
+		font-size: 18px;
+		margin: -34px 0px 24px -30px;
+		border-radius: 24px 0px 0px 0px;
+		width: calc(50% + 30px);
+		height: 64px;
+
+		&_grey {
+			background: #0b0b0b;
+  		color: rgba(255, 255, 255, 0.5);
+		}
+	}
 
 	.title {
 		font-weight: 800;
@@ -83,6 +131,14 @@
 	.outline_button:focus {
 		border: 2px solid rgba(255, 255, 255, 0.30);
 		background: black;
+	}
+
+	.busd_img_title {
+		margin-top: -4px;
+	}
+
+	.busd_amount_title {
+		margin-top: 6px;
 	}
 
 	.busd_img {
@@ -138,6 +194,19 @@
 		font-size: 18px;
 		color: black;
 		border: 0px solid white;
+	}
+
+	.copy_binance_metamask {
+		width: 100% !important;
+		background: #F1CD50;
+		height: 68px;
+		width: 200px;
+		border-radius: 16px;
+		font-weight: 700;
+		font-size: 18px;
+		color: black;
+		border: 0px solid white;
+		margin-bottom: 42px;
 	}
 
 	.continue_subtitle {

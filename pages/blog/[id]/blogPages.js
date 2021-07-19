@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import Screen from '../../../components/blogdetail/screen';
-import { GlobalContext } from '../../../store';
+import Screen from 'components/blogdetail/screen';
+import { GlobalContext } from 'store';
 import { Segment, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
-import ButterCMS from '../../../common/ButterCMS';
+import ButterCMS from 'common/ButterCMS';
 
 const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   const router = useRouter();

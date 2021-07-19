@@ -2,6 +2,9 @@ import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import { Modal, Icon, Button, Checkbox, Input } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import BinanaceMetaMask from 'assets/svg/binanacemetamask.svg';
+import BinanaceWallet from 'assets/svg/binancewallet.svg';
+
 import styles from './ModalDepositBinance.module.scss';
 
 const ModalDepositBinance = () => {
@@ -84,7 +87,7 @@ const ModalDepositBinance = () => {
           </button>
         }
       >
-        <div style={{ margin: '-60px 0px 50px -30px' }}>
+        <div className={styles.close_icon}>
           <span className={styles.mailchim_close} onClick={() => setOpen(false)}>
             <Icon name="close" />
           </span>
@@ -116,18 +119,18 @@ const ModalDepositBinance = () => {
 
           <span className="d-flex">
             <Checkbox
-              style={{ padding: '0px 36px 0px 0px' }}
+              className={styles.modal_checkbox_first}
               onClick={() => isCheckedOne()}
             />
-            <p className={styles.subtitle_2} style={{ paddingTop: '3px' }}>
+            <p className={styles.subtitle_2}>
               {' '}
               I am at least 18 years old{' '}
             </p>
           </span>
 
-          <span className="d-flex" style={{ paddingTop: '16px' }}>
+          <span className={cn("d-flex", styles.modal_checkbox_second)}>
             <Checkbox
-              style={{ padding: '8px 36px 0px 0px' }}
+              className={styles.modal_checkbox_second_padding}
               onClick={() => isCheckedTwo()}
             />
             <p className={styles.subtitle_2}>
@@ -136,9 +139,9 @@ const ModalDepositBinance = () => {
             </p>
           </span>
 
-          <span className="d-flex" style={{ padding: '16px 0 24px 0' }}>
+          <span className={cn("d-flex", styles.modal_checkbox_third)}>
             <Checkbox
-              style={{ padding: '8px 36px 0px 0px' }}
+              className={styles.modal_checkbox_third_padding}
               onClick={() => isCheckedThree()}
             />
             <p className={styles.subtitle_2}>
@@ -178,7 +181,7 @@ const ModalDepositBinance = () => {
         open={secondOpen}
         close
       >
-        <div style={{ margin: '-60px 0px 50px -30px' }}>
+        <div className={styles.busd_modal_second_open}>
           <span
             className={styles.mailchimp_close}
             onClick={() => setSecondOpen(false)}
@@ -191,8 +194,8 @@ const ModalDepositBinance = () => {
           <Button
             className={
               withdrawSelected
-                ? 'binance-deposit-button grey'
-                : 'binance-deposit-button'
+                ? styles.binance_deposit_button_grey
+                : styles.binance_deposit_button
             }
             onClick={() => setWithdrawSelected(false)}
           >
@@ -201,8 +204,8 @@ const ModalDepositBinance = () => {
           <Button
             className={
               withdrawSelected
-                ? 'binance-withdraw-button grey'
-                : 'binance-withdraw-button'
+                ? styles.binance_withdraw_button_grey
+                : styles.binance_withdraw_button
             }
             onClick={() => setWithdrawSelected(true)}
           >
@@ -236,33 +239,21 @@ const ModalDepositBinance = () => {
                     Your Metamask Address
                   </p>
                 </span>
-                <svg
-                  style={{ margin: '12px 0px 0px 34px' }}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2.25 24L17.25 24C18.5156 24 19.5 22.9687 19.5 21.75L19.5 19.5L21.75 19.5C23.0156 19.5 24 18.4688 24 17.25L24 2.25C24 0.984375 23.0156 -8.60567e-08 21.75 -1.96701e-07L6.75 -1.50804e-06C5.53125 -1.61459e-06 4.5 0.984373 4.5 2.25L4.5 4.5L2.25 4.5C1.03125 4.5 1.79353e-06 5.48437 1.68289e-06 6.75L3.71547e-07 21.75C2.65001e-07 22.9687 1.03125 24 2.25 24ZM7.03125 2.25L21.4688 2.25C21.6563 2.25 21.75 2.34375 21.75 2.53125L21.75 16.9687C21.75 17.1094 21.6563 17.25 21.4688 17.25L19.5 17.25L19.5 6.75C19.5 5.48437 18.5156 4.5 17.25 4.5L6.75 4.5L6.75 2.53125C6.75 2.34375 6.89063 2.25 7.03125 2.25ZM2.53125 6.75L16.9688 6.75C17.1563 6.75 17.25 6.84375 17.25 7.03125L17.25 21.4687C17.25 21.6094 17.1563 21.75 16.9688 21.75L2.53125 21.75C2.39063 21.75 2.25 21.6094 2.25 21.4687L2.25 7.03125C2.25 6.84375 2.39063 6.75 2.53125 6.75Z"
-                    fill="white"
-                  />
-                </svg>
+                <BinanaceMetaMask />
               </span>
             </Button>
 
-            <span className="d-flex" style={{ margin: '32px 24px 32px 24px' }}>
+            <span className={cn("d-flex", styles.busd_modal_img)}>
               <img
                 className={styles.busd_img_2}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
               />
               <span className="d-flex justify-content-between w-100">
-                <span className="d-flex flex-column" style={{ marginTop: '-4px' }}>
+                <span className={cn("d-flex flex-column", styles.busd_img_title)}>
                   <h3 className={styles.deposit_address}>BUSD</h3>
                   <p className={styles.deposit_subtitle_2}>Balance</p>
                 </span>
-                <span className="d-flex flex-column" style={{ marginTop: '-4px' }}>
+                <span className={cn("d-flex flex-column", styles.busd_img_title)}>
                   <h3 className={cn("text-end", styles.deposit_address_2)}>
                     {state.userBalances[3][1].toFixed(2)} BUSD
                   </h3>
@@ -276,19 +267,7 @@ const ModalDepositBinance = () => {
             <button className={cn('btn', styles.copy_binance)}>
               <span className="d-flex justify-content-center">
                 Copy Wallet Address
-                <svg
-                  style={{ marginLeft: '12px', marginTop: '4px' }}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2.25 24L15.75 24C17.0156 24 18 22.9687 18 21.75L18 8.25C18 6.98437 17.0156 6 15.75 6L2.25 6C1.03125 6 1.6624e-06 6.98437 1.55176e-06 8.25L3.71547e-07 21.75C2.65001e-07 22.9687 1.03125 24 2.25 24ZM15.75 4.5C17.8594 4.5 19.5 6.14062 19.5 8.25L19.5 18L21.75 18C23.0156 18 24 16.9688 24 15.75L24 2.25C24 0.984375 23.0156 -8.60567e-08 21.75 -1.96701e-07L8.25 -1.37691e-06C7.03125 -1.48345e-06 6 0.984373 6 2.25L6 4.5L15.75 4.5Z"
-                    fill="black"
-                  />
-                </svg>
+                <BinanaceWallet />
               </span>
             </button>
 
@@ -296,8 +275,7 @@ const ModalDepositBinance = () => {
           </span>
         ) : (
           <span>
-            <span className="d-flex justify-content-center" style={{ marginTop: '6px' }}
-            >
+            <span className={cn("d-flex justify-content-center", styles.busd_amount_title)}>
               <Input
                 className={styles.withdraw_input}
                 placeholder="Amount"
@@ -326,21 +304,20 @@ const ModalDepositBinance = () => {
               placeholder="To: Paste BUSD Address Here"
             />
 
-            <span className="d-flex" style={{ margin: '32px 24px 32px 24px' }}>
+            <span className={cn("d-flex", styles.busd_modal_img)}>
               <img
                 className={styles.busd_img_2}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620415238/BUSD_ytjkgd.png"
               />
               <span className="d-flex justify-content-between w-100">
-                <span className="d-flex flex-column" style={{ marginTop: '-4px' }}
-                >
+                <span className={cn("d-flex flex-column", styles.busd_img_title)}>
                   <h3 className={styles.deposit_address}>BUSD</h3>
                   <p className={styles.deposit_subtitle_2}>Balance</p>
                 </span>
-                <span className="d-flex flex-column" style={{ margin: '-4px 0px 0px 0px' }}>
+                <span className={cn("d-flex flex-column", styles.busd_img_title)}>
                   <h3
+                    className={cn("text-end", styles.deposit_address_2)}
                     className={styles.deposit_address_2}
-                    style={{ textAlign: 'right' }}
                   >
                     {state.userBalances[3][1].toFixed(2)} BUSD
                   </h3>
@@ -351,10 +328,7 @@ const ModalDepositBinance = () => {
               </span>
             </span>
 
-            <button
-              className={cn('btn', styles.copy_binance)}
-              style={{ marginBottom: '42px' }}
-            >
+            <button className={cn('btn', styles.copy_binance_metamask)}>
               Continue to Metamask
             </button>
           </span>

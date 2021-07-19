@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Global from '../components/Constants';
+import Global from 'components/Constants';
 
 export default class MyDocument extends Document {
   static async getServerSideProps(ctx) {

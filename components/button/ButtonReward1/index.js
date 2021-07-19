@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { Button } from 'semantic-ui-react';
-import Aux from '../_Aux';
-import Global from '../Constants';
+import Aux from 'components/_Aux';
+import Global from 'components/Constants';
 
-function ButtonReward(props) {
+const ButtonReward = (props) => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -24,7 +24,7 @@ function ButtonReward(props) {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  async function transactionReward() {
+  const transactionReward = async () => {
     console.log('Notify reward amount: start 40 minute cycle');
     setDisabled(true);
 

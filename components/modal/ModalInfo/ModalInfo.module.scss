@@ -5,6 +5,11 @@
 	padding: 24px 30px 30px 30px;
 	margin-top: 24px !important;
 
+	&_loader {
+		font-size: 12px;
+		margin: -4px 0 0 0;
+	}
+
 	.button_close {
 		color: white;
 		cursor: pointer;
@@ -71,6 +76,22 @@
 		height: 54px;
 		border-radius: 12px;
 		width: 142px;
+	}
+
+	.machain_dg_element {
+		padding: 6px 12px 0 12px;
+	}
+
+	.staked_dg_element {
+		padding: 0 12px 0 12px;
+	}
+
+	.unclaimed_element {
+		padding: 0 12px 6px 12px;
+	}
+
+	.buy_dg_element {
+		margin-top: 24px;
 	}
 
 	.buy_button:focus,

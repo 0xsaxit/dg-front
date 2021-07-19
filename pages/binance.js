@@ -1,8 +1,8 @@
-import BinanceHome from '../components/home/Binance/index.js';
-import Layout from '../components/Layout.js';
-import Header from '../components/Header';
-import Global from '../components/Constants';
-import Images from '../common/Images';
+import BinanceHome from 'components/home/Binance/index.js';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
 
 const Binance = () => {
   return (

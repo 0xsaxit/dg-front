@@ -3,7 +3,8 @@ import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Fetch from '../../../common/Fetch';
+import Fetch from 'common/Fetch';
+
 import styles from './ModalLoginBinance.module.scss';
 
 const ModalLoginBinance = () => {
@@ -50,7 +51,7 @@ const ModalLoginBinance = () => {
     }
   });
 
-  async function openMetaMask() {
+  const openMetaMask = async () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
@@ -80,7 +81,7 @@ const ModalLoginBinance = () => {
     }
   }
 
-  async function updateStatus(value, post) {
+  const updateStatus = async (value, post) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
@@ -125,7 +126,7 @@ const ModalLoginBinance = () => {
   }
 
   return (
-    <span>
+    <div>
       {state.networkID ? (
         <Modal
           className={styles.connect_metamask_modal}
@@ -154,8 +155,8 @@ const ModalLoginBinance = () => {
             >
               <span className="d-flex justify-content-center">
                 <img
+                  className={styles.metamask_img}
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                  style={{ height: '36px', margin: '0px 24px 0px -48px' }}
                 />
                 Connect Metamask
               </span>
@@ -200,7 +201,7 @@ const ModalLoginBinance = () => {
             </span>
           </div>
           <div>
-            <h1 className={styles.title}>Download Brave</h1>
+            <p className={styles.title}>Download Brave</p>
             <button
               className={cn('btn btn-primary w-100', styles.busd_button)}
               href="https://brave.com/"
@@ -255,7 +256,7 @@ const ModalLoginBinance = () => {
             </span>
           </div>
           <div>
-            <h1 className={styles.title}>Download Metamask</h1>
+            <p className={styles.title}>Download Metamask</p>
             <button
               className={cn('btn btn-primary w-100', styles.busd_button)}
               onClick={() => {
@@ -287,7 +288,7 @@ const ModalLoginBinance = () => {
           </div>
         </Modal>
       )}
-    </span>
+    </div>
   );
 };
 

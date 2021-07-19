@@ -1,0 +1,61 @@
+@import "styles/base.scss";
+
+.binance_top {
+  font-size: 18px;
+  position: relative;
+  background-color: #f1cd50 !important;
+  color: black;
+  padding: 0px;
+  line-height: 24px;
+  margin-top: 12px;
+  min-width: 250px !important;
+  height: 40px !important;
+  border-radius: 16px;
+  margin-right: 30px;
+}
+
+@include mq($until: small) {
+  .metamask_mobile_button {
+    font-size: 18px;
+    position: relative;
+    background-color: #006eff;
+    color: white;
+    padding: 0px;
+    line-height: 24px;
+    margin-top: 12px !important;
+    min-width: 150px;
+    height: 40px;
+    border-radius: 16px;
+    margin-right: 18px;
+  }
+
+  .metamask_button {
+    display: none !important;
+  }
+}
+
+@include mq($from: small) {
+  .metamask_mobile_button {
+    display: none !important;
+  }
+
+  .metamask_button {
+    font-size: 18px;
+    position: relative;
+    background-color: #006eff;
+    color: white;
+    padding: 0px;
+    line-height: 24px;
+    margin-top: 12px !important;
+    min-width: 150px;
+    height: 40px;
+    border-radius: 16px;
+    margin-right: 18px;
+  }
+}
+
+.open_metamask_img {
+  height: 24px;
+  padding-right: 8px;
+  margin-bottom: -7px;
+}

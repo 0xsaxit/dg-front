@@ -1,7 +1,7 @@
 import BlogPages from './blogPages';
-import Layout from '../../../components/Layout.js';
-import Header from '../../../components/Header';
-import ButterCMS from '../../../common/ButterCMS';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import ButterCMS from 'common/ButterCMS';
 
 const Index = ({ page_title, featured_image, page_summary }) => {
   return (

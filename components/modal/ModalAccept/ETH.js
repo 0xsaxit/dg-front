@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import { Modal, Button, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import styles from './ModalAccept.module.scss';
 import ButtonApproveETH from 'components/button/ButtonApprove/ETH';
 import OpenIcon from 'assest/svg/open.svg';
+
+import styles from './ModalAccept.module.scss';
 
 const ETH = () => {
   // get user's unclaimed DG balance from the Context API store

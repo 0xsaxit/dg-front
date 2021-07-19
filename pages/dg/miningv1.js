@@ -1,11 +1,11 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { useContext, useState, useEffect } from 'react';
-import Farming from '../../components/home/Farming';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
-import Spinner from '../../components/Spinner';
+import Farming from 'components/home/Farming';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+import Spinner from 'components/Spinner';
 
 const MiningV1 = () => {
   // get user's transaction history from the Context API store

@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { Button } from 'semantic-ui-react';
-import Fetch from '../../common/Fetch';
-import Aux from '../_Aux';
+import Fetch from 'common/Fetch';
+import Aux from 'components/_Aux';
 
 const ButtonPlayNow = () => {
   // dispatch new user status to Context API store
@@ -21,7 +21,7 @@ const ButtonPlayNow = () => {
     }
   });
 
-  async function openMetaMask() {
+  const openMetaMask = async () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
@@ -51,7 +51,7 @@ const ButtonPlayNow = () => {
     }
   }
 
-  async function updateStatus(value, post) {
+  const updateStatus = async (value, post) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
@@ -75,7 +75,7 @@ const ButtonPlayNow = () => {
     }
   }
 
-  async function getUserStatus() {
+  const getUserStatus = async () => {
     console.log('Get user status: Play Now');
 
     try {
@@ -102,8 +102,7 @@ const ButtonPlayNow = () => {
           id="mobile-button-hide"
           content="Play Now"
           color="blue"
-          className="play-button verify"
-          style={{ padding: '0 0 0 0' }}
+          className={styles.play_button_verify}
           onClick={() => openMetaMask()}
         />
       ) : null}

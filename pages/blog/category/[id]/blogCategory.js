@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../../store';
-import { Divider } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
 import _ from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import ButterCMS from '../../../../common/ButterCMS';
+import ButterCMS from 'common/ButterCMS';
 
-function blogCategory() {
+const blogCategory = () => {
   const router = useRouter();
   const [state, dispatch] = useContext(GlobalContext);
   const [filteredPages, changeCategory] = useState(state.pages.data);

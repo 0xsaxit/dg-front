@@ -18,7 +18,7 @@ const CustomForm = ({ status, message, onValidated }) => {
   //     setName(e.target.value);
   //   }
 
-  function handleEmailChange(e) {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   }
 
