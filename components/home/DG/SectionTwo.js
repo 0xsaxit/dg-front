@@ -14,7 +14,8 @@ function SectionTwo() {
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
-            styles.image_span
+            styles.image_span,
+            styles.text_group
           )}
         >
           <div
@@ -112,6 +113,7 @@ function SectionTwo() {
 
           <div
             className={cn(
+              styles.text_group,
               mobile
                 ? 'col-md-6'
                 : 'col-md-6 d-flex flex-column justify-content-center'
@@ -151,7 +153,8 @@ function SectionTwo() {
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
-            styles.image_span
+            styles.image_span,
+            styles.text_group
           )}
         >
           <div

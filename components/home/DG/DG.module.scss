@@ -84,6 +84,12 @@
     }
   }
 
+  .text_group {
+    @include mq($until: medium) {
+      margin-bottom: 100px;
+    }
+  }
+
   .video {
     object-fit: cover;
     width: 100vw;
