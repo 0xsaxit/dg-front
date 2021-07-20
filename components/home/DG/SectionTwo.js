@@ -21,7 +21,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : 'col-md-6 d-flex flex-column justify-content-center'
+                : (tablet? 'col-xs d-flex flex-column justify-content-center align-center' : 'col-md-6 d-flex flex-column justify-content-center')
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -52,7 +52,7 @@ function SectionTwo() {
               </Button>
             </span>
           </div>
-          <div className="col-md-6 d-flex justify-content-center">
+          <div className={tablet? "col-xs d-flex justify-content-center" : "col-md-6 d-flex justify-content-center"}>
             {!mobile && (
               <video
                 className={styles.image}
@@ -62,7 +62,7 @@ function SectionTwo() {
                 autoPlay={true}
                 loop
                 muted
-                style={{ marginTop: 0}}
+                style={{ marginTop: 0 }}
               ></video>
             )}
             {mobile && (
@@ -79,7 +79,7 @@ function SectionTwo() {
 
       <div className="container">
         <div className={cn('row', styles.image_span)}>
-          <div className="col-md-6 d-flex justify-content-center">
+          <div className={tablet? "col-xs d-flex justify-content-center" : "col-md-6 d-flex justify-content-center"}>
             {!mobile && (
               <video
                 className={styles.image}
@@ -88,14 +88,15 @@ function SectionTwo() {
                 frameBorder="0"
                 autoPlay={true}
                 loop
-                muted
+                muted                
+                style={{marginTop: tablet? '-110px' : '0px'}}
               ></video>
             )}
             {mobile && (
               <img
                 className={styles.image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
-                style={{ marginTop: 0 }}
+                style={{ marginTop: '-50px', marginBottom: '-50px' }}
                 alt="img"
               />
             )}
@@ -105,7 +106,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : 'col-md-6 d-flex flex-column justify-content-center'
+                : (tablet? 'col-xs d-flex flex-column justify-content-center align-center' : 'col-md-6 d-flex flex-column justify-content-center')
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -149,7 +150,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : 'col-md-6 d-flex flex-column justify-content-center'
+                : (tablet? 'col-xs d-flex flex-column justify-content-center align-center' : 'col-md-6 d-flex flex-column justify-content-center')
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -178,7 +179,7 @@ function SectionTwo() {
               </Button>
             </span>
           </div>
-          <div className="col-md-6 d-flex justify-content-center">
+          <div className={tablet? "col-xs d-flex justify-content-center" : "col-md-6 d-flex justify-content-center"}>
             {!mobile && (
               <video
                 className={cn(mobile ? styles.image_mobile : styles.image)}
@@ -188,13 +189,14 @@ function SectionTwo() {
                 autoPlay={true}
                 loop
                 muted
+                style={{marginBottom: tablet? '-150px' : '0px'}}
               ></video>
             )}
             {mobile && (
               <img
                 className={styles.image}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
-                style={{ marginTop: 0, marginBottom: '-100px' }}
+                style={{ marginTop: '-80px', marginBottom: '-50px'}}
                 alt="img"
               />
             )}
