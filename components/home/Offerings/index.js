@@ -160,6 +160,24 @@ const detailsNFTs = {
     'https://opensea.io/assets/0xbf53c33235cbfc22cef5a61a83484b86342679c5/245',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
+  headphones: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
+    'nft-pic',
+    'DG Headphones',
+    'LEGENDARY',
+    '',
+    'https://opensea.io/assets/matic/0xf16ff41128b298304b761b49c1c56580972ada32/13',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+  headphones: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
+    'nft-pic',
+    'DG Headphones',
+    'LEGENDARY',
+    '',
+    'https://opensea.io/assets/dg-accessories',
+    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
 };
 
 const Offerings = props => {

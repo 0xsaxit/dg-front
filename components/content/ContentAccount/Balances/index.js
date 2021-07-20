@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { GlobalContext } from 'store/index';
+import { DGModal } from 'dg-modal-widget';
+
 import Images from 'common/Images';
-import { ConnextModal } from '@connext/vector-modal';
 import Global from 'components/Constants';
 import ModalAcceptUSDT from 'components/modal/ModalAccept/USDT';
 import ModalAcceptMANA from 'components/modal/ModalAccept/MANA';
@@ -11,13 +12,14 @@ import ModalAcceptDAI from 'components/modal/ModalAccept/DAI';
 import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
 import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
 import BuyArrow from 'assets/svg/buyarrow.svg';
+
 import styles from './Balances.module.scss';
 
 const connext = {
-  routerPublicID: Global.CONSTANTS.CONNEXT_PUBLIC_ID,
+  routerPublicID: Global.KEYS.CONNEXT_PUBLIC_ID,
   chainProviderInfura:
     'https://mainnet.infura.io/v3/e4f516197160473789e87e73f59d65b6',
-  chainProviderMatic: 'https://rpc-mainnet.matic.network',
+  chainProviderMatic: 'https://rpc-mainnet.matic.quiknode.pro',
   assetID_1_MANA: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_MANA,
   assetID_2_MANA: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA,
   assetID_1_DAI: Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DAI,
@@ -299,22 +301,21 @@ const Balances = () => {
                   Deposit
                 </Button>
 
-                <ConnextModal
+                <DGModal
                   showModal={showModal}
                   onClose={() => setStateAndEvent(1, false, 'MANA Deposit')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
+                  onReady={params => console.log("MANA MODAL1 IS READY =======>", params)}
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                  injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}                 
+                  routerPublicIdentifier={connext.routerPublicID}
                   depositAssetId={connext.assetID_1_MANA}
-                  depositChainId={1}
                   depositChainProvider={connext.chainProviderInfura}
                   withdrawAssetId={connext.assetID_2_MANA}
-                  withdrawChainId={137}
                   withdrawChainProvider={connext.chainProviderMatic}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
+                  depositChainId={1}
+                  withdrawChainId={137}
+                  isDeposit = {true}
                   onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
@@ -326,22 +327,21 @@ const Balances = () => {
                   Withdraw
                 </Button>
 
-                <ConnextModal
+                <DGModal
                   showModal={showModal_2}
                   onClose={() => setStateAndEvent(2, false, 'MANA Withdrawal')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
+                  onReady={params => console.log("MANA MODAL2 IS READY =======>", params)}
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={connext.assetID_1_MANA}
-                  withdrawChainId={1}
-                  withdrawChainProvider={connext.chainProviderInfura}
-                  depositAssetId={connext.assetID_2_MANA}
-                  depositChainId={137}
-                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
+                  loginProvider={injectedProvider}                 
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_2_MANA}
+                  depositChainProvider={connext.chainProviderMatic}
+                  withdrawAssetId={connext.assetID_1_MANA}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositChainId={137}
+                  withdrawChainId={1}
+                  isDeposit = {false}
                   onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
@@ -382,7 +382,7 @@ const Balances = () => {
                   state.userBalances[2][1] * 1000000000000
                 ).toLocaleString()} USDT
               </p>
-              <p className={styles.bold_text}>${(state.userBalances[2][1] * state.DGPrices.usdt).toFixed(2)}</p>
+              <p className={styles.bold_text}>${(state.userBalances[2][1] * 1000000000000).toFixed(2)}</p>
             </span>
 
             <div>
@@ -390,55 +390,56 @@ const Balances = () => {
               <span>
                 <Button
                   onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
+                  className={styles.deposit_button}
                 >
                   Deposit
                 </Button>
 
-                <ConnextModal
+                <DGModal
                   showModal={showModal_5}
                   onClose={() => setStateAndEvent(5, false, 'USDT Deposit')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
+                  onReady={params => console.log("USDT MODAL1 IS READY =======>", params)}
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  depositAssetId={connext.assetID_1_USDT}
-                  depositChainId={1}
-                  depositChainProvider={connext.chainProviderInfura}
-                  withdrawAssetId={connext.assetID_2_USDT}
-                  withdrawChainId={137}
-                  withdrawChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
+                  loginProvider={injectedProvider}                 
+                  routerPublicIdentifier={connext.routerPublicID}                  
+                  depositAssetId={connext.assetID_1_USDT}                  
+                  depositChainProvider={connext.chainProviderInfura}                  
+                  withdrawAssetId={connext.assetID_2_USDT}                  
+                  withdrawChainProvider={connext.chainProviderMatic}                  
+                  depositChainId={1}
+                  withdrawChainId={137}
+                  isDeposit = {true}
                   onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
                 <Button
                   onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
+                  className={styles.deposit_button}
                 >
                   Withdraw
                 </Button>
 
-                <ConnextModal
+                <DGModal
                   showModal={showModal_6}
                   onClose={() => setStateAndEvent(6, false, 'USDT Withdrawal')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
+                  onReady={params => console.log("USDT MODAL2 IS READY =======>", params)}                  
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={connext.assetID_1_USDT}
-                  withdrawChainId={1}
-                  withdrawChainProvider={connext.chainProviderInfura}
-                  depositAssetId={connext.assetID_2_USDT}
-                  depositChainId={137}
-                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
                   loginProvider={injectedProvider}
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_2_USDT}
+                  depositChainProvider={connext.chainProviderMatic}
+                  withdrawAssetId={connext.assetID_1_USDT}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositChainId={137}
+                  withdrawChainId={1}
+                  isDeposit = {false}
                   onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
+
               </span>
             ) : (
               <ModalAcceptUSDT />
@@ -479,50 +480,54 @@ const Balances = () => {
             <div>
              {state.userInfo.tokenArray[0] ? (
               <span>
-                <Button onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}>
+                <Button 
+                  onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
+                  className={styles.deposit_button}
+                >
                   Deposit
                 </Button>
 
-                <ConnextModal
+                <DGModal
                   showModal={showModal_3}
                   onClose={() => setStateAndEvent(3, false, 'DAI Deposit')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
+                  onReady={params => console.log("DAI MODAL1 IS READY =======>", params)}
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
+                  injectedProvider={injectedProvider}
+                  loginProvider={injectedProvider}                 
+                  routerPublicIdentifier={connext.routerPublicID}
                   depositAssetId={connext.assetID_1_DAI}
-                  depositChainId={1}
                   depositChainProvider={connext.chainProviderInfura}
                   withdrawAssetId={connext.assetID_2_DAI}
-                  withdrawChainId={137}
                   withdrawChainProvider={connext.chainProviderMatic}
-                  injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
+                  depositChainId={1}
+                  withdrawChainId={137}
+                  isDeposit = {true}
                   onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
-                <Button onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}>
+                <Button 
+                  onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
+                  className={styles.deposit_button}
+                >
                   Withdraw
                 </Button>
 
-                <ConnextModal
+                <DGModal
                   showModal={showModal_4}
                   onClose={() => setStateAndEvent(4, false, 'DAI Withdrawal')}
-                  onReady={(params) =>
-                    console.log('MODAL IS READY =======>', params)
-                  }
+                  onReady={params => console.log("DAI MODAL2 IS READY =======>", params)}
                   withdrawalAddress={state.userAddress}
-                  routerPublicIdentifier="vector6Dd1twoMwXwdphzgY2JuM639keuQDRvUfQub3Jy5aLLYqa14Np"
-                  withdrawAssetId={connext.assetID_1_DAI}
-                  withdrawChainId={1}
-                  withdrawChainProvider={connext.chainProviderInfura}
-                  depositAssetId={connext.assetID_2_DAI}
-                  depositChainId={137}
-                  depositChainProvider={connext.chainProviderMatic}
                   injectedProvider={injectedProvider}
-                  loginProvider={injectedProvider}
+                  loginProvider={injectedProvider}                 
+                  routerPublicIdentifier={connext.routerPublicID}
+                  depositAssetId={connext.assetID_2_DAI}
+                  depositChainProvider={connext.chainProviderMatic}
+                  withdrawAssetId={connext.assetID_1_DAI}
+                  withdrawChainProvider={connext.chainProviderInfura}
+                  depositChainId={137}
+                  withdrawChainId={1}
+                  isDeposit = {false}
                   onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />

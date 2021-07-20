@@ -1,4 +1,4 @@
-import Chateau from 'components/home/Chateau';
+import DGHome from 'components/home/DG/index.js';
 import Layout from 'components/Layout.js';
 import Header from 'components/Header';
 import Global from 'components/Constants';
@@ -13,7 +13,7 @@ const Index = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      <Chateau />
+      <DGHome />
     </Layout>
   );
 };

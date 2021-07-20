@@ -85,7 +85,7 @@ const ModalLogin = () => {
       console.log('Posting user status to db: ' + value);
 
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.data;
 
       // update user status in database
       await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
@@ -109,10 +109,9 @@ const ModalLogin = () => {
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.data;
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
-      const jsonStatus = await responseStatus.json();
+      const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
       if (!jsonStatus.status) return false;
 

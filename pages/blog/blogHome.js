@@ -75,7 +75,7 @@ const blog = () => {
 
               <div className={styles.post_info_featured}>
                 <div className={styles.top}>
-                  <span className={stles.blog_category}>Announcements </span>
+                  <span className={styles.blog_category}>Announcements </span>
                   <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
                   <span className={styles.blog_date}>18 JUN 2021</span>
                 </div>

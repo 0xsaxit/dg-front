@@ -9,6 +9,8 @@ import MetaTx from 'common/MetaTx';
 import Aux from 'components/_Aux';
 import Transactions from 'common/Transactions';
 
+import styles from './ButtonEnable.module.scss';
+
 const ButtonEnable = () => {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);

@@ -113,8 +113,9 @@
 		}
 
 		.deposit_button,
-		button,
-		a {
+		.topUp,
+		button
+		{
 			border-radius: 16px;
 			height: 42px;
 			color: white;
@@ -127,12 +128,12 @@
 			justify-content: center;
 
 			&:hover {
-				background: #1F1F1F;
+				filter: brightness(0.9) !important;
 				color: white;
 			}
 
 			&:focus {
-				background: #1F1F1F;
+				filter: brightness(0.9) !important;
 				color: white;
 			}
 		}

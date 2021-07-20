@@ -1,12 +1,41 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, Component } from 'react';
 import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
 import { Button } from 'semantic-ui-react';
 import Fetch from 'common/Fetch';
+import call from 'common/API';
 import Aux from 'components/_Aux';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 
 import styles from './ButtonConnect.module.scss';
+
+const assignToken = async () => {
+  const userAddress = window.ethereum.selectedAddress;
+  if (userAddress) {
+    const timestamp = Date.now();
+
+    const msg = window.web3.utils.utf8ToHex(
+      `Decentral Games Login\nTimestamp: ${timestamp}`
+    );
+    const signature = await window.web3.eth.personal.sign(
+      msg,
+      window.ethereum.selectedAddress,
+      null
+    );
+
+    const token = await call(
+      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      'GET',
+      false
+    );
+
+    localStorage.setItem('token', token);
+    localStorage.setItem(
+      'expiretime',
+      Number(new Date().getTime() / 1000 + 12 * 3600)
+    );
+  }
+};
 
 const ButtonConnect = () => {
   // dispatch new user status to Context API store
@@ -23,6 +52,20 @@ const ButtonConnect = () => {
   let listener = null;
 
   useEffect(() => {
+    if (window.ethereum && window.ethereum.selectedAddress) {
+      window.ethereum.on('accountsChanged', () => {
+        assignToken();
+      });
+
+      const currentTimestamp = new Date().getTime() / 1000;
+      const expiredTimestamp =
+        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
+
+      if (currentTimestamp > expiredTimestamp) {
+        assignToken();
+      }
+    }
+
     if (router.pathname.includes('binance')) {
       setBinance(true);
     } else {
@@ -78,6 +121,10 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
+      if (!localStorage.getItem('token')) {
+        assignToken();
+      }
+
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
@@ -102,7 +149,7 @@ const ButtonConnect = () => {
       console.log('Posting user status to db: ' + value);
 
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.;
 
       // update user status in database
       await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
@@ -126,10 +173,9 @@ const ButtonConnect = () => {
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.;
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
-      const jsonStatus = await responseStatus.json();
+      const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
       if (!jsonStatus.status) return false;
 

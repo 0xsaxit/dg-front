@@ -18,27 +18,22 @@ function UserInfo() {
   useEffect(() => {
     (async function () {
       // get coin prices
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
+      let json = await Fetch.MANA_PRICE();
       setManaPrice(json.market_data.current_price.usd);
 
-      let response2 = await Fetch.ETH_PRICE();
-      let json2 = await response2.json();
+      let json2 = await Fetch.ETH_PRICE();
       setEthPrice(json2.market_data.current_price.usd);
 
-      let response3 = await Fetch.ATRI_PRICE();
-      let json3 = await response3.json();
+      let json3 = await Fetch.ATRI_PRICE();
       setAtriPrice(json3.market_data.current_price.usd);
-
-    })()
+    })();
   }, [manaPrice, ethPrice, atriPrice]);
 
   // get user's play name, wallet address, MANA balance, email address, players list, and token totals
   useEffect(() => {
     if (state.userAddress) {
       (async function () {
-        const responseInfo = await Fetch.PLAYER_INFO(state.userAddress);
-        const jsonInfo = await responseInfo.json();
+        const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
 
         const name = jsonInfo.avatarName;
         const id = jsonInfo._id.slice(-6);
@@ -47,8 +42,7 @@ function UserInfo() {
         const email = '';
         const playersList = jsonInfo.playersList;
         const tokenArray = jsonInfo.tokenArray;
-        const responseData = await Fetch.PLAYER_DATA(state.userAddress);
-        const jsonData = await responseData.json();
+        const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
 
         const data = {
           name: name,

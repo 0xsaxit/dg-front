@@ -4,6 +4,8 @@ import { Button } from 'semantic-ui-react';
 import Fetch from 'common/Fetch';
 import Aux from 'components/_Aux';
 
+import styles from './ButtonPlayNow.module.scss';
+
 const ButtonPlayNow = () => {
   // dispatch new user status to Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -56,7 +58,7 @@ const ButtonPlayNow = () => {
       console.log('Posting user status to db: ' + value);
 
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.data;
 
       // update user status in database
       await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
@@ -80,10 +82,9 @@ const ButtonPlayNow = () => {
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.data;
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
-      const jsonStatus = await responseStatus.json();
+      const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
       if (!jsonStatus.status) return false;
 

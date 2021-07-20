@@ -123,6 +123,7 @@ const Chateau = () => {
   const sectionTwo = () => {
     return (
       <Aux>
+<<<<<<< HEAD:components/home/Chateau/index.js
         <div
           className="section-4-outter-header"
           style={{ marginTop: '-120px' }}
@@ -281,6 +282,45 @@ const Chateau = () => {
               </Link>
             </span>
           </div>
+=======
+        <div className="home-dashboard-content">
+          <img
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
+            className="home-gif"
+          />
+          <h1
+            className="home-dashboard-main-h1"
+            style={{ marginBottom: '-32px' }}
+          >
+            Play to Earn
+          </h1>
+          <span className="home-button-span"></span>
+          <p className="home-dashboard-p centered">
+            Play games in the metaverse and earn rewards of up to 50% of your expected losses back in the $DG token.
+          </p>
+
+          <span className="mobile-center-span">
+            <Button
+              color="blue"
+              className="earn-dg-button"
+              href="https://docs.decentral.games/"
+              target="_blank"
+            >
+              Learn More
+            </Button>
+            <Button
+              color="blue"
+              className="play-button"
+              href="https://play.decentraland.org/?position=-118%2C135"
+              target="_blank"
+              id="mobile-button-hide"
+              style={{ marginLeft: '16px' }}
+            >
+              See Games
+            </Button>
+          </span>
+
+>>>>>>> dev:components/home/Chateau.js
         </div>
       </Aux>
     );

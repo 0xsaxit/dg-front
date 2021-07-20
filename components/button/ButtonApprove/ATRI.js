@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from 'store';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
-import ABI_CHILD_TOKEN_ATRI from '../../ABI/ABIChildTokenATRI';
-import Global from '../../Constants';
-import Fetch from '../../../common/Fetch';
-import MetaTx from '../../../common/MetaTx';
+import ABI_CHILD_TOKEN_ATRI from 'components/ABI/ABIChildTokenATRI';
+import Global from 'components/Constants';
+import Fetch from 'common/Fetch';
+import MetaTx from 'common/MetaTx';
 import styles from './ButtonApprove.module.scss';
 
 function ATRI() {

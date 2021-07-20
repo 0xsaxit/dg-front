@@ -1,176 +1,101 @@
+import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const Fetch = {
+const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (no wallet address necessary)
   TREASURY_STATS_NUMBERS: period => {
-    return fetch(`${API_BASE_URL}/admin/getTreasuryBalanceHistory/${period}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `${API_BASE_URL}/admin/getTreasuryBalanceHistory/${period}`,
+      'GET',
+      false
+    );
   },
 
   EVENTS: () => {
-    return fetch(`${API_BASE_URL}/players/getEvents`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(`${API_BASE_URL}/players/getEvents`, 'GET', false);
   },
 
   GAME_RECORDS: () => {
-    return fetch(`${API_BASE_URL}/admin/getTotalRecords`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address necessary)
   PLAYER_INFO: address => {
-    return fetch(`${API_BASE_URL}/admin/getUser?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `${API_BASE_URL}/admin/getUser?address=${address}`,
+      'GET',
+      false
+    );
   },
 
   PLAYER_DATA: address => {
-    return fetch(`${API_BASE_URL}/admin/getCryptoRecords?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `${API_BASE_URL}/admin/getCryptoRecords?address=${address}`,
+      'GET'
+    );
   },
 
   USERS_LIST: address => {
-    return fetch(`${API_BASE_URL}/admin/getUsersList?address=${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(`${API_BASE_URL}/admin/getUsersList?address=${address}`, 'GET');
   },
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls
   USER_STATUS: (address, ipAddress) => {
-    return fetch(`${API_BASE_URL}/order/webLogin`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        ipAddress: ipAddress,
-      }),
+    return call(`${API_BASE_URL}/order/webLogin`, 'POST', true, {
+      address,
+      ipAddress,
     });
   },
 
   REGISTER: (address, ipAddress, affiliate) => {
-    return fetch(`${API_BASE_URL}/order/webRegister`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        ipAddress: ipAddress,
-        affiliate: affiliate,
-      }),
+    return call(`${API_BASE_URL}/order/webRegister`, 'POST', true, {
+      address,
+      ipAddress,
+      affiliate,
     });
   },
 
   UPDATE_TOKEN_ARRAY: (address, index) => {
-    return fetch(`${API_BASE_URL}/order/updateTokenArray`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        index: index,
-      }),
+    return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
+      address,
+      index,
     });
   },
 
   TOP_UP_USER: address => {
-    return fetch(`${API_BASE_URL}/order/topup`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-      }),
-    });
+    return call(`${API_BASE_URL}/order/topup`, 'POST', true, { address });
   },
 
   HISTORY_DATA: address => {
-    return fetch(`${API_BASE_URL}/order/getHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        limit: 99999, // fetch all of the data
-        page: 1,
-      }),
+    return call(`${API_BASE_URL}/order/getHistory`, 'POST', true, {
+      address,
+      limit: 99999, // call all of the data
+      page: 1,
     });
   },
 
   PLAY_DATA: address => {
-    return fetch(`${API_BASE_URL}/order/getPlayInfo`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        limit: 99999, // fetch all of the data
-        page: 1,
-      }),
+    return call(`${API_BASE_URL}/order/getPlayInfo`, 'POST', true, {
+      address,
+      limit: 99999, // call all of the data
+      page: 1,
     });
   },
 
   POST_HISTORY: (address, amount, type, state, txHash, step) => {
-    return fetch(`${API_BASE_URL}/order/updateHistory`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address,
-        amount: amount,
-        type: type,
-        state: state,
-        txHash: txHash,
-        step: step,
-      }),
+    return call(`${API_BASE_URL}/order/updateHistory`, 'POST', true, {
+      address,
+      amount,
+      type,
+      state,
+      txHash,
+      step,
     });
   },
 
@@ -178,113 +103,76 @@ const Fetch = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // third-party API calls
   NFTS_1: address => {
-    return fetch(
+    return call(
       `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0xbf53c33235cbfc22cef5a61a83484b86342679c5&order_direction=desc&offset=0&limit=10`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
+      'GET',
+      false
     );
   },
 
   NFTS_2: address => {
-    return fetch(
+    return call(
       `https://api.opensea.io/api/v1/assets?owner=${address}&asset_contract_address=0x7038e9d2c6f5f84469a84cf9bc5f4909bb6ac5e0&order_direction=desc&offset=0&limit=10`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
+      'GET',
+      false
     );
   },
 
   AVATAR_IMAGE: address => {
-    return fetch(`https://peer.decentraland.org/lambdas/profile/${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `https://peer.decentraland.org/lambdas/profile/${address}`,
+      'GET',
+      false
+    );
   },
 
   PROPOSALS: () => {
-    return fetch(`https://hub.snapshot.page/api/decentralgames.eth/proposals`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `https://hub.snapshot.page/api/decentralgames.eth/proposals`,
+      'GET',
+      false
+    );
   },
 
   MANA_PRICE: () => {
-    return fetch(`https://api.coingecko.com/api/v3/coins/decentraland`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentraland`,
+      'GET',
+      false
+    );
   },
 
   ETH_PRICE: () => {
-    return fetch(`https://api.coingecko.com/api/v3/coins/ethereum`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `https://api.coingecko.com/api/v3/coins/ethereum`,
+      'GET',
+      false
+    );
   },
 
   ATRI_PRICE: () => {
-    return fetch(`https://api.coingecko.com/api/v3/coins/atari`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(`https://api.coingecko.com/api/v3/coins/atari`, 'GET', false);
   },
 
   DG_SUPPLY_GECKO: () => {
-    return fetch(`https://api.coingecko.com/api/v3/coins/decentral-games`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(
+      `https://api.coingecko.com/api/v3/coins/decentral-games`,
+      'GET',
+      false
+    );
   },
 
   LAND_PRICE: () => {
-    return fetch(
+    return call(
       `https://nonfungible.com/api/v4/market/summary/decentraland?daily=true&filter=[{"id":"nftTicker","value":"LAND"},{"id":"saleType","value":""}]`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
+      'GET',
+      false
     );
   },
 
   POAPS: address => {
-    return fetch(`https://api.poap.xyz/actions/scan/${address}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
 };
 
-export default Fetch;
+export default apiCall;

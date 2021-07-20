@@ -50,8 +50,7 @@ const ModalInfo = () => {
   // fetch circulating supply
   useEffect(() => {
     (async function () {
-      const response = await Fetch.DG_SUPPLY_GECKO();
-      const json = await response.json();
+      const json = await Fetch.DG_SUPPLY_GECKO();
       setSupply(json.market_data.circulating_supply);
       setDGPrice(json.market_data.current_price.usd);
     })();
