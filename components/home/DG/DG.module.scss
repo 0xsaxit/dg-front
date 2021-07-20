@@ -1,53 +1,12 @@
 @import 'styles/base.scss';
 
-
 .home_dashboard {
-
   .image_span {
     margin-top: 150px;
     margin-bottom: 150px;
     margin-left: 0px;
     margin-right: 0px;
-    max-width: 1200px;
-
-    @media only screen and (min-width: 576px) {
-      //margin-left: 0px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-    @media only screen and (min-width: 768px) {
-      margin-left: 50px;
-      margin-top: 60px;
-      margin-bottom: 60px;
-    }
-
-    @media only screen and (min-width: 992px) {
-      margin-left: 50px;
-      margin-top: 120px;
-      margin-bottom: 120px;
-    }
-
-    @media only screen and (min-width: 1200px) {
-      margin-left: 110px;
-      margin-top: 150px;
-      margin-bottom: 150px;
-    }
-
-
-    // @include mq($until: medium) {
-    //   margin-left: 0px;
-    //   margin-right: 0px;
-    //   margin-top: 60px;
-    //   margin-bottom: 60px;
-    // }
-
-    // @include mq($until: small) {
-    //   margin-left: 0px;
-    //   margin-right: 0px;
-    //   margin-top: 10px;
-    //   margin-bottom: 10px;
-    // }
+    max-width: 100%;
 
     .section_h1 {
       font-size: 48px;
@@ -101,32 +60,27 @@
 
     .image {
       height: 400px;
+      width: 100%;
       object-fit: contain;
       position: relative;
-      margin-left: -50px;
 
       @include mq($until: medium) {
-        height: 400px;
+        height: auto;
+        width: 100%;
         margin-left: 0;
-        margin-top: 100px;
-        margin-bottom: 0px;
+        margin-top: 50px;
+        margin-bottom: 50px;
       }
     }
 
-    @include mq($until: small) {
-      .image {
-        height: 270px;
-      }
-      .image_mobile {
-        height: 270px;
-      }
+    @include mq($until: medium) {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
-    .image_mobile {
-      height: 400px;
-      margin-left: 0;
-      margin-top: 40px;
-      margin-bottom: -60px;
+    @include mq($from: medium, $until: large) {
+      margin-top: 60px;
+      margin-bottom: 60px;
     }
   }
 
@@ -144,12 +98,12 @@
   }
   .gradientLayout {
     position: relative;
-    background: linear-gradient(rgba(0, 0 ,0 ,0), #000000);
+    background: linear-gradient(rgba(0, 0, 0, 0), #000000);
     height: 120px;
     margin-top: -120px;
 
     @include mq($until: small) {
-      margin-top: -75px;
+      margin-top: -100px;
     }
   }
 
@@ -319,7 +273,7 @@
       z-index: 3;
 
       @include mq($until: medium) {
-        margin-top: 150px;
+        margin-top: 60px;
       }
 
       @include mq($until: small) {
@@ -350,7 +304,7 @@
       margin-bottom: 16px;
 
       @include mq($until: small) {
-        margin-bottom: 72px;
+        margin-bottom: 24px;
       }
     }
 
@@ -367,4 +321,3 @@
     }
   }
 }
-

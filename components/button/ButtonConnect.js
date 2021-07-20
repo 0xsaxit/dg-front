@@ -119,7 +119,14 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
-      if (!localStorage.getItem('token')) {
+      const currentTimestamp = new Date().getTime() / 1000;
+      const expiredTimestamp =
+        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
+
+      if (
+        !localStorage.getItem('token') ||
+        currentTimestamp > expiredTimestamp
+      ) {
         assignToken();
       }
 

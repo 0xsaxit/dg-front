@@ -13,7 +13,7 @@ function SectionTwo() {
       <div className="container">
         <div
           className={cn(
-            'row flex-row flex-column-reverse',
+            'row flex-md-row flex-column-reverse',
             styles.image_span
           )}
         >
@@ -21,7 +21,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : (tablet? 'col-lg-6' : 'col-md-6 d-flex flex-column justify-content-center')
+                : 'col-md-6 d-flex flex-column justify-content-center'
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -52,24 +52,28 @@ function SectionTwo() {
               </Button>
             </span>
           </div>
-          <div className={tablet? "col-xs d-flex justify-content-center" : "col-md-6 d-flex justify-content-center"}>
+          <div
+            className={
+              mobile
+                ? 'col-xs d-flex justify-content-center'
+                : 'col-md-6 d-flex justify-content-center'
+            }
+          >
             {!mobile && (
               <video
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Play_to_Earn_1_mrum0a.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
                 loop
                 muted
-                style={{ marginTop: 0 }}
               ></video>
             )}
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.46.07_PM_p672iu.png"
-                style={{ marginTop: 0 }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/c_crop,h_1324,w_1950/v1626536789/Screen_Shot_2021-07-17_at_5.46.07_PM_p672iu.png"
                 alt="img"
               />
             )}
@@ -79,24 +83,28 @@ function SectionTwo() {
 
       <div className="container">
         <div className={cn('row', styles.image_span)}>
-          <div className={tablet? "col-xs d-flex justify-content-center" : "col-md-6 d-flex justify-content-center"}>
+          <div
+            className={
+              mobile
+                ? 'col-xs d-flex justify-content-center'
+                : 'col-md-6 d-flex justify-content-center'
+            }
+          >
             {!mobile && (
               <video
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Wallet_dhloo5.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
                 loop
-                muted                
-                style={{marginTop: tablet? '-110px' : '0px'}}
+                muted
               ></video>
             )}
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
-                style={{ marginTop: '-50px', marginBottom: '-50px' }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
                 alt="img"
               />
             )}
@@ -106,7 +114,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : (tablet? 'col-xs d-flex flex-column justify-content-center align-center' : 'col-md-6 d-flex flex-column justify-content-center')
+                : 'col-md-6 d-flex flex-column justify-content-center'
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -142,7 +150,7 @@ function SectionTwo() {
       <div className="container">
         <div
           className={cn(
-            'row flex-row flex-column-reverse',
+            'row flex-md-row flex-column-reverse',
             styles.image_span
           )}
         >
@@ -150,7 +158,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : (tablet? 'col-xs d-flex flex-column justify-content-center align-center' : 'col-md-6 d-flex flex-column justify-content-center')
+                : 'col-md-6 d-flex flex-column justify-content-center'
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -179,24 +187,28 @@ function SectionTwo() {
               </Button>
             </span>
           </div>
-          <div className={tablet? "col-xs d-flex justify-content-center" : "col-md-6 d-flex justify-content-center"}>
+          <div
+            className={
+              mobile
+                ? 'col-xs d-flex justify-content-center'
+                : 'col-md-6 d-flex justify-content-center'
+            }
+          >
             {!mobile && (
               <video
                 className={cn(mobile ? styles.image_mobile : styles.image)}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Vote_DAO_zqaohw.webm"
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Vote_ydj8br.webm"
                 type="video/mp4"
                 frameBorder="0"
                 autoPlay={true}
                 loop
                 muted
-                style={{marginBottom: tablet? '-150px' : '0px'}}
               ></video>
             )}
             {mobile && (
               <img
                 className={styles.image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626536789/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
-                style={{ marginTop: '-80px', marginBottom: '-50px'}}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626804590/Screen_Shot_2021-07-17_at_5.45.16_PM_fo1juv.png"
                 alt="img"
               />
             )}

@@ -36,10 +36,7 @@ const DGHome = () => {
   return (
     <div className={styles.home_dashboard}>
       <SectionOne autoPlay={videoPlay} />
-      <div className={cn(
-            '',
-            styles.gradientLayout
-          )}/>
+      <div className={cn('', styles.gradientLayout)} />
       <SectionTwo />
       <SectionThree />
       <Footer />
