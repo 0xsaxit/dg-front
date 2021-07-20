@@ -9,7 +9,7 @@ import styles from "./ContentTreasury.module.scss";
 const GetLoader = () => {
   return (
     <Table.Cell textAlign="right">
-      <Loader active inline size="small" classNmae="treasury-loader" />
+      <Loader active inline size="small" className="treasury-loader" />
     </Table.Cell>
   );
 }
