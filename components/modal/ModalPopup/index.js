@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import cn from 'classnames';
 import Account from 'assets/svg/account.svg';
 import AccountCopy from 'assets/svg/accountcopy.svg';
 import CasinoBalance from 'assets/svg/casinobalance.svg';

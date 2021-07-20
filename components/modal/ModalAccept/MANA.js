@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Modal, Button, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import cn from 'classnames';
 import ButtonApproveMANA from 'components/button/ButtonApprove/MANA';
 import OpenIcon from 'assets/svg/open.svg';
 

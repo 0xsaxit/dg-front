@@ -6,6 +6,9 @@ import Link from 'next/link';
 import Aux from 'components/_Aux';
 import Images from 'common/Images';
 import ButterCMS from 'common/ButterCMS';
+import cn from 'classnames';
+
+import styles from './blog.module.scss';
 
 const blog = () => {
   const [state, dispatch] = useContext(GlobalContext);
@@ -33,80 +36,68 @@ const blog = () => {
   }, []);
 
   return (
-    <div className="blog-home-container">
-
-      <div className="substack-container">
-        <img className="substack-img" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png" />
-        <h1 className="substack-header">
+    <div className={styles.blog_home_container}>
+      <div className={styles.substack_container}>
+        <img className={styles.substack_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png" />
+        <h1 className={styles.substack_header}>
           Stay in the loop with our weekly newsletter
         </h1>
         <Button 
-          className="substack-button"
+          className={styles.substack_button}
           href="https://decentralgames.substack.com/embed"
           target="_blank"
         >
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span className="d-flex align-items-center justify-content-center">
             Sign Up For Substack
             <svg style={{ marginLeft: '12px' }} width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z" fill="white"/>
+              <path d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z" fill="white"/>
             </svg>
           </span>
         </Button>
-        <a href="https://decentralgames.substack.com/" target="_blank" className="substack-link">
+        <a href="https://decentralgames.substack.com/" target="_blank" className={styles.substack_link}>
           Read on Substack instead
         </a>
       </div>
 
-      <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
-        <div style={{ marginLeft: '0px' }}>
-          <span
-            style={{ 
-              margin: '100px 0px 0px 0px',
-              fontSize: '24px',
-              fontFamily: 'Larsseit-ExtraBold',
-              margin: '0px 0px 0px 0px',
-              color: 'white',
-              float: 'left',
-            }}
-          >
+      <div className={styles.account_other_tabs} style={{ marginTop: '-50px' }}>
+        <div className="ml-0">
+          <span className={styles.account_featured_post}>
             Featured Post
           </span>
         </div>
       </div>
 
-      <div className="featured-blog-container">
+      <div className={styles.featured_blog_container}>
         <Link href="/blog/[id]" as="blog/decentral-games-raises-5m">
           <a>
-            <span className="featured-blog-grid">
-              <Image src={Images.FEATURED_IMAGE} className="featured-image" />
+            <span className={styles.featured_blog_grid}>
+              <Image src={Images.FEATURED_IMAGE} className={styles.featured_image} />
 
-              <div className="post-info featured">
-                <div className="top">
-                  <span className="blog-category">Announcements </span>
+              <div className={styles.post_info_featured}>
+                <div className={styles.top}>
+                  <span className={stles.blog_category}>Announcements </span>
                   <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
-                  <span className="blog-date">18 JUN 2021</span>
+                  <span className={styles.blog_date}>18 JUN 2021</span>
                 </div>
                 <div className="bottom">
-                  <div className="blog-title">
-                    <h4 
-                      style={{
-                        fontSize: '24px',
-                        fontfamily: 'LarsseitBold',
-                        marginTop: '4px',
-                      }}
-                    >
-                      Decentral Games Raises $5M To Cement Itself As The Leading Metaverse-native, Profitable DAO
-                    </h4>
-                    <p
-                      style={{
-                        fontFamily: 'Larsseit-Regular',
-                        fontSize: '18px',
-                        paddingTop: '8px',
-                      }}
-                    >
-                      Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital, among others
-                    </p>
-                  </div>
+                  <p 
+                    style={{
+                      fontSize: '24px',
+                      fontfamily: 'LarsseitBold',
+                      marginTop: '4px',
+                    }}
+                  >
+                    Decentral Games Raises $5M To Cement Itself As The Leading Metaverse-native, Profitable DAO
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'Larsseit-Regular',
+                      fontSize: '18px',
+                      paddingTop: '8px',
+                    }}
+                  >
+                    Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital, among others
+                  </p>
                 </div>
               </div>
             </span>
@@ -119,10 +110,10 @@ const blog = () => {
           (categoryURL = category.toLowerCase()),
           (
             <Aux>
-              <div className="account-other-tabs" style={{ marginTop: '0px' }}>
-                <div style={{ marginLeft: '0px' }}>
-                  <span className="account-other-p" style={{ display: 'flex' }}>
-                    <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+              <div className={cn("mt-0", styles.account_other_tabs)}>
+                <div className="ml-0">
+                  <span className={cn("d-flex", styles.account_other_p)}>
+                    <span className="d-flex justify-content-between w-100">
                       <span 
                         style={{ 
                           fontSize: '24px',
@@ -139,7 +130,7 @@ const blog = () => {
                           key={index}
                           as={`/blog/category/${categoryURL}`}
                         >
-                          <Button className="all-button">
+                          <Button className={styles.all_button}>
                             <span>
                               See All
                               <svg
@@ -164,7 +155,7 @@ const blog = () => {
                 </div>
               </div>
 
-              <div className="posts">
+              <div className={styles.posts}>
                 {
                   ((count = 0),
                   filteredPages.map(page =>
@@ -174,30 +165,23 @@ const blog = () => {
                         key={page.created}
                         as={`/blog/${page.slug}`}
                       >
-                        <a className="post">
-                          <div className="post-div">
-                            <div className="post-image">
+                        <a className={styles.post}>
+                          <div className={styles.post_div}>
+                            <div className={styles.post_image}>
                               <img
                                 src={page.featured_image || page.banner}
                                 alt=""
                               />
                             </div>
-                            <div className="post-info">
-                              <span
-                                className="bottom-info"
-                                style={{ display: 'flex' }}
-                              >
-                                <div
-                                  className="post-category"
-                                >
-                                  <span>
-                                    {page.categories &&
-                                      page.categories[0] &&
-                                      page.categories[0].name}
-                                  </span>
+                            <div className={styles.post_info}>
+                              <span className="d-flex">
+                                <div className={styles.post_category}>
+                                  {page.categories &&
+                                    page.categories[0] &&
+                                    page.categories[0].name}
                                 </div>
                                 <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
-                                <div className="post-date">
+                                <div className={styles.post_date}>
                                   <span>
                                     {new Date(page.created).toLocaleDateString(
                                       'en-DE',
@@ -211,25 +195,23 @@ const blog = () => {
                                 </div>
                               </span>
                               <div className="bottom">
-                                <div className="blog-title">
-                                  <h4
-                                    style={{
-                                      fontSize: '24px',
-                                      fontfamily: 'LarsseitBold',
-                                    }}
-                                  >
-                                    {page.title}
-                                  </h4>
-                                  <p
-                                    style={{
-                                      fontFamily: 'Larsseit-Regular',
-                                      fontSize: '18px',
-                                      paddingTop: '8px',
-                                    }}
-                                  >
-                                    {page.summary.split('.', 1)[0]}
-                                  </p>
-                                </div>
+                                <h4
+                                  style={{
+                                    fontSize: '24px',
+                                    fontfamily: 'LarsseitBold',
+                                  }}
+                                >
+                                  {page.title}
+                                </h4>
+                                <p
+                                  style={{
+                                    fontFamily: 'Larsseit-Regular',
+                                    fontSize: '18px',
+                                    paddingTop: '8px',
+                                  }}
+                                >
+                                  {page.summary.split('.', 1)[0]}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -243,22 +225,17 @@ const blog = () => {
                           key={page.created}
                           as={`/blog/${page.slug}`}
                         >
-                          <a className="post">
-                            <div className="post-div">
-                              <div className="post-image">
+                          <a className={styles.post}>
+                            <div>
+                              <div className={styles.post_image}>
                                 <img
                                   src={page.featured_image || page.banner}
                                   alt=""
                                 />
                               </div>
-                              <div className="post-info">
-                               <span
-                                className="bottom-info"
-                                style={{ display: 'flex' }}
-                              >
-                                <div
-                                  className="post-category"
-                                >
+                              <div className={styles.post_info}>
+                               <span className="d-flex">
+                                <div className={styles.post_category}>
                                   <span>
                                     {page.categories &&
                                       page.categories[0] &&
@@ -266,7 +243,7 @@ const blog = () => {
                                   </span>
                                 </div>
                                 <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
-                                <div className="post-date">
+                                <div className={styles.post_date}>
                                   <span>
                                     {new Date(page.created).toLocaleDateString(
                                       'en-DE',
@@ -280,26 +257,24 @@ const blog = () => {
                                 </div>
                               </span>
                                 <div className="bottom">
-                                  <div className="blog-title">
-                                    <h4
-                                      style={{
-                                        fontSize: '24px',
-                                        fontfamily: 'LarsseitBold',
-                                        marginTop: '0px'
-                                      }}
-                                    >
-                                      {page.title}
-                                    </h4>
-                                    <p
-                                      style={{
-                                        fontFamily: 'Larsseit-Regular',
-                                        fontSize: '18px',
-                                        paddingTop: '8px',
-                                      }}
-                                    >
-                                      {page.summary.split('.', 1)[0]}
-                                    </p>
-                                  </div>
+                                  <p
+                                    style={{
+                                      fontSize: '24px',
+                                      fontfamily: 'LarsseitBold',
+                                      marginTop: '0px'
+                                    }}
+                                  >
+                                    {page.title}
+                                  </p>
+                                  <p
+                                    style={{
+                                      fontFamily: 'Larsseit-Regular',
+                                      fontSize: '18px',
+                                      paddingTop: '8px',
+                                    }}
+                                  >
+                                    {page.summary.split('.', 1)[0]}
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -318,27 +293,20 @@ const blog = () => {
       <div className="posts">
         {filteredPages.map(page => (
           <Link href="/blog/[id]" key={page.created} as={`/blog/${page.slug}`}>
-            <a className="post">
+            <a className={styles.post}>
               <div className="post-div">
-                <div className="post-image">
+                <div className={styles.post_image}>
                   <img src={page.featured_image || page.banner} alt="" />
                 </div>
-                <div className="post-info">
-                  <span
-                    className="bottom-info"
-                    style={{ display: 'flex' }}
-                  >
-                    <div
-                      className="post-category"
-                    >
-                      <span>
-                        {page.categories &&
-                          page.categories[0] &&
-                          page.categories[0].name}
-                      </span>
+                <div className={styles.post_info}>
+                  <span className="d-flex">
+                    <div className={styles.post_category}>
+                      {page.categories &&
+                        page.categories[0] &&
+                        page.categories[0].name}
                     </div>
                     <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
-                    <div className="post-date">
+                    <div className={styles.post_date}>
                       <span>
                         {new Date(page.created).toLocaleDateString(
                           'en-DE',
@@ -352,25 +320,23 @@ const blog = () => {
                     </div>
                   </span>
                   <div className="bottom">
-                    <div className="blog-title">
-                      <h4
-                        style={{
-                          fontSize: '24px',
-                          fontfamily: 'LarsseitBold',
-                        }}
-                      >
-                        {page.title}
-                      </h4>
-                      <p
-                        style={{
-                          fontFamily: 'Larsseit-Regular',
-                          fontSize: '18px',
-                          paddingTop: '4px',
-                        }}
-                      >
-                        {page.summary.split('.', 1)[0]}
-                      </p>
-                    </div>
+                    <h4
+                      style={{
+                        fontSize: '24px',
+                        fontfamily: 'LarsseitBold',
+                      }}
+                    >
+                      {page.title}
+                    </h4>
+                    <p
+                      style={{
+                        fontFamily: 'Larsseit-Regular',
+                        fontSize: '18px',
+                        paddingTop: '4px',
+                      }}
+                    >
+                      {page.summary.split('.', 1)[0]}
+                    </p>
                   </div>
                 </div>
               </div>

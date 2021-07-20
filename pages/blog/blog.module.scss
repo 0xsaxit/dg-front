@@ -1,0 +1,175 @@
+@import 'styles/base.scss';
+
+.blog_home_container {
+  max-width: 1400px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  @include mq($until: small) {
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+
+  .account_other_tabs {
+    margin-top: -50px;
+  }
+
+  .account_other_p {
+    margin: 100px 0px 0px 0px;
+    font-size: 24px;
+    font-family: 'Larsseit-ExtraBold';
+    margin: 0px;
+    color: white;
+    float: left;
+  }
+
+  .post {
+    background-color: white;
+    margin-bottom: 45px;
+    transition: transform 0.25s ease 0s;
+    border-radius: 24px;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+      transition: all 0.1s ease 0s;
+    }
+
+    &_info {
+      padding: 8px 25px 25px 25px;
+
+      &_featured {
+        padding-top: 20px;
+        border-radius: 0 24px 24px 0;
+      }
+    }
+
+    &_image {
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: transform 250ms ease, box-shadow 250ms ease;
+      overflow: hidden;
+      display: flex;
+      width: 100%;
+      height: 200px;
+      border-radius: 24px 24px 0 0;
+    }
+
+    &_category {
+      font-size: 14px;
+      color: hsla(0, 0%, 100%, .75);
+      text-transform: uppercase;
+      font-family: Larsseit-ExtraBold !important;
+    }
+
+    &_date {
+      font-size: 14px;
+      color: hsla(0, 0%, 100%, .75);
+      text-transform: uppercase;
+      font-family: Larsseit-ExtraBold !important;
+      margin-left: -3px;
+    }
+
+    &_dot {
+      padding-right: 10px;
+      margin-left: -12px;
+      color: hsla(0, 0%, 100%, .75);
+      margin-top: -1px;
+    }
+  }
+
+  .posts {
+    display: grid;
+    grid-column-gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-auto-flow: dense;
+  }
+
+  .substack_container {
+    max-width: 736px;
+    margin: 0px auto 0px auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .substack_img {
+    height: 150px;
+    width: 176px;
+    align-self: center;
+  }
+
+  .substack_header {
+    font-family: Larsseit-ExtraBold;
+    text-align: center;
+    font-size: 60px;
+    line-height: 70px;
+    letter-spacing:  -0.7px;
+  }
+
+  .substack_button {
+    background: #3772FF;
+    color: white;
+    height: 56px;
+    padding-left: 36px;
+    padding-right: 36px;
+    border-radius: 12px;
+    font-size: 20px !important;
+    font-family: Larsseit-Bold;
+    align-self: center;
+    margin-top: 36px;
+    margin-bottom: 16px;
+  }
+
+  .substack_link {
+    align-self: center;
+    margin-right: 2px;
+    color: #509BFF;
+    font-family: Larsseit-Regular;
+    font-size: 16px;
+    padding-bottom: 24px;
+  }
+
+  .account_featured_post {
+    margin: 100px 0 0 0;
+    font-size: 24px;
+    font-family: Larsseit-ExtraBold;
+    margin: 0 0 0 0;
+    color: white;
+    float: left;
+  }
+
+  .featured_blog_grid {
+    display: flex;
+    flex-direction: row;
+    border-radius: 24px;
+  }
+
+  .blog_category,
+  .blog_date {
+    font-size: 14px;
+    color: hsla(0, 0%, 100%, .75);
+    text-transform: uppercase;
+    font-family: Larsseit-ExtraBold;
+  }
+
+  .blog_date {
+    margin-left: -6px;
+  }
+
+  .all_button {
+    padding: 0px;
+    font-size: 14px;
+    width: 80px;
+    height: 30px;
+    background: #1F1F1F;
+    border-radius: 12px;
+    color: white;
+    font-family: Larsseit-Bold;
+    margin-top: 44px;
+  }
+}

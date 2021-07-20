@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Modal, Button, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import cn from 'classnames';
 import ButtonApproveATRI from 'components/button/ButtonApprove/ATRI';
 import OpenIcon from 'assets/svg/open.svg';
 

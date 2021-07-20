@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ButterCMS from 'common/ButterCMS';
 
+import styles from '../CategoryId.module.scss';
+
 const blogCategory = () => {
   const router = useRouter();
   const [state, dispatch] = useContext(GlobalContext);
@@ -24,27 +26,12 @@ const blogCategory = () => {
   }, []);
 
   return (
-    <div className="blog-home-container">
-      <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
-        <div style={{ marginLeft: '0px' }}>
-          <span className="account-other-p" style={{ display: 'flex' }}>
-            <span
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <span
-                style={{
-                  margin: '100px 0px 0px 0px',
-                  fontSize: '24px',
-                  fontFamily: 'Larsseit-ExtraBold',
-                  margin: '0px 0px 0px 0px',
-                  color: 'white',
-                  float: 'left',
-                }}
-              >
+    <div className={styels.blog_home_container}>
+      <div className={styles.account_other_tabs}>
+        <div className="ml-0">
+          <span className="d-flex">
+            <span className="d-flex justify-content-between w-100">
+              <span className={styles.account_other_p}>
                 {category}
               </span>
             </span>
@@ -52,7 +39,7 @@ const blogCategory = () => {
         </div>
       </div>
 
-      <div className="posts">
+      <div className={styles.posts}>
         {filteredPages.map(page =>
           page.categories[0].name.toLowerCase() === category ? (
             <Link
@@ -60,59 +47,52 @@ const blogCategory = () => {
               key={page.created}
               as={`/blog/${page.slug}`}
             >
-              <a className="post">
-                <div className="post-div">
-                  <div className="post-image">
-                    <img src={page.featured_image || page.banner} alt="" />
-                  </div>
-                  <div className="post-info">
-                    <span
-                      className="bottom-info"
-                      style={{ display: 'flex' }}
-                    >
-                      <div
-                        className="post-category"
-                      >
-                        <span>
-                          {page.categories &&
-                            page.categories[0] &&
-                            page.categories[0].name}
-                        </span>
-                      </div>
-                      <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
-                      <div className="post-date">
-                        <span>
-                          {new Date(page.created).toLocaleDateString(
-                            'en-DE',
-                            {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric',
-                            }
-                          )}
-                        </span>
-                      </div>
-                    </span>
-                    <div className="bottom">
-                      <div className="blog-title">
-                          <h4
-                            style={{
-                              fontSize: '24px',
-                              fontfamily: 'LarsseitBold',
-                            }}
-                          >
-                            {page.title}
-                          </h4>
-                          <p
-                            style={{
-                              fontFamily: 'Larsseit-Regular',
-                              fontSize: '18px',
-                              paddingTop: '8px',
-                            }}
-                          >
-                          {page.summary.split('.', 1)[0]}
-                        </p>
-                      </div>
+              <a className={styles.post}>
+                <div className={styles.post_image}>
+                  <img src={page.featured_image || page.banner} alt="" />
+                </div>
+                <div className={styles.post_info}>
+                  <span className="d-flex">
+                    <div className={styles.post_category}>
+                      <span>
+                        {page.categories &&
+                          page.categories[0] &&
+                          page.categories[0].name}
+                      </span>
+                    </div>
+                    <span className={styles.post_dot}>  • </span>
+                    <div className={styles.post_date}>
+                      <span>
+                        {new Date(page.created).toLocaleDateString(
+                          'en-DE',
+                          {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          }
+                        )}
+                      </span>
+                    </div>
+                  </span>
+                  <div className="bottom">
+                    <div>
+                        <h4
+                          style={{
+                            fontSize: '24px',
+                            fontfamily: 'LarsseitBold',
+                          }}
+                        >
+                          {page.title}
+                        </h4>
+                        <p
+                          style={{
+                            fontFamily: 'Larsseit-Regular',
+                            fontSize: '18px',
+                            paddingTop: '8px',
+                          }}
+                        >
+                        {page.summary.split('.', 1)[0]}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -124,4 +104,5 @@ const blogCategory = () => {
     </div>
   );
 }
+
 export default blogCategory;
