@@ -143,9 +143,10 @@
     }
   }
   .gradientLayout {
-    background: linear-gradient(rgb(17 16 17), rgb(0 0 0));
+    position: relative;
+    background: linear-gradient(rgba(0, 0 ,0 ,0), #000000);
     height: 120px;
-    margin-top: -50px;
+    margin-top: -120px;
 
     @include mq($until: small) {
       margin-top: -75px;
@@ -316,6 +317,14 @@
       text-align: center;
       margin-bottom: 0;
       z-index: 3;
+
+      @include mq($until: medium) {
+        margin-top: 150px;
+      }
+
+      @include mq($until: small) {
+        margin-top: 30px;
+      }
     }
 
     h2.title {
@@ -340,7 +349,7 @@
       z-index: 3;
       margin-bottom: 16px;
 
-      @include mq($until: medium) {
+      @include mq($until: small) {
         margin-bottom: 72px;
       }
     }

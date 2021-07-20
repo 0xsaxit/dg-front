@@ -13,7 +13,7 @@ function SectionTwo() {
       <div className="container">
         <div
           className={cn(
-            'row flex-md-row flex-column-reverse',
+            'row flex-row flex-column-reverse',
             styles.image_span
           )}
         >
@@ -21,7 +21,7 @@ function SectionTwo() {
             className={cn(
               mobile
                 ? 'col-md-6'
-                : (tablet? 'col-xs d-flex flex-column justify-content-center align-center' : 'col-md-6 d-flex flex-column justify-content-center')
+                : (tablet? 'col-lg-6' : 'col-md-6 d-flex flex-column justify-content-center')
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
@@ -142,7 +142,7 @@ function SectionTwo() {
       <div className="container">
         <div
           className={cn(
-            'row flex-md-row flex-column-reverse',
+            'row flex-row flex-column-reverse',
             styles.image_span
           )}
         >
