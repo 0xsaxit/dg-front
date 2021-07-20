@@ -6,24 +6,48 @@
   .image_span {
     margin-top: 150px;
     margin-bottom: 150px;
-    margin-left: 75px;
+    margin-left: 0px;
     margin-right: 0px;
-
     max-width: 1200px;
 
-    @include mq($until: medium) {
-      margin-left: 0px;
-      margin-right: 0px;
+    @media only screen and (min-width: 576px) {
+      //margin-left: 0px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      margin-left: 50px;
       margin-top: 60px;
       margin-bottom: 60px;
     }
 
-    @include mq($until: small) {
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+    @media only screen and (min-width: 992px) {
+      margin-left: 50px;
+      margin-top: 120px;
+      margin-bottom: 120px;
     }
+
+    @media only screen and (min-width: 1200px) {
+      margin-left: 110px;
+      margin-top: 150px;
+      margin-bottom: 150px;
+    }
+
+
+    // @include mq($until: medium) {
+    //   margin-left: 0px;
+    //   margin-right: 0px;
+    //   margin-top: 60px;
+    //   margin-bottom: 60px;
+    // }
+
+    // @include mq($until: small) {
+    //   margin-left: 0px;
+    //   margin-right: 0px;
+    //   margin-top: 10px;
+    //   margin-bottom: 10px;
+    // }
 
     .section_h1 {
       font-size: 48px;
