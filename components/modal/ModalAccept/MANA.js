@@ -95,7 +95,7 @@ const MANA = () => {
             <p className={styles.subtitle_2}> I reside in a jurisdiction where online gambling is permitted </p>
           </span>
 
-          <span className={cn("d-flex", styles.terms_modal_second}>
+          <span className={cn("d-flex", styles.terms_modal_second)}>
             <Checkbox
               className={styles.terms_modal_checkbox}
               onClick={() => isCheckedThree()}

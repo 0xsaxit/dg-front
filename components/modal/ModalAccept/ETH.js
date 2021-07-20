@@ -3,7 +3,7 @@ import { Modal, Button, Checkbox, Loader } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import cn from 'classnames';
 import ButtonApproveETH from 'components/button/ButtonApprove/ETH';
-import OpenIcon from 'assest/svg/open.svg';
+import OpenIcon from 'assets/svg/open.svg';
 
 import styles from './ModalAccept.module.scss';
 
