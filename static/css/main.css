@@ -80,7 +80,7 @@ a {
 
 @font-face {
   font-family: 'Larsseit-Light';
-  src: url('/static/fonts/Larsseit/Larsseit5.ttf');
+  src: url('/static/fonts/Larsseit/Larsseit4.ttf');
 }
 
 h1 {
@@ -3524,18 +3524,17 @@ h3.deposit-twentyfour.casino {
 }
 
 .ui.input > input {
-  background: black !important;
-  border: 0px solid white !important;
-  color: white;
-  border-radius: 16px;
-  text-align: center;
-  font-family: Larsseit-Bold;
+  border: 2px solid #353945;
+  background: transparent !important;
+  border-radius: 128px;
+  font-family: Larsseit-Regular;
+  height: 68px;
 }
 
 .ui.input > input:focus,
 .ui.input > input:active {
   color: white;
-  border: 0px solid white !important;
+  border: 2px solid #353945;
 }
 
 div.ui.input.withdraw_input > input {

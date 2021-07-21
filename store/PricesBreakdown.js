@@ -12,16 +12,13 @@ function PricesBreakdown() {
     if (state.userStatus >= 4) {
       (async () => {
         try {
-          const manaRes = await Fetch.MANA_PRICE();
-          const manaJson = await manaRes.json();
+          const manaJson = await Fetch.MANA_PRICE();
           const priceMANA = manaJson.market_data.current_price.usd;
 
-          const atriRes = await Fetch.ATRI_PRICE();
-          const atriJson = await atriRes.json();
+          const atriJson = await Fetch.ATRI_PRICE();
           const priceATRI = atriJson.market_data.current_price.usd;
 
-          const ethRes = await Fetch.ETH_PRICE();
-          const ethJson = await ethRes.json();
+          const ethJson = await Fetch.ETH_PRICE();
           const priceETH = ethJson.market_data.current_price.usd;
 
           dispatch({

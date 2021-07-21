@@ -48,8 +48,7 @@ const ModalInfo = () => {
   // fetch circulating supply
   useEffect(() => {
     (async function () {
-      const response = await Fetch.DG_SUPPLY_GECKO();
-      const json = await response.json();
+      const json = await Fetch.DG_SUPPLY_GECKO();
       setSupply(json.market_data.circulating_supply);
       setDGPrice(json.market_data.current_price.usd);
     })();
@@ -250,16 +249,13 @@ const ModalInfo = () => {
               marginTop: '24px',
             }}
           >
-            <a 
+            <a
               href={`https://app.uniswap.org/#/swap?outputCurrency=${Global.ADDRESSES.ROOT_TOKEN_ADDRESS_DG}`}
               target="_blank"
             >
               <button className={cn('btn', styles.buy_button)}>Buy $DG</button>
             </a>
-            <a
-              href="https://docs.decentral.games/faq"
-              target="_blank"
-            >
+            <a href="https://docs.decentral.games/faq" target="_blank">
               <button className={cn('btn', styles.learn_button)}>
                 Learn More
               </button>

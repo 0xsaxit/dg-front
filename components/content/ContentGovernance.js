@@ -8,7 +8,7 @@ import Images from '../../common/Images';
 import Fetch from '../../common/Fetch';
 import Global from '../Constants';
 
-const ContentGovernance = (props) => {
+const ContentGovernance = props => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -37,7 +37,6 @@ const ContentGovernance = (props) => {
   const [passedThree, setPassedThree] = useState(false);
   const [endThree, setEndThree] = useState('');
   const [linkThree, setLinkThree] = useState('');
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -118,8 +117,7 @@ const ContentGovernance = (props) => {
   useEffect(() => {
     (async function () {
       // get snapshot statistics
-      let response = await Fetch.PROPOSALS();
-      let json = await response.json();
+      let json = await Fetch.PROPOSALS();
 
       setGovOne(
         json.QmVbSn433qDFo7cF1Ci57T8rmNeAJzTd25dRGKUjoPsv4p.msg.payload

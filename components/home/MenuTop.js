@@ -10,8 +10,7 @@ import Fetch from '../../common/Fetch';
 import Global from '../Constants';
 import ModalPopup from 'components/modal/ModalPopup';
 
-
-const MenuTop = (props) => {
+const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -38,16 +37,13 @@ const MenuTop = (props) => {
   useEffect(() => {
     (async function () {
       // get coin prices
-      let response = await Fetch.MANA_PRICE();
-      let json = await response.json();
+      let json = await Fetch.MANA_PRICE();
       setManaPrice(json.market_data.current_price.usd);
 
-      let response2 = await Fetch.ETH_PRICE();
-      let json2 = await response2.json();
+      let json2 = await Fetch.ETH_PRICE();
       setEthPrice(json2.market_data.current_price.usd);
 
-      let response3 = await Fetch.ATRI_PRICE();
-      let json3 = await response3.json();
+      let json3 = await Fetch.ATRI_PRICE();
       setAtriPrice(json3.market_data.current_price.usd);
     })();
   }, [manaPrice, ethPrice, atriPrice]);
@@ -80,7 +76,7 @@ const MenuTop = (props) => {
   }, [linkDocs]);
 
   useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
+    listener = document.addEventListener('scroll', e => {
       let scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {
@@ -394,4 +390,3 @@ const MenuTop = (props) => {
 };
 
 export default MenuTop;
-

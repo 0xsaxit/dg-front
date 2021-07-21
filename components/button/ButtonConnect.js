@@ -2,10 +2,38 @@ import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import { Button, Icon, Modal } from 'semantic-ui-react';
-import Fetch from '../../common/Fetch';
+import Fetch from 'common/Fetch';
+import call from 'common/API';
 import Aux from '../_Aux';
 import ModalLoginTop from '../modal/ModalLoginTop';
 
+const assignToken = async () => {
+  const userAddress = window.ethereum.selectedAddress;
+  if (userAddress) {
+    const timestamp = Date.now();
+
+    const msg = window.web3.utils.utf8ToHex(
+      `Decentral Games Login\nTimestamp: ${timestamp}`
+    );
+    const signature = await window.web3.eth.personal.sign(
+      msg,
+      window.ethereum.selectedAddress,
+      null
+    );
+
+    const token = await call(
+      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      'GET',
+      false
+    );
+
+    localStorage.setItem('token', token);
+    localStorage.setItem(
+      'expiretime',
+      Number(new Date().getTime() / 1000 + 12 * 3600)
+    );
+  }
+};
 
 const ButtonConnect = () => {
   // dispatch new user status to Context API store
@@ -22,6 +50,20 @@ const ButtonConnect = () => {
   let listener = null;
 
   useEffect(() => {
+    if (window.ethereum && window.ethereum.selectedAddress) {
+      window.ethereum.on('accountsChanged', () => {
+        assignToken();
+      });
+
+      const currentTimestamp = new Date().getTime() / 1000;
+      const expiredTimestamp =
+        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
+
+      if (currentTimestamp > expiredTimestamp) {
+        assignToken();
+      }
+    }
+
     if (router.pathname.includes('binance')) {
       setBinance(true);
     } else {
@@ -32,7 +74,7 @@ const ButtonConnect = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    listener = document.addEventListener('scroll', (e) => {
+    listener = document.addEventListener('scroll', e => {
       let scrolled = document.scrollingElement.scrollTop;
       if (scrolled >= 10) {
         if (scrollState !== 'amir') {
@@ -77,6 +119,17 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
+      const currentTimestamp = new Date().getTime() / 1000;
+      const expiredTimestamp =
+        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
+
+      if (
+        !localStorage.getItem('token') ||
+        currentTimestamp > expiredTimestamp
+      ) {
+        assignToken();
+      }
+
       // dispatch user address to the Context API store
       dispatch({
         type: 'user_address',
@@ -101,7 +154,7 @@ const ButtonConnect = () => {
       console.log('Posting user status to db: ' + value);
 
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.;
 
       // update user status in database
       await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
@@ -125,10 +178,9 @@ const ButtonConnect = () => {
 
     try {
       // const responseIP = await Fetch.IP_ADDRESS();
-      // const jsonIP = await responseIP.json();
+      // const jsonIP = await responseIP.;
 
-      const responseStatus = await Fetch.USER_STATUS(userAddress, '');
-      const jsonStatus = await responseStatus.json();
+      const jsonStatus = await Fetch.USER_STATUS(userAddress, '');
 
       if (!jsonStatus.status) return false;
 
@@ -155,25 +207,33 @@ const ButtonConnect = () => {
           </a>
           <Button
             color="blue"
-            className={binance ? "metamask-button binance-top" : "metamask-button top"}
+            className={
+              binance ? 'metamask-button binance-top' : 'metamask-button top'
+            }
             onClick={() => openMetaMask()}
           >
             <span>
-              <img 
+              <img
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                style={{ height: '24px', paddingRight: '8px', marginBottom: '-7px' }} 
+                style={{
+                  height: '24px',
+                  paddingRight: '8px',
+                  marginBottom: '-7px',
+                }}
               />
               Connect Metamask
             </span>
           </Button>
           <Button
             color="blue"
-            className={binance ? "metamask-button-mobile binance-top" : "metamask-button-mobile top"}
+            className={
+              binance
+                ? 'metamask-button-mobile binance-top'
+                : 'metamask-button-mobile top'
+            }
             onClick={() => openMetaMask()}
           >
-            <span>
-              Connect
-            </span>
+            <span>Connect</span>
           </Button>
         </span>
       ) : (
@@ -184,5 +244,3 @@ const ButtonConnect = () => {
 };
 
 export default ButtonConnect;
-
-

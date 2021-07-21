@@ -8,7 +8,7 @@ import Fetch from '../../common/Fetch';
 import Transactions from '../../common/Transactions';
 import Global from '../Constants';
 
-const ContentUniswap = (props) => {
+const ContentUniswap = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -73,8 +73,7 @@ const ContentUniswap = (props) => {
       state.DGBalances.BALANCE_UNISWAP_DG
     ) {
       (async () => {
-        let response = await Fetch.ETH_PRICE();
-        let json = await response.json();
+        let json = await Fetch.ETH_PRICE();
 
         const priceETH = json.market_data.current_price.usd;
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;

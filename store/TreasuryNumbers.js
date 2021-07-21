@@ -8,8 +8,7 @@ function TreasuryNumbers() {
 
   useEffect(() => {
     (async () => {
-      let response = await Fetch.TREASURY_STATS_NUMBERS('week');
-      let json = await response.json();
+      let json = await Fetch.TREASURY_STATS_NUMBERS('week');
 
       dispatch({
         type: 'treasury_numbers',
