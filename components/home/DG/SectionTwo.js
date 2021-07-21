@@ -10,7 +10,7 @@ function SectionTwo() {
 
   return (
     <Aux>
-      <div className="container">
+      <div className={cn(styles.section_two, 'container-fluid')}>
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
@@ -82,7 +82,7 @@ function SectionTwo() {
         </div>
       </div>
 
-      <div className="container">
+      <div className={cn(styles.section_two, 'container-fluid')}>
         <div className={cn('row', styles.image_span)}>
           <div
             className={
@@ -100,6 +100,7 @@ function SectionTwo() {
                 autoPlay={true}
                 loop
                 muted
+                style={{ left: mobile ? 0 : tablet ? -54 : -78 }}
               ></video>
             )}
             {mobile && (
@@ -149,7 +150,7 @@ function SectionTwo() {
         </div>
       </div>
 
-      <div className="container">
+      <div className={cn(styles.section_two, 'container-fluid')}>
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',

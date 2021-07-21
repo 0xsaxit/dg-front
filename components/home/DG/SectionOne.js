@@ -20,7 +20,7 @@ function SectionOne(props) {
         muted
       ></video>
 
-      <div className={cn(styles.home_dashboard_content, 'container')}>
+      <div className={cn(styles.home_dashboard_content, 'container-fluid')}>
         <div
           className={cn(
             'row',

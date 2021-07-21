@@ -59,7 +59,7 @@
     }
 
     .image {
-      height: 400px;
+      height: auto;
       width: 100%;
       object-fit: contain;
       position: relative;
@@ -119,9 +119,32 @@
     }
   }
 
+  .section_two {
+    max-width: 1400px;
+    padding: 0 50px;
+
+    @include mq($until: medium) {
+      padding: 0 30px;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      padding: 0 30px;
+    }
+  }
+
   .home_dashboard_content {
     position: relative;
     height: calc(100vh - 72px);
+    max-width: 1400px;
+    padding: 0 50px;
+
+    @include mq($until: medium) {
+      padding: 0 30px;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      padding: 0 30px;
+    }
 
     @include mq($until: small) {
       display: flex;
@@ -141,6 +164,10 @@
       top: 50%;
       transform: translateY(-50%);
       width: 100%;
+
+      @include mq($until: medium) {
+        width: calc(100% - 60px);
+      }
     }
 
     h1 {
