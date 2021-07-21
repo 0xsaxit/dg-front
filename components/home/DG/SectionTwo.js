@@ -123,7 +123,7 @@ function SectionTwo() {
           >
             <h1 className={styles.section_h1}>Earn APY%</h1>
             <p className={styles.section_p}>
-              Stake $DG in governance and earn up to 40% in yeild rewards.
+              Stake $DG in governance and earn up to 40% in yield rewards.
             </p>
 
             <span
