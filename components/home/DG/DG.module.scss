@@ -79,8 +79,8 @@
     }
 
     @include mq($from: medium, $until: large) {
-      margin-top: 60px;
-      margin-bottom: 60px;
+      margin-top: 160px;
+      margin-bottom: 160px;
     }
   }
 
@@ -109,7 +109,10 @@
     margin-top: -120px;
 
     @include mq($until: small) {
-      margin-top: -100px;
+      position: relative;
+      height: 210px;
+      margin-top: -210px;
+      margin-bottom: 80px;
     }
   }
 
@@ -135,15 +138,20 @@
   .home_dashboard_content {
     position: relative;
     height: calc(100vh - 72px);
-    max-width: 1400px;
-    padding: 0 50px;
+    width: 100% !important;
+    padding: 0 60px;
+    margin-top: -30px;
 
     @include mq($until: medium) {
       padding: 0 30px;
+      margin-left: 0px;
+      width: 600px;
     }
 
     @include mq($from: medium, $until: extra-large) {
-      padding: 0 30px;
+      padding: 0 0px;
+      margin-left: 30px;
+      margin-top: -30px;
     }
 
     @include mq($until: small) {
@@ -173,20 +181,21 @@
     h1 {
       color: white;
       text-shadow: 1px 1px 5px black;
-      max-width: 600px;
+      max-width: 650px;
+
+      @include mq($until: large) {
+        max-width: 550px;
+        font-size: 48px;
+      }
 
       @include mq($until: medium) {
-        max-width: 100%;
+        max-width: 500px;
         font-size: 42px;
         margin-bottom: 0;
       }
 
-      @include mq($until: large) {
-        font-size: 48px;
-      }
-
       @include mq($until: small) {
-        margin-top: 96px;
+        margin-top: 150px;
       }
     }
 
@@ -337,7 +346,7 @@
       margin-bottom: 16px;
 
       @include mq($until: small) {
-        margin-bottom: 24px;
+        margin-bottom: 92px;
       }
     }
 

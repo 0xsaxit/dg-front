@@ -28,15 +28,15 @@ function SectionOne(props) {
             mobile ? 'text-center' : 'text-left'
           )}
         >
-          <div className="col-md-9 col-lg-9 d-flex flex-column">
-            <h1>
-              {mobile
-                ? 'Hit the Tables'
-                : 'Hit the tables in a metaverse Casino'}
-            </h1>
+          <div className="col-md-12 col-lg-9 d-flex flex-column">
+            <h1> Play 
+            <span style={{ fontFamily: 'Shadows Into Light, cursive' }}> (and own) </span>
+            the first ever metaverse casino. </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              With Decentral Games coin, you own the casino. Control the
-              profits. Vote on new games. Earn money back directly by playing.
+              {mobile ?
+                '' :
+                'The DG DAO is a profit generating protocol.' 
+              }
             </p>
             {!mobile && (
               <span className={styles.button_group}>
