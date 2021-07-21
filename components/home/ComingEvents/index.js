@@ -1,4 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
+import { isEmpty } from 'lodash';
 import { GlobalContext } from 'store/index';
 import Spinner from 'components/Spinner';
 import ContentEvents from './ContentEvents';

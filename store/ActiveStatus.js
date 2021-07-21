@@ -2,10 +2,10 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Biconomy from '@biconomy/mexa';
 import Web3 from 'web3';
-import Global from '../components/Constants';
-import Fetch from '../common/Fetch';
-import MetaTx from '../common/MetaTx';
-import Transactions from '../common/Transactions';
+import Global from 'components/Constants';
+import Fetch from 'common/Fetch';
+import MetaTx from 'common/MetaTx';
+import Transactions from 'common/Transactions';
 
 function ActiveStatus() {
   // dispatch user's treasury contract active status to the Context API store

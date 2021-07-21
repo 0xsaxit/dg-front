@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
-import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
-import Global from '../components/Constants';
-import Transactions from '../common/Transactions';
-// import Fetch from '../common/Fetch';
+import ABI_DG_TOKEN from 'components/ABI/ABIDGToken';
+import ABI_CHILD_TOKEN_MANA from 'components/ABI/ABIChildTokenMANA';
+import Global from 'components/Constants';
+import Transactions from 'common/Transactions';
+// import Fetch from 'common/Fetch';
 
 function DGBalances() {
   // dispatch user's unclaimed DG balance to the Context API store

@@ -161,7 +161,7 @@
 
   .home_dashboard_content {
     position: relative;
-    height: calc(100vh - 72px);
+    height: calc(100vh);
 
     @include mq($until: small) {
       display: flex;

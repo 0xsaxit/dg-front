@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Fetch from '../common/Fetch';
+import Fetch from 'common/Fetch';
 
 function GameRecords() {
   // dispatch user's game records to the Context API store
