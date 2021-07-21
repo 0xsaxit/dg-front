@@ -69,27 +69,19 @@ const Chateau = () => {
 
         <div className="home-dashboard-content">
           <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624746105/Screen_Shot_2021-06-26_at_3.21.36_PM_se8dcr.png"
             className="home-gif"
           />
           <h1
             className="home-dashboard-main-h1"
             style={{ marginBottom: '-32px' }}
           >
-            Play Games and Be the House
+            Hit the tables in a metaverse casino
           </h1>
           <span className="home-button-span"></span>
           <p className="home-dashboard-p centered">
             Earn $DG by playing non-custodial slots, roulette, blackjack and poker in the Metaverse. Stake $DG to Be The House.
           </p>
-          <Button
-            color="blue"
-            className="play-now-button-demo"
-            href="https://www.youtube.com/embed/1NxYpUsxhC0"
-            target="_blank"
-          >
-            Demo
-          </Button>
           {state.userStatus === 0 ? (
             <span className="mobile-center-span">
               <Button
@@ -136,43 +128,178 @@ const Chateau = () => {
   function sectionTwo() {
     return (
       <Aux>
-        <div className="home-dashboard-content">
-          <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1622387586/pokerPlayer_niowhw.jpg"
-            className="home-gif"
-          />
-          <h1
-            className="home-dashboard-main-h1"
-            style={{ marginBottom: '-32px' }}
+        <div>
+          <div
+            className="section-4-outter-header"
+            style={{ marginTop: '-120px' }}
           >
-            Play to Earn
-          </h1>
-          <span className="home-button-span"></span>
-          <p className="home-dashboard-p centered">
-            Play games in the metaverse and earn rewards of up to 50% of your expected losses back in the $DG token.
-          </p>
-
-          <span className="mobile-center-span">
-            <Button
-              color="blue"
-              className="earn-dg-button"
-              href="https://docs.decentral.games/"
-              target="_blank"
+            <div
+              className="home-section-4-header"
+              style={{ paddingBottom: '30px' }}
             >
-              Learn More
-            </Button>
-            <Button
-              color="blue"
-              className="play-button"
-              href="https://play.decentraland.org/?position=-118%2C135"
-              target="_blank"
-              id="mobile-button-hide"
-              style={{ marginLeft: '16px' }}
-            >
-              See Games
-            </Button>
-          </span>
+              <span className="powered-dg-span">
+                <h1
+                  className="home-footer-h1 ecosystem"
+                  style={{ marginBottom: '0px', fontSize: '48px' }}
+                >
+                  An ecosystem powered by $DG
+                </h1>
+                <span className="home-button-span ecosystem">
+                  <Link href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino">
+                    <Button
+                      color="blue"
+                      className="announcement"
+                      href="/blog/presenting-dg-be-the-house-in-the-first-metaverse-casino"
+                    >
+                      Learn
+                    </Button>
+                  </Link>
+                  <Button
+                    color="blue"
+                    className="docs"
+                    target="_blank"
+                    href="https://docs.decentral.games/ecosystem"
+                  >
+                    Docs
+                  </Button>
+                </span>
+              </span>
+            </div>
+          </div>
 
+          <div className="section-4-outter" style={{ paddingBottom: '60px' }}>
+            <div className="home-section-4">
+              <span
+                className="outter-games-container"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginTop: '30px',
+                }}
+              >
+                <Link href="/dg/mining">
+                  <a className="dg-powered-container one">
+                    <span
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                      className="nft-image"
+                    >
+                      <Image
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555540/1f3b0_2x_pvkxvc.png"
+                        className="dg-powered-pic"
+                        style={{ borderRadius: '4px' }}
+                      />
+                    </span>
+                    <div className="nft-description">
+                      <h3 className="home-other-h3">Gameplay</h3>
+                      <span
+                        style={{ display: 'flex', justifyContent: 'center' }}
+                      ></span>
+
+                      <Divider
+                        style={{
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
+                        }}
+                      />
+
+                      <p
+                        className="nft-other-p"
+                        style={{
+                          marginTop: '-12px',
+                          paddingTop: '15px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        Mine $DG by playing games with MANA and DAI. Refer
+                        friends and enjoy up to 10% of the $DG they mine.
+                      </p>
+                    </div>
+                  </a>
+                </Link>
+
+                <Link href="/dg/liquidity">
+                  <a className="dg-powered-container two">
+                    <span
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                      className="nft-image"
+                    >
+                      <Image
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f4b0_2x_s22ysr.png"
+                        className="dg-powered-pic"
+                        style={{ borderRadius: '4px' }}
+                      />
+                    </span>
+                    <div className="nft-description">
+                      <h3 className="home-other-h3">Liquidity</h3>
+                      <span
+                        style={{ display: 'flex', justifyContent: 'center' }}
+                      ></span>
+
+                      <Divider
+                        style={{
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
+                        }}
+                      />
+
+                      <p
+                        className="nft-other-p"
+                        style={{
+                          marginTop: '-12px',
+                          paddingTop: '15px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        Earn $DG liquidity incentives by providing liquidity in
+                        Balancer or Uniswap AMM pools.
+                      </p>
+                    </div>
+                  </a>
+                </Link>
+
+                <Link href="/dg/governance">
+                  <a className="dg-powered-container three">
+                    <span
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                      className="nft-image"
+                    >
+                      <Image
+                        src="https://res.cloudinary.com/dnzambf4m/image/upload/v1609555644/1f3db-fe0f_2x_muszls.png"
+                        className="dg-powered-pic"
+                        style={{ borderRadius: '4px' }}
+                      />
+                    </span>
+                    <div className="nft-description">
+                      <h3 className="home-other-h3">Governance</h3>
+                      <span
+                        style={{ display: 'flex', justifyContent: 'center' }}
+                      ></span>
+
+                      <Divider
+                        style={{
+                          margin: '4px 0px 20px -60px',
+                          width: 'calc(100% + 120px)',
+                        }}
+                      />
+
+                      <p
+                        className="nft-other-p"
+                        style={{
+                          marginTop: '-12px',
+                          paddingTop: '15px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        Stake $DG to govern the casino bankroll. Vote on
+                        treasury management, economic policy, and new game
+                        development
+                      </p>
+                    </div>
+                  </a>
+                </Link>
+              </span>
+            </div>
+          </div>
         </div>
       </Aux>
     );
@@ -513,4 +640,5 @@ const Chateau = () => {
 };
 
 export default Chateau;
+
 

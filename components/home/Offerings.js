@@ -9,66 +9,75 @@ import Images from '../../common/Images';
 import Aux from '../_Aux';
 
 const detailsGames = {
+  Poker: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919779/Poker_ekorsi.jpg',
+    'games-pic',
+    'Poker',
+    'Decentral Games poker is in beta and currently only playable using FREE tokens. Visit our discord via the "Read More" button for info on pop up tournaments and updates.',
+    '2-6 PLAYERS • ',
+    'FREE',
+    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://decentral.games/discord',
+  ],
   BlackJack: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/blackjack_jcrtzp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919297/Blackjack_logt66.jpg',
     'games-pic',
     'Blackjack',
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
-    '1-4 PLAYERS',
-    'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-96%2C110',
+    '1-4 PLAYERS • ',
+    'FREE • CRYPTO',
+    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/roulette_whagvm.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919296/Roulette_hptwtf.jpg',
     'games-pic',
     'Roulette',
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
-    '1-8 PLAYERS',
-    'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-96%2C110',
+    '1-8 PLAYERS • ',
+    'FREE • CRYPTO',
+    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/slots_ip2tqw.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919947/SLOTS_hegzzk.jpg',
     'games-pic',
     'Slots',
-    'Decentral Games slots are skin-able machines featuring three spinning reels each with four icons. There are three separate clickable buttons facing the player that indicate different wager amounts.',
-    '1 PLAYER',
-    'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-96%2C110',
+    'Decentral Games slots are skin-able machines featuring five spinning reels each with four icons. There are two clickable buttons facing the player to set the bet amount and spin.',
+    '1 PLAYER • ',
+    'COMING SOON',
+    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
     'https://docs.decentral.games/games/slots',
-  ],
-  Backgammon: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1605209871/backgammon_zttuej.png',
-    'games-pic',
-    'Backgammon',
-    'Decentral Games backgammon is standard backgammon game. At the start of each game, the player agree upon and place a wager to be paid out to the winner minus a fee at the end of each game.',
-    '2 PLAYERS',
-    'PLAY, MANA, DAI',
-    'https://play.decentraland.org/?position=-96%2C110',
-    'https://docs.decentral.games/games/backgammon',
   ],
 };
 
 const detailsCasinos = {
   Tominoya: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608509838/2020-11-22_10-21-32_y3t9zp.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
-    'Tominoya is decentral.games most recent and Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
-    'ROULETTE, BLACKJACK, SLOTS',
+    'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
+    'ROULETTE • BLACKJACK • POKER',
     'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
-    'https://docs.decentral.games/casinos/tominoya',
+    'https://docs.decentral.games/operators/tominoya',
+  ],
+  Atari: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
+    'games-pic',
+    'Atari Casino',
+    'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
+    'ROULETTE • BLACKJACK',
+    'https://play.decentraland.org/?position=-94%2C110',
+    'https://docs.decentral.games/operators/atari',
   ],
   Chateau: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1608510345/Screen_Shot_2020-12-20_at_4.16.40_PM_zjxuia_nuotdx.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
-    'ROULETTE, BLACKJACK',
+    'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
-    'https://docs.decentral.games/casinos/chateau-satoshi',
+    'https://docs.decentral.games/operators/chateau-satoshi',
   ],
 };
 
@@ -186,8 +195,14 @@ const Offerings = (props) => {
       gameSelect = 'play';
     } else if (value === 'mana') {
       gameSelect = 'mana';
-    } else {
+    } else if (value === 'dai') {
       gameSelect = 'dai';
+    } else if (value === 'eth') {
+      gameSelect = 'eth'
+    } else if (value === 'usdt') {
+      gameSelect = 'usdt'
+    } else {
+      gameSelect = 'atri'
     }
     setGameSelect(gameSelect);
   }
@@ -246,7 +261,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : gameState === 'casinos' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -269,7 +284,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : gameState == 'nfts' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -292,7 +307,7 @@ const Offerings = (props) => {
                 </span>
               </Link>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : gameState == 'shop' ? (
             <p className="account-other-p" style={{ width: '100%' }}>
@@ -315,12 +330,11 @@ const Offerings = (props) => {
                 <b>Shop</b>
               </span>
 
-              {/*{leaderboardLink(true)}*/}
+              {leaderboardLink(true)}
             </p>
           ) : (
-            <div style={{ width: '100%' }}>
-              <span style={{ display: 'flex', width: '100%' }}>
-                <p className="account-other-p">
+              <div>
+                <p className="account-other-p" style={{ width: '100%' }}>
                   <Link href="/games">
                     <span className="account-hover">
                       <b>Games</b>
@@ -342,11 +356,10 @@ const Offerings = (props) => {
                     </span>
                   </Link>
 
-                  {/*{leaderboardLink(false)}*/}
+                  {leaderboardLink(false)}
                 </p>
-              </span>
 
-              {/*{coinSelect()}*/}
+              {coinSelect()}
             </div>
           )}
         </div>
@@ -379,102 +392,7 @@ const Offerings = (props) => {
   function coinSelect() {
     return (
       <Aux>
-        {/* ////////////////////////////////////////////////////////////////////////////////
-      ////////////////////////////////////////////////////////////////////////////////
-      ///////////////////////////  desktop coin select  ////////////////////////////// */}
-
-        <span
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginRight: '-15px',
-          }}
-          className="leaderboard-coin-select"
-        >
-          <span
-            className={
-              gameSelect === 'play' ? 'account-hover active' : 'account-hover'
-            }
-            onClick={() => handleChange('play')}
-          >
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-3px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Images.PLAY_CIRCLE}
-            />
-            PLAY
-          </span>
-
-          <span
-            className={
-              gameSelect === 'mana' ? 'account-hover active' : 'account-hover'
-            }
-            onClick={() => handleChange('mana')}
-          >
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-3px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Images.MANA_CIRCLE}
-            />
-            MANA
-          </span>
-          <span
-            className={
-              gameSelect === 'dai' ? 'account-hover active' : 'account-hover'
-            }
-            onClick={() => handleChange('dai')}
-          >
-            <img
-              style={{
-                verticalAlign: 'middle',
-                marginRight: '6px',
-                marginTop: '-3px',
-                borderRadius: '100%',
-              }}
-              className="image inline"
-              width="21px"
-              height="21px"
-              src={Images.DAI_CIRCLE}
-            />
-            DAI
-          </span>
-          <span className="account-hover-time" style={{ marginRight: '-6px' }}>
-            <Icon
-              className="time-select-icon"
-              name="angle left"
-              onClick={timeChangeBackward}
-            />
-            {timePeriod}
-            <Icon
-              className="time-select-icon"
-              name="angle right"
-              style={{ marginLeft: '4px' }}
-              onClick={timeChangeForward}
-            />
-          </span>
-        </span>
-
-        <Divider className="coin-select-divider" />
-
-        {/* ////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////// mobile coin select //////////////////////////////// */}
-
-        <span style={{ display: 'flex', width: '100%' }}>
+        <span style={{ display: 'flex', width: '100%', minWidth: '861px' }}>
           <span
             style={{
               display: 'flex',
@@ -484,7 +402,7 @@ const Offerings = (props) => {
           >
             <span
               className={
-                gameSelect === 'play' ? 'account-hover active' : 'account-hover'
+                gameSelect === 'play' ? 'account-hover-time active' : 'account-hover-time'
               }
               id="account-select-play"
               onClick={() => handleChange('play')}
@@ -500,11 +418,31 @@ const Offerings = (props) => {
                 height="21px"
                 src={Images.PLAY_CIRCLE}
               />
-              PLAY
+              FREE
             </span>
             <span
               className={
-                gameSelect === 'mana' ? 'account-hover active' : 'account-hover'
+                gameSelect === 'eth' ? 'account-hover-time active' : 'account-hover-time'
+              }
+              style={{ fontFamily: 'Larsseit-Bold' }}
+              onClick={() => handleChange('eth')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.ETH_CIRCLE}
+              />
+              ETH
+            </span>
+            <span
+              className={
+                gameSelect === 'mana' ? 'account-hover-time active' : 'account-hover-time'
               }
               onClick={() => handleChange('mana')}
             >
@@ -523,8 +461,29 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'dai' ? 'account-hover active' : 'account-hover'
+                gameSelect === 'usdt' ? 'account-hover-time active' : 'account-hover-time'
               }
+              style={{ fontFamily: 'Larsseit-Bold' }}
+              onClick={() => handleChange('usdt')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.USDT_CIRCLE}
+              />
+              USDT
+            </span>
+            <span
+              className={
+                gameSelect === 'dai' ? 'account-hover-time active' : 'account-hover-time'
+              }
+              style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('dai')}
             >
               <img
@@ -540,13 +499,29 @@ const Offerings = (props) => {
               />
               DAI
             </span>
+            <span
+              className={
+                gameSelect === 'atri' ? 'account-hover-time active' : 'account-hover-time'
+              }
+              style={{ fontFamily: 'Larsseit-Bold' }}
+              onClick={() => handleChange('atri')}
+            >
+              <img
+                style={{
+                  verticalAlign: 'middle',
+                  marginRight: '6px',
+                  marginTop: '-3px',
+                }}
+                className="image inline"
+                width="21px"
+                height="21px"
+                src={Images.ATRI_CIRCLE}
+              />
+              ATRI
+            </span>
           </span>
 
-          {/* ////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////////////////////////////////////////////////////////////
-                ////////////////////////  send time select to own row  ///////////////////////// */}
-
-          <span className="account-hover-time tablet">
+          <span className="account-hover-time-tablet">
             <Icon
               className="time-select-icon"
               name="angle left"

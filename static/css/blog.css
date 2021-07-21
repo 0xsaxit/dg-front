@@ -2,6 +2,51 @@
 /*             MAIN BLOG PAGE CSS            */
 /* ----------------------------------------- */
 
+.substack-container {
+  max-width: 736px;
+  margin: 0px auto 0px auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.substack-img {
+  height: 150px;
+  width: 176px;
+  align-self: center;
+}
+
+.substack-header {
+  font-family: Larsseit-ExtraBold;
+  text-align: center;
+  font-size: 60px;
+  line-height: 70px;
+  letter-spacing:  -0.7px;
+}
+
+.ui.button.substack-button {
+  background: #3772FF;
+  color: white;
+  height: 56px;
+  padding-left: 36px;
+  padding-right: 36px;
+  border-radius: 12px;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  align-self: center;
+  margin-top: 36px;
+  margin-bottom: 16px;
+}
+
+.substack-link {
+  align-self: center;
+  margin-right: 2px;
+  color: #509BFF !important;
+  font-family: Larsseit-Regular;
+  font-size: 16px;
+  padding-bottom: 24px;
+}
+
 .post-date,
 .post-category,
 .blog-date,

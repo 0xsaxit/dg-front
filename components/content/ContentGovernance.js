@@ -74,7 +74,7 @@ const ContentGovernance = props => {
       setPercentGovernanceContract(percentGovernanceContract);
 
       const APYGovernance = (
-        (62571 / state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) *
+        (41714 / state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) *
         100
       ).toFixed(2);
 

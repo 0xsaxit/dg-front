@@ -230,8 +230,6 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.leaderboardSelect};   
   }
   .table-header,
-  .nfts-info,
-  .nfts-info-2,
   .post-date-blogdetail{
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;

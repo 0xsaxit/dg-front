@@ -63,6 +63,27 @@ const ContentLeaderboard = (props) => {
           gameData.roulette.mana,
           gameData.slot.mana,
         ];
+      } else if (props.gameSelect === 'eth') {
+        selected = [
+          gameData.all.eth,
+          gameData.blackjack.eth,
+          gameData.roulette.eth,
+          gameData.slot.eth,
+        ];
+      } else if (props.gameSelect === 'usdt') {
+        selected = [
+          gameData.all.usdt,
+          gameData.blackjack.usdt,
+          gameData.roulette.usdt,
+          gameData.slot.usdt,
+        ];
+      } else if (props.gameSelect === 'atri') {
+        selected = [
+          gameData.all.atri,
+          gameData.blackjack.atri,
+          gameData.roulette.atri,
+          gameData.slot.atri,
+        ];
       }
 
       selected[0].map((row) => {
@@ -103,8 +124,10 @@ const ContentLeaderboard = (props) => {
 
   if (isLoading) return <Spinner background={0} />;
 
+  console.log(dataGames);
+
   return (
-    <Grid>
+    <Grid style={{ paddingBottom: '48px' }}>
       {games.map((game, index) => {
         return (
           <Grid.Column

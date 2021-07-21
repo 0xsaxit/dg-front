@@ -50,8 +50,8 @@ const initialState = {
     BALANCE_BP_DAI: 0,
     BALANCE_ROOT_DG: 0,
     BALANCE_CHILD_DG: 0,
-    BALANCE_CHILD_MANA: 0,
-    BALANCE_CHILD_DAI: 0,
+    // BALANCE_CHILD_MANA: 0,
+    // BALANCE_CHILD_DAI: 0,
     BALANCE_UNISWAP_DG: 0,
     BALANCE_UNISWAP_ETH: 0,
     BALANCE_STAKING_BALANCER_1: 0,
@@ -101,6 +101,7 @@ const initialState = {
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
+  subgraphData: [],
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
@@ -206,6 +207,18 @@ const reducer = (state, action) => {
         DGBalances: action.data,
       };
 
+    case 'dg_gameplay_collected':
+      return {
+        ...state,
+        DGGameplayCollected: action.data,
+      };
+
+    case 'staking_balances':
+      return {
+        ...state,
+        stakingBalances: action.data,
+      };
+
     case 'dg_prices':
       return {
         ...state,
@@ -236,12 +249,6 @@ const reducer = (state, action) => {
         eventsData: action.data,
       };
 
-    case 'staking_balances':
-      return {
-        ...state,
-        stakingBalances: action.data,
-      };
-
     case 'refresh_tokens':
       return {
         ...state,
@@ -264,6 +271,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         stakeTime: action.data,
+      };
+
+    case 'subgraph_data':
+      return {
+        ...state,
+        subgraphData: action.data,
       };
 
     case 'affiliate_address':

@@ -108,8 +108,9 @@ function DGBalances() {
         const keeperContract = await Transactions.keeperContract(web3);
         setKeeperContract(keeperContract);
 
-        const stakeContractGovernance =
-          await Transactions.stakingContractGovernance(web3);
+        const stakeContractGovernance = await Transactions.stakingContractGovernance(
+          web3
+        );
         setStakeContractGovernance(stakeContractGovernance);
 
         const BPTContract1 = await Transactions.BPTContract1(web3);
@@ -118,8 +119,9 @@ function DGBalances() {
         const BPTContract2 = await Transactions.BPTContract2(web3);
         setBPTContract2(BPTContract2);
 
-        const stakingContractUniswap =
-          await Transactions.stakingContractUniswap(web3);
+        const stakingContractUniswap = await Transactions.stakingContractUniswap(
+          web3
+        );
         setStakingContractUniswap(stakingContractUniswap);
 
         const uniswapContract = await Transactions.uniswapContract(web3);
@@ -135,13 +137,21 @@ function DGBalances() {
   // anytime user updates values on /dg pages this code will execute
   useEffect(() => {
     if (instances) {
-      (async function () {
+      (async function() {
         // update global state unclaimed DG points balances
         const tokenBalances = await getTokenBalances();
 
         dispatch({
           type: 'dg_balances',
           data: tokenBalances,
+        });
+
+        // get historical gameplay collected amount
+        const DGGameplayCollected = await getDGGameplayCollected();
+
+        dispatch({
+          type: 'dg_gameplay_collected',
+          data: DGGameplayCollected,
         });
 
         // update global state staking DG and balancer pool tokens
@@ -215,11 +225,11 @@ function DGBalances() {
         0
       );
 
-      const BALANCE_TREASURY_DG = await Transactions.balanceOfToken(
-        DGTokenContract,
-        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
-        0
-      );
+      // const BALANCE_TREASURY_DG = await Transactions.balanceOfToken(
+      //   DGTokenContract,
+      //   '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+      //   0
+      // );
 
       const BALANCE_CHILD_DG = await Transactions.balanceOfToken(
         DGMaticContract,
@@ -227,29 +237,29 @@ function DGBalances() {
         3
       );
 
-      const BALANCE_CHILD_MANA = await Transactions.balanceOfToken(
-        maticMana,
-        Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
-        3
-      );
+      // const BALANCE_CHILD_MANA = await Transactions.balanceOfToken(
+      //   maticMana,
+      //   Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
+      //   3
+      // );
 
-      const BALANCE_CHILD_DAI = await Transactions.balanceOfToken(
-        maticDAIContract,
-        Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
-        3
-      );
+      // const BALANCE_CHILD_DAI = await Transactions.balanceOfToken(
+      //   maticDAIContract,
+      //   Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS,
+      //   3
+      // );
 
-      const CEO_DAI = await Transactions.balanceOfToken(
-        maticDAIContract,
-        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
-        3
-      );
+      // const CEO_DAI = await Transactions.balanceOfToken(
+      //   maticDAIContract,
+      //   '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+      //   3
+      // );
 
-      const CEO_MANA = await Transactions.balanceOfToken(
-        maticMana,
-        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
-        3
-      );
+      // const CEO_MANA = await Transactions.balanceOfToken(
+      //   maticMana,
+      //   '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+      //   3
+      // );
 
       const BALANCE_UNISWAP_DG = await Transactions.balanceOfToken(
         DGTokenContract, // was DG_BPT
@@ -301,8 +311,8 @@ function DGBalances() {
         BALANCE_BP_DAI: BALANCE_BP_DAI,
         BALANCE_ROOT_DG: BALANCE_ROOT_DG,
         BALANCE_CHILD_DG: BALANCE_CHILD_DG,
-        BALANCE_CHILD_MANA: BALANCE_CHILD_MANA,
-        BALANCE_CHILD_DAI: BALANCE_CHILD_DAI,
+        // BALANCE_CHILD_MANA: BALANCE_CHILD_MANA,
+        // BALANCE_CHILD_DAI: BALANCE_CHILD_DAI,
         BALANCE_UNISWAP_DG: BALANCE_UNISWAP_DG,
         BALANCE_UNISWAP_ETH: BALANCE_UNISWAP_ETH,
         BALANCE_STAKING_BALANCER_1: BALANCE_STAKING_BALANCER_1,
@@ -310,11 +320,16 @@ function DGBalances() {
         BALANCE_STAKING_GOVERNANCE: BALANCE_STAKING_GOVERNANCE,
         BALANCE_STAKING_UNISWAP: BALANCE_STAKING_UNISWAP,
         BALANCE_MINING_DG: BALANCE_MINING_DG,
+
+        // DG_MINING_COLLECTED: DG_MINING_COLLECTED,
+
         BALANCE_MINING_DG_V2: BALANCE_MINING_DG_V2,
         BALANCE_KEEPER_DG: BALANCE_KEEPER_DG,
-        CEO_MANA: CEO_MANA,
-        CEO_DAI: CEO_DAI,
-        BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
+
+        // CEO_MANA: CEO_MANA,
+        // CEO_DAI: CEO_DAI,
+
+        // BALANCE_TREASURY_DG: BALANCE_TREASURY_DG,
         BALANCE_AFFILIATES: BALANCE_AFFILIATES,
       };
     } catch (error) {
@@ -334,6 +349,36 @@ function DGBalances() {
       return pointsAdjusted;
     } catch (error) {
       console.log('No DG points found: ' + error);
+    }
+  }
+
+  // get historical DG gameplay rewards amount from dgPointer smart contract
+  async function getDGGameplayCollected() {
+    try {
+      const events = await DGMaticContract.getPastEvents('Transfer', {
+        filter: {
+          to: state.userAddress,
+          from: Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW,
+        },
+        fromBlock: 7564153, // 16890328,
+        toBlock: 'latest',
+      });
+
+      let valueAdjusted = 0;
+      if (events.length) {
+        const value = events[0].returnValues.value;
+        valueAdjusted = (value / Global.CONSTANTS.FACTOR).toFixed(3);
+
+        console.log(
+          'Returned gameplay rewards collected value: ' + valueAdjusted
+        );
+      } else {
+        console.log('No gameplay rewards collected thus far');
+      }
+
+      return valueAdjusted;
+    } catch (error) {
+      console.log('Get gameplay rewards collected error: ' + error);
     }
   }
 
@@ -501,11 +546,11 @@ function DGBalances() {
         0
       );
 
-      const BALANCE_STAKED_UNISWAP_TREASURY = await Transactions.balanceOfToken(
-        stakingContractUniswap,
-        '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
-        0
-      );
+      // const BALANCE_STAKED_UNISWAP_TREASURY = await Transactions.balanceOfToken(
+      //   stakingContractUniswap,
+      //   '0x7A61A0Ed364E599Ae4748D1EbE74bf236Dd27B09',
+      //   0
+      // );
 
       const BALANCE_WALLET_UNISWAP = await Transactions.balanceOfToken(
         uniswapContract,
@@ -525,7 +570,7 @@ function DGBalances() {
         BALANCE_USER_GOVERNANCE: BALANCE_USER_GOVERNANCE,
         BALANCE_CONTRACT_UNISWAP: BALANCE_CONTRACT_UNISWAP,
         BALANCE_STAKED_UNISWAP: BALANCE_STAKED_UNISWAP,
-        BALANCE_STAKED_UNISWAP_TREASURY: BALANCE_STAKED_UNISWAP_TREASURY,
+        // BALANCE_STAKED_UNISWAP_TREASURY: BALANCE_STAKED_UNISWAP_TREASURY,
         BALANCE_WALLET_UNISWAP: BALANCE_WALLET_UNISWAP,
       };
     } catch (error) {

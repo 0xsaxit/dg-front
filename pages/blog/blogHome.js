@@ -34,6 +34,29 @@ function blog() {
 
   return (
     <div className="blog-home-container">
+
+      <div className="substack-container">
+        <img className="substack-img" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png" />
+        <h1 className="substack-header">
+          Stay in the loop with our weekly newsletter
+        </h1>
+        <Button 
+          className="substack-button"
+          href="https://decentralgames.substack.com/embed"
+          target="_blank"
+        >
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            Sign Up For Substack
+            <svg style={{ marginLeft: '12px' }} width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z" fill="white"/>
+            </svg>
+          </span>
+        </Button>
+        <a href="https://decentralgames.substack.com/" target="_blank" className="substack-link">
+          Read on Substack instead
+        </a>
+      </div>
+
       <div className="account-other-tabs" style={{ marginTop: '-50px' }}>
         <div style={{ marginLeft: '0px' }}>
           <span 
@@ -52,7 +75,7 @@ function blog() {
       </div>
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-partners-with-video-game-pioneer-atari">
+        <Link href="/blog/[id]" as="blog/decentral-games-raises-5m">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />

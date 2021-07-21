@@ -14,7 +14,7 @@ function History({ state }) {
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
 
-  console.log('state: ', state);
+  // console.log('state: ', state);
 
   // define local variables
   const [dataPage, setDataPage] = useState([]);
@@ -42,7 +42,7 @@ function History({ state }) {
       result = dataHistory.slice(0, maximumCount);
       resultTwo = dataPlay.slice(0, maximumCount);
 
-      console.log(resultTwo);
+      // console.log(resultTwo);
 
       for (i = 0; i < result.length; i++) {
         const resultType = get(result, `${i}.type`, '');
@@ -63,443 +63,452 @@ function History({ state }) {
     <Aux>
       <div className={styles.history_container}>
         <h1 className={styles.title}>Recent transactions</h1>
-          {!dataPage.length ? 
-            <div className={styles.error_container}>
-              <p className={styles.error_state}>
-                No Recent Transactions
-              </p>
-            </div>
-          : <Grid>
-              {dataPage.map((row, i) => {
-                const date = new Date(row.createdAt);
-                const timestamp = date.toDateString();
-                const amount = (row.amount / 100000000000000000).toFixed(2);
+        {!dataPage.length ? (
+          <div className={styles.error_container}>
+            <p className={styles.error_state}>No Recent Transactions</p>
+          </div>
+        ) : (
+          <Grid>
+            {dataPage.map((row, i) => {
+              const date = new Date(row.createdAt);
+              const timestamp = date.toDateString();
+              const amount = (row.amount / 100000000000000000).toFixed(2);
 
-                return (
-                  <Grid.Column computer={8} tablet={8} mobile={16} key={i}>
-                    <div className={styles.history_column}>
-                      {row.type.includes('Deposit') ? (
-                        <svg
-                          width="25"
-                          height="25"
-                          viewBox="0 0 33 33"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle
-                            cx="16.5002"
-                            cy="16.5"
-                            r="16.5"
-                            fill="#1F1F1F"
-                          />
-                          <path
-                            d="M21.75 22.75H11.25"
-                            stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M12.75 14.5L16.5 18.25L20.25 14.5"
-                            stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M16.5 18.25V9.25"
-                            stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      ) : (
-                        <svg
-                          width="25"
-                          height="25"
-                          viewBox="0 0 33 33"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle
-                            cx="16.5002"
-                            cy="16.5"
-                            r="16.5"
-                            fill="#1F1F1F"
-                          />
-                          <path
-                            d="M21.75 22.75H11.25"
-                            stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M20.25 13L16.5 9.25L12.75 13"
-                            stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                          <path
-                            d="M16.5 9.25L16.5 18.25"
-                            stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      )}
-                      <span
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                        }}
+              return (
+                <Grid.Column computer={8} tablet={8} mobile={16} key={i}>
+                  <div className={styles.history_column}>
+                    {row.type.includes('Deposit') ? (
+                      <svg
+                        width="25"
+                        height="25"
+                        viewBox="0 0 33 33"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <span className={styles.left_column}>
-                          <h2 className={styles.row_type}>{row.type}</h2>
-                          <h3 className={styles.row_date}>{timestamp}</h3>
-                        </span>
-                        <span className={styles.right_column}>
-                          <h2
-                            className={styles.row_type}
+                        <circle
+                          cx="16.5002"
+                          cy="16.5"
+                          r="16.5"
+                          fill="#1F1F1F"
+                        />
+                        <path
+                          d="M21.75 22.75H11.25"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12.75 14.5L16.5 18.25L20.25 14.5"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M16.5 18.25V9.25"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        width="25"
+                        height="25"
+                        viewBox="0 0 33 33"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="16.5002"
+                          cy="16.5"
+                          r="16.5"
+                          fill="#1F1F1F"
+                        />
+                        <path
+                          d="M21.75 22.75H11.25"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M20.25 13L16.5 9.25L12.75 13"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M16.5 9.25L16.5 18.25"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    )}
+                    <span
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <span className={styles.left_column}>
+                        <h2 className={styles.row_type}>{row.type}</h2>
+                        <h3 className={styles.row_date}>{timestamp}</h3>
+                      </span>
+                      <span className={styles.right_column}>
+                        <h2
+                          className={styles.row_type}
+                          style={{ textAlign: 'right' }}
+                        >
+                          {amount}
+                        </h2>
+                        {row.type.includes('DAI') ||
+                        row.type.includes('USDT') ? (
+                          <h3
+                            className={styles.row_date}
                             style={{ textAlign: 'right' }}
                           >
-                            {amount}
-                          </h2>
-                          {row.type.includes('DAI') || row.type.includes('USDT') ? (
-                            <h3
-                              className={styles.row_date}
-                              style={{ textAlign: 'right' }}
-                            >
-                              ${(amount * state.DGPrices.dai).toFixed(2)}
-                            </h3>
-                          ) : row.type.includes('MANA') ? (
-                            <h3
-                              className={styles.row_date}
-                              style={{ textAlign: 'right' }}
-                            >
-                              ${(amount * state.DGPrices.mana).toFixed(2)}
-                            </h3>
-                          ) : row.type.includes('ETH') ? (
-                            <h3
-                              className={styles.row_date}
-                              style={{ textAlign: 'right' }}
-                            >
-                              ${(amount * state.DGPrices.eth).toFixed(2)}
-                            </h3>
-                          ) :  (
-                            <h3
-                              className={styles.row_date}
-                              style={{ textAlign: 'right' }}
-                            >
-                              ${(amount * state.DGPrices.atri).toFixed(2)}
-                            </h3>
-                          )}
-                        </span>
+                            ${(amount * state.DGPrices.dai).toFixed(2)}
+                          </h3>
+                        ) : row.type.includes('MANA') ? (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.mana).toFixed(2)}
+                          </h3>
+                        ) : row.type.includes('ETH') ? (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.eth).toFixed(2)}
+                          </h3>
+                        ) : (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.atri).toFixed(2)}
+                          </h3>
+                        )}
                       </span>
-                    </div>
-                  </Grid.Column>
-                );
-              })
-            }}
+                    </span>
+                  </div>
+                </Grid.Column>
+              );
+            })}
+            }
           </Grid>
-        }
+        )}
       </div>
 
       <div className={styles.history_container}>
         <h1 className={styles.title}>Gameplay History</h1>
         <div className="tx-box-overflow">
-          {dataPageTwo === 'false' 
-          ? null
-          : <Table fixed unstackable>
+          {dataPageTwo === 'false' ? null : (
+            <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell style={{ width: '120px' }}>Game</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '120px' }}>
+                    Game
+                  </Table.HeaderCell>
                   <Table.HeaderCell style={{ width: '180px' }}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '180px' }}>Payout</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '180px' }}>
+                    Payout
+                  </Table.HeaderCell>
                   <Table.HeaderCell style={{ width: '240px' }}>
                     Date
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '270px', textAlign: 'right' }}>Transactions</Table.HeaderCell>
+                  <Table.HeaderCell
+                    style={{ width: '270px', textAlign: 'right' }}
+                  >
+                    Transactions
+                  </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>
-          }
+          )}
 
-          {dataPageTwo === 'false'
-            ? <div className={styles.error_container}>
-                <p className={styles.error_state}>
-                  No Recent Gameplay History
-                </p>
-              </div>
-            : dataPageTwo.map((row, i) => {
-                const date = new Date(row.createdAt);
-                const timestamp = date.toLocaleString();
-                const amount =
-                  Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-                const result =
-                  Number(row.amountWin) / Global.CONSTANTS.FACTOR;
+          {dataPageTwo === 'false' ? (
+            <div className={styles.error_container}>
+              <p className={styles.error_state}>No Recent Gameplay History</p>
+            </div>
+          ) : (
+            dataPageTwo.map((row, i) => {
+              const date = new Date(row.createdAt);
+              const timestamp = date.toLocaleString();
+              const amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
+              const result = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
 
-                let action = '';
-                if (row.gameType === 1) {
-                  action = 'Slots';
-                } else if (row.gameType === 8 || row.gameType === 2) {
-                  action = 'Roulette';
-                } else if (row.gameType === 3) {
-                  action = 'Backgammon';
-                } else if (row.gameType === 7 || row.gameType === 4) {
-                  action = 'Blackjack';
-                } else if (row.gameType === 9) {
-                  action = 'Poker';
-                }
+              let action = '';
+              if (row.gameType === 1) {
+                action = 'Slots';
+              } else if (row.gameType === 8 || row.gameType === 2) {
+                action = 'Roulette';
+              } else if (row.gameType === 3) {
+                action = 'Backgammon';
+              } else if (row.gameType === 7 || row.gameType === 4) {
+                action = 'Blackjack';
+              } else if (row.gameType === 9) {
+                action = 'Poker';
+              }
 
-                let style = '';
-                {
-                  i % 2 === 0
-                    ? (style = 'rgba(255, 255, 255, 0.08)')
-                    : (style = 'black');
-                }
+              let style = '';
+              {
+                i % 2 === 0
+                  ? (style = 'rgba(255, 255, 255, 0.08)')
+                  : (style = 'black');
+              }
 
-                return (
-                  <Table fixed unstackable>
-                    <Table.Body key={i}>
-                      <Table.Row style={{ background: style }}>
-                        <Table.Cell style={{ width: '120px' }}>{action}</Table.Cell>
-                        <Table.Cell style={{ width: '180px' }}>
-                          {row.coinName === 'DAI' ? (
-                            <img
-                              src={Images.DAI_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'MANA' ? (
-                            <img
-                              src={Images.MANA_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'USDT' ? (
-                            <img
-                              src={Images.USDT_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'ATRI' ? (
-                            <img
-                              src={Images.ATRI_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'WETH' ? (
-                            <img
-                              src={Images.ETH_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : (
-                            <img
-                              src={Images.PLAY_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          )}
-                          -{amount} {row.coinName}
-                        </Table.Cell>
-                        <Table.Cell style={{ width: '180px' }}>
-                          {row.coinName === 'DAI' ? (
-                            <img
-                              src={Images.DAI_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'MANA' ? (
-                            <img
-                              src={Images.MANA_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'USDT' ? (
-                            <img
-                              src={Images.USDT_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'ATRI' ? (
-                            <img
-                              src={Images.ATRI_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : row.coinName === 'WETH' ? (
-                            <img
-                              src={Images.ETH_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          ) : (
-                            <img
-                              src={Images.PLAY_CIRCLE}
-                              style={{
-                                width: '21px',
-                                marginRight: '8px',
-                                verticalAlign: 'middle',
-                                marginTop: '-4px',
-                                borderRadius: '100%',
-                              }}
-                            />
-                          )}
-                          +{result} {row.coinName}
-                        </Table.Cell>
-                        <Table.Cell style={{ width: '240px' }}>
-                          {timestamp}
-                        </Table.Cell>
-                        <Table.Cell style={{ width: '270px', textAlign: 'right' }}>
-                          <span>
-                            {row.coinName !== 'PLAY' ? (
-                              <Aux>
-                                <Button
-                                  href={
-                                    Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.txid}`
-                                  }
-                                  target="_blank"
-                                  className="etherscan-button"
-                                  style={{ marginRight: '12px' }}
+              return (
+                <Table fixed unstackable>
+                  <Table.Body key={i}>
+                    <Table.Row style={{ background: style }}>
+                      <Table.Cell style={{ width: '120px' }}>
+                        {action}
+                      </Table.Cell>
+                      <Table.Cell style={{ width: '180px' }}>
+                        {row.coinName === 'DAI' ? (
+                          <img
+                            src={Images.DAI_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'MANA' ? (
+                          <img
+                            src={Images.MANA_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'USDT' ? (
+                          <img
+                            src={Images.USDT_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'ATRI' ? (
+                          <img
+                            src={Images.ATRI_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'WETH' ? (
+                          <img
+                            src={Images.ETH_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : (
+                          <img
+                            src={Images.PLAY_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        )}
+                        -{amount} {row.coinName}
+                      </Table.Cell>
+                      <Table.Cell style={{ width: '180px' }}>
+                        {row.coinName === 'DAI' ? (
+                          <img
+                            src={Images.DAI_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'MANA' ? (
+                          <img
+                            src={Images.MANA_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'USDT' ? (
+                          <img
+                            src={Images.USDT_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'ATRI' ? (
+                          <img
+                            src={Images.ATRI_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : row.coinName === 'WETH' ? (
+                          <img
+                            src={Images.ETH_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        ) : (
+                          <img
+                            src={Images.PLAY_CIRCLE}
+                            style={{
+                              width: '21px',
+                              marginRight: '8px',
+                              verticalAlign: 'middle',
+                              marginTop: '-4px',
+                              borderRadius: '100%',
+                            }}
+                          />
+                        )}
+                        +{result} {row.coinName}
+                      </Table.Cell>
+                      <Table.Cell style={{ width: '240px' }}>
+                        {timestamp}
+                      </Table.Cell>
+                      <Table.Cell
+                        style={{ width: '270px', textAlign: 'right' }}
+                      >
+                        <span>
+                          {row.coinName !== 'PLAY' ? (
+                            <Aux>
+                              <Button
+                                href={
+                                  Global.CONSTANTS.MATIC_EXPLORER +
+                                  `/tx/${row.txid}`
+                                }
+                                target="_blank"
+                                className="etherscan-button"
+                                style={{ marginRight: '12px' }}
+                              >
+                                tx
+                                <svg
+                                  style={{ marginLeft: '4px' }}
+                                  width="13"
+                                  height="12"
+                                  viewBox="0 0 13 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  tx
-                                  <svg
-                                    style={{ marginLeft: '4px' }}
-                                    width="13"
-                                    height="12"
-                                    viewBox="0 0 13 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z"
-                                      fill="white"
-                                    />
-                                  </svg>
-                                </Button>
-                              </Aux>
-                            ) : null }
+                                  <path
+                                    d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z"
+                                    fill="white"
+                                  />
+                                </svg>
+                              </Button>
+                            </Aux>
+                          ) : null}
 
-                            {row.coinName !== 'PLAY' ? (
-                              <Aux>
-                                <Button
-                                  href={
-                                    Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.ptxid}`
-                                  }
-                                  target="_blank"
-                                  className="etherscan-button-ptxid"
+                          {row.coinName !== 'PLAY' ? (
+                            <Aux>
+                              <Button
+                                href={
+                                  Global.CONSTANTS.MATIC_EXPLORER +
+                                  `/tx/${row.ptxid}`
+                                }
+                                target="_blank"
+                                className="etherscan-button-ptxid"
+                              >
+                                payout
+                                <svg
+                                  style={{ marginLeft: '4px' }}
+                                  width="13"
+                                  height="12"
+                                  viewBox="0 0 13 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  payout
-                                  <svg
-                                    style={{ marginLeft: '4px' }}
-                                    width="13"
-                                    height="12"
-                                    viewBox="0 0 13 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z"
-                                      fill="white"
-                                    />
-                                  </svg>
-                                </Button>
-                                <Button
-                                  href={
-                                    Global.CONSTANTS.MATIC_EXPLORER +
-                                    `/tx/${row.ptxid}`
-                                  }
-                                  target="_blank"
-                                  className="etherscan-button-mobile"
+                                  <path
+                                    d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z"
+                                    fill="white"
+                                  />
+                                </svg>
+                              </Button>
+                              <Button
+                                href={
+                                  Global.CONSTANTS.MATIC_EXPLORER +
+                                  `/tx/${row.ptxid}`
+                                }
+                                target="_blank"
+                                className="etherscan-button-mobile"
+                              >
+                                p tx
+                                <svg
+                                  style={{ marginLeft: '4px' }}
+                                  width="13"
+                                  height="12"
+                                  viewBox="0 0 13 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
                                 >
-                                  p tx
-                                  <svg
-                                    style={{ marginLeft: '4px' }}
-                                    width="13"
-                                    height="12"
-                                    viewBox="0 0 13 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z"
-                                      fill="white"
-                                    />
-                                  </svg>
-                                </Button>
-                              </Aux>
-                            ) : null }
-                          </span>
-                        </Table.Cell>
-                      </Table.Row>
-                    </Table.Body>
-                  </Table>
-                );
-              })}
+                                  <path
+                                    d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z"
+                                    fill="white"
+                                  />
+                                </svg>
+                              </Button>
+                            </Aux>
+                          ) : null}
+                        </span>
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                </Table>
+              );
+            })
+          )}
         </div>
       </div>
     </Aux>
