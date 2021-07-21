@@ -5,7 +5,7 @@ import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
 
 function SectionTwo() {
-  const mobile = useMediaQuery('(max-width: 768px)');
+  const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(max-width: 992px)');
 
   return (
