@@ -42,14 +42,20 @@ function SectionTwo() {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' :
+                'Learn More'
+              }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="/games"
                 target="_blank"
               >
-                See Games
+              {mobile ?
+                'Games' :
+                'See Games'
+              }
               </Button>
             </span>
           </div>
@@ -136,14 +142,20 @@ function SectionTwo() {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' :
+                'Learn More'
+              }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
                 target="_blank"
               >
-                Earn APY%
+              {mobile ?
+                'Earn' :
+                'Earn APY%'
+              }
               </Button>
             </span>
           </div>
@@ -184,7 +196,10 @@ function SectionTwo() {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' :
+                'Learn More'
+              }
               </Button>
               <Button className={styles.blue_button} href="/dg/">
                 {tablet ? 'Explore' : 'Explore Treasury'}
