@@ -43,26 +43,24 @@ function SectionOne(props) {
                 ? ''
                 : 'With the DG Token you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.'}
             </p>
-            {!mobile && (
-              <span className={styles.button_group}>
-                <Button
-                  color="blue"
-                  className={styles.earn_dg_button}
-                  href="https://docs.decentral.games/"
-                  target="_blank"
-                >
-                  Learn More
-                </Button>
-                <Button
-                  color="blue"
-                  className={styles.play_button}
-                  href="https://play.decentraland.org/?position=-118%2C135"
-                  target="_blank"
-                >
-                  Play Now
-                </Button>
-              </span>
-            )}
+            <span className={styles.button_group}>
+              <Button
+                color="blue"
+                className={styles.earn_dg_button}
+                href="https://docs.decentral.games/"
+                target="_blank"
+              >
+                Learn More
+              </Button>
+              <Button
+                color="blue"
+                className={styles.play_button}
+                href="https://play.decentraland.org/?position=-118%2C135"
+                target="_blank"
+              >
+                Play Now
+              </Button>
+            </span>
           </div>
         </div>
 
