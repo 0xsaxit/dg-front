@@ -35,7 +35,7 @@ function SectionOne(props) {
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile ?
                 '' :
-                'The DG DAO is a profit generating protocol.' 
+                'With the $DG Token you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.' 
               }
             </p>
             {!mobile && (

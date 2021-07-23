@@ -208,8 +208,13 @@
       margin-bottom: 8px;
       margin-top: 6px;
 
+      @include mq($until: medium) {
+        max-width: 480px !important;
+      }
+
       @include mq($until: large) {
         font-size: 18px;
+        max-width: 500px !important;
       }
     }
 

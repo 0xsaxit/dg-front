@@ -28,8 +28,8 @@ function SectionTwo() {
           >
             <h1 className={styles.section_h1}>Play to Earn</h1>
             <p className={styles.section_p}>
-              Play games in the metaverse and earn rewards of up to 50% of your
-              expected losses back in the $DG token.
+              Play games in the metaverse and earn $DG token win or lose.
+              Get up to 50% of your expected losses back in $DG.
             </p>
 
             <span
