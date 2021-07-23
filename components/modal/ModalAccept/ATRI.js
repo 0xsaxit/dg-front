@@ -1,14 +1,20 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
-import { Modal, Icon, Button, Checkbox, Input, Loader } from 'semantic-ui-react';
+import {
+  Modal,
+  Icon,
+  Button,
+  Checkbox,
+  Input,
+  Loader,
+} from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 import styles from './ModalAccept.module.scss';
 import Images from '../../../common/Images';
 import Fetch from '../../../common/Fetch';
 import ButtonApproveATRI from 'components/button/ButtonApprove/ATRI';
-
 
 const ATRI = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -54,9 +60,7 @@ const ATRI = () => {
       trigger={
         <span>
           {!state.atriLoading ? (
-            <Button className={styles.disabled_enable}>
-              Enable ATRI
-            </Button>
+            <Button className={styles.disabled_enable}>Enable ATRI</Button>
           ) : (
             <Button className={styles.disabled_enable}>
               <Loader
@@ -96,47 +100,71 @@ const ATRI = () => {
         </span>
       </div>
 
-        <h4 className={styles.title}> Terms of Service </h4>
+      <h4 className={styles.title}> Terms of Service </h4>
 
-        <div>
-          <p className={styles.subtitle}>
-            {' '}
-            Please read our{' '}
-            <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Disclaimer</a>. To continue, you'll need to accept the following <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a> by checking each box.
+      <div>
+        <p className={styles.subtitle}>
+          Please read our&nbsp;
+          <a
+            className={styles.terms_a}
+            href="https://docs.decentral.games/disclaimer"
+          >
+            Disclaimer
+          </a>
+          . To continue, you'll need to accept the following&nbsp;
+          <a
+            className={styles.terms_a}
+            href="https://docs.decentral.games/disclaimer"
+          >
+            Terms of Service
+          </a>
+          &nbsp; by checking each box.
+        </p>
+
+        <span style={{ display: 'flex' }}>
+          <Checkbox onClick={() => isCheckedOne()} />
+          <p className={styles.subtitle_2} style={{ paddingTop: '3px' }}>
+            I am at least 18 years old
           </p>
+        </span>
 
-          <span style={{ display: 'flex' }}>
-            <Checkbox
-              onClick={() => isCheckedOne()}
-            />
-            <p className={styles.subtitle_2} style={{ paddingTop: '3px' }}> I am at least 18 years old </p>
-          </span>
+        <span style={{ display: 'flex', paddingTop: '16px' }}>
+          <Checkbox
+            style={{ padding: '8px 0px 0px 0px' }}
+            onClick={() => isCheckedTwo()}
+          />
+          <p className={styles.subtitle_2}>
+            I reside in a jurisdiction where online gambling is permitted
+          </p>
+        </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px' }}>
-            <Checkbox
-              style={{ padding: '8px 0px 0px 0px' }}
-              onClick={() => isCheckedTwo()}
-            />
-            <p className={styles.subtitle_2}> I reside in a jurisdiction where online gambling is permitted </p>
-          </span>
+        <span
+          style={{ display: 'flex', paddingTop: '16px', paddingBottom: '24px' }}
+        >
+          <Checkbox
+            style={{ padding: '8px 0px 0px 0px' }}
+            onClick={() => isCheckedThree()}
+          />
+          <p className={styles.subtitle_2}>
+            I have read and accepted the&nbsp;
+            <a
+              className={styles.terms_a}
+              href="https://docs.decentral.games/disclaimer"
+            >
+              Terms of Service
+            </a>
+          </p>
+        </span>
 
-          <span style={{ display: 'flex', paddingTop: '16px', paddingBottom: '24px' }}>
-            <Checkbox
-              style={{ padding: '8px 0px 0px 0px' }}
-              onClick={() => isCheckedThree()}
-            />
-            <p className={styles.subtitle_2}> I have read and accepted the <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a></p>
-          </span>
-
-        {checkedOne === true && checkedTwo === true && checkedThree === true ? (
-          <span onClick={() => setOpen(false)}>
-            <ButtonApproveATRI />
-          </span>
-        ) : (
-          <Button className={styles.disabled_enable} disabled>
-            Enable ATRI
-          </Button>
-        )}
+        <span onClick={() => setOpen(false)}>
+          <ButtonApproveATRI
+            passed={
+              checkedOne === true &&
+              checkedTwo === true &&
+              checkedThree === true
+            }
+          />
+        </span>
       </div>
     </Modal>
   );

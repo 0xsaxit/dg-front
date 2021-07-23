@@ -9,7 +9,7 @@ import Fetch from '../../../common/Fetch';
 import MetaTx from '../../../common/MetaTx';
 import styles from './ButtonApprove.module.scss';
 
-function ATRI() {
+function ATRI({ passed = false }) {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -152,6 +152,7 @@ function ATRI() {
     <Button
       className={styles.enabled_button}
       onClick={() => metaTransaction()}
+      disabled={!passed}
     >
       Enable ATRI
     </Button>

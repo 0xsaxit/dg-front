@@ -9,7 +9,7 @@ import Fetch from '../../../common/Fetch';
 import MetaTx from '../../../common/MetaTx';
 import styles from './ButtonApprove.module.scss';
 
-function ETH() {
+function ETH({ passed = false }) {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -164,6 +164,7 @@ function ETH() {
     <Button
       className={styles.enabled_button}
       onClick={() => metaTransaction()}
+      disabled={!passed}
     >
       Enable ETH
     </Button>
