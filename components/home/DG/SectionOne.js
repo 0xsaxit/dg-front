@@ -29,14 +29,19 @@ function SectionOne(props) {
           )}
         >
           <div className="col-md-12 col-lg-9 d-flex flex-column">
-            <h1> Play 
-            <span style={{ fontFamily: 'Shadows Into Light, cursive' }}> (and own) </span>
-            the first ever metaverse casino. </h1>
+            <h1>
+              {' '}
+              Play
+              <span style={{ fontFamily: 'Shadows Into Light, cursive' }}>
+                {' '}
+                (and own){' '}
+              </span>
+              the first ever metaverse casino.{' '}
+            </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              {mobile ?
-                '' :
-                'The DG DAO is a profit generating protocol.' 
-              }
+              {mobile
+                ? ''
+                : 'With the DG Token you own the casino. Control the profits. Vote on new games. Earn money back directly by playing.'}
             </p>
             {!mobile && (
               <span className={styles.button_group}>

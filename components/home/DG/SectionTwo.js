@@ -100,7 +100,7 @@ function SectionTwo() {
                 autoPlay={true}
                 loop
                 muted
-                style={{ left: mobile ? 0 : tablet ? -54 : -78 }}
+                style={{ left: mobile ? 0 : tablet ? -86 : -136 }}
               ></video>
             )}
             {mobile && (
