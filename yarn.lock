@@ -4137,10 +4137,10 @@ dexie@3.0.3:
   resolved "https://registry.yarnpkg.com/dexie/-/dexie-3.0.3.tgz#ede63849dfe5f07e13e99bb72a040e8ac1d29dab"
   integrity sha512-BSFhGpngnCl1DOr+8YNwBDobRMH0ziJs2vts69VilwetHYOtEDcLqo7d/XiIphM0tJZ2rPPyAGd31lgH2Ln3nw==
 
-dg-modal-widget@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/dg-modal-widget/-/dg-modal-widget-1.1.7.tgz#db09f779bb61d5531094eee2593467abbfc5eaf7"
-  integrity sha512-t30tk+JVtBb5XHXiIC4Pe2OORSHred9o/DcpvWppmvC2+pgEgkIjtvGOriwQ1X6TSyaooUEiSydEc0hqcwjAUQ==
+dg-modal-widget@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/dg-modal-widget/-/dg-modal-widget-1.1.9.tgz#452846250690d076d4ceaa0d181f3027ee2dcf32"
+  integrity sha512-wLYcdnS1Xo5RtQv+24cnErg7/xZnNU7DjekXTpDgpno9sA/5rxnQxXPixGPHfAruE8UL7CamPVyM8YmSyi0lfA==
   dependencies:
     "@connext/vector-sdk" "^0.0.3-beta.1"
     "@ethersproject/address" "5.2.0"
