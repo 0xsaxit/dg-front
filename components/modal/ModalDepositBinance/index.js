@@ -126,7 +126,7 @@ const ModalDepositBinance = () => {
               style={{ padding: '8px 36px 0px 0px' }}
               onClick={() => isCheckedThree()}
             />
-            <p className={styles.subtitle_2}> I have read and accepted the <a className="terms-a" href="https://docs.decentral.games/disclaimer"> Terms of Service </a></p>
+            <p className={styles.subtitle_2}> I have read and accept the <a className="terms-a" href="https://docs.decentral.games/disclaimer"> Terms of Service </a></p>
           </span>
 
           {checkedOne && checkedTwo && checkedThree ? (

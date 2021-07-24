@@ -146,7 +146,7 @@ const ETH = () => {
             onClick={() => isCheckedThree()}
           />
           <p className={styles.subtitle_2}>
-            I have read and accepted the&nbsp;
+            I have read and accept the&nbsp;
             <a
               className={styles.terms_a}
               href="https://docs.decentral.games/disclaimer"
