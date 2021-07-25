@@ -41,7 +41,7 @@
     "chart.js": "^2.9.4",
     "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
-    "dg-modal-widget": "^1.1.9",
+    "dg-modal-widget": "^1.2.1",
     "eth-sig-util": "^3.0.1",
     "ethers": "^5.1.4",
     "html-to-react": "^1.4.5",
