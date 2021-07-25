@@ -182,8 +182,8 @@ function SectionTwo() {
               Vote in the DAO <br /> (Be The House)
             </h1>
             <p className={styles.section_p}>
-              With the $DG DAO, you own the casino, You control the profits. You
-              vote for new games and proposals.
+              With the $DG DAO, you own the casino. Control the profits, 
+              vote for new games, and decide on feature proposals.
             </p>
 
             <span
