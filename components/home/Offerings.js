@@ -74,10 +74,19 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
-    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
     'https://docs.decentral.games/operators/chateau-satoshi',
+  ],
+  Dext: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
+    'games-pic',
+    'DEXT Poker Lounge',
+    'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
+    'POKER',
+    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://docs.decentral.games/operators/dext',
   ],
 };
 
