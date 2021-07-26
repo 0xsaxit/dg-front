@@ -33,7 +33,7 @@ function UserInfo() {
   useEffect(() => {
     if (state.userAddress) {
       (async function () {
-        const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
+        const jsonInfo = await Fetch.PLAYER_INFO();
 
         const name = jsonInfo.avatarName;
         const id = jsonInfo._id.slice(-6);
