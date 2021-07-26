@@ -127,7 +127,7 @@ const ButtonConnect = () => {
         !localStorage.getItem('token') ||
         currentTimestamp > expiredTimestamp
       ) {
-        assignToken();
+        await assignToken();
       }
 
       // dispatch user address to the Context API store
