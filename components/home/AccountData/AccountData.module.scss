@@ -1,14 +1,14 @@
 @import 'styles/base.scss';
 
 .popup_container {
-	background: #2A2A2A !important;
+	background: #1F1F1F !important;
 	border-radius: 8px !important;
-	margin-top: 330px !important;
+	margin-top: 340px !important;
 	padding: 10px 20px 20px 20px !important;
 	border: 0px solid white !important;
 
 	&::before {
-		background: #2A2A2A !important;
+		background: #1F1F1F !important;
 		box-shadow: none !important;
 		top: 28px !important;
 	}
