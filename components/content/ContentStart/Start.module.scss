@@ -1,0 +1,122 @@
+@import 'styles/base.scss';
+
+.start_container {
+  margin: auto;
+  padding-bottom: 120px;
+  max-width: 1200px;
+
+  .image_container {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .start_header {
+    font-family: Larsseit-ExtraBold;
+    font-size: 60px;
+    letter-spacing: -0.7px;
+    text-align: center;
+  }
+
+  .start_p {
+    font-family: Larsseit-Regular;
+    font-size: 24px;
+    text-align: center;
+    color: #E6E8EC;
+    line-height: 32px;
+    margin-top: 8px;
+  }
+
+  .steps_container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+
+    .img_dot {
+      height: 12px;
+      margin-top: 90px;
+      margin-right: 24px;
+    }
+
+    .img_dot_last {
+      height: 12px;
+      margin-top: 90px;
+    }
+
+    .step {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    
+      .img_step {
+        width: 160px;
+        align-self: center;
+        margin-top: 20px;
+      }
+
+      .check {
+        height: 32px;
+        width: 32px;
+        align-self: center;
+        margin: -72px 0px 40px 72px;
+      }
+
+      .optional_block {
+        align-self: center;
+        height: 25px;
+        width: 75px;
+        background: #3D3D3D;
+        border-radius: 8px;
+        margin-top: -52px;
+        margin-bottom: 27px;
+
+        .optional_text {
+          font-family: Larsseit-Regular;
+          font-size: 14px;
+          color: #F3F3F4;
+          text-align: center;
+          margin-top: 3px;
+        }
+      }
+
+      .header_step {
+        text-align: center;
+        margin-top: 0px;
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      .button_step {
+        background: #006EFF;
+        height: 64px;
+        border-radius: 16px;
+        width: 171px;
+        color: white;
+        font-size: 23px;
+        font-family: Larsseit-Bold;
+        align-self: center;
+        margin-left: 4px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  .more {
+    display: flex;
+    justify-content: center;
+    margin-left: calc(50% - 165px);
+    margin-top: 72px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    height: 64px;
+    width: 330px;
+    border-radius: 16px;
+
+    .more_text {
+      font-family: Larsseit-Bold;
+      font-size: 23px;
+      margin-top: 13px;
+    }
+  }
+}

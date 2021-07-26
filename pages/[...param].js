@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
-import AccountData from '../components/home/AccountData';
+import GetStarted from '../components/content/ContentStart/index.js';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
@@ -62,12 +62,8 @@ const Wildcard = () => {
 
           {isLoading === true ? (
             <Spinner background={1} />
-          ) : isErrorMessage === true ? (
-            <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
-              You must connect your wallet to view this page
-            </div>
           ) : (
-            <AccountData dataType={'balances'} />
+            <GetStarted />
           )}
         </Aux>
       ) : (
