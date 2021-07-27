@@ -29,6 +29,7 @@ const call = (url, method, withToken = true, data = {}) => {
     url,
     method,
     headers: header,
+    crossDomain: true,
     data,
   };
 

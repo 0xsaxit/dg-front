@@ -62,6 +62,9 @@ const ButtonConnect = () => {
       if (currentTimestamp > expiredTimestamp) {
         assignToken();
       }
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('expiretime');
     }
 
     if (router.pathname.includes('binance')) {
@@ -119,16 +122,7 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
-      const currentTimestamp = new Date().getTime() / 1000;
-      const expiredTimestamp =
-        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
-
-      if (
-        !localStorage.getItem('token') ||
-        currentTimestamp > expiredTimestamp
-      ) {
-        await assignToken();
-      }
+      await assignToken();
 
       // dispatch user address to the Context API store
       dispatch({

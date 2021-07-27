@@ -35,29 +35,31 @@ function UserInfo() {
       (async function () {
         const jsonInfo = await Fetch.PLAYER_INFO(state.userAddress);
 
-        const name = jsonInfo.avatarName;
-        const id = jsonInfo._id.slice(-6);
-        const balancePLAY = jsonInfo.playBalance.toLocaleString();
-        const count = jsonInfo.callCount;
-        const email = '';
-        const playersList = jsonInfo.playersList;
-        const tokenArray = jsonInfo.tokenArray;
-        const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
+        if (jsonInfo._id) {
+          const name = jsonInfo.avatarName;
+          const id = jsonInfo._id.slice(-6);
+          const balancePLAY = jsonInfo.playBalance.toLocaleString();
+          const count = jsonInfo.callCount;
+          const email = '';
+          const playersList = jsonInfo.playersList;
+          const tokenArray = jsonInfo.tokenArray;
+          const jsonData = await Fetch.PLAYER_DATA(state.userAddress);
 
-        const data = {
-          name: name,
-          id: id,
-          balancePLAY: balancePLAY,
-          count: count,
-          email: email,
-          playersList: playersList,
-          tokenArray: tokenArray,
-        };
+          const data = {
+            name: name,
+            id: id,
+            balancePLAY: balancePLAY,
+            count: count,
+            email: email,
+            playersList: playersList,
+            tokenArray: tokenArray,
+          };
 
-        dispatch({
-          type: 'user_info',
-          data: data,
-        });
+          dispatch({
+            type: 'user_info',
+            data: data,
+          });
+        }
       })();
     }
   }, [state.userAddress, state.updateInfo]);

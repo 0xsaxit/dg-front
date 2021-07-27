@@ -40,16 +40,11 @@ const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls
   USER_STATUS: (address, ipAddress) => {
-    return call(`${API_BASE_URL}/order/webLogin`, 'POST', true, {
-      address,
-      ipAddress,
-    });
+    return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
 
   REGISTER: (address, ipAddress, affiliate) => {
     return call(`${API_BASE_URL}/order/webRegister`, 'POST', true, {
-      address,
-      ipAddress,
       affiliate,
     });
   },
