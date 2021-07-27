@@ -26,11 +26,7 @@ const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
   // GET API calls (wallet address necessary)
   PLAYER_INFO: address => {
-    return call(
-      `${API_BASE_URL}/admin/getUser?address=${address}`,
-      'GET',
-      false
-    );
+    return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
   },
 
   PLAYER_DATA: address => {
