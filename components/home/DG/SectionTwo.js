@@ -100,7 +100,7 @@ function SectionTwo() {
                 autoPlay={true}
                 loop
                 muted
-                style={{ left: mobile ? 0 : tablet ? -86 : -136 }}
+                style={{ left: mobile ? 0 : tablet ? -72 : -100 }}
               ></video>
             )}
             {mobile && (
@@ -122,7 +122,7 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>Earn APY%</h1>
-            <p className={styles.section_p}>
+            <p className={styles.section_p_two}>
               Stake $DG in governance and earn up to 40% in yeild rewards.
             </p>
 
