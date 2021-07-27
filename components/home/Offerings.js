@@ -58,7 +58,7 @@ const detailsCasinos = {
     'Tominoya',
     'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
-    'https://play.decentraland.org/?position=-119%2C133&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C133&realm=dg-diamond',
     'https://docs.decentral.games/operators/tominoya',
   ],
   Atari: [
@@ -67,7 +67,7 @@ const detailsCasinos = {
     'Atari Casino',
     'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'ROULETTE • BLACKJACK',
-    'https://play.decentraland.org/?position=-94%2C110',
+    'https://play.decentraland.org/?position=-94%2C110&realm=dg-diamond',
     'https://docs.decentral.games/operators/atari',
   ],
   Chateau: [
@@ -76,7 +76,7 @@ const detailsCasinos = {
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
-    'https://play.decentraland.org/?position=-75%2C77&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-75%2C77&realm=dg-diamond',
     'https://docs.decentral.games/operators/chateau-satoshi',
   ],
   Dext: [
@@ -85,7 +85,7 @@ const detailsCasinos = {
     'DEXT Poker Lounge',
     'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
     'POKER',
-    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
     'https://docs.decentral.games/operators/dext',
   ],
 };
