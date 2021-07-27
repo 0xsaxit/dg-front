@@ -74,7 +74,7 @@ const FunctionThree = () => {
             </div>
             <div
               className={cn(
-                styles.image_section,
+                styles.image_section_atari,
                 ' d-flex justify-content-center mb-5'
               )}
             >
