@@ -60,7 +60,7 @@ const ButtonConnect = () => {
         Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
 
       if (currentTimestamp > expiredTimestamp) {
-        assignToken();
+        openMetaMask();
       }
     } else {
       localStorage.removeItem('token');

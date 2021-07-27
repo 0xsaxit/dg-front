@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import cn from 'classnames';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import ModalInfo from 'components/modal/ModalInfo';
 import MessageBar from './MessageBar';
@@ -343,22 +344,27 @@ const MenuTop = props => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
-    if (state.userStatus === 3) {
-      return null;
-    } else if (state.userStatus >= 4) {
-      return (
-        <span className="right-menu-items">
+    return (
+      <>
+        <span
+          className={cn(
+            'right-menu-items',
+            state.userStatus >= 4 ? '' : 'd-none'
+          )}
+        >
           <ModalInfo />
           <ModalPopup />
         </span>
-      );
-    } else {
-      return (
-        <span className="right-menu-items">
+        <span
+          className={cn(
+            'right-menu-items',
+            state.userStatus < 3 ? '' : 'd-none'
+          )}
+        >
           <ButtonConnect />
         </span>
-      );
-    }
+      </>
+    );
   }
 
   if (state.isLoading) {
