@@ -16,7 +16,7 @@ const detailsGames = {
     'Decentral Games poker is in beta and currently only playable using FREE tokens. Visit our discord via the "Read More" button for info on pop up tournaments and updates.',
     '2-6 PLAYERS • ',
     'FREE',
-    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
     'https://decentral.games/discord',
   ],
   BlackJack: [
@@ -26,7 +26,7 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS • ',
     'FREE • CRYPTO',
-    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C136&realm=dg-diamond',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
@@ -36,7 +36,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS • ',
     'FREE • CRYPTO',
-    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C136&realm=dg-diamond',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -46,7 +46,7 @@ const detailsGames = {
     'Decentral Games slots are skin-able machines featuring five spinning reels each with four icons. There are two clickable buttons facing the player to set the bet amount and spin.',
     '1 PLAYER • ',
     'COMING SOON',
-    'https://play.decentraland.org/?position=-119%2C136&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-119%2C136&realm=dg-diamond',
     'https://docs.decentral.games/games/slots',
   ],
 };
