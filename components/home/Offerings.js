@@ -97,7 +97,7 @@ const detailsShop = {
     'NFT Shop',
     'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'WEARABLES',
-    'https://play.decentraland.org/?position=-75%2C79&realm=fenrir-amber',
+    'https://play.decentraland.org/?position=-75%2C79&realm=dg-diamond',
     'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
   shop_opensea: [
