@@ -41,7 +41,7 @@ function SectionOne(props) {
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile
                 ? ''
-                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'}
+                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'
                }
             </p>
             <span className={styles.button_group}>
