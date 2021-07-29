@@ -64,8 +64,36 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
+        <div style={{ position: 'relative', zIndex: '0' }}>
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <span
+              className="avatar-picture"
+              style={{ alignSelf: 'center' }}
+            >
+              <img
+                className="avatar-picture main"
+                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                style={{
+                  backgroundColor: '#3B3B3B',
+                  width: '180px',
+                  display: 'flex',
+                  margin: '90px 0px 0px 0px'
+                }}
+              /> 
+              <a 
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
+                target="_blank"
+                className="avatar-edit-circle"
+              >
+                <svg style={{ margin: '12px' }} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.2656 3.85938L13.7422 5.38281L10.6172 2.25781L12.1406 0.734375C12.2969 0.578125 12.4922 0.5 12.7266 0.5C12.9609 0.5 13.1562 0.578125 13.3125 0.734375L15.2656 2.6875C15.4219 2.84375 15.5 3.03906 15.5 3.27344C15.5 3.50781 15.4219 3.70312 15.2656 3.85938ZM0.5 12.375L9.71875 3.15625L12.8438 6.28125L3.625 15.5H0.5V12.375Z" fill="white"/>
+                </svg>
+              </a>
+            </span>
+          </span>
+        </div>
 
-        <div className={styles.card_container}>
+        {/*<div className={styles.card_container}>
           <img className={styles.avatar_img} src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`} />
           <a 
             href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
@@ -144,7 +172,7 @@ const AccountData = (props) => {
             </div>
 
           </div>
-        </div>
+        </div>*/}
 
         <div className="account-other-tabs" id="account-mobile-tabs" style={{ marginTop: '0px' }}>
           <div className="ml-0">
