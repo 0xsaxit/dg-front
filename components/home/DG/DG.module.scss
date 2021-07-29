@@ -28,9 +28,31 @@
       margin-bottom: 24px;
 
       @include mq($until: medium) {
-        font-size: 18px;
+        font-size: 20px;
         text-align: center;
         padding: 0 24px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .section_p_two {
+      font-size: 24px;
+      font-family: Larsseit-Light;
+      color: rgba(255, 255, 255, 0.75) !important;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      margin-right: 42px;
+
+      @include mq($until: medium) {
+        font-size: 20px;
+        text-align: center;
+        padding: 0 24px;
+        margin-right: 0px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
@@ -44,10 +66,12 @@
       font-size: 18px;
       font-family: Larsseit-Bold;
       margin-right: 16px;
+      white-space: nowrap;
     }
 
     .blue_button {
       background: #006eff;
+      white-space: nowrap;
       color: white;
       height: 48px;
       padding: 12px 26px 12px 26px;
@@ -59,16 +83,20 @@
 
     .image {
       height: auto;
-      width: 100%;
+      width: 75%;
       object-fit: contain;
       position: relative;
 
       @include mq($until: medium) {
         height: auto;
-        width: 100%;
+        width: 60%;
         margin-left: 0;
         margin-top: 50px;
         margin-bottom: 50px;
+      }
+
+      @include mq($until: small) {
+        width: 80%;
       }
     }
 
@@ -122,21 +150,24 @@
   }
 
   .section_two {
-    max-width: 1400px;
-    padding: 0 50px;
+    max-width: 1250px;
+    padding: 0px 0px 0px 60px;
 
     @include mq($until: medium) {
-      padding: 0 30px;
+      max-width: 1000px;
+      padding: 0px 0px 0px 0px;
     }
 
     @include mq($from: medium, $until: extra-large) {
-      padding: 0 30px;
+      max-width: 1100px;
+      padding: 0px 0px 0px 48px;
     }
   }
 
   .home_dashboard_content {
     position: relative;
     height: calc(100vh - 72px);
+    max-width: 1400px;
     width: 100% !important;
     max-width: 1400px;
     padding: 0 60px;
@@ -220,7 +251,7 @@
 
     .button_group {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       margin-top: 24px;
 
       .earn_dg_button {
@@ -244,7 +275,15 @@
         font-size: 20px;
         margin-left: 16px;
       }
+
+      @include mq($until: small) {
+        justify-content: center;
+        transform: scale(0.9);
+        margin-top: 4px;
+      }
     }
+
+
 
     .chevron_down {
       bottom: -55px;
@@ -275,6 +314,10 @@
 
       .image_section {
         width: 160px;
+      }
+
+      .image_section_atari {
+        width: 100px;
       }
     }
 

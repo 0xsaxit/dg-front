@@ -60,8 +60,11 @@ const ButtonConnect = () => {
         Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
 
       if (currentTimestamp > expiredTimestamp) {
-        assignToken();
+        openMetaMask();
       }
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('expiretime');
     }
 
     if (router.pathname.includes('binance')) {
@@ -119,16 +122,7 @@ const ButtonConnect = () => {
         userAddress: userAddress,
       });
 
-      const currentTimestamp = new Date().getTime() / 1000;
-      const expiredTimestamp =
-        Number(localStorage.getItem('expiretime')) || Number.MAX_SAFE_INTEGER;
-
-      if (
-        !localStorage.getItem('token') ||
-        currentTimestamp > expiredTimestamp
-      ) {
-        assignToken();
-      }
+      await assignToken();
 
       // dispatch user address to the Context API store
       dispatch({
@@ -140,6 +134,9 @@ const ButtonConnect = () => {
       // if new wallet update user status to 4 both locally and in the database
       // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
+
+      console.log('!!!!');
+      console.log(response);
 
       if (response) {
         updateStatus(response, false);
@@ -158,6 +155,8 @@ const ButtonConnect = () => {
 
       // update user status in database
       await Fetch.REGISTER(userAddress, '', state.affiliateAddress);
+      console.log('????');
+      console.log(state.affiliateAddress);
 
       // update global state user status after fetch is complete
       dispatch({

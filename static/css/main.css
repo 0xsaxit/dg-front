@@ -1648,16 +1648,19 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .avatar-edit-circle {
-  border: 1px solid #edf2f9;
-  background-color: white;
+  background-color: #1F1F1F;
   position: relative;
   z-index: 3;
-  width: 27px;
-  height: 27px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   float: right;
-  margin-top: -27px;
-  margin-right: 9px;
+  margin-top: -40px;
+  margin-right: 2px;
+}
+
+.avatar-edit-circle:hover {
+  filter: brightness(0.9);
 }
 
 .balances-token-name.avatar {
@@ -3251,7 +3254,7 @@ img.avatar-picture-binance {
 
 .ui.button.account-deposit-button {
   height: 54px;
-  width: 48.5%;
+  width: 47.5%;
   border-radius: 12px;
   background: #006eff;
   color: white;
@@ -3289,10 +3292,10 @@ img.avatar-picture-binance {
 
 .ui.button.account-withdraw-button {
   height: 54px;
-  width: 48.5%;
+  width: 47.5%;
   border-radius: 12px;
-  background: white;
-  color: black;
+  background: #2b2b2b;
+  color: white;
   font-size: 18px !important;
   padding-top: 17px;
 }

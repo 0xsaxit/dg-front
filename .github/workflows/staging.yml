@@ -1,19 +1,19 @@
-name: Build and Deploy to DEV
+name: Build and Deploy to STAGING
 
 on:
   push:
     branches:
-      - dev
+      - staging
 
 env:
-  CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME_DEV }}
-  API_URL: ${{ secrets.API_URL_DEV }}
+  CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME_STAGING }}
+  API_URL: ${{ secrets.API_URL_STAGING }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   DOCKER_BUILDKIT: 1
-  HOST: ${{ secrets.HOST_DEV }}
-  PORT: ${{ secrets.PORT_DEV }}
-  USERNAME: ${{ secrets.USERNAME_DEV }}
-  KEY: ${{ secrets.SSHKEY_DEV }}
+  HOST: ${{ secrets.HOST_STAGING }}
+  PORT: ${{ secrets.PORT_STAGING }}
+  USERNAME: ${{ secrets.USERNAME_STAGING }}
+  KEY: ${{ secrets.SSHKEY_STAGING }}
 
 jobs:
 
@@ -47,7 +47,7 @@ jobs:
         docker push $CONTAINER_IMAGE_NAME:${GITHUB_SHA}
 
   deploy:
-    name: Deploy to DEV
+    name: Deploy to STAGING
     runs-on: ubuntu-latest
     #runs-on: self-hosted
     needs: build
@@ -230,7 +230,7 @@ jobs:
                 }
             ]
             var slack_msg = {
-                text: "Website, Branch: dev, " + msg_status ,
+                text: "Website, Branch: staging, " + msg_status ,
                 blocks: [].concat(header_blocks, job_blocks)
             }
             return slack_msg

@@ -12,6 +12,7 @@ import ModalAcceptDAI from 'components/modal/ModalAccept/DAI';
 import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
 import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
 import styles from './Balances.module.scss';
+import Fetch from '../../../../common/Fetch';
 
 const connext = {
   routerPublicID: Global.KEYS.CONNEXT_PUBLIC_ID,
@@ -51,6 +52,7 @@ const Balances = (props) => {
 
   // refresh user token balances and post transaction to database
   useEffect(() => {
+
     if (event !== '' && txHash !== '' && amount !== 0) {
       console.log('Event type: ' + event);
 
@@ -64,13 +66,11 @@ const Balances = (props) => {
         clearTimeout(timer);
       }, 2000);
 
-      setEvent('');
-      setTxHash('');
-      setAmount(0);
-
       // post transaction to database
       console.log('Posting Connext transaction to db: ' + event);
-
+      console.log("TxHash: ", txHash);
+      console.log("Amount: ", amount);
+      
       Fetch.POST_HISTORY(
         state.userAddress,
         amount,
@@ -79,6 +79,12 @@ const Balances = (props) => {
         txHash,
         state.userStatus
       );
+
+      console.log('Completed Fetch!');
+
+      setEvent('');
+      setTxHash('');
+      setAmount(0);
     }
   }, [event, txHash, amount]);
 
@@ -233,7 +239,6 @@ const Balances = (props) => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -259,7 +264,6 @@ const Balances = (props) => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
               </span>
@@ -327,7 +331,6 @@ const Balances = (props) => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -353,7 +356,6 @@ const Balances = (props) => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -419,7 +421,6 @@ const Balances = (props) => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -445,7 +446,6 @@ const Balances = (props) => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
               </span>
@@ -542,16 +542,13 @@ const Balances = (props) => {
   }
 
   // handle Connext deposit/withdrawal events
-  async function getWithdrawalTransaction(params) {
-    console.log('Transaction hash: ' + params);
+  function getWithdrawalAmount(txHash, amountUi) {
+    console.log("x1. reciverAddress", state.userAddress);
+    console.log("x2. txHash: " + txHash);
+    console.log("x3. amountUi: " + amountUi);
 
-    setTxHash(params);
-  }
-
-  function getWithdrawalAmount(params) {
-    console.log('Amount: ' + params);
-
-    setAmount(params);
+    setTxHash(txHash);
+    setAmount(amountUi);
   }
 
   // top up user to 5000 play tokens
