@@ -1,11 +1,11 @@
-import ABI_TREASURY_CONTRACT from '../components/ABI/ABITreasury';
-import ABI_DG_POINTER from '../components/ABI/ABIDGPointer';
-import ABI_DG_POINTER_NEW from '../components/ABI/ABIDGPointerNew';
-import ABI_DG_STAKING from '../components/ABI/ABIDGStaking';
-import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
-import ABI_BP_TOKEN from '../components/ABI/ABIBalancerPoolToken';
-import ABI_DG_KEEPER from '../components/ABI/ABIDGKeeper';
-import Global from '../components/Constants';
+import ABI_TREASURY_CONTRACT from 'components/ABI/ABITreasury';
+import ABI_DG_POINTER from 'components/ABI/ABIDGPointer';
+import ABI_DG_POINTER_NEW from 'components/ABI/ABIDGPointerNew';
+import ABI_DG_STAKING from 'components/ABI/ABIDGStaking';
+import ABI_DG_TOKEN from 'components/ABI/ABIDGToken';
+import ABI_BP_TOKEN from 'components/ABI/ABIBalancerPoolToken';
+import ABI_DG_KEEPER from 'components/ABI/ABIDGKeeper';
+import Global from 'components/Constants';
 
 // set treasury contract instance
 async function treasuryContract(web3Default) {
