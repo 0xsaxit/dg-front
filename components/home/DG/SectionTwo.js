@@ -28,8 +28,8 @@ function SectionTwo() {
           >
             <h1 className={styles.section_h1}>Play to Earn</h1>
             <p className={styles.section_p}>
-              Play games in the metaverse and earn rewards of up to 50% of your
-              expected losses back in the $DG token.
+              Play games in the metaverse and earn $DG token win or lose.
+              Get up to 50% of your expected losses back in $DG.
             </p>
 
             <span
@@ -42,14 +42,20 @@ function SectionTwo() {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' :
+                'Learn More'
+              }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="/games"
                 target="_blank"
               >
-                See Games
+              {mobile ?
+                'Games' :
+                'See Games'
+              }
               </Button>
             </span>
           </div>
@@ -122,8 +128,8 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>Earn APY%</h1>
-            <p className={styles.section_p_two}>
-              Stake $DG in governance and earn up to 40% in yeild rewards.
+            <p className={styles.section_p}>
+              Stake $DG in governance and earn up to 40% in yield rewards.
             </p>
 
             <span
@@ -136,14 +142,20 @@ function SectionTwo() {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' :
+                'Learn More'
+              }
               </Button>
               <Button
                 className={styles.blue_button}
                 href="https://docs.decentral.games/getting-started/earn-dg-gov-rewards"
                 target="_blank"
               >
-                Earn APY%
+              {mobile ?
+                'Earn' :
+                'Earn APY%'
+              }
               </Button>
             </span>
           </div>
@@ -170,8 +182,8 @@ function SectionTwo() {
               Vote in the DAO <br /> (Be The House)
             </h1>
             <p className={styles.section_p}>
-              With the $DG DAO, you own the casino, You control the profits. You
-              vote for new games and proposals.
+              With the $DG DAO, you own the casino. Control the profits, 
+              vote for new games, and decide on feature proposals.
             </p>
 
             <span
@@ -184,7 +196,10 @@ function SectionTwo() {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+              {mobile ?
+                'Info' :
+                'Learn More'
+              }
               </Button>
               <Button className={styles.blue_button} href="/dg/">
                 {tablet ? 'Explore' : 'Explore Treasury'}

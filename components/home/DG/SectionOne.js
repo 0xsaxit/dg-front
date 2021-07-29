@@ -42,6 +42,7 @@ function SectionOne(props) {
               {mobile
                 ? ''
                 : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'}
+               }
             </p>
             <span className={styles.button_group}>
               <Button

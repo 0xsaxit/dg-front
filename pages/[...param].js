@@ -3,6 +3,7 @@ import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
 import GetStarted from '../components/content/ContentStart/index.js';
+import AccountData from '../components/home/AccountData';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
