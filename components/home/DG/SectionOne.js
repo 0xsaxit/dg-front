@@ -20,7 +20,7 @@ function SectionOne(props) {
         muted
       ></video>
 
-      <div className={cn(styles.home_dashboard_content, 'container')}>
+      <div className={cn(styles.home_dashboard_content, 'container-fluid')}>
         <div
           className={cn(
             'row',
@@ -28,36 +28,40 @@ function SectionOne(props) {
             mobile ? 'text-center' : 'text-left'
           )}
         >
-          <div className="col-md-9 col-lg-9 d-flex flex-column">
-            <h1>
-              {mobile
-                ? 'Hit the Tables'
-                : 'Hit the tables in a metaverse Casino'}
+          <div className="col-md-12 col-lg-9 d-flex flex-column">
+            <h1 className={styles.hero_h1}>
+              {' '}
+              Play
+              <span style={{ fontFamily: 'Shadows Into Light, cursive' }}>
+                {' '}
+                (and own){' '}
+              </span>
+              the first ever metaverse casino.{' '}
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
-              With Decentral Games coin, you own the casino. Control the
-              profits. Vote on new games. Earn money back directly by playing.
+              {mobile
+                ? ''
+                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'
+               }
             </p>
-            {!mobile && (
-              <span className={styles.button_group}>
-                <Button
-                  color="blue"
-                  className={styles.earn_dg_button}
-                  href="https://docs.decentral.games/"
-                  target="_blank"
-                >
-                  Learn More
-                </Button>
-                <Button
-                  color="blue"
-                  className={styles.play_button}
-                  href="https://play.decentraland.org/?position=-118%2C135"
-                  target="_blank"
-                >
-                  Play Now
-                </Button>
-              </span>
-            )}
+            <span className={styles.button_group}>
+              <Button
+                color="blue"
+                className={styles.earn_dg_button}
+                href="https://docs.decentral.games/"
+                target="_blank"
+              >
+                Learn More
+              </Button>
+              <Button
+                color="blue"
+                className={styles.play_button}
+                href="https://play.decentraland.org/?position=-118%2C135&realm=dg-diamond"
+                target="_blank"
+              >
+                Play Now
+              </Button>
+            </span>
           </div>
         </div>
 

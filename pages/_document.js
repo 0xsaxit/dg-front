@@ -83,6 +83,8 @@ export default class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
+          <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+          <meta name="facebook-domain-verification" content="ymawpiy7irzznvqvm922lfvr0cph0f" /> 
         </Head>
 
         <body>

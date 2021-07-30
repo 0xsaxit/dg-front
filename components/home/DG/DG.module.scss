@@ -1,53 +1,20 @@
 @import 'styles/base.scss';
 
-
 .home_dashboard {
+
+  .hero_h1 {
+    font-size: 60px;
+    font-family: Larsseit-ExtraBold;
+    margin: 0;
+    padding: 0;
+  }
 
   .image_span {
     margin-top: 150px;
     margin-bottom: 150px;
     margin-left: 0px;
     margin-right: 0px;
-    max-width: 1200px;
-
-    @media only screen and (min-width: 576px) {
-      //margin-left: 0px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-    @media only screen and (min-width: 768px) {
-      margin-left: 50px;
-      margin-top: 60px;
-      margin-bottom: 60px;
-    }
-
-    @media only screen and (min-width: 992px) {
-      margin-left: 50px;
-      margin-top: 120px;
-      margin-bottom: 120px;
-    }
-
-    @media only screen and (min-width: 1200px) {
-      margin-left: 110px;
-      margin-top: 150px;
-      margin-bottom: 150px;
-    }
-
-
-    // @include mq($until: medium) {
-    //   margin-left: 0px;
-    //   margin-right: 0px;
-    //   margin-top: 60px;
-    //   margin-bottom: 60px;
-    // }
-
-    // @include mq($until: small) {
-    //   margin-left: 0px;
-    //   margin-right: 0px;
-    //   margin-top: 10px;
-    //   margin-bottom: 10px;
-    // }
+    max-width: 100%;
 
     .section_h1 {
       font-size: 48px;
@@ -67,12 +34,33 @@
       color: rgba(255, 255, 255, 0.75) !important;
       margin-top: 24px;
       margin-bottom: 24px;
-      max-width: 560px;
 
       @include mq($until: medium) {
-        font-size: 18px;
+        font-size: 20px;
         text-align: center;
         padding: 0 24px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .section_p_two {
+      font-size: 24px;
+      font-family: Larsseit-Light;
+      color: rgba(255, 255, 255, 0.75) !important;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      margin-right: 42px;
+
+      @include mq($until: medium) {
+        font-size: 20px;
+        text-align: center;
+        padding: 0 24px;
+        margin-right: 0px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
@@ -86,10 +74,12 @@
       font-size: 18px;
       font-family: Larsseit-Bold;
       margin-right: 16px;
+      white-space: nowrap;
     }
 
     .blue_button {
       background: #006eff;
+      white-space: nowrap;
       color: white;
       height: 48px;
       padding: 12px 26px 12px 26px;
@@ -100,33 +90,38 @@
     }
 
     .image {
-      height: 400px;
+      height: auto;
+      width: 75%;
       object-fit: contain;
       position: relative;
-      margin-left: -50px;
 
       @include mq($until: medium) {
-        height: 400px;
+        height: auto;
+        width: 60%;
         margin-left: 0;
-        margin-top: 100px;
-        margin-bottom: 0px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      @include mq($until: small) {
+        width: 80%;
       }
     }
 
-    @include mq($until: small) {
-      .image {
-        height: 270px;
-      }
-      .image_mobile {
-        height: 270px;
-      }
+    @include mq($until: medium) {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
-    .image_mobile {
-      height: 400px;
-      margin-left: 0;
-      margin-top: 40px;
-      margin-bottom: -60px;
+    @include mq($from: medium, $until: large) {
+      margin-top: 160px;
+      margin-bottom: 160px;
+    }
+  }
+
+  .text_group {
+    @include mq($until: medium) {
+      margin-bottom: 100px;
     }
   }
 
@@ -144,12 +139,15 @@
   }
   .gradientLayout {
     position: relative;
-    background: linear-gradient(rgba(0, 0 ,0 ,0), #000000);
+    background: linear-gradient(rgba(0, 0, 0, 0), #000000);
     height: 120px;
     margin-top: -120px;
 
     @include mq($until: small) {
-      margin-top: -75px;
+      position: relative;
+      height: 210px;
+      margin-top: -210px;
+      margin-bottom: 80px;
     }
   }
 
@@ -159,21 +157,50 @@
     }
   }
 
+  .section_two {
+    max-width: 1250px;
+    padding: 0px 0px 0px 60px;
+
+    @include mq($until: medium) {
+      max-width: 1000px;
+      padding: 0px 0px 0px 0px;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      max-width: 1100px;
+      padding: 0px 0px 0px 48px;
+    }
+  }
+
   .home_dashboard_content {
     position: relative;
-    height: calc(100vh);
+    height: 100vh;
+    max-width: 1400px;
+    width: 100% !important;
+    max-width: 1400px;
+    padding: 0 60px;
+    margin-top: -39vh;
+
+    @include mq($until: medium) {
+      padding: 0 30px;
+      margin-left: 0px;
+      width: 600px;
+    }
+
+    @include mq($from: medium, $until: extra-large) {
+      padding: 0 0px;
+      margin-left: 30px;
+    }
 
     @include mq($until: small) {
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-width: 100%;
-      height: 100vh;
-      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1626537261/Screen_Shot_2021-07-17_at_5.54.14_PM_wketcv.png');
+      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1626943370/Mobile_Header_Image_yopvby.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      top: -72px;
     }
 
     .row {
@@ -181,25 +208,30 @@
       top: 50%;
       transform: translateY(-50%);
       width: 100%;
+
+      @include mq($until: medium) {
+        width: calc(100% - 60px);
+      }
     }
 
     h1 {
       color: white;
       text-shadow: 1px 1px 5px black;
-      max-width: 600px;
+      max-width: 650px;
+
+      @include mq($until: large) {
+        max-width: 550px;
+        font-size: 48px;
+      }
 
       @include mq($until: medium) {
-        max-width: 100%;
+        max-width: 500px;
         font-size: 42px;
         margin-bottom: 0;
       }
 
-      @include mq($until: large) {
-        font-size: 48px;
-      }
-
       @include mq($until: small) {
-        margin-top: 96px;
+        margin-top: 150px;
       }
     }
 
@@ -212,14 +244,19 @@
       margin-bottom: 8px;
       margin-top: 6px;
 
+      @include mq($until: medium) {
+        max-width: 480px !important;
+      }
+
       @include mq($until: large) {
         font-size: 18px;
+        max-width: 500px !important;
       }
     }
 
     .button_group {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       margin-top: 24px;
 
       .earn_dg_button {
@@ -243,7 +280,15 @@
         font-size: 20px;
         margin-left: 16px;
       }
+
+      @include mq($until: small) {
+        justify-content: center;
+        transform: scale(0.9);
+        margin-top: 4px;
+      }
     }
+
+
 
     .chevron_down {
       bottom: -55px;
@@ -274,6 +319,10 @@
 
       .image_section {
         width: 160px;
+      }
+
+      .image_section_atari {
+        width: 100px;
       }
     }
 
@@ -319,7 +368,7 @@
       z-index: 3;
 
       @include mq($until: medium) {
-        margin-top: 150px;
+        margin-top: 60px;
       }
 
       @include mq($until: small) {
@@ -350,7 +399,7 @@
       margin-bottom: 16px;
 
       @include mq($until: small) {
-        margin-bottom: 72px;
+        margin-bottom: 16px;
       }
     }
 
@@ -367,4 +416,3 @@
     }
   }
 }
-
