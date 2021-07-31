@@ -157,7 +157,7 @@ const Balances = (props) => {
 
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>{parseInt(state.userBalances[2][3]).toLocaleString()} ETH</p>
+              <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
               <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
             </span>
 
