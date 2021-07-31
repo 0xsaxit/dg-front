@@ -3,7 +3,6 @@ import { Button } from 'semantic-ui-react';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { GlobalContext } from 'store/index';
 import { DGModal } from 'dg-modal-widget';
-
 import Images from 'common/Images';
 import Global from 'components/Constants';
 import ModalAcceptUSDT from 'components/modal/ModalAccept/USDT';
@@ -13,6 +12,7 @@ import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
 import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../common/Fetch';
+
 
 const connext = {
   routerPublicID: Global.KEYS.CONNEXT_PUBLIC_ID,
@@ -88,6 +88,9 @@ const Balances = (props) => {
     }
   }, [event, txHash, amount]);
 
+  console.log('1!!');
+  console.log(state.userBalances[2][3]);
+
   const injectedProvider = window.ethereum;
 
   const rampDAI = new RampInstantSDK({
@@ -157,7 +160,7 @@ const Balances = (props) => {
 
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>{parseInt(state.userBalances[2][3]).toLocaleString()} ETH</p>
+              <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
               <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
             </span>
 

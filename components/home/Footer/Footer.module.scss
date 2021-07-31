@@ -4,6 +4,8 @@
   background: #121212;
   border-top: 2px solid #353945;
   margin-top: 90px;
+  position: relative;
+  z-index: 9;
 
   .grid_container {
     max-width: 1400px;

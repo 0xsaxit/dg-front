@@ -1,6 +1,6 @@
 import { GlobalContext } from '../../store';
 import { useContext, useState, useEffect } from 'react';
-import Farming from '../../components/home/Farming';
+import DAO from '../../components/home/DAO';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -40,7 +40,7 @@ const MiningV1 = () => {
           You must connect your wallet to view this page
         </div>
       ) : (
-        <Farming DGState={'miningv1'} />
+        <DAO DGState={'miningv1'} />
       )}
     </Layout>
   );

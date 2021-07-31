@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import Global from '../../components/Constants';
 import Images from '../../common/Images';
 
-const Governance = () => {
+const Treasury = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -19,7 +19,7 @@ const Governance = () => {
       />
 
       {state.userStatus ? (
-        <DAO DGState={'governance'} />
+        <DAO DGState={'treasury'} />
       ) : (
         <div className="account-other-inner-p">
           You must connect your wallet to view this page
@@ -29,4 +29,4 @@ const Governance = () => {
   );
 };
 
-export default Governance;
+export default Treasury;

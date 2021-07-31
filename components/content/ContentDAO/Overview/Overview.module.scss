@@ -1,0 +1,25 @@
+@import 'styles/base.scss';
+
+.overview_container {
+  height: 100%;
+
+  .container_left {
+    padding-top: 52px;
+    margin-left: 60px;
+
+    .welcome_text {
+      font-family: Larsseit-Regular;
+      font-size: 20px;
+      color: rgba(255, 255, 255) !important;
+      margin-bottom: 0px;
+    }
+
+    .dashboard_text {
+      font-family: Larsseit-ExtraBold;
+      font-size: 32px;
+      letter-spacing: -0.7px;
+      color: rgba(255, 255, 255) !important;
+      margin-top: 0px; 
+    }
+  }
+}
