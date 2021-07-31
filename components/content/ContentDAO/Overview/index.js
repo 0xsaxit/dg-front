@@ -5,6 +5,8 @@ import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import Aux from '../../../_Aux';
 import styles from './Overview.module.scss';
+import axios from 'axios';
+
 
 const Overview = (props) => {
   // get the treasury's balances numbers from the Context API store
@@ -23,6 +25,13 @@ const Overview = (props) => {
   const [landTreasury, setLandTreasury] = useState(0);
   const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
 
+  const [snapshotOne, setSnapshotOne] = useState([]);
+  const [dateOne, setDateOne] = useState('');
+  const [snapshotTwo, setSnapshotTwo] = useState([]);
+  const [dateTwo, setDateTwo] = useState('');
+  const [snapshotThree, setSnapshotThree] = useState([]);
+  const [dateThree, setDateThree] = useState('');
+
   function formatPrice(balanceDG, units) {
     const priceFormatted = Number(balanceDG)
       .toFixed(units)
@@ -30,6 +39,57 @@ const Overview = (props) => {
 
     return priceFormatted;
   }
+
+  useEffect(() => {
+    (async () => {
+      const snapshotData = await axios.post(
+        `https://hub.snapshot.page/graphql`,
+        {
+          query: `{
+            proposals (
+              first: 3,
+              skip: 0,
+              where: {
+                space_in: ["decentralgames.eth"],
+                state: ""
+              },
+              orderBy: "created",
+              orderDirection: desc
+            ) {
+              id
+              title
+              body
+              choices
+              start
+              end
+              snapshot
+              state
+              author
+              space {
+                id
+                name
+              }
+            }
+          }`,
+        }
+      );
+
+      setSnapshotOne(snapshotData.data.data.proposals[0]);
+      setSnapshotTwo(snapshotData.data.data.proposals[1]);
+      setSnapshotThree(snapshotData.data.data.proposals[2]);
+    })();
+  }, []);
+
+  useEffect(() => {
+    const temp = new Date(snapshotOne.end * 1000);
+    setDateOne(temp.toDateString());
+
+    const temp_two = new Date(snapshotTwo.end * 1000);
+    setDateTwo(temp_two.toDateString());
+
+    const temp_three = new Date(snapshotThree.end * 1000);
+    setDateThree(temp_three.toDateString());
+  }, [snapshotOne, snapshotTwo, snapshotThree]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -325,6 +385,70 @@ const Overview = (props) => {
             <p className={styles.lower_header_two}>
               Governance <br /> Proposals
             </p>
+
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={snapshotOne.state === 'CLOSED' ? styles.state_closed : styles.state}>
+                  {snapshotOne.state}
+                </p>
+              </div>
+
+              <div className={styles.gov_right}>
+                <p className={styles.gov_top}>
+                  {snapshotOne.state === 'CLOSED' ?
+                    'EXECUTED  • ' :
+                    'PENDING • '
+                  }
+                  {dateOne}
+                </p>
+                <p className={styles.gov_title}>
+                  {snapshotOne.title}
+                </p>
+              </div>
+            </div>
+
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={snapshotTwo.state === 'CLOSED' ? styles.state_closed : styles.state}>
+                  {snapshotTwo.state}
+                </p>
+              </div>
+
+              <div className={styles.gov_right}>
+                <p className={styles.gov_top}>
+                  {snapshotTwo.state === 'CLOSED' ?
+                    'EXECUTED  • ' :
+                    'PENDING • '
+                  }
+                  {dateTwo}
+                </p>
+                <p className={styles.gov_title}>
+                  {snapshotTwo.title}
+                </p>
+              </div>
+            </div>
+
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={snapshotThree.state === 'open' ? styles.state : styles.state_closed}>
+                  {snapshotThree.state}
+                </p>
+              </div>
+
+              <div className={styles.gov_right}>
+                <p className={styles.gov_top}>
+                  {snapshotThree.state === 'open' ?
+                    'PENDING  • ' :
+                    'EXECUTED • '
+                  }
+                  {dateThree}
+                </p>
+                <p className={styles.gov_title}>
+                  {snapshotThree.title}
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

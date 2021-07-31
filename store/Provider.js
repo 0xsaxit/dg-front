@@ -102,6 +102,7 @@ const initialState = {
   affiliateAddress: '',
   stakeTime: 0,
   subgraphData: [],
+  snapshotData: [],
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
@@ -277,6 +278,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         subgraphData: action.data,
+      };
+
+    case 'snapshot_data':
+      return {
+        ...state,
+        snapshotData: action.data,
       };
 
     case 'affiliate_address':

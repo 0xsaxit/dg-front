@@ -26,13 +26,50 @@ function SubgraphQuery() {
 
       const data = subgraphData.data.data.exampleEntities;
 
-      // console.log('subgraph data');
-      // console.log(data);
+      const snapshotData = await axios.post(
+        `https://hub.snapshot.page/graphql`,
+        {
+          query: `{
+            proposals (
+              first: 3,
+              skip: 0,
+              where: {
+                space_in: ["decentralgames.eth"],
+                state: ""
+              },
+              orderBy: "created",
+              orderDirection: desc
+            ) {
+              id
+              title
+              body
+              choices
+              start
+              end
+              snapshot
+              state
+              author
+              space {
+                id
+                name
+              }
+            }
+          }`,
+        }
+      );
+
+      const data_snapshot = snapshotData.data.data.proposals;
 
       dispatch({
         type: 'subgraph_data',
         data: data,
       });
+
+      dispatch({
+        type: 'snapshot_data',
+        data: data_snapshot,
+      });
+
     })();
   }, []);
 

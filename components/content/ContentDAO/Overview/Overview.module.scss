@@ -179,5 +179,54 @@
       font-family: Larsseit-Bold;
       font-size: 14px;
     }
+
+    .governance_container {
+      display: flex;
+      margin-bottom: 20px;
+
+      .state_box {
+        background: rgba(31, 31, 31);
+        border-radius: 14px;
+        height: 48px;
+        min-width: 48px;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+
+        .state {
+          color: #19c785 !important;
+          font-size: 10px;
+          font-family: Larsseit-bold;
+          text-transform: uppercase;
+          align-self: center;
+        }
+
+        .state_closed {
+          color: #ea3943 !important;
+          font-size: 10px;
+          font-family: Larsseit-bold;
+          text-transform: uppercase;
+          align-self: center;    
+        }
+      }
+
+      .gov_right {
+        padding-left: 18px;
+
+        .gov_top {
+          font-family: Larsseit-Bold;
+          font-size: 10px;
+          color: rgba(255, 255, 255, 0.5) !important;
+          margin-bottom: 0px;
+        }
+
+        .gov_title {
+          font-family: Larsseit-Bold;
+          font-size: 14px;
+          margin-top: 2px;
+          line-height: 18px;
+        }
+      }
+    }
   }
 }
