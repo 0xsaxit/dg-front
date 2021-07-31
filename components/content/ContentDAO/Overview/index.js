@@ -299,6 +299,34 @@ const Overview = (props) => {
           </div>
 
         </div> 
+
+        <div style={{ display: 'flex', marginLeft: '60px', justifyContent: 'space-between', width: '600px' }}>
+          <div className={styles.lower}>
+            <p className={styles.lower_header}>
+              Stake Your $DG 
+            </p>
+            <img 
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+              className={styles.lower_img}
+            />
+            <p className={styles.apy_text}> APY </p>
+            <p className={styles.apy_percent}> 22.39% </p>
+            <p className={styles.lower_text}>
+              Stake $DG to govern the treasury, vote on proposals, and earn yields.
+            </p>
+            <Button
+              className={styles.lower_button}
+            >
+              Stake Your DG
+            </Button>
+          </div>
+
+          <div className={styles.lower}>
+            <p className={styles.lower_header_two}>
+              Governance <br /> Proposals
+            </p>
+          </div>
+        </div>
       </div>
     </Aux>
   );
