@@ -31,6 +31,9 @@ $spacers: (
 @import '~bootstrap/scss/_buttons.scss';
 @import '~bootstrap/scss/_helpers.scss';
 @import '~bootstrap/scss/utilities/_api.scss';
+@import '../components/home/MenuTop/MenuTop.module.scss';
+@import '../components/button/ButtonConnect/ButtonConnect.module.scss';
+
 
 // Set global styles for application
 img {
