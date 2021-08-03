@@ -10,6 +10,8 @@ import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 import cn from 'classnames';
 
+import styles from './MenuTop.module.scss'
+
 const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -217,12 +219,12 @@ const MenuTop = props => {
   const dropdownMenu = () => {
     return (
       <div>
-        <Menu attached="top" className="mobile_menu_popup">
+        <Menu attached="top" className={styles.mobile_menu_popup}>
           <Dropdown
             item
             icon={open ? 'close' : 'bars'}
             onClick={() => menuOpen()}
-            id={open ? `mobile_menu_icon` : menuStyle[0]}
+            id={open ? `${styles.mobile_menu_icon}` : menuStyle[0]}
           >
             <Dropdown.Menu>
               <Dropdown.Item>
@@ -291,7 +293,7 @@ const MenuTop = props => {
   // links are shown or hidden based on user's display resolution
   const shownOrHiddenItems = () => {
     return (
-      <div className="menu_items_to_hide">
+      <div className={styles.menu_items_to_hide}>
         <Link href={`/${utm}`}>
           <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
             Play
@@ -341,14 +343,14 @@ const MenuTop = props => {
       return null;
     } else if (state.userStatus >= 4) {
       return (
-        <span className="right_menu_items">
+        <span className={styles.right_menu_items}>
           <ModalInfo />
           <ModalPopup />
         </span>
       );
     } else {
       return (
-        <span className="right_menu_items">
+        <span className={styles.right_menu_items}>
           <ButtonConnect />
         </span>
       );
@@ -365,13 +367,13 @@ const MenuTop = props => {
           {dropdownMenu()}
 
           {props.isHomePage && !open ? (
-            <Menu className="menu_container" icon="labeled">
+            <Menu className={styles.menu_container} icon="labeled">
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}
             </Menu>
           ) : (
-            <Menu className="menu_container" icon="labeled">
+            <Menu className={styles.menu_container} icon="labeled">
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}

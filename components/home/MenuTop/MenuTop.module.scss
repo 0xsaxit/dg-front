@@ -1,4 +1,5 @@
 @import 'styles/base.scss';
+
   .menu_container {
     display: flex;
     flex-direction: row;
@@ -7,6 +8,7 @@
     z-index: 3;
     max-width: 1400px;
     margin: auto !important;
+
     .dropdown_menu_items {
       width: calc(100vw - 41px);
 
@@ -14,6 +16,7 @@
         background-color: #1f1f1f;
       }
     }
+
     .mobile_menu_popup {
       border: none;
       min-width: calc(100vw + 1px);
@@ -24,85 +27,28 @@
       top: 48px;
       left: -25px;
     }
+
     .mobile_menu_icon {
-    position: relative;
-    color: white;
-    top: 17px;
-    background-color: transparent;
-    left: 60px;
-    z-index: 10;
-    font-size: 18px;
+      position: relative;
+      color: white;
+      top: 17px;
+      background-color: transparent;
+      left: 60px;
+      z-index: 10;
+      font-size: 18px;
 
-    &:hover {
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+      }
+
+      @include mq($from: large) {
+        display: none;
+      }
     }
 
-    @include mq($from: large) {
-      display: none;
-    }
-    }
-  .other_menu_container_blog {
-    position: relative;
-    padding-left: 0px;
-  }
-}
-.ui.labeled.icon.menu {
-  background-color: rgba(0, 0, 0, 0);
-  box-shadow: none;
-  border: none;
-}
-.ui.labeled.icon.menu {
-  .item {
-    min-width: 0em;
-    margin-top: 11px;
-  }
-}
-.ui.labeled.icon.menu {
-  .item {
-    &:hover {
-      background-color: transparent !important;
+    .other_menu_container_blog {
+      position: relative;
+      padding-left: 0px;
     }
   }
-}
-.item.sidebar-menu-text.blog.active {
-  background-color: transparent !important;
-}
-.ui.menu {
-    border-radius: 0px;
-    margin: 0;
-}
-.ui.menu {
-    .item {
-    font-family: Larsseit-Regular;
-    padding-left: 24px;
-    padding-right: 24px !important;
-   }
-}
-.ui.menu {
-  .active.item {
-    background: rgba(0, 0, 0, 0);
-  }
-}
-.ui.menu {
-  .item {
-    &:before {
-      background: none !important;
-    }
-  }
-}
-#menu-logo {
-  width: 36px;
-  padding-top: 18px;
-  padding-bottom: 15px;
-  margin-right: 9px;
-  margin-left: 24px;
-  height: 100%;
-  position: relative;
-  z-index: 7;
-  cursor: pointer;
-}
-@media (max-width: 499px) {
-  #menu-logo {
-    margin-left: 15px;
-  }
-}
+

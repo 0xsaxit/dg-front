@@ -226,6 +226,42 @@ a.get-metamask-scroll:hover {
   color: rgba(0, 0, 0, 0.75);
 }
 
+#menu-logo {
+  width: 36px;
+  padding-top: 18px;
+  padding-bottom: 15px;
+  margin-right: 9px;
+  margin-left: 24px;
+  height: 100%;
+  position: relative;
+  z-index: 7;
+  cursor: pointer;
+}
+.ui.labeled.icon.menu .item {
+  min-width: 0em;
+  margin-top: 11px;
+}
+
+.ui.labeled.icon.menu .item:hover,
+.item.sidebar-menu-text.blog.active {
+  background-color: transparent !important;
+}
+
+.ui.labeled.icon.menu {
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  border: none;
+}
+
+.ui.menu {
+  border-radius: 0px;
+  margin: 0;
+}
+
+.ui.menu .active.item {
+  background: rgba(0, 0, 0, 0);
+}
+
 #message-bar {
   position: relative;
   z-index: 999;
@@ -330,6 +366,11 @@ div.ui.segment.transparent-menu-segment {
   position: relative;
 }
 
+.ui.menu .item {
+  font-family: Larsseit-Regular;
+  padding-left: 24px;
+  padding-right: 24px !important;
+}
 
 div.item.sidebar-menu-text.blog#active,
 div.item.sidebar-menu-text.blog:hover {
@@ -342,6 +383,15 @@ div.item.sidebar-menu-text.blog:hover {
   color: black;
   cursor: default;
   font-weight: 700 !important;
+}
+
+.ui.menu {
+  border-radius: 0px;
+  margin: 0;
+}
+
+.ui.menu .active.item {
+  background: rgba(0, 0, 0, 0);
 }
 
 .pointer {
@@ -397,6 +447,10 @@ div.item.sidebar-menu-text.blog:hover {
   justify-content: flex-end !important;
   position: relative;
   z-index: 2;
+}
+
+.ui.menu .item:before {
+  background: none !important;
 }
 
 .menu-account-info {
@@ -3083,6 +3137,19 @@ a.ui.blue.button.play-button-binance,
   border-radius: 16px;
   margin-right: 16px;
 }
+
+.ui.button.account-button {
+  padding-right: 16px;
+  padding-left: 16px;
+  height: 48px;
+  margin-top: 12px;
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  color: white;
+  margin-right: 16px;
+  font-size: 18px !important;
+}
+
 .right-menu-text.bnb {
   line-height: 0px;
   padding-top: 1px;
