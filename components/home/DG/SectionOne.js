@@ -51,7 +51,10 @@ function SectionOne(props) {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+                {mobile ?
+                  'Info' :
+                  'Learn More'
+                }
               </Button>
               <Button
                 color="blue"
@@ -59,7 +62,10 @@ function SectionOne(props) {
                 href="https://play.decentraland.org/?position=-118%2C135&realm=dg-diamond"
                 target="_blank"
               >
-                Play Now
+                {mobile ?
+                  'Play' :
+                  'Play Now'
+                }
               </Button>
             </span>
           </div>

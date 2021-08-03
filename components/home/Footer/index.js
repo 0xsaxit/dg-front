@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
-import { Menu, Icon } from 'semantic-ui-react';
-import Global from 'components/Constants';
 import cn from 'classnames';
-
+import { Button } from 'semantic-ui-react';
+import { useMediaQuery } from 'hooks';
+import Link from 'next/link';
 import styles from './Footer.module.scss';
 
 const Footer = () => {
   // define local variables
   let linkDocs = '';
+  const mobile = useMediaQuery('(max-width: 768px)');
+  const onlyTablet = useMediaQuery(
+    '(min-width: 768px) and (max-width: 1200px)'
+  );
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -22,103 +26,177 @@ const Footer = () => {
   }, [linkDocs]);
 
   return (
-    <span className={styles.footer_container}>
-      <Menu className={styles.inner_footer_container_2} icon="labeled">
-        <div className={styles.footer_menu_items}>
-          <a href="/">
-            <Menu.Item className={styles.sidebar_menu_text_blog}>Play</Menu.Item>
-          </a>
-
-          <a href="https://docs.decentral.games/info/risks" target="_blank">
-            <Menu.Item className={styles.sidebar_menu_text_blog}>Risks</Menu.Item>
-          </a>
-
-          <a
-            href="https://docs.decentral.games/info/disclaimer"
-            target="_blank"
+    <>
+      <div className={styles.footer_container}>
+        <div className={cn(styles.grid_container, 'd-flex flex-column')}>
+          <div
+            className={cn(
+              'd-flex flex-md-row flex-column w-100',
+              mobile ? 'mb-0' : 'mb-6'
+            )}
           >
-            <Menu.Item className={styles.sidebar_menu_text_blog}>Disclaimer</Menu.Item>
-          </a>
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}> Token </p>
+              <Link href="/dg">
+                <p className={styles.footer_link}> Treasury </p>
+              </Link>
+              <Link href="/dg/governance">
+                <p className={styles.footer_link}> Governance </p>
+              </Link>
+              <Link href="/dg/mining">
+                <p className={styles.footer_link}> Gameplay </p>
+              </Link>
+              <Link href="/dg/liquidity">
+                <p className={styles.footer_link}> Liquidity </p>
+              </Link>
+            </span>
 
-          <a
-            href="https://docs.decentral.games/info/privacy-policy"
-            target="_blank"
-          >
-            <Menu.Item className={styles.sidebar_menu_text_blog}>
-              Privacy Policy
-            </Menu.Item>
-          </a>
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}> Play </p>
+              <Link href="/games">
+                <p className={styles.footer_link}> Games </p>
+              </Link>
+              <Link href="/games/casinos">
+                <p className={styles.footer_link}> Casino </p>
+              </Link>
+              <Link href="/games/leaderboard">
+                <p className={styles.footer_link}> Leaderboard </p>
+              </Link>
+            </span>
 
-          <a href="https://decentralgames.substack.com/" target="_blank">
-            <Menu.Item className={styles.sidebar_menu_text_blog}>Newsletter</Menu.Item>
-          </a>
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}> Shop </p>
+              <Link href="/games/nfts">
+                <p className={styles.footer_link}> NFTs </p>
+              </Link>
+              <Link href="/games/shop">
+                <p className={styles.footer_link}> DCL Shops </p>
+              </Link>
+            </span>
 
-          <a
-            href="https://drive.google.com/drive/u/1/folders/1YZ2j2zKQoSvwap6M3xecUHZwQmDLWBPC"
-            target="_blank"
-          >
-            <Menu.Item className={styles.sidebar_menu_text_blog}>Press Kit</Menu.Item>
-          </a>
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}> News </p>
+              <Link href="/blog">
+                <p className={styles.footer_link}> News </p>
+              </Link>
+              <Link href="/blog">
+                <p className={styles.footer_link}> Blog </p>
+              </Link>
+            </span>
+
+            <span className={styles.grid_column}>
+              <p className={styles.footer_header}> Events </p>
+              <Link href="/events">
+                <p className={styles.footer_link}> All Events </p>
+              </Link>
+            </span>
+            <div className={styles.grid_newsletter}>
+              <p className={styles.footer_header}> Join Our Newsletter! </p>
+              <Link href="/events">
+                <p className={styles.footer_text}>
+                  {' '}
+                  Subscribe to our newsletter to stay up to date with our weekly
+                  updates.{' '}
+                </p>
+              </Link>
+
+              <div className={styles.input_placeholder}>
+                {' '}
+                <Button
+                  color="blue"
+                  className={styles.sign_up_newsletter}
+                  href="https://decentralgames.substack.com/embed"
+                  target="_blank"
+                >
+                  Sign Up For Substack
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z"
+                      fill="white"
+                    ></path>
+                  </svg>
+                </Button>
+              </div>
+            </div>
+          </div>
+          {!onlyTablet && !mobile && (
+            <div className={styles.cookie_container}>
+              <span className={styles.copyright}>
+                Copyright © 2021 Web4 LTD. All rights reserved
+              </span>
+              <div className="d-flex justify-content-between">
+                <p className={styles.description}>
+                  We use cookies to create a better experience.
+                </p>
+                {/*<span className={styles.accept}>Accept</span>*/}
+              </div>
+            </div>
+          )}
         </div>
-      </Menu>
 
-      <Menu className={cn("justify-content-center")} icon="labeled">
-        <div className={cn("d-flex flex-wrap justify-content-center")}>
-          <a
-            href={`https://github.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}
-            target="_blank"
-          >
-            <span className={styles.social_icons_link}>
-              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
-                <Icon
-                  className={styles.social_icons}
-                  name="github"
-                />
-              </Menu.Item>
-            </span>
-          </a>
+        <div className={styles.grid_newsletter_tablet}>
+          <p className={styles.footer_header}> Join Our Newsletter! </p>
+          <Link href="/events">
+            <p className={styles.footer_text}>
+              {' '}
+              Subscribe to our newsletter to stay up to date with our weekly
+              updates.{' '}
+            </p>
+          </Link>
 
-          <a href={Global.CONSTANTS.DISCORD_URL} target="_blank">
-            <span className={styles.social_icons_link}>
-              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
-                <Icon
-                  className={styles.social_icons}
-                  name="discord"
-                />
-              </Menu.Item>
-            </span>
-          </a>
-
-          <a
-            href={`https://t.me/${Global.CONSTANTS.SOCIAL_HANDLE}`}
-            target="_blank"
-          >
-            <span className={styles.social_icons_link}>
-              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
-                <Icon
-                  className={styles.social_icons}
-                  name="telegram"
-                />
-              </Menu.Item>
-            </span>
-          </a>
-
-          <a
-            href={`https://twitter.com/${Global.CONSTANTS.SOCIAL_HANDLE}`}
-            target="_blank"
-          >
-            <span className={styles.social_icons_link}>
-              <Menu.Item className={styles.right_menu_text} id="dropdown-more-items">
-                <Icon
-                  className={styles.social_icons}
-                  name="twitter"
-                />
-              </Menu.Item>
-            </span>
-          </a>
+          <div className={styles.input_placeholder}>
+            {' '}
+            <Button
+              color="blue"
+              className={styles.sign_up_newsletter}
+              href="https://decentralgames.substack.com/embed"
+              target="_blank"
+            >
+              Sign Up For Substack
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.6152 13.2617V2.50879C17.6152 1.50977 16.9385 0.822266 15.9287 0.822266H5.16504C4.21973 0.822266 3.51074 1.54199 3.51074 2.40137C3.51074 3.26074 4.24121 3.92676 5.1543 3.92676H9.21484L12.5342 3.80859L10.6758 5.46289L1.28711 14.8623C0.932617 15.2168 0.739258 15.6357 0.739258 16.0654C0.739258 16.9033 1.52344 17.6982 2.37207 17.6982C2.80176 17.6982 3.20996 17.5049 3.5752 17.1504L12.9746 7.76172L14.6396 5.90332L14.5 9.10449V13.2725C14.5 14.1963 15.166 14.916 16.0254 14.916C16.8955 14.916 17.6152 14.1855 17.6152 13.2617Z"
+                  fill="white"
+                ></path>
+              </svg>
+            </Button>
+          </div>
         </div>
-      </Menu>
-    </span>
+
+        {mobile && (
+          <div className={styles.cookie_container_tablet}>
+            <span className={styles.copyright}>
+              Copyright © 2021 Web4 LTD. All rights reserved
+            </span>
+          </div>
+        )}
+        {onlyTablet && (
+          <div className={styles.cookie_container}>
+            <span className={styles.copyright}>
+              Copyright © 2021 Web4 LTD. All rights reserved
+            </span>
+            <div className="d-flex justify-content-between">
+              <p className={styles.description}>
+                We use cookies to create a better experience.
+              </p>
+              {/*<span className={styles.accept}>Accept</span>*/}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

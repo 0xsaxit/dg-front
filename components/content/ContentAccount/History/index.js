@@ -53,11 +53,6 @@ const History = ({ state }) => {
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
 
-<<<<<<< HEAD
-=======
-  // console.log('state: ', state);
-
->>>>>>> dev
   // define local variables
   const [dataPage, setDataPage] = useState([]);
   const [dataPageTwo, setDataPageTwo] = useState([]);
@@ -91,10 +86,13 @@ const History = ({ state }) => {
         }
       }
 
-      setDataPage(history);
+      setDataPage(history.slice(0, 6));
       setDataPageTwo(resultTwo);
     }
   }, [isLoading]);
+
+  console.log('!!!!');
+  console.log(dataPage);
 
   return (
     <Aux>
@@ -109,7 +107,16 @@ const History = ({ state }) => {
             {dataPage.map((row, i) => {
               const date = new Date(row.createdAt);
               const timestamp = date.toDateString();
-              const amount = (row.amount / 100000000000000000).toFixed(2);
+              let amount;
+              {row.type.includes('USDT') ? (
+                amount = (row.amount / 1000000).toFixed(2)
+              ) : row.type.includes('DAI') ? (
+                amount = (row.amount / 100000000000000000).toFixed(2)
+              ) : row.type.includes('MANA') ? (
+                amount = (row.amount / 1000000000000000000).toFixed(2)
+              ) : (
+                amount = (row.amount / 1000000000000000000).toFixed(2)
+              )}
 
               return (
                 <Grid.Column computer={8} tablet={8} mobile={16} key={i}>
