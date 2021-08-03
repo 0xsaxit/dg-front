@@ -52,6 +52,14 @@ const FunctionThree = () => {
                 ' d-flex justify-content-center mb-5'
               )}
             >
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627992075/image_oxwbsc.png" alt="VEGAS CITY" />
+            </div>
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
               <img src={images.ID_THEORY} alt="ID THEORY" />
             </div>
             <div
@@ -128,8 +136,7 @@ const FunctionThree = () => {
         <h2 className={styles.title}>Get Started</h2>
         <Button
           className={styles.start_here}
-          href="https://docs.decentral.games/getting-started/play-to-mine"
-          target="_blank"
+          href="/start"
         >
           Start Here
         </Button>
