@@ -473,41 +473,6 @@ $mq-breakpoints: (
   text-align: center;
 }
 
-.nfts_info {
-  @include nfts_info_style;
-
-  &_2 {
-    @include nfts_info_style;
-    margin-left: 12px;
-    margin-bottom: 14px;
-  }
-}
-
-.nft_button {
-  border: 0px;
-  position: relative;
-  background-color: #006eff;
-  color: white;
-  margin-top: 8px;
-  width: 48.5%;
-  height: 36px;
-  line-height: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-}
-
-.nft_read_button {
-  background-color: transparent;
-  border: 1px solid #006eff;
-  color: #006eff;
-  margin-top: 8px;
-  width: 48.5%;
-  height: 36px;
-  line-height: 8px;
-  font-size: 16px;
-  border-radius: 4px;
-}
-
 .gameplay_left_column,
 .gameplay_right_column {
   &_text {
