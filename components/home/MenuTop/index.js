@@ -1,15 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../store';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import cn from 'classnames';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
 import ModalInfo from 'components/modal/ModalInfo';
-import MessageBar from './MessageBar';
-import ButtonConnect from '../button/ButtonConnect';
-import Fetch from '../../common/Fetch';
-import Global from '../Constants';
+import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
+import MessageBar from '../MessageBar';
+import ButtonConnect from '../../button/ButtonConnect';
+
+import styles from './MenuTop.module.scss';
 
 const MenuTop = props => {
   // get token balances from the Context API store
@@ -28,7 +29,6 @@ const MenuTop = props => {
   const [casinoBalance, setCasinoBalance] = useState(0);
 
   const router = useRouter();
-  let menuStyle = [];
   let listener = null;
   let linkDocs = '';
 
@@ -94,32 +94,6 @@ const MenuTop = props => {
       document.removeEventListener('scroll', listener);
     };
   }, [scrollState]);
-
-  if (props.isHomePage && scrollState == 'top') {
-    menuStyle = [
-      'mobile-menu-icon-home',
-      'right-menu-text',
-      'sidebar-menu-text',
-      'dashboard-menu-container',
-      '',
-    ];
-  } else if (props.isHomePage && scrollState == 'amir') {
-    menuStyle = [
-      'mobile-menu-icon',
-      'right-menu-text blog',
-      'sidebar-menu-text blog',
-      'dashboard-menu-container',
-      'top',
-    ];
-  } else {
-    menuStyle = [
-      'mobile-menu-icon',
-      'right-menu-text blog',
-      'sidebar-menu-text blog',
-      'other-menu-container blog',
-      '',
-    ];
-  }
 
   function menuOpen() {
     if (open == true) {
@@ -187,26 +161,11 @@ const MenuTop = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
-  // get path and render appropriate styles
-  function getLinkStyles(path) {
-    if (path === '/') {
-      if (path === router.pathname) {
-        return 'active';
-      } else {
-        return '';
-      }
-    } else if (router.pathname.includes(path)) {
-      return 'active';
-    } else {
-      return '';
-    }
-  }
-
   function DGLogo() {
     return (
       <Link href="/">
         <img
-          id="menu-logo"
+          className={styles.menu_logo}
           alt="Decentral Games Logo"
           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png"
         />
@@ -223,15 +182,15 @@ const MenuTop = props => {
             item
             icon={open ? 'close' : 'bars'}
             onClick={() => menuOpen()}
-            id={open ? 'mobile-menu-icon' : menuStyle[0]}
+            id={open ? 'mobile-menu-icon' : ''}
           >
             <Dropdown.Menu>
               <Dropdown.Item>
                 <Icon name="dropdown" />
-                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <span class="d-flex flex-column">
                   <Link href={`/${utm}`}>
                     <Menu.Item
-                      className={menuStyle[1]}
+                      className={styles.menu_style}
                       id="dropdown-menu-items"
                     >
                       Play
@@ -240,7 +199,7 @@ const MenuTop = props => {
 
                   <Link href="/dg">
                     <Menu.Item
-                      className={menuStyle[1]}
+                      className={styles.menu_style}
                       id="dropdown-menu-items"
                     >
                       DAO
@@ -249,7 +208,7 @@ const MenuTop = props => {
 
                   <Link href="/games">
                     <Menu.Item
-                      className={menuStyle[1]}
+                      className={styles.menu_style}
                       id="dropdown-menu-items"
                     >
                       Games
@@ -258,7 +217,7 @@ const MenuTop = props => {
 
                   <Link href="/events">
                     <Menu.Item
-                      className={menuStyle[1]}
+                      className={styles.menu_style}
                       id="dropdown-menu-items"
                     >
                       Events
@@ -267,7 +226,7 @@ const MenuTop = props => {
 
                   <Link href="/blog">
                     <Menu.Item
-                      className={menuStyle[1]}
+                      className={styles.menu_style}
                       id="dropdown-menu-items"
                     >
                       News & Blog
@@ -280,7 +239,7 @@ const MenuTop = props => {
                     target="_blank"
                   >
                     <Menu.Item
-                      className={menuStyle[1]}
+                      className={styles.menu_style}
                       id="dropdown-menu-items"
                     >
                       Docs
@@ -298,45 +257,34 @@ const MenuTop = props => {
   // links are shown or hidden based on user's display resolution
   function shownOrHiddenItems() {
     return (
-      <div className="menu-items-to-hide">
+      <div className={styles.menu_items_to_hide}>
         <Link href={`/${utm}`}>
-          <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
-            Play
-          </Menu.Item>
+          <Menu.Item className={styles.menu_style}>Play</Menu.Item>
         </Link>
 
         <Link href="/dg">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
-            DAO
-          </Menu.Item>
+          <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
         </Link>
 
         <Link href="/games">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/games')}>
-            Games
-          </Menu.Item>
+          <Menu.Item className={styles.menu_style}>Games</Menu.Item>
         </Link>
 
         <Link href="/events">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/events')}>
-            Events
-          </Menu.Item>
+          <Menu.Item className={styles.menu_style}>Events</Menu.Item>
         </Link>
 
         <Link href="/blog">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
-            News & Blog
-          </Menu.Item>
+          <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
         </Link>
 
         <a
           href="https://docs.decentral.games"
           id="docs-top-menu"
+          className="d-flex"
           target="_blank"
         >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
-            Docs
-          </Menu.Item>
+          <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
         </a>
       </div>
     );
@@ -348,7 +296,7 @@ const MenuTop = props => {
       <>
         <span
           className={cn(
-            'right-menu-items',
+            styles.right_menu_items,
             state.userStatus >= 4 ? '' : 'd-none'
           )}
         >
@@ -357,7 +305,7 @@ const MenuTop = props => {
         </span>
         <span
           className={cn(
-            'right-menu-items',
+            styles.right_menu_items,
             state.userStatus < 3 ? '' : 'd-none'
           )}
         >
@@ -372,18 +320,21 @@ const MenuTop = props => {
   } else {
     return (
       <span>
-        <div className={menuStyle[3]} id={menuStyle[4]}>
+        <div className={styles.dashboard_menu_container}>
           <MessageBar />
           {dropdownMenu()}
 
           {props.isHomePage && !open ? (
-            <Menu className="menu-container" icon="labeled">
+            <Menu className={styles.menu_container}>
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}
             </Menu>
           ) : (
-            <Menu className="menu-container-dark blog" icon="labeled">
+            <Menu
+              className={cn(styles.menu_container, styles.dark)}
+              icon="labeled"
+            >
               {DGLogo()}
               {shownOrHiddenItems()}
               {balancesAndButtons()}

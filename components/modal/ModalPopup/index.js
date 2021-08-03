@@ -4,7 +4,6 @@ import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 
-
 const ModalPopup = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -66,7 +65,12 @@ const ModalPopup = () => {
         trigger={
           <Button
             className="account-button"
-            style={{ paddingLeft: '24px', paddingRight: '24px' }}
+            style={{
+              paddingLeft: '24px',
+              paddingRight: '24px',
+              marginTop: 0,
+              marginRight: 0,
+            }}
           >
             <span>
               <svg
