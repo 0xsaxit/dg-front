@@ -178,7 +178,6 @@
     width: 100% !important;
     max-width: 1400px;
     padding: 0 60px;
-    margin-top: -39vh;
 
     @include mq($until: medium) {
       padding: 0 30px;

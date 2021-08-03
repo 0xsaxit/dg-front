@@ -173,16 +173,13 @@ const Balances = () => {
   }
 
   // handle Connext deposit/withdrawal events
-  const getWithdrawalTransaction = async (params) => {
-    console.log('Transaction hash: ' + params);
+  const getWithdrawalAmount = (txHash, amountUi) => {
+    console.log("x1. reciverAddress", state.userAddress);
+    console.log("x2. txHash: " + txHash);
+    console.log("x3. amountUi: " + amountUi);
 
-    setTxHash(params);
-  }
-
-  const getWithdrawalAmount = (params) => {
-    console.log('Amount: ' + params);
-
-    setAmount(params);
+    setTxHash(txHash);
+    setAmount(amountUi);
   }
 
   // top up user to 5000 play tokens
@@ -606,47 +603,6 @@ const Balances = () => {
         </div>
       </div>
     );
-  }
-
-  // set modal state and event type
-  function setStateAndEvent(number, state, type) {
-    if (number === 1) {
-      setShowModal(state);
-    } else if (number === 2) {
-      setShowModal_2(state);
-    } else if (number === 3) {
-      setShowModal_3(state);
-    } else if (number === 4) {
-      setShowModal_4(state);
-    } else if (number === 5) {
-      setShowModal_5(state);
-    } else if (number === 6) {
-      setShowModal_6(state);
-    }
-
-    setEvent(type);
-  }
-
-  // handle Connext deposit/withdrawal events
-  function getWithdrawalAmount(txHash, amountUi) {
-    console.log("x1. reciverAddress", state.userAddress);
-    console.log("x2. txHash: " + txHash);
-    console.log("x3. amountUi: " + amountUi);
-
-    setTxHash(txHash);
-    setAmount(amountUi);
-  }
-
-  // top up user to 5000 play tokens
-  async function topUp() {
-    await Fetch.TOP_UP_USER(state.userAddress);
-
-    const refresh = !state.updateInfo;
-
-    dispatch({
-      type: 'update_info',
-      data: refresh,
-    });
   }
 
   return Balances();

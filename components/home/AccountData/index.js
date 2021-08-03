@@ -8,8 +8,6 @@ import ContentAccount from 'components/content/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
 
-import styles from './AccountData.module.scss';
-
 const AccountData = props => {
   // get user's transaction history from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
