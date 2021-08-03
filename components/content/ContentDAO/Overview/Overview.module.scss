@@ -4,7 +4,7 @@
   height: 100%;
 
   .container_left {
-    padding-top: 52px;
+    padding-top: 108px;
     margin-left: 60px;
 
     .welcome_text {
@@ -20,6 +20,51 @@
       letter-spacing: -0.7px;
       color: rgba(255, 255, 255) !important;
       margin-top: 0px; 
+    }
+  }
+
+  .blue_container {
+    margin-top: 40px;
+    padding: 36px 40px 36px 40px;
+    margin-left: 60px;
+    background: rgba(0, 110, 255, 1);
+    border-radius: 20px;
+    width: 600px;
+    display: flex;
+
+    .blue_text {
+      display: flex;
+      flex-direction: column;
+
+      .blue_header {
+        font-family: Larsseit-Bold;
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 0px;
+      }
+
+      .blue_lower {
+        font-family: Larsseit-Regular;
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 8px;
+        margin-bottom: 16px;
+      }
+
+      .blue_button {
+        font-family: Larsseit-Bold;
+        font-size: 16px;
+        background: rgba(36, 39, 49, 1);
+        color: white;
+        border-radius: 14px;
+        height: 48px;
+        width: 177px;
+      }
+    }
+
+    .blue_img {
+      margin-top: -34px;
+      margin-bottom: -32px;
     }
   }
 
@@ -211,6 +256,7 @@
       }
 
       .gov_right {
+        display: flex;
         padding-left: 18px;
 
         .gov_top {
@@ -226,6 +272,24 @@
           margin-top: 2px;
           line-height: 18px;
         }
+      }
+    }
+
+    .button_span {
+      display: flex;
+      justify-content: space-between;
+
+      .button_gov {
+        padding: 0px;
+        align-self: center;
+        margin-bottom: 0px;
+        height: 41px;
+        border-radius: 10px;
+        font-family: Larsseit-Bold;
+        background: rgb(31, 31, 31);
+        font-size: 14px;
+        width: 47.5%;
+        color: white; 
       }
     }
   }
