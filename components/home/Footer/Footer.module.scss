@@ -1,8 +1,77 @@
 @import 'styles/base.scss';
 
 .footer_container {
-  .social_icons_link {
-    margin-bottom: 6px;
+  background: #121212;
+  border-top: 2px solid #353945;
+  margin-top: 90px;
+  position: relative;
+  z-index: 9;
+
+  .grid_container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 122px 72px 0 72px;
+    display: flex;
+    justify-content: space-between;
+
+    .grid_column {
+      width: 18%;
+
+      &:first-of-type {
+        @include mq($until: medium) {
+          width: 100%;
+          padding-top: 0;
+          border-top: none;
+        }
+      }
+
+      @include mq($until: medium) {
+        width: 100%;
+        padding-top: 32px;
+        border-top: 1px solid #353945;
+      }
+    }
+
+    .footer_header {
+      font-family: Larsseit-Bold;
+      font-size: 24px;
+      padding-bottom: 20px;
+      color: white;
+
+      @include mq($until: medium) {
+        padding-bottom: 0;
+        margin-bottom: 30px;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+
+    .footer_link {
+      font-family: Larsseit-Regular;
+      font-size: 20px;
+      color: #777e91 !important;
+      padding-bottom: 4px;
+      min-width: 100px;
+
+      &:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+      }
+
+      @include mq($until: medium) {
+        padding-bottom: 0;
+        margin-bottom: 24px;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+
+    .footer_text {
+      font-family: Larsseit-Regular;
+      font-size: 20px;
+      color: white !important;
+      padding-bottom: 4px;
+    }
   }
 
   .social_icons {

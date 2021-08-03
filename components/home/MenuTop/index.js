@@ -240,7 +240,7 @@ const MenuTop = props => {
                     <Menu.Item
                       className={cn("dropdown_menu_items", menuStyle[1])}
                     >
-                      DG Ecosystem
+                      DAO
                     </Menu.Item>
                   </Link>
 
@@ -300,7 +300,7 @@ const MenuTop = props => {
 
         <Link href="/dg">
           <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
-            DG Ecosystem
+            DAO
           </Menu.Item>
         </Link>
 
@@ -337,22 +337,27 @@ const MenuTop = props => {
 
   // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
   const balancesAndButtons = () => {
-    if (state.userStatus === 3) {
-      return null;
-    } else if (state.userStatus >= 4) {
-      return (
-        <span className="right_menu_items">
+    return (
+      <>
+        <span
+          className={cn(
+            'right_menu_items',
+            state.userStatus >= 4 ? '' : 'd-none'
+          )}
+        >
           <ModalInfo />
           <ModalPopup />
         </span>
-      );
-    } else {
-      return (
-        <span className="right_menu_items">
+        <span
+          className={cn(
+            'right_menu_items',
+            state.userStatus < 3 ? '' : 'd-none'
+          )}
+        >
           <ButtonConnect />
         </span>
-      );
-    }
+      </>
+    );
   }
 
   if (state.isLoading) {

@@ -70,7 +70,7 @@ const Wildcard = () => {
               You must connect your wallet to view this page
             </div>
           ) : (
-            <AccountData dataType={'balances'} />
+            <GetStarted />
           )}
         </Aux>
       ) : (

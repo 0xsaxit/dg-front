@@ -33,7 +33,7 @@ const BlogDetail = ({ match }) => {
 
   useEffect(() => {
     const getPages = async () => {
-      const { data } = await ButterCMS.post.list({ page_size: 50 });
+      const { data } = await ButterCMS.post.list({ page_size: 60 });
 
       dispatch({
         type: 'update_pages',

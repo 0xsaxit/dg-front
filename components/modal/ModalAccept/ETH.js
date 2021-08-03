@@ -51,9 +51,7 @@ const ETH = () => {
       trigger={
         <span>
           {!state.wethLoading ? (
-            <Button className={styles.disabled_enable}>
-              Enable ETH
-            </Button>
+            <Button className={styles.disabled_enable}>Enable ETH</Button>
           ) : (
             <Button className={styles.disabled_enable}>
               <Loader
@@ -73,14 +71,26 @@ const ETH = () => {
         </span>
       </div>
 
-        <h4 className={styles.title}> Terms of Service </h4>
+      <h4 className={styles.title}> Terms of Service </h4>
 
-        <div>
-          <p className={styles.subtitle}>
-            {' '}
-            Please read our{' '}
-            <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Disclaimer</a>. To continue, you'll need to accept the following <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a> by checking each box.
-          </p>
+      <div>
+        <p className={styles.subtitle}>
+          Please read our&nbsp;
+          <a
+            className={styles.terms_a}
+            href="https://docs.decentral.games/disclaimer"
+          >
+            Disclaimer
+          </a>
+          . To continue, you'll need to accept the following&nbsp;
+          <a
+            className={styles.terms_a}
+            href="https://docs.decentral.games/disclaimer"
+          >
+            Terms of Service
+          </a>
+          &nbsp; by checking each box.
+        </p>
 
           <span className="d-flex">
             <Checkbox onClick={() => isCheckedOne()} />
@@ -103,15 +113,15 @@ const ETH = () => {
             <p className={styles.subtitle_2}> I have read and accepted the <a className={styles.terms_a} href="https://docs.decentral.games/disclaimer"> Terms of Service </a></p>
           </span>
 
-        {checkedOne === true && checkedTwo === true && checkedThree === true ? (
-          <span onClick={() => setOpen(false)}>
-            <ButtonApproveETH />
-          </span>
-        ) : (
-          <Button className={styles.disabled_enable} disabled>
-            Enable ETH
-          </Button>
-        )}
+        <span onClick={() => setOpen(false)}>
+          <ButtonApproveETH
+            passed={
+              checkedOne === true &&
+              checkedTwo === true &&
+              checkedThree === true
+            }
+          />
+        </span>
       </div>
     </Modal>
   );
