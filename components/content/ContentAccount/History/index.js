@@ -53,6 +53,11 @@ const History = ({ state }) => {
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
 
+<<<<<<< HEAD
+=======
+  // console.log('state: ', state);
+
+>>>>>>> dev
   // define local variables
   const [dataPage, setDataPage] = useState([]);
   const [dataPageTwo, setDataPageTwo] = useState([]);
@@ -139,15 +144,23 @@ const History = ({ state }) => {
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell style={{ width: '120px' }}>Game</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '120px' }}>
+                    Game
+                  </Table.HeaderCell>
                   <Table.HeaderCell style={{ width: '180px' }}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '180px' }}>Payout</Table.HeaderCell>
+                  <Table.HeaderCell style={{ width: '180px' }}>
+                    Payout
+                  </Table.HeaderCell>
                   <Table.HeaderCell style={{ width: '240px' }}>
                     Date
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '270px', textAlign: 'right' }}>Transactions</Table.HeaderCell>
+                  <Table.HeaderCell
+                    style={{ width: '270px', textAlign: 'right' }}
+                  >
+                    Transactions
+                  </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
             </Table>

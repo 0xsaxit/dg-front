@@ -21,7 +21,7 @@ const Liquidity = () => {
       />
 
       {state.userStatus ? (
-        <Farming DGState={'uniswap'} />
+        <DAO DGState={'uniswap'} />
       ) : (
         <div className={styles.account_other_inner_p}>
           You must connect your wallet to view this page

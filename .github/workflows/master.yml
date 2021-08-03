@@ -34,7 +34,7 @@ jobs:
           --build-arg BUILDKIT_INLINE_CACHE=1 \
           --build-arg NEXT_PUBLIC_API_URL=${API_URL} \
           --tag $CONTAINER_IMAGE_NAME:base .
-    - name: Build API image
+    - name: Build runtime image
       run: |
         docker build \
           --target runtime \

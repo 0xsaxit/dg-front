@@ -3,7 +3,6 @@ import { Button } from 'semantic-ui-react';
 import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
 import { GlobalContext } from 'store/index';
 import { DGModal } from 'dg-modal-widget';
-
 import Images from 'common/Images';
 import Global from 'components/Constants';
 import ModalAcceptUSDT from 'components/modal/ModalAccept/USDT';
@@ -14,6 +13,8 @@ import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
 import BuyArrow from 'assets/svg/buyarrow.svg';
 
 import styles from './Balances.module.scss';
+import Fetch from '../../../../common/Fetch';
+
 
 const connext = {
   routerPublicID: Global.KEYS.CONNEXT_PUBLIC_ID,
@@ -90,6 +91,7 @@ const Balances = () => {
 
   // refresh user token balances and post transaction to database
   useEffect(() => {
+
     if (event !== '' && txHash !== '' && amount !== 0) {
       console.log('Event type: ' + event);
 
@@ -103,13 +105,11 @@ const Balances = () => {
         clearTimeout(timer);
       }, 2000);
 
-      setEvent('');
-      setTxHash('');
-      setAmount(0);
-
       // post transaction to database
       console.log('Posting Connext transaction to db: ' + event);
-
+      console.log("TxHash: ", txHash);
+      console.log("Amount: ", amount);
+      
       Fetch.POST_HISTORY(
         state.userAddress,
         amount,
@@ -118,8 +118,17 @@ const Balances = () => {
         txHash,
         state.userStatus
       );
+
+      console.log('Completed Fetch!');
+
+      setEvent('');
+      setTxHash('');
+      setAmount(0);
     }
   }, [event, txHash, amount]);
+
+  console.log('1!!');
+  console.log(state.userBalances[2][3]);
 
   const injectedProvider = window.ethereum;
 
@@ -236,7 +245,7 @@ const Balances = () => {
 
           <div className={styles.float_right}>
             <span className={styles.balance_column_header}>
-              <p className={styles.bold_text}>{parseInt(state.userBalances[2][3]).toLocaleString()} ETH</p>
+              <p className={styles.bold_text}>{Number(state.userBalances[2][3]).toFixed(3)} ETH</p>
               <p className={styles.bold_text}>${(state.userBalances[2][3] * state.DGPrices.eth).toFixed(2)}</p>
             </span>
 
@@ -316,7 +325,6 @@ const Balances = () => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -342,7 +350,6 @@ const Balances = () => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
               </span>
@@ -410,7 +417,6 @@ const Balances = () => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -436,7 +442,6 @@ const Balances = () => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -502,7 +507,6 @@ const Balances = () => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
 
@@ -528,7 +532,6 @@ const Balances = () => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onWithdrawalTxCreated={getWithdrawalTransaction}
                   onFinished={getWithdrawalAmount}
                 />
               </span>
@@ -603,6 +606,47 @@ const Balances = () => {
         </div>
       </div>
     );
+  }
+
+  // set modal state and event type
+  function setStateAndEvent(number, state, type) {
+    if (number === 1) {
+      setShowModal(state);
+    } else if (number === 2) {
+      setShowModal_2(state);
+    } else if (number === 3) {
+      setShowModal_3(state);
+    } else if (number === 4) {
+      setShowModal_4(state);
+    } else if (number === 5) {
+      setShowModal_5(state);
+    } else if (number === 6) {
+      setShowModal_6(state);
+    }
+
+    setEvent(type);
+  }
+
+  // handle Connext deposit/withdrawal events
+  function getWithdrawalAmount(txHash, amountUi) {
+    console.log("x1. reciverAddress", state.userAddress);
+    console.log("x2. txHash: " + txHash);
+    console.log("x3. amountUi: " + amountUi);
+
+    setTxHash(txHash);
+    setAmount(amountUi);
+  }
+
+  // top up user to 5000 play tokens
+  async function topUp() {
+    await Fetch.TOP_UP_USER(state.userAddress);
+
+    const refresh = !state.updateInfo;
+
+    dispatch({
+      type: 'update_info',
+      data: refresh,
+    });
   }
 
   return Balances();

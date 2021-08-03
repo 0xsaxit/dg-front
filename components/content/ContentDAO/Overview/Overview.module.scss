@@ -1,0 +1,232 @@
+@import 'styles/base.scss';
+
+.overview_container {
+  height: 100%;
+
+  .container_left {
+    padding-top: 52px;
+    margin-left: 60px;
+
+    .welcome_text {
+      font-family: Larsseit-Regular;
+      font-size: 20px;
+      color: rgba(255, 255, 255) !important;
+      margin-bottom: 0px;
+    }
+
+    .dashboard_text {
+      font-family: Larsseit-ExtraBold;
+      font-size: 32px;
+      letter-spacing: -0.7px;
+      color: rgba(255, 255, 255) !important;
+      margin-top: 0px; 
+    }
+  }
+
+  .treasury_container {
+    margin-top: 40px;
+    padding: 28px;
+    margin-left: 60px;
+    border: 1px solid rgb(21,24,28);
+    border-radius: 16px;
+    width: 600px;
+
+    .earned_percent_pos {
+      font-size: 14px;
+      font-family: Larsseit-Bold;
+      color: #19c785 !important;
+    }
+
+    .earned_percent_neg {
+      font-size: 14px;
+      font-family: Larsseit-Bold;
+      color: #ea3943 !important;
+    }
+
+    .earned_text {
+      margin-top: 2px;
+      margin-left: 3px;
+      font-size: 12px;
+      font-family: Larsseit-Bold;
+      color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .treasury_header {
+      display: flex;
+      justify-content: space-between;
+
+      .treasury_title {
+        font-family: Larsseit-ExtraBold;
+        font-size: 24px;
+      }
+
+      .treasury_total {
+        font-family: Larsseit-ExtraBold;
+        font-size: 24px;
+        justify-content: flex-end;
+        margin-bottom: 4px;
+      }
+    }
+
+    .treasury_graph {
+      width: 100%;
+      height: 200px;
+    }
+
+    .stats_container {
+      display: flex;
+      justify-content: space-between;
+
+      .stat_header {
+        font-size: 14px;
+        font-family: Larsseit-Bold;
+        margin-bottom: 2px;
+        margin-top: 32px;
+        text-align: center;
+      }
+
+      .stat_amount {
+        font-family: Larsseit-Bold;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+
+      .earned_percent_pos {
+        margin-left: 3px;
+        font-size: 14px;
+        font-family: Larsseit-Bold;
+        color: #19c785 !important;
+      }
+
+      .earned_percent_neg {
+        margin-left: 3px;
+        font-size: 14px;
+        font-family: Larsseit-Bold;
+        color: #ea3943 !important;
+      }
+
+      .stat_button {
+        align-self: flex-end;
+        background: rgba(31, 31, 31, 1);
+        line-height: 19px;
+        height: 41px;
+        width: 100px;
+        border-radius: 10px;
+        font-family: Larsseit-Bold;
+        font-size: 14px;
+        color: white;
+      }
+    }
+  }
+
+  .lower {
+    margin-top: 40px;
+    padding: 28px;
+    border: 1px solid rgb(21,24,28);
+    border-radius: 16px;
+    width: 285px;
+    display: flex;
+    flex-direction: column;
+
+    .lower_header {
+      font-family: Larsseit-Bold;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .lower_header_two {
+      font-family: Larsseit-Bold;
+      font-size: 20px;
+    }
+
+    .lower_img {
+      width: 175px;
+      align-self: center;
+      margin-top: 0px;
+      margin-bottom: 14px;
+    }
+
+    .apy_text {
+      font-family: Larsseit-Bold;
+      font-size: 14px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5) !important;
+      margin-bottom: 0px;
+    }
+
+    .apy_percent {
+      font-family: Larsseit-Bold;
+      font-size: 41px;
+      text-align: center;
+      margin-bottom: 14px;
+      margin-top: -4px;
+    }
+
+    .lower_text {
+      font-family: Larsseit-Regular;
+      text-align: center;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .lower_button {
+      margin-top: 20px;
+      width: 100%;
+      background: #006EFF;
+      color: white;
+      border-radius: 10px;
+      height: 40px;
+      font-family: Larsseit-Bold;
+      font-size: 14px;
+    }
+
+    .governance_container {
+      display: flex;
+      margin-bottom: 20px;
+
+      .state_box {
+        background: rgba(31, 31, 31);
+        border-radius: 14px;
+        height: 48px;
+        min-width: 48px;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+
+        .state {
+          color: #19c785 !important;
+          font-size: 10px;
+          font-family: Larsseit-bold;
+          text-transform: uppercase;
+          align-self: center;
+        }
+
+        .state_closed {
+          color: #ea3943 !important;
+          font-size: 10px;
+          font-family: Larsseit-bold;
+          text-transform: uppercase;
+          align-self: center;    
+        }
+      }
+
+      .gov_right {
+        padding-left: 18px;
+
+        .gov_top {
+          font-family: Larsseit-Bold;
+          font-size: 10px;
+          color: rgba(255, 255, 255, 0.5) !important;
+          margin-bottom: 0px;
+        }
+
+        .gov_title {
+          font-family: Larsseit-Bold;
+          font-size: 14px;
+          margin-top: 2px;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+}
