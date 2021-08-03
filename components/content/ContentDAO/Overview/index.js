@@ -31,6 +31,10 @@ const Overview = (props) => {
   const [dateTwo, setDateTwo] = useState('');
   const [snapshotThree, setSnapshotThree] = useState([]);
   const [dateThree, setDateThree] = useState('');
+  const [activeOne, setActiveOne] = useState('');
+  const [activeTwo, setActiveTwo] = useState('');
+  const [activeThree, setActiveThree] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
 
   function formatPrice(balanceDG, units) {
     const priceFormatted = Number(balanceDG)
@@ -89,7 +93,22 @@ const Overview = (props) => {
 
     const temp_three = new Date(snapshotThree.end * 1000);
     setDateThree(temp_three.toDateString());
-  }, [snapshotOne, snapshotTwo, snapshotThree]);
+
+    var today = new Date();
+    
+    if (temp < today) {
+      setActiveOne(true);
+    }
+
+    if (temp_two < today) {
+      setActiveOne(true);
+    }
+
+    if (temp_three < today) {
+      setActiveOne(true);
+    }
+
+  }, [snapshotOne, snapshotTwo, snapshotThree, currentDate]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -216,6 +235,24 @@ const Overview = (props) => {
             Your DAO Dashboard
           </h1>
         </div>
+
+        <div className={styles.blue_container}>
+          <div className={styles.blue_text}>
+            <p className={styles.blue_header}>
+              Stake $DG to earn <br /> and ‘Be The House’
+            </p>
+            <p className={styles.blue_lower}>
+              By staking $DG, you can govern the treasury, add proposals, and earn yield.
+            </p>
+            <Button 
+              className={styles.blue_button}
+            >
+                Start Staking $DG
+            </Button>
+          </div>
+          <img className={styles.blue_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627992941/Bitcoin_Dashboard_mhyajb.png" />
+        </div>
+
 
         <div className={styles.treasury_container} >
 
@@ -388,67 +425,78 @@ const Overview = (props) => {
 
             <div className={styles.governance_container}>
               <div className={styles.state_box}>
-                <p className={snapshotOne.state === 'CLOSED' ? styles.state_closed : styles.state}>
+                <p className={activeOne ? styles.state_closed : styles.state}>
                   {snapshotOne.state}
                 </p>
               </div>
 
               <div className={styles.gov_right}>
-                <p className={styles.gov_top}>
-                  {snapshotOne.state === 'CLOSED' ?
-                    'EXECUTED  • ' :
-                    'PENDING • '
-                  }
-                  {dateOne}
-                </p>
-                <p className={styles.gov_title}>
-                  {snapshotOne.title}
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateOne}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotOne.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
 
             <div className={styles.governance_container}>
               <div className={styles.state_box}>
-                <p className={snapshotTwo.state === 'CLOSED' ? styles.state_closed : styles.state}>
+                <p className={activeTwo ? styles.state_closed : styles.state}>
                   {snapshotTwo.state}
                 </p>
               </div>
 
               <div className={styles.gov_right}>
-                <p className={styles.gov_top}>
-                  {snapshotTwo.state === 'CLOSED' ?
-                    'EXECUTED  • ' :
-                    'PENDING • '
-                  }
-                  {dateTwo}
-                </p>
-                <p className={styles.gov_title}>
-                  {snapshotTwo.title}
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateTwo}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotTwo.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
 
             <div className={styles.governance_container}>
               <div className={styles.state_box}>
-                <p className={snapshotThree.state === 'open' ? styles.state : styles.state_closed}>
+                <p className={activeThree ? styles.state_closed : styles.state}>
                   {snapshotThree.state}
                 </p>
               </div>
 
               <div className={styles.gov_right}>
-                <p className={styles.gov_top}>
-                  {snapshotThree.state === 'open' ?
-                    'PENDING  • ' :
-                    'EXECUTED • '
-                  }
-                  {dateThree}
-                </p>
-                <p className={styles.gov_title}>
-                  {snapshotThree.title}
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateThree}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotThree.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
 
+            <div className={styles.button_span}>
+              <Button className={styles.button_gov}>
+                Discussion
+              </Button>
+              <Button className={styles.button_gov}>
+                Proposals
+              </Button>
+            </div>
           </div>
         </div>
       </div>
