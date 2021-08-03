@@ -14,18 +14,17 @@ RUN apk add --no-cache ca-certificates git build-base python2 &&\
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json yarn.lock ./
 
-RUN npm audit --audit-level=critical
+RUN yarn audit --level critical || true
 
-RUN npm install --production --no-fund
+RUN yarn install --production
 
-# web3 1.3.5 affected https://www.npmjs.com/advisories/877/versions , so we use 1.3.5-rc.0
-RUN npm outdated || true
+RUN yarn outdated || true
 
 COPY . .
 
-RUN npm run build
+RUN yarn run build
 
 # CMD ["sleep", "3d"]
 ################################################################################
