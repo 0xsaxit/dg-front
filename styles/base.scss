@@ -922,7 +922,8 @@ $mq-breakpoints: (
     height: 200px;
   }
 }
-@media (max-width: 499px){
+
+@media (max-width: 499px) {
   .page-container {
     padding-left: 21px;
     padding-right: 21px;

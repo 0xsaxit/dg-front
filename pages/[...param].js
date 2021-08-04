@@ -9,6 +9,7 @@ import Aux from 'components/_Aux';
 import Global from 'components/Constants';
 import Images from 'common/Images';
 import Spinner from 'components/Spinner';
+import GetStarted from 'components/content/ContentStart/index.js';
 
 
 const Wildcard = () => {
