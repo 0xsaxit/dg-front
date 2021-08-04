@@ -32,6 +32,9 @@
     &.open {
       max-height: 500px;
       padding: 0 0 12px 0;
+      position: relative;
+      top: -2px;
+      border-bottom: 1px solid rgb(21, 24, 28);
     }
   }
 
@@ -52,10 +55,8 @@
     color: white;
     font-size: 18px;
     font-family: Larsseit-Bold;
-
-    @include mq($until: medium) {
-      background: black;
-    }
+    transition: background 0.25s;
+    -webkit-transition: background 0.25s;
 
     .right_menu_items {
       display: flex;
@@ -112,10 +113,8 @@
 
     &.dark {
       opacity: 1;
-      transition: all 0.25s;
-      -webkit-transition: all 0.25s;
       background-color: black !important;
-      border-bottom: none;
+      border-bottom: 1px solid rgb(21, 24, 28);
     }
   }
 }
