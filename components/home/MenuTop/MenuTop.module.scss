@@ -10,7 +10,7 @@
 
   .mobile_menu {
     position: fixed;
-    top: 100px;
+    top: 135px;
     width: 100%;
     left: 0;
     background: #000;
@@ -19,6 +19,7 @@
     transition: all 0.3s ease;
     max-height: 0px;
     overflow: hidden;
+    padding: 0 0 12px 0;
 
     a {
       padding: 21px 0 21px 30px;
