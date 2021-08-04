@@ -336,7 +336,6 @@ const MenuTop = props => {
       <span>
         <div className={styles.dashboard_menu_container}>
           <MessageBar />
-          {dropdownMenu()}
 
           {!open ? (
             <Menu className={styles.menu_container}>
@@ -351,6 +350,7 @@ const MenuTop = props => {
               {isMobile && balancesAndButtons()}
             </Menu>
           )}
+          {dropdownMenu()}
         </div>
       </span>
     );

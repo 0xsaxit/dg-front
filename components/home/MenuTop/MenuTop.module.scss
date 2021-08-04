@@ -3,14 +3,12 @@
 .dashboard_menu_container {
   z-index: 8;
   width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   user-select: none;
 
   .mobile_menu {
-    position: fixed;
-    top: 135px;
     width: 100%;
     left: 0;
     background: #000;
@@ -19,7 +17,7 @@
     transition: all 0.3s ease;
     max-height: 0px;
     overflow: hidden;
-    padding: 0 0 12px 0;
+    padding: 0;
 
     a {
       padding: 21px 0 21px 30px;
@@ -33,6 +31,7 @@
 
     &.open {
       max-height: 500px;
+      padding: 0 0 12px 0;
     }
   }
 
