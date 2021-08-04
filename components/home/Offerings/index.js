@@ -171,7 +171,7 @@ const detailsNFTs = {
   ],
   headphones: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
-    'nft-pic',
+    'nft_pic',
     'DG Headphones',
     'LEGENDARY',
     '',
@@ -180,7 +180,7 @@ const detailsNFTs = {
   ],
   headphones: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
-    'nft-pic',
+    'nft_pic',
     'DG Headphones',
     'LEGENDARY',
     '',

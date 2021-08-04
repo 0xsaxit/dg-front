@@ -111,10 +111,10 @@ const ContentOfferings = props => {
         <div className={styles.outter_nft_container}>
           {Object.keys(props.detailsNFTs).map((item, i) => (
             <a href={props.detailsNFTs[item][5]} className={styles.nft_container}>
-                <span key={i} styles={styles.image_wrapper}>
+                <span key={i} style={{"display": "flex", "justify-content": "center"}}>
                   <Image
                     src={props.detailsNFTs[item][0]}
-                    className={styles.nft_pic}
+                    className={props.detailsNFTs[item][1]}
                   />
                 </span>
                 <div className={styles.nft_description}>
