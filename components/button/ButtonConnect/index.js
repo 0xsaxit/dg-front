@@ -7,6 +7,8 @@ import call from 'common/API';
 import Aux from 'components/_Aux';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 
+import styles from './ButtonConnect.module.scss';
+
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
   if (userAddress) {
@@ -207,13 +209,13 @@ const ButtonConnect = () => {
           <Button
             color="blue"
             className={
-              binance ? "binanace_top" : "metamask_button"
+              binance ? styles.binanace_top : styles.metamask_button
             }
             onClick={() => openMetaMask()}
           >
             <span>
               <img
-                className="open_metamask_img"
+                className={styles.open_metamask_img}
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
               />
               Connect Metamask
@@ -223,8 +225,8 @@ const ButtonConnect = () => {
             color="blue"
             className={
               binance
-                ? "binanace_top"
-                : "metamask_mobile_button"
+                ? styles.binanace_top
+                : styles.metamask_mobile_button
             }
             onClick={() => openMetaMask()}
           >
