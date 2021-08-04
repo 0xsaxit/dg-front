@@ -30,8 +30,6 @@ const MenuTop = props => {
   const [atriPrice, setAtriPrice] = useState(0);
   const [casinoBalance, setCasinoBalance] = useState(0);
 
-  console.log('--------mobile ------', isMobile);
-
   const router = useRouter();
   let listener = null;
   let linkDocs = '';
