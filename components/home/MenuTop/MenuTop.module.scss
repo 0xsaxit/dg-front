@@ -110,11 +110,11 @@
         cursor: pointer;
       }
     }
+  }
 
-    &.dark {
-      opacity: 1;
-      background-color: black !important;
-      border-bottom: 1px solid rgb(21, 24, 28);
-    }
+  &.dark {
+    opacity: 1;
+    background-color: black !important;
+    border-bottom: 1px solid rgb(21, 24, 28);
   }
 }

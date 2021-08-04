@@ -97,8 +97,6 @@ const MenuTop = props => {
     };
   }, [scrollState]);
 
-  console.log('---------', scrollState);
-
   const onCopy = () => {
     navigator.clipboard.writeText(state.userAddress);
     setCopied(true);
@@ -328,17 +326,17 @@ const MenuTop = props => {
   } else {
     return (
       <span>
-        <div className={styles.dashboard_menu_container}>
+        <div
+          className={cn(
+            styles.dashboard_menu_container,
+            open || scrollState !== 'top' || router.asPath !== '/'
+              ? styles.dark
+              : ''
+          )}
+        >
           <MessageBar />
 
-          <Menu
-            className={cn(
-              styles.menu_container,
-              open || scrollState !== 'top' || router.asPath !== '/'
-                ? styles.dark
-                : ''
-            )}
-          >
+          <Menu className={cn(styles.menu_container)}>
             {DGLogo()}
             {shownOrHiddenItems()}
             {isMobile && balancesAndButtons()}
