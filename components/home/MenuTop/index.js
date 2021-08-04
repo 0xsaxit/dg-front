@@ -188,9 +188,9 @@ const MenuTop = props => {
 
   // dropdown menu for mobile
   function dropdownMenu() {
-    return open ? (
-      <div className={styles.mobile_menu}>
-        <span class="d-flex flex-column">
+    return (
+      <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
+        <span class="d-flex flex-column w-100">
           {!isMobile && (
             <Link href={`/${utm}`}>
               <Menu.Item className={styles.menu_style}>Play</Menu.Item>
@@ -231,8 +231,6 @@ const MenuTop = props => {
           )}
         </span>
       </div>
-    ) : (
-      <></>
     );
   }
 

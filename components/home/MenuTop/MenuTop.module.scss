@@ -6,9 +6,9 @@
   position: sticky;
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  user-select: none;
 
   .mobile_menu {
-    border-bottom: 1px solid #15181c;
     position: fixed;
     top: 100px;
     width: 100%;
@@ -16,7 +16,9 @@
     background: #000;
     font-size: 18px;
     font-family: Larsseit-Bold;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    max-height: 0px;
+    overflow: hidden;
 
     a {
       padding: 21px 0 21px 30px;
@@ -26,6 +28,10 @@
       &:hover {
         background: #1f1f1f;
       }
+    }
+
+    &.open {
+      max-height: 500px;
     }
   }
 
@@ -109,7 +115,7 @@
       transition: all 0.25s;
       -webkit-transition: all 0.25s;
       background-color: black !important;
-      border-bottom: 1px solid rgb(21, 24, 28);
+      border-bottom: none;
     }
   }
 }
