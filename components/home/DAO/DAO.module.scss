@@ -6,11 +6,12 @@
 	margin-left: 20px;
 	position: relative;
 	z-index: 1;
-  border-right: 1px solid rgb(21,24,28);
+  border-right: 1px solid rgba(42, 42, 42, 1);
 
 	.menu_list {
 		margin-top: 60px;
 		padding-top: 52px;
+		position: fixed;
 
 		.menu_header {
 			font-size: 12px;
