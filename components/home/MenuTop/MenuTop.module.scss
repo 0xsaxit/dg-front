@@ -7,6 +7,28 @@
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 
+  .mobile_menu {
+    border-bottom: 1px solid #15181c;
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    left: 0;
+    background: #000;
+    font-size: 18px;
+    font-family: Larsseit-Bold;
+    transition: opacity 0.3s ease;
+
+    a {
+      padding: 21px 0 21px 30px;
+      color: rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+
+      &:hover {
+        background: #1f1f1f;
+      }
+    }
+  }
+
   .menu_container {
     display: flex;
     align-items: center;
@@ -21,6 +43,13 @@
     border: none;
     text-align: center;
     padding: 34px 30px;
+    color: white;
+    font-size: 18px;
+    font-family: Larsseit-Bold;
+
+    @include mq($until: medium) {
+      background: black;
+    }
 
     .right_menu_items {
       display: flex;
@@ -37,6 +66,17 @@
 
     .menu_items_to_hide {
       display: flex;
+      align-items: center;
+
+      @include mq($until: medium) {
+        margin-left: auto;
+
+        svg {
+          path {
+            fill: #777e90;
+          }
+        }
+      }
 
       .menu_style {
         padding: 0;
@@ -57,15 +97,19 @@
           opacity: 0.8;
         }
       }
+
+      svg {
+        margin-left: 56px;
+        cursor: pointer;
+      }
     }
 
     &.dark {
       opacity: 1;
       transition: all 0.25s;
       -webkit-transition: all 0.25s;
-      background-color: black;
+      background-color: black !important;
       border-bottom: 1px solid rgb(21, 24, 28);
-      padding-bottom: 2px;
     }
   }
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import cn from 'classnames';
 import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
@@ -15,7 +16,8 @@ import styles from './MenuTop.module.scss';
 const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
+  const isTablet = useMediaQuery('(min-width: 1200px)');
+  const isMobile = useMediaQuery('(min-width: 768px)');
   // define local variables
   // const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
@@ -27,6 +29,8 @@ const MenuTop = props => {
   const [ethPrice, setEthPrice] = useState(0);
   const [atriPrice, setAtriPrice] = useState(0);
   const [casinoBalance, setCasinoBalance] = useState(0);
+
+  console.log('--------mobile ------', isMobile);
 
   const router = useRouter();
   let listener = null;
@@ -162,7 +166,7 @@ const MenuTop = props => {
   // helper functions
 
   function DGLogo() {
-    return (
+    return isMobile ? (
       <Link href="/">
         <img
           className={styles.menu_logo}
@@ -170,87 +174,67 @@ const MenuTop = props => {
           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png"
         />
       </Link>
+    ) : (
+      <>
+        <Link href="/">
+          <img
+            className={styles.menu_logo}
+            alt="Decentral Games Logo"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+          />
+        </Link>
+        &nbsp; Decentral games
+      </>
     );
   }
 
   // dropdown menu for mobile
   function dropdownMenu() {
-    return (
-      <div className="mobile-height-fix">
-        <Menu attached="top" className="mobile-menu-popup">
-          <Dropdown
-            item
-            icon={open ? 'close' : 'bars'}
-            onClick={() => menuOpen()}
-            id={open ? 'mobile-menu-icon' : ''}
-          >
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <Icon name="dropdown" />
-                <span class="d-flex flex-column">
-                  <Link href={`/${utm}`}>
-                    <Menu.Item
-                      className={styles.menu_style}
-                      id="dropdown-menu-items"
-                    >
-                      Play
-                    </Menu.Item>
-                  </Link>
+    return open ? (
+      <div className={styles.mobile_menu}>
+        <span class="d-flex flex-column">
+          {!isMobile && (
+            <Link href={`/${utm}`}>
+              <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+            </Link>
+          )}
+          {!isMobile && (
+            <Link href="/dg">
+              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/dg">
-                    <Menu.Item
-                      className={styles.menu_style}
-                      id="dropdown-menu-items"
-                    >
-                      DAO
-                    </Menu.Item>
-                  </Link>
+          {!isMobile && (
+            <Link href="/games">
+              <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/games">
-                    <Menu.Item
-                      className={styles.menu_style}
-                      id="dropdown-menu-items"
-                    >
-                      Games
-                    </Menu.Item>
-                  </Link>
+          {!isTablet && (
+            <Link href="/events">
+              <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/events">
-                    <Menu.Item
-                      className={styles.menu_style}
-                      id="dropdown-menu-items"
-                    >
-                      Events
-                    </Menu.Item>
-                  </Link>
+          {!isTablet && (
+            <Link href="/blog">
+              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/blog">
-                    <Menu.Item
-                      className={styles.menu_style}
-                      id="dropdown-menu-items"
-                    >
-                      News & Blog
-                    </Menu.Item>
-                  </Link>
-
-                  <a
-                    href="https://docs.decentral.games"
-                    id="docs-top-menu"
-                    target="_blank"
-                  >
-                    <Menu.Item
-                      className={styles.menu_style}
-                      id="dropdown-menu-items"
-                    >
-                      Docs
-                    </Menu.Item>
-                  </a>
-                </span>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu>
+          {!isTablet && (
+            <a
+              href="https://docs.decentral.games"
+              id="docs-top-menu"
+              target="_blank"
+            >
+              <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+            </a>
+          )}
+        </span>
       </div>
+    ) : (
+      <></>
     );
   }
 
@@ -258,34 +242,68 @@ const MenuTop = props => {
   function shownOrHiddenItems() {
     return (
       <div className={styles.menu_items_to_hide}>
-        <Link href={`/${utm}`}>
-          <Menu.Item className={styles.menu_style}>Play</Menu.Item>
-        </Link>
+        {isMobile && (
+          <Link href={`/${utm}`}>
+            <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+          </Link>
+        )}
 
-        <Link href="/dg">
-          <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
-        </Link>
+        {isMobile && (
+          <Link href="/dg">
+            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+          </Link>
+        )}
 
-        <Link href="/games">
-          <Menu.Item className={styles.menu_style}>Games</Menu.Item>
-        </Link>
+        {isMobile && (
+          <Link href="/games">
+            <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
+          </Link>
+        )}
 
-        <Link href="/events">
-          <Menu.Item className={styles.menu_style}>Events</Menu.Item>
-        </Link>
+        {!isTablet && (
+          <svg
+            width="22"
+            height="12"
+            viewBox="0 0 22 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            <path
+              d="M1.66671 0.666656C0.930328 0.666656 0.333374 1.26361 0.333374 1.99999C0.333374 2.73637 0.930328 3.33332 1.66671 3.33332H20.3334C21.0698 3.33332 21.6667 2.73637 21.6667 1.99999C21.6667 1.26361 21.0698 0.666656 20.3334 0.666656H1.66671Z"
+              fill="white"
+            />
+            <path
+              d="M1.66671 8.66666C0.930328 8.66666 0.333374 9.26361 0.333374 9.99999C0.333374 10.7364 0.930328 11.3333 1.66671 11.3333H20.3334C21.0698 11.3333 21.6667 10.7364 21.6667 9.99999C21.6667 9.26361 21.0698 8.66666 20.3334 8.66666H1.66671Z"
+              fill="white"
+            />
+          </svg>
+        )}
 
-        <Link href="/blog">
-          <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
-        </Link>
+        {isTablet && (
+          <Link href="/events">
+            <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+          </Link>
+        )}
 
-        <a
-          href="https://docs.decentral.games"
-          id="docs-top-menu"
-          className="d-flex"
-          target="_blank"
-        >
-          <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
-        </a>
+        {isTablet && (
+          <Link href="/blog">
+            <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+          </Link>
+        )}
+
+        {isTablet && (
+          <a
+            href="https://docs.decentral.games"
+            id="docs-top-menu"
+            className="d-flex"
+            target="_blank"
+          >
+            <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+          </a>
+        )}
       </div>
     );
   }
@@ -324,20 +342,17 @@ const MenuTop = props => {
           <MessageBar />
           {dropdownMenu()}
 
-          {props.isHomePage && !open ? (
+          {!open ? (
             <Menu className={styles.menu_container}>
               {DGLogo()}
               {shownOrHiddenItems()}
-              {balancesAndButtons()}
+              {isMobile && balancesAndButtons()}
             </Menu>
           ) : (
-            <Menu
-              className={cn(styles.menu_container, styles.dark)}
-              icon="labeled"
-            >
+            <Menu className={cn(styles.menu_container, styles.dark)}>
               {DGLogo()}
               {shownOrHiddenItems()}
-              {balancesAndButtons()}
+              {isMobile && balancesAndButtons()}
             </Menu>
           )}
         </div>
