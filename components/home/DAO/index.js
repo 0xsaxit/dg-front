@@ -1,23 +1,22 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from 'store';
 import Web3 from 'web3';
 import Link from 'next/link';
 import { Divider, Input } from 'semantic-ui-react';
-import Overview from '../../content/ContentDAO/Overview';
-import ContentGovernance from '../../content/ContentGovernance';
-import ContentMining from '../../content/ContentMining';
-import ContentMiningV1 from '../../content/ContentMiningV1';
-import ContentBalancer from '../../content/ContentBalancer';
-import ContentUniswap from '../../content/ContentUniswap';
-import ContentAirdrop from '../../content/ContentAirdrop';
-import ContentTreasury from '../../content/ContentTreasury';
-import ButtonReward1 from '../../button/ButtonReward1';
-import ButtonReward2 from '../../button/ButtonReward2';
-import Transactions from '../../../common/Transactions';
-import Global from '../../Constants';
-import Fetch from '../../../common/Fetch';
+import Overview from 'components/content/ContentDAO/Overview';
+import ContentGovernance from 'components/content/ContentGovernance';
+import ContentMining from 'components/content/ContentMining';
+import ContentMiningV1 from 'components/content/ContentMiningV1';
+import ContentBalancer from 'components/content/ContentBalancer';
+import ContentUniswap from 'components/content/ContentUniswap';
+import ContentAirdrop from 'components/content/ContentAirdrop';
+import ContentTreasury from 'components/content/ContentTreasury';
+import ButtonReward1 from 'components/button/ButtonReward1';
+import ButtonReward2 from 'components/button/ButtonReward2';
+import Transactions from 'common/Transactions';
+import Global from 'components/Constants';
+import Fetch from 'common/Fetch';
 import styles from './DAO.module.scss';
-
 
 const DAO = props => {
   // get user's state from the Context API store
