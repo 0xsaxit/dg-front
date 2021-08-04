@@ -24,7 +24,7 @@ const detailsGames = {
   ],
   BlackJack: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919297/Blackjack_logt66.jpg',
-    'games_pic',
+    'games-pic',
     'Blackjack',
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS • ',
@@ -34,7 +34,7 @@ const detailsGames = {
   ],
   Roulette: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919296/Roulette_hptwtf.jpg',
-    'games_pic',
+    'games-pic',
     'Roulette',
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS • ',
@@ -44,7 +44,7 @@ const detailsGames = {
   ],
   Slots: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919947/SLOTS_hegzzk.jpg',
-    'games_pic',
+    'games-pic',
     'Slots',
     'Decentral Games slots are skin-able machines featuring five spinning reels each with four icons. There are two clickable buttons facing the player to set the bet amount and spin.',
     '1 PLAYER • ',
@@ -57,7 +57,7 @@ const detailsGames = {
 const detailsCasinos = {
   Tominoya: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
-    'games_pic',
+    'games-pic',
     'Tominoya',
     'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
@@ -75,7 +75,7 @@ const detailsCasinos = {
   ],
   Chateau: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
-    'games_pic',
+    'games-pic',
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
@@ -96,7 +96,7 @@ const detailsCasinos = {
 const detailsShop = {
   shop_dcl: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1605741773/nftshop_yojy7q.png',
-    'games_pic',
+    'games-pic',
     'NFT Shop',
     'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'WEARABLES',
@@ -105,7 +105,7 @@ const detailsShop = {
   ],
   shop_opensea: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1613266160/OpenSea_y26zkp.png',
-    'games_pic',
+    'games-pic',
     'OpenSea',
     'Decentral Games wearables are also available on OpenSea. OpenSea provides a one-stop shop for creating a customizable marketplace for non-fungible tokens, like our Decentral Games wearables. Here, users can smoothly buy and sell our wearables, get custom stats and analytics, and earn revenue by trading goods.',
     'WEARABLES',

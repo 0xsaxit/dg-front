@@ -77,11 +77,11 @@ const ContentOfferings = props => {
                 {props.detailsGames[item][3]}
               </p>
 
-              <div className="d-flex position-relative justify-content-between">
+              <div style={{"position": "relative", "display": "flex", "justify-content": "space-between"}}>
                 <Button
                   id={`play-now-button-games-${i + 1}`}
                   color="blue"
-                  className={styles.nft_button}
+                  className={styles.nft_blue_button}
                   target="_blank"
                   href={props.detailsGames[item][6] + utm}
                 >

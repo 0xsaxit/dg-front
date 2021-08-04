@@ -48,14 +48,29 @@ $mq-breakpoints: (
 //////////////////////////////
 ///Page
 //////////////////////////////
-.account_other_inner_p {
-  min-height: calc(100vh - 250px);
-  font-family: 'Lato', sans-serif;
-  font-size: 17px;
-  margin-top: 45px;
-  padding-bottom: 60px;
-  text-align: center;
-  color: gray;
+.main-container {
+  padding-bottom: 30px!important;
+  min-height: calc(100vh - 220px);
+}
+.page-container {
+  max-width: 1400px;
+  margin-left: auto!important;
+  margin-right: auto!important;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+#menu-logo {
+  width: 36px;
+  padding-top: 18px;
+  padding-bottom: 15px;
+  margin-right: 9px;
+  margin-left: 24px;
+  height: 100%;
+  position: relative;
+  z-index: 7;
+  cursor: pointer;
 }
 
 //////////////////////////////
@@ -449,6 +464,16 @@ $mq-breakpoints: (
   margin-bottom: 30px;
 }
 
+.games-pic {
+  max-height: 270px;
+  min-height: 270px; 
+  height: 100%;
+	width: 100%;
+	object-fit: cover;
+	margin-bottom: 4px !important;
+	border-radius: 20px 20px 0 0 !important; 
+}
+
 .nft_description {
   padding: 0px 30px 30px 30px;
 }
@@ -657,7 +682,8 @@ $mq-breakpoints: (
   flex-direction: column;
   justify-content: space-between;
   z-index: 5;
-  margin-top: 30px;
+  margin-top: 100px;
+  margin-bottom: 40px;
   padding: 10px 0px 30px 0px;
   color: black;
   text-align: center;
@@ -894,5 +920,11 @@ $mq-breakpoints: (
 
   @include mq($until: small) {
     height: 200px;
+  }
+}
+@media (max-width: 499px){
+  .page-container {
+    padding-left: 21px;
+    padding-right: 21px;
   }
 }
