@@ -6,6 +6,7 @@
     font-family: Larsseit-ExtraBold;
     margin: 0;
     padding: 0;
+    line-height: 1.185614em;
   }
 
   .image_span {
@@ -177,7 +178,7 @@
     max-width: 1400px;
     width: 100% !important;
     max-width: 1400px;
-    padding: 0 60px;
+    padding: 0 76px;
 
     @include mq($until: medium) {
       padding: 0 30px;
@@ -241,6 +242,7 @@
       max-width: 640px;
       margin-bottom: 8px;
       margin-top: 6px;
+      font-size: 21px;
 
       @include mq($until: medium) {
         max-width: 480px !important;

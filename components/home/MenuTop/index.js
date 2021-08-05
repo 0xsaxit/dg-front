@@ -325,7 +325,6 @@ const MenuTop = props => {
     return null;
   } else {
     return (
-      <span>
         <div
           className={cn(
             styles.dashboard_menu_container,
@@ -343,7 +342,6 @@ const MenuTop = props => {
           </Menu>
           {dropdownMenu()}
         </div>
-      </span>
     );
   }
 };

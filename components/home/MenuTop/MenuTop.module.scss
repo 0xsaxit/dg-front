@@ -7,6 +7,7 @@
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   user-select: none;
+  max-height: 69px;
 
   .mobile_menu {
     position: fixed;
@@ -41,6 +42,7 @@
   }
 
   .menu_container {
+    margin-top: 11px !important;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -53,7 +55,6 @@
     box-shadow: none;
     border: none;
     text-align: center;
-    padding: 34px 30px;
     color: white;
     font-size: 18px;
     font-family: Larsseit-Bold;
@@ -66,11 +67,13 @@
     }
 
     .menu_logo {
+      margin-left: 24px;
       width: 36px;
       height: 100%;
       position: relative;
       z-index: 7;
       cursor: pointer;
+      margin-right: 31px;
     }
 
     .menu_items_to_hide {
@@ -98,7 +101,7 @@
         font-size: 18px;
         display: flex;
         justify-content: center;
-        margin-left: 56px;
+        margin-right: 50px;
         padding-right: 0 !important;
 
         &:hover {
