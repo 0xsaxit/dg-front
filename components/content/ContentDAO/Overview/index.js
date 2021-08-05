@@ -31,6 +31,15 @@ const Overview = (props) => {
   const [dateTwo, setDateTwo] = useState('');
   const [snapshotThree, setSnapshotThree] = useState([]);
   const [dateThree, setDateThree] = useState('');
+  const [snapshotFour, setSnapshotFour] = useState([]);
+  const [dateFour, setDateFour] = useState('');
+  const [activeOne, setActiveOne] = useState('');
+  const [activeTwo, setActiveTwo] = useState('');
+  const [activeThree, setActiveThree] = useState('');
+  const [activeFour, setActiveFour] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
+
+  const [visible, setVisible] = useState(true);
 
   function formatPrice(balanceDG, units) {
     const priceFormatted = Number(balanceDG)
@@ -47,7 +56,7 @@ const Overview = (props) => {
         {
           query: `{
             proposals (
-              first: 3,
+              first: 4,
               skip: 0,
               where: {
                 space_in: ["decentralgames.eth"],
@@ -77,6 +86,7 @@ const Overview = (props) => {
       setSnapshotOne(snapshotData.data.data.proposals[0]);
       setSnapshotTwo(snapshotData.data.data.proposals[1]);
       setSnapshotThree(snapshotData.data.data.proposals[2]);
+      setSnapshotFour(snapshotData.data.data.proposals[3]);
     })();
   }, []);
 
@@ -89,7 +99,29 @@ const Overview = (props) => {
 
     const temp_three = new Date(snapshotThree.end * 1000);
     setDateThree(temp_three.toDateString());
-  }, [snapshotOne, snapshotTwo, snapshotThree]);
+
+    const temp_four = new Date(snapshotFour.end * 1000);
+    setDateFour(temp_four.toDateString());
+
+    var today = new Date();
+    
+    if (temp < today) {
+      setActiveOne(true);
+    }
+
+    if (temp_two < today) {
+      setActiveTwo(true);
+    }
+
+    if (temp_three < today) {
+      setActiveThree(true);
+    }
+
+    if (temp_four < today) {
+      setActiveFour(true);
+    }
+
+  }, [snapshotOne, snapshotTwo, snapshotThree, snapshotFour, currentDate]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -191,6 +223,32 @@ const Overview = (props) => {
     );
   }
 
+  function showDiv() {
+    return (
+      <div className={styles.blue_container}>
+        <div className={styles.blue_text}>
+          <p className={styles.blue_header}>
+            Stake $DG to earn <br /> and ‘Be The House’
+          </p>
+          <p className={styles.blue_lower}>
+            By staking $DG, you can govern the treasury, add proposals, and earn yield.
+          </p>
+          <Button 
+            className={styles.blue_button}
+          >
+            Start Staking $DG
+          </Button>
+        </div>
+        <img className={styles.blue_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627992941/Bitcoin_Dashboard_mhyajb.png" />
+        <div className={styles.close_button} onClick={() => setVisible(false)}>
+          <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.18262 10.8501C0.772461 11.2676 0.750488 12.0366 1.19727 12.4761C1.64404 12.9229 2.40576 12.9082 2.82324 12.4907L6.9541 8.35986L11.0776 12.4834C11.5098 12.9229 12.2568 12.9155 12.6963 12.4688C13.1431 12.0293 13.1431 11.2822 12.7109 10.8501L8.5874 6.72656L12.7109 2.5957C13.1431 2.16357 13.1431 1.4165 12.6963 0.977051C12.2568 0.530273 11.5098 0.530273 11.0776 0.962402L6.9541 5.08594L2.82324 0.955078C2.40576 0.544922 1.63672 0.522949 1.19727 0.969727C0.757812 1.4165 0.772461 2.17822 1.18262 2.5957L5.31348 6.72656L1.18262 10.8501Z" fill="white"/>
+          </svg>
+        </div> 
+      </div>
+    );
+  }
+
   const weekly = {
     labels: statsUSDX,
     datasets: [
@@ -216,6 +274,8 @@ const Overview = (props) => {
             Your DAO Dashboard
           </h1>
         </div>
+
+        {visible ? showDiv() : null}
 
         <div className={styles.treasury_container} >
 
@@ -289,7 +349,7 @@ const Overview = (props) => {
                   ) : gameplayTreasury ? (
                     <p className={styles.earned_percent_neg}>-{gameplayTreasuryPercent}%</p>
                   ) : (
-                    getLoader()
+                    null
                   )}
                 </p>
               </div>
@@ -315,7 +375,7 @@ const Overview = (props) => {
                   ) : dgTreasury ? (
                     <p className={styles.earned_percent_neg}>-{dgTreasuryPercent}%</p>
                   ) : (
-                    getLoader()
+                    null
                   )}
                 </p>
               </div>
@@ -341,7 +401,7 @@ const Overview = (props) => {
                   ) : landTreasury ? (
                     <p className={styles.earned_percent_neg}>-{landTreasuryPercent}%</p>
                   ) : (
-                    getLoader()
+                    null
                   )}
                 </p>
               </div>
@@ -383,72 +443,105 @@ const Overview = (props) => {
 
           <div className={styles.lower}>
             <p className={styles.lower_header_two}>
-              Governance <br /> Proposals
+              Governance Proposals
             </p>
 
             <div className={styles.governance_container}>
               <div className={styles.state_box}>
-                <p className={snapshotOne.state === 'CLOSED' ? styles.state_closed : styles.state}>
+                <p className={activeOne ? styles.state_closed : styles.state}>
                   {snapshotOne.state}
                 </p>
               </div>
 
               <div className={styles.gov_right}>
-                <p className={styles.gov_top}>
-                  {snapshotOne.state === 'CLOSED' ?
-                    'EXECUTED  • ' :
-                    'PENDING • '
-                  }
-                  {dateOne}
-                </p>
-                <p className={styles.gov_title}>
-                  {snapshotOne.title}
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateOne}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotOne.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
 
             <div className={styles.governance_container}>
               <div className={styles.state_box}>
-                <p className={snapshotTwo.state === 'CLOSED' ? styles.state_closed : styles.state}>
+                <p className={activeTwo ? styles.state_closed : styles.state}>
                   {snapshotTwo.state}
                 </p>
               </div>
 
               <div className={styles.gov_right}>
-                <p className={styles.gov_top}>
-                  {snapshotTwo.state === 'CLOSED' ?
-                    'EXECUTED  • ' :
-                    'PENDING • '
-                  }
-                  {dateTwo}
-                </p>
-                <p className={styles.gov_title}>
-                  {snapshotTwo.title}
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateTwo}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotTwo.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
 
             <div className={styles.governance_container}>
               <div className={styles.state_box}>
-                <p className={snapshotThree.state === 'open' ? styles.state : styles.state_closed}>
+                <p className={activeThree ? styles.state_closed : styles.state}>
                   {snapshotThree.state}
                 </p>
               </div>
 
               <div className={styles.gov_right}>
-                <p className={styles.gov_top}>
-                  {snapshotThree.state === 'open' ?
-                    'PENDING  • ' :
-                    'EXECUTED • '
-                  }
-                  {dateThree}
-                </p>
-                <p className={styles.gov_title}>
-                  {snapshotThree.title}
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateThree}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotThree.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
 
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={activeFour ? styles.state_closed : styles.state}>
+                  {snapshotFour.state}
+                </p>
+              </div>
+
+              <div className={styles.gov_right}>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <p className={styles.gov_top}>
+                    {dateFour}
+                  </p>
+                  <p className={styles.gov_title}>
+                    {snapshotFour.title}
+                  </p>
+                </div>
+                <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <div className={styles.button_span}>
+              <Button className={styles.button_gov}>
+                Discussion
+              </Button>
+              <Button className={styles.button_gov}>
+                Proposals
+              </Button>
+            </div>
           </div>
         </div>
       </div>

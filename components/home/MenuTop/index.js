@@ -1,21 +1,23 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
 import { Menu, Icon, Dropdown } from 'semantic-ui-react';
 import Link from 'next/link';
+import cn from 'classnames';
+import { GlobalContext } from 'store';
+import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
-import MessageBar from '../MessageBar';
-import ButtonConnect from 'components/button/ButtonConnect';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
-import cn from 'classnames';
+import MessageBar from '../MessageBar';
+import ButtonConnect from '../../button/ButtonConnect';
 
-import styles from './MenuTop.module.scss'
+import styles from './MenuTop.module.scss';
 
 const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
+  const isTablet = useMediaQuery('(min-width: 1200px)');
+  const isMobile = useMediaQuery('(min-width: 768px)');
   // define local variables
   // const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
@@ -29,7 +31,6 @@ const MenuTop = props => {
   const [casinoBalance, setCasinoBalance] = useState(0);
 
   const router = useRouter();
-  let menuStyle = [];
   let listener = null;
   let linkDocs = '';
 
@@ -96,40 +97,6 @@ const MenuTop = props => {
     };
   }, [scrollState]);
 
-  if (props.isHomePage && scrollState == 'top') {
-    menuStyle = [
-      'mobile_menu_icon_home',
-      'right_menu_text',
-      'sidebar_menu_text',
-      'dashboard_menu_container',
-      '',
-    ];
-  } else if (props.isHomePage && scrollState == 'amir') {
-    menuStyle = [
-      'mobile_menu_icon',
-      'right_menu_text blog',
-      'sidebar_menu_text blog',
-      'dashboard_menu_container',
-      'top',
-    ];
-  } else {
-    menuStyle = [
-      'mobile_menu_icon',
-      'right_menu_text blog',
-      'sidebar_menu_text blog',
-      'other_menu_container blog',
-      '',
-    ];
-  }
-
-  const menuOpen = () => {
-    if (open == true) {
-      setOpen(false);
-    } else {
-      setOpen(true);
-    }
-  }
-
   const onCopy = () => {
     navigator.clipboard.writeText(state.userAddress);
     setCopied(true);
@@ -188,104 +155,73 @@ const MenuTop = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
 
-  // get path and render appropriate styles
-  const getLinkStyles = (path) => {
-    if (path === '/') {
-      if (path === router.pathname) {
-        return 'active';
-      } else {
-        return '';
-      }
-    } else if (router.pathname.includes(path)) {
-      return 'active';
-    } else {
-      return '';
-    }
-  }
-
-  const DGLogo = () => {
-    return (
+  function DGLogo() {
+    return isMobile ? (
       <Link href="/">
         <img
-          id="menu-logo"
+          className={styles.menu_logo}
           alt="Decentral Games Logo"
           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png"
         />
       </Link>
+    ) : (
+      <>
+        <Link href="/">
+          <img
+            className={styles.menu_logo}
+            alt="Decentral Games Logo"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
+          />
+        </Link>
+        &nbsp; Decentral games
+      </>
     );
   }
 
   // dropdown menu for mobile
   const dropdownMenu = () => {
     return (
-      <div>
-        <Menu attached="top" className={styles.mobile_menu_popup}>
-          <Dropdown
-            item
-            icon={open ? 'close' : 'bars'}
-            onClick={() => menuOpen()}
-            id={open ? `${styles.mobile_menu_icon}` : menuStyle[0]}
-          >
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <Icon name="dropdown" />
-                <span className="d-flex flex-column">
-                  <Link href={`/${utm}`}>
-                    <Menu.Item
-                      className={cn("dropdown_menu_items", menuStyle[1])}
-                    >
-                      Play
-                    </Menu.Item>
-                  </Link>
+      <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
+        <span class="d-flex flex-column w-100">
+          {!isMobile && (
+            <Link href={`/${utm}`}>
+              <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+            </Link>
+          )}
+          {!isMobile && (
+            <Link href="/dg">
+              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/dg">
-                    <Menu.Item
-                      className={cn("dropdown_menu_items", menuStyle[1])}
-                    >
-                      DAO
-                    </Menu.Item>
-                  </Link>
+          {!isMobile && (
+            <Link href="/games">
+              <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/games">
-                    <Menu.Item
-                      className={cn("dropdown_menu_items", menuStyle[1])}
-                    >
-                      Games
-                    </Menu.Item>
-                  </Link>
+          {!isTablet && (
+            <Link href="/events">
+              <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/events">
-                    <Menu.Item
-                      className={cn("dropdown_menu_items", menuStyle[1])}
-                    >
-                      Events
-                    </Menu.Item>
-                  </Link>
+          {!isTablet && (
+            <Link href="/blog">
+              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+            </Link>
+          )}
 
-                  <Link href="/blog">
-                    <Menu.Item
-                      className={cn("dropdown_menu_items", menuStyle[1])}
-                    >
-                      News & Blog
-                    </Menu.Item>
-                  </Link>
-
-                  <a
-                    href="https://docs.decentral.games"
-                    id="docs-top-menu"
-                    target="_blank"
-                  >
-                    <Menu.Item
-                      className={cn("dropdown_menu_items", menuStyle[1])}
-                    >
-                      Docs
-                    </Menu.Item>
-                  </a>
-                </span>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu>
+          {!isTablet && (
+            <a
+              href="https://docs.decentral.games"
+              id="docs-top-menu"
+              target="_blank"
+            >
+              <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+            </a>
+          )}
+        </span>
       </div>
     );
   }
@@ -294,45 +230,68 @@ const MenuTop = props => {
   const shownOrHiddenItems = () => {
     return (
       <div className={styles.menu_items_to_hide}>
-        <Link href={`/${utm}`}>
-          <Menu.Item className={`${menuStyle[2]} ${getLinkStyles('/')}`}>
-            Play
-          </Menu.Item>
-        </Link>
+        {isMobile && (
+          <Link href={`/${utm}`}>
+            <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+          </Link>
+        )}
 
-        <Link href="/dg">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/dg')}>
-            DAO
-          </Menu.Item>
-        </Link>
+        {isMobile && (
+          <Link href="/dg">
+            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+          </Link>
+        )}
 
-        <Link href="/games">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/games')}>
-            Games
-          </Menu.Item>
-        </Link>
+        {isMobile && (
+          <Link href="/games">
+            <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
+          </Link>
+        )}
 
-        <Link href="/events">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/events')}>
-            Events
-          </Menu.Item>
-        </Link>
+        {!isTablet && (
+          <svg
+            width="22"
+            height="12"
+            viewBox="0 0 22 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            <path
+              d="M1.66671 0.666656C0.930328 0.666656 0.333374 1.26361 0.333374 1.99999C0.333374 2.73637 0.930328 3.33332 1.66671 3.33332H20.3334C21.0698 3.33332 21.6667 2.73637 21.6667 1.99999C21.6667 1.26361 21.0698 0.666656 20.3334 0.666656H1.66671Z"
+              fill="white"
+            />
+            <path
+              d="M1.66671 8.66666C0.930328 8.66666 0.333374 9.26361 0.333374 9.99999C0.333374 10.7364 0.930328 11.3333 1.66671 11.3333H20.3334C21.0698 11.3333 21.6667 10.7364 21.6667 9.99999C21.6667 9.26361 21.0698 8.66666 20.3334 8.66666H1.66671Z"
+              fill="white"
+            />
+          </svg>
+        )}
 
-        <Link href="/blog">
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/blog')}>
-            News & Blog
-          </Menu.Item>
-        </Link>
+        {isTablet && (
+          <Link href="/events">
+            <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+          </Link>
+        )}
 
-        <a
-          href="https://docs.decentral.games"
-          id="docs-top-menu"
-          target="_blank"
-        >
-          <Menu.Item className={menuStyle[2]} id={getLinkStyles('/docs')}>
-            Docs
-          </Menu.Item>
-        </a>
+        {isTablet && (
+          <Link href="/blog">
+            <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+          </Link>
+        )}
+
+        {isTablet && (
+          <a
+            href="https://docs.decentral.games"
+            id="docs-top-menu"
+            className="d-flex"
+            target="_blank"
+          >
+            <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+          </a>
+        )}
       </div>
     );
   }
@@ -343,7 +302,7 @@ const MenuTop = props => {
       <>
         <span
           className={cn(
-            'right_menu_items',
+            styles.right_menu_items,
             state.userStatus >= 4 ? '' : 'd-none'
           )}
         >
@@ -352,7 +311,7 @@ const MenuTop = props => {
         </span>
         <span
           className={cn(
-            'right_menu_items',
+            styles.right_menu_items,
             state.userStatus < 3 ? '' : 'd-none'
           )}
         >
@@ -367,23 +326,22 @@ const MenuTop = props => {
   } else {
     return (
       <span>
-        <div className={menuStyle[3]} id={menuStyle[4]}>
-          <MessageBar />
-          {dropdownMenu()}
-
-          {props.isHomePage && !open ? (
-            <Menu className={styles.menu_container} icon="labeled">
-              {DGLogo()}
-              {shownOrHiddenItems()}
-              {balancesAndButtons()}
-            </Menu>
-          ) : (
-            <Menu className={styles.menu_container} icon="labeled">
-              {DGLogo()}
-              {shownOrHiddenItems()}
-              {balancesAndButtons()}
-            </Menu>
+        <div
+          className={cn(
+            styles.dashboard_menu_container,
+            open || scrollState !== 'top' || router.asPath !== '/'
+              ? styles.dark
+              : ''
           )}
+        >
+          <MessageBar />
+
+          <Menu className={cn(styles.menu_container)}>
+            {DGLogo()}
+            {shownOrHiddenItems()}
+            {isMobile && balancesAndButtons()}
+          </Menu>
+          {dropdownMenu()}
         </div>
       </span>
     );

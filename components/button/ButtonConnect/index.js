@@ -1,7 +1,8 @@
-import { useState, useContext, useEffect, Component } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from 'store';
 import { useRouter } from 'next/router';
 import { Button } from 'semantic-ui-react';
+import cn from 'classnames';
 import Fetch from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
@@ -48,7 +49,6 @@ const ButtonConnect = () => {
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
-  let menuStyle = [];
   let listener = null;
 
   useEffect(() => {
@@ -96,12 +96,6 @@ const ButtonConnect = () => {
       document.removeEventListener('scroll', listener);
     };
   }, [scrollState]);
-
-  if (scrollState == 'top') {
-    menuStyle = ['get_metamask'];
-  } else {
-    menuStyle = ['get_metamask_scroll'];
-  }
 
   let userAddress = '';
 
@@ -196,42 +190,28 @@ const ButtonConnect = () => {
   return (
     <Aux>
       {metamaskEnabled ? (
-        <span>
+        <span className={styles.main_right_panel}>
+          <Button
+            color="blue"
+            className={cn(
+              styles.metamask_button,
+              binance ? styles.binance_top : ''
+            )}
+            onClick={() => openMetaMask()}
+          >
+            <img
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
+              className={styles.metamask_icon}
+            />
+            Connect Metamask
+          </Button>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
             target="_blank"
-            className={menuStyle[0]}
-            id="need-help-text"
-            style={{ color: 'rgba(255, 255, 255)' }}
+            className={styles.get_metamask}
           >
-            Need help?
+            ?
           </a>
-          <Button
-            color="blue"
-            className={
-              binance ? styles.binanace_top : styles.metamask_button
-            }
-            onClick={() => openMetaMask()}
-          >
-            <span>
-              <img
-                className={styles.open_metamask_img}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-              />
-              Connect Metamask
-            </span>
-          </Button>
-          <Button
-            color="blue"
-            className={
-              binance
-                ? styles.binanace_top
-                : styles.metamask_mobile_button
-            }
-            onClick={() => openMetaMask()}
-          >
-            <span>Connect</span>
-          </Button>
         </span>
       ) : (
         <ModalLoginTop />

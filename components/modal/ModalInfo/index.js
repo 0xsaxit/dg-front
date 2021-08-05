@@ -84,8 +84,8 @@ const ModalInfo = () => {
       trigger={
         <span>
           {!state.DGBalances.BALANCE_KEEPER_DG ? (
-            <Button className={styles.account_button}>
-              <p className={styles.right_menu_text}>
+            <Button className={styles.account_button} style={{ marginTop: 0 }}>
+              <p className="right-menu-text bnb">
                 <Loader
                   className={styles.info_modal_loader}
                   active

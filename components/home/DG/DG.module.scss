@@ -173,7 +173,7 @@
 
   .home_dashboard_content {
     position: relative;
-    height: 100vh;
+    height: calc(100vh);
     max-width: 1400px;
     width: 100% !important;
     max-width: 1400px;
@@ -285,8 +285,6 @@
         margin-top: 4px;
       }
     }
-
-
 
     .chevron_down {
       bottom: -55px;
