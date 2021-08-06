@@ -82,7 +82,7 @@ const ModalInfo = () => {
       open={open}
       close
       trigger={
-        <span>
+        <span className={styles.account_button_wrapper}>
           {!state.DGBalances.BALANCE_KEEPER_DG ? (
             <Button className={styles.account_button} style={{ marginTop: 0 }}>
               <p className="right-menu-text bnb">
