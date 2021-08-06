@@ -66,6 +66,7 @@ const ModalPopup = () => {
         pinned
         on="click"
         position="bottom right"
+        style={{"borderRadius":"24px" , "marginTop": "15px" , "padding": "30px"}}
         className={styles.account_popup}
         trigger={
           <Button className={styles.account_button}>
@@ -74,7 +75,7 @@ const ModalPopup = () => {
           </Button>
         }
       >
-        <span>
+        <span className={styles.popup_wrapper}>
           <span className="d-flex">
             <Link href="/account">
               <img
@@ -109,7 +110,7 @@ const ModalPopup = () => {
               </span>
             </span>
           </span>
-          <span className="d-flex flex-column">
+          <span className={styles.link_wrapper}>
             <Link href="/account">
               <Button className={styles.casino_balance_button}>
                 <p className={styles.casino_balance_text}> Casino Balance </p>
