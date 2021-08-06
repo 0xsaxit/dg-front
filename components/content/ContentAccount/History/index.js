@@ -52,10 +52,14 @@ const History = ({ state }) => {
   // get user's transaction history from the Context API store
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
+  const dataPoker = state.transactions[2];
+  console.log('?????');
+  console.log(dataPoker);
 
   // define local variables
   const [dataPage, setDataPage] = useState([]);
   const [dataPageTwo, setDataPageTwo] = useState([]);
+  const [dataPageThree, setDataPageThree] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const maximumCount = 100; // ***** we should limit the data being returned from the server to 100 rows *****
@@ -71,7 +75,12 @@ const History = ({ state }) => {
 
   useEffect(() => {
     if (!isLoading) {
-      let result = {}, resultTwo = {}, history = [];
+      let result = {};
+      let resultTwo = {};
+      let i;
+      let j;
+      let history = [];
+      let gameplay = [];
 
       result = dataHistory.slice(0, maximumCount);
       resultTwo = dataPlay.slice(0, maximumCount);
@@ -86,8 +95,18 @@ const History = ({ state }) => {
         }
       }
 
-      setDataPage(history.slice(0, 6));
-      setDataPageTwo(resultTwo);
+      for (j = 0; j < resultTwo.length; j++) {
+        const resultTypeTwo = get(resultTwo, `${j}.gameType`, '');
+        console.log(resultTypeTwo);
+        if (
+          resultTypeTwo < 10
+        ) {
+          gameplay.push(resultTwo[j]);
+        }
+      }
+
+      setDataPage(history);
+      setDataPageTwo(gameplay);
     }
   }, [isLoading]);
 
@@ -194,8 +213,6 @@ const History = ({ state }) => {
                 action = 'Backgammon';
               } else if (row.gameType === 7 || row.gameType === 4) {
                 action = 'Blackjack';
-              } else if (row.gameType === 9) {
-                action = 'Poker';
               }
 
               let style = '';
