@@ -13,12 +13,16 @@ function History({ state }) {
   // get user's transaction history from the Context API store
   const dataHistory = state.transactions[0];
   const dataPlay = state.transactions[1];
+  const dataPoker = state.transactions[2];
+  console.log('?????');
+  console.log(dataPoker);
 
   // console.log('state: ', state);
 
   // define local variables
   const [dataPage, setDataPage] = useState([]);
   const [dataPageTwo, setDataPageTwo] = useState([]);
+  const [dataPageThree, setDataPageThree] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [utm, setUtm] = useState('');
 
@@ -37,7 +41,9 @@ function History({ state }) {
       let result = {};
       let resultTwo = {};
       let i;
+      let j;
       let history = [];
+      let gameplay = [];
 
       result = dataHistory.slice(0, maximumCount);
       resultTwo = dataPlay.slice(0, maximumCount);
@@ -54,8 +60,18 @@ function History({ state }) {
         }
       }
 
+      for (j = 0; j < resultTwo.length; j++) {
+        const resultTypeTwo = get(resultTwo, `${j}.gameType`, '');
+        console.log(resultTypeTwo);
+        if (
+          resultTypeTwo < 9
+        ) {
+          gameplay.push(resultTwo[j]);
+        }
+      }
+
       setDataPage(history);
-      setDataPageTwo(resultTwo);
+      setDataPageTwo(gameplay);
     }
   }, [isLoading]);
 
@@ -257,8 +273,6 @@ function History({ state }) {
                 action = 'Backgammon';
               } else if (row.gameType === 7 || row.gameType === 4) {
                 action = 'Blackjack';
-              } else if (row.gameType === 9) {
-                action = 'Poker';
               }
 
               let style = '';

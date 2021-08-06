@@ -29,6 +29,10 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
   },
 
+  POKER_DATA: address => {
+    return call(`${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`, 'GET');
+  },
+
   PLAYER_DATA: address => {
     return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
   },
@@ -36,6 +40,7 @@ const apiCall = {
   USERS_LIST: address => {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // POST API calls

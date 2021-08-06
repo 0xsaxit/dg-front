@@ -15,7 +15,9 @@ function Transactions() {
         const jsonPlay = await Fetch.PLAY_DATA(state.userAddress);
         const dataPlay = jsonPlay.result;
 
-        const response = [dataHistory, dataPlay];
+        const jsonPoker = await Fetch.POKER_DATA(state.userAddress);
+
+        const response = [dataHistory, dataPlay, jsonPoker];
 
         dispatch({
           type: 'update_history',
