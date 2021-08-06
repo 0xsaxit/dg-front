@@ -64,7 +64,7 @@ function History({ state }) {
         const resultTypeTwo = get(resultTwo, `${j}.gameType`, '');
         console.log(resultTypeTwo);
         if (
-          resultTypeTwo < 9
+          resultTypeTwo < 10
         ) {
           gameplay.push(resultTwo[j]);
         }
