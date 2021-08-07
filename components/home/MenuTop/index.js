@@ -196,7 +196,7 @@ const MenuTop = props => {
 
           {!isMobile && (
             <Link href="/games">
-              <Menu.Item className={styles.menu_style}>Games</Menu.Item>
+              <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
             </Link>
           )}
 
@@ -244,7 +244,7 @@ const MenuTop = props => {
 
         {isMobile && (
           <Link href="/games">
-            <Menu.Item className={styles.menu_style}>Games</Menu.Item>
+            <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
           </Link>
         )}
 
