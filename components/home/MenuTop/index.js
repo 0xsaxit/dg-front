@@ -16,7 +16,7 @@ import styles from './MenuTop.module.scss';
 const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const isTablet = useMediaQuery('(min-width: 1200px)');
+  const isTablet = useMediaQuery('(min-width: 1191px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
   // define local variables
   // const [isDarkMode, setDarkMode] = useState(false);

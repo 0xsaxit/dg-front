@@ -244,7 +244,7 @@ const Offerings = (props) => {
   function submenu() {
     return (
       <div>
-        <div className="account-other-tabs" style={{ padding: '100px 0px 60px 0px' }}>
+        <div className="account-other-tabs" style={{ padding: '200px 0px 60px 0px' }}>
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////  tab select area   //////////////////////////////// */}
