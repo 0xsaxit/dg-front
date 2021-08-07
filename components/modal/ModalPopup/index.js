@@ -66,7 +66,7 @@ const ModalPopup = () => {
         trigger={
           <Button
             className="account-button"
-            style={{ paddingLeft: '24px', paddingRight: '24px' }}
+            style={{ paddingLeft: '24px', paddingRight: '24px', marginRight: '0px' }}
           >
             <span>
               <svg

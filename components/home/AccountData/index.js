@@ -64,7 +64,7 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '0' }}>
+        <div style={{ position: 'relative', zIndex: '0', paddingTop: '150px' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span
               className="avatar-picture"

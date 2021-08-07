@@ -76,6 +76,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.homeText} !important;  
   }
   .games-container,
+  .casinos-container,
   .shop-container,
   .nft-container,
   .my-nft-container,

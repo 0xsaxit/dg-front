@@ -166,12 +166,12 @@
 
   .home_dashboard_content {
     position: relative;
-    height: calc(100vh - 72px);
+    height: calc(100vh);
     max-width: 1400px;
     width: 100% !important;
     max-width: 1400px;
     padding: 0 60px;
-    margin-top: -30px;
+    margin-top: 30px;
 
     @include mq($until: medium) {
       padding: 0 30px;
@@ -204,8 +204,14 @@
       transform: translateY(-50%);
       width: 100%;
 
+      @include mq($until: extra-large) {
+        width: calc(100% - 60px);
+        padding-top: 120px
+      }
+
       @include mq($until: medium) {
         width: calc(100% - 60px);
+        padding-top: 0px;
       }
     }
 
@@ -282,8 +288,6 @@
         margin-top: 4px;
       }
     }
-
-
 
     .chevron_down {
       bottom: -55px;
