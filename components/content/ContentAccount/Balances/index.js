@@ -36,12 +36,17 @@ const Balances = (props) => {
   const [showModal_2, setShowModal_2] = useState(false);
   const [showModal_3, setShowModal_3] = useState(false);
   const [showModal_4, setShowModal_4] = useState(false);
-  const [showModal_5, setShowModal_5] = useState(false);
-  const [showModal_6, setShowModal_6] = useState(false);
+  const [showModal_5, setShowModal_5] = useState(false);  //USDT deposit
+  const [showModal_6, setShowModal_6] = useState(false);  //USDT withdraw
   const [event, setEvent] = useState('');
   const [txHash, setTxHash] = useState('');
   const [amount, setAmount] = useState(0);
   const buttonPlay = document.getElementById('play-now-button-balances');
+
+  const [resumeModal5, setResumeModal5] = React.useState(0); // USDT deposit
+  const [resumeModal6, setResumeModal6] = React.useState(0); // USDT withdraw
+
+  //const [lock, setLock] = React.useState(false);
 
   // send tracking data to Segment
   useEffect(() => {
@@ -316,7 +321,7 @@ const Balances = (props) => {
                   onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
                   className={styles.deposit_button}
                 >
-                  Deposit
+                  {resumeModal5 ? 'Pending Transfer' : 'Deposit' }
                 </Button>
 
                 <DGModal
@@ -334,14 +339,22 @@ const Balances = (props) => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onFinished={getWithdrawalAmount}
+                  onFinished={(txHash, amountUi) => {
+                    setResumeModal5(false);
+                    getWithdrawalAmount(txHash, amountUi);
+                  }}
+                  resumeModal={resumeModal5}
+                  onPaused = {params => {
+                    updateStatus(params > 0 ? true : false);
+                    setResumeModal5(params);
+                  }}
                 />
 
                 <Button
                   onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
                   className={styles.deposit_button}
                 >
-                  Withdraw
+                  {resumeModal6 ? 'Pending Transfer' : 'Withdraw' }
                 </Button>
 
                 <DGModal
@@ -359,7 +372,16 @@ const Balances = (props) => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onFinished={getWithdrawalAmount}
+                  onFinished={(txHash, amountUi) => {
+                    updateStatus(false);
+                    setResumeModal6(false);
+                    getWithdrawalAmount(txHash, amountUi);
+                  }}
+                  resumeModal={resumeModal6}
+                  onPaused = {params => {
+                    updateStatus(params > 0 ? true : false);
+                    setResumeModal6(params);
+                  }}
                 />
 
               </span>
@@ -528,6 +550,7 @@ const Balances = (props) => {
   // set modal state and event type
   function setStateAndEvent(number, state, type) {
     if (number === 1) {
+      //setLock(true);
       setShowModal(state);
     } else if (number === 2) {
       setShowModal_2(state);
@@ -546,12 +569,15 @@ const Balances = (props) => {
 
   // handle Connext deposit/withdrawal events
   function getWithdrawalAmount(txHash, amountUi) {
-    console.log("x1. reciverAddress", state.userAddress);
-    console.log("x2. txHash: " + txHash);
-    console.log("x3. amountUi: " + amountUi);
-
     setTxHash(txHash);
     setAmount(amountUi);
+  }
+
+  function updateStatus(arg) {
+    dispatch({
+      type: 'set_dgLoading',
+      data: arg,
+    });
   }
 
   // top up user to 5000 play tokens
