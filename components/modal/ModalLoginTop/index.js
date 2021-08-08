@@ -133,7 +133,7 @@ const ModalLogin = () => {
       open={open}
       close
       trigger={
-        <span>
+        <span class={styles.metamask_wrapper}>
           <Button color="blue" className={styles.metamask_button_top}>
             <span>
               <img
@@ -142,9 +142,6 @@ const ModalLogin = () => {
               />
               Connect Metamask
             </span>
-          </Button>
-          <Button color="blue" className={styles.metamask_button_mobile_top}>
-            <span>Connect</span>
           </Button>
         </span>
       }

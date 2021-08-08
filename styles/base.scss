@@ -683,7 +683,7 @@ $mq-breakpoints: (
   flex-direction: column;
   justify-content: space-between;
   z-index: 5;
-  margin-top: 140px;
+  margin-top: 206px;
   margin-bottom: 33px;
   padding: 10px 0px 30px 0px;
   color: black;
@@ -770,33 +770,11 @@ $mq-breakpoints: (
   padding: 4px 6px 0 6px;
 }
 
-.right_menu_items {
-  padding-top: 2px;
-  width: calc(100% - 60px);
-  margin-right: 15px;
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  z-index: 2;
-
-  @include mq($until: small) {
-    margin-right: -9px;
-  }
-}
-
 .affiliate_icon {
   margin-left: 28px;
   line-height: 22px;
   color: white;
   font-size: 24px;
-}
-
-.menu_items_to_hide {
-  display: flex !important;
-
-  @include mq($until: large) {
-    display: none !important;
-  }
 }
 
 .mailchimp_close {
@@ -943,4 +921,10 @@ $mq-breakpoints: (
 
 .ui.popup.visible.account-popup {
   animation: showing 300ms ease-in-out;
+}
+.ui.dimmer {
+	background: rgba(26, 26, 26, 0.65);
+}
+.transak_modal-overlay {
+	background: rgba(26, 26, 26, 0.65);
 }

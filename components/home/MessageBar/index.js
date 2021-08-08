@@ -87,7 +87,7 @@ const MessageBar = () => {
     return null;
   } else if (message !== '') {
     return (
-      <div className={styles.mobile_message_bar} id="message-bar">
+      <div className={styles.message_bar} id="message-bar">
         {message}
       </div>
     );

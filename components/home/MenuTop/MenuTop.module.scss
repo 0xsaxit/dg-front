@@ -7,7 +7,7 @@
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   user-select: none;
-  max-height: 69px;
+  // max-height: 69px;
 
   .mobile_menu {
     position: fixed;
@@ -42,7 +42,8 @@
   }
 
   .menu_container {
-    margin-top: 11px !important;
+    margin: 31px 0px;
+    padding: 0px 30px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -61,25 +62,20 @@
     transition: background 0.25s;
     -webkit-transition: background 0.25s;
 
-    .right_menu_items {
-      display: flex;
-      margin-left: auto;
-    }
-
     .menu_logo {
-      margin-left: 24px;
       width: 36px;
       height: 100%;
       position: relative;
       z-index: 7;
       cursor: pointer;
-      margin-right: 31px;
     }
 
-    .menu_items_to_hide {
+    .desktop_menu {
       display: flex;
       align-items: center;
-
+      @include mq($until: large) {
+        display: none !important;
+      }
       @include mq($until: medium) {
         margin-left: auto;
 
@@ -90,7 +86,8 @@
         }
       }
 
-      .menu_style {
+      .menu_item {
+        margin-left: 56px;
         padding: 0;
         color: #ffffff;
         flex-direction: column;
@@ -101,8 +98,7 @@
         font-size: 18px;
         display: flex;
         justify-content: center;
-        margin-right: 50px;
-        padding-right: 0 !important;
+        padding-right: 0;
 
         &:hover {
           color: #ffffff;
@@ -113,6 +109,21 @@
       svg {
         margin-left: 56px;
         cursor: pointer;
+      }
+    }
+
+    .right_menu_items {
+      display: flex;
+      margin-left: auto;
+      padding-top: 2px;
+      width: calc(100% - 60px);
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 2;
+    
+      @include mq($until: small) {
+        margin-right: -9px;
       }
     }
   }
