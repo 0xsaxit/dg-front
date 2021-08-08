@@ -42,7 +42,8 @@
   }
 
   .menu_container {
-    margin: 31px 0px;
+    margin-top: 31px !important;
+    margin-bottom: 31px;
     padding: 0px 30px;
     display: flex;
     align-items: center;
