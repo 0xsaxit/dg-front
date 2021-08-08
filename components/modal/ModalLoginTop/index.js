@@ -133,7 +133,7 @@ const ModalLogin = () => {
       open={open}
       close
       trigger={
-        <span class={styles.metamask_wrapper}>
+        <span className={styles.metamask_wrapper}>
           <Button color="blue" className={styles.metamask_button_top}>
             <span>
               <img
