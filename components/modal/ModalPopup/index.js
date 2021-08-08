@@ -123,7 +123,7 @@ const ModalPopup = () => {
                   />
                 </svg>
               </span>
-              <span>My Account2</span>
+              <span>My Account</span>
             </Button>
           </div>
         }
