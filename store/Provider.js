@@ -108,6 +108,7 @@ const initialState = {
   usdtLoading: false,
   atriLoading: false,
   wethLoading: false,
+  dgLoading: false,
 };
 
 const reducer = (state, action) => {
@@ -320,6 +321,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         wethLoading: action.data,
+      };
+    case 'set_dgLoading':
+      return {
+        ...state,
+        dgLoading: action.data,
       };
 
     default:
