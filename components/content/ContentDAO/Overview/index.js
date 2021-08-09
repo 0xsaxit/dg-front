@@ -420,7 +420,7 @@ const Overview = (props) => {
 
         </div> 
 
-        <div style={{ display: 'flex', marginLeft: '60px', justifyContent: 'space-between', width: '600px' }}>
+        <div style={{ display: 'flex', marginLeft: '30px', justifyContent: 'space-between', width: '600px' }}>
           <div className={styles.lower}>
             <p className={styles.lower_header}>
               Stake Your $DG 

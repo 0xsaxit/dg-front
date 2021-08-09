@@ -1,11 +1,10 @@
 @import 'styles/base.scss';
 
 .overview_container {
-  height: 100%;
 
   .container_left {
-    padding-top: 108px;
-    margin-left: 60px;
+    padding-top: 210px;
+    margin-left: 30px;
 
     .welcome_text {
       font-family: Larsseit-Regular;
@@ -26,7 +25,7 @@
   .blue_container {
     margin-top: 40px;
     padding: 36px 40px 36px 40px;
-    margin-left: 60px;
+    margin-left: 30px;
     background: rgba(0, 110, 255, 1);
     border-radius: 20px;
     width: 600px;
@@ -86,7 +85,7 @@
   .treasury_container {
     margin-top: 40px;
     padding: 28px;
-    margin-left: 60px;
+    margin-left: 30px;
     border: 1px solid rgba(42, 42, 42, 1);
     border-radius: 16px;
     width: 600px;

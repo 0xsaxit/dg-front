@@ -564,7 +564,7 @@ const DAO = (props) => {
   }
 
   return (
-    <div className="main-container">
+    <div style={{ marginTop: '-60px', marginBottom: '240px' }}>
       <div>
         {submenu()}
         {/* <div style={{ marginTop: '-200vh', width: isTablet || isMobile ? 'calc(100% - 80px)' : 'calc(100% - 300px)', float: 'right' }}> */}
