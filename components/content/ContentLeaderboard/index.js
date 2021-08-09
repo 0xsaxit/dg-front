@@ -139,14 +139,14 @@ const ContentLeaderboard = props => {
             className={styles.leaderboard_column}
           >
             <Table unstackable className={styles.leaders_table}>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>{game}</Table.HeaderCell>
-                  <Table.HeaderCell>WIN</Table.HeaderCell>
+              <Table.Header className={styles.header}>
+                <Table.Row className={styles.row}> 
+                  <Table.HeaderCell className={styles.th}>{game}</Table.HeaderCell>
+                  <Table.HeaderCell className={styles.th}>WIN</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
-              <Table.Body>
+              <Table.Body className={styles.body}>
                 {dataGames[index].map((row, index) => {
                   var num = parseInt(
                     Number(row.winnings) / Global.CONSTANTS.FACTOR
@@ -156,8 +156,8 @@ const ContentLeaderboard = props => {
                     .split(/\s/)
                     .join(',');
                   return (
-                    <Table.Row key={index}>
-                      <Table.Cell>
+                    <Table.Row key={index} className={styles.body_row}>
+                      <Table.Cell className={styles.td}>
                         {index + 1}.{' '}
                         <img
                           className={styles.avatar_picture}

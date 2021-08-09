@@ -410,7 +410,7 @@ const Offerings = props => {
       <Aux>
         <span className={styles.coin_select}>
           <span className={styles.leaderboard_coin_select_mobile}>
-            <span
+          <span
               className={
                 gameSelect === 'play' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
@@ -532,7 +532,7 @@ const Offerings = props => {
             </span>
           </span>
 
-          <span className="account-hover-time-tablet">
+          <span className={styles.account_hover_time_tablet}>
             <Icon
               className="time-select-icon"
               name="angle left"

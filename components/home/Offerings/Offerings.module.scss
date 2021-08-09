@@ -25,11 +25,61 @@
   display: flex;
   width: 100%;
   min-width: 861px;
-}
 
-.leaderboard_coin_select_mobile {
-  display: flex;
-  margin-bottom: 9px;
+  .leaderboard_coin_select_mobile {
+    display: flex;
+    margin-bottom: 9px;
+
+    .account_hover_time {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      margin-right: 34px!important;
+      color: hsla(0,0%,100%,.55);
+      margin-top: 32px;
+      padding-left: 6px;
+      padding-right: 6px;  
+
+      &:hover {
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff;
+        padding-bottom: 14px;
+        border-bottom: 3px solid #006eff;
+        margin-right: 34px!important;
+        color: hsla(0,0%,100%,.55);
+        margin-top: 32px;
+        padding-left: 6px;
+        padding-right: 6px; 
+      }
+    }
+
+    .account_hover_time_active {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      padding-bottom: 14px;
+      border-bottom: 3px solid #006eff;
+      margin-right: 34px!important;
+      color: hsla(0,0%,100%,.55);
+      margin-top: 32px;
+      padding-left: 6px;
+      padding-right: 6px;  
+    }
+  }
+  .account_hover_time_tablet{
+    font-size: 18px;
+    font-weight: 600;
+    color: hsla(0,0%,100%,.55);
+    margin-top: 32px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    width: calc(100% - 684px);
+    margin-right: 0!important;
+    text-transform: capitalize!important;
+  }
 }
 
 .account_hover_tiem {
