@@ -182,7 +182,7 @@ const MenuTop = props => {
   const dropdownMenu = () => {
     return (
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
-        <span class="d-flex flex-column w-100">
+        <span className="d-flex flex-column w-100">
           {!isMobile && (
             <Link href={`/${utm}`}>
               <Menu.Item className={styles.menu_item}>Play</Menu.Item>
