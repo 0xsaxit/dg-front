@@ -650,8 +650,15 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
+@media (max-width: 1191px) {
+  .casinos-container {
+    width: 48.5%;
+  }
+}
+
 @media (max-width: 851px) {
-  .games-container {
+  .games-container,
+  .casinos-container {
     width: 100%;
   }
 }

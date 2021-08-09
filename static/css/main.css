@@ -1113,6 +1113,16 @@ p.home-dashboard-p {
   border-radius: 20px;
 }
 
+.casinos-container {
+  width: 31.5%;
+  margin-top: 21px;
+  display: flex;
+  flex-direction: column !important;
+  margin-bottom: 6px;
+  border-radius: 20px;
+}
+
+
 .shop-container {
   width: 100%;
   margin-top: 21px;
@@ -1406,12 +1416,11 @@ td:last-child {
 }
 
 .account-other-inner-p {
-  font-family: 'Lato', sans-serif !important;
-  font-size: 17px !important;
-  margin-top: 45px;
+  font-family: 'Larsseit-Regular' !important;
+  font-size: 18px !important;
+  margin-top: 180px;
   padding-bottom: 60px;
   text-align: center;
-  color: gray;
 }
 
 #tx-box-history-2 {
@@ -3166,7 +3175,7 @@ a.ui.blue.button.play-button-binance,
   padding-right: 16px;
   padding-left: 16px;
   height: 48px;
-  margin-top: 12px;
+  margin-top: 0px;
   background-color: #1f1f1f;
   border-radius: 16px;
   color: white;
@@ -3527,11 +3536,12 @@ h3.deposit-twentyfour.casino {
 }
 
 .ui.input > input {
-  border: 2px solid #353945;
+  border: 1px solid rgba(0,0,0,.85);
   background: transparent !important;
-  border-radius: 128px;
+  border-radius: 12px;
   font-family: Larsseit-Regular;
-  height: 68px;
+  height: 48px;
+  color: white !important;
 }
 
 .ui.input > input:focus,

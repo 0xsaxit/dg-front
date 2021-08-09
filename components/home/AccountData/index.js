@@ -35,10 +35,6 @@ const AccountData = props => {
     const one = Number(state.DGGameplayCollected);
     const two = Number(state.DGBalances.BALANCE_MINING_DG_V2);
     const temp = Number(one + two);
-
-    // console.log('!!!!');
-    // console.log(temp);
-
     setDGMined(temp);
   }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
 
@@ -65,7 +61,7 @@ const AccountData = props => {
   function topLinks() {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '0' }}>
+        <div style={{ position: 'relative', zIndex: '0', paddingTop: '150px' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <span className="avatar-picture" style={{ alignSelf: 'center' }}>
               <img

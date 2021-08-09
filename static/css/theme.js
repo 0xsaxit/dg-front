@@ -40,7 +40,7 @@ export const lightTheme = {
  	globalDividers: '1px solid rgb(8, 10, 12)',
   infoColor: 'rgb(4, 5, 6)',
   tutorialColor: 'rgb(21, 24, 28)',
-  offColorText: 'rgba(255, 255, 255, .55)',
+  offColorText: 'rgba(255, 255, 255, .5)',
   codeHighlight: 'rgb(21, 24, 28)',
   codeHighlightBorder: 'rgb(21, 24, 28)', 
   homeBoxShadow: '0 0.75rem 1.5rem rgba(5, 5, 5, 0.1)',
