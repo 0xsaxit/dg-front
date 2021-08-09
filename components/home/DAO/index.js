@@ -22,6 +22,7 @@ import Global from '../../Constants';
 import Fetch from '../../../common/Fetch';
 import styles from './DAO.module.scss';
 
+
 const DAO = props => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -244,9 +245,6 @@ const DAO = props => {
                 <div />
               </div>
               <div className={styles.menu_list}>
-                <div className={styles.menu_header}>
-                  DAO Tools
-                </div>
 
                 <div>
                   <Link href="/dg">

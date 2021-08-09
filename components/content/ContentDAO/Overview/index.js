@@ -347,7 +347,7 @@ const Overview = (props) => {
                   {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
                     <p className={styles.earned_percent_pos}>+{gameplayTreasuryPercent}%</p>
                   ) : gameplayTreasury ? (
-                    <p className={styles.earned_percent_neg}>-{gameplayTreasuryPercent}%</p>
+                    <p className={styles.earned_percent_neg}>{gameplayTreasuryPercent}%</p>
                   ) : (
                     null
                   )}
@@ -373,7 +373,7 @@ const Overview = (props) => {
                   {dgTreasuryPercent > 0 && dgTreasury ? (
                     <p className={styles.earned_percent_pos}>+{dgTreasuryPercent}%</p>
                   ) : dgTreasury ? (
-                    <p className={styles.earned_percent_neg}>-{dgTreasuryPercent}%</p>
+                    <p className={styles.earned_percent_neg}>{dgTreasuryPercent}%</p>
                   ) : (
                     null
                   )}
@@ -399,7 +399,7 @@ const Overview = (props) => {
                   {landTreasuryPercent > 0 && landTreasury ? (
                     <p className={styles.earned_percent_pos}>+{landTreasuryPercent}%</p>
                   ) : landTreasury ? (
-                    <p className={styles.earned_percent_neg}>-{landTreasuryPercent}%</p>
+                    <p className={styles.earned_percent_neg}>{landTreasuryPercent}%</p>
                   ) : (
                     null
                   )}
