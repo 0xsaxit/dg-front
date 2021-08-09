@@ -46,8 +46,8 @@
   transition: all linear 0.1s !important;
 
   &:hover {
-    border: 2px solid rgba(255, 255, 255, 1);
-    transition: all linear 0.1s;
+    border: 2px solid rgba(255, 255, 255, 1) !important;
+    transition: all linear 0.1s !important;
   }
 }
 
@@ -88,6 +88,13 @@
   padding-top: 17px;
   margin-right: 10px !important;
 
+  &:hover {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-filter: brightness(.9)!important;
+    filter: brightness(.9)!important;
+  }
+
   &_binanace {
     height: 54px;
     width: 48.5%;
@@ -107,18 +114,25 @@
   color: white !important;
   font-size: 18px !important;
   padding-top: 17px;
+
+  &:hover {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-filter: brightness(.9)!important;
+    filter: brightness(.9)!important;
+  }
 }
 
-.buy_dg_button {
-  height: 64px;
-  width: 100%;
-  border-radius: 12px;
-  background: #006eff;
-  color: white;
-  font-size: 18px;
-  margin-top: 24px;
-  padding-top: 21px;
-}
+// .buy_dg_button {
+//   height: 64px;
+//   width: 100%;
+//   border-radius: 12px;
+//   background: #006eff;
+//   color: white;
+//   font-size: 18px;
+//   margin-top: 24px;
+//   padding-top: 21px;
+// }
 
 .copied_toast {
   background-color: #1f1f1f;
@@ -174,6 +188,12 @@
        margin: 0;
        padding-top: 16px;
        transition: all .1s linear;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 70%;
+        transition: all .1s linear;
+      }
     }
     .buy_dg_button_binance {
       height: 64px;
@@ -194,6 +214,13 @@
       font-size: 18px;
       margin-top: 24px;
       padding-top: 21px;
+
+      &:hover {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        -webkit-filter: brightness(.9)!important;
+        filter: brightness(.9)!important;
+      }
     }
   }
 }
