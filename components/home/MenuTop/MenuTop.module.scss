@@ -74,9 +74,6 @@
     .desktop_menu {
       display: flex;
       align-items: center;
-      @include mq($until: large) {
-        display: none !important;
-      }
       @include mq($until: medium) {
         margin-left: auto;
 

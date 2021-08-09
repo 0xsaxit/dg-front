@@ -4,6 +4,7 @@
   padding-bottom: 48px !important; 
   .leaderboard_column{
     .leaders_table {
+      background: #000;
       border: 0px solid #edf2f9 ;
       border-radius: 8px;
       .header {
@@ -48,6 +49,7 @@
               border-bottom-left-radius: 24px;
               height: 68px;
             }
+            
             &:last-child {
               border-bottom-right-radius: 24px;
               border-top-right-radius: 24px;

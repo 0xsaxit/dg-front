@@ -169,7 +169,7 @@ const ContentLeaderboard = props => {
                             row.address.substr(-4)
                           : row.name}
                       </Table.Cell>
-                      <Table.Cell>{amount}</Table.Cell>
+                      <Table.Cell className={styles.td}>{amount}</Table.Cell>
                     </Table.Row>
                   );
                 })}

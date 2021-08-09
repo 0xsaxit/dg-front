@@ -631,17 +631,10 @@ $mq-breakpoints: (
     margin-right: 21px;
     margin-left: 16px;
   }
- 
-  @include mq($until: small) {
-    display: none !important;
-  }
 }
 
 .play_now_button_demo {
-  @include mq($from: small) {
-    display: none !important;
-  }
-
+  
   @include mq($until: small) {
     width: 210px;
     position: relative;
