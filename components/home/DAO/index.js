@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Overview from '../../content/ContentDAO/Overview';
-import Governance from '../../content/contentDAO/Governance';
+import Governance from '../../content/ContentDAO/Governance';
 import ContentMining from '../../content/ContentMining';
 import ContentMiningV1 from '../../content/ContentMiningV1';
 import ContentBalancer from '../../content/ContentBalancer';

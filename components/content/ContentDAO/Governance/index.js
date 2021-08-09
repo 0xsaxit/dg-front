@@ -103,8 +103,6 @@ const Governance = (props) => {
 
   return (
     <Aux>
-
-      <div style={{ paddingTop: "90px" }}> HELLO </div>
       <div className={styles.lower}>
         <p className={styles.lower_header_two}>
           Governance Proposals
