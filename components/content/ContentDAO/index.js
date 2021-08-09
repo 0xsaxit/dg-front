@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { GlobalContext } from 'store';
 import Overview from './Overview';
+import Governance from './Governance';
 
 const ContentDAO = props => {
   // get user status from the Context API store
@@ -8,8 +9,8 @@ const ContentDAO = props => {
 
   if (props.content === 'Overview') {
     return <Overview />;
-  } else {
-    return null;
+  } else if (props.content === 'Governance') {
+    return <Governance />;
   }
 };
 

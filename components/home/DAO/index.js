@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Overview from '../../content/ContentDAO/Overview';
-import ContentGovernance from '../../content/ContentGovernance';
+import Governance from '../../content/contentDAO/Governance';
 import ContentMining from '../../content/ContentMining';
 import ContentMiningV1 from '../../content/ContentMiningV1';
 import ContentBalancer from '../../content/ContentBalancer';
@@ -23,7 +23,7 @@ import Fetch from '../../../common/Fetch';
 import styles from './DAO.module.scss';
 
 
-const DAO = props => {
+const DAO = (props) => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -515,6 +515,8 @@ const DAO = props => {
     }
   }
 
+  console.log(DGState);
+
   function contentAdmin() {
     return (
       <div className="DG-liquidity-container top">
@@ -571,13 +573,7 @@ const DAO = props => {
           {DGState === 'overview' ? (
             <Overview />
           ) : DGState === 'governance' ? (
-            <ContentGovernance
-              price={price}
-              formatPrice={formatPrice}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
+            <Governance />
           ) : DGState === 'mining' ? (
             <ContentMining price={price} formatPrice={formatPrice} />
           ) : DGState === 'balancer' ? (
