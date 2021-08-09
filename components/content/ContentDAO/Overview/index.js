@@ -459,7 +459,7 @@ const Overview = (props) => {
                     {dateOne}
                   </p>
                   <p className={styles.gov_title}>
-                    {snapshotOne.title}
+                    {snapshotOne.title} 
                   </p>
                 </div>
                 <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">

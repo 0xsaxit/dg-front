@@ -36,8 +36,6 @@ const AccountData = (props) => {
     const one = Number(state.DGGameplayCollected);
     const two = Number(state.DGBalances.BALANCE_MINING_DG_V2);
     const temp = Number(one + two);
-    console.log('!!!!');
-    console.log(temp);
     setDGMined(temp);
   }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
 
