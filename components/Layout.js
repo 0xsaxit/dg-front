@@ -8,7 +8,8 @@ import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
 import Footer from './home/Footer';
 
-const Layout = props => {
+
+const Layout = (props) => {
   // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
@@ -37,16 +38,16 @@ const Layout = props => {
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
 
-      {typeof window === 'undefined' ||
-      typeof window.matchMedia === 'undefined' ? (
-        <></>
+      {router.pathname === '/' ? (
+        <MenuTop isHomePage={true} />
       ) : (
-        <MenuTop />
+        <MenuTop isHomePage={false} />
       )}
 
       {props.children}
 
       <Footer />
+
     </ThemeProvider>
   );
 };
