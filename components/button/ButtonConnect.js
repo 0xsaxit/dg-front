@@ -135,8 +135,8 @@ const ButtonConnect = () => {
       // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
 
-      console.log('!!!!');
-      console.log(response);
+      // console.log('!!!!');
+      // console.log(response);
 
       if (response) {
         updateStatus(response, false);

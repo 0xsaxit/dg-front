@@ -50,7 +50,6 @@ function History({ state }) {
           resultType.includes('Deposit') ||
           resultType.includes('Withdrawal')
         ) {
-
           history.push(result[i]);
         }
       }
@@ -60,8 +59,8 @@ function History({ state }) {
     }
   }, [isLoading]);
 
-  console.log('!!!!');
-  console.log(dataPage);
+  // console.log('!!!!');
+  // console.log(dataPage);
 
   return (
     <Aux>
@@ -77,15 +76,15 @@ function History({ state }) {
               const date = new Date(row.createdAt);
               const timestamp = date.toDateString();
               let amount;
-              {row.type.includes('USDT') ? (
-                amount = (row.amount / 1000000).toFixed(2)
-              ) : row.type.includes('DAI') ? (
-                amount = (row.amount / 100000000000000000).toFixed(2)
-              ) : row.type.includes('MANA') ? (
-                amount = (row.amount / 1000000000000000000).toFixed(2)
-              ) : (
-                amount = (row.amount / 1000000000000000000).toFixed(2)
-              )}
+              {
+                row.type.includes('USDT')
+                  ? (amount = (row.amount / 1000000).toFixed(2))
+                  : row.type.includes('DAI')
+                  ? (amount = (row.amount / 100000000000000000).toFixed(2))
+                  : row.type.includes('MANA')
+                  ? (amount = (row.amount / 1000000000000000000).toFixed(2))
+                  : (amount = (row.amount / 1000000000000000000).toFixed(2));
+              }
 
               return (
                 <Grid.Column computer={8} tablet={8} mobile={16} key={i}>
