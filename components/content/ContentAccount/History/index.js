@@ -442,7 +442,7 @@ function History({ state }) {
                               <div>
                                 <span
                                   className={styles.button_close}
-                                  onClick={() => setOpen(false)}
+                                  onClick={() => setOpenId(null)}
                                 >
                                   <svg
                                     width="12"
