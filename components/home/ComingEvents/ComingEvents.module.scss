@@ -3,7 +3,7 @@
 .main_container {
   min-height: calc(100vh - 220px);
   font-family: 'Larsseit-ExtraBold';
-  margin-top: 74px;
+  margin-top: 150px;
 
   @include mq($until: small) {
     padding-bottom: 60px;
