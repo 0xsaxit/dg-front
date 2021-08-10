@@ -499,7 +499,7 @@ function History({ state }) {
                                 >
                                   <div className={styles.your_hand}>
                                     <p className={styles.subtitle}>Your Hand</p>
-                                    {row.tableData.map(item => {
+                                    {(row.tableData || []).map(item => {
                                       return (
                                         <div className={styles.hand_row}>
                                           {get(
@@ -523,7 +523,7 @@ function History({ state }) {
                                     <p className={styles.subtitle}>
                                       Table Cards
                                     </p>
-                                    {row.tableData.map(item => {
+                                    {(row.tableData || []).map(item => {
                                       return (
                                         <div>
                                           {item.communityCards.map(card => {
@@ -541,7 +541,7 @@ function History({ state }) {
                                   </div>
                                   <div className={styles.pay_out}>
                                     <p className={styles.subtitle}>Payout</p>
-                                    {row.tableData.map(item => {
+                                    {(row.tableData || []).map(item => {
                                       const userPlayInfoID = get(
                                         item,
                                         'playerHandData.1.userPlayInfoID',
