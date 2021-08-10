@@ -33,9 +33,7 @@ function SectionTwo() {
             </p>
 
             <span
-              className={cn(
-                mobile ? 'w-100 d-flex justify-content-center' : ''
-              )}
+              className={styles.button_span}
             >
               <Button
                 className={styles.grey_button}
@@ -133,9 +131,7 @@ function SectionTwo() {
             </p>
 
             <span
-              className={cn(
-                mobile ? 'w-100 d-flex justify-content-center' : ''
-              )}
+              className={styles.button_span}
             >
               <Button
                 className={styles.grey_button}
@@ -187,9 +183,7 @@ function SectionTwo() {
             </p>
 
             <span
-              className={cn(
-                mobile ? 'w-100 d-flex justify-content-center' : ''
-              )}
+              className={styles.button_span}
             >
               <Button
                 className={styles.grey_button}
