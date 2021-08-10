@@ -13,6 +13,8 @@ function History({ state }) {
   // get user's transaction history from the Context API store
   const [dataHistory, dataPlay, dataPoker] = state.transactions;
 
+  console.log('dataPlay:', dataPlay);
+
   // define local variables
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,9 +47,11 @@ function History({ state }) {
   });
 
   const playData = [
-    ...dataPlay.filter(
-      p => get(p, 'gameType', 0) < 10 && get(p, 'gameType', 0) !== 9
-    ),
+    ...(dataPlay === 'false'
+      ? []
+      : dataPlay.filter(
+          p => get(p, 'gameType', 0) < 10 && get(p, 'gameType', 0) !== 9
+        )),
     ...newPokerData,
   ];
 
