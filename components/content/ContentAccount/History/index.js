@@ -326,7 +326,7 @@ function History({ state }) {
                               borderRadius: '100%',
                             }}
                           />
-                        ) : row.coinName === 'WETH' ? (
+                        ) : row.coinName === 'ETH' ? (
                           <img
                             src={Images.ETH_CIRCLE}
                             style={{
@@ -396,7 +396,7 @@ function History({ state }) {
                               borderRadius: '100%',
                             }}
                           />
-                        ) : row.coinName === 'WETH' ? (
+                        ) : row.coinName === 'ETH' ? (
                           <img
                             src={Images.ETH_CIRCLE}
                             style={{
