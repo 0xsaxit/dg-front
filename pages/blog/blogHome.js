@@ -79,8 +79,8 @@ const blog = () => {
                   <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
                   <span className={styles.blog_date}>18 JUN 2021</span>
                 </div>
-                <div className="bottom">
-                  <p 
+                <div className={styles.bottom}>
+                  <h4 
                     style={{
                       fontSize: '24px',
                       fontfamily: 'LarsseitBold',
@@ -88,7 +88,7 @@ const blog = () => {
                     }}
                   >
                     Decentral Games Raises $5M To Cement Itself As The Leading Metaverse-native, Profitable DAO
-                  </p>
+                  </h4>
                   <p
                     style={{
                       fontFamily: 'Larsseit-Regular',
@@ -166,7 +166,6 @@ const blog = () => {
                         as={`/blog/${page.slug}`}
                       >
                         <a className={styles.post}>
-                          <div className={styles.post_div}>
                             <div className={styles.post_image}>
                               <img
                                 src={page.featured_image || page.banner}
@@ -194,7 +193,7 @@ const blog = () => {
                                   </span>
                                 </div>
                               </span>
-                              <div className="bottom">
+                              <div className={styles.bottom}>
                                 <h4
                                   style={{
                                     fontSize: '24px',
@@ -214,7 +213,6 @@ const blog = () => {
                                 </p>
                               </div>
                             </div>
-                          </div>
                         </a>
                       </Link>
                     ) : count <= 5 && page.categories[0].name === category ? (
@@ -256,8 +254,8 @@ const blog = () => {
                                   </span>
                                 </div>
                               </span>
-                                <div className="bottom">
-                                  <p
+                                <div className={styles.bottom}>
+                                  <h4
                                     style={{
                                       fontSize: '24px',
                                       fontfamily: 'LarsseitBold',
@@ -265,7 +263,7 @@ const blog = () => {
                                     }}
                                   >
                                     {page.title}
-                                  </p>
+                                  </h4>
                                   <p
                                     style={{
                                       fontFamily: 'Larsseit-Regular',
@@ -290,11 +288,10 @@ const blog = () => {
         )
       )}
 
-      <div className="posts">
+      <div className={styles.posts}>
         {filteredPages.map(page => (
           <Link href="/blog/[id]" key={page.created} as={`/blog/${page.slug}`}>
             <a className={styles.post}>
-              <div className="post-div">
                 <div className={styles.post_image}>
                   <img src={page.featured_image || page.banner} alt="" />
                 </div>
@@ -319,7 +316,7 @@ const blog = () => {
                       </span>
                     </div>
                   </span>
-                  <div className="bottom">
+                  <div className={styles.bottom}>
                     <h4
                       style={{
                         fontSize: '24px',
@@ -339,7 +336,6 @@ const blog = () => {
                     </p>
                   </div>
                 </div>
-              </div>
             </a>
           </Link>
         ))}
