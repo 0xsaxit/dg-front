@@ -13,10 +13,8 @@ function History({ state }) {
   // get user's transaction history from the Context API store
   const [dataHistory, dataPlay, dataPoker] = state.transactions;
 
-  console.log('dataPlay:', dataPlay);
-
   // define local variables
-  const [open, setOpen] = useState(false);
+  const [openId, setOpenId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const transactions = dataHistory.filter(
@@ -46,8 +44,6 @@ function History({ state }) {
     };
   });
 
-  console.log('newPokerData: ', newPokerData);
-
   const playData = [
     ...(dataPlay === 'false'
       ? []
@@ -55,7 +51,7 @@ function History({ state }) {
           p => get(p, 'gameType', 0) < 10 && get(p, 'gameType', 0) !== 9
         )),
     ...newPokerData,
-  ];
+  ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -431,9 +427,9 @@ function History({ state }) {
                           {row.gameType === 9 && (
                             <Modal
                               className={styles.menu_info_modal}
-                              onClose={() => setOpen(false)}
-                              onOpen={() => setOpen(true)}
-                              open={open}
+                              onClose={() => setOpenId(null)}
+                              onOpen={() => setOpenId(row.sessionID)}
+                              open={openId === row.sessionID}
                               close
                               size="tiny"
                               centered={true}
