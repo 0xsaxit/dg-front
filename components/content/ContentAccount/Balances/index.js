@@ -43,6 +43,12 @@ const Balances = (props) => {
   const [amount, setAmount] = useState(0);
   const buttonPlay = document.getElementById('play-now-button-balances');
 
+  const [resumeModal1, setResumeModal1] = React.useState(0); // MANA deposit
+  const [resumeModal2, setResumeModal2] = React.useState(0); // MANA withdraw
+
+  const [resumeModal3, setResumeModal3] = React.useState(0); // DAI deposit
+  const [resumeModal4, setResumeModal4] = React.useState(0); // DAI withdraw
+
   const [resumeModal5, setResumeModal5] = React.useState(0); // USDT deposit
   const [resumeModal6, setResumeModal6] = React.useState(0); // USDT withdraw
 
@@ -229,7 +235,7 @@ const Balances = (props) => {
                   className={styles.deposit_button}
                   onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
                 >
-                  Deposit
+                  {resumeModal1 ? 'Pending Transfer' : 'Deposit' }
                 </Button>
 
                 <DGModal
@@ -247,14 +253,22 @@ const Balances = (props) => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onFinished={getWithdrawalAmount}
+                  onFinished={(txHash, amountUi) => {
+                    setResumeModal1(false);
+                    getWithdrawalAmount(txHash, amountUi);
+                  }}
+                  resumeModal={resumeModal1}
+                  onPaused = {params => {
+                    updateStatus(params > 0 ? 1 : 2);
+                    setResumeModal1(params);
+                  }}
                 />
 
                 <Button
                   className={styles.deposit_button}
                   onClick={() => setStateAndEvent(2, true, 'MANA Withdrawal')}
                 >
-                  Withdraw
+                  {resumeModal2 ? 'Pending Transfer' : 'Withdraw' }
                 </Button>
 
                 <DGModal
@@ -272,7 +286,15 @@ const Balances = (props) => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onFinished={getWithdrawalAmount}
+                  onFinished={(txHash, amountUi) => {
+                    setResumeModal2(false);
+                    getWithdrawalAmount(txHash, amountUi);
+                  }}
+                  resumeModal={resumeModal2}
+                  onPaused = {params => {
+                    updateStatus(params > 0 ? 1 : 2);
+                    setResumeModal2(params);
+                  }}
                 />
               </span>
             ) : (
@@ -345,7 +367,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal5}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal5(params);
                   }}
                 />
@@ -379,7 +401,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal6}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal6(params);
                   }}
                 />
@@ -428,7 +450,7 @@ const Balances = (props) => {
                   onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
                   className={styles.deposit_button}
                 >
-                  Deposit
+                  {resumeModal3 ? 'Pending Transfer' : 'Deposit' }
                 </Button>
 
                 <DGModal
@@ -446,14 +468,22 @@ const Balances = (props) => {
                   depositChainId={1}
                   withdrawChainId={137}
                   isDeposit = {true}
-                  onFinished={getWithdrawalAmount}
+                  onFinished={(txHash, amountUi) => {
+                    setResumeModal3(false);
+                    getWithdrawalAmount(txHash, amountUi);
+                  }}
+                  resumeModal={resumeModal3}
+                  onPaused = {params => {
+                    updateStatus(params > 0 ? 1 : 2);
+                    setResumeModal3(params);
+                  }}
                 />
 
                 <Button 
                   onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
                   className={styles.deposit_button}
                 >
-                  Withdraw
+                  {resumeModal4 ? 'Pending Transfer' : 'Withdraw' }
                 </Button>
 
                 <DGModal
@@ -471,7 +501,15 @@ const Balances = (props) => {
                   depositChainId={137}
                   withdrawChainId={1}
                   isDeposit = {false}
-                  onFinished={getWithdrawalAmount}
+                  onFinished={(txHash, amountUi) => {
+                    setResumeModal4(false);
+                    getWithdrawalAmount(txHash, amountUi);
+                  }}
+                  resumeModal={resumeModal4}
+                  onPaused = {params => {
+                    updateStatus(params > 0 ? 1 : 2);
+                    setResumeModal4(params);
+                  }}
                 />
               </span>
             ) : (

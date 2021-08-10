@@ -16,6 +16,7 @@ const ModalPopup = () => {
   const [isToastShow, setIsToastShow] = useState(false);
 
   const [visibleStatus, setVisibleStatus] = useState(false);
+  
 
   useEffect(() => {
     const showStatus = () => {
@@ -24,12 +25,12 @@ const ModalPopup = () => {
     const hideStatus = () => {
       setTimeout(() => {
         setVisibleStatus(false);
-      }, 6000);
+      }, 5000);
     }
 
     showStatus();
 
-    if(!state.dgLoading) {
+    if(state.dgLoading == 2) {
       hideStatus();
     }
 
@@ -85,8 +86,8 @@ const ModalPopup = () => {
         className="account-popup"
         trigger={
           <div>
-            {visibleStatus && (<div style={{
-              background: state.dgLoading ? '#1c70c3' : '#007d39',
+            {visibleStatus && state.dgLoading > 0 && (<div style={{
+              background: state.dgLoading > 1 ? '#007d39':'#1c70c3',
               display: 'flex',
               alignItems: 'center',
               padding: '6px',
@@ -97,7 +98,7 @@ const ModalPopup = () => {
               fontSize: '13px',
               zIndex: 9999
             }}>
-              {state.dgLoading ? 'Transfer Pending' : 'Transfer Complete'}
+              {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending' }
             </div>) }
             <Button
               className="account-button"
