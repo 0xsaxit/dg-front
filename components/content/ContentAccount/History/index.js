@@ -215,7 +215,7 @@ function History({ state }) {
       <div className={styles.history_container}>
         <h1 className={styles.title}>Gameplay History</h1>
         <div className="tx-box-overflow">
-          {playData === 'false' ? null : (
+          {playData.length === 0 ? null : (
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
@@ -241,7 +241,7 @@ function History({ state }) {
             </Table>
           )}
 
-          {playData === 'false' ? (
+          {playData.length === 0 ? (
             <div className={styles.error_container}>
               <p className={styles.error_state}>No Recent Gameplay History</p>
             </div>
