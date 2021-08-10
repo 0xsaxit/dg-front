@@ -167,23 +167,23 @@ const History = ({ state }) => {
         <p className={styles.title}>Gameplay History</p>
         <div className={styles.tx_box_overflow}>
           {dataPageTwo === 'false' ? null : (
-            <Table fixed unstackable>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell style={{ width: '120px' }}>
+            <Table fixed unstackable className={styles.history_table}> 
+              <Table.Header className={styles.header}>
+                <Table.Row className={styles.row}>
+                  <Table.HeaderCell  className={styles.th}>
                     Game
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '180px' }}>
+                  <Table.HeaderCell  className={styles.th}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '180px' }}>
+                  <Table.HeaderCell  className={styles.th}>
                     Payout
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '240px' }}>
+                  <Table.HeaderCell  className={styles.th}>
                     Date
                   </Table.HeaderCell>
                   <Table.HeaderCell
-                    style={{ width: '270px', textAlign: 'right' }}
+                    className={styles.th}
                   >
                     Transactions
                   </Table.HeaderCell>
@@ -223,22 +223,28 @@ const History = ({ state }) => {
               }
 
               return (
-                <Table className={styles.etherscan} unstackable>
-                  <Table.Body key={i}>
-                    <Table.Row style={{ background: style }}>
-                      <Table.Cell>{action}</Table.Cell>
-                      <Table.Cell className="d-xs-none d-sm-none d-md-none d-lg-none">
+                <Grid.Column
+                computer={8}
+                tablet={8}
+                mobile={16}
+                className={styles.leaderboard_column}
+                >
+                <Table className={styles.history_table} unstackable>
+                  <Table.Body key={i} className={styles.body}>
+                    <Table.Row style={{ background: style }} className={styles.body_row}>
+                      <Table.Cell className={styles.td}>Name</Table.Cell>
+                      <Table.Cell className={styles.td}>
                         <CoinCell coinName={row.coinName} />
                         -{amount} {row.coinName}
                       </Table.Cell>
-                      <Table.Cell>
+                      <Table.Cell className={styles.td}>
                         <CoinCell coinName={row.coinName} />
                         +{result} {row.coinName}
                       </Table.Cell>
-                      <Table.Cell>
+                      <Table.Cell className={styles.td}>
                         {timestamp}
                       </Table.Cell>
-                      <Table.Cell>
+                      <Table.Cell className={styles.td}>
                         <span className="float-right">
                           {row.coinName !== 'PLAY' ? (
                             <Aux>
@@ -287,6 +293,7 @@ const History = ({ state }) => {
                     </Table.Row>
                   </Table.Body>
                 </Table>
+              </Grid.Column>
               );
             })
           )}
