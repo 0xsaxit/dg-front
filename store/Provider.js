@@ -108,7 +108,7 @@ const initialState = {
   usdtLoading: false,
   atriLoading: false,
   wethLoading: false,
-  dgLoading: false,
+  dgLoading: 0,
 };
 
 const reducer = (state, action) => {

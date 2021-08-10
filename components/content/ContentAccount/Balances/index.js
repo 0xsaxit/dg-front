@@ -259,7 +259,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal1}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal1(params);
                   }}
                 />
@@ -292,7 +292,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal2}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal2(params);
                   }}
                 />
@@ -367,7 +367,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal5}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal5(params);
                   }}
                 />
@@ -401,7 +401,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal6}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal6(params);
                   }}
                 />
@@ -474,7 +474,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal3}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal3(params);
                   }}
                 />
@@ -507,7 +507,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={resumeModal4}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? true : false);
+                    updateStatus(params > 0 ? 1 : 2);
                     setResumeModal4(params);
                   }}
                 />
