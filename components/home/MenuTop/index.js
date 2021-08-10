@@ -18,8 +18,6 @@ const MenuTop = props => {
   const [state, dispatch] = useContext(GlobalContext);
   const isTablet = useMediaQuery('(min-width: 1100px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
-  console.log('isMobile: ', isMobile);
-  console.log('isTablet: ', isTablet);
   // define local variables
   // const [isDarkMode, setDarkMode] = useState(false);
   const [open, setOpen] = useState(false);

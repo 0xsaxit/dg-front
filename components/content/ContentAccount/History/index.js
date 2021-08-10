@@ -46,6 +46,8 @@ function History({ state }) {
     };
   });
 
+  console.log('newPokerData: ', newPokerData);
+
   const playData = [
     ...(dataPlay === 'false'
       ? []
