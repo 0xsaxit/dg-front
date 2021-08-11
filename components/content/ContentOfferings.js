@@ -199,18 +199,11 @@ const ContentOfferings = (props) => {
                 <Button
                   id={`play-now-button-casinos-${i + 1}`}
                   color="blue"
-                  className="nft-button"
+                  className="casino-button"
                   target="_blank"
                   href={props.detailsCasinos[item][5] + utm}
                 >
                   Play
-                </Button>
-                <Button
-                  className="nft-read-button two"
-                  target="_blank"
-                  href={props.detailsCasinos[item][6]}
-                >
-                  Info
                 </Button>
               </span>
             </div>

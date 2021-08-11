@@ -2815,6 +2815,17 @@ a.ui.blue.button.dg-learn-button {
   border-radius: 12px;
 }
 
+.ui.blue.button.casino-button {
+  background-color: #006EFF;
+  color: white;
+  margin-top: 24px;
+  width: 100% !important;
+  height: 56px !important;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  border-radius: 12px;
+}
+
 .ui.button.nft-read-button {
   background-color: #2A2A2A;
   color: white;
