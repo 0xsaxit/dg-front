@@ -54,6 +54,12 @@
 					vertical-align: inherit;
 					cursor: auto;
 					text-transform: none;
+					width: 17%;
+					text-align: center;
+
+					&:last-child {
+						width: 36%
+					}
 					}
 				}
 			}
@@ -86,6 +92,7 @@
 					vertical-align: inherit;
 					cursor: auto;
 					text-transform: none;
+					width: 17%;
 
 					&:first-child {
 						border-top-left-radius: 24px;
@@ -96,6 +103,7 @@
 					&:last-child {
 						border-bottom-right-radius: 24px;
 						border-top-right-radius: 24px;
+						width: 36%
 					}
 					}
 				}
