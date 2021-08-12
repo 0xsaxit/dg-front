@@ -85,7 +85,7 @@ const detailsCasinos = {
     'BAYC Riverboat',
     'The Bored Ape Yacht club Riverboat Casino was created in partnership with BAYC. Located in Vegas City, the scene is modelled after an old-timey riverboat and features FREE play only games.',
     'PARTNER CASINO',
-    'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-110%2C121&realm=dg-diamond',
     'https://docs.decentral.games/operators/',
   ],  
   Dext: [
@@ -103,7 +103,7 @@ const detailsCasinos = {
     'Aquarium Casino',
     'The Aquarium Casino is located within the Vegas City disctrict in Decentraland and features large glass-enclosed displays of sea creatures swimming throughout the build. ',
     'PARNTER CASINO',
-    'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-139%2C126&realm=dg-diamond',
     'https://docs.decentral.games/operators/',
   ],
 };
