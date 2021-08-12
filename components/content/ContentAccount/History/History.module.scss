@@ -11,6 +11,14 @@
     width: 75%;
   }
 
+  .coin_cell {
+    width: 21px;
+    margin-right: 8px;
+    vertical-align: middle;
+    margin-top: -4px;
+    border-radius: 100%;
+  }
+
   .title {
     font-size: 24px;
     font-family: Larsseit-ExtraBold;
@@ -35,6 +43,14 @@
     font-family: Larsseit-Bold;
     color: rgba(255, 255, 255, 0.75) !important;
     margin: 28px 0px 0px 40px;
+  }
+  
+  .row_date_right {
+    font-size: 14px;
+    font-family: Larsseit-Bold;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin: 28px 0px 0px 40px;
+    text-align: right;
   }
 
   .error_container {
