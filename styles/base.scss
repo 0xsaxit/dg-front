@@ -44,6 +44,47 @@ $mq-breakpoints: (
   src: url('/static/fonts/Larsseit/Larsseit4.ttf');
 }
 
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:disabled,
+.btn-primary.disabled,
+.btn:active,
+.btn:hover,
+.btn:focus,
+.btn:disabled,
+.btn.disabled {
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.btn:hover,
+.btn-primary:hover {
+  filter: brightness(0.9) !important;
+}
+
+@keyframes showing {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+
+.ui.popup.visible.account-popup {
+  animation: showing 300ms ease-in-out;
+}
+.ui.dimmer {
+	background: rgba(26, 26, 26, 0.65);
+}
+.transak_modal-overlay {
+	background: rgba(26, 26, 26, 0.65);
+}
 
 //////////////////////////////
 ///Page
@@ -268,25 +309,6 @@ $mq-breakpoints: (
 .ui.button {
   font-family: Larsseit-Bold;
   border-radius: 16px;
-}
-
-.btn-primary:active,
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:disabled,
-.btn-primary.disabled,
-.btn:active,
-.btn:hover,
-.btn:focus,
-.btn:disabled,
-.btn.disabled {
-  color: white !important;
-  box-shadow: none !important;
-}
-
-.btn:hover,
-.btn-primary:hover {
-  filter: brightness(0.9) !important;
 }
 
 .nft_pic {
@@ -558,26 +580,4 @@ $mq-breakpoints: (
     padding-left: 21px;
     padding-right: 21px;
   }
-}
-@keyframes showing {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-    -webkit-transform: scale(0);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    -webkit-transform: scale(1);
-  }
-}
-
-.ui.popup.visible.account-popup {
-  animation: showing 300ms ease-in-out;
-}
-.ui.dimmer {
-	background: rgba(26, 26, 26, 0.65);
-}
-.transak_modal-overlay {
-	background: rgba(26, 26, 26, 0.65);
 }
