@@ -1,5 +1,6 @@
 import { GlobalContext } from 'store';
 import { useContext } from 'react';
+import DAO from 'components/home/DAO';
 import Farming from 'components/home/Farming';
 import Layout from 'components/Layout.js';
 import Header from 'components/Header';
