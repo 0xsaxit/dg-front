@@ -109,6 +109,8 @@ const initialState = {
   atriLoading: false,
   wethLoading: false,
   dgLoading: 0,
+  openModal: false,
+  lockNumber: 0,
 };
 
 const reducer = (state, action) => {
@@ -327,7 +329,17 @@ const reducer = (state, action) => {
         ...state,
         dgLoading: action.data,
       };
-
+    case 'set_openModal':
+      return {
+        ...state,
+        openModal: action.data,
+      };
+    //  lockNumer
+    case 'set_lockNumber':
+      return {
+        ...state,
+        lockNumber: action.data,
+      };
     default:
       throw new Error('Wrong action type got dispatched');
   }

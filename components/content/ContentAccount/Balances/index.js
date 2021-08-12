@@ -12,6 +12,7 @@ import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
 import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
 import styles from './Balances.module.scss';
 import Fetch from '../../../../common/Fetch';
+import { BreadcrumbJsonLd } from 'next-seo';
 
 
 const connext = {
@@ -52,7 +53,47 @@ const Balances = (props) => {
   const [resumeModal5, setResumeModal5] = React.useState(0); // USDT deposit
   const [resumeModal6, setResumeModal6] = React.useState(0); // USDT withdraw
 
-  //const [lock, setLock] = React.useState(false);
+  const [lock, setLock] = React.useState(0);
+
+  useEffect(() => {
+    const updateIndex = () => {
+      if(resumeModal1) {
+        setLock(1);
+      } else if (resumeModal2) {
+        setLock(2);
+      } else if (resumeModal3) {
+        setLock(3);
+      } else if (resumeModal4) {
+        setLock(4);
+      } else if (resumeModal5) {
+        setLock(5);
+      } else if (resumeModal6) {
+        setLock(6);
+      } else {
+        setLock(0);
+      }
+    }
+    updateIndex();
+  }, [resumeModal1, resumeModal2, resumeModal3, resumeModal4, resumeModal5, resumeModal6]);
+
+  useEffect(() => {
+    if (state.dgLoading === 1) {
+      console.log("pending transfer ... ");
+    } else {
+      setLock(0);
+    }
+  }, [state.dgLoading]);
+
+  useEffect(() => {
+
+    if(state.openModal) {
+      setStateAndEvent(state.lockNumber, true, '');
+      dispatch({
+        type: 'set_openModal',
+        data: false,
+      });
+    }
+  }, [state.openModal]);
 
   // send tracking data to Segment
   useEffect(() => {
@@ -234,6 +275,8 @@ const Balances = (props) => {
                 <Button
                   className={styles.deposit_button}
                   onClick={() => setStateAndEvent(1, true, 'MANA Deposit')}
+                  style={{display: lock === 2? 'none':'flex', width: lock === 2? '':'100%'}}
+                  disabled = {lock >0 && lock!==1? true : false}
                 >
                   {resumeModal1 ? 'Pending Transfer' : 'Deposit' }
                 </Button>
@@ -267,6 +310,8 @@ const Balances = (props) => {
                 <Button
                   className={styles.deposit_button}
                   onClick={() => setStateAndEvent(2, true, 'MANA Withdrawal')}
+                  style={{display: lock === 1? 'none':'flex', width: lock === 1? '':'100%'}}
+                  disabled = {lock >0 && lock!==2? true : false}
                 >
                   {resumeModal2 ? 'Pending Transfer' : 'Withdraw' }
                 </Button>
@@ -342,8 +387,10 @@ const Balances = (props) => {
                 <Button
                   onClick={() => setStateAndEvent(5, true, 'USDT Deposit')}
                   className={styles.deposit_button}
+                  style={{display: lock === 6? 'none':'flex', width: lock === 6? '':'100%'}}
+                  disabled = {lock >0 && lock!==5? true : false}
                 >
-                  {resumeModal5 ? 'Pending Transfer' : 'Deposit' }
+                  {resumeModal5 ? 'Pending Transfer-x1':'Deposit' }
                 </Button>
 
                 <DGModal
@@ -375,6 +422,8 @@ const Balances = (props) => {
                 <Button
                   onClick={() => setStateAndEvent(6, true, 'USDT Withdrawal')}
                   className={styles.deposit_button}
+                  style={{display: lock === 5? 'none':'flex', width: lock === 5? '':'100%'}}
+                  disabled = {lock >0 && lock!==6? true : false}
                 >
                   {resumeModal6 ? 'Pending Transfer' : 'Withdraw' }
                 </Button>
@@ -449,6 +498,8 @@ const Balances = (props) => {
                 <Button 
                   onClick={() => setStateAndEvent(3, true, 'DAI Deposit')}
                   className={styles.deposit_button}
+                  style={{display: lock === 4? 'none':'flex', width: lock === 4? '':'100%'}}
+                  disabled = {lock >0 && lock!==3? true : false}
                 >
                   {resumeModal3 ? 'Pending Transfer' : 'Deposit' }
                 </Button>
@@ -482,6 +533,8 @@ const Balances = (props) => {
                 <Button 
                   onClick={() => setStateAndEvent(4, true, 'DAI Withdrawal')}
                   className={styles.deposit_button}
+                  style={{display: lock === 3? 'none':'flex', width: lock === 3? '':'100%'}}
+                  disabled = {lock >0 && lock!==4? true : false}
                 >
                   {resumeModal4 ? 'Pending Transfer' : 'Withdraw' }
                 </Button>
@@ -587,8 +640,7 @@ const Balances = (props) => {
 
   // set modal state and event type
   function setStateAndEvent(number, state, type) {
-    if (number === 1) {
-      //setLock(true);
+    if (number === 1) {     
       setShowModal(state);
     } else if (number === 2) {
       setShowModal_2(state);
@@ -602,7 +654,9 @@ const Balances = (props) => {
       setShowModal_6(state);
     }
 
-    setEvent(type);
+    if(type) {
+      setEvent(type);
+    }
   }
 
   // handle Connext deposit/withdrawal events
@@ -612,9 +666,16 @@ const Balances = (props) => {
   }
 
   function updateStatus(arg) {
+    const lockNumber = lock;
+
     dispatch({
       type: 'set_dgLoading',
       data: arg,
+    });
+    
+    dispatch({
+      type: 'set_lockNumber',
+      data: lockNumber,
     });
   }
 
