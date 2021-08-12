@@ -61,18 +61,6 @@ $mq-breakpoints: (
   box-sizing: border-box;
 }
 
-#menu-logo {
-  width: 36px;
-  padding-top: 18px;
-  padding-bottom: 15px;
-  margin-right: 9px;
-  margin-left: 24px;
-  height: 100%;
-  position: relative;
-  z-index: 7;
-  cursor: pointer;
-}
-
 //////////////////////////////
 /// Content
 //////////////////////////////
@@ -180,38 +168,38 @@ $mq-breakpoints: (
   margin-bottom: -2px;
 }
 
-.farming {
-  &_logo {
-    max-width: 60px;
-    max-height: 60px;
-    margin-top: 12px;
-    margin-bottom: 9px;
-    border-radius: 100%;
-    position: relative;
-    z-index: 3;
+// .farming {
+//   &_logo {
+//     max-width: 60px;
+//     max-height: 60px;
+//     margin-top: 12px;
+//     margin-bottom: 9px;
+//     border-radius: 100%;
+//     position: relative;
+//     z-index: 3;
   
-    @include mq($until: small) {
-      width: 52px;
-      height: 52px;
-    }
-  }
+//     @include mq($until: small) {
+//       width: 52px;
+//       height: 52px;
+//     }
+//   }
 
-  &_logo_small {
-    @include dg_logo_style;
-    position: relative;
-    z-index: 3;
+//   &_logo_small {
+//     @include dg_logo_style;
+//     position: relative;
+//     z-index: 3;
 
-    &_two {
-      @include dg_logo_style;
-      margin-left: -24px;
-      z-index: 2;
-    }
-  }
+//     &_two {
+//       @include dg_logo_style;
+//       margin-left: -24px;
+//       z-index: 2;
+//     }
+//   }
 
-  &_pool_span {
-    margin-top: 6px;
-  }
-}
+//   &_pool_span {
+//     margin-top: 6px;
+//   }
+// }
 
 .welcome_text {
   @include welcome_text_style;
@@ -250,109 +238,109 @@ $mq-breakpoints: (
   }
 }
 
-.dg_column {
-  &_body {
-    font-size: 18px;
+// .dg_column {
+//   &_body {
+//     font-size: 18px;
 
-    &_href {
-      color: #2085f4;
-    }
+//     &_href {
+//       color: #2085f4;
+//     }
 
-    &_margin {
-      margin-top: -60px;
-      margin-right: -4px;
-    }
-  }
+//     &_margin {
+//       margin-top: -60px;
+//       margin-right: -4px;
+//     }
+//   }
 
-  &_top {
-    width: 48.5%;
-  }
+//   &_top {
+//     width: 48.5%;
+//   }
 
-  &_one {
-    width: 100%;
-    background-color: #1f1f1f;
-    padding: 12px 18px 18px 18px;
-    height: 100%;
-    border-radius: 4px;
+//   &_one {
+//     width: 100%;
+//     background-color: #1f1f1f;
+//     padding: 12px 18px 18px 18px;
+//     height: 100%;
+//     border-radius: 4px;
 
-    @include mq($until: large) {
-      min-width: 100%;
-      margin-bottom: 30px;
-    }
+//     @include mq($until: large) {
+//       min-width: 100%;
+//       margin-bottom: 30px;
+//     }
 
-    @include mq($until: extra-large) {
-      max-width: 48.5% !important;
-    }
-  }
+//     @include mq($until: extra-large) {
+//       max-width: 48.5% !important;
+//     }
+//   }
 
-  &_treasury {
-    @include mq($until: medium) {
-      width: 48.5%;
-    }
+//   &_treasury {
+//     @include mq($until: medium) {
+//       width: 48.5%;
+//     }
 
-    &_one {
-      @include mq($until: medium) {
-        width: 100%;
-        margin-bottom: 30px;
-      }
-    }
+//     &_one {
+//       @include mq($until: medium) {
+//         width: 100%;
+//         margin-bottom: 30px;
+//       }
+//     }
 
-    &_two {
-      @include dg_column_style;
+//     &_two {
+//       @include dg_column_style;
 
-      @include mq($from: medium) {
-        width: 48.5%;
-      }
+//       @include mq($from: medium) {
+//         width: 48.5%;
+//       }
       
-      @include mq($until: medium) {
-        width: 100%;
-      }
-    }
+//       @include mq($until: medium) {
+//         width: 100%;
+//       }
+//     }
 
-    &_three {
-      @include dg_column_style;
+//     &_three {
+//       @include dg_column_style;
 
-      @include mq($from: medium) {
-        width: 48.5%;
-      }
+//       @include mq($from: medium) {
+//         width: 48.5%;
+//       }
 
-      @include mq($until: medium) {
-        width: 100%;
-        margin-top: 30px;
-      }
-    }
+//       @include mq($until: medium) {
+//         width: 100%;
+//         margin-top: 30px;
+//       }
+//     }
 
-    &_amount {
-      font-size: 72px;
-      letter-spacing: -0.7px;
-      font-weight: 800;
-      padding-top: 30px;
+//     &_amount {
+//       font-size: 72px;
+//       letter-spacing: -0.7px;
+//       font-weight: 800;
+//       padding-top: 30px;
 
-      @include mq($until: small) {
-        font-size: 60px;
-      }
-    }
-  }
+//       @include mq($until: small) {
+//         font-size: 60px;
+//       }
+//     }
+//   }
 
-  &_top {
-    @include dg_column_style;
-    max-width: 48.5%;
-    min-width: 48.5%;
-    padding: 0 0;
-  }
+//   &_top {
+//     @include dg_column_style;
+//     max-width: 48.5%;
+//     min-width: 48.5%;
+//     padding: 0 0;
+//   }
 
-  &_unclaimed {
-    @include dg_column_style;
-    @include mq($from: large) {
-      width: 23%;
-      height: 100%;
-    }
+//   &_unclaimed {
+//     @include dg_column_style;
+//     @include mq($from: large) {
+//       width: 23%;
+//       height: 100%;
+//     }
   
-    @include mq($until: large) {
-      width: 100%;
-    }
-  }
-}
+//     @include mq($until: large) {
+//       width: 100%;
+//     }
+//   }
+// }
 
 .more_text {
   margin-top: 27px;
@@ -392,23 +380,23 @@ $mq-breakpoints: (
   margin-bottom: -9px !important;
 }
 
-.dg_tablet_container_gov {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row !important;
-  width: 74.75%;
-  height: 100%;
+// .dg_tablet_container_gov {
+//   display: flex;
+//   justify-content: space-between;
+//   flex-direction: row !important;
+//   width: 74.75%;
+//   height: 100%;
 
-  @include mq($until: large) {
-    margin-top: 30px;
-    width: 100%;
-  }
-}
+//   @include mq($until: large) {
+//     margin-top: 30px;
+//     width: 100%;
+//   }
+// }
 
-.leaderboard_column {
-  min-width: 33.33% !important;
-  width: 100%;
-}
+// .leaderboard_column {
+//   min-width: 33.33% !important;
+//   width: 100%;
+// }
 
 .mining_container_outter {
   display: flex;
@@ -456,13 +444,13 @@ $mq-breakpoints: (
   filter: brightness(0.9) !important;
 }
 
-.outter_games_container {
-  display: flex;
-  flex-wrap: wrap !important;
-  justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
-}
+// .outter_games_container {
+//   display: flex;
+//   flex-wrap: wrap !important;
+//   justify-content: space-between;
+//   margin-top: -15px;
+//   margin-bottom: 30px;
+// }
 
 .nft_pic {
   max-height: 300px;
@@ -498,15 +486,15 @@ $mq-breakpoints: (
   text-align: center;
 }
 
-.gameplay_left_column,
-.gameplay_right_column {
-  &_text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 17px;
-  }
-}
+// .gameplay_left_column,
+// .gameplay_right_column {
+//   &_text {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     padding-bottom: 17px;
+//   }
+// }
 
 ///////////////////////////
 // home
@@ -552,18 +540,18 @@ $mq-breakpoints: (
   }
 }
 
-.home_gif {
-  @include mq($from: small) {
-    display: none;
-  }
+// .home_gif {
+//   @include mq($from: small) {
+//     display: none;
+//   }
 
-  @include mq($until: small) {
-    margin-top: -200px;
-    width: 100%;
-    position: relative;
-    z-index: -2;
-  }
-}
+//   @include mq($until: small) {
+//     margin-top: -200px;
+//     width: 100%;
+//     position: relative;
+//     z-index: -2;
+//   }
+// }
 
 .home_dashboard_p {
   &_centered {
@@ -587,37 +575,37 @@ $mq-breakpoints: (
   }
 }
 
-.home_dashboard_main_h1 {
-  color: white;
-  padding-bottom: 12px;
-  text-shadow: 1px 1px 5px black;
-  margin: -12px 0 -32px -2px;
-  max-width: 600px;
+// .home_dashboard_main_h1 {
+//   color: white;
+//   padding-bottom: 12px;
+//   text-shadow: 1px 1px 5px black;
+//   margin: -12px 0 -32px -2px;
+//   max-width: 600px;
 
-  @include mq($from: medium) {
-    max-width: 100%;
-    text-align: center;
-  }
+//   @include mq($from: medium) {
+//     max-width: 100%;
+//     text-align: center;
+//   }
 
-  @include mq($until: small) {
-    font-size: 48px;
-    margin-top: -120px;
-  }
-}
+//   @include mq($until: small) {
+//     font-size: 48px;
+//     margin-top: -120px;
+//   }
+// }
 
-.home_button_span_ecosystem {
-  display: flex;
-  align-self: center;
+// .home_button_span_ecosystem {
+//   display: flex;
+//   align-self: center;
 
-  @include mq($until: medium) {
-    align-self: start;
-  }
+//   @include mq($until: medium) {
+//     align-self: start;
+//   }
 
-  @include mq($until: small) {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
+//   @include mq($until: small) {
+//     width: 100%;
+//     justify-content: space-between;
+//   }
+// }
 
 .play_button {
   @include mq($from: small) {
@@ -633,22 +621,22 @@ $mq-breakpoints: (
   }
 }
 
-.play_now_button_demo {
+// .play_now_button_demo {
   
-  @include mq($until: small) {
-    width: 210px;
-    position: relative;
-    background-color: #006eff;
-    color: white;
-    margin-top: 8px !important;
-    height: 64px;
-    line-height: 30px;
-    font-size: 20px !important;
-    font-weight: 700 !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-}
+//   @include mq($until: small) {
+//     width: 210px;
+//     position: relative;
+//     background-color: #006eff;
+//     color: white;
+//     margin-top: 8px !important;
+//     height: 64px;
+//     line-height: 30px;
+//     font-size: 20px !important;
+//     font-weight: 700 !important;
+//     margin-left: auto !important;
+//     margin-right: auto !important;
+//   }
+// }
 
 .mobile_center_span {
   @include mq($until: medium) {
@@ -742,22 +730,22 @@ $mq-breakpoints: (
   padding-bottom: 10px;
 }
 
-.right_menu_text {
-  display: flex;
-  border: none;
-  box-shadow: none;
-  letter-spacing: 1.25px;
-  font-size: 18px;
-  font-family: Larsseit-Bold;
-  padding: 4px 6px 0 6px;
-}
+// .right_menu_text {
+//   display: flex;
+//   border: none;
+//   box-shadow: none;
+//   letter-spacing: 1.25px;
+//   font-size: 18px;
+//   font-family: Larsseit-Bold;
+//   padding: 4px 6px 0 6px;
+// }
 
-.affiliate_icon {
-  margin-left: 28px;
-  line-height: 22px;
-  color: white;
-  font-size: 24px;
-}
+// .affiliate_icon {
+//   margin-left: 28px;
+//   line-height: 22px;
+//   color: white;
+//   font-size: 24px;
+// }
 
 .mailchimp_close {
   background: black;
@@ -766,9 +754,9 @@ $mq-breakpoints: (
   cursor: pointer;
 }
 
-.mailchim_margin {
-  margin: 21px 30px 0 30px;
-}
+// .mailchim_margin {
+//   margin: 21px 30px 0 30px;
+// }
 
 .mailchimp_header_text {
   margin-top: -22px;
@@ -788,12 +776,12 @@ $mq-breakpoints: (
   }
 }
 
-.mailchimp_close {
-  background-color: black;
-  border-radius: 100%;
-  padding: 8px 4px 8px 8px;
-  cursor: pointer;
-}
+// .mailchimp_close {
+//   background-color: black;
+//   border-radius: 100%;
+//   padding: 8px 4px 8px 8px;
+//   cursor: pointer;
+// }
 
 .modal_a {
   color: white;
@@ -828,46 +816,46 @@ $mq-breakpoints: (
   }
 }
 
-.mobile_button_hide {
-  @include mq($until: small) {
-    display: none;
+// .mobile_button_hide {
+//   @include mq($until: small) {
+//     display: none;
 
-    position: relative;
-    background-color: #006eff;
-    color: white;
-    height: 64px;
-    width: 200px;
-    line-height: 32px;
-    font-size: 20px;
-  }
-}
+//     position: relative;
+//     background-color: #006eff;
+//     color: white;
+//     height: 64px;
+//     width: 200px;
+//     line-height: 32px;
+//     font-size: 20px;
+//   }
+// }
 
-.account-popup {
-  border-radius: 24px;
-  width: 360px;
-  height: 100%;
-  box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.04);
-  border-radius: 24px;
-  background-color: #1f1f1f;
-  padding: 30px;
-  border: 0px solid white;
-}
+// .account-popup {
+//   border-radius: 24px;
+//   width: 360px;
+//   height: 100%;
+//   box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.04);
+//   border-radius: 24px;
+//   background-color: #1f1f1f;
+//   padding: 30px;
+//   border: 0px solid white;
+// }
 
-.featured_image {
-  z-index: 1;
-  object-fit: cover;
-  height: 360px;
-  width: calc(200% / 3 - 6px);
-  border-radius: 24px 0px 0px 24px;
+// .featured_image {
+//   z-index: 1;
+//   object-fit: cover;
+//   height: 360px;
+//   width: calc(200% / 3 - 6px);
+//   border-radius: 24px 0px 0px 24px;
 
-  @include mq($until: medium) {
-    width: 100%;
-  }
+//   @include mq($until: medium) {
+//     width: 100%;
+//   }
 
-  @include mq($until: small) {
-    height: 200px;
-  }
-}
+//   @include mq($until: small) {
+//     height: 200px;
+//   }
+// }
 
 @media (max-width: 499px) {
   .page-container {

@@ -14,6 +14,24 @@
     } 
   }
 
+  .home_dashboard_main_h1 {
+    color: white;
+    padding-bottom: 12px;
+    text-shadow: 1px 1px 5px black;
+    margin: -12px 0 -32px -2px;
+    max-width: 600px;
+  
+    @include mq($from: medium) {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    @include mq($until: small) {
+      font-size: 48px;
+      margin-top: -120px;
+    }
+  }
+
   .dg_powered_container {
     width: 31.75%;
     display: flex;
