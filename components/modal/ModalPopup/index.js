@@ -86,20 +86,31 @@ const ModalPopup = () => {
         className="account-popup"
         trigger={
           <div>
-            {visibleStatus && state.dgLoading > 0 && (<div style={{
-              background: state.dgLoading > 1 ? '#007d39':'#1c70c3',
-              display: 'flex',
-              alignItems: 'center',
-              padding: '6px',
-              borderRadius: '11px',
-              position: 'absolute',
-              marginTop: '-21px',
-              marginLeft: '80px',
-              fontSize: '13px',
-              zIndex: 9999
-            }}>
-              {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending' }
-            </div>) }
+            {visibleStatus > 0 && state.dgLoading > 0 && (
+              <div 
+                style = {{
+                  background: state.dgLoading > 1 ? '#007d39':'#1c70c3',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '6px',
+                  borderRadius: '11px',
+                  position: 'absolute',
+                  marginTop: '-21px',
+                  marginLeft: '80px',
+                  fontSize: '13px',
+                  zIndex: 9999
+                }}
+                onClick = {(event)=>{
+                  event.stopPropagation();
+                  dispatch({
+                    type: 'set_openModal',
+                    data: true,
+                  });
+                }}
+              >
+                {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending' }
+              </div>
+            )}
             <Button
               className="account-button"
               style={{
@@ -107,6 +118,7 @@ const ModalPopup = () => {
                 paddingRight: '24px',
                 marginTop: 0,
                 marginRight: 0,
+                zIndex: 1
               }}
             >
               <span>
