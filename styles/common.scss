@@ -267,9 +267,7 @@ $mq-breakpoints: (
   text-align: center;
 }
 
-///////////////////////////
 // home
-///////////////////////////
 
 .binance_video_container video {
   object-fit: cover;
@@ -282,6 +280,7 @@ $mq-breakpoints: (
 
 .home_dashboard {
   margin-top: 93px;
+
   &_content {
     position: relative;
     padding-left: 30px;
@@ -354,7 +353,7 @@ $mq-breakpoints: (
   }
 }
 
-///////////// AccountData
+// AccountData
 
 .account_other_inner_container {
   width: calc(100% - 60px);
