@@ -463,7 +463,7 @@ const Overview = (props) => {
                   </p>
                 </div>
                 <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </div>
@@ -485,7 +485,7 @@ const Overview = (props) => {
                   </p>
                 </div>
                 <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </div>
@@ -507,7 +507,7 @@ const Overview = (props) => {
                   </p>
                 </div>
                 <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </div>
@@ -529,7 +529,7 @@ const Overview = (props) => {
                   </p>
                 </div>
                 <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </div>

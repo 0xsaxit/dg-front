@@ -3,10 +3,12 @@ import Link from 'next/link';
 import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
+import { useRouter } from 'next/router';
 
 const ModalPopup = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
+  const router = useRouter();
 
   // define local variables
   const [copied, setCopied] = useState(false);
@@ -26,11 +28,25 @@ const ModalPopup = () => {
       setTimeout(() => {
         setVisibleStatus(false);
       }, 5000);
+
+      //reset
+      dispatch({
+        type: 'set_dgLoading',
+        data: 0,
+      });
+
+      dispatch({
+        type: 'set_openModal',
+        data: {
+          resumeID: 0,
+          lockID: 0
+        },
+      });
     }
 
     showStatus();
 
-    if(state.dgLoading == 2) {
+    if(state.dgLoading === 2) {      
       hideStatus();
     }
 
@@ -98,13 +114,24 @@ const ModalPopup = () => {
                   marginTop: '-21px',
                   marginLeft: '80px',
                   fontSize: '13px',
+                  cursor: 'pointer',
                   zIndex: 9999
                 }}
+                className="account-transfer"
                 onClick = {(event)=>{
                   event.stopPropagation();
+
+                  const pathURL = window.location.pathname;                  
+                  if(pathURL !== '/account') {
+                    router.push('/account');
+                  }
+                  const currentModal = state.openModal; 
+                  console.log("dgLoading: =>", state.dgLoading);
+                  console.log("currentModal: =>", currentModal);
+
                   dispatch({
-                    type: 'set_openModal',
-                    data: true,
+                    type: 'set_dgShow',
+                    data: true
                   });
                 }}
               >

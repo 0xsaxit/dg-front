@@ -108,9 +108,13 @@ const initialState = {
   usdtLoading: false,
   atriLoading: false,
   wethLoading: false,
+
   dgLoading: 0,
-  openModal: false,
-  lockNumber: 0,
+  dgShow: false,
+  openModal: {
+    resumeID: 0,
+    lockID: 0,
+  },
 };
 
 const reducer = (state, action) => {
@@ -334,11 +338,11 @@ const reducer = (state, action) => {
         ...state,
         openModal: action.data,
       };
-    //  lockNumer
-    case 'set_lockNumber':
+    //  dgShow
+    case 'set_dgShow':
       return {
         ...state,
-        lockNumber: action.data,
+        dgShow: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');
