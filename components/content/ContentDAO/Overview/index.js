@@ -1,10 +1,15 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
+import Biconomy from '@biconomy/mexa';
+import Web3 from 'web3';
 import axios from 'axios';
 import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
 import { Line } from 'react-chartjs-2';
 import { GlobalContext } from 'store';
+import MetaTx from 'common/MetaTx';
+import Global from 'components/Constants';
+import Transactions from 'common/Transactions';
 import styles from './Overview.module.scss';
 
 const Overview = props => {
@@ -18,6 +23,7 @@ const Overview = props => {
   const [statsUSDY, setStatsUSDY] = useState([]);
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
   const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
+  const [pointerContractNew, setPointerContractNew] = useState({});
   const [weeklyChange, setWeeklyChange] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
@@ -50,6 +56,19 @@ const Overview = props => {
 
   useEffect(() => {
     (async () => {
+      const biconomy = new Biconomy(
+        new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
+        {
+          apiKey: Global.KEYS.BICONOMY_API_1,
+          debug: true,
+        }
+      );
+      const getWeb3 = new Web3(biconomy);
+
+      const pointerContractNew = await Transactions.pointerContractNew(getWeb3);
+
+      setPointerContractNew(pointerContractNew);
+
       const snapshotData = await axios.post(
         `https://hub.snapshot.page/graphql`,
         {
@@ -211,6 +230,41 @@ const Overview = props => {
         ) : null}
       </span>
     );
+  }
+
+  async function metaTransaction() {
+    try {
+      console.log('Dispatching DG tokens to address: ' + state.userAddress);
+
+      // get function signature and send Biconomy API meta-transaction
+      let functionSignature = pointerContractNew.methods
+        .distributeTokensForPlayer(state.userAddress)
+        .encodeABI();
+
+      const txHash = await MetaTx.executeMetaTransaction(
+        7,
+        functionSignature,
+        pointerContractNew,
+        state.userAddress,
+        window.ethereum
+      );
+
+      if (txHash === false) {
+        console.log('Biconomy meta-transaction failed');
+      } else {
+        console.log('Biconomy meta-transaction hash: ' + txHash);
+
+        // update global state BPT balances
+        const refresh = !state.refreshBalances;
+
+        dispatch({
+          type: 'refresh_balances',
+          data: refresh,
+        });
+      }
+    } catch (error) {
+      console.log('Biconomy meta-transaction error: ' + error);
+    }
   }
 
   function getLoader() {
@@ -600,12 +654,21 @@ const Overview = props => {
         <div className={styles.lower}>
           <p className={styles.lower_header}>Claim $DG Rewards</p>
           <div className={styles.lower_value}>
-            <p className={styles.DG_value}>0.924</p>
+            <p className={styles.DG_value}>
+              {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
+            </p>
             <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624402416/all-dg_f5sknc.png" />
           </div>
-          <p className={styles.price}>$109.32</p>
-          <Button className={cn(styles.claim_DG, styles.lower_button)}>
-            Claim 0.0924 $DG
+          <p className={styles.price}>
+            ${(props.price * state.DGBalances.BALANCE_MINING_DG_V2).toFixed(2)}
+          </p>
+          <Button
+            className={cn(styles.claim_DG, styles.lower_button)}
+            disabled={!Number(state.DGBalances.BALANCE_MINING_DG_V2)}
+            onClick={() => metaTransaction()}
+          >
+            Claim {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
+            $DG
           </Button>
           <a
             href="#"
