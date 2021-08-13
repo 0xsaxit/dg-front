@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 import cn from 'classnames';
 import axios from 'axios';
 import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
@@ -9,7 +10,7 @@ import styles from './Overview.module.scss';
 const Overview = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
+  const router = useRouter();
   // define local variables
   const [dgBalance, setDgBalance] = useState(0);
   const [treasuryTotal, setTreasuryTotal] = useState(0);
@@ -403,7 +404,7 @@ const Overview = props => {
             </div>
 
             <Button className={styles.stat_button} href="/dg/treasury">
-              See All&nbsp;
+              See All&nbsp;&nbsp;
               <svg
                 width="7"
                 height="10"
@@ -438,7 +439,14 @@ const Overview = props => {
               Stake $DG to govern the treasury, vote on proposals, and earn
               yields.
             </p>
-            <Button className={styles.lower_button}>Stake Your DG</Button>
+            <Button
+              className={styles.lower_button}
+              onClick={() => {
+                router.push('/dg/liquidity');
+              }}
+            >
+              Stake Your DG
+            </Button>
           </div>
 
           <div className={styles.lower}>
@@ -565,8 +573,25 @@ const Overview = props => {
             </div>
 
             <div className={styles.button_span}>
-              <Button className={styles.button_gov}>Discussion</Button>
-              <Button className={styles.button_gov}>Proposals</Button>
+              <Button
+                className={styles.button_gov}
+                onClick={() => {
+                  router.push('/discord');
+                }}
+              >
+                Discussion
+              </Button>
+              <Button
+                className={styles.button_gov}
+                onClick={() => {
+                  window.open(
+                    'https://snapshot.org/#/decentralgames.eth ',
+                    '_blank'
+                  );
+                }}
+              >
+                Proposals
+              </Button>
             </div>
           </div>
         </div>
@@ -582,7 +607,13 @@ const Overview = props => {
           <Button className={cn(styles.claim_DG, styles.lower_button)}>
             Claim 0.0924 $DG
           </Button>
-          <a href="/" className={styles.see_all_rewards}>
+          <a
+            href="#"
+            onClick={() => {
+              router.push('/dg/mining');
+            }}
+            className={styles.see_all_rewards}
+          >
             See All Rewards
           </a>
         </div>
@@ -597,7 +628,14 @@ const Overview = props => {
           <p className={styles.lower_text}>
             Provide liquidity to the ETH-$DG Uniswap pool for yield rewards.
           </p>
-          <Button className={styles.lower_button}>Provide Liquidity</Button>
+          <Button
+            className={styles.lower_button}
+            onClick={() => {
+              router.push('/dg/liquidity');
+            }}
+          >
+            Provide Liquidity
+          </Button>
         </div>
       </div>
     </div>
