@@ -24,7 +24,7 @@ const Images = {
   ETH_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png',
   PLAY_CIRCLE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1621629997/Group_8_tvdkqo.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628852507/coinPLAY_mcijhu.png',
   USDT_CIRCLE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png',
   ATRI_CIRCLE:
