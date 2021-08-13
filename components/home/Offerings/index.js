@@ -241,7 +241,6 @@ const Offerings = props => {
   // tab select and coin select area
   const submenu = () => {
     return (
-      <div>
         <div className={styles.account_other_tabs}>
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
@@ -370,7 +369,6 @@ const Offerings = props => {
             </div>
           )}
         </div>
-      </div>
     );
   }
 

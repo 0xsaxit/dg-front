@@ -8,6 +8,29 @@
     max-width: 1400px;
     margin-left: auto!important;
     margin-right: auto!important;
+    .account_other_inner_container {
+      width: calc(100% - 60px);
+      margin-top: 20px;
+      margin-left: 30px;
+      margin-right: 30px;
+    
+      @include mq($until: small) {
+        width: calc(100% - 42px);
+        margin-left: 21px;
+        margin-right: 21px;
+      }
+
+      .account_other_tabs{
+        padding: 240px 0px 60px 0px;
+        margin-top: 30px!important;
+        color: #000;
+        text-align: center;
+        width: 100%;
+        overflow: auto;
+        scroll-behavior: smooth;
+        position: relative;
+      }
+    }
   }
 }
 

@@ -161,7 +161,7 @@ const ContentOfferings = props => {
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className="casinos-container"
+            className={styles.casinos_container}
           >
             <span className={styles.image_wrapper}>
               <Image
@@ -178,11 +178,11 @@ const ContentOfferings = props => {
                 {props.detailsCasinos[item][3]}
               </p>
 
-              <div style={{"position": "relative", "display": "flex", "justify-content": "space-between"}}>
+              <div className={styles.casino_button_wrapper}>
                 <Button
                   id={`play-now-button-casinos-${i + 1}`}
                   color="blue"
-                  className="casino-button"
+                  className={styles.casino_button}
                   target="_blank"
                   href={props.detailsCasinos[item][5] + utm}
                 >

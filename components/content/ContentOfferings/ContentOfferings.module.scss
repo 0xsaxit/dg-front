@@ -79,6 +79,93 @@
       width: 100%;
     }
   }
+  .casinos_container {
+    width: 31.5%;
+    background: rgb(31, 31, 31);
+    margin-top: 21px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column!important;
+    flex-direction: column!important;
+    margin-bottom: 6px;
+    border-radius: 20px;
+    overflow: hidden;
+
+    .image_wrapper {
+      display: flex;
+      justify-content: center;
+
+      .game_pic {
+        max-height: 270px;
+        min-height: 270px; 
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: 4px !important;
+        border-radius: 20px 20px 0 0 !important; 
+      }
+    }
+
+    .nft_description {
+      padding: 20px 30px 30px;
+      text-align: center;
+      background-color: #1f1f1f;
+      border-radius: 0 0 4px 4px;
+      .nfts_info {
+        text-align: left;
+        font-size: 15px!important;
+        font-family: Larsseit-Bold;
+        color: hsla(0,0%,100%,.75)!important;
+      }
+      .nft_other_h3 {
+        margin-bottom: 0;
+        text-align: left;
+        font-family: Larsseit-Bold;
+        font-weight: 800!important;
+        font-size: 30px;
+        padding: 2px 0 3px;
+        margin-top: 0;
+      }
+      .nft_other_p {
+        padding-top: 12px;
+        text-align: left;
+        font-size: 18px;
+        font-family: Larsseit-Regular;
+      }
+      .casino_button_wrapper{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+
+        .casino_button {
+          background-color: #006eff;
+          color: #fff;
+          margin-top: 24px;
+          height: 56px!important;
+          font-size: 20px!important;
+          font-family: Larsseit-Bold;
+          border-radius: 12px;
+          width: 100%;
+          box-shadow: inset 0 0 0 0 rgb(34 36 38 / 15%);
+
+          &:hover {
+            filter: brightness(.9)!important;
+          }
+        }
+      }
+    }
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+      transition: all 0.1s ease 0s;
+    }
+
+    .nft_image {
+      display: flex;
+      justify-content: center;
+    }
+
+  }
 }
 
 .outter_nft_container {
