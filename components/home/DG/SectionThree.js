@@ -51,8 +51,9 @@ const FunctionThree = () => {
                 styles.image_section,
                 ' d-flex justify-content-center mb-5'
               )}
+              style={{ width: '120px' }}
             >
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627992075/image_oxwbsc.png" alt="VEGAS CITY" />
+              <img src={images.VEGAS} alt="VEGAS CITY" />
             </div>
             <div
               className={cn(
@@ -82,6 +83,23 @@ const FunctionThree = () => {
             </div>
             <div
               className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+              style={{ width: '120px' }}
+            >
+              <img src={images.DECENTRALAND} alt="DECENTRALAND" />
+            </div>
+            <div
+              className={cn(
+                styles.image_section,
+                ' d-flex justify-content-center mb-5'
+              )}
+            >
+              <img src={images.MAKER} alt="MAKER" />
+            </div>
+            <div
+              className={cn(
                 styles.image_section_atari,
                 ' d-flex justify-content-center mb-5'
               )}
@@ -93,16 +111,18 @@ const FunctionThree = () => {
                 styles.image_section,
                 ' d-flex justify-content-center mb-5'
               )}
+              style={{ width: '210px' }}
             >
-              <img src={images.DECENTRALAND} alt="DECENTRALAND" />
+              <img src={images.BAYC} alt="BORED APE YACHT CLUB" />
             </div>
             <div
               className={cn(
                 styles.image_section,
                 ' d-flex justify-content-center mb-5'
               )}
+              style={{ width: '150px' }}
             >
-              <img src={images.MAKER} alt="MAKER" />
+              <img src={images.BINANCE} alt="BINANCE" />
             </div>
             <div
               className={cn(

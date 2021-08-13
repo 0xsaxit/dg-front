@@ -7,7 +7,6 @@
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   user-select: none;
-  // max-height: 69px;
 
   .mobile_menu {
     position: fixed;
@@ -23,7 +22,7 @@
     padding: 0;
 
     a {
-      padding: 21px 0 21px 30px;
+      padding: 21px 0 21px 33px;
       color: rgba(255, 255, 255, 0.55);
       cursor: pointer;
 
@@ -37,14 +36,11 @@
       padding: 0 0 12px 0;
       position: relative;
       top: -2px;
-      border-bottom: 1px solid rgb(21, 24, 28);
+      padding-bottom: 18px;
     }
   }
 
   .menu_container {
-    margin-top: 31px !important;
-    margin-bottom: 31px;
-    padding: 0px 30px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -57,11 +53,17 @@
     box-shadow: none;
     border: none;
     text-align: center;
+    padding: 34px 30px;
     color: white;
     font-size: 18px;
     font-family: Larsseit-Bold;
     transition: background 0.25s;
     -webkit-transition: background 0.25s;
+
+    .right_menu_items {
+      display: flex;
+      margin-left: auto;
+    }
 
     .menu_logo {
       width: 36px;
@@ -71,9 +73,10 @@
       cursor: pointer;
     }
 
-    .desktop_menu {
+    .menu_items_to_hide {
       display: flex;
       align-items: center;
+
       @include mq($until: medium) {
         margin-left: auto;
 
@@ -84,8 +87,7 @@
         }
       }
 
-      .menu_item {
-        margin-left: 56px;
+      .menu_style {
         padding: 0;
         color: #ffffff;
         flex-direction: column;
@@ -96,7 +98,8 @@
         font-size: 18px;
         display: flex;
         justify-content: center;
-        padding-right: 0;
+        margin-left: 56px;
+        padding-right: 0 !important;
 
         &:hover {
           color: #ffffff;
@@ -107,21 +110,6 @@
       svg {
         margin-left: 56px;
         cursor: pointer;
-      }
-    }
-
-    .right_menu_items {
-      display: flex;
-      margin-left: auto;
-      padding-top: 2px;
-      width: calc(100% - 60px);
-      display: flex;
-      justify-content: flex-end;
-      position: relative;
-      z-index: 2;
-    
-      @include mq($until: small) {
-        margin-right: -9px;
       }
     }
   }

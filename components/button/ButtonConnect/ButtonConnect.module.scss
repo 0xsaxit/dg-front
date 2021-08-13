@@ -23,17 +23,19 @@
   }
 
   .metamask_icon {
-    padding-right: 8px;
     height: 24px;
+    margin-right: 8px;
+    margin-left: -8px;
   }
 
   .get_metamask {
-    font-size: 1rem;
     color: white;
     font-family: Larsseit-Bold;
     margin-left: 16px;
+    width: 28px;
     height: 28px;
     border-radius: 50%;
+    background-color: #1f1f1f;
     justify-content: center;
     align-items: center;
     display: flex;

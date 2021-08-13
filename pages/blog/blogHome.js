@@ -54,9 +54,11 @@ const blog = () => {
             </svg>
           </span>
         </Button>
-        <a href="https://decentralgames.substack.com/" target="_blank" className={styles.substack_link}>
-          Read on Substack instead
-        </a>
+        <p className="substack-text"> Or read on{' '}
+          <a href="https://decentralgames.substack.com/" target="_blank" className="substack-link">
+            Substack
+          </a>
+        </p>
       </div>
 
       <div className={styles.account_other_tabs} style={{ marginTop: '-50px' }}>

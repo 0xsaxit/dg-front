@@ -161,7 +161,7 @@ const ContentOfferings = props => {
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className={styles.games_container}
+            className="casinos-container"
           >
             <span className={styles.image_wrapper}>
               <Image
@@ -182,18 +182,11 @@ const ContentOfferings = props => {
                 <Button
                   id={`play-now-button-casinos-${i + 1}`}
                   color="blue"
-                  className={styles.nft_blue_button}
+                  className="casino-button"
                   target="_blank"
                   href={props.detailsCasinos[item][5] + utm}
                 >
                   Play
-                </Button>
-                <Button
-                  className={styles.nft_read_button}
-                  target="_blank"
-                  href={props.detailsCasinos[item][6]}
-                >
-                  Info
                 </Button>
               </div>
             </div>

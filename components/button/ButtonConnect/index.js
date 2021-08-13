@@ -131,8 +131,8 @@ const ButtonConnect = () => {
       // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
 
-      console.log('!!!!');
-      console.log(response);
+      // console.log('!!!!');
+      // console.log(response);
 
       if (response) {
         updateStatus(response, false);
@@ -191,13 +191,6 @@ const ButtonConnect = () => {
     <Aux>
       {metamaskEnabled ? (
         <span className={styles.main_right_panel}>
-          <a
-            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
-            target="_blank"
-            className={styles.get_metamask}
-          >
-            Need help?
-          </a>
           <Button
             color="blue"
             className={cn(
@@ -212,6 +205,13 @@ const ButtonConnect = () => {
             />
             Connect Metamask
           </Button>
+          <a
+            href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
+            target="_blank"
+            className={styles.get_metamask}
+          >
+            ?
+          </a>
         </span>
       ) : (
         <ModalLoginTop />

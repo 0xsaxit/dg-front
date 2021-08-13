@@ -35,8 +35,6 @@ const AccountData = props => {
     const one = Number(state.DGGameplayCollected);
     const two = Number(state.DGBalances.BALANCE_MINING_DG_V2);
     const temp = Number(one + two);
-    console.log('!!!!');
-    console.log(temp);
     setDGMined(temp);
   }, [state.DGGameplayCollected, state.DGBalances.BALANCE_MINING_DG_V2]);
 
@@ -118,6 +116,7 @@ const AccountData = props => {
                   <span className={styles.account_hover}>Referrals</span>
                 </Link>
               )}
+              
             </span>
           </div>
         </div>
@@ -129,10 +128,21 @@ const AccountData = props => {
     return (
       <Popup
         className={styles.popup_container}
-        position='right center'
+        position="right center"
         trigger={
-          <svg style={{ margin: '0px 0px 0px 2px'}} width="8" height="7" viewBox="0 0 7 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3.40346 5.80886C4.92058 5.80886 6.16874 4.5607 6.16874 3.04358C6.16874 1.52385 4.92058 0.275683 3.40084 0.275683C1.88111 0.275683 0.635561 1.52385 0.635561 3.04358C0.635561 4.5607 1.88372 5.80886 3.40346 5.80886ZM3.40084 2.20538C3.17628 2.20538 2.98827 2.01737 2.98827 1.7928C2.98827 1.5604 3.17628 1.37762 3.40084 1.37762C3.62541 1.37762 3.81081 1.5604 3.81081 1.7928C3.81081 2.01737 3.62541 2.20538 3.40084 2.20538ZM2.90471 4.5137C2.75848 4.5137 2.64359 4.41186 2.64359 4.2578C2.64359 4.1194 2.75848 4.00712 2.90471 4.00712H3.205V3.07752H2.95694C2.8081 3.07752 2.69581 2.97308 2.69581 2.82424C2.69581 2.68323 2.8081 2.57356 2.95694 2.57356H3.49224C3.68025 2.57356 3.77686 2.70151 3.77686 2.89996V4.00712H4.01448C4.16071 4.00712 4.2756 4.1194 4.2756 4.2578C4.2756 4.41186 4.16071 4.5137 4.01448 4.5137H2.90471Z" fill="white" fill-opacity="0.5"/>
+          <svg
+            style={{ margin: '0px 0px 0px 2px' }}
+            width="8"
+            height="7"
+            viewBox="0 0 7 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.40346 5.80886C4.92058 5.80886 6.16874 4.5607 6.16874 3.04358C6.16874 1.52385 4.92058 0.275683 3.40084 0.275683C1.88111 0.275683 0.635561 1.52385 0.635561 3.04358C0.635561 4.5607 1.88372 5.80886 3.40346 5.80886ZM3.40084 2.20538C3.17628 2.20538 2.98827 2.01737 2.98827 1.7928C2.98827 1.5604 3.17628 1.37762 3.40084 1.37762C3.62541 1.37762 3.81081 1.5604 3.81081 1.7928C3.81081 2.01737 3.62541 2.20538 3.40084 2.20538ZM2.90471 4.5137C2.75848 4.5137 2.64359 4.41186 2.64359 4.2578C2.64359 4.1194 2.75848 4.00712 2.90471 4.00712H3.205V3.07752H2.95694C2.8081 3.07752 2.69581 2.97308 2.69581 2.82424C2.69581 2.68323 2.8081 2.57356 2.95694 2.57356H3.49224C3.68025 2.57356 3.77686 2.70151 3.77686 2.89996V4.00712H4.01448C4.16071 4.00712 4.2756 4.1194 4.2756 4.2578C4.2756 4.41186 4.16071 4.5137 4.01448 4.5137H2.90471Z"
+              fill="white"
+              fill-opacity="0.5"
+            />
           </svg>
         }
       >
@@ -144,8 +154,18 @@ const AccountData = props => {
         ) : number === 'two' ? (
           <Aux>
             <span style={{ display: 'flex' }}>
-              <svg style={{ marginLeft: '-10px' }} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.85581 17.3405C13.6103 17.3405 17.522 13.4289 17.522 8.67435C17.522 3.91164 13.6103 0 8.84762 0C4.08491 0 0.181458 3.91164 0.181458 8.67435C0.181458 13.4289 4.0931 17.3405 8.85581 17.3405ZM8.84762 6.04749C8.14386 6.04749 7.55465 5.45829 7.55465 4.75453C7.55465 4.02621 8.14386 3.45337 8.84762 3.45337C9.55139 3.45337 10.1324 4.02621 10.1324 4.75453C10.1324 5.45829 9.55139 6.04749 8.84762 6.04749ZM7.29279 13.2816C6.83452 13.2816 6.47445 12.9624 6.47445 12.4796C6.47445 12.0459 6.83452 11.694 7.29279 11.694H8.23387V8.78073H7.45645C6.99 8.78073 6.63812 8.4534 6.63812 7.98695C6.63812 7.54505 6.99 7.20135 7.45645 7.20135H9.13404C9.72324 7.20135 10.026 7.60233 10.026 8.22427V11.694H10.7707C11.229 11.694 11.589 12.0459 11.589 12.4796C11.589 12.9624 11.229 13.2816 10.7707 13.2816H7.29279Z" fill="white"/>
+              <svg
+                style={{ marginLeft: '-10px' }}
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.85581 17.3405C13.6103 17.3405 17.522 13.4289 17.522 8.67435C17.522 3.91164 13.6103 0 8.84762 0C4.08491 0 0.181458 3.91164 0.181458 8.67435C0.181458 13.4289 4.0931 17.3405 8.85581 17.3405ZM8.84762 6.04749C8.14386 6.04749 7.55465 5.45829 7.55465 4.75453C7.55465 4.02621 8.14386 3.45337 8.84762 3.45337C9.55139 3.45337 10.1324 4.02621 10.1324 4.75453C10.1324 5.45829 9.55139 6.04749 8.84762 6.04749ZM7.29279 13.2816C6.83452 13.2816 6.47445 12.9624 6.47445 12.4796C6.47445 12.0459 6.83452 11.694 7.29279 11.694H8.23387V8.78073H7.45645C6.99 8.78073 6.63812 8.4534 6.63812 7.98695C6.63812 7.54505 6.99 7.20135 7.45645 7.20135H9.13404C9.72324 7.20135 10.026 7.60233 10.026 8.22427V11.694H10.7707C11.229 11.694 11.589 12.0459 11.589 12.4796C11.589 12.9624 11.229 13.2816 10.7707 13.2816H7.29279Z"
+                  fill="white"
+                />
               </svg>
               <p className={styles.popup_header}>
                 This is your status. Mine DG to continue leveling up.
@@ -154,62 +174,58 @@ const AccountData = props => {
 
             <div className={styles.popup_row}>
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Medal_gu7cub.png" />
-                <p className={styles.row_header}>
-                  Bronze (1 - 5)
-                </p>
-                <p className={styles.row_subtitle}>
-                  0.0 - 0.19 DG Mined
-                </p>
+                <img
+                  className={styles.popup_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Medal_gu7cub.png"
+                />
+                <p className={styles.row_header}>Bronze (1 - 5)</p>
+                <p className={styles.row_subtitle}>0.0 - 0.19 DG Mined</p>
               </div>
 
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Ribbon_akemn5.png" />
-                <p className={styles.row_header}>
-                  Silver (6 - 10)
-                </p>
-                <p className={styles.row_subtitle}>
-                  0.2 - 0.99 DG Mined
-                </p>
+                <img
+                  className={styles.popup_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Ribbon_akemn5.png"
+                />
+                <p className={styles.row_header}>Silver (6 - 10)</p>
+                <p className={styles.row_subtitle}>0.2 - 0.99 DG Mined</p>
               </div>
             </div>
 
             <div className={styles.popup_row}>
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Cup_v2ouux.png" />
-                <p className={styles.row_header}>
-                  Gold (11 - 15)
-                </p>
-                <p className={styles.row_subtitle}>
-                  1.0 - 3.99 DG Mined
-                </p>
+                <img
+                  className={styles.popup_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Cup_v2ouux.png"
+                />
+                <p className={styles.row_header}>Gold (11 - 15)</p>
+                <p className={styles.row_subtitle}>1.0 - 3.99 DG Mined</p>
               </div>
 
               <div className={styles.popup_column}>
-                <img className={styles.popup_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313185/diamond_light_vwookl.png" />
-                <p className={styles.row_header}>
-                  Diamond (16 - 19)
-                </p>
-                <p className={styles.row_subtitle}>
-                  4.0 - 9.99 DG Mined
-                </p>
+                <img
+                  className={styles.popup_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313185/diamond_light_vwookl.png"
+                />
+                <p className={styles.row_header}>Diamond (16 - 19)</p>
+                <p className={styles.row_subtitle}>4.0 - 9.99 DG Mined</p>
               </div>
             </div>
 
             <div className={styles.popup_row}>
               <div className={styles.popup_column}>
-                <img className={styles.popup_img_high} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313185/Money_Bags_dyuttz.png" />
-                <p className={styles.row_header}>
-                  High Roller (20+)
-                </p>
-                <p className={styles.row_subtitle}>
-                  10+ DG Mined
-                </p>
+                <img
+                  className={styles.popup_img_high}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313185/Money_Bags_dyuttz.png"
+                />
+                <p className={styles.row_header}>High Roller (20+)</p>
+                <p className={styles.row_subtitle}>10+ DG Mined</p>
               </div>
             </div>
 
             <p className={styles.card_subtitle}>
-              High Roller’s receive custom wearables, exclusive rewards, and private access to high roller lounges, events, and tables.
+              High Roller’s receive custom wearables, exclusive rewards, and
+              private access to high roller lounges, events, and tables.
             </p>
           </Aux>
         ) : number === 'three' ? (

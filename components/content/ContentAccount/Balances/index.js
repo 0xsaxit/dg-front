@@ -200,7 +200,9 @@ const Balances = () => {
         <h2 className={styles.balances_container_title}>Your Assets</h2>
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
-            <div className={styles.free_icon}>FREE</div>
+            <span className={styles.img_left}>
+              <img src={Images[`PLAY_CIRCLE`]} />
+            </span>
             <span className={styles.balance_column_header}>
               <p className={styles.bold_text}>Free Play</p>
               <p className={styles.bold_text}>Free</p>

@@ -1,22 +1,22 @@
 import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { Menu, Icon, Dropdown } from 'semantic-ui-react';
 import Link from 'next/link';
 import cn from 'classnames';
+import { Menu, Icon, Dropdown, Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 import MessageBar from '../MessageBar';
-import ButtonConnect from '../../button/ButtonConnect';
+import ButtonConnect from '../../button/ButtonConnect/index.js';
 
 import styles from './MenuTop.module.scss';
 
 const MenuTop = props => {
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  const isTablet = useMediaQuery('(min-width: 1200px)');
+  const isTablet = useMediaQuery('(min-width: 1100px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
   // define local variables
   // const [isDarkMode, setDarkMode] = useState(false);
@@ -161,7 +161,7 @@ const MenuTop = props => {
         <img
           className={styles.menu_logo}
           alt="Decentral Games Logo"
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
         />
       </Link>
     ) : (
@@ -190,25 +190,25 @@ const MenuTop = props => {
           )}
           {!isMobile && (
             <Link href="/dg">
-              <Menu.Item className={styles.menu_item}>DAO</Menu.Item>
+              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
             </Link>
           )}
 
           {!isMobile && (
             <Link href="/games">
-              <Menu.Item className={styles.menu_item}>Shop</Menu.Item>
+              <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
             </Link>
           )}
 
           {!isTablet && (
             <Link href="/events">
-              <Menu.Item className={styles.menu_item}>Events</Menu.Item>
+              <Menu.Item className={styles.menu_style}>Events</Menu.Item>
             </Link>
           )}
 
           {!isTablet && (
             <Link href="/blog">
-              <Menu.Item className={styles.menu_item}>News & Blog</Menu.Item>
+              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
             </Link>
           )}
 
@@ -218,7 +218,7 @@ const MenuTop = props => {
               id="docs-top-menu"
               target="_blank"
             >
-              <Menu.Item className={styles.menu_item}>Docs</Menu.Item>
+              <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
             </a>
           )}
         </span>
@@ -229,22 +229,22 @@ const MenuTop = props => {
   // links are shown or hidden based on user's display resolution
   const desktopMenu = () => {
     return (
-      <div className={styles.desktop_menu}>
+      <div className={styles.menu_items_to_hide}>
         {isMobile && (
           <Link href={`/${utm}`}>
-            <Menu.Item className={styles.menu_item}>Play</Menu.Item>
+            <Menu.Item className={styles.menu_style}>Play</Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/dg">
-            <Menu.Item className={styles.menu_item}>DAO</Menu.Item>
+            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/games">
-            <Menu.Item className={styles.menu_item}>Shop</Menu.Item>
+            <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
           </Link>
         )}
 
@@ -272,13 +272,13 @@ const MenuTop = props => {
 
         {isTablet && (
           <Link href="/events">
-            <Menu.Item className={styles.menu_item}>Events</Menu.Item>
+            <Menu.Item className={styles.menu_style}>Events</Menu.Item>
           </Link>
         )}
 
         {isTablet && (
           <Link href="/blog">
-            <Menu.Item className={styles.menu_item}>News & Blog</Menu.Item>
+            <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
           </Link>
         )}
 
@@ -289,7 +289,7 @@ const MenuTop = props => {
             className="d-flex"
             target="_blank"
           >
-            <Menu.Item className={styles.menu_item}>Docs</Menu.Item>
+            <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
           </a>
         )}
       </div>
@@ -334,9 +334,10 @@ const MenuTop = props => {
           )}
         >
           <MessageBar />
+
           <Menu className={cn(styles.menu_container)}>
             {DGLogo()}
-            {desktopMenu()}
+            {shownOrHiddenItems()}
             {isMobile && balancesAndButtons()}
           </Menu>
           {dropdownMenu()}
