@@ -227,7 +227,7 @@ const MenuTop = props => {
   }
 
   // links are shown or hidden based on user's display resolution
-  const desktopMenu = () => {
+  function shownOrHiddenItems() {
     return (
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
