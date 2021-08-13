@@ -44,56 +44,62 @@ const Balances = (props) => {
   const [amount, setAmount] = useState(0);
   const buttonPlay = document.getElementById('play-now-button-balances');
 
-  const [resumeModal1, setResumeModal1] = React.useState(0); // MANA deposit
-  const [resumeModal2, setResumeModal2] = React.useState(0); // MANA withdraw
+  const [resumeModal1, setResumeModal1] = useState(0); // MANA deposit
+  const [resumeModal2, setResumeModal2] = useState(0); // MANA withdraw
 
-  const [resumeModal3, setResumeModal3] = React.useState(0); // DAI deposit
-  const [resumeModal4, setResumeModal4] = React.useState(0); // DAI withdraw
+  const [resumeModal3, setResumeModal3] = useState(0); // DAI deposit
+  const [resumeModal4, setResumeModal4] = useState(0); // DAI withdraw
 
-  const [resumeModal5, setResumeModal5] = React.useState(0); // USDT deposit
-  const [resumeModal6, setResumeModal6] = React.useState(0); // USDT withdraw
+  const [resumeModal5, setResumeModal5] = useState(0); // USDT deposit
+  const [resumeModal6, setResumeModal6] = useState(0); // USDT withdraw
+  const [lock, setLock] = useState(0);
 
-  const [lock, setLock] = React.useState(0);
-
-  useEffect(() => {
-    const updateIndex = () => {
-      if(resumeModal1) {
-        setLock(1);
-      } else if (resumeModal2) {
-        setLock(2);
-      } else if (resumeModal3) {
-        setLock(3);
-      } else if (resumeModal4) {
-        setLock(4);
-      } else if (resumeModal5) {
-        setLock(5);
-      } else if (resumeModal6) {
-        setLock(6);
-      } else {
-        setLock(0);
-      }
-    }
-    updateIndex();
-  }, [resumeModal1, resumeModal2, resumeModal3, resumeModal4, resumeModal5, resumeModal6]);
 
   useEffect(() => {
     if (state.dgLoading === 1) {
-      console.log("pending transfer ... ");
+      console.log("Pending transfer ... ");
+    } else if (state.dgLoading === 1) {
+      console.log("Transfer completed ... ");
     } else {
       setLock(0);
+      console.log("Transfer Default Setting ... ");
     }
   }, [state.dgLoading]);
 
   useEffect(() => {
 
-    if(state.openModal) {
-      setStateAndEvent(state.lockNumber, true, '');
-      dispatch({
-        type: 'set_openModal',
-        data: false,
-      });
+    const fetchResumeModel = async () => {
+      const lockID = state.openModal.lockID;
+      const resumeID = state.openModal.resumeID;
+      setLock(lockID);
+ 
+      if(lockID == 1) {
+        setResumeModal1(resumeID);
+      } else if (lockID == 2) {
+        setResumeModal2(resumeID);
+      } else if (lockID == 3) {
+        setResumeModal3(resumeID);
+      } else if (lockID == 4) {
+        setResumeModal4(resumeID);        
+      } else if (lockID == 5) {
+        setResumeModal5(resumeID);        
+      } else if (lockID == 6) {
+        setResumeModal6(resumeID);
+      } else {
+        console.log("UnExpected lockID ...");
+      }
     }
-  }, [state.openModal]);
+
+    if(state.dgShow) {
+      
+      fetchResumeModel();
+      setStateAndEvent(state.openModal.lockID, true, '');
+      dispatch({
+        type: 'set_dgShow',
+        data: false,
+      });      
+    }
+  }, [state.dgShow]);
 
   // send tracking data to Segment
   useEffect(() => {
@@ -140,9 +146,7 @@ const Balances = (props) => {
     }
   }, [event, txHash, amount]);
 
-  console.log('1!!');
-  console.log(state.userBalances[2][3]);
-
+  console.log("userBalances23: ", state.userBalances);
   const injectedProvider = window.ethereum;
 
   const rampDAI = new RampInstantSDK({
@@ -297,13 +301,16 @@ const Balances = (props) => {
                   withdrawChainId={137}
                   isDeposit = {true}
                   onFinished={(txHash, amountUi) => {
-                    setResumeModal1(false);
+                    setResumeModal1(0);
                     getWithdrawalAmount(txHash, amountUi);
+                    updateStatus(0, 1);
                   }}
-                  resumeModal={resumeModal1}
+                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal1}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? 1 : 2);
-                    setResumeModal1(params);
+                    if(params > 0 && params < 5) {
+                      setResumeModal1(params);
+                      updateStatus(params, 1);
+                    }
                   }}
                 />
 
@@ -332,13 +339,16 @@ const Balances = (props) => {
                   withdrawChainId={1}
                   isDeposit = {false}
                   onFinished={(txHash, amountUi) => {
-                    setResumeModal2(false);
+                    setResumeModal2(0);
                     getWithdrawalAmount(txHash, amountUi);
+                    updateStatus(0, 2);
                   }}
-                  resumeModal={resumeModal2}
+                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal2}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? 1 : 2);
-                    setResumeModal2(params);
+                    if(params > 0 && params < 5) {
+                      setResumeModal2(params);
+                      updateStatus(params, 2);
+                    }
                   }}
                 />
               </span>
@@ -390,7 +400,7 @@ const Balances = (props) => {
                   style={{display: lock === 6? 'none':'flex', width: lock === 6? '':'100%'}}
                   disabled = {lock >0 && lock!==5? true : false}
                 >
-                  {resumeModal5 ? 'Pending Transfer-x1':'Deposit' }
+                  {resumeModal5 ? 'Pending Transfer':'Deposit' }
                 </Button>
 
                 <DGModal
@@ -409,13 +419,16 @@ const Balances = (props) => {
                   withdrawChainId={137}
                   isDeposit = {true}
                   onFinished={(txHash, amountUi) => {
-                    setResumeModal5(false);
+                    setResumeModal5(0);
                     getWithdrawalAmount(txHash, amountUi);
+                    updateStatus(0, 5);
                   }}
-                  resumeModal={resumeModal5}
-                  onPaused = {params => {
-                    updateStatus(params > 0 ? 1 : 2);
-                    setResumeModal5(params);
+                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal5}
+                  onPaused = {params => {                    
+                    if(params > 0 && params < 5) {
+                      setResumeModal5(params);
+                      updateStatus(params, 5);
+                    }
                   }}
                 />
 
@@ -444,14 +457,16 @@ const Balances = (props) => {
                   withdrawChainId={1}
                   isDeposit = {false}
                   onFinished={(txHash, amountUi) => {
-                    updateStatus(false);
-                    setResumeModal6(false);
                     getWithdrawalAmount(txHash, amountUi);
+                    setResumeModal6(0);
+                    updateStatus(0);
                   }}
-                  resumeModal={resumeModal6}
+                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal6}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? 1 : 2);
-                    setResumeModal6(params);
+                    if(params > 0 && params < 5) {
+                      setResumeModal6(params, 6);
+                      updateStatus(params, 6);
+                    }
                   }}
                 />
 
@@ -520,13 +535,16 @@ const Balances = (props) => {
                   withdrawChainId={137}
                   isDeposit = {true}
                   onFinished={(txHash, amountUi) => {
-                    setResumeModal3(false);
+                    setResumeModal3(0);
                     getWithdrawalAmount(txHash, amountUi);
+                    updateStatus(0, 3);
                   }}
-                  resumeModal={resumeModal3}
+                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal3}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? 1 : 2);
-                    setResumeModal3(params);
+                    if(params > 0 && params < 5) {
+                      setResumeModal3(params);
+                      updateStatus(params, 3);
+                    }
                   }}
                 />
 
@@ -557,11 +575,14 @@ const Balances = (props) => {
                   onFinished={(txHash, amountUi) => {
                     setResumeModal4(false);
                     getWithdrawalAmount(txHash, amountUi);
+                    updateStatus(0);
                   }}
-                  resumeModal={resumeModal4}
+                  resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal4}
                   onPaused = {params => {
-                    updateStatus(params > 0 ? 1 : 2);
-                    setResumeModal4(params);
+                    if(params > 0 && params < 5) {
+                      setResumeModal4(params);
+                      updateStatus(params);
+                    }
                   }}
                 />
               </span>
@@ -640,6 +661,7 @@ const Balances = (props) => {
 
   // set modal state and event type
   function setStateAndEvent(number, state, type) {
+
     if (number === 1) {     
       setShowModal(state);
     } else if (number === 2) {
@@ -665,18 +687,24 @@ const Balances = (props) => {
     setAmount(amountUi);
   }
 
-  function updateStatus(arg) {
-    const lockNumber = lock;
-
+  function updateStatus(resumeID, lockID) {
+    
     dispatch({
       type: 'set_dgLoading',
-      data: arg,
+      data: resumeID === 0 ? 2 : 1,
     });
     
     dispatch({
-      type: 'set_lockNumber',
-      data: lockNumber,
+      type: 'set_openModal',
+      data: {
+        resumeID: resumeID === 0? 0 : resumeID,
+        lockID: lockID,
+      }
     });
+
+    setLock(lockID);
+    console.log("test", state.openModal);
+
   }
 
   // top up user to 5000 play tokens
