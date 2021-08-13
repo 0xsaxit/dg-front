@@ -216,6 +216,7 @@ const AccountData = props => {
                   <span className="account-hover">Referrals</span>
                 </Link>
               )}
+              
             </span>
           </div>
         </div>
