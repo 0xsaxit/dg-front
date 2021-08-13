@@ -1,10 +1,20 @@
 @import 'styles/base.scss';
 
 .overview_container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 90px;
+  border-right: 1px solid #2a2a2a;
+  padding-top: 53px;
+
+  @include mq($until: extra-large) {
+    padding-bottom: 0;
+  }
 
   .container_left {
-    padding-top: 210px;
-    margin-left: 30px;
+    padding-top: 0;
+    margin: 0 auto;
+    min-width: 600px;
 
     .welcome_text {
       font-family: Larsseit-Regular;
@@ -18,14 +28,13 @@
       font-size: 32px;
       letter-spacing: -0.7px;
       color: rgba(255, 255, 255) !important;
-      margin-top: 0px; 
+      margin-top: 0px;
     }
   }
 
   .blue_container {
-    margin-top: 40px;
-    padding: 36px 40px 36px 40px;
-    margin-left: 30px;
+    margin: 40px auto 0 auto;
+    padding: 36px 40px;
     background: rgba(0, 110, 255, 1);
     border-radius: 20px;
     width: 600px;
@@ -83,9 +92,8 @@
   }
 
   .treasury_container {
-    margin-top: 40px;
+    margin: 40px auto 0 auto;
     padding: 28px;
-    margin-left: 30px;
     border: 1px solid rgba(42, 42, 42, 1);
     border-radius: 16px;
     width: 600px;
@@ -93,7 +101,7 @@
     .earned_percent_pos {
       font-size: 14px;
       font-family: Larsseit-Bold;
-      color: #19c785 !important;
+      color: #67dd6c !important;
     }
 
     .earned_percent_neg {
@@ -106,7 +114,7 @@
       margin-top: 2px;
       margin-left: 3px;
       font-size: 12px;
-      font-family: Larsseit-Bold;
+      font-family: Larsseit-Regular;
       color: rgba(255, 255, 255, 0.5) !important;
     }
 
@@ -115,12 +123,12 @@
       justify-content: space-between;
 
       .treasury_title {
-        font-family: Larsseit-ExtraBold;
+        font-family: Larsseit-Bold;
         font-size: 24px;
       }
 
       .treasury_total {
-        font-family: Larsseit-ExtraBold;
+        font-family: Larsseit-Bold;
         font-size: 24px;
         justify-content: flex-end;
         margin-bottom: 4px;
@@ -145,7 +153,7 @@
       }
 
       .stat_amount {
-        font-family: Larsseit-Bold;
+        font-family: Larsseit-Regular;
         font-size: 14px;
         color: rgba(255, 255, 255, 0.5) !important;
       }
@@ -154,7 +162,7 @@
         margin-left: 3px;
         font-size: 14px;
         font-family: Larsseit-Bold;
-        color: #19c785 !important;
+        color: #67dd6c !important;
       }
 
       .earned_percent_neg {
@@ -178,136 +186,207 @@
     }
   }
 
+  .stake_DG_container {
+    width: 600px;
+    margin: 40px auto 0 auto;
+  }
+}
+
+.sub_profile {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+
+  @include mq($until: extra-large) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 90px;
+  }
+
   .lower {
-    margin-top: 40px;
-    padding: 28px;
-    border: 1px solid rgba(42, 42, 42, 1);
-    border-radius: 16px;
-    width: 285px;
-    display: flex;
-    flex-direction: column;
+    margin: 40px auto 0 auto;
+    height: fit-content;
 
-    .lower_header {
-      font-family: Larsseit-Bold;
-      font-size: 20px;
-      text-align: center;
-    }
-
-    .lower_header_two {
-      font-family: Larsseit-Bold;
-      font-size: 20px;
-    }
-
-    .lower_img {
-      width: 175px;
-      align-self: center;
-      margin-top: 0px;
-      margin-bottom: 14px;
-    }
-
-    .apy_text {
-      font-family: Larsseit-Bold;
-      font-size: 14px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.5) !important;
-      margin-bottom: 0px;
-    }
-
-    .apy_percent {
-      font-family: Larsseit-Bold;
-      font-size: 41px;
-      text-align: center;
-      margin-bottom: 14px;
-      margin-top: -4px;
-    }
-
-    .lower_text {
-      font-family: Larsseit-Regular;
-      text-align: center;
-      font-size: 14px;
-      line-height: 20px;
+    @include mq($until: extra-large) {
+      margin: 40px 0 0 0;
     }
 
     .lower_button {
-      margin-top: 20px;
-      width: 100%;
-      background: #006EFF;
+      background: rgb(31, 31, 31);
       color: white;
-      border-radius: 10px;
-      height: 40px;
-      font-family: Larsseit-Bold;
-      font-size: 14px;
     }
 
-    .governance_container {
+    .lower_value {
       display: flex;
-      margin-bottom: 20px;
+      align-items: center;
+      justify-content: center;
 
-      .state_box {
-        background: rgba(31, 31, 31);
-        border-radius: 14px;
-        height: 48px;
-        min-width: 48px;
-        display: flex;
-        justify-content: center;
-        align-self: center;
-
-        .state {
-          color: #19c785 !important;
-          font-size: 10px;
-          font-family: Larsseit-bold;
-          text-transform: uppercase;
-          align-self: center;
-        }
-
-        .state_closed {
-          color: #ea3943 !important;
-          font-size: 10px;
-          font-family: Larsseit-bold;
-          text-transform: uppercase;
-          align-self: center;    
-        }
-      }
-
-      .gov_right {
-        display: flex;
-        padding-left: 18px;
-
-        .gov_top {
-          font-family: Larsseit-Bold;
-          font-size: 10px;
-          color: rgba(255, 255, 255, 0.5) !important;
-          margin-bottom: 0px;
-        }
-
-        .gov_title {
-          font-family: Larsseit-Bold;
-          font-size: 14px;
-          margin-top: 2px;
-          line-height: 18px;
-        }
-      }
-    }
-
-    .button_span {
-      margin-top: 23px;
-      display: flex;
-      justify-content: space-between;
-      height: 100%;
-      align-items: flex-end;
-
-      .button_gov {
-        padding: 0px;
-        align-self: center;
-        margin-bottom: 0px;
-        height: 41px;
-        border-radius: 10px;
+      .DG_value {
         font-family: Larsseit-Bold;
-        background: rgb(31, 31, 31);
-        font-size: 14px;
-        width: 47.5%;
-        color: white; 
+        font-size: 41px;
+        margin-right: 12px;
+        margin-bottom: 0;
       }
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .price {
+      font-family: Larsseit-Bold;
+      font-size: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5) !important;
+      margin-bottom: 16px;
+    }
+
+    .claim_DG {
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+
+    .see_all_rewards {
+      color: white;
+      cursor: pointer;
+      line-height: 27px;
+      text-align: center;
+    }
+  }
+}
+
+.lower {
+  padding: 28px;
+  border: 1px solid rgba(42, 42, 42, 1);
+  border-radius: 16px;
+  width: 285px;
+  display: flex;
+  flex-direction: column;
+
+  .lower_header {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .lower_header_two {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+  }
+
+  .lower_img {
+    width: 175px;
+    align-self: center;
+    margin-top: 0px;
+    margin-bottom: 14px;
+  }
+
+  .apy_text {
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 0px;
+  }
+
+  .apy_percent {
+    font-family: Larsseit-Bold;
+    font-size: 41px;
+    text-align: center;
+    margin-bottom: 14px;
+    margin-top: -4px;
+  }
+
+  .lower_text {
+    font-family: Larsseit-Regular;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .lower_button {
+    margin-top: 20px;
+    width: 100%;
+    background: #006eff;
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+  }
+
+  .governance_container {
+    display: flex;
+    margin-bottom: 20px;
+
+    .state_box {
+      background: rgba(31, 31, 31);
+      border-radius: 14px;
+      height: 48px;
+      min-width: 48px;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+
+      .state {
+        color: #19c785 !important;
+        font-size: 10px;
+        font-family: Larsseit-bold;
+        text-transform: uppercase;
+        align-self: center;
+      }
+
+      .state_closed {
+        color: #ea3943 !important;
+        font-size: 10px;
+        font-family: Larsseit-bold;
+        text-transform: uppercase;
+        align-self: center;
+      }
+    }
+
+    .gov_right {
+      display: flex;
+      padding-left: 18px;
+
+      .gov_top {
+        font-family: Larsseit-Bold;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.5) !important;
+        margin-bottom: 0px;
+      }
+
+      .gov_title {
+        font-family: Larsseit-Bold;
+        font-size: 14px;
+        margin-top: 2px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .button_span {
+    margin-top: 23px;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: flex-end;
+
+    .button_gov {
+      padding: 0px;
+      align-self: center;
+      margin-bottom: 0px;
+      height: 41px;
+      border-radius: 10px;
+      font-family: Larsseit-Bold;
+      background: rgb(31, 31, 31);
+      font-size: 14px;
+      width: 47.5%;
+      color: white;
     }
   }
 }
