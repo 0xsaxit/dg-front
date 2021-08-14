@@ -552,7 +552,10 @@ function History({ state }) {
                                           ) : (
                                             <img src={Images.PLAY_CIRCLE} />
                                           )}
-                                          {amountWin - betAmount}&nbsp;
+                                          {amountWin - betAmount > 0
+                                            ? `+${amountWin - betAmount}`
+                                            : amountWin - betAmount}
+                                          &nbsp;
                                           {row.coinName}
                                         </p>
                                       );
