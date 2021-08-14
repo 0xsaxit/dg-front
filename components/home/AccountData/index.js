@@ -192,35 +192,45 @@ const AccountData = (props) => {
                   My Items
                 </span>
               ) : (
-                <Link href="/account/items">
+                state.dgLoading? (
                   <span className="account-hover">
                     My Items
                   </span>
-                </Link>
+                ) : (<Link href="/account/items">
+                  <span className="account-hover">
+                    My Items
+                  </span>
+                </Link>)
               )}
 
               {dataType === 'history' ? (
                 <span className="account-hover active">
                   History
                 </span>
-              ) : (
+              ) : (state.dgLoading? (
+                  <span className="account-hover">
+                    History
+                  </span>) : (
                 <Link href="/account/history">
                   <span className="account-hover">
                     History
                   </span>
-                </Link>
+                </Link>)
               )}
 
               {dataType === 'referrals' ? (
                 <span className="account-hover active">
                   Referrals
                 </span>
-              ) : (
-                <Link href="/account/referrals">
+              ) : (state.dgLoading? (
+                <span className="account-hover">
+                  Referrals
+                </span>) : 
+                (<Link href="/account/referrals">
                   <span className="account-hover">
                     Referrals
                   </span>
-                </Link>
+                </Link>)
               )}
             </span>
           </div>

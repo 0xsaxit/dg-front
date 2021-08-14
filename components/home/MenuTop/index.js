@@ -184,32 +184,32 @@ const MenuTop = props => {
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
         <span className="d-flex flex-column w-100">
           {!isMobile && (
-            <Link href={`/${utm}`}>
+            state.dgLoading? (<Menu.Item className={styles.menu_style}>Play</Menu.Item>) : (<Link href={`/${utm}`}>
               <Menu.Item className={styles.menu_style}>Play</Menu.Item>
-            </Link>
+            </Link>)
           )}
           {!isMobile && (
-            <Link href="/dg">
+            state.dgLoading? (<Menu.Item className={styles.menu_style}>DAO</Menu.Item>):(<Link href="/dg">
               <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
-            </Link>
+            </Link>)
           )}
 
           {!isMobile && (
-            <Link href="/games">
+            state.dgLoading? (<Menu.Item className={styles.menu_style}>Shop</Menu.Item>):(<Link href="/games">
               <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
-            </Link>
+            </Link>)
           )}
 
           {!isTablet && (
-            <Link href="/events">
+            state.dgLoading? (<Menu.Item className={styles.menu_style}>Events</Menu.Item>):(<Link href="/events">
               <Menu.Item className={styles.menu_style}>Events</Menu.Item>
-            </Link>
+            </Link>)
           )}
 
           {!isTablet && (
-            <Link href="/blog">
+            state.dgLoading? (<Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>) : (<Link href="/blog">
               <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
-            </Link>
+            </Link>)
           )}
 
           {!isTablet && (
@@ -231,21 +231,21 @@ const MenuTop = props => {
     return (
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
-          <Link href={`/${utm}`}>
+          state.dgLoading? (<Menu.Item className={styles.menu_style}>Play</Menu.Item>):(<Link href={`/${utm}`}>
             <Menu.Item className={styles.menu_style}>Play</Menu.Item>
-          </Link>
+          </Link>)
         )}
 
         {isMobile && (
-          <Link href="/dg">
+          state.dgLoading? (<Menu.Item className={styles.menu_style}>DAO</Menu.Item>):(<Link href="/dg">
             <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
-          </Link>
+          </Link>)
         )}
 
         {isMobile && (
-          <Link href="/games">
+          state.dgLoading? (<Menu.Item className={styles.menu_style}>Shop</Menu.Item>):(<Link href="/games">
             <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
-          </Link>
+          </Link>)
         )}
 
         {!isTablet && (
@@ -271,16 +271,21 @@ const MenuTop = props => {
         )}
 
         {isTablet && (
-          <Link href="/events">
+          state.dgLoading? (<Menu.Item className={styles.menu_style}>Events</Menu.Item>):(<Link href="/events">
             <Menu.Item className={styles.menu_style}>Events</Menu.Item>
-          </Link>
+          </Link>)
         )}
 
         {isTablet && (
-          <Link href="/blog">
+          state.dgLoading? (<Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>):(<Link href="/blog">
             <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
-          </Link>
+          </Link>)
         )}
+        {!isTablet && (
+            state.dgLoading? (<Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>) : (<Link href="/blog">
+              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+            </Link>)
+          )}
 
         {isTablet && (
           <a
