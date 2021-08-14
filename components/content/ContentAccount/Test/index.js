@@ -7,7 +7,7 @@ import Images from 'common/Images';
 import poker from 'common/Poker';
 import { Modal, Button, Grid, Table } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
-import styles from './Test.module.scss';
+import styles from './History.module.scss';
 
 function Test({ state }) {
   // get user's transaction history from the Context API store
@@ -64,8 +64,154 @@ function Test({ state }) {
   return (
     <Aux>
       <div className={styles.history_container}>
+        <h1 className={styles.title}>Recent transactions</h1>
+        {!transactions.length ? (
+          <div className={styles.error_container}>
+            <p className={styles.error_state}>No Recent Transactions</p>
+          </div>
+        ) : (
+          <Grid>
+            {transactions.map((row, i) => {
+              const date = new Date(row.createdAt);
+              const timestamp = date.toDateString();
+              const amount = (row.amount / 100000000000000000).toFixed(2);
 
-        <h1 className={styles.title}>Gameplay History Test</h1>
+              return (
+                <Grid.Column computer={8} tablet={8} mobile={16} key={i}>
+                  <div className={styles.history_column}>
+                    {row.type.includes('Deposit') ? (
+                      <svg
+                        width="25"
+                        height="25"
+                        viewBox="0 0 33 33"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="16.5002"
+                          cy="16.5"
+                          r="16.5"
+                          fill="#1F1F1F"
+                        />
+                        <path
+                          d="M21.75 22.75H11.25"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M12.75 14.5L16.5 18.25L20.25 14.5"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M16.5 18.25V9.25"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        width="25"
+                        height="25"
+                        viewBox="0 0 33 33"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="16.5002"
+                          cy="16.5"
+                          r="16.5"
+                          fill="#1F1F1F"
+                        />
+                        <path
+                          d="M21.75 22.75H11.25"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M20.25 13L16.5 9.25L12.75 13"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M16.5 9.25L16.5 18.25"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                    <span
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <span className={styles.left_column}>
+                        <h2 className={styles.row_type}>{row.type}</h2>
+                        <h3 className={styles.row_date}>{timestamp}</h3>
+                      </span>
+                      <span className={styles.right_column}>
+                        <h2
+                          className={styles.row_type}
+                          style={{ textAlign: 'right' }}
+                        >
+                          {amount}
+                        </h2>
+                        {row.type.includes('DAI') ||
+                        row.type.includes('USDT') ? (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.dai).toFixed(2)}
+                          </h3>
+                        ) : row.type.includes('MANA') ? (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.mana).toFixed(2)}
+                          </h3>
+                        ) : row.type.includes('ETH') ? (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.eth).toFixed(2)}
+                          </h3>
+                        ) : (
+                          <h3
+                            className={styles.row_date}
+                            style={{ textAlign: 'right' }}
+                          >
+                            ${(amount * state.DGPrices.atri).toFixed(2)}
+                          </h3>
+                        )}
+                      </span>
+                    </span>
+                  </div>
+                </Grid.Column>
+              );
+            })}
+            }
+          </Grid>
+        )}
+      </div>
+
+      <div className={styles.history_container}>
+        <h1 className={styles.title}>Gameplay History</h1>
         <div className="tx-box-overflow">
           {playData.length === 0 ? null : (
             <Table fixed unstackable>
@@ -382,6 +528,15 @@ function Test({ state }) {
                                           0
                                         ) / Global.CONSTANTS.FACTOR;
 
+                                      const betAmount =
+                                        get(
+                                          dataPlay.filter(
+                                            play => play._id === userPlayInfoID
+                                          ),
+                                          '0.betAmount',
+                                          0
+                                        ) / Global.CONSTANTS.FACTOR;
+
                                       return (
                                         <p className={styles.pay_out_call}>
                                           {row.coinName === 'DAI' ? (
@@ -397,7 +552,11 @@ function Test({ state }) {
                                           ) : (
                                             <img src={Images.PLAY_CIRCLE} />
                                           )}
-                                          {amountWin}&nbsp;{row.coinName}
+                                          {amountWin - betAmount > 0
+                                            ? `+${amountWin - betAmount}`
+                                            : amountWin - betAmount}
+                                          &nbsp;
+                                          {row.coinName}
                                         </p>
                                       );
                                     })}
