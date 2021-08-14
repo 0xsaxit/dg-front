@@ -29,25 +29,16 @@ function Test({ state }) {
       'playerHandData.1.userPlayInfoID'
     );
 
-    let betAmount = 0;
-    for (let i = 0; i < dataPlay.length; i++) {
-      if (userInfoPlayIDs.includes(dataPlay[i]._id)) {
-        betAmount = dataPlay[i].betAmount;
-        break;
-      }
-    }
-
-    let amountWin = 0;
-    for (let i = 0; i < dataPlay.length; i++) {
-      if (userInfoPlayIDs.includes(dataPlay[i]._id)) {
-        amountWin = dataPlay[i].amountWin;
-      }
-    }
-
     return {
       ...poker,
-      betAmount,
-      amountWin,
+      betAmount: sumBy(dataPlay, o => {
+        if (userInfoPlayIDs.includes(o._id)) return o.betAmount;
+        return 0;
+      }),
+      amountWin: sumBy(dataPlay, o => {
+        if (userInfoPlayIDs.includes(o._id)) return o.amountWin;
+        return 0;
+      }),
       gameType: 9,
       coinName: 'PLAY',
     };
@@ -354,7 +345,7 @@ function Test({ state }) {
                             }}
                           />
                         )}
-                        {amount > 0 ? `+${amount}` : amount} {row.coinName}
+                        -{amount} {row.coinName}
                       </Table.Cell>
                       <Table.Cell style={{ width: '180px' }}>
                         {row.coinName === 'DAI' ? (
@@ -424,7 +415,7 @@ function Test({ state }) {
                             }}
                           />
                         )}
-                        {result > 0 ? `+${result}` : result} {row.coinName}
+                        +{result} {row.coinName}
                       </Table.Cell>
                       <Table.Cell style={{ width: '240px' }}>
                         {timestamp}
@@ -666,6 +657,5 @@ function Test({ state }) {
     </Aux>
   );
 }
-
 
 export default Test;
