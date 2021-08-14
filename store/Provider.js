@@ -109,7 +109,7 @@ const initialState = {
   atriLoading: false,
   wethLoading: false,
 
-  dgLoading: 0,
+  dgLoading: false,
   dgShow: false,
   openModal: {
     resumeID: 0,

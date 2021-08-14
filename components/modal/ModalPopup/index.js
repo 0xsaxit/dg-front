@@ -27,25 +27,24 @@ const ModalPopup = () => {
     const hideStatus = () => {
       setTimeout(() => {
         setVisibleStatus(false);
-      }, 5000);
 
-      //reset
-      dispatch({
-        type: 'set_dgLoading',
-        data: 0,
-      });
+        //reset
+        dispatch({
+          type: 'set_dgLoading',
+          data: 0,
+        });
 
-      dispatch({
-        type: 'set_openModal',
-        data: {
-          resumeID: 0,
-          lockID: 0
-        },
-      });
+        dispatch({
+          type: 'set_openModal',
+          data: {
+            resumeID: 0,
+            lockID: 0
+          },
+        });
+      }, 5000);      
     }
 
     showStatus();
-
     if(state.dgLoading === 2) {      
       hideStatus();
     }
