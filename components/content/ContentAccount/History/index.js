@@ -528,6 +528,15 @@ function History({ state }) {
                                           0
                                         ) / Global.CONSTANTS.FACTOR;
 
+                                      const betAmount =
+                                        get(
+                                          dataPlay.filter(
+                                            play => play._id === userPlayInfoID
+                                          ),
+                                          '0.betAmount',
+                                          0
+                                        ) / Global.CONSTANTS.FACTOR;
+
                                       return (
                                         <p className={styles.pay_out_call}>
                                           {row.coinName === 'DAI' ? (
@@ -543,7 +552,8 @@ function History({ state }) {
                                           ) : (
                                             <img src={Images.PLAY_CIRCLE} />
                                           )}
-                                          {amountWin}&nbsp;{row.coinName}
+                                          {amountWin - betAmount}&nbsp;
+                                          {row.coinName}
                                         </p>
                                       );
                                     })}
