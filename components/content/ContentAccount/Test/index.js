@@ -7,7 +7,7 @@ import Images from 'common/Images';
 import poker from 'common/Poker';
 import { Modal, Button, Grid, Table } from 'semantic-ui-react';
 import Aux from 'components/_Aux';
-import styles from './History.module.scss';
+import styles from './Test.module.scss';
 
 function Test({ state }) {
   // get user's transaction history from the Context API store
