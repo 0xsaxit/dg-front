@@ -109,12 +109,13 @@ const initialState = {
   atriLoading: false,
   wethLoading: false,
 
-  dgLoading: false,
+  dgLoading: 0,
   dgShow: false,
   openModal: {
     resumeID: 0,
     lockID: 0,
   },
+  dgWarningMsg: false,
 };
 
 const reducer = (state, action) => {
@@ -338,11 +339,15 @@ const reducer = (state, action) => {
         ...state,
         openModal: action.data,
       };
-    //  dgShow
     case 'set_dgShow':
       return {
         ...state,
         dgShow: action.data,
+      };
+    case 'set_dgWarningMsg':
+      return {
+        ...state,
+        dgWarningMsg: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');

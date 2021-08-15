@@ -193,7 +193,15 @@ const AccountData = (props) => {
                 </span>
               ) : (
                 state.dgLoading? (
-                  <span className="account-hover">
+                  <span 
+                    className="account-hover" 
+                    onClick = {() => {
+                      dispatch({
+                        type: 'set_dgWarningMsg',
+                        data: true,
+                      });
+                    }}
+                  >
                     My Items
                   </span>
                 ) : (<Link href="/account/items">
@@ -208,7 +216,12 @@ const AccountData = (props) => {
                   History
                 </span>
               ) : (state.dgLoading? (
-                  <span className="account-hover">
+                  <span className="account-hover" onClick = {() => {
+                    dispatch({
+                      type: 'set_dgWarningMsg',
+                      data: true,
+                    });
+                  }}>
                     History
                   </span>) : (
                 <Link href="/account/history">
@@ -223,7 +236,12 @@ const AccountData = (props) => {
                   Referrals
                 </span>
               ) : (state.dgLoading? (
-                <span className="account-hover">
+                <span className="account-hover" onClick = {() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}>
                   Referrals
                 </span>) : 
                 (<Link href="/account/referrals">
