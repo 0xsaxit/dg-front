@@ -24,16 +24,24 @@ function Test({ state }) {
   );
 
   const newPokerData = dataPoker.map(poker => {
-    const userInfoPlayIDs = map(
+
+    const temp = map(
       poker.tableData,
       'playerHandData.userPlayInfoID'
     );
 
+    const userInfoPlayIDs = temp.filter(function(x) {
+      return x !== undefined;
+    });
+
     return {
       ...poker,
       betAmount: sumBy(dataPlay, o => {
-        if (userInfoPlayIDs.includes(o._id)) return o.betAmount;
-        return 0;
+        if (userInfoPlayIDs.includes(o._id)) {
+          return o.betAmount;
+        } else {
+          return 0;
+        }
       }),
       amountWin: sumBy(dataPlay, o => {
         if (userInfoPlayIDs.includes(o._id)) return o.amountWin;

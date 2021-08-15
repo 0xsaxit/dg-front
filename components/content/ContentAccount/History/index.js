@@ -31,6 +31,9 @@ function History({ state }) {
       'playerHandData.userPlayInfoID'
     );
 
+    console.log('!!!!');
+    console.log(poker.tableData);
+
     return {
       ...poker,
       betAmount: sumBy(dataPlay, o => {
