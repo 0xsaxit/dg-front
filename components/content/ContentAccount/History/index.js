@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
-import { get, map } from 'lodash';
 import { useMediaQuery } from 'hooks';
+import { get, map, sumBy } from 'lodash';
 import Global from 'components/Constants';
 import Images from 'common/Images';
 import poker from 'common/Poker';
@@ -28,28 +28,19 @@ function History({ state }) {
   const newPokerData = dataPoker.map(poker => {
     const userInfoPlayIDs = map(
       poker.tableData,
-      'playerHandData.1.userPlayInfoID'
+      'playerHandData.userPlayInfoID'
     );
-
-    let betAmount = 0;
-    for (let i = 0; i < dataPlay.length; i++) {
-      if (userInfoPlayIDs.includes(dataPlay[i]._id)) {
-        betAmount = dataPlay[i].betAmount;
-        break;
-      }
-    }
-
-    let amountWin = 0;
-    for (let i = 0; i < dataPlay.length; i++) {
-      if (userInfoPlayIDs.includes(dataPlay[i]._id)) {
-        amountWin = dataPlay[i].amountWin;
-      }
-    }
 
     return {
       ...poker,
-      betAmount,
-      amountWin,
+      betAmount: sumBy(dataPlay, o => {
+        if (userInfoPlayIDs.includes(o._id)) return o.betAmount;
+        return 0;
+      }),
+      amountWin: sumBy(dataPlay, o => {
+        if (userInfoPlayIDs.includes(o._id)) return o.amountWin;
+        return 0;
+      }),
       gameType: 9,
       coinName: 'PLAY',
     };
@@ -488,7 +479,7 @@ function History({ state }) {
                                         <div className={styles.hand_row}>
                                           {get(
                                             item,
-                                            'playerHandData.1.hand',
+                                            'playerHandData.hand',
                                             []
                                           ).map(card => {
                                             return (
@@ -528,7 +519,7 @@ function History({ state }) {
                                     {(row.tableData || []).map(item => {
                                       const userPlayInfoID = get(
                                         item,
-                                        'playerHandData.1.userPlayInfoID',
+                                        'playerHandData.userPlayInfoID',
                                         ''
                                       );
 

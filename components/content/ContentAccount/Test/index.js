@@ -26,7 +26,7 @@ function Test({ state }) {
   const newPokerData = dataPoker.map(poker => {
     const userInfoPlayIDs = map(
       poker.tableData,
-      'playerHandData.1.userPlayInfoID'
+      'playerHandData.userPlayInfoID'
     );
 
     return {
@@ -475,7 +475,7 @@ function Test({ state }) {
                                         <div className={styles.hand_row}>
                                           {get(
                                             item,
-                                            'playerHandData.1.hand',
+                                            'playerHandData.hand',
                                             []
                                           ).map(card => {
                                             return (
@@ -515,7 +515,7 @@ function Test({ state }) {
                                     {(row.tableData || []).map(item => {
                                       const userPlayInfoID = get(
                                         item,
-                                        'playerHandData.1.userPlayInfoID',
+                                        'playerHandData.userPlayInfoID',
                                         ''
                                       );
 
