@@ -29,8 +29,7 @@ function History({ state }) {
       'playerHandData.userPlayInfoID'
     );
 
-    console.log('!!!!');
-    console.log(poker.tableData);
+    console.log(dataPlay);
 
     return {
       ...poker,
@@ -499,7 +498,7 @@ function History({ state }) {
                                     </p>
                                     {(row.tableData || []).map(item => {
                                       return (
-                                        <div>
+                                        <div className={styles.hand_row_2}>
                                           {item.communityCards.map(card => {
                                             return (
                                               <img

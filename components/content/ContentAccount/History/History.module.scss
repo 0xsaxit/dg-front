@@ -149,7 +149,13 @@
 
   .hand_row {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: px;
+  }
+
+  .hand_row_2 {
+    display: flex;
+    justify-content: flex-start;
   }
 
   img {
