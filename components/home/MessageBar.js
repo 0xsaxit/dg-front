@@ -22,6 +22,22 @@ const MessageBar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if(state.dgWarningMsg) {
+      setMessage('Transfer pending, Please remain on this page!');
+      let timer = setTimeout(() => {
+        setMessage('');
+        dispatch({
+          type: 'set_dgWarningMsg',
+          data: false,
+        });
+      }, 1500);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [state.dgWarningMsg]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // using Safari browser
