@@ -473,3 +473,11 @@ $mq-breakpoints: (
     }
   }
 }
+
+img.blog-hero-img {
+  width: 100vw;
+  object-fit: cover;
+  max-height: 420px;
+  position: relative;
+  z-index: 9;
+}
