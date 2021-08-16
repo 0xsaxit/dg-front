@@ -257,12 +257,12 @@ function History({ state }) {
           ) : (
             playData.map((row, i) => {
               const timestamp = moment(row.createdAt).format('MM/DD/YY hh:mmA');
-              const amount =
-                Number((row.betAmount * 10000) / Global.CONSTANTS.FACTOR) /
-                10000;
-              const result =
-                Number((row.amountWin * 10000) / Global.CONSTANTS.FACTOR) /
-                10000;
+              const amount = Number(
+                row.betAmount / Global.CONSTANTS.FACTOR
+              ).toFixed(0);
+              const result = Number(
+                row.amountWin / Global.CONSTANTS.FACTOR
+              ).toFixed(0);
 
               let action = '';
               if (row.gameType === 1) {
