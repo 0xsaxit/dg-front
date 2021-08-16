@@ -112,10 +112,15 @@ const Governance = (props) => {
         >
           <div className={styles.lower}>
             <p className={styles.lower_header}>Stake Your $DG</p>
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+            <video
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
               className={styles.lower_img}
-            />
+              type="video/mp4"
+              frameBorder="0"
+              autoPlay={true}
+              loop
+              muted
+            ></video>
             <p className={styles.apy_text}> APY </p>
             <p className={styles.apy_percent}> 22.39% </p>
             <p className={styles.lower_text}>

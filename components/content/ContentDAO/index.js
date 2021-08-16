@@ -14,6 +14,8 @@ const ContentDAO = props => {
     return <Governance />;
   } else if (props.content === 'Liquidity') {
     return <Liquidity />;
+  } else if (props.content === 'Gameplay') {
+    return <Gameplay />;
   }
 };
 

@@ -10,6 +10,7 @@ import { useMediaQuery } from 'hooks';
 import Overview from '../../content/ContentDAO/Overview';
 import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';
+import Gameplay from '../../content/ContentDAO/Gameplay';
 
 import ContentMining from '../../content/ContentMining';
 import ContentMiningV1 from '../../content/ContentMiningV1';
@@ -871,7 +872,7 @@ const DAO = props => {
           ) : DGState === 'uniswap' ? (
             <Liquidity />
           ) : DGState === 'mining' ? (
-            <ContentMining price={price} formatPrice={formatPrice} />
+            <Gameplay />
           ) : DGState === 'balancer' ? (
             <ContentBalancer
               price={price}
