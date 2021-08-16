@@ -48,6 +48,7 @@
     "html-to-react": "^1.4.5",
     "intro.js": "^3.4.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "next": "^10.2.0",
     "next-seo": "^4.24.0",
     "prop-types": "^15.7.2",

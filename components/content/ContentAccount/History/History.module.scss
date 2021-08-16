@@ -2,19 +2,8 @@
 
 .history_container {
   margin: auto;
-<<<<<<< HEAD
   width: 100%;
   max-width: 1100px;
-=======
-
-  @include mq($until: extra-large) {
-    width: 100%;
-  }
-
-  @include mq($from: extra-large) {
-    width: 75%;
-  }
->>>>>>> e7339915... poker hand history
 
   .title {
     font-size: 24px;
@@ -166,9 +155,9 @@
     width: 34px;
     height: 48px;
     text-transform: capitalize;
-  
+
     &:hover,
-    &:focus{
+    &:focus {
       background: transparent;
       color: white;
       border: 2px solid white;

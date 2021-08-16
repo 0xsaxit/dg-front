@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
+import moment from 'moment';
 import { useMediaQuery } from 'hooks';
 import { get, map, sumBy } from 'lodash';
 import Global from 'components/Constants';
@@ -76,8 +77,9 @@ function History({ state }) {
         ) : (
           <Grid>
             {transactions.map((row, i) => {
-              const date = new Date(row.createdAt);
-              const timestamp = date.toDateString();
+              const timestamp = moment(row.createdAt).format(
+                'MM/DD/YY hh:mm a'
+              );
               const amount = (row.amount / 100000000000000000).toFixed(2);
 
               return (
@@ -249,8 +251,9 @@ function History({ state }) {
             </div>
           ) : (
             playData.map((row, i) => {
-              const date = new Date(row.createdAt);
-              const timestamp = date.toLocaleString();
+              const timestamp = moment(row.createdAt).format(
+                'MM/DD/YY hh:mm a'
+              );
               const amount =
                 Number((row.betAmount * 100) / Global.CONSTANTS.FACTOR) / 100;
               const result =
