@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from 'store/index';
 import cn from 'classnames';
 import { get, map, sumBy } from 'lodash';
+import { useMediaQuery } from 'hooks';
 import Global from 'components/Constants';
 import Images from 'common/Images';
 import poker from 'common/Poker';
@@ -12,6 +13,8 @@ import styles from './History.module.scss';
 function History({ state }) {
   // get user's transaction history from the Context API store
   const [dataHistory, dataPlay, dataPoker] = state.transactions;
+
+  const isWideScreen = useMediaQuery('(min-width: 1200px)');
 
   // define local variables
   const [openId, setOpenId] = useState(null);
@@ -226,20 +229,20 @@ function History({ state }) {
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell style={{ width: '120px' }}>
+                  <Table.HeaderCell style={{ maxWidth: '120px' }}>
                     Game
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '180px' }}>
+                  <Table.HeaderCell style={{ maxWidth: '180px' }}>
                     Bet
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '180px' }}>
+                  <Table.HeaderCell style={{ maxWidth: '180px' }}>
                     Payout
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ width: '240px' }}>
+                  <Table.HeaderCell style={{ maxWidth: '240px' }}>
                     Date
                   </Table.HeaderCell>
                   <Table.HeaderCell
-                    style={{ width: '270px', textAlign: 'right' }}
+                    style={{ maxWidth: '270px', textAlign: 'right' }}
                   >
                     Transactions
                   </Table.HeaderCell>
@@ -283,10 +286,10 @@ function History({ state }) {
                 <Table fixed unstackable>
                   <Table.Body key={i}>
                     <Table.Row style={{ background: style }}>
-                      <Table.Cell style={{ width: '120px' }}>
+                      <Table.Cell style={{ maxWidth: '120px' }}>
                         {action}
                       </Table.Cell>
-                      <Table.Cell style={{ width: '180px' }}>
+                      <Table.Cell style={{ maxWidth: '180px' }}>
                         {row.coinName === 'DAI' ? (
                           <img
                             src={Images.DAI_CIRCLE}
@@ -356,7 +359,7 @@ function History({ state }) {
                         )}
                         {amount > 0 ? `+${amount}` : amount} {row.coinName}
                       </Table.Cell>
-                      <Table.Cell style={{ width: '180px' }}>
+                      <Table.Cell style={{ maxWidth: '180px' }}>
                         {row.coinName === 'DAI' ? (
                           <img
                             src={Images.DAI_CIRCLE}
@@ -426,11 +429,11 @@ function History({ state }) {
                         )}
                         {result > 0 ? `+${result}` : result} {row.coinName}
                       </Table.Cell>
-                      <Table.Cell style={{ width: '240px' }}>
+                      <Table.Cell style={{ maxWidth: '240px' }}>
                         {timestamp}
                       </Table.Cell>
                       <Table.Cell
-                        style={{ width: '270px', textAlign: 'right' }}
+                        style={{ maxWidth: '270px', textAlign: 'right' }}
                       >
                         <span>
                           {row.gameType === 9 && (
@@ -444,7 +447,7 @@ function History({ state }) {
                               centered={true}
                               trigger={
                                 <Button className={styles.session_history}>
-                                  Session History
+                                  {isWideScreen ? 'Session History' : 'History'}
                                 </Button>
                               }
                             >

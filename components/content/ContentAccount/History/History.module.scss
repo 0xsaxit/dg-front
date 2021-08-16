@@ -2,14 +2,8 @@
 
 .history_container {
   margin: auto;
-
-  @include mq($until: extra-large) {
-    width: 100%;
-  }
-
-  @include mq($from: extra-large) {
-    width: 75%;
-  }
+  width: 100%;
+  max-width: 1000px;
 
   .title {
     font-size: 24px;
@@ -59,6 +53,17 @@
     line-height: 0px;
     opacity: 100%;
     text-transform: capitalize;
+  }
+
+  tr td {
+    @include mq($until: small) {
+      padding: 0 !important;
+      text-align: center !important;
+    }
+
+    @include mq($until: medium, $from: small) {
+      padding: 15px !important;
+    }
   }
 }
 
