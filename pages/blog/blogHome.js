@@ -54,8 +54,8 @@ const blog = () => {
             </svg>
           </span>
         </Button>
-        <p className="substack-text"> Or read on{' '}
-          <a href="https://decentralgames.substack.com/" target="_blank" className="substack-link">
+        <p className={styles.substack_text}> Or read on{' '}
+          <a href="https://decentralgames.substack.com/" target="_blank" className={styles.substack_link}>
             Substack
           </a>
         </p>

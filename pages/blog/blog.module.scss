@@ -250,6 +250,23 @@
     justify-content: center;
     flex-direction: column;
     margin-bottom: 80px;
+    
+    .substack_text {
+      color: rgba(255, 255, 255, 0.5) !important;
+      align-self: center;
+      margin-right: 2px;
+      font-family: Larsseit-Regular;
+      font-size: 16px;
+      padding-bottom: 24px;
+      .substack-link {
+        color: white !important;
+        align-self: center;
+        margin-right: 2px;
+        font-family: Larsseit-Regular;
+        font-size: 16px;
+        padding-bottom: 24px;
+      }
+    }
   }
 
   .substack_img {
