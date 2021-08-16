@@ -1,7 +1,6 @@
-import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from 'store/index';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
-import { get, map, sumBy } from 'lodash';
+import { get, map } from 'lodash';
 import { useMediaQuery } from 'hooks';
 import Global from 'components/Constants';
 import Images from 'common/Images';
@@ -259,8 +258,10 @@ function History({ state }) {
             playData.map((row, i) => {
               const date = new Date(row.createdAt);
               const timestamp = date.toLocaleString();
-              const amount = Number(row.betAmount) / Global.CONSTANTS.FACTOR;
-              const result = Number(row.amountWin) / Global.CONSTANTS.FACTOR;
+              const amount =
+                Number((row.betAmount * 100) / Global.CONSTANTS.FACTOR) / 100;
+              const result =
+                Number((row.amountWin * 100) / Global.CONSTANTS.FACTOR) / 100;
 
               let action = '';
               if (row.gameType === 1) {
