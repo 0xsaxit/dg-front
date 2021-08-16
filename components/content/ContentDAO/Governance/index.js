@@ -30,7 +30,7 @@ const Governance = (props) => {
   useEffect(() => {
     (async () => {
       const snapshotData = await axios.post(
-        `https://hub.snapshot.page/graphql`,
+        `https://hub.snapshot.org/graphql`,
         {
           query: `{
             proposals (
@@ -103,106 +103,184 @@ const Governance = (props) => {
 
   return (
     <Aux>
-      <div className={styles.lower}>
-        <p className={styles.lower_header_two}>
-          Governance Proposals
-        </p>
-
-        <div className={styles.governance_container}>
-          <div className={styles.state_box}>
-            <p className={activeOne ? styles.state_closed : styles.state}>
-              {snapshotOne.state}
+      <div>
+        <div
+          className={cn(
+            'd-flex',
+            styles.stake_DG_container
+          )}
+        >
+          <div className={styles.lower}>
+            <p className={styles.lower_header}>Stake Your $DG</p>
+            <img
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+              className={styles.lower_img}
+            />
+            <p className={styles.apy_text}> APY </p>
+            <p className={styles.apy_percent}> 22.39% </p>
+            <p className={styles.lower_text}>
+              Stake $DG to govern the treasury, vote on proposals, and earn
+              yields.
             </p>
+            <Button
+              className={styles.lower_button}
+              onClick={() => {
+                router.push('/dg/liquidity');
+              }}
+            >
+              Stake Your DG
+            </Button>
           </div>
 
-          <div className={styles.gov_right}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <p className={styles.gov_top}>
-                {dateOne}
-              </p>
-              <p className={styles.gov_title}>
-                {snapshotOne.title} 
-              </p>
+          <div className={styles.lower}>
+            <p className={styles.lower_header_two}>Governance Proposals</p>
+
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={activeOne ? styles.state_closed : styles.state}>
+                  {snapshotOne.state}
+                </p>
+              </div>
+
+              <div className={styles.gov_right}>
+                <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
+                  <p className={styles.gov_top}>{dateOne}</p>
+                  <p className={styles.gov_title}>{snapshotOne.title}</p>
+                </div>
+                <svg
+                  width="6"
+                  height="10"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
+                >
+                  <path
+                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                    stroke="white"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
-            <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-        </div>
 
-        <div className={styles.governance_container}>
-          <div className={styles.state_box}>
-            <p className={activeTwo ? styles.state_closed : styles.state}>
-              {snapshotTwo.state}
-            </p>
-          </div>
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={activeTwo ? styles.state_closed : styles.state}>
+                  {snapshotTwo.state}
+                </p>
+              </div>
 
-          <div className={styles.gov_right}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <p className={styles.gov_top}>
-                {dateTwo}
-              </p>
-              <p className={styles.gov_title}>
-                {snapshotTwo.title}
-              </p>
+              <div className={styles.gov_right}>
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                  <p className={styles.gov_top}>{dateTwo}</p>
+                  <p className={styles.gov_title}>{snapshotTwo.title}</p>
+                </div>
+                <svg
+                  width="6"
+                  height="10"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
+                >
+                  <path
+                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                    stroke="white"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
-            <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-        </div>
 
-        <div className={styles.governance_container}>
-          <div className={styles.state_box}>
-            <p className={activeThree ? styles.state_closed : styles.state}>
-              {snapshotThree.state}
-            </p>
-          </div>
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={activeThree ? styles.state_closed : styles.state}>
+                  {snapshotThree.state}
+                </p>
+              </div>
 
-          <div className={styles.gov_right}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <p className={styles.gov_top}>
-                {dateThree}
-              </p>
-              <p className={styles.gov_title}>
-                {snapshotThree.title}
-              </p>
+              <div className={styles.gov_right}>
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                  <p className={styles.gov_top}>{dateThree}</p>
+                  <p className={styles.gov_title}>{snapshotThree.title}</p>
+                </div>
+                <svg
+                  width="6"
+                  height="10"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
+                >
+                  <path
+                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                    stroke="white"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
-            <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-        </div>
 
-        <div className={styles.governance_container}>
-          <div className={styles.state_box}>
-            <p className={activeFour ? styles.state_closed : styles.state}>
-              {snapshotFour.state}
-            </p>
-          </div>
+            <div className={styles.governance_container}>
+              <div className={styles.state_box}>
+                <p className={activeFour ? styles.state_closed : styles.state}>
+                  {snapshotFour.state}
+                </p>
+              </div>
 
-          <div className={styles.gov_right}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <p className={styles.gov_top}>
-                {dateFour}
-              </p>
-              <p className={styles.gov_title}>
-                {snapshotFour.title}
-              </p>
+              <div className={styles.gov_right}>
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                  <p className={styles.gov_top}>{dateFour}</p>
+                  <p className={styles.gov_title}>{snapshotFour.title}</p>
+                </div>
+                <svg
+                  width="6"
+                  height="10"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
+                >
+                  <path
+                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                    stroke="white"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
-            <svg style={{ alignSelf: 'center', marginLeft: '16px' }} width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-        </div>
 
-        <div className={styles.button_span}>
-          <Button className={styles.button_gov}>
-            Discussion
-          </Button>
-          <Button className={styles.button_gov}>
-            Proposals
-          </Button>
+            <div className={styles.button_span}>
+              <Button
+                className={styles.button_gov}
+                onClick={() => {
+                  router.push('/discord');
+                }}
+              >
+                Discussion
+              </Button>
+              <Button
+                className={styles.button_gov}
+                onClick={() => {
+                  window.open(
+                    'https://snapshot.org/#/decentralgames.eth ',
+                    '_blank'
+                  );
+                }}
+              >
+                Proposals
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </Aux>

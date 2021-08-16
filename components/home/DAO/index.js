@@ -9,10 +9,11 @@ import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Overview from '../../content/ContentDAO/Overview';
 import Governance from '../../content/ContentDAO/Governance';
+import Liquidity from '../../content/ContentDAO/Liquidity';
+
 import ContentMining from '../../content/ContentMining';
 import ContentMiningV1 from '../../content/ContentMiningV1';
 import ContentBalancer from '../../content/ContentBalancer';
-import ContentUniswap from '../../content/ContentUniswap';
 import ContentAirdrop from '../../content/ContentAirdrop';
 import ContentTreasury from '../../content/ContentTreasury';
 import ButtonReward1 from '../../button/ButtonReward1';
@@ -734,7 +735,7 @@ const DAO = props => {
                 <Link href="/dg/liquidity">
                   <div
                     className={
-                      DGState === 'liquidity'
+                      DGState === 'uniswap'
                         ? styles.menu_item_active
                         : styles.menu_item
                     }
@@ -867,6 +868,8 @@ const DAO = props => {
             <Overview price={price} formatPrice={formatPrice} />
           ) : DGState === 'governance' ? (
             <Governance />
+          ) : DGState === 'uniswap' ? (
+            <Liquidity />
           ) : DGState === 'mining' ? (
             <ContentMining price={price} formatPrice={formatPrice} />
           ) : DGState === 'balancer' ? (
@@ -876,14 +879,6 @@ const DAO = props => {
               instances={instances}
               stakingContractPool1={stakingContractPool1}
               stakingContractPool2={stakingContractPool2}
-              staking={staking}
-              withdrawal={withdrawal}
-              reward={reward}
-            />
-          ) : DGState === 'uniswap' ? (
-            <ContentUniswap
-              price={price}
-              formatPrice={formatPrice}
               staking={staking}
               withdrawal={withdrawal}
               reward={reward}
