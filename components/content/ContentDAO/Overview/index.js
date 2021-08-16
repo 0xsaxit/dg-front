@@ -70,7 +70,7 @@ const Overview = props => {
       setPointerContractNew(pointerContractNew);
 
       const snapshotData = await axios.post(
-        `https://hub.snapshot.page/graphql`,
+        `https://hub.snapshot.org/graphql`,
         {
           query: `{
             proposals (
@@ -483,10 +483,15 @@ const Overview = props => {
         >
           <div className={styles.lower}>
             <p className={styles.lower_header}>Stake Your $DG</p>
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1626804495/Screen_Shot_2021-07-17_at_5.45.43_PM_wv07nl.png"
+            <video
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
               className={styles.lower_img}
-            />
+              type="video/mp4"
+              frameBorder="0"
+              autoPlay={true}
+              loop
+              muted
+            ></video>
             <p className={styles.apy_text}> APY </p>
             <p className={styles.apy_percent}> 22.39% </p>
             <p className={styles.lower_text}>
@@ -514,7 +519,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div className="d-flex flex-column mr-2">
+                <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateOne}</p>
                   <p className={styles.gov_title}>{snapshotOne.title}</p>
                 </div>
@@ -524,6 +529,7 @@ const Overview = props => {
                   viewBox="0 0 6 10"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
                 >
                   <path
                     d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
@@ -544,7 +550,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div className="d-flex flex-colun">
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateTwo}</p>
                   <p className={styles.gov_title}>{snapshotTwo.title}</p>
                 </div>
@@ -554,6 +560,7 @@ const Overview = props => {
                   viewBox="0 0 6 10"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
                 >
                   <path
                     d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
@@ -574,7 +581,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateThree}</p>
                   <p className={styles.gov_title}>{snapshotThree.title}</p>
                 </div>
@@ -584,6 +591,7 @@ const Overview = props => {
                   viewBox="0 0 6 10"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
                 >
                   <path
                     d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
@@ -604,7 +612,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateFour}</p>
                   <p className={styles.gov_title}>{snapshotFour.title}</p>
                 </div>
@@ -614,6 +622,7 @@ const Overview = props => {
                   viewBox="0 0 6 10"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'flex', alignSelf: 'center' }}
                 >
                   <path
                     d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
@@ -650,6 +659,7 @@ const Overview = props => {
           </div>
         </div>
       </div>
+
       <div className={cn('col-xl-4', styles.sub_profile)}>
         <div className={styles.lower}>
           <p className={styles.lower_header}>Claim $DG Rewards</p>
@@ -657,7 +667,9 @@ const Overview = props => {
             <p className={styles.DG_value}>
               {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
             </p>
-            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624402416/all-dg_f5sknc.png" />
+            <img 
+              style={{ marginTop: '-4px' }}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" />
           </div>
           <p className={styles.price}>
             ${(props.price * state.DGBalances.BALANCE_MINING_DG_V2).toFixed(2)}

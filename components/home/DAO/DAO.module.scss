@@ -101,7 +101,7 @@
 
 .main_container {
   width: calc(100% - 257px);
-  padding-top: 117px;
+  padding-top: 96px;
 
   @include mq($until: large) {
     width: calc(100% - 80px);
