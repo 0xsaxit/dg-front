@@ -168,7 +168,7 @@ const ModalPopup = () => {
               <p className="account-dropdown-item"> Disconnect </p>
             </a>*/}
             <Button
-              className={binance ? 'buy-dg-button binance' : 'buy-dg-button'}
+              className={binance ? `${styles.buy_dg_button_binance}` : `${styles.buy_dg_button}`}
               href="https://info.uniswap.org/#/tokens/0xee06a81a695750e71a662b51066f2c74cf4478a0"
               target="_blank"
             >
