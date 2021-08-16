@@ -55,17 +55,6 @@
     margin-right: 0;
     text-transform: capitalize;
   }
-
-  tr td {
-    @include mq($until: small) {
-      padding: 0 !important;
-      text-align: center !important;
-    }
-
-    @include mq($until: medium, $from: small) {
-      padding: 15px !important;
-    }
-  }
 }
 
 .menu_info_modal {

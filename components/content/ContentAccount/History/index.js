@@ -15,6 +15,7 @@ function History({ state }) {
   const [dataHistory, dataPlay, dataPoker] = state.transactions;
 
   const isWideScreen = useMediaQuery('(min-width: 1200px)');
+  const isTablet = useMediaQuery('(min-width: 768px)');
 
   // define local variables
   const [openId, setOpenId] = useState(null);
@@ -226,15 +227,19 @@ function History({ state }) {
                   <Table.HeaderCell style={{ maxWidth: '120px' }}>
                     Game
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ maxWidth: '180px' }}>
-                    Bet
-                  </Table.HeaderCell>
+                  {isTablet && (
+                    <Table.HeaderCell style={{ maxWidth: '180px' }}>
+                      Bet
+                    </Table.HeaderCell>
+                  )}
                   <Table.HeaderCell style={{ maxWidth: '180px' }}>
                     Payout
                   </Table.HeaderCell>
-                  <Table.HeaderCell style={{ maxWidth: '240px' }}>
-                    Date
-                  </Table.HeaderCell>
+                  {isTablet && (
+                    <Table.HeaderCell style={{ maxWidth: '240px' }}>
+                      Date
+                    </Table.HeaderCell>
+                  )}
                   <Table.HeaderCell
                     style={{ maxWidth: '270px', textAlign: 'right' }}
                   >
@@ -251,13 +256,13 @@ function History({ state }) {
             </div>
           ) : (
             playData.map((row, i) => {
-              const timestamp = moment(row.createdAt).format(
-                'MM/DD/YY hh:mm a'
-              );
+              const timestamp = moment(row.createdAt).format('MM/DD/YY hh:mmA');
               const amount =
-                Number((row.betAmount * 100) / Global.CONSTANTS.FACTOR) / 100;
+                Number((row.betAmount * 10000) / Global.CONSTANTS.FACTOR) /
+                10000;
               const result =
-                Number((row.amountWin * 100) / Global.CONSTANTS.FACTOR) / 100;
+                Number((row.amountWin * 10000) / Global.CONSTANTS.FACTOR) /
+                10000;
 
               let action = '';
               if (row.gameType === 1) {
@@ -286,76 +291,78 @@ function History({ state }) {
                       <Table.Cell style={{ maxWidth: '120px' }}>
                         {action}
                       </Table.Cell>
-                      <Table.Cell style={{ maxWidth: '180px' }}>
-                        {row.coinName === 'DAI' ? (
-                          <img
-                            src={Images.DAI_CIRCLE}
-                            style={{
-                              width: '21px',
-                              marginRight: '8px',
-                              verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
-                            }}
-                          />
-                        ) : row.coinName === 'MANA' ? (
-                          <img
-                            src={Images.MANA_CIRCLE}
-                            style={{
-                              width: '21px',
-                              marginRight: '8px',
-                              verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
-                            }}
-                          />
-                        ) : row.coinName === 'USDT' ? (
-                          <img
-                            src={Images.USDT_CIRCLE}
-                            style={{
-                              width: '21px',
-                              marginRight: '8px',
-                              verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
-                            }}
-                          />
-                        ) : row.coinName === 'ATRI' ? (
-                          <img
-                            src={Images.ATRI_CIRCLE}
-                            style={{
-                              width: '21px',
-                              marginRight: '8px',
-                              verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
-                            }}
-                          />
-                        ) : row.coinName === 'ETH' ? (
-                          <img
-                            src={Images.ETH_CIRCLE}
-                            style={{
-                              width: '21px',
-                              marginRight: '8px',
-                              verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
-                            }}
-                          />
-                        ) : (
-                          <img
-                            src={Images.PLAY_CIRCLE}
-                            style={{
-                              width: '21px',
-                              marginRight: '8px',
-                              verticalAlign: 'middle',
-                              marginTop: '-4px',
-                              borderRadius: '100%',
-                            }}
-                          />
-                        )}
-                        {amount > 0 ? `+${amount}` : amount} {row.coinName}
-                      </Table.Cell>
+                      {isTablet && (
+                        <Table.Cell style={{ maxWidth: '180px' }}>
+                          {row.coinName === 'DAI' ? (
+                            <img
+                              src={Images.DAI_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'MANA' ? (
+                            <img
+                              src={Images.MANA_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'USDT' ? (
+                            <img
+                              src={Images.USDT_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'ATRI' ? (
+                            <img
+                              src={Images.ATRI_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : row.coinName === 'ETH' ? (
+                            <img
+                              src={Images.ETH_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          ) : (
+                            <img
+                              src={Images.PLAY_CIRCLE}
+                              style={{
+                                width: '21px',
+                                marginRight: '8px',
+                                verticalAlign: 'middle',
+                                marginTop: '-4px',
+                                borderRadius: '100%',
+                              }}
+                            />
+                          )}
+                          {amount > 0 ? `+${amount}` : amount} {row.coinName}
+                        </Table.Cell>
+                      )}
                       <Table.Cell style={{ maxWidth: '180px' }}>
                         {row.coinName === 'DAI' ? (
                           <img
@@ -426,9 +433,11 @@ function History({ state }) {
                         )}
                         {result > 0 ? `+${result}` : result} {row.coinName}
                       </Table.Cell>
-                      <Table.Cell style={{ maxWidth: '240px' }}>
-                        {timestamp}
-                      </Table.Cell>
+                      {isTablet && (
+                        <Table.Cell style={{ maxWidth: '240px' }}>
+                          {timestamp}
+                        </Table.Cell>
+                      )}
                       <Table.Cell
                         style={{ maxWidth: '270px', textAlign: 'right' }}
                       >
