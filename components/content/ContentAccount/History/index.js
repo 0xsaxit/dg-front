@@ -16,6 +16,7 @@ function History({ state }) {
 
   const isWideScreen = useMediaQuery('(min-width: 1200px)');
   const isTablet = useMediaQuery('(min-width: 768px)');
+  const isMobile = useMediaQuery('(min-width: 576px)');
 
   // define local variables
   const [openId, setOpenId] = useState(null);
@@ -241,7 +242,7 @@ function History({ state }) {
                     </Table.HeaderCell>
                   )}
                   <Table.HeaderCell
-                    style={{ maxWidth: '270px', textAlign: 'right' }}
+                    style={{ width: isMobile ? 270 : 170, textAlign: 'right' }}
                   >
                     Transactions
                   </Table.HeaderCell>
@@ -439,9 +440,12 @@ function History({ state }) {
                         </Table.Cell>
                       )}
                       <Table.Cell
-                        style={{ maxWidth: '270px', textAlign: 'right' }}
+                        style={{
+                          width: isMobile ? 270 : 170,
+                          textAlign: 'right',
+                        }}
                       >
-                        <span>
+                        <span className="d-flex justify-content-end">
                           {row.gameType === 9 && (
                             <Modal
                               className={styles.menu_info_modal}
@@ -591,7 +595,7 @@ function History({ state }) {
                                   `/tx/${row.txid}`
                                 }
                                 target="_blank"
-                                className="etherscan-button"
+                                className={styles.etherscan_button}
                                 style={{ marginRight: '12px' }}
                               >
                                 tx
@@ -620,7 +624,7 @@ function History({ state }) {
                                   `/tx/${row.ptxid}`
                                 }
                                 target="_blank"
-                                className="etherscan-button-ptxid"
+                                className={styles.etherscan_button_ptxid}
                               >
                                 payout
                                 <svg

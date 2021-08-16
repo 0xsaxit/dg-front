@@ -5,6 +5,60 @@
   width: 100%;
   max-width: 1100px;
 
+  .etherscan_button {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    height: 40px;
+    padding: 0 16px;
+    max-width: 75px !important;
+    min-width: 75px;
+    line-height: 0px;
+    opacity: 100% !important;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    &:hover {
+      border: 2px solid white;
+      color: white;
+      background-color: rgba(255, 255, 255, 0);
+    }
+
+    @include mq($until: small) {
+      display: none;
+    }
+  }
+
+  .etherscan_button_ptxid {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    height: 40px;
+    padding: 0 16px;
+    line-height: 0px;
+    opacity: 100% !important;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    &:hover {
+      border: 2px solid white;
+      background-color: rgba(255, 255, 255, 0);
+      color: white;
+    }
+
+    @include mq($until: small) {
+      display: none;
+    }
+  }
+
   .title {
     font-size: 24px;
     font-family: Larsseit-ExtraBold;
