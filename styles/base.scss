@@ -37,12 +37,18 @@ $spacer: 1rem;
   }
 }
 
+.ui.popup:before {
+  display: none;
+}
+
 .ui.popup.visible.account-popup {
   animation: showing 300ms ease-in-out;
 }
+
 .ui.dimmer {
 	background: rgba(26, 26, 26, 0.65);
 }
+
 .transak_modal-overlay {
 	background: rgba(26, 26, 26, 0.65);
 }

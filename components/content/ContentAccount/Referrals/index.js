@@ -84,11 +84,11 @@ const Referrals = ({ state }) => {
           </span>
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="mb-0">
+          <p className={cn("mb-0", styles.referrals_title)}>
             {!!state.DGBalances.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}
-          </h3>
+          </p>
           <ModalBreakdown
             totalAmount={totalAmount}
             breakdown={state.DGBreakdown}

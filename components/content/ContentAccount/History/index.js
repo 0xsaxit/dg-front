@@ -99,36 +99,6 @@ function History({ state }) {
     }
   }, [state.transactions]);
 
-  useEffect(() => {
-    if (!isLoading) {
-      let result = {};
-      let resultTwo = {};
-      let i;
-      let history = [];
-
-      result = dataHistory.slice(0, maximumCount);
-      resultTwo = dataPlay.slice(0, maximumCount);
-
-      // console.log(resultTwo);
-
-      for (i = 0; i < result.length; i++) {
-        const resultType = get(result, `${i}.type`, '');
-        if (
-          resultType.includes('Deposit') ||
-          resultType.includes('Withdrawal')
-        ) {
-          history.push(result[i]);
-        }
-      }
-
-      setDataPage(history.slice(0, 6));
-      setDataPageTwo(resultTwo);
-    }
-  }, [isLoading]);
-
-  // console.log('!!!!');
-  // console.log(dataPage);
-
   return (
     <Aux>
       <div className={styles.history_container}>

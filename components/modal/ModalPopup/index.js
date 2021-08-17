@@ -63,10 +63,16 @@ const ModalPopup = () => {
   return (
     <div>
       <Popup
-        pinned
         on="click"
         position="bottom right"
-        style={{"borderRadius":"24px" , "marginTop": "15px" , "padding": "30px"}}
+        style={{
+          "color": "white",
+          "background-color": "#191919",
+          "border":"none",
+          "borderRadius":"24px",
+          "marginTop": "15px",
+          "padding": "30px"
+        }}
         className={styles.account_popup}
         trigger={
           <Button className={styles.account_button}>

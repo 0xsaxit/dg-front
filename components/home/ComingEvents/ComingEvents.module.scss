@@ -137,6 +137,7 @@
         }
 
         .events_featured_p {
+          color: white;
           text-align: left;
           line-height: 25px;
           font-size: 18px;
@@ -191,6 +192,7 @@
         }
 
         .event_title {
+          color: white;
           font-size: 24px;
           line-height: 32px;
           margin-top: 6px;
@@ -226,6 +228,7 @@
           margin-top: 8px;
           text-align: left;
           min-height: auto;
+          color: white;
         }
 
         @include mq($until: medium) {
@@ -236,6 +239,7 @@
       }
 
       .event_description {
+        color: white;
         text-align: left;
         display: -webkit-box;
         font-size: 18px;
