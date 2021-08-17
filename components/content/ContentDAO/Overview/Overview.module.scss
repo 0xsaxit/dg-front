@@ -6,15 +6,21 @@
   padding-bottom: 90px;
   border-right: 1px solid #2a2a2a;
   padding-top: 53px;
+  padding-left: 24px;
 
   @include mq($until: extra-large) {
     padding-bottom: 0;
+    border-right: 0px solid white;
   }
 
   .container_left {
     padding-top: 0;
     margin: 0 auto;
     min-width: 600px;
+
+    @include mq($until: extra-large) {
+      margin-left: 26px;
+    }
 
     .welcome_text {
       font-family: Larsseit-Regular;
@@ -39,6 +45,10 @@
     border-radius: 20px;
     width: 600px;
     display: flex;
+
+    @include mq($until: extra-large) {
+      margin-left: 26px;
+    }
 
     .close_button {
       width: 34px;
@@ -97,6 +107,10 @@
     border: 1px solid rgba(42, 42, 42, 1);
     border-radius: 16px;
     width: 600px;
+
+    @include mq($until: extra-large) {
+      margin-left: 26px;
+    }
 
     .earned_percent_pos {
       font-size: 14px;
@@ -189,6 +203,10 @@
   .stake_DG_container {
     width: 600px;
     margin: 40px auto 0 auto;
+
+    @include mq($until: extra-large) {
+      margin-left: 26px;
+    }
   }
 }
 
@@ -204,6 +222,8 @@
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 90px;
+    margin-left: 50px;
+    margin-top: 0px;
   }
 
   .lower {

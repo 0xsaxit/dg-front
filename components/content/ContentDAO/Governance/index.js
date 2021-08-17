@@ -9,6 +9,7 @@ import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
 import Images from '../../../../common/Images';
 import Global from '../../../Constants';
+import Fetch from '../../../../common/Fetch';
 
 
 const Governance = (props) => {
@@ -16,20 +17,6 @@ const Governance = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [snapshotOne, setSnapshotOne] = useState([]);
-  const [dateOne, setDateOne] = useState('');
-  const [snapshotTwo, setSnapshotTwo] = useState([]);
-  const [dateTwo, setDateTwo] = useState('');
-  const [snapshotThree, setSnapshotThree] = useState([]);
-  const [dateThree, setDateThree] = useState('');
-  const [snapshotFour, setSnapshotFour] = useState([]);
-  const [dateFour, setDateFour] = useState('');
-  const [activeOne, setActiveOne] = useState('');
-  const [activeTwo, setActiveTwo] = useState('');
-  const [activeThree, setActiveThree] = useState('');
-  const [activeFour, setActiveFour] = useState('');
-  const [currentDate, setCurrentDate] = useState('');
-
   const [amountInput, setAmountInput] = useState('');
   const [percentGovernanceStaked, setPercentGovernanceStaked] = useState(0);
   const [percentGovernanceContract, setPercentGovernanceContract] = useState(0);
@@ -38,81 +25,8 @@ const Governance = (props) => {
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
   const [instances, setInstances] = useState(false);
+  const [price, setPrice] = useState('');
 
-
-  useEffect(() => {
-    (async () => {
-      const snapshotData = await axios.post(
-        `https://hub.snapshot.org/graphql`,
-        {
-          query: `{
-            proposals (
-              first: 4,
-              skip: 0,
-              where: {
-                space_in: ["decentralgames.eth"],
-                state: ""
-              },
-              orderBy: "created",
-              orderDirection: desc
-            ) {
-              id
-              title
-              body
-              choices
-              start
-              end
-              snapshot
-              state
-              author
-              space {
-                id
-                name
-              }
-            }
-          }`,
-        }
-      );
-
-      setSnapshotOne(snapshotData.data.data.proposals[0]);
-      setSnapshotTwo(snapshotData.data.data.proposals[1]);
-      setSnapshotThree(snapshotData.data.data.proposals[2]);
-      setSnapshotFour(snapshotData.data.data.proposals[3]);
-    })();
-  }, []);
-
-  useEffect(() => {
-    const temp = new Date(snapshotOne.end * 1000);
-    setDateOne(temp.toDateString());
-
-    const temp_two = new Date(snapshotTwo.end * 1000);
-    setDateTwo(temp_two.toDateString());
-
-    const temp_three = new Date(snapshotThree.end * 1000);
-    setDateThree(temp_three.toDateString());
-
-    const temp_four = new Date(snapshotFour.end * 1000);
-    setDateFour(temp_four.toDateString());
-
-    var today = new Date();
-    
-    if (temp < today) {
-      setActiveOne(true);
-    }
-
-    if (temp_two < today) {
-      setActiveTwo(true);
-    }
-
-    if (temp_three < today) {
-      setActiveThree(true);
-    }
-
-    if (temp_four < today) {
-      setActiveFour(true);
-    }
-
-  }, [snapshotOne, snapshotTwo, snapshotThree, snapshotFour, currentDate]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -123,6 +37,13 @@ const Governance = (props) => {
   function handleChange(e) {
     setAmountInput(e.target.value);
   }
+
+  useEffect(() => {
+    (async function () {
+      const json = await Fetch.DG_SUPPLY_GECKO();
+      setPrice(json.market_data.current_price.usd);
+    })();
+  }, []);
 
   useEffect(() => {
     if (state.userStatus >= 4) {
@@ -212,7 +133,7 @@ const Governance = (props) => {
                 />
             </div>
             <p className={styles.price}>
-              ${(props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2)}
+              ${(price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2)}
             </p>
 
             <p className={styles.lower_text}>
@@ -335,15 +256,15 @@ const Governance = (props) => {
 
               <span style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <p
-                  className={styles.apy_text} 
-                  style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.5)' }}
+                  className={styles.stake_text} 
+                  style={{ textDecoration: 'underline' }}
                   onClick={() => setAmountInput(state.DGBalances.BALANCE_ROOT_DG)}
                 >
                   {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
                 </p>
                 <p
-                  className={styles.apy_text} 
-                  style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.5)' }}
+                  className={styles.stake_text} 
+                  style={{ textDecoration: 'underline' }}
                   onClick={() =>
                     setAmountInput(state.stakingBalances.BALANCE_USER_GOVERNANCE)
                   }

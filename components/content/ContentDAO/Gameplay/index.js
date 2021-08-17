@@ -100,29 +100,6 @@ const Gameplay = (props) => {
           styles.stake_DG_container
         )}
       >
-        <div className={cn(styles.lower)}>
-          <p className={styles.lower_header}>Gameplay Rewards</p>
-          <video
-            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
-            className={styles.lower_img}
-            type="video/mp4"
-            frameBorder="0"
-            autoPlay={true}
-            loop
-            muted
-          ></video>
-          <p className={styles.lower_text}>
-            All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
-          </p>
-          <Button
-            className={styles.lower_button}
-            onClick={() => {
-              router.push('/dg/liquidity');
-            }}
-          >
-            Learn More
-          </Button>
-        </div>
 
         <div className={styles.lower}>
           <p className={styles.lower_header}>Claim $DG Rewards</p>
