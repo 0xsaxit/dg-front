@@ -309,7 +309,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal1}
                   onPaused = {params => {
-                    if(params > 0 && params < 5) {
+                    if(params > 0 && params < 4) {
                       setResumeModal1(params);
                       updateStatus(params, 1);
                     }
@@ -347,7 +347,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal2}
                   onPaused = {params => {
-                    if(params > 0 && params < 5) {
+                    if(params > 0 && params < 4) {
                       setResumeModal2(params);
                       updateStatus(params, 2);
                     }
@@ -427,7 +427,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal5}
                   onPaused = {params => {                    
-                    if(params > 0 && params < 5) {
+                    if(params > 0 && params < 4) {
                       setResumeModal5(params);
                       updateStatus(params, 5);
                     }
@@ -465,7 +465,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal6}
                   onPaused = {params => {
-                    if(params > 0 && params < 5) {
+                    if(params > 0 && params < 4) {
                       setResumeModal6(params, 6);
                       updateStatus(params, 6);
                     }
@@ -543,7 +543,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal3}
                   onPaused = {params => {
-                    if(params > 0 && params < 5) {
+                    if(params > 0 && params < 4) {
                       setResumeModal3(params);
                       updateStatus(params, 3);
                     }
@@ -581,7 +581,7 @@ const Balances = (props) => {
                   }}
                   resumeModal={state.openModal.resumeID>0 ? 1 : resumeModal4}
                   onPaused = {params => {
-                    if(params > 0 && params < 5) {
+                    if(params > 0 && params < 4) {
                       setResumeModal4(params);
                       updateStatus(params);
                     }
