@@ -183,59 +183,99 @@ const MenuTop = props => {
     return (
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
         <span className="d-flex flex-column w-100">
-          {!isMobile && (
-            state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-              dispatch({
-                type: 'set_dgWarningMsg',
-                data: true,
-              });
-            }}>Play</Menu.Item>) : (<Link href={`/${utm}`}>
-              <Menu.Item className={styles.menu_style}>Play</Menu.Item>
-            </Link>)
-          )}
-          {!isMobile && (
-            state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-              dispatch({
-                type: 'set_dgWarningMsg',
-                data: true,
-              });
-            }}>DAO</Menu.Item>):(<Link href="/dg">
-              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
-            </Link>)
-          )}
+          {!isMobile &&
+            (state.dgLoading ? (
+              <Menu.Item
+                className={styles.menu_style}
+                onClick={() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}
+              >
+                Play
+              </Menu.Item>
+            ) : (
+              <Link href={`/${utm}`}>
+                <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+              </Link>
+            ))}
+          {!isMobile &&
+            (state.dgLoading ? (
+              <Menu.Item
+                className={styles.menu_style}
+                onClick={() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}
+              >
+                DAO
+              </Menu.Item>
+            ) : (
+              <Link href="/dg">
+                <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+              </Link>
+            ))}
 
-          {!isMobile && (
-            state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-              dispatch({
-                type: 'set_dgWarningMsg',
-                data: true,
-              });
-            }}>Shop</Menu.Item>):(<Link href="/games">
-              <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
-            </Link>)
-          )}
+          {!isMobile &&
+            (state.dgLoading ? (
+              <Menu.Item
+                className={styles.menu_style}
+                onClick={() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}
+              >
+                Shop
+              </Menu.Item>
+            ) : (
+              <Link href="/games">
+                <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
+              </Link>
+            ))}
 
-          {!isTablet && (
-            state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-              dispatch({
-                type: 'set_dgWarningMsg',
-                data: true,
-              });
-            }}>Events</Menu.Item>):(<Link href="/events">
-              <Menu.Item className={styles.menu_style}>Events</Menu.Item>
-            </Link>)
-          )}
+          {!isTablet &&
+            (state.dgLoading ? (
+              <Menu.Item
+                className={styles.menu_style}
+                onClick={() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}
+              >
+                Events
+              </Menu.Item>
+            ) : (
+              <Link href="/events">
+                <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+              </Link>
+            ))}
 
-          {!isTablet && (
-            state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-              dispatch({
-                type: 'set_dgWarningMsg',
-                data: true,
-              });
-            }}>News & Blog</Menu.Item>) : (<Link href="/blog">
-              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
-            </Link>)
-          )}
+          {!isTablet &&
+            (state.dgLoading ? (
+              <Menu.Item
+                className={styles.menu_style}
+                onClick={() => {
+                  dispatch({
+                    type: 'set_dgWarningMsg',
+                    data: true,
+                  });
+                }}
+              >
+                News & Blog
+              </Menu.Item>
+            ) : (
+              <Link href="/blog">
+                <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+              </Link>
+            ))}
 
           {!isTablet && (
             <a
@@ -255,38 +295,62 @@ const MenuTop = props => {
   function shownOrHiddenItems() {
     return (
       <div className={styles.menu_items_to_hide}>
-        {isMobile && (
-          state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-            dispatch({
-              type: 'set_dgWarningMsg',
-              data: true,
-            });
-          }}>Play</Menu.Item>):(<Link href={`/${utm}`}>
-            <Menu.Item className={styles.menu_style}>Play</Menu.Item>
-          </Link>)
-        )}
+        {isMobile &&
+          (state.dgLoading ? (
+            <Menu.Item
+              className={styles.menu_style}
+              onClick={() => {
+                dispatch({
+                  type: 'set_dgWarningMsg',
+                  data: true,
+                });
+              }}
+            >
+              Play
+            </Menu.Item>
+          ) : (
+            <Link href={`/${utm}`}>
+              <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+            </Link>
+          ))}
 
-        {isMobile && (
-          state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-            dispatch({
-              type: 'set_dgWarningMsg',
-              data: true,
-            });
-          }}>DAO</Menu.Item>):(<Link href="/dg">
-            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
-          </Link>)
-        )}
+        {isMobile &&
+          (state.dgLoading ? (
+            <Menu.Item
+              className={styles.menu_style}
+              onClick={() => {
+                dispatch({
+                  type: 'set_dgWarningMsg',
+                  data: true,
+                });
+              }}
+            >
+              DAO
+            </Menu.Item>
+          ) : (
+            <Link href="/dg">
+              <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            </Link>
+          ))}
 
-        {isMobile && (
-          state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-            dispatch({
-              type: 'set_dgWarningMsg',
-              data: true,
-            });
-          }}>Shop</Menu.Item>):(<Link href="/games">
-            <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
-          </Link>)
-        )}
+        {isMobile &&
+          (state.dgLoading ? (
+            <Menu.Item
+              className={styles.menu_style}
+              onClick={() => {
+                dispatch({
+                  type: 'set_dgWarningMsg',
+                  data: true,
+                });
+              }}
+            >
+              Shop
+            </Menu.Item>
+          ) : (
+            <Link href="/games">
+              <Menu.Item className={styles.menu_style}>Shop</Menu.Item>
+            </Link>
+          ))}
 
         {!isTablet && (
           <svg
@@ -310,37 +374,43 @@ const MenuTop = props => {
           </svg>
         )}
 
-        {isTablet && (
-          state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-            dispatch({
-              type: 'set_dgWarningMsg',
-              data: true,
-            });
-          }}>Events</Menu.Item>):(<Link href="/events">
-            <Menu.Item className={styles.menu_style}>Events</Menu.Item>
-          </Link>)
-        )}
+        {isTablet &&
+          (state.dgLoading ? (
+            <Menu.Item
+              className={styles.menu_style}
+              onClick={() => {
+                dispatch({
+                  type: 'set_dgWarningMsg',
+                  data: true,
+                });
+              }}
+            >
+              Events
+            </Menu.Item>
+          ) : (
+            <Link href="/events">
+              <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+            </Link>
+          ))}
 
-        {isTablet && (
-          state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-            dispatch({
-              type: 'set_dgWarningMsg',
-              data: true,
-            });
-          }}>News & Blog</Menu.Item>):(<Link href="/blog">
-            <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
-          </Link>)
-        )}
-        {!isTablet && (
-            state.dgLoading? (<Menu.Item className={styles.menu_style} onClick = {() => {
-              dispatch({
-                type: 'set_dgWarningMsg',
-                data: true,
-              });
-            }}>News & Blog</Menu.Item>) : (<Link href="/blog">
+        {isTablet &&
+          (state.dgLoading ? (
+            <Menu.Item
+              className={styles.menu_style}
+              onClick={() => {
+                dispatch({
+                  type: 'set_dgWarningMsg',
+                  data: true,
+                });
+              }}
+            >
+              News & Blog
+            </Menu.Item>
+          ) : (
+            <Link href="/blog">
               <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
-            </Link>)
-          )}
+            </Link>
+          ))}
 
         {isTablet && (
           <a

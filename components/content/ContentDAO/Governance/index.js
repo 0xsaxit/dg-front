@@ -1,10 +1,14 @@
 import cn from 'classnames';
 import { useEffect, useContext, useState, React } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
+import { Loader, Popup, Icon, Button, Table, Divider, Input } from 'semantic-ui-react';
 import Aux from '../../../_Aux';
 import styles from './Governance.module.scss';
 import axios from 'axios';
+import Web3 from 'web3';
+import Transactions from '../../../../common/Transactions';
+import Images from '../../../../common/Images';
+import Global from '../../../Constants';
 
 
 const Governance = (props) => {
@@ -25,6 +29,15 @@ const Governance = (props) => {
   const [activeThree, setActiveThree] = useState('');
   const [activeFour, setActiveFour] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+
+  const [amountInput, setAmountInput] = useState('');
+  const [percentGovernanceStaked, setPercentGovernanceStaked] = useState(0);
+  const [percentGovernanceContract, setPercentGovernanceContract] = useState(0);
+  const [APYGovernance, setAPYGovernance] = useState(0);
+  const [priceUSD, setPriceUSD] = useState(0);
+  const [stakeContractGovernance, setStakeContractGovernance] = useState({});
+  const [DGTokenContract, setDGTokenContract] = useState({});
+  const [instances, setInstances] = useState(false);
 
 
   useEffect(() => {
@@ -101,191 +114,288 @@ const Governance = (props) => {
 
   }, [snapshotOne, snapshotTwo, snapshotThree, snapshotFour, currentDate]);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  function length(obj) {
+    return Object.keys(obj).length;
+  }
+
+  function handleChange(e) {
+    setAmountInput(e.target.value);
+  }
+
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+
+      async function fetchData() {
+        const stakeContractGovernance =
+          await Transactions.stakingContractGovernance(web3);
+        setStakeContractGovernance(stakeContractGovernance);
+
+        const DGTokenContract = await Transactions.DGTokenContract(web3);
+        setDGTokenContract(DGTokenContract);
+
+        setInstances(true); // contract instantiation complete
+      }
+
+      fetchData();
+    }
+  }, [state.userStatus]);
+
+  useEffect(() => {
+    if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
+      const percentGovernanceContract = (
+        (state.stakingBalances.BALANCE_USER_GOVERNANCE /
+          state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) *
+        100
+      ).toFixed(2);
+
+      setPercentGovernanceContract(percentGovernanceContract);
+
+      const APYGovernance = (
+        (41714 / state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) *
+        100
+      ).toFixed(2);
+
+      setAPYGovernance(APYGovernance);
+    }
+  }, [state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE]);
+
+  useEffect(() => {
+    if (instances) {
+      (async () => {
+        const stakedTotal = await Transactions.getTotalSupply(
+          stakeContractGovernance
+        );
+
+        if (stakedTotal) {
+          const percentGovernanceStaked =
+            (state.stakingBalances.BALANCE_USER_GOVERNANCE / stakedTotal) * 100;
+
+          setPercentGovernanceStaked(percentGovernanceStaked);
+        } else {
+          setPercentageGov(0);
+        }
+      })();
+    }
+  }, [instances, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
+
+  function formatPrice(balanceDG, units) {
+    const priceFormatted = Number(balanceDG)
+      .toFixed(units)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    return priceFormatted;
+  }
+
   return (
     <Aux>
       <div>
+
         <div
           className={cn(
             'd-flex',
             styles.stake_DG_container
           )}
         >
+
           <div className={styles.lower}>
-            <p className={styles.lower_header}>Stake Your $DG</p>
-            <video
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
-              className={styles.lower_img}
-              type="video/mp4"
-              frameBorder="0"
-              autoPlay={true}
-              loop
-              muted
-            ></video>
-            <p className={styles.apy_text}> APY </p>
-            <p className={styles.apy_percent}> 22.39% </p>
+            <p className={styles.lower_header}>Claim $DG Rewards</p>
+            <div className={styles.lower_value}>
+              <p className={styles.DG_value}>
+                {formatPrice(state.DGBalances.BALANCE_STAKING_GOVERNANCE, 3)}
+              </p>
+              <img 
+                style={{ marginTop: '-4px' }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" 
+                />
+            </div>
+            <p className={styles.price}>
+              ${(props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2)}
+            </p>
+
             <p className={styles.lower_text}>
               Stake $DG to govern the treasury, vote on proposals, and earn
               yields.
             </p>
-            <Button
-              className={styles.lower_button}
-              onClick={() => {
-                router.push('/dg/liquidity');
-              }}
-            >
-              Stake Your DG
-            </Button>
+
+            <span>
+              {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
+                <Button className={styles.lower_button}>
+                  onClick={() => props.reward(stakeContractGovernance)}
+                }
+                >
+                  Claim
+                </Button>
+              ) : (
+                <Button disabled className={styles.lower_button}>
+                  Claim
+                </Button>
+              )}
+            </span>
           </div>
 
-          <div className={styles.lower}>
-            <p className={styles.lower_header_two}>Governance Proposals</p>
+          <div className={styles.lower} style={{ width: '391px' }}>
+            <p className={styles.lower_header}> Governance Staking</p>
 
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeOne ? styles.state_closed : styles.state}>
-                  {snapshotOne.state}
+              <p className={styles.apy_text}>Total $DG Staked</p>
+              {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
+                <p className={styles.apy_percent}>
+                  {formatPrice(
+                    state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
+                    0
+                  )}
                 </p>
-              </div>
+              ) : (
+                <Loader
+                  active
+                  inline
+                  size="small"
+                  style={{
+                    fontSize: '12px',
+                    marginTop: '5px',
+                    marginBottom: '-2px',
+                  }}
+                />
+              )}
 
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateOne}</p>
-                  <p className={styles.gov_title}>{snapshotOne.title}</p>
-                </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
+              <div style={{ display: 'flex' }}>
+                <span className="gameplay-left-column">
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      paddingBottom: '17px',
+                    }}
+                  >
+                    <p className={styles.apy_text}>APY</p>
+                    {APYGovernance ? (
+                      <p className="earned-amount stat">{APYGovernance}%</p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                          marginBottom: '-2px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '50%',
+                  }}
                 >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                  <span
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <p className={styles.apy_text}>% of pool</p>
+                    {percentGovernanceContract ? (
+                      <p className="earned-amount stat">
+                        {percentGovernanceContract}%
+                      </p>
+                    ) : (
+                      <Loader
+                        active
+                        inline
+                        size="small"
+                        style={{
+                          fontSize: '12px',
+                          marginTop: '5px',
+                          marginLeft: '-1px',
+                          marginBottom: '-2px',
+                        }}
+                      />
+                    )}
+                  </span>
+                </span>
               </div>
-            </div>
 
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeTwo ? styles.state_closed : styles.state}>
-                  {snapshotTwo.state}
+              <Input
+                className="liquidity-input"
+                fluid
+                placeholder="Amount"
+                value={amountInput}
+                onChange={handleChange}
+              />
+
+              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <p
+                  className={styles.apy_text} 
+                  style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.5)' }}
+                  onClick={() => setAmountInput(state.DGBalances.BALANCE_ROOT_DG)}
+                >
+                  {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
                 </p>
-              </div>
-
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateTwo}</p>
-                  <p className={styles.gov_title}>{snapshotTwo.title}</p>
-                </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
+                <p
+                  className={styles.apy_text} 
+                  style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.5)' }}
+                  onClick={() =>
+                    setAmountInput(state.stakingBalances.BALANCE_USER_GOVERNANCE)
+                  }
                 >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeThree ? styles.state_closed : styles.state}>
-                  {snapshotThree.state}
+                  {formatPrice(
+                    state.stakingBalances.BALANCE_USER_GOVERNANCE,
+                    3
+                  )}{' '}
+                  DG STAKED
                 </p>
-              </div>
+              </span>
 
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateThree}</p>
-                  <p className={styles.gov_title}>{snapshotThree.title}</p>
-                </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+              <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+                {Number(amountInput) ? (
+                  <Button
+                    className={styles.button_stake}
+                    onClick={() => {
+                      props.staking(
+                        DGTokenContract,
+                        Global.ADDRESSES.DG_STAKING_GOVERNANCE_ADDRESS,
+                        stakeContractGovernance,
+                        amountInput
+                      );
+                      setAmountInput('');
+                    }}
+                  >
+                    Stake
+                  </Button>
+                ) : (
+                  <Button disabled className={styles.button_stake}>
+                    Stake
+                  </Button>
+                )}
+
+                {percentGovernanceStaked && Number(amountInput) ? (
+                  <Button
+                    className={styles.button_stake}
+                    onClick={() => {
+                      props.withdrawal(stakeContractGovernance, amountInput);
+                      setAmountInput('');
+                    }}
+                  >
+                    Unstake
+                  </Button>
+                ) : (
+                  <Button disabled className={styles.button_stake}>
+                    Unstake
+                  </Button>
+                )}
+              </span>
             </div>
 
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeFour ? styles.state_closed : styles.state}>
-                  {snapshotFour.state}
-                </p>
-              </div>
-
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateFour}</p>
-                  <p className={styles.gov_title}>{snapshotFour.title}</p>
-                </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            <div className={styles.button_span}>
-              <Button
-                className={styles.button_gov}
-                onClick={() => {
-                  router.push('/discord');
-                }}
-              >
-                Discussion
-              </Button>
-              <Button
-                className={styles.button_gov}
-                onClick={() => {
-                  window.open(
-                    'https://snapshot.org/#/decentralgames.eth ',
-                    '_blank'
-                  );
-                }}
-              >
-                Proposals
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </Aux>
