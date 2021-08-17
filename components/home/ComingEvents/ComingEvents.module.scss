@@ -13,7 +13,6 @@
     max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
-    padding: 150px 30px 120px 30px;
 
     @include mq($until: small) {
       padding: 0px 21px 120px 21px;

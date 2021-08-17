@@ -133,7 +133,7 @@ $mq-breakpoints: (
 
 .welcome_text {
   @include welcome_text_style;
-  padding-left: 16px;
+  // padding-left: 16px;
   padding-top: 9px !important;
   margin-bottom: -3px;
 }
