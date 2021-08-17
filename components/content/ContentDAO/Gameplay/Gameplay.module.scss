@@ -10,16 +10,12 @@
   margin-left: 40px;
   margin-top: 60px;
   height: 100%;
+  margin-bottom: 120px;
 
   .lower_header {
     font-family: Larsseit-Bold;
     font-size: 20px;
     text-align: center;
-  }
-
-  .lower_header_two {
-    font-family: Larsseit-Bold;
-    font-size: 20px;
   }
 
   .lower_img {
@@ -52,7 +48,6 @@
   }
 
   .lower_button {
-    margin-top: 20px;
     width: 100%;
     background: #006eff;
     color: white;
@@ -63,6 +58,8 @@
   }
 
   .lower_button {
+    margin-top: 20px !important;
+    margin-bottom: 0px !important;
     background: rgb(31, 31, 31);
     color: white;
 
@@ -109,6 +106,102 @@
     cursor: pointer;
     line-height: 27px;
     text-align: center;
+  }
+}
+
+.lower_gameplay {
+  padding: 28px;
+  border: 1px solid rgba(42, 42, 42, 1);
+  border-radius: 16px;
+  width: 391px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 60px;
+  height: 100%;
+  margin-bottom: 120px;
+
+  .lower_header_two {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+    text-align: left;
+  }
+
+ .gameplay_container {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 5px;
+
+    .gameplay_img {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-self: center;
+    }
+
+    .gameplay_right {
+      display: flex;
+      padding-left: 18px;
+      justify-content: space-between;
+      width: 100%;
+
+      .gameplay_top {
+        font-family: Larsseit-Bold;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5) !important;
+        margin-bottom: 0px;
+      }
+
+      .gameplay_title {
+        font-family: Larsseit-Bold;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 1) !important;
+        margin-bottom: 0px;
+        margin-top: -2px;
+      }
+
+      .reward_stats {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        align-self: flex-end;
+        flex-direction: column;
+
+        .gameplay_right {
+          font-family: Larsseit-Bold;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.5) !important;
+          margin-bottom: 0px;
+          justify-content: flex-end;
+        }
+
+        .gameplay_right_bottom {
+          font-family: Larsseit-Bold;
+          font-size: 20px;
+          color: rgba(255, 255, 255, 1) !important;
+          margin-bottom: 0px;
+          text-align: right;
+          margin-top: -2px;
+        }
+      }
+    }
+  }
+
+  .play_button {
+    margin-top: 20px;
+    width: 100%;
+    background: #006eff;
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+
+    &:hover {
+      color: white;
+      background: #006eff;
+      filter: brightness(0.9) !important;
+    }
   }
 }
 

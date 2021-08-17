@@ -114,6 +114,11 @@ const Gameplay = (props) => {
           <p className={styles.price}>
             ${(price * state.DGBalances.BALANCE_MINING_DG_V2).toFixed(2)}
           </p>
+
+          <p className={styles.lower_text}>
+            All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
+          </p>
+
           <Button
             className={cn(styles.claim_DG, styles.lower_button)}
             disabled={!Number(state.DGBalances.BALANCE_MINING_DG_V2)}
@@ -122,15 +127,109 @@ const Gameplay = (props) => {
             Claim {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
             $DG
           </Button>
-          <a
-            href="#"
-            onClick={() => {
-              router.push('/dg/mining');
-            }}
-            className={styles.see_all_rewards}
-          >
-            See All Rewards
-          </a>
+        </div>
+
+        <div className={styles.lower_gameplay}>
+          <p className={styles.lower_header_two}>Gameplay Rewards</p>
+
+          <div className={styles.gameplay_container}>
+            <img 
+              className={styles.gameplay_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
+            />
+
+            <div className={styles.gameplay_right}>
+              <div className="d-flex flex-column mr-2">
+                <p className={styles.gameplay_top}>Roulette Rate</p>
+                <p className={styles.gameplay_title}>6 ETH</p>
+              </div>
+
+              <div className={styles.reward_stats}>
+                <p className={styles.gameplay_right}>Blackjack Rate</p>
+                <p className={styles.gameplay_right_bottom}>20 ETH</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gameplay_container}>
+            <img 
+              className={styles.gameplay_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png"
+            />
+
+            <div className={styles.gameplay_right}>
+              <div className="d-flex flex-column mr-2">
+                <p className={styles.gameplay_top}>Roulette Rate</p>
+                <p className={styles.gameplay_title}>21.5K MANA</p>
+              </div>
+
+              <div className={styles.reward_stats}>
+                <p className={styles.gameplay_right}>Blackjack Rate</p>
+                <p className={styles.gameplay_right_bottom}>71.5K MANA</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gameplay_container}>
+            <img 
+              className={styles.gameplay_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png"
+            />
+
+            <div className={styles.gameplay_right}>
+              <div className="d-flex flex-column mr-2">
+                <p className={styles.gameplay_top}>Roulette Rate</p>
+                <p className={styles.gameplay_title}>14.6K MANA</p>
+              </div>
+
+              <div className={styles.reward_stats}>
+                <p className={styles.gameplay_right}>Blackjack Rate</p>
+                <p className={styles.gameplay_right_bottom}>29.3K MANA</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gameplay_container}>
+            <img 
+              className={styles.gameplay_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/DAI_xbso2s.png"
+            />
+
+            <div className={styles.gameplay_right}>
+              <div className="d-flex flex-column mr-2">
+                <p className={styles.gameplay_top}>Roulette Rate</p>
+                <p className={styles.gameplay_title}>14.6K MANA</p>
+              </div>
+
+              <div className={styles.reward_stats}>
+                <p className={styles.gameplay_right}>Blackjack Rate</p>
+                <p className={styles.gameplay_right_bottom}>29.3K MANA</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.gameplay_container}>
+            <img 
+              className={styles.gameplay_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/ATARI_ttfcry.png"
+            />
+
+            <div className={styles.gameplay_right}>
+              <div className="d-flex flex-column mr-2">
+                <p className={styles.gameplay_top}>Roulette Rate</p>
+                <p className={styles.gameplay_title}>292K MANA</p>
+              </div>
+
+              <div className={styles.reward_stats}>
+                <p className={styles.gameplay_right}>Blackjack Rate</p>
+                <p className={styles.gameplay_right_bottom}>986K MANA</p>
+              </div>
+            </div>
+          </div>
+
+          <Button className={styles.play_button}>
+            Play Now
+          </Button>
         </div>
       </div>
     </Aux>

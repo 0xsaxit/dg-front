@@ -118,10 +118,15 @@
     height: 40px;
     font-family: Larsseit-Bold;
     font-size: 14px;
+  }
+
+  .lower_button {
+    background: rgb(31, 31, 31);
+    color: white;
 
     &:hover {
       color: white;
-      background: #006eff;
+      background: rgb(31, 31, 31);
       filter: brightness(0.9) !important;
     }
   }
