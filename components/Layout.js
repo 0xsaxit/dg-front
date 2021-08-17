@@ -34,9 +34,9 @@ const Layout = props => {
   }, [state.userStatus]);
 
   return (
-    <ThemeProvider theme={themeMode}>
-      <GlobalStyles />
-
+    // <ThemeProvider theme={themeMode}>
+      // <GlobalStyles />
+      <>
       {router.pathname === '/' ? (
         <MenuTop isHomePage={true} />
       ) : (
@@ -46,8 +46,9 @@ const Layout = props => {
       {props.children}
 
       <Footer />
+      </>
 
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };
 

@@ -6,7 +6,7 @@ import HtmlParser from './HtmlParser';
 // import Link from 'next/link';
 // import Global from '../Constants';
 import Images from '../../common/Images';
-import styles from './screen.modules.scss';
+import styles from './screen.module.scss';
 
 const Screen = ({
   slug,

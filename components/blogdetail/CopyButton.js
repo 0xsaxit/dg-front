@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react';
+import styles from './copyButton.module.scss'
 
 const CopyButton = ({ data = '' }) => {
   const [value, setValue] = useState('');
@@ -30,6 +31,7 @@ const CopyButton = ({ data = '' }) => {
     return (
       <Button
         id="copy-button"
+        className={styles.copy_button}
         content="copied"
         labelPosition="left"
         onClick={() => onCopy()}
@@ -39,6 +41,7 @@ const CopyButton = ({ data = '' }) => {
   return (
     <Button
       id="copy-button"
+      className={styles.copy_button}
       content="copy code"
       labelPosition="left"
       onClick={() => onCopy()}

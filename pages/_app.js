@@ -2,7 +2,6 @@ import { Provider } from 'store';
 import App from 'next/app';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import 'semantic-ui-css/semantic.min.css';
-import 'static/css/agate.css';
 import 'styles/bootstrap-overrides.scss';
 import Segment from 'components/Segment';
 import UserStatus from 'store/UserStatus';
