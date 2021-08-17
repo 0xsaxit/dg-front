@@ -160,7 +160,7 @@ const ContentTreasury = (props) => {
   // helper functions
   function getWeeklyChange() {
     return (
-      <span style={{ display: 'flex', justifyContent: 'center' }}>
+      <span style={{ display: 'flex', justifyContent: 'flex-start' }}>
         {weeklyChange > 0 && treasuryTotal ? (
           <Table.Cell textAlign="right">
             <span
@@ -605,87 +605,89 @@ const ContentTreasury = (props) => {
 
   return (
     <Aux>
-      <span style={{ display: 'flex', justifyContent: 'center' }}>
-        {treasuryTotal ? (
-          <p className="treasury-amount">${treasuryTotal}</p>
-        ) : (
-          <Loader
-            active
-            inline
-            size="large"
+      <div style={{ marginLeft: '40px' }}>
+        <span style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          {treasuryTotal ? (
+            <p className="treasury-amount">${treasuryTotal}</p>
+          ) : (
+            <Loader
+              active
+              inline
+              size="large"
+              style={{
+                fontSize: '12px',
+                marginTop: '48px',
+                marginBottom: '48px',
+                marginLeft: '0px',
+              }}
+            />
+          )}
+        </span>
+
+        {getWeeklyChange()}
+
+        {/*<div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <span className="treasury-graph">
+            <Line
+              height={150}
+              data={weekly}
+              options={{
+                maintainAspectRatio: false,
+                title: { display: false },
+                legend: { display: false },
+                scales: {
+                  xAxes: [{ display: false }],
+                  yAxes: [{ display: false }],
+                },
+                elements: {
+                  point: { radius: 0 },
+                },
+              }}
+            />
+          </span>
+        </div>*/}
+
+        <span
+          style={{ display: 'flex' }}
+          className="treasury-table"
+        >
+          <div
+            className="treasury-stats"
             style={{
-              fontSize: '12px',
-              marginTop: '48px',
-              marginBottom: '48px',
-              marginLeft: '0px',
+              position: 'relative',
+              height: '100%',
             }}
-          />
-        )}
-      </span>
+          >
+            <Table unstackable fixed className="treasury-table">
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>
+                    Name
+                  </Table.HeaderCell>
+                  <Table.HeaderCell
+                    textAlign="right"
+                    className="treasury-left-padding"
+                    style={{ textAlign: 'right' }}
+                  >
+                    Amount
+                  </Table.HeaderCell>
+                  <Table.HeaderCell style={{ textAlign: "right" }}>Weekly</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-      {getWeeklyChange()}
-
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <span className="treasury-graph">
-          <Line
-            height={150}
-            data={weekly}
-            options={{
-              maintainAspectRatio: false,
-              title: { display: false },
-              legend: { display: false },
-              scales: {
-                xAxes: [{ display: false }],
-                yAxes: [{ display: false }],
-              },
-              elements: {
-                point: { radius: 0 },
-              },
-            }}
-          />
+              <Table.Body>
+                {allTimeEarnings()}
+                {gameplayHotWallet()}
+                {dgToken()}
+                {decentralandLand()}
+                {dgWearables()}
+                {liquidityProvided()}
+                {maticStaked()}
+              </Table.Body>
+            </Table>
+          </div>
         </span>
       </div>
-
-      <span
-        style={{ display: 'flex', justifyContent: 'center' }}
-        className="treasury-table"
-      >
-        <div
-          className="treasury-stats"
-          style={{
-            position: 'relative',
-            height: '100%',
-          }}
-        >
-          <Table unstackable fixed className="treasury-table">
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell>
-                  Name
-                </Table.HeaderCell>
-                <Table.HeaderCell
-                  textAlign="right"
-                  className="treasury-left-padding"
-                  style={{ textAlign: 'right' }}
-                >
-                  Amount
-                </Table.HeaderCell>
-                <Table.HeaderCell style={{ textAlign: "right" }}>Weekly</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>
-              {allTimeEarnings()}
-              {gameplayHotWallet()}
-              {dgToken()}
-              {decentralandLand()}
-              {dgWearables()}
-              {liquidityProvided()}
-              {maticStaked()}
-            </Table.Body>
-          </Table>
-        </div>
-      </span>
     </Aux>
   );
 };

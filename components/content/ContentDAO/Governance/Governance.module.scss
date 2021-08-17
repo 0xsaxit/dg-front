@@ -10,6 +10,38 @@
   flex-direction: column;
   margin-left: 40px;
   margin-top: 60px;
+  height: 100%;
+
+  .lower_value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .DG_value {
+      font-family: Larsseit-Bold;
+      font-size: 41px;
+      margin-right: 12px;
+      margin-bottom: 0;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .price {
+    font-family: Larsseit-Bold;
+    font-size: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-bottom: 16px;
+  }
+
+  .claim_DG {
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
 
   .lower_header {
     font-family: Larsseit-Bold;
@@ -50,6 +82,23 @@
     text-align: center;
     font-size: 14px;
     line-height: 20px;
+  }
+
+  .button_stake {
+    margin-top: 20px;
+    width: 47.5%;
+    background: #006eff;
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-family: Larsseit-Bold;
+    font-size: 14px;
+
+    &:hover {
+      color: white;
+      background: #006eff;
+      filter: brightness(0.9) !important;
+    }
   }
 
   .lower_button {
