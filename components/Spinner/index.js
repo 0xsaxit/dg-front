@@ -1,5 +1,5 @@
-import Images from '../common/Images';
-import styles from './spinner.module.scss'
+import Images from 'common/Images';
+import styles from './Spinner.module.scss'
 
 const Spinner = props => {
   if (props.background === 0) {
