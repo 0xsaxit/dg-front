@@ -682,7 +682,7 @@ const Overview = props => {
           <Button
             className={styles.lower_button}
             onClick={() => {
-              router.push('/dg/liquidity');
+              router.push('/dg/mining');
             }}
           >
             Learn More

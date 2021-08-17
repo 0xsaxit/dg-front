@@ -354,7 +354,9 @@
     font-family: Larsseit-Bold;
     font-size: 14px;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       color: white;
       background: #006eff;
       filter: brightness(0.9) !important;

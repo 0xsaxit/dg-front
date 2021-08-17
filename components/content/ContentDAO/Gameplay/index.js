@@ -179,12 +179,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>14.6K MANA</p>
+                <p className={styles.gameplay_title}>14.6K USDT</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>29.3K MANA</p>
+                <p className={styles.gameplay_right_bottom}>29.3K USDT</p>
               </div>
             </div>
           </div>
@@ -198,12 +198,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>14.6K MANA</p>
+                <p className={styles.gameplay_title}>14.6K DAI</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>29.3K MANA</p>
+                <p className={styles.gameplay_right_bottom}>29.3K DAI</p>
               </div>
             </div>
           </div>
@@ -217,12 +217,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>292K MANA</p>
+                <p className={styles.gameplay_title}>292K ATRI</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>986K MANA</p>
+                <p className={styles.gameplay_right_bottom}>986K ATRI</p>
               </div>
             </div>
           </div>
