@@ -58,7 +58,7 @@ const Treasury = props => {
       const usd = state.treasuryNumbers.totalBalanceUSD.graph;
       let xAxis = [];
       let i;
-      for (i = 0; i < usd.length; i += 7) {
+      for (i = 0; i < usd.length; i += 4) {
         let temp_x = new Date(usd[i].primary);
         let temp_x2 = temp_x.toDateString();
         xAxis.push(temp_x2.slice(0, 1));
@@ -66,7 +66,7 @@ const Treasury = props => {
 
       let yAxis = [];
       let j;
-      for (j = 0; j < usd.length; j += 7) {
+      for (j = 0; j < usd.length; j += 4) {
         let temp_y = usd[j].secondary;
         yAxis.push(temp_y / 1000000);
       }

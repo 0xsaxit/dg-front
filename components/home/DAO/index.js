@@ -453,6 +453,11 @@ const DAO = props => {
                         ? styles.menu_item_active
                         : styles.menu_item
                     }
+                    id={
+                      DGState === 'overview'
+                        ? styles.active_padding
+                        : ''
+                    }
                   >
                     <svg
                       width="24"

@@ -143,7 +143,7 @@ const Governance = (props) => {
             </span>
           </div>
 
-          <div className={styles.lower} style={{ width: '391px' }}>
+          <div className={styles.lower} style={{ width: '391px', minWidth: '391px' }}>
             <p className={styles.lower_header}> Governance Staking</p>
               <p className={styles.apy_text}>Total $DG Staked</p>
               {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (

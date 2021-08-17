@@ -186,7 +186,7 @@ const Liquidity = (props) => {
             </span>
           </div>
 
-          <div className={styles.lower} style={{ width: '391px' }}>
+          <div className={styles.lower} style={{ width: '391px', minWidth: '391px' }}>
             <p className={styles.lower_header}> Liquidity Provision</p>
 
               <p className={styles.apy_text}>Uniswap</p>
