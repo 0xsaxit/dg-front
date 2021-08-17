@@ -238,6 +238,14 @@
     .lower_button {
       background: rgb(31, 31, 31);
       color: white;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: rgb(31, 31, 31);
+        color: white;  
+        filter: brightness(0.9); 
+      }
     }
 
     .lower_value {

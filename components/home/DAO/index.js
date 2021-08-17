@@ -11,12 +11,12 @@ import Overview from '../../content/ContentDAO/Overview';
 import Governance from '../../content/ContentDAO/Governance';
 import Liquidity from '../../content/ContentDAO/Liquidity';
 import Gameplay from '../../content/ContentDAO/Gameplay';
+import ContentTreasury from '../../content/ContentDAO/Treasury';
 
 import ContentMining from '../../content/ContentMining';
 import ContentMiningV1 from '../../content/ContentMiningV1';
 import ContentBalancer from '../../content/ContentBalancer';
 import ContentAirdrop from '../../content/ContentAirdrop';
-import ContentTreasury from '../../content/ContentTreasury';
 import ButtonReward1 from '../../button/ButtonReward1';
 import ButtonReward2 from '../../button/ButtonReward2';
 import Transactions from '../../../common/Transactions';
@@ -43,9 +43,7 @@ const DAO = props => {
   // Responsive
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 1040px)');
-  // const isTablet = useMediaQuery(
-  //   '(min-width: 1040px) and (max-width: 1200px)'
-  // );
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -442,22 +440,6 @@ const DAO = props => {
                 className={styles.burger_icon}
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
-                <svg
-                  width="9"
-                  height="15"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-opacity="0.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
               </div>
             )}
             <div className={styles.menu_list}>
@@ -776,11 +758,38 @@ const DAO = props => {
           {DGState === 'overview' ? (
             <Overview price={price} formatPrice={formatPrice} />
           ) : DGState === 'governance' ? (
-            <Governance />
+            <Governance 
+              price={price}
+              formatPrice={formatPrice}
+              instances={instances}
+              stakingContractPool1={stakingContractPool1}
+              stakingContractPool2={stakingContractPool2}
+              staking={staking}
+              withdrawal={withdrawal}
+              reward={reward}
+            />
           ) : DGState === 'uniswap' ? (
-            <Liquidity />
+            <Liquidity 
+              price={price}
+              formatPrice={formatPrice}
+              instances={instances}
+              stakingContractPool1={stakingContractPool1}
+              stakingContractPool2={stakingContractPool2}
+              staking={staking}
+              withdrawal={withdrawal}
+              reward={reward}
+            />
           ) : DGState === 'mining' ? (
-            <Gameplay />
+            <Gameplay 
+              price={price}
+              formatPrice={formatPrice}
+              instances={instances}
+              stakingContractPool1={stakingContractPool1}
+              stakingContractPool2={stakingContractPool2}
+              staking={staking}
+              withdrawal={withdrawal}
+              reward={reward}
+            />
           ) : DGState === 'balancer' ? (
             <ContentBalancer
               price={price}

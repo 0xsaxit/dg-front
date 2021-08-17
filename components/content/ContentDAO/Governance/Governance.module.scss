@@ -124,7 +124,9 @@
     background: rgb(31, 31, 31);
     color: white;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       color: white;
       background: rgb(31, 31, 31);
       filter: brightness(0.9) !important;

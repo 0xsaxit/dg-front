@@ -28,7 +28,6 @@ const Liquidity = (props) => {
   const [uniswapContract, setUniswapContract] = useState({});
   const [instances, setInstances] = useState(false);
 
-  // balancer local variables
   const [percentagePool1, setPercentagePool1] = useState(0);
   const [percentagePool2, setPercentagePool2] = useState(0);
   const [pool1, setPool1] = useState(true);
@@ -37,7 +36,6 @@ const Liquidity = (props) => {
   const [BPTContract1, setBPTContract1] = useState({});
   const [BPTContract2, setBPTContract2] = useState({});
   const [open, setOpen] = useState(false);
-  const [price, setPrice] = useState('');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -60,27 +58,22 @@ const Liquidity = (props) => {
     }
   }, [state.userStatus]);
 
+  // get price USD of DG staked
   useEffect(() => {
-    (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
-      setPrice(json.market_data.current_price.usd);
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (price && state.DGBalances.BALANCE_STAKING_UNISWAP) {
+    if (props.price && state.DGBalances.BALANCE_STAKING_UNISWAP) {
       const priceUSD = Number(
-        price * state.DGBalances.BALANCE_STAKING_UNISWAP
+        props.price * state.DGBalances.BALANCE_STAKING_UNISWAP
       );
-      const priceUSDFormatted = formatPrice(priceUSD, 2);
+      const priceUSDFormatted = props.formatPrice(priceUSD, 2);
 
       setPriceUSD(priceUSDFormatted);
     }
-  }, [price, state.DGBalances.BALANCE_STAKING_UNISWAP]);
+  }, [props.price, state.DGBalances.BALANCE_STAKING_UNISWAP]);
 
+  // set uniswap APY stat
   useEffect(() => {
     if (
-      price &&
+      props.price &&
       state.DGBalances.BALANCE_UNISWAP_ETH &&
       state.DGBalances.BALANCE_UNISWAP_DG
     ) {
@@ -89,9 +82,9 @@ const Liquidity = (props) => {
 
         const priceETH = json.market_data.current_price.usd;
         const locked_ETH = state.DGBalances.BALANCE_UNISWAP_ETH * priceETH;
-        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * price;
+        const locked_DG = state.DGBalances.BALANCE_UNISWAP_DG * props.price;
         const uni_denom = locked_DG + locked_ETH;
-        const uni_num = 52 * 225 * price;
+        const uni_num = 52 * 225 * props.price;
         const uni_APY_temp = (uni_num / uni_denom) * 100;
         const APYUniswap = Number(uni_APY_temp).toFixed(2);
 
@@ -99,7 +92,7 @@ const Liquidity = (props) => {
       })();
     }
   }, [
-    price,
+    props.price,
     state.DGBalances.BALANCE_UNISWAP_ETH,
     state.DGBalances.BALANCE_UNISWAP_DG,
   ]);
@@ -122,6 +115,7 @@ const Liquidity = (props) => {
     state.stakingBalances.BALANCE_CONTRACT_UNISWAP,
   ]);
 
+  // set users % of pool staked stat
   useEffect(() => {
     if (instances) {
       (async () => {
@@ -141,21 +135,13 @@ const Liquidity = (props) => {
     }
   }, [instances, state.stakingBalances.BALANCE_STAKED_UNISWAP]);
 
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   function handleChange(e) {
     setAmountInput(e.target.value);
   }
 
-  function formatPrice(balanceDG, units) {
-    const priceFormatted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    return priceFormatted;
-  }
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   return (
     <Aux>
       <div>
@@ -169,7 +155,7 @@ const Liquidity = (props) => {
             <p className={styles.lower_header}>Claim $DG Rewards</p>
             <div className={styles.lower_value}>
               <p className={styles.DG_value}>
-                {formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
+                {props.formatPrice(state.DGBalances.BALANCE_STAKING_UNISWAP, 3)}
               </p>
               <img 
                 style={{ marginTop: '-4px' }}
@@ -177,7 +163,7 @@ const Liquidity = (props) => {
                 />
             </div>
             <p className={styles.price}>
-              ${(price * state.DGBalances.BALANCE_STAKING_UNISWAP).toFixed(2)}
+              ${(props.price * state.DGBalances.BALANCE_STAKING_UNISWAP).toFixed(2)}
             </p>
 
             <p className={styles.lower_text}>
@@ -285,7 +271,7 @@ const Liquidity = (props) => {
                   style={{ textDecoration: 'underline' }}
                   onClick={() => setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)}
                 >
-                  {formatPrice(state.stakingBalances.BALANCE_WALLET_UNISWAP, 3)} DG
+                  {props.formatPrice(state.stakingBalances.BALANCE_WALLET_UNISWAP, 3)} DG
                 </p>
                 <p
                   className={styles.stake_text} 
@@ -294,7 +280,7 @@ const Liquidity = (props) => {
                     setAmountInput(state.stakingBalances.BALANCE_STAKED_UNISWAP)
                   }
                 >
-                  {formatPrice(
+                  {props.formatPrice(
                     state.stakingBalances.BALANCE_STAKED_UNISWAP,
                     3
                   )}{' '}

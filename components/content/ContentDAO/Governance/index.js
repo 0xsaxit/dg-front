@@ -9,7 +9,6 @@ import Web3 from 'web3';
 import Transactions from '../../../../common/Transactions';
 import Images from '../../../../common/Images';
 import Global from '../../../Constants';
-import Fetch from '../../../../common/Fetch';
 
 
 const Governance = (props) => {
@@ -21,11 +20,9 @@ const Governance = (props) => {
   const [percentGovernanceStaked, setPercentGovernanceStaked] = useState(0);
   const [percentGovernanceContract, setPercentGovernanceContract] = useState(0);
   const [APYGovernance, setAPYGovernance] = useState(0);
-  const [priceUSD, setPriceUSD] = useState(0);
   const [stakeContractGovernance, setStakeContractGovernance] = useState({});
   const [DGTokenContract, setDGTokenContract] = useState({});
   const [instances, setInstances] = useState(false);
-  const [price, setPrice] = useState('');
 
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -38,13 +35,7 @@ const Governance = (props) => {
     setAmountInput(e.target.value);
   }
 
-  useEffect(() => {
-    (async function () {
-      const json = await Fetch.DG_SUPPLY_GECKO();
-      setPrice(json.market_data.current_price.usd);
-    })();
-  }, []);
-
+  // fetch staking contract data
   useEffect(() => {
     if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
@@ -64,6 +55,7 @@ const Governance = (props) => {
     }
   }, [state.userStatus]);
 
+  // set APY stat
   useEffect(() => {
     if (state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE) {
       const percentGovernanceContract = (
@@ -83,6 +75,7 @@ const Governance = (props) => {
     }
   }, [state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE]);
 
+  // set % of pool stat
   useEffect(() => {
     if (instances) {
       (async () => {
@@ -102,30 +95,23 @@ const Governance = (props) => {
     }
   }, [instances, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
 
-  function formatPrice(balanceDG, units) {
-    const priceFormatted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    return priceFormatted;
-  }
-
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   return (
     <Aux>
       <div>
-
         <div
           className={cn(
             'd-flex',
             styles.stake_DG_container
           )}
         >
-
           <div className={styles.lower}>
             <p className={styles.lower_header}>Claim $DG Rewards</p>
             <div className={styles.lower_value}>
               <p className={styles.DG_value}>
-                {formatPrice(state.DGBalances.BALANCE_STAKING_GOVERNANCE, 3)}
+                {props.formatPrice(state.DGBalances.BALANCE_STAKING_GOVERNANCE, 3)}
               </p>
               <img 
                 style={{ marginTop: '-4px' }}
@@ -133,7 +119,7 @@ const Governance = (props) => {
                 />
             </div>
             <p className={styles.price}>
-              ${(price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2)}
+              ${props.formatPrice((props.price * state.DGBalances.BALANCE_STAKING_GOVERNANCE).toFixed(2), 2)}
             </p>
 
             <p className={styles.lower_text}>
@@ -143,15 +129,15 @@ const Governance = (props) => {
 
             <span>
               {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
-                <Button className={styles.lower_button}>
+                <Button 
+                  className={styles.lower_button}
                   onClick={() => props.reward(stakeContractGovernance)}
-                }
                 >
-                  Claim
+                  Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               ) : (
                 <Button disabled className={styles.lower_button}>
-                  Claim
+                  Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               )}
             </span>
@@ -159,11 +145,10 @@ const Governance = (props) => {
 
           <div className={styles.lower} style={{ width: '391px' }}>
             <p className={styles.lower_header}> Governance Staking</p>
-
               <p className={styles.apy_text}>Total $DG Staked</p>
               {state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE ? (
                 <p className={styles.apy_percent}>
-                  {formatPrice(
+                  {props.formatPrice(
                     state.stakingBalances.BALANCE_CONTRACT_GOVERNANCE,
                     0
                   )}
@@ -260,7 +245,7 @@ const Governance = (props) => {
                   style={{ textDecoration: 'underline' }}
                   onClick={() => setAmountInput(state.DGBalances.BALANCE_ROOT_DG)}
                 >
-                  {formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
+                  {props.formatPrice(state.DGBalances.BALANCE_ROOT_DG, 3)} DG
                 </p>
                 <p
                   className={styles.stake_text} 
@@ -269,7 +254,7 @@ const Governance = (props) => {
                     setAmountInput(state.stakingBalances.BALANCE_USER_GOVERNANCE)
                   }
                 >
-                  {formatPrice(
+                  {props.formatPrice(
                     state.stakingBalances.BALANCE_USER_GOVERNANCE,
                     3
                   )}{' '}
