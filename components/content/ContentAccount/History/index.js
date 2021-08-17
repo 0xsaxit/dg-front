@@ -14,8 +14,8 @@ function History({ state }) {
   // get user's transaction history from the Context API store
   const [dataHistory, dataPlay, dataPoker] = state.transactions;
 
-  const isWideScreen = useMediaQuery('(min-width: 1200px)');
-  const isTablet = useMediaQuery('(min-width: 768px)');
+  const isWideScreen = useMediaQuery('(min-width: 1010px)');
+  const isTablet = useMediaQuery('(min-width: 800px)');
   const isMobile = useMediaQuery('(min-width: 576px)');
 
   // define local variables
@@ -85,7 +85,7 @@ function History({ state }) {
               const amount = (row.amount / 100000000000000000).toFixed(2);
 
               return (
-                <Grid.Column computer={8} tablet={8} mobile={16} key={i}>
+                <Grid.Column computer={8} tablet={16} mobile={16} key={i}>
                   <div className={styles.history_column}>
                     {row.type.includes('Deposit') ? (
                       <svg
@@ -225,7 +225,7 @@ function History({ state }) {
             <Table fixed unstackable>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell style={{ maxWidth: '120px' }}>
+                  <Table.HeaderCell style={{ width: '140px' }}>
                     Game
                   </Table.HeaderCell>
                   {isTablet && (
@@ -236,13 +236,13 @@ function History({ state }) {
                   <Table.HeaderCell style={{ maxWidth: '180px' }}>
                     Payout
                   </Table.HeaderCell>
-                  {isTablet && (
+                  {isWideScreen && (
                     <Table.HeaderCell style={{ maxWidth: '240px' }}>
                       Date
                     </Table.HeaderCell>
                   )}
                   <Table.HeaderCell
-                    style={{ width: isMobile ? 270 : 170, textAlign: 'right' }}
+                    style={{ width: isMobile ? 220 : 120, textAlign: 'right' }}
                   >
                     Transactions
                   </Table.HeaderCell>
@@ -289,7 +289,7 @@ function History({ state }) {
                 <Table fixed unstackable>
                   <Table.Body key={i}>
                     <Table.Row style={{ background: style }}>
-                      <Table.Cell style={{ maxWidth: '120px' }}>
+                      <Table.Cell style={{ width: '140px' }}>
                         {action}
                       </Table.Cell>
                       {isTablet && (
@@ -361,7 +361,7 @@ function History({ state }) {
                               }}
                             />
                           )}
-                          {amount > 0 ? `+${amount}` : amount} {row.coinName}
+                          {amount > 0 ? `-${amount}` : amount} {row.coinName}
                         </Table.Cell>
                       )}
                       <Table.Cell style={{ maxWidth: '180px' }}>
@@ -434,14 +434,14 @@ function History({ state }) {
                         )}
                         {result > 0 ? `+${result}` : result} {row.coinName}
                       </Table.Cell>
-                      {isTablet && (
+                      {isWideScreen && (
                         <Table.Cell style={{ maxWidth: '240px' }}>
                           {timestamp}
                         </Table.Cell>
                       )}
                       <Table.Cell
                         style={{
-                          width: isMobile ? 270 : 170,
+                          width: isMobile ? 220 : 120,
                           textAlign: 'right',
                         }}
                       >
