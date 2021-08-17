@@ -194,7 +194,7 @@
 
 .sub_profile {
   max-width: 600px;
-  margin: 0 auto;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -283,6 +283,12 @@
     align-self: center;
     margin-top: 0px;
     margin-bottom: 14px;
+  }
+
+  .lower_img_gameplay {
+    width: 240px;
+    align-self: center;
+    margin-top: -8px;
   }
 
   .apy_text {

@@ -328,7 +328,11 @@ const Overview = props => {
     <div className={cn('row', styles.main_wrapper)}>
       <div className={cn('col-xl-8', styles.overview_container)}>
         <div className={styles.container_left}>
-          <p className={styles.welcome_text}>Welcome Name,</p>
+          {state.userInfo.name === null || state.userInfo.name === '' ? (
+            <p className={styles.welcome_text}>Welcome,</p>
+          ) : (
+            <p className={styles.welcome_text}>Welcome {state.userInfo.name},</p>
+          )}
           <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
         </div>
 
@@ -661,37 +665,30 @@ const Overview = props => {
       </div>
 
       <div className={cn('col-xl-4', styles.sub_profile)}>
-        <div className={styles.lower}>
-          <p className={styles.lower_header}>Claim $DG Rewards</p>
-          <div className={styles.lower_value}>
-            <p className={styles.DG_value}>
-              {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
-            </p>
-            <img 
-              style={{ marginTop: '-4px' }}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" />
-          </div>
-          <p className={styles.price}>
-            ${(props.price * state.DGBalances.BALANCE_MINING_DG_V2).toFixed(2)}
+        <div className={cn(styles.lower)}>
+          <p className={styles.lower_header}>Gameplay Rewards</p>
+          <video
+            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
+            className={styles.lower_img_gameplay}
+            type="video/mp4"
+            frameBorder="0"
+            autoPlay={true}
+            loop
+            muted
+          ></video>
+          <p className={styles.lower_text}>
+            All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
           </p>
           <Button
-            className={cn(styles.claim_DG, styles.lower_button)}
-            disabled={!Number(state.DGBalances.BALANCE_MINING_DG_V2)}
-            onClick={() => metaTransaction()}
-          >
-            Claim {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
-            $DG
-          </Button>
-          <a
-            href="#"
+            className={styles.lower_button}
             onClick={() => {
-              router.push('/dg/mining');
+              router.push('/dg/liquidity');
             }}
-            className={styles.see_all_rewards}
           >
-            See All Rewards
-          </a>
+            Learn More
+          </Button>
         </div>
+
         <div className={cn(styles.lower)}>
           <p className={styles.lower_header}>Liquidity Provision</p>
           <img
