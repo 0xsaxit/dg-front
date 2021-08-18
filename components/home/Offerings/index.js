@@ -301,7 +301,7 @@ const Offerings = (props) => {
             </div>
             <div className={styles.menu_list}>
               <div>
-                <Link href="/">
+                <Link href="/games">
                   <div className={styles.menu_item} style={{ marginTop: '2px' }}>
                     <svg
                       width="24"
@@ -370,7 +370,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/dg/governance">
+                <Link href="/games/nfts">
                   <div className={styles.menu_item}>
                     <svg
                       width="24"
@@ -421,7 +421,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/dg/mining">
+                <Link href="/games/shop">
                   <div className={styles.menu_item}>
                     <svg
                       width="24"
@@ -450,7 +450,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/dg/liquidity">
+                <Link href="/games/leaderboard">
                   <div className={styles.menu_item}>
                     <svg
                       width="24"
@@ -491,7 +491,7 @@ const Offerings = (props) => {
               </div>
             )}
             <div className={styles.menu_list}>
-              <div className={styles.menu_header}>Offerings Nav</div>
+              <div className={styles.menu_header}>Navigation</div>
 
               <div>
                 <Link href="/games">
@@ -743,9 +743,9 @@ const Offerings = (props) => {
   function coinSelect() {
     return (
       <Aux>
-        <span style={{ marginTop: '120px', display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ marginTop: '120px', display: 'flex', justifyContent: 'flex-end' }}>
 
-          <span className="account-hover-time-tablet">
+          <div className="account-hover-time-tablet">
             <svg
               width="9"
               height="15"
@@ -783,9 +783,9 @@ const Offerings = (props) => {
                 stroke-linejoin="round"
               />
             </svg>
-          </span>      
+          </div>      
 
-          <span className="account-hover-time-tablet" style={{ marginLeft: '24px' }}>
+          <div className="account-hover-time-tablet" style={{ marginLeft: '24px' }}>
             <svg
               width="9"
               height="15"
@@ -823,8 +823,8 @@ const Offerings = (props) => {
                 stroke-linejoin="round"
               />
             </svg>
-          </span>
-        </span>
+          </div>
+        </div>
       </Aux>
     );
   }

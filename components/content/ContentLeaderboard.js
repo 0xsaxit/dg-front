@@ -141,16 +141,9 @@ const ContentLeaderboard = (props) => {
   console.log(dataGames);
 
   return (
-    <Grid style={{ paddingBottom: '120px' }} className="outter-leaders-container">
+    <div className="outter-leaders-container" style={{ marginTop: '24px' }}>
       {games.map((game, index) => {
         return (
-          <Grid.Column
-            computer={8}
-            tablet={8}
-            mobile={16}
-            key={index}
-            className="leaderboard-column"
-          >
             <Table unstackable className="leaders-table">
               <Table.Header>
                 <Table.Row>
@@ -184,7 +177,7 @@ const ContentLeaderboard = (props) => {
                             alignSelf: 'center',
                           }}
                         />
-                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
                           <p className="leaderboard-top">
                             {inWords(index + 1)}
                           </p>
@@ -195,7 +188,7 @@ const ContentLeaderboard = (props) => {
                                 row.address.substr(-4)
                               : row.name}
                           </p>
-                        </span>
+                        </div>
                       </Table.Cell>
                       <Table.Cell>
                         <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
@@ -212,10 +205,9 @@ const ContentLeaderboard = (props) => {
                 })}
               </Table.Body>
             </Table>
-          </Grid.Column>
         );
       })}
-    </Grid>
+    </div>
   );
 };
 

@@ -591,6 +591,14 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
+@media (max-width:  1237px) {
+  .table.ui.unstackable.table.leaders-table {
+    border: 1px solid rgba(42, 42, 42, 1) !important;
+    border-radius: 16px !important;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
 .account-hover-time-tablet {
   font-size: 20px;
   font-family: Larsseit-Bold;
@@ -640,6 +648,9 @@ span#mobile-time-select.account-select.dropdown {
   .outter-games-container {
     width: calc(100% - 160px);
   }
+  .outter-leaders-container {
+    width: calc(100vw - 160px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -647,7 +658,7 @@ span#mobile-time-select.account-select.dropdown {
     width: calc(100% - 140px);
     margin-left: 30px;
   }
-  .games-container{
+  .games-container {
     width: calc(100% + 10px);
   }
 }

@@ -1854,15 +1854,11 @@ div.ui.grid.balances-container {
   display: flex;
   flex-wrap: wrap !important;
   justify-content: space-between;
-  margin: 30px 0px 120px 40px !important;
+  margin: 30px 0px 150px 40px !important;
 }
 
 .leaderboard-column {
-  border: 1px solid rgba(42, 42, 42, 1) !important;
-  border-radius: 16px !important;
-  max-width: 48.5%;
-  min-width: 257px;
-  margin-bottom: 30px;
+  width: 48.5%;
 }
 
 .leaderboard-top {
@@ -1879,7 +1875,11 @@ div.ui.grid.balances-container {
 }
 
 .table.ui.unstackable.table.leaders-table {
-
+  border: 1px solid rgba(42, 42, 42, 1) !important;
+  border-radius: 16px !important;
+  width: 48.5%;
+  margin-bottom: 30px;
+  padding: 14px 12px 14px 12px;
 }
 
 @media (min-width: 1401px) {
