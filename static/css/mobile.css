@@ -649,9 +649,19 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
-@media (max-width: 851px) {
+@media (max-width: 1040px) {
+  .outter-games-container {
+    width: calc(100% - 160px);
+  }
+}
+
+@media (max-width: 768px) {
+  .outter-games-container {
+    width: calc(100% - 140px);
+    margin-left: 30px;
+  }
   .games-container {
-    width: 100%;
+    width: calc(100% + 10px);
   }
 }
 

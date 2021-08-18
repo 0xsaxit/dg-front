@@ -1044,7 +1044,7 @@ p.home-dashboard-p {
   min-height: 400px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 20px 20px 0px 0px !important;
+  border-radius: 15px 15px 0px 0px !important;
 }
 
 .games-pic {
@@ -1054,7 +1054,7 @@ p.home-dashboard-p {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 20px 20px 0px 0px !important;
+  border-radius: 15px 15px 0px 0px !important;
 }
 
 .my-nft-pic {
@@ -1065,11 +1065,11 @@ p.home-dashboard-p {
 }
 
 .outter-nft-container {
+  max-width: 1043px;
   display: flex;
-  flex-wrap: wrap !important;
   justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
+  flex-wrap: wrap !important;
+  margin: 134px 0px 120px 40px;
 }
 
 .nft-container {
@@ -1097,15 +1097,17 @@ p.home-dashboard-p {
 }
 
 .outter-games-container {
+  width: calc(100vw - 337px);
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap !important;
   justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
+  margin: 134px 0px 120px 40px;
 }
 
 .games-container {
   width: 48.5%;
+  min-width: 257px;
   margin-top: 21px;
   display: flex;
   flex-direction: column !important;
