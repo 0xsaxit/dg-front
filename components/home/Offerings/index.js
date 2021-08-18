@@ -299,39 +299,42 @@ const Offerings = (props) => {
                 />
               </svg>
             </div>
+
             <div className={styles.menu_list}>
               <div>
                 <Link href="/games">
                   <div className={styles.menu_item} style={{ marginTop: '2px' }}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
+                      style={{ margin: '2px -2px -2px 2px' }}
                     >
-                      <path
-                        d="M7.24463 14.7815L10.2378 10.8914L13.652 13.5733L16.581 9.79297"
-                        stroke="white"
-                        stroke={gameState === 'games' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-linecap="round"
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="17" 
+                        height="17" 
+                        rx="2.83333" 
+                        fill="black" 
+                        stroke={gameState === 'games' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <circle
-                        cx="19.9954"
-                        cy="4.20027"
-                        r="1.9222"
-                        stroke={gameState === 'games' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <circle 
+                        cx="13.0888" 
+                        cy="6.28904" 
+                        r="1.88889" 
+                        fill={gameState === 'games' ? 'white' : '#808080'}
                       />
-                      <path
-                        d="M14.9243 3.12012H7.65655C4.64511 3.12012 2.77783 5.25284 2.77783 8.26428V16.3467C2.77783 19.3581 4.6085 21.4817 7.65655 21.4817H16.2607C19.2721 21.4817 21.1394 19.3581 21.1394 16.3467V9.30776"
-                        stroke={gameState === 'games' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <circle 
+                        cx="6.28904" 
+                        cy="13.0888" 
+                        r="1.88889" 
+                        fill={gameState === 'games' ? 'white' : '#808080'}
                       />
                     </svg>
                   </div>
@@ -340,25 +343,57 @@ const Offerings = (props) => {
                 <Link href="/games/casinos">
                   <div className={styles.menu_item}
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24"  
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M21.2099 15.8901C20.5737 17.3946 19.5787 18.7203 18.3118 19.7514C17.0449 20.7825 15.5447 21.4875 13.9424 21.8049C12.34 22.1222 10.6843 22.0422 9.12006 21.5719C7.55578 21.1015 6.13054 20.2551 4.96893 19.1067C3.80733 17.9583 2.94473 16.5428 2.45655 14.984C1.96837 13.4252 1.86948 11.7706 2.16851 10.1647C2.46755 8.55886 3.15541 7.05071 4.17196 5.77211C5.18851 4.49351 6.5028 3.4834 7.99992 2.83008"
-                        stroke={gameState === 'casinos' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <circle 
+                        cx="10.5" 
+                        cy="5.5"
+                        r="4.5" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <path
-                        d="M22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7362 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2V12H22Z"
-                        stroke={gameState === 'casinos' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <rect 
+                        x="1" 
+                        y="8" 
+                        width="19" 
+                        height="13" 
+                        rx="1.57678" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <rect 
+                        x="6.86035" 
+                        y="12.6313" 
+                        width="7.27977" 
+                        height="9.54253" 
+                        rx="1.57678" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <rect 
+                        x="3.1"
+                        y="5.6" 
+                        width="14.8" 
+                        height="3.8" 
+                        rx="1.9" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="1.8" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -367,46 +402,35 @@ const Offerings = (props) => {
 
                 <Link href="/games/nfts">
                   <div className={styles.menu_item}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M16 4H18C18.5304 4 19.0391 4.21071 19.4142 4.58579C19.7893 4.96086 20 5.46957 20 6V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8"
-                        stroke={gameState === 'governance' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="20" 
+                        height="20" 
+                        rx="2.83333" 
+                        stroke={gameState === 'nfts' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <path
-                        d="M15 2H9C8.44772 2 8 2.44772 8 3V5C8 5.55228 8.44772 6 9 6H15C15.5523 6 16 5.55228 16 5V3C16 2.44772 15.5523 2 15 2Z"
-                        stroke={gameState === 'governance' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <path 
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
+                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
                       />
-                      <line
-                        x1="9"
-                        y1="16"
-                        x2="15"
-                        y2="16"
-                        stroke={gameState === 'governance' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <path 
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
+                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
                       />
-                      <line
-                        x1="9"
-                        y1="12"
-                        x2="15"
-                        y2="12"
-                        stroke={gameState === 'governance' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <path 
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
                       />
                     </svg>
                   </div>
@@ -414,25 +438,33 @@ const Offerings = (props) => {
 
                 <Link href="/games/shop">
                   <div className={styles.menu_item}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
+                      style={{ margin: '0px -1px 0px 1px' }}
                     >
-                      <path
-                        d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z"
-                        stroke={gameState === 'shop' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <path 
+                        d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z" 
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <path
-                        d="M8.21 13.8899L7 22.9999L12 19.9999L17 22.9999L15.79 13.8799"
-                        stroke={gameState === 'shop' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      <path 
+                        d="M1 5H19" 
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <path 
+                        d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9" 
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round"
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -441,26 +473,40 @@ const Offerings = (props) => {
 
                 <Link href="/games/leaderboard">
                   <div className={styles.menu_item}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 14" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
+                      style={{ margin: '-2px 0px 2px 0px' }}
                     >
-                      <path
-                        d="M12 1V23"
-                        stroke={gameState === 'leaderboard' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      <rect 
+                        x="1" 
+                        y="8" 
+                        width="6" 
+                        height="9" 
+                        rx="1" 
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
                       />
-                      <path
-                        d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6"
-                        stroke={gameState === 'leaderboard' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      <rect 
+                        x="7.75" 
+                        y="1" 
+                        width="7" 
+                        height="16" 
+                        rx="1"
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      />
+                      <rect 
+                        x="15" 
+                        y="4" 
+                        width="7" 
+                        height="13" 
+                        rx="1" 
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke-width="2"
                       />
                     </svg>
                   </div>
@@ -494,35 +540,37 @@ const Offerings = (props) => {
                         : ''
                     }
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
+                      style={{ margin: '2px -2px -2px 2px' }}
                     >
-                      <path
-                        d="M7.24463 14.7815L10.2378 10.8914L13.652 13.5733L16.581 9.79297"
-                        stroke={gameState === 'games' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="1.5"
-                        stroke-linecap="round"
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="17" 
+                        height="17" 
+                        rx="2.83333" 
+                        fill="black" 
+                        stroke={gameState === 'games' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <circle
-                        cx="19.9954"
-                        cy="4.20027"
-                        r="1.9222"
-                        stroke={gameState === 'games' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <circle 
+                        cx="13.0888" 
+                        cy="6.28904" 
+                        r="1.88889" 
+                        fill={gameState === 'games' ? 'white' : '#808080'}
                       />
-                      <path
-                        d="M14.9243 3.12012H7.65655C4.64511 3.12012 2.77783 5.25284 2.77783 8.26428V16.3467C2.77783 19.3581 4.6085 21.4817 7.65655 21.4817H16.2607C19.2721 21.4817 21.1394 19.3581 21.1394 16.3467V9.30776"
-                        stroke={gameState === 'games' ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <circle 
+                        cx="6.28904" 
+                        cy="13.0888" 
+                        r="1.88889" 
+                        fill={gameState === 'games' ? 'white' : '#808080'}
                       />
                     </svg>
                     <div className={styles.menu_title}>Games</div>
@@ -537,27 +585,57 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M21.2099 15.8901C20.5737 17.3946 19.5787 18.7203 18.3118 19.7514C17.0449 20.7825 15.5447 21.4875 13.9424 21.8049C12.34 22.1222 10.6843 22.0422 9.12006 21.5719C7.55578 21.1015 6.13054 20.2551 4.96893 19.1067C3.80733 17.9583 2.94473 16.5428 2.45655 14.984C1.96837 13.4252 1.86948 11.7706 2.16851 10.1647C2.46755 8.55886 3.15541 7.05071 4.17196 5.77211C5.18851 4.49351 6.5028 3.4834 7.99992 2.83008"
-                        stroke="white"
-                        stroke-opacity={gameState === 'casinos' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <circle 
+                        cx="10.5" 
+                        cy="5.5"
+                        r="4.5" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <path
-                        d="M22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7362 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2V12H22Z"
-                        stroke="white"
-                        stroke-opacity={gameState === 'casinos' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <rect 
+                        x="1" 
+                        y="8" 
+                        width="19" 
+                        height="13" 
+                        rx="1.57678" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <rect 
+                        x="6.86035" 
+                        y="12.6313" 
+                        width="7.27977" 
+                        height="9.54253" 
+                        rx="1.57678" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <rect 
+                        x="3.1"
+                        y="5.6" 
+                        width="14.8" 
+                        height="3.8" 
+                        rx="1.9" 
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="1.8" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -573,50 +651,35 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
-                        d="M16 4H18C18.5304 4 19.0391 4.21071 19.4142 4.58579C19.7893 4.96086 20 5.46957 20 6V20C20 20.5304 19.7893 21.0391 19.4142 21.4142C19.0391 21.7893 18.5304 22 18 22H6C5.46957 22 4.96086 21.7893 4.58579 21.4142C4.21071 21.0391 4 20.5304 4 20V6C4 5.46957 4.21071 4.96086 4.58579 4.58579C4.96086 4.21071 5.46957 4 6 4H8"
-                        stroke="white"
-                        stroke-opacity={gameState === 'nfts' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="20" 
+                        height="20" 
+                        rx="2.83333" 
+                        stroke={gameState === 'nfts' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <path
-                        d="M15 2H9C8.44772 2 8 2.44772 8 3V5C8 5.55228 8.44772 6 9 6H15C15.5523 6 16 5.55228 16 5V3C16 2.44772 15.5523 2 15 2Z"
-                        stroke="white"
-                        stroke-opacity={gameState === 'nfts' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <path 
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
+                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
                       />
-                      <line
-                        x1="9"
-                        y1="16"
-                        x2="15"
-                        y2="16"
-                        stroke="white"
-                        stroke-opacity={gameState === 'nfts' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <path 
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
+                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
                       />
-                      <line
-                        x1="9"
-                        y1="12"
-                        x2="15"
-                        y2="12"
-                        stroke="white"
-                        stroke-opacity={gameState === 'nfts' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      <path 
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
                       />
                     </svg>
                     <div className={styles.menu_title}>NFTs</div>
@@ -631,27 +694,33 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
+                      style={{ margin: '0px -1px 0px 1px' }}
                     >
-                      <path
-                        d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z"
-                        stroke="white"
-                        stroke-opacity={gameState === 'shop' ? 1 : 0.5}
-                        stroke-width="2"
-                        stroke-linecap="round"
+                      <path 
+                        d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z" 
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
-                      <path
-                        d="M8.21 13.8899L7 22.9999L12 19.9999L17 22.9999L15.79 13.8799"
-                        stroke="white"
-                        stroke-opacity={gameState === 'shop' ? 1 : 0.5}
+                      <path 
+                        d="M1 5H19" 
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <path 
+                        d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9" 
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round"
+                        stroke-linecap="round" 
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -667,28 +736,40 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 14" 
+                      fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
+                      style={{ margin: '-2px 0px 2px 0px' }}
                     >
-                      <path
-                        d="M12 1V23"
-                        stroke="white"
-                        stroke-opacity={gameState === 'leaderboard' ? 1 : 0.5}
+                      <rect 
+                        x="1" 
+                        y="8" 
+                        width="6" 
+                        height="9" 
+                        rx="1" 
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
                       />
-                      <path
-                        d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6"
-                        stroke="white"
-                        stroke-opacity={gameState === 'leaderboard' ? 1 : 0.5}
+                      <rect 
+                        x="7.75" 
+                        y="1" 
+                        width="7" 
+                        height="16" 
+                        rx="1"
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                      />
+                      <rect 
+                        x="15" 
+                        y="4" 
+                        width="7" 
+                        height="13" 
+                        rx="1" 
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke-width="2"
                       />
                     </svg>
                     <div className={styles.menu_title}>Leaderboard</div>
