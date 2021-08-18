@@ -325,15 +325,13 @@ const Overview = props => {
   };
 
   return (
-    <div className={cn('row w-100', styles.main_wrapper)}>
+    <div className={cn('row', styles.main_wrapper)}>
       <div className={cn('col-xl-8', styles.overview_container)}>
         <div className={styles.container_left}>
           {state.userInfo.name === null || state.userInfo.name === '' ? (
             <p className={styles.welcome_text}>Welcome,</p>
           ) : (
-            <p className={styles.welcome_text}>
-              Welcome {state.userInfo.name},
-            </p>
+            <p className={styles.welcome_text}>Welcome {state.userInfo.name},</p>
           )}
           <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
         </div>
@@ -525,10 +523,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div
-                  className="d-flex flex-column mr-2"
-                  style={{ maxWidth: '150px' }}
-                >
+                <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateOne}</p>
                   <p className={styles.gov_title}>{snapshotOne.title}</p>
                 </div>
@@ -559,10 +554,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div
-                  className="d-flex flex-column"
-                  style={{ maxWidth: '150px' }}
-                >
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateTwo}</p>
                   <p className={styles.gov_title}>{snapshotTwo.title}</p>
                 </div>
@@ -593,10 +585,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div
-                  className="d-flex flex-column"
-                  style={{ maxWidth: '150px' }}
-                >
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateThree}</p>
                   <p className={styles.gov_title}>{snapshotThree.title}</p>
                 </div>
@@ -627,10 +616,7 @@ const Overview = props => {
               </div>
 
               <div className={styles.gov_right}>
-                <div
-                  className="d-flex flex-column"
-                  style={{ maxWidth: '150px' }}
-                >
+                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
                   <p className={styles.gov_top}>{dateFour}</p>
                   <p className={styles.gov_title}>{snapshotFour.title}</p>
                 </div>
@@ -691,8 +677,7 @@ const Overview = props => {
             muted
           ></video>
           <p className={styles.lower_text}>
-            All $DG-powered games earn back rewards. Play games and earn up to
-            50% of expected losses, win or lose.
+            All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
           </p>
           <Button
             className={styles.lower_button}
