@@ -24,6 +24,7 @@ import Global from '../../Constants';
 import Fetch from '../../../common/Fetch';
 import styles from './DAO.module.scss';
 
+
 const DAO = props => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -41,7 +42,7 @@ const DAO = props => {
   const DGState = props.DGState;
 
   // Responsive
-  const isMobile = useMediaQuery('(max-width: 1040px)');
+  const isMobile = useMediaQuery('(max-width: 1267px)');
   const [mobileOpen, setMobileOpen] = useState(!isMobile);
 
   useEffect(() => {
