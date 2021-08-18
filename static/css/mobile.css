@@ -592,16 +592,17 @@ span#mobile-time-select.account-select.dropdown {
 }
 
 .account-hover-time-tablet {
-  font-size: 18px;
-  font-weight: 600;
-  margin-right: 34px !important;
-  color: rgba(255, 255, 255, 0.55);
-  margin-top: 32px;
+  font-size: 20px;
+  font-family: Larsseit-Bold;
+  margin-top: 34px;
+  color: white;
+  border: 1px solid rgb(42, 42, 42);
+  border-radius: 16px;
   display: flex;
   justify-content: flex-end;
-  width: calc(100% - 684px);
+  padding: 12px;
   margin-right: 0px !important;
-  text-transform: capitalize !important;
+  text-transform: uppercase !important;
 }
 
 @media (max-width: 1101px) {

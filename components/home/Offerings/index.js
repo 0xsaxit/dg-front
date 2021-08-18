@@ -194,6 +194,7 @@ const Offerings = (props) => {
 
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
+  const [imageSelect, setImageSelect] = useState('');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
 
   const gameState = props.gameState;
@@ -223,6 +224,29 @@ const Offerings = (props) => {
   }
 
   const timePeriods = ['ALL TIME', 'WEEKLY', 'DAILY', 'COMPETITION'];
+  const coins = ['play', 'mana', 'dai', 'eth', 'usdt', 'atri'];
+
+  function coinChangeForward() {
+    var i = gameSelect;
+    var j = coins.indexOf(i);
+    if (j < 5) {
+      setGameSelect(coins[j + 1]);
+    } else {
+      j = 0;
+      setGameSelect(coins[j]);
+    }
+  }
+
+  function coinChangeBackward() {
+    var i = gameSelect;
+    var j = coins.indexOf(i);
+    if (j < 5) {
+      j = 5;
+      setGameSelect(coins[j]);
+    } else {
+      setGameSelect(coins[j - 1]);
+    }
+  }
 
   function timeChangeForward() {
     var i = timePeriod;
@@ -719,148 +743,86 @@ const Offerings = (props) => {
   function coinSelect() {
     return (
       <Aux>
-        <span style={{ display: 'flex', width: '100%', minWidth: '861px' }}>
-          <span
-            style={{
-              display: 'flex',
-              marginBottom: '9px',
-            }}
-            className="leaderboard-coin-select-mobile"
-          >
-            <span
-              className={
-                gameSelect === 'play' ? 'account-hover-time active' : 'account-hover-time'
-              }
-              id="account-select-play"
-              onClick={() => handleChange('play')}
-            >
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                  marginTop: '-3px',
-                }}
-                className="image inline"
-                width="21px"
-                height="21px"
-                src={Images.PLAY_CIRCLE}
-              />
-              FREE
-            </span>
-            <span
-              className={
-                gameSelect === 'eth' ? 'account-hover-time active' : 'account-hover-time'
-              }
-              style={{ fontFamily: 'Larsseit-Bold' }}
-              onClick={() => handleChange('eth')}
-            >
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                  marginTop: '-3px',
-                }}
-                className="image inline"
-                width="21px"
-                height="21px"
-                src={Images.ETH_CIRCLE}
-              />
-              ETH
-            </span>
-            <span
-              className={
-                gameSelect === 'mana' ? 'account-hover-time active' : 'account-hover-time'
-              }
-              onClick={() => handleChange('mana')}
-            >
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                  marginTop: '-3px',
-                }}
-                className="image inline"
-                width="21px"
-                height="21px"
-                src={Images.MANA_CIRCLE}
-              />
-              MANA
-            </span>
-            <span
-              className={
-                gameSelect === 'usdt' ? 'account-hover-time active' : 'account-hover-time'
-              }
-              style={{ fontFamily: 'Larsseit-Bold' }}
-              onClick={() => handleChange('usdt')}
-            >
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                  marginTop: '-3px',
-                }}
-                className="image inline"
-                width="21px"
-                height="21px"
-                src={Images.USDT_CIRCLE}
-              />
-              USDT
-            </span>
-            <span
-              className={
-                gameSelect === 'dai' ? 'account-hover-time active' : 'account-hover-time'
-              }
-              style={{ fontFamily: 'Larsseit-Bold' }}
-              onClick={() => handleChange('dai')}
-            >
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                  marginTop: '-3px',
-                }}
-                className="image inline"
-                width="21px"
-                height="21px"
-                src={Images.DAI_CIRCLE}
-              />
-              DAI
-            </span>
-            <span
-              className={
-                gameSelect === 'atri' ? 'account-hover-time active' : 'account-hover-time'
-              }
-              style={{ fontFamily: 'Larsseit-Bold' }}
-              onClick={() => handleChange('atri')}
-            >
-              <img
-                style={{
-                  verticalAlign: 'middle',
-                  marginRight: '6px',
-                  marginTop: '-3px',
-                }}
-                className="image inline"
-                width="21px"
-                height="21px"
-                src={Images.ATRI_CIRCLE}
-              />
-              ATRI
-            </span>
-          </span>
+        <span style={{ marginTop: '120px', display: 'flex', justifyContent: 'flex-end' }}>
 
           <span className="account-hover-time-tablet">
-            <Icon
-              className="time-select-icon"
-              name="angle left"
+            <svg
+              width="9"
+              height="15"
+              viewBox="0 0 6 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={coinChangeBackward}
+              style={{ transform: 'rotate(180deg)', margin: '2px 8px 0px 8px' }}
+            >
+              <path
+                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                stroke="white"
+                stroke-width="1.7"
+                stroke-opacity="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            {gameSelect}
+            <svg
+              width="9"
+              height="15"
+              viewBox="0 0 6 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={coinChangeForward}
+              style={{ margin: '2px 8px 0px 8px' }}
+            >
+              <path
+                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                stroke="white"
+                stroke-width="1.7"
+                stroke-opacity="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>      
+
+          <span className="account-hover-time-tablet" style={{ marginLeft: '24px' }}>
+            <svg
+              width="9"
+              height="15"
+              viewBox="0 0 6 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
               onClick={timeChangeBackward}
-            />
+              style={{ transform: 'rotate(180deg)', margin: '2px 8px 0px 8px' }}
+            >
+              <path
+                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                stroke="white"
+                stroke-width="1.7"
+                stroke-opacity="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
             {timePeriod}
-            <Icon
-              className="time-select-icon"
-              name="angle right"
-              style={{ marginLeft: '4px' }}
+            <svg
+              width="9"
+              height="15"
+              viewBox="0 0 6 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
               onClick={timeChangeForward}
-            />
+              style={{ margin: '2px 8px 0px 8px' }}
+            >
+              <path
+                d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                stroke="white"
+                stroke-width="1.7"
+                stroke-opacity="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </span>
         </span>
       </Aux>
@@ -872,12 +834,16 @@ const Offerings = (props) => {
       <div className="d-flex flex-row">
         {submenu()}
 
+
         {gameState === 'leaderboard' ? (
-          <ContentLeaderboard
-            gameRecords={state.gameRecords}
-            gameSelect={gameSelect}
-            timePeriod={timePeriod}
-          />
+          <span>
+            {coinSelect()}
+            <ContentLeaderboard
+              gameRecords={state.gameRecords}
+              gameSelect={gameSelect}
+              timePeriod={timePeriod}
+            />
+          </span>
         ) : (
           <ContentOfferings
             gameState={gameState}
