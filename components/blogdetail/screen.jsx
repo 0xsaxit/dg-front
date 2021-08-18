@@ -97,14 +97,14 @@ const Screen = ({
             target="_blank"
           >
             <Icon
-              className="share-icon"
+              className={styles.share_icon}
               style={{ fontSize: '34px' }}
               name="twitter square"
             />
           </a>
           <a href={`http://www.facebook.com/share.php?url=https://decentral.games/blog/${slug}`}>
             <Icon
-              className="share-icon"
+              className={styles.share_icon}
               style={{
                 fontSize: '34px',
                 margin: '15px 0px 15px 0px',
@@ -113,7 +113,7 @@ const Screen = ({
             />
           </a>
           <a href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://decentral.games/blog/${slug}`}>
-            <Icon className="share-icon"style={{ fontSize: '34px' }} name="linkedin" />
+            <Icon className={styles.share_icon}style={{ fontSize: '34px' }} name="linkedin" />
           </a>
         </span>
       </div>
@@ -121,7 +121,7 @@ const Screen = ({
       <div className={styles.blogdetail_page_container}>
         <div className={styles.blogdetails}>
           <div className={styles.bloginfo}>
-            <p>
+            <p className={styles.announcement}>
               {' '}
               <a
                 style={{ color: '#2085f4', position: 'relative', zIndex: '10' }}
@@ -136,7 +136,7 @@ const Screen = ({
               >{`${name}`}</a>{' '}
               » {title}{' '}
             </p>
-            <div className="title">
+            <div className={styles.title}>
               <h1>{title}</h1>
             </div>
 
