@@ -23,7 +23,6 @@
     cursor: pointer;
     padding: 0;
     z-index: 10;
-    width: 100%;
 
     &:focus {
       outline: none;
@@ -137,7 +136,7 @@
 
   .menu_list {
     margin-top: 140px;
-    padding-top: 52px;
+    padding-top: 55px;
     position: fixed;
     background: black;
 

@@ -610,7 +610,7 @@ span#mobile-time-select.account-select.dropdown {
   justify-content: flex-end;
   padding: 12px;
   margin-right: 0px !important;
-  text-transform: uppercase !important;
+  text-transform: capitalize !important;
 }
 
 @media (max-width: 1101px) {

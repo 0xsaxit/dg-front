@@ -16,7 +16,7 @@ const ContentLeaderboard = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  var a = ['',' One ','Two ','Three ','Four ', 'Five ','Six ','Seven ','Eight ','Nine ','Ten '];
+  var a = ['',' First ','Second ','Third ','Fourth ', 'Fifth ','Sixth ','Seventh ','Eighth ','Ninth ','Tenth'];
 
   function inWords(num) {
     if ((num = num.toString()).length > 9) return 'overflow';
