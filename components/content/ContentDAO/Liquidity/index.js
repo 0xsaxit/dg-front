@@ -150,8 +150,8 @@ const Liquidity = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   return (
     <Aux>
-      <div className="d-flex">
-        <div className={cn('d-flex', styles.stake_DG_container)}>
+      <div className="d-flex mx-auto">
+        <div className={cn('d-flex mx-auto', styles.stake_DG_container)}>
           <div className={styles.lower}>
             <p className={styles.lower_header}>Claim $DG Rewards</p>
             <div className={styles.lower_value}>

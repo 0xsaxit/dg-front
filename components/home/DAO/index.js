@@ -42,7 +42,7 @@ const DAO = props => {
   const DGState = props.DGState;
 
   // Responsive
-  const isMobile = useMediaQuery('(max-width: 1267px)');
+  const isMobile = useMediaQuery('(max-width: 1040px)');
   const [mobileOpen, setMobileOpen] = useState(!isMobile);
 
   useEffect(() => {
