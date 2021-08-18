@@ -93,7 +93,10 @@ const MANA = () => {
         </p>
 
           <span className="d-flex">
-            <Checkbox onClick={() => isCheckedOne()} />
+            <Checkbox 
+              className={styles.terms_modal_checkbox}
+              onClick={() => isCheckedOne()} 
+            />
             <p className={styles.subtitle_2}> I am at least 18 years old </p>
           </span>
 
