@@ -177,7 +177,7 @@ const ContentLeaderboard = (props) => {
                             alignSelf: 'center',
                           }}
                         />
-                        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
+                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
                           <p className="leaderboard-top">
                             {inWords(index + 1)}
                           </p>
@@ -188,7 +188,7 @@ const ContentLeaderboard = (props) => {
                                 row.address.substr(-4)
                               : row.name}
                           </p>
-                        </div>
+                        </span>
                       </Table.Cell>
                       <Table.Cell>
                         <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
