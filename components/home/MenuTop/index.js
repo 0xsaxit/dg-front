@@ -173,7 +173,7 @@ const MenuTop = props => {
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
           />
         </Link>
-        &nbsp; Decentral games
+        &nbsp; Decentral Games
       </>
     );
   }
