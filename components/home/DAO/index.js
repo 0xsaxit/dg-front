@@ -42,7 +42,7 @@ const DAO = props => {
 
   // Responsive
   const isMobile = useMediaQuery('(max-width: 1040px)');
-  const [mobileOpen, setMobileOpen] = useState(!isMobile);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     setMobileOpen(!isMobile);
@@ -232,7 +232,7 @@ const DAO = props => {
   function submenu() {
     return (
       <>
-        {isMobile || !mobileOpen ? (
+        {!mobileOpen ? (
           <div className={styles.tablet_menu_container}>
             <div
               className={styles.burger_icon}
@@ -444,34 +444,29 @@ const DAO = props => {
             <div className={styles.menu_list}>
               <div className={styles.menu_header}>
                 <span>DAO Tools</span>
-                <div
-                  className={styles.menu_in}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <svg
-                    version="1.1"
-                    id="Capa_1"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 34.075 34.075"
+                {isMobile && (
+                  <div
+                    className={styles.burger_icon}
+                    onClick={() => setMobileOpen(!mobileOpen)}
                   >
-                    <g>
-                      <g>
-                        <path
-                          stroke="white"
-                          stroke-width="1.7"
-                          stroke-opacity="0.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          fill="rgba(255, 255, 255, 0.5)"
-                          d="M24.57,34.075c-0.505,0-1.011-0.191-1.396-0.577L8.11,18.432c-0.771-0.771-0.771-2.019,0-2.79
-			L23.174,0.578c0.771-0.771,2.02-0.771,2.791,0s0.771,2.02,0,2.79l-13.67,13.669l13.67,13.669c0.771,0.771,0.771,2.021,0,2.792
-			C25.58,33.883,25.075,34.075,24.57,34.075z"
-                        />
-                      </g>
-                    </g>
-                  </svg>
-                </div>
+                    <svg
+                      width="9"
+                      height="15"
+                      viewBox="0 0 6 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                        stroke="white"
+                        stroke-width="1.7"
+                        stroke-opacity="0.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                )}
               </div>
 
               <div>

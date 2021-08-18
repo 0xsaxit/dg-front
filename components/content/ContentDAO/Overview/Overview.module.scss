@@ -19,7 +19,7 @@
     min-width: 600px;
 
     @include mq($until: 1267px) {
-      margin-left: 100px;
+      margin-left: 26px;
     }
 
     .welcome_text {
@@ -47,7 +47,7 @@
     display: flex;
 
     @include mq($until: 1267px) {
-      margin-left: 100px;
+      margin-left: 26px;
     }
 
     .close_button {
@@ -109,7 +109,7 @@
     width: 600px;
 
     @include mq($until: 1267px) {
-      margin-left: 100px;
+      margin-left: 26px;
     }
 
     .earned_percent_pos {
@@ -206,7 +206,7 @@
     margin: 40px auto 0 auto;
 
     @include mq($until: 1267px) {
-      margin-left: 100px;
+      margin-left: 26px;
     }
   }
 }
@@ -223,7 +223,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 90px;
-    margin-left: 125px;
+    margin-left: 50px;
     margin-top: 0px;
     min-width: 600px;
   }

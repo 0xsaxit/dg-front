@@ -1,5 +1,6 @@
 @import 'styles/base.scss';
 
+
 .lower {
   padding: 28px;
   border: 1px solid rgba(42, 42, 42, 1);
@@ -8,9 +9,9 @@
   width: 285px;
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
+  margin-left: 40px;
   margin-top: 60px;
-  height: fit-content;
+  height: 100%;
 
   .lower_value {
     display: flex;
