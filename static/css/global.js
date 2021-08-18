@@ -75,9 +75,6 @@ export const GlobalStyles = createGlobalStyle`
   .leaders-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
-  .games-container,
-  .shop-container,
-  .nft-container,
   .my-nft-container,
   .dg-powered-container,
   .treasury-container,
@@ -233,5 +230,12 @@ export const GlobalStyles = createGlobalStyle`
   .post-date-blogdetail{
     background: ${({ theme }) => theme.infoColor};
     color: ${({ theme }) => theme.text} !important;
+  }
+
+  .games-container,
+  .shop-container,
+  .nft-container {
+    border: 1px solid rgba(42, 42, 42, 1);
+    border-radius: 16px;
   }
 `;
