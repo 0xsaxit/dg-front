@@ -6,6 +6,10 @@
   position: relative;
   z-index: 9;
 
+  @include mq($until: 1040px) {
+    width: 80px;
+  }
+
   .burger_icon {
     transform: rotate(180deg);
     position: fixed;
@@ -42,6 +46,9 @@
       color: rgba(128, 129, 145, 1) !important;
       margin-bottom: 16px;
       padding-left: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .menu_item_active {
@@ -96,7 +103,7 @@
   width: calc(100% - 257px);
   padding-top: 96px;
 
-  @include mq($until: large) {
+  @include mq($until: 1040px) {
     width: calc(100% - 80px);
   }
 }
@@ -140,7 +147,6 @@
       margin-bottom: 16px;
       text-align: center;
     }
-
 
     .menu_item {
       display: flex;

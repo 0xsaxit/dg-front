@@ -24,7 +24,6 @@ import Global from '../../Constants';
 import Fetch from '../../../common/Fetch';
 import styles from './DAO.module.scss';
 
-
 const DAO = props => {
   // get user's state from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -42,8 +41,12 @@ const DAO = props => {
   const DGState = props.DGState;
 
   // Responsive
-  const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 1040px)');
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileOpen(!isMobile);
+  }, [isMobile]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -229,7 +232,7 @@ const DAO = props => {
   function submenu() {
     return (
       <>
-        {isMobile && !mobileOpen ? (
+        {!mobileOpen ? (
           <div className={styles.tablet_menu_container}>
             <div
               className={styles.burger_icon}
@@ -255,7 +258,10 @@ const DAO = props => {
             <div className={styles.menu_list}>
               <div>
                 <Link href="/dg">
-                  <div className={styles.menu_item} style={{ marginTop: '2px' }}>
+                  <div
+                    className={styles.menu_item}
+                    style={{ marginTop: '2px' }}
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -294,8 +300,7 @@ const DAO = props => {
                 </Link>
 
                 <Link href="/dg/treasury">
-                  <div className={styles.menu_item}
-                  >
+                  <div className={styles.menu_item}>
                     <svg
                       width="24"
                       height="24"
@@ -436,15 +441,33 @@ const DAO = props => {
           </div>
         ) : (
           <div className={styles.menu_container}>
-            {isMobile && (
-              <div
-                className={styles.burger_icon}
-                onClick={() => setMobileOpen(!mobileOpen)}
-              >
-              </div>
-            )}
             <div className={styles.menu_list}>
-              <div className={styles.menu_header}>DAO Tools</div>
+              <div className={styles.menu_header}>
+                <span>DAO Tools</span>
+                {isMobile && (
+                  <div
+                    className={styles.burger_icon}
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                  >
+                    <svg
+                      width="9"
+                      height="15"
+                      viewBox="0 0 6 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                        stroke="white"
+                        stroke-width="1.7"
+                        stroke-opacity="0.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
 
               <div>
                 <Link href="/dg">
@@ -454,11 +477,7 @@ const DAO = props => {
                         ? styles.menu_item_active
                         : styles.menu_item
                     }
-                    id={
-                      DGState === 'overview'
-                        ? styles.active_padding
-                        : ''
-                    }
+                    id={DGState === 'overview' ? styles.active_padding : ''}
                   >
                     <svg
                       width="24"
@@ -764,7 +783,7 @@ const DAO = props => {
           {DGState === 'overview' ? (
             <Overview price={price} formatPrice={formatPrice} />
           ) : DGState === 'governance' ? (
-            <Governance 
+            <Governance
               price={price}
               formatPrice={formatPrice}
               instances={instances}
@@ -775,7 +794,7 @@ const DAO = props => {
               reward={reward}
             />
           ) : DGState === 'uniswap' ? (
-            <Liquidity 
+            <Liquidity
               price={price}
               formatPrice={formatPrice}
               instances={instances}
@@ -786,7 +805,7 @@ const DAO = props => {
               reward={reward}
             />
           ) : DGState === 'mining' ? (
-            <Gameplay 
+            <Gameplay
               price={price}
               formatPrice={formatPrice}
               instances={instances}
