@@ -228,7 +228,7 @@ const DAO = props => {
   function submenu() {
     return (
       <>
-        {isMobile && !mobileOpen ? (
+        {isMobile || !mobileOpen ? (
           <div className={styles.tablet_menu_container}>
             <div
               className={styles.burger_icon}
@@ -254,7 +254,10 @@ const DAO = props => {
             <div className={styles.menu_list}>
               <div>
                 <Link href="/dg">
-                  <div className={styles.menu_item} style={{ marginTop: '2px' }}>
+                  <div
+                    className={styles.menu_item}
+                    style={{ marginTop: '2px' }}
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -293,8 +296,7 @@ const DAO = props => {
                 </Link>
 
                 <Link href="/dg/treasury">
-                  <div className={styles.menu_item}
-                  >
+                  <div className={styles.menu_item}>
                     <svg
                       width="24"
                       height="24"
@@ -435,15 +437,38 @@ const DAO = props => {
           </div>
         ) : (
           <div className={styles.menu_container}>
-            {isMobile && (
-              <div
-                className={styles.burger_icon}
-                onClick={() => setMobileOpen(!mobileOpen)}
-              >
-              </div>
-            )}
             <div className={styles.menu_list}>
-              <div className={styles.menu_header}>DAO Tools</div>
+              <div className={styles.menu_header}>
+                <span>DAO Tools</span>
+                <div
+                  className={styles.menu_in}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <svg
+                    version="1.1"
+                    id="Capa_1"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 34.075 34.075"
+                  >
+                    <g>
+                      <g>
+                        <path
+                          stroke="white"
+                          stroke-width="1.7"
+                          stroke-opacity="0.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          fill="rgba(255, 255, 255, 0.5)"
+                          d="M24.57,34.075c-0.505,0-1.011-0.191-1.396-0.577L8.11,18.432c-0.771-0.771-0.771-2.019,0-2.79
+			L23.174,0.578c0.771-0.771,2.02-0.771,2.791,0s0.771,2.02,0,2.79l-13.67,13.669l13.67,13.669c0.771,0.771,0.771,2.021,0,2.792
+			C25.58,33.883,25.075,34.075,24.57,34.075z"
+                        />
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
 
               <div>
                 <Link href="/dg">
@@ -453,11 +478,7 @@ const DAO = props => {
                         ? styles.menu_item_active
                         : styles.menu_item
                     }
-                    id={
-                      DGState === 'overview'
-                        ? styles.active_padding
-                        : ''
-                    }
+                    id={DGState === 'overview' ? styles.active_padding : ''}
                   >
                     <svg
                       width="24"
@@ -763,7 +784,7 @@ const DAO = props => {
           {DGState === 'overview' ? (
             <Overview price={price} formatPrice={formatPrice} />
           ) : DGState === 'governance' ? (
-            <Governance 
+            <Governance
               price={price}
               formatPrice={formatPrice}
               instances={instances}
@@ -774,7 +795,7 @@ const DAO = props => {
               reward={reward}
             />
           ) : DGState === 'uniswap' ? (
-            <Liquidity 
+            <Liquidity
               price={price}
               formatPrice={formatPrice}
               instances={instances}
@@ -785,7 +806,7 @@ const DAO = props => {
               reward={reward}
             />
           ) : DGState === 'mining' ? (
-            <Gameplay 
+            <Gameplay
               price={price}
               formatPrice={formatPrice}
               instances={instances}
