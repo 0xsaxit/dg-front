@@ -635,20 +635,6 @@ span#mobile-time-select.account-select.dropdown {
   color: rgb(92, 95, 97);
 }
 
-@media (max-width: 1251px) {
-  .nft-container {
-    width: 48.5%;
-  }
-}
-
-@media (max-width: 767px) {
-  .nft-container,
-  .nft-container:nth-child(1),
-  .nft-container:nth-child(2) {
-    width: 100% !important;
-  }
-}
-
 @media (max-width: 1040px) {
   .outter-games-container {
     width: calc(100% - 160px);
@@ -660,7 +646,7 @@ span#mobile-time-select.account-select.dropdown {
     width: calc(100% - 140px);
     margin-left: 30px;
   }
-  .games-container {
+  .games-container{
     width: calc(100% + 10px);
   }
 }

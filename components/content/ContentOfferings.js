@@ -110,56 +110,54 @@ const ContentOfferings = (props) => {
   // loop through the NFT details object
   function buyNFTs() {
     return (
-      <span>
-        <div className="outter-nft-container">
-          {Object.keys(props.detailsNFTs).map((item, i) => (
-            <a href={props.detailsNFTs[item][5]} className="games-container">
-              <div key={i}>
-                <span
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                  className="nft-image"
-                >
-                  <Image
-                    src={props.detailsNFTs[item][0]}
-                    className={props.detailsNFTs[item][1]}
-                    style={{ borderRadius: '4px' }}
-                  />
+      <div className="outter-games-container">
+        {Object.keys(props.detailsNFTs).map((item, i) => (
+          <a href={props.detailsNFTs[item][5]} className="games-container">
+            <div key={i}>
+              <span
+                style={{ display: 'flex', justifyContent: 'center' }}
+                className="nft-image"
+              >
+                <Image
+                  src={props.detailsNFTs[item][0]}
+                  className={props.detailsNFTs[item][1]}
+                  style={{ borderRadius: '4px' }}
+                />
+              </span>
+              <div className="nft-description">
+                <span>
+                  <p className="nfts-info">{props.detailsNFTs[item][3]}</p>
                 </span>
-                <div className="nft-description">
-                  <span>
-                    <p className="nfts-info">{props.detailsNFTs[item][3]}</p>
-                  </span>
-                  <h3 className="nft-other-h3">{props.detailsNFTs[item][2]}</h3>
+                <h3 className="nft-other-h3">{props.detailsNFTs[item][2]}</h3>
 
-                  <p className="nft-other-p">
-                    {props.detailsNFTs[item][4]}
-                  </p>
+                <p className="nft-other-p">
+                  {props.detailsNFTs[item][4]}
+                </p>
 
-                  <span
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                <span
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <Button
+                    color="blue"
+                    className="nft-button"
+                    target="_blank"
+                    href={props.detailsNFTs[item][5]}
                   >
-                    <Button
-                      color="blue"
-                      className="nft-button"
-                      target="_blank"
-                      href={props.detailsNFTs[item][5]}
-                    >
-                      Buy
-                    </Button>
-                    <Button
-                      className="nft-read-button"
-                      target="_blank"
-                      href={props.detailsNFTs[item][6]}
-                    >
-                      Info
-                    </Button>
-                  </span>
-                </div>
+                    Buy
+                  </Button>
+                  <Button
+                    className="nft-read-button"
+                    target="_blank"
+                    href={props.detailsNFTs[item][6]}
+                  >
+                    Info
+                  </Button>
+                </span>
               </div>
-            </a>
-          ))}
-        </div>
-      </span>
+            </div>
+          </a>
+        ))}
+      </div>
     );
   }
 
