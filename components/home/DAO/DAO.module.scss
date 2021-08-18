@@ -3,7 +3,7 @@
 .menu_container {
   width: 257px;
   height: 100vh;
-  position: fixed;
+  position: relative;
   z-index: 9;
 
   .burger_icon {
@@ -42,13 +42,6 @@
       color: rgba(128, 129, 145, 1) !important;
       margin-bottom: 16px;
       padding-left: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .menu_in {
-        cursor: pointer;
-      }
     }
 
     .menu_item_active {
@@ -100,18 +93,21 @@
 }
 
 .main_container {
-  width: 100%;
+  width: calc(100% - 257px);
   padding-top: 96px;
+
+  @include mq($until: large) {
+    width: calc(100% - 80px);
+  }
 }
 
 .tablet_menu_container {
   width: 80px;
   height: 200vh;
   padding: 4px;
-  position: fixed;
+  position: relative;
   z-index: 9;
   border-right: 1px solid rgba(42, 42, 42, 1);
-  background: black;
 
   .burger_icon {
     position: fixed;
@@ -143,9 +139,8 @@
       color: rgba(128, 129, 145, 1) !important;
       margin-bottom: 16px;
       text-align: center;
-      display: flex;
-      justify-content: space-between;
     }
+
 
     .menu_item {
       display: flex;
@@ -214,9 +209,6 @@
       color: rgba(128, 129, 145, 1) !important;
       margin-bottom: 16px;
       padding-left: 22px;
-      justify-content: space-between;
-      align-items: center;
-      display: flex;
     }
 
     .menu_item_active {
