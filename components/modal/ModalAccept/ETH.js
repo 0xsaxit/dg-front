@@ -95,6 +95,7 @@ const ETH = () => {
           <span className="d-flex">
             <Checkbox 
               className={styles.terms_modal_checkbox}
+              style={{paddingTop: "0px"}}
               onClick={() => isCheckedOne()} 
             />
             <p className={styles.subtitle_2}> I am at least 18 years old </p>
