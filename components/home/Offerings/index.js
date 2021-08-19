@@ -310,7 +310,7 @@ const Offerings = (props) => {
                       viewBox="0 0 24 24" 
                       fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
-                      style={{ margin: '2px -2px -2px 2px' }}
+                      style={{ margin: '2px -1px -2px 1px' }}
                     >
                       <rect 
                         x="1" 
@@ -562,7 +562,7 @@ const Offerings = (props) => {
                       viewBox="0 0 24 24" 
                       fill="none" 
                       xmlns="http://www.w3.org/2000/svg"
-                      style={{ margin: '2px -2px -2px 2px' }}
+                      style={{ margin: '2px -1px -2px 1px' }}
                     >
                       <rect 
                         x="1" 
