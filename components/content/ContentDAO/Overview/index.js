@@ -16,6 +16,7 @@ const Overview = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
+
   // define local variables
   const [dgBalance, setDgBalance] = useState(0);
   const [treasuryTotal, setTreasuryTotal] = useState(0);
@@ -23,12 +24,27 @@ const Overview = props => {
   const [statsUSDY, setStatsUSDY] = useState([]);
   const [gameplayTreasury, setGameplayTreasury] = useState(0);
   const [gameplayTreasuryPercent, setGameplayTreasuryPercent] = useState(0);
-  const [pointerContractNew, setPointerContractNew] = useState({});
   const [weeklyChange, setWeeklyChange] = useState(0);
+  const [gameplayAll, setGameplayAll] = useState(0);
+  const [gameplayAllPercent, setGameplayAllPercent] = useState(0);
+  const [manaBalance, setManaBalance] = useState(0);
+  const [daiBalance, setDaiBalance] = useState(0);
+  const [usdtBalance, setUSDTBalance] = useState(0);
+  const [atriBalance, setAtriBalance] = useState(0);
+  const [ethBalance, setEthBalance] = useState(0);
   const [dgTreasury, setDgTreasury] = useState(0);
   const [dgTreasuryPercent, setDgTreasuryPercent] = useState(0);
   const [landTreasury, setLandTreasury] = useState(0);
   const [landTreasuryPercent, setLandTreasuryPercent] = useState(0);
+  const [nftTreasury, setNftTreasury] = useState(0);
+  const [nftTreasuryPercent, setNftTreasuryPercent] = useState(0);
+  const [liquidityTreasury, setLiquidityTreasury] = useState(0);
+  const [liquidityTreasuryPercent, setLiquidityTreasuryPercent] = useState(0);
+  const [uniTreasury, setUniTreasury] = useState(0);
+  const [mviTreasury, setMviTreasury] = useState(0);
+  const [maticTreasury, setMaticTreasury] = useState(0);
+  const [maticTreasuryPercent, setMaticTreasuryPercent] = useState(0);
+  const [maticTokens, setMaticTokens] = useState(0);
 
   const [snapshotOne, setSnapshotOne] = useState([]);
   const [dateOne, setDateOne] = useState('');
@@ -66,10 +82,6 @@ const Overview = props => {
         }
       );
       const getWeb3 = new Web3(biconomy);
-
-      const pointerContractNew = await Transactions.pointerContractNew(getWeb3);
-
-      setPointerContractNew(pointerContractNew);
 
       const snapshotData = await axios.post(
         `https://hub.snapshot.org/graphql`,
@@ -167,34 +179,97 @@ const Overview = props => {
       setStatsUSDY(yAxis);
 
       const totalUSD = state.treasuryNumbers.totalBalanceUSD.graph;
-      setTreasuryTotal(formatPrice(totalUSD.slice(-1)[0].secondary, 0));
+      setTreasuryTotal(props.formatPrice(totalUSD.slice(-1)[0].secondary, 0));
 
       const temp_start = totalUSD[0].secondary;
       const temp_end = totalUSD.slice(-1)[0].secondary;
       const change = temp_end - temp_start;
       setWeeklyChange(change);
 
+      const gameplayTotal = state.treasuryNumbers.allTimeGameplayUSD;
+      setGameplayAll(
+        props.formatPrice(gameplayTotal.graph.slice(-1)[0].secondary, 0)
+      );
+
+      const gameplayTotal_temp =
+        gameplayTotal.changes.weekly.percent.toFixed(2);
+      setGameplayAllPercent(Number(gameplayTotal_temp));
+
       const gameplay = state.treasuryNumbers.totalGameplayUSD;
       setGameplayTreasury(
-        formatPrice(gameplay.graph.slice(-1)[0].secondary, 0)
+        props.formatPrice(gameplay.graph.slice(-1)[0].secondary, 0)
       );
 
       const gameplay_temp = gameplay.changes.weekly.percent.toFixed(2);
       setGameplayTreasuryPercent(Number(gameplay_temp));
 
+      const mana = state.treasuryNumbers.manaBalance.graph;
+      setManaBalance(props.formatPrice(mana.slice(-1)[0].secondary, 0));
+
+      const dai = state.treasuryNumbers.daiBalance.graph;
+      setDaiBalance(props.formatPrice(dai.slice(-1)[0].secondary, 0));
+
+      const usdt = 149746;
+      setUSDTBalance(props.formatPrice(usdt, 0));
+
+      const atri = state.treasuryNumbers.atriBalance.graph;
+      setAtriBalance(props.formatPrice(atri.slice(-1)[0].secondary, 0));
+
+      const eth = state.treasuryNumbers.ethBalance.graph;
+      setEthBalance(props.formatPrice(eth.slice(-1)[0].secondary, 3));
+
+      const land = state.treasuryNumbers.totalLandUSD;
+      setLandTreasury(props.formatPrice(land.graph.slice(-1)[0].secondary, 0));
+
+      const land_temp = land.changes.weekly.percent.toFixed(2);
+      setLandTreasuryPercent(Number(land_temp));
+
+      const wearables = state.treasuryNumbers.totalWearablesUSD;
+      setNftTreasury(
+        props.formatPrice(wearables.graph.slice(-1)[0].secondary, 0)
+      );
+
+      const wearables_temp = wearables.changes.weekly.percent.toFixed(2);
+      setNftTreasuryPercent(Number(wearables_temp));
+
       const dg = state.treasuryNumbers.totalDgUSD;
-      setDgTreasury(formatPrice(dg.graph.slice(-1)[0].secondary, 0));
+      setDgTreasury(props.formatPrice(dg.graph.slice(-1)[0].secondary, 0));
 
       const dg_temp = dg.changes.weekly.percent.toFixed(2);
       setDgTreasuryPercent(Number(dg_temp));
 
-      const land = state.treasuryNumbers.totalLandUSD;
-      setLandTreasury(formatPrice(land.graph.slice(-1)[0].secondary, 0));
+      const liq = state.treasuryNumbers.totalLiquidityProvided;
+      setLiquidityTreasury(
+        props.formatPrice(liq.graph.slice(-1)[0].secondary, 0)
+      );
 
-      const land_temp = land.changes.weekly.percent.toFixed(2);
-      setLandTreasuryPercent(Number(land_temp));
+      const liq_temp = liq.changes.weekly.percent.toFixed(2);
+      setLiquidityTreasuryPercent(Number(liq_temp));
+
+      const uni = state.treasuryNumbers.totalDgEthUniswapBalance;
+      setUniTreasury(props.formatPrice(uni.graph.slice(-1)[0].secondary, 0));
+
+      const mvi = state.treasuryNumbers.totalMviEthLPBalance;
+      setMviTreasury(props.formatPrice(mvi.graph.slice(-1)[0].secondary, 0));
+
+      const maticBal = state.treasuryNumbers.totalMaticUSD;
+      setMaticTreasury(
+        props.formatPrice(maticBal.graph.slice(-1)[0].secondary, 0)
+      );
+
+      const maticTemp = state.treasuryNumbers.maticBalance.graph
+        .slice(-1)[0]
+        .secondary.toFixed(0);
+      setMaticTokens(maticTemp);
+
+      const matic_temp = maticBal.changes.weekly.percent.toFixed(2);
+      setMaticTreasuryPercent(Number(matic_temp));
+
+      const dgbal = state.treasuryNumbers.dgBalance.graph;
+      setDgBalance(props.formatPrice(dgbal.slice(-1)[0].secondary, 0));
     }
   }, [state.treasuryNumbers]);
+
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -753,53 +828,173 @@ const Overview = props => {
           </span>
         </div>
 
-        <div className={styles.stats_container}>
-          <div className={styles.stat}>
-            <p className={styles.stat_header}>Gameplay Wallet</p>
-            <div className="d-flex">
-              <div>
-                {gameplayTreasury ? (
-                  <p className={styles.stat_amount}>${gameplayTreasury}</p>
-                ) : (
-                  getLoader()
-                )}
-              </div>
-              <p className={styles.stat_percent}>
-                {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
-                  <p className={styles.earned_percent_pos}>
-                    +{gameplayTreasuryPercent}%
-                  </p>
-                ) : gameplayTreasury ? (
-                  <p className={styles.earned_percent_neg}>
-                    {gameplayTreasuryPercent}%
-                  </p>
-                ) : null}
-              </p>
+      <div className={styles.stats_container}>
+        <div className={styles.stat}>
+          <p className={styles.stat_header}>All Time Game Profits</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {gameplayAll ? (
+                <p className={styles.stat_amount}>${gameplayAll}</p>
+              ) : (
+                getLoader()
+              )}
             </div>
+            <p className={styles.stat_percent}>
+              {gameplayAllPercent > 0 && gameplayAll ? (
+                <p className={styles.earned_percent_pos}>
+                  +{gameplayAllPercent}%
+                </p>
+              ) : gameplayAll ? (
+                <p className={styles.earned_percent_neg}>
+                  {gameplayAllPercent}%
+                </p>
+              ) : null}
+            </p>
           </div>
+        </div>  
 
-          <div className={styles.stat}>
-            <p className={styles.stat_header}>$DG Wallet</p>
-            <div className="d-flex">
-              <div>
-                {dgTreasury ? (
-                  <p className={styles.stat_amount}>${dgTreasury}</p>
-                ) : (
-                  getLoader()
-                )}
-              </div>
-              <p className={styles.stat_percent}>
-                {dgTreasuryPercent > 0 && dgTreasury ? (
-                  <p className={styles.earned_percent_pos}>
-                    +{dgTreasuryPercent}%
-                  </p>
-                ) : dgTreasury ? (
-                  <p className={styles.earned_percent_neg}>
-                    {dgTreasuryPercent}%
-                  </p>
-                ) : null}
-              </p>
+        <div className={styles.stat}>
+          <p className={styles.stat_header}>Gameplay Hot Wallet</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {gameplayTreasury ? (
+                <p className={styles.stat_amount}>${gameplayTreasury}</p>
+              ) : (
+                getLoader()
+              )}
             </div>
+            <p className={styles.stat_percent}>
+              {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{gameplayTreasuryPercent}%
+                </p>
+              ) : gameplayTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {gameplayTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.stat}>
+          <p className={styles.stat_header}>$DG Wallet</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {dgTreasury ? (
+                <p className={styles.stat_amount}>${dgTreasury}</p>
+              ) : (
+                getLoader()
+              )}
+            </div>
+            <p className={styles.stat_percent}>
+              {dgTreasuryPercent > 0 && dgTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{dgTreasuryPercent}%
+                </p>
+              ) : dgTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {dgTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.stat}>
+          <p className={styles.stat_header}>Decentraland Land</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {landTreasury ? (
+                <p className={styles.stat_amount}>${landTreasury}</p>
+              ) : (
+                getLoader()
+              )}
+            </div>
+            <p className={styles.stat_percent}>
+              {landTreasuryPercent > 0 && landTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{landTreasuryPercent}%
+                </p>
+              ) : landTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {landTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.stat}>
+          <p className={styles.stat_header}>$DG Wearables</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {nftTreasury ? (
+                <p className={styles.stat_amount}>${nftTreasury}</p>
+              ) : (
+                getLoader()
+              )}
+            </div>
+            <p className={styles.stat_percent}>
+              {nftTreasuryPercent > 0 && nftTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{nftTreasuryPercent}%
+                </p>
+              ) : nftTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {nftTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.stat}>
+          <p className={styles.stat_header}>Liquidity Provided</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {liquidityTreasury ? (
+                <p className={styles.stat_amount}>${liquidityTreasury}</p>
+              ) : (
+                getLoader()
+              )}
+            </div>
+            <p className={styles.stat_percent}>
+              {liquidityTreasuryPercent > 0 && liquidityTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{liquidityTreasuryPercent}%
+                </p>
+              ) : liquidityTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {liquidityTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.stat} style={{ marginBottom: '0px' }}>
+          <p className={styles.stat_header}>Staked in Matic Node</p>
+          <div className="d-flex justify-content-center">
+            <div>
+              {maticTreasury ? (
+                <p className={styles.stat_amount}>${maticTreasury}</p>
+              ) : (
+                getLoader()
+              )}
+            </div>
+            <p className={styles.stat_percent}>
+              {maticTreasuryPercent > 0 && maticTreasury ? (
+                <p className={styles.earned_percent_pos}>
+                  +{maticTreasuryPercent}%
+                </p>
+              ) : maticTreasury ? (
+                <p className={styles.earned_percent_neg}>
+                  {maticTreasuryPercent}%
+                </p>
+              ) : null}
+            </p>
+          </div>
           </div>
 
         </div>
