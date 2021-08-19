@@ -50,6 +50,10 @@
       margin-left: 26px;
     }
 
+    @include mq($until: 500px) {
+      display: none;
+    }
+
     .close_button {
       width: 34px;
       height: 34px;
@@ -110,6 +114,10 @@
 
     @include mq($until: 1267px) {
       margin-left: 26px;
+    }
+
+    @include mq($until: 500px) {
+      max-width: 100%;
     }
 
     .earned_percent_pos {
@@ -208,6 +216,10 @@
     @include mq($until: 1267px) {
       margin-left: 26px;
     }
+
+    @include mq($until: 500px) {
+      display: none;
+    }
   }
 }
 
@@ -296,6 +308,10 @@
   width: 285px;
   display: flex;
   flex-direction: column;
+
+  @include mq($until: 500px) {
+    display: none;
+  }
 
   .lower_header {
     font-family: Larsseit-Bold;
