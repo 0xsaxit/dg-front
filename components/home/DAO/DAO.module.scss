@@ -6,10 +6,6 @@
   position: relative;
   z-index: 9;
 
-  @include mq($until: 500px) {
-    display: none;
-  }
-
   @include mq($until: 1040px) {
     width: 80px;
   }
@@ -110,6 +106,10 @@
   @include mq($until: 1040px) {
     width: calc(100% - 80px);
   }
+
+  @include mq($until: 499px) {
+    width: calc(100% - 48px);
+  }
 }
 
 .tablet_menu_container {
@@ -120,7 +120,7 @@
   z-index: 9;
   border-right: 1px solid rgba(42, 42, 42, 1);
 
-  @include mq($until: 500px) {
+  @include mq($until: 499px) {
     display: none;
   }
 
@@ -187,10 +187,6 @@
   height: 200vh;
   position: relative;
   z-index: 100;
-
-  @include mq($until: 500px) {
-    display: none;
-  }
 
   .burger_icon {
     position: fixed;

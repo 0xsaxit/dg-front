@@ -330,171 +330,334 @@ const Overview = props => {
   };
 
   return (
-    <div className={cn('row', styles.main_wrapper)}>
-      <div className={cn('col-xl-8', styles.overview_container)}>
-        <div className={styles.container_left}>
-          {state.userInfo.name === null || state.userInfo.name === '' ? (
-            <p className={styles.welcome_text}>Welcome,</p>
-          ) : (
-            <p className={styles.welcome_text}>Welcome {state.userInfo.name},</p>
-          )}
-          <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
-        </div>
-
-        {visible ? showDiv() : null}
-
-        <div className={styles.treasury_container}>
-          <div className={styles.treasury_header}>
-            <p className={styles.treasury_title}>Treasury Weekly</p>
-            <div className="d-flex flex-column align-end">
-              <p className={styles.treasury_total}>${treasuryTotal}</p>
-              {getWeeklyChange()}
-            </div>
+    <div>
+      <div className={cn('row', styles.main_wrapper)}>
+        <div className={cn('col-xl-8', styles.overview_container)}>
+          <div className={styles.container_left}>
+            {state.userInfo.name === null || state.userInfo.name === '' ? (
+              <p className={styles.welcome_text}>Welcome,</p>
+            ) : (
+              <p className={styles.welcome_text}>Welcome {state.userInfo.name},</p>
+            )}
+            <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
           </div>
 
-          <div className="d-flex">
-            <span className={styles.treasury_graph}>
-              <Line
-                height={150}
-                data={weekly}
-                options={{
-                  maintainAspectRatio: false,
-                  title: { display: false },
-                  legend: { display: false },
-                  scales: {
-                    xAxes: [
-                      {
-                        display: true,
-                        ticks: {
-                          autoSkip: true,
-                          autoSkipPadding: 60,
-                          maxRotation: 0,
-                          minRotation: 0,
+          {visible ? showDiv() : null}
+
+          <div className={styles.treasury_container}>
+            <div className={styles.treasury_header}>
+              <p className={styles.treasury_title}>Treasury Weekly</p>
+              <div className="d-flex flex-column align-end">
+                <p className={styles.treasury_total}>${treasuryTotal}</p>
+                {getWeeklyChange()}
+              </div>
+            </div>
+
+            <div className="d-flex">
+              <span className={styles.treasury_graph}>
+                <Line
+                  height={150}
+                  data={weekly}
+                  options={{
+                    maintainAspectRatio: false,
+                    title: { display: false },
+                    legend: { display: false },
+                    scales: {
+                      xAxes: [
+                        {
+                          display: true,
+                          ticks: {
+                            autoSkip: true,
+                            autoSkipPadding: 60,
+                            maxRotation: 0,
+                            minRotation: 0,
+                          },
                         },
-                      },
-                    ],
-                    yAxes: [
-                      {
-                        display: true,
-                        ticks: {
-                          autoSkip: true,
-                          autoSkipPadding: 22,
-                          maxRotation: 0,
-                          minRotation: 0,
+                      ],
+                      yAxes: [
+                        {
+                          display: true,
+                          ticks: {
+                            autoSkip: true,
+                            autoSkipPadding: 22,
+                            maxRotation: 0,
+                            minRotation: 0,
+                          },
                         },
-                      },
-                    ],
-                  },
-                  elements: {
-                    point: { radius: 0 },
-                  },
-                }}
-              />
-            </span>
-          </div>
-
-          <div className={styles.stats_container}>
-            <div className={styles.stat}>
-              <p className={styles.stat_header}>Gameplay Wallet</p>
-              <div className="d-flex">
-                <div>
-                  {gameplayTreasury ? (
-                    <p className={styles.stat_amount}>${gameplayTreasury}</p>
-                  ) : (
-                    getLoader()
-                  )}
-                </div>
-                <p className={styles.stat_percent}>
-                  {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
-                    <p className={styles.earned_percent_pos}>
-                      +{gameplayTreasuryPercent}%
-                    </p>
-                  ) : gameplayTreasury ? (
-                    <p className={styles.earned_percent_neg}>
-                      {gameplayTreasuryPercent}%
-                    </p>
-                  ) : null}
-                </p>
-              </div>
-            </div>
-
-            <div className={styles.stat}>
-              <p className={styles.stat_header}>$DG Wallet</p>
-              <div className="d-flex">
-                <div>
-                  {dgTreasury ? (
-                    <p className={styles.stat_amount}>${dgTreasury}</p>
-                  ) : (
-                    getLoader()
-                  )}
-                </div>
-                <p className={styles.stat_percent}>
-                  {dgTreasuryPercent > 0 && dgTreasury ? (
-                    <p className={styles.earned_percent_pos}>
-                      +{dgTreasuryPercent}%
-                    </p>
-                  ) : dgTreasury ? (
-                    <p className={styles.earned_percent_neg}>
-                      {dgTreasuryPercent}%
-                    </p>
-                  ) : null}
-                </p>
-              </div>
-            </div>
-
-            <div className={styles.stat}>
-              <p className={styles.stat_header}>DCL Land</p>
-              <div className="d-flex">
-                <div>
-                  {landTreasury ? (
-                    <p className={styles.stat_amount}>${landTreasury}</p>
-                  ) : (
-                    getLoader()
-                  )}
-                </div>
-                <p className={styles.stat_percent}>
-                  {landTreasuryPercent > 0 && landTreasury ? (
-                    <p className={styles.earned_percent_pos}>
-                      +{landTreasuryPercent}%
-                    </p>
-                  ) : landTreasury ? (
-                    <p className={styles.earned_percent_neg}>
-                      {landTreasuryPercent}%
-                    </p>
-                  ) : null}
-                </p>
-              </div>
-            </div>
-
-            <Button className={styles.stat_button} href="/dg/treasury">
-              See All&nbsp;&nbsp;
-              <svg
-                width="7"
-                height="10"
-                viewBox="0 0 7 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6.29492 5.47461C6.29004 5.21582 6.20215 5.01074 5.99219 4.80566L2.31543 1.21191C2.15918 1.06055 1.97852 0.982422 1.75391 0.982422C1.30469 0.982422 0.933594 1.34863 0.933594 1.79297C0.933594 2.01758 1.02637 2.22266 1.19727 2.39355L4.38086 5.46973L1.19727 8.55566C1.02637 8.72168 0.933594 8.92676 0.933594 9.15625C0.933594 9.60059 1.30469 9.9668 1.75391 9.9668C1.97363 9.9668 2.15918 9.89355 2.31543 9.7373L5.99219 6.14355C6.20215 5.93848 6.29492 5.72852 6.29492 5.47461Z"
-                  fill="white"
+                      ],
+                    },
+                    elements: {
+                      point: { radius: 0 },
+                    },
+                  }}
                 />
-              </svg>
-            </Button>
+              </span>
+            </div>
+
+            <div className={styles.stats_container}>
+              <div className={styles.stat}>
+                <p className={styles.stat_header}>Gameplay Wallet</p>
+                <div className="d-flex">
+                  <div>
+                    {gameplayTreasury ? (
+                      <p className={styles.stat_amount}>${gameplayTreasury}</p>
+                    ) : (
+                      getLoader()
+                    )}
+                  </div>
+                  <p className={styles.stat_percent}>
+                    {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
+                      <p className={styles.earned_percent_pos}>
+                        +{gameplayTreasuryPercent}%
+                      </p>
+                    ) : gameplayTreasury ? (
+                      <p className={styles.earned_percent_neg}>
+                        {gameplayTreasuryPercent}%
+                      </p>
+                    ) : null}
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles.stat}>
+                <p className={styles.stat_header}>$DG Wallet</p>
+                <div className="d-flex">
+                  <div>
+                    {dgTreasury ? (
+                      <p className={styles.stat_amount}>${dgTreasury}</p>
+                    ) : (
+                      getLoader()
+                    )}
+                  </div>
+                  <p className={styles.stat_percent}>
+                    {dgTreasuryPercent > 0 && dgTreasury ? (
+                      <p className={styles.earned_percent_pos}>
+                        +{dgTreasuryPercent}%
+                      </p>
+                    ) : dgTreasury ? (
+                      <p className={styles.earned_percent_neg}>
+                        {dgTreasuryPercent}%
+                      </p>
+                    ) : null}
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles.stat}>
+                <p className={styles.stat_header}>DCL Land</p>
+                <div className="d-flex">
+                  <div>
+                    {landTreasury ? (
+                      <p className={styles.stat_amount}>${landTreasury}</p>
+                    ) : (
+                      getLoader()
+                    )}
+                  </div>
+                  <p className={styles.stat_percent}>
+                    {landTreasuryPercent > 0 && landTreasury ? (
+                      <p className={styles.earned_percent_pos}>
+                        +{landTreasuryPercent}%
+                      </p>
+                    ) : landTreasury ? (
+                      <p className={styles.earned_percent_neg}>
+                        {landTreasuryPercent}%
+                      </p>
+                    ) : null}
+                  </p>
+                </div>
+              </div>
+
+              <Button className={styles.stat_button} href="/dg/treasury">
+                See All&nbsp;&nbsp;
+                <svg
+                  width="7"
+                  height="10"
+                  viewBox="0 0 7 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.29492 5.47461C6.29004 5.21582 6.20215 5.01074 5.99219 4.80566L2.31543 1.21191C2.15918 1.06055 1.97852 0.982422 1.75391 0.982422C1.30469 0.982422 0.933594 1.34863 0.933594 1.79297C0.933594 2.01758 1.02637 2.22266 1.19727 2.39355L4.38086 5.46973L1.19727 8.55566C1.02637 8.72168 0.933594 8.92676 0.933594 9.15625C0.933594 9.60059 1.30469 9.9668 1.75391 9.9668C1.97363 9.9668 2.15918 9.89355 2.31543 9.7373L5.99219 6.14355C6.20215 5.93848 6.29492 5.72852 6.29492 5.47461Z"
+                    fill="white"
+                  />
+                </svg>
+              </Button>
+            </div>
+          </div>
+
+          <div
+            className={cn(
+              'd-flex justify-content-between',
+              styles.stake_DG_container
+            )}
+          >
+            <div className={styles.lower}>
+              <p className={styles.lower_header}>Stake Your $DG</p>
+              <video
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
+                className={styles.lower_img}
+                type="video/mp4"
+                frameBorder="0"
+                autoPlay={true}
+                loop
+                muted
+              ></video>
+              <p className={styles.lower_text}>
+                Stake $DG to govern the treasury, vote on proposals, and earn
+                yields.
+              </p>
+              <Button
+                className={styles.lower_button}
+                onClick={() => {
+                  router.push('/dg/liquidity');
+                }}
+              >
+                Stake Your DG
+              </Button>
+            </div>
+
+            <div className={styles.lower}>
+              <p className={styles.lower_header_two}>Governance Proposals</p>
+
+              <div className={styles.governance_container}>
+                <div className={styles.state_box}>
+                  <p className={activeOne ? styles.state_closed : styles.state}>
+                    {snapshotOne.state}
+                  </p>
+                </div>
+
+                <a
+                  href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDOne}`}
+                  target="_blank"
+                >
+                  <div className={styles.gov_right}>
+                    <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
+                      <p className={styles.gov_top}>{dateOne}</p>
+                      <p className={styles.gov_title}>{snapshotOne.title}</p>
+                    </div>
+                    <svg
+                      width="6"
+                      height="10"
+                      viewBox="0 0 6 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ display: 'flex', alignSelf: 'center' }}
+                    >
+                      <path
+                        d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                        stroke="white"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </a>
+              </div>
+
+              <div className={styles.governance_container}>
+                <div className={styles.state_box}>
+                  <p className={activeTwo ? styles.state_closed : styles.state}>
+                    {snapshotTwo.state}
+                  </p>
+                </div>
+
+                <a
+                  href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDTwo}`}
+                  target="_blank"
+                >
+                  <div className={styles.gov_right}>
+                    <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                      <p className={styles.gov_top}>{dateTwo}</p>
+                      <p className={styles.gov_title}>{snapshotTwo.title}</p>
+                    </div>
+                    <svg
+                      width="6"
+                      height="10"
+                      viewBox="0 0 6 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ display: 'flex', alignSelf: 'center' }}
+                    >
+                      <path
+                        d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                        stroke="white"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </a>
+              </div>
+
+              <div className={styles.governance_container}>
+                <div className={styles.state_box}>
+                  <p className={activeThree ? styles.state_closed : styles.state}>
+                    {snapshotThree.state}
+                  </p>
+                </div>
+
+                <a
+                  href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDThree}`}
+                  target="_blank"
+                >
+                  <div className={styles.gov_right}>
+                    <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                      <p className={styles.gov_top}>{dateThree}</p>
+                      <p className={styles.gov_title}>{snapshotThree.title}</p>
+                    </div>
+                    <svg
+                      width="6"
+                      height="10"
+                      viewBox="0 0 6 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ display: 'flex', alignSelf: 'center' }}
+                    >
+                      <path
+                        d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                        stroke="white"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </a>
+              </div>
+
+              <div className={styles.button_span}>
+                <Button
+                  className={styles.button_gov}
+                  onClick={() => {
+                    router.push('/discord');
+                  }}
+                >
+                  Discussion
+                </Button>
+                <Button
+                  className={styles.button_gov}
+                  onClick={() => {
+                    window.open(
+                      'https://snapshot.org/#/decentralgames.eth ',
+                      '_blank'
+                    );
+                  }}
+                >
+                  Proposals
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div
-          className={cn(
-            'd-flex justify-content-between',
-            styles.stake_DG_container
-          )}
-        >
-          <div className={styles.lower}>
-            <p className={styles.lower_header}>Stake Your $DG</p>
+        <div className={cn('col-xl-4', styles.sub_profile)}>
+          <div className={cn(styles.lower)}>
+            <p className={styles.lower_header}>Gameplay Rewards</p>
             <video
-              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626798440/Wallet_1_k0dqit.webm"
-              className={styles.lower_img}
+              src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
+              className={styles.lower_img_gameplay}
               type="video/mp4"
               frameBorder="0"
               autoPlay={true}
@@ -502,8 +665,26 @@ const Overview = props => {
               muted
             ></video>
             <p className={styles.lower_text}>
-              Stake $DG to govern the treasury, vote on proposals, and earn
-              yields.
+              All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
+            </p>
+            <Button
+              className={styles.lower_button}
+              onClick={() => {
+                router.push('/dg/mining');
+              }}
+            >
+              Learn More
+            </Button>
+          </div>
+
+          <div className={cn(styles.lower)}>
+            <p className={styles.lower_header}>Liquidity Provision</p>
+            <img
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1628854697/image_14_jshx1l.svg"
+              className={styles.lower_img}
+            />
+            <p className={styles.lower_text}>
+              Provide liquidity to the ETH-$DG Uniswap pool for yield rewards.
             </p>
             <Button
               className={styles.lower_button}
@@ -511,188 +692,116 @@ const Overview = props => {
                 router.push('/dg/liquidity');
               }}
             >
-              Stake Your DG
+              Provide Liquidity
             </Button>
-          </div>
-
-          <div className={styles.lower}>
-            <p className={styles.lower_header_two}>Governance Proposals</p>
-
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeOne ? styles.state_closed : styles.state}>
-                  {snapshotOne.state}
-                </p>
-              </div>
-
-              <a
-                href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDOne}`}
-                target="_blank"
-              >
-                <div className={styles.gov_right}>
-                  <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
-                    <p className={styles.gov_top}>{dateOne}</p>
-                    <p className={styles.gov_title}>{snapshotOne.title}</p>
-                  </div>
-                  <svg
-                    width="6"
-                    height="10"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{ display: 'flex', alignSelf: 'center' }}
-                  >
-                    <path
-                      d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                      stroke="white"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </a>
-            </div>
-
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeTwo ? styles.state_closed : styles.state}>
-                  {snapshotTwo.state}
-                </p>
-              </div>
-
-              <a
-                href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDTwo}`}
-                target="_blank"
-              >
-                <div className={styles.gov_right}>
-                  <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                    <p className={styles.gov_top}>{dateTwo}</p>
-                    <p className={styles.gov_title}>{snapshotTwo.title}</p>
-                  </div>
-                  <svg
-                    width="6"
-                    height="10"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{ display: 'flex', alignSelf: 'center' }}
-                  >
-                    <path
-                      d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                      stroke="white"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </a>
-            </div>
-
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeThree ? styles.state_closed : styles.state}>
-                  {snapshotThree.state}
-                </p>
-              </div>
-
-              <a
-                href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDThree}`}
-                target="_blank"
-              >
-                <div className={styles.gov_right}>
-                  <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                    <p className={styles.gov_top}>{dateThree}</p>
-                    <p className={styles.gov_title}>{snapshotThree.title}</p>
-                  </div>
-                  <svg
-                    width="6"
-                    height="10"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{ display: 'flex', alignSelf: 'center' }}
-                  >
-                    <path
-                      d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                      stroke="white"
-                      stroke-width="1.7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </a>
-            </div>
-
-            <div className={styles.button_span}>
-              <Button
-                className={styles.button_gov}
-                onClick={() => {
-                  router.push('/discord');
-                }}
-              >
-                Discussion
-              </Button>
-              <Button
-                className={styles.button_gov}
-                onClick={() => {
-                  window.open(
-                    'https://snapshot.org/#/decentralgames.eth ',
-                    '_blank'
-                  );
-                }}
-              >
-                Proposals
-              </Button>
-            </div>
           </div>
         </div>
       </div>
 
-      <div className={cn('col-xl-4', styles.sub_profile)}>
-        <div className={cn(styles.lower)}>
-          <p className={styles.lower_header}>Gameplay Rewards</p>
-          <video
-            src="https://res.cloudinary.com/dnzambf4m/video/upload/v1626409937/Play_to_Earn_w4deik.webm"
-            className={styles.lower_img_gameplay}
-            type="video/mp4"
-            frameBorder="0"
-            autoPlay={true}
-            loop
-            muted
-          ></video>
-          <p className={styles.lower_text}>
-            All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
-          </p>
-          <Button
-            className={styles.lower_button}
-            onClick={() => {
-              router.push('/dg/mining');
-            }}
-          >
-            Learn More
-          </Button>
+
+
+
+
+
+      <div className={styles.treasury_container_mobile}>
+        <div className={styles.treasury_header}>
+          <p className={styles.treasury_title}>Treasury Weekly</p>
+          <div className="d-flex flex-column align-end">
+            <p className={styles.treasury_total}>${treasuryTotal}</p>
+            {getWeeklyChange()}
+          </div>
         </div>
 
-        <div className={cn(styles.lower)}>
-          <p className={styles.lower_header}>Liquidity Provision</p>
-          <img
-            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1628854697/image_14_jshx1l.svg"
-            className={styles.lower_img}
-          />
-          <p className={styles.lower_text}>
-            Provide liquidity to the ETH-$DG Uniswap pool for yield rewards.
-          </p>
-          <Button
-            className={styles.lower_button}
-            onClick={() => {
-              router.push('/dg/liquidity');
-            }}
-          >
-            Provide Liquidity
-          </Button>
+        <div className="d-flex">
+          <span className={styles.treasury_graph}>
+            <Line
+              height={100}
+              data={weekly}
+              options={{
+                maintainAspectRatio: false,
+                title: { display: false },
+                legend: { display: false },
+                scales: {
+                  xAxes: [
+                    {
+                      display: true,
+                      ticks: {
+                        autoSkip: true,
+                        autoSkipPadding: 24,
+                        maxRotation: 0,
+                        minRotation: 0,
+                      },
+                    },
+                  ],
+                  yAxes: [
+                    {
+                      display: true,
+                      ticks: {
+                        autoSkip: true,
+                        autoSkipPadding: 22,
+                        maxRotation: 0,
+                        minRotation: 0,
+                      },
+                    },
+                  ],
+                },
+                elements: {
+                  point: { radius: 0 },
+                },
+              }}
+            />
+          </span>
+        </div>
+
+        <div className={styles.stats_container}>
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>Gameplay Wallet</p>
+            <div className="d-flex">
+              <div>
+                {gameplayTreasury ? (
+                  <p className={styles.stat_amount}>${gameplayTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{gameplayTreasuryPercent}%
+                  </p>
+                ) : gameplayTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {gameplayTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>$DG Wallet</p>
+            <div className="d-flex">
+              <div>
+                {dgTreasury ? (
+                  <p className={styles.stat_amount}>${dgTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {dgTreasuryPercent > 0 && dgTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{dgTreasuryPercent}%
+                  </p>
+                ) : dgTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {dgTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
