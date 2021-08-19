@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../static/css/theme';
 import { GlobalStyles } from '../static/css/global';
 import { useRouter } from 'next/router';
-import Footer from './home/Footer';
+
 
 const Layout = props => {
   // get theme (light or dark mode) from the Context API store
@@ -45,8 +45,6 @@ const Layout = props => {
       )}
 
       {props.children}
-
-      <Footer />
     </ThemeProvider>
   );
 };

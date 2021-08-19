@@ -18,13 +18,7 @@ const Treasury = () => {
         image={Images.SOCIAL_SHARE}
       />
 
-      {state.userStatus ? (
-        <DAO DGState={'treasury'} />
-      ) : (
-        <div className="account-other-inner-p">
-          You must connect your wallet to view this page
-        </div>
-      )}
+      <DAO DGState={'treasury'} />
     </Layout>
   );
 };

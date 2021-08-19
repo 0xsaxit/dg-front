@@ -21,7 +21,7 @@ const Mining = () => {
       {state.userStatus ? (
         <DAO DGState={'mining'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className="account-other-inner-p" style={{ marginTop: '150px' }}>
           You must connect your wallet to view this page
         </div>
       )}

@@ -32,18 +32,20 @@ const Overview = props => {
 
   const [snapshotOne, setSnapshotOne] = useState([]);
   const [dateOne, setDateOne] = useState('');
+  const [activeOne, setActiveOne] = useState('');
+  const [IDOne, setIDOne] = useState('');
+
   const [snapshotTwo, setSnapshotTwo] = useState([]);
   const [dateTwo, setDateTwo] = useState('');
+  const [activeTwo, setActiveTwo] = useState('');
+  const [IDTwo, setIDTwo] = useState('');
+
   const [snapshotThree, setSnapshotThree] = useState([]);
   const [dateThree, setDateThree] = useState('');
-  const [snapshotFour, setSnapshotFour] = useState([]);
-  const [dateFour, setDateFour] = useState('');
-  const [activeOne, setActiveOne] = useState('');
-  const [activeTwo, setActiveTwo] = useState('');
   const [activeThree, setActiveThree] = useState('');
-  const [activeFour, setActiveFour] = useState('');
-  const [currentDate, setCurrentDate] = useState('');
+  const [IDThree, setIDThree] = useState('');
 
+  const [currentDate, setCurrentDate] = useState('');
   const [visible, setVisible] = useState(true);
 
   function formatPrice(balanceDG, units) {
@@ -74,7 +76,7 @@ const Overview = props => {
         {
           query: `{
             proposals (
-              first: 4,
+              first: 3,
               skip: 0,
               where: {
                 space_in: ["decentralgames.eth"],
@@ -101,25 +103,27 @@ const Overview = props => {
         }
       );
 
+      console.log('!!!');
+      console.log(snapshotData);
+
       setSnapshotOne(snapshotData.data.data.proposals[0]);
       setSnapshotTwo(snapshotData.data.data.proposals[1]);
       setSnapshotThree(snapshotData.data.data.proposals[2]);
-      setSnapshotFour(snapshotData.data.data.proposals[3]);
     })();
   }, []);
 
   useEffect(() => {
     const temp = new Date(snapshotOne.end * 1000);
     setDateOne(temp.toDateString());
+    setIDOne(snapshotOne.id);
 
     const temp_two = new Date(snapshotTwo.end * 1000);
     setDateTwo(temp_two.toDateString());
+    setIDTwo(snapshotTwo.id);
 
     const temp_three = new Date(snapshotThree.end * 1000);
     setDateThree(temp_three.toDateString());
-
-    const temp_four = new Date(snapshotFour.end * 1000);
-    setDateFour(temp_four.toDateString());
+    setIDThree(snapshotThree.id);
 
     var today = new Date();
 
@@ -134,11 +138,7 @@ const Overview = props => {
     if (temp_three < today) {
       setActiveThree(true);
     }
-
-    if (temp_four < today) {
-      setActiveFour(true);
-    }
-  }, [snapshotOne, snapshotTwo, snapshotThree, snapshotFour, currentDate]);
+  }, [snapshotOne, snapshotTwo, snapshotThree, currentDate]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -286,7 +286,12 @@ const Overview = props => {
             By staking $DG, you can govern the treasury, add proposals, and earn
             yield.
           </p>
-          <Button className={styles.blue_button}>Start Staking $DG</Button>
+          <Button 
+            className={styles.blue_button}
+            onClick={() => {
+              router.push('/dg/liquidity');
+            }}>Start Staking $DG
+          </Button>
         </div>
         <img
           className={styles.blue_img}
@@ -496,8 +501,6 @@ const Overview = props => {
               loop
               muted
             ></video>
-            <p className={styles.apy_text}> APY </p>
-            <p className={styles.apy_percent}> 22.39% </p>
             <p className={styles.lower_text}>
               Stake $DG to govern the treasury, vote on proposals, and earn
               yields.
@@ -522,28 +525,33 @@ const Overview = props => {
                 </p>
               </div>
 
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateOne}</p>
-                  <p className={styles.gov_title}>{snapshotOne.title}</p>
+              <a
+                href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDOne}`}
+                target="_blank"
+              >
+                <div className={styles.gov_right}>
+                  <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
+                    <p className={styles.gov_top}>{dateOne}</p>
+                    <p className={styles.gov_title}>{snapshotOne.title}</p>
+                  </div>
+                  <svg
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ display: 'flex', alignSelf: 'center' }}
+                  >
+                    <path
+                      d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                      stroke="white"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+              </a>
             </div>
 
             <div className={styles.governance_container}>
@@ -553,28 +561,33 @@ const Overview = props => {
                 </p>
               </div>
 
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateTwo}</p>
-                  <p className={styles.gov_title}>{snapshotTwo.title}</p>
+              <a
+                href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDTwo}`}
+                target="_blank"
+              >
+                <div className={styles.gov_right}>
+                  <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                    <p className={styles.gov_top}>{dateTwo}</p>
+                    <p className={styles.gov_title}>{snapshotTwo.title}</p>
+                  </div>
+                  <svg
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ display: 'flex', alignSelf: 'center' }}
+                  >
+                    <path
+                      d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                      stroke="white"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+              </a>
             </div>
 
             <div className={styles.governance_container}>
@@ -584,59 +597,33 @@ const Overview = props => {
                 </p>
               </div>
 
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateThree}</p>
-                  <p className={styles.gov_title}>{snapshotThree.title}</p>
+              <a
+                href={`https://snapshot.org/#/decentralgames.eth/proposal/${IDThree}`}
+                target="_blank"
+              >
+                <div className={styles.gov_right}>
+                  <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                    <p className={styles.gov_top}>{dateThree}</p>
+                    <p className={styles.gov_title}>{snapshotThree.title}</p>
+                  </div>
+                  <svg
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ display: 'flex', alignSelf: 'center' }}
+                  >
+                    <path
+                      d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                      stroke="white"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            <div className={styles.governance_container}>
-              <div className={styles.state_box}>
-                <p className={activeFour ? styles.state_closed : styles.state}>
-                  {snapshotFour.state}
-                </p>
-              </div>
-
-              <div className={styles.gov_right}>
-                <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
-                  <p className={styles.gov_top}>{dateFour}</p>
-                  <p className={styles.gov_title}>{snapshotFour.title}</p>
-                </div>
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'flex', alignSelf: 'center' }}
-                >
-                  <path
-                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
-                    stroke="white"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+              </a>
             </div>
 
             <div className={styles.button_span}>
@@ -695,8 +682,6 @@ const Overview = props => {
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1628854697/image_14_jshx1l.svg"
             className={styles.lower_img}
           />
-          <p className={styles.apy_text}> APY </p>
-          <p className={styles.apy_percent}> 79.12% </p>
           <p className={styles.lower_text}>
             Provide liquidity to the ETH-$DG Uniswap pool for yield rewards.
           </p>

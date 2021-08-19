@@ -292,7 +292,7 @@ const Offerings = (props) => {
                 <path
                   d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
                   stroke="white"
-                  stroke-width="1.7"
+                  stroke-width="1"
                   stroke-opacity="0.5"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -521,6 +521,22 @@ const Offerings = (props) => {
                 className={styles.burger_icon}
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
+                <svg
+                  width="9"
+                  height="15"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.60352 1.81812L4.60858 5.30395L1.60352 8.78977"
+                    stroke="white"
+                    stroke-width="1"
+                    stroke-opacity="0.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
               </div>
             )}
             <div className={styles.menu_list}>

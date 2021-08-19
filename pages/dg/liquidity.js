@@ -21,7 +21,7 @@ const Liquidity = () => {
       {state.userStatus ? (
         <DAO DGState={'uniswap'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className="account-other-inner-p" style={{ marginTop: '150px' }}>
           You must connect your wallet to view this page
         </div>
       )}
