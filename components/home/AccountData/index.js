@@ -59,6 +59,19 @@ const AccountData = (props) => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
 
+  const [copied, setCopied] = useState(false);
+  const onCopy = () => {
+    navigator.clipboard.writeText(state.userAddress);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+
+    // track 'Affiliate Link' button click event
+    analytics.track('Clicked AFFILIATE LINK button');
+  };
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
@@ -133,23 +146,23 @@ const AccountData = (props) => {
 
             <div style={{ display: 'flex' }}>
               <div className="tokenContainer" style={{ textAlign: 'center', flex: 1 }}>
-                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469758/image_23_nglqg8.png" style={{marginLeft: -18, marginBottom: -18}} />
+                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469758/image_23_nglqg8.png" style={{ marginLeft: -18, marginBottom: -18 }} />
                 <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined 0</p>
                   <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
                 </div>
               </div>
               <div className="tokenContainer" style={{ textAlign: 'center', flex: 1 }}>
-                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469802/Group_175_gqsouu.png" style={{marginLeft: -18, marginBottom: -18}} />
+                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469802/Group_175_gqsouu.png" style={{ marginLeft: -18, marginBottom: -18 }} />
                 <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined 0</p>
+                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>XP Earned 0</p>
                   <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
                 </div>
               </div>
               <div className="tokenContainer" style={{ textAlign: 'center', flex: 1 }}>
-                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469821/image_22_j1eq1w.png" style={{marginLeft: -18, marginBottom: -18}} />
+                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469821/image_22_j1eq1w.png" style={{ marginLeft: -18, marginBottom: -18 }} />
                 <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined 0</p>
+                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>DG Mined 0</p>
                   <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
                 </div>
               </div>
@@ -456,6 +469,11 @@ const AccountData = (props) => {
               </div>
             </div>
           </div>
+          {copied ? (
+            <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
+              <h3 className="copied-text" style={{textAlign: 'center'}}>Wallet address copied!</h3>
+            </div>
+          ) : null}
         </div>
       )}
     </div>
