@@ -3231,6 +3231,22 @@ img.avatar-picture-binance {
   transition: all linear 0.1s;
 }
 
+.ui.button.casino-button {
+  background-color: #006EFF;
+  color: white;
+  margin-top: 24px;
+  width: 100% !important;
+  height: 56px !important;
+  font-size: 20px !important;
+  font-family: Larsseit-Bold;
+  border-radius: 12px;
+}
+
+.ui.button.casino-button:hover {
+  background-color: #006EFF;
+  filter: brightness(0.9) !important;
+}
+
 .ui.button.casino-balance-button:hover {
   border: 2px solid rgba(255, 255, 255, 1);
   transition: all linear 0.1s;

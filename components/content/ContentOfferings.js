@@ -170,7 +170,7 @@ const ContentOfferings = (props) => {
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className="casinos-container"
+            className="games-container"
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
