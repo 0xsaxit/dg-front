@@ -293,7 +293,7 @@ const ModalPopup = () => {
             </a>*/}
             <Button
               className={binance ? 'buy-dg-button binance' : 'buy-dg-button'}
-              href="https://info.uniswap.org/pair/0x44c21F5DCB285D92320AE345C92e8B6204Be8CdF"
+              href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
               target="_blank"
             >
               Buy $DG

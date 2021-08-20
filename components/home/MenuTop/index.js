@@ -161,7 +161,7 @@ const MenuTop = props => {
         <img
           className={styles.menu_logo}
           alt="Decentral Games Logo"
-          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1594238059/Artboard_kvaym2.png"
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
         />
       </Link>
     ) : (
