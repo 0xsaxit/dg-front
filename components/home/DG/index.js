@@ -39,6 +39,7 @@ const DGHome = () => {
       <div className={cn('', styles.gradientLayout)} />
       <SectionTwo />
       <SectionThree />
+      <Footer />
     </div>
   );
 };

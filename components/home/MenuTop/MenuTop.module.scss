@@ -7,6 +7,7 @@
   top: 0px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   user-select: none;
+  z-index: 10;
 
   .mobile_menu {
     position: fixed;
@@ -117,6 +118,6 @@
   &.dark {
     opacity: 1;
     background-color: black !important;
-    border-bottom: 1px solid rgb(21, 24, 28);
+    border-bottom: 1px solid rgb(42, 42, 42);
   }
 }

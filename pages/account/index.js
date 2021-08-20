@@ -1,5 +1,6 @@
 import { GlobalContext } from '../../store';
-import { useContext } from 'react';
+//import { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AccountData from '../../components/home/AccountData';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
@@ -9,7 +10,7 @@ import Images from '../../common/Images';
 const Account = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
+  
   return (
     <Layout>
       <Header

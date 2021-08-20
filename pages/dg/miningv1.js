@@ -1,6 +1,6 @@
 import { GlobalContext } from '../../store';
 import { useContext, useState, useEffect } from 'react';
-import Farming from '../../components/home/Farming';
+import DAO from '../../components/home/DAO';
 import Layout from '../../components/Layout.js';
 import Header from '../../components/Header';
 import Global from '../../components/Constants';
@@ -36,11 +36,11 @@ const MiningV1 = () => {
       {isLoading === true ? (
         <Spinner background={1} />
       ) : isErrorMessage === true ? (
-        <div className="account-other-inner-p" style={{ paddingTop: '20px' }}>
+        <div className="account-other-inner-p" style={{ marginTop: '150px' }}>
           You must connect your wallet to view this page
         </div>
       ) : (
-        <Farming DGState={'miningv1'} />
+        <DAO DGState={'miningv1'} />
       )}
     </Layout>
   );

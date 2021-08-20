@@ -1044,7 +1044,7 @@ p.home-dashboard-p {
   min-height: 400px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 20px 20px 0px 0px !important;
+  border-radius: 15px 15px 0px 0px !important;
 }
 
 .games-pic {
@@ -1054,7 +1054,7 @@ p.home-dashboard-p {
   min-height: 270px;
   object-fit: cover;
   margin-bottom: 4px !important;
-  border-radius: 20px 20px 0px 0px !important;
+  border-radius: 15px 15px 0px 0px !important;
 }
 
 .my-nft-pic {
@@ -1062,23 +1062,6 @@ p.home-dashboard-p {
   max-width: 400px;
   margin-top: -42px;
   margin-left: -8px;
-}
-
-.outter-nft-container {
-  display: flex;
-  flex-wrap: wrap !important;
-  justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
-}
-
-.nft-container {
-  width: 32%;
-  margin-top: 21px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 6px;
-  border-radius: 4px;
 }
 
 .my-nft-container {
@@ -1090,38 +1073,24 @@ p.home-dashboard-p {
   min-height: 100%;
 }
 
-.nft-container:hover {
-  transform: translateY(-1px);
-  box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
-  transition: all 0.1s ease 0s;
-}
-
 .outter-games-container {
+  width: calc(100vw - 337px);
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap !important;
   justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
+  margin: 134px 0px 120px 40px;
 }
 
 .games-container {
   width: 48.5%;
+  min-width: 257px;
   margin-top: 21px;
   display: flex;
   flex-direction: column !important;
   margin-bottom: 6px;
   border-radius: 20px;
 }
-
-.casinos-container {
-  width: 31.5%;
-  margin-top: 21px;
-  display: flex;
-  flex-direction: column !important;
-  margin-bottom: 6px;
-  border-radius: 20px;
-}
-
 
 .shop-container {
   width: 100%;
@@ -1172,10 +1141,6 @@ p.home-dashboard-p {
   margin-right: 15px;
   color: rgb(92, 95, 97);
   margin-top: 18px;
-}
-
-.leaderboard-column {
-  min-width: 33.33% !important;
 }
 
 .main-container {
@@ -1251,19 +1216,6 @@ table {
   background: black;
 }
 
-tr:nth-child(even),
-tr.account-table-even {
-  background: black;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-tr:nth-child(odd),
-tr.account-table-odd {
-  background: rgb(21, 24, 28);
-  color: rgba(255, 255, 255, 0.6);
-  border-radius: 8px !important;
-}
-
 .ui.table td {
   padding: 15px;
 }
@@ -1289,6 +1241,12 @@ td:last-child {
   margin-bottom: 0px;
 }
 
+.ui.table thead th.leaderboard-header {
+  font-size:  20px;
+  font-family: Larsseit-Bold;
+  text-transform: capitalize;
+}
+
 .ui.table thead {
   position: relative;
   z-index: 1;
@@ -1302,11 +1260,6 @@ td:last-child {
   max-height: 600px !important;
   overflow-y: scroll;
   margin-bottom: 90px;
-  border: 0px solid #edf2f9 !important;
-  border-radius: 8px !important;
-}
-
-.table.ui.unstackable.table.leaders-table {
   border: 0px solid #edf2f9 !important;
   border-radius: 8px !important;
 }
@@ -1416,11 +1369,12 @@ td:last-child {
 }
 
 .account-other-inner-p {
-  font-family: 'Larsseit-Regular' !important;
-  font-size: 18px !important;
-  margin-top: 180px;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 17px !important;
+  margin-top: 45px;
   padding-bottom: 60px;
   text-align: center;
+  color: gray;
 }
 
 #tx-box-history-2 {
@@ -1754,9 +1708,9 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .earned-week-text {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
   font-size: 18px;
-  font-family: Larsseit-Bold;
+  font-family: Larsseit-Regular;
   padding-top: 3px !important;
   margin-bottom: 0px;
   padding-left: 2px;
@@ -1894,8 +1848,38 @@ div.ui.grid.balances-container {
   margin-right: auto !important;
 }
 
+.outter-leaders-container {
+  width: calc(100vw - 337px);
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap !important;
+  justify-content: space-between;
+  margin: 30px 0px 150px 40px !important;
+}
+
 .leaderboard-column {
-  width: 100%;
+  width: 48.5%;
+}
+
+.leaderboard-top {
+  font-family: Larsseit-Bold;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-bottom: 0px;
+}
+
+.leaderboard-bottom {
+  font-family: Larsseit-Bold;
+  font-size: 20px;
+  margin-top: -2px;
+}
+
+.table.ui.unstackable.table.leaders-table {
+  border: 1px solid rgba(42, 42, 42, 1) !important;
+  border-radius: 16px !important;
+  width: 48.5%;
+  margin-bottom: 30px;
+  padding: 14px 12px 14px 12px;
 }
 
 @media (min-width: 1401px) {
@@ -2047,7 +2031,8 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .liquidity-input {
-  padding-top: 6px;
+  padding-top: 40px;
+  padding-bottom: 8px;
 }
 
 .ui.input > input {
@@ -2211,9 +2196,11 @@ i.copy.icon.affiliate-icon:hover {
 }
 
 .treasury-amount {
-  font-size: 72px;
   font-family: Larsseit-ExtraBold;
-  padding-top: 30px;
+  font-size: 32px;
+  letter-spacing: -0.7px;
+  color: white !important;
+  padding-top: 50px;
 }
 
 .treasury-graph {
@@ -2223,7 +2210,8 @@ i.copy.icon.affiliate-icon:hover {
 
 span.treasury-table {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start !important;
+  margin-top: -42px;
 }
 
 @media (max-width: 1030px) {
@@ -2815,17 +2803,6 @@ a.ui.blue.button.dg-learn-button {
   border-radius: 12px;
 }
 
-.ui.blue.button.casino-button {
-  background-color: #006EFF;
-  color: white;
-  margin-top: 24px;
-  width: 100% !important;
-  height: 56px !important;
-  font-size: 20px !important;
-  font-family: Larsseit-Bold;
-  border-radius: 12px;
-}
-
 .ui.button.nft-read-button {
   background-color: #2A2A2A;
   color: white;
@@ -3186,7 +3163,7 @@ a.ui.blue.button.play-button-binance,
   padding-right: 16px;
   padding-left: 16px;
   height: 48px;
-  margin-top: 0px;
+  margin-top: 12px;
   background-color: #1f1f1f;
   border-radius: 16px;
   color: white;
@@ -3547,18 +3524,18 @@ h3.deposit-twentyfour.casino {
 }
 
 .ui.input > input {
-  border: 1px solid rgba(0,0,0,.85);
+  border: 1px solid #2a2a2a;
   background: transparent !important;
-  border-radius: 12px;
+  border-radius: 10px;
   font-family: Larsseit-Regular;
-  height: 48px;
-  color: white !important;
+  height: 40px;
+  color:  white !important;
 }
 
 .ui.input > input:focus,
 .ui.input > input:active {
   color: white;
-  border: 2px solid #353945;
+  border: 1px solid white;
 }
 
 div.ui.input.withdraw_input > input {

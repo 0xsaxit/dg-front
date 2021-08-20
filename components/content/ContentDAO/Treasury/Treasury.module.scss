@@ -1,0 +1,105 @@
+@import 'styles/base.scss';
+
+.treasury_container {
+  padding: 28px;
+  border: 1px solid rgba(42, 42, 42, 1);
+  border-radius: 16px;
+  width: 716px;
+  margin: 60px 0px 0px 40px;
+  margin-bottom: 120px;
+
+  .earned_percent_pos {
+    font-size: 14px;
+    font-family: Larsseit-Bold;
+    color: #67dd6c !important;
+  }
+
+  .earned_percent_neg {
+    font-size: 14px;
+    font-family: Larsseit-Bold;
+    color: #ea3943 !important;
+  }
+
+  .earned_text {
+    margin-top: 2px;
+    margin-left: 3px;
+    font-size: 12px;
+    font-family: Larsseit-Regular;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .treasury_header {
+    display: flex;
+    justify-content: space-between;
+
+    .treasury_title {
+      font-family: Larsseit-Bold;
+      font-size: 24px;
+    }
+
+    .treasury_total {
+      font-family: Larsseit-Bold;
+      font-size: 24px;
+      justify-content: flex-end;
+      text-align: right;
+      margin-bottom: 4px;
+    }
+  }
+
+  .treasury_graph {
+    width: 100%;
+    height: 200px;
+  }
+
+  .stats_container {
+    display: flex;
+    justify-content: space-between;
+
+    .stat {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+
+      .stat_header {
+        font-size: 14px;
+        font-family: Larsseit-Bold;
+        margin-bottom: 2px;
+        margin-top: 32px;
+        text-align: center;
+      }
+
+      .stat_amount {
+        font-family: Larsseit-Regular;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+
+      .earned_percent_pos {
+        margin-left: 3px;
+        font-size: 14px;
+        font-family: Larsseit-Bold;
+        color: #67dd6c !important;
+      }
+
+      .earned_percent_neg {
+        margin-left: 3px;
+        font-size: 14px;
+        font-family: Larsseit-Bold;
+        color: #ea3943 !important;
+      }
+
+      .stat_button {
+        margin-top: 31px;
+        align-self: center;
+        background: rgba(31, 31, 31, 1);
+        line-height: 19px;
+        height: 41px;
+        border-radius: 10px;
+        font-family: Larsseit-Bold;
+        font-size: 14px;
+        color: white;
+
+      }
+    }
+  }
+}

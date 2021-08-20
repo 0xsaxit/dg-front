@@ -24,15 +24,14 @@ function SubgraphQuery() {
         }
       );
 
-      const data = subgraphData.data.data.exampleEntities;
 
-      // console.log('subgraph data');
-      // console.log(data);
+      const data = subgraphData.data.data.exampleEntities;
 
       dispatch({
         type: 'subgraph_data',
         data: data,
       });
+
     })();
   }, []);
 

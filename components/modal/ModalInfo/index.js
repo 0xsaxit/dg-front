@@ -82,7 +82,7 @@ const ModalInfo = () => {
       trigger={
         <span>
           {!state.DGBalances.BALANCE_KEEPER_DG ? (
-            <Button className="account-button">
+            <Button className="account-button" style={{ marginTop: 0 }}>
               <p className="right-menu-text bnb">
                 <Loader
                   active
@@ -98,7 +98,7 @@ const ModalInfo = () => {
               </p>
             </Button>
           ) : state.DGBalances.BALANCE_KEEPER_DG == 10 ? null : (
-            <Button className="account-button">
+            <Button className="account-button" style={{ marginTop: 0 }}>
               <p className="right-menu-text bnb">
                 {DGTotal.toLocaleString()} DG
               </p>

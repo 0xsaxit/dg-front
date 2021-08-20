@@ -182,7 +182,7 @@ a#dropdown-menu-items.item.right-menu-text {
 
 @media (max-width: 499px) {
   div#dropdown-menu-items.item.right-menu-text,
-  a#dropdown-menu-items.item.right-menu-text  {
+  a#dropdown-menu-items.item.right-menu-text {
     border: none;
     box-shadow: none;
     font-size: 18px;
@@ -364,7 +364,7 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
     height: 100vh;
     padding-top: 0px;
     margin-top: -270px !important;
-    position:  relative;
+    position: relative;
     z-index: -1 !important;
   }
   .binance-video-container video,
@@ -570,7 +570,6 @@ div.ui.bottom.right.popup.transition.visible.mobile-menu-popup {
 /*             NFT/GAMES PAGE CSS            */
 /* ----------------------------------------- */
 
-
 span.leaderboard-coin-select {
   display: none;
 }
@@ -592,15 +591,24 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
+@media (max-width:  1237px) {
+  .table.ui.unstackable.table.leaders-table {
+    border: 1px solid rgba(42, 42, 42, 1) !important;
+    border-radius: 16px !important;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
 .account-hover-time-tablet {
-  font-size: 18px;
-  font-weight: 600;
-  margin-right: 34px !important;
-  color: rgba(255, 255, 255, 0.55);
-  margin-top: 32px;
+  font-size: 20px;
+  font-family: Larsseit-Bold;
+  margin-top: 34px;
+  color: white;
+  border: 1px solid rgb(42, 42, 42);
+  border-radius: 16px;
   display: flex;
   justify-content: flex-end;
-  width: calc(100% - 684px);
+  padding: 12px;
   margin-right: 0px !important;
   text-transform: capitalize !important;
 }
@@ -636,30 +644,22 @@ span#mobile-time-select.account-select.dropdown {
   color: rgb(92, 95, 97);
 }
 
-@media (max-width: 1251px) {
-  .nft-container {
-    width: 48.5%;
+@media (max-width: 1040px) {
+  .outter-games-container {
+    width: calc(100% - 160px);
+  }
+  .outter-leaders-container {
+    width: calc(100vw - 160px);
   }
 }
 
-@media (max-width: 767px) {
-  .nft-container,
-  .nft-container:nth-child(1),
-  .nft-container:nth-child(2) {
-    width: 100% !important;
+@media (max-width: 768px) {
+  .outter-games-container {
+    width: calc(100% - 140px);
+    margin-left: 30px;
   }
-}
-
-@media (max-width: 1191px) {
-  .casinos-container {
-    width: 48.5%;
-  }
-}
-
-@media (max-width: 851px) {
-  .games-container,
-  .casinos-container {
-    width: 100%;
+  .games-container {
+    width: calc(100% + 10px);
   }
 }
 
@@ -717,13 +717,6 @@ span#mobile-time-select.account-select.dropdown {
 @media (max-width: 912px) {
   td.account-col-2,
   th.account-col-2 {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  th:nth-child(4),
-  td:nth-child(4) {
     display: none;
   }
 }

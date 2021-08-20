@@ -102,11 +102,20 @@ const initialState = {
   affiliateAddress: '',
   stakeTime: 0,
   subgraphData: [],
+  snapshotData: [],
   manaLoading: false,
   daiLoading: false,
   usdtLoading: false,
   atriLoading: false,
   wethLoading: false,
+
+  dgLoading: 0,
+  dgShow: false,
+  openModal: {
+    resumeID: 0,
+    lockID: 0,
+  },
+  dgWarningMsg: false,
 };
 
 const reducer = (state, action) => {
@@ -279,6 +288,12 @@ const reducer = (state, action) => {
         subgraphData: action.data,
       };
 
+    case 'snapshot_data':
+      return {
+        ...state,
+        snapshotData: action.data,
+      };
+
     case 'affiliate_address':
       return {
         ...state,
@@ -314,7 +329,26 @@ const reducer = (state, action) => {
         ...state,
         wethLoading: action.data,
       };
-
+    case 'set_dgLoading':
+      return {
+        ...state,
+        dgLoading: action.data,
+      };
+    case 'set_openModal':
+      return {
+        ...state,
+        openModal: action.data,
+      };
+    case 'set_dgShow':
+      return {
+        ...state,
+        dgShow: action.data,
+      };
+    case 'set_dgWarningMsg':
+      return {
+        ...state,
+        dgWarningMsg: action.data,
+      };
     default:
       throw new Error('Wrong action type got dispatched');
   }

@@ -22,6 +22,22 @@ const MessageBar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if(state.dgWarningMsg) {
+      setMessage('Transfer pending, Please remain on this page!');
+      let timer = setTimeout(() => {
+        setMessage('');
+        dispatch({
+          type: 'set_dgWarningMsg',
+          data: false,
+        });
+      }, 1500);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [state.dgWarningMsg]);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // using Safari browser
@@ -56,23 +72,24 @@ const MessageBar = () => {
   }, []);
 
   useEffect(() => {
-    if (isSafari) {
-      setMessage('Please use Brave, Chrome, or Firefox to play games');
-    } else if (isMobile) {
-       setMessage('Please configure metamask on a desktop browser');
-    } else if (!isMobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
-      setMessage('Please switch your Network to Ethereum Mainnet');
-    } else if (!isMobile && pause && !state.userInfo.tokenArray.includes(true)) {
-      setMessage(
-        `Make sure you've enabled cypto gameplay on your account page`
-      );
-    } else if (!state.activeStatus) {
-      setMessage(
-        'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
-      );
-    } else {
-      setMessage('');   
-    }
+    // if (isSafari) {
+    //   setMessage('Please use Brave, Chrome, or Firefox to play games');
+    // } else if (isMobile) {
+    //    setMessage('Please configure metamask on a desktop browser');
+    // } else if (!isMobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+    //   setMessage('Please switch your Network to Ethereum Mainnet');
+    // } else if (!isMobile && pause && !state.userInfo.tokenArray.includes(true)) {
+    //   setMessage(
+    //     `Make sure you've enabled cypto gameplay on your account page`
+    //   );
+    // } else if (!state.activeStatus) {
+    //   setMessage(
+    //     'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
+    //   );
+    // } else {
+    //   setMessage('');   
+    // }
+    setMessage('');
   }, [
     isSafari,
     state.networkID,

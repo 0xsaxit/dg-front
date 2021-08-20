@@ -16,6 +16,20 @@ const ContentLeaderboard = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  var a = ['',' First ','Second ','Third ','Fourth ', 'Fifth ','Sixth ','Seventh ','Eighth ','Ninth ','Tenth'];
+
+  function inWords(num) {
+    if ((num = num.toString()).length > 9) return 'overflow';
+    const n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    if (!n) return; var str = '';
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) : '';
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) : '';
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) : '';
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) : '';
+    str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
+    return str;
+  }
+
   useEffect(() => {
     // console.log(props.gameRecords);
 
@@ -127,21 +141,14 @@ const ContentLeaderboard = (props) => {
   console.log(dataGames);
 
   return (
-    <Grid style={{ paddingBottom: '48px' }}>
+    <div className="outter-leaders-container" style={{ marginTop: '24px' }}>
       {games.map((game, index) => {
         return (
-          <Grid.Column
-            computer={8}
-            tablet={8}
-            mobile={16}
-            key={index}
-            className="leaderboard-column"
-          >
             <Table unstackable className="leaders-table">
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>{game}</Table.HeaderCell>
-                  <Table.HeaderCell>WIN</Table.HeaderCell>
+                  <Table.HeaderCell className="leaderboard-header">{game.toLowerCase()}</Table.HeaderCell>
+                  {/*<Table.HeaderCell>WIN</Table.HeaderCell>*/}
                 </Table.Row>
               </Table.Header>
 
@@ -156,38 +163,51 @@ const ContentLeaderboard = (props) => {
                     .join(',');
                   return (
                     <Table.Row key={index}>
-                      <Table.Cell>
-                        {index + 1}.{' '}
+                      <Table.Cell style={{ display: 'flex' }}>
                         <img
                           className="avatar-picture"
                           src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
                           style={{
-                            width: '24px',
+                            width: '36px',
                             marginRight: '6px',
                             verticalAlign: 'middle',
-                            marginTop: '-2px',
-                            border: '1px solid rgb(227, 232, 238)',
+                            border: '1px solid rgba(42, 42, 42, 1)',
                             borderRadius: '100%',
-                            boxShadow:
-                              '0 0.75rem 1.5rem rgba(18, 38, 63, 0.03)',
+                            display: 'flex',
+                            alignSelf: 'center',
                           }}
                         />
-                        {row.name === null || row.name === '' 
-                          ? row.address.substr(0, 6) +
-                            '...' +
-                            row.address.substr(-4)
-                          : row.name}
+                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
+                          <p className="leaderboard-top">
+                            {inWords(index + 1)}
+                          </p>
+                          <p className="leaderboard-bottom">
+                            {row.name === null || row.name === '' 
+                              ? row.address.substr(0, 6) +
+                                '...' +
+                                row.address.substr(-4)
+                              : row.name}
+                          </p>
+                        </span>
                       </Table.Cell>
-                      <Table.Cell>{amount}</Table.Cell>
+                      <Table.Cell>
+                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
+                          <p className="leaderboard-top" style={{ textAlign: 'right' }}>
+                            Winnings
+                          </p>
+                          <p className="leaderboard-bottom" style={{ textAlign: 'right' }}>
+                            {amount}
+                          </p>
+                        </span>
+                      </Table.Cell>
                     </Table.Row>
                   );
                 })}
               </Table.Body>
             </Table>
-          </Grid.Column>
         );
       })}
-    </Grid>
+    </div>
   );
 };
 

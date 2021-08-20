@@ -168,25 +168,6 @@ const ContentBalancer = (props) => {
 
   return (
     <Aux>
-      <div className="DG-liquidity-container top">
-        <div className="DG-column top">
-          <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <h3 className="DG-h3">$DG Balancer Liquidity Incentives</h3>
-            <p>
-              Balancer LP rewards have now ended following this{' '}
-              <a
-                href="https://snapshot.page/#/decentralgames.eth/proposal/QmRnnRAA3uHJjSvgMhLvigtapKRLNF1D5Wes5gVkRyJ1HX"
-                style={{ color: '#2085f4' }}
-                target="_blank"
-              >
-                gov proposal
-              </a>
-              . The Uniswap LP rewards are still active and have been increased.{' '}
-            </p>
-          </span>
-        </div>
-      </div>
-
       <div className="DG-liquidity-container">
         <div className="DG-column unclaimed">
           <span style={{ display: 'flex' }}>
