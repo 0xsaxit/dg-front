@@ -64,7 +64,8 @@
     background: rgb(31, 31, 31);
     color: white;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: white;
       background: rgb(31, 31, 31);
       filter: brightness(0.9) !important;
@@ -196,10 +197,12 @@
     color: white;
     border-radius: 10px;
     height: 40px;
+    line-height: 18px;
     font-family: Larsseit-Bold;
     font-size: 14px;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: white;
       background: #006eff;
       filter: brightness(0.9) !important;

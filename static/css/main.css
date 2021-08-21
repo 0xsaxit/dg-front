@@ -109,15 +109,12 @@ h3 {
 
 .nft-other-h3 {
   font-family: 'Larsseit-Bold';
-  font-weight: 800 !important;
-  font-size: 30px;
-  padding: 2px 0px 3px 0px;
+  font-size: 24px;
   margin-top: 0px;
 }
 
 .home-other-h3 {
   font-family: 'Larsseit-Bold';
-  font-weight: 800 !important;
   font-size: 30px;
   padding: 2px 0px 3px 0px;
   margin-top: 0px;
@@ -196,9 +193,10 @@ p {
 }
 
 .nft-other-p {
-  text-align: left;
-  font-size: 18px;
   font-family: Larsseit-Regular;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 10px;
 }
 
 /* ----------------------------------------- */
@@ -1153,9 +1151,10 @@ p.home-dashboard-p {
 
 .nfts-info,
 .nfts-info-2 {
-  font-size: 15px !important;
   font-family: Larsseit-Bold;
-  color:  rgba(255, 255, 255, 0.75) !important;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-bottom: 0px;
 }
 
 .nfts-info.mine {
@@ -2793,25 +2792,29 @@ a.ui.blue.button.dg-learn-button {
 }
 
 .ui.blue.button.nft-button {
-  background-color: #006EFF;
+  margin-top: 20px;
+  width: 100%;
+  background: #006eff;
   color: white;
-  margin-top: 24px;
-  width: calc(50% - 8px) !important;
-  height: 56px !important;
-  font-size: 20px !important;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 18px;
   font-family: Larsseit-Bold;
-  border-radius: 12px;
+  font-size: 14px;
+  width: calc(50% - 8px);
 }
 
 .ui.button.nft-read-button {
-  background-color: #2A2A2A;
+  margin-top: 20px;
+  width: 100%;
+  background: #2A2A2A;
   color: white;
-  margin-top: auto !important;
-  width: calc(50% - 8px) !important;
-  height: 56px !important;
-  font-size: 20px !important;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 18px;
   font-family: Larsseit-Bold;
-  border-radius: 12px;
+  font-size: 14px;
+  width: calc(50% - 8px);
 }
 
 .ui.button.reload-button {
@@ -3232,14 +3235,16 @@ img.avatar-picture-binance {
 }
 
 .ui.button.casino-button {
-  background-color: #006EFF;
+  margin-top: 20px;
+  width: 100%;
+  background: #006eff;
   color: white;
-  margin-top: 24px;
-  width: 100% !important;
-  height: 56px !important;
-  font-size: 20px !important;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 18px;
   font-family: Larsseit-Bold;
-  border-radius: 12px;
+  font-size: 14px;
+  width: 100%;
 }
 
 .ui.button.casino-button:hover {

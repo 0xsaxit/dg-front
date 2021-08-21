@@ -172,9 +172,9 @@ const Liquidity = (props) => {
 
             <span>
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
-                <Button className={styles.lower_button}>
+                <Button 
+                  className={styles.lower_button}
                   onClick={() => props.reward(stakingContractUniswap)}
-                }
                 >
                   Claim
                 </Button>
