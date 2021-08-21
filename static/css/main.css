@@ -3324,6 +3324,11 @@ i.clone.outline.icon,
   cursor: pointer;
   color: white !important;
   transition: all linear 0.1s;
+  fill-opacity: 1;
+}
+
+.account-address:hover path {
+  fill-opacity: 1;
 }
 
 .account-address:hover > i.clone.outline.icon {
