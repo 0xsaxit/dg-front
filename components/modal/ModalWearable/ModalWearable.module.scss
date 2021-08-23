@@ -8,6 +8,10 @@
 
 	.wear_box {
 		.wear_box_questionmark {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
 			position: absolute;
 			width: 25px;
 			height: 25px;
@@ -36,12 +40,18 @@
 			box-sizing: border-box;
 			box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
 			border-radius: 93px;
+
+			.img_card {
+				width: 18px;
+				height: 18px;
+				margin-left: 4px;
+			}
 		}
 		.wear_box_purple {
 			width: 241px;
 			height: 241px;
 			margin-top: 42px;
-			background: radial-gradient(68.68% 68.68% at 50% 50%, #AD86FF 0%, #622DF8 100%);
+			//background: radial-gradient(68.68% 68.68% at 50% 50%, #AD86FF 0%, #622DF8 100%);
 			border-radius: 16px;
 		}
 		.card_body {
@@ -69,6 +79,12 @@
 				font-size: 12px;
 				line-height: 16px;
 				color: #FFFFFF;
+
+				.img_card {
+					margin-left: 3px;
+					width: 12px;
+					height: 12px;
+				}
 			}
 		}
 	
@@ -76,7 +92,7 @@
 			width: 241px;
 			height: 241px;
 			margin-top: 42px;
-			background: radial-gradient(68.68% 68.68% at 50% 50%, #ff81db 0%, #fd32c2 100%);
+			//background: radial-gradient(68.68% 68.68% at 50% 50%, #ff81db 0%, #fd32c2 100%);
 			border-radius: 16px;
 	
 			font-family: Larsseit;
@@ -138,6 +154,22 @@
 						box-sizing: border-box;
 						border-radius: 14px;
 						margin-bottom: 6px;
+
+						.img_card1 {
+							margin-left: 4px;
+							width: 14px;
+							height: 14px;
+						}
+						.img_card2 {
+							margin-left: 5px;
+							width: 18px;
+							height: 18px;
+						}
+						.img_card3 {
+							margin-left: 4px;
+							width: 18px;
+							height: 11px;
+						}
 					}
 					.description {
 						font-family: Larsseit;

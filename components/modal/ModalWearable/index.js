@@ -39,7 +39,7 @@ const ModalWearable = () => {
         close
         trigger={
           <Button className={styles.play_now_modal}>
-            Play Now
+            Test Upgrade
           </Button>
         }
       >
@@ -69,16 +69,25 @@ const ModalWearable = () => {
 
           <div className={styles.wear_box}>
             <div className={styles.wear_box_mark}>
-              <span>+34%</span>
+              +34%
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                className={styles.img_card}
+              />
             </div>
             <div className={styles.wear_box_purple} >
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727553/Group_207_wujmkv.png" />
             </div>
             <div className={styles.card_body} >
               <div className={styles.card} >
                 Rank3
               </div>
               <div className={styles.card} >
-                +34%
+                +35
+                <img 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                  className={styles.img_card}
+                />
               </div>
               <div className={styles.card} >
                 1 of 100
@@ -94,9 +103,14 @@ const ModalWearable = () => {
             </div>
             <div className={styles.wear_box_mark}>
               + 50% - 69%
+              <img 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                className={styles.img_card}
+              />
             </div>
 
             <div className={styles.wear_box_pink} >
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727553/bg_7_cknc85.png" />
             </div>
 
             <div className={styles.card_body} >
@@ -105,6 +119,10 @@ const ModalWearable = () => {
               </div>
               <div className={styles.card} >
                 + 50% - 69%
+                <img 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                  className={styles.img_card}
+                />
               </div>
               <div className={styles.card} >
                 1 of 100
@@ -140,9 +158,11 @@ const ModalWearable = () => {
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
                   <div className={styles.card}>
-                    <span>
-                      100 ICE
-                    </span>                  
+                      100K ICE
+                    <img 
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                      className={styles.img_card1}
+                    />
                   </div>
 
                   <div className={styles.description}>
@@ -162,6 +182,10 @@ const ModalWearable = () => {
                 <div className={styles.card_area_body}>
                   <div className={styles.card}>
                     0.1 DG
+                    <img 
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" 
+                      className={styles.img_card2}
+                    />
                   </div>
                   <div className={styles.description}>
                     2.91 DG Available
@@ -180,6 +204,10 @@ const ModalWearable = () => {
                 <div className={styles.card_area_body}>
                   <div className={styles.card}>
                     200 XP
+                    <img 
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/XP_zbnvuf.png" 
+                      className={styles.img_card3}
+                    />
                   </div>
                   <div className={styles.description}>
                     224 XP Available
