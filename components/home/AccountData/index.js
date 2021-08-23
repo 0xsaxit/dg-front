@@ -7,9 +7,6 @@ import Spinner from 'components/Spinner';
 import ContentAccount from 'components/content/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
-// import Dg from './dg.svg'
-// import Ice from './ice.svg'
-// import Xp from './dg.svg'
 
 
 const AccountData = (props) => {
@@ -78,7 +75,7 @@ const AccountData = (props) => {
   function topLinks() {
     return (
       <Aux>
-        <div style={{ position: 'relative', zIndex: '0', margin: 'auto', marginTop: '210px', padding: 28, width: 600, border: '1px solid #2A2A2A', borderRadius: '28px', display: 'flex', alignItems: 'center' }}>
+        <div className={styles.player_card}>
           <div>
             <span
               className="avatar-picture"
@@ -145,24 +142,24 @@ const AccountData = (props) => {
             </span>
 
             <div style={{ display: 'flex' }}>
-              <div className="tokenContainer" style={{ textAlign: 'center', flex: 1 }}>
-                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469758/image_23_nglqg8.png" style={{ marginLeft: -18, marginBottom: -18 }} />
+              <div className={styles.token_container}>
+                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" />
                 <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined 0</p>
+                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined</p>
                   <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
                 </div>
               </div>
-              <div className="tokenContainer" style={{ textAlign: 'center', flex: 1 }}>
-                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469802/Group_175_gqsouu.png" style={{ marginLeft: -18, marginBottom: -18 }} />
+              <div className={styles.token_container}>
+                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" />
                 <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>XP Earned 0</p>
+                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>Unused XP </p>
                   <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
                 </div>
               </div>
-              <div className="tokenContainer" style={{ textAlign: 'center', flex: 1 }}>
-                <img className="tokenImg" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629469821/image_22_j1eq1w.png" style={{ marginLeft: -18, marginBottom: -18 }} />
+              <div className={styles.token_container}>
+                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" />
                 <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>DG Mined 0</p>
+                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>DG Mined</p>
                   <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
                 </div>
               </div>
