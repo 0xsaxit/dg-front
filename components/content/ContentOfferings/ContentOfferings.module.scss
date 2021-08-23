@@ -1,12 +1,15 @@
 @import 'styles/base.scss';
 
 .outter_games_container {
+  width: calc(100vw - 337px);
+  max-width: 1200px;
   display: flex;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap!important;
   justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
+  margin: 134px 0 120px 40px;
   .games_container {
+    border: 1px solid rgb(42, 42, 42);
+    border-radius: 16px;
     overflow: hidden;
     width: 48.5%;
     border-radius: 20px;
@@ -14,7 +17,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 6px;
-    background: rgb(31, 31, 31);
 
     .image_wrapper {
       display: flex;
@@ -34,11 +36,10 @@
     .nft_description {
       padding: 20px 30px 30px;
       text-align: center;
-      background-color: #1f1f1f;
       border-radius: 0 0 4px 4px;
       .nfts_info {
         text-align: left;
-        font-size: 15px!important;
+        font-size: 14px!important;
         font-family: Larsseit-Bold;
         color: hsla(0,0%,100%,.75)!important;
       }
@@ -47,7 +48,7 @@
         text-align: left;
         font-family: Larsseit-Bold;
         font-weight: 800!important;
-        font-size: 30px;
+        font-size: 24px;
         padding: 2px 0 3px;
         margin-top: 0;
         color: rgba(255,255,255,1) !important; 
@@ -56,7 +57,7 @@
         color: rgba(255,255,255,1) !important; 
         padding-top: 12px;
         text-align: left;
-        font-size: 18px;
+        font-size: 14px;
         font-family: Larsseit-Regular;
       }
     }
@@ -82,8 +83,9 @@
     }
   }
   .casinos_container {
-    width: 31.5%;
-    background: rgb(31, 31, 31);
+    border: 1px solid rgb(42, 42, 42);
+    border-radius: 16px;
+    width: 48.5%;
     margin-top: 21px;
     display: -webkit-flex;
     display: flex;
@@ -111,11 +113,10 @@
     .nft_description {
       padding: 20px 30px 30px;
       text-align: center;
-      background-color: #1f1f1f;
       border-radius: 0 0 4px 4px;
       .nfts_info {
         text-align: left;
-        font-size: 15px!important;
+        font-size: 14px!important;
         font-family: Larsseit-Bold;
         color: hsla(0,0%,100%,.75)!important;
       }
@@ -125,7 +126,7 @@
         text-align: left;
         font-family: Larsseit-Bold;
         font-weight: 800!important;
-        font-size: 30px;
+        font-size: 24px;
         padding: 2px 0 3px;
         margin-top: 0;
       }
@@ -133,7 +134,7 @@
         color: rgba(255,255,255,1) !important; 
         padding-top: 12px;
         text-align: left;
-        font-size: 18px;
+        font-size: 14px;
         font-family: Larsseit-Regular;
       }
       .casino_button_wrapper{
@@ -145,8 +146,9 @@
           background-color: #006eff;
           color: #fff;
           margin-top: 24px;
-          height: 56px!important;
-          font-size: 20px!important;
+          height: 40px!important;
+          font-size: 14px!important;
+          line-height: 18px;
           font-family: Larsseit-Bold;
           border-radius: 12px;
           width: 100%;
@@ -173,13 +175,16 @@
 }
 
 .outter_nft_container {
+  width: calc(100vw - 337px);
+  max-width: 1200px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap!important;
   justify-content: space-between;
-  margin-top: -15px;
-  margin-bottom: 30px;
+  margin: 134px 0 120px 40px;
   
   .nft_container {
+    border: 1px solid rgb(42, 42, 42);
+    border-radius: 16px;
     overflow: hidden;
     width: 48.5%;
     border-radius: 20px;
@@ -187,7 +192,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 6px;
-    background: rgb(31, 31, 31);
 
     .nft_image_wrapper {
       display: flex;
@@ -207,11 +211,10 @@
     .nft_description {
       padding: 20px 30px 30px;
       text-align: center;
-      background-color: #1f1f1f;
       border-radius: 0 0 4px 4px;
       .nfts_info {
         text-align: left;
-        font-size: 15px!important;
+        font-size: 14px!important;
         font-family: Larsseit-Bold;
         color: hsla(0,0%,100%,.75)!important;
       }
@@ -220,7 +223,7 @@
         text-align: left;
         font-family: Larsseit-Bold;
         font-weight: 800!important;
-        font-size: 30px;
+        font-size: 24px;
         padding: 2px 0 3px;
         margin-top: 0;
         color: rgba(255,255,255,1) !important; 
@@ -229,7 +232,7 @@
         color: rgba(255,255,255,1) !important; 
         padding-top: 12px;
         text-align: left;
-        font-size: 18px;
+        font-size: 14px;
         font-family: Larsseit-Regular;
       }
     }
@@ -259,8 +262,9 @@
   background-color: #006eff !important;
   color: #fff;
   width: calc(50% - 8px)!important;
-  height: 56px!important;
-  font-size: 20px!important;
+  height: 40px!important;
+  font-size: 14px!important;
+  line-height: 18px;
   font-family: Larsseit-Bold;
   border-radius: 12px;
   margin-top: 24px !important;
@@ -272,8 +276,9 @@
   background-color: #2a2a2a !important;
   color: #fff !important;
   width: calc(50% - 8px)!important;
-  height: 56px!important;
-  font-size: 20px!important;
+  height: 40px!important;
+  font-size: 14px!important;
+  line-height: 18px;
   font-family: Larsseit-Bold;
   border-radius: 12px;
   margin-top: 24px !important;

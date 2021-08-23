@@ -118,7 +118,7 @@ const detailsShop = {
 const detailsNFTs = {
   mink_coat: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed_y8ozak.png',
-    'nft-pic',
+    'nft_pic',
     'DG Fur Mink',
     'LEGENDARY',
     'An opulent fur coat made from minks #extrasaus',
@@ -127,7 +127,7 @@ const detailsNFTs = {
   ],
   tracksuit_top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566941/unnamed-1_anqn8z.png',
-    'nft-pic',
+    'nft_pic',
     'DG Tracksuit Jacket',
     'LEGENDARY',
     'The jacket of the decadent and elegant DG tracksuit #drip',
@@ -136,7 +136,7 @@ const detailsNFTs = {
   ],
   tracksuit_bottom: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-2_eiirjc.png',
-    'nft-pic',
+    'nft_pic',
     'DG Tracksuit Pants',
     'LEGENDARY',
     'The pants of the decadent and elegant DG tracksuit #drip',
@@ -145,7 +145,7 @@ const detailsNFTs = {
   ],
   shades: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-3_ey4xpe.png',
-    'nft-pic',
+    'nft_pic',
     'DG Flip Up Spectacles',
     'LEGENDARY',
     'Swaggy flip up shades designed to be wearable at any occassion. #ice',
@@ -154,7 +154,7 @@ const detailsNFTs = {
   ],
   yeezies: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566939/unnamed-4_ccrxbx.png',
-    'nft-pic',
+    'nft_pic',
     'DG Deezys',
     'LEGENDARY',
     'Comfy and elegant sneekers #deezys',
@@ -163,7 +163,7 @@ const detailsNFTs = {
   ],
   slides: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
-    'nft-pic',
+    'nft_pic',
     'DG Slides',
     'LEGENDARY',
     'Lazy day designer slides complete with socks to keep your toes warm #cozyslides',
@@ -172,7 +172,7 @@ const detailsNFTs = {
   ],
   headphones: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628718435/Screen_Shot_2021-08-11_at_10.46.57_PM_wnwyvi.png',
-    'nft-pic',
+    'nft_pic',
     'DG Headphones',
     'LEGENDARY',
     'Hitting the tables? Tune out the noise, get in the zone.',
@@ -816,9 +816,9 @@ const Offerings = props => {
   function coinSelect() {
     return (
       <Aux>
-        <div style={{ marginTop: '120px', display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ marginTop: '150px', display: 'flex', justifyContent: 'flex-end' }} className={styles.coin_select}>
 
-          <div className="account-hover-time-tablet">
+          <div className={styles.account_hover_time_tablet}>
             <svg
               width="9"
               height="15"
@@ -858,7 +858,7 @@ const Offerings = props => {
             </svg>
           </div>      
 
-          <div className="account-hover-time-tablet" style={{ marginLeft: '24px' }}>
+          <div className={styles.account_hover_time_tablet} style={{ marginLeft: '24px' }}>
             <svg
               width="9"
               height="15"
