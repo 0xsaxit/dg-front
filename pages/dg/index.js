@@ -1,8 +1,8 @@
-import DAO from '../../components/home/DAO';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+import DAO from 'components/home/DAO';
 
 const DG = () => {
   return (

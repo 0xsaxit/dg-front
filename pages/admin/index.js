@@ -1,10 +1,12 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../store';
-import Administration from '../../components/home/Administration';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import { GlobalContext } from 'store';
+import Administration from 'components/home/Administration';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+
+import styles from './admin.module.scss';
 
 const Admin = () => {
   // get user status from the Context API store
@@ -21,7 +23,7 @@ const Admin = () => {
       {state.userStatus === 28 ? (
         <Administration dataType={'balances'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className={styles.account_other_inner_p}>
           Please ensure you've connected using an admin wallet address
         </div>
       )}

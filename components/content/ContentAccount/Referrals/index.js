@@ -6,7 +6,7 @@ import Aux from 'components/_Aux';
 import styles from './Referrals.module.scss';
 import ModalBreakdown from 'components/modal/ModalBreakdown';
 
-function Referrals({ state }) {
+const Referrals = ({ state }) => {
   // define local variables
   const [copied, setCopied] = useState(false);
   const [isToastShow, setIsToastShow] = useState(false);
@@ -84,11 +84,11 @@ function Referrals({ state }) {
           </span>
         </div>
         <span className="d-flex justify-content-between align-items-center mb-4">
-          <h3 className="mb-0">
+          <p className={cn("mb-0", styles.referrals_title)}>
             {!!state.DGBalances.BALANCE_AFFILIATES.length
               ? 'Your referrals'
               : 'No Referrals Yet'}
-          </h3>
+          </p>
           <ModalBreakdown
             totalAmount={totalAmount}
             breakdown={state.DGBreakdown}
@@ -106,7 +106,7 @@ function Referrals({ state }) {
             {state.DGBalances.BALANCE_AFFILIATES.map(
               (affiliate, affiliateIndex) => {
                 let amount = 0;
-                coins.map((coin) => {
+                coins.map(coin => {
                   amount += +(
                     Number(state.DGPrices[coin]) * Number(affiliate[coin])
                   ).toFixed(3);

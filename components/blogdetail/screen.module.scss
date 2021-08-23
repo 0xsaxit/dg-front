@@ -1,0 +1,261 @@
+@import 'styles/base.scss';
+
+.blog_details{
+    .blog_share_div{
+        span {
+            a {
+                .share_icon {
+                    color: white;
+                }
+            }
+        }
+    }
+    .blogdetail_page_container {
+        max-width: 900px !important;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-bottom: 0px !important;
+        margin-bottom: -30px;
+        color: white;
+        .blogdetails {
+            .bloginfo {
+                .announcement {
+                    font-family: Larsseit-Regular;
+                    font-size: 21px;
+                    line-height: 1.4;
+                }
+                .title {
+                    font-family: Larsseit-ExtraBold;
+                }
+                .info{
+                    .post_author{
+                        .post_date_blogdetail {
+                            float: right;
+                            font-size: 12px !important;
+                            font-weight: bold;
+                            letter-spacing: 1.5px;
+                            padding: 3px 6px 3px 6px;
+                            margin-top: -33px !important;
+                            margin-bottom: 8px;
+                            text-transform: uppercase !important;
+                            color: white
+                        }
+                    }
+                }
+            }
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: 600 !important;
+            line-height: 1.15;
+            margin-top: -6px;
+            margin-bottom: 57px !important;
+            font-family: Larsseit-ExtraBold;
+        }
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        .post__content {
+            background: rgb(0, 0, 0);
+            img {
+                display: block;
+                margin-top: 30px;
+                margin-bottom: 30px !important;
+                width: 100%;
+                height: 100%;
+                margin-bottom: 30px;
+            }
+            p {
+                font-family: 'Larsseit-Regular' !important;
+                -webkit-font-smoothing: antialiased !important;
+                font-size: 21px;
+                font-weight: normal;
+                letter-spacing: 0.5;
+                line-height: 1.4;
+            }
+            li {
+                font-family: 'Larsseit-Regular' !important;
+                -webkit-font-smoothing: antialiased !important;
+                margin-top: 12px;
+                word-break: break-word;
+                line-height: 1.7 !important;
+                font-size: 20px !important;
+                margin-bottom: 0;
+                font-weight: normal !important;
+                position: relative;
+                padding-left: 21px;
+
+                &::before {
+                    content: '•';
+                    position: absolute;
+                    top: 0px !important;
+                    left: 0px !important;
+                    font-size: 18px !important;
+                    color: #2085f4;
+                }
+            }
+            a {
+                color: #2085f4;
+            }
+            blockquote {
+                font-family: 'Larsseit-Regular' !important;
+                -webkit-font-smoothing: antialiased !important;
+                margin-top: 20px;
+                word-break: break-word;
+                line-height: 1.7 !important;
+                font-size: 20px !important;
+                margin-bottom: 0;
+                font-weight: normal !important;
+                margin: 0px;
+            }
+            h6 {
+                font-family: 'Larsseit-Regular' !important;
+                -webkit-font-smoothing: antialiased !important;
+                margin-top: -18px !important;
+                margin-bottom: 42px !important;
+                text-align: center !important;
+                word-break: break-word;
+                line-height: 1.7 !important;
+                font-size: 14px !important;
+                font-weight: normal !important;
+            }
+            iframe {
+                width: 100%;
+                height: 500px;
+                border: none;
+            }
+            ul {
+                display: block;
+                list-style-type: disc;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                padding-inline-start: 40px;
+                padding: 0px 0px 0px 12px !important;
+                margin: 0px 0px 0px 0px !important;
+                list-style: none;
+                padding: 0;
+                margin: 20px 0;
+                list-style: none;
+            }
+            ol {
+                padding: 0px 0px 0px 12px !important;
+                margin: 0px 0px 0px 0px !important;
+                list-style: none;
+                padding: 0;
+                margin: 20px 0;
+                list-style: none;
+            }
+            
+        }
+        .read_next_div {
+            margin-top: 75px;
+            margin-bottom: -30px;
+            display: flex;
+            justify-content: space-between;
+            .read_next_button {
+                background: rgb(31, 31, 31);
+                color: rgb(255, 255, 255);       
+                &:first-child {
+                padding: 12px 18px 18px 18px;
+                text-align: right;
+                width: 48%;
+                font-size: 18px !important;
+                letter-spacing: 0.5px;
+                line-height: 1.5 !important;
+                text-transform: capitalize !important;
+                  &::before {
+                    color: rgba(255, 255, 255, 0.5) !important;
+                    content: 'Previous     ' !important;
+                    margin-left: calc(100% - 82px);
+                    font-size: 14px;
+                  }
+
+                }
+                &:last-child {
+                    padding: 12px 18px 18px 18px;
+                    text-align: left;
+                    width: 48%;
+                    font-size: 18px !important;
+                    letter-spacing: 0.5px;
+                    line-height: 1.5 !important;
+                    text-transform: capitalize !important;
+                    &:before {
+                        color: rgba(255, 255, 255, 0.5) !important;
+                        content: 'Next    ' !important;
+                        margin-right: 100%;
+                        font-size: 14px;
+                    }
+                      
+                }
+                &:hover {
+                    transform: translateY(-1px);
+                    box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+                    transition: all 0.1s ease 0s;
+                    filter: brightness(100%) !important;
+                }
+
+
+            }
+        }
+          
+    }
+
+
+
+
+
+}
+@media (max-width: 1030px) {
+    .blog_share_div {
+      display: none !important;
+    }
+    .blogdetail_page_container {
+      margin-top: -30px;
+    }
+}
+
+@media (max-width: 660px) {
+    .read_next_div {
+      flex-wrap: wrap !important;
+      .read_next_button {
+        width: 100% !important;
+        &:last-child {
+            margin-bottom: 30px;
+            order: -1 !important;
+          }
+      }
+    }  
+}
+@media (max-width: 499px) {
+    .blogdetail_page_container {
+      padding-left: 21px !important;
+      padding-right: 21px !important;
+      margin-top: 15px;
+      h1{
+        margin-top: -6px!important;
+        font-size: 36px!important;
+        font-weight: 100!important;
+      }
+    }
+    img.blog-hero-img {
+      margin-top: 33px;
+    }
+    .blogdetail-page-container h1 {
+      margin-top: -6px !important;
+      font-size: 36px !important;
+      font-weight: 100 !important;
+    }
+    img.blog-hero-img {
+      margin-top: 15px;
+    }
+  }

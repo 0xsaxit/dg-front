@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Global from '../components/Constants';
-
+import Global from 'components/Constants';
 
 export default class MyDocument extends Document {
   static async getServerSideProps(ctx) {
@@ -11,7 +10,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>       
+        <Head>
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#000000" />
           <meta name="description" content={Global.CONSTANTS.DESCRIPTION} />

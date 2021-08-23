@@ -1,7 +1,7 @@
 import BlogPages from './blogPages';
-import Layout from '../../../components/Layout.js';
-import Header from '../../../components/Header';
-import ButterCMS from '../../../common/ButterCMS';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import ButterCMS from 'common/ButterCMS';
 
 const Index = ({ page_title, featured_image, page_summary }) => {
   return (
@@ -19,8 +19,8 @@ const Index = ({ page_title, featured_image, page_summary }) => {
 
 Index.getInitialProps = async ({ query }) => {
   const slug = query.id;
-  const { data } = await ButterCMS.post.list({ page_size: 60 });
-  const currentPage = data.data.find((page) => page.slug === slug);
+  const { data } = await ButterCMS.post.list({ page_size: 50 });
+  const currentPage = data.data.find(page => page.slug === slug);
 
   let currentPage_title = currentPage.title;
   currentPage_title = currentPage_title.replace(': ', ':');

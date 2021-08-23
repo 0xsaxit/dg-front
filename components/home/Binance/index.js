@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
-import Link from 'next/link';
-import { Button, Divider, Image, Icon } from 'semantic-ui-react';
-import ModalVideo from '../../modal/ModalVideo';
-import Aux from '../../_Aux';
+import { GlobalContext } from 'store';
+import { Button } from 'semantic-ui-react';
+import Aux from 'components/_Aux';
 import ModalLoginBinance from 'components/modal/ModalLoginBinance';
 import ModalDepositBinance from 'components/modal/ModalDepositBinance';
 
+import styles from './Binance.module.scss';
 
 const BinanceHome = () => {
   // get user's onboard status the Context API store
@@ -16,9 +15,7 @@ const BinanceHome = () => {
   const [videoPlay, setVideoPlay] = useState(true);
   const [utm, setUtm] = useState('');
 
-  const realm = 'fenrir-amber';
   let buttonPlay = '';
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -47,9 +44,9 @@ const BinanceHome = () => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function homeVideo() {
+  const homeVideo = () => {
     return (
-      <div className="binance-video-container">
+      <div className={styles.binance_video_container}>
         <video
           id="my-video"
           src="https://res.cloudinary.com/dnzambf4m/video/upload/v1619719236/-Full_Screen_BG_nq4suo.mp4"
@@ -63,40 +60,37 @@ const BinanceHome = () => {
     );
   }
 
-  function sectionOne() {
+  const sectionOne = () => {
     return (
       <Aux>
         {homeVideo()}
 
-        <div className="home-dashboard-content" style={{ marginTop: '-63px' }}>
+        <div className={styles.home_dashboard_content}>
           <img
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1619577485/-Option_1_Play_sparkles_coins_high_res__1_a3qcxc_hswc38.gif"
-            className="home-gif"
+            className={styles.home_gif}
           />
-          <h1
-            className="home-dashboard-main-h1"
-            style={{ marginBottom: '-32px' }}
-          >
+          <h1 className={styles.home_dashboard_main_h1}>
             Play at the Binance Casino with zero fees
           </h1>
-          <span className="home-button-span"></span>
-          <p className="home-dashboard-p centered">
+          <span className={styles.home_button_span} />
+          <p className={styles.home_dashboard_p_centered}>
             Non-custodial, provably fair slots, roulette, blackjack and poker
             playable with crypto in Decentraland.
           </p>
           <Button
+            className={styles.play_now_button_demo}
             color="blue"
-            className="play-now-button-demo"
             href="https://www.youtube.com/embed/1NxYpUsxhC0"
             target="_blank"
           >
             Demo
           </Button>
           {state.userStatus === 0 ? (
-            <span className="mobile-center-span">
+            <span className={styles.mobile_center_span}>
               <Button
                 color="blue"
-                className="earn-dg-button"
+                className={styles.earn_dg_button}
                 id="mobile-button-hide"
                 href="https://www.youtube.com/embed/1NxYpUsxhC0"
                 target="_blank"
@@ -106,10 +100,10 @@ const BinanceHome = () => {
               <ModalLoginBinance />
             </span>
           ) : (
-            <span className="mobile-center-span">
+            <span className={styles.mobile_center_span}>
               <Button
                 color="blue"
-                className="earn-dg-button"
+                className={styles.earn_dg_button}
                 href="https://docs.decentral.games/getting-started/play-to-mine"
                 target="_blank"
               >
@@ -123,11 +117,7 @@ const BinanceHome = () => {
     );
   }
 
-  return (
-    <div className="home-dashboard">
-      {sectionOne()}
-    </div>
-  );
+  return <div>{sectionOne()}</div>;
 };
 
 export default BinanceHome;

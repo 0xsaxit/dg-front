@@ -1,0 +1,42 @@
+@import 'styles/base.scss';
+
+.content_uniswap_container {
+  .dg_tablet_container_gov {
+    @include mq($until: medium) {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column !important;
+      width: 100%;
+      height: 100%;
+    }
+  
+    position: relative;
+  
+    .dg_amount_mana {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .dg_column_unclaimed {
+    .earned_amount {
+      padding-top: 2px;
+    }
+  
+    .governance_loader {
+      font-size: 12px;
+      margin-top: 5px;
+      margin-bottom: -2px;
+    }
+
+    .uniswap_body_size {
+      font-size: 18px;
+    }
+  }
+
+  .uniswap_total {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 3px;
+  }
+}

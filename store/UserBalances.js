@@ -1,11 +1,11 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-import ABI_ROOT_TOKEN from '../components/ABI/ABIDummyToken';
-import ABI_CHILD_TOKEN_MANA from '../components/ABI/ABIChildTokenMANA';
-import ABI_CHILD_TOKEN_DAI from '../components/ABI/ABIChildTokenDAI';
-import Global from '../components/Constants';
-import Transactions from '../common/Transactions';
+import ABI_ROOT_TOKEN from 'components/ABI/ABIDummyToken';
+import ABI_CHILD_TOKEN_MANA from 'components/ABI/ABIChildTokenMANA';
+import ABI_CHILD_TOKEN_DAI from 'components/ABI/ABIChildTokenDAI';
+import Global from 'components/Constants';
+import Transactions from 'common/Transactions';
 
 function UserBalances() {
   // dispatch user's token balances to the Context API store

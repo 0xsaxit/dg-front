@@ -8,10 +8,10 @@
   z-index: 9;
 
   .grid_container {
-    max-width: 1400px;
     margin: auto;
     padding: 122px 72px 0 72px;
     display: flex;
+    max-width: 1400px;
     justify-content: space-between;
 
     .grid_column {
@@ -109,7 +109,7 @@
   }
 
   .grid_newsletter_tablet {
-    max-width: 1400px;
+    // max-width: 1400px;
     padding: 0px 72px 60px 72px;
 
     .footer_header {

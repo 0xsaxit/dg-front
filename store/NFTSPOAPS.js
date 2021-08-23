@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Fetch from '../common/Fetch';
+import Fetch from 'common/Fetch';
 
 function NFTSPOAPS() {
   // dispatch treasury balances to the Context API store
@@ -41,7 +41,8 @@ function NFTSPOAPS() {
         let poaps = [];
         let k;
         for (k = 0; k < json_1.length; k++) {
-          if (json_1[k].event.name.includes('Decentral Games')) {
+          if (json_1[k].event.name.includes('Decentral Games') 
+            || json_1[k].event.name.includes('BAYC')) {
             poaps.push(json_1[k].event);
           }
         }

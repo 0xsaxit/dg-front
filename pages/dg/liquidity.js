@@ -1,10 +1,13 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { useContext } from 'react';
-import DAO from '../../components/home/DAO';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import Farming from 'components/home/Farming';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+import DAO from 'components/home/DAO';
+
+import styles from './dg.module.scss';
 
 const Liquidity = () => {
   // get user status from the Context API store
@@ -21,7 +24,7 @@ const Liquidity = () => {
       {state.userStatus ? (
         <DAO DGState={'uniswap'} />
       ) : (
-        <div className="account-other-inner-p" style={{ marginTop: '150px' }}>
+        <div className={styles.account_other_inner_p}>
           You must connect your wallet to view this page
         </div>
       )}

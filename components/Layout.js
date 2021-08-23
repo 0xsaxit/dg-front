@@ -1,22 +1,14 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../store';
 import { initGA, logPageView } from './Analytics';
-import MenuTop from './home/MenuTop';
-import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '../static/css/theme';
-import { GlobalStyles } from '../static/css/global';
+import MenuTop from './home/MenuTop/index.js';
 import { useRouter } from 'next/router';
-
 
 const Layout = props => {
   // get theme (light or dark mode) from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
-
-  // define local variables
-  // change second "lightTheme" to "darkTheme" when theme jump is fixed
-  const themeMode = state.theme === 'light' ? lightTheme : lightTheme;
 
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
@@ -34,18 +26,15 @@ const Layout = props => {
   }, [state.userStatus]);
 
   return (
-    <ThemeProvider theme={themeMode}>
-      <GlobalStyles />
-
-      {typeof window === 'undefined' ||
-      typeof window.matchMedia === 'undefined' ? (
-        <></>
+    <>
+      {router.pathname === '/' ? (
+        <MenuTop isHomePage={true} />
       ) : (
         <MenuTop />
       )}
 
       {props.children}
-    </ThemeProvider>
+    </>
   );
 };
 

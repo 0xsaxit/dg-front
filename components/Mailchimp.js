@@ -18,7 +18,7 @@ const CustomForm = ({ status, message, onValidated }) => {
   //     setName(e.target.value);
   //   }
 
-  function handleEmailChange(e) {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   }
 
@@ -93,7 +93,7 @@ class Mailchimp extends Component {
             <CustomForm
               status={status}
               message={message}
-              onValidated={(formData) => subscribe(formData)}
+              onValidated={formData => subscribe(formData)}
             />
           )}
         />

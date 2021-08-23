@@ -15,8 +15,27 @@
 }
 
 .terms_modal {
+	background: black !important;
+    box-shadow: none !important;
+    border-radius: 16px !important;
 	width: 360px !important;
 	padding: 30px;
+
+	&_open_icon {
+		margin: -60px 0 45px -30px;
+	}
+
+	&_second {
+		padding-top: 16px;
+	}
+
+	&_three {
+		padding: 16px 0 24px 0;
+	}
+
+	&_checkbox {
+		padding-top: 10px;
+	}
 
 	.button_close {
 		color: white;
@@ -29,20 +48,58 @@
 	}
 
 	.title {
+		color: white;
+		margin-bottom: 0px;
+		font-family: Larsseit-ExtraBold;
 		font-weight: 800;
 		font-size: 24px;
 		text-align: left;
 		letter-spacing: -0.5px;
 		padding-bottom: 12px;
 	}
+	.terms_modal_checkbox {
+		margin-top: 4px;
+		margin-right: 24px;
+
+		label {
+
+			&:before {
+				// background: black !important;
+				border: 2px solid #fff;
+				border-radius: 6px;
+				width: 24px;
+				height: 24px;
+				background: 0 0 !important;
+			}
+			&:after {
+				border-radius: 6px;
+				width: 24px;
+				height: 24px;
+				padding-top: 3px;
+				font-size: 14px;
+				background: #0d6efd;
+				color: #fff!important;
+			}
+			&:hover {
+				&::before {
+					background: 0 0 !important;
+					border: 2px solid #fff;
+				}
+			}
+		}
+
+	}
 
 	.subtitle {
+		font-family: Larsseit-Regular;
 		font-size: 18px;
 		line-height: 24px;
 		color: rgba(255, 255, 255, 1) !important;
 	}
 
 	.subtitle_2 {
+		font-family: Larsseit-Regular;
+		padding-top: 3px;
 		font-size: 18px;
 		line-height: 24px;
 		color: rgba(255, 255, 255, 1) !important;

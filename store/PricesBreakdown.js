@@ -1,9 +1,9 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
-import Transactions from '../common/Transactions';
-import Fetch from '../common/Fetch';
-import Global from '../components/Constants';
+import Transactions from 'common/Transactions';
+import Fetch from 'common/Fetch';
+import Global from 'components/Constants';
 
 function PricesBreakdown() {
   const [state, dispatch] = useContext(GlobalContext);

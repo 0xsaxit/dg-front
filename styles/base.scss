@@ -1,18 +1,9 @@
-@import '~sass-mq/mq';
+@import './colors';
+@import './mixins';
+@import './common';
+@import './font';
 
 $spacer: 1rem;
-$color-blue: #006eff;
-$color-lightgray: #2f2f2f;
-$color-dark: #1f1f1f;
-$color-white: #ffffff;
-
-// sass-mq variables
-$mq-breakpoints: (
-  small: 576px,
-  medium: 768px,
-  large: 992px,
-  extra-large: 1200px,
-);
 
 .btn-primary:active,
 .btn-primary:hover,
@@ -46,6 +37,10 @@ $mq-breakpoints: (
   }
 }
 
+.ui.popup:before {
+  display: none;
+}
+
 .ui.popup.visible.account-popup {
   animation: showing 300ms ease-in-out;
 }
@@ -53,3 +48,11 @@ $mq-breakpoints: (
 .ui.visible.modal {
   animation: showing 300ms ease-in-out;
 }
+.ui.dimmer {
+	background: rgba(26, 26, 26, 0.65);
+}
+
+.transak_modal-overlay {
+	background: rgba(26, 26, 26, 0.65);
+}
+

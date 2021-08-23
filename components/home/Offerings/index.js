@@ -1,13 +1,15 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from 'store';
 import Link from 'next/link';
-import { Divider, Icon } from 'semantic-ui-react';
-import ContentOfferings from '../../content/ContentOfferings';
-import ContentLeaderboard from '../../content/ContentLeaderboard';
-import Spinner from '../../Spinner'; 
-import Images from '../../../common/Images';
-import Aux from '../../_Aux';
+import { Icon } from 'semantic-ui-react';
+import ContentOfferings from 'components/content/ContentOfferings';
+import ContentLeaderboard from 'components/content/ContentLeaderboard';
+// import Spinner from '../Spinner'; // ********** should we add the spinner to this page??? **********
+import Images from 'common/Images';
+import Aux from 'components/_Aux';
 import { useMediaQuery } from 'hooks';
+import cn from 'classnames';
+
 import styles from './Offerings.module.scss';
 
 const detailsGames = {
@@ -169,32 +171,22 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628718435/Screen_Shot_2021-08-11_at_10.46.57_PM_wnwyvi.png',
     'nft-pic',
     'DG Headphones',
     'LEGENDARY',
-    '',
-    'https://opensea.io/assets/matic/0xf16ff41128b298304b761b49c1c56580972ada32/13',
-    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ],
-  headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
-    'nft-pic',
-    'DG Headphones',
-    'LEGENDARY',
-    '',
-    'https://opensea.io/assets/dg-accessories',
+    'Hitting the tables? Tune out the noise, get in the zone.',
+    'https://market.decentraland.org/contracts/0xf16ff41128b298304b761b49c1c56580972ada32/items/0',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
 };
 
-const Offerings = (props) => {
+const Offerings = props => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [gameSelect, setGameSelect] = useState('play');
-  const [imageSelect, setImageSelect] = useState('');
   const [timePeriod, setTimePeriod] = useState('ALL TIME');
 
   const gameState = props.gameState;
@@ -799,19 +791,19 @@ const Offerings = (props) => {
     );
   }
 
-  function leaderboardLink(link) {
+  const leaderboardLink = (link) => {
     if (state.userStatus >= 4) {
       if (link) {
         return (
           <Link href="/games/leaderboard">
-            <span className="account-hover">
+            <span className={styles.account_hover}>
               <b>Leaderboard</b>
             </span>
           </Link>
         );
       } else {
         return (
-          <span className="account-hover active">
+          <span className={styles.account_hover_active}>
             <b>Leaderboard</b>
           </span>
         );

@@ -1,12 +1,15 @@
 import { useState, useContext } from 'react';
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import Link from 'next/link';
-import { Divider, Icon } from 'semantic-ui-react';
-import ContentOfferings from '../content/ContentOfferings';
-import ContentLeaderboard from '../content/ContentLeaderboard';
+import { Icon } from 'semantic-ui-react';
+import ContentOfferings from 'components/content/ContentOfferings';
+import ContentLeaderboard from 'components/content/ContentLeaderboard';
 // import Spinner from '../Spinner'; // ********** should we add the spinner to this page??? **********
-import Images from '../../common/Images';
-import Aux from '../_Aux';
+import Images from 'common/Images';
+import Aux from 'components/_Aux';
+import cn from 'classnames';
+
+import styles from './Offerings.module.scss';
 
 const detailsGames = {
   Poker: [
@@ -167,26 +170,17 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628718435/Screen_Shot_2021-08-11_at_10.46.57_PM_wnwyvi.png',
     'nft-pic',
     'DG Headphones',
     'LEGENDARY',
-    '',
-    'https://opensea.io/assets/matic/0xf16ff41128b298304b761b49c1c56580972ada32/13',
-    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ],
-  headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
-    'nft-pic',
-    'DG Headphones',
-    'LEGENDARY',
-    '',
-    'https://opensea.io/assets/dg-accessories',
+    'Hitting the tables? Tune out the noise, get in the zone.',
+    'https://market.decentraland.org/contracts/0xf16ff41128b298304b761b49c1c56580972ada32/items/0',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
 };
 
-const Offerings = (props) => {
+const Offerings = props => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -198,8 +192,9 @@ const Offerings = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  function handleChange(value) {
-    var gameSelect = '';
+  const handleChange = (value) => {
+    let gameSelect = '';
+
     if (value === 'play') {
       gameSelect = 'play';
     } else if (value === 'mana') {
@@ -213,14 +208,16 @@ const Offerings = (props) => {
     } else {
       gameSelect = 'atri'
     }
+
     setGameSelect(gameSelect);
   }
 
   const timePeriods = ['ALL TIME', 'WEEKLY', 'DAILY', 'COMPETITION'];
 
-  function timeChangeForward() {
-    var i = timePeriod;
-    var j = timePeriods.indexOf(i);
+  const timeChangeForward = () => {
+    let i = timePeriod;
+    let j = timePeriods.indexOf(i);
+
     if (j < 3) {
       setTimePeriod(timePeriods[j + 1]);
     } else {
@@ -229,9 +226,10 @@ const Offerings = (props) => {
     }
   }
 
-  function timeChangeBackward() {
-    var i = timePeriod;
-    var j = timePeriods.indexOf(i);
+  const timeChangeBackward = () => {
+    let i = timePeriod;
+    let j = timePeriods.indexOf(i);
+
     if (j < 1) {
       j = 3;
       setTimePeriod(timePeriods[j]);
@@ -241,31 +239,30 @@ const Offerings = (props) => {
   }
 
   // tab select and coin select area
-  function submenu() {
+  const submenu = () => {
     return (
-      <div>
-        <div className="account-other-tabs" style={{ padding: '200px 0px 60px 0px' }}>
+        <div className={styles.account_other_tabs}>
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////  tab select area   //////////////////////////////// */}
 
           {gameState === 'games' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
-              <span className="account-hover active">
+            <p className={cn("w-100", styles.account_other_p)}>
+              <span className={styles.account_hover_active}>
                 <b>Games</b>
               </span>
               <Link href="/games/casinos">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Casinos</b>
                 </span>
               </Link>
               <Link href="/games/nfts">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Shop</b>
                 </span>
               </Link>
@@ -273,22 +270,22 @@ const Offerings = (props) => {
               {leaderboardLink(true)}
             </p>
           ) : gameState === 'casinos' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <Link href="/games">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Games</b>
                 </span>
               </Link>
-              <span className="account-hover active">
+              <span className={styles.account_hover_active}>
                 <b>Casinos</b>
               </span>
               <Link href="/games/nfts">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>NFTs</b>
                 </span>
               </Link>
               <Link href="/games/shop">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Shop</b>
                 </span>
               </Link>
@@ -296,22 +293,22 @@ const Offerings = (props) => {
               {leaderboardLink(true)}
             </p>
           ) : gameState == 'nfts' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <Link href="/games">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Games</b>
                 </span>
               </Link>
               <Link href="/games/casinos">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Casinos</b>
                 </span>
               </Link>
-              <span className="account-hover active">
+              <span className={styles.account_hover_active}>
                 <b>NFTs</b>
               </span>
               <Link href="/games/shop">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Shop</b>
                 </span>
               </Link>
@@ -319,23 +316,23 @@ const Offerings = (props) => {
               {leaderboardLink(true)}
             </p>
           ) : gameState == 'shop' ? (
-            <p className="account-other-p" style={{ width: '100%' }}>
+            <p className={cn("w-100", styles.account_other_p)}>
               <Link href="/games">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Games</b>
                 </span>
               </Link>
               <Link href="/games/casinos">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>Casinos</b>
                 </span>
               </Link>
               <Link href="/games/nfts">
-                <span className="account-hover">
+                <span className={styles.account_hover}>
                   <b>NFTs</b>
                 </span>
               </Link>
-              <span className="account-hover active">
+              <span className={styles.account_hover_active}>
                 <b>Shop</b>
               </span>
 
@@ -343,24 +340,24 @@ const Offerings = (props) => {
             </p>
           ) : (
               <div>
-                <p className="account-other-p" style={{ width: '100%' }}>
+                <p className={cn("w-100", styles.account_other_p)}>
                   <Link href="/games">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>Games</b>
                     </span>
                   </Link>
                   <Link href="/games/casinos">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>Casinos</b>
                     </span>
                   </Link>
                   <Link href="/games/nfts">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>NFTs</b>
                     </span>
                   </Link>
                   <Link href="/games/shop">
-                    <span className="account-hover">
+                    <span className={styles.account_hover}>
                       <b>Shop</b>
                     </span>
                   </Link>
@@ -372,23 +369,22 @@ const Offerings = (props) => {
             </div>
           )}
         </div>
-      </div>
     );
   }
 
-  function leaderboardLink(link) {
+  const leaderboardLink = (link) => {
     if (state.userStatus >= 4) {
       if (link) {
         return (
           <Link href="/games/leaderboard">
-            <span className="account-hover">
+            <span className={styles.account_hover}>
               <b>Leaderboard</b>
             </span>
           </Link>
         );
       } else {
         return (
-          <span className="account-hover active">
+          <span className={styles.account_hover_active}>
             <b>Leaderboard</b>
           </span>
         );
@@ -398,20 +394,14 @@ const Offerings = (props) => {
     }
   }
 
-  function coinSelect() {
+  const coinSelect = () => {
     return (
       <Aux>
-        <span style={{ display: 'flex', width: '100%', minWidth: '861px' }}>
+        <span className={styles.coin_select}>
+          <span className={styles.leaderboard_coin_select_mobile}>
           <span
-            style={{
-              display: 'flex',
-              marginBottom: '9px',
-            }}
-            className="leaderboard-coin-select-mobile"
-          >
-            <span
               className={
-                gameSelect === 'play' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'play' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               id="account-select-play"
               onClick={() => handleChange('play')}
@@ -431,7 +421,7 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'eth' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'eth' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('eth')}
@@ -451,7 +441,7 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'mana' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'mana' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               onClick={() => handleChange('mana')}
             >
@@ -470,7 +460,7 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'usdt' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'usdt' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('usdt')}
@@ -490,7 +480,7 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'dai' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'dai' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('dai')}
@@ -510,7 +500,7 @@ const Offerings = (props) => {
             </span>
             <span
               className={
-                gameSelect === 'atri' ? 'account-hover-time active' : 'account-hover-time'
+                gameSelect === 'atri' ? `${styles.account_hover_time_active}` : `${styles.account_hover_time}`
               }
               style={{ fontFamily: 'Larsseit-Bold' }}
               onClick={() => handleChange('atri')}
@@ -530,7 +520,7 @@ const Offerings = (props) => {
             </span>
           </span>
 
-          <span className="account-hover-time-tablet">
+          <span className={styles.account_hover_time_tablet}>
             <Icon
               className="time-select-icon"
               name="angle left"
@@ -550,9 +540,9 @@ const Offerings = (props) => {
   }
 
   return (
-    <div className="main-container">
-      <div className="page-container">
-        <div className="account-other-inner-container">
+    <div className={styles.main_container}>
+      <div className={styles.page_container}>
+        <div className={styles.account_other_inner_container}>
           {submenu()}
 
           {gameState === 'leaderboard' ? (

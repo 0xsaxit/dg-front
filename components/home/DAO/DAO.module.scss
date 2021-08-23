@@ -5,6 +5,7 @@
   height: 100vh;
   position: relative;
   z-index: 9;
+  float: right;
 
   @include mq($until: 1040px) {
     width: 80px;

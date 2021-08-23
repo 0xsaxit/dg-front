@@ -9,6 +9,130 @@
 	width: 600px;
 	border: 1px solid #2A2A2A;
 	border-radius: 28px;
+}
+.account_other_tabs{
+    margin-top: 45px;
+}
+.account_data_container {
+  position: relative;
+  z-index: 0;
+  margin-top: 206px;
+
+  .avatar_picture {
+    align-self: center;
+
+    &_main {
+      border-radius: 100%;
+      background-color: white;
+      width: 120px;
+      display: flex;
+      margin: 90px 0 0 0;
+    }
+  }
+
+  .avatar_edit_circle {
+    border: 1px solid #edf2f9;
+    background-color: white;
+    position: relative;
+    z-index: 3;
+    width: 27px;
+    height: 27px;
+    border-radius: 100%;
+    float: right;
+    margin-top: -27px;
+    margin-right: 9px;
+  }
+
+  .edit_icon {
+    color: #5c5e61;
+    margin-left: 4px;
+    margin-top: 3px;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+.popup_container {
+	background: #1F1F1F !important;
+	border-radius: 8px !important;
+	margin-top: 340px !important;
+	padding: 10px 20px 20px 20px !important;
+	border: 0px solid white !important;
+
+	&::before {
+		background: #1F1F1F !important;
+		box-shadow: none !important;
+		top: 28px !important;
+	}
+
+	.popup_header {
+		font-size: 13px;
+		font-family: Larsseit-Bold;
+		margin-left: 10px;
+		line-height: 18px;
+	}
+
+	.popup_row {
+		display: flex;
+	}
+
+	.popup_column {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-self: center;
+		width: 100%;
+
+		.popup_img {
+			height: 30%;
+			width: 30%;
+			align-self: center;
+			margin-top: 20px;
+			margin-bottom: 8px;
+		}
+
+		.popup_img_high {
+			height: 20%;
+			width: 20%;
+			align-self: center;
+			margin-top: 20px;
+			margin-bottom: 8px;
+		}
+
+		.row_header {
+			font-size: 13px;
+			font-family: Larsseit-Bold;
+			text-align: center;
+			margin-bottom: 0px;
+		}
+
+		.row_subtitle {
+			font-size: 10px;
+			font-family: Larsseit-Bold;
+			text-align: center;
+			color: rgba(255, 255, 255, 0.5) !important;
+		}
+	}
+
+	.card_subtitle {
+		margin-top: 8px;
+		font-size: 10px;
+		font-family: Larsseit-Bold;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.5) !important;	
+	}
+}
+
+
+.card_container {
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 610px;
+	height: 280px;
+	border-radius: 16px;
+	background: #161616;
 	display: flex;
 	align-items: center;
 

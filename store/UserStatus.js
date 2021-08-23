@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
-import Fetch from '../common/Fetch';
+import Fetch from 'common/Fetch';
 
 function UserStatus() {
   // dispatch user's status value to the Context API store
@@ -82,7 +82,7 @@ function UserStatus() {
 
       return jsonStatus.status;
     } catch {
-      console.log('Unregistered wallet: User Status');
+      console.log('Unregistered wallet: UserStatus');
 
       return false;
     }

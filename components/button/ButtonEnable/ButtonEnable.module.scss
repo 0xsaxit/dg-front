@@ -1,0 +1,7 @@
+@import "styles/base.scss";
+
+@include mq($until: small) {
+  .account_connected_play_button_mobile {
+    min-width: 48.5% !important;
+  }
+}

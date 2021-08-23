@@ -5,12 +5,13 @@ import { withRouter } from 'next/router';
 import { Image, Divider, Grid, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import { GlobalContext } from '../../store';
+import styles from './screen.module.scss'
 
 const Screen = ({ pages, category, handleClickButton, match, history }) => {
   const filteredPages =
     category === 'All'
       ? pages
-      : pages.filter((page) =>
+      : pages.filter(page =>
           page.categories.length > 0
             ? page.categories[0].name === category
             : false
@@ -19,7 +20,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
   const [results, setResults] = useState([]);
   const [value, setValue] = useState('');
   const [state, dispatch] = useContext(GlobalContext);
-  const blogs = state.pages.data.map((blog) => {
+  const blogs = state.pages.data.map(blog => {
     return {
       title: blog.title,
       image: blog.featured_image,
@@ -44,7 +45,7 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
       }
 
       const re = new RegExp(_.escapeRegExp(value), 'i');
-      const isMatch = (result) => re.test(result.title);
+      const isMatch = result => re.test(result.title);
 
       setLoading(false);
       setResults(_.filter(blogs, isMatch));
@@ -53,9 +54,9 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
 
   return (
     <Segment vertical>
-      <div className="blog-page">
-        <Container className="featured-blog-container">
-          <Container>
+      <div className={styles.blog_page}>
+        <Container className={styles.featured_blog_container}>
+          <Container className={styles.screen_container}> 
             <Menu
               borderless
               style={{ border: 'none', boxShadow: 'none' }}
@@ -94,38 +95,38 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
               </Link>
             </Menu>
           </Container>
-          <Container style={{ marginTop: '-27px' }}>
+          <Container className={styles.screen_container} style={{ marginTop: '-27px' }}>
             {/* <Fade bottom distance="20px"> */}
             <h3 className="main-blog-h3"> Decentral Games</h3>
             {/* </Fade> */}
             {/* <Fade bottom distance="10px" duration={600} delay={200}> */}
-            <h5 className="blog-hero">
+            <h5 className={styles.blog_hero}>
               {' '}
               Check back here regularly for updates on our technology,
               tutorials, and Decentral Games news.{' '}
             </h5>
             {/* </Fade> */}
 
-            <div className="mobile-featured-container">
+            <div className={styles.mobile_featured_container}>
               {/* <Fade bottom distance="20px" duration={600} delay={400}> */}
               <p style={{ color: 'rgb(97, 97, 97)' }}> Featured Post</p>
               <Divider style={{ opacity: '0.5', paddingBottom: '15px' }} />
-              <Link href="/blog/[id]" as="/blog/tominoya-casino-nft-sale">
+              <Link href="/blog/[id]" as="/blog/tominoya-casino-nft-sale" className = {styles.links_wrapper}>
                 <a>
                   <Grid
                     style={{ paddingBottom: '120px' }}
-                    className="featured-post-padding"
+                    className={styles.featured_post_padding}
                   >
-                    <Grid.Row>
-                      <Grid.Column computer={11} tablet={16} mobile={16}>
+                    <Grid.Row className= {styles.row}>
+                      <Grid.Column computer={11} tablet={16} mobile={16} className={styles.col}>
                         <Image
                           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1588364844/tominoya_feature_lcfdm6.png"
-                          className="featured-image"
+                          className={styles.featured_image}
                         />
                       </Grid.Column>
-                      <Grid.Column computer={5} tablet={16} mobile={16}>
-                        <div className="post-info">
-                          <div className="top">
+                      <Grid.Column computer={5} tablet={16} mobile={16} className={styles.col}>
+                        <div className={styles.post_info}>
+                          <div className={styles.top}>
                             <div>
                               <span className="preview-date">19 APR 2020</span>
                               <span className="preview-category">
@@ -286,23 +287,24 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
           <Divider />
         </div>
         <Container
-          className="outter-blog-container"
+          className={styles.outter_blog_container}
           style={{ paddingBottom: '60px' }}
         >
-          <div className="posts">
-            {filteredPages.map((page) => (
+          <div className={styles.posts}>
+            {filteredPages.map(page => (
               <Link
                 href="/blog/[id]"
                 key={page.created}
                 as={`/blog/${page.slug}`}
+                className={styles.link_wrappper}
               >
-                <a className="post">
-                  <Container className="post-container">
-                    <div className="post-image">
+                <a className={styles.post}>
+                  <Container className={styles.post_container}>
+                    <div className={styles.post_image}>
                       <img src={page.featured_image || page.banner} alt="" />
                     </div>
-                    <div className="post-info">
-                      <div className="top">
+                    <div className={styles.post_info}>
+                      <div className={sytles.top}>
                         <div className="date">
                           <span>
                             {new Date(page.created).toLocaleDateString(

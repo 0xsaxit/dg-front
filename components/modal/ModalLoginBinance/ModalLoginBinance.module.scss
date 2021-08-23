@@ -1,6 +1,5 @@
 @import "styles/base.scss";
 
-
 .play_now_modal_binance {
 	background: #F1CD50;
 	height: 64px;
@@ -21,6 +20,11 @@
 	.button_close {
 		color: white;
 		cursor: pointer;
+	}
+
+	.metamask_img {
+		height: 36px;
+		margin: 0 24px 0 -48px;
 	}
 
 	.title {

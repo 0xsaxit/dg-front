@@ -11,6 +11,7 @@
 
 	.referrals_header {
 		&_title {
+			color: white;
 			max-width: 100%;
 			font-family: Larsseit-ExtraBold;
 			line-height: 59px;
@@ -45,6 +46,7 @@
 			}
 
 			.referral_link {
+				color: white;
 				font-family: Larsseit-Bold;
 				font-size: 24px;
 				margin-bottom: 0;
@@ -89,6 +91,12 @@
 		font-size: 24px;
 		font-family: Larsseit-ExtraBold;
 		margin-bottom: -12px;
+	}
+	
+	.referrals_title {
+		color: white;
+		font-size: 32px !important;
+		font-family: Larsseit-ExtraBold;
 	}
 
 	.referrals_body {

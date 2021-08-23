@@ -1,27 +1,27 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../../../store';
+import { GlobalContext } from 'store';
 import Web3 from 'web3';
-import cn from 'classnames';
 import Link from 'next/link';
-import { slide as Menu } from 'react-burger-menu';
-import styled from 'styled-components';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
-import Overview from '../../content/ContentDAO/Overview';
-import Governance from '../../content/ContentDAO/Governance';
-import Liquidity from '../../content/ContentDAO/Liquidity';
-import Gameplay from '../../content/ContentDAO/Gameplay';
-import ContentTreasury from '../../content/ContentDAO/Treasury';
+import Overview from 'components/content/ContentDAO/Overview';
+import ContentGovernance from 'components/content/ContentGovernance';
+import ContentMining from 'components/content/ContentMining';
+import ContentMiningV1 from 'components/content/ContentMiningV1';
+import ContentBalancer from 'components/content/ContentBalancer';
+import ContentUniswap from 'components/content/ContentUniswap';
+import ContentAirdrop from 'components/content/ContentAirdrop';
+import ContentTreasury from 'components/content/ContentTreasury';
+import ButtonReward1 from 'components/button/ButtonReward1';
+import ButtonReward2 from 'components/button/ButtonReward2';
+import Global from 'components/Constants';
+import Transactions from 'common/Transactions';
+import Fetch from 'common/Fetch';
+import Governance from 'components/content/ContentDAO/Governance';
+import Liquidity from 'components/content/ContentDAO/Liquidity';
+import Gameplay from 'components/content/ContentDAO/Gameplay';
+import Treasury from 'components/content/ContentDAO/Treasury';
 
-import ContentMining from '../../content/ContentMining';
-import ContentMiningV1 from '../../content/ContentMiningV1';
-import ContentBalancer from '../../content/ContentBalancer';
-import ContentAirdrop from '../../content/ContentAirdrop';
-import ButtonReward1 from '../../button/ButtonReward1';
-import ButtonReward2 from '../../button/ButtonReward2';
-import Transactions from '../../../common/Transactions';
-import Global from '../../Constants';
-import Fetch from '../../../common/Fetch';
 import styles from './DAO.module.scss';
 
 const DAO = props => {
@@ -801,7 +801,7 @@ const DAO = props => {
               reward={reward}
             />
           ) : DGState === 'treasury' ? (
-            <ContentTreasury formatPrice={formatPrice} />
+            <Treasury formatPrice={formatPrice} />
           ) : DGState === 'airdrop' ? (
             <ContentAirdrop price={price} formatPrice={formatPrice} />
           ) : DGState === 'admin' ? (

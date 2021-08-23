@@ -1,16 +1,17 @@
-import { GlobalContext } from '../../store';
-//import { useContext } from 'react';
-import React, { useContext, useEffect } from 'react';
-import AccountData from '../../components/home/AccountData';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import { GlobalContext } from 'store';
+import { useContext } from 'react';
+import AccountData from 'components/home/AccountData';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+
+import styles from './account.module.scss';
 
 const Account = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  
+
   return (
     <Layout>
       <Header
@@ -22,7 +23,7 @@ const Account = () => {
       {state.userStatus ? (
         <AccountData dataType={'balances'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className={styles.account_other_inner_p}>
           You must connect your wallet to view this page
         </div>
       )}

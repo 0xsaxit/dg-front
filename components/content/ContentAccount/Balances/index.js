@@ -10,9 +10,10 @@ import ModalAcceptMANA from 'components/modal/ModalAccept/MANA';
 import ModalAcceptDAI from 'components/modal/ModalAccept/DAI';
 import ModalAcceptETH from 'components/modal/ModalAccept/ETH';
 import ModalAcceptATRI from 'components/modal/ModalAccept/ATRI';
+import BuyArrow from 'assets/svg/buyarrow.svg';
+
 import styles from './Balances.module.scss';
 import Fetch from '../../../../common/Fetch';
-import { BreadcrumbJsonLd } from 'next-seo';
 
 
 const connext = {
@@ -28,8 +29,45 @@ const connext = {
   assetID_2_USDT: Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT,
 };
 
-const Balances = (props) => {
-  // get token balances from the Context API store
+const coins = [
+  {
+    coinKey: 'weth',
+    coin: 'ETH',
+    coinName: 'Ethereum',
+    tokenNumber: 4,
+    balance: a => parseInt(a[2][3]).toLocaleString(),
+  },
+  {
+    coinKey: 'mana',
+    coin: 'MANA',
+    coinName: 'Decentraland',
+    tokenNumber: 1,
+    balance: a => parseInt(a[1][1]).toLocaleString(),
+  },
+  {
+    coinKey: 'usdt',
+    coin: 'USDT',
+    coinName: 'Tether',
+    tokenNumber: 2,
+    balance: a => parseInt(a[2][1] * 1000000000000).toLocaleString(),
+  },
+  {
+    coinKey: 'dai',
+    coin: 'DAI',
+    coinName: 'Dai',
+    tokenNumber: 0,
+    balance: a => parseInt(a[0][1]).toLocaleString(),
+  },
+  {
+    coinKey: 'atri',
+    coin: 'ATRI',
+    coinName: 'Atri',
+    tokenNumber: 3,
+    balance: a => parseInt(a[2][2]).toLocaleString(),
+  },
+];
+
+const Balances = () => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
@@ -155,12 +193,14 @@ const Balances = (props) => {
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_DAI_kbvlhx.png',
     swapAsset: 'MATIC_DAI',
   });
+
   const rampUSDT = new RampInstantSDK({
     hostAppName: 'Buy USDT Directly',
     hostLogoUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1618335593/COIN_-_USDT_kb1sem.png',
     swapAsset: 'USDT',
   });
+
   const rampETH = new RampInstantSDK({
     hostAppName: 'Buy ETH Directly',
     hostLogoUrl:
@@ -168,7 +208,48 @@ const Balances = (props) => {
     swapAsset: 'MATIC_ETH',
   });
 
-  function Balances() {
+  // set modal state and event type
+  const setStateAndEvent = (number, state, type) => {
+    if (number === 1) {
+      setShowModal(state);
+    } else if (number === 2) {
+      setShowModal_2(state);
+    } else if (number === 3) {
+      setShowModal_3(state);
+    } else if (number === 4) {
+      setShowModal_4(state);
+    } else if (number === 5) {
+      setShowModal_5(state);
+    } else if (number === 6) {
+      setShowModal_6(state);
+    }
+
+    setEvent(type);
+  }
+
+  // handle Connext deposit/withdrawal events
+  const getWithdrawalAmount = (txHash, amountUi) => {
+    console.log("x1. reciverAddress", state.userAddress);
+    console.log("x2. txHash: " + txHash);
+    console.log("x3. amountUi: " + amountUi);
+
+    setTxHash(txHash);
+    setAmount(amountUi);
+  }
+
+  // top up user to 5000 play tokens
+  const topUp = async () => {
+    await Fetch.TOP_UP_USER(state.userAddress);
+
+    const refresh = !state.updateInfo;
+
+    dispatch({
+      type: 'update_info',
+      data: refresh,
+    });
+  }
+
+  const Balances = () => {
     return (
       <div className={styles.balances_container}>
         <h2 className={styles.balances_container_title}>Your Assets</h2>
@@ -249,9 +330,7 @@ const Balances = (props) => {
                 onClick={() => rampETH.show()}
               >
                 Buy
-                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
-                </svg>
+                <BuyArrow />
               </Button>
             </div>
           </div>
@@ -364,7 +443,7 @@ const Balances = (props) => {
               >
                 Buy
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
+                  <path d="M12.125 8.4292L12.1177 1.09033C12.1177 0.504395 11.7295 0.101562 11.1289 0.101562H3.78271C3.21875 0.101562 2.81592 0.519043 2.81592 1.02441C2.81592 1.52246 3.24072 1.92529 3.76807 1.92529H6.45605L9.19531 1.83008L7.8916 2.97998L1.17529 9.70361C0.977539 9.90869 0.867676 10.1504 0.867676 10.3921C0.867676 10.8828 1.32178 11.3516 1.82715 11.3516C2.06885 11.3516 2.31055 11.2417 2.5083 11.0439L9.23193 4.32764L10.3965 3.0166L10.2866 5.65332V8.45117C10.2866 8.97119 10.6821 9.40332 11.1948 9.40332C11.7002 9.40332 12.125 8.97852 12.125 8.4292Z" fill="white"/>
                 </svg>
               </Button>
             </div>
@@ -659,66 +738,6 @@ const Balances = (props) => {
         </div>
       </div>
     );
-  }
-
-  // set modal state and event type
-  function setStateAndEvent(number, state, type) {
-
-    if (number === 1) {     
-      setShowModal(state);
-    } else if (number === 2) {
-      setShowModal_2(state);
-    } else if (number === 3) {
-      setShowModal_3(state);
-    } else if (number === 4) {
-      setShowModal_4(state);
-    } else if (number === 5) {
-      setShowModal_5(state);
-    } else if (number === 6) {
-      setShowModal_6(state);
-    }
-
-    if(type) {
-      setEvent(type);
-    }
-  }
-
-  // handle Connext deposit/withdrawal events
-  function getWithdrawalAmount(txHash, amountUi) {
-    setTxHash(txHash);
-    setAmount(amountUi);
-  }
-
-  function updateStatus(resumeID, lockID) {
-    
-    dispatch({
-      type: 'set_dgLoading',
-      data: resumeID === 0 ? 2 : 1,
-    });
-    
-    dispatch({
-      type: 'set_openModal',
-      data: {
-        resumeID: resumeID === 0? 0 : resumeID,
-        lockID: lockID,
-      }
-    });
-
-    setLock(lockID);
-    console.log("test", state.openModal);
-
-  }
-
-  // top up user to 5000 play tokens
-  async function topUp() {
-    await Fetch.TOP_UP_USER(state.userAddress);
-
-    const refresh = !state.updateInfo;
-
-    dispatch({
-      type: 'update_info',
-      data: refresh,
-    });
   }
 
   return Balances();

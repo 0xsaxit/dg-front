@@ -213,7 +213,6 @@ function History({ state }) {
                 </Grid.Column>
               );
             })}
-            }
           </Grid>
         )}
       </div>

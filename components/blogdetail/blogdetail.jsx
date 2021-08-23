@@ -9,7 +9,7 @@ const BlogDetail = ({ match }) => {
   const [state, dispatch] = useContext(GlobalContext);
   const slug = match.path.split(/[/]/);
   const currentPage = state.pages.data.find(
-    (page) => page.slug === slug[slug.length - 1]
+    page => page.slug === slug[slug.length - 1]
   );
 
   const index = state.pages.data.indexOf(currentPage);
@@ -23,12 +23,12 @@ const BlogDetail = ({ match }) => {
   const category = currentPage.categories[0].name;
 
   const filteredPages = state.pages.data.filter(
-    (page) =>
+    page =>
       page.categories[0].name === category && page.slug !== currentPage.slug
   );
 
   const unfilteredPages = state.pages.data.filter(
-    (page) => page.categories[0].name !== category
+    page => page.categories[0].name !== category
   );
 
   useEffect(() => {

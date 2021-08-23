@@ -1,8 +1,8 @@
 import { useEffect, useContext, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { GlobalContext } from 'store/index';
-import ContentEvents from './ContentEvents';
 import Spinner from 'components/Spinner';
+import ContentEvents from './ContentEvents';
 import Global from 'components/Constants';
 
 import styles from './ComingEvents.module.scss';

@@ -1,8 +1,8 @@
-import Offerings from '../../components/home/Offerings/index.js';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import Offerings from 'components/home/Offerings';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
 
 const Games = () => {
   return (

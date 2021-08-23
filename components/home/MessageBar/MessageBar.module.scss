@@ -1,0 +1,14 @@
+@import 'styles/base.scss';
+
+.message_bar {
+  padding: 10px 30px 9px;
+  position: relative;
+  font-family: 'Larsseit-Regular';
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  background-color: #006EFF;
+  min-height: 38px;
+}

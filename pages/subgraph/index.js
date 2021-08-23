@@ -1,8 +1,8 @@
-import SubgraphData from '../../components/home/SubgraphData';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import SubgraphData from 'components/home/SubgraphData';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
 
 const Subgraph = () => {
   return (

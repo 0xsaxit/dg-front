@@ -6,6 +6,7 @@ import HtmlParser from './HtmlParser';
 // import Link from 'next/link';
 // import Global from '../Constants';
 import Images from '../../common/Images';
+import styles from './screen.module.scss';
 
 const Screen = ({
   slug,
@@ -72,9 +73,9 @@ const Screen = ({
   }, []);
 
   return (
-    <div>
+    <div className={styles.blog_details}>
       <div
-        className="blog-share-div"
+        className={styles.blog_share_div}
         style={{
           maxWidth: '1400px',
           paddingLeft: '27px',
@@ -96,14 +97,14 @@ const Screen = ({
             target="_blank"
           >
             <Icon
-              className="share-icon"
+              className={styles.share_icon}
               style={{ fontSize: '34px' }}
               name="twitter square"
             />
           </a>
           <a href={`http://www.facebook.com/share.php?url=https://decentral.games/blog/${slug}`}>
             <Icon
-              className="share-icon"
+              className={styles.share_icon}
               style={{
                 fontSize: '34px',
                 margin: '15px 0px 15px 0px',
@@ -112,15 +113,15 @@ const Screen = ({
             />
           </a>
           <a href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://decentral.games/blog/${slug}`}>
-            <Icon className="share-icon"style={{ fontSize: '34px' }} name="linkedin" />
+            <Icon className={styles.share_icon}style={{ fontSize: '34px' }} name="linkedin" />
           </a>
         </span>
       </div>
 
-      <div className="blogdetail-page-container">
-        <div className="blogdetails">
-          <div className="bloginfo">
-            <p>
+      <div className={styles.blogdetail_page_container}>
+        <div className={styles.blogdetails}>
+          <div className={styles.bloginfo}>
+            <p className={styles.announcement}>
               {' '}
               <a
                 style={{ color: '#2085f4', position: 'relative', zIndex: '10' }}
@@ -135,15 +136,15 @@ const Screen = ({
               >{`${name}`}</a>{' '}
               » {title}{' '}
             </p>
-            <div className="title">
+            <div className={styles.title}>
               <h1>{title}</h1>
             </div>
 
-            <div className="info">
-              <div className="post-author" style={{ marginBottom: '90px' }}>
+            <div className={styles.info}>
+              <div className={styles.post_author} style={{ marginBottom: '90px' }}>
                 <span style={{ display: 'flex', marginTop: '45px' }}>
                   <div
-                    className="post-date-blogdetail"
+                    className={styles.post_date_blogdetail}
                     style={{ marginRight: '13px' }}
                   >
                     <span>
@@ -154,7 +155,7 @@ const Screen = ({
                       })}
                     </span>
                   </div>
-                  <div className="post-date-blogdetail">
+                  <div className={styles.post_date_blogdetail}>
                     <span>
                       {Math.ceil(body.split(' ').length / 300)} min read
                     </span>
@@ -185,12 +186,12 @@ const Screen = ({
 
         <div style={{ marginTop: '45px' }}>
           <div>
-            <div className="post__content">{HtmlParser(body)}</div>
+            <div className={styles.post__content}>{HtmlParser(body)}</div>
 
-            <div className="read-next-div">
+            <div className={styles.read_next_div}>
               {randomfilteredPages &&
-                randomfilteredPages.map((page) => (
-                  <Button className="read-next-button" href={page.slug}>
+                randomfilteredPages.map(page => (
+                  <Button className={styles.read_next_button} href={page.slug}>
                     {page.title}
                   </Button>
                 ))}

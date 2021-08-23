@@ -1,18 +1,28 @@
 @import "styles/base.scss";
 
 .info_modal {
+	background: black !important;
+	color: white;
 	width: 360px !important;
 	padding: 24px 30px 30px 30px;
 	margin-top: 24px !important;
+
+	&_loader {
+		font-size: 12px;
+		margin: -4px 0 0 0;
+	}
 
 	.button_close {
 		color: white;
 		cursor: pointer;
 		width: 36px;
 		height: 36px;
-		background: black;
 		border-radius: 100%;
 		padding: 8px 10px 8px 10px;
+
+		span {
+			background: black;
+		}
 	}
 	
 	.title {
@@ -45,6 +55,7 @@
 		font-size: 18px;
 		font-family: Larsseit-Bold;
 		margin-top: 18px;
+		margin-bottom: 0px;
 	}
 
 	.row_subtitle {
@@ -73,9 +84,42 @@
 		width: 142px;
 	}
 
+	.machain_dg_element {
+		padding: 6px 12px 0 12px;
+	}
+
+	.staked_dg_element {
+		padding: 0 12px 0 12px;
+	}
+
+	.unclaimed_element {
+		padding: 0 12px 6px 12px;
+	}
+
+	.buy_dg_element {
+		margin-top: 24px;
+	}
+
 	.buy_button:focus,
 	.learn_button:focus {
 		box-shadow: none;
 		border: 0px solid black;
+	}
+}
+.account_button_wrapper{
+	margin-right: 15px;
+	.account_button{
+		background-color: #1f1f1f !important;
+
+	}
+	.right_menu_text {
+		color: white;
+		display: flex;
+		border: none;
+		box-shadow: none;
+		letter-spacing: 1.25px;
+		font-size: 18px;
+		font-family: Larsseit-Bold;
+		padding: 4px 6px 0 6px;
 	}
 }

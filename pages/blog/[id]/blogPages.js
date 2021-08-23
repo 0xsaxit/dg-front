@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import Screen from '../../../components/blogdetail/screen';
-import { GlobalContext } from '../../../store';
+import Screen from 'components/blogdetail/screen';
+import { GlobalContext } from 'store';
 import { Segment, Modal } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
-import ButterCMS from '../../../common/ButterCMS';
+import ButterCMS from 'common/ButterCMS';
 
 const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   }, []);
 
   return (
-    <Segment vertical style={{ top: '150px' }}>
+    <Segment vertical style={{ top: '180px' }}>
       {currentPage && (
         <Screen
           slug={currentPage.slug}

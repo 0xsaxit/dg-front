@@ -57,6 +57,21 @@
     @include mq($until: small) {
       display: none;
     }
+
+  @include mq($until: extra-large) {
+    width: 100%;
+  }
+
+  @include mq($from: extra-large) {
+    width: 75%;
+  }
+
+  .coin_cell {
+    width: 21px;
+    margin-right: 8px;
+    vertical-align: middle;
+    margin-top: -4px;
+    border-radius: 100%;
   }
 
   .title {
@@ -73,6 +88,7 @@
   }
 
   .row_type {
+    color: white;
     font-size: 18px;
     font-family: Larsseit-Bold;
     margin: -38px 0px -30px 40px;
@@ -83,6 +99,14 @@
     font-family: Larsseit-Bold;
     color: rgba(255, 255, 255, 0.75) !important;
     margin: 28px 0px 0px 40px;
+  }
+  
+  .row_date_right {
+    font-size: 14px;
+    font-family: Larsseit-Bold;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin: 28px 0px 0px 40px;
+    text-align: right;
   }
 
   .error_container {
@@ -301,4 +325,5 @@
     width: 34px;
     height: 48px;
   }
+}
 }

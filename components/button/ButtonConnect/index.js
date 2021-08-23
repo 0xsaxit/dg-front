@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import cn from 'classnames';
-import { Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import { useRouter } from 'next/router';
+import { Button } from 'semantic-ui-react';
+import cn from 'classnames';
 import Fetch from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
@@ -107,7 +107,7 @@ const ButtonConnect = () => {
     }
   });
 
-  async function openMetaMask() {
+  const openMetaMask = async () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
@@ -131,8 +131,8 @@ const ButtonConnect = () => {
       // (/websiteLogin API call will return error with new wallet address)
       const response = await getUserStatus();
 
-      console.log('!!!!');
-      console.log(response);
+      // console.log('!!!!');
+      // console.log(response);
 
       if (response) {
         updateStatus(response, false);
@@ -142,7 +142,7 @@ const ButtonConnect = () => {
     }
   }
 
-  async function updateStatus(value, post) {
+  const updateStatus = async (value, post) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
@@ -168,7 +168,7 @@ const ButtonConnect = () => {
     }
   }
 
-  async function getUserStatus() {
+  const getUserStatus = async () => {
     console.log('Get user status: Connect');
 
     try {

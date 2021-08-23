@@ -1,0 +1,59 @@
+@mixin dg_column_style {
+  font-family: 'Lato', sans-serif;
+  border-radius: 4px;
+  padding: 12px 18px 18px 18px;
+  background-color: #1f1f1f;
+}
+
+@mixin welcome_text_style {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: rgb(92, 95, 97) !important;
+  text-transform: uppercase;
+}
+
+@mixin governance_block_style {
+  margin-left: -18px;
+  padding-left: 15px;
+  margin-top: -14px;
+  padding-top: 16px;
+  margin-bottom: -14px;
+  padding-bottom: 16px;
+}
+
+@mixin dg_logo_style {
+  max-width: 42px;
+  max-height: 42px;
+  margin-top: 12px;
+  margin-bottom: 9px;
+  margin-right: 12px;
+  border-radius: 100%; 
+}
+
+@mixin nfts_info_style {
+  background-color: #040506;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 3px 6px 3px 6px;
+  margin-top: -3px;
+  border-radius: 4px;
+}
+
+@mixin account_hover_style {
+  font-family: 'Larsseit-Bold';
+  font-size: 18px;
+  cursor: pointer;
+  margin: 18px 18px 0 18px;
+  padding: 0px 6px 0px 6px;
+}
+
+@mixin earned_table_style {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding-top: 3px;
+  padding-right: 3px;
+  margin: 0 0 1px 0;
+}

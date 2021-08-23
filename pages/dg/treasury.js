@@ -1,10 +1,10 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { useContext } from 'react';
-import DAO from '../../components/home/DAO';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import DAO from 'components/home/DAO';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
 
 const Treasury = () => {
   // get user status from the Context API store

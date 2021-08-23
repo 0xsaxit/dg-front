@@ -1,7 +1,4 @@
-import { Provider } from './Provider'
-import { GlobalContext } from './Context'
+import { Provider } from './Provider';
+import { GlobalContext } from './Context';
 
-export {
-  Provider,
-  GlobalContext,
-}
+export { Provider, GlobalContext };

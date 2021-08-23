@@ -42,6 +42,7 @@
   }
 
   .menu_container {
+    margin: 0px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -54,7 +55,7 @@
     box-shadow: none;
     border: none;
     text-align: center;
-    padding: 34px 30px;
+    padding: 32px 30px;
     color: white;
     font-size: 18px;
     font-family: Larsseit-Bold;

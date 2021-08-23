@@ -1,0 +1,129 @@
+@import 'styles/base.scss';
+
+.home_dashboard_content {
+  .home_gif {
+    @include mq($from: small) {
+      display: none;
+    }
+
+    @include mq($until: small) {
+      margin-top: 0px;
+      width: 100%;
+      position: relative;
+      z-index: -2;
+    } 
+  }
+
+  .home_dashboard_main_h1 {
+    color: white;
+    padding-bottom: 12px;
+    text-shadow: 1px 1px 5px black;
+    margin: -12px 0 -32px -2px;
+    max-width: 600px;
+  
+    @include mq($from: medium) {
+      max-width: 100%;
+      text-align: center;
+    }
+  
+    @include mq($until: small) {
+      font-size: 48px;
+      margin-top: -120px;
+    }
+  }
+
+  .dg_powered_container {
+    width: 31.75%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -24px;
+    display: block;
+    margin-bottom: 6px;
+    padding: 30px 30px 0 30px;
+    border-radius: 4px;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+      transition: all 0.1s ease 0s;
+    }
+  }
+
+  .home_section_2 {
+    position: relative;
+    padding-left: 30px;
+    padding-right: 45px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 180px;
+    padding-bottom: 180px;
+  }
+
+  .home_section_2_outter {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .section_4_outter_header_container {
+    margin-top: -120px;
+
+    .home_section_4_header {
+      padding-bottom: 30px;
+      position: relative;
+      padding: 90px 30px 30px 30px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2px;
+
+      @include mq($until: small) {
+        padding: 0 21px 0 21px;
+      }
+    }
+
+    .powered_dg_span {
+      margin-top: 90px;
+      order: 1;
+      display: flex;
+      min-width: 100%;
+      flex-direction: column;
+      margin-top: 150px;
+    }
+
+    .home_footer_h1_ecosystem {
+      font-weight: 600;
+      margin-left: -2px;
+      margin-bottom: 15px;
+
+      @include mq($until: small) {
+        font-size: 40px;
+      }
+    }
+  }
+
+  .roadmap {
+    background: transparent;
+    color: #006eff;
+    margin-left: 20px;
+    border: 1px solid #006eff;
+    margin-top: 20px;
+    height: 48px;
+    width: 200px;
+    line-height: 18px;
+    font-size: 18px;
+  }
+
+  .home_footer_p_avatars {
+    @include mq($until: large) {
+      text-align: center;
+    }
+  }
+
+  @include mq($until: small) {
+    .home_button_span {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

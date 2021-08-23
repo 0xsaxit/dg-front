@@ -3,6 +3,7 @@
 .main_container {
   min-height: calc(100vh - 220px);
   font-family: 'Larsseit-ExtraBold';
+  margin-top: 150px;
 
   @include mq($until: small) {
     padding-bottom: 60px;
@@ -137,6 +138,7 @@
         }
 
         .events_featured_p {
+          color: white;
           text-align: left;
           line-height: 25px;
           font-size: 18px;
@@ -161,6 +163,7 @@
             text-overflow: ellipsis;
             display: block;
             line-height: 30px;
+            height: 58px;
           }
         }
       }
@@ -190,6 +193,7 @@
         }
 
         .event_title {
+          color: white;
           font-size: 24px;
           line-height: 32px;
           margin-top: 6px;
@@ -203,6 +207,7 @@
         color: white;
         width: 100%;
         font-size: 18px;
+        height: 55px;
         line-height: 27px;
         border-radius: 12px;
       }
@@ -224,6 +229,7 @@
           margin-top: 8px;
           text-align: left;
           min-height: auto;
+          color: white;
         }
 
         @include mq($until: medium) {
@@ -234,6 +240,7 @@
       }
 
       .event_description {
+        color: white;
         text-align: left;
         display: -webkit-box;
         font-size: 18px;

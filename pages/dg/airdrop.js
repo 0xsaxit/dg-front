@@ -1,10 +1,12 @@
-import { GlobalContext } from '../../store';
+import { GlobalContext } from 'store';
 import { useContext } from 'react';
-import Farming from '../../components/home/Farming';
-import Layout from '../../components/Layout.js';
-import Header from '../../components/Header';
-import Global from '../../components/Constants';
-import Images from '../../common/Images';
+import Farming from 'components/home/Farming';
+import Layout from 'components/Layout.js';
+import Header from 'components/Header';
+import Global from 'components/Constants';
+import Images from 'common/Images';
+
+import styles from './dg.module.scss';
 
 const Airdrop = () => {
   // get user status from the Context API store
@@ -21,7 +23,7 @@ const Airdrop = () => {
       {state.userStatus ? (
         <Farming DGState={'airdrop'} />
       ) : (
-        <div className="account-other-inner-p">
+        <div className={styles.account_other_inner_p}>
           You must connect your wallet to view this page
         </div>
       )}

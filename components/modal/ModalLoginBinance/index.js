@@ -1,12 +1,11 @@
 import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
-import { Modal, Icon, Button } from 'semantic-ui-react';
+import { Modal, Icon } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import Global from 'components/Constants';
+import Fetch from 'common/Fetch';
+
 import styles from './ModalLoginBinance.module.scss';
-import Images from '../../../common/Images';
-import Fetch from '../../../common/Fetch';
 
 const ModalLoginBinance = () => {
   // get user's unclaimed DG balance from the Context API store
@@ -52,7 +51,7 @@ const ModalLoginBinance = () => {
     }
   });
 
-  async function openMetaMask() {
+  const openMetaMask = async () => {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
       await window.ethereum.enable();
@@ -82,7 +81,7 @@ const ModalLoginBinance = () => {
     }
   }
 
-  async function updateStatus(value, post) {
+  const updateStatus = async (value, post) => {
     if (post) {
       console.log('Posting user status to db: ' + value);
 
@@ -126,7 +125,7 @@ const ModalLoginBinance = () => {
   }
 
   return (
-    <span>
+    <div>
       {state.networkID ? (
         <Modal
           className={styles.connect_metamask_modal}
@@ -141,7 +140,7 @@ const ModalLoginBinance = () => {
           }
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
@@ -153,10 +152,10 @@ const ModalLoginBinance = () => {
                 openMetaMask();
               }}
             >
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 <img
+                  className={styles.metamask_img}
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                  style={{ height: '36px', margin: '0px 24px 0px -48px' }}
                 />
                 Connect Metamask
               </span>
@@ -165,7 +164,7 @@ const ModalLoginBinance = () => {
               {' '}
               We currently only support{' '}
               <a
-                className="modal-a"
+                className={styles.modal_a}
                 href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                 target="_blank"
               >
@@ -196,18 +195,18 @@ const ModalLoginBinance = () => {
           }
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
           <div>
-            <h1 className={styles.title}>Download Brave</h1>
+            <p className={styles.title}>Download Brave</p>
             <button
               className={cn('btn btn-primary w-100', styles.busd_button)}
               href="https://brave.com/"
               target="_blank"
             >
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 Brave Browser
                 <Icon
                   style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }}
@@ -218,13 +217,13 @@ const ModalLoginBinance = () => {
             <p className={styles.subtitle}>
               {' '}
               We currently only support{' '}
-              <a className="modal-a" href="https://metamask.io" target="_blank">
+              <a className={styles.modal_a} href="https://metamask.io" target="_blank">
                 {' '}
                 Metamask{' '}
               </a>{' '}
               Enabled browsers. For more instructions on how to set up Metamask,{' '}
               <a
-                className="modal-a"
+                className={styles.modal_a}
                 href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
                 target="_blank"
               >
@@ -251,19 +250,19 @@ const ModalLoginBinance = () => {
           }
         >
           <div style={{ margin: '-68px 0px 50px -40px' }}>
-            <span className="mailchimp-close" onClick={() => setOpen(false)}>
+            <span className={styles.mailchimp_close} onClick={() => setOpen(false)}>
               <Icon name="close" />
             </span>
           </div>
           <div>
-            <h1 className={styles.title}>Download Metamask</h1>
+            <p className={styles.title}>Download Metamask</p>
             <button
               className={cn('btn btn-primary w-100', styles.busd_button)}
               onClick={() => {
                 openMetaMask();
               }}
             >
-              <span style={{ display: 'flex', justifyContent: 'center' }}>
+              <span className="d-flex justify-content-center">
                 Set Up Metamask
                 <Icon
                   style={{ fontSize: '20px', padding: '3px 0px 0px 18px' }}
@@ -274,12 +273,12 @@ const ModalLoginBinance = () => {
             <p className={styles.subtitle}>
               {' '}
               We currently only support{' '}
-              <a className="modal-a" href="https://metamask.io">
+              <a className={styles.modal_a} href="https://metamask.io">
                 {' '}
                 Metamask wallets{' '}
               </a>
               . For more instructions on how to set up Metamask,{' '}
-              <a className="modal-a" href="https://metamask.io">
+              <a className={styles.modal_a} href="https://metamask.io">
                 {' '}
                 click here{' '}
               </a>
@@ -288,7 +287,7 @@ const ModalLoginBinance = () => {
           </div>
         </Modal>
       )}
-    </span>
+    </div>
   );
 };
 

@@ -24,13 +24,13 @@ const SubgraphData = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   return (
-    <div className="main-container">
+    <div className={styles.main_container}>
       {isLoading ? (
         <Spinner background={1} />
       ) : (
         <Aux>
-          <div className="page-container">
-            <div className="account-other-inner-container">
+          <div className={styles.page_container}>
+            <div className={styles.account_other_inner_container}>
               <ContentSubgraphs
                 content={dataType}
                 subgraphData={state.subgraphData}
