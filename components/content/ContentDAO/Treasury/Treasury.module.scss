@@ -5,7 +5,7 @@
   border: 1px solid rgba(42, 42, 42, 1);
   border-radius: 16px;
   width: 716px;
-  margin: 60px 0px 0px 40px;
+  margin: 120px 0px 0px 40px;
   margin-bottom: 120px;
 
   .earned_percent_pos {
@@ -33,11 +33,13 @@
     justify-content: space-between;
 
     .treasury_title {
+      color: white;
       font-family: Larsseit-Bold;
       font-size: 24px;
     }
 
     .treasury_total {
+      color: white;
       font-family: Larsseit-Bold;
       font-size: 24px;
       justify-content: flex-end;
@@ -61,6 +63,7 @@
       flex-direction: column;
 
       .stat_header {
+        color: white;
         font-size: 14px;
         font-family: Larsseit-Bold;
         margin-bottom: 2px;

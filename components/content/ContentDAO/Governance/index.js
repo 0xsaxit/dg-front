@@ -166,8 +166,8 @@ const Governance = (props) => {
                 />
               )}
 
-              <div style={{ display: 'flex' }}>
-                <span className="gameplay-left-column">
+              <div className={styles.game_play}>
+                <span className={styles.left_column}>
                   <span
                     style={{
                       display: 'flex',
@@ -178,7 +178,7 @@ const Governance = (props) => {
                   >
                     <p className={styles.apy_text}>APY</p>
                     {APYGovernance ? (
-                      <p className="earned-amount stat">{APYGovernance}%</p>
+                      <p className={styles.earned_amount_stat}>{APYGovernance}%</p>
                     ) : (
                       <Loader
                         active
@@ -211,7 +211,7 @@ const Governance = (props) => {
                   >
                     <p className={styles.apy_text}>% of pool</p>
                     {percentGovernanceContract ? (
-                      <p className="earned-amount stat">
+                      <p className={styles.earned_amount_stat}>
                         {percentGovernanceContract}%
                       </p>
                     ) : (
@@ -232,7 +232,7 @@ const Governance = (props) => {
               </div>
 
               <Input
-                className="liquidity-input"
+                className={styles.liquidity_input}
                 fluid
                 placeholder="Amount"
                 value={amountInput}

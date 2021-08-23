@@ -99,8 +99,8 @@ const Gameplay = (props) => {
           'd-flex',
           styles.stake_DG_container
         )}
+        style={{marginTop:"60px"}}
       >
-
         <div className={styles.lower}>
           <p className={styles.lower_header}>Claim $DG Rewards</p>
           <div className={styles.lower_value}>

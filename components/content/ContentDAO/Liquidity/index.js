@@ -178,8 +178,8 @@ const Liquidity = props => {
             <p className={styles.apy_text}>Uniswap</p>
             <p className={styles.apy_percent}>ETH-DG</p>
 
-            <div style={{ display: 'flex' }}>
-              <span className="gameplay-left-column">
+            <div className={styles.game_play}>
+              <span className={styles.left_column}>
                 <span
                   style={{
                     display: 'flex',
@@ -190,7 +190,7 @@ const Liquidity = props => {
                 >
                   <p className={styles.apy_text}>APY</p>
                   {APYUniswap ? (
-                    <p className="earned-amount stat">{APYUniswap}%</p>
+                    <p className={styles.earned_amount_stat}>{APYUniswap}%</p>
                   ) : (
                     <Loader
                       active
@@ -223,7 +223,7 @@ const Liquidity = props => {
                 >
                   <p className={styles.apy_text}>% of pool</p>
                   {percentageUniswap ? (
-                    <p className="earned-amount">{percentageUniswap}%</p>
+                    <p className={styles.earned_amount_stat}>{percentageUniswap}%</p>
                   ) : (
                     <Loader
                       active
@@ -242,7 +242,7 @@ const Liquidity = props => {
             </div>
 
             <Input
-              className="liquidity-input"
+              className={styles.liquidity_input}
               fluid
               placeholder="Amount"
               value={amountInput}
