@@ -13,7 +13,7 @@ const Ice = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Account | History'}
+        title={Global.CONSTANTS.TITLE + ' | Account | ICE'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />

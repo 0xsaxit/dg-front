@@ -160,8 +160,8 @@ p {
   font-family: 'Larsseit-Bold';
   font-size: 18px !important;
   cursor: pointer;
-  margin-left: 18px;
-  margin-right: 18px !important;
+  margin-left: 40px;
+  margin-right: 40px !important;
   padding: 0px 6px 0px 6px;
   color: rgb(92, 95, 97);
   margin-top: 18px;
@@ -3324,6 +3324,11 @@ i.clone.outline.icon,
   cursor: pointer;
   color: white !important;
   transition: all linear 0.1s;
+  fill-opacity: 1;
+}
+
+.account-address:hover path {
+  fill-opacity: 1;
 }
 
 .account-address:hover > i.clone.outline.icon {
