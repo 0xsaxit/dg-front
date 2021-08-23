@@ -12,7 +12,7 @@ import styles from './ButtonConnect.module.scss';
 
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
-  if (userAddress) {
+  if (userAddress && document.visibilityState === 'visible') {
     const timestamp = Date.now();
 
     const msg = window.web3.utils.utf8ToHex(
@@ -31,10 +31,7 @@ const assignToken = async () => {
     );
 
     localStorage.setItem('token', token);
-    localStorage.setItem(
-      'expiretime',
-      Number(new Date().getTime() / 1000 + 12 * 3600)
-    );
+    localStorage.setItem('expiretime', Number(timestamp / 1000 + 12 * 3600));
   }
 };
 
@@ -46,7 +43,6 @@ const ButtonConnect = () => {
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [scrollState, setScrollState] = useState('top');
   const [binance, setBinance] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const router = useRouter();
   let listener = null;
