@@ -183,7 +183,7 @@ const ModalWearable = () => {
                   <div className={styles.card}>
                     0.1 DG
                     <img 
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" 
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png" 
                       className={styles.img_card2}
                     />
                   </div>
