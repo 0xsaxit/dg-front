@@ -21,6 +21,29 @@
 			margin-left: -22px;
 			margin-bottom: -22px !important;
 		}
+
+		.tokenBalance {
+			border: 1px solid #2A2A2A;
+			border-radius: 14px;
+			width: 88px;
+			height: 54px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			.title {
+				font-size: 12px;
+				color: 'white';
+				opacity: 0.5;
+				margin-bottom: 0;
+			}
+			.amount {
+				font-weight: 'bold';
+				font-size: 18px;
+				color: 'white';
+			}
+		}
 	}
 }
 
