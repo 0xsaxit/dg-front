@@ -75,7 +75,7 @@ const Images = {
   BAYC: 
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251329/download_bzvaxj.png',
   BINANCE: 
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251320/binance-coin-logo-black-and-white_s9i32k.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629728293/image_56_Traced_ywmz23.png',
 };
 
 export default Images;

@@ -443,4 +443,68 @@
       }
     }
   }
+
+  .join {
+    padding: 48px 0px 150px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include mq($until: medium) {
+      padding: 120px 0px 150px 0px;
+    }
+
+    @include mq($until: 500px) {
+      transform: scale(0.8);
+    }
+
+    h2.title {
+      font-size: 40px;
+      color: white;
+      font-family: 'Larsseit-Bold';
+      text-align: center;
+      margin-bottom: 16px;
+      margin-top: 12px;
+      z-index: 3;
+    }
+
+    .button_span {
+      display: flex;
+      margin-top: 8px;
+
+      .telegram {
+        width: 176px;
+        height: 62px;
+        background: linear-gradient(216.03deg, #00AAEA 21.06%, #34B4E4 100.66%);
+        border-radius: 8px;
+        margin-right: 16px;
+
+
+        .telegram_img1 {
+          height: 48px;
+          margin-top: -5px;
+          margin-left: -12px;
+        }
+
+        .telegram_img2 {
+          height: 22px;
+          margin-top: 10px;
+          margin-left: -2px;
+        }
+      }
+
+      .discord {
+        width: 176px;
+        height: 62px;
+        background: #5865F2;
+        border-radius: 8px;
+
+        .discord_img {
+          height: 28px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
 }
