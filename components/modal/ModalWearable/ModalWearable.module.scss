@@ -1,0 +1,273 @@
+@import "styles/base.scss";
+
+
+.wearable_modal {
+	width: 1021px !important;
+	height: 438px !important;
+	padding: 40px 48px 58px 48px;
+
+	.wear_box {
+		.wear_box_questionmark {
+			position: absolute;
+			width: 25px;
+			height: 25px;
+			left: 553px;
+			top: 350.5px;
+
+			background: #1A1A1A;
+			/* Outline Stroke */
+
+			border: 1px solid #2A2A2A;
+			box-sizing: border-box;
+			box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+			border-radius: 93px;
+		}
+		.wear_box_mark {
+			position: absolute;
+			margin-left: 70px;
+    		margin-top: 20px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			padding: 9px 12px 9px 15px;
+
+			background: #1A1A1A;
+			border: 1px solid #2A2A2A;
+			box-sizing: border-box;
+			box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+			border-radius: 93px;
+		}
+		.wear_box_purple {
+			width: 241px;
+			height: 241px;
+			margin-top: 42px;
+			background: radial-gradient(68.68% 68.68% at 50% 50%, #AD86FF 0%, #622DF8 100%);
+			border-radius: 16px;
+		}
+		.card_body {
+			display: flex;
+			justify-content: space-around;
+			margin-top: 15px;
+
+			.card {
+				display: flex;
+				align-items: center;
+
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				
+				border: 2px solid #2A2A2A;
+				box-sizing: border-box;
+				box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+				border-radius: 20px;
+
+				font-family: Larsseit;
+				font-style: normal;
+				font-weight: bold;
+				font-size: 12px;
+				line-height: 16px;
+				color: #FFFFFF;
+			}
+		}
+	
+		.wear_box_pink {
+			width: 241px;
+			height: 241px;
+			margin-top: 42px;
+			background: radial-gradient(68.68% 68.68% at 50% 50%, #ff81db 0%, #fd32c2 100%);
+			border-radius: 16px;
+	
+			font-family: Larsseit;
+			font-style: normal;
+		}
+	}
+
+	.wear_box_right {
+		padding-left: 16px;
+
+		.header {
+			font-weight: 800;
+			font-size: 24px;
+			line-height: 33px;
+			letter-spacing: -0.7px
+		}
+		.benefit_area {
+			margin-top: 24px;
+			font-weight: bold;
+			font-size: 18px;
+			line-height: 24px;
+			color: #FFFFFF;
+		}
+		.benefit_list {
+			margin-top: -10px !important;
+			margin-left: -10px !important;
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 22px;
+			color: #FFFFFF;
+			opacity: 0.75;
+		}
+		.price_area {
+			font-family: Larsseit;
+			font-style: normal;
+			font-weight: bold;
+			font-size: 18px;
+			line-height: 24px;
+	
+			.card_area {
+				display: flex;
+				justify-content: center;
+				align-items: baseline;
+				
+				margin-bottom: 25px;
+				margin-top: 12px;
+				gap: 6px;
+	
+				.card_area_body {
+					.card {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+			
+						width: 115px;
+						height: 45px;
+						background: #090909;
+						border: 1px solid #2A2A2A;
+						box-sizing: border-box;
+						border-radius: 14px;
+						margin-bottom: 6px;
+					}
+					.description {
+						font-family: Larsseit;
+						font-style: normal;
+						font-weight: normal;
+						font-size: 10px;
+						line-height: 14px;
+						text-align: center;
+						color: rgba(255, 255, 255, 0.5);
+					}
+					.network {
+						font-family: Larsseit;
+						font-style: normal;
+						font-weight: normal;
+						font-size: 8px;
+						line-height: 11px;
+						text-align: center;
+						color: rgba(255, 255, 255, 0.5);
+					}
+					.plusIcon {
+						font-family: Larsseit;
+						font-style: normal;
+						font-weight: bold;
+						font-size: 16px;
+						line-height: 27px;
+					}
+				}
+			}
+		}
+	
+		.button_area {
+			display: flex;
+			justify-content: space-between;
+	
+			.button_upgrade {
+				width: 200px;
+				height: 48px;
+				background: #006EFF;	
+				border-radius: 10px;
+	
+				font-family: Larsseit;
+				font-style: normal;
+				font-weight: bold;
+				font-size: 17px;
+				line-height: 24px;
+				text-align: center;
+				color: #FFFFFF;
+			}
+			.button_close {
+				width: 141px;
+				height: 48px;
+				background: #2A2A2A;
+				border-radius: 10px;
+	
+				font-family: Larsseit;
+				font-style: normal;
+				font-weight: bold;
+				font-size: 17px;
+				line-height: 24px;
+				text-align: center;
+				color: #FFFFFF;
+			}
+		}
+	}
+
+	
+	
+	
+	.title {
+		font-weight: 800;
+		font-size: 24px;
+		letter-spacing: -0.5px;
+	}
+
+	.dg_image {
+		width: 60px;
+		margin-top: 18px;
+		align-self: center;
+	}
+
+	.subtitle_1 {
+		align-self: center;
+		font-size: 24px;
+		font-family: Larsseit-Bold;
+		margin-top: 12px;
+	}
+
+	.subtitle_2 {
+		align-self: center;
+		font-size: 14px;
+		font-family: Larsseit-Bold;
+		opacity: 0.75;
+	}
+
+	.row_title {
+		font-size: 18px;
+		font-family: Larsseit-Bold;
+		margin-top: 18px;
+	}
+
+	.row_subtitle {
+		font-size: 14px;
+		font-family: Larsseit-Bold;
+		opacity: 0.75;
+	}
+
+	.buy_button {
+		background: #006EFF;
+		color: white;
+		font-size: 18px;
+		font-family: Larsseit-Bold;
+		height: 54px;
+		border-radius: 12px;
+		width: 142px;
+	}
+
+	.learn_button {
+		background: #2B2B2B;
+		color: white;
+		font-size: 18px;
+		font-family: Larsseit-Bold;
+		height: 54px;
+		border-radius: 12px;
+		width: 142px;
+	}
+
+	.buy_button:focus,
+	.learn_button:focus {
+		box-shadow: none;
+		border: 0px solid black;
+	}
+}
+

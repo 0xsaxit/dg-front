@@ -253,6 +253,18 @@ const AccountData = (props) => {
                 </Link>
               )}
 
+              {dataType === 'ice' ? (
+                <span className="account-hover active">
+                  ICE2
+                </span>
+              ) : (
+                <Link href="/account/ice">
+                  <span className="account-hover">
+                    ICE
+                  </span>
+                </Link>
+              )}
+
               {dataType === 'items' ? (
                 <span className="account-hover active">
                   My Items
