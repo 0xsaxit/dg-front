@@ -263,9 +263,9 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              {dataType === 'items' ? (
+              {dataType === 'ice' ? (
                 <span className="account-hover active">
-                  My Items
+                  ICE
                 </span>
               ) : (
                 state.dgLoading ? (
@@ -278,11 +278,35 @@ const AccountData = (props) => {
                       });
                     }}
                   >
-                    My Items
+                    ICE
+                  </span>
+                ) : (<Link href="/account/ice">
+                  <span className="account-hover">
+                   ICE
+                  </span>
+                </Link>)
+              )}
+
+              {dataType === 'items' ? (
+                <span className="account-hover active">
+                  NFTs
+                </span>
+              ) : (
+                state.dgLoading ? (
+                  <span
+                    className="account-hover"
+                    onClick={() => {
+                      dispatch({
+                        type: 'set_dgWarningMsg',
+                        data: true,
+                      });
+                    }}
+                  >
+                    NFTs
                   </span>
                 ) : (<Link href="/account/items">
                   <span className="account-hover">
-                    My Items
+                    NFTs
                   </span>
                 </Link>)
               )}
