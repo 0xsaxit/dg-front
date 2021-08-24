@@ -3376,6 +3376,29 @@ i.clone.outline.icon,
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+.message-bar-toast {
+  visibility: hidden;
+  font-family: Larsseit-Regular;
+  background-color: #006EFF;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  font-size: 17px;
+  position: fixed;
+  bottom: 60px;
+  left: calc(50% - 165px);
+  width: 330px;
+  height: 75px;
+  transition: all 1s;
+  
+}
+.message-bar-toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 2s, fadeout 2s 3s;
+  animation: fadein 2s, fadeout 2s 3s;
+}
+
 .copied-text {
   color: white;
   font-size: 24px;
