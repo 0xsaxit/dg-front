@@ -144,23 +144,23 @@ const AccountData = (props) => {
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" />
-                <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined</p>
-                  <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
+                <div className={styles.tokenBalance} >
+                  <p className={styles.title}> ICE Mined </p>
+                  <p className={styles.amount} > 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" />
-                <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>Unused XP </p>
-                  <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
+                <div className={styles.tokenBalance} >
+                  <p className={styles.title}> Unused XP </p>
+                  <p className={styles.amount}> 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" />
-                <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>DG Mined</p>
-                  <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
+                <div className={styles.tokenBalance} >
+                  <p className={styles.title}> DG Mined</p>
+                  <p className={styles.amount}> 0 </p>
                 </div>
               </div>
             </div>
@@ -282,7 +282,7 @@ const AccountData = (props) => {
                   </span>
                 ) : (<Link href="/account/ice">
                   <span className="account-hover">
-                   ICE
+                    ICE
                   </span>
                 </Link>)
               )}
@@ -491,8 +491,8 @@ const AccountData = (props) => {
             </div>
           </div>
           {copied ? (
-            <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
-              <h3 className="copied-text" style={{textAlign: 'center'}}>Wallet address copied!</h3>
+            <div className={copied ? 'copied-toast show' : 'copied-toast'}>
+              <h3 className="copied-text">Wallet address copied!</h3>
             </div>
           ) : null}
         </div>
