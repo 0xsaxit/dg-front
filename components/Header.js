@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 import Aux from './_Aux';
 import Global from './Constants';
 
-const Header = (props) => {
+const Header = props => {
   function segmentSnippet() {
     // create a queue, but don't obliterate an existing one
     var analytics = (window.analytics = window.analytics || []);
@@ -104,6 +104,21 @@ const Header = (props) => {
             <script dangerouslySetInnerHTML={{ __html: segmentSnippet() }} />
           ) : null
         ) : null}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-V2YT3FT17V"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-V2YT3FT17V');`,
+          }}
+        />
       </Head>
 
       <NextSeo
