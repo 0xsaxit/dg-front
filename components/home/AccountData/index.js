@@ -282,7 +282,7 @@ const AccountData = (props) => {
                   </span>
                 ) : (<Link href="/account/ice">
                   <span className="account-hover">
-                   ICE
+                    ICE
                   </span>
                 </Link>)
               )}
@@ -491,8 +491,8 @@ const AccountData = (props) => {
             </div>
           </div>
           {copied ? (
-            <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
-              <h3 className="copied-text" style={{textAlign: 'center'}}>Wallet address copied!</h3>
+            <div className={copied ? 'copied-toast show' : 'copied-toast'}>
+              <h3 className="copied-text">Wallet address copied!</h3>
             </div>
           ) : null}
         </div>
