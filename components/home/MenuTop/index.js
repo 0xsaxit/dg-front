@@ -464,7 +464,7 @@ const MenuTop = props => {
               : ''
           )}
         >
-          <MessageBar backgroundColor='#006EFF' textColor='#fff' position='bottom'/>
+          <MessageBar position='bottom'/>
 
           <Menu className={cn(styles.menu_container)}>
             {DGLogo()}

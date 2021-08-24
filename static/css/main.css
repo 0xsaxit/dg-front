@@ -3377,21 +3377,26 @@ i.clone.outline.icon,
 }
 
 .message-bar-toast {
-  visibility: hidden;
-  font-family: Larsseit-Regular;
-  background-color: #006EFF;
-  color: #fff;
+  visibility: hidden;  
+  transition: all 1s;  
+  top: calc(50% - 89px/2 + 407.5px);
+  background: #1F1F1F;
+  border-radius: 32px;
+  font-family: Larsseit;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
   text-align: center;
-  border-radius: 2px;
-  padding: 16px;
-  font-size: 17px;
+  color: #FFFFFF;
   position: fixed;
   bottom: 60px;
   left: calc(50% - 165px);
-  width: 330px;
-  height: 75px;
-  transition: all 1s;
-  
+  width: 400px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+
 }
 .message-bar-toast.show {
   visibility: visible;

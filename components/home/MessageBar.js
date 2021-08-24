@@ -102,12 +102,10 @@ const MessageBar = (props) => {
       <div
         className={show ? 'message-bar-toast show' : 'message-bar-toast'}
         style={{
-          backgroundColor: props.backgroundColor, 
-          color: props.textColor,
           top: props.position === 'top'? '60px': (props.position === 'middle'? 'calc(100vh/2)':''),
           bottom: props.position === 'bottom'? '60px': '',
         }}
-      >{show? 'true': 'false'}
+      >
         {message}
       </div>
     );
