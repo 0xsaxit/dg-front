@@ -271,7 +271,7 @@ const Liquidity = (props) => {
                   style={{ textDecoration: 'underline' }}
                   onClick={() => setAmountInput(state.stakingBalances.BALANCE_WALLET_UNISWAP)}
                 >
-                  {props.formatPrice(state.stakingBalances.BALANCE_WALLET_UNISWAP, 3)} DG
+                  {props.formatPrice(state.stakingBalances.BALANCE_WALLET_UNISWAP, 3)} UNI-V2
                 </p>
                 <p
                   className={styles.stake_text} 
@@ -284,7 +284,7 @@ const Liquidity = (props) => {
                     state.stakingBalances.BALANCE_STAKED_UNISWAP,
                     3
                   )}{' '}
-                  DG STAKED
+                  UNI-V2 STAKED
                 </p>
               </span>
 
