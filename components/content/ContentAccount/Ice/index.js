@@ -24,7 +24,7 @@ function ICE({ state }) {
         <span className={styles.button_span}>
           <button className={cn('btn', styles.left_button)}>Browse</button>
           <ModalMint className={styles.right_button} ethPrice={0.3} />
-          {/* <ModalWearable /> */}
+          <ModalWearable />
         </span>
       </div>
     </Aux>
