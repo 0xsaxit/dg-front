@@ -18,7 +18,7 @@ const detailsGames = {
     'Decentral Games poker is in beta and currently only playable using FREE tokens. Visit our discord via the "Read More" button for info on pop up tournaments and updates.',
     '2-6 PLAYERS • ',
     'FREE',
-    'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-110%2C129&realm=dg',
     'https://decentral.games/discord',
   ],
   BlackJack: [
@@ -28,7 +28,7 @@ const detailsGames = {
     'Decentral Games blackjack follows standard blackjack rules. At the start of each game, each player places a bet, which initiates a countdown timer to deal the cards out.',
     '1-4 PLAYERS • ',
     'FREE • CRYPTO',
-    'https://play.decentraland.org/?position=-119%2C136&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-119%2C136&realm=dg',
     'https://docs.decentral.games/games/blackjack',
   ],
   Roulette: [
@@ -38,7 +38,7 @@ const detailsGames = {
     'Decentral Games roulette is standard European Roulette, featuring single bet numbers 1-36, black/red, odd/even, high/low, columns and rows.',
     '1-8 PLAYERS • ',
     'FREE • CRYPTO',
-    'https://play.decentraland.org/?position=-119%2C136&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-119%2C136&realm=dg',
     'https://docs.decentral.games/games/roulette',
   ],
   Slots: [
@@ -48,7 +48,7 @@ const detailsGames = {
     'Decentral Games slots are skin-able machines featuring five spinning reels each with four icons. There are two clickable buttons facing the player to set the bet amount and spin.',
     '1 PLAYER • ',
     'COMING SOON',
-    'https://play.decentraland.org/?position=-119%2C136&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-119%2C136&realm=dg',
     'https://docs.decentral.games/games/slots',
   ],
 };
@@ -60,7 +60,7 @@ const detailsCasinos = {
     'Tominoya',
     'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
-    'https://play.decentraland.org/?position=-119%2C133&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-119%2C133&realm=dg',
     'https://docs.decentral.games/operators/tominoya',
   ],
   Atari: [
@@ -69,7 +69,7 @@ const detailsCasinos = {
     'Atari Casino',
     'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'ROULETTE • BLACKJACK',
-    'https://play.decentraland.org/?position=-94%2C110&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-94%2C110&realm=dg',
     'https://docs.decentral.games/operators/atari',
   ],
   Chateau: [
@@ -78,7 +78,7 @@ const detailsCasinos = {
     'Chateau Satoshi',
     'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
-    'https://play.decentraland.org/?position=-75%2C77&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-75%2C77&realm=dg',
     'https://docs.decentral.games/operators/chateau-satoshi',
   ],
   Dext: [
@@ -87,7 +87,7 @@ const detailsCasinos = {
     'DEXT Poker Lounge',
     'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
     'POKER',
-    'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-110%2C129&realm=dg',
     'https://docs.decentral.games/operators/dext',
   ],
 };
@@ -99,7 +99,7 @@ const detailsShop = {
     'NFT Shop',
     'Our NFT shop is located Vegas City district in Decentraland right next door to Chateau Satoshi. The scene features a building inspired by modern architecture which houses all of Decentral Games NFTs. The scene is accessible from the most northwestern Decentraland Genesis Plaza and is adjacent to the Vegas City Welcome Plaza.',
     'WEARABLES',
-    'https://play.decentraland.org/?position=-75%2C79&realm=dg-diamond',
+    'https://play.decentraland.org/?position=-75%2C79&realm=dg',
     'https://opensea.io/blog/guides/non-fungible-tokens/',
   ],
   shop_opensea: [

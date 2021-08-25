@@ -165,12 +165,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>6 ETH</p>
+                <p className={styles.gameplay_title}>7 ETH</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>20 ETH</p>
+                <p className={styles.gameplay_right_bottom}>23 ETH</p>
               </div>
             </div>
           </div>
@@ -184,12 +184,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>21.5K MANA</p>
+                <p className={styles.gameplay_title}>24.3K MANA</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>71.5K MANA</p>
+                <p className={styles.gameplay_right_bottom}>82K MANA</p>
               </div>
             </div>
           </div>
@@ -203,12 +203,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>14.6K USDT</p>
+                <p className={styles.gameplay_title}>22K USDT</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>29.3K USDT</p>
+                <p className={styles.gameplay_right_bottom}>74K USDT</p>
               </div>
             </div>
           </div>
@@ -222,12 +222,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>14.6K DAI</p>
+                <p className={styles.gameplay_title}>22K DAI</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>29.3K DAI</p>
+                <p className={styles.gameplay_right_bottom}>74K DAI</p>
               </div>
             </div>
           </div>
@@ -241,19 +241,19 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>292K ATRI</p>
+                <p className={styles.gameplay_title}>400K ATRI</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>986K ATRI</p>
+                <p className={styles.gameplay_right_bottom}>1.35M ATRI</p>
               </div>
             </div>
           </div>
 
           <Button 
             className={styles.play_button}
-            href="https://play.decentraland.org/?position=-118%2C135&realm=dg-diamond"
+            href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
             target="_blank"
           >
             Play Now
