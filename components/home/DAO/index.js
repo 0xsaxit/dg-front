@@ -3,7 +3,6 @@ import { GlobalContext } from '../../../store';
 import Web3 from 'web3';
 import cn from 'classnames';
 import Link from 'next/link';
-import { slide as Menu } from 'react-burger-menu';
 import styled from 'styled-components';
 import { Divider, Input } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
@@ -232,7 +231,7 @@ const DAO = props => {
   function submenu() {
     return (
       <>
-        {!mobileOpen ? (
+        {isMobile && !mobileOpen ? (
           <div className={styles.tablet_menu_container}>
             <div
               className={styles.burger_icon}
