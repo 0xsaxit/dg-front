@@ -104,9 +104,14 @@ const MessageBar = (props) => {
         style={{
           top: props.position === 'top'? '60px': (props.position === 'middle'? 'calc(100vh/2)':''),
           bottom: props.position === 'bottom'? '60px': '',
+          display: 'flex',
+          justifyContent: 'center'
         }}
       >
-        {message}
+        <div style={{ alignSelf: 'center' }}>
+          {message}
+        </div>
+
       </div>
     );
   } else {
