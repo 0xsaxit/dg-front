@@ -3395,6 +3395,7 @@ i.clone.outline.icon,
   display: flex;
   align-items: center;
   transform: scale(0.75);
+  justify-content: center;
 }
 
 .message-bar-toast.show {

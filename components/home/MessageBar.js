@@ -61,6 +61,25 @@ const MessageBar = (props) => {
   }, [state.dgWarningMsg]); 
 
   useEffect(() => {
+    if (state.toastMessage!=='') {
+      setMessage(state.toastMessage);
+      setShow(true);
+
+      let timer = setTimeout(() => {
+        setMessage('');
+        setShow(false);
+        dispatch({
+          type: 'show_toastMessage',
+          data: '',
+        });
+      }, 5000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [state.toastMessage]);
+
+  useEffect(() => {
     if (window.innerWidth < 499) {
       setMobile(true);
     } else {
