@@ -270,6 +270,11 @@ const Overview = props => {
     }
   }, [state.treasuryNumbers]);
 
+  useEffect(() => {
+    if (state.userStatus && state.stakingBalances.BALANCE_USER_GOVERNANCE > 0) {
+      setVisible(false);
+    }
+  }, [state.userStatus, state.stakingBalances.BALANCE_USER_GOVERNANCE]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -361,11 +366,13 @@ const Overview = props => {
             By staking $DG, you can govern the treasury, add proposals, and earn
             yield.
           </p>
-          <Button 
+          <Button
             className={styles.blue_button}
             onClick={() => {
               router.push('/dg/liquidity');
-            }}>Start Staking $DG
+            }}
+          >
+            Start Staking $DG
           </Button>
         </div>
         <img
@@ -412,7 +419,9 @@ const Overview = props => {
             {state.userInfo.name === null || state.userInfo.name === '' ? (
               <p className={styles.welcome_text}>Welcome,</p>
             ) : (
-              <p className={styles.welcome_text}>Welcome {state.userInfo.name},</p>
+              <p className={styles.welcome_text}>
+                Welcome {state.userInfo.name},
+              </p>
             )}
             <h1 className={styles.dashboard_text}>Your DAO Dashboard</h1>
           </div>
@@ -606,7 +615,10 @@ const Overview = props => {
                   target="_blank"
                 >
                   <div className={styles.gov_right}>
-                    <div className="d-flex flex-column mr-2" style={{ maxWidth: '150px' }}>
+                    <div
+                      className="d-flex flex-column mr-2"
+                      style={{ maxWidth: '150px' }}
+                    >
                       <p className={styles.gov_top}>{dateOne}</p>
                       <p className={styles.gov_title}>{snapshotOne.title}</p>
                     </div>
@@ -642,7 +654,10 @@ const Overview = props => {
                   target="_blank"
                 >
                   <div className={styles.gov_right}>
-                    <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                    <div
+                      className="d-flex flex-column"
+                      style={{ maxWidth: '150px' }}
+                    >
                       <p className={styles.gov_top}>{dateTwo}</p>
                       <p className={styles.gov_title}>{snapshotTwo.title}</p>
                     </div>
@@ -668,7 +683,9 @@ const Overview = props => {
 
               <div className={styles.governance_container}>
                 <div className={styles.state_box}>
-                  <p className={activeThree ? styles.state_closed : styles.state}>
+                  <p
+                    className={activeThree ? styles.state_closed : styles.state}
+                  >
                     {snapshotThree.state}
                   </p>
                 </div>
@@ -678,7 +695,10 @@ const Overview = props => {
                   target="_blank"
                 >
                   <div className={styles.gov_right}>
-                    <div className="d-flex flex-column" style={{ maxWidth: '150px' }}>
+                    <div
+                      className="d-flex flex-column"
+                      style={{ maxWidth: '150px' }}
+                    >
                       <p className={styles.gov_top}>{dateThree}</p>
                       <p className={styles.gov_title}>{snapshotThree.title}</p>
                     </div>
@@ -740,7 +760,8 @@ const Overview = props => {
               muted
             ></video>
             <p className={styles.lower_text}>
-              All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
+              All $DG-powered games earn back rewards. Play games and earn up to
+              50% of expected losses, win or lose.
             </p>
             <Button
               className={styles.lower_button}
@@ -772,11 +793,6 @@ const Overview = props => {
           </div>
         </div>
       </div>
-
-
-
-
-
 
       <div className={styles.treasury_container_mobile}>
         <div className={styles.treasury_header}>
@@ -828,175 +844,174 @@ const Overview = props => {
           </span>
         </div>
 
-      <div className={styles.stats_container}>
-        <div className={styles.stat}>
-          <p className={styles.stat_header}>All Time Game Profits</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {gameplayAll ? (
-                <p className={styles.stat_amount}>${gameplayAll}</p>
-              ) : (
-                getLoader()
-              )}
+        <div className={styles.stats_container}>
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>All Time Game Profits</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {gameplayAll ? (
+                  <p className={styles.stat_amount}>${gameplayAll}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {gameplayAllPercent > 0 && gameplayAll ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{gameplayAllPercent}%
+                  </p>
+                ) : gameplayAll ? (
+                  <p className={styles.earned_percent_neg}>
+                    {gameplayAllPercent}%
+                  </p>
+                ) : null}
+              </p>
             </div>
-            <p className={styles.stat_percent}>
-              {gameplayAllPercent > 0 && gameplayAll ? (
-                <p className={styles.earned_percent_pos}>
-                  +{gameplayAllPercent}%
-                </p>
-              ) : gameplayAll ? (
-                <p className={styles.earned_percent_neg}>
-                  {gameplayAllPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
-        </div>  
-
-        <div className={styles.stat}>
-          <p className={styles.stat_header}>Gameplay Hot Wallet</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {gameplayTreasury ? (
-                <p className={styles.stat_amount}>${gameplayTreasury}</p>
-              ) : (
-                getLoader()
-              )}
-            </div>
-            <p className={styles.stat_percent}>
-              {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
-                <p className={styles.earned_percent_pos}>
-                  +{gameplayTreasuryPercent}%
-                </p>
-              ) : gameplayTreasury ? (
-                <p className={styles.earned_percent_neg}>
-                  {gameplayTreasuryPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.stat}>
-          <p className={styles.stat_header}>$DG Wallet</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {dgTreasury ? (
-                <p className={styles.stat_amount}>${dgTreasury}</p>
-              ) : (
-                getLoader()
-              )}
-            </div>
-            <p className={styles.stat_percent}>
-              {dgTreasuryPercent > 0 && dgTreasury ? (
-                <p className={styles.earned_percent_pos}>
-                  +{dgTreasuryPercent}%
-                </p>
-              ) : dgTreasury ? (
-                <p className={styles.earned_percent_neg}>
-                  {dgTreasuryPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.stat}>
-          <p className={styles.stat_header}>Decentraland Land</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {landTreasury ? (
-                <p className={styles.stat_amount}>${landTreasury}</p>
-              ) : (
-                getLoader()
-              )}
-            </div>
-            <p className={styles.stat_percent}>
-              {landTreasuryPercent > 0 && landTreasury ? (
-                <p className={styles.earned_percent_pos}>
-                  +{landTreasuryPercent}%
-                </p>
-              ) : landTreasury ? (
-                <p className={styles.earned_percent_neg}>
-                  {landTreasuryPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.stat}>
-          <p className={styles.stat_header}>$DG Wearables</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {nftTreasury ? (
-                <p className={styles.stat_amount}>${nftTreasury}</p>
-              ) : (
-                getLoader()
-              )}
-            </div>
-            <p className={styles.stat_percent}>
-              {nftTreasuryPercent > 0 && nftTreasury ? (
-                <p className={styles.earned_percent_pos}>
-                  +{nftTreasuryPercent}%
-                </p>
-              ) : nftTreasury ? (
-                <p className={styles.earned_percent_neg}>
-                  {nftTreasuryPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.stat}>
-          <p className={styles.stat_header}>Liquidity Provided</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {liquidityTreasury ? (
-                <p className={styles.stat_amount}>${liquidityTreasury}</p>
-              ) : (
-                getLoader()
-              )}
-            </div>
-            <p className={styles.stat_percent}>
-              {liquidityTreasuryPercent > 0 && liquidityTreasury ? (
-                <p className={styles.earned_percent_pos}>
-                  +{liquidityTreasuryPercent}%
-                </p>
-              ) : liquidityTreasury ? (
-                <p className={styles.earned_percent_neg}>
-                  {liquidityTreasuryPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.stat} style={{ marginBottom: '0px' }}>
-          <p className={styles.stat_header}>Staked in Matic Node</p>
-          <div className="d-flex justify-content-center">
-            <div>
-              {maticTreasury ? (
-                <p className={styles.stat_amount}>${maticTreasury}</p>
-              ) : (
-                getLoader()
-              )}
-            </div>
-            <p className={styles.stat_percent}>
-              {maticTreasuryPercent > 0 && maticTreasury ? (
-                <p className={styles.earned_percent_pos}>
-                  +{maticTreasuryPercent}%
-                </p>
-              ) : maticTreasury ? (
-                <p className={styles.earned_percent_neg}>
-                  {maticTreasuryPercent}%
-                </p>
-              ) : null}
-            </p>
-          </div>
           </div>
 
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>Gameplay Hot Wallet</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {gameplayTreasury ? (
+                  <p className={styles.stat_amount}>${gameplayTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {gameplayTreasuryPercent > 0 && gameplayTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{gameplayTreasuryPercent}%
+                  </p>
+                ) : gameplayTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {gameplayTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>$DG Wallet</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {dgTreasury ? (
+                  <p className={styles.stat_amount}>${dgTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {dgTreasuryPercent > 0 && dgTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{dgTreasuryPercent}%
+                  </p>
+                ) : dgTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {dgTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>Decentraland Land</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {landTreasury ? (
+                  <p className={styles.stat_amount}>${landTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {landTreasuryPercent > 0 && landTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{landTreasuryPercent}%
+                  </p>
+                ) : landTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {landTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>$DG Wearables</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {nftTreasury ? (
+                  <p className={styles.stat_amount}>${nftTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {nftTreasuryPercent > 0 && nftTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{nftTreasuryPercent}%
+                  </p>
+                ) : nftTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {nftTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.stat}>
+            <p className={styles.stat_header}>Liquidity Provided</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {liquidityTreasury ? (
+                  <p className={styles.stat_amount}>${liquidityTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {liquidityTreasuryPercent > 0 && liquidityTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{liquidityTreasuryPercent}%
+                  </p>
+                ) : liquidityTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {liquidityTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.stat} style={{ marginBottom: '0px' }}>
+            <p className={styles.stat_header}>Staked in Matic Node</p>
+            <div className="d-flex justify-content-center">
+              <div>
+                {maticTreasury ? (
+                  <p className={styles.stat_amount}>${maticTreasury}</p>
+                ) : (
+                  getLoader()
+                )}
+              </div>
+              <p className={styles.stat_percent}>
+                {maticTreasuryPercent > 0 && maticTreasury ? (
+                  <p className={styles.earned_percent_pos}>
+                    +{maticTreasuryPercent}%
+                  </p>
+                ) : maticTreasury ? (
+                  <p className={styles.earned_percent_neg}>
+                    {maticTreasuryPercent}%
+                  </p>
+                ) : null}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
