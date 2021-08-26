@@ -3396,6 +3396,7 @@ i.clone.outline.icon,
   height: 84px;
   display: flex;
   align-items: center;
+  justify-content: center;
 
 }
 .message-bar-toast.show {
