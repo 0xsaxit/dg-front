@@ -3379,26 +3379,25 @@ i.clone.outline.icon,
 .message-bar-toast {
   visibility: hidden;  
   transition: all 1s;  
-  top: calc(50% - 89px/2 + 407.5px);
   background: #1F1F1F;
   border-radius: 32px;
-  font-family: Larsseit;
+  font-family: Larsseit-Bold;
   font-style: normal;
-  font-weight: bold;
   font-size: 24px;
   line-height: 32px;
   text-align: center;
   color: #FFFFFF;
   position: fixed;
-  bottom: 60px;
+  bottom: 0px;
+  padding: 28px 40px 28px 40px;
   left: calc(50% - 165px);
   width: 400px;
-  height: 84px;
   display: flex;
   align-items: center;
+  transform: scale(0.75);
   justify-content: center;
-
 }
+
 .message-bar-toast.show {
   visibility: visible;
   -webkit-animation: fadein 2s, fadeout 2s 3s;
