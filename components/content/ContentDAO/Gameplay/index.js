@@ -59,6 +59,14 @@ const Gameplay = (props) => {
 
   async function metaTransaction() {
     try {
+
+      //Show Toast Message1
+      const msg = 'Claiming Mining DG!';
+      dispatch({
+        type: 'show_toastMessage',
+        data: msg,
+      });
+
       console.log('Dispatching DG tokens to address: ' + state.userAddress);
 
       // get function signature and send Biconomy API meta-transaction
@@ -123,6 +131,12 @@ const Gameplay = (props) => {
             className={cn(styles.claim_DG, styles.lower_button)}
             disabled={!Number(state.DGBalances.BALANCE_MINING_DG_V2)}
             onClick={() => metaTransaction()}
+            // onClick={() => {
+            //   dispatch({
+            //     type: 'show_toastMessage',
+            //     data: 'Claiming Mining DG!',
+            //   });
+            // }}
           >
             Claim {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
             $DG
