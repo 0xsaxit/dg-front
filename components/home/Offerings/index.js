@@ -240,12 +240,10 @@ const Offerings = (props) => {
   function coinChangeBackward() {
     var i = gameSelect;
     var j = coins.indexOf(i);
-    if (j < 5) {
-      j = 5;
-      setGameSelect(coins[j]);
-    } else {
-      setGameSelect(coins[j - 1]);
+    if (j === 0) {
+      j = coins.length;
     }
+    setGameSelect(coins[j - 1]);
   }
 
   function timeChangeForward() {
@@ -918,11 +916,11 @@ const Offerings = (props) => {
 
         {gameState === 'leaderboard' ? (
           <span>
-            {coinSelect()}
             <ContentLeaderboard
               gameRecords={state.gameRecords}
               gameSelect={gameSelect}
               timePeriod={timePeriod}
+              coinSelector = {coinSelect}
             />
           </span>
         ) : (

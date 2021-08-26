@@ -141,73 +141,76 @@ const ContentLeaderboard = (props) => {
   console.log(dataGames);
 
   return (
-    <div className="outter-leaders-container" style={{ marginTop: '24px' }}>
-      {games.map((game, index) => {
-        return (
-            <Table unstackable className="leaders-table">
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell className="leaderboard-header">{game.toLowerCase()}</Table.HeaderCell>
-                  {/*<Table.HeaderCell>WIN</Table.HeaderCell>*/}
-                </Table.Row>
-              </Table.Header>
+    <>
+       {(props && props.coinSelector) ? props.coinSelector():null}
+      <div className="outter-leaders-container" style={{ marginTop: '24px' }}>
+        {games.map((game, index) => {
+          return (
+              <Table unstackable className="leaders-table">
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell className="leaderboard-header">{game.toLowerCase()}</Table.HeaderCell>
+                    {/*<Table.HeaderCell>WIN</Table.HeaderCell>*/}
+                  </Table.Row>
+                </Table.Header>
 
-              <Table.Body>
-                {dataGames[index].map((row, index) => {
-                  var num = parseInt(
-                    Number(row.winnings) / Global.CONSTANTS.FACTOR
-                  );
-                  var amount = Number(num.toFixed(0))
-                    .toLocaleString()
-                    .split(/\s/)
-                    .join(',');
-                  return (
-                    <Table.Row key={index}>
-                      <Table.Cell style={{ display: 'flex' }}>
-                        <img
-                          className="avatar-picture"
-                          src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
-                          style={{
-                            width: '36px',
-                            marginRight: '6px',
-                            verticalAlign: 'middle',
-                            border: '1px solid rgba(42, 42, 42, 1)',
-                            borderRadius: '100%',
-                            display: 'flex',
-                            alignSelf: 'center',
-                          }}
-                        />
-                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
-                          <p className="leaderboard-top">
-                            {inWords(index + 1)}
-                          </p>
-                          <p className="leaderboard-bottom">
-                            {row.name === null || row.name === '' 
-                              ? row.address.substr(0, 6) +
-                                '...' +
-                                row.address.substr(-4)
-                              : row.name}
-                          </p>
-                        </span>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
-                          <p className="leaderboard-top" style={{ textAlign: 'right' }}>
-                            Winnings
-                          </p>
-                          <p className="leaderboard-bottom" style={{ textAlign: 'right' }}>
-                            {amount}
-                          </p>
-                        </span>
-                      </Table.Cell>
-                    </Table.Row>
-                  );
-                })}
-              </Table.Body>
-            </Table>
-        );
-      })}
-    </div>
+                <Table.Body>
+                  {dataGames[index].map((row, index) => {
+                    var num = parseInt(
+                      Number(row.winnings) / Global.CONSTANTS.FACTOR
+                    );
+                    var amount = Number(num.toFixed(0))
+                      .toLocaleString()
+                      .split(/\s/)
+                      .join(',');
+                    return (
+                      <Table.Row key={index}>
+                        <Table.Cell style={{ display: 'flex' }}>
+                          <img
+                            className="avatar-picture"
+                            src={`https://events.decentraland.org/api/profile/${row.address}/face.png`}
+                            style={{
+                              width: '36px',
+                              marginRight: '6px',
+                              verticalAlign: 'middle',
+                              border: '1px solid rgba(42, 42, 42, 1)',
+                              borderRadius: '100%',
+                              display: 'flex',
+                              alignSelf: 'center',
+                            }}
+                          />
+                          <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', alignSelf: 'center' }}>
+                            <p className="leaderboard-top">
+                              {inWords(index + 1)}
+                            </p>
+                            <p className="leaderboard-bottom">
+                              {row.name === null || row.name === '' 
+                                ? row.address.substr(0, 6) +
+                                  '...' +
+                                  row.address.substr(-4)
+                                : row.name}
+                            </p>
+                          </span>
+                        </Table.Cell>
+                        <Table.Cell>
+                          <span style={{ display: 'flex', flexDirection: 'column', paddingLeft: '12px', marginTop: '-3px' }}>
+                            <p className="leaderboard-top" style={{ textAlign: 'right' }}>
+                              Winnings
+                            </p>
+                            <p className="leaderboard-bottom" style={{ textAlign: 'right' }}>
+                              {amount}
+                            </p>
+                          </span>
+                        </Table.Cell>
+                      </Table.Row>
+                    );
+                  })}
+                </Table.Body>
+              </Table>
+          );
+        })}
+      </div>
+    </>  
   );
 };
 
