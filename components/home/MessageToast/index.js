@@ -16,7 +16,43 @@ const MessageToast = (props) => {
   let web3 = {};
   const [show, setShow] = useState(false);
 
-  const makeTimeout = () => {
+  const detectNetwork = ()=> {      
+    window.addEventListener("load", function() {
+        if (window.ethereum) {
+          // use MetaMask's provider
+          web3 = new Web3(window.ethereum);
+
+          // get permission to access accounts
+          window.ethereum.enable();
+      
+          // detect Metamask account change
+          window.ethereum.on('accountsChanged', function (accounts) {
+            console.log('1. accountsChanges',accounts);
+          });
+      
+           // detect Network account change
+          window.ethereum.on('networkChanged', function(networkId){
+            if (parseInt(networkId) !== parseInt(Global.CONSTANTS.PARENT_NETWORK_ID)) {
+                console.log("1. networkId: ", networkId);
+                console.log("2. Global.CONSTANTS.PARENT_NETWORK_ID: ", Global.CONSTANTS.PARENT_NETWORK_ID);
+
+                //Show Toast Message
+                const msg = 'Please switch your Network to Ethereum Mainnet';
+                dispatch({
+                  type: 'show_toastMessage',
+                  data: msg,
+                });
+            }
+          });
+        } else {
+          console.warn(
+            "No web3 detected",
+          );
+        }
+      });
+  }
+
+  const makeTimeout = () => {            
       setShow(true);
       let timer = setTimeout(() => {
         setShow(false);
@@ -26,9 +62,8 @@ const MessageToast = (props) => {
       };
   }
 
-  useEffect(() => {
-    makeTimeout();
-
+  useEffect(() => {        
+    detectNetwork();
     if (window.safari !== undefined) {
       isSafari = true;
     }
@@ -45,8 +80,6 @@ const MessageToast = (props) => {
         });
       })();
     }
-
-    makeTimeout();
   }, []);
 
   useEffect(() => {
@@ -93,6 +126,9 @@ const MessageToast = (props) => {
   }, [isMobile]);
 
   useEffect(() => {
+    console.log("Network ID is changed: ", state.networkID);    
+    console.log("isMobile is changed: ", state.isMobile);        
+
     if (isSafari) {
       setMessage('Please use Brave, Chrome, or Firefox to play games');
     } else if (isMobile) {
@@ -110,6 +146,7 @@ const MessageToast = (props) => {
     } else {
       setMessage('');
     }
+    makeTimeout();
     // setMessage('');
   }, [
     isSafari,
