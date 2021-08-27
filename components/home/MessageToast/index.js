@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import Web3 from 'web3';
-import { GlobalContext } from '../../store';
-import Global from '../Constants';
+import { GlobalContext } from '../../../store';
+import Global from '../../Constants';
+import styles from './MessageToast.module.scss';
+import cn from 'classnames';
 
-const MessageBar = (props) => {
-  // get user's network, location, and active status from the Context API store
+const MessageToast = (props) => {
+
   const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
   const [message, setMessage] = useState('');
   const [isMobile, setMobile] = useState(false);
   const [pause, setPause] = useState(false);
@@ -17,13 +17,18 @@ const MessageBar = (props) => {
   const [show, setShow] = useState(false);
 
   const makeTimeout = () => {
-    setShow(true);
-    setTimeout(() => {
-      setShow(false);
-    }, 5000);
+      setShow(true);
+      let timer = setTimeout(() => {
+        setShow(false);
+      }, 5000);
+      return () => {
+        clearTimeout(timer);
+      };
   }
 
   useEffect(() => {
+    makeTimeout();
+
     if (window.safari !== undefined) {
       isSafari = true;
     }
@@ -118,24 +123,23 @@ const MessageBar = (props) => {
     return null;
   } else if (message !== '') {
     return (
-      <div
-        className={show ? 'message-bar-toast show' : 'message-bar-toast'}
-        style={{
-          top: props.position === 'top'? '60px': (props.position === 'middle'? 'calc(100vh/2)':''),
-          bottom: props.position === 'bottom'? '60px': '',
-          display: 'flex',
-          justifyContent: 'center'
-        }}
-      >
-        <div style={{ alignSelf: 'center' }}>
-          {message}
+        <div className={styles.container}>
+            <div 
+                className={
+                    show ? 
+                    cn(styles.message_bar_toast, styles.show) : 
+                    cn(styles.message_bar_toast, styles.hide)
+                }
+            >
+                <div className={styles.content}>
+                    {message}
+                </div>
+            </div>
         </div>
-
-      </div>
     );
   } else {
     return null;
   }
 };
 
-export default MessageBar;
+export default MessageToast;
