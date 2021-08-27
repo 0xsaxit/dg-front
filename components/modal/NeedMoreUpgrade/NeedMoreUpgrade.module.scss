@@ -6,6 +6,7 @@
   padding: 40px;
 
   .preview_button {
+    cursor: pointer;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -25,9 +26,8 @@
     gap: 24px;
 
     .title {
-      font-family: Larsseit;
+      font-family: Larsseit-ExtraBold;
       font-style: normal;
-      font-weight: 800;
       font-size: 24px;
       line-height: 33px;
       text-align: center;
@@ -37,9 +37,8 @@
 
     .desc {
       padding-top: 8px;
-      font-family: Larsseit;
-      font-style: normal;
-      font-weight: normal;
+      font-family: Larsseit-Regular;
+      font-style: normal;      
       font-size: 18px;
       line-height: 24px;
       text-align: center;      
@@ -78,9 +77,8 @@
           padding: 4px 10px;
           padding: 4px 10px;
 
-          font-family: Larsseit;
-          font-style: normal;
-          font-weight: normal;
+          font-family: Larsseit-Regular;
+          font-style: normal;          
           font-size: 11px;
           line-height: 15px;
           text-align: center;
@@ -96,9 +94,8 @@
 
       .button_card{
         .normal_button {
-          font-family: Larsseit;
-          font-style: normal;
-          font-weight: bold;
+          font-family: Larsseit-Bold;
+          font-style: normal;          
           font-size: 18px;
           line-height: 24px;
           text-align: center;
@@ -112,9 +109,8 @@
         }
   
         .gray_button {
-          font-family: Larsseit;
+          font-family: Larsseit-Bold;
           font-style: normal;
-          font-weight: bold;
           font-size: 18px;
           line-height: 24px;
           text-align: center;
@@ -128,9 +124,8 @@
           color: white;
 
           .desc {            
-            font-family: Larsseit;
-            font-style: normal;
-            font-weight: bold;
+            font-family: Larsseit-Bold;
+            font-style: normal;            
             font-size: 8px;
             line-height: 11px;
             display: flex;
@@ -142,9 +137,8 @@
 
         .desc {
           margin-top: 6px;
-          font-family: Larsseit;
+          font-family: Larsseit-Regular;
           font-style: normal;
-          font-weight: normal;
           font-size: 10px;
           line-height: 14px;
           text-align: center;
