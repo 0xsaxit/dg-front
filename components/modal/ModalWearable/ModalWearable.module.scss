@@ -13,9 +13,8 @@
       padding-right: 10px;
     }
     .title {
-      font-family: Larsseit;
+      font-family: Larsseit-Bold;
       font-style: normal;
-      //font-weight: bold;
       font-size: 13px;
       line-height: 18px;
       color: #FFFFFF;
@@ -44,11 +43,10 @@
           width: 48px;
           height: 48px;
         }
-        .rank {
+        .rank {          
           margin-top: 12px;
-          font-family: Larsseit;
+          font-family: Larsseit-Bold;
           font-style: normal;
-          // font-weight: bold;
           font-size: 14px;
           line-height: 19px;
           text-align: center;
@@ -56,9 +54,8 @@
           color: #FFFFFF;
         }
         .percent {
-          font-family: Larsseit;
+          font-family: Larsseit-Bold;
           font-style: normal;
-          // font-weight: bold;
           font-size: 10.6034px;
           line-height: 14px;
           text-align: center;
@@ -78,6 +75,7 @@
   
 
   .close_icon {
+    cursor: pointer;
     position: absolute;
     width: 48px;
     height: 48px;
@@ -112,6 +110,13 @@
       border-radius: 93px;
     }
     .wear_box_mark {
+      font-family: Larsseit-Bold;
+      font-style: normal;
+      font-size: 17.6218px;
+      line-height: 24px;
+      text-align: center;
+      color: #FFFFFF;
+
       position: absolute;
       margin-left: 70px;
       margin-top: 20px;
@@ -158,9 +163,8 @@
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: Larsseit;
-        font-style: normal;
-        font-weight: bold;
+        font-family: Larsseit-Bold;
+        font-style: normal; 
         font-size: 12px;
         line-height: 16px;
         color: #ffffff;
@@ -189,31 +193,33 @@
     padding-left: 16px;
 
     .header {
-      font-weight: 800;
+      font-family: Larsseit-ExtraBold;
+      font-style: normal;
       font-size: 24px;
       line-height: 33px;
       letter-spacing: -0.7px;
     }
     .benefit_area {
       margin-top: 24px;
-      font-weight: bold;
+
+      font-family: Larsseit-Bold;
+      font-style: normal;
       font-size: 18px;
       line-height: 24px;
-      color: #ffffff;
+      color: #FFFFFF;
     }
     .benefit_list {
       margin-top: -10px !important;
       margin-left: -10px !important;
-      font-weight: normal;
+      font-family: Larsseit-Regular;
       font-size: 16px;
       line-height: 22px;
       color: #ffffff;
       opacity: 0.75;
     }
     .price_area {
-      font-family: Larsseit;
+      font-family: Larsseit-Bold;
       font-style: normal;
-      font-weight: bold;
       font-size: 18px;
       line-height: 24px;
 
@@ -228,6 +234,11 @@
 
         .card_area_body {
           .card {
+            font-family: Larsseit-Bold;
+            font-style: normal;
+            font-size: 16px;
+            line-height: 27px;
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -257,27 +268,24 @@
             }
           }
           .description {
-            font-family: Larsseit;
+            font-family: Larsseit-Regular;
             font-style: normal;
-            font-weight: normal;
             font-size: 10px;
             line-height: 14px;
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
           }
           .network {
-            font-family: Larsseit;
+            font-family: Larsseit-Regular;
             font-style: normal;
-            font-weight: normal;
             font-size: 8px;
             line-height: 11px;
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
           }
           .plusIcon {
-            font-family: Larsseit;
+            font-family: Larsseit-Bold;
             font-style: normal;
-            font-weight: bold;
             font-size: 16px;
             line-height: 27px;
           }
@@ -290,14 +298,17 @@
       justify-content: space-between;
 
       .button_upgrade {
-        width: 200px;
+        font-family: Larsseit-Bold !important;
+        font-style: normal !important;
+        font-size: 18px !important;
+        line-height: 24px !important;
+       
         height: 48px;
         background: #006eff;
         border-radius: 10px;
 
-        font-family: Larsseit;
+        font-family: Larsseit-Bold;
         font-style: normal;
-        font-weight: bold;
         font-size: 17px;
         line-height: 24px;
         text-align: center;
@@ -310,9 +321,8 @@
         background: #2a2a2a;
         border-radius: 10px;
 
-        font-family: Larsseit;
+        font-family: Larsseit-Bold;
         font-style: normal;
-        font-weight: bold;
         font-size: 17px;
         line-height: 24px;
         text-align: center;
@@ -322,9 +332,11 @@
   }
 
   .title {
-    font-weight: 800;
-    font-size: 24px;
-    letter-spacing: -0.5px;
+    font-family: Larsseit-Bold;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 18px;    
+    color: #FFFFFF;
   }
 
   .dg_image {

@@ -25,7 +25,7 @@ const NeedMoreUpgrade = () => {
           close
           // trigger={}
         >
-          <Button 
+          <div 
             className={styles.preview_button} 
             onClick={() =>{
               console.log("[close icon clicked: ]");
@@ -37,7 +37,7 @@ const NeedMoreUpgrade = () => {
                 <path d="M0.0107422 8.6543C0.0107422 9.11133 0.168945 9.48926 0.555664 9.8584L7.16504 16.3271C7.44629 16.6084 7.78027 16.7402 8.17578 16.7402C8.99316 16.7402 9.65234 16.0811 9.65234 15.2812C9.65234 14.8682 9.48535 14.499 9.17773 14.2002L3.44727 8.64551L9.17773 3.1084C9.48535 2.80078 9.65234 2.43164 9.65234 2.02734C9.65234 1.22754 8.99316 0.568359 8.17578 0.568359C7.78027 0.568359 7.44629 0.708984 7.16504 0.981445L0.555664 7.4502C0.177734 7.81934 0.0107422 8.18848 0.0107422 8.6543Z" fill="white"/>
               </svg>
             </span>
-          </Button>
+          </div>
           <div className={styles.body}>
             <div className = {styles.title}>
               Need More to Upgrade

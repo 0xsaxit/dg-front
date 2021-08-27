@@ -34,7 +34,7 @@ const ModalWearable = (props) => {
           </Button>
         }
       >
-        <Button className={styles.close_icon} onClick={() => setOpen(false)}>
+        <div className={styles.close_icon} onClick={() => setOpen(false)}>
           <span className={styles.button_close}>
             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path 
@@ -43,7 +43,7 @@ const ModalWearable = (props) => {
               />
             </svg>
           </span>
-        </Button>
+        </div>
         <div style={{color: 'white', display: 'flex', gap: '24px'}}>
 
           <div className={styles.wear_box}>
@@ -176,7 +176,7 @@ const ModalWearable = (props) => {
               </div>
             </Popup>
             
-            <div className={styles.wear_box_mark}>
+            <div className={styles.wear_box_mark} style={{marginLeft: '50px'}}>
               + 50% - 69%
               <img 
                 src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
