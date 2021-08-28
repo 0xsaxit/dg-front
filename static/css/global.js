@@ -75,6 +75,7 @@ export const GlobalStyles = createGlobalStyle`
   .leaders-text {
     color: ${({ theme }) => theme.homeText} !important;  
   }
+
   .my-nft-container,
   .dg-powered-container,
   .treasury-container,

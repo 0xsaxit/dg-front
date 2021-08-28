@@ -59,32 +59,32 @@ a {
 }
 
 @font-face {
-  font-family: "Larsseit-ExtraBold";
-  src: url("/static/fonts/Larsseit/Larsseit5.ttf");
+  font-family: 'Larsseit-ExtraBold';
+  src: url('/static/fonts/Larsseit/Larsseit5.ttf');
 }
 
 @font-face {
-  font-family: "Larsseit-Bold";
-  src: url("/static/fonts/Larsseit/Larsseit16.otf");
+  font-family: 'Larsseit-Bold';
+  src: url('/static/fonts/Larsseit/Larsseit16.otf');
 }
 
 @font-face {
-  font-family: "Larsseit-Medium";
-  src: url("/static/fonts/Larsseit/Larsseit2.ttf");
+  font-family: 'Larsseit-Medium';
+  src: url('/static/fonts/Larsseit/Larsseit2.ttf');
 }
 
 @font-face {
-  font-family: "Larsseit-Regular";
-  src: url("/static/fonts/Larsseit/Larsseit13.ttf");
+  font-family: 'Larsseit-Regular';
+  src: url('/static/fonts/Larsseit/Larsseit13.ttf');
 }
 
 @font-face {
-  font-family: "Larsseit-Light";
-  src: url("/static/fonts/Larsseit/Larsseit4.ttf");
+  font-family: 'Larsseit-Light';
+  src: url('/static/fonts/Larsseit/Larsseit4.ttf');
 }
 
 h1 {
-  font-family: "Larsseit-ExtraBold";
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 60px;
   margin-bottom: 0px;
@@ -92,7 +92,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Larsseit-ExtraBold";
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 16px;
@@ -100,7 +100,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Larsseit-ExtraBold";
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   font-size: 32px;
   margin-bottom: 0px;
@@ -108,16 +108,13 @@ h3 {
 }
 
 .nft-other-h3 {
-  font-family: "Larsseit-Bold";
-  font-weight: 800 !important;
-  font-size: 30px;
-  padding: 2px 0px 3px 0px;
+  font-family: 'Larsseit-Bold';
+  font-size: 24px;
   margin-top: 0px;
 }
 
 .home-other-h3 {
-  font-family: "Larsseit-Bold";
-  font-weight: 800 !important;
+  font-family: 'Larsseit-Bold';
   font-size: 30px;
   padding: 2px 0px 3px 0px;
   margin-top: 0px;
@@ -125,7 +122,7 @@ h3 {
 }
 
 h4 {
-  font-family: "Larsseit-ExtraBold";
+  font-family: 'Larsseit-ExtraBold';
   font-weight: 800 !important;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -135,7 +132,7 @@ h4 {
 }
 
 h5 {
-  font-family: "Larsseit-Regular";
+  font-family: 'Larsseit-Regular';
   font-weight: 600 !important;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -145,7 +142,7 @@ h5 {
 }
 
 p {
-  font-family: "Larsseit-Regular";
+  font-family: 'Larsseit-Regular';
   font-size: 21px;
   font-weight: normal;
   line-height: 1.4;
@@ -157,18 +154,18 @@ p {
 }
 
 .account-hover {
-  font-family: "Larsseit-Bold";
+  font-family: 'Larsseit-Bold';
   font-size: 18px !important;
   cursor: pointer;
-  margin-left: 40px;
-  margin-right: 40px !important;
+  margin-left: 18px;
+  margin-right: 18px !important;
   padding: 0px 6px 0px 6px;
   color: rgb(92, 95, 97);
   margin-top: 18px;
 }
 
 .ui.button {
-  font-family: "Larsseit-Bold";
+  font-family: 'Larsseit-Bold';
   border-radius: 16px;
 }
 
@@ -184,10 +181,10 @@ p {
   border: none !important;
 }
 
-.ui.column.grid > [class*="sixteen wide"].column,
-.ui.grid > .column.row > [class*="sixteen wide"].column,
-.ui.grid > .row > [class*="sixteen wide"].column,
-.ui.grid > [class*="sixteen wide"].column {
+.ui.column.grid > [class*='sixteen wide'].column,
+.ui.grid > .column.row > [class*='sixteen wide'].column,
+.ui.grid > .row > [class*='sixteen wide'].column,
+.ui.grid > [class*='sixteen wide'].column {
   border-radius: 4px;
 }
 
@@ -196,9 +193,10 @@ p {
 }
 
 .nft-other-p {
-  text-align: left;
-  font-size: 18px;
   font-family: Larsseit-Regular;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 10px;
 }
 
 /* ----------------------------------------- */
@@ -320,7 +318,10 @@ div.ui.segment.transparent-menu-segment {
   width: 100%;
   position: sticky;
   top: 0px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)) !important;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  ) !important;
 }
 
 .menu-container-dark {
@@ -828,7 +829,7 @@ p.home-dashboard-p {
 }
 
 .section-5-outter {
-  background: url("https://res.cloudinary.com/dnzambf4m/image/upload/v1609554150/2020-11-22_19-53-47_zkzcbt.png")
+  background: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1609554150/2020-11-22_19-53-47_zkzcbt.png')
     rgba(0, 0, 0, 0.3);
   background-size: cover;
   background-blend-mode: multiply;
@@ -1150,9 +1151,10 @@ p.home-dashboard-p {
 
 .nfts-info,
 .nfts-info-2 {
-  font-size: 15px !important;
   font-family: Larsseit-Bold;
-  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin-bottom: 0px;
 }
 
 .nfts-info.mine {
@@ -1239,7 +1241,7 @@ td:last-child {
 }
 
 .ui.table thead th.leaderboard-header {
-  font-size: 20px;
+  font-size:  20px;
   font-family: Larsseit-Bold;
   text-transform: capitalize;
 }
@@ -1366,7 +1368,7 @@ td:last-child {
 }
 
 .account-other-inner-p {
-  font-family: "Lato", sans-serif !important;
+  font-family: 'Lato', sans-serif !important;
   font-size: 17px !important;
   margin-top: 45px;
   padding-bottom: 60px;
@@ -1397,7 +1399,7 @@ span.account-hover-time {
 }
 
 .account-hover-time.active {
-  color: white;
+  color:  white;
   border-bottom: 3px solid #006eff;
   padding-bottom: 14px;
   padding-left: 6px;
@@ -1406,7 +1408,7 @@ span.account-hover-time {
 
 .account-hover-time:hover {
   cursor: pointer;
-  color: white;
+  color:  white;
   border-bottom: 3px solid #006eff;
   padding-bottom: 14px;
   padding-left: 6px;
@@ -1514,7 +1516,7 @@ svg.spanbox.disable {
 }
 
 .spanbox {
-  font-family: "Lato", sans-serif !important;
+  font-family: 'Lato', sans-serif !important;
   margin-top: 30px;
 }
 
@@ -1608,7 +1610,7 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .avatar-edit-circle {
-  background-color: #1f1f1f;
+  background-color: #1F1F1F;
   position: relative;
   z-index: 3;
   width: 40px;
@@ -2048,7 +2050,7 @@ i.copy.icon.affiliate-icon:hover {
   font-size: 14px;
 }
 
-.ui.action.input:not([class*="left action"]) > input:focus {
+.ui.action.input:not([class*='left action']) > input:focus {
   border-right: 0px solid transparent !important;
 }
 
@@ -2186,7 +2188,7 @@ i.copy.icon.affiliate-icon:hover {
 .DG-graph-column,
 .DG-column-treasury,
 .DG-column-game {
-  font-family: "Lato", sans-serif !important;
+  font-family: 'Lato', sans-serif !important;
   border-radius: 4px;
   padding: 12px 18px 18px 18px !important;
   background-color: white;
@@ -2313,7 +2315,7 @@ span.treasury-table {
 
 .sk-fading-circle .sk-circle:before,
 .modal-sk-fading-circle .sk-circle:before {
-  content: "";
+  content: '';
   display: block;
   margin: 0 auto;
   width: 15%;
@@ -2548,7 +2550,7 @@ div.ui.grid.admin-balances-container {
   transform: translateY(0px);
 }
 
-.ui.action.input:not([class*="left action"]) > input:focus {
+.ui.action.input:not([class*='left action']) > input:focus {
   border-color: rgba(0, 0, 0, 0.25);
 }
 
@@ -2654,7 +2656,7 @@ a.ui.blue.button.touch {
     width: 210px !important;
     margin-left: calc(50vw - 128px);
     position: relative;
-    z-index: 999;
+    z-index:  999;
     background-color: #006eff;
     color: white;
     margin-top: 8px;
@@ -2746,6 +2748,7 @@ a.ui.blue.button.casinos {
   color: white;
   padding: 0px;
   line-height: 24px;
+  margin-top: 12.5px;
   min-width: 250px !important;
   height: 40px !important;
   border-radius: 16px;
@@ -2789,25 +2792,29 @@ a.ui.blue.button.dg-learn-button {
 }
 
 .ui.blue.button.nft-button {
-  background-color: #006eff;
+  margin-top: 20px;
+  width: 100%;
+  background: #006eff;
   color: white;
-  margin-top: 24px;
-  width: calc(50% - 8px) !important;
-  height: 56px !important;
-  font-size: 20px !important;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 18px;
   font-family: Larsseit-Bold;
-  border-radius: 12px;
+  font-size: 14px;
+  width: calc(50% - 8px);
 }
 
 .ui.button.nft-read-button {
-  background-color: #2a2a2a;
+  margin-top: 20px;
+  width: 100%;
+  background: #2A2A2A;
   color: white;
-  margin-top: auto !important;
-  width: calc(50% - 8px) !important;
-  height: 56px !important;
-  font-size: 20px !important;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 18px;
   font-family: Larsseit-Bold;
-  border-radius: 12px;
+  font-size: 14px;
+  width: calc(50% - 8px);
 }
 
 .ui.button.reload-button {
@@ -3176,14 +3183,26 @@ img.avatar-picture-home {
   width: 46px;
   height: 46px;
   border-radius: 100%;
-  background: linear-gradient(162deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, #006eff 40.1%, #006eff 100%);
+  background: linear-gradient(
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #006eff 40.1%,
+    #006eff 100%
+  );
 }
 
 img.avatar-picture-binance {
   width: 46px;
   height: 46px;
   border-radius: 100%;
-  background: linear-gradient(162deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, #f1cd50 40.1%, #f1cd50 100%);
+  background: linear-gradient(
+    162deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 40%,
+    #f1cd50 40.1%,
+    #f1cd50 100%
+  );
 }
 
 .ui.bottom.right.popup.transition.visible.account-popup {
@@ -3213,6 +3232,24 @@ img.avatar-picture-binance {
   margin-top: 8px;
   padding: 12px 24px 12px 24px;
   transition: all linear 0.1s;
+}
+
+.ui.button.casino-button {
+  margin-top: 20px;
+  width: 100%;
+  background: #006eff;
+  color: white;
+  border-radius: 10px;
+  height: 40px;
+  line-height: 18px;
+  font-family: Larsseit-Bold;
+  font-size: 14px;
+  width: 100%;
+}
+
+.ui.button.casino-button:hover {
+  background-color: #006EFF;
+  filter: brightness(0.9) !important;
 }
 
 .ui.button.casino-balance-button:hover {
@@ -3308,11 +3345,6 @@ i.clone.outline.icon,
   cursor: pointer;
   color: white !important;
   transition: all linear 0.1s;
-  fill-opacity: 1;
-}
-
-.account-address:hover path {
-  fill-opacity: 1;
 }
 
 .account-address:hover > i.clone.outline.icon {
@@ -3353,33 +3385,20 @@ i.clone.outline.icon,
 }
 
 .copied-toast {
-  visibility: hidden;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 2px;
-  padding: 16px;
-  font-size: 17px;
-  background-color: hsl(0, 0%, 12%);
+  background-color: #1f1f1f;
   position: fixed;
   bottom: 60px;
   left: calc(50% - 165px);
   width: 330px;
   height: 75px;
-  transition: all 1s;
-}
-
-.copied-toast.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  border-radius: 32px;
 }
 
 .copied-text {
   color: white;
   font-size: 24px;
   font-weight: 700;
-  padding-top: 8px;
+  padding-top: 19px;
 }
 
 .connect-metamask-modal {
@@ -3531,7 +3550,7 @@ h3.deposit-twentyfour.casino {
   border-radius: 10px;
   font-family: Larsseit-Regular;
   height: 40px;
-  color: white !important;
+  color:  white !important;
 }
 
 .ui.input > input:focus,

@@ -141,7 +141,7 @@ const MessageToast = (props) => {
       );
     } else if (!state.activeStatus) {
       setMessage(
-        'To ensure the security of your funds, a reauthorization signature is required after 12 dormant hours'
+        'A reauthorization signature is required after 12 dormant hours'
       );
     } else {
       setMessage('');

@@ -33,7 +33,7 @@ const BlogDetail = ({ page_title, featured_image, page_summary }) => {
   }, []);
 
   return (
-    <Segment vertical style={{ top: '150px' }}>
+    <Segment vertical style={{ top: '180px' }}>
       {currentPage && (
         <Screen
           slug={currentPage.slug}

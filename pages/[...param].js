@@ -3,7 +3,7 @@ import { GlobalContext } from '../store/index';
 import { useRouter } from 'next/router';
 import Content404 from '../components/content/Content404';
 import GetStarted from '../components/content/ContentStart/index.js';
-import AccountData from '../components/home/AccountData';
+// import AccountData from '../components/home/AccountData';
 import Layout from '../components/Layout.js';
 import Header from '../components/Header';
 import Aux from '../components/_Aux';
@@ -11,14 +11,13 @@ import Global from '../components/Constants';
 import Images from '../common/Images';
 import Spinner from '../components/Spinner';
 
-
 const Wildcard = () => {
   // dispatch affiliate referral address to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [affiliateAddress, setAffiliateAddress] = useState(true);
-  const [isErrorMessage, setIsErrorMessage] = useState(false);
+  // const [isErrorMessage, setIsErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
@@ -43,13 +42,13 @@ const Wildcard = () => {
     setIsLoading(false);
   }, [router]);
 
-  useEffect(() => {
-    if (!state.userStatus) {
-      setIsErrorMessage(true);
-    } else {
-      setIsErrorMessage(false);
-    }
-  }, [state.userStatus]);
+  // useEffect(() => {
+  //   if (!state.userStatus) {
+  //     setIsErrorMessage(true);
+  //   } else {
+  //     setIsErrorMessage(false);
+  //   }
+  // }, [state.userStatus]);
 
   return (
     <Layout>
@@ -61,11 +60,7 @@ const Wildcard = () => {
             image={Images.SOCIAL_SHARE_2}
           />
 
-          {isLoading === true ? (
-            <Spinner background={1} />
-          ) : (
-            <GetStarted />
-          )}
+          {isLoading === true ? <Spinner background={1} /> : <GetStarted />}
         </Aux>
       ) : (
         <Aux>

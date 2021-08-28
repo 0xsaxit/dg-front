@@ -56,8 +56,8 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
-    'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
-    'ROULETTE • BLACKJACK • POKER',
+    'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs.',
+    'DECENTRAL GAMES',
     'https://play.decentraland.org/?position=-119%2C133&realm=dg-diamond',
     'https://docs.decentral.games/operators/tominoya',
   ],
@@ -65,8 +65,8 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
     'Atari Casino',
-    'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
-    'ROULETTE • BLACKJACK',
+    'The Atari Casino is located within the Vegas City district in Decentraland. The scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
+    'PARTNER CASINO',
     'https://play.decentraland.org/?position=-94%2C110&realm=dg-diamond',
     'https://docs.decentral.games/operators/atari',
   ],
@@ -74,19 +74,37 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
-    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
-    'ROULETTE • BLACKJACK',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere.',
+    'DECENTRAL GAMES',
     'https://play.decentraland.org/?position=-75%2C77&realm=dg-diamond',
     'https://docs.decentral.games/operators/chateau-satoshi',
   ],
+  BAYC: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340721/cloudinary_zjohvr.gif',
+    'games-pic',
+    'BAYC Riverboat',
+    'The Bored Ape Yacht club Riverboat Casino was created in partnership with BAYC. Located in Vegas City, the scene is modelled after an old-timey riverboat and features FREE play only games.',
+    'PARTNER CASINO',
+    'https://play.decentraland.org/?position=-110%2C121&realm=dg-diamond',
+    'https://docs.decentral.games/operators/',
+  ],  
   Dext: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1627209301/Dext_Timelapse_1_oh5bnz.gif',
     'games-pic',
     'DEXT Poker Lounge',
-    'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
-    'POKER',
+    'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse of the DEXT skyscraper.',
+    'PARTNER CASINO',
     'https://play.decentraland.org/?position=-110%2C129&realm=dg-diamond',
     'https://docs.decentral.games/operators/dext',
+  ],
+  Aquarium: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
+    'games-pic',
+    'Aquarium Casino',
+    'The Aquarium Casino is located within the Vegas City disctrict in Decentraland and features large glass-enclosed displays of sea creatures swimming throughout the build. ',
+    'PARNTER CASINO',
+    'https://play.decentraland.org/?position=-139%2C126&realm=dg-diamond',
+    'https://docs.decentral.games/operators/',
   ],
 };
 
@@ -167,21 +185,12 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628718435/Screen_Shot_2021-08-11_at_10.46.57_PM_wnwyvi.png',
     'nft-pic',
     'DG Headphones',
     'LEGENDARY',
-    '',
-    'https://opensea.io/assets/matic/0xf16ff41128b298304b761b49c1c56580972ada32/13',
-    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ],
-  headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
-    'nft-pic',
-    'DG Headphones',
-    'LEGENDARY',
-    '',
-    'https://opensea.io/assets/dg-accessories',
+    'Hitting the tables? Tune out the noise, get in the zone.',
+    'https://market.decentraland.org/contracts/0xf16ff41128b298304b761b49c1c56580972ada32/items/0',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
 };
@@ -244,7 +253,7 @@ const Offerings = (props) => {
   function submenu() {
     return (
       <div>
-        <div className="account-other-tabs" style={{ padding: '200px 0px 60px 0px' }}>
+        <div className="account-other-tabs" style={{ padding: '240px 0px 60px 0px' }}>
           {/* ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////////////////////////////////////////////////////////
               ////////////////////////////  tab select area   //////////////////////////////// */}

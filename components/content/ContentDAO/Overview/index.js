@@ -369,7 +369,7 @@ const Overview = props => {
           <Button
             className={styles.blue_button}
             onClick={() => {
-              router.push('/dg/liquidity');
+              router.push('/dg/governance');
             }}
           >
             Start Staking $DG
@@ -593,7 +593,7 @@ const Overview = props => {
               <Button
                 className={styles.lower_button}
                 onClick={() => {
-                  router.push('/dg/liquidity');
+                  router.push('/dg/governance');
                 }}
               >
                 Stake Your DG
