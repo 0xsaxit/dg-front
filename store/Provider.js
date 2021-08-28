@@ -116,6 +116,7 @@ const initialState = {
     lockID: 0,
   },
   dgWarningMsg: false,
+  toastMessage: '',
 };
 
 const reducer = (state, action) => {
@@ -348,6 +349,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         dgWarningMsg: action.data,
+      };
+    case 'show_toastMessage':
+      return {
+        ...state,
+        toastMessage: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');

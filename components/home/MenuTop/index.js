@@ -8,10 +8,9 @@ import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
-import MessageBar from '../MessageBar';
 import ButtonConnect from '../../button/ButtonConnect/index.js';
-
 import styles from './MenuTop.module.scss';
+import MessageToast from 'components/home/MessageToast';
 
 const MenuTop = props => {
   // get token balances from the Context API store
@@ -334,8 +333,7 @@ const MenuTop = props => {
               : ''
           )}
         >
-          <MessageBar />
-
+          <MessageToast />
           <Menu className={cn(styles.menu_container)}>
             {DGLogo()}
             {shownOrHiddenItems()}

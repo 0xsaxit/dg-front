@@ -145,7 +145,7 @@
     @include mq($until: extra-large) {
       position: relative;
       height: 210px;
-      margin-top: -150px;
+      margin-top: -180px;
       margin-bottom: 80px;
     }
 
@@ -159,14 +159,14 @@
     @include mq($until: medium) {
       position: relative;
       height: 210px;
-      margin-top: -200px;
+      margin-top: -240px;
       margin-bottom: 80px;
     }
 
     @include mq($until: small) {
       position: relative;
       height: 210px;
-      margin-top: -230px;
+      margin-top: -280px;
       margin-bottom: 80px;
     }
   }

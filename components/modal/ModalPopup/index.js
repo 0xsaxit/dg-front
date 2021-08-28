@@ -303,7 +303,7 @@ const ModalPopup = () => {
       </Popup>
 
       {copied ? (
-        <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
+        <div className={copied ? 'copied-toast show' : 'copied-toast'}>
           <h3 className="copied-text">Wallet address copied!</h3>
         </div>
       ) : null}

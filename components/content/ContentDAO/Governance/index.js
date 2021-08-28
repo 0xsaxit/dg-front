@@ -131,12 +131,25 @@ const Governance = (props) => {
               {Number(state.DGBalances.BALANCE_STAKING_GOVERNANCE) ? (
                 <Button 
                   className={styles.lower_button}
-                  onClick={() => props.reward(stakeContractGovernance)}
+                  onClick={() => {
+                    props.reward(stakeContractGovernance);
+
+                    //Show Toast Message2
+                    const msg = 'Claiming Governance DG!';
+                    dispatch({
+                      type: 'show_toastMessage',
+                      data: msg,
+                    });
+                    
+                  }}
                 >
                   Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               ) : (
-                <Button disabled className={styles.lower_button}>
+                <Button 
+                  disabled 
+                  className={styles.lower_button}
+                >
                   Claim {state.DGBalances.BALANCE_STAKING_GOVERNANCE} $DG
                 </Button>
               )}
