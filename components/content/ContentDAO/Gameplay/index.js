@@ -10,6 +10,7 @@ import Web3 from 'web3';
 import styles from './Gameplay.module.scss';
 import axios from 'axios';
 import Fetch from '../../../../common/Fetch';
+import MetaTx from '../../../../common/MetaTx';
 
 
 const Gameplay = (props) => {
@@ -19,6 +20,8 @@ const Gameplay = (props) => {
   // define local variables
   const [pointerContractNew, setPointerContractNew] = useState({});
   const [price, setPrice] = useState(0);
+  const [web3, setWeb3] = useState({});
+  const [gameplayUSD, setGameplayUSD] = useState(0);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +36,11 @@ const Gameplay = (props) => {
   }, []);
 
   useEffect(() => {
-    (async () => {
+    if (state.userStatus >= 4) {
+      // initialize Web3 providers and create contract instance
+      const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
+      setWeb3(web3);
+
       const biconomy = new Biconomy(
         new Web3.providers.HttpProvider(Global.CONSTANTS.MATIC_URL),
         {
@@ -41,32 +48,41 @@ const Gameplay = (props) => {
           debug: true,
         }
       );
-      const getWeb3 = new Web3(biconomy);
+      const getWeb3 = new Web3(biconomy); // pass Biconomy object to Web3 constructor
 
-      const pointerContractNew = await Transactions.pointerContractNew(getWeb3);
+      async function fetchData() {
+        const pointerContractNew = await Transactions.pointerContractNew(
+          getWeb3
+        );
+        setPointerContractNew(pointerContractNew);
+      }
 
-      setPointerContractNew(pointerContractNew);
-    })();
-  }, []);
+      fetchData();
 
-  function formatPrice(balanceDG, units) {
-    const priceFormatted = Number(balanceDG)
-      .toFixed(units)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      biconomy
+        .onEvent(biconomy.READY, () => {
+          console.log('Mexa is Ready: Gameplay Rewards');
+        })
+        .onEvent(biconomy.ERROR, (error, message) => {
+          console.error(error);
+        });
+    }
+  }, [state.userStatus]);
 
-    return priceFormatted;
-  }
+  useEffect(() => {
+    if (props.price && state.DGBalances.BALANCE_MINING_DG_V2) {
+      const gameplayUSD = props.price * state.DGBalances.BALANCE_MINING_DG_V2;
+      const gameplayUSDFormatted = props.formatPrice(gameplayUSD, 2);
 
+      setGameplayUSD(gameplayUSDFormatted);
+    }
+  }, [props.price, state.DGBalances.BALANCE_MINING_DG_V2]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // Biconomy API meta-transaction. Dispatch DG tokens to player
   async function metaTransaction() {
     try {
-
-      //Show Toast Message1
-      const msg = 'Claiming Mining DG!';
-      dispatch({
-        type: 'show_toastMessage',
-        data: msg,
-      });
-
       console.log('Dispatching DG tokens to address: ' + state.userAddress);
 
       // get function signature and send Biconomy API meta-transaction
@@ -79,7 +95,7 @@ const Gameplay = (props) => {
         functionSignature,
         pointerContractNew,
         state.userAddress,
-        window.ethereum
+        web3
       );
 
       if (txHash === false) {
@@ -113,7 +129,7 @@ const Gameplay = (props) => {
           <p className={styles.lower_header}>Claim $DG Rewards</p>
           <div className={styles.lower_value}>
             <p className={styles.DG_value}>
-              {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
+              {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
             </p>
             <img 
               style={{ marginTop: '-4px' }}
@@ -131,14 +147,8 @@ const Gameplay = (props) => {
             className={cn(styles.claim_DG, styles.lower_button)}
             disabled={!Number(state.DGBalances.BALANCE_MINING_DG_V2)}
             onClick={() => metaTransaction()}
-            // onClick={() => {
-            //   dispatch({
-            //     type: 'show_toastMessage',
-            //     data: 'Claiming Mining DG!',
-            //   });
-            // }}
           >
-            Claim {formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
+            Claim {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}{' '}
             $DG
           </Button>
         </div>
@@ -155,12 +165,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>6 ETH</p>
+                <p className={styles.gameplay_title}>7 ETH</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>20 ETH</p>
+                <p className={styles.gameplay_right_bottom}>23 ETH</p>
               </div>
             </div>
           </div>
@@ -174,12 +184,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>21.5K MANA</p>
+                <p className={styles.gameplay_title}>24.3K MANA</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>71.5K MANA</p>
+                <p className={styles.gameplay_right_bottom}>82K MANA</p>
               </div>
             </div>
           </div>
@@ -193,12 +203,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>14.6K USDT</p>
+                <p className={styles.gameplay_title}>22K USDT</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>29.3K USDT</p>
+                <p className={styles.gameplay_right_bottom}>74K USDT</p>
               </div>
             </div>
           </div>
@@ -212,12 +222,12 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>14.6K DAI</p>
+                <p className={styles.gameplay_title}>22K DAI</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>29.3K DAI</p>
+                <p className={styles.gameplay_right_bottom}>74K DAI</p>
               </div>
             </div>
           </div>
@@ -231,17 +241,21 @@ const Gameplay = (props) => {
             <div className={styles.gameplay_right}>
               <div className="d-flex flex-column mr-2">
                 <p className={styles.gameplay_top}>Roulette Rate</p>
-                <p className={styles.gameplay_title}>292K ATRI</p>
+                <p className={styles.gameplay_title}>400K ATRI</p>
               </div>
 
               <div className={styles.reward_stats}>
                 <p className={styles.gameplay_right}>Blackjack Rate</p>
-                <p className={styles.gameplay_right_bottom}>986K ATRI</p>
+                <p className={styles.gameplay_right_bottom}>1.35M ATRI</p>
               </div>
             </div>
           </div>
 
-          <Button className={styles.play_button}>
+          <Button 
+            className={styles.play_button}
+            href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
+            target="_blank"
+          >
             Play Now
           </Button>
         </div>

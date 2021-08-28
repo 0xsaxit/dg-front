@@ -41,7 +41,7 @@ function SectionOne(props) {
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile
                 ? ''
-                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'}
+                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'
                }
             </p>
             <span className={styles.button_group}>
@@ -51,15 +51,21 @@ function SectionOne(props) {
                 href="https://docs.decentral.games/"
                 target="_blank"
               >
-                Learn More
+                {mobile ?
+                  'Info' :
+                  'Learn More'
+                }
               </Button>
               <Button
                 color="blue"
                 className={styles.play_button}
-                href="https://play.decentraland.org/?position=-118%2C135&realm=dg-diamond"
+                href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
                 target="_blank"
               >
-                Play Now
+                {mobile ?
+                  'Play' :
+                  'Play Now'
+                }
               </Button>
             </span>
           </div>
