@@ -171,7 +171,7 @@ const Balances = (props) => {
   function Balances() {
     return (
       <div className={styles.balances_container}>
-        <h2 className={styles.balances_container_title}>Your Assets</h2>
+        <h2 className={styles.balances_container_title}>Your Assets</h2>        
         <div className={styles.balance_column}>
           <span className={styles.float_left}>
             <span className={styles.img_left}>

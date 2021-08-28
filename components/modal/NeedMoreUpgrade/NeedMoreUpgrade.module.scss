@@ -1,0 +1,150 @@
+@import 'styles/base.scss';
+
+.upgrade_modal {
+  width: 539px !important;
+  height: 413px !important;
+  padding: 40px;
+
+  .preview_button {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    left: 0px;
+    top: -55px;
+    background: #000000;
+    box-shadow: 0px 16px 32px rgb(0 0 0 / 24%);
+    border-radius: 24px !important;
+    align-items: center;
+  }
+
+  .body {
+    color: white;
+    display: flex;
+    gap: 24px;
+
+    .title {
+      font-family: Larsseit-ExtraBold;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 33px;
+      text-align: center;
+      letter-spacing: -0.7px;
+      color: #FFFFFF;
+    }
+
+    .desc {
+      padding-top: 8px;
+      font-family: Larsseit-Regular;
+      font-style: normal;      
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;      
+      color: #FFFFFF;
+
+      .a{
+        color: rgba(0, 110, 255, 1);
+      }
+    }
+
+    .image_area {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-around;
+
+      .image_card {
+        display: flex;
+        flex-direction: column;
+
+        .photo {
+          height: 48px;
+          .icon {
+            height: 48px;
+          }
+        }
+        .dgphoto {
+          height: 58px;
+          .dgicon {
+            height: 58px;
+          }
+        }
+        
+        .desc {
+          background: #232323;
+          border-radius: 1000px;
+          padding: 4px 10px;
+          padding: 4px 10px;
+
+          font-family: Larsseit-Regular;
+          font-style: normal;          
+          font-size: 11px;
+          line-height: 15px;
+          text-align: center;
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    .button_area {
+      margin-top: 28px;
+      display: flex;
+      justify-content: space-between;
+
+      .button_card{
+        .normal_button {
+          font-family: Larsseit-Bold;
+          font-style: normal;          
+          font-size: 18px;
+          line-height: 24px;
+          text-align: center;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #006EFF;
+          color: white;
+          border-radius: 10px;
+        }
+  
+        .gray_button {
+          font-family: Larsseit-Bold;
+          font-style: normal;
+          font-size: 18px;
+          line-height: 24px;
+          text-align: center;
+          
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          background: #0C0C0C;
+          border-radius: 10px;
+          color: white;
+
+          .desc {            
+            font-family: Larsseit-Bold;
+            font-style: normal;            
+            font-size: 8px;
+            line-height: 11px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+          }
+        }
+
+        .desc {
+          margin-top: 6px;
+          font-family: Larsseit-Regular;
+          font-style: normal;
+          font-size: 10px;
+          line-height: 14px;
+          text-align: center;
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+  }
+}
