@@ -58,7 +58,7 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
-    'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
+    'Tominoya is a Japanese-themed scene located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
     'https://play.decentraland.org/?position=-119%2C133&realm=dg',
     'https://docs.decentral.games/operators/tominoya',
@@ -66,8 +66,8 @@ const detailsCasinos = {
   Atari: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
-    'Atari Casino',
-    'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
+    'Atari',
+    'Atari is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-94%2C110&realm=dg',
     'https://docs.decentral.games/operators/atari',
@@ -76,7 +76,7 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
-    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired experience, theatre, nightclub, and stratosphere. Chateau is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-75%2C77&realm=dg',
     'https://docs.decentral.games/operators/chateau-satoshi',
@@ -88,6 +88,15 @@ const detailsCasinos = {
     'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
     'POKER',
     'https://play.decentraland.org/?position=-110%2C129&realm=dg',
+    'https://docs.decentral.games/operators/dext',
+  ],
+  Amnesia: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
+    'games-pic',
+    'Amnesia',
+    'Amnesia nightclub is located within the Vegas City district in Decentraland.',
+    'POKER',
+    'https://play.decentraland.org/?position=-118%2C129&realm=dg',
     'https://docs.decentral.games/operators/dext',
   ],
 };
@@ -338,7 +347,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/casinos">
+                <Link href="/games/scenes">
                   <div className={styles.menu_item}
                   >
                     <svg 
@@ -591,7 +600,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/casinos">
+                <Link href="/games/scenes">
                   <div
                     className={
                       gameState === 'casinos'
@@ -653,7 +662,7 @@ const Offerings = (props) => {
                         stroke-linejoin="round"
                       />
                     </svg>
-                    <div className={styles.menu_title}>Casinos</div>
+                    <div className={styles.menu_title}>Scenes</div>
                   </div>
                 </Link>
 
