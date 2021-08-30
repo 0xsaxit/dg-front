@@ -77,16 +77,26 @@
   .close_icon {
     cursor: pointer;
     position: absolute;
-    width: 48px;
-    height: 48px;
+   
     left: 0px;
-    top: -55px;
+    top: -50px;
     background: #000000;
     box-shadow: 0px 16px 32px rgb(0 0 0 / 24%);
     border-radius: 24px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    .button_close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      background: black;
+      border-radius: 100%;
+      padding: 8px 10px 8px 10px;
+    }
   } 
 
   .wear_box {
@@ -295,9 +305,12 @@
 
     .button_area {
       display: flex;
-      justify-content: space-between;
+      justify-content: left;
+      gap: 16px;
 
       .button_upgrade {
+        display: flex;
+        align-items: center;        
         font-family: Larsseit-Bold !important;
         font-style: normal !important;
         font-size: 18px !important;
@@ -316,6 +329,8 @@
       }
           
       .button_close {
+        display: flex;
+        align-items: center;        
         width: 141px;
         height: 48px;
         background: #2a2a2a;
