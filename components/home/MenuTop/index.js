@@ -12,13 +12,14 @@ import ButtonConnect from '../../button/ButtonConnect/index.js';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
 
+
 const MenuTop = props => {
+
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const isTablet = useMediaQuery('(min-width: 1100px)');
   const isMobile = useMediaQuery('(min-width: 768px)');
-  // define local variables
-  // const [isDarkMode, setDarkMode] = useState(false);
+  const isSquished = useMediaQuery('(min-width: 820px)');
   const [open, setOpen] = useState(false);
   const [utm, setUtm] = useState('');
   const [scrollState, setScrollState] = useState('top');
@@ -305,7 +306,10 @@ const MenuTop = props => {
             state.userStatus >= 4 ? '' : 'd-none'
           )}
         >
-          <ModalInfo />
+          {isSquished ?
+            <ModalInfo /> :
+            null
+          }
           <ModalPopup />
         </span>
         <span

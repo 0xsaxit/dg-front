@@ -3247,7 +3247,8 @@ img.avatar-picture-binance {
   width: 100%;
 }
 
-.ui.button.casino-button:hover {
+.ui.button.casino-button:hover,
+.ui.button.casino-button:focus {
   background-color: #006EFF;
   filter: brightness(0.9) !important;
 }
