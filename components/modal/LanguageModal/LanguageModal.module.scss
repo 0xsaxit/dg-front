@@ -25,32 +25,6 @@
 
   .popup_container {
     display: flex;
-
-    .account_dropdown_item {
-      display: flex;
-      font-size: 20px;
-      font-family: Larsseit-Medium;
-      margin: 0;
-      padding-top: 16px;
-      transition: all linear 0.1s;
-
-      img {
-        margin-right: 10px;
-        margin-bottom: -2px;
-        width: 24px;
-        height: 24px;
-      }
-
-      p {
-        font-size: 20px;
-      }
-
-      &:hover {
-        cursor: pointer;
-        opacity: 70%;
-        transition: all linear 0.1s;
-      }
-    }
   }
 
   .language_popup {
@@ -61,5 +35,31 @@
     background-color: #1f1f1f !important;
     padding: 15px !important;
     border: 0px solid white !important;
+  }
+}
+
+.account_dropdown_item {
+  display: flex;
+  font-size: 20px;
+  font-family: Larsseit-Medium;
+  margin: 0;
+  padding-top: 16px;
+  transition: all linear 0.1s;
+
+  img {
+    margin-right: 10px;
+    margin-bottom: -2px;
+    width: 24px;
+    height: 24px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transition: all linear 0.1s;
   }
 }
