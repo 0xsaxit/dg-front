@@ -8,6 +8,8 @@ import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
+import LanguageModal from 'components/modal/LanguageModal';
+
 import MessageBar from '../MessageBar';
 import ButtonConnect from '../../button/ButtonConnect';
 
@@ -447,6 +449,7 @@ const MenuTop = props => {
         >
           <ButtonConnect />
         </span>
+        <LanguageModal />
       </>
     );
   }
