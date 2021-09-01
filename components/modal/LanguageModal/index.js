@@ -11,7 +11,7 @@ const countryItems = [
     language: 'English',
   },
   {
-    imgurl:
+    imgUrl:
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503836/Ellipse_1_yseyhx.png',
     language: 'Spanish',
   },
