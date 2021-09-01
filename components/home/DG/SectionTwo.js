@@ -42,7 +42,7 @@ function SectionTwo() {
           >
             <Button
               className={styles.grey_button}
-              href="/blog/"
+              href="/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout"
               target="_blank"
             >
             {mobile ?

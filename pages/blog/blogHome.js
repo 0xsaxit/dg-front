@@ -77,7 +77,7 @@ function blog() {
       </div>
 
       <div className="featured-blog-container">
-        <Link href="/blog/[id]" as="blog/decentral-games-raises-5m">
+        <Link href="/blog/[id]" as="blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout">
           <a>
             <span className="featured-blog-grid">
               <Image src={Images.FEATURED_IMAGE} className="featured-image" />
@@ -86,7 +86,7 @@ function blog() {
                 <div className="top">
                   <span className="blog-category">Announcements </span>
                   <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
-                  <span className="blog-date">18 JUN 2021</span>
+                  <span className="blog-date">1 SEP 2021</span>
                 </div>
                 <div className="bottom">
                   <div className="blog-title">
@@ -97,7 +97,7 @@ function blog() {
                         marginTop: '4px',
                       }}
                     >
-                      Decentral Games Raises $5M To Cement Itself As The Leading Metaverse-native, Profitable DAO
+                      Decentral Games Announces Play-to-Earn Metaverse Poker, ICE Token Rollout
                     </h4>
                     <p
                       style={{
@@ -106,7 +106,7 @@ function blog() {
                         paddingTop: '8px',
                       }}
                     >
-                      Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital, among others
+                      Decentral Games is excited to announce the development of free-play, play-to-earn Metaverse poker! Play-to-earn architectures will play a massive role in driving the future of crypto and gaming adoption, and Decentral Games is now a first-mover in this nascent, but promising, space
                     </p>
                   </div>
                 </div>
