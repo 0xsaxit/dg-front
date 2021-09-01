@@ -11,6 +11,58 @@ function SectionTwo() {
   return (
     <Aux>
       <div className={cn(styles.section_two, 'container-fluid')}>
+
+        <div className={styles.tout_container}>
+          <h1 className={styles.tout_h1}>Wear NFTs, Play Poker, Earn ICE</h1>
+          <p className={styles.tout_p}>
+            Play to earn with free play poker in the metaverse. Coming this October.
+          </p> 
+          <div>
+            {!mobile && (
+              <video
+                className={styles.tout_image}
+                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1630492192/ICE_DIAMOND_HYPE_a8btgn.mp4"
+                type="video/mp4"
+                frameBorder="0"
+                autoPlay={true}
+                loop
+                muted
+              ></video>
+            )}
+            {mobile && (
+              <img
+                className={styles.tout_image}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630487859/ICE_ICON_hcsgvx.png"
+                alt="img"
+              />
+            )}
+          </div>
+          <span
+            className={styles.tout_span}
+          >
+            <Button
+              className={styles.grey_button}
+              href="/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout"
+              target="_blank"
+            >
+            {mobile ?
+              'Blog' :
+              'Announcement'
+            }
+            </Button>
+            <Button
+              className={styles.blue_button}
+              href="https://ice.decentral.games"
+              target="_blank"
+            >
+            {mobile ?
+              'Info' :
+              'White Paper'
+            }
+            </Button>
+          </span>
+        </div>
+
         <div
           className={cn(
             'row flex-md-row flex-column-reverse',
@@ -126,7 +178,7 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>Earn APY%</h1>
-            <p className={styles.section_p}>
+            <p className={styles.section_p} style={{ marginRight: '24px' }}>
               Stake $DG in governance and earn up to 40% in yield rewards.
             </p>
 

@@ -31,7 +31,7 @@ function SectionOne(props) {
           <div className="col-md-12 col-lg-9 d-flex flex-column">
             <h1>
               {' '}
-              Play to Earn gaming in the metaverse
+              Play to Earn gaming in the Metaverse
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile

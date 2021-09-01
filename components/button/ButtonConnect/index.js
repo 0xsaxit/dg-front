@@ -6,9 +6,10 @@ import { GlobalContext } from 'store';
 import Fetch from 'common/Fetch';
 import call from 'common/API';
 import Aux from 'components/_Aux';
+import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
-
 import styles from './ButtonConnect.module.scss';
+
 
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
@@ -183,6 +184,8 @@ const ButtonConnect = () => {
     }
   }
 
+  const tablet = useMediaQuery('(max-width: 992px)');
+
   return (
     <Aux>
       {metamaskEnabled ? (
@@ -199,7 +202,10 @@ const ButtonConnect = () => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
               className={styles.metamask_icon}
             />
-            Connect Metamask
+            {tablet ?
+              'Connect' :
+              'Connect Metamask'
+            }
           </Button>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
