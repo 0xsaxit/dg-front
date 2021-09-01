@@ -15,7 +15,7 @@ function SectionTwo() {
         <div className={styles.tout_container}>
           <h1 className={styles.tout_h1}>Wear NFTs, Play Poker, Earn ICE</h1>
           <p className={styles.tout_p}>
-            Play to earn with free play poker in the metaverse. Coming this October 20th.
+            Play to earn with free play poker in the metaverse. Coming this October.
           </p> 
           <div>
             {!mobile && (
