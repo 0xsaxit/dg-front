@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import cn from 'classnames';
 import { Popup, Button } from 'semantic-ui-react';
 import Flag from 'assets/svg/flag.svg';
 
@@ -36,7 +37,7 @@ const LanguageModal = () => {
   return (
     <div className={styles.language_container}>
       <Popup
-        className={styles.language_popup}
+        className={cn('border-0 h-100', styles.language_popup)}
         pinned
         on="click"
         position="bottom right"
@@ -56,7 +57,9 @@ const LanguageModal = () => {
           {countryItems.map((item, index) => {
             return (
               <Link className="d-flex" key={index} href="#">
-                <span className={styles.account_dropdown_item}>
+                <span
+                  className={cn('d-flex m-0', styles.account_dropdown_item)}
+                >
                   <img src={item.imgUrl}></img>
                   <p> {item.language} </p>
                 </span>
