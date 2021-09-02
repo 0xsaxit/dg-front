@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import cn from 'classnames';
 import { Popup, Button } from 'semantic-ui-react';
@@ -5,35 +6,40 @@ import Flag from 'assets/svg/flag.svg';
 
 import styles from './LanguageModal.module.scss';
 
-const countryItems = [
-  {
-    imgUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/united_states_gs7sdr.png',
-    language: 'English',
-  },
-  {
-    imgUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503836/Ellipse_1_yseyhx.png',
-    language: 'Spanish',
-  },
-  {
-    imgUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/Ellipse_1_1_cw2vcm.png',
-    language: 'Korean',
-  },
-  {
-    imgUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503838/Ellipse_1_3_jysnoe.png',
-    language: 'Russian',
-  },
-  {
-    imgUrl:
-      'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/Ellipse_1_2_baqvio.png',
-    language: 'Chinese',
-  },
-];
-
 const LanguageModal = () => {
+  const [lang, setLang] = useState(0);
+  const countryItems = [
+    {
+      imgUrl:
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/united_states_gs7sdr.png',
+      language: 'English',
+    },
+    {
+      imgUrl:
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503836/Ellipse_1_yseyhx.png',
+      language: 'Spanish',
+    },
+    {
+      imgUrl:
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/Ellipse_1_1_cw2vcm.png',
+      language: 'Korean',
+    },
+    {
+      imgUrl:
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503838/Ellipse_1_3_jysnoe.png',
+      language: 'Russian',
+    },
+    {
+      imgUrl:
+        'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/Ellipse_1_2_baqvio.png',
+      language: 'Chinese',
+    },
+  ];
+
+  const handleLanguage = index => {
+    setLang(index);
+  };
+
   return (
     <div className={styles.language_container}>
       <Popup
@@ -46,7 +52,7 @@ const LanguageModal = () => {
           <div className={styles.button_wrapper}>
             <Button className={styles.language_button}>
               <span className={styles.content_wrappper}>
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630503835/united_states_gs7sdr.png" />
+                <img src={countryItems[lang].imgUrl} alt="Translate icon" />
                 <Flag />
               </span>
             </Button>
@@ -59,8 +65,9 @@ const LanguageModal = () => {
               <Link className="d-flex" key={index} href="#">
                 <span
                   className={cn('d-flex m-0', styles.account_dropdown_item)}
+                  onClick={() => handleLanguage(index)}
                 >
-                  <img src={item.imgUrl}></img>
+                  <img src={item.imgUrl} alt="Languages items" />
                   <p> {item.language} </p>
                 </span>
               </Link>
