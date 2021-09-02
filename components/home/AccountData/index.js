@@ -286,7 +286,7 @@ const AccountData = (props) => {
                 </Link>
               )}
 
-              {/*{dataType === 'ice' ? (
+              {dataType === 'ice' ? (
                 <span className="account-hover active">
                   ICE
                 </span>
@@ -308,7 +308,7 @@ const AccountData = (props) => {
                     ICE
                   </span>
                 </Link>)
-              )}*/}
+              )}
 
               {dataType === 'items' ? (
                 <span className="account-hover active">
