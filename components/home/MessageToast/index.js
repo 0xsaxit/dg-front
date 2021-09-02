@@ -9,14 +9,19 @@ const MessageToast = (props) => {
 
   const [state, dispatch] = useContext(GlobalContext);
   const [message, setMessage] = useState('');
-  const [isMobile, setMobile] = useState(false);
+  const [mobile, setMobile] = useState(false);
   const [pause, setPause] = useState(false);
 
   let isSafari = false;
   let web3 = {};
   const [show, setShow] = useState(false);
 
-  const detectNetwork = ()=> {      
+  const detectNetwork = ()=> {
+    window.addEventListener("resize", function(event) {
+        if (window.innerWidth < 499) {
+            setMobile(true);
+        }
+    });      
     window.addEventListener("load", function() {
         if (window.ethereum) {
           // use MetaMask's provider
@@ -37,7 +42,12 @@ const MessageToast = (props) => {
                 console.log("2. Global.CONSTANTS.PARENT_NETWORK_ID: ", Global.CONSTANTS.PARENT_NETWORK_ID);
 
                 //Show Toast Message
-                const msg = 'Please switch your Network to Ethereum Mainnet';
+                let msg = 'Please switch your Network to Ethereum Mainnet';
+                if (window.innerWidth < 499) {
+                    setMobile(true);
+                    msg = 'Please configure metamask on a desktop browser';
+                }
+                
                 dispatch({
                   type: 'show_toastMessage',
                   data: msg,
@@ -123,19 +133,19 @@ const MessageToast = (props) => {
     } else {
       setMobile(false);
     }
-  }, [isMobile]);
+  }, []);
 
   useEffect(() => {
-    console.log("Network ID is changed: ", state.networkID);    
-    console.log("isMobile is changed: ", state.isMobile);        
+    //console.log("Network ID is changed: ", state.networkID);    
+    //console.log("Mobile Device? ", mobile);        
 
     if (isSafari) {
       setMessage('Please use Brave, Chrome, or Firefox to play games');
-    } else if (isMobile) {
+    } else if (mobile) {
       setMessage('Please configure metamask on a desktop browser');
-    } else if (!isMobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
+    } else if (!mobile && state.networkID !== Global.CONSTANTS.PARENT_NETWORK_ID) {
       setMessage('Please switch your Network to Ethereum Mainnet');
-    } else if (!isMobile && pause && !state.userInfo.tokenArray.includes(true)) {
+    } else if (!mobile && pause && !state.userInfo.tokenArray.includes(true)) {
       setMessage(
         `Make sure you've enabled cypto gameplay on your account page`
       );
