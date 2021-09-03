@@ -13,7 +13,15 @@ import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
 
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
+
 const MenuTop = props => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const isTablet = useMediaQuery('(min-width: 1100px)');
@@ -185,7 +193,7 @@ const MenuTop = props => {
         <span class="d-flex flex-column w-100">
           {!isMobile && (
             <Link href={`/${utm}`}>
-              <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+              <Menu.Item className={styles.menu_style}>Play1</Menu.Item>
             </Link>
           )}
           {!isMobile && (
@@ -208,7 +216,9 @@ const MenuTop = props => {
 
           {!isTablet && (
             <Link href="/blog">
-              <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+              <Menu.Item className={styles.menu_style}>
+                {t('navMenu.NEWS_BLOG')}
+              </Menu.Item>
             </Link>
           )}
 
@@ -218,7 +228,9 @@ const MenuTop = props => {
               id="docs-top-menu"
               target="_blank"
             >
-              <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+              <Menu.Item className={styles.menu_style}>
+                {t('navMenu.DOCS')}
+              </Menu.Item>
             </a>
           )}
         </span>
@@ -232,19 +244,25 @@ const MenuTop = props => {
       <div className={styles.menu_items_to_hide}>
         {isMobile && (
           <Link href={`/${utm}`}>
-            <Menu.Item className={styles.menu_style}>Play</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {t('navMenu.PLAY')}
+            </Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/dg">
-            <Menu.Item className={styles.menu_style}>DAO</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+             {t('navMenu.DAO')}
+            </Menu.Item>
           </Link>
         )}
 
         {isMobile && (
           <Link href="/games">
-            <Menu.Item className={styles.menu_style}>Offerings</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {t('navMenu.OFFERINGS')}
+            </Menu.Item>
           </Link>
         )}
 
@@ -272,13 +290,17 @@ const MenuTop = props => {
 
         {isTablet && (
           <Link href="/events">
-            <Menu.Item className={styles.menu_style}>Events</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+            {t('navMenu.EVENTS')}
+            </Menu.Item>
           </Link>
         )}
 
         {isTablet && (
           <Link href="/blog">
-            <Menu.Item className={styles.menu_style}>News & Blog</Menu.Item>
+            <Menu.Item className={styles.menu_style}>              
+              {t('navMenu.NEWS_BLOG')}
+            </Menu.Item>
           </Link>
         )}
 
@@ -289,7 +311,9 @@ const MenuTop = props => {
             className="d-flex"
             target="_blank"
           >
-            <Menu.Item className={styles.menu_style}>Docs</Menu.Item>
+            <Menu.Item className={styles.menu_style}>
+              {t('navMenu.DOCS')}
+            </Menu.Item>
           </a>
         )}
       </div>

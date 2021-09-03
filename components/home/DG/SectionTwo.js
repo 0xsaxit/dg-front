@@ -3,10 +3,12 @@ import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(max-width: 992px)');
+  const { t, i18n } = useTranslation();
 
   return (
     <Aux>
@@ -26,10 +28,9 @@ function SectionTwo() {
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
-            <h1 className={styles.section_h1}>Play to Earn</h1>
+            <h1 className={styles.section_h1}>{t('Home.PLAYTOEARN')}</h1>
             <p className={styles.section_p}>
-              Play games in the metaverse and earn $DG token win or lose.
-              Get up to 50% of your expected losses back in $DG.
+              {t('Home.PLAY_GAMES_META')}
             </p>
 
             <span
@@ -41,8 +42,8 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Info' :
-                'Learn More'
+                t('Home.INFO') :
+                t('Home.LEARNMORE')
               }
               </Button>
               <Button
@@ -51,8 +52,8 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Games' :
-                'See Games'
+                t('Home.GAMES') :
+                t('Home.SEEGAMES')
               }
               </Button>
             </span>
@@ -125,9 +126,9 @@ function SectionTwo() {
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
-            <h1 className={styles.section_h1}>Earn APY%</h1>
+            <h1 className={styles.section_h1}>{t('Home.EARNAPY')}</h1>
             <p className={styles.section_p}>
-              Stake $DG in governance and earn up to 40% in yield rewards.
+              {t('Home.STAKE_DG_GOVERNANCE')}
             </p>
 
             <span
@@ -139,8 +140,8 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Info' :
-                'Learn More'
+                t('Home.INFO') :
+                t('Home.LEARNMORE')
               }
               </Button>
               <Button
@@ -149,8 +150,8 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Earn' :
-                'Earn APY%'
+                t('Home.EARN') :
+                t('Home.EARNAPY')
               }
               </Button>
             </span>
@@ -175,11 +176,10 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-              Vote in the DAO <br /> (Be The House)
+              {t('Home.VOTE_IN_THE_DAO')} <br /> {t('Home.BE_THE_HOUSE')}
             </h1>
             <p className={styles.section_p}>
-              With the $DG DAO, you own the casino. Control the profits, 
-              vote for new games, and decide on feature proposals.
+              {t('Home.WITH_THE_DG_DAO')}
             </p>
 
             <span
@@ -191,12 +191,12 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Info' :
-                'Learn More'
+                t('Home.INFO') :
+                t('Home.LEARNMORE')
               }
               </Button>
               <Button className={styles.blue_button} href="/dg/">
-                {tablet ? 'Explore' : 'Explore Treasury'}
+                {tablet ? t('Home.EXPLORER') : t('Home.EXPLORER_THREASURY')}
               </Button>
             </span>
           </div>

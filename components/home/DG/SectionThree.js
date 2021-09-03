@@ -4,14 +4,16 @@ import { Button } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import images from 'common/Images';
 import styles from './DG.module.scss';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const FunctionThree = () => {
   const mobile = useMediaQuery('(max-width: 576px)');
+  const { t, i18n } = useTranslation();
 
   return (
     <>
       <div className={styles.our_partners}>
-        <h1>Our Partners</h1>
+        <h1>{t('Home.OUR_PARTNERS')}</h1>
         <div className="container">
           <div className={styles.row}>
             <div
@@ -153,13 +155,13 @@ const FunctionThree = () => {
       </div>
 
       <div className={styles.get_started}>
-        <p className={styles.sub_title}>How to start with $DG</p>
-        <h2 className={styles.title}>Get Started</h2>
+        <p className={styles.sub_title}>{t('Home.HOW_TO_START_DG')}</p>
+        <h2 className={styles.title}>{t('Home.GET_STARTED')}</h2>
         <Button
           className={styles.start_here}
           href="/start"
         >
-          Start Here
+          {t('Home.START_HERE')}
         </Button>
         {!mobile && (
           <video
@@ -179,7 +181,7 @@ const FunctionThree = () => {
           className={styles.join_img}
           src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728655/party_popper_hzrf1f.png"
         />
-        <h2 className={styles.title}>Join our community!</h2>
+        <h2 className={styles.title}>{t('Home.JOIN_OUR_COMMUNITY')}</h2>
         <span className={styles.button_span}>
           <Button
             className={styles.telegram}

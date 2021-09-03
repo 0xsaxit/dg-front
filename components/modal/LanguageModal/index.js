@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Link from 'next/link';
 import cn from 'classnames';
 import { Popup, Button } from 'semantic-ui-react';
 import Flag from 'assets/svg/flag.svg';
-
 import styles from './LanguageModal.module.scss';
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
+import { GlobalContext } from '../../../store';
 
 const LanguageModal = () => {
-  const [lang, setLang] = useState(0);
+  const [state, dispatch] = useContext(GlobalContext);
+  const [lang, setLang] = useState(3);
+
   const countryItems = [
     {
       imgUrl:
@@ -36,8 +39,19 @@ const LanguageModal = () => {
     },
   ];
 
-  const handleLanguage = index => {
-    setLang(index);
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const handleLanguage = index => {    
+    console.log(index);
+    const language = ['en', 'sp', 'ko', 'ru', 'ch'];
+    changeLanguage(language[index]);
+    dispatch({
+      type: 'set_selectedLang',
+      data: index,
+    });
   };
 
   return (
@@ -52,7 +66,7 @@ const LanguageModal = () => {
           <div className={styles.button_wrapper}>
             <Button className={styles.language_button}>
               <span className={styles.content_wrappper}>
-                <img src={countryItems[lang].imgUrl} alt="Translate icon" />
+                <img src={countryItems[state.selectedLang].imgUrl} alt="Translate icon" />
                 <Flag />
               </span>
             </Button>
