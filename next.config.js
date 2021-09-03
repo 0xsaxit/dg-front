@@ -9,7 +9,7 @@ module.exports = {
     //Added for svg files
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"]
+      use: ['@svgr/webpack'],
     });
 
     // Fixes npm packages that depend on `fs` module

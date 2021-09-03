@@ -75,6 +75,16 @@ const Footer = () => {
             </span>
 
             <span className={styles.grid_column}>
+              <p className={styles.footer_header}> Events </p>
+              <Link href="/events">
+                <p className={styles.footer_link}> All Events </p>
+              </Link>
+              <a href="mailto:hello@decentral.games">
+                <p className={styles.footer_link}> Partnerships </p>
+              </a>
+            </span>
+
+            <span className={styles.grid_column}>
               <p className={styles.footer_header}> News </p>
               <Link href="/blog">
                 <p className={styles.footer_link}> News </p>
@@ -84,12 +94,6 @@ const Footer = () => {
               </Link>
             </span>
 
-            <span className={styles.grid_column}>
-              <p className={styles.footer_header}> Events </p>
-              <Link href="/events">
-                <p className={styles.footer_link}> All Events </p>
-              </Link>
-            </span>
             <div className={styles.grid_newsletter}>
               <p className={styles.footer_header}> Join Our Newsletter! </p>
               <Link href="/events">

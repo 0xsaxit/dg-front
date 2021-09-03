@@ -24,16 +24,20 @@ function Test({ state }) {
   );
 
   const newPokerData = dataPoker.map(poker => {
-    const userInfoPlayIDs = map(
-      poker.tableData,
-      'playerHandData.1.userPlayInfoID'
-    );
+    const temp = map(poker.tableData, 'playerHandData.userPlayInfoID');
+
+    const userInfoPlayIDs = temp.filter(function (x) {
+      return x !== undefined;
+    });
 
     return {
       ...poker,
       betAmount: sumBy(dataPlay, o => {
-        if (userInfoPlayIDs.includes(o._id)) return o.betAmount;
-        return 0;
+        if (userInfoPlayIDs.includes(o._id)) {
+          return o.betAmount;
+        } else {
+          return 0;
+        }
       }),
       amountWin: sumBy(dataPlay, o => {
         if (userInfoPlayIDs.includes(o._id)) return o.amountWin;
@@ -211,8 +215,6 @@ function Test({ state }) {
 
       <div className={styles.history_container}>
         <h1 className={styles.title}>Gameplay History</h1>
-
-        <h1 className={styles.title}>Gameplay History Test</h1>
         <div className="tx-box-overflow">
           {playData.length === 0 ? null : (
             <Table fixed unstackable>
@@ -476,7 +478,7 @@ function Test({ state }) {
                                         <div className={styles.hand_row}>
                                           {get(
                                             item,
-                                            'playerHandData.1.hand',
+                                            'playerHandData.hand',
                                             []
                                           ).map(card => {
                                             return (
@@ -516,7 +518,7 @@ function Test({ state }) {
                                     {(row.tableData || []).map(item => {
                                       const userPlayInfoID = get(
                                         item,
-                                        'playerHandData.1.userPlayInfoID',
+                                        'playerHandData.userPlayInfoID',
                                         ''
                                       );
 
@@ -526,6 +528,15 @@ function Test({ state }) {
                                             play => play._id === userPlayInfoID
                                           ),
                                           '0.amountWin',
+                                          0
+                                        ) / Global.CONSTANTS.FACTOR;
+
+                                      const betAmount =
+                                        get(
+                                          dataPlay.filter(
+                                            play => play._id === userPlayInfoID
+                                          ),
+                                          '0.betAmount',
                                           0
                                         ) / Global.CONSTANTS.FACTOR;
 
@@ -544,7 +555,11 @@ function Test({ state }) {
                                           ) : (
                                             <img src={Images.PLAY_CIRCLE} />
                                           )}
-                                          {amountWin}&nbsp;{row.coinName}
+                                          {amountWin - betAmount > 0
+                                            ? `+${amountWin - betAmount}`
+                                            : amountWin - betAmount}
+                                          &nbsp;
+                                          {row.coinName}
                                         </p>
                                       );
                                     })}

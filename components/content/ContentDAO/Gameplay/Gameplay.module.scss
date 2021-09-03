@@ -65,7 +65,8 @@
     background: rgb(31, 31, 31);
     color: white;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: white;
       background: rgb(31, 31, 31);
       filter: brightness(0.9) !important;
@@ -131,7 +132,7 @@
     text-align: left;
   }
 
- .gameplay_container {
+  .gameplay_container {
     display: flex;
     margin-bottom: 20px;
     margin-top: 5px;
@@ -202,11 +203,11 @@
     font-family: Larsseit-Bold;
     font-size: 14px !important;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: white;
       background: #006eff;
       filter: brightness(0.9) !important;
     }
   }
 }
-

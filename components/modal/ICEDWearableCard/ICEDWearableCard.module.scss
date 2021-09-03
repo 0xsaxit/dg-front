@@ -1,0 +1,122 @@
+@import 'styles/base.scss';
+
+.wearable_modal {
+  width: 288px !important;
+  height: 550px !important;
+  border-radius: 16px !important;
+
+  .title {
+    font-size: 24px !important;
+    font-family: Larsseit-Extrabold;
+    color: white;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+  .meta {
+    font-size: 16px;
+    font-family: Larsseit-Medium;
+    color: white;
+    opacity: 0.6;
+    text-align: left;
+
+  }
+
+  .wear_box {
+    margin-top: 24px;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    .wear_box_purple {
+      position: relative;
+      width: 241px;
+      height: 241px;
+      border-radius: 16px;
+      img {
+        width: 100%;
+      }
+      .delegatebtn {
+        cursor: pointer;
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        padding: 5px 11px;
+        color: white;
+        font-family: Larsseit-Regular;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(4px);
+        border-radius: 63px;
+      }
+    }
+    .card_body {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 16px;
+
+      .card {
+        display: flex;
+        align-items: center;
+
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        border: 1px solid #2a2a2a;
+        box-sizing: border-box;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+
+        font-family: Larsseit-Regular;
+        font-style: normal;
+        font-size: 12px;
+        line-height: 16px;
+        color: #ffffff;
+
+        .img {
+          margin-left: 3px;
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+  }
+
+  .card_meta {
+    font-family: Larsseit-Medium;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ffffff;
+    opacity: 0.6;
+    margin-top: 16px;
+  }
+  .card_title {
+    font-family: Larsseit-Bold;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #ffffff;
+  }
+
+  .button_area {
+    display: flex;
+    margin-top: 16px;
+
+    .button_close {
+      display: flex;
+      flex: auto;
+      justify-content: center;
+      align-items: center;
+      height: 48px;
+      background: #2a2a2a;
+      border-radius: 10px;
+
+      font-family: Larsseit-Regular;
+      font-size: 14px;
+      line-height: 27px;
+      text-align: center;
+      color: #ffffff;
+    }
+  }
+}

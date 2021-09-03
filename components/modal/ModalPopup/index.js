@@ -24,12 +24,11 @@ const ModalPopup = () => {
   const [isToastShow, setIsToastShow] = useState(false);
 
   const [visibleStatus, setVisibleStatus] = useState(false);
-  
 
   useEffect(() => {
     const showStatus = () => {
-      setVisibleStatus(true);      
-    }
+      setVisibleStatus(true);
+    };
     const hideStatus = () => {
       setTimeout(() => {
         setVisibleStatus(false);
@@ -44,19 +43,17 @@ const ModalPopup = () => {
           type: 'set_openModal',
           data: {
             resumeID: 0,
-            lockID: 0
+            lockID: 0,
           },
         });
-      }, 5000);      
-    }
+      }, 5000);
+    };
 
     showStatus();
-    if(state.dgLoading === 2) {      
+    if (state.dgLoading === 2) {
       hideStatus();
     }
-
   }, [state.dgLoading]);
-
 
   const onCopy = () => {
     navigator.clipboard.writeText(state.userAddress);
@@ -104,19 +101,80 @@ const ModalPopup = () => {
         on="click"
         position="bottom right"
         style={{
-          "color": "white",
-          "background-color": "#191919",
-          "border":"none",
-          "borderRadius":"24px",
-          "marginTop": "15px",
-          "padding": "30px"
+          color: 'white',
+          'background-color': '#191919',
+          border: 'none',
+          borderRadius: '24px',
+          marginTop: '15px',
+          padding: '30px',
         }}
         className={styles.account_popup}
         trigger={
-          <Button className={styles.account_button}>
-            <Account />
-            <span>My Account</span>
-          </Button>
+          <div>
+            {visibleStatus > 0 && state.dgLoading > 0 && (
+              <div
+                style={{
+                  background: state.dgLoading > 1 ? '#007d39' : '#1c70c3',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '6px',
+                  borderRadius: '11px',
+                  position: 'absolute',
+                  marginTop: '-21px',
+                  marginLeft: '80px',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  zIndex: 9999,
+                }}
+                className="account-transfer"
+                onClick={event => {
+                  event.stopPropagation();
+
+                  const pathURL = window.location.pathname;
+                  if (pathURL !== '/account') {
+                    router.push('/account');
+                  }
+                  const currentModal = state.openModal;
+                  console.log('dgLoading: =>', state.dgLoading);
+                  console.log('currentModal: =>', currentModal);
+
+                  dispatch({
+                    type: 'set_dgShow',
+                    data: true,
+                  });
+                }}
+              >
+                {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending'}
+              </div>
+            )}
+            <Button
+              className="account-button"
+              style={{
+                paddingLeft: '24px',
+                paddingRight: '24px',
+                marginTop: 0,
+                marginRight: 0,
+                zIndex: 1,
+              }}
+            >
+              <span>
+                <svg
+                  style={{ marginRight: '6px', marginBottom: '-2px' }}
+                  width="20"
+                  height="19"
+                  viewBox="0 0 20 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.88965 18.9707C14.9961 18.9707 19.1973 14.7695 19.1973 9.66309C19.1973 4.54785 14.9961 0.34668 9.88086 0.34668C4.76562 0.34668 0.573242 4.54785 0.573242 9.66309C0.573242 14.7695 4.77441 18.9707 9.88965 18.9707ZM9.88965 12.7832C7.68359 12.7832 5.96094 13.5479 4.95898 14.5322C3.72852 13.2842 2.97266 11.5615 2.97266 9.66309C2.97266 5.82227 6.04883 2.7373 9.88086 2.7373C13.7129 2.7373 16.8066 5.82227 16.8066 9.66309C16.8066 11.5615 16.0508 13.2842 14.8115 14.5322C13.8096 13.5479 12.0957 12.7832 9.88965 12.7832ZM9.88965 11.4297C11.6123 11.4385 12.9395 9.96191 12.9395 8.08984C12.9395 6.32324 11.5947 4.82031 9.88965 4.82031C8.18457 4.82031 6.82227 6.32324 6.83984 8.08984C6.83984 9.96191 8.16699 11.4209 9.88965 11.4297Z"
+                    fill="white"
+                  />
+                </svg>
+              </span>
+              <span>My Account</span>
+            </Button>
+          </div>
         }
       >
         <span className={styles.popup_wrapper}>
@@ -124,7 +182,9 @@ const ModalPopup = () => {
             <Link href="/account">
               <img
                 className={
-                  binance ? styles.avatar_picture_binance : styles.avatar_picture_home
+                  binance
+                    ? styles.avatar_picture_binance
+                    : styles.avatar_picture_home
                 }
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
               />
@@ -132,17 +192,13 @@ const ModalPopup = () => {
             <span className="d-flex flex-column">
               <Link href="/account">
                 {state.userInfo.name === null || state.userInfo.name === '' ? (
-                  <h4 className={styles.modal_title}>
-                    Unnamed
-                  </h4>
+                  <h4 className={styles.modal_title}>Unnamed</h4>
                 ) : (
-                  <h4 className={styles.modal_title}>
-                    {state.userInfo.name}
-                  </h4>
+                  <h4 className={styles.modal_title}>{state.userInfo.name}</h4>
                 )}
               </Link>
               <span
-                className={cn("d-flex", styles.account_copy)}
+                className={cn('d-flex', styles.account_copy)}
                 onClick={() => onCopy()}
               >
                 <p className={styles.account_address}>
@@ -175,13 +231,16 @@ const ModalPopup = () => {
               </Button>
             </Link>
 
-            <span className="d-flex justify-content-between" style={{ marginTop: '12px' }}>
+            <span
+              className="d-flex justify-content-between"
+              style={{ marginTop: '12px' }}
+            >
               <Link href="/account">
                 <Button
                   className={
-                    binance ? 
-                      styles.account_deposit_button_binance : 
-                      styles.account_deposit_button
+                    binance
+                      ? styles.account_deposit_button_binance
+                      : styles.account_deposit_button
                   }
                 >
                   Deposit
@@ -189,12 +248,17 @@ const ModalPopup = () => {
               </Link>
 
               <Link href="/account">
-                <Button className={styles.account_withdraw_button}>Withdraw</Button>
+                <Button className={styles.account_withdraw_button}>
+                  Withdraw
+                </Button>
               </Link>
             </span>
 
             <Link href="/account">
-              <p className={styles.acount_dropdown_item} style={{ marginTop: '8px' }}>
+              <p
+                className={styles.acount_dropdown_item}
+                style={{ marginTop: '8px' }}
+              >
                 {' '}
                 My Account{' '}
               </p>
@@ -212,7 +276,11 @@ const ModalPopup = () => {
               <p className="account-dropdown-item"> Disconnect </p>
             </a>*/}
             <Button
-              className={binance ? `${styles.buy_dg_button_binance}` : `${styles.buy_dg_button}`}
+              className={
+                binance
+                  ? `${styles.buy_dg_button_binance}`
+                  : `${styles.buy_dg_button}`
+              }
               href="https://info.uniswap.org/#/tokens/0xee06a81a695750e71a662b51066f2c74cf4478a0"
               target="_blank"
             >

@@ -49,7 +49,6 @@ const ContentOfferings = props => {
     }
   }, [buttonCasinos1, buttonCasinos2]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,14 +69,24 @@ const ContentOfferings = props => {
             </span>
             <div className={styles.nft_description}>
               <span>
-                <p className={styles.nfts_info}>{props.detailsGames[item][4]} {props.detailsGames[item][5]}</p>
+                <p className={styles.nfts_info}>
+                  {props.detailsGames[item][4]} {props.detailsGames[item][5]}
+                </p>
               </span>
-              <h3 className={styles.nft_other_h3}>{props.detailsGames[item][2]}</h3>
+              <h3 className={styles.nft_other_h3}>
+                {props.detailsGames[item][2]}
+              </h3>
               <p className={styles.nft_other_p}>
                 {props.detailsGames[item][3]}
               </p>
 
-              <div style={{"position": "relative", "display": "flex", "justify-content": "space-between"}}>
+              <div
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  'justify-content': 'space-between',
+                }}
+              >
                 <Button
                   id={`play-now-button-games-${i + 1}`}
                   color="blue"
@@ -100,7 +109,7 @@ const ContentOfferings = props => {
         ))}
       </div>
     );
-  }
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -110,47 +119,63 @@ const ContentOfferings = props => {
       <span>
         <div className={styles.outter_nft_container}>
           {Object.keys(props.detailsNFTs).map((item, i) => (
-            <a href={props.detailsNFTs[item][5]} className={styles.nft_container}>
-                <span key={i} style={{"display": "flex", "justify-content": "center"}}>
-                  <Image
-                    src={props.detailsNFTs[item][0]}
-                    className={props.detailsNFTs[item][1]}
-                  />
-                </span>
-                <div className={styles.nft_description}>
-                  <span>
-                    <p className={styles.nfts_info}>{props.detailsNFTs[item][3]}</p>
-                  </span>
-                  <h3 className={styles.nft_other_h3}>{props.detailsNFTs[item][2]}</h3>
-
-                  <p className={styles.nft_other_p}>
-                    {props.detailsNFTs[item][4]}
+            <a
+              href={props.detailsNFTs[item][5]}
+              className={styles.nft_container}
+            >
+              <span
+                key={i}
+                style={{ display: 'flex', 'justify-content': 'center' }}
+              >
+                <Image
+                  src={props.detailsNFTs[item][0]}
+                  className={props.detailsNFTs[item][1]}
+                />
+              </span>
+              <div className={styles.nft_description}>
+                <span>
+                  <p className={styles.nfts_info}>
+                    {props.detailsNFTs[item][3]}
                   </p>
+                </span>
+                <h3 className={styles.nft_other_h3}>
+                  {props.detailsNFTs[item][2]}
+                </h3>
 
-                  <div style={{"position": "relative", "display": "flex", "justify-content": "space-between"}}>
-                    <Button
-                      className={styles.nft_blue_button}
-                      color="blue"
-                      target="_blank"
-                      href={props.detailsNFTs[item][5]}
-                    >
-                      Buy
-                    </Button>
-                    <Button
-                      className={styles.nft_read_button}
-                      target="_blank"
-                      href={props.detailsNFTs[item][6]}
-                    >
-                      Info
-                    </Button>
-                  </div>
+                <p className={styles.nft_other_p}>
+                  {props.detailsNFTs[item][4]}
+                </p>
+
+                <div
+                  style={{
+                    position: 'relative',
+                    display: 'flex',
+                    'justify-content': 'space-between',
+                  }}
+                >
+                  <Button
+                    className={styles.nft_blue_button}
+                    color="blue"
+                    target="_blank"
+                    href={props.detailsNFTs[item][5]}
+                  >
+                    Buy
+                  </Button>
+                  <Button
+                    className={styles.nft_read_button}
+                    target="_blank"
+                    href={props.detailsNFTs[item][6]}
+                  >
+                    Info
+                  </Button>
                 </div>
+              </div>
             </a>
           ))}
         </div>
       </span>
     );
-  }
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -161,7 +186,7 @@ const ContentOfferings = props => {
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className={styles.casinos_container}
+            className="games-container"
           >
             <span className={styles.image_wrapper}>
               <Image
@@ -171,9 +196,13 @@ const ContentOfferings = props => {
             </span>
             <div className={styles.nft_description}>
               <span>
-                <p className={styles.nfts_info}>{props.detailsCasinos[item][4]}</p>
+                <p className={styles.nfts_info}>
+                  {props.detailsCasinos[item][4]}
+                </p>
               </span>
-              <h3 className={styles.nft_other_h3}>{props.detailsCasinos[item][2]}</h3>
+              <h3 className={styles.nft_other_h3}>
+                {props.detailsCasinos[item][2]}
+              </h3>
               <p className={styles.nft_other_p}>
                 {props.detailsCasinos[item][3]}
               </p>
@@ -194,7 +223,7 @@ const ContentOfferings = props => {
         ))}
       </div>
     );
-  }
+  };
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -217,13 +246,19 @@ const ContentOfferings = props => {
               <span>
                 <p className={styles.nfts_info}>{props.detailsShop[item][4]}</p>
               </span>
-              <h3 className={styles.nft_other_h3}>{props.detailsShop[item][2]}</h3>
+              <h3 className={styles.nft_other_h3}>
+                {props.detailsShop[item][2]}
+              </h3>
 
-              <p className={styles.nft_other_p}>
-                {props.detailsShop[item][3]}
-              </p>
+              <p className={styles.nft_other_p}>{props.detailsShop[item][3]}</p>
 
-              <div style={{"position": "relative", "display": "flex", "justify-content": "space-between"}}>
+              <div
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  'justify-content': 'space-between',
+                }}
+              >
                 <Button
                   className={styles.nft_blue_button}
                   color="blue"
@@ -245,7 +280,7 @@ const ContentOfferings = props => {
         ))}
       </div>
     );
-  }
+  };
 
   if (props.gameState === 'games') {
     return contentGames();

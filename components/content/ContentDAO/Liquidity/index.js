@@ -157,12 +157,32 @@ const Liquidity = props => {
               {Number(state.DGBalances.BALANCE_STAKING_UNISWAP) ? (
                 <Button
                   className={styles.lower_button}
-                  onClick={() => props.reward(stakingContractUniswap)}
+                  onClick={() => {
+                    props.reward(stakingContractUniswap);
+
+                     //Show Toast Message3
+                     const msg = 'Claiming Liquidity DG!';
+                     dispatch({
+                       type: 'show_toastMessage',
+                       data: msg,
+                     });
+                  }}
                 >
                   Claim
                 </Button>
               ) : (
-                <Button disabled className={styles.lower_button}>
+                <Button
+                  disabled 
+                  className={styles.lower_button} 
+                  onClick={()=> {
+                    //Show Toast Message3
+                    const msg = 'Claiming Liquidity DG!';
+                    dispatch({
+                      type: 'show_toastMessage',
+                      data: msg,
+                    });
+                  }}
+                >
                   Claim
                 </Button>
               )}

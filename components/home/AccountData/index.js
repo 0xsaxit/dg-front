@@ -74,19 +74,65 @@ const AccountData = props => {
   const topLinks = () => {
     return (
       <Aux>
-        <div className={styles.account_data_container}>
-          <span className={cx("d-flex flex-column")}>
-            <span className={styles.avatar_picture}>
+        <div style={{ position: 'relative', zIndex: '0', paddingTop: '120px' }}>
+          <span style={{ display: 'flex', flexDirection: 'column' }}>
+            <span className="avatar-picture" style={{ alignSelf: 'center' }}>
+              <img
+                className="avatar-picture main"
+                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                style={{
+                  backgroundColor: '#3B3B3B',
+                  width: '180px',
+                  display: 'flex',
+                  margin: '90px 0px 0px 0px',
+                }}
+              />
+              <a
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
+                target="_blank"
+                className="avatar-edit-circle"
+              >
+                <svg
+                  style={{ margin: '12px' }}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.2656 3.85938L13.7422 5.38281L10.6172 2.25781L12.1406 0.734375C12.2969 0.578125 12.4922 0.5 12.7266 0.5C12.9609 0.5 13.1562 0.578125 13.3125 0.734375L15.2656 2.6875C15.4219 2.84375 15.5 3.03906 15.5 3.27344C15.5 3.50781 15.4219 3.70312 15.2656 3.85938ZM0.5 12.375L9.71875 3.15625L12.8438 6.28125L3.625 15.5H0.5V12.375Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+            </span>
+          </span>
+        </div>
+
+        {/*<div className={styles.player_card}>
+          <div>
+            <span
+              className="avatar-picture"
+              style={{ alignSelf: 'center' }}
+            >
               <img
                 className={styles.avatar_picture_main}
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
+                style={{
+                  backgroundColor: '#3B3B3B',
+                  width: '180px',
+                  display: 'flex',
+                }}
               />
               <a
                 className={styles.avatar_edit_circle}
                 href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                 target="_blank"
               >
-                <Icon className={styles.edit_icon} name="pencil" />
+                <svg style={{ margin: '12px' }} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.2656 3.85938L13.7422 5.38281L10.6172 2.25781L12.1406 0.734375C12.2969 0.578125 12.4922 0.5 12.7266 0.5C12.9609 0.5 13.1562 0.578125 13.3125 0.734375L15.2656 2.6875C15.4219 2.84375 15.5 3.03906 15.5 3.27344C15.5 3.50781 15.4219 3.70312 15.2656 3.85938ZM0.5 12.375L9.71875 3.15625L12.8438 6.28125L3.625 15.5H0.5V12.375Z" fill="white" />
+                </svg>
               </a>
             </span>
           </span>
@@ -133,73 +179,203 @@ const AccountData = props => {
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" />
-                <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>ICE Mined</p>
-                  <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
+                <div className={styles.tokenBalance} >
+                  <p className={styles.title}> ICE Mined </p>
+                  <p className={styles.amount} > 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" />
-                <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>Unused XP </p>
-                  <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
+                <div className={styles.tokenBalance} >
+                  <p className={styles.title}> Unused XP </p>
+                  <p className={styles.amount}> 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
                 <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" />
-                <div className="tokenBalance" style={{ border: '1px solid #2A2A2A', borderRadius: '14px', width: 88, height: 54, textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 12, color: 'white', opacity: 0.5, marginBottom: 0 }}>DG Mined</p>
-                  <p style={{ fontWeight: 'bold', fontSize: 18, color: 'white' }}>0</p>
+                <div className={styles.tokenBalance} >
+                  <p className={styles.title}> DG Mined</p>
+                  <p className={styles.amount}> 0 </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+        {/*<div className={styles.card_container}>
+          <img className={styles.avatar_img} src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`} />
+          <a 
+            href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
+            target="_blank"
+            className={styles.avatar_edit}
+          >
+            <svg style={{ margin: '12px' }} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.2656 3.85938L13.7422 5.38281L10.6172 2.25781L12.1406 0.734375C12.2969 0.578125 12.4922 0.5 12.7266 0.5C12.9609 0.5 13.1562 0.578125 13.3125 0.734375L15.2656 2.6875C15.4219 2.84375 15.5 3.03906 15.5 3.27344C15.5 3.50781 15.4219 3.70312 15.2656 3.85938ZM0.5 12.375L9.71875 3.15625L12.8438 6.28125L3.625 15.5H0.5V12.375Z" fill="white"/>
+            </svg>
+          </a>
+          <div className={styles.card_info}>
+            <span style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span>
+                {state.userInfo.name === null || state.userInfo.name === '' ? (
+                  <p className={styles.avatar_name}>
+                    Unnamed
+                  </p>
+                ) : (
+                  <p className={styles.avatar_name}>
+                    {state.userInfo.name}
+                  </p>
+                )}
+                <p className={styles.avatar_address}> 
+                  {state.userAddress.substr(0, 4) +
+                    '...' +
+                    state.userAddress.substr(-4)}
+                </p>
+              </span>
+              <img className={styles.laurel} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627310333/Laurel_tl9ms6.png" />
+            </span>
+            <p className={styles.mined_amount}> 
+              {DGMined.toFixed(3)} DG Mined
+            </p>
+            <div className={styles.mined_progress_bar}>
+              <div />
+            </div>
+            <div className={styles.card_stats_container}>
+              <div className={styles.card_stat}>
+                <p className={styles.stat_header}>
+                  Your Status
+                  {getPopUp('two')}
+                </p>
+                <div>
+                  {DGMined < 5 ? (
+                    <span style={{ display: 'flex', justifyContent: 'center' }}>
+                      <p className={styles.stat_value}> Bronze </p>
+                      <img className={styles.stat_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1627313187/Medal_gu7cub.png" />
+                    </span>
+                  ) : (
+                    null
+                  )}
+                </div>
+              </div>
+              <div className={styles.card_stat}>
+                <p className={styles.stat_header}>
+                  Mining Bonus
+                </p>
+                <p className={styles.stat_value}>
+                  40%
+                </p>
+              </div>
+              <div className={styles.card_stat}>
+                <p className={styles.stat_header}>
+                  Total Mined
+                </p>
+                <p className={styles.stat_value}>
+                  {DGMined.toFixed(3)}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>*/}
+
         <div
-          className={styles.account_other_tabs}
+          className="account-other-tabs"
           id="account-mobile-tabs"
+          style={{ marginTop: '0px' }}
         >
-          <div>
-            <span className={cx("d-flex justify-content-center")}>
+          <div className="ml-0">
+            <span className="account-other-p d-flex justify-content-center">
               {dataType === 'balances' ? (
-                <span className={styles.account_hover_active}>Balances</span>
+                <span className="account-hover active">Balances</span>
               ) : (
                 <Link href="/account">
-                  <span className={styles.account_hover}>Balances</span>
+                  <span className="account-hover">Balances</span>
+                </Link>
+              )}
+
+              {dataType === 'ice' ? (
+                <span className="account-hover active">ICE</span>
+              ) : state.dgLoading ? (
+                <span
+                  className="account-hover"
+                  onClick={() => {
+                    dispatch({
+                      type: 'set_dgWarningMsg',
+                      data: true,
+                    });
+                  }}
+                >
+                  ICE
+                </span>
+              ) : (
+                <Link href="/account/ice">
+                  <span className="account-hover">ICE</span>
                 </Link>
               )}
 
               {dataType === 'items' ? (
-                <span className={styles.account_hover_active}>My Items</span>
+                <span className="account-hover active">NFTs</span>
+              ) : state.dgLoading ? (
+                <span
+                  className="account-hover"
+                  onClick={() => {
+                    dispatch({
+                      type: 'set_dgWarningMsg',
+                      data: true,
+                    });
+                  }}
+                >
+                  NFTs
+                </span>
               ) : (
                 <Link href="/account/items">
-                  <span className={styles.account_hover}>My Items</span>
+                  <span className="account-hover">NFTs</span>
                 </Link>
               )}
 
               {dataType === 'history' ? (
-                <span className={styles.account_hover_active}>History</span>
+                <span className="account-hover active">History</span>
+              ) : state.dgLoading ? (
+                <span
+                  className="account-hover"
+                  onClick={() => {
+                    dispatch({
+                      type: 'set_dgWarningMsg',
+                      data: true,
+                    });
+                  }}
+                >
+                  History
+                </span>
               ) : (
                 <Link href="/account/history">
-                  <span className={styles.account_hover}>History</span>
+                  <span className="account-hover">History</span>
                 </Link>
               )}
 
               {dataType === 'referrals' ? (
-                <span className={styles.account_hover_active}>Referrals</span>
+                <span className="account-hover active">Referrals</span>
+              ) : state.dgLoading ? (
+                <span
+                  className="account-hover"
+                  onClick={() => {
+                    dispatch({
+                      type: 'set_dgWarningMsg',
+                      data: true,
+                    });
+                  }}
+                >
+                  Referrals
+                </span>
               ) : (
                 <Link href="/account/referrals">
-                  <span className={styles.account_hover}>Referrals</span>
+                  <span className="account-hover">Referrals</span>
                 </Link>
               )}
-              
             </span>
           </div>
         </div>
       </Aux>
     );
-  }
+  };
 
   function getPopUp(number) {
     return (
@@ -351,8 +527,8 @@ const AccountData = props => {
             </div>
           </div>
           {copied ? (
-            <div className={copied ? 'copied-toast' : 'copied-toast hidden'}>
-              <h3 className="copied-text" style={{textAlign: 'center'}}>Wallet address copied!</h3>
+            <div className={copied ? 'copied-toast show' : 'copied-toast'}>
+              <h3 className="copied-text">Wallet address copied!</h3>
             </div>
           ) : null}
         </div>

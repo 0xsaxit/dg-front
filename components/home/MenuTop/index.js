@@ -8,10 +8,10 @@ import { useMediaQuery } from 'hooks';
 import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
-import MessageBar from '../MessageBar';
 import ButtonConnect from '../../button/ButtonConnect/index.js';
-
+import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
+import MessageToast from 'components/home/MessageToast';
 
 const MenuTop = props => {
   // get token balances from the Context API store
@@ -137,7 +137,7 @@ const MenuTop = props => {
       type: 'affiliate_address',
       data: localStorage.getItem('ref'),
     });
-  }
+  };
 
   useEffect(() => {
     const url = window.location.href;
@@ -173,7 +173,7 @@ const MenuTop = props => {
             src="https://res.cloudinary.com/dnzambf4m/image/upload/v1621630083/android-chrome-512x512_rmiw1y.png"
           />
         </Link>
-        &nbsp; Decentral games
+        &nbsp; Decentral Games
       </>
     );
   }
@@ -224,7 +224,7 @@ const MenuTop = props => {
         </span>
       </div>
     );
-  }
+  };
 
   // links are shown or hidden based on user's display resolution
   function shownOrHiddenItems() {
@@ -343,31 +343,31 @@ const MenuTop = props => {
         >
           <ButtonConnect />
         </span>
+        <LanguageModal />
       </>
     );
-  }
+  };
 
   if (state.isLoading) {
     return null;
   } else {
     return (
-        <div
-          className={cn(
-            styles.dashboard_menu_container,
-            open || scrollState !== 'top' || router.asPath !== '/'
-              ? styles.dark
-              : ''
-          )}
-        >
-          <MessageBar />
-
-          <Menu className={cn(styles.menu_container)}>
-            {DGLogo()}
-            {shownOrHiddenItems()}
-            {isMobile && balancesAndButtons()}
-          </Menu>
-          {dropdownMenu()}
-        </div>
+      <div
+        className={cn(
+          styles.dashboard_menu_container,
+          open || scrollState !== 'top' || router.asPath !== '/'
+            ? styles.dark
+            : ''
+        )}
+      >
+        <MessageToast />
+        <Menu className={cn(styles.menu_container)}>
+          {DGLogo()}
+          {shownOrHiddenItems()}
+          {isMobile && balancesAndButtons()}
+        </Menu>
+        {dropdownMenu()}
+      </div>
     );
   }
 };

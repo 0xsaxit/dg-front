@@ -59,7 +59,7 @@ function SectionOne(props) {
               <Button
                 color="blue"
                 className={styles.play_button}
-                href="https://play.decentraland.org/?position=-118%2C135&realm=dg-diamond"
+                href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
                 target="_blank"
               >
                 {mobile ?

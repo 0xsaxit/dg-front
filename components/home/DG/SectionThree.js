@@ -86,7 +86,7 @@ const FunctionThree = () => {
                 styles.image_section,
                 ' d-flex justify-content-center mb-5'
               )}
-              style={{ width: '120px' }}
+              style={{ width: '90px' }}
             >
               <img src={images.DECENTRALAND} alt="DECENTRALAND" />
             </div>
@@ -120,7 +120,7 @@ const FunctionThree = () => {
                 styles.image_section,
                 ' d-flex justify-content-center mb-5'
               )}
-              style={{ width: '150px' }}
+              style={{ width: '180px' }}
             >
               <img src={images.BINANCE} alt="BINANCE" />
             </div>
@@ -151,6 +151,7 @@ const FunctionThree = () => {
           </div>
         </div>
       </div>
+
       <div className={styles.get_started}>
         <p className={styles.sub_title}>How to start with $DG</p>
         <h2 className={styles.title}>Get Started</h2>
@@ -171,6 +172,42 @@ const FunctionThree = () => {
             muted
           ></video>
         )}
+      </div>
+
+      <div className={styles.join}>
+        <img 
+          className={styles.join_img}
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728655/party_popper_hzrf1f.png"
+        />
+        <h2 className={styles.title}>Join our community!</h2>
+        <span className={styles.button_span}>
+          <Button
+            className={styles.telegram}
+            href="https://t.me/decentralgames"
+            target="_blank"
+          >
+            <span style={{ display: 'flex' }}>
+              <img 
+                className={styles.telegram_img1}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728316/Frame_psxdvb.png"
+              />
+              <img 
+                className={styles.telegram_img2}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728386/Telegram_r2qzfw.png" 
+              />
+            </span>
+          </Button>
+          <Button
+            className={styles.discord}
+            href="/discord"
+            target="_blank"
+          >
+            <img 
+              className={styles.discord_img}
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629728380/Group_wa8qgf.png" 
+            />
+          </Button>
+        </span>
       </div>
     </>
   );
