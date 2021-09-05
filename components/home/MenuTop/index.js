@@ -317,7 +317,7 @@ const MenuTop = props => {
         >
           <ButtonConnect />
         </span>
-        <LanguageModal />
+        {/*<LanguageModal />*/}
       </>
     );
   }
