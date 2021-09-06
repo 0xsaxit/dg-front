@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ButterCMS from 'common/ButterCMS';
 
-import styles from '../CategoryId.module.scss';
+import styles from '../blog.module.scss';
 
 const blogCategory = () => {
   const router = useRouter();
@@ -31,9 +31,7 @@ const blogCategory = () => {
         <div className="ml-0">
           <span className="d-flex">
             <span className="d-flex justify-content-between w-100">
-              <span className={styles.account_other_p}>
-                {category}
-              </span>
+              <span className={styles.account_other_p}>{category}</span>
             </span>
           </span>
         </div>
@@ -60,37 +58,34 @@ const blogCategory = () => {
                           page.categories[0].name}
                       </span>
                     </div>
-                    <span className={styles.post_dot}>  • </span>
+                    <span className={styles.post_dot}> • </span>
                     <div className={styles.post_date}>
                       <span>
-                        {new Date(page.created).toLocaleDateString(
-                          'en-DE',
-                          {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                          }
-                        )}
+                        {new Date(page.created).toLocaleDateString('en-DE', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })}
                       </span>
                     </div>
                   </span>
                   <div className="bottom">
                     <div>
-                        <h4
-                          style={{
-                            fontSize: '24px',
-                            fontfamily: 'LarsseitBold',
-                          }}
-                        >
-                          {page.title}
-                        </h4>
-                        <p
-                          style={{
-                            fontFamily: 'Larsseit-Regular',
-                            fontSize: '18px',
-                            paddingTop: '8px',
-                          }}
-                        >
+                      <h4
+                        style={{
+                          fontSize: '24px',
+                          fontfamily: 'LarsseitBold',
+                        }}
+                      >
+                        {page.title}
+                      </h4>
+                      <p
+                        style={{
+                          fontFamily: 'Larsseit-Regular',
+                          fontSize: '18px',
+                          paddingTop: '8px',
+                        }}
+                      >
                         {page.summary.split('.', 1)[0]}
                       </p>
                     </div>
@@ -103,6 +98,6 @@ const blogCategory = () => {
       </div>
     </div>
   );
-}
+};
 
 export default blogCategory;
