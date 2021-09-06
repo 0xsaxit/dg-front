@@ -1,0 +1,385 @@
+
+.popupcard {
+  width: 242px !important;
+  height: 440.5px !important; 
+  border-radius: 10px;
+  padding-top: 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-around;
+    .logo {
+      padding-right: 10px;
+    }
+    .title {
+      font-family: Larsseit-Bold;
+      font-style: normal;
+      font-size: 13px;
+      line-height: 18px;
+      color: #FFFFFF;
+    }
+  }
+  
+  .images {
+    margin-top: 24px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      //gap: 60px;
+      margin-top: 15px;
+
+      .col {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .img {
+          width: 48px;
+          height: 48px;
+        }
+        .rank {          
+          margin-top: 12px;
+          font-family: Larsseit-Bold;
+          font-style: normal;
+          font-size: 14px;
+          line-height: 19px;
+          text-align: center;
+          letter-spacing: -0.226654px;
+          color: #FFFFFF;
+        }
+        .percent {
+          font-family: Larsseit-Bold;
+          font-style: normal;
+          font-size: 10.6034px;
+          line-height: 14px;
+          text-align: center;
+          letter-spacing: -0.160221px;
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+  }
+}
+.wearable {
+  max-width: 900px;
+  margin-top: 30px;
+  margin: auto;
+
+  &_navBar {
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      font-size: 24px;
+      margin-bottom: 0px;
+      padding-top: 40px;
+      color: white;
+    }
+
+    & p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.5) #1f1f1f!important;
+    }
+
+    .newLink {
+      border-radius: 16px;
+      margin-top: 35px;
+      height: 42px;
+      color: white;
+      padding: 8px 16px 8px 16px;
+      font-size: 18px;
+      font-weight: 700;
+      background: #1f1f1f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        filter: brightness(0.9) !important;
+        color: white;
+      }
+
+      &:focus {
+        filter: brightness(0.9) !important;
+        color: white;
+      }
+
+      svg {
+        margin-left: 4px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .products_wrapper {
+    display: flex;
+
+    .products {
+      width: 32%;
+      min-width: 257px;
+      margin-top: 21px;
+      display: flex;
+      flex-direction: column !important;
+      margin-bottom: 6px;
+      border: 2px solid rgba(42, 42, 42, 1);
+      border-radius: 16px;
+      margin-right: 30px;
+      padding: 40px 20px 20px 20px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+      
+      .ribbon {
+        position: absolute;
+        z-index: 1;
+        margin-left: 45px;
+        margin-top: -1px;
+        width: 153px;
+
+        .pillers {
+          display: flex;
+          justify-content: space-between;
+
+          & div {
+            width: 43px;
+            height: 23px;
+            background-color: #00A0FB;
+            border-radius: 4px;
+          }
+
+          .triangle_left {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px 8px 8px 0;
+            border-color: transparent  #8d3bcd transparent transparent;
+            position: absolute;
+            top: -2px;
+            bottom: 0;
+            margin: auto;
+            right: 0;
+          }
+          .triangle_right {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px 0 8px 8px;
+            border-color: transparent transparent transparent#8d3bcd;
+            position: absolute;
+            top: -2px;
+            bottom: 0;
+            margin: auto;
+          }
+      }  
+        .content{
+          padding-right: 32px;
+          display: flex;
+          justify-content: space-between;
+          position: absolute;
+          background-color: #00A0FB;
+          color: #fff;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          width: 111px;
+          border-radius: 7px;
+          left: 0;
+          right: 0;
+          top: -20px;
+          bottom: 0;
+          margin: auto;
+        }
+          .wear_box {
+
+            .wear_box_questionmark {
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+        
+              position: absolute;
+              width: 25px;
+              height: 25px;
+        
+              box-sizing: border-box;
+              box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+              border-radius: 93px;
+            }
+            .wear_box_mark {
+              font-family: Larsseit-Bold;
+              font-style: normal;
+              font-size: 17.6218px;
+              line-height: 24px;
+              text-align: center;
+              color: #FFFFFF;
+        
+              position: absolute;
+              margin-left: 70px;
+              margin-top: 20px;
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              padding: 9px 12px 9px 15px;
+        
+              background: #1a1a1a;
+              border: 1px solid #2a2a2a;
+              box-sizing: border-box;
+              box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+              border-radius: 93px;
+        
+              .img_card {
+                width: 18px;
+                height: 18px;
+                margin-left: 4px;
+              }
+            }
+            .wear_box_purple {
+              width: 241px;
+              height: 241px;
+              margin-top: 42px;
+              //background: radial-gradient(68.68% 68.68% at 50% 50%, #AD86FF 0%, #622DF8 100%);
+              border-radius: 16px;
+            }
+            .card_body {
+              display: flex;
+              justify-content: space-around;
+              margin-top: 15px;
+        
+              .card {
+                display: flex;
+                align-items: center;
+        
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+        
+                border: 2px solid #2a2a2a;
+                box-sizing: border-box;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+                border-radius: 20px;
+        
+                font-family: Larsseit-Bold;
+                font-style: normal; 
+                font-size: 12px;
+                line-height: 16px;
+                color: #ffffff;
+        
+                .img_card {
+                  margin-left: 3px;
+                  width: 12px;
+                  height: 12px;
+                }
+              }
+            }
+        
+            .wear_box_pink {
+              width: 241px;
+              height: 241px;
+              margin-top: 42px;
+              //background: radial-gradient(68.68% 68.68% at 50% 50%, #ff81db 0%, #fd32c2 100%);
+              border-radius: 16px;
+        
+              font-family: Larsseit;
+              font-style: normal;
+            }
+          }
+      }
+
+      .image_wrapper {
+        display: flex;
+        justify-content: center;
+
+        .pic {
+          border-radius: 10px;
+          min-height: 200px;
+        }
+      }
+
+      .button_wrapper {
+        margin: 8px 0px;
+        padding: 7px;
+        display: flex;
+
+        .newLink {
+          height: 30px;
+          color: white;
+          background: transparent;
+          border: 2px solid #1f1f1f;
+          border-radius: 16px;
+          padding: 8px 16px 8px 16px;
+          margin-right: 4px;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 24px;
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            border: 2px solid white;
+            background: transparent;
+          }
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+
+      .info {
+        text-align: center;
+        font-size: 15px;
+        font-family: Larsseit-Bold;
+        color: rgba(255, 255, 255, 0.75) !important;
+        margin-bottom: 8px;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 24px;
+        font-family: Larsseit-Bold;
+        margin: 0px;
+      }
+
+      .wearable_buttons {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wearable {
+    &_navBar {
+      width: 550px;
+    }
+
+    .products_wrapper {
+      width: 550px;
+      display: block;
+
+      .products {
+        width: 100%;
+
+        .ribbon{
+          margin-left: 175px;
+        }
+
+        .button_wrapper {
+          padding: 7px 140px;
+        }
+      }
+    }
+  }
+}

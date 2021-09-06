@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
+
 import TopRigthArrow from 'assets/svg/toprightarrow.svg';
 import styles from './Balance.module.scss';
 
-const Balance = props => {
+const Balance = () => {
+  
   const balenceItems = [
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png',
@@ -68,7 +70,7 @@ const Balance = props => {
             <p className={styles.DG_value}>1830</p>
             <img
               style={{ marginTop: '-4px' }}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
             />
           </div>
           <p className={styles.price}>$109.3</p>
