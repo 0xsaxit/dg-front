@@ -48,6 +48,7 @@
         border-radius: 63px;
       }
     }
+
     .card_body {
       display: flex;
       justify-content: space-around;
@@ -75,7 +76,7 @@
 
         .img {
           margin-left: 3px;
-          width: 12px;
+          width: 100%;
           height: 12px;
         }
       }
@@ -102,6 +103,14 @@
   .button_area {
     display: flex;
     margin-top: 16px;
+
+    .upgrade_button {
+      background-color: #006EFF !important;
+      color: white !important;
+      height: 43px;
+      border-radius: 10px !important;
+      width: 100%;
+    }
 
     .button_close {
       display: flex;

@@ -16,7 +16,7 @@ const ModalWithdrawDelegation = (props) => {
         close
         trigger={
           <Button className={styles.open_button}>
-            Withdraw
+            Withdraw Delegation
           </Button>
         }
       >
@@ -38,8 +38,8 @@ const ModalWithdrawDelegation = (props) => {
         </div>
         <div style={{ color: 'white', display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
 
-          <div className={styles.wear_box_body} >
-            <div className={styles.header} >
+          <div className={styles.wear_box_body}>
+            <div className={styles.header}>
               Delegate Details
             </div>
 
