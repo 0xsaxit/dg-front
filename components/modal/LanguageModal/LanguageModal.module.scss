@@ -1,0 +1,62 @@
+@import 'styles/base.scss';
+
+.language_container {
+  .button_wrapper {
+    margin-left: 15px;
+
+    .language_button {
+      background-color: #1f1f1f;
+      padding-top: 11px;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-top: 0;
+      margin-right: 0;
+      z-index: 1;
+
+      .content_wrappper {
+        img {
+          margin-right: 10px;
+          margin-bottom: -2px;
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+
+  .popup_container {
+    display: flex;
+  }
+}
+
+.language_popup {
+  width: 160px;
+  box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 24px !important;
+  background-color: #1f1f1f !important;
+  padding: 15px !important;
+}
+
+.account_dropdown_item {
+  font-size: 20px;
+  font-family: Larsseit-Medium;
+  padding-top: 16px;
+  transition: all linear 0.1s;
+
+  img {
+    margin-right: 10px;
+    margin-bottom: -2px;
+    width: 24px;
+    height: 24px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transition: all linear 0.1s;
+  }
+}

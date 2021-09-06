@@ -9,6 +9,7 @@ import ModalInfo from 'components/modal/ModalInfo';
 import Fetch from 'common/Fetch';
 import ModalPopup from 'components/modal/ModalPopup';
 import ButtonConnect from '../../button/ButtonConnect/index.js';
+import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
 
@@ -316,6 +317,7 @@ const MenuTop = props => {
         >
           <ButtonConnect />
         </span>
+        {/*<LanguageModal />*/}
       </>
     );
   }

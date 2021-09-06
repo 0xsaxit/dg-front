@@ -284,39 +284,53 @@
       }
     }
 
-    .button_group {
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 24px;
+    
+      .button_group {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 24px;
 
-      .earn_dg_button {
-        background-color: #2b2b2b;
-        color: white;
-        position: relative;
-        height: 64px;
-        width: 200px;
-        line-height: 32px;
-        font-size: 20px;
-        margin-right: 0;
+        @media screen and (min-width: 499px) {
+          .earn_dg_button {
+            background-color: #2b2b2b;
+            color: white;
+            position: relative;
+            height: 64px;
+            width: 200px;
+            line-height: 32px;
+            font-size: 20px;
+            margin-right: 0;
+          }
+    
+          .play_button {
+            position: relative;
+            background-color: #006eff;
+            color: white;
+            height: 64px;
+            width: 200px;
+            line-height: 32px;
+            font-size: 20px;
+            margin-left: 16px;
+          }
+        }
+        @media screen and (max-width: 499px) {
+          .earn_dg_button {
+            display: none;
+          }
+    
+          .play_button {
+            display: none;
+          }
+        }
+  
+        @include mq($until: small) {
+          justify-content: center;
+          transform: scale(0.9);
+          margin-top: 4px;
+        }
       }
-
-      .play_button {
-        position: relative;
-        background-color: #006eff;
-        color: white;
-        height: 64px;
-        width: 200px;
-        line-height: 32px;
-        font-size: 20px;
-        margin-left: 16px;
-      }
-
-      @include mq($until: small) {
-        justify-content: center;
-        transform: scale(0.9);
-        margin-top: 4px;
-      }
-    }
+    
+    
 
     .chevron_down {
       bottom: -55px;
