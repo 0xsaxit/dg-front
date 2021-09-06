@@ -147,19 +147,9 @@ const ModalPopup = () => {
                 {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending'}
               </div>
             )}
-            <Button
-              className="account-button"
-              style={{
-                paddingLeft: '24px',
-                paddingRight: '24px',
-                marginTop: 0,
-                marginRight: 0,
-                zIndex: 1,
-              }}
-            >
+            <Button className={styles.my_account}>
               <span>
                 <svg
-                  style={{ marginRight: '6px', marginBottom: '-2px' }}
                   width="20"
                   height="19"
                   viewBox="0 0 20 19"

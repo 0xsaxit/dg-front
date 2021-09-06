@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .modal_title {
   padding-left: 8px;
@@ -99,8 +99,8 @@
   &:hover {
     -webkit-transform: translateY(0);
     transform: translateY(0);
-    -webkit-filter: brightness(.9)!important;
-    filter: brightness(.9)!important;
+    -webkit-filter: brightness(0.9) !important;
+    filter: brightness(0.9) !important;
   }
 
   &_binanace {
@@ -126,8 +126,8 @@
   &:hover {
     -webkit-transform: translateY(0);
     transform: translateY(0);
-    -webkit-filter: brightness(.9)!important;
-    filter: brightness(.9)!important;
+    -webkit-filter: brightness(0.9) !important;
+    filter: brightness(0.9) !important;
   }
 }
 
@@ -185,22 +185,22 @@
   );
 }
 
-.popup_wrapper{
-  background:rgba(255, 255, 255, 1);
+.popup_wrapper {
+  background: rgba(255, 255, 255, 1);
   .link_wrapper {
     display: flex;
     flex-direction: column;
     .acount_dropdown_item {
-       font-size: 20px;
-       font-family: Larsseit-Medium;
-       margin: 0;
-       padding-top: 16px;
-       transition: all .1s linear;
+      font-size: 20px;
+      font-family: Larsseit-Medium;
+      margin: 0;
+      padding-top: 16px;
+      transition: all 0.1s linear;
 
       &:hover {
         cursor: pointer;
         opacity: 70%;
-        transition: all .1s linear;
+        transition: all 0.1s linear;
       }
     }
     .buy_dg_button_binance {
@@ -208,9 +208,9 @@
       width: 100%;
       border-radius: 12px;
       background: #f1cd50;
-      color: black ;
-      font-size: 18px ;
-      margin-top: 24px ;
+      color: black;
+      font-size: 18px;
+      margin-top: 24px;
       padding-top: 21px;
     }
     .buy_dg_button {
@@ -226,9 +226,27 @@
       &:hover {
         -webkit-transform: translateY(0);
         transform: translateY(0);
-        -webkit-filter: brightness(.9)!important;
-        filter: brightness(.9)!important;
+        -webkit-filter: brightness(0.9) !important;
+        filter: brightness(0.9) !important;
       }
     }
+  }
+}
+
+.my_account {
+  height: 51px;
+  background-color: #1f1f1f !important;
+  border-radius: 16px;
+  color: white !important;
+  font-size: 18px !important;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 0;
+  margin-right: 0;
+  z-index: 1;
+
+  & svg {
+    margin-right: 6px;
+    margin-bottom: -2px;
   }
 }

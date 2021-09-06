@@ -8,12 +8,12 @@ $mq-breakpoints: (
   extra-large: 1200px,
 );
 
-.main-container {
+.main_container {
   padding-bottom: 30px !important;
   min-height: calc(100vh - 220px);
 }
 
-.page-container {
+.page_container {
   max-width: 1400px;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -53,8 +53,8 @@ $mq-breakpoints: (
       162deg,
       rgba(0, 0, 0, 1) 0%,
       rgba(0, 0, 0, 1) 40%,
-      #F1CD50 40.1%,
-      #F1CD50 100%
+      #f1cd50 40.1%,
+      #f1cd50 100%
     );
   }
 }
@@ -89,7 +89,7 @@ $mq-breakpoints: (
   margin-top: 18px;
   display: flex;
   justify-content: space-between;
-  
+
   .dg_stake_button {
     color: white;
     background-color: #006eff;
@@ -98,13 +98,13 @@ $mq-breakpoints: (
     height: 36px;
     line-height: 10px;
     font-size: 16px;
-  
+
     &_balancer {
       height: 36px;
       min-width: 100%;
       margin-top: 15px;
       border-radius: 4px;
-  
+
       &_enabled {
         background-color: white;
         height: 34px;
@@ -157,7 +157,7 @@ $mq-breakpoints: (
     &_top {
       flex-direction: column;
     }
-	}
+  }
 
   @include mq($from: large) {
     flex-direction: row;
@@ -235,12 +235,12 @@ $mq-breakpoints: (
 
 .nft_pic {
   max-height: 300px;
-  min-height: 400px; 
+  min-height: 400px;
   height: 100%;
-	width: 100%;
-	object-fit: cover;
-	margin-bottom: 4px !important;
-	border-radius: 20px 20px 0 0 !important; 
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 4px !important;
+  border-radius: 20px 20px 0 0 !important;
 }
 
 .nft_description {
@@ -262,7 +262,7 @@ $mq-breakpoints: (
 }
 
 .nft_other_p {
-  color: rgba(255,255,255,1);
+  color: rgba(255, 255, 255, 1);
   margin-top: -12px;
   padding-top: 15px;
   text-align: center;
@@ -292,7 +292,7 @@ $mq-breakpoints: (
     padding-top: 30vh;
     height: 100vh;
     margin-top: -63px;
-  
+
     @include mq($until: medium) {
       margin-top: -150px !important;
       display: flex;
@@ -300,7 +300,7 @@ $mq-breakpoints: (
       justify-content: center;
       min-width: 100%;
     }
-  
+
     @include mq($until: small) {
       position: relative;
       height: 100vh;
@@ -444,7 +444,7 @@ $mq-breakpoints: (
 
 .modal_a {
   color: white;
-  
+
   &:hover {
     filter: brightness(0.75);
   }

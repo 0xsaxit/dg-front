@@ -39,3 +39,121 @@ img {
 
 body {
 }
+
+@font-face {
+  font-family: 'Larsseit-ExtraBold';
+  src: url('/static/fonts/Larsseit/Larsseit5.ttf');
+}
+
+@font-face {
+  font-family: 'Larsseit-Bold';
+  src: url('/static/fonts/Larsseit/Larsseit16.otf');
+}
+
+@font-face {
+  font-family: 'Larsseit-Medium';
+  src: url('/static/fonts/Larsseit/Larsseit2.ttf');
+}
+
+@font-face {
+  font-family: 'Larsseit-Regular';
+  src: url('/static/fonts/Larsseit/Larsseit13.ttf');
+}
+
+@font-face {
+  font-family: 'Larsseit-Light';
+  src: url('/static/fonts/Larsseit/Larsseit4.ttf');
+}
+
+h1 {
+  font-family: 'Larsseit-ExtraBold';
+  font-weight: 800 !important;
+  font-size: 60px;
+  margin-bottom: 0px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-family: 'Larsseit-ExtraBold';
+  font-weight: 800 !important;
+  font-size: 32px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+h3 {
+  font-family: 'Larsseit-ExtraBold';
+  font-weight: 800 !important;
+  font-size: 32px;
+  margin-bottom: 0px;
+  line-height: 1.4;
+}
+
+h4 {
+  font-family: 'Larsseit-ExtraBold';
+  font-weight: 800 !important;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+h5 {
+  font-family: 'Larsseit-Regular';
+  font-weight: 600 !important;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+p {
+  font-family: 'Larsseit-Regular';
+  font-size: 21px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+button,
+a {
+  -webkit-font-smoothing: antialiased !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+.table-header-text,
+.table-header-text-1,
+.table-header-text-2,
+.table-body-text-1,
+.table-body-text-2.games,
+.blogdetail-page-container .post__content li,
+i.twitter.square.icon.share-icon,
+i.facebook.icon.share-icon,
+i.linkedin.icon.share-icon,
+#mobile-menu-icon,
+.account-select,
+div.divider.text,
+.more-text,
+.spanbox,
+.matic-header-text,
+.menu-info-close,
+.mailchimp-close,
+.hljs,
+.mailchimp-other-inner-p.subtext,
+.ui.checkbox + label,
+.ui.checkbox label,
+.nft-other-h3 {
+  color: white !important;
+}

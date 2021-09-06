@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
 import Link from 'next/link';
-import { Icon } from 'semantic-ui-react';
+import cn from 'classnames';
+import { Parallax } from 'react-parallax';
+import { Divider, Icon, Popup } from 'semantic-ui-react';
 import Spinner from 'components/Spinner';
-import cx from 'classnames';
 import ContentAccount from 'components/content/ContentAccount';
 import Aux from 'components/_Aux';
 import styles from './AccountData.module.scss';
@@ -71,13 +72,15 @@ const AccountData = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  const topLinks = () => {
+  function topLinks() {
     return (
       <Aux>
-
         {/*<div style={{ position: 'relative', zIndex: '0', paddingTop: '120px' }}>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
-            <span className="avatar-picture" style={{ alignSelf: 'center' }}>
+            <span
+              className="avatar-picture"
+              style={{ alignSelf: 'center' }}
+            >
               <img
                 className="avatar-picture main"
                 src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
@@ -85,13 +88,33 @@ const AccountData = props => {
                   backgroundColor: '#3B3B3B',
                   width: '180px',
                   display: 'flex',
-                  margin: '90px 0px 0px 0px',
+                  margin: '90px 0px 0px 0px'
                 }}
+              /> 
+              <a 
+                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&" 
+                target="_blank"
+                className="avatar-edit-circle"
+              >
+                <svg style={{ margin: '12px' }} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.2656 3.85938L13.7422 5.38281L10.6172 2.25781L12.1406 0.734375C12.2969 0.578125 12.4922 0.5 12.7266 0.5C12.9609 0.5 13.1562 0.578125 13.3125 0.734375L15.2656 2.6875C15.4219 2.84375 15.5 3.03906 15.5 3.27344C15.5 3.50781 15.4219 3.70312 15.2656 3.85938ZM0.5 12.375L9.71875 3.15625L12.8438 6.28125L3.625 15.5H0.5V12.375Z" fill="white"/>
+                </svg>
+              </a>
+            </span>
+          </span>
+        </div>*/}
+
+        <div className={styles.player_card}>
+          <div>
+            <span style={{ alignSelf: 'center' }}>
+              <img
+                className={styles.avatar_picture_main}
+                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
               />
               <a
                 href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
                 target="_blank"
-                className="avatar-edit-circle"
+                className={styles.avatar_edit_circle}
               >
                 <svg
                   style={{ margin: '12px' }}
@@ -108,36 +131,15 @@ const AccountData = props => {
                 </svg>
               </a>
             </span>
-          </span>
-        </div>*/}
-
-        <div className={styles.player_card}>
-          <div>
-            <span
-              className="avatar-picture"
-              style={{ alignSelf: 'center' }}
-            >
-              <img
-                className={styles.avatar_picture_main}
-                src={`https://events.decentraland.org/api/profile/${state.userAddress}/face.png`}
-                style={{
-                  backgroundColor: '#3B3B3B',
-                  width: '180px',
-                  display: 'flex',
-                }}
-              />
-              <a
-                className={styles.avatar_edit_circle}
-                href="https://play.decentraland.org/?OPEN_AVATAR_EDITOR&"
-                target="_blank"
-              >
-                <svg style={{ margin: '12px' }} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15.2656 3.85938L13.7422 5.38281L10.6172 2.25781L12.1406 0.734375C12.2969 0.578125 12.4922 0.5 12.7266 0.5C12.9609 0.5 13.1562 0.578125 13.3125 0.734375L15.2656 2.6875C15.4219 2.84375 15.5 3.03906 15.5 3.27344C15.5 3.50781 15.4219 3.70312 15.2656 3.85938ZM0.5 12.375L9.71875 3.15625L12.8438 6.28125L3.625 15.5H0.5V12.375Z" fill="white" />
-                </svg>
-              </a>
-            </span>
-          </span>
-          <div style={{ display: 'flex', flexDirection: 'column', flex: 1, marginLeft: 30 }}>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              marginLeft: 30,
+            }}
+          >
             <span style={{ display: 'flex', flexDirection: 'column' }}>
               <Link href="/account">
                 {state.userInfo.name === null || state.userInfo.name === '' ? (
@@ -151,11 +153,11 @@ const AccountData = props => {
                 )}
               </Link>
               <span
-                className="account-copy"
+                className={styles.account_copy}
                 style={{ display: 'flex', marginTop: 5 }}
                 onClick={() => onCopy()}
               >
-                <p className="account-address">
+                <p className={styles.account_address}>
                   {state.userAddress.substr(0, 8) +
                     '...' +
                     state.userAddress.substr(-8)}
@@ -179,22 +181,31 @@ const AccountData = props => {
 
             <div style={{ display: 'flex' }}>
               <div className={styles.token_container}>
-                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png" />
-                <div className={styles.tokenBalance} >
+                <img
+                  className={styles.token_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png"
+                />
+                <div className={styles.tokenBalance}>
                   <p className={styles.title}> ICE Mined </p>
-                  <p className={styles.amount} > 0 </p>
+                  <p className={styles.amount}> 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
-                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png" />
-                <div className={styles.tokenBalance} >
+                <img
+                  className={styles.token_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/Group_175_hajl2h.png"
+                />
+                <div className={styles.tokenBalance}>
                   <p className={styles.title}> Unused XP </p>
                   <p className={styles.amount}> 0 </p>
                 </div>
               </div>
               <div className={styles.token_container}>
-                <img className={styles.token_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png" />
-                <div className={styles.tokenBalance} >
+                <img
+                  className={styles.token_img}
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_22_w5ecsu.png"
+                />
+                <div className={styles.tokenBalance}>
                   <p className={styles.title}> DG Mined</p>
                   <p className={styles.amount}> 0 </p>
                 </div>
@@ -277,26 +288,27 @@ const AccountData = props => {
           </div>
         </div>*/}
 
-        <div
-          className="account-other-tabs"
-          id="account-mobile-tabs"
-          style={{ marginTop: '0px' }}
-        >
+        <div className={styles.account_other_tabs} style={{ marginTop: '0px' }}>
           <div className="ml-0">
-            <span className="account-other-p d-flex justify-content-center">
+            <span
+              className={cn(
+                styles.account_other_p,
+                'd-flex justify-content-center'
+              )}
+            >
               {dataType === 'balances' ? (
-                <span className="account-hover active">Balances</span>
+                <span className={styles.account_active}>Balances</span>
               ) : (
                 <Link href="/account">
-                  <span className="account-hover">Balances</span>
+                  <span className={styles.account_hover}>Balances</span>
                 </Link>
               )}
 
               {dataType === 'ice' ? (
-                <span className="account-hover active">ICE</span>
+                <span className={styles.account_active}>ICE</span>
               ) : state.dgLoading ? (
                 <span
-                  className="account-hover"
+                  className={styles.account_hover}
                   onClick={() => {
                     dispatch({
                       type: 'set_dgWarningMsg',
@@ -308,15 +320,15 @@ const AccountData = props => {
                 </span>
               ) : (
                 <Link href="/account/ice">
-                  <span className="account-hover">ICE</span>
+                  <span className={styles.account_hover}>ICE</span>
                 </Link>
               )}
 
               {dataType === 'items' ? (
-                <span className="account-hover active">NFTs</span>
+                <span className={styles.account_active}>NFTs</span>
               ) : state.dgLoading ? (
                 <span
-                  className="account-hover"
+                  className={styles.account_hover}
                   onClick={() => {
                     dispatch({
                       type: 'set_dgWarningMsg',
@@ -328,15 +340,15 @@ const AccountData = props => {
                 </span>
               ) : (
                 <Link href="/account/items">
-                  <span className="account-hover">NFTs</span>
+                  <span className={styles.account_hover}>NFTs</span>
                 </Link>
               )}
 
               {dataType === 'history' ? (
-                <span className="account-hover active">History</span>
+                <span className={styles.account_active}>History</span>
               ) : state.dgLoading ? (
                 <span
-                  className="account-hover"
+                  className={styles.account_hover}
                   onClick={() => {
                     dispatch({
                       type: 'set_dgWarningMsg',
@@ -348,15 +360,15 @@ const AccountData = props => {
                 </span>
               ) : (
                 <Link href="/account/history">
-                  <span className="account-hover">History</span>
+                  <span className={styles.account_hover}>History</span>
                 </Link>
               )}
 
               {dataType === 'referrals' ? (
-                <span className="account-hover active">Referrals</span>
+                <span className={styles.account_active}>Referrals</span>
               ) : state.dgLoading ? (
                 <span
-                  className="account-hover"
+                  className={styles.account_hover}
                   onClick={() => {
                     dispatch({
                       type: 'set_dgWarningMsg',
@@ -368,7 +380,7 @@ const AccountData = props => {
                 </span>
               ) : (
                 <Link href="/account/referrals">
-                  <span className="account-hover">Referrals</span>
+                  <span className={styles.account_hover}>Referrals</span>
                 </Link>
               )}
             </span>
@@ -376,7 +388,7 @@ const AccountData = props => {
         </div>
       </Aux>
     );
-  };
+  }
 
   function getPopUp(number) {
     return (
@@ -401,7 +413,7 @@ const AccountData = props => {
         }
       >
         {number === 'one' ? (
-          <p className="earned-text">
+          <p className={styles.earned_text}>
             All time gameplay earnings, not counting earnings allocated
             elsewhere by the DG DAO (not used in total treasury calculation)
           </p>
@@ -483,27 +495,27 @@ const AccountData = props => {
             </p>
           </Aux>
         ) : number === 'three' ? (
-          <p className="earned-text">
+          <p className={styles.earned_text}>
             Treasury holdings of $DG calculated as {dgBalance} $DG at market
             price
           </p>
         ) : number === 'four' ? (
-          <p className="earned-text">
+          <p className={styles.earned_text}>
             Treasury holdings of LAND calculated as 1,007 parcels times T30 avg
             LAND price
           </p>
         ) : number === 'five' ? (
-          <p className="earned-text">
+          <p className={styles.earned_text}>
             Treasury holdings of wearable NFTs calculated as 210 wearables times
             average bid at current MANA price
           </p>
         ) : number === 'six' ? (
           <Aux>
-            <p className="earned-text"> ETH-DG v3: ${uniTreasury} </p>
-            <p className="earned-text"> MVI-ETH v2: ${mviTreasury} </p>
+            <p className={styles.earned_text}> ETH-DG v3: ${uniTreasury} </p>
+            <p className={styles.earned_text}> MVI-ETH v2: ${mviTreasury} </p>
           </Aux>
         ) : number === 'seven' ? (
-          <p className="earned-text">
+          <p className={styles.earned_text}>
             Calculated as {Number(maticTokens).toLocaleString()} delegated
             tokens times current Matic token price
           </p>
@@ -522,14 +534,18 @@ const AccountData = props => {
             <div className={styles.account_other_inner_container}>
               {topLinks()}
 
-              <div className={styles.tx_box_history_2} id="tx-box-history-2">
+              <div className={styles.tx_box_history_2}>
                 <ContentAccount content={dataType} dataPage={dataPage} />
               </div>
             </div>
           </div>
           {copied ? (
-            <div className={copied ? 'copied-toast show' : 'copied-toast'}>
-              <h3 className="copied-text">Wallet address copied!</h3>
+            <div
+              className={
+                copied ? cn(styles.copied_toast, 'show') : styles.copied_toast
+              }
+            >
+              <h3 className={styles.copied_text}>Wallet address copied!</h3>
             </div>
           ) : null}
         </div>

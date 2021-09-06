@@ -1,6 +1,5 @@
 @import 'styles/base.scss';
 .stake_DG_container {
-   margin-top: 60px;
   .lower {
     color: white;
     padding: 28px;
@@ -71,12 +70,12 @@
       margin-bottom: 0px;
     }
 
-    .earned_amount_stat{
+    .earned_amount_stat {
       font-size: 18px;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
       font-weight: 700;
-      padding-top: 2px!important;
-      margin: 0!important;
+      padding-top: 2px !important;
+      margin: 0 !important;
     }
 
     .stake_text {
@@ -92,7 +91,7 @@
     }
     .game_play {
       display: flex;
-      .left_column{
+      .left_column {
         border-right: 1px solid rgb(8, 10, 12);
         display: flex;
         justify-content: center;
@@ -100,9 +99,8 @@
         margin-top: -15px;
         padding-top: 15px;
         margin-bottom: -15px;
-        
-        span {
 
+        span {
           .apy_text {
             font-family: Larsseit-Bold;
             font-size: 14px;
@@ -110,29 +108,27 @@
             color: rgba(255, 255, 255, 0.5) !important;
             margin-bottom: 0px;
           }
-          .earned_amount_stat{
+          .earned_amount_stat {
             font-size: 18px;
-            letter-spacing: .5px;
+            letter-spacing: 0.5px;
             font-weight: 700;
-            padding-top: 2px!important;
-            margin: 0!important;
+            padding-top: 2px !important;
+            margin: 0 !important;
           }
-
         }
-        
       }
     }
-    .liquidity_input{
+    .liquidity_input {
       padding-top: 40px;
       padding-bottom: 8px;
       input {
         border: 1px solid #2a2a2a;
-        background: 0 0!important;
+        background: 0 0 !important;
         border-radius: 10px;
         font-family: Larsseit-Regular;
         height: 40px;
-        color: #fff!important;    
-      }  
+        color: #fff !important;
+      }
     }
 
     .apy_percent {
@@ -262,4 +258,4 @@
       }
     }
   }
-}  
+}

@@ -1,173 +1,140 @@
 @import 'styles/base.scss';
 
-.player_card {
-	position: relative;
-	zIndex: 0;
-	margin: auto;
-	margin-top: 210px;
-	padding: 28px;
-	width: 600px;
-	border: 1px solid #2A2A2A;
-	border-radius: 28px;
+.avatar_picture_main {
+  background-color: rgb(59, 59, 59);
+  width: 180px;
+  display: flex;
+  border: 1px solid rgb(8, 10, 12);
+  border-radius: 100%;
 }
-.account_other_tabs{
-    margin-top: 45px;
-}
-.account_data_container {
+
+.avatar_edit_circle {
+  background-color: #1f1f1f;
   position: relative;
-  z-index: 0;
-  margin-top: 206px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  float: right;
+  margin-top: -40px;
+  margin-right: 2px;
+}
 
-  .avatar_picture {
-    align-self: center;
+.account_other_tabs {
+  margin-top: 30px !important;
+  padding: 10px 0px 30px 0px;
+  color: black;
+  text-align: center;
+  width: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  position: relative;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5 !important;
+}
 
-    &_main {
-      border-radius: 100%;
-      background-color: white;
-      width: 120px;
+.account_active {
+  font-family: 'Larsseit-Bold';
+  font-size: 18px !important;
+  margin-left: 18px;
+  margin-right: 18px !important;
+  padding: 0px 6px 12px 6px;
+  margin-top: 18px;
+  color: white;
+  cursor: default;
+  border-bottom: 3px solid #006eff;
+}
+
+.account_hover {
+  font-family: 'Larsseit-Bold';
+  font-size: 18px !important;
+  cursor: pointer;
+  margin-left: 18px;
+  margin-right: 18px !important;
+  padding: 0px 6px 0px 6px;
+  color: rgb(92, 95, 97);
+  margin-top: 18px;
+
+  &:hover {
+    cursor: pointer;
+    border-bottom: 3px solid #006eff;
+    padding-bottom: 12px !important;
+    color: white;
+  }
+}
+
+.copied_toast {
+  background-color: #1f1f1f;
+  position: fixed;
+  bottom: 60px;
+  left: calc(50% - 165px);
+  width: 330px;
+  height: 75px;
+  border-radius: 32px;
+}
+
+.copied_text {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 19px;
+}
+
+.earned_text {
+  font-size: 14px;
+  font-family: Larsseit-Bold;
+  text-transform: normal;
+  padding-top: 6px !important;
+  margin-bottom: 0px;
+}
+
+.player_card {
+  position: relative;
+  zindex: 0;
+  margin: auto;
+  margin-top: 210px;
+  padding: 28px;
+  width: 600px;
+  border: 1px solid #2a2a2a;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+
+  .token_container {
+    flex: 1;
+    text-align: center;
+
+    .token_img {
+      width: 72px;
+      margin-left: -22px;
+      margin-bottom: -22px !important;
+    }
+
+    .tokenBalance {
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      width: 88px;
+      height: 54px;
+      text-align: center;
       display: flex;
-      margin: 90px 0 0 0;
-    }
-  }
+      flex-direction: column;
+      justify-content: center;
 
-  .avatar_edit_circle {
-    border: 1px solid #edf2f9;
-    background-color: white;
-    position: relative;
-    z-index: 3;
-    width: 27px;
-    height: 27px;
-    border-radius: 100%;
-    float: right;
-    margin-top: -27px;
-    margin-right: 9px;
-  }
-
-  .edit_icon {
-    color: #5c5e61;
-    margin-left: 4px;
-    margin-top: 3px;
-
-    &:hover {
-      color: black;
+      .title {
+        font-size: 12px;
+        color: 'white';
+        opacity: 0.5;
+        margin-bottom: 0;
+      }
+      .amount {
+        font-weight: 'bold';
+        font-size: 18px;
+        color: 'white';
+      }
     }
   }
 }
-.popup_container {
-	background: #1F1F1F !important;
-	border-radius: 8px !important;
-	margin-top: 340px !important;
-	padding: 10px 20px 20px 20px !important;
-	border: 0px solid white !important;
-
-	&::before {
-		background: #1F1F1F !important;
-		box-shadow: none !important;
-		top: 28px !important;
-	}
-
-	.popup_header {
-		font-size: 13px;
-		font-family: Larsseit-Bold;
-		margin-left: 10px;
-		line-height: 18px;
-	}
-
-	.popup_row {
-		display: flex;
-	}
-
-	.popup_column {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-self: center;
-		width: 100%;
-
-		.popup_img {
-			height: 30%;
-			width: 30%;
-			align-self: center;
-			margin-top: 20px;
-			margin-bottom: 8px;
-		}
-
-		.popup_img_high {
-			height: 20%;
-			width: 20%;
-			align-self: center;
-			margin-top: 20px;
-			margin-bottom: 8px;
-		}
-
-		.row_header {
-			font-size: 13px;
-			font-family: Larsseit-Bold;
-			text-align: center;
-			margin-bottom: 0px;
-		}
-
-		.row_subtitle {
-			font-size: 10px;
-			font-family: Larsseit-Bold;
-			text-align: center;
-			color: rgba(255, 255, 255, 0.5) !important;
-		}
-	}
-
-	.card_subtitle {
-		margin-top: 8px;
-		font-size: 10px;
-		font-family: Larsseit-Bold;
-		text-align: center;
-		color: rgba(255, 255, 255, 0.5) !important;	
-	}
-}
-
-
-.card_container {
-	margin-top: 120px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 610px;
-	height: 280px;
-	border-radius: 16px;
-	background: #161616;
-	display: flex;
-	align-items: center;
-
-	.token_container {
-		flex: 1;
-		text-align: center;
-
-		.token_img {
-			width: 72px;
-			margin-left: -22px;
-			margin-bottom: -22px !important;
-		}
-
-		.tokenBalance {
-			border: 1px solid #2A2A2A;
-			border-radius: 14px;
-			width: 88px;
-			height: 54px;
-			text-align: center;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-
-			.title {
-				font-size: 12px;
-				color: 'white';
-				opacity: 0.5;
-				margin-bottom: 0;
-			}
-			.amount {
-				font-weight: 'bold';
-				font-size: 18px;
-				color: 'white';
-			}
-		}
-	}
-}
-
