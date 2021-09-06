@@ -1,15 +1,14 @@
 import React from 'react';
 import Balance from './Balance';
 import Wearable from './Wearable';
-const IceBalances = (props) => {
 
+const IceBalances = () => {
   return (
-    <div>
+    <>
       <Balance />
       <Wearable />
-    
-    </div>
-  )
-}
+    </>
+  );
+};
 
 export default IceBalances;
