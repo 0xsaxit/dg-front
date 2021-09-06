@@ -186,6 +186,7 @@ const Wearable = () => {
                 target="_blank"
               >
                 +31%
+                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" alt="logo"></img>
               </Button>
               <Button
                 className={styles.newLink}
