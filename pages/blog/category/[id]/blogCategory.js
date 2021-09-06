@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ButterCMS from 'common/ButterCMS';
 
-import styles from '../blog.module.scss';
+import styles from '../../blog.module.scss';
 
 const blogCategory = () => {
   const router = useRouter();
@@ -26,7 +26,7 @@ const blogCategory = () => {
   }, []);
 
   return (
-    <div className={styels.blog_home_container}>
+    <div className={styles.blog_home_container}>
       <div className={styles.account_other_tabs}>
         <div className="ml-0">
           <span className="d-flex">
