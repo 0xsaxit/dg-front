@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './ContentSubgraphs.module.scss';
 import Aux from 'components/_Aux';
 

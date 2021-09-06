@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from 'store';
 import Spinner from 'components/Spinner';
 import ContentSubgraphs from 'components/content/ContentSubgraphs';
+
+import styles from './SubgraphData.module.scss';
 import Aux from 'components/_Aux';
 
 const SubgraphData = props => {
