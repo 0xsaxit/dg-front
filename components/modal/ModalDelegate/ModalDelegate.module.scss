@@ -1,9 +1,13 @@
 @import 'styles/base.scss';
 
 .open_button {
-    background-color: #006eff !important;
-    color: white !important;
-    height: 40px;
+  background-color: #1F1F1F !important;
+  color: white !important;
+  height: 43px;
+  font-family: Larsseit-Bold;
+  font-size: 14px;
+  width: 47%;
+  border-radius: 10px !important;
 }
 
 .delegate_modal {

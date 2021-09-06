@@ -2,12 +2,12 @@ import { useEffect, useContext, useState } from 'react';
 import cn from 'classnames';
 import Web3 from 'web3';
 import { Modal, Icon, Button, Header, Grid, Popup } from 'semantic-ui-react';
-
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 import styles from './ModalWearable.module.scss';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 import IceWearInfo from 'components/modal/IceWearInfo';
+import ModalUpgradePending from 'components/modal/ModalUpgradePending';
 
 
 const ModalWearable = (props) => {
@@ -15,7 +15,7 @@ const ModalWearable = (props) => {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [open, setOpen] = useState(props.open || false);
+  const [open, setOpen] = useState(false);
   const [upgrade, setUpgrade] = useState(true);
   const [info, setInfo] = useState(false);
 
@@ -30,7 +30,7 @@ const ModalWearable = (props) => {
         close
         trigger={
           <Button className={styles.play_now_modal}>
-            Test Upgrade
+            Upgrade
           </Button>
         }
       >
@@ -56,7 +56,7 @@ const ModalWearable = (props) => {
             <div className={styles.wear_box_mark}>
               +34%
               <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" 
                 className={styles.img_card}
               />
             </div>
@@ -65,12 +65,12 @@ const ModalWearable = (props) => {
             </div>
             <div className={styles.card_body} >
               <div className={styles.card} >
-                Rank3
+                Rank 3
               </div>
               <div className={styles.card} >
                 +35
                 <img 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" 
                   className={styles.img_card}
                 />
               </div>
@@ -118,10 +118,10 @@ const ModalWearable = (props) => {
                   <div className={styles.row}>
                     <div className={styles.col}>                      
                       <div className={styles.img}>
-                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893954/Group_199_gnajsw.png" />
+                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" />
                       </div>
                       <div className={styles.rank}>
-                        Rank1
+                        Rank 1
                       </div>
                       <div className={styles.percent}>
                         + 0% ICE
@@ -129,10 +129,10 @@ const ModalWearable = (props) => {
                     </div>
                     <div className={styles.col}>
                       <div className={styles.img}>
-                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893954/Group_200_jrqo60.png" />
+                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" />
                       </div>
                       <div className={styles.rank}>
-                        Rank2
+                        Rank 2
                       </div>
                       <div className={styles.percent}>
                         + 10 - 29% ICE
@@ -143,10 +143,10 @@ const ModalWearable = (props) => {
                   <div className={styles.row}>
                     <div className={styles.col}>
                       <div className={styles.img}>
-                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893954/Group_201_a4lthi.png" />
+                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" />
                       </div>
                       <div className={styles.rank}>
-                        Rank3
+                        Rank 3
                       </div>
                       <div className={styles.percent}>
                         + 30% - 49% ICE
@@ -154,10 +154,10 @@ const ModalWearable = (props) => {
                     </div>
                     <div className={styles.col}>
                       <div className={styles.img}>
-                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893954/Group_202_hlg8kr.png" />
+                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" />
                       </div>
                       <div className={styles.rank}>
-                        Rank4
+                        Rank 4
                       </div>
                       <div className={styles.percent}>
                         + 50% - 69% ICE
@@ -168,10 +168,10 @@ const ModalWearable = (props) => {
                   <div className={styles.row}>
                     <div className={styles.col}>
                       <div className={styles.img}>
-                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893951/Group_203_wl4qhv.png" />
+                        <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" />
                       </div>
                       <div className={styles.rank}>
-                        Rank5
+                        Rank 5
                       </div>
                       <div className={styles.percent}>
                         + 70% - 100% ICE
@@ -185,7 +185,7 @@ const ModalWearable = (props) => {
             <div className={styles.wear_box_mark} style={{marginLeft: '50px'}}>
               + 50% - 69%
               <img 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" 
                 className={styles.img_card}
               />
             </div>
@@ -201,7 +201,7 @@ const ModalWearable = (props) => {
               <div className={styles.card} >
                 + 50% - 69%
                 <img 
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" 
                   className={styles.img_card}
                 />
               </div>
@@ -241,7 +241,7 @@ const ModalWearable = (props) => {
                   <div className={styles.card}>
                       100K ICE
                     <img 
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png" 
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" 
                       className={styles.img_card1}
                     />
                   </div>
@@ -296,24 +296,19 @@ const ModalWearable = (props) => {
                 </div>
               </div>
             </div>
-            <div className={styles.button_area} >
-              <Button className={styles.button_upgrade} onClick={()=> {
-                setUpgrade(false);
-              }}>
-                Upgrade Wearable
-              </Button>
+            <div className={styles.button_area}>
+              <ModalUpgradePending />
               <Button className={styles.button_close}>
                 Learn More
               </Button>
             </div>
           </div>
-          
-
+  
         </div>
       </Modal>
 
     ) : (
-      <NeedMoreUpgrade />
+      <ModalUpgradePending />
     )}
     </>
   );

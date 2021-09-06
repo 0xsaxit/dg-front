@@ -1,9 +1,11 @@
 @import 'styles/base.scss';
 
 .open_button {
-    background-color: #1f1f1f !important;
-    color: white !important;
-    height: 40px;
+  background-color: #1f1f1f !important;
+  color: white !important;
+  height: 43px;
+  border-radius: 10px !important;
+  width: 100%;
 }
 
 .withdraw_modal {
@@ -43,8 +45,8 @@
       font-style: normal;
       font-size: 24px;
       line-height: 33px;
-      letter-spacing: -0.7px;
     }
+
     .description {
       font-family: Larsseit-Regular;
       font-size: 18px;
@@ -52,6 +54,7 @@
       color: #ffffff;
       margin-top: 6px;
     }
+    
     .price_area {
       font-family: Larsseit-Bold;
       font-style: normal;

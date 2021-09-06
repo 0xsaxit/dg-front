@@ -2,17 +2,16 @@ import { useEffect, useContext, useState } from 'react';
 import { Modal, Icon, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import styles from './NeedMoreUpgrade.module.scss';
-
 import ModalWearable from 'components/modal/ModalWearable';
+
 
 const NeedMoreUpgrade = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   //const [wearModal, setWearModal] = useState(false);
-
 
   return (
     <>
@@ -25,7 +24,7 @@ const NeedMoreUpgrade = () => {
           close
           // trigger={}
         >
-          <div 
+          <div
             className={styles.preview_button} 
             onClick={() =>{
               console.log("[close icon clicked: ]");
@@ -116,8 +115,7 @@ const NeedMoreUpgrade = () => {
                 </div>
               </div>
 
-              
-              
+ 
 
             </div>
           </div>
