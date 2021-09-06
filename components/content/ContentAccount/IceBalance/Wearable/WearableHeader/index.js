@@ -5,13 +5,12 @@ import TopRigthArrow from 'assets/svg/toprightarrow.svg';
 import styles from './WearableHeader.module.scss';
 
 const WearableHeader = () => {
-
   return (
     <div className={styles.wearableHeader}>
-      <span>
+      <div>
         <h2>ICED Wearables</h2>
         <p>87% Max ICE Bonus</p>
-      </span>
+      </div>
       <Button
         className={styles.open_sea}
         href="http://defi.atarichain.com/"

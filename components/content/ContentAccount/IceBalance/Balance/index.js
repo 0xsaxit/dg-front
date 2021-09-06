@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 
-import TopRigthArrow from 'assets/svg/toprightarrow.svg';
+import TopRightArrow from 'assets/svg/toprightarrow.svg';
 import styles from './Balance.module.scss';
 
 const Balance = () => {
-  
   const balenceItems = [
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1629713504/image_23_nm4wev.png',
@@ -58,7 +57,7 @@ const Balance = () => {
                   target="_blank"
                 >
                   Buy
-                  <TopRigthArrow />
+                  <TopRightArrow />
                 </Button>
               </div>
             </div>
