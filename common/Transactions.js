@@ -161,6 +161,26 @@ async function balanceOfToken(tokenContract, userOrContractAddress, units) {
   }
 }
 
+// get user's token authorization status from token contract
+async function tokenAuthorization(tokenContract, userAddress, spenderAddress) {
+  try {
+    const tokenAllowance = await tokenContract.methods
+      .allowance(userAddress, spenderAddress)
+      .call();
+
+    // console.log('token allowance ' + tokenAllowance);
+
+    let tokenAuthorizationStatus = false;
+    if (tokenAllowance > 0) {
+      tokenAuthorizationStatus = true;
+    }
+
+    return tokenAuthorizationStatus;
+  } catch (error) {
+    console.log('Get token authorization status failed', error);
+  }
+}
+
 // amount user has earned from smart contract
 async function balanceEarned(tokenContract, userAddress, units) {
   try {
@@ -202,6 +222,7 @@ export default {
   uniswapContract,
   keeperContract,
   balanceOfToken,
+  tokenAuthorization,
   balanceEarned,
   getTotalSupply,
 };
