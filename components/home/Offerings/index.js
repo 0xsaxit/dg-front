@@ -59,7 +59,7 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
-    'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
+    'Tominoya is a Japanese-themed scene located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
     'https://play.decentraland.org/?position=-119%2C133&realm=dg',
     'https://docs.decentral.games/operators/tominoya',
@@ -67,8 +67,8 @@ const detailsCasinos = {
   Atari: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
-    'Atari Casino',
-    'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
+    'Atari',
+    'Atari is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-94%2C110&realm=dg',
     'https://docs.decentral.games/operators/atari',
@@ -77,7 +77,7 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
-    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired experience, theatre, nightclub, and stratosphere. Chateau is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-75%2C77&realm=dg',
     'https://docs.decentral.games/operators/chateau-satoshi',
@@ -89,6 +89,24 @@ const detailsCasinos = {
     'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
     'POKER',
     'https://play.decentraland.org/?position=-110%2C129&realm=dg',
+    'https://docs.decentral.games/operators/dext',
+  ],
+  BAYC: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340721/cloudinary_zjohvr.gif',
+    'games-pic',
+    'Bored Ape Yacht Club',
+    'The Bored Ape Yacht Club is a riverboat themed venue located within the Vegas City district in Decentraland. The scene has Ape-themed croupiers stylized in the likeness of the immensely popular NFT series',
+    'ROULETTE • BLACKJACK • POKER',
+    'https://play.decentraland.org/?position=-118%2C135&realm=dg',
+    'https://docs.decentral.games/operators/dext',
+  ],
+  Aquarium: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
+    'games-pic',
+    'The Aquarium',
+    'The Aquarium is located within the Vegas City district in Decentraland. The underwater-themed venue features neon lights, aquatic artwork, and virtual fish navigating the scene floor.',
+    'ROULETTE • BLACKJACK',
+    'https://play.decentraland.org/?position=-118%2C129&realm=dg',
     'https://docs.decentral.games/operators/dext',
   ],
 };
@@ -170,15 +188,6 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
-    'nft-pic',
-    'DG Headphones',
-    'LEGENDARY',
-    '',
-    'https://opensea.io/assets/matic/0xf16ff41128b298304b761b49c1c56580972ada32/13',
-    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ],
-  headphones: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
     'nft-pic',
     'DG Headphones',
@@ -189,11 +198,12 @@ const detailsNFTs = {
   ],
 };
 
+
 const detailsICE = {
   suit_top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
     'nft-pic',
-    'Suit & Tie',
+    'Suit Jacket',
     'RANK 1',
     'Description will live here',
     'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
@@ -201,7 +211,7 @@ const detailsICE = {
   suit_bottom: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
     'nft-pic',
-    'Suit & Tie',
+    'Suit Pants',
     'RANK 1',
     'Description will live here',
     'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
@@ -209,7 +219,7 @@ const detailsICE = {
   shoes: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
     'nft-pic',
-    'Suit & Tie',
+    'Dress Shoes',
     'RANK 1',
     'Description will live here',
     'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
@@ -217,7 +227,7 @@ const detailsICE = {
   glasses: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
     'nft-pic',
-    'Suit & Tie',
+    'Glasses',
     'RANK 1',
     'Description will live here',
     'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
@@ -225,7 +235,7 @@ const detailsICE = {
   cigar: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
     'nft-pic',
-    'Suit & Tie',
+    'Cigar',
     'RANK 1',
     'Description will live here',
     'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
