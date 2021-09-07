@@ -10,6 +10,7 @@ import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
 import styles from './Offerings.module.scss';
 
+
 const detailsGames = {
   Poker: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919779/Poker_ekorsi.jpg',
@@ -185,6 +186,49 @@ const detailsNFTs = {
     '',
     'https://opensea.io/assets/dg-accessories',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+};
+
+const detailsICE = {
+  suit_top: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit & Tie',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  suit_bottom: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit & Tie',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  shoes: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit & Tie',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  glasses: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit & Tie',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  cigar: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit & Tie',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
   ],
 };
 
@@ -429,6 +473,42 @@ const Offerings = (props) => {
                       <path 
                         d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
                         fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      />
+                    </svg>
+                  </div>
+                </Link>
+
+                <Link href="/games/ice">
+                  <div className={styles.menu_item}>
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="20" 
+                        height="20" 
+                        rx="2.83333" 
+                        stroke={gameState === 'ice' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <path 
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
                       />
                     </svg>
                   </div>
@@ -700,6 +780,49 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
+                <Link href="/games/ice">
+                  <div
+                    className={
+                      gameState === 'ice'
+                        ? styles.menu_item_active
+                        : styles.menu_item
+                    }
+                  >
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="20" 
+                        height="20" 
+                        rx="2.83333" 
+                        stroke={gameState === 'ice' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <path 
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                    </svg>
+                    <div className={styles.menu_title}>ICE</div>
+                  </div>
+                </Link>
+
                 <Link href="/games/shop">
                   <div
                     className={
@@ -920,7 +1043,7 @@ const Offerings = (props) => {
               gameRecords={state.gameRecords}
               gameSelect={gameSelect}
               timePeriod={timePeriod}
-              coinSelector = {coinSelect}
+              coinSelector={coinSelect}
             />
           </span>
         ) : (
@@ -929,6 +1052,7 @@ const Offerings = (props) => {
             detailsGames={detailsGames}
             detailsCasinos={detailsCasinos}
             detailsNFTs={detailsNFTs}
+            detailsICE={detailsICE}
             detailsShop={detailsShop}
           />
         )}

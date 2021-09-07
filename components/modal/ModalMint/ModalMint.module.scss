@@ -1,5 +1,19 @@
 @import 'styles/base.scss';
 
+
+.button_right {
+  background: #006EFF !important;
+  width: 196px;
+  height: 48px;
+  border-radius: 12px !important;
+  font-family: Larsseit-Bold;
+  font-size: 17px !important;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  color: white !important;
+}
+
 .mintable_modal {
   width: 818px !important;
   height: 515px !important;
