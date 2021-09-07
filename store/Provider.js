@@ -50,8 +50,6 @@ const initialState = {
     BALANCE_BP_DAI: 0,
     BALANCE_ROOT_DG: 0,
     BALANCE_CHILD_DG: 0,
-    // BALANCE_CHILD_MANA: 0,
-    // BALANCE_CHILD_DAI: 0,
     BALANCE_UNISWAP_DG: 0,
     BALANCE_UNISWAP_ETH: 0,
     BALANCE_STAKING_BALANCER_1: 0,
@@ -96,6 +94,10 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
+  tokenAuthorizations: {
+    DG_AUTHORIZATION: false,
+    // ICE_AUTHORIZATION: false
+  },
   refreshTokens: 'Initial',
   refreshBalances: true,
   updateInfo: true,
@@ -108,7 +110,6 @@ const initialState = {
   usdtLoading: false,
   atriLoading: false,
   wethLoading: false,
-
   dgLoading: 0,
   dgShow: false,
   openModal: {
@@ -228,6 +229,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         stakingBalances: action.data,
+      };
+
+    case 'token_authorizations':
+      return {
+        ...state,
+        tokenAuthorizations: action.data,
       };
 
     case 'dg_prices':

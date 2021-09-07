@@ -10,6 +10,7 @@ import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
 import styles from './Offerings.module.scss';
 
+
 const detailsGames = {
   Poker: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919779/Poker_ekorsi.jpg',
@@ -58,7 +59,7 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916730/Tominoya_Lapse_om9erf.gif',
     'games-pic',
     'Tominoya',
-    'Tominoya is Japanese-themed casino located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
+    'Tominoya is a Japanese-themed scene located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
     'https://play.decentraland.org/?position=-119%2C133&realm=dg',
     'https://docs.decentral.games/operators/tominoya',
@@ -66,8 +67,8 @@ const detailsCasinos = {
   Atari: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625022643/ATARI_TIMELAPSE_1_brvynj.gif',
     'games-pic',
-    'Atari Casino',
-    'The Atari Casino is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
+    'Atari',
+    'Atari is located within the Vegas City district in Decentraland. Situated on a 20-parcel estate, the scene features an open-concept floor plan and building design modelled after the iconic Atari logo.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-94%2C110&realm=dg',
     'https://docs.decentral.games/operators/atari',
@@ -76,7 +77,7 @@ const detailsCasinos = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1624916719/Chateau_Chatoshi_lapse_2_gbjrgn.gif',
     'games-pic',
     'Chateau Satoshi',
-    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired casino, theatre, nightclub, and stratosphere. The casino is accessible from the most northwestern Decentraland Genesis Plaza.',
+    'Chateau Satoshi is located within the Vegas City district in Decentraland. The scene features an art deco inspired experience, theatre, nightclub, and stratosphere. Chateau is accessible from the most northwestern Decentraland Genesis Plaza.',
     'ROULETTE • BLACKJACK',
     'https://play.decentraland.org/?position=-75%2C77&realm=dg',
     'https://docs.decentral.games/operators/chateau-satoshi',
@@ -88,6 +89,24 @@ const detailsCasinos = {
     'The DEXT Poker Lounge is located within the Vegas City district in Decentraland. Eight Texas Holdem poker tables are located in the penthouse, accessible by entering a teleporter on the ground floor of the DEXT skyscraper.',
     'POKER',
     'https://play.decentraland.org/?position=-110%2C129&realm=dg',
+    'https://docs.decentral.games/operators/dext',
+  ],
+  BAYC: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340721/cloudinary_zjohvr.gif',
+    'games-pic',
+    'Bored Ape Yacht Club',
+    'The Bored Ape Yacht Club is a riverboat themed venue located within the Vegas City district in Decentraland. The scene has Ape-themed croupiers stylized in the likeness of the immensely popular NFT series',
+    'ROULETTE • BLACKJACK • POKER',
+    'https://play.decentraland.org/?position=-118%2C135&realm=dg',
+    'https://docs.decentral.games/operators/dext',
+  ],
+  Aquarium: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1628340722/Aquarium_timelaps_2_lpqj2r.gif',
+    'games-pic',
+    'The Aquarium',
+    'The Aquarium is located within the Vegas City district in Decentraland. The underwater-themed venue features neon lights, aquatic artwork, and virtual fish navigating the scene floor.',
+    'ROULETTE • BLACKJACK',
+    'https://play.decentraland.org/?position=-118%2C129&realm=dg',
     'https://docs.decentral.games/operators/dext',
   ],
 };
@@ -169,15 +188,6 @@ const detailsNFTs = {
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
   ],
   headphones: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1619566940/unnamed-5_pdvxqy.png',
-    'nft-pic',
-    'DG Headphones',
-    'LEGENDARY',
-    '',
-    'https://opensea.io/assets/matic/0xf16ff41128b298304b761b49c1c56580972ada32/13',
-    'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
-  ],
-  headphones: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1626511651/unnamed_apacqs.png',
     'nft-pic',
     'DG Headphones',
@@ -185,6 +195,50 @@ const detailsNFTs = {
     '',
     'https://opensea.io/assets/dg-accessories',
     'https://decentral.games/blog/decentral-games-dcl-wearables-have-arrived',
+  ],
+};
+
+
+const detailsICE = {
+  suit_top: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit Jacket',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  suit_bottom: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Suit Pants',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  shoes: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Dress Shoes',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  glasses: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Glasses',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
+  ],
+  cigar: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
+    'nft-pic',
+    'Cigar',
+    'RANK 1',
+    'Description will live here',
+    'https://decentral.games/blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout',
   ],
 };
 
@@ -429,6 +483,42 @@ const Offerings = (props) => {
                       <path 
                         d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
                         fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      />
+                    </svg>
+                  </div>
+                </Link>
+
+                <Link href="/games/ice">
+                  <div className={styles.menu_item}>
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="20" 
+                        height="20" 
+                        rx="2.83333" 
+                        stroke={gameState === 'ice' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <path 
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
                       />
                     </svg>
                   </div>
@@ -700,6 +790,49 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
+                <Link href="/games/ice">
+                  <div
+                    className={
+                      gameState === 'ice'
+                        ? styles.menu_item_active
+                        : styles.menu_item
+                    }
+                  >
+                    <svg 
+                      width="24" 
+                      height="24" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect 
+                        x="1" 
+                        y="1" 
+                        width="20" 
+                        height="20" 
+                        rx="2.83333" 
+                        stroke={gameState === 'ice' ? 'white' : '#808080'} 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                      />
+                      <path 
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                      <path 
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      />
+                    </svg>
+                    <div className={styles.menu_title}>ICE</div>
+                  </div>
+                </Link>
+
                 <Link href="/games/shop">
                   <div
                     className={
@@ -920,7 +1053,7 @@ const Offerings = (props) => {
               gameRecords={state.gameRecords}
               gameSelect={gameSelect}
               timePeriod={timePeriod}
-              coinSelector = {coinSelect}
+              coinSelector={coinSelect}
             />
           </span>
         ) : (
@@ -929,6 +1062,7 @@ const Offerings = (props) => {
             detailsGames={detailsGames}
             detailsCasinos={detailsCasinos}
             detailsNFTs={detailsNFTs}
+            detailsICE={detailsICE}
             detailsShop={detailsShop}
           />
         )}

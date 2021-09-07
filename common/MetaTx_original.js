@@ -6,24 +6,29 @@ import Global from '../components/Constants';
 const sigUtil = require('eth-sig-util');
 let childTokenAddressMANA = '';
 let childTokenAddressDAI = '';
+
 let childTokenAddressUSDT = '';
 let childTokenAddressATRI = '';
 let childTokenAddressWETH = '';
-let childTokenAddressICE = '';
+
 let treasuryAddress = '';
+
 let dgPointerAddress = '';
 let dgPointerAddressNew = '';
+
 let arrayDomainType = [];
 let arrayDomainData = [];
 let metaTransactionType = [];
 
 childTokenAddressMANA = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_MANA;
 childTokenAddressDAI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DAI;
+
 childTokenAddressUSDT = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT;
 childTokenAddressATRI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI;
 childTokenAddressWETH = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH;
-childTokenAddressICE = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE;
+
 treasuryAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
+
 dgPointerAddress = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS;
 dgPointerAddressNew = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW;
 
@@ -49,7 +54,6 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domeinTypeTreasury);
-arrayDomainType.push(domainTypeToken);
 
 metaTransactionType.push(
   { name: 'nonce', type: 'uint256' },
@@ -113,13 +117,6 @@ const domainDataDGPointerNew = {
   verifyingContract: dgPointerAddressNew,
 };
 
-const domainDataTokenICE = {
-  name: 'IceToken',
-  version: 'v1.0',
-  verifyingContract: childTokenAddressICE,
-  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
-};
-
 arrayDomainData.push(domainDataTokenMANA);
 arrayDomainData.push(domainDataTreasury);
 arrayDomainData.push(domainDataDGPointer);
@@ -128,7 +125,6 @@ arrayDomainData.push(domainDataTokenUSDT);
 arrayDomainData.push(domainDataTokenATRI);
 arrayDomainData.push(domainDataTokenWETH);
 arrayDomainData.push(domainDataDGPointerNew);
-arrayDomainData.push(domainDataTokenICE);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
