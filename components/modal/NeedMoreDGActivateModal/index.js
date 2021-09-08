@@ -3,13 +3,13 @@ import cn from 'classnames';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './NeedMoreDGActivateModal.module.scss';
 import ActivateWearableModal from '../ActivateWearableModal';
+import ModalActivationSuccess from '../ModalActivationSuccess';
 
 const NeedMoreDGActivateModal = (props) => {
 
   const [open, setOpen] = useState(false);
   const [pending, setPending] = useState(false);
-  console.log("pending ===============", pending);
-
+  
   return (
     <>
       {!pending? (<Modal
@@ -76,7 +76,6 @@ const NeedMoreDGActivateModal = (props) => {
             </div>
             
             <div className={styles.button}>
-                {/* <ActivateWearableModal setOpen = {setOpen} /> */}
                 <Button className = {styles.primary} onClick={()=> {
                     setOpen(false);   
                     setPending(true);
@@ -93,7 +92,8 @@ const NeedMoreDGActivateModal = (props) => {
             </div>
         </div>
       </Modal>) : (
-            <ActivateWearableModal setPending={setPending} />
+            // <ActivateWearableModal setPending={setPending} />
+            <ModalActivationSuccess setPending={setPending} />
         )}
     </>
   );
