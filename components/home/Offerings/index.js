@@ -392,7 +392,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/casinos">
+                <Link href="/games/scenes">
                   <div className={styles.menu_item}
                   >
                     <svg 
@@ -681,7 +681,7 @@ const Offerings = (props) => {
                   </div>
                 </Link>
 
-                <Link href="/games/casinos">
+                <Link href="/games/scenes">
                   <div
                     className={
                       gameState === 'casinos'
@@ -743,7 +743,7 @@ const Offerings = (props) => {
                         stroke-linejoin="round"
                       />
                     </svg>
-                    <div className={styles.menu_title}>Casinos</div>
+                    <div className={styles.menu_title}>Scenes</div>
                   </div>
                 </Link>
 
