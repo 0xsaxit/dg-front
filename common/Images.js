@@ -36,7 +36,7 @@ const Images = {
   SNAPSHOT_ICON:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1601537777/spaces_-MG4Ulnnabb2Xz3Lei9__avatar-1598893807850_ex4fgh.png',
   FEATURED_IMAGE:
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624046027/pic3_qzgm2l.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1630503315/ICE_Poker_DG_kf28sl.png',
   DG_COIN_LOGO:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1602117903/Group_14_Copy_2_afhe39.png',
   METAMASK:
