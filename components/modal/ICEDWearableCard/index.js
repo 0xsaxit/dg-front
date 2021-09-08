@@ -5,7 +5,7 @@ import styles from './ICEDWearableCard.module.scss';
 import ModalDelegate from 'components/modal/ModalDelegate';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
-
+import ModalWearable from 'components/modal/ModalWearable';
 
 const ICEDWearableCard = (props) => {
 
@@ -43,7 +43,7 @@ const ICEDWearableCard = (props) => {
             {props.state == 1 ? (
               <span style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
                 <ModalDelegate />
-                <NeedMoreUpgrade />
+                <ModalWearable />
               </span>
             ) : props.state == 2 ? (
               <Button className={styles.upgrade_button}>
