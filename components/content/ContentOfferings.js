@@ -1,5 +1,6 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
+import ModalEthAuth from 'components/modal/ModalEthAuth';
 
 
 const ContentOfferings = (props) => {
@@ -163,6 +164,55 @@ const ContentOfferings = (props) => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  // loop through the NFT details object
+  function buyICE() {
+    return (
+      <div className="outter-games-container">
+        {Object.keys(props.detailsICE).map((item, i) => (
+          <a className="games-container">
+            <div key={i}>
+              <span
+                style={{ display: 'flex', justifyContent: 'center' }}
+                className="nft-image"
+              >
+                <Image
+                  src={props.detailsICE[item][0]}
+                  className={props.detailsICE[item][1]}
+                  style={{ borderRadius: '4px' }}
+                />
+              </span>
+              <div className="nft-description">
+                <span>
+                  <p className="nfts-info">{props.detailsICE[item][3]}</p>
+                </span>
+                <h3 className="nft-other-h3">{props.detailsICE[item][2]}</h3>
+
+                <p className="nft-other-p">
+                  {props.detailsICE[item][4]}
+                </p>
+
+                <span
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <ModalEthAuth />
+                  <Button
+                    className="nft-read-button"
+                    target="_blank"
+                    href={props.detailsICE[item][6]}
+                  >
+                    Info
+                  </Button>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   function contentCasinos() {
     return (
       <div className="outter-games-container">
@@ -272,6 +322,8 @@ const ContentOfferings = (props) => {
     return contentGames();
   } else if (props.gameState === 'nfts') {
     return buyNFTs();
+  } else if (props.gameState === 'ice') {
+    return buyICE();
   } else if (props.gameState === 'casinos') {
     return contentCasinos();
   } else if (props.gameState === 'shop') {

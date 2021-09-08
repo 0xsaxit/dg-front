@@ -1073,21 +1073,14 @@ p.home-dashboard-p {
 
 .outter-games-container {
   width: calc(100vw - 337px);
-  max-width: 1200px;
-  display: flex;
-  flex-wrap: wrap !important;
-  justify-content: space-between;
-  margin: 134px 0px 120px 40px;
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  margin: 154px 0px 120px 40px;
 }
 
 .games-container {
-  width: 48.5%;
-  min-width: 257px;
-  margin-top: 21px;
-  display: flex;
-  flex-direction: column !important;
-  margin-bottom: 6px;
-  border-radius: 20px;
+  max-height: 100%;
 }
 
 .shop-container {
@@ -1849,11 +1842,10 @@ div.ui.grid.balances-container {
 
 .outter-leaders-container {
   width: calc(100vw - 337px);
-  max-width: 1200px;
-  display: flex;
-  flex-wrap: wrap !important;
-  justify-content: space-between;
-  margin: 30px 0px 150px 40px !important;
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  margin: 154px 0px 120px 40px;
 }
 
 .leaderboard-column {
@@ -1876,8 +1868,6 @@ div.ui.grid.balances-container {
 .table.ui.unstackable.table.leaders-table {
   border: 1px solid rgba(42, 42, 42, 1) !important;
   border-radius: 16px !important;
-  width: 48.5%;
-  margin-bottom: 30px;
   padding: 14px 12px 14px 12px;
 }
 

@@ -658,9 +658,6 @@ span#mobile-time-select.account-select.dropdown {
     width: calc(100% - 140px);
     margin-left: 30px;
   }
-  .games-container {
-    width: calc(100% + 10px);
-  }
 }
 
 @media (max-width: 991px) {
