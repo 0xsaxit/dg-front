@@ -1,6 +1,6 @@
 import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
-const API_BASE_URL = `https://api.${location.hostname}`;
+const API_BASE_URL = `https://api.${window.location.hostname}`;
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
