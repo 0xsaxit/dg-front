@@ -591,7 +591,7 @@ span#mobile-time-select.account-select.dropdown {
   }
 }
 
-@media (max-width:  1237px) {
+@media (max-width: 1237px) {
   .table.ui.unstackable.table.leaders-table {
     border: 1px solid rgba(42, 42, 42, 1) !important;
     border-radius: 16px !important;
