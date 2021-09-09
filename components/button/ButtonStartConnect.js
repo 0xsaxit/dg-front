@@ -22,7 +22,7 @@ const assignToken = async () => {
     );
 
     const token = await call(
-      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      `${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
       'GET',
       false
     );
@@ -205,7 +205,7 @@ const ButtonStartConnect = () => {
           fontSize: '23px',
           fontFamily: 'Larsseit-Bold',
           alignSelf: 'center',
-          marginLeft: '4px'
+          marginLeft: '4px',
         }}
       >
         Connect
@@ -215,4 +215,3 @@ const ButtonStartConnect = () => {
 };
 
 export default ButtonStartConnect;
-
