@@ -5,15 +5,14 @@ import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
 import Global from 'components/Constants';
 import Transactions from 'common/Transactions';
 import Aux from '../../../_Aux';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import styles from './Gameplay.module.scss';
 import axios from 'axios';
 import Fetch from '../../../../common/Fetch';
 import MetaTx from '../../../../common/MetaTx';
 
-
-const Gameplay = (props) => {
+const Gameplay = props => {
   // get the treasury's balances numbers from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -118,29 +117,25 @@ const Gameplay = (props) => {
 
   return (
     <Aux>
-      <div
-        className={cn(
-          'd-flex',
-          styles.stake_DG_container
-        )}
-        style={{marginTop:"60px"}}
-      >
+      <div className={cn('d-flex', styles.stake_DG_container)}>
         <div className={styles.lower}>
           <p className={styles.lower_header}>Claim $DG Rewards</p>
           <div className={styles.lower_value}>
             <p className={styles.DG_value}>
               {props.formatPrice(state.DGBalances.BALANCE_MINING_DG_V2, 3)}
             </p>
-            <img 
+            <img
               style={{ marginTop: '-4px' }}
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif" />
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1624411671/Spinning-Logo-DG_n9f4xd.gif"
+            />
           </div>
           <p className={styles.price}>
             ${(price * state.DGBalances.BALANCE_MINING_DG_V2).toFixed(2)}
           </p>
 
           <p className={styles.lower_text}>
-            All $DG-powered games earn back rewards. Play games and earn up to 50% of expected losses, win or lose.
+            All $DG-powered games earn back rewards. Play games and earn up to
+            50% of expected losses, win or lose.
           </p>
 
           <Button
@@ -157,7 +152,7 @@ const Gameplay = (props) => {
           <p className={styles.lower_header_two}>Gameplay Rewards</p>
 
           <div className={styles.gameplay_container}>
-            <img 
+            <img
               className={styles.gameplay_img}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
             />
@@ -176,7 +171,7 @@ const Gameplay = (props) => {
           </div>
 
           <div className={styles.gameplay_container}>
-            <img 
+            <img
               className={styles.gameplay_img}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/MANA_jw7ylg.png"
             />
@@ -195,7 +190,7 @@ const Gameplay = (props) => {
           </div>
 
           <div className={styles.gameplay_container}>
-            <img 
+            <img
               className={styles.gameplay_img}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413765/TETHER_xhvz1p.png"
             />
@@ -214,7 +209,7 @@ const Gameplay = (props) => {
           </div>
 
           <div className={styles.gameplay_container}>
-            <img 
+            <img
               className={styles.gameplay_img}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/DAI_xbso2s.png"
             />
@@ -233,7 +228,7 @@ const Gameplay = (props) => {
           </div>
 
           <div className={styles.gameplay_container}>
-            <img 
+            <img
               className={styles.gameplay_img}
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620413783/ATARI_ttfcry.png"
             />
@@ -251,7 +246,7 @@ const Gameplay = (props) => {
             </div>
           </div>
 
-          <Button 
+          <Button
             className={styles.play_button}
             href="https://play.decentraland.org/?position=-118%2C135&realm=dg"
             target="_blank"
@@ -262,6 +257,6 @@ const Gameplay = (props) => {
       </div>
     </Aux>
   );
-}
+};
 
 export default Gameplay;

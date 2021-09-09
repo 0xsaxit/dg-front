@@ -1,6 +1,14 @@
 import call from 'common/API';
-// https://api.decentral.games, http://localhost:5000
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+// https://api.decentral.games, http://localhost:
+let API_BASE_URL = '';
+
+if (typeof window !== 'undefined') {
+  const hostname =
+    window.location.hostname === 'localhost'
+      ? 'dev.decentral.games'
+      : window.location.hostname;
+  API_BASE_URL = `https://api.${hostname}`;
+}
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -22,17 +30,6 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
-  // GET API calls (wallet address necessary)
-  PLAYER_INFO: address => {
-    return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
-  },
-
-  POKER_DATA: address => {
-    return call(`${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`, 'GET');
-  },
-
   PLAYER_DATA: address => {
     return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
   },
@@ -43,7 +40,21 @@ const apiCall = {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
-  // POST API calls
+  // GET API calls (wallet address necessary)
+  PLAYER_INFO: address => {
+    return call(`${API_BASE_URL}/admin/getUser?address=${address}`, 'GET');
+  },
+
+  POKER_DATA: address => {
+    return call(
+      `${API_BASE_URL}/admin/getPokerHandHistory?address=${address}`,
+      'GET'
+    );
+  },
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // POST API calls (no wallet address necessary)
   USER_STATUS: (address, ipAddress) => {
     return call(`${API_BASE_URL}/order/webLogin`, 'POST', true);
   },
@@ -54,6 +65,9 @@ const apiCall = {
     });
   },
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // POST API calls (wallet address necessary)
   UPDATE_TOKEN_ARRAY: (address, index) => {
     return call(`${API_BASE_URL}/order/updateTokenArray`, 'POST', true, {
       address,

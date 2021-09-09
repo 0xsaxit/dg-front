@@ -4,11 +4,11 @@ import Header from 'components/Header';
 import Global from 'components/Constants';
 import Images from 'common/Images';
 
-const Casinos = () => {
+const Scenes = () => {
   return (
     <Layout>
       <Header
-        title={Global.CONSTANTS.TITLE + ' | Games | Casinos'}
+        title={Global.CONSTANTS.TITLE + ' | Games | Scenes'}
         description={Global.CONSTANTS.DESCRIPTION}
         image={Images.SOCIAL_SHARE}
       />
@@ -18,4 +18,4 @@ const Casinos = () => {
   );
 };
 
-export default Casinos;
+export default Scenes;

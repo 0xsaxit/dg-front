@@ -2,91 +2,40 @@
 
 .ice {
 
-  .ice_card_container {
+  .ice_container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     max-width: 900px;
     margin: auto;
 
-    .ice_card {
+    .ice_img {
+      margin-top: -24px;
+      margin-bottom: 24px;
+      width: 460px;
       display: flex;
-      flex-direction: column;
+      align-self: center;
     }
 
-    .ice_card_buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
+    .play_text {
+      font-family: Larsseit-Bold;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 8px;
     }
 
-    .ice_container {
-      width: 550px;
+    .play_lower {
+      font-size: 16px;
+      font-family: Larsseit-Regular;
+      color: rgba(255, 255, 255, 0.5) !important;
+      text-align: center;
+      max-width: 300px;
       margin: auto;
+    }
 
-      .ice_img {
-        width: 550px;
-      }
-
-      .play_text {
-        font-family: Larsseit-ExtraBold;
-        font-size: 24px;
-        letter-spacing: -0.7px;
-        text-align: center;
-      }
-
-      .play_lower {
-        font-family: Larsseit-Regular;
-        font-size: 16px;
-        line-height: 22px;
-        color: rgba(255, 255, 255, 0.5) !important;
-        text-align: center;
-        width: 300px;
-        margin: -16px auto 0px auto;
-      }
-
-      .button_span {
-        display: flex;
-        justify-content: center;
-        margin-top: 16px;
-        margin-bottom: 120px;
-
-        .left_button {
-          background: #1f1f1f;
-          height: 48px;
-          width: 111px;
-          font-size: 17px;
-          color: white;
-          border-radius: 12px;
-          font-family: Larsseit-Bold;
-          margin-right: 16px;
-
-          &:hover,
-          &:focus,
-          &:active {
-            background: #1f1f1f;
-            color: white;
-            filter: brightness(0.9);
-          }
-        }
-
-        .right_button {
-          background: #006eff;
-          height: 48px;
-          font-size: 17px;
-          color: white;
-          white-space: nowrap;
-          border-radius: 12px;
-          font-family: Larsseit-Bold;
-
-          &:hover,
-          &:focus,
-          &:active {
-            background: #006eff;
-            color: white;
-            filter: brightness(0.9);
-          }
-        }
-      }
+    .button_span {
+      padding-top: 28px;
+      padding-bottom: 60px;
+      margin: auto !important;
     }
   }
 }

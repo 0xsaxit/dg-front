@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
-import { GlobalContext } from 'store';
-import Biconomy from '@biconomy/mexa';
+import { GlobalContext } from '../../store';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Divider, Loader, Icon } from 'semantic-ui-react';
 import MetaTx from 'common/MetaTx';
@@ -124,9 +124,7 @@ const ContentMiningV1 = props => {
       <div className={styles.contentmining_v1_container}>
         <div className={styles.dg_liquidity_container}>
           <div className={styles.dg_column_unclaimed}>
-            <p className={styles.earned_amount}>
-              Unclaimed
-            </p>
+            <p className={styles.earned_amount}>Unclaimed</p>
 
             <Divider className={styles.divider_dg_top} />
 
@@ -156,18 +154,15 @@ const ContentMiningV1 = props => {
             <Divider className={styles.divider_dg_top} />
 
             <span className="d-flex justify-content-between flex-row">
-              <p className={styles.welcome_text}>
-                {' '}
-                TOTAL USD{' '}
-              </p>
+              <p className={styles.welcome_text}> TOTAL USD </p>
               <p className={styles.earned_amount}> ${gameplayUSD} </p>
             </span>
 
             <Divider className={styles.divider_dg_top} />
 
             <p className={styles.dg_column_body}>
-              Mine $DG by playing games with MANA or DAI. Earn bonuses by playing
-              with friends, wearing $DG NFTs, and referring friends.{' '}
+              Mine $DG by playing games with MANA or DAI. Earn bonuses by
+              playing with friends, wearing $DG NFTs, and referring friends.{' '}
               <a
                 className={styles.dg_column_body_href}
                 href="https://decentral-games-1.gitbook.io/dg/allocation"

@@ -50,41 +50,47 @@ export default class MyDocument extends Document {
           />
           <link
             rel="manifest"
-            href="/static/js/manifest.json"
+            href="public/static/js/manifest.json"
             crossOrigin="use-credentials"
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit5.ttf"
+            href="public/static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit16.otf"
+            href="public/static/fonts/Larsseit/Larsseit16.otf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit13.ttf"
+            href="pubic/static/fonts/Larsseit/Larsseit13.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit2.ttf"
+            href="public/static/fonts/Larsseit/Larsseit2.ttf"
             as="font"
             crossOrigin=""
           />
           <link
             rel="preload"
-            href="./static/fonts/Larsseit/Larsseit5.ttf"
+            href="public/static/fonts/Larsseit/Larsseit5.ttf"
             as="font"
             crossOrigin=""
           />
-          <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
-          <meta name="facebook-domain-verification" content="ymawpiy7irzznvqvm922lfvr0cph0f" /> 
+          <link
+            href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+            rel="stylesheet"
+          />
+          <meta
+            name="facebook-domain-verification"
+            content="ymawpiy7irzznvqvm922lfvr0cph0f"
+          />
         </Head>
 
         <body>

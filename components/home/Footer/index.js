@@ -56,8 +56,8 @@ const Footer = () => {
               <Link href="/games">
                 <p className={styles.footer_link}> Games </p>
               </Link>
-              <Link href="/games/casinos">
-                <p className={styles.footer_link}> Casino </p>
+              <Link href="/games/scenes">
+                <p className={styles.footer_link}> Scenes </p>
               </Link>
               <Link href="/games/leaderboard">
                 <p className={styles.footer_link}> Leaderboard </p>

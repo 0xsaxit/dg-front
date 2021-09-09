@@ -40,11 +40,14 @@ const blog = () => {
   return (
     <div className={styles.blog_home_container}>
       <div className={styles.substack_container}>
-        <img className={styles.substack_img} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png" />
+        <img
+          className={styles.substack_img}
+          src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625093017/loudspeaker_x7ktgd.png"
+        />
         <h1 className={styles.substack_header}>
           Stay in the loop with our weekly newsletter
         </h1>
-        <Button 
+        <Button
           className={styles.substack_button}
           href="https://decentralgames.substack.com/embed"
           target="_blank"
@@ -54,8 +57,14 @@ const blog = () => {
             <Metamask />
           </span>
         </Button>
-        <p className={styles.substack_text}> Or read on{' '}
-          <a href="https://decentralgames.substack.com/" target="_blank" className={styles.substack_link}>
+        <p className={styles.substack_text}>
+          {' '}
+          Or read on{' '}
+          <a
+            href="https://decentralgames.substack.com/"
+            target="_blank"
+            className={styles.substack_link}
+          >
             Substack
           </a>
         </p>
@@ -63,43 +72,63 @@ const blog = () => {
 
       <div className={styles.account_other_tabs} style={{ marginTop: '-50px' }}>
         <div className="ml-0 mb-4">
-          <span className={styles.account_featured_post}>
-            Featured Post
-          </span>
+          <span className={styles.account_featured_post}>Featured Post</span>
         </div>
       </div>
 
-      <div className={styles.featured_blog_container}>
-        <Link href="/blog/[id]" as="blog/decentral-games-raises-5m">
+      <div className="featured-blog-container">
+        <Link
+          href="/blog/[id]"
+          as="blog/decentral-games-announces-play-to-earn-metaverse-poker-ice-token-rollout"
+        >
           <a>
             <span className={styles.featured_blog_grid}>
-              <Image src={Images.FEATURED_IMAGE} className={styles.featured_image} />
+              <Image
+                src={Images.FEATURED_IMAGE}
+                className={styles.featured_image}
+              />
 
               <div className={styles.post_info_featured}>
                 <div className={styles.top}>
                   <span className={styles.blog_category}>Announcements </span>
-                  <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
-                  <span className={styles.blog_date}>18 JUN 2021</span>
+                  <span
+                    style={{
+                      paddingRight: '10px',
+                      marginLeft: '-12px',
+                      color: 'hsla(0, 0%, 100%, .75)',
+                    }}
+                  >
+                    {' '}
+                    •{' '}
+                  </span>
+                  <span className="blog-date">1 SEP 2021</span>
                 </div>
-                <div className={styles.bottom}>
-                  <h4 
-                    style={{
-                      fontSize: '24px',
-                      fontfamily: 'LarsseitBold',
-                      marginTop: '4px',
-                    }}
-                  >
-                    Decentral Games Raises $5M To Cement Itself As The Leading Metaverse-native, Profitable DAO
-                  </h4>
-                  <p
-                    style={{
-                      fontFamily: 'Larsseit-Regular',
-                      fontSize: '18px',
-                      paddingTop: '8px',
-                    }}
-                  >
-                    Decentral Games welcomes partners Collab+Currency, Metaverse Ventures (Digital Currency Group), Genesis Block Ventures, Bitscale Capital, Cluster Capital, ID Theory, and AU21 Capital, among others
-                  </p>
+                <div className="bottom">
+                  <div className="blog-title">
+                    <h4
+                      style={{
+                        fontSize: '24px',
+                        fontfamily: 'LarsseitBold',
+                        marginTop: '4px',
+                      }}
+                    >
+                      Decentral Games Announces Play-to-Earn Metaverse Poker,
+                      ICE Token Rollout
+                    </h4>
+                    <p
+                      style={{
+                        fontFamily: 'Larsseit-Regular',
+                        fontSize: '18px',
+                        paddingTop: '8px',
+                      }}
+                    >
+                      Decentral Games is excited to announce the development of
+                      free-play, play-to-earn Metaverse poker! Play-to-earn
+                      architectures will play a massive role in driving the
+                      future of crypto and gaming adoption, and Decentral Games
+                      is now a first-mover in this nascent, but promising, space
+                    </p>
+                  </div>
                 </div>
               </div>
             </span>
@@ -112,16 +141,16 @@ const blog = () => {
           (categoryURL = category.toLowerCase()),
           (
             <Aux>
-              <div className={cn("mt-0", styles.account_other_tabs)}>
+              <div className={cn('mt-0', styles.account_other_tabs)}>
                 <div className="ml-0">
-                  <span className={cn("d-flex", styles.account_other_p)}>
+                  <span className={cn('d-flex', styles.account_other_p)}>
                     <span className="mb-4 d-flex justify-content-between w-100">
-                      <span 
-                        style={{ 
+                      <span
+                        style={{
                           fontSize: '24px',
                           fontFamily: 'Larsseit-ExtraBold',
                           margin: '48px 0px 0px 0px',
-                          color: 'white'
+                          color: 'white',
                         }}
                       >
                         {category}
@@ -156,53 +185,62 @@ const blog = () => {
                         as={`/blog/${page.slug}`}
                       >
                         <a className={styles.post}>
-                            <div className={styles.post_image}>
-                              <img
-                                src={page.featured_image || page.banner}
-                                alt=""
-                              />
-                            </div>
-                            <div className={styles.post_info}>
-                              <span className="d-flex">
-                                <div className={styles.post_category}>
-                                  {page.categories &&
-                                    page.categories[0] &&
-                                    page.categories[0].name}
-                                </div>
-                                <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
-                                <div className={styles.post_date}>
-                                  <span>
-                                    {new Date(page.created).toLocaleDateString(
-                                      'en-DE',
-                                      {
-                                        day: 'numeric',
-                                        month: 'short',
-                                        year: 'numeric',
-                                      }
-                                    )}
-                                  </span>
-                                </div>
-                              </span>
-                              <div className={styles.bottom}>
-                                <h4
-                                  style={{
-                                    fontSize: '24px',
-                                    fontfamily: 'LarsseitBold',
-                                  }}
-                                >
-                                  {page.title}
-                                </h4>
-                                <p
-                                  style={{
-                                    fontFamily: 'Larsseit-Regular',
-                                    fontSize: '18px',
-                                    paddingTop: '8px',
-                                  }}
-                                >
-                                  {page.summary.split('.', 1)[0]}
-                                </p>
+                          <div className={styles.post_image}>
+                            <img
+                              src={page.featured_image || page.banner}
+                              alt=""
+                            />
+                          </div>
+                          <div className={styles.post_info}>
+                            <span className="d-flex">
+                              <div className={styles.post_category}>
+                                {page.categories &&
+                                  page.categories[0] &&
+                                  page.categories[0].name}
                               </div>
+                              <span
+                                style={{
+                                  paddingRight: '10px',
+                                  marginLeft: '-12px',
+                                  color: 'hsla(0, 0%, 100%, .75)',
+                                }}
+                              >
+                                {' '}
+                                •{' '}
+                              </span>
+                              <div className={styles.post_date}>
+                                <span>
+                                  {new Date(page.created).toLocaleDateString(
+                                    'en-DE',
+                                    {
+                                      day: 'numeric',
+                                      month: 'short',
+                                      year: 'numeric',
+                                    }
+                                  )}
+                                </span>
+                              </div>
+                            </span>
+                            <div className={styles.bottom}>
+                              <h4
+                                style={{
+                                  fontSize: '24px',
+                                  fontfamily: 'LarsseitBold',
+                                }}
+                              >
+                                {page.title}
+                              </h4>
+                              <p
+                                style={{
+                                  fontFamily: 'Larsseit-Regular',
+                                  fontSize: '18px',
+                                  paddingTop: '8px',
+                                }}
+                              >
+                                {page.summary.split('.', 1)[0]}
+                              </p>
                             </div>
+                          </div>
                         </a>
                       </Link>
                     ) : count <= 5 && page.categories[0].name === category ? (
@@ -222,34 +260,43 @@ const blog = () => {
                                 />
                               </div>
                               <div className={styles.post_info}>
-                               <span className="d-flex">
-                                <div className={styles.post_category}>
-                                  <span>
-                                    {page.categories &&
-                                      page.categories[0] &&
-                                      page.categories[0].name}
+                                <span className="d-flex">
+                                  <div className={styles.post_category}>
+                                    <span>
+                                      {page.categories &&
+                                        page.categories[0] &&
+                                        page.categories[0].name}
+                                    </span>
+                                  </div>
+                                  <span
+                                    style={{
+                                      paddingRight: '10px',
+                                      marginLeft: '-12px',
+                                      color: 'hsla(0, 0%, 100%, .75)',
+                                      marginTop: '-1px',
+                                    }}
+                                  >
+                                    {' '}
+                                    •{' '}
                                   </span>
-                                </div>
-                                <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
-                                <div className={styles.post_date}>
-                                  <span>
-                                    {new Date(page.created).toLocaleDateString(
-                                      'en-DE',
-                                      {
+                                  <div className={styles.post_date}>
+                                    <span>
+                                      {new Date(
+                                        page.created
+                                      ).toLocaleDateString('en-DE', {
                                         day: 'numeric',
                                         month: 'short',
                                         year: 'numeric',
-                                      }
-                                    )}
-                                  </span>
-                                </div>
-                              </span>
+                                      })}
+                                    </span>
+                                  </div>
+                                </span>
                                 <div className={styles.bottom}>
                                   <h4
                                     style={{
                                       fontSize: '24px',
                                       fontfamily: 'LarsseitBold',
-                                      marginTop: '0px'
+                                      marginTop: '0px',
                                     }}
                                   >
                                     {page.title}
@@ -282,55 +329,62 @@ const blog = () => {
         {filteredPages.map(page => (
           <Link href="/blog/[id]" key={page.created} as={`/blog/${page.slug}`}>
             <a className={styles.post}>
-                <div className={styles.post_image}>
-                  <img src={page.featured_image || page.banner} alt="" />
-                </div>
-                <div className={styles.post_info}>
-                  <span className="d-flex">
-                    <div className={styles.post_category}>
-                      {page.categories &&
-                        page.categories[0] &&
-                        page.categories[0].name}
-                    </div>
-                    <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
-                    <div className={styles.post_date}>
-                      <span>
-                        {new Date(page.created).toLocaleDateString(
-                          'en-DE',
-                          {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                          }
-                        )}
-                      </span>
-                    </div>
-                  </span>
-                  <div className={styles.bottom}>
-                    <h4
-                      style={{
-                        fontSize: '24px',
-                        fontfamily: 'LarsseitBold',
-                      }}
-                    >
-                      {page.title}
-                    </h4>
-                    <p
-                      style={{
-                        fontFamily: 'Larsseit-Regular',
-                        fontSize: '18px',
-                        paddingTop: '4px',
-                      }}
-                    >
-                      {page.summary.split('.', 1)[0]}
-                    </p>
+              <div className={styles.post_image}>
+                <img src={page.featured_image || page.banner} alt="" />
+              </div>
+              <div className={styles.post_info}>
+                <span className="d-flex">
+                  <div className={styles.post_category}>
+                    {page.categories &&
+                      page.categories[0] &&
+                      page.categories[0].name}
                   </div>
+                  <span
+                    style={{
+                      paddingRight: '10px',
+                      marginLeft: '-12px',
+                      color: 'hsla(0, 0%, 100%, .75)',
+                      marginTop: '-1px',
+                    }}
+                  >
+                    {' '}
+                    •{' '}
+                  </span>
+                  <div className={styles.post_date}>
+                    <span>
+                      {new Date(page.created).toLocaleDateString('en-DE', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
+                    </span>
+                  </div>
+                </span>
+                <div className={styles.bottom}>
+                  <h4
+                    style={{
+                      fontSize: '24px',
+                      fontfamily: 'LarsseitBold',
+                    }}
+                  >
+                    {page.title}
+                  </h4>
+                  <p
+                    style={{
+                      fontFamily: 'Larsseit-Regular',
+                      fontSize: '18px',
+                      paddingTop: '4px',
+                    }}
+                  >
+                    {page.summary.split('.', 1)[0]}
+                  </p>
                 </div>
+              </div>
             </a>
           </Link>
         ))}
       </div>
     </div>
   );
-}
+};
 export default blog;

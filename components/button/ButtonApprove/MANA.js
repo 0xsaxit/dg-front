@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import ABI_CHILD_TOKEN_MANA from '../../ABI/ABIChildTokenMANA';

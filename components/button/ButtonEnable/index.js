@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from 'store';
-import Biconomy from '@biconomy/mexa';
+import { GlobalContext } from '../../store';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button } from 'semantic-ui-react';
 import Global from 'components/Constants';
@@ -74,7 +74,7 @@ const ButtonEnable = () => {
       txHash,
       state.userStatus
     );
-  }
+  };
 
   // Biconomy API meta-transaction. User must re-authorize treasury contract after dormant period
   const metaTransaction = async () => {
@@ -109,14 +109,12 @@ const ButtonEnable = () => {
     } catch (error) {
       console.log('Metatx error: ' + error);
     }
-  }
+  };
 
   return (
     <Aux>
       <span>
-        <Button onClick={() => metaTransaction()}>
-          REAUTHORIZE
-        </Button>
+        <Button onClick={() => metaTransaction()}>REAUTHORIZE</Button>
       </span>
 
       <Button
@@ -127,6 +125,6 @@ const ButtonEnable = () => {
       </Button>
     </Aux>
   );
-}
+};
 
 export default ButtonEnable;

@@ -383,6 +383,26 @@ const AccountData = props => {
                   <span className={styles.account_hover}>Referrals</span>
                 </Link>
               )}
+
+              {dataType === 'ICE_2' ? (
+                <span className="account-hover active">ICE_2</span>
+              ) : state.dgLoading ? (
+                <span
+                  className="account-hover"
+                  onClick={() => {
+                    dispatch({
+                      type: 'set_dgWarningMsg',
+                      data: true,
+                    });
+                  }}
+                >
+                  ICE_2
+                </span>
+              ) : (
+                <Link href="/account/ICE_2">
+                  <span className="account-hover">ICE_2</span>
+                </Link>
+              )}
             </span>
           </div>
         </div>
