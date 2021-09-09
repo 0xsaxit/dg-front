@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import cn from 'classnames';
 import { Modal, Button } from 'semantic-ui-react';
-import styles from './ModalUpgradePending.module.scss';
+import styles from './ModalUpgradeSuccess.module.scss';
 
-
-const ModalUpgradePending = (props) => {
+const ModalUpgradeSuccess = (props) => {
 
   const [open, setOpen] = useState(true);
 
   return (
     <>
       <Modal
-        className={styles.withdraw_modal}
-        onClose={() => setOpen(false)}
+        className={styles.success_modal}
+        onClose={() => {
+          setOpen(false);
+          props.setUpgrade(0);
+        }}
         onOpen={() => setOpen(true)}
         open={open}
         close
@@ -54,90 +56,49 @@ const ModalUpgradePending = (props) => {
           </span>
         </div>
         
-
-        <div style={{ color: 'white', display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
-          <div className={styles.upgrade_container}>
-            
-            <p className={styles.header}> 
-              <img 
-                className={styles.logo} 
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" 
-              />Upgrade Pending 
-            </p>
-
-            <p className={styles.description}>
-              To upgrade your wearable, you will have to complete 4 transactions in metamask.
-            </p>
-
-            <div className={styles.upgrade_inner_container}>
-              <div className={styles.upgrade_area}>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="16" cy="16" r="14" stroke="white" stroke-opacity="0.25" stroke-width="4"/>
-                  <circle cx="16" cy="16" r="16" fill="#35AB3A"/>
-                  <path d="M14.7197 23.5601C15.4375 23.5601 15.9941 23.3037 16.375 22.7471L23.084 12.8594C23.3477 12.4712 23.4648 12.0684 23.4648 11.7095C23.4648 10.6841 22.6445 9.90771 21.5898 9.90771C20.8794 9.90771 20.4106 10.1641 19.9785 10.8452L14.6904 19.0483L12.105 16.1553C11.7388 15.7378 11.2993 15.54 10.7134 15.54C9.65137 15.54 8.86768 16.3164 8.86768 17.3491C8.86768 17.8252 8.99219 18.1914 9.39502 18.6455L13.1523 22.8862C13.5698 23.355 14.0825 23.5601 14.7197 23.5601Z" fill="white"/>
-                </svg>
-
-                <div className={styles.upgrade_right}>
-                  <p className={styles.upgrade_top_text}> Authorize ICE </p>
-                  <p className={styles.upgrade_bottom_text}> Enables ICE Transaction </p>
-                </div>
-              </div>
-
-              <div className={styles.green_line} />
-
-              <div className={styles.upgrade_area}>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="16" cy="16" r="16" fill="#35AB3A"/>
-                  <circle cx="16" cy="15.7" r="2.7" fill="white"/>
-                  <circle cx="8.7" cy="15.7" r="2.7" fill="white"/>
-                  <circle cx="23.3001" cy="15.7" r="2.7" fill="white"/>
-                </svg>
-
-                <div className={styles.upgrade_right}>
-                  <p className={styles.upgrade_top_text}> Authorize DG </p>
-                  <p className={styles.upgrade_bottom_text}> Enables DG Transaction </p>
-                </div>
-              </div>
-
-              <div className={styles.gray_line} />
-
-              <div className={styles.upgrade_area}>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="16" cy="16" r="14" stroke="white" stroke-opacity="0.25" stroke-width="4"/>
-                </svg>
-
-                <div className={styles.upgrade_right}>
-                  <p className={styles.upgrade_top_text}> Authorize NFT </p>
-                  <p className={styles.upgrade_bottom_text}> Enables NFT Transaction </p>
-                </div>
-              </div>
-
-              <div className={styles.gray_line} />
-
-              <div className={styles.upgrade_area}>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="16" cy="16" r="14" stroke="white" stroke-opacity="0.25" stroke-width="4"/>
-                </svg>
-
-                <div className={styles.upgrade_right}>
-                  <p className={styles.upgrade_top_text}> Send ICE, DG & NFT </p>
-                  <p className={styles.upgrade_bottom_text}> Transaction to upgrade wearable </p>
-                </div>
-              </div>
+      <div className={styles.success_container}>
+        <div className={styles.title}>
+          Upgrade Successful!
+        </div>
+        
+        <div className={styles.card}>
+          <div className={styles.toppercent}>
+            +31%
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png" style={{width: '20px'}} />
+          </div>
+          <div className={styles.image}>
+            <img 
+              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893954/Group_202_hlg8kr.png" 
+              className={styles.logo} 
+            />
+          </div>
+          <div className={styles.properties}>
+            <div className={styles.round}>
+              Rank4
             </div>
-
-            <Button className={styles.next_button} onClick={()=>{
-              setOpen(false);
-              props.setUpgrade(3);
-            }}>
-              Go to Success
-            </Button>
-
+            <div className={styles.round}>
+              +31%
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png" style={{width: '20px'}} />              
+            </div>
+            <div className={styles.round}>
+              1 of 100
+            </div>
           </div>
         </div>
+
+        <div className={styles.buttons}>
+          <Button className={styles.primary}>
+            Play Now
+          </Button>
+          <Button className={styles.none}>
+            Back to Account
+          </Button>
+        </div>
+
+      </div>
       </Modal>
     </>
   );
 };
 
-export default ModalUpgradePending;
+export default ModalUpgradeSuccess;

@@ -1,9 +1,67 @@
 @import 'styles/base.scss';
 
+.open_button {
+  background-color: #006EFF !important;
+  color: white !important;
+  height: 42px !important;
+  border-radius: 10px !important;
+  font-family: Larsseit-Bold;
+  font-size: 14px !important;
+}
+
 .upgrade_modal {
   width: 539px !important;
   height: 413px !important;
   padding: 40px;
+
+  .header_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: -56px;
+    height: 48px;
+    width: 100%;
+
+    .button_close {        
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      
+      width: 36px;
+      height: 36px;
+      background: black;
+      color: white;
+
+      cursor: pointer;        
+      border-radius: 24px;
+      margin-top: 10px;
+      padding: 8px 10px 8px 10px;
+    }
+    .button_help {        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;  
+        color: white;
+
+        cursor: pointer;
+        width: 109px;
+        height: 48px;
+        background: black;
+        border-radius: 24px;
+        padding: 8px 10px 8px 10px;
+    }
+  }
 
   .preview_button {
     cursor: pointer;
