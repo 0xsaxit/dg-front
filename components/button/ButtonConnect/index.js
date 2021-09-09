@@ -10,6 +10,15 @@ import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 
+let API_BASE_URL = '';
+
+if (typeof window !== 'undefined') {
+  const hostname =
+    window.location.hostname === 'localhost'
+      ? 'dev.decentral.games'
+      : window.location.hostname;
+  API_BASE_URL = `https://api.${hostname}`;
+}
 
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
@@ -26,7 +35,7 @@ const assignToken = async () => {
     );
 
     const token = await call(
-      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      `${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
       'GET',
       false
     );
@@ -202,10 +211,7 @@ const ButtonConnect = () => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
               className={styles.metamask_icon}
             />
-            {tablet ?
-              'Connect' :
-              'Connect Metamask'
-            }
+            {tablet ? 'Connect' : 'Connect Metamask'}
           </Button>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"
