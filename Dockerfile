@@ -28,6 +28,7 @@ RUN yarn outdated || true
 
 COPY . .
 
+RUN npx next telemetry disable
 RUN yarn run build
 
 # CMD ["sleep", "3d"]
