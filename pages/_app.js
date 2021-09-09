@@ -1,11 +1,11 @@
 import { Provider } from '../store';
 import App from 'next/app';
 import 'semantic-ui-css/semantic.min.css';
-import '../static/css/main.css';
-import '../static/css/agate.css';
-import '../static/css/blog.css';
-import '../static/css/spinner.css';
-import '../static/css/mobile.css';
+import '../public/static/css/main.css';
+import '../public/static/css/agate.css';
+import '../public/static/css/blog.css';
+import '../public/static/css/spinner.css';
+import '../public/static/css/mobile.css';
 import '../styles/bootstrap-overrides.scss';
 import Segment from '../components/Segment';
 import UserStatus from '../store/UserStatus';

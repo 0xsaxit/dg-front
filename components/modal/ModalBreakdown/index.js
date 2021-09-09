@@ -8,7 +8,7 @@ import Global from 'components/Constants';
 import styles from './ModalBreakdown.module.scss';
 import MetaTx from '../../../common/MetaTx';
 import Images from '../../../common/Images';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 
 const coins = ['mana', 'dai', 'usdt', 'atri', 'eth'];
 const coinNames = ['Decentraland', 'Dai', 'Tether', 'Atari', 'Ethereum'];

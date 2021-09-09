@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../../store';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Button, Divider, Loader, Icon } from 'semantic-ui-react';
 import MetaTx from '../../common/MetaTx';
@@ -9,7 +9,7 @@ import Aux from '../_Aux';
 import Images from '../../common/Images';
 import Global from '../Constants';
 
-const ContentMiningV1 = (props) => {
+const ContentMiningV1 = props => {
   // get user's status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
