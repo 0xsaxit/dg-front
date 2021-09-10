@@ -96,10 +96,12 @@ const initialState = {
   },
   tokenAuthorizations: {
     DG_AUTHORIZATION: false,
+    WETH_AUTHORIZATION: false,
     // ICE_AUTHORIZATION: false
   },
   refreshTokens: 'Initial',
   refreshBalances: true,
+  refreshTokenAuth: true,
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -277,6 +279,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshBalances: action.data,
+      };
+
+    case 'refresh_token_auth':
+      return {
+        ...state,
+        refreshTokenAuth: action.data,
       };
 
     case 'update_info':

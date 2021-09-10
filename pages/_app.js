@@ -24,6 +24,7 @@ import PricesBreakdown from '../store/PricesBreakdown';
 import NFTSPOAPS from '../store/NFTSPOAPS';
 import EventsData from '../store/EventsData';
 import SubgraphQuery from '../store/SubgraphQuery';
+import TokenAuth from '../store/TokenAuth';
 
 class Application extends App {
   render() {
@@ -51,6 +52,7 @@ class Application extends App {
         <NFTSPOAPS />
         <EventsData />
         <SubgraphQuery />
+        <TokenAuth />
 
         <Component {...pageProps} />
       </Provider>
