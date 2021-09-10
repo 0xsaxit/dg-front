@@ -26,7 +26,6 @@
     border-radius: 16px;
     padding: 24px;
     text-align: center;
-
     .wear_box_purple {
       position: relative;
       width: 241px;
@@ -46,6 +45,11 @@
         background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(4px);
         border-radius: 63px;
+      }
+
+      @include mq($until: medium) {
+        height: 100%;
+        width: 100%;
       }
     }
 
@@ -80,6 +84,10 @@
           height: 12px;
         }
       }
+    }
+
+    @include mq($until: medium) {
+      border: 2px solid #2a2a2a;
     }
   }
 
@@ -127,5 +135,9 @@
       text-align: center;
       color: #ffffff;
     }
+  }
+  @include mq($until: medium) {
+    height: 100% !important;
+    width: 100% !important;
   }
 }
