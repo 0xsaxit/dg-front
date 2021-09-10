@@ -1,4 +1,8 @@
-FROM node:14.16.1-alpine3.13 as base
+FROM node:16.9.0-alpine3.14 as base
+
+################################################################################
+
+FROM base as build
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"
@@ -24,12 +28,15 @@ RUN yarn outdated || true
 
 COPY . .
 
+RUN npx next telemetry disable &&\
+    env
+
 RUN yarn run build
 
 # CMD ["sleep", "3d"]
 ################################################################################
 
-FROM node:14.16.1-alpine3.13 as runtime
+FROM base as runtime
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch"
 LABEL maintainer="support@secureimages.dev"
@@ -39,7 +46,7 @@ ENV NODE_ENV=production \
 
 WORKDIR /app
 
-COPY --from=base --chown=node:node /app .
+COPY --from=build --chown=node:node /app .
 
 USER node
 

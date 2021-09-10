@@ -205,7 +205,7 @@ const ButtonStartConnect = () => {
           fontSize: '23px',
           fontFamily: 'Larsseit-Bold',
           alignSelf: 'center',
-          marginLeft: '4px'
+          marginLeft: '4px',
         }}
       >
         Connect
@@ -215,4 +215,3 @@ const ButtonStartConnect = () => {
 };
 
 export default ButtonStartConnect;
-

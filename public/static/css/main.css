@@ -60,27 +60,27 @@ a {
 
 @font-face {
   font-family: 'Larsseit-ExtraBold';
-  src: url('/static/fonts/Larsseit/Larsseit5.ttf');
+  src: url('public/static/fonts/Larsseit/Larsseit5.ttf');
 }
 
 @font-face {
   font-family: 'Larsseit-Bold';
-  src: url('/static/fonts/Larsseit/Larsseit16.otf');
+  src: url('public/static/fonts/Larsseit/Larsseit16.otf');
 }
 
 @font-face {
   font-family: 'Larsseit-Medium';
-  src: url('/static/fonts/Larsseit/Larsseit2.ttf');
+  src: url('public/static/fonts/Larsseit/Larsseit2.ttf');
 }
 
 @font-face {
   font-family: 'Larsseit-Regular';
-  src: url('/static/fonts/Larsseit/Larsseit13.ttf');
+  src: url('public/static/fonts/Larsseit/Larsseit13.ttf');
 }
 
 @font-face {
   font-family: 'Larsseit-Light';
-  src: url('/static/fonts/Larsseit/Larsseit4.ttf');
+  src: url('public/static/fonts/Larsseit/Larsseit4.ttf');
 }
 
 h1 {
@@ -1234,7 +1234,7 @@ td:last-child {
 }
 
 .ui.table thead th.leaderboard-header {
-  font-size:  20px;
+  font-size: 20px;
   font-family: Larsseit-Bold;
   text-transform: capitalize;
 }
@@ -1392,7 +1392,7 @@ span.account-hover-time {
 }
 
 .account-hover-time.active {
-  color:  white;
+  color: white;
   border-bottom: 3px solid #006eff;
   padding-bottom: 14px;
   padding-left: 6px;
@@ -1401,7 +1401,7 @@ span.account-hover-time {
 
 .account-hover-time:hover {
   cursor: pointer;
-  color:  white;
+  color: white;
   border-bottom: 3px solid #006eff;
   padding-bottom: 14px;
   padding-left: 6px;
@@ -1603,7 +1603,7 @@ i.pencil.icon.edit-icon:hover {
 }
 
 .avatar-edit-circle {
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   position: relative;
   z-index: 3;
   width: 40px;
@@ -2646,7 +2646,7 @@ a.ui.blue.button.touch {
     width: 210px !important;
     margin-left: calc(50vw - 128px);
     position: relative;
-    z-index:  999;
+    z-index: 999;
     background-color: #006eff;
     color: white;
     margin-top: 8px;
@@ -2797,7 +2797,7 @@ a.ui.blue.button.dg-learn-button {
 .ui.button.nft-read-button {
   margin-top: 20px;
   width: 100%;
-  background: #2A2A2A;
+  background: #2a2a2a;
   color: white;
   border-radius: 10px;
   height: 40px;
@@ -3239,7 +3239,7 @@ img.avatar-picture-binance {
 
 .ui.button.casino-button:hover,
 .ui.button.casino-button:focus {
-  background-color: #006EFF;
+  background-color: #006eff;
   filter: brightness(0.9) !important;
 }
 
@@ -3541,7 +3541,7 @@ h3.deposit-twentyfour.casino {
   border-radius: 10px;
   font-family: Larsseit-Regular;
   height: 40px;
-  color:  white !important;
+  color: white !important;
 }
 
 .ui.input > input:focus,

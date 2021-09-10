@@ -1,8 +1,7 @@
 @import 'styles/base.scss';
 
-
 .button_right {
-  background: #006EFF !important;
+  background: #006eff !important;
   width: 196px;
   height: 48px;
   border-radius: 12px !important;
@@ -216,7 +215,7 @@
 
       .card_area {
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: baseline;
 
         margin-bottom: 25px;
@@ -296,7 +295,7 @@
 
     .button_area {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
 
       .button_upgrade {
         width: fit-content;

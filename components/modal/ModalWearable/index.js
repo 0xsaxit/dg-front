@@ -6,22 +6,18 @@ import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 import styles from './ModalWearable.module.scss';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
-import IceWearInfo from 'components/modal/IceWearInfo';
+import ModalUpgradeSuccess from 'components/modal/ModalUpgradeSuccess';
 import ModalUpgradePending from 'components/modal/ModalUpgradePending';
-
 
 const ModalWearable = (props) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-
-  // define local variables
   const [open, setOpen] = useState(false);
-  const [upgrade, setUpgrade] = useState(true);
-  const [info, setInfo] = useState(false);
+  const [upgrade, setUpgrade] = useState(0);
 
   return (
     <>
-    {upgrade? (
+    { upgrade == 0 && (    
       <Modal
         className={styles.wearable_modal}
         onClose={() => setOpen(false)}
@@ -29,7 +25,7 @@ const ModalWearable = (props) => {
         open={open}
         close
         trigger={
-          <Button className={styles.play_now_modal}>
+          <Button className={styles.open_button}>
             Upgrade
           </Button>
         }
@@ -297,7 +293,15 @@ const ModalWearable = (props) => {
               </div>
             </div>
             <div className={styles.button_area}>
-              <ModalUpgradePending />
+              {/* <NeedMoreUpgrade setOpen={setOpen} setUpgrade={setUpgrade} /> */}
+              <Button 
+                className={styles.button_upgrade}
+                onClick={()=> {
+                  setOpen(false);
+                  setUpgrade(1);
+                }}>
+                Upgrade Wearable
+              </Button>
               <Button className={styles.button_close}>
                 Learn More
               </Button>
@@ -305,11 +309,18 @@ const ModalWearable = (props) => {
           </div>
   
         </div>
-      </Modal>
+      </Modal>)}
+      { upgrade == 1 && (
+        <NeedMoreUpgrade setUpgrade={setUpgrade} setOpen={setOpen} />
+      )}
 
-    ) : (
-      <ModalUpgradePending />
-    )}
+      { upgrade == 2 && (
+        <ModalUpgradePending setUpgrade={setUpgrade} />
+      )}
+
+      { upgrade == 3 && (
+        <ModalUpgradeSuccess setUpgrade={setUpgrade} />
+      )}
     </>
   );
 };
