@@ -10,7 +10,6 @@ import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 
-
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
@@ -202,10 +201,7 @@ const ButtonConnect = () => {
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
               className={styles.metamask_icon}
             />
-            {tablet ?
-              'Connect' :
-              'Connect Metamask'
-            }
+            {tablet ? 'Connect' : 'Connect Metamask'}
           </Button>
           <a
             href="https://docs.decentral.games/getting-started/play-to-mine/get-metamask"

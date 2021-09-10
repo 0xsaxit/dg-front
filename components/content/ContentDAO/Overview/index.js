@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
-import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import axios from 'axios';
 import { Loader, Popup, Icon, Button, Table } from 'semantic-ui-react';
