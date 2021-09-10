@@ -10,16 +10,6 @@ import { useMediaQuery } from 'hooks';
 import ModalLoginTop from 'components/modal/ModalLoginTop';
 import styles from './ButtonConnect.module.scss';
 
-let API_BASE_URL = '';
-
-if (typeof window !== 'undefined') {
-  const hostname =
-    window.location.hostname === 'localhost'
-      ? 'dev.decentral.games'
-      : window.location.hostname;
-  API_BASE_URL = `https://api.${hostname}`;
-}
-
 const assignToken = async () => {
   const userAddress = window.ethereum.selectedAddress;
   if (userAddress && document.visibilityState === 'visible') {
@@ -35,7 +25,7 @@ const assignToken = async () => {
     );
 
     const token = await call(
-      `${API_BASE_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/authentication/getWebAuthToken?address=${userAddress}&signature=${signature}&timestamp=${timestamp}`,
       'GET',
       false
     );
