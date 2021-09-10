@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../store';
-import Biconomy from '@biconomy/mexa';
+// import Biconomy from '@biconomy/mexa';
+import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalEthAuth.module.scss';
