@@ -22,12 +22,16 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
-  PLAYER_DATA: address => {
+  PLAYER_DATA: () => {
     return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
   },
 
-  USERS_LIST: address => {
+  USERS_LIST: () => {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
+  },
+
+  MINT_TOKEN: () => {
+    return call(`${API_BASE_URL}/ice/mintToken`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
