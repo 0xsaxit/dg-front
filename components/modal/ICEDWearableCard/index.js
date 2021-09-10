@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import cn from 'classnames';
 import { Modal, Icon, Button, Header, Grid, Popup } from 'semantic-ui-react';
 import styles from './ICEDWearableCard.module.scss';
@@ -7,12 +7,10 @@ import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 import ModalWearable from 'components/modal/ModalWearable';
 
-const ICEDWearableCard = (props) => {
-
+const ICEDWearableCard = props => {
   return (
     <>
       <div className={styles.wearable_modal}>
-
         <div className={styles.wear_box}>
           <div className={styles.wear_box_purple}>
             {/*<div className={styles.delegatebtn}>
@@ -21,9 +19,7 @@ const ICEDWearableCard = (props) => {
             <img src={props.url} />
           </div>
           <div className={styles.card_body}>
-            <div className={styles.card}>
-              Rank 4
-            </div>
+            <div className={styles.card}>Rank 4</div>
             <div className={styles.card}>
               +35%
               <img
@@ -31,17 +27,15 @@ const ICEDWearableCard = (props) => {
                 className={styles.img}
               />
             </div>
-            <div className={styles.card}>
-              1 of 100
-            </div>
+            <div className={styles.card}>1 of 100</div>
           </div>
           <div className={styles.card_meta}>ICE WEARABLE</div>
           <div className={styles.card_title}>
-          {props.text? props.text : 'DG Deezys' }
+            {props.text ? props.text : 'DG Deezys'}
           </div>
           <div className={styles.button_area}>
             {props.state == 1 ? (
-              <span style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+              <span className="w-100 d-flex justify-content-between">
                 <ModalDelegate />
                 <ModalWearable />
               </span>

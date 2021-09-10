@@ -1,8 +1,8 @@
 @import 'styles/base.scss';
 
 .wearable_modal {
-  width: 288px !important;
-  height: 550px !important;
+  height: 100% !important;
+  width: 100% !important;
   border-radius: 16px !important;
 
   .title {
@@ -12,13 +12,13 @@
     margin-bottom: 4px;
     text-align: left;
   }
+
   .meta {
     font-size: 16px;
     font-family: Larsseit-Medium;
     color: white;
     opacity: 0.6;
     text-align: left;
-
   }
 
   .wear_box {
@@ -27,14 +27,17 @@
     border-radius: 16px;
     padding: 24px;
     text-align: center;
+
     .wear_box_purple {
       position: relative;
       width: 241px;
       height: 241px;
       border-radius: 16px;
+
       img {
         width: 100%;
       }
+
       .delegatebtn {
         cursor: pointer;
         position: absolute;
@@ -47,6 +50,11 @@
         backdrop-filter: blur(4px);
         border-radius: 63px;
       }
+
+      @include mq($until: medium) {
+        height: 100%;
+        width: 100%;
+      }
     }
 
     .card_body {
@@ -57,11 +65,7 @@
       .card {
         display: flex;
         align-items: center;
-
-        padding-left: 12px;
-        padding-right: 12px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding: 5px 12px 5px 12px;
 
         border: 1px solid #2a2a2a;
         box-sizing: border-box;
@@ -81,6 +85,10 @@
         }
       }
     }
+
+    @include mq($until: medium) {
+      border: 2px solid #2a2a2a;
+    }
   }
 
   .card_meta {
@@ -92,6 +100,7 @@
     opacity: 0.6;
     margin-top: 16px;
   }
+
   .card_title {
     font-family: Larsseit-Bold;
     font-style: normal;
@@ -105,7 +114,7 @@
     margin-top: 16px;
 
     .upgrade_button {
-      background-color: #006EFF !important;
+      background-color: #006eff !important;
       color: white !important;
       height: 43px;
       border-radius: 10px !important;

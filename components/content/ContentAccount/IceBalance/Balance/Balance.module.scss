@@ -29,7 +29,6 @@
         margin-bottom: 18px;
 
         @include mq($until: medium) {
-          flex-direction: column;
           height: 150px;
           padding: 15px 20px 15px 20px;
         }
@@ -64,19 +63,10 @@
             justify-content: center;
           }
 
-          @include mq($until: medium) {
-            width: 100%;
-            justify-content: space-between;
-          }
-
           .balance_column_header {
             & p:last-child {
               color: rgba(255, 255, 255, 0.75) !important;
               font-weight: 700;
-
-              @include mq($until: medium) {
-                text-align: right;
-              }
             }
           }
         }
@@ -93,7 +83,7 @@
             font-weight: 700;
             color: white;
             margin-bottom: 0;
-            text-align: right;
+            text-align: left;
 
             @include mq($until: medium) {
               text-align: left;
@@ -116,7 +106,7 @@
           }
 
           @include mq($until: medium) {
-            margin: 0;
+            margin: 1px;
           }
         }
 
@@ -149,30 +139,26 @@
           display: flex;
           align-items: center;
 
-          .balance_column_header {
+          .text_wrapper {
+            display: flex;
+            flex-direction: column;
+            margin-right: 8px;
+
+            & p:first-child {
+              font-size: 24px;
+              line-height: 32px;
+              font-weight: 700;
+              margin-bottom: 0;
+              text-align: right;
+              font-family: Larsseit-Bold;
+            }
+
             & p:last-child {
+              color: rgba(255, 255, 255, 0.75) !important;
               text-align: right;
               font-weight: 700;
-
-              @include mq($until: medium) {
-                text-align: left;
-              }
-            }
-          }
-
-          & > div {
-            width: 100px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-
-            & > div,
-            & > span {
-              display: flex;
-              flex-direction: row;
-              justify-content: space-between;
-              width: 100%;
-              margin-right: 8px;
+              font-size: 18px;
+              line-height: 24px;
             }
 
             @include mq($until: medium) {
@@ -187,11 +173,6 @@
             @include mq($until: medium) {
               width: 260px;
             }
-          }
-
-          @include mq($until: medium) {
-            width: 100%;
-            justify-content: space-between;
           }
         }
 
@@ -283,15 +264,23 @@
         height: 40px;
         font-family: Larsseit-Bold;
         font-size: 14px;
+
+        @include mq($until: medium) {
+          width: 50%;
+          margin: 20px 183px;
+        }
       }
     }
+    // @include mq($until: large) {
+    //   min-width: 830px;
+    // }
   }
 }
 
-@media screen and (max-width: 768px) {
+@include mq($until: medium) {
   .balance {
     .content_container {
-      width: 550px;
+      // min-width: 685px;
       display: block;
       .balance_column {
         width: 100%;
