@@ -58,8 +58,8 @@ const Footer = () => {
               <Link href="/games">
                 <p className={styles.footer_link}> {t('Footer.GAMES')} </p>
               </Link>
-              <Link href="/games/casinos">
-                <p className={styles.footer_link}> {t('Footer.CASINO')} </p>
+              <Link href="/games/scenes">
+                <p className={styles.footer_link}> Scenes </p>
               </Link>
               <Link href="/games/leaderboard">
                 <p className={styles.footer_link}> {t('Footer.LEADERBOARD')} </p>

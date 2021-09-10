@@ -15,6 +15,7 @@ import MessageToast from 'components/home/MessageToast';
 
 import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
+
 const MenuTop = props => {
   const { t, i18n } = useTranslation();
 
