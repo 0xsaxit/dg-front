@@ -1,5 +1,6 @@
 .wearableHeader {
   max-width: 900px;
+  min-width: 685px;
   margin-top: 30px;
   margin: auto;
   display: flex;
@@ -32,6 +33,7 @@
     &:hover {
       filter: brightness(0.9) !important;
       color: white;
+      background: #1f1f1f;
     }
 
     &:focus {
@@ -40,6 +42,7 @@
     }
 
     svg {
+      padding-top: 3px;
       margin-left: 4px;
       width: 16px;
       height: 16px;
