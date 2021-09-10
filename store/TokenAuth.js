@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
+import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import ABI_CHILD_TOKEN_ICE from '../components/ABI/ABIChildTokenICE';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
@@ -12,6 +13,7 @@ function TokenAuth() {
 
   // define local variables
   const [DGMaticContract, setDGMaticContract] = useState({});
+  const [WETHMaticContract, setWETHMaticContract] = useState({});
   // const [ICEMaticContract, setICEMaticContract] = useState({});
   const [instances, setInstances] = useState(false);
 
@@ -28,6 +30,12 @@ function TokenAuth() {
         );
         setDGMaticContract(DGMaticContract);
 
+        const WETHMaticContract = new maticWeb3.eth.Contract(
+          ABI_CHILD_TOKEN_WETH,
+          Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
+        );
+        setWETHMaticContract(WETHMaticContract);
+
         // const ICEMaticContract = new maticWeb3.eth.Contract(
         //   ABI_CHILD_TOKEN_ICE,
         //   Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE
@@ -41,6 +49,7 @@ function TokenAuth() {
     }
   }, [state.userStatus]);
 
+  // anytime user authorizes tokens on /ice pages this code will execute
   useEffect(() => {
     if (instances) {
       (async function () {
@@ -53,7 +62,7 @@ function TokenAuth() {
         });
       })();
     }
-  }, [instances]);
+  }, [instances, state.refreshTokenAuth]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -65,16 +74,25 @@ function TokenAuth() {
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
 
-      //   const ICE_AUTHORIZATION = await Transactions.tokenAuthorization(
-      //     ICEMaticContract,
-      //     state.userAddress
-      //   );
+      const WETH_AUTHORIZATION = await Transactions.tokenAuthorization(
+        WETHMaticContract,
+        state.userAddress,
+        Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      );
+
+      // const ICE_AUTHORIZATION = await Transactions.tokenAuthorization(
+      // ICEMaticContract,
+      // state.userAddress,
+      // Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      // );
 
       // console.log('get token authorization: DG: ' + DG_AUTHORIZATION);
-      // console.log('get token authorization: ICE: ' +  ICE_AUTHORIZATION)
+      // console.log('get token authorization: WETH: ' + WETH_AUTHORIZATION);
+      // console.log('get token authorization: ICE: ' + ICE_AUTHORIZATION);
 
       return {
         DG_AUTHORIZATION: DG_AUTHORIZATION,
+        WETH_AUTHORIZATION: WETH_AUTHORIZATION,
         // ICE_AUTHORIZATION: ICE_AUTHORIZATION,
       };
     } catch (error) {

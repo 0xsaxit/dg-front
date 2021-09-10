@@ -1,4 +1,4 @@
-FROM node:16.8.0-alpine3.14 as base
+FROM node:16.9.0-alpine3.14 as base
 
 ################################################################################
 
@@ -28,7 +28,9 @@ RUN yarn outdated || true
 
 COPY . .
 
-RUN npx next telemetry disable
+RUN npx next telemetry disable &&\
+    env
+
 RUN yarn run build
 
 # CMD ["sleep", "3d"]

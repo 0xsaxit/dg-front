@@ -1,14 +1,6 @@
 import call from 'common/API';
-// https://api.decentral.games, http://localhost:
-let API_BASE_URL = '';
-
-if (typeof window !== 'undefined') {
-  const hostname =
-    window.location.hostname === 'localhost'
-      ? 'dev.decentral.games'
-      : window.location.hostname;
-  API_BASE_URL = `https://api.${hostname}`;
-}
+// https://api.decentral.games, http://localhost:5000
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -30,12 +22,16 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getTotalRecords`, 'GET', false);
   },
 
-  PLAYER_DATA: address => {
+  PLAYER_DATA: () => {
     return call(`${API_BASE_URL}/admin/getCryptoRecords`, 'GET');
   },
 
-  USERS_LIST: address => {
+  USERS_LIST: () => {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
+  },
+
+  MINT_TOKEN: () => {
+    return call(`${API_BASE_URL}/ice/mintToken`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
