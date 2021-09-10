@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 900px;
-    min-width: 685px;
+    // min-width: 685px;
     margin: auto;
 
     .wearable_card {
@@ -91,7 +91,7 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@include mq($until: medium) {
   .wearable {
     .wearable_card_container {
       display: block;

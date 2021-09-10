@@ -83,7 +83,7 @@
             font-weight: 700;
             color: white;
             margin-bottom: 0;
-            text-align: right;
+            text-align: left;
 
             @include mq($until: medium) {
               text-align: left;
@@ -271,16 +271,16 @@
         }
       }
     }
-    @include mq($until: large) {
-      min-width: 830px;
-    }
+    // @include mq($until: large) {
+    //   min-width: 830px;
+    // }
   }
 }
 
-@media screen and (max-width: 767px) {
+@include mq($until: medium) {
   .balance {
     .content_container {
-      min-width: 685px;
+      // min-width: 685px;
       display: block;
       .balance_column {
         width: 100%;

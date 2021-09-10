@@ -1,8 +1,8 @@
 @import 'styles/base.scss';
 
 .wearable_modal {
-  width: 288px !important;
-  height: 550px !important;
+  height: 100% !important;
+  width: 100% !important;
   border-radius: 16px !important;
 
   .title {
@@ -12,6 +12,7 @@
     margin-bottom: 4px;
     text-align: left;
   }
+
   .meta {
     font-size: 16px;
     font-family: Larsseit-Medium;
@@ -26,14 +27,17 @@
     border-radius: 16px;
     padding: 24px;
     text-align: center;
+
     .wear_box_purple {
       position: relative;
       width: 241px;
       height: 241px;
       border-radius: 16px;
+
       img {
         width: 100%;
       }
+
       .delegatebtn {
         cursor: pointer;
         position: absolute;
@@ -61,11 +65,7 @@
       .card {
         display: flex;
         align-items: center;
-
-        padding-left: 12px;
-        padding-right: 12px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding: 5px 12px 5px 12px;
 
         border: 1px solid #2a2a2a;
         box-sizing: border-box;
@@ -100,6 +100,7 @@
     opacity: 0.6;
     margin-top: 16px;
   }
+
   .card_title {
     font-family: Larsseit-Bold;
     font-style: normal;
@@ -135,9 +136,5 @@
       text-align: center;
       color: #ffffff;
     }
-  }
-  @include mq($until: medium) {
-    height: 100% !important;
-    width: 100% !important;
   }
 }
