@@ -1,6 +1,6 @@
 import { Provider } from '../store';
 import App from 'next/app';
-import './i18n';
+// import './i18n';
 
 import 'semantic-ui-css/semantic.min.css';
 import 'public/static/css/main.css';
