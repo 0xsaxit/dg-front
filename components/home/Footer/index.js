@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import { useMediaQuery } from 'hooks';
 import Link from 'next/link';
 import styles from './Footer.module.scss';
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const Footer = () => {
   // define local variables
@@ -13,7 +13,7 @@ const Footer = () => {
   const onlyTablet = useMediaQuery(
     '(min-width: 768px) and (max-width: 1200px)'
   );
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -38,70 +38,127 @@ const Footer = () => {
             )}
           >
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> {t('Footer.TOKEN')} </p>
+              <p className={styles.footer_header}> 
+                {/* {t('Footer.TOKEN')}  */}
+                Token
+              </p>
               <Link href="/dg">
-                <p className={styles.footer_link}> {t('Footer.TREASURY')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.TREASURY')}  */}
+                  Treasury
+                </p>
               </Link>
               <Link href="/dg/governance">
-                <p className={styles.footer_link}> {t('Footer.GOVERNANCE')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.GOVERNANCE')}  */}
+                  Governance
+                </p>
               </Link>
               <Link href="/dg/mining">
-                <p className={styles.footer_link}> {t('Footer.GAMEPLAY')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.GAMEPLAY')}  */}
+                  Gameplay
+                </p>
               </Link>
               <Link href="/dg/liquidity">
-                <p className={styles.footer_link}> {t('Footer.LIQUDITY')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.LIQUDITY')}  */}
+                  Liquidity
+                </p>
               </Link>
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> {t('Footer.PLAY')} </p>
+              <p className={styles.footer_header}> 
+                {/* {t('Footer.PLAY')}  */}
+                Play
+              </p>
               <Link href="/games">
-                <p className={styles.footer_link}> {t('Footer.GAMES')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.GAMES')}  */}
+                  Games
+                </p>
               </Link>
               <Link href="/games/scenes">
-                <p className={styles.footer_link}> Scenes </p>
+                <p className={styles.footer_link}> 
+                  Scenes 
+                </p>
               </Link>
               <Link href="/games/leaderboard">
-                <p className={styles.footer_link}> {t('Footer.LEADERBOARD')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.LEADERBOARD')}  */}
+                  Leaderboard
+                </p>
               </Link>
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> {t('Footer.SHOP')} </p>
+              <p className={styles.footer_header}> 
+                {/* {t('Footer.SHOP')}  */}
+                Shop
+              </p>
               <Link href="/games/nfts">
-                <p className={styles.footer_link}> {t('Footer.NFTS')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.NFTS')}  */}
+                  NFTs
+                </p>
               </Link>
               <Link href="/games/shop">
-                <p className={styles.footer_link}> {t('Footer.DCL_SHOPS')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.DCL_SHOPS')}  */}
+                  DCL Shops
+                </p>
               </Link>
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> {t('Footer.EVENTS')} </p>
+              <p className={styles.footer_header}> 
+                {/* {t('Footer.EVENTS')}  */}
+                Events
+              </p>
               <Link href="/events">
-                <p className={styles.footer_link}> {t('Footer.ALL_EVENTS')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.ALL_EVENTS')}  */}
+                  All Events
+                </p>
               </Link>
               <a href="mailto:hello@decentral.games">
-                <p className={styles.footer_link}> {t('Footer.PARTNER_SHIP')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.PARTNER_SHIP')}  */}
+                  Partnerships
+                </p>
               </a>
             </span>
 
             <span className={styles.grid_column}>
-              <p className={styles.footer_header}> {t('Footer.NEWS')} </p>
+              <p className={styles.footer_header}> 
+                {/* {t('Footer.NEWS')}  */}
+                News
+              </p>
               <Link href="/blog">
-                <p className={styles.footer_link}> {t('Footer.NEWS')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.NEWS')}  */}
+                  News
+                </p>
               </Link>
               <Link href="/blog">
-                <p className={styles.footer_link}> {t('Footer.BLOG')} </p>
+                <p className={styles.footer_link}> 
+                  {/* {t('Footer.BLOG')}  */}
+                  Blog
+                </p>
               </Link>
             </span>
 
             <div className={styles.grid_newsletter}>
-              <p className={styles.footer_header}> {t('Footer.JOIN_OUR_NEWS_LETTER')} </p>
+              <p className={styles.footer_header}> 
+                {/* {t('Footer.JOIN_OUR_NEWS_LETTER')}  */}
+                Join Our Newsletter!
+              </p>
               <Link href="/events">
                 <p className={styles.footer_text}>
                   {' '}
-                  {t('Footer.SUBSCRIBE_TO_OUR_NEWSLETTER')}{' '}
+                  {/* {t('Footer.SUBSCRIBE_TO_OUR_NEWSLETTER')}{' '} */}
+                  Subscribe to our newsletter to stay up to date with our weekly updates.{' '}
                 </p>
               </Link>
 
@@ -113,7 +170,8 @@ const Footer = () => {
                   href="https://decentralgames.substack.com/embed"
                   target="_blank"
                 >
-                  {t('Footer.SIGNUP_FOR_SUBSTACK')}
+                  {/* {t('Footer.SIGNUP_FOR_SUBSTACK')} */}
+                  Sign Up For Substack
                   <svg
                     width="14"
                     height="14"
@@ -133,11 +191,13 @@ const Footer = () => {
           {!onlyTablet && !mobile && (
             <div className={styles.cookie_container}>
               <span className={styles.copyright}>
-                {t('Footer.COPYRIGHT_2021')}
+                {/* {t('Footer.COPYRIGHT_2021')} */}
+                Copyright © 2021 Web4 LTD. All rights reserved
               </span>
               <div className="d-flex justify-content-between">
                 <p className={styles.description}>
-                {t('Footer.WE_USE_CLLOKIES')}
+                  {/* {t('Footer.WE_USE_CLLOKIES')} */}
+                  We use cookies to create a better experience.
                 </p>
                 {/*<span className={styles.accept}>Accept</span>*/}
               </div>
@@ -150,7 +210,8 @@ const Footer = () => {
           <Link href="/events">
             <p className={styles.footer_text}>
               {' '}
-              {t('Footer.SUBSCRIBE_TO_OUR_NEWSLETTER')}.{' '}
+              {/* {t('Footer.SUBSCRIBE_TO_OUR_NEWSLETTER')}.{' '} */}
+              Subscribe to our newsletter to stay up to date with our weekly updates.{' '}
             </p>
           </Link>
 
@@ -162,7 +223,9 @@ const Footer = () => {
               href="https://decentralgames.substack.com/embed"
               target="_blank"
             >
-              {t('Footer.SIGNUP_FOR_SUBSTACK')}
+              {/* {t('Footer.SIGNUP_FOR_SUBSTACK')} */}
+              Sign Up For Substack
+              
               <svg
                 width="14"
                 height="14"
@@ -182,18 +245,21 @@ const Footer = () => {
         {mobile && (
           <div className={styles.cookie_container_tablet}>
             <span className={styles.copyright}>
-              {t('Footer.COPYRIGHT_2021')}
+              {/* {t('Footer.COPYRIGHT_2021')} */}
+              Copyright © 2021 Web4 LTD. All rights reserved
             </span>
           </div>
         )}
         {onlyTablet && (
           <div className={styles.cookie_container}>
             <span className={styles.copyright}>
-              {t('Footer.COPYRIGHT_2021')}
+              {/* {t('Footer.COPYRIGHT_2021')} */}
+              Copyright © 2021 Web4 LTD. All rights reserved
             </span>
             <div className="d-flex justify-content-between">
               <p className={styles.description}>
-                {t('Footer.WE_USE_CLLOKIES')}
+                {/* {t('Footer.WE_USE_CLLOKIES')} */}
+                We use cookies to create a better experience.
               </p>
               {/*<span className={styles.accept}>Accept</span>*/}
             </div>

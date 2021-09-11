@@ -13,11 +13,10 @@ import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
 
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
-
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const MenuTop = props => {
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -217,7 +216,8 @@ const MenuTop = props => {
           {!isTablet && (
             <Link href="/blog">
               <Menu.Item className={styles.menu_style}>
-                {t('navMenu.NEWS_BLOG')}
+                {/* {t('navMenu.NEWS_BLOG')} */}
+                News & Blog
               </Menu.Item>
             </Link>
           )}
@@ -229,7 +229,8 @@ const MenuTop = props => {
               target="_blank"
             >
               <Menu.Item className={styles.menu_style}>
-                {t('navMenu.DOCS')}
+                {/* {t('navMenu.DOCS')} */}
+                Docs
               </Menu.Item>
             </a>
           )}
@@ -245,7 +246,8 @@ const MenuTop = props => {
         {isMobile && (
           <Link href={`/${utm}`}>
             <Menu.Item className={styles.menu_style}>
-              {t('navMenu.PLAY')}
+              {/* {t('navMenu.PLAY')} */}
+              Play
             </Menu.Item>
           </Link>
         )}
@@ -253,7 +255,8 @@ const MenuTop = props => {
         {isMobile && (
           <Link href="/dg">
             <Menu.Item className={styles.menu_style}>
-             {t('navMenu.DAO')}
+             {/* {t('navMenu.DAO')} */}
+             DAO
             </Menu.Item>
           </Link>
         )}
@@ -261,7 +264,8 @@ const MenuTop = props => {
         {isMobile && (
           <Link href="/games">
             <Menu.Item className={styles.menu_style}>
-              {t('navMenu.OFFERINGS')}
+              {/* {t('navMenu.OFFERINGS')} */}
+              Offerings
             </Menu.Item>
           </Link>
         )}
@@ -291,7 +295,8 @@ const MenuTop = props => {
         {isTablet && (
           <Link href="/events">
             <Menu.Item className={styles.menu_style}>
-            {t('navMenu.EVENTS')}
+              {/* {t('navMenu.EVENTS')} */}
+              Events
             </Menu.Item>
           </Link>
         )}
@@ -299,7 +304,8 @@ const MenuTop = props => {
         {isTablet && (
           <Link href="/blog">
             <Menu.Item className={styles.menu_style}>              
-              {t('navMenu.NEWS_BLOG')}
+              {/* {t('navMenu.NEWS_BLOG')} */}
+              News & Blog
             </Menu.Item>
           </Link>
         )}
@@ -312,7 +318,8 @@ const MenuTop = props => {
             target="_blank"
           >
             <Menu.Item className={styles.menu_style}>
-              {t('navMenu.DOCS')}
+              {/* {t('navMenu.DOCS')} */}
+              Docs
             </Menu.Item>
           </a>
         )}

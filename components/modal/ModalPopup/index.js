@@ -165,7 +165,10 @@ const ModalPopup = () => {
                   />
                 </svg>
               </span>
-              <span>{t('navMenu.MYACCOUNT')}</span>
+              <span>
+                {/* {t('navMenu.MYACCOUNT')} */}
+                My Account
+              </span>
             </Button>
           </div>
         }
