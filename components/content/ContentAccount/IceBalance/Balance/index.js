@@ -36,21 +36,21 @@ const Balance = () => {
         <div className={styles.balance_column}>
           {balenceItems.map((item, index) => (
             <div className={styles.balance_row} key={index}>
-              <span className={styles.float_left}>
+              <div className={styles.float_left}>
                 <span className={styles.img_left}>
                   <img src={item.icon} />
                 </span>
-                <span className={styles.balance_column_header}>
+                <div className={styles.balance_column_header}>
                   <p className={styles.bold_text}>{item.name}</p>
                   <p className={styles.bold_text}>{item.type}</p>
-                </span>
-              </span>
+                </div>
+              </div>
 
               <div className={styles.float_right}>
-                <span className={styles.balance_column_header}>
+                <div className={styles.text_wrapper}>
                   <p className={styles.bold_text}>{item.model}</p>
                   <p className={styles.bold_text}>{item.price}</p>
-                </span>
+                </div>
                 <Button
                   className={styles.newLink}
                   href="http://defi.atarichain.com/"

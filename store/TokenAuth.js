@@ -86,8 +86,8 @@ function TokenAuth() {
       // Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       // );
 
-      // console.log('get token authorization: DG: ' + DG_AUTHORIZATION);
-      // console.log('get token authorization: WETH: ' + WETH_AUTHORIZATION);
+      console.log('get token authorization: DG: ' + DG_AUTHORIZATION);
+      console.log('get token authorization: WETH: ' + WETH_AUTHORIZATION);
       // console.log('get token authorization: ICE: ' + ICE_AUTHORIZATION);
 
       return {
