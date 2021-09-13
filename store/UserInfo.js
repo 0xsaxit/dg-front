@@ -26,6 +26,7 @@ function UserInfo() {
 
       let json3 = await Fetch.ATRI_PRICE();
       setAtriPrice(json3.market_data.current_price.usd);
+
     })();
   }, [manaPrice, ethPrice, atriPrice]);
 

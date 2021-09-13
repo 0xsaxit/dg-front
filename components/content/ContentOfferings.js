@@ -195,13 +195,6 @@ const ContentOfferings = (props) => {
                   style={{ display: 'flex', justifyContent: 'space-between' }}
                 >
                   <ModalEthAuth />
-                  <Button
-                    className="nft-read-button"
-                    target="_blank"
-                    href={props.detailsICE[item][6]}
-                  >
-                    Info
-                  </Button>
                 </span>
               </div>
             </div>
