@@ -59,11 +59,6 @@ function WearableBody({ state }) {
               Purchase ICE wearables and earn real cash value from free-to-play
               metaverse poker.{' '}
             </p>
-            <span className={styles.button_span}>
-              <button className={cn('btn', styles.left_button)}>Browse</button>
-              <ModalMint className={styles.right_button} ethPrice={0.3} />
-              <ModalWearable />
-            </span>
           </div>
         )}
       </div>

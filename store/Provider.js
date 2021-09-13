@@ -69,6 +69,7 @@ const initialState = {
     dai: 0,
     atri: 0,
     usdt: 0,
+    dg: 0,
   },
   DGBreakdown: {
     eth: 0,

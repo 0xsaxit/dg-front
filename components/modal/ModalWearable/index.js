@@ -26,7 +26,7 @@ const ModalWearable = (props) => {
         close
         trigger={
           <Button className={styles.open_button}>
-            ICE Upgrade
+            Upgrade
           </Button>
         }
       >
