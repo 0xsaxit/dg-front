@@ -1,4 +1,4 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .wearable_modal {
   height: 100% !important;
@@ -30,9 +30,9 @@
 
     .wear_box_purple {
       position: relative;
-      width: 241px;
-      height: 241px;
+      width: 100%;
       border-radius: 16px;
+      margin-top: 30px;
 
       img {
         width: 100%;
@@ -49,6 +49,11 @@
         background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(4px);
         border-radius: 63px;
+      }
+
+      .p2e_enabled {
+        position: absolute;
+        top: -45px;
       }
 
       @include mq($until: medium) {
@@ -111,7 +116,7 @@
 
   .button_area {
     display: flex;
-    margin-top: 16px;
+    margin-top: 17px;
 
     .upgrade_button {
       background-color: #006eff !important;
@@ -119,6 +124,10 @@
       height: 43px;
       border-radius: 10px !important;
       width: 100%;
+      font-family: Larsseit-Regular !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      letter-spacing: 0.5px !important;
     }
 
     .button_close {
@@ -135,6 +144,73 @@
       line-height: 27px;
       text-align: center;
       color: #ffffff;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .wearable_modal {
+    .wear_box {
+      .wear_box_purple {
+        img {
+          width: 80%;
+        }
+
+        .p2e_enabled {
+          position: absolute;
+          top: -30px;
+          height: 70px;
+        }
+      }
+  
+
+      .card_body {
+        .card {
+          padding: 5px;
+          font-size: 12px;
+        }
+      }
+    }
+    .card_title {
+      font-size: 18px;
+    }
+    .button_area {
+      .upgrade_button {
+        font-size: 10.5px !important;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+    }
+  }
+}
+
+@include mq($until: medium) {
+  .wearable_modal {
+    .wear_box {
+      .wear_box_purple {
+        .p2e_enabled {
+          position: absolute;
+          top: -45px;
+          height: 100px;
+        }
+      }
+
+      .card_body {
+        .card {
+          padding: 5px 15px;
+          font-size: 13px;
+        }
+      }
+    }
+    .card_title {
+      font-size: 24px;
+    }
+    .button_area {
+      .upgrade_button {
+        font-size: 15px !important;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
     }
   }
 }

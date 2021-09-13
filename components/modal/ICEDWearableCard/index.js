@@ -16,6 +16,7 @@ const ICEDWearableCard = props => {
             {/*<div className={styles.delegatebtn}>
                 Delegated To {props.address? props.address : 'You' }
             </div>*/}
+            <img className={styles.p2e_enabled} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631366559/ICE_ENABLED_zxdq3e.svg" />
             <img src={props.url} />
           </div>
           <div className={styles.card_body}>
