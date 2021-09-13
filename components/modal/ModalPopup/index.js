@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const ModalPopup = () => {
-  
   const { t, i18n } = useTranslation();
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -21,12 +20,11 @@ const ModalPopup = () => {
   const [isToastShow, setIsToastShow] = useState(false);
 
   const [visibleStatus, setVisibleStatus] = useState(false);
-  
 
   useEffect(() => {
     const showStatus = () => {
-      setVisibleStatus(true);      
-    }
+      setVisibleStatus(true);
+    };
     const hideStatus = () => {
       setTimeout(() => {
         setVisibleStatus(false);
@@ -41,19 +39,17 @@ const ModalPopup = () => {
           type: 'set_openModal',
           data: {
             resumeID: 0,
-            lockID: 0
+            lockID: 0,
           },
         });
-      }, 5000);      
-    }
+      }, 5000);
+    };
 
     showStatus();
-    if(state.dgLoading === 2) {      
+    if (state.dgLoading === 2) {
       hideStatus();
     }
-
   }, [state.dgLoading]);
-
 
   const onCopy = () => {
     navigator.clipboard.writeText(state.userAddress);
@@ -105,9 +101,9 @@ const ModalPopup = () => {
         trigger={
           <div>
             {visibleStatus > 0 && state.dgLoading > 0 && (
-              <div 
-                style = {{
-                  background: state.dgLoading > 1 ? '#007d39':'#1c70c3',
+              <div
+                style={{
+                  background: state.dgLoading > 1 ? '#007d39' : '#1c70c3',
                   display: 'flex',
                   alignItems: 'center',
                   padding: '6px',
@@ -117,27 +113,27 @@ const ModalPopup = () => {
                   marginLeft: '80px',
                   fontSize: '13px',
                   cursor: 'pointer',
-                  zIndex: 9999
+                  zIndex: 9999,
                 }}
                 className="account-transfer"
-                onClick = {(event)=>{
+                onClick={event => {
                   event.stopPropagation();
 
-                  const pathURL = window.location.pathname;                  
-                  if(pathURL !== '/account') {
+                  const pathURL = window.location.pathname;
+                  if (pathURL !== '/account') {
                     router.push('/account');
                   }
-                  const currentModal = state.openModal; 
-                  console.log("dgLoading: =>", state.dgLoading);
-                  console.log("currentModal: =>", currentModal);
+                  const currentModal = state.openModal;
+                  console.log('dgLoading: =>', state.dgLoading);
+                  console.log('currentModal: =>', currentModal);
 
                   dispatch({
                     type: 'set_dgShow',
-                    data: true
+                    data: true,
                   });
                 }}
               >
-                {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending' }
+                {state.dgLoading > 1 ? 'Transfer Complete' : 'Transfer Pending'}
               </div>
             )}
             <Button
@@ -147,7 +143,7 @@ const ModalPopup = () => {
                 paddingRight: '24px',
                 marginTop: 0,
                 marginRight: 0,
-                zIndex: 1
+                zIndex: 1,
               }}
             >
               <span>
