@@ -61,7 +61,7 @@ const detailsCasinos = {
     'Tominoya',
     'Tominoya is a Japanese-themed scene located in the Vegas City district of Decentraland. The scene features two floors with three wings each, and a conference center upstairs where live video streams are held.',
     'ROULETTE • BLACKJACK • POKER',
-    'https://play.decentraland.org/?position=-119%2C133&realm=dg',
+    'https://play.decentraland.org/?position=-118%2C135&realm=dg',
     'https://docs.decentral.games/operators/tominoya',
   ],
   Atari: [
@@ -97,7 +97,7 @@ const detailsCasinos = {
     'Bored Ape Yacht Club',
     'The Bored Ape Yacht Club is a riverboat themed venue located within the Vegas City district in Decentraland. The scene has Ape-themed croupiers stylized in the likeness of the immensely popular NFT series',
     'ROULETTE • BLACKJACK • POKER',
-    'https://play.decentraland.org/?position=-118%2C135&realm=dg',
+    'https://play.decentraland.org/?position=-110%2C121&realm=dg',
     'https://docs.decentral.games/operators/dext',
   ],
   Aquarium: [
@@ -490,34 +490,9 @@ const Offerings = (props) => {
 
                 <Link href="/games/ice">
                   <div className={styles.menu_item}>
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect 
-                        x="1" 
-                        y="1" 
-                        width="20" 
-                        height="20" 
-                        rx="2.83333" 
-                        stroke={gameState === 'ice' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
+                    <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path 
-                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
-                        fill={gameState === 'ice' ? 'white' : '#808080'} 
-                      />
-                      <path 
-                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
-                        fill={gameState === 'ice' ? 'white' : '#808080'} 
-                      />
-                      <path 
-                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z" 
                         fill={gameState === 'ice' ? 'white' : '#808080'} 
                       />
                     </svg>
@@ -628,7 +603,7 @@ const Offerings = (props) => {
               </div>
             )}
             <div className={styles.menu_list}>
-              <div className={styles.menu_header}>Navigation</div>
+              <div className={styles.menu_header}>Offerings</div>
 
               <div>
                 <Link href="/games">
@@ -798,38 +773,13 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect 
-                        x="1" 
-                        y="1" 
-                        width="20" 
-                        height="20" 
-                        rx="2.83333" 
-                        stroke={gameState === 'ice' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
+                    <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path 
-                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
-                        fill={gameState === 'ice' ? 'white' : '#808080'} 
-                      />
-                      <path 
-                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
-                        fill={gameState === 'ice' ? 'white' : '#808080'} 
-                      />
-                      <path 
-                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
+                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z" 
                         fill={gameState === 'ice' ? 'white' : '#808080'} 
                       />
                     </svg>
-                    <div className={styles.menu_title}>ICE</div>
+                    <div className={styles.menu_title}>ICE Wearables</div>
                   </div>
                 </Link>
 
