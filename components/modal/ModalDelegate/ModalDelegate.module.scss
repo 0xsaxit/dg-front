@@ -5,8 +5,7 @@
   color: white !important;
   height: 43px;
   font-family: Larsseit-Bold;
-  font-size: 14px;
-  width: 47%;
+  font-size: 14px; 
   border-radius: 10px !important;
 }
 
@@ -246,27 +245,25 @@
 
       .button_upgrade {
         display: flex;
-        flex: auto;
+        justify-content: center;        
         align-items: center;
         font-family: Larsseit-Bold !important;
         font-style: normal !important;
         font-size: 18px !important;
         line-height: 24px !important;
-
         height: 48px;
         background: #006eff;
         border-radius: 10px;
-
-        font-family: Larsseit-Bold;
-        font-style: normal;
-        font-size: 17px;
-        line-height: 24px;
         text-align: center;
         color: #ffffff;
+        padding-left: 20px;
+        padding-right: 20px;
       }
+
 
       .button_close {
         display: flex;
+        justify-content: center;
         flex: auto;
         align-items: center;
         height: 48px;
@@ -280,6 +277,15 @@
         text-align: center;
         color: #ffffff;
       }
+    }
+
+    .delegateInfo {
+      margin-top: 12px;
+      font-family: Larsseit-Regular;
+      font-style: normal;
+      font-size: 11px;
+      line-height: 15px;
+      color: #FFB5B5;
     }
   }
 }

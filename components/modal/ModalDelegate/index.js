@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import cn from 'classnames';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalDelegate.module.scss';
+
+import ModalSuccessDelegation from '../ModalSuccessDelegation';
+//ModalSuccessDelegation
 
 const ModalDelegate = (props) => {
 
   const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [entered, setEntered] = useState(true);
+
   return (
     <>
+    {!success? (
       <Modal
         className={styles.delegate_modal}
         onClose={() => setOpen(false)}
@@ -114,25 +120,43 @@ const ModalDelegate = (props) => {
                 <div className={styles.card_area_body} style={{width: '100%'}}>
                   <div className={styles.inputcard}>
                     To:
-                    <input className={styles.input} placeholder="Paste ETH Address Here" />
+                    <input className={styles.input} placeholder="Paste ETH Address Here" onChange={(evt)=> {
+                      //console.log(evt.target.value);
+                      if(evt.target.value.length > 0) {
+                        setEntered(false);
+                      } else {
+                        setEntered(true);
+                      }
+                    }} />
                   </div>
                 </div>
               </div>
             </div>
             
             <div className={styles.button_area} >
-              <Button className={styles.button_upgrade} onClick={() => {
-                setUpgrade(false);
-              }}>
+              <Button 
+                className={styles.button_upgrade}
+                onClick={() => {
+                  setOpen(false);
+                  setSuccess(true);
+                }} 
+                disabled={entered}
+              >
                 Delegate Wearable
               </Button>
               <Button className={styles.button_close}>
                 Learn More
               </Button>
             </div>
+
+            <div className={styles.delegateInfo}>
+              Address already has delegated wearables. Only 1 person can delegate
+            </div>
           </div>          
         </div>
-      </Modal>
+      </Modal>) : (
+        <ModalSuccessDelegation setSuccess={setSuccess} />
+      )}
     </>
   );
 };
