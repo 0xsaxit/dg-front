@@ -4,10 +4,13 @@
   background-color: #1F1F1F !important;
   color: white !important;
   height: 43px;
-  font-family: Larsseit-Bold;
-  font-size: 14px;
-  width: 47%;
+  width: calc(50% - 8px) !important;
   border-radius: 10px !important;
+  font-family: Larsseit-Regular !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 5px !important;
+  letter-spacing: 0.3px !important;
 }
 
 .delegate_modal {
@@ -281,5 +284,19 @@
         color: #ffffff;
       }
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .open_button {
+    font-size: 10.5px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+@include mq($until: medium) {
+  .open_button {
+    font-size: 15px !important;
   }
 }
