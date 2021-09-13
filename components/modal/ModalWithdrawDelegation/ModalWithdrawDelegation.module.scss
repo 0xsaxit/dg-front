@@ -6,6 +6,9 @@
   height: 43px;
   border-radius: 10px !important;
   width: 100%;
+  font-family: Larsseit-Bold !important;
+  font-size: 14px !important;
+  line-height: 22px !important;
 }
 
 .confirmation_modal {
@@ -155,5 +158,19 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .open_button {
+    font-size: 10.5px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+@include mq($until: medium) {
+  .open_button {
+    font-size: 15px !important;
   }
 }

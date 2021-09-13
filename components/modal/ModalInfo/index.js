@@ -6,6 +6,7 @@ import styles from './ModalInfo.module.scss';
 import cn from 'classnames';
 import Global from '../../Constants';
 
+
 const ModalInfo = () => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);

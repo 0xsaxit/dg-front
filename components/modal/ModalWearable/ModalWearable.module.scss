@@ -3,10 +3,12 @@
 .open_button {
   background-color: #006EFF !important;
   color: white !important;
-  height: 42px;
+  height: 43px;
   border-radius: 10px !important;  
-  font-family: Larsseit-Bold;
+  font-family: Larsseit-Bold !important;
   font-size: 14px !important;
+  width: calc(50% - 8px) !important;
+  line-height: 22px !important;
 }
 
 .play_now_modal {
@@ -430,5 +432,19 @@
   .learn_button:focus {
     box-shadow: none;
     border: 0px solid black;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .open_button {
+    font-size: 10.5px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+@include mq($until: medium) {
+  .open_button {
+    font-size: 15px !important;
   }
 }
