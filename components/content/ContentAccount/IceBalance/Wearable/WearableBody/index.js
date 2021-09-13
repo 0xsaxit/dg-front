@@ -14,8 +14,8 @@ function WearableBody({ state }) {
       <div className={styles.wearable}>
         <WearableHeader />
         {state.userStatus ? (
-          <div className={styles.wearable_card_container}>
-            <div className={styles.wearable_card}>
+          <div className={cn("row", styles.wearable_card_container)}>
+            <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
               <ICEDWearableCard
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
                 desc="20% Max ICE Bonus"
@@ -24,7 +24,7 @@ function WearableBody({ state }) {
               />
             </div>
 
-            <div className={styles.wearable_card}>
+            <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
               <ICEDWearableCard
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855104/Group_224_sils6v.png"
                 address="0x23.."
@@ -34,7 +34,7 @@ function WearableBody({ state }) {
               />
             </div>
 
-            <div className={styles.wearable_card}>
+            <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
               <ICEDWearableCard
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
                 address="0x23.."
