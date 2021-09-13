@@ -3,10 +3,12 @@ import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionTwo() {
   const mobile = useMediaQuery('(max-width: 767px)');
   const tablet = useMediaQuery('(max-width: 992px)');
+  // const { t, i18n } = useTranslation();
 
   return (
     <Aux>
@@ -78,10 +80,13 @@ function SectionTwo() {
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
-            <h1 className={styles.section_h1}>Play to Earn</h1>
+            <h1 className={styles.section_h1}>
+              {/* {t('Home.PLAYTOEARN')} */}
+              Play to Earn
+            </h1>
             <p className={styles.section_p}>
-              Play games in the metaverse and earn $DG token win or lose.
-              Get up to 50% of your expected losses back in $DG.
+              {/* {t('Home.PLAY_GAMES_META')} */}
+              Play games in the metaverse and earn $DG token win or lose. Get up to 50% of your expected losses back in $DG.
             </p>
 
             <span
@@ -93,8 +98,9 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Info' :
-                'Learn More'
+                'Info' //t('Home.INFO') 
+                :
+                'Learn More' //t('Home.LEARNMORE')
               }
               </Button>
               <Button
@@ -103,8 +109,9 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Games' :
-                'See Games'
+                'Games' // t('Home.GAMES') 
+                :
+                'See Games' // t('Home.SEEGAMES')
               }
               </Button>
             </span>
@@ -177,8 +184,12 @@ function SectionTwo() {
             )}
             style={{ position: 'relative', zIndex: '3' }}
           >
-            <h1 className={styles.section_h1}>Earn APY%</h1>
-            <p className={styles.section_p} style={{ marginRight: '24px' }}>
+            <h1 className={styles.section_h1}>
+              {/* {t('Home.EARNAPY')} */}
+              Earn APY%
+            </h1>
+            <p className={styles.section_p}>
+              {/* {t('Home.STAKE_DG_GOVERNANCE')} */}
               Stake $DG in governance and earn up to 40% in yield rewards.
             </p>
 
@@ -191,8 +202,9 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Info' :
-                'Learn More'
+                'Info' //t('Home.INFO')
+                :
+                'Learn More' //t('Home.LEARNMORE')
               }
               </Button>
               <Button
@@ -201,8 +213,9 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Earn' :
-                'Earn APY%'
+                'Earn' //t('Home.EARN') 
+                :
+                'Earn APY%' //t('Home.EARNAPY')
               }
               </Button>
             </span>
@@ -227,11 +240,13 @@ function SectionTwo() {
             style={{ position: 'relative', zIndex: '3' }}
           >
             <h1 className={styles.section_h1}>
-              Vote in the DAO <br /> (Be The House)
+            Vote in the DAO {/* {t('Home.VOTE_IN_THE_DAO')}  */}
+              <br /> 
+              (Be The House) {/* {t('Home.BE_THE_HOUSE')} */}
             </h1>
             <p className={styles.section_p}>
-              With the $DG DAO, you own the house. Control the profits, 
-              vote for new games, and decide on feature proposals.
+              {/* {t('Home.WITH_THE_DG_DAO')} */}
+              With the $DG DAO, you own the casino. Control the profits, vote for new games, and decide on feature proposals.
             </p>
 
             <span
@@ -243,12 +258,17 @@ function SectionTwo() {
                 target="_blank"
               >
               {mobile ?
-                'Info' :
-                'Learn More'
+                'Info' // t('Home.INFO') 
+                :
+                'Learn More '// t('Home.LEARNMORE')
               }
               </Button>
               <Button className={styles.blue_button} href="/dg/">
-                {tablet ? 'Explore' : 'Explore Treasury'}
+                {tablet ? 
+                  'Explore' // t('Home.EXPLORER')
+                  : 
+                  'Explore Treasury' // t('Home.EXPLORER_THREASURY')
+                }
               </Button>
             </span>
           </div>

@@ -121,6 +121,7 @@ const initialState = {
   },
   dgWarningMsg: false,
   toastMessage: '',
+  selectedLang: 0,
 };
 
 const reducer = (state, action) => {
@@ -370,6 +371,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         toastMessage: action.data,
+      };
+    case 'set_selectedLang':
+      return {
+        ...state,
+        selectedLang: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');

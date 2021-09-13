@@ -3,9 +3,11 @@ import cn from 'classnames';
 import { useMediaQuery } from 'hooks';
 import Aux from 'components/_Aux';
 import styles from './DG.module.scss';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 function SectionOne(props) {
   const mobile = useMediaQuery('(max-width: 576px)');
+  //const { t, i18n } = useTranslation();
 
   return (
     <Aux>
@@ -31,12 +33,20 @@ function SectionOne(props) {
           <div className="col-md-12 col-lg-9 d-flex flex-column">
             <h1>
               {' '}
-              Play to Earn gaming in the Metaverse
+              {/* { t('Home.PLAY') } */}
+              Play
+              <span style={{ fontFamily: 'Shadows Into Light, cursive' }}>
+                {' '}
+                {/* { t('Home.ANDOWN') } */}
+                (and own){' '}
+              </span>
+              {/* { t('Home.FIRSTEVER') } */}
+              the first ever metaverse casino .{' '}
             </h1>
             <p className={cn(styles.content, mobile ? 'px-6 mx-auto' : 'px-0')}>
               {mobile
                 ? ''
-                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing.'
+                : 'With $DG, you are the house: You control the profits, vote on new games, and earn money back directly by playing' //t('Home.YOUAREHOUSE')
                }
             </p>
             <span className={styles.button_group}>
@@ -47,8 +57,9 @@ function SectionOne(props) {
                 target="_blank"
               >
                 {mobile ?
-                  'Info' :
-                  'Learn More'
+                  'Info' //t('Home.INFO') 
+                  :
+                  'Learn More' //t('Home.LEARNMORE')
                 }
               </Button>
               <Button
@@ -58,8 +69,9 @@ function SectionOne(props) {
                 target="_blank"
               >
                 {mobile ?
-                  'Play' :
-                  'Play Now'
+                  'Play' //t('Home.PLAY') 
+                  :
+                  'Play Now' //t('Home.PLAYNOW')
                 }
               </Button>
             </span>
