@@ -69,6 +69,14 @@ function ICEAttributes() {
           data: itemLimits,
         });
 
+        // get the user's one-hour cool-down status
+        const canPurchase = await getCoolDownStatus();
+
+        dispatch({
+          type: 'can_purchase',
+          data: canPurchase,
+        });
+
         // update global state token amounts/authorization status
         const tokenAmounts = await getTokenAmounts();
 
@@ -85,26 +93,46 @@ function ICEAttributes() {
   async function getItemLimits() {
     try {
       const ITEM_LIMIT_0 = await ICERegistrantContract.methods.limits(0).call();
-      const ITEM_LIMIT_1 = await ICERegistrantContract.methods.limits(1).call();
-      const ITEM_LIMIT_2 = await ICERegistrantContract.methods.limits(2).call();
-      const ITEM_LIMIT_3 = await ICERegistrantContract.methods.limits(3).call();
-      const ITEM_LIMIT_4 = await ICERegistrantContract.methods.limits(4).call();
+      const ITEM_LIMIT_5 = await ICERegistrantContract.methods.limits(5).call();
+      const ITEM_LIMIT_10 = await ICERegistrantContract.methods
+        .limits(10)
+        .call();
+      const ITEM_LIMIT_15 = await ICERegistrantContract.methods
+        .limits(15)
+        .call();
+      const ITEM_LIMIT_20 = await ICERegistrantContract.methods
+        .limits(20)
+        .call();
 
       console.log('Item limit (0): ' + ITEM_LIMIT_0);
-      console.log('Item limit (1): ' + ITEM_LIMIT_1);
-      console.log('Item limit (2): ' + ITEM_LIMIT_2);
-      console.log('Item limit (3): ' + ITEM_LIMIT_3);
-      console.log('Item limit (4): ' + ITEM_LIMIT_4);
+      console.log('Item limit (5): ' + ITEM_LIMIT_5);
+      console.log('Item limit (10): ' + ITEM_LIMIT_10);
+      console.log('Item limit (15): ' + ITEM_LIMIT_15);
+      console.log('Item limit (20): ' + ITEM_LIMIT_20);
 
-      return {
-        ITEM_LIMIT_0: parseInt(ITEM_LIMIT_0),
-        ITEM_LIMIT_1: parseInt(ITEM_LIMIT_1),
-        ITEM_LIMIT_2: parseInt(ITEM_LIMIT_2),
-        ITEM_LIMIT_3: parseInt(ITEM_LIMIT_3),
-        ITEM_LIMIT_4: parseInt(ITEM_LIMIT_4),
-      };
+      return [
+        [parseInt(ITEM_LIMIT_0), 0],
+        [parseInt(ITEM_LIMIT_5), 5],
+        [parseInt(ITEM_LIMIT_10), 10],
+        [parseInt(ITEM_LIMIT_15), 15],
+        [parseInt(ITEM_LIMIT_20), 20],
+      ];
     } catch (error) {
-      console.log('Items get limits error: ' + error);
+      console.log('Get item limits error: ' + error);
+    }
+  }
+
+  async function getCoolDownStatus() {
+    try {
+      const canPurchase = await ICERegistrantContract.methods
+        .canPurchaseAgain(state.userAddress)
+        .call();
+
+      console.log('User allow purchase status: ' + canPurchase);
+
+      return canPurchase;
+    } catch (error) {
+      console.log('Get user allow purchase status error: ' + error);
     }
   }
 
@@ -163,7 +191,7 @@ function ICEAttributes() {
         // ICE_AUTHORIZATION: ICE_AUTHORIZATION,
       };
     } catch (error) {
-      console.log('Tokens get amounts error: ' + error);
+      console.log('Get token amounts error: ' + error);
     }
   }
 
