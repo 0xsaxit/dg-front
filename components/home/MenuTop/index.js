@@ -18,7 +18,7 @@ import MessageToast from 'components/home/MessageToast';
 const MenuTop = props => {
   // const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
+  const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
 
@@ -255,8 +255,8 @@ const MenuTop = props => {
         {isMobile && (
           <Link href="/dg">
             <Menu.Item className={styles.menu_style}>
-             {/* {t('navMenu.DAO')} */}
-             DAO
+              {/* {t('navMenu.DAO')} */}
+              DAO
             </Menu.Item>
           </Link>
         )}
@@ -303,7 +303,7 @@ const MenuTop = props => {
 
         {isTablet && (
           <Link href="/blog">
-            <Menu.Item className={styles.menu_style}>              
+            <Menu.Item className={styles.menu_style}>
               {/* {t('navMenu.NEWS_BLOG')} */}
               News & Blog
             </Menu.Item>
@@ -327,30 +327,21 @@ const MenuTop = props => {
     );
   }
 
-  // display token balances and 'ADD TOKENS' button, or 'CONNECT METAMASK' button
+  // display token balances and 'MY ACCOUNT' button, or 'CONNECT METAMASK' button
   function balancesAndButtons() {
     return (
       <>
-        <span
-          className={cn(
-            styles.right_menu_items,
-            state.userStatus >= 4 ? '' : 'd-none'
-          )}
-        >
-          {isSquished ?
-            <ModalInfo /> :
-            null
-          }
-          <ModalPopup />
-        </span>
-        <span
-          className={cn(
-            styles.right_menu_items,
-            state.userStatus < 3 ? '' : 'd-none'
-          )}
-        >
-          <ButtonConnect />
-        </span>
+        {state.userStatus >= 4 && state.userLoggedIn && (
+          <span className={styles.right_menu_items}>
+            {isSquished ? <ModalInfo /> : null}
+            <ModalPopup />
+          </span>
+        )}
+        {(state.userStatus < 3 || !state.userLoggedIn) && (
+          <span className={styles.right_menu_items}>
+            <ButtonConnect />
+          </span>
+        )}
         {/*<LanguageModal />*/}
       </>
     );
