@@ -30,8 +30,8 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  MINT_TOKEN: () => {
-    return call(`${API_BASE_URL}/ice/mintToken`, 'GET');
+  MINT_TOKEN: tokenID => {
+    return call(`${API_BASE_URL}/ice/mintToken/${tokenID}`, 'GET');
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////

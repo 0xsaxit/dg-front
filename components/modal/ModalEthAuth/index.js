@@ -19,7 +19,14 @@ const ModalEthAuth = props => {
   const [web3, setWeb3] = useState({});
   const [spenderAddress, setSpenderAddress] = useState('');
   const [authStatus, setAuthStatus] = useState(false);
-  const [itemLimitsArray, setItemLinitsArray] = useState([]);
+  const [canPurchase, setCanPurchase] = useState(true);
+  const [itemLimitsArray, setItemLinitsArray] = useState([
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+  ]);
   const [open, setOpen] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
@@ -64,18 +71,18 @@ const ModalEthAuth = props => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    const itemLimit0 = state.itemLimits.ITEM_LIMIT_0;
-    const itemLimit1 = state.itemLimits.ITEM_LIMIT_1;
-    const itemLimit2 = state.itemLimits.ITEM_LIMIT_2;
-    const itemLimit3 = state.itemLimits.ITEM_LIMIT_3;
-    const itemLimit4 = state.itemLimits.ITEM_LIMIT_4;
+    const itemLimit0 = state.itemLimits[0];
+    const itemLimit5 = state.itemLimits[1];
+    const itemLimit10 = state.itemLimits[2];
+    const itemLimit15 = state.itemLimits[3];
+    const itemLimit20 = state.itemLimits[4];
 
     let itemLimitsArray = [];
     itemLimitsArray.push(itemLimit0);
-    itemLimitsArray.push(itemLimit1);
-    itemLimitsArray.push(itemLimit2);
-    itemLimitsArray.push(itemLimit3);
-    itemLimitsArray.push(itemLimit4);
+    itemLimitsArray.push(itemLimit5);
+    itemLimitsArray.push(itemLimit10);
+    itemLimitsArray.push(itemLimit15);
+    itemLimitsArray.push(itemLimit20);
 
     setItemLinitsArray(itemLimitsArray);
   }, [state.itemLimits]);
@@ -85,6 +92,18 @@ const ModalEthAuth = props => {
 
     setAuthStatus(authStatus);
   }, [state.tokenAmounts]);
+
+  useEffect(() => {
+    const canPurchase = state.canPurchase;
+
+    if (canPurchase) {
+      setButtonMessage('Proceed to Mint');
+    } else {
+      setButtonMessage('Cooldown Period');
+    }
+
+    setCanPurchase(canPurchase);
+  }, [state.canPurchase]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -162,11 +181,12 @@ const ModalEthAuth = props => {
     );
   }
 
-  async function mintToken() {
+  // send-off the API request to mint the user's Level 0 wearable
+  async function mintToken(tokenID) {
     setMinting(true);
     setButtonMessage('Minting Token...');
 
-    const json = await Fetch.MINT_TOKEN();
+    const json = await Fetch.MINT_TOKEN(tokenID);
 
     // console.log('return data...');
     // console.log(json);
@@ -179,8 +199,6 @@ const ModalEthAuth = props => {
         type: 'refresh_token_auth',
         data: refresh,
       });
-
-      setButtonMessage('Proceed to Mint');
     } else {
       setAuthStatus(false);
       setButtonMessage('Token Minting Error');
@@ -238,13 +256,14 @@ const ModalEthAuth = props => {
       open={open}
       close
       trigger={
-        itemLimitsArray[props.index] ? (
+        itemLimitsArray[props.index][0] ? (
           <Button className={styles.open_button}>
-            Mint New Wearable ({itemLimitsArray[props.index]}) ID: {props.index}
+            Mint New Wearable ({itemLimitsArray[props.index][0]}) ID:{' '}
+            {itemLimitsArray[props.index][1]}
           </Button>
         ) : (
           <Button disabled className={styles.open_button}>
-            Sold Out! ID: {props.index}
+            Sold Out! ID: {itemLimitsArray[props.index][1]}
           </Button>
         )
       }
@@ -279,12 +298,18 @@ const ModalEthAuth = props => {
 
           {!minting ? (
             authStatus ? (
-              <Button
-                className={styles.proceed_button}
-                onClick={() => mintToken()}
-              >
-                {buttonMessage}
-              </Button>
+              canPurchase ? (
+                <Button
+                  className={styles.proceed_button}
+                  onClick={() => mintToken(itemLimitsArray[props.index][1])}
+                >
+                  {buttonMessage}
+                </Button>
+              ) : (
+                <Button disabled className={styles.proceed_button}>
+                  {buttonMessage}
+                </Button>
+              )
             ) : (
               <Button disabled className={styles.proceed_button}>
                 {buttonMessage}
