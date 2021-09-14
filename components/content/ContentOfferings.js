@@ -2,8 +2,7 @@ import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 import ModalEthAuth from 'components/modal/ModalEthAuth';
 
-
-const ContentOfferings = (props) => {
+const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
 
@@ -49,7 +48,6 @@ const ContentOfferings = (props) => {
     }
   }, [buttonCasinos1, buttonCasinos2]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentGames() {
@@ -73,14 +71,20 @@ const ContentOfferings = (props) => {
             </span>
             <div className="nft-description">
               <span>
-                <p className="nfts-info">{props.detailsGames[item][4]} {props.detailsGames[item][5]}</p>
+                <p className="nfts-info">
+                  {props.detailsGames[item][4]} {props.detailsGames[item][5]}
+                </p>
               </span>
               <h3 className="nft-other-h3">{props.detailsGames[item][2]}</h3>
-              <p className="nft-other-p">
-                {props.detailsGames[item][3]}
-              </p>
+              <p className="nft-other-p">{props.detailsGames[item][3]}</p>
 
-              <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Button
                   id={`play-now-button-games-${i + 1}`}
                   color="blue"
@@ -104,7 +108,6 @@ const ContentOfferings = (props) => {
       </div>
     );
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -131,9 +134,7 @@ const ContentOfferings = (props) => {
                 </span>
                 <h3 className="nft-other-h3">{props.detailsNFTs[item][2]}</h3>
 
-                <p className="nft-other-p">
-                  {props.detailsNFTs[item][4]}
-                </p>
+                <p className="nft-other-p">{props.detailsNFTs[item][4]}</p>
 
                 <span
                   style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -187,14 +188,12 @@ const ContentOfferings = (props) => {
                 </span>
                 <h3 className="nft-other-h3">{props.detailsICE[item][2]}</h3>
 
-                <p className="nft-other-p">
-                  {props.detailsICE[item][4]}
-                </p>
+                <p className="nft-other-p">{props.detailsICE[item][4]}</p>
 
                 <span
                   style={{ display: 'flex', justifyContent: 'space-between' }}
                 >
-                  <ModalEthAuth />
+                  <ModalEthAuth index={i} />
                 </span>
               </div>
             </div>
@@ -230,9 +229,7 @@ const ContentOfferings = (props) => {
                 <p className="nfts-info">{props.detailsCasinos[item][4]}</p>
               </span>
               <h3 className="nft-other-h3">{props.detailsCasinos[item][2]}</h3>
-              <p className="nft-other-p">
-                {props.detailsCasinos[item][3]}
-              </p>
+              <p className="nft-other-p">{props.detailsCasinos[item][3]}</p>
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -258,7 +255,7 @@ const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentShop() {
     return (
-       <div className="outter-games-container">
+      <div className="outter-games-container">
         {Object.keys(props.detailsShop).map((item, i) => (
           <a
             href={props.detailsShop[item][6] + utm}
@@ -281,9 +278,7 @@ const ContentOfferings = (props) => {
               </span>
               <h3 className="nft-other-h3">{props.detailsShop[item][2]}</h3>
 
-              <p className="nft-other-p">
-                {props.detailsShop[item][3]}
-              </p>
+              <p className="nft-other-p">{props.detailsShop[item][3]}</p>
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
