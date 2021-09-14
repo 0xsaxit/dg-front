@@ -30,6 +30,7 @@ const initialState = {
     [0, 0, 0, 0],
     [0, 0],
   ],
+  userLoggedIn: false,
   transactions: [{}, {}],
   treasuryNumbers: {},
   txHash: '',
@@ -401,6 +402,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedLang: action.data,
+      };
+    case 'set_userLoggedIn':
+      return {
+        ...state,
+        userLoggedIn: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');
