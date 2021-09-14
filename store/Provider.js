@@ -95,13 +95,14 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
-  itemLimits: {
-    ITEM_LIMIT_0: 0,
-    ITEM_LIMIT_1: 0,
-    ITEM_LIMIT_2: 0,
-    ITEM_LIMIT_3: 0,
-    ITEM_LIMIT_4: 0,
-  },
+  itemLimits: [
+    [0, 0],
+    [0, 5],
+    [0, 10],
+    [0, 15],
+    [0, 20],
+  ],
+  canPurchase: true,
   tokenAmounts: {
     WETH_COST_AMOUNT: 0,
     // DG_COST_AMOUNT: 0,
@@ -250,6 +251,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         itemLimits: action.data,
+      };
+
+    case 'can_purchase':
+      return {
+        ...state,
+        canPurchase: action.data,
       };
 
     case 'token_amounts':

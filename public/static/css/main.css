@@ -2,6 +2,11 @@
 /*               UNIVERSAL CSS               */
 /* ----------------------------------------- */
 
+.scrolling.dimmable.dimmed {
+  overflow: hidden !important;
+  margin-right: -15px !important;
+}
+
 img.react-parallax-bgimage {
   object-fit: cover;
 }
