@@ -188,9 +188,6 @@ const ModalEthAuth = props => {
 
     const json = await Fetch.MINT_TOKEN(tokenID);
 
-    // console.log('return data...');
-    // console.log(json);
-
     if (json.status) {
       // update global state token authorizations
       const refresh = !state.refreshTokenAuth;
@@ -199,9 +196,12 @@ const ModalEthAuth = props => {
         type: 'refresh_token_auth',
         data: refresh,
       });
-    } else {
-      setAuthStatus(false);
+    } else if (!json.status) {
       setButtonMessage('Token Minting Error');
+      console.log(json.result);
+    } else if (json.status === 'error') {
+      setButtonMessage(json.result);
+      console.log(json.result);
     }
 
     setMinting(false);
