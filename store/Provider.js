@@ -95,7 +95,19 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
-  tokenAuthorizations: {
+  itemLimits: {
+    ITEM_LIMIT_0: 0,
+    ITEM_LIMIT_1: 0,
+    ITEM_LIMIT_2: 0,
+    ITEM_LIMIT_3: 0,
+    ITEM_LIMIT_4: 0,
+  },
+  tokenAmounts: {
+    WETH_COST_AMOUNT: 0,
+    // DG_COST_AMOUNT: 0,
+    // DG_MOVE_AMOUNT: 0,
+    // ICE_COST_AMOUNT: 0,
+    // ICE_MOVE_AMOUNT: 0,
     DG_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
     // ICE_AUTHORIZATION: false
@@ -234,10 +246,16 @@ const reducer = (state, action) => {
         stakingBalances: action.data,
       };
 
-    case 'token_authorizations':
+    case 'item_limits':
       return {
         ...state,
-        tokenAuthorizations: action.data,
+        itemLimits: action.data,
+      };
+
+    case 'token_amounts':
+      return {
+        ...state,
+        tokenAmounts: action.data,
       };
 
     case 'dg_prices':
