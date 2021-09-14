@@ -60,6 +60,14 @@ const ButtonConnect = () => {
       if (currentTimestamp > expiredTimestamp) {
         openMetaMask();
       }
+
+      // if we are on this block and have the loggedIn LS entry, assume a login
+      if (localStorage.getItem('loggedIn')) {
+        dispatch({
+          type: 'set_userLoggedIn',
+          data: true,
+        });
+      }
     } else {
       localStorage.removeItem('token');
       localStorage.removeItem('expiretime');
@@ -106,7 +114,31 @@ const ButtonConnect = () => {
   async function openMetaMask() {
     if (metamaskEnabled) {
       // open MetaMask for login then get the user's wallet address
-      await window.ethereum.enable();
+
+      // the only way to be able to click on this button with a user status >= 4 is to have clicked in the "disconnect" button in ModalPopUp
+      if (state.userStatus >= 4) {
+        // will re-prompt to select an account, even if metamask is already enabled in the site
+        // works for users that are "disconnected" but want to switch accounts
+        await window.ethereum.request({
+          method: 'wallet_requestPermissions',
+          params: [
+            {
+              eth_accounts: {},
+            },
+          ],
+        });
+      } else {
+        // otherwise do the usual
+        await window.ethereum.request({
+          method: 'eth_requestAccounts',
+          params: [
+            {
+              eth_accounts: {},
+            },
+          ],
+        });
+      }
+
       userAddress = window.ethereum.selectedAddress;
 
       // track MetaMask connect event
@@ -162,6 +194,14 @@ const ButtonConnect = () => {
         data: value,
       });
     }
+
+    // user will be updated either way, but only if response is truthy (line 150)
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: true,
+    });
+
+    localStorage.setItem('loggedIn', true);
   }
 
   async function getUserStatus() {

@@ -63,6 +63,16 @@ const ModalPopup = () => {
     analytics.track('Clicked AFFILIATE LINK button');
   };
 
+  const disconnect = () => {
+    // update "login" status in store and LS
+    dispatch({
+      type: 'set_userLoggedIn',
+      data: false,
+    });
+
+    localStorage.removeItem('loggedIn');
+  };
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -293,9 +303,9 @@ const ModalPopup = () => {
             <Link href="/account/referrals">
               <p className="account-dropdown-item"> Referrals </p>
             </Link>
-            {/*<a onClick={() => disconnectMetaMask()}>
+            <a onClick={disconnect}>
               <p className="account-dropdown-item"> Disconnect </p>
-            </a>*/}
+            </a>
             <Button
               className={binance ? 'buy-dg-button binance' : 'buy-dg-button'}
               href="https://app.uniswap.org/#/swap?outputCurrency=0xee06a81a695750e71a662b51066f2c74cf4478a0"
@@ -317,3 +327,4 @@ const ModalPopup = () => {
 };
 
 export default ModalPopup;
+
