@@ -12,9 +12,7 @@ const KEYS = {
 // common constant values
 const CONSTANTS = {
   BASE_URL: 'https://decentral.games',
-  MAX_AMOUNT:
-    '115792089237316195423570985008687907853269984665640564039457584007913129639935',
-  WEARABLE_AMOUNT: '100000000000000000', // 0.1 ETH
+  MAX_AMOUNT: '115792089237316195423570985008687907853269984665640564039457584007913129639935',
   GAS_LIMIT: '3000000', // was '900000'
   GAS_AMOUNT: '80000000000', // was '20000000000'
   FACTOR: 1000000000000000000, // ETH-to-WEI multiplication factor
@@ -24,8 +22,7 @@ const CONSTANTS = {
   MATIC_URL: 'https://rpc-mainnet.maticvigil.com/v1/7089dae85151c62193fcd92f53de4d9ff749bcc2', // 'https://rpc-mainnet.matic.network',
   MATIC_EXPLORER: 'https://explorer-mainnet.maticvigil.com',
   TITLE: 'Decentral Games',
-  DESCRIPTION:
-    'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
+  DESCRIPTION: 'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
 };
@@ -55,9 +52,7 @@ const ADDRESSES = (() => {
   const DG_STAKING_UNISWAP_ADDRESS = '0x55ceb773c494cf7ad4f2e3170936866bd7eff1c9';
   const DG_STAKING_GOVERNANCE_ADDRESS = '0xf1d113059517dbddd99ab9caffa76fc01f0557cd';
   const DG_KEEPER_CONTRACT_ADDRESS = '0x6b5C29B035Ec40a7cE567f1F11cc90eBfa4f1D17';
-
-  const ICE_REGISTRANT_ADDRESS = '0xBF79cE2fbd819e5aBC2327563D02a200255B7Cb3'; // change this later
-
+  const ICE_REGISTRANT_ADDRESS = '0x01e5EB0a168b4c4bB202bf64A52398488a5c38c7';
   const BP_TOKEN_ADDRESS_1 = '0xca54c398195fce98856888b0fd97a9470a140f71';
   const BP_TOKEN_ADDRESS_2 = '0x3cf393b95a4fbf9b2bdfc2011fd6675cf51d3e5d';
   const UNISWAP_ADDRESS_STAKING = '0x44c21f5dcb285d92320ae345c92e8b6204be8cdf';
