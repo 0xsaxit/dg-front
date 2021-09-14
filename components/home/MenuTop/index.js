@@ -12,6 +12,7 @@ import ButtonConnect from '../../button/ButtonConnect/index.js';
 import LanguageModal from 'components/modal/LanguageModal';
 import styles from './MenuTop.module.scss';
 import MessageToast from 'components/home/MessageToast';
+import ReactGA from 'react-ga';
 
 // import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
@@ -43,6 +44,16 @@ const MenuTop = props => {
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    if (state.userStatus >= 4) {
+      ReactGA.event({
+        category: 'Logged In',
+        action: 'User Logged In',
+        label: 'Home Page',
+      });
+    }
+  }, [state.userStatus]);
 
   useEffect(() => {
     (async function () {
