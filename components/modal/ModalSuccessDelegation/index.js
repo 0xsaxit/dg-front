@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
 import cn from 'classnames';
 import { Modal, Button } from 'semantic-ui-react';
-import styles from './ModalWithdrawDelegation.module.scss';
-import ModalDelegateConfirm from '../ModalDelegateConfirm';
+import styles from './ModalSuccessDelegation.module.scss';
 
-const ModalWithdrawDelegation = (props) => {
+const ModalSuccessDelegation = (props) => {
 
-  const [open, setOpen] = useState(false);
-  const [success, setSuccess] = useState(false);
-  
+  const [open, setOpen] = useState(true);
   return (
     <>
-      {!success? (<Modal
-        className={styles.confirmation_modal}
+      <Modal
+        className={styles.success_modal}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         close
         trigger={
           <Button className={styles.open_button}>
-            Withdraw Delegation
+            Delegate
           </Button>
         }
       >
-        <div className={styles.close_icon} onClick={() => setOpen(false)}>
+        <div className={styles.close_icon} onClick={() => {
+          setOpen(false);
+          props.setSuccess(false);
+          }}>
           <span className={styles.button_close}>
             <svg
               width="12"
@@ -39,10 +39,11 @@ const ModalWithdrawDelegation = (props) => {
             </svg>
           </span>
         </div>
-        <div className={styles.confirmation_container}>
+        <div style={{ color: 'white', display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
+
           <div className={styles.wear_box_body}>
             <div className={styles.header}>
-              Delegate Details
+              Delegation Successful!
             </div>
 
             <div className={styles.description} >
@@ -77,19 +78,15 @@ const ModalWithdrawDelegation = (props) => {
             </div>
 
             <div className={styles.button_area} >
-              <Button className={styles.button_close} onClick={()=> {
-                setOpen(false);
-                setSuccess(true);
-              }}>
-                <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png" className={styles.icon} />
+              <Button className={styles.button_close}>
                 Withdraw Delegation
               </Button>
             </div>
           </div>
         </div>
-      </Modal>) : (<ModalDelegateConfirm setSuccess = {setSuccess} />)}
+      </Modal>
     </>
   );
 };
 
-export default ModalWithdrawDelegation;
+export default ModalSuccessDelegation;

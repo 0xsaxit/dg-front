@@ -30,6 +30,7 @@ const initialState = {
     [0, 0, 0, 0],
     [0, 0],
   ],
+  userLoggedIn: false,
   transactions: [{}, {}],
   treasuryNumbers: {},
   txHash: '',
@@ -95,7 +96,20 @@ const initialState = {
     BALANCE_STAKED_UNISWAP: 0,
     BALANCE_WALLET_UNISWAP: 0,
   },
-  tokenAuthorizations: {
+  itemLimits: [
+    [0, 0],
+    [0, 5],
+    [0, 10],
+    [0, 15],
+    [0, 20],
+  ],
+  canPurchase: true,
+  tokenAmounts: {
+    WETH_COST_AMOUNT: 0,
+    // DG_COST_AMOUNT: 0,
+    // DG_MOVE_AMOUNT: 0,
+    // ICE_COST_AMOUNT: 0,
+    // ICE_MOVE_AMOUNT: 0,
     DG_AUTHORIZATION: false,
     WETH_AUTHORIZATION: false,
     // ICE_AUTHORIZATION: false
@@ -234,10 +248,22 @@ const reducer = (state, action) => {
         stakingBalances: action.data,
       };
 
-    case 'token_authorizations':
+    case 'item_limits':
       return {
         ...state,
-        tokenAuthorizations: action.data,
+        itemLimits: action.data,
+      };
+
+    case 'can_purchase':
+      return {
+        ...state,
+        canPurchase: action.data,
+      };
+
+    case 'token_amounts':
+      return {
+        ...state,
+        tokenAmounts: action.data,
       };
 
     case 'dg_prices':
@@ -376,6 +402,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedLang: action.data,
+      };
+    case 'set_userLoggedIn':
+      return {
+        ...state,
+        userLoggedIn: action.data,
       };
     default:
       throw new Error('Wrong action type got dispatched');
