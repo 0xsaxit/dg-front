@@ -20,7 +20,9 @@ function ICE({ state }) {
             metaverse poker.{' '}
           </p>
           <span className={styles.button_span}>
-            <Button className={styles.button_right}>Browse Wearables</Button>
+            <Button className={styles.button_right} href="/games/ice">
+              Browse Wearables
+            </Button>
             {/* <ModalMint className={styles.right_button} ethPrice={0.3} /> */}
           </span>
         </div>
