@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import styles from './ContentOfferings.module.scss';
 import ModalMintActivation from 'components/modal/ModalMintActivation';
 
-// install Swiper modules
 const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
