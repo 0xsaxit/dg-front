@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react';
 import ModalEthAuth from 'components/modal/ModalEthAuth';
 import ModalMint from 'components/modal/ModalMint';
 
+<<<<<<< HEAD:components/content/ContentOfferings/index.js
 import styles from './ContentOfferings.module.scss';
 
 // install Swiper modules
+=======
+>>>>>>> 8616b1be566b2f031d4bdc88a01e3985ff0e7493:components/content/ContentOfferings.js
 const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
