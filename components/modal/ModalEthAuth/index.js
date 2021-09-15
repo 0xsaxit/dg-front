@@ -31,10 +31,7 @@ const ModalEthAuth = props => {
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
   const [clicked, setClicked] = useState(false);
-<<<<<<< HEAD
   const [done, setDone] = useState(false);
-=======
->>>>>>> 8616b1be566b2f031d4bdc88a01e3985ff0e7493
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////

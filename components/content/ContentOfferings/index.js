@@ -1,14 +1,9 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
-import ModalEthAuth from 'components/modal/ModalEthAuth';
-import ModalMint from 'components/modal/ModalMint';
-
-<<<<<<< HEAD:components/content/ContentOfferings/index.js
 import styles from './ContentOfferings.module.scss';
+import ModalMintActivation from 'components/modal/ModalMintActivation';
 
 // install Swiper modules
-=======
->>>>>>> 8616b1be566b2f031d4bdc88a01e3985ff0e7493:components/content/ContentOfferings.js
 const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
@@ -206,7 +201,10 @@ const ContentOfferings = props => {
                   <h3 className={styles.nft_other_h3}>OUTFIT NAME</h3>
 
                   <p className={styles.nft_other_p}>Dress Shoes</p>
-                  <ModalMint className={styles.blue_button} ethPrice={0.3} />
+                  <ModalMintActivation />
+                  {/* <ActivateWearableModal /> */}
+                  {/* <ModalLogin /> */}
+                  {/* <ModalActivationSuccess setPending={false} /> */}
                 </div>
               </div>
             </a>

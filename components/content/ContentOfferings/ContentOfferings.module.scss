@@ -61,7 +61,7 @@
       border-radius: 12px;
       box-sizing: border-box;
       padding: 34px 18px 18px 18px;
-      width: 228px;
+      min-width: 228px;
       height: 390px;
 
       .nft_image {
@@ -122,6 +122,9 @@
         button {
           font-size: 11px !important;
           line-height: 19px;
+          margin-top: 4px !important;
+          margin-left: 0 !important;
+          width: 100% !important;
           height: 34px;
           border-radius: 8px !important;
         }
