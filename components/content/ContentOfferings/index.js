@@ -53,12 +53,12 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentGames() {
     return (
-      <div className={styles.outter_games_container}>
+      <div className="outter-games-container">
         {Object.keys(props.detailsGames).map((item, i) => (
           <a
             href={props.detailsGames[item][6] + utm}
             target="_blank"
-            className={styles.games_container}
+            className="games-container"
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
@@ -115,14 +115,11 @@ const ContentOfferings = props => {
   // loop through the NFT details object
   function buyNFTs() {
     return (
-      <div className={styles.outter_games_container}>
+      <div className="outter-games-container">
         {Object.keys(props.detailsNFTs).map((item, i) => (
-          <a
-            href={props.detailsNFTs[item][5]}
-            className={styles.games_container}
-          >
+          <a href={props.detailsNFTs[item][5]} className="games-container">
             <div key={i}>
-              <span className={styles.nft_image}>
+              <span className="nft-image">
                 <Image
                   src={props.detailsNFTs[item][0]}
                   className={props.detailsNFTs[item][1]}
@@ -217,12 +214,12 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentCasinos() {
     return (
-      <div className={styles.outter_games_container}>
+      <div className="outter-games-container">
         {Object.keys(props.detailsCasinos).map((item, i) => (
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className={styles.games_container}
+            className="games-container"
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
@@ -265,12 +262,12 @@ const ContentOfferings = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentShop() {
     return (
-      <div className={styles.outter_games_container}>
+      <div className="outter-games-container">
         {Object.keys(props.detailsShop).map((item, i) => (
           <a
             href={props.detailsShop[item][6] + utm}
             target="_blank"
-            className={styles.games_container}
+            className="games-container"
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
