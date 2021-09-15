@@ -1,9 +1,12 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 import ModalEthAuth from 'components/modal/ModalEthAuth';
+import ModalMint from 'components/modal/ModalMint';
 
+import styles from './ContentOfferings.module.scss';
 
-const ContentOfferings = (props) => {
+// install Swiper modules
+const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
 
@@ -49,17 +52,16 @@ const ContentOfferings = (props) => {
     }
   }, [buttonCasinos1, buttonCasinos2]);
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentGames() {
     return (
-      <div className="outter-games-container">
+      <div className={styles.outter_games_container}>
         {Object.keys(props.detailsGames).map((item, i) => (
           <a
             href={props.detailsGames[item][6] + utm}
             target="_blank"
-            className="games-container"
+            className={styles.games_container}
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
@@ -73,14 +75,20 @@ const ContentOfferings = (props) => {
             </span>
             <div className="nft-description">
               <span>
-                <p className="nfts-info">{props.detailsGames[item][4]} {props.detailsGames[item][5]}</p>
+                <p className="nfts-info">
+                  {props.detailsGames[item][4]} {props.detailsGames[item][5]}
+                </p>
               </span>
               <h3 className="nft-other-h3">{props.detailsGames[item][2]}</h3>
-              <p className="nft-other-p">
-                {props.detailsGames[item][3]}
-              </p>
+              <p className="nft-other-p">{props.detailsGames[item][3]}</p>
 
-              <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Button
                   id={`play-now-button-games-${i + 1}`}
                   color="blue"
@@ -105,20 +113,19 @@ const ContentOfferings = (props) => {
     );
   }
 
-
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // loop through the NFT details object
   function buyNFTs() {
     return (
-      <div className="outter-games-container">
+      <div className={styles.outter_games_container}>
         {Object.keys(props.detailsNFTs).map((item, i) => (
-          <a href={props.detailsNFTs[item][5]} className="games-container">
+          <a
+            href={props.detailsNFTs[item][5]}
+            className={styles.games_container}
+          >
             <div key={i}>
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="nft-image"
-              >
+              <span className={styles.nft_image}>
                 <Image
                   src={props.detailsNFTs[item][0]}
                   className={props.detailsNFTs[item][1]}
@@ -131,9 +138,7 @@ const ContentOfferings = (props) => {
                 </span>
                 <h3 className="nft-other-h3">{props.detailsNFTs[item][2]}</h3>
 
-                <p className="nft-other-p">
-                  {props.detailsNFTs[item][4]}
-                </p>
+                <p className="nft-other-p">{props.detailsNFTs[item][4]}</p>
 
                 <span
                   style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -167,39 +172,43 @@ const ContentOfferings = (props) => {
   // loop through the NFT details object
   function buyICE() {
     return (
-      <div className="outter-games-container">
-        {Object.keys(props.detailsICE).map((item, i) => (
-          <a className="games-container">
-            <div key={i}>
-              <span
-                style={{ display: 'flex', justifyContent: 'center' }}
-                className="nft-image"
-              >
-                <Image
-                  src={props.detailsICE[item][0]}
-                  className={props.detailsICE[item][1]}
-                  style={{ borderRadius: '4px' }}
-                />
-              </span>
-              <div className="nft-description">
-                <span>
-                  <p className="nfts-info">{props.detailsICE[item][3]}</p>
-                </span>
-                <h3 className="nft-other-h3">{props.detailsICE[item][2]}</h3>
+      <div className={styles.ice_container}>
+        <h1>ICE Wearables Marketplace</h1>
+        <p>
+          ICE Wearables give you table access to free to play, play-to-earn
+          poker. Learn more by clicking here.
+        </p>
 
-                <p className="nft-other-p">
-                  {props.detailsICE[item][4]}
-                </p>
+        <h2>Mintable Hugh Hef Fit</h2>
 
-                <span
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
-                >
-                  <ModalEthAuth />
+        <div className={styles.outter_games_container}>
+          {new Array(20).fill().map((item, i) => (
+            <a className={styles.games_container}>
+              <div key={i}>
+                <span className={styles.nft_image}>
+                  <Image
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
+                    className={styles.p2e_enabled}
+                  />
+                  <Image
+                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
+                    className={styles.product_image}
+                  />
                 </span>
+                <div className={styles.nft_description}>
+                  <span className="d-flex justify-content-center">
+                    <p className={styles.nfts_info}>Shoes</p>
+                    <p className={styles.nfts_info}>1 of 100</p>
+                  </span>
+                  <h3 className={styles.nft_other_h3}>OUTFIT NAME</h3>
+
+                  <p className={styles.nft_other_p}>Dress Shoes</p>
+                  <ModalMint className={styles.blue_button} ethPrice={0.3} />
+                </div>
               </div>
-            </div>
-          </a>
-        ))}
+            </a>
+          ))}
+        </div>
       </div>
     );
   }
@@ -208,12 +217,12 @@ const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentCasinos() {
     return (
-      <div className="outter-games-container">
+      <div className={styles.outter_games_container}>
         {Object.keys(props.detailsCasinos).map((item, i) => (
           <a
             href={props.detailsCasinos[item][5] + utm}
             target="_blank"
-            className="games-container"
+            className={styles.games_container}
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
@@ -230,9 +239,7 @@ const ContentOfferings = (props) => {
                 <p className="nfts-info">{props.detailsCasinos[item][4]}</p>
               </span>
               <h3 className="nft-other-h3">{props.detailsCasinos[item][2]}</h3>
-              <p className="nft-other-p">
-                {props.detailsCasinos[item][3]}
-              </p>
+              <p className="nft-other-p">{props.detailsCasinos[item][3]}</p>
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -258,12 +265,12 @@ const ContentOfferings = (props) => {
   /////////////////////////////////////////////////////////////////////////////////////////
   function contentShop() {
     return (
-       <div className="outter-games-container">
+      <div className={styles.outter_games_container}>
         {Object.keys(props.detailsShop).map((item, i) => (
           <a
             href={props.detailsShop[item][6] + utm}
             target="_blank"
-            className="games-container"
+            className={styles.games_container}
           >
             <span
               style={{ display: 'flex', justifyContent: 'center' }}
@@ -281,9 +288,7 @@ const ContentOfferings = (props) => {
               </span>
               <h3 className="nft-other-h3">{props.detailsShop[item][2]}</h3>
 
-              <p className="nft-other-p">
-                {props.detailsShop[item][3]}
-              </p>
+              <p className="nft-other-p">{props.detailsShop[item][3]}</p>
 
               <span
                 style={{ display: 'flex', justifyContent: 'space-between' }}

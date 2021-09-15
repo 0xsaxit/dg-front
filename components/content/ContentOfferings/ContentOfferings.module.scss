@@ -1,0 +1,130 @@
+@import 'styles/base.scss';
+
+.outter_games_container {
+  width: calc(100vw - 337px);
+  display: flex;
+  grid-gap: 24px;
+  margin: 154px 0px 120px 40px;
+
+  @media (max-width: 1040px) {
+    width: calc(100% - 160px);
+  }
+
+  @media (max-width: 768px) {
+    width: calc(100% - 140px);
+    margin-left: 30px;
+  }
+}
+
+.games_container {
+  max-height: 100%;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
+    transition: all 0.1s ease 0s;
+  }
+}
+
+.ice_container {
+  display: flex;
+  flex-direction: column;
+  margin: 170px 0 120px 80px;
+
+  & > h1 {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.7px;
+  }
+
+  & > p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    font-family: Larsseit-Regular;
+  }
+
+  & > h2 {
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: -0.55px;
+    margin-bottom: 19px;
+  }
+
+  .outter_games_container {
+    margin: 0 0 0 0;
+
+    .games_container {
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      box-sizing: border-box;
+      padding: 34px 18px 18px 18px;
+      width: 228px;
+      height: 390px;
+
+      .nft_image {
+        width: 190px;
+        height: 190px;
+        border-radius: 12px;
+        position: relative;
+
+        .p2e_enabled {
+          position: absolute;
+          top: -39px;
+          z-index: 11;
+          left: 0;
+          min-width: 190px;
+          height: 100px;
+        }
+
+        .product_image {
+          height: 100%;
+          min-height: 100%;
+        }
+      }
+
+      .nft_description {
+        display: flex;
+        flex-direction: column;
+
+        .nft_other_h3 {
+          font-family: Larsseit-Bold;
+          text-align: center;
+          font-weight: bold;
+          font-size: 10px;
+          line-height: 13px;
+          margin-top: 16px;
+          margin-bottom: 0;
+          color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .nft_other_p {
+          color: white;
+          font-family: Larsseit-Bold;
+          font-size: 19px;
+          line-height: 26px;
+          margin-bottom: 12px;
+          text-align: center;
+        }
+
+        .nfts_info {
+          border: 1px solid #2a2a2a;
+          padding: 6px;
+          margin: 16px 4px 0 4px;
+          border-radius: 12px;
+          font-size: 9.5px;
+          line-height: 13px;
+          font-family: Larsseit-Bold;
+        }
+
+        button {
+          font-size: 11px !important;
+          line-height: 19px;
+          height: 34px;
+          border-radius: 8px !important;
+        }
+      }
+    }
+  }
+}

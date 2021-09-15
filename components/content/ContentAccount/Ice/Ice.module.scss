@@ -1,7 +1,6 @@
 @import 'styles/base.scss';
 
 .ice {
-
   .ice_container {
     display: flex;
     flex-direction: column;
@@ -36,6 +35,20 @@
       padding-top: 28px;
       padding-bottom: 60px;
       margin: auto !important;
+    }
+
+    .button_right {
+      background: #006eff !important;
+      width: 196px;
+      height: 48px;
+      border-radius: 12px !important;
+      font-family: Larsseit-Bold;
+      align-items: center;
+      font-size: 17px !important;
+      display: flex;
+      align-self: center;
+      justify-content: center;
+      color: white !important;
     }
   }
 }
