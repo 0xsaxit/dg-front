@@ -207,7 +207,7 @@ const ContentOfferings = props => {
     return (
       <div className={styles.ice_container}>
         <h1>ICE Wearables Marketplace</h1>
-        <p>
+        <p className={styles.marketplace_p}>
           ICE Wearables give you table access to free to play, play-to-earn
           poker. Learn more by clicking here.
         </p>
@@ -215,14 +215,16 @@ const ContentOfferings = props => {
         <h2>Mintable Hugh Hef Fit</h2>
 
         <div className={styles.outter_games_container}>
-          {new Array(20).fill().map((item, i) => (
+          {new Array(5).fill().map((item, i) => (
             <a className={styles.games_container}>
-              <div key={i}>
-                <span className={styles.nft_image}>
+              <div key={i} style={{ position: 'relative' }}>
+                <div className={styles.p2e_enabled}>
                   <Image
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640051/p2e_enabled_wgqui5.svg"
-                    className={styles.p2e_enabled}
+                    className={styles.p2e_enabled_img}
                   />
+                </div>
+                <span className={styles.nft_image}>
                   <Image
                     src={WEARABLES[i % 5].product}
                     className={styles.product_image}
