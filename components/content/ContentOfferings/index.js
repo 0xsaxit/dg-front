@@ -2,6 +2,7 @@ import { Image, Button, Divider } from 'semantic-ui-react';
 import { useState, useEffect } from 'react';
 import styles from './ContentOfferings.module.scss';
 import ModalMintActivation from 'components/modal/ModalMintActivation';
+import ModalMintWearable from 'components/modal/ModalMintWearable';
 
 const WEARABLES = [
   {
@@ -235,7 +236,11 @@ const ContentOfferings = props => {
                   <h3 className={styles.nft_other_h3}>OUTFIT NAME</h3>
 
                   <p className={styles.nft_other_p}>{WEARABLES[i % 5].name}</p>
-                  <ModalMintActivation />
+                  <ModalMintWearable
+                    className={styles.right_button}
+                    ethPrice={0.3}
+                  />
+                  {/* <ModalMintActivation /> */}
                   {/* <ActivateWearableModal /> */}
                   {/* <ModalLogin /> */}
                   {/* <ModalActivationSuccess setPending={false} /> */}
