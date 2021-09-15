@@ -3,6 +3,44 @@ import { useState, useEffect } from 'react';
 import styles from './ContentOfferings.module.scss';
 import ModalMintActivation from 'components/modal/ModalMintActivation';
 
+const WEARABLES = [
+  {
+    product:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
+    name: 'Suit Top',
+    type: 'Torso',
+    status: 'Sold Out!',
+  },
+  {
+    product:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
+    name: 'Suit Pants',
+    type: 'Pants',
+    status: 'Mint New Wearable',
+  },
+  {
+    product:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
+    name: 'Money Shoes',
+    type: 'Shoes',
+    status: 'Coming Soon!',
+  },
+  {
+    product:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
+    name: 'Money Shades',
+    type: 'Accessory',
+    status: 'Mint New Wearable',
+  },
+  {
+    product:
+      'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
+    name: 'Cigar',
+    type: 'Accessory',
+    status: 'Mint New Wearable',
+  },
+];
+
 const ContentOfferings = props => {
   // define local variables
   const [utm, setUtm] = useState('');
@@ -185,18 +223,18 @@ const ContentOfferings = props => {
                     className={styles.p2e_enabled}
                   />
                   <Image
-                    src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
+                    src={WEARABLES[i % 5].product}
                     className={styles.product_image}
                   />
                 </span>
                 <div className={styles.nft_description}>
                   <span className="d-flex justify-content-center">
-                    <p className={styles.nfts_info}>Shoes</p>
+                    <p className={styles.nfts_info}>{WEARABLES[i % 5].type}</p>
                     <p className={styles.nfts_info}>1 of 100</p>
                   </span>
                   <h3 className={styles.nft_other_h3}>OUTFIT NAME</h3>
 
-                  <p className={styles.nft_other_p}>Dress Shoes</p>
+                  <p className={styles.nft_other_p}>{WEARABLES[i % 5].name}</p>
                   <ModalMintActivation />
                   {/* <ActivateWearableModal /> */}
                   {/* <ModalLogin /> */}
