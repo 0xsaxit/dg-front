@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Modal, Icon, Button, Header, Grid, Popup } from 'semantic-ui-react';
 import styles from './ICEDWearableCard.module.scss';
+import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip'
+import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip'
+import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip'
 import ModalDelegate from 'components/modal/ModalDelegate';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
@@ -17,18 +20,18 @@ const ICEDWearableCard = props => {
             {/*<div className={styles.delegatebtn}>
                 Delegated To {props.address? props.address : 'You' }
             </div>*/}
-            <img className={styles.p2e_enabled} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631366559/ICE_ENABLED_zxdq3e.svg" />
+            {props.state == 2 ?
+              <IceNeedToActivateTooltip />
+              :
+              <IceP2EEnabledTooltip />
+            }
             <img src={props.url} />
           </div>
           <div className={styles.card_body}>
             <div className={styles.card}>Rank 4</div>
-            <div className={styles.card}>
-              +35%
-              <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
-                className={styles.img}
-              />
-            </div>
+            <IceWearableBonusTooltip
+              bonus="+15%"
+            />
             <div className={styles.card}>1 of 100</div>
           </div>
           <div className={styles.card_meta}>ICE WEARABLE</div>
@@ -42,13 +45,13 @@ const ICEDWearableCard = props => {
                 <ModalWearable />
               </span>
             ) : props.state == 2 ? (
-                <NeedMoreDGActivateModal />
+              <NeedMoreDGActivateModal />
               // <Button className={styles.upgrade_button}>
               //   Activate Wearable (0.5 DG)
               // </Button>
             ) : (
-              <ModalWithdrawDelegation />
-            )}
+                  <ModalWithdrawDelegation />
+                )}
           </div>
         </div>
       </div>
