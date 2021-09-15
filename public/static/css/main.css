@@ -3579,3 +3579,104 @@ div.ui.input.withdraw_input > input {
   position: absolute;
   margin-top: 4px;
 }
+
+/* Tooltips */
+.popup {
+  border-radius: 8px !important;
+  margin-left: 5px;
+}
+
+.popup:before {
+  position: absolute;
+  content: '';
+  width: .71428571em;
+  height: .71428571em;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 2;
+  -webkit-box-shadow: 1px 1px 0 0 #bababc;
+  box-shadow: 1px 1px 0 0 #bababc;
+  background: #fff;
+}
+
+.popup .content {
+  padding-top: 10px;
+  padding-right: 5px;
+}
+.popup .content .info {
+  width: 17px !important;
+  position: absolute !important;
+  top: 20px !important;
+}
+
+.popup .content p {
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  margin-left: 30px;
+}
+
+.ui.top.right.popup.p2e_enabled_tooltip{
+  margin-right: -34px !important;
+  margin-bottom: 10px !important;
+}
+
+.ui.bottom.right.popup.p2e_enabled_tooltip {
+  margin-right: -34px !important;
+  margin-top: 7px !important;
+}
+
+.ui.top.right.popup.p2e_enabled_tooltip::before,
+.ui.bottom.right.popup.p2e_enabled_tooltip::before {
+  right: 2.5em !important;
+}
+
+.ui.top.left.popup.p2e_enabled_tooltip {
+  margin-left: -35px !important;
+  margin-bottom: 11px !important;
+}
+
+.ui.top.left.popup.p2e_enabled_tooltip::before,
+.ui.bottom.left.popup.p2e_enabled_tooltip::before {
+  left: 2.5em !important;
+}
+
+.iceWearableBonusTooltip {
+  width: 250px;
+}
+
+.iceWearableBonusTooltip .row {
+  margin-top: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.iceWearableBonusTooltip .itemDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.iceWearableBonusTooltip .itemDiv img {
+  width: 50px;
+  height: 50px;
+}
+
+.iceWearableBonusTooltip .col-12.itemDiv img {
+  height: 55px;
+}
+
+.iceWearableBonusTooltip .itemDiv h3 {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.iceWearableBonusTooltip .itemDiv p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  line-height: 14px;
+  margin-bottom: 15px;
+  margin-left: 0px;
+}
