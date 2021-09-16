@@ -26,29 +26,29 @@ const IceUpgradeWearableTooltip = () => {
           <p>your new ICE bonus will be<br /> randomly selected within the new<br /> rank range. If unhappy with your<br /> result, you can reroll for 10,000 ICE.</p>
           <div className="row">
             <div className="col-6 itemDiv">
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631126880/Group_199_kx1det.png" />
               <h3>Rank 1</h3>
-              <p>+0% ICE</p>
+              <p>+1 - 7% ICE</p>
             </div>
             <div className="col-6 itemDiv">
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631126880/Group_200_qix8og.png" />
               <h3>Rank 2</h3>
-              <p>+10 - 29% ICE</p>
+              <p>+8 - 15% ICE</p>
             </div>
             <div className="col-6 itemDiv">
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631126880/Group_201_hwr6d4.png" />
               <h3>Rank 3</h3>
-              <p>+30 - 49% ICE</p>
+              <p>+16 - 24% ICE</p>
             </div>
             <div className="col-6 itemDiv">
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631126880/Group_202_w3gv3x.png" />
               <h3>Rank 4</h3>
-              <p>+50 - 69% ICE</p>
+              <p>+25 - 34% ICE</p>
             </div>
             <div className="col-12 itemDiv">
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg" />
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631126877/Group_203_egtt2n.png" />
               <h3>Rank 5</h3>
-              <p>+70 - 100% ICE</p>
+              <p>+35 - 45% ICE</p>
             </div>
           </div>
         </Popup.Content>

@@ -163,6 +163,7 @@ const ContentOfferings = props => {
   // loop through the NFT details object
   function buyICE() {
     return (
+
       <div className={styles.outter_games_container}>
         {Object.keys(props.detailsICE).map((item, i) => (
           <div className={styles.games_container}>
