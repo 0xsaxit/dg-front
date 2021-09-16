@@ -59,13 +59,20 @@ const MenuTop = props => {
     (async function () {
       // get coin prices
       let json = await Fetch.MANA_PRICE();
-      setManaPrice(json.market_data.current_price.usd);
+      if(json && json.market_data) {
+        setManaPrice(json.market_data.current_price.usd);
+      }
 
       let json2 = await Fetch.ETH_PRICE();
-      setEthPrice(json2.market_data.current_price.usd);
+      if(json2 && json2.market_data) {
+        setEthPrice(json2.market_data.current_price.usd);
+      }
 
       let json3 = await Fetch.ATRI_PRICE();
-      setAtriPrice(json3.market_data.current_price.usd);
+      if(json3 && json3.market_data) {
+        setAtriPrice(json3.market_data.current_price.usd);
+      }
+      
     })();
   }, [manaPrice, ethPrice, atriPrice]);
 
@@ -200,7 +207,7 @@ const MenuTop = props => {
   function dropdownMenu() {
     return (
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
-        <span class="d-flex flex-column w-100">
+        <span className="d-flex flex-column w-100">
           {!isMobile && (
             <Link href={`/${utm}`}>
               <Menu.Item className={styles.menu_style}>Play1</Menu.Item>
