@@ -1,7 +1,7 @@
 @import 'styles/base.scss';
 
 .open_button {
-  background-color: #006EFF !important;
+  background-color: #006eff !important;
   color: white !important;
   height: 42px !important;
   border-radius: 10px !important;
@@ -26,181 +26,169 @@
     height: 48px;
     width: 100%;
 
-    .button_close {        
+    .button_close {
       display: flex;
       justify-content: center;
-      align-items: center; 
-      
-      width: 36px;
-      height: 36px;
+      align-items: center;
+
+      width: 48px;
+      height: 48px;
       background: black;
       color: white;
 
-      cursor: pointer;        
+      cursor: pointer;
       border-radius: 24px;
-      margin-top: 10px;
       padding: 8px 10px 8px 10px;
     }
-    .button_help {        
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
 
-        font-family: Larsseit-Bold;
-        font-style: normal;
-        font-size: 18px;
-        line-height: 24px;
-        text-align: center;  
-        color: white;
+    .button_help {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
 
-        cursor: pointer;
-        width: 109px;
-        height: 48px;
-        background: black;
-        border-radius: 24px;
-        padding: 8px 10px 8px 10px;
+      font-family: Larsseit-Bold;
+      font-style: normal;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+      color: white;
+
+      cursor: pointer;
+      width: 109px;
+      height: 48px;
+      background: black;
+      border-radius: 24px;
+      padding: 8px 10px 8px 10px;
     }
-  }
-
-  .preview_button {
-    cursor: pointer;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    left: 0px;
-    top: -50px;
-    background: #000000;
-    box-shadow: 0px 16px 32px rgb(0 0 0 / 24%);
-    border-radius: 24px !important;
-    align-items: center;
   }
 
   .body {
-    color: white;
     display: flex;
-    gap: 24px;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
 
     .title {
-      font-family: Larsseit-ExtraBold;
-      font-style: normal;
-      font-size: 24px;
       line-height: 33px;
-      text-align: center;
-      letter-spacing: -0.7px;
-      color: #FFFFFF;
+      font-size: 24px;
+      margin-bottom: 8px;
     }
 
-    .desc {
-      padding-top: 8px;
-      font-family: Larsseit-Regular;
-      font-style: normal;      
+    .description {
       font-size: 18px;
       line-height: 24px;
-      text-align: center;      
-      color: #FFFFFF;
+      text-align: center;
+      max-width: 450px;
+      margin-bottom: 32px;
 
-      .a{
-        color: rgba(0, 110, 255, 1);
+      a {
+        color: #006eff;
+
+        &:hover {
+          color: #376aaf;
+          cursor: pointer;
+        }
       }
     }
 
-    .image_area {
-      margin-top: 32px;
+    .bottom_section {
       display: flex;
       justify-content: space-around;
+      width: 100%;
+      height: 100%;
 
-      .image_card {
+      .upgrade_option {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 128px;
 
-        .photo {
-          height: 48px;
-          .icon {
-            height: 48px;
-          }
-        }
-        .dgphoto {
-          height: 58px;
-          .dgicon {
-            height: 58px;
-          }
+        .ice_icon {
+          margin-top: 3px;
+          height: 78px;
         }
         
-        .desc {
-          background: #232323;
-          border-radius: 1000px;
-          padding: 4px 10px;
-          padding: 4px 10px;
+        .dg_icon {
+          max-width: 78px;
+          max-height: 78px;
+        }
+        
+        .xp_icon {
+          margin-top: 16px;
+          height: 78px;
+        }
 
-          font-family: Larsseit-Regular;
-          font-style: normal;          
+        .ice_pill, .xp_pill {
+          padding: 4px 10px;
+          height: 23px;
           font-size: 11px;
           line-height: 15px;
-          text-align: center;
-          color: #FFFFFF;
-        }
-      }
-    }
-
-    .button_area {
-      margin-top: 28px;
-      display: flex;
-      justify-content: space-between;
-
-      .button_card{
-        .normal_button {
-          font-family: Larsseit-Bold;
-          font-style: normal;          
-          font-size: 18px;
-          line-height: 24px;
-          text-align: center;
-
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #006EFF;
+          background: #232323;
+          border-radius: 1000px;
           color: white;
-          border-radius: 10px;
-        }
-  
-        .gray_button {
-          font-family: Larsseit-Bold;
-          font-style: normal;
-          font-size: 18px;
-          line-height: 24px;
           text-align: center;
-          
+        }
+
+        .ice_pill {
+          margin-top: -10px;
+        }
+        
+        .xp_pill {
+          margin-top: -23px;
+        }
+
+        .button_container {
           display: flex;
-          justify-content: center;
           flex-direction: column;
           align-items: center;
-          background: #0C0C0C;
-          border-radius: 10px;
-          color: white;
-
-          .desc {            
-            font-family: Larsseit-Bold;
-            font-style: normal;            
-            font-size: 8px;
-            line-height: 11px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
+          align-self: flex-end;
+          margin-top: auto;
+          
+          button {
+            width: 128px;
+            height: 48px;
+            padding: 7px 8px;
+            margin: 0 0 8px;
           }
-        }
 
-        .desc {
-          margin-top: 6px;
-          font-family: Larsseit-Regular;
-          font-style: normal;
-          font-size: 10px;
-          line-height: 14px;
-          text-align: center;
-          color: rgba(255, 255, 255, 0.5);
+          .blue_button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            line-height: 24px;
+            background: #006eff;
+            color: white;
+            border-radius: 10px;
+          }
+
+          .gray_button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0c0c0c;
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.5);
+
+            span {
+              font-size: 8px;
+              line-height: 11px;
+
+              &:last-child {
+                font-size: 18px;
+                line-height: 24px;
+                color: white;
+              }
+            }
+          }
+
+          .availability_info {
+            font-size: 10px;
+            line-height: 14px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5) !important;
+          }
         }
       }
     }
