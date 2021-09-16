@@ -33,10 +33,6 @@ const MenuTop = props => {
   const [scrollState, setScrollState] = useState('top');
   const [ref, setRef] = useState('');
   const [copied, setCopied] = useState(false);
-  const [manaPrice, setManaPrice] = useState(0);
-  const [ethPrice, setEthPrice] = useState(0);
-  const [atriPrice, setAtriPrice] = useState(0);
-  const [casinoBalance, setCasinoBalance] = useState(0);
 
   const router = useRouter();
   let listener = null;
@@ -54,37 +50,6 @@ const MenuTop = props => {
       });
     }
   }, [state.userStatus]);
-
-  useEffect(() => {
-    (async function () {
-      // get coin prices
-      let json = await Fetch.MANA_PRICE();
-      setManaPrice(json.market_data.current_price.usd);
-
-      let json2 = await Fetch.ETH_PRICE();
-      setEthPrice(json2.market_data.current_price.usd);
-
-      let json3 = await Fetch.ATRI_PRICE();
-      setAtriPrice(json3.market_data.current_price.usd);
-    })();
-  }, [manaPrice, ethPrice, atriPrice]);
-
-  useEffect(() => {
-    const mana = Number(manaPrice * state.userBalances[1][1]);
-    const eth = Number(ethPrice * state.userBalances[2][3]);
-    const atri = Number(atriPrice * state.userBalances[2][2]);
-    const dai = Number(state.userBalances[0][1]);
-    const usdt = Number(state.userBalances[2][1] * 1000000000000);
-    const balance = mana + eth + atri + dai + usdt;
-
-    setCasinoBalance(balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-  }, [
-    state.userBalances[1][1],
-    state.userBalances[2][3],
-    state.userBalances[2][2],
-    state.userBalances[0][1],
-    state.userBalances[2][1],
-  ]);
 
   useEffect(() => {
     linkDocs = document.getElementById('docs-top-menu');
@@ -200,7 +165,7 @@ const MenuTop = props => {
   function dropdownMenu() {
     return (
       <div className={cn(styles.mobile_menu, open ? styles.open : '')}>
-        <span class="d-flex flex-column w-100">
+        <span className="d-flex flex-column w-100">
           {!isMobile && (
             <Link href={`/${utm}`}>
               <Menu.Item className={styles.menu_style}>Play1</Menu.Item>

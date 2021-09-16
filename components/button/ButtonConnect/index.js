@@ -43,6 +43,7 @@ const ButtonConnect = () => {
   const [metamaskEnabled, setMetamaskEnabled] = useState(false);
   const [scrollState, setScrollState] = useState('top');
   const [binance, setBinance] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
   let listener = null;
@@ -109,6 +110,7 @@ const ButtonConnect = () => {
     } else {
       setMetamaskEnabled(false);
     }
+    setLoading(false);
   });
 
   async function openMetaMask() {
@@ -228,7 +230,7 @@ const ButtonConnect = () => {
   return (
     <Aux>
       {metamaskEnabled ? (
-        <span className={styles.main_right_panel}>
+        <div className={styles.main_right_panel}>
           <Button
             color="blue"
             className={cn(
@@ -250,7 +252,7 @@ const ButtonConnect = () => {
           >
             ?
           </a>
-        </span>
+        </div>
       ) : (
         <ModalLoginTop />
       )}

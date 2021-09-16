@@ -4,10 +4,10 @@ import { Popup, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 import { useRouter } from 'next/router';
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 const ModalPopup = () => {
-  const { t, i18n } = useTranslation();
+  //const { t, i18n } = useTranslation();
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const router = useRouter();

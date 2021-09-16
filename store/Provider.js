@@ -38,6 +38,7 @@ const initialState = {
   networkID: 0,
   activeStatus: true,
   ethBalance: 0,
+  ethereumBal: 0,
   adminBalances: {
     treasury: [0, 0, 0, 0, 0, 0, ''],
     slots: [0, 0, 0, 0, 0, 0, ''],
@@ -174,6 +175,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         userBalances: action.data,
+      };
+
+    case 'update_eth_balance':
+      return {
+        ...state,
+        ethereumBal: action.data,
       };
 
     case 'update_history':
