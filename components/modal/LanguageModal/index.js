@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Popup, Button } from 'semantic-ui-react';
 import Flag from 'assets/svg/flag.svg';
 import styles from './LanguageModal.module.scss';
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
+// import { useTranslation, withTranslation, Trans } from 'react-i18next';
 import { GlobalContext } from '../../../store';
 
 const LanguageModal = () => {

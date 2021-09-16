@@ -146,7 +146,7 @@ const Balances = (props) => {
     }
   }, [event, txHash, amount]);
 
-  console.log("userBalances23: ", state.userBalances);
+  //console.log("userBalances23: ", state.userBalances);
   const injectedProvider = window.ethereum;
 
   const rampDAI = new RampInstantSDK({
