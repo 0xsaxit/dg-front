@@ -10,6 +10,8 @@ const WEARABLES = [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
     name: 'Suit Top',
     type: 'Torso',
+    bodyPartType: 'Torso',
+    bodyPartImg: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
     status: 'Sold Out!',
   },
   {
@@ -17,6 +19,8 @@ const WEARABLES = [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
     name: 'Suit Pants',
     type: 'Pants',
+    bodyPartType: 'Legs',
+    bodyPartImg: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
     status: 'Mint New Wearable',
   },
   {
@@ -24,6 +28,8 @@ const WEARABLES = [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
     name: 'Money Shoes',
     type: 'Shoes',
+    bodyPartType: 'Feet',
+    bodyPartImg: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
     status: 'Coming Soon!',
   },
   {
@@ -31,6 +37,8 @@ const WEARABLES = [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
     name: 'Money Shades',
     type: 'Accessory',
+    bodyPartType: 'Accessory',
+    bodyPartImg: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
     status: 'Mint New Wearable',
   },
   {
@@ -38,6 +46,8 @@ const WEARABLES = [
       'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
     name: 'Cigar',
     type: 'Accessory',
+    bodyPartType: 'Head',
+    bodyPartImg: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
     status: 'Mint New Wearable',
   },
 ];
@@ -240,7 +250,9 @@ const ContentOfferings = props => {
                   <p className={styles.nft_other_p}>{WEARABLES[i % 5].name}</p>
                   <ModalMintWearable
                     className={styles.right_button}
-                    ethPrice={0.3}
+                    wearableImg={WEARABLES[i % 5].product}
+                    wearableBodyType={WEARABLES[i % 5].bodyPartType}
+                    wearableBodyImg={WEARABLES[i % 5].bodyPartImg}
                   />
                   {/* <ModalMintActivation /> */}
                   {/* <ActivateWearableModal /> */}

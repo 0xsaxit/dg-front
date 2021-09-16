@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
-import cn from 'classnames';
-import { Modal, Button, Tab } from 'semantic-ui-react';
+import { useEffect, useContext, useState } from 'react';
+import { Modal, Button } from 'semantic-ui-react';
+import { GlobalContext } from 'store';
+import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip'
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
 
 const ModalMint = props => {
   // get user's unclaimed DG balance from the Context API store
+  const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
   const [open, setOpen] = useState(false);
   const [safari, setSafari] = useState(false);
-  const currentEthPrice = props.ethPrice;
 
   const panes = [
     {
@@ -73,10 +74,13 @@ const ModalMint = props => {
         <div className={styles.mint_wrapper}>
           <div className={styles.mint_box}>
             <div className={styles.mint_box_purple}>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png" />
+              <img
+                src={props.wearableImg}
+                className={styles.wearable_main_img}
+              />
             </div>
             <div className={styles.card_body}>
-              <div className={styles.card}>Rank1</div>
+              <div className={styles.card}>Rank 1</div>
               <div className={styles.card}>
                 + 1 - 7%
                 <img
@@ -106,9 +110,9 @@ const ModalMint = props => {
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
                   <div className={styles.card}>
-                    Torso
+                    {props.wearableBodyType}
                     <img
-                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg"
+                      src={props.wearableBodyImg}
                       className={styles.img_card2}
                     />
                   </div>
@@ -120,9 +124,9 @@ const ModalMint = props => {
               Price <span>($521.21)</span>
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
-                  {currentEthPrice < 0.5 && <span>Not Enough</span>}
+                  {state.ethereumVal < 0.1 && <span>Not Enough</span>}
                   <div className={styles.card}>
-                    0.5 ETH
+                    0.1 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
                   </div>
                   <div className={styles.description}>0.0 ETH Available</div>
@@ -130,8 +134,13 @@ const ModalMint = props => {
                 </div>
                 &nbsp;+&nbsp;
                 <div className={styles.card_area_body}>
-                  {currentEthPrice < 0.5 && <span>Not Enough Staked</span>}
-                  <div className={styles.card}>
+                  {state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ?
+                    <span className={styles.dgStackedSpan}>
+                      Not Enough Staked
+                      <IceMintDGStackedTooltip />
+                    </span>
+                    : null}
+                  <div className={styles.card} style={{ width: '150px' }}>
                     1 DG Staked
                     <img
                       src={Images.DG_COIN_LOGO}
@@ -150,7 +159,7 @@ const ModalMint = props => {
             <div className={styles.button_area}>
               <Button
                 className={styles.button_upgrade}
-                disabled={currentEthPrice < 0.5}
+                disabled={state.ethereumVal < 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE < 1}
               >
                 Mint Wearable
               </Button>
