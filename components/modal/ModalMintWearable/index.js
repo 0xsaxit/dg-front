@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Modal, Button, Tab } from 'semantic-ui-react';
-import styles from './ModalMint.module.scss';
+import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
 
 const ModalMint = props => {
@@ -78,9 +78,9 @@ const ModalMint = props => {
             <div className={styles.card_body}>
               <div className={styles.card}>Rank1</div>
               <div className={styles.card}>
-                +0%
+                + 1 - 7%
                 <img
-                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629727455/snowflake_rplq6d.png"
+                  src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg"
                   className={styles.img_card}
                 />
               </div>
@@ -89,7 +89,7 @@ const ModalMint = props => {
           </div>
 
           <div className={styles.mint_box_right}>
-            <div className={styles.header}>Buy ICE Wearable</div>
+            <div className={styles.header}>Mint WEARABLE NAME (ICE Rank 1)</div>
 
             <div className={styles.benefit_area}>
               Benefits
@@ -101,17 +101,23 @@ const ModalMint = props => {
               </div>
             </div>
 
-            <div className={styles.type_area}>
-              Type
-              <Tab
-                menu={{ secondary: true }}
-                panes={panes}
-                className={styles.tabs}
-              />
+            <div className={styles.price_area}>
+              Body Part Type
+              <div className={styles.card_area}>
+                <div className={styles.card_area_body}>
+                  <div className={styles.card}>
+                    Torso
+                    <img
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg"
+                      className={styles.img_card2}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className={styles.price_area}>
-              Price
+              Price <span>($521.21)</span>
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
                   {currentEthPrice < 0.5 && <span>Not Enough</span>}
@@ -119,24 +125,36 @@ const ModalMint = props => {
                     0.5 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
                   </div>
-                  <div className={styles.description}>
-                    1.2ETH Available (Polygon)
+                  <div className={styles.description}>0.0 ETH Available</div>
+                  <div className={styles.network}>(On Mainnet)</div>
+                </div>
+                &nbsp;+&nbsp;
+                <div className={styles.card_area_body}>
+                  {currentEthPrice < 0.5 && <span>Not Enough Staked</span>}
+                  <div className={styles.card}>
+                    1 DG Staked
+                    <img
+                      src={Images.DG_COIN_LOGO}
+                      className={styles.img_card2}
+                    />
                   </div>
-                  <div className={styles.network}>
-                    Have mainnet ETH? Bridge to Polygon here
+                  <div className={styles.description}>
+                    You must have at least 1 DG
+                  </div>
+                  <div className={styles.description}>
+                    staked in governance to mint
                   </div>
                 </div>
               </div>
             </div>
             <div className={styles.button_area}>
-              <Button className={styles.button_upgrade}>
-                {currentEthPrice >= 0.5
-                  ? 'Purchase Wearable'
-                  : 'Get More ETH (on Polygon)'}
+              <Button
+                className={styles.button_upgrade}
+                disabled={currentEthPrice < 0.5}
+              >
+                Mint Wearable
               </Button>
-              {currentEthPrice >= 0.5 && (
-                <Button className={styles.button_close}>Learn More</Button>
-              )}
+              <Button className={styles.button_close}>Learn More</Button>
             </div>
           </div>
         </div>

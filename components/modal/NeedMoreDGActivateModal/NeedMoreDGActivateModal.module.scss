@@ -1,7 +1,7 @@
 @import 'styles/base.scss';
 
 .open_button {
-  background-color: #1f1f1f !important;
+  background-color: #006EFF !important;
   color: white !important;
   height: 43px;
   border-radius: 10px !important;
@@ -157,5 +157,19 @@
             text-align: center;
         }
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .open_button {
+    font-size: 10.5px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+}
+
+@include mq($until: medium) {
+  .open_button {
+    font-size: 15px !important;
   }
 }
