@@ -198,7 +198,6 @@ const detailsNFTs = {
   ],
 };
 
-
 const detailsICE = {
   suit_top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629803803/Group_209_tsgkuy.png',
