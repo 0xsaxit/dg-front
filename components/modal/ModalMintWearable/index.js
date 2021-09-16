@@ -136,16 +136,16 @@ const ModalMint = props => {
             </div>
             <div className={styles.button_area}>
               {state.ethereumBal < 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ?
-                <ModalETHAuth
-                  index={0}
-                />
-                :
                 <Button
                   className={styles.button_upgrade}
                   disabled={true}
                 >
                   Mint Wearable
                 </Button>
+                :
+                <ModalETHAuth
+                  index={0}
+                />
               }
               <Button className={styles.button_close}>Learn More</Button>
             </div>
