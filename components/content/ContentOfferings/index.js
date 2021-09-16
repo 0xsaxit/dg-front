@@ -1,12 +1,18 @@
 import { Image, Button, Divider } from 'semantic-ui-react';
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import styles from './ContentOfferings.module.scss';
+import { GlobalContext } from '../../../store';
 import ModalMintActivation from 'components/modal/ModalMintActivation';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
+import ModalLoginICE from 'components/modal/ModalLoginICE'
 
 const ContentOfferings = props => {
+  // dispatch new user status to Context API store
+  const [state, dispatch] = useContext(GlobalContext);
+
   // define local variables
   const [utm, setUtm] = useState('');
+  const [metamaskEnabled, setMetamaskEnabled] = useState(false);
 
   let buttonGames1 = '';
   let buttonGames2 = '';
@@ -14,10 +20,17 @@ const ContentOfferings = props => {
   let buttonGames4 = '';
   let buttonCasinos1 = '';
   let buttonCasinos2 = '';
-  // let buttonCasinos3 = '';
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (window.ethereum) {
+      setMetamaskEnabled(true);
+    } else {
+      setMetamaskEnabled(false);
+    }
+  });
+
   useEffect(() => {
     setUtm(sessionStorage.getItem('utm'));
   }, [utm]);
@@ -181,15 +194,18 @@ const ContentOfferings = props => {
               </span>
               <p className={styles.nft_other_p}>{props.detailsICE[item][2]}</p>
               <h3 className={styles.nft_other_h3}>{props.detailsICE[item][1]}</h3>
-              <ModalMintWearable
-                className={styles.right_button}
-                wearableImg={props.detailsICE[item][0]}
-                wearableBodyType={props.detailsICE[item][3]}
-                wearableBodyImg={props.detailsICE[item][5]}
-              />
+              {metamaskEnabled ?
+                <ModalMintWearable
+                  className={styles.right_button}
+                  wearableImg={props.detailsICE[item][0]}
+                  wearableBodyType={props.detailsICE[item][3]}
+                  wearableBodyImg={props.detailsICE[item][5]}
+                />
+                :
+                <ModalLoginICE />
+              }
               {/* <ModalMintActivation /> */}
               {/* <ActivateWearableModal /> */}
-              {/* <ModalLogin /> */}
               {/* <ModalActivationSuccess setPending={false} /> */}
             </div>
           </div>

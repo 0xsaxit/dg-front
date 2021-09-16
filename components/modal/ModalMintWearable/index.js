@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
+import ModalETHAuth from 'components/modal/ModalEthAuth'
 import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip'
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
@@ -12,29 +13,6 @@ const ModalMint = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [safari, setSafari] = useState(false);
-
-  const panes = [
-    {
-      menuItem: 'Jacket',
-      render: () => <></>,
-    },
-    {
-      menuItem: 'Pants',
-      render: () => <></>,
-    },
-    {
-      menuItem: 'Shoes',
-      render: () => <></>,
-    },
-    {
-      menuItem: 'Glasses',
-      render: () => <></>,
-    },
-    {
-      menuItem: 'Cigar',
-      render: () => <></>,
-    },
-  ];
 
   // using Safari browser
   useEffect(() => {
@@ -124,7 +102,7 @@ const ModalMint = props => {
               Price <span>($521.21)</span>
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
-                  {state.ethereumVal < 0.1 && <span>Not Enough</span>}
+                  {state.ethereumBal < 0.1 && <span>Not Enough</span>}
                   <div className={styles.card}>
                     0.1 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
@@ -157,12 +135,18 @@ const ModalMint = props => {
               </div>
             </div>
             <div className={styles.button_area}>
-              <Button
-                className={styles.button_upgrade}
-                disabled={state.ethereumVal < 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE < 1}
-              >
-                Mint Wearable
-              </Button>
+              {state.ethereumBal < 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ?
+                <ModalETHAuth
+                  index={0}
+                />
+                :
+                <Button
+                  className={styles.button_upgrade}
+                  disabled={true}
+                >
+                  Mint Wearable
+                </Button>
+              }
               <Button className={styles.button_close}>Learn More</Button>
             </div>
           </div>

@@ -98,8 +98,8 @@ const ModalMintSuccess = ({ disabled }) => {
             <div className={styles.round}>
               1-7%
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png"
-                style={{ width: '20px' }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
+                style={{ width: '14px', marginLeft: '2px' }}
               />
             </div>
             <div className={styles.round}>1 of 100</div>
