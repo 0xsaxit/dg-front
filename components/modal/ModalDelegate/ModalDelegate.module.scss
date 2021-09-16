@@ -15,22 +15,28 @@
 }
 
 .delegate_modal {
-  width: 830px !important;
-  height: 530px !important;
+  width: 818px !important;
+  height: 529px !important;
   background: black !important;
   border-radius: 16px !important;
-  padding: 40px 68px 48px 56px;
+  padding-top: 40px;
+  padding-bottom: 21px;
+  padding-left: 56px;
+  padding-right: 35px;
 
-  .close_icon {
+  .top_buttons {
     cursor: pointer;
     position: absolute;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     left: 0px;
-    top: -50px;
-    background: #000000;
-    border-radius: 24px !important;
+    top: -56px;
+    height: 48px;
+    width: 100%;
 
     .button_close {
+      margin-top: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -40,209 +46,248 @@
       width: 36px;
       height: 36px;
       background: black;
-      border-radius: 100%;
+      border-radius: 24px;
       padding: 8px 10px 8px 10px;
+    }
+    .button_help {        
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+
+        color: white;
+        cursor: pointer;
+        width: 109px;
+        height: 48px;
+        background: black;
+        border-radius: 24px;
+        padding: 8px 10px 8px 10px;
+
     }
   }
 
-  .wear_box {
-    .wear_box_purple {
-      width: 286px;
-      height: 286px;
-      margin-top: 42px;
-      border-radius: 16px;
-      img {
-        width: 100%;
-      }
-    }
-    .card_body {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 16px;
+  .delegate_container {
+    color: white;
+    display: flex;
+    justify-content: space-between;
 
-      .card {
-        display: flex;
-        align-items: center;
-
-        padding-left: 12px;
-        padding-right: 12px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-
-        border: 1px solid #2a2a2a;
-        box-sizing: border-box;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-
-        font-family: Larsseit-Regular;
-        font-style: normal;
-        font-size: 12px;
-        line-height: 16px;
-        color: #ffffff;
-
-        .img_card {
-          margin-left: 3px;
-          width: 12px;
-          height: 12px;
+    .wear_box {
+      .wear_box_purple {
+        width: 286px;
+        height: 286px;
+        margin-top: 42px;
+        border-radius: 16px;
+        img {
+          width: 100%;
         }
       }
-    }
-
-    .wear_box_pink {
-      width: 241px;
-      height: 241px;
-      margin-top: 42px;
-      border-radius: 16px;
-
-      font-family: Larsseit;
-      font-style: normal;
+      .card_body {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 16px;
+  
+        .card {
+          display: flex;
+          align-items: center;
+  
+          padding-left: 12px;
+          padding-right: 12px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+  
+          border: 1px solid #2a2a2a;
+          box-sizing: border-box;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+          border-radius: 20px;
+  
+          font-family: Larsseit-Regular;
+          font-style: normal;
+          font-size: 12px;
+          line-height: 16px;
+          color: #ffffff;
+  
+          .img_card {
+            margin-left: 4px;
+            width: 12px;           
+          }
+        }
+      }
+  
+      .wear_box_pink {
+        width: 241px;
+        height: 241px;
+        margin-top: 48px;
+        border-radius: 16px;
+  
+        font-family: Larsseit;
+        font-style: normal;
+      }
     }
   }
 
   .wear_box_right {
-    .header {
-      font-family: Larsseit-ExtraBold;
-      font-style: normal;
-      font-size: 24px;
-      line-height: 33px;
-      letter-spacing: -0.7px;
-    }
-    .benefit_area {
-      margin-top: 24px;
+    .main {
+      margin-right: 32px;
 
-      font-family: Larsseit-Bold;
-      font-style: normal;
-      font-size: 18px;
-      line-height: 24px;
-      color: #ffffff;
-    }
-    .benefit_list {
-      margin-top: -10px !important;
-      margin-left: -10px !important;
-      font-family: Larsseit-Regular;
-      font-size: 16px;
-      line-height: 22px;
-      color: #ffffff;
-      opacity: 0.75;
-    }
-    .price_area {
-      font-family: Larsseit-Bold;
-      font-style: normal;
-      font-size: 18px;
-      line-height: 24px;
+      .header {
+        font-family: Larsseit-ExtraBold;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 33px;
+        letter-spacing: -0.7px;
+      }
+      .benefit_area {
+        margin-top: 24px;
+  
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 24px;
+        color: #ffffff;
+      }
+      .benefit_list {
+        margin-top: -10px !important;
+        margin-left: -10px !important;
+        font-family: Larsseit-Regular;
+        font-size: 16px;
+        line-height: 22px;
+        color: #ffffff;
+        opacity: 0.75;
+      }
+      .price_area {
+        font-family: Larsseit-Bold;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 24px;
 
-      .card_area {
-        display: flex;
-        align-items: baseline;
-        margin-bottom: 10px;
-        margin-top: 10px;
-        gap: 6px;
+        .profit_label {
+          margin-bottom: 22px;
+        }
 
-        .card_area_body {
-          
-          .card {
-            position: relative;
-            font-family: Larsseit-Bold;
-            font-style: normal;
-            font-size: 16px;
-            line-height: 27px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            width: 115px;
-            height: 45px;
-            background: #090909;
-            border: 1px solid #2a2a2a;
-            box-sizing: border-box;
-            border-radius: 14px;
-            margin-bottom: 6px;
-
-            .info {
-              position: absolute;
-              top: -15px;              
-              font-family: Larsseit-Regular;
-              padding: 2.8px 8.4px;
-              background: #2a2a2a;
-              border-radius: 5.6px;
-              font-style: normal;
-              font-size: 11.2px;
-              line-height: 15px;
-            }
-
-            .img_card1 {
-              margin-left: 4px;
-              width: 20px;
-              height: 20px;
-            }
-            .img_card2 {
-              margin-left: 5px;
-              width: 20px;
-              height: 20px;
-            }
-            .img_card3 {
-              margin-left: 4px;
-              width: 18px;
-              height: 11px;
-            }
-          }
-          .inputcard {
-            width: 100%;
-            position: relative;
-            font-family: Larsseit-Bold;
-            font-style: normal;
-            font-size: 16px;
-            line-height: 27px;
-
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 58px;
-            background: transparent;
-            border: 1px solid #2a2a2a;
-            box-sizing: border-box;
-            border-radius: 14px;
-            margin-bottom: 6px;
-            border: 1px solid #2a2a2a;
-            padding: 10px 24px;
-
-            .input {
-              background: transparent;
-              border: none;
-              outline: none;
-              margin-left: 10px;
-              color: white;
+        .address_label {
+          margin-top: 12px;
+          margin-bottom: 12px;
+        }
+  
+        .card_area {
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+  
+          .card_area_body {
+            
+            .card {
+              position: relative;
               font-family: Larsseit-Bold;
+              font-style: normal;
+              font-size: 16px;
+              line-height: 27px;
+  
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 5px;
+  
+              width: 115px;
+              height: 45px;
+              background: #090909;
+              border: 1px solid #2a2a2a;
+              box-sizing: border-box;
+              border-radius: 14px;
+              margin-bottom: 6px;
+  
+              .info {
+                position: absolute;
+                top: -15px;              
+                font-family: Larsseit-Regular;
+                padding: 2.8px 8.4px;
+                background: #2a2a2a;
+                border-radius: 5.6px;
+                font-style: normal;
+                font-size: 11.2px;
+                line-height: 15px;
+              }
+  
+              .img_card1 {
+                width: 18px;               
+              }
+              .img_card2 {
+                width: 18px;
+              }
+              .img_card3 {
+                margin-left: 4px;
+                width: 18px;
+                height: 11px;
+              }
             }
-          }
-          .description {
-            font-family: Larsseit-Regular;
-            font-style: normal;
-            font-size: 10px;
-            line-height: 14px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-          }
-          .network {
-            font-family: Larsseit-Regular;
-            font-style: normal;
-            font-size: 8px;
-            line-height: 11px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-          }
-          .plusIcon {
-            font-family: Larsseit-Bold;
-            font-style: normal;
-            font-size: 16px;
-            line-height: 27px;
+            .inputcard {
+              width: 100%;
+              position: relative;
+              font-family: Larsseit-Bold;
+              font-style: normal;
+              font-size: 16px;
+              line-height: 27px;
+  
+              display: flex;
+              align-items: center;
+              width: 100%;
+              height: 58px;
+              background: transparent;
+              border: 1px solid #2a2a2a;
+              box-sizing: border-box;
+              border-radius: 14px;
+              margin-bottom: 6px;
+              border: 1px solid #2a2a2a;
+              padding: 10px 24px;
+  
+              .input {
+                background: transparent;
+                border: none;
+                outline: none;
+                margin-left: 14.25px;
+                color: white;
+                font-family: Larsseit-Bold;
+                width: 100%;
+              }
+            }
+            .description {
+              font-family: Larsseit-Regular;
+              font-style: normal;
+              font-size: 10px;
+              line-height: 14px;
+              text-align: center;
+              color: rgba(255, 255, 255, 0.5);
+            }
+            .network {
+              font-family: Larsseit-Regular;
+              font-style: normal;
+              font-size: 8px;
+              line-height: 11px;
+              text-align: center;
+              color: rgba(255, 255, 255, 0.5);
+            }
+            .plusIcon {
+              font-family: Larsseit-Bold;
+              font-style: normal;
+              font-size: 16px;
+              line-height: 27px;
+            }
           }
         }
       }
     }
 
     .button_area {
+      margin-top: 16px;
+      margin-bottom: 12px;
+
       display: flex;
       justify-content: left;
       gap: 8px;
