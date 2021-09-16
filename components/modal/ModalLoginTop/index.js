@@ -132,6 +132,7 @@ const ModalLogin = () => {
       onOpen={() => setOpen(true)}
       open={open}
       close
+      /*
       trigger={
         <span>
           <Button
@@ -156,6 +157,7 @@ const ModalLogin = () => {
           </Button>
         </span>
       }
+      */
     >
       <div style={{ margin: '-68px 0px 50px -40px' }}>
         <span className={styles.button_close} onClick={() => setOpen(false)}>
