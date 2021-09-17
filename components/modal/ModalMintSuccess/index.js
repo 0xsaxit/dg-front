@@ -91,7 +91,7 @@ const ModalMintSuccess = props => {
           </div>
           <div className={styles.image}>
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855104/Group_224_sils6v.png"
+              src={props.wearableImg}
               className={styles.logo}
             />
           </div>
