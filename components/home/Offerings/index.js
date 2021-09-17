@@ -198,7 +198,7 @@ const detailsNFTs = {
 const detailsICE = {
   Shoes: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
-    'Dress Shoes',
+    'Loafers',
     'outfit name',
     'Feet',
     '1 of 100',
@@ -206,7 +206,7 @@ const detailsICE = {
   ],
   Top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
-    'Suit Top',
+    'Blazer',
     'outfit name',
     'Torso',
     '1 of 100',
@@ -214,7 +214,7 @@ const detailsICE = {
   ],
   Pants: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
-    'Suit Pants',
+    'Trousers',
     'outfit name',
     'Legs',
     '1 of 100',
@@ -222,7 +222,7 @@ const detailsICE = {
   ],
   Glasses: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
-    'Money Shades',
+    'Shades',
     'outfit name',
     'Accessory',
     '1 of 100',

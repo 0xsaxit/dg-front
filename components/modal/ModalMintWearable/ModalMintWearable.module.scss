@@ -20,18 +20,19 @@
   width: 818px !important;
   padding: 40px 56px;
   font-family: Larsseit-Regular;
+  transform: scale(0.9);
 
   .modal_wrapper {
     .button_close {
       position: absolute;
-      top: -60px;
+      top: -48px;
       left: 0;
       cursor: pointer;
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
       background: #000000;
       border-radius: 50%;
-      padding: 14px;
+      padding: 8px 10px 8px 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -279,9 +280,10 @@
               height: 14px;
             }
             .img_card2 {
-              margin-left: 7px;
-              width: 18px;
-              height: 18px;
+              margin-top: -1px;
+              margin-left: 8px;
+              width: 20px;
+              height: 20px;
             }
             .img_card3 {
               margin-left: 4px;
@@ -323,14 +325,13 @@
       justify-content: flex-start;
 
       .button_upgrade {
-        width: fit-content;
+        width: 167px;
         height: 48px;
         padding: 0 24px;
         background: #006eff;
-        border-radius: 10px;
+        border-radius: 12px;
         margin-right: 16px;
-
-        font-family: Larsseit-Medium;
+        font-family: Larsseit-Bold;
         font-style: normal;
         font-weight: normal;
         font-size: 17px;
@@ -342,15 +343,16 @@
         width: 141px;
         height: 48px;
         background: #2a2a2a;
-        border-radius: 10px;
+        border-radius: 12px;
 
-        font-family: Larsseit-Medium;
+        font-family: Larsseit-Bold;
         font-style: normal;
         font-weight: normal;
         font-size: 17px;
         line-height: 24px;
         text-align: center;
         color: #ffffff;
+        margin-left: 8px;
       }
     }
   }

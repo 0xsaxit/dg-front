@@ -36,8 +36,8 @@ const ModalMint = props => {
         <div className={styles.modal_wrapper}>
           <span className={styles.button_close} onClick={() => setOpen(false)}>
             <svg
-              width="20"
-              height="20"
+              width="12"
+              height="12"
               viewBox="0 0 12 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const ModalMint = props => {
           </div>
 
           <div className={styles.mint_box_right}>
-            <div className={styles.header}>Mint WEARABLE NAME (ICE Rank 1)</div>
+            <div className={styles.header}>Mint {props.wearableName} (ICE Rank 1)</div>
 
             <div className={styles.benefit_area}>
               Benefits
@@ -107,7 +107,7 @@ const ModalMint = props => {
                     0.1 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
                   </div>
-                  <div className={styles.description}>0.0 ETH Available</div>
+                  <div className={styles.description}>{state.ethereumBal.toFixed(2)} ETH Available</div>
                   <div className={styles.network}>(On Mainnet)</div>
                 </div>
                 &nbsp;+&nbsp;
@@ -121,7 +121,7 @@ const ModalMint = props => {
                   <div className={styles.card} style={{ width: '150px' }}>
                     1 DG Staked
                     <img
-                      src={Images.DG_COIN_LOGO}
+                      src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631325895/dgNewLogo_hkvlps.png"
                       className={styles.img_card2}
                     />
                   </div>

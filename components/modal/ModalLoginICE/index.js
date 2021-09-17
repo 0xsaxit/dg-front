@@ -170,7 +170,7 @@ const ModalLoginICE = () => {
               <span style={{ display: 'flex', justifyContent: 'center' }}>
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1620331579/metamask-fox_szuois.png"
-                  style={{ height: '36px', margin: '0px 24px 0px -48px' }}
+                  style={{ height: '36px', margin: '6px 24px 0px -48px' }}
                 />
                 Connect Metamask
               </span>

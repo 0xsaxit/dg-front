@@ -194,19 +194,23 @@ const ContentOfferings = props => {
               </span>
               <p className={styles.nft_other_p}>{props.detailsICE[item][2]}</p>
               <h3 className={styles.nft_other_h3}>{props.detailsICE[item][1]}</h3>
-              {metamaskEnabled ?
+
+              {state.userStatus ? (
                 <ModalMintWearable
                   className={styles.right_button}
                   wearableImg={props.detailsICE[item][0]}
                   wearableBodyType={props.detailsICE[item][3]}
                   wearableBodyImg={props.detailsICE[item][5]}
+                  wearableName={props.detailsICE[item][1]}
                 />
-                :
+              ) : (
                 <ModalLoginICE />
-              }
+              )}
+
               {/* <ModalMintActivation /> */}
               {/* <ActivateWearableModal /> */}
               {/* <ModalActivationSuccess setPending={false} /> */}
+              
             </div>
           </div>
         ))}
