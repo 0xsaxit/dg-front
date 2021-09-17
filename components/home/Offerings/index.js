@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Divider, Icon } from 'semantic-ui-react';
 import ContentOfferings from '../../content/ContentOfferings';
 import ContentLeaderboard from '../../content/ContentLeaderboard';
-import Spinner from '../../Spinner'; 
+import Spinner from '../../Spinner';
 import Images from '../../../common/Images';
 import Aux from '../../_Aux';
 import { useMediaQuery } from 'hooks';
@@ -238,9 +238,6 @@ const detailsICE = {
   ],
 };
 
-
-
-
 const Offerings = (props) => {
   // get leaderboard data from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -355,36 +352,36 @@ const Offerings = (props) => {
               <div>
                 <Link href="/games">
                   <div className={styles.menu_item} style={{ marginTop: '2px' }}>
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ margin: '2px -1px -2px 1px' }}
                     >
-                      <rect 
-                        x="1" 
-                        y="1" 
-                        width="17" 
-                        height="17" 
-                        rx="2.83333" 
-                        fill="black" 
-                        stroke={gameState === 'games' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                      <rect
+                        x="1"
+                        y="1"
+                        width="17"
+                        height="17"
+                        rx="2.83333"
+                        fill="black"
+                        stroke={gameState === 'games' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <circle 
-                        cx="13.0888" 
-                        cy="6.28904" 
-                        r="1.88889" 
+                      <circle
+                        cx="13.0888"
+                        cy="6.28904"
+                        r="1.88889"
                         fill={gameState === 'games' ? 'white' : '#808080'}
                       />
-                      <circle 
-                        cx="6.28904" 
-                        cy="13.0888" 
-                        r="1.88889" 
+                      <circle
+                        cx="6.28904"
+                        cy="13.0888"
+                        r="1.88889"
                         fill={gameState === 'games' ? 'white' : '#808080'}
                       />
                     </svg>
@@ -394,57 +391,57 @@ const Offerings = (props) => {
                 <Link href="/games/scenes">
                   <div className={styles.menu_item}
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24"  
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <circle 
-                        cx="10.5" 
+                      <circle
+                        cx="10.5"
                         cy="5.5"
-                        r="4.5" 
+                        r="4.5"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <rect 
-                        x="1" 
-                        y="8" 
-                        width="19" 
-                        height="13" 
-                        rx="1.57678" 
-                        fill="black"
-                        stroke={gameState === 'casinos' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
-                      <rect 
-                        x="6.86035" 
-                        y="12.6313" 
-                        width="7.27977" 
-                        height="9.54253" 
-                        rx="1.57678" 
+                      <rect
+                        x="1"
+                        y="8"
+                        width="19"
+                        height="13"
+                        rx="1.57678"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <rect 
+                      <rect
+                        x="6.86035"
+                        y="12.6313"
+                        width="7.27977"
+                        height="9.54253"
+                        rx="1.57678"
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <rect
                         x="3.1"
-                        y="5.6" 
-                        width="14.8" 
-                        height="3.8" 
-                        rx="1.9" 
+                        y="5.6"
+                        width="14.8"
+                        height="3.8"
+                        rx="1.9"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="1.8" 
-                        stroke-linecap="round" 
+                        stroke-width="1.8"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -453,35 +450,35 @@ const Offerings = (props) => {
 
                 <Link href="/games/nfts">
                   <div className={styles.menu_item}>
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <rect 
-                        x="1" 
-                        y="1" 
-                        width="20" 
-                        height="20" 
-                        rx="2.83333" 
-                        stroke={gameState === 'nfts' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                      <rect
+                        x="1"
+                        y="1"
+                        width="20"
+                        height="20"
+                        rx="2.83333"
+                        stroke={gameState === 'nfts' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <path 
-                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
-                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      <path
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z"
+                        fill={gameState === 'nfts' ? 'white' : '#808080'}
                       />
-                      <path 
-                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
-                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      <path
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z"
+                        fill={gameState === 'nfts' ? 'white' : '#808080'}
                       />
-                      <path 
-                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
-                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      <path
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z"
+                        fill={gameState === 'nfts' ? 'white' : '#808080'}
                       />
                     </svg>
                   </div>
@@ -490,9 +487,9 @@ const Offerings = (props) => {
                 <Link href="/games/ice">
                   <div className={styles.menu_item}>
                     <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path 
-                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z" 
-                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      <path
+                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z"
+                        fill={gameState === 'ice' ? 'white' : '#808080'}
                       />
                     </svg>
                   </div>
@@ -500,33 +497,33 @@ const Offerings = (props) => {
 
                 <Link href="/games/shop">
                   <div className={styles.menu_item}>
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ margin: '0px -1px 0px 1px' }}
                     >
-                      <path 
-                        d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z" 
-                        stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
-                      <path 
-                        d="M1 5H19" 
-                        stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
-                      <path 
-                        d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9" 
+                      <path
+                        d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round" 
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M1 5H19"
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9"
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -535,38 +532,38 @@ const Offerings = (props) => {
 
                 <Link href="/games/leaderboard">
                   <div className={styles.menu_item}>
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 14" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 14"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ margin: '-2px 0px 2px 0px' }}
                     >
-                      <rect 
-                        x="1" 
-                        y="8" 
-                        width="6" 
-                        height="9" 
-                        rx="1" 
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
-                      />
-                      <rect 
-                        x="7.75" 
-                        y="1" 
-                        width="7" 
-                        height="16" 
+                      <rect
+                        x="1"
+                        y="8"
+                        width="6"
+                        height="9"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
                       />
-                      <rect 
-                        x="15" 
-                        y="4" 
-                        width="7" 
-                        height="13" 
-                        rx="1" 
+                      <rect
+                        x="7.75"
+                        y="1"
+                        width="7"
+                        height="16"
+                        rx="1"
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke-width="2"
+                      />
+                      <rect
+                        x="15"
+                        y="4"
+                        width="7"
+                        height="13"
+                        rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
                       />
@@ -618,36 +615,36 @@ const Offerings = (props) => {
                         : ''
                     }
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ margin: '2px -1px -2px 1px' }}
                     >
-                      <rect 
-                        x="1" 
-                        y="1" 
-                        width="17" 
-                        height="17" 
-                        rx="2.83333" 
-                        fill="black" 
-                        stroke={gameState === 'games' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                      <rect
+                        x="1"
+                        y="1"
+                        width="17"
+                        height="17"
+                        rx="2.83333"
+                        fill="black"
+                        stroke={gameState === 'games' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <circle 
-                        cx="13.0888" 
-                        cy="6.28904" 
-                        r="1.88889" 
+                      <circle
+                        cx="13.0888"
+                        cy="6.28904"
+                        r="1.88889"
                         fill={gameState === 'games' ? 'white' : '#808080'}
                       />
-                      <circle 
-                        cx="6.28904" 
-                        cy="13.0888" 
-                        r="1.88889" 
+                      <circle
+                        cx="6.28904"
+                        cy="13.0888"
+                        r="1.88889"
                         fill={gameState === 'games' ? 'white' : '#808080'}
                       />
                     </svg>
@@ -663,57 +660,57 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <circle 
-                        cx="10.5" 
+                      <circle
+                        cx="10.5"
                         cy="5.5"
-                        r="4.5" 
+                        r="4.5"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <rect 
-                        x="1" 
-                        y="8" 
-                        width="19" 
-                        height="13" 
-                        rx="1.57678" 
-                        fill="black"
-                        stroke={gameState === 'casinos' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
-                      <rect 
-                        x="6.86035" 
-                        y="12.6313" 
-                        width="7.27977" 
-                        height="9.54253" 
-                        rx="1.57678" 
+                      <rect
+                        x="1"
+                        y="8"
+                        width="19"
+                        height="13"
+                        rx="1.57678"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <rect 
+                      <rect
+                        x="6.86035"
+                        y="12.6313"
+                        width="7.27977"
+                        height="9.54253"
+                        rx="1.57678"
+                        fill="black"
+                        stroke={gameState === 'casinos' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <rect
                         x="3.1"
-                        y="5.6" 
-                        width="14.8" 
-                        height="3.8" 
-                        rx="1.9" 
+                        y="5.6"
+                        width="14.8"
+                        height="3.8"
+                        rx="1.9"
                         fill="black"
                         stroke={gameState === 'casinos' ? 'white' : '#808080'}
-                        stroke-width="1.8" 
-                        stroke-linecap="round" 
+                        stroke-width="1.8"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -729,35 +726,35 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <rect 
-                        x="1" 
-                        y="1" 
-                        width="20" 
-                        height="20" 
-                        rx="2.83333" 
-                        stroke={gameState === 'nfts' ? 'white' : '#808080'} 
-                        stroke-width="2" 
-                        stroke-linecap="round" 
+                      <rect
+                        x="1"
+                        y="1"
+                        width="20"
+                        height="20"
+                        rx="2.83333"
+                        stroke={gameState === 'nfts' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
-                      <path 
-                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z" 
-                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      <path
+                        d="M9.1678 7.66675V14.3334H7.67634L5.58141 10.8763L5.34863 10.4096V14.3334H3.85718V7.66675H5.34863L7.43495 11.162L7.67634 11.6382V7.66675H9.1678Z"
+                        fill={gameState === 'nfts' ? 'white' : '#808080'}
                       />
-                      <path 
-                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z" 
-                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      <path
+                        d="M13.362 7.66675V9.20008H11.2929V10.2382H13.043V11.7715H11.2929V14.3334H9.80148V7.66675H13.362Z"
+                        fill={gameState === 'nfts' ? 'white' : '#808080'}
                       />
-                      <path 
-                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z" 
-                        fill={gameState === 'nfts' ? 'white' : '#808080'} 
+                      <path
+                        d="M19.0953 7.66675V9.20008H17.2676V14.3334H15.7761V9.20008H13.9485V7.66675H19.0953Z"
+                        fill={gameState === 'nfts' ? 'white' : '#808080'}
                       />
                     </svg>
                     <div className={styles.menu_title}>NFTs</div>
@@ -773,9 +770,9 @@ const Offerings = (props) => {
                     }
                   >
                     <svg width="24" height="24" viewBox="0 0 22 20" style={{ margin: '0px 1px 0px -1px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path 
-                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z" 
-                        fill={gameState === 'ice' ? 'white' : '#808080'} 
+                      <path
+                        d="M17.9167 0.666667H5.08333C4.9375 0.666667 4.79167 0.739584 4.71875 0.885417L1.07292 6.24479C0.963542 6.39063 0.963542 6.60938 1.07292 6.75521L11.1354 19.1875C11.3177 19.4062 11.6458 19.4062 11.8281 19.1875L21.8906 6.75521C22 6.60938 22 6.39063 21.9271 6.24479L18.2812 0.885417C18.1719 0.739584 18.0625 0.666667 17.9167 0.666667ZM17.1875 2.41667L19.5208 5.91667H17.0052L15.1094 2.41667H17.1875ZM9.82292 2.41667H13.1406L15.0365 5.91667H7.96354L9.82292 2.41667ZM5.77604 2.41667H7.85417L5.95833 5.91667H3.47917L5.77604 2.41667ZM4.20833 7.66667H6.06771L8.58333 13.5L4.20833 7.66667ZM7.96354 7.66667H15L11.5 16.5625L7.96354 7.66667ZM14.4167 13.5L16.8958 7.66667H18.7552L14.4167 13.5Z"
+                        fill={gameState === 'ice' ? 'white' : '#808080'}
                       />
                     </svg>
                     <div className={styles.menu_title}>ICE Wearables</div>
@@ -790,33 +787,33 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ margin: '0px -1px 0px 1px' }}
                     >
-                      <path 
-                        d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z" 
-                        stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
-                      <path 
-                        d="M1 5H19" 
-                        stroke={gameState === 'shop' ? 'white' : '#808080'}
-                        stroke-width="2" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round"
-                      />
-                      <path 
-                        d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9" 
+                      <path
+                        d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z"
                         stroke={gameState === 'shop' ? 'white' : '#808080'}
                         stroke-width="2"
-                        stroke-linecap="round" 
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M1 5H19"
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9"
+                        stroke={gameState === 'shop' ? 'white' : '#808080'}
+                        stroke-width="2"
+                        stroke-linecap="round"
                         stroke-linejoin="round"
                       />
                     </svg>
@@ -832,38 +829,38 @@ const Offerings = (props) => {
                         : styles.menu_item
                     }
                   >
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 14" 
-                      fill="none" 
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 14"
+                      fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       style={{ margin: '-2px 0px 2px 0px' }}
                     >
-                      <rect 
-                        x="1" 
-                        y="8" 
-                        width="6" 
-                        height="9" 
-                        rx="1" 
-                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
-                        stroke-width="2"
-                      />
-                      <rect 
-                        x="7.75" 
-                        y="1" 
-                        width="7" 
-                        height="16" 
+                      <rect
+                        x="1"
+                        y="8"
+                        width="6"
+                        height="9"
                         rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
                       />
-                      <rect 
-                        x="15" 
-                        y="4" 
-                        width="7" 
-                        height="13" 
-                        rx="1" 
+                      <rect
+                        x="7.75"
+                        y="1"
+                        width="7"
+                        height="16"
+                        rx="1"
+                        stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
+                        stroke-width="2"
+                      />
+                      <rect
+                        x="15"
+                        y="4"
+                        width="7"
+                        height="13"
+                        rx="1"
                         stroke={gameState === 'leaderboard' ? 'white' : '#808080'}
                         stroke-width="2"
                       />
@@ -944,7 +941,7 @@ const Offerings = (props) => {
                 stroke-linejoin="round"
               />
             </svg>
-          </div>      
+          </div>
 
           <div className="account-hover-time-tablet" style={{ marginLeft: '24px' }}>
             <svg
