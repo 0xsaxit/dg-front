@@ -1,16 +1,14 @@
 @import 'styles/base.scss';
 
 .open_button {
-  margin-top: 20px !important;
-  width: 100%;
+  margin-top: 0px !important;
+  margin-right: 10px !important;
   background: #006eff !important;
   color: white !important;
   border-radius: 10px !important;
-  height: 40px;
-  line-height: 18px;
-  font-family: Larsseit-Bold;
-  font-size: 14px;
-  width: 100%;
+  line-height: 20px !important;
+  font-family: Larsseit-Medium !important;
+  font-size: 17px !important;
 }
 
 .withdraw_modal {

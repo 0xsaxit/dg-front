@@ -282,8 +282,9 @@ const ModalEthAuth = props => {
       trigger={
         itemLimitsArray[props.index][0] ? (
           <Button className={styles.open_button}>
-            Mint New Wearable ({itemLimitsArray[props.index][0]}) ID:{' '}
-            {itemLimitsArray[props.index][1]}
+            Mint Wearable
+            {/* Mint New Wearable ({itemLimitsArray[props.index][0]}) ID:{' '} */}
+            {/* {itemLimitsArray[props.index][1]} */}
           </Button>
         ) : (
           <Button disabled className={styles.open_button}>
