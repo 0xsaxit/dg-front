@@ -1,11 +1,45 @@
 @import "styles/base.scss";
 
+.header {
+  margin-top: 180px;
+  margin-left: 40px;
+
+  h1 {
+    font-size: 24px;
+    font-family: 'Larsseit-Medium';
+    line-height: 32px;
+    letter-spacing: 0.7px;
+  }
+
+  p {
+    font-size: 20px;
+    font-family: 'Larsseit-Regular';
+    line-height: 32px;
+    letter-spacing: 0.3px;
+
+    a {
+      color: #509BFF;
+      text-decoration: underline !important;
+
+      &:hover {
+        transition: 0.2s ease-in;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 19px;
+    line-height: 26px;
+    margin-top: 48px;
+  }
+}
+
 .outter_games_container {
   width: calc(100vw - 337px);
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
-  margin: 154px 0px 120px 40px;
+  margin: 18px 0px 120px 40px;
 
   @media (max-width: 1040px) {
     width: calc(100% - 160px);
@@ -17,6 +51,7 @@
   }
 
   .games_container {
+    position: relative;
     border: 1px solid #2a2a2a;
     border-radius: 12px;
     box-sizing: border-box;
@@ -24,10 +59,35 @@
     min-width: 228px;
     height: 100%;
 
+    .p2e_enabled {
+      position: absolute;
+      top: 5px;
+      width: calc(100% - 36px);
+      display: flex;
+      justify-content: center;
+      z-index: 1;
+
+      div {
+        position: relative;
+        width: 180px;
+
+        .p2e_enabled_img {
+          width: 100%;
+        }
+  
+        .p2e_info_img {
+          position: absolute;
+          top: 18.5px;
+          right: 51px;
+        }
+      }
+    }
+
     .nft_image {
       width: 100%;
       border-radius: 12px;
       position: relative;
+      margin-top: 5px;
 
       .p2e_enabled {
         position: absolute;
