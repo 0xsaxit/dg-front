@@ -262,6 +262,19 @@
         gap: 6px;
 
         .card_area_body {
+          .not_enough {
+            width: 54px;
+            height: 15px;
+            font-size: 8px;
+            line-height: 11px;
+            background: #2A2A2A;
+            border-radius: 4px;
+            padding: 2px 6px;
+            position: absolute;
+            top: 216px;
+            margin-left: 30px;
+          }
+
           .card {
             font-family: Larsseit-Bold;
             font-style: normal;
