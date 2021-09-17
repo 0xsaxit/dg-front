@@ -136,7 +136,7 @@ const ModalMint = props => {
               </div>
             </div>
             <div className={styles.button_area}>
-              {state.ethereumBal > 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE > 1 ?
+              {state.ethereumBal < 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ?
                 <Button
                   className={styles.button_upgrade}
                   disabled={true}
