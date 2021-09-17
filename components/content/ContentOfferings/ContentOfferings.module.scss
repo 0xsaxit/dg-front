@@ -1,8 +1,10 @@
 @import "styles/base.scss";
 
 .header {
-  margin-top: 180px;
+  width: calc(100vw - 337px);
+  margin-top: 150px;
   margin-left: 40px;
+  margin-bottom: -120px;
 
   h1 {
     font-size: 24px;
@@ -40,6 +42,7 @@
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
   margin: 18px 0px 120px 40px;
+  margin-top: 150px;
 
   @media (max-width: 1040px) {
     width: calc(100% - 160px);
