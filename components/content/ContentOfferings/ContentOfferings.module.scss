@@ -2,7 +2,7 @@
 
 .header {
   margin-top: 180px;
-  margin-left: 36px;
+  margin-left: 40px;
 
   h1 {
     font-size: 24px;
@@ -26,6 +26,12 @@
       }
     }
   }
+
+  h3 {
+    font-size: 19px;
+    line-height: 26px;
+    margin-top: 48px;
+  }
 }
 
 .outter_games_container {
@@ -33,7 +39,7 @@
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
-  margin: 70px 0px 120px 40px;
+  margin: 18px 0px 120px 40px;
 
   @media (max-width: 1040px) {
     width: calc(100% - 160px);

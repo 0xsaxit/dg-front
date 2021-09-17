@@ -182,6 +182,7 @@ const ContentOfferings = props => {
             ICE Wearables give you table access to free to play, play-to-earn
             poker. Learn more by <a href="/">clicking here.</a>
           </p>
+          <h3>DG Suit</h3>
         </div>
 
         <div className={styles.outter_games_container}>
