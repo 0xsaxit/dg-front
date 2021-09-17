@@ -12,6 +12,7 @@ const ModalMint = props => {
 
   // define local variables
   const [open, setOpen] = useState(false);
+  const [openETHAuth, setOpenETHAuth] = useState(false);
   const [safari, setSafari] = useState(false);
 
   // using Safari browser
@@ -143,15 +144,32 @@ const ModalMint = props => {
                   Mint Wearable
                 </Button>
                 :
-                <ModalETHAuth
-                  index={0}
-                />
+                <>
+                  <Button
+                    className={styles.button_upgrade}
+                    onClick={() => {
+                      setOpen(false);
+                      setOpenETHAuth(true);
+                    }}
+                  >
+                    Mint Wearable
+                  </Button>
+                </>
               }
               <Button className={styles.button_close}>Learn More</Button>
             </div>
           </div>
         </div>
       </Modal>
+
+      {/* ETH Auth Modal */}
+      <ModalETHAuth
+        index={0}
+        show={openETHAuth}
+        close={() => {
+          setOpenETHAuth(false)
+        }}
+      />
     </>
   );
 };

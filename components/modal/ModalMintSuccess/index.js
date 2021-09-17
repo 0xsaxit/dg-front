@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalMintSuccess.module.scss';
 
-const ModalMintSuccess = ({ disabled }) => {
+const ModalMintSuccess = props => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(props.show);
+  }, [props.show])
+
   return (
     <Modal
       className={styles.activation_success_modal}
       onClose={() => {
         setOpen(false);
+        props.close();
       }}
       onOpen={() => setOpen(true)}
       open={open}
       close
-      trigger={
-        <Button disabled={disabled} className={styles.open_button}>
-          Proceed to Mint
-        </Button>
-      }
     >
       <div className={styles.header_buttons}>
         <span
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
+            props.close();
           }}
         >
           <svg
