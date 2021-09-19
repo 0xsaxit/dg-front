@@ -19,9 +19,9 @@ import ReactGA from 'react-ga';
 const MenuTop = props => {
   // const { t, i18n } = useTranslation();
 
-  const changeLanguage = lng => {
-    i18n.changeLanguage(lng);
-  };
+  // const changeLanguage = lng => {
+  //   i18n.changeLanguage(lng);
+  // };
 
   // get token balances from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
@@ -80,14 +80,14 @@ const MenuTop = props => {
     };
   }, [scrollState]);
 
-  const onCopy = () => {
-    navigator.clipboard.writeText(state.userAddress);
-    setCopied(true);
+  // const onCopy = () => {
+  //   navigator.clipboard.writeText(state.userAddress);
+  //   setCopied(true);
 
-    setTimeout(() => {
-      setCopied(false);
-    }, 3000);
-  };
+  //   setTimeout(() => {
+  //     setCopied(false);
+  //   }, 3000);
+  // };
 
   // close menu automatically if left open for desktop screen sizes
   useEffect(() => {

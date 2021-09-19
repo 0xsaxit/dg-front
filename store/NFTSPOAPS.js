@@ -11,23 +11,24 @@ function NFTSPOAPS() {
     if (state.userStatus >= 4) {
       (async () => {
         let json = await Fetch.NFTS_1(state.userAddress);
-
         let json_2 = await Fetch.NFTS_2(state.userAddress);
 
-        let wearables = [];
-        let i;
-        for (i = 0; i < json.assets.length; i++) {
-          wearables.push(json.assets[i]);
-        }
-        let j;
-        for (j = 0; j < json_2.assets.length; j++) {
-          wearables.push(json_2.assets[j]);
-        }
+        if(json && json_2) {
+          let wearables = [];
+          let i;
+          for (i = 0; i < json.assets.length; i++) {
+            wearables.push(json.assets[i]);
+          }
+          let j;
+          for (j = 0; j < json_2.assets.length; j++) {
+            wearables.push(json_2.assets[j]);
+          }
 
-        dispatch({
-          type: 'wearables',
-          data: wearables,
-        });
+          dispatch({
+            type: 'wearables',
+            data: wearables,
+          });
+        }
       })();
     }
   }, [state.userStatus]);
