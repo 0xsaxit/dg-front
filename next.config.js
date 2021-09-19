@@ -27,4 +27,5 @@ module.exports = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   webpack5: false,
+  optimizeFonnts: true,
 };
