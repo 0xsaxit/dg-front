@@ -21,20 +21,16 @@ function SectionTwo() {
           </p> 
           <div>
             {!mobile && (
-              <video
+              <img
                 className={styles.tout_image}
-                src="https://res.cloudinary.com/dnzambf4m/video/upload/v1630492192/ICE_DIAMOND_HYPE_a8btgn.mp4"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632060620/Group_805_gxueoj.png"
                 type="video/mp4"
-                frameBorder="0"
-                autoPlay={true}
-                loop
-                muted
-              ></video>
+              ></img>
             )}
             {mobile && (
               <img
                 className={styles.tout_image}
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630487859/ICE_ICON_hcsgvx.png"
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632060620/Group_805_gxueoj.png"
                 alt="img"
               />
             )}
