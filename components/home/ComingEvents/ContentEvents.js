@@ -8,7 +8,7 @@ import styles from './ComingEvents.module.scss';
 
 function getSentences(str) {
   const ss = str.match(/.*?[?!.]/g);
-  const f = ss.slice(0, 1).join('!');
+  const f = ss.slice(0, 2).join(' ');
   return f;
 }
 
@@ -84,43 +84,40 @@ const ContentEvents = ({ events, eventOngoing }) => {
         </div>
       </div>
 
-      <Grid>
-        {events.slice(1).map((event, i) => (
-          <Grid.Column
-            computer={5}
-            tablet={8}
-            mobile={16}
-            className={styles.leaderboard_column}
-            key={i}
-          >
-            <a href={event.url} className={cn(styles.nft_container, 'mt-0')}>
-              <div>
-                <span>
-                  <Image src={event.image} className={styles.event_pic} />
-                </span>
-                <div className={styles.nft_description}>
-                  <span>{event.next_start_at}</span>
-                  <h3 className={styles.event_title}>{event.name}</h3>
+      <span>
+        <div className={styles.outter_games_container}>
+          {events.slice(1).map((event, i) => (
+            <a
+              href={event.url}
+              target="_blank"
+              className={styles.games_container}
+            >
+              <img
+                src={event.image}
+                className={styles.nft_image}
+              />
 
-                  <p className={styles.event_description}>
-                    {getSentences(event.description)}
+              <div className={styles.nft_description}>
+                <span style={{ display: 'flex', justifyContent: 'center' }}>
+                  <p className={styles.nft_info}>
+                    {event.next_start_at}
                   </p>
-
-                  <div className="mt-auto d-flex justify-content-between">
-                    <Button
-                      className={styles.nft_read_button}
-                      target="_blank"
-                      href={`https://events.decentraland.org/en/?event=${event.id}`}
-                    >
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
+                </span>
+                <h3 className={styles.nft_h3}>{event.name}</h3>
+                <p className={styles.nft_p}>{getSentences(event.description)}</p>
               </div>
+              <Button
+                color="blue"
+                className={styles.nft_button}
+                target="_blank"
+                href={`https://events.decentraland.org/en/?event=${event.id}`}
+              >
+                Learn More
+              </Button>
             </a>
-          </Grid.Column>
-        ))}
-      </Grid>
+          ))}
+        </div>
+      </span>
     </span>
   );
 };

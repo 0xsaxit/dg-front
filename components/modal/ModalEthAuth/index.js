@@ -207,7 +207,7 @@ const ModalEthAuth = props => {
             actionState={payForActivationState}
             onClick={() => console.log('pay for activation on click action')}
             primaryText="Pay For Activation"
-            secondaryText="Payment with ETH"
+            secondaryText="Payment with 0.1 ETH"
             disabled={authorizeETHState != 'done'}
           />
         </div>
@@ -366,7 +366,7 @@ const ModalEthAuth = props => {
           <div className={styles.upgrade_container}>
             {approveWETH()}
 
-            {!minting ? (
+            {/*{!minting ? (
               authStatus ? (
                 canPurchase ? (
                   <Button
@@ -396,7 +396,7 @@ const ModalEthAuth = props => {
               <Button disabled className={styles.proceed_button}>
                 {buttonMessage}
               </Button>
-            )}
+            )}*/}
           </div>
         </div>
       </Modal>
