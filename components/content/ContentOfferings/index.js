@@ -4,7 +4,7 @@ import styles from './ContentOfferings.module.scss';
 import { GlobalContext } from '../../../store';
 import ModalMintActivation from 'components/modal/ModalMintActivation';
 import ModalMintWearable from 'components/modal/ModalMintWearable';
-import ModalLoginICE from 'components/modal/ModalLoginICE'
+import ModalLoginICE from 'components/modal/ModalLoginICE';
 
 const ContentOfferings = props => {
   // dispatch new user status to Context API store
@@ -144,12 +144,14 @@ const ContentOfferings = props => {
                     <p className={styles.nft_info}>
                       {props.detailsNFTs[item][5]}
                     </p>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                 </span>
-                <p className={styles.nft_other_p}>{props.detailsNFTs[item][3]}</p>
-                <h3 className={styles.nft_other_h3}>{props.detailsNFTs[item][2]}</h3>
+                <p className={styles.nft_other_p}>
+                  {props.detailsNFTs[item][3]}
+                </p>
+                <h3 className={styles.nft_other_h3}>
+                  {props.detailsNFTs[item][2]}
+                </h3>
               </div>
 
               <div
@@ -214,16 +216,15 @@ const ContentOfferings = props => {
 
               <div className={styles.nft_description}>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
-                  <p className={styles.nft_info}>
-                    {props.detailsICE[item][3]}
-                  </p>
-                  <p className={styles.nft_info}>
-                    {props.detailsICE[item][4]}
-                  </p>
-
+                  <p className={styles.nft_info}>{props.detailsICE[item][3]}</p>
+                  <p className={styles.nft_info}>{props.detailsICE[item][4]}</p>
                 </span>
-                <p className={styles.nft_other_p}>{props.detailsICE[item][2]}</p>
-                <h3 className={styles.nft_other_h3}>{props.detailsICE[item][1]}</h3>
+                <p className={styles.nft_other_p}>
+                  {props.detailsICE[item][2]}
+                </p>
+                <h3 className={styles.nft_other_h3}>
+                  {props.detailsICE[item][1]}
+                </h3>
               </div>
 
               <div
@@ -236,6 +237,7 @@ const ContentOfferings = props => {
               >
                 {state.userStatus ? (
                   <ModalMintWearable
+                    index={i}
                     className={styles.right_button}
                     wearableImg={props.detailsICE[item][0]}
                     wearableBodyType={props.detailsICE[item][3]}
@@ -256,7 +258,6 @@ const ContentOfferings = props => {
       </span>
     );
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -284,18 +285,16 @@ const ContentOfferings = props => {
                     <p className={styles.nft_info}>
                       {props.detailsCasinos[item][5]}
                     </p>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                   {props.detailsCasinos[item][7] ? (
                     <p className={styles.nft_info}>
                       {props.detailsCasinos[item][6]}
                     </p>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                 </span>
-                <h3 className={styles.nft_h3}>{props.detailsCasinos[item][2]}</h3>
+                <h3 className={styles.nft_h3}>
+                  {props.detailsCasinos[item][2]}
+                </h3>
                 <p className={styles.nft_p}>{props.detailsCasinos[item][3]}</p>
               </div>
 
@@ -350,9 +349,7 @@ const ContentOfferings = props => {
                     <p className={styles.nft_info}>
                       {props.detailsShop[item][5]}
                     </p>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                 </span>
                 <h3 className={styles.nft_h3}>{props.detailsShop[item][2]}</h3>
                 <p className={styles.nft_p}>{props.detailsShop[item][3]}</p>
