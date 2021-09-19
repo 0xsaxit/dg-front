@@ -35,7 +35,12 @@ function Items({ state }) {
                     </span>
 
                     <div className={styles.nft_description}>
-                      <p className={styles.nft_subheader}> {wearable.asset_contract.name} </p>
+                      <span style={{ display: 'flex', justifyContent: 'center' }}>
+                        <p className={styles.nft_info}>
+                          {wearable.asset_contract.name}
+                        </p>
+                      </span>
+                      <p className={styles.nft_subheader}> Outfit Name </p>
                       <p className={styles.nft_name}>{wearable.name}</p>
 
                       <span
