@@ -4,10 +4,11 @@
 
 .substack-container {
   max-width: 736px;
-  margin: 0px auto 0px auto;
+  margin: -72px auto 0px auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  transform: scale(0.8);
 }
 
 .substack-img {
@@ -54,6 +55,13 @@
   font-family: Larsseit-Regular;
   font-size: 16px;
   padding-bottom: 24px;
+}
+
+.post {
+  background: black !important;
+  border: 1px solid #2b2b2b;
+  border-radius: 16px !important;
+  padding: 42px 20px;
 }
 
 .post-date,
@@ -225,15 +233,31 @@ a.blog-more {
   }
 }
 
+.posts {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(388px, 1fr));
+  margin: 18px 0px 120px 0px;
+}
+
+.nft-info {
+  border: 1px solid #2a2a2a;
+  padding: 4px 8px 4px 8px;
+  margin: 8px 4px 0 4px;
+  border-radius: 12px;
+  font-size: 10px;
+  line-height: 12px;
+  font-family: Larsseit-Bold;
+}
+
 .posts .post .post-image {
   cursor: pointer;
   margin-bottom: 15px;
-  transition: transform 250ms ease, box-shadow 250ms ease;
   overflow: hidden;
   display: flex;
   width: 100%;
-  height: 200px;
-  border-radius: 24px 24px 0px 0px;
+  height: 241px;
+  border-radius: 16px;
 }
 
 .posts .post .post-image img {

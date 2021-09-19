@@ -81,7 +81,6 @@ export const GlobalStyles = createGlobalStyle`
   .treasury-container,
   .balances-column,
   .featured-blog-container,
-  .post,
   .DG-column,
   .DG-column-treasury,
   .read-next-button:first-child,
