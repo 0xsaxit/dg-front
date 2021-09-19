@@ -15,6 +15,7 @@
 
 .withdraw_modal {
   width: 480px !important;
+  height: 359px;
   background: black !important;
   border-radius: 24px !important;
   padding: 40px;
@@ -104,7 +105,7 @@
       .steps_line {
         display: flex;
         padding-left: 14px;
-        margin: 5px 0;
+        margin: 0px 0px 0px -42px;
 
         .line_initial {
           fill: white;
@@ -135,6 +136,7 @@
 .metamask_action_container {
   display: flex;
   align-items: center;
+  margin-left: -42px;
 
   .upgrade_right {
     margin-left: 26px;
