@@ -212,16 +212,16 @@
             right: 0px;
           }
         }
-        
 
         .newLink_gamePlay {
           height: 45px;
           color: white;
-          background: #0C0C0C;
+          background: #0c0c0c;
           border: 1px solid transparent;
           border-radius: 8px;
           padding: 8px 13px 8px 13px;
           font-size: 18px;
+          font-family: "Larsseit-Bold";
           font-weight: 700;
           margin-right: 0;
           line-height: 24px;
@@ -236,12 +236,14 @@
           }
 
           h3 {
+            font-family: "Larsseit-Bold";
             font-size: 7px;
-            color: rgba(255, 255 ,255, 0.5) !important;
+            color: rgba(255, 255, 255, 0.5) !important;
           }
 
           h1 {
             margin-top: 0px;
+            font-family: "Larsseit-Bold";
             font-size: 12px;
             color: white;
           }

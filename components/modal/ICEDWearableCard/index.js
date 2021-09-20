@@ -17,9 +17,10 @@ const ICEDWearableCard = props => {
       <div className={styles.wearable_modal}>
         <div className={styles.wear_box}>
           <div className={styles.wear_box_purple}>
-            {/*<div className={styles.delegatebtn}>
-                Delegated To {props.address? props.address : 'You' }
-            </div>*/}
+            <div className={styles.delegatebtn}>
+              Delegated To {props.address ? props.address : 'You'}
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632105564/next_i5mqo5.svg" alt="icon" />
+            </div>
             {props.state == 2 ?
               <IceNeedToActivateTooltip />
               :
@@ -36,23 +37,24 @@ const ICEDWearableCard = props => {
           </div>
           <div className={styles.card_meta}>DG Suit</div>
           <div className={styles.card_title}>
-            {props.text ? props.text : 'DG Deezys'} <br/>
+            {props.text ? props.text : 'DG Deezys'} <br />
             (ICE {props.rank})
           </div>
           <div className={styles.button_area}>
             {props.state == 1 ? (
               <span className="w-100 d-flex justify-content-between">
-                <ModalDelegate />
+                <ModalDelegate
+                  imgSrc={props.url}
+                  rank={props.rank}
+                  bonus={props.bonus}
+                />
                 <ModalWearable />
               </span>
             ) : props.state == 2 ? (
               <NeedMoreDGActivateModal />
-              // <Button className={styles.upgrade_button}>
-              //   Activate Wearable (0.5 DG)
-              // </Button>
             ) : (
-                  <ModalWithdrawDelegation />
-                )}
+              <ModalWithdrawDelegation />
+            )}
           </div>
         </div>
       </div>

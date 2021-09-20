@@ -18,7 +18,6 @@ function WearableBody({ state }) {
             <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
               <ICEDWearableCard
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1632103003/bg_6_wuau48.svg"
-                address="0x23.."
                 desc="20% Max ICE Bonus"
                 rank="Rank 5"
                 bonus="+45%"
