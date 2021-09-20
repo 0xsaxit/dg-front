@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
 import { GlobalContext } from '../../../store';
 import { Biconomy } from '@biconomy/mexa';
 import Web3 from 'web3';
@@ -24,21 +23,14 @@ const ModalEthAuth = props => {
   const [spenderAddress, setSpenderAddress] = useState('');
   const [authStatus, setAuthStatus] = useState(false);
   const [canPurchase, setCanPurchase] = useState(true);
-  const [itemLimitsArray, setItemLinitsArray] = useState([
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-    [0, 0],
-  ]);
   const [open, setOpen] = useState(false);
   const [openMintSuccess, setOpenMintSuccess] = useState(false);
   const [minting, setMinting] = useState(false);
   const [buttonMessage, setButtonMessage] = useState('Proceed to Mint');
+  const [clicked, setClicked] = useState(false);
 
   // metamask step states
-  const [authorizeETHState, setAuthorizeEthState] = useState('initial');
-  const [payForActivationState, setpayForActivationState] = useState('initial');
+  // const [payForActivationState, setpayForActivationState] = useState('initial');
 
   /////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -46,12 +38,9 @@ const ModalEthAuth = props => {
 
   useEffect(() => {
     setOpen(props.show);
-  }, [props.show])
+  }, [props.show]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////
   // initialize Web3 providers and create token contract instance
-
   useEffect(() => {
     if (state.userStatus >= 4) {
       const web3 = new Web3(window.ethereum); // pass MetaMask provider to Web3 constructor
@@ -87,23 +76,6 @@ const ModalEthAuth = props => {
   }, [state.userStatus]);
 
   useEffect(() => {
-    const itemLimit0 = state.itemLimits[0];
-    const itemLimit5 = state.itemLimits[1];
-    const itemLimit10 = state.itemLimits[2];
-    const itemLimit15 = state.itemLimits[3];
-    const itemLimit20 = state.itemLimits[4];
-
-    let itemLimitsArray = [];
-    itemLimitsArray.push(itemLimit0);
-    itemLimitsArray.push(itemLimit5);
-    itemLimitsArray.push(itemLimit10);
-    itemLimitsArray.push(itemLimit15);
-    itemLimitsArray.push(itemLimit20);
-
-    setItemLinitsArray(itemLimitsArray);
-  }, [state.itemLimits]);
-
-  useEffect(() => {
     const authStatus = state.tokenAmounts.WETH_AUTHORIZATION;
 
     setAuthStatus(authStatus);
@@ -124,44 +96,6 @@ const ModalEthAuth = props => {
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // helper functions
-  function checkButton(buttonState) {
-    return (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {buttonState === 'authed' ? (
-          <Aux>
-            <circle cx="16" cy="16" r="16" fill="#35AB3A" />
-            <path
-              d="M14.7197 23.5601C15.4375 23.5601 15.9941 23.3037 16.375 22.7471L23.084 12.8594C23.3477 12.4712 23.4648 12.0684 23.4648 11.7095C23.4648 10.6841 22.6445 9.90771 21.5898 9.90771C20.8794 9.90771 20.4106 10.1641 19.9785 10.8452L14.6904 19.0483L12.105 16.1553C11.7388 15.7378 11.2993 15.54 10.7134 15.54C9.65137 15.54 8.86768 16.3164 8.86768 17.3491C8.86768 17.8252 8.99219 18.1914 9.39502 18.6455L13.1523 22.8862C13.5698 23.355 14.0825 23.5601 14.7197 23.5601Z"
-              fill="white"
-            />
-          </Aux>
-        ) : 'empty' ? (
-          <circle
-            cx="16"
-            cy="16"
-            r="14"
-            stroke="white"
-            stroke-opacity="0.25"
-            stroke-width="4"
-          />
-        ) : 'clicked' ? (
-          <Aux>
-            <circle cx="16" cy="16" r="16" fill="#35AB3A" />
-            <circle cx="16" cy="15.7" r="2.7" fill="white" />
-            <circle cx="8.7" cy="15.7" r="2.7" fill="white" />
-            <circle cx="23.3001" cy="15.7" r="2.7" fill="white" />
-          </Aux>
-        ) : null}
-      </svg>
-    );
-  }
-
   function approveWETH() {
     return (
       <Aux>
@@ -178,7 +112,15 @@ const ModalEthAuth = props => {
 
         <div className={styles.upgrade_inner_container}>
           <MetamaskAction
-            actionState={authorizeETHState}
+            actionState={
+              authStatus
+                ? 'done'
+                : !clicked
+                ? 'initial'
+                : clicked
+                ? 'clicked'
+                : null
+            }
             onClick={metaTransaction}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
@@ -187,11 +129,7 @@ const ModalEthAuth = props => {
           <div className={styles.steps_line}>
             {/** if previous step state is done, then fill the line, if not it stays gray */}
             <svg
-              className={
-                authorizeETHState === 'done'
-                  ? styles.line_done
-                  : styles.line_initial
-              }
+              className={authStatus ? styles.line_done : styles.line_initial}
               width="4"
               height="22"
               viewBox="0 0 4 22"
@@ -203,19 +141,19 @@ const ModalEthAuth = props => {
           </div>
 
           {/** TODO: add correct on click action here */}
-          <MetamaskAction
+          {/* <MetamaskAction
             actionState={payForActivationState}
             onClick={() => console.log('pay for activation on click action')}
             primaryText="Pay For Activation"
             secondaryText="Payment with 0.1 ETH"
-            disabled={authorizeETHState != 'done'}
-          />
+            disabled={authStatus}
+          /> */}
         </div>
       </Aux>
     );
   }
 
-  // send-off the API request to mint the user's Level 0 wearable
+  // send-off the API request to mint the user's Level 1 wearable
   async function mintToken(tokenID) {
     setMinting(true);
     setButtonMessage('Minting Token...');
@@ -230,6 +168,8 @@ const ModalEthAuth = props => {
         type: 'refresh_token_auth',
         data: refresh,
       });
+
+      setOpenMintSuccess(true);
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
       console.log(json.result);
@@ -244,7 +184,7 @@ const ModalEthAuth = props => {
   // Biconomy API meta-transaction. User must authorize WETH token contract to access their funds
   async function metaTransaction() {
     try {
-      setAuthorizeEthState('clicked');
+      setClicked(true);
       console.log('authorize amount: ' + state.tokenAmounts.WETH_COST_AMOUNT);
 
       // get function signature and send Biconomy API meta-transaction
@@ -261,8 +201,8 @@ const ModalEthAuth = props => {
       );
 
       if (txHash === false) {
+        setClicked(false);
         console.log('Biconomy meta-transaction failed');
-        setAuthorizeEthState('initial');
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
@@ -273,17 +213,15 @@ const ModalEthAuth = props => {
           type: 'refresh_token_auth',
           data: refresh,
         });
-
-        setAuthorizeEthState('done');
       }
     } catch (error) {
+      setClicked(false);
       console.log('WETH authorization error: ' + error);
-      setAuthorizeEthState('initial');
     }
   }
 
   return (
-    <>
+    <Aux>
       <Modal
         className={styles.withdraw_modal}
         onClose={() => {
@@ -297,7 +235,7 @@ const ModalEthAuth = props => {
         <div
           className={styles.close_icon}
           onClick={() => {
-            setOpen(false)
+            setOpen(false);
             props.close();
           }}
         >
@@ -366,37 +304,30 @@ const ModalEthAuth = props => {
           <div className={styles.upgrade_container}>
             {approveWETH()}
 
-            {/*{!minting ? (
+            {!minting ? (
               authStatus ? (
                 canPurchase ? (
                   <Button
                     className={styles.proceed_button}
-                    onClick={() => mintToken(itemLimitsArray[props.index][1])}
+                    onClick={() => mintToken(props.itemID)}
                   >
-                    {buttonMessage}
+                    {buttonMessage} ID: {props.itemID}
                   </Button>
                 ) : (
                   <Button disabled className={styles.proceed_button}>
-                    {buttonMessage}
+                    {buttonMessage} ID: {props.itemID}
                   </Button>
                 )
               ) : (
-                <Button
-                  className={styles.proceed_button}
-                  onClick={() => {
-                    setOpen(false);
-                    props.close();
-                    setOpenMintSuccess(true);
-                  }}
-                >
+                <Button disabled className={styles.proceed_button}>
                   {buttonMessage}
                 </Button>
               )
             ) : (
               <Button disabled className={styles.proceed_button}>
-                {buttonMessage}
+                {buttonMessage} ID: {props.itemID}
               </Button>
-            )}*/}
+            )}
           </div>
         </div>
       </Modal>
@@ -405,10 +336,10 @@ const ModalEthAuth = props => {
         wearableImg={props.wearableImg}
         show={openMintSuccess}
         close={() => {
-          setOpenMintSuccess(false)
+          setOpenMintSuccess(false);
         }}
       />
-    </>
+    </Aux>
   );
 };
 

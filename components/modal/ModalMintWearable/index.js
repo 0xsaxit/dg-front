@@ -1,10 +1,11 @@
 import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
-import ModalETHAuth from 'components/modal/ModalEthAuth'
-import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip'
+import ModalETHAuth from 'components/modal/ModalEthAuth';
+import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip';
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
+import Aux from '../../_Aux';
 
 const ModalMint = props => {
   // get user's unclaimed DG balance from the Context API store
@@ -13,8 +14,17 @@ const ModalMint = props => {
   // define local variables
   const [open, setOpen] = useState(false);
   const [openETHAuth, setOpenETHAuth] = useState(false);
-  const [safari, setSafari] = useState(false);
+  // const [safari, setSafari] = useState(false);
+  const [itemLimitsArray, setItemLimitsArray] = useState([
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+  ]);
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   // using Safari browser
   useEffect(() => {
     if (window.safari !== undefined) {
@@ -22,8 +32,27 @@ const ModalMint = props => {
     }
   }, []);
 
+  useEffect(() => {
+    const itemLimit0 = state.itemLimits[0];
+    const itemLimit5 = state.itemLimits[1];
+    const itemLimit10 = state.itemLimits[2];
+    const itemLimit15 = state.itemLimits[3];
+    const itemLimit20 = state.itemLimits[4];
+
+    let itemLimitsArray = [];
+    itemLimitsArray.push(itemLimit0);
+    itemLimitsArray.push(itemLimit5);
+    itemLimitsArray.push(itemLimit10);
+    itemLimitsArray.push(itemLimit15);
+    itemLimitsArray.push(itemLimit20);
+
+    setItemLimitsArray(itemLimitsArray);
+  }, [state.itemLimits]);
+
+  /////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////
   return (
-    <>
+    <Aux>
       <Modal
         className={styles.mintable_modal}
         onClose={() => setOpen(false)}
@@ -72,7 +101,9 @@ const ModalMint = props => {
           </div>
 
           <div className={styles.mint_box_right}>
-            <div className={styles.header}>Mint {props.wearableName} (ICE Rank 1)</div>
+            <div className={styles.header}>
+              Mint {props.wearableName} (ICE Rank 1)
+            </div>
 
             <div className={styles.benefit_area}>
               Benefits
@@ -108,17 +139,19 @@ const ModalMint = props => {
                     0.1 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
                   </div>
-                  <div className={styles.description}>{state.ethereumBal.toFixed(2)} ETH Available</div>
+                  <div className={styles.description}>
+                    {state.ethereumBal.toFixed(2)} ETH Available
+                  </div>
                   <div className={styles.network}>(On Mainnet)</div>
                 </div>
                 &nbsp;+&nbsp;
                 <div className={styles.card_area_body}>
-                  {state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ?
+                  {state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
                     <span className={styles.dgStackedSpan}>
                       Not Enough Staked
                       <IceMintDGStackedTooltip />
                     </span>
-                    : null}
+                  ) : null}
                   <div className={styles.card} style={{ width: '150px' }}>
                     1 DG Staked
                     <img
@@ -136,15 +169,13 @@ const ModalMint = props => {
               </div>
             </div>
             <div className={styles.button_area}>
-              {state.ethereumBal < 0.1 || state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ?
-                <Button
-                  className={styles.button_upgrade}
-                  disabled={true}
-                >
-                  Mint Wearable
-                </Button>
-                :
-                <>
+              {itemLimitsArray[props.index][0] ? (
+                state.ethereumBal < 0.1 ||
+                state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
+                  <Button className={styles.button_upgrade} disabled={true}>
+                    Mint Wearable ID: {itemLimitsArray[props.index][1]}
+                  </Button>
+                ) : (
                   <Button
                     className={styles.button_upgrade}
                     onClick={() => {
@@ -152,10 +183,15 @@ const ModalMint = props => {
                       setOpenETHAuth(true);
                     }}
                   >
-                    Mint Wearable
+                    Mint Wearable ID: {itemLimitsArray[props.index][1]}
                   </Button>
-                </>
-              }
+                )
+              ) : (
+                <Button disabled className={styles.open_button}>
+                  Sold Out! ID: {itemLimitsArray[props.index][1]}
+                </Button>
+              )}
+
               <Button className={styles.button_close}>Learn More</Button>
             </div>
           </div>
@@ -164,14 +200,14 @@ const ModalMint = props => {
 
       {/* ETH Auth Modal */}
       <ModalETHAuth
-        index={0}
+        itemID={itemLimitsArray[props.index][1]}
         wearableImg={props.wearableImg}
         show={openETHAuth}
         close={() => {
-          setOpenETHAuth(false)
+          setOpenETHAuth(false);
         }}
       />
-    </>
+    </Aux>
   );
 };
 
