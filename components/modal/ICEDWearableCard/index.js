@@ -28,15 +28,16 @@ const ICEDWearableCard = props => {
             <img src={props.url} />
           </div>
           <div className={styles.card_body}>
-            <div className={styles.card}>Rank 4</div>
+            <div className={styles.card}>{props.rank}</div>
             <IceWearableBonusTooltip
-              bonus="+15%"
+              bonus={props.bonus}
             />
             <div className={styles.card}>1 of 100</div>
           </div>
-          <div className={styles.card_meta}>ICE WEARABLE</div>
+          <div className={styles.card_meta}>DG Suit</div>
           <div className={styles.card_title}>
-            {props.text ? props.text : 'DG Deezys'}
+            {props.text ? props.text : 'DG Deezys'} <br/>
+            (ICE {props.rank})
           </div>
           <div className={styles.button_area}>
             {props.state == 1 ? (

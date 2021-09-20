@@ -2,19 +2,20 @@
 import { Popup } from 'semantic-ui-react';
 import styles from './IceWearableBonusTooltip.module.scss';
 
-const IceWearInfo = () => {
+const IceWearInfo = props => {
   return (
     <>
       <Popup
         trigger={
           <div className={styles.card}>
-            +15%
+            {props.bonus}
             <img
               src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
             />
           </div>
         }
         position='top center'
+        on='click'
         hideOnScroll={true}
         className={styles.popup}
       >
