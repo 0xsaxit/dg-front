@@ -28,12 +28,7 @@ import ICEAttributes from '../store/ICEAttributes';
 
 import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
-import { useState, useEffect, useContext } from 'react';
-
-
-//class Application extends App {  
-//  render() {
-    //const { Component, pageProps, store } = this.props;
+import { useState, useEffect } from 'react';
 
 function Application ({Component, pageProps, store}) {
 
@@ -49,20 +44,20 @@ function Application ({Component, pageProps, store}) {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const handleStart = () => { 
-      console.log("1. Page Loading is started.");
-      setPageLoading(true); 
-    };
-    const handleComplete = () => { 
-      console.log("2. Page Loading is completed.");
-      setPageLoading(false); 
-    };
+  // useEffect(() => {
+  //   const handleStart = () => { 
+  //     console.log("1. Page Loading is started.");
+  //     setPageLoading(true); 
+  //   };
+  //   const handleComplete = () => { 
+  //     console.log("2. Page Loading is completed.");
+  //     setPageLoading(false); 
+  //   };
 
-    router.events.on('routeChangeStart', handleStart);
-    router.events.on('routeChangeComplete', handleComplete);
-    router.events.on('routeChangeError', handleComplete);
-  }, [router]);
+  //   router.events.on('routeChangeStart', handleStart);
+  //   router.events.on('routeChangeComplete', handleComplete);
+  //   router.events.on('routeChangeError', handleComplete);
+  // }, [router]);
 
   return (
     <Provider store={store}>
