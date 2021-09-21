@@ -50,7 +50,7 @@ const ModalWearable = (props) => {
           <div style={{ color: 'white', display: 'flex', gap: '24px' }}>
             <div className={styles.wear_box}>
               <div className={styles.wear_box_mark}>
-                +34%
+                +19%
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                   className={styles.img_card}
@@ -62,7 +62,7 @@ const ModalWearable = (props) => {
               <div className={styles.card_body}>
                 <div className={styles.card}>Rank 3</div>
                 <div className={styles.card}>
-                  +35
+                  +19%
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -72,6 +72,10 @@ const ModalWearable = (props) => {
               </div>
             </div>
 
+            <div className={styles.upgrade_arrow}>
+              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632104564/blue-arrow_Traced_oy95nf.svg" alt="Upgrade" />
+            </div>
+
             <div className={styles.wear_box}>
               <IceUpgradeWearableTooltip />
 
@@ -79,7 +83,7 @@ const ModalWearable = (props) => {
                 className={styles.wear_box_mark}
                 style={{ marginLeft: '50px' }}
               >
-                + 50% - 69%
+                + 25% - 34%
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                   className={styles.img_card}
@@ -93,7 +97,7 @@ const ModalWearable = (props) => {
               <div className={styles.card_body}>
                 <div className={styles.card}>Rank 4</div>
                 <div className={styles.card}>
-                  + 50% - 69%
+                  + 25% - 34%
                   <img
                     src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
                     className={styles.img_card}
@@ -110,7 +114,7 @@ const ModalWearable = (props) => {
                 Benefits
                 <div className={styles.benefit_list}>
                   <ul>
-                    <li>Update your ICE Bonus to between 50% - 69%</li>
+                    <li>Update your ICE Bonus to between 25% - 34%</li>
                     <li>Daily free chip stack increase from 4,000 to 4,500</li>
                   </ul>
                 </div>
@@ -209,14 +213,22 @@ const ModalWearable = (props) => {
                 >
                   Upgrade Wearable
                 </Button>
-                <Button className={styles.button_close}>Learn More</Button>
+                <Button
+                  className={styles.button_close}
+                  onClick={() => {
+                    setOpen(false);
+                    setUpgrade(2);
+                  }}
+                >
+                  Learn More
+                </Button>
               </div>
             </div>
           </div>
         </Modal>
       )}
       {upgrade == 1 && (
-        <NeedMoreUpgrade setUpgrade={setUpgrade} setOpen={setOpen} />
+        <NeedMoreUpgrade setUpgrade={setUpgrade} setPropsOpen={setOpen} />
       )}
 
       {upgrade == 2 && <ModalUpgradePending setUpgrade={setUpgrade} />}

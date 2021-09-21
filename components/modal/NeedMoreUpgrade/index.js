@@ -4,7 +4,7 @@ import { GlobalContext } from 'store';
 import styles from './NeedMoreUpgrade.module.scss';
 import { ICEIcon, DGLogo, XP, ExternalLinkArrow } from './Assets';
 
-const NeedMoreUpgrade = ({ setUpgrade }) => {
+const NeedMoreUpgrade = ({ setUpgrade, setPropsOpen }) => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
 
@@ -28,9 +28,9 @@ const NeedMoreUpgrade = ({ setUpgrade }) => {
         <span
           className={styles.button_close}
           onClick={() => {
-            // setOpen(false);
-            // setUpgrade(1);
-            // props.setOpen(true);
+            setOpen(false);
+            setUpgrade(0);
+            setPropsOpen(1);
           }}
         >
           <svg
