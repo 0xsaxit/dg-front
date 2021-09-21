@@ -196,13 +196,13 @@ const detailsNFTs = {
 };
 
 const detailsICE = {
-  Shoes: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
-    'Loafers',
+  Pants: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
+    'Trousers',
     'outfit name',
-    'Feet',
+    'Legs',
     '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
   ],
   Top: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_top_rank1_upper_body_qlnqky.png',
@@ -212,13 +212,21 @@ const detailsICE = {
     '1 of 100',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631728323/FlatClothes-01_1_kbpyfj.svg',
   ],
-  Pants: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_suit_bottom_rank1_lower_body_trd5yw.png',
-    'Trousers',
+  Cigar: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
+    'Cigar',
     'outfit name',
-    'Legs',
+    'Head',
     '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatLegs_tn9b57.svg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
+  ],
+  Shoes: [
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_dress_rank1_shoes_feet_w7ncwa.png',
+    'Loafers',
+    'outfit name',
+    'Feet',
+    '1 of 100',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatShoes_hjvr3p.svg',
   ],
   Glasses: [
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_money_shades_rank1_eyewear_knm0f4.png',
@@ -227,14 +235,6 @@ const detailsICE = {
     'Accessory',
     '1 of 100',
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatAccessory_s1cjpg.svg',
-  ],
-  Cigar: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631638434/dg_cigar_rank1_eyewear_lk5lnu.png',
-    'Cigar',
-    'outfit name',
-    'Head',
-    '1 of 100',
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1631806696/FlatHat_pypkjx.svg',
   ],
 };
 
