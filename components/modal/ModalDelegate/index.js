@@ -59,14 +59,14 @@ const ModalDelegate = (props) => {
 
           <div className={styles.wear_box}>
             <div className={styles.wear_box_purple} >
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1629893954/Group_199_gnajsw.png" />
+              <img src={props.imgSrc} />
             </div>
             <div className={styles.card_body} >
               <div className={styles.card} >
-                Rank3
+                {props.rank}
               </div>
               <div className={styles.card} >
-                +3%
+                {props.bonus}
                 <img
                   src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
                   className={styles.img_card}
