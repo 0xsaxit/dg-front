@@ -176,6 +176,11 @@ const apiCall = {
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
   },
+  
+  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenURI) => {
+    const TEST_API_BASE_URL = 'https://api.testing.decentral.games';
+    return call(`${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenURI}`, 'GET');
+  },
 };
 
 export default apiCall;
