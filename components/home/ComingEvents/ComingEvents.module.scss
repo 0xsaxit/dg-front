@@ -155,7 +155,7 @@
         align-items: center;
         border-radius: 12px;
         box-sizing: border-box;
-        padding: 34px 18px 32px 18px;
+        padding: 34px 18px 100px 18px;
         min-width: 228px;
         height: 100%;
 
@@ -224,6 +224,8 @@
         }
 
         .nft_button {
+          position: absolute;
+          bottom: 25px;
           background: #006eff !important;
           width: 197px;
           height: 34px;
