@@ -213,14 +213,22 @@ const ModalWearable = (props) => {
                 >
                   Upgrade Wearable
                 </Button>
-                <Button className={styles.button_close}>Learn More</Button>
+                <Button
+                  className={styles.button_close}
+                  onClick={() => {
+                    setOpen(false);
+                    setUpgrade(2);
+                  }}
+                >
+                  Learn More
+                </Button>
               </div>
             </div>
           </div>
         </Modal>
       )}
       {upgrade == 1 && (
-        <NeedMoreUpgrade setUpgrade={setUpgrade} setOpen={setOpen} />
+        <NeedMoreUpgrade setUpgrade={setUpgrade} setPropsOpen={setOpen} />
       )}
 
       {upgrade == 2 && <ModalUpgradePending setUpgrade={setUpgrade} />}
