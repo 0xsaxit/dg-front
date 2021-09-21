@@ -1,5 +1,7 @@
 /* ----------------------------------------- */
+
 /*             MAIN BLOG PAGE CSS            */
+
 /* ----------------------------------------- */
 
 .substack-container {
@@ -22,7 +24,7 @@
   text-align: center;
   font-size: 60px;
   line-height: 70px;
-  letter-spacing:  -0.7px;
+  letter-spacing: -0.7px;
 }
 
 .ui.button.substack-button {
@@ -64,18 +66,14 @@
   padding: 42px 20px;
 }
 
-.post-date,
-.post-category,
-.blog-date,
-.blog-category {
+.post-date, .post-category, .blog-date, .blog-category {
   font-size: 14px;
   color: hsla(0, 0%, 100%, .75);
   text-transform: uppercase;
   font-family: Larsseit-ExtraBold !important;
 }
 
-.blog-category,
-.post-category {
+.blog-category, .post-category {
   margin-right: 16px;
 }
 
@@ -89,6 +87,13 @@
 
 .post-date {
   margin-left: -3px;
+}
+
+.post-category span, .post-date span {
+  border: 1px solid #2a2a2a;
+  border-radius: 24px;
+  padding: 4px 12px;
+  color: #FFFFFF;
 }
 
 .more-text {
@@ -125,8 +130,7 @@
   margin-top: 44px;
 }
 
-.featured-text,
-.category-name {
+.featured-text, .category-name {
   letter-spacing: 0.5px;
   font-size: 15px;
   font-weight: 700;
@@ -184,8 +188,7 @@ a:hover {
   margin-top: 21px;
 }
 
-.post-date,
-.post-category {
+.post-date, .post-category {
   margin-bottom: 7px;
 }
 
@@ -196,8 +199,7 @@ a:hover {
   grid-auto-flow: dense;
 }
 
-.post:hover,
-.featured-blog-container:hover {
+.post:hover, .featured-blog-container:hover {
   transform: translateY(-1px);
   box-shadow: rgb(18 38 63 / 15%) 0px 0px 8px 0px;
   transition: all 0.1s ease 0s;
@@ -205,7 +207,7 @@ a:hover {
 
 .post {
   background-color: white;
-  margin-bottom: 45px;
+  margin-bottom: 25px;
   transition: transform 0.25s ease 0s;
   border-radius: 24px;
 }
@@ -237,7 +239,7 @@ a.blog-more {
   display: grid;
   grid-gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(388px, 1fr));
-  margin: 18px 0px 120px 0px;
+  margin: 18px 0px 80px 0px;
 }
 
 .nft-info {
@@ -267,7 +269,9 @@ a.blog-more {
 }
 
 /* ----------------------------------------- */
+
 /*            BLOGDETAIL PAGE CSS            */
+
 /* ----------------------------------------- */
 
 .blogdetail-page-container {
@@ -370,8 +374,7 @@ img.logo-image {
   color: rgb(92, 95, 97);
 }
 
-.blogdetail-page-container .post__content p,
-.summary_content {
+.blogdetail-page-container .post__content p, .summary_content {
   font-family: 'Larsseit-Regular' !important;
   -webkit-font-smoothing: antialiased !important;
   font-size: 21px;
@@ -435,8 +438,7 @@ img.logo-image {
   padding-inline-start: 40px;
 }
 
-.blogdetail-page-container .post__content ul,
-.blogdetail-page-container .post__content ol {
+.blogdetail-page-container .post__content ul, .blogdetail-page-container .post__content ol {
   padding: 0px 0px 0px 12px !important;
   margin: 0px 0px 0px 0px !important;
   list-style: none;
@@ -461,8 +463,7 @@ img.logo-image {
   padding-inline-start: 40px;
 }
 
-.blogdetail-page-container .post__content ul,
-.blogdetail-page-container .post__content ol {
+.blogdetail-page-container .post__content ul, .blogdetail-page-container .post__content ol {
   padding: 0;
   margin: 20px 0;
   list-style: none;
