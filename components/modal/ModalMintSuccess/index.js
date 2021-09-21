@@ -1,40 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalMintSuccess.module.scss';
 
-const ModalMintSuccess = ({ disabled }) => {
+const ModalMintSuccess = props => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(props.show);
+  }, [props.show])
+
   return (
     <Modal
       className={styles.activation_success_modal}
       onClose={() => {
         setOpen(false);
+        props.close();
       }}
       onOpen={() => setOpen(true)}
       open={open}
       close
-      trigger={
-        <Button disabled={disabled} className={styles.open_button}>
-          Proceed to Mint
-        </Button>
-      }
     >
       <div className={styles.header_buttons}>
         <span
           className={styles.button_close}
           onClick={() => {
             setOpen(false);
+            props.close();
           }}
         >
           <svg
-            width="15"
-            height="15"
-            viewBox="0 0 15 15"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M0.619141 12.6201C0.126953 13.1211 0.100586 14.0439 0.636719 14.5713C1.17285 15.1074 2.08691 15.0898 2.58789 14.5889L7.54492 9.63184L12.4932 14.5801C13.0117 15.1074 13.9082 15.0986 14.4355 14.5625C14.9717 14.0352 14.9717 13.1387 14.4531 12.6201L9.50488 7.67188L14.4531 2.71484C14.9717 2.19629 14.9717 1.2998 14.4355 0.772461C13.9082 0.236328 13.0117 0.236328 12.4932 0.754883L7.54492 5.70312L2.58789 0.746094C2.08691 0.253906 1.16406 0.227539 0.636719 0.763672C0.109375 1.2998 0.126953 2.21387 0.619141 2.71484L5.57617 7.67188L0.619141 12.6201Z"
+              d="M0.464355 9.65869C0.0952148 10.0344 0.0754395 10.7266 0.477539 11.1221C0.879639 11.5242 1.56519 11.511 1.94092 11.1353L5.65869 7.41748L9.36987 11.1287C9.75879 11.5242 10.4312 11.5176 10.8267 11.1155C11.2288 10.72 11.2288 10.0476 10.8398 9.65869L7.12866 5.94751L10.8398 2.22974C11.2288 1.84082 11.2288 1.16846 10.8267 0.772949C10.4312 0.37085 9.75879 0.37085 9.36987 0.759766L5.65869 4.47095L1.94092 0.753174C1.56519 0.384033 0.873047 0.364258 0.477539 0.766357C0.0820312 1.16846 0.0952148 1.854 0.464355 2.22974L4.18213 5.94751L0.464355 9.65869Z"
               fill="white"
             />
           </svg>
@@ -83,13 +85,13 @@ const ModalMintSuccess = ({ disabled }) => {
           <div className={styles.toppercent}>
             1-7%
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"
+              src={"https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"}
               style={{ width: '20px' }}
             />
           </div>
           <div className={styles.image}>
             <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855104/Group_224_sils6v.png"
+              src={props.wearableImg}
               className={styles.logo}
             />
           </div>
@@ -98,8 +100,8 @@ const ModalMintSuccess = ({ disabled }) => {
             <div className={styles.round}>
               1-7%
               <img
-                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630486742/image_2_pm0jck.png"
-                style={{ width: '20px' }}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631326183/ICE_Diamon_ICN_k27aap.png"
+                style={{ width: '14px', marginLeft: '2px' }}
               />
             </div>
             <div className={styles.round}>1 of 100</div>
@@ -107,8 +109,7 @@ const ModalMintSuccess = ({ disabled }) => {
         </div>
 
         <div className={styles.buttons}>
-          <Button className={styles.primary}>Activate Now</Button>
-          <Button className={styles.none}>Back to Wallet</Button>
+          <Button className={styles.primary}>Back to Wallet</Button>
         </div>
       </div>
     </Modal>

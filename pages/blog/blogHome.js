@@ -71,7 +71,7 @@ function blog() {
               float: 'left'
             }}
           >
-            Featured Post
+            Featured Posts
           </span>
         </div>
       </div>

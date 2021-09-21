@@ -26,38 +26,79 @@ import EventsData from '../store/EventsData';
 import SubgraphQuery from '../store/SubgraphQuery';
 import ICEAttributes from '../store/ICEAttributes';
 
-class Application extends App {
-  render() {
-    const { Component, pageProps, store } = this.props;
+import Spinner from 'components/Spinner';
+import { useRouter } from 'next/router';
+import { useState, useEffect, useContext } from 'react';
 
-    return (
-      <Provider store={store}>
-        <style jsx global>{`
-          body {
-            background: black;
-          }
-        `}</style>
-        <Segment />
-        <UserStatus />
-        <UserBalances />
-        <Transactions />
-        <TreasuryNumbers />
-        <GameRecords />
-        <ActiveStatus />
-        <UserInfo />
-        <AdminBalances />
-        <UsersList />
-        <DGBalances />
-        <PricesBreakdown />
-        <NFTSPOAPS />
-        <EventsData />
-        <SubgraphQuery />
-        <ICEAttributes />
 
-        <Component {...pageProps} />
-      </Provider>
-    );
-  }
+//class Application extends App {  
+//  render() {
+    //const { Component, pageProps, store } = this.props;
+
+function Application ({Component, pageProps, store}) {
+
+  const router = useRouter();
+  const [pageLoading, setPageLoading] = useState(false);
+
+  useEffect(() => {
+    setPageLoading(true);
+    const timer = setTimeout(() => {
+      console.log('This will run after 3 second on first load!');
+      setPageLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleStart = () => { 
+      console.log("1. Page Loading is started.");
+      setPageLoading(true); 
+    };
+    const handleComplete = () => { 
+      console.log("2. Page Loading is completed.");
+      setPageLoading(false); 
+    };
+
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+  }, [router]);
+
+  return (
+    <Provider store={store}>
+      <style jsx global>{`
+        body {
+          background: black;
+        }
+      `}</style>
+      {pageLoading? (
+        <Spinner background={1} />
+      ) : (
+        <div>
+          <Segment />
+          <UserStatus />
+          <UserBalances />
+          <Transactions />
+          <TreasuryNumbers />
+          <GameRecords />
+          <ActiveStatus />
+          <UserInfo />
+          <AdminBalances />
+          <UsersList />
+          <DGBalances />
+          <PricesBreakdown />
+          <NFTSPOAPS />
+          <EventsData />
+          <SubgraphQuery />
+          <ICEAttributes />
+
+          <Component {...pageProps} />
+        </div>
+      )}
+      
+    </Provider>
+  );
+// }
 }
 
 export default Application;

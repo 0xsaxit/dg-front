@@ -143,11 +143,13 @@
     .header {
       font-size: 24px;
       line-height: 33px;
-      font-family: Larsseit-Bold;
+      font-family: Larsseit-Medium;
+      font-weight: bold;
       letter-spacing: -0.7px;
     }
     .benefit_area {
       margin-top: 24px;
+      font-family: 'Larsseit-Bold';
       font-weight: bold;
       font-size: 18px;
       line-height: 24px;
@@ -207,7 +209,7 @@
       }
     }
     .price_area {
-      font-family: Larsseit-Regular;
+      font-family: Larsseit-Bold;
       font-style: normal;
       font-weight: bold;
       font-size: 18px;
@@ -242,13 +244,15 @@
             align-items: center;
             justify-content: center;
 
-            width: 150px;
+            width: 120px;
             height: 45px;
             background: #090909;
             border: 1px solid #2a2a2a;
             box-sizing: border-box;
             border-radius: 14px;
             margin-bottom: 6px;
+            font-family: 'LARSSEIT-MEDIUM';
+            font-size: 16px;
 
             .img_card1 {
               margin-left: 4px;

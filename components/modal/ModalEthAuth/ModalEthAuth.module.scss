@@ -1,20 +1,21 @@
 @import 'styles/base.scss';
 
 .open_button {
-  margin-top: 20px !important;
-  width: 100%;
+  margin-top: 0px !important;
+  margin-right: 10px !important;
   background: #006eff !important;
   color: white !important;
-  border-radius: 10px !important;
-  height: 40px;
-  line-height: 18px;
-  font-family: Larsseit-Bold;
-  font-size: 14px;
-  width: 100%;
+  border-radius: 12px !important;
+  line-height: 20px !important;
+  font-family: Larsseit-Medium !important;
+  font-size: 17px !important;
+  width: 167px;
+  height: 48px;
 }
 
 .withdraw_modal {
   width: 480px !important;
+  height: 359px;
   background: black !important;
   border-radius: 24px !important;
   padding: 40px;
@@ -24,7 +25,7 @@
     cursor: pointer;
     position: absolute;
     left: 0px;
-    top: -56px;
+    top: -48px;
     background: #000000;
     border-radius: 24px !important;
 
@@ -32,11 +33,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
       color: white;
       cursor: pointer;
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
       background: black;
       border-radius: 100%;
       padding: 8px 10px 8px 10px;
@@ -56,6 +56,7 @@
     border-radius: 24px !important;
     width: 109px;
     height: 48px;
+    transform: scale(0.9);
     
     .discord_svg {
       display: flex;
@@ -104,7 +105,7 @@
       .steps_line {
         display: flex;
         padding-left: 14px;
-        margin: 5px 0;
+        margin: 0px 0px 0px -42px;
 
         .line_initial {
           fill: white;
@@ -135,6 +136,7 @@
 .metamask_action_container {
   display: flex;
   align-items: center;
+  margin-left: -42px;
 
   .upgrade_right {
     margin-left: 26px;
