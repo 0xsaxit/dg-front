@@ -7,6 +7,8 @@ import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import ABI_CHILD_TOKEN_ICE from '../components/ABI/ABIChildTokenICE';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
+import ABI_COLLECTION_V2 from '../components/ABI/ABICollectionV2';
+import Fetch from '../common/Fetch';
 
 function ICEAttributes() {
   // dispatch user's token authorization status to the Context API store
@@ -18,6 +20,8 @@ function ICEAttributes() {
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   // const [ICEMaticContract, setICEMaticContract] = useState({});
   const [instances, setInstances] = useState(false);
+
+  const [collectionV2Contract, setCollectionV2Contract] = useState({});
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +47,13 @@ function ICEAttributes() {
           Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH
         );
         setWETHMaticContract(WETHMaticContract);
+        
+        const CollectionV2Contract = new maticWeb3.eth.Contract(
+          ABI_COLLECTION_V2,
+          Global.ADDRESSES.COLLECTION_V2_ADDRESS
+        );
+        setCollectionV2Contract(CollectionV2Contract);
+        
 
         // const ICEMaticContract = new maticWeb3.eth.Contract(
         //   ABI_CHILD_TOKEN_ICE,
@@ -53,7 +64,47 @@ function ICEAttributes() {
         setInstances(true); // contract instantiation complete
       }
 
+      async function fetchTokenOfOwnerByIndex(){
+        const nLen = Object.keys(collectionV2Contract).length;
+        const tokenURIs = [];
+
+        if(nLen > 0) {
+          const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; //hard coded, should be replaced with actual.
+
+          try {
+            for(let nIndex = 1; nIndex < 10; nIndex ++ ){
+              const tokenURI = await collectionV2Contract.methods.tokenOfOwnerByIndex(userWalletAddress, nIndex).call();
+              // console.log("tokenURI: =>", tokenURI);
+
+              if(parseInt(tokenURI) > 100) {
+                tokenURIs.push({index: nIndex, tokenUri: tokenURI})
+              }              
+            }
+          } catch(error) {
+            console.log("stack error: =>", error.message);
+          }
+
+          // console.log("tokenURIs: =>", tokenURIs);
+
+          const iceWearableItems = await Promise.all(tokenURIs.map(async item => {
+            const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(Global.ADDRESSES.COLLECTION_V2_ADDRESS, item.tokenUri);
+            return {
+              index: item.index,
+              tokenUri: item.tokenUri,
+              meta_data: meta_json
+            }
+          }))
+
+          // console.log("ice_meta_data: =>", iceWearableItems);
+          dispatch({
+            type: 'ice_wearable_items',
+            data: iceWearableItems,
+          });
+        }
+      }
+
       fetchData();
+      fetchTokenOfOwnerByIndex();
     }
   }, [state.userStatus]);
 

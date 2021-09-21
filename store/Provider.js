@@ -104,6 +104,7 @@ const initialState = {
     [0, 15],
     [0, 20],
   ],
+  iceWearableItems: [], 
   canPurchase: true,
   tokenAmounts: {
     WETH_COST_AMOUNT: 0,
@@ -259,6 +260,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         itemLimits: action.data,
+      };
+    
+    case 'ice_wearable_items':
+      return {
+        ...state,
+        iceWearableItems: action.data,
       };
 
     case 'can_purchase':
