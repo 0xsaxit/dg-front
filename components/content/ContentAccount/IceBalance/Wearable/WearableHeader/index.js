@@ -9,7 +9,7 @@ const WearableHeader = () => {
     <div className={styles.wearableHeader}>
       <div>
         <h2>ICED Wearables</h2>
-        <p>87% Max ICE Bonus</p>
+        <p>(2 of 5 Active) 57% Max ICE Bonus</p>
       </div>
       <Button
         className={styles.open_sea}

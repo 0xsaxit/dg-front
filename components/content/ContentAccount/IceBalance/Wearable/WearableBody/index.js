@@ -29,30 +29,36 @@ function WearableBody({ state }) {
             ))}
 
             <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
-               <ICEDWearableCard
+              <ICEDWearableCard
                 url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
                 desc="20% Max ICE Bonus"
-                text="ICE Dress Shoes"
+                rank="Rank 5"
+                bonus="+45%"
+                text="Suit Bottoms"
                 state="1"
               />
             </div>
 
             <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
               <ICEDWearableCard
-                url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855104/Group_224_sils6v.png"
+                url="https://res.cloudinary.com/dnzambf4m/image/upload/v1632102994/bg_6_nhrkwr.svg"
                 address="0x23.."
                 desc="30% Max ICE Bonus"
-                text="ICE Suit & Tie"
+                rank="Rank 1"
+                bonus="1 - 7%"
+                text="Suit & Tie"
                 state="2"
               />
             </div>
 
             <div className={cn("col-lg-4 col-md-4 col-sm-6 col-xs-12", styles.wearable_card)}>
               <ICEDWearableCard
-                url="https://res.cloudinary.com/dnzambf4m/image/upload/v1630855008/bg_6_bc0ssa.png"
+                url="https://res.cloudinary.com/dnzambf4m/image/upload/v1632102985/bg_6_g3d93e.svg"
                 address="0x23.."
                 desc="30% Max ICE Bonus"
-                text="ICE Dress Shoes"
+                rank="Rank 2"
+                bonus="+12%"
+                text="Money Shades"
                 state="3"
               />
             </div>
