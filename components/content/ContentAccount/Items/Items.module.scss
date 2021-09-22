@@ -83,7 +83,11 @@
     border-radius: 16px;
     height: 100%;
     position: relative;
-    padding: 42px 24px;
+    padding: 42px 24px 90px 24px;
+
+    a {
+      width: calc(50% - 4px);
+    }
   }
 
   .nft_image {
