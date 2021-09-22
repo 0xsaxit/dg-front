@@ -13,7 +13,7 @@ import styles from './Offerings.module.scss';
 
 const detailsGames = {
   Poker: [
-    'https://res.cloudinary.com/dnzambf4m/image/upload/v1624919779/Poker_ekorsi.jpg',
+    'https://res.cloudinary.com/dnzambf4m/image/upload/v1632335323/Poker_pb8rco.png',
     'games-pic',
     'Poker',
     'Decentral Games poker is in beta and currently only playable using FREE tokens.',
