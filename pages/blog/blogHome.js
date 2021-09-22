@@ -85,7 +85,6 @@ function blog() {
               <div className="post-info featured">
                 <div className="top">
                   <span className="blog-category">Announcements </span>
-                  <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
                   <span className="blog-date">1 SEP 2021</span>
                 </div>
                 <div className="bottom">
@@ -190,7 +189,7 @@ function blog() {
                                           page.categories[0].name}
                                       </span>
                                     </div>
-                                    <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }}>  • </span>
+                                    <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)' }} />
                                     <div className="post-date">
                                       <span>
                                         {new Date(page.created).toLocaleDateString(
@@ -230,7 +229,7 @@ function blog() {
                               </div>
                             </a>
                           </Link>
-                        ) : count <= 5 && page.categories[0].name === category ? (
+                        ) : count <= 7 && page.categories[0].name === category ? (
                           ((count += 1),
                             (
                               <Link
@@ -260,7 +259,7 @@ function blog() {
                                               page.categories[0].name}
                                           </span>
                                         </div>
-                                        <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                                        <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }} />
                                         <div className="post-date">
                                           <span>
                                             {new Date(page.created).toLocaleDateString(
@@ -278,7 +277,7 @@ function blog() {
                                         <div className="blog-title">
                                           <h4
                                             style={{
-                                              fontSize: '24px',
+                                              fontSize: '20px',
                                               fontfamily: 'LarsseitBold',
                                               marginTop: '10px',
                                               textAlign: 'center'
@@ -289,7 +288,7 @@ function blog() {
                                           <p
                                             style={{
                                               fontFamily: 'Larsseit-Regular',
-                                              fontSize: '18px',
+                                              fontSize: '15px',
                                               paddingTop: '15px',
                                               textAlign: 'center'
                                             }}
@@ -355,7 +354,7 @@ function blog() {
                     <div className="blog-title">
                       <h4
                         style={{
-                          fontSize: '24px',
+                          fontSize: '20px',
                           fontfamily: 'LarsseitBold',
                           textAlign: 'center',
                           marginTop: '10px'
@@ -366,7 +365,7 @@ function blog() {
                       <p
                         style={{
                           fontFamily: 'Larsseit-Regular',
-                          fontSize: '18px',
+                          fontSize: '15px',
                           paddingTop: '15px',
                           textAlign: 'center'
                         }}
