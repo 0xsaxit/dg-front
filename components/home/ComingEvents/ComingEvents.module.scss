@@ -1,8 +1,8 @@
-@import 'styles/base.scss';
+@import "styles/base.scss";
 
 .main_container {
   min-height: calc(100vh - 220px);
-  font-family: 'Larsseit-ExtraBold';
+  font-family: "Larsseit-ExtraBold";
 
   @include mq($until: small) {
     padding-bottom: 60px;
@@ -35,13 +35,7 @@
         flex-direction: row;
         border-radius: 14px;
         overflow: hidden;
-        max-height: 420px;
         border: 1px solid #2b2b2b;
-
-        @include mq($until: medium) {
-          flex-direction: column;
-          max-height: 600px;
-        }
 
         .event_pic {
           z-index: 1;
@@ -57,14 +51,14 @@
         }
 
         .post_info {
-          margin: 42px 42px 0px 42px;
-          transform: scale(1.1) !important;
+          margin: 25px 42px 20px 36px;
+          transform: scale(1) !important;
 
           .featured_info {
             border: 1px solid #2a2a2a;
             padding: 4px 8px 4px 8px;
             border-radius: 12px;
-            font-size: 10px;
+            font-size: 12px;
             line-height: 12px;
             font-family: Larsseit-Bold;
             color: white;
@@ -73,19 +67,19 @@
           .events_featured_p {
             color: rgba(255, 255, 255) !important;
             font-family: Larsseit-Regular;
-            font-size: 14px;
-            line-height: 20px;
+            font-size: 16px;
+            line-height: 23px;
             margin-bottom: 0px;
-            margin-top: 8px;
+            margin-top: 10px;
             text-align: left;
           }
 
           .event_title {
             font-family: Larsseit-Bold;
             text-align: left;
-            font-size: 20px;
+            font-size: 23px;
             line-height: 24px;
-            margin-top: 12px;
+            margin-top: 14px;
             margin-bottom: 0px;
             color: rgba(255, 255, 255) !important;
           }
@@ -106,7 +100,7 @@
             margin-right: auto;
             color: white !important;
             margin-top: 24px !important;
-            line-height: 17px !important;  
+            line-height: 17px !important;
           }
 
           .nft_button {
@@ -134,7 +128,7 @@
 
     .account_other_tabs {
       font-size: 24px;
-      font-family: 'Larsseit-Medium';
+      font-family: "Larsseit-Medium";
       line-height: 32px;
       letter-spacing: 0.7px;
       color: white;
@@ -219,7 +213,7 @@
             font-size: 20px;
             margin-top: 10px;
             margin-bottom: 4px;
-            color: rgba(255, 255, 255) !important; 
+            color: rgba(255, 255, 255) !important;
           }
         }
 
@@ -238,6 +232,72 @@
           margin-top: 24px !important;
           line-height: 17px !important;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .featured_event_grid {
+    flex-direction: column !important;
+    align-items: center;
+
+    .event_pic {
+      width: 100% !important;
+      border-radius: 12px 12px 0px 0px !important;
+    }
+
+    .post_info {
+      width: 90%;
+      margin: 25px 10px 50px 10px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      flex-direction: column !important;
+
+      h3 {
+        text-align: center !important;
+      }
+
+      p {
+        text-align: center !important;
+      }
+
+      .button_group {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+@include mq($until: medium) {
+  .page_container {
+    padding-top: 160px !important;
+  }
+
+  .featured_event_grid {
+    .event_pic {
+      width: calc(100% - 40px) !important;
+      height: 160px;
+      margin-top: 42px;
+      border-radius: 16px !important;
+    }
+
+    .post_info {
+      width: 90% !important;
+      margin-top: 15px !important;
+      margin-bottom: 25px !important;
+
+      .featured_info {
+        font-size: 10px;
+      }
+
+      h3 {
+        font-size: 20px !important;
+      }
+
+      p {
+        font-size: 14px !important;
       }
     }
   }
