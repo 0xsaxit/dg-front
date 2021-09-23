@@ -33,7 +33,7 @@ import { useState, useEffect } from 'react';
 function Application({ Component, pageProps, store }) {
 
   const router = useRouter();
-  const [pageLoading, setPageLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
     setPageLoading(true);
