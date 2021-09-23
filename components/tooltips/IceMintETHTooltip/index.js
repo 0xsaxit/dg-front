@@ -1,7 +1,7 @@
 import { Popup } from 'semantic-ui-react';
-import styles from './IceMintDGStackedTooltip.module.scss';
+import styles from './IceMintETHTooltip.module.scss';
 
-const IceMintDGStackedTooltip = () => {
+const IceMintETHTooltip = () => {
   return (
     <Popup
       trigger={
@@ -18,11 +18,11 @@ const IceMintDGStackedTooltip = () => {
       <Popup.Content className={styles.tooltipContent}>
         <img className={styles.popup_info} src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />
         <p className={styles.popup_content}>
-          You must stake at least one $DG in<br /> governance to mint a new ICE<br /> wearable. You <a href="/">can buy $DG here</a><br /> and <a href="/">you can stake $DG here.</a>
+          You must have your ETH on Polygon<br /> to mint this wearable. You can<br /> bridge your ETH from Mainnet to<br /> Polygon <a href="/">here.</a>
         </p>
       </Popup.Content>
     </Popup>
   );
 };
 
-export default IceMintDGStackedTooltip;
+export default IceMintETHTooltip;
