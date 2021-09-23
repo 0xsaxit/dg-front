@@ -109,7 +109,8 @@ const ModalMintSuccess = props => {
         </div>
 
         <div className={styles.buttons}>
-          <Button className={styles.primary}>Back to Wallet</Button>
+          <Button className={styles.primary}>View in My Account</Button>
+          <Button className={styles.none}>Not Now</Button>
         </div>
       </div>
     </Modal>
