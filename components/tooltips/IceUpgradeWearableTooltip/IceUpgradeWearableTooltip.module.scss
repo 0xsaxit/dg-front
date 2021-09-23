@@ -1,4 +1,4 @@
-@import "styles/base.scss";
+@import 'styles/base.scss';
 
 .card {
   display: flex;
@@ -30,6 +30,10 @@
   padding-right: 5px !important;
   height: auto !important;
   border: none !important;
+
+  p {
+    font-weight: 700;
+  }
 
   .content {
     width: 260px !important;
