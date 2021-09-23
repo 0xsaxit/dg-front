@@ -128,7 +128,7 @@ const ModalEthAuth = props => {
           </div>
 
 
-          {/*<MetamaskAction
+          <MetamaskAction
             actionState={
               authStatus
                 ? 'done'
@@ -141,7 +141,7 @@ const ModalEthAuth = props => {
             onClick={metaTransaction}
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
-          />*/}
+          />
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
