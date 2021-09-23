@@ -123,6 +123,7 @@ function ICEAttributes() {
 
         // get the user's one-hour cool-down status
         const canPurchase = await getCoolDownStatus();
+        console.log("canPurchase: ", canPurchase);
 
         dispatch({
           type: 'can_purchase',
@@ -131,11 +132,14 @@ function ICEAttributes() {
 
         // update global state token amounts/authorization status
         const tokenAmounts = await getTokenAmounts();
+        console.log("tokenAmounts: ", tokenAmounts);
 
         dispatch({
           type: 'token_amounts',
           data: tokenAmounts,
         });
+        console.log("instances completed!");
+
       })();
     }
   }, [instances, state.refreshTokenAuth]);

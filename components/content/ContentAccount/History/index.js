@@ -22,10 +22,12 @@ function History({ state }) {
   const [openId, setOpenId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const transactions = dataHistory.filter(
+  const transactions = dataHistory=="false"? [] : (
+    dataHistory.filter(
     h =>
       get(h, 'type', '').includes('Deposit') ||
       get(h, 'type', '').includes('Withdrawal')
+    )
   );
 
   const newPokerData = dataPoker.map(poker => {
@@ -212,8 +214,7 @@ function History({ state }) {
                   </div>
                 </Grid.Column>
               );
-            })}
-            }
+            })}            
           </Grid>
         )}
       </div>
