@@ -54,7 +54,7 @@ const NeedMoreDGActivateModal = (props) => {
         </div>
 
         <div className={styles.title}>
-           Need More DG to Activate
+           Need {0.5  - props.balance} DG to Activate
         </div>
         <div className={styles.desc}>
             In order to earn ICE, you must first activate your wearable. ICE Wearables are activated on the Polygon sidechain. If you already own enough $DG on mainnet, you can bridge it to Polygon 
