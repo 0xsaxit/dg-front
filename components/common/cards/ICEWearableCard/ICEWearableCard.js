@@ -6,6 +6,7 @@ import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
+import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 
 const getRank = bonus => {
   if (bonus === 0) {
@@ -47,7 +48,7 @@ const ICEWearableCard = ({ data }) => {
               {description.split(' ').at(-1).replace('/', ' of ')}
             </div>
           </div>
-          <div className={styles.card_meta}>DG Suit</div>
+          <div className={styles.card_meta}>DG SUIT</div>
           <div className={styles.card_title}>
             <p>{name.split('(ICE')[0].trim()}</p>
             <p>{`(ICE Rank ${rank.value})`}</p>

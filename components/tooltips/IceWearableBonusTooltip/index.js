@@ -8,20 +8,25 @@ const IceWearInfo = props => {
       <Popup
         trigger={
           <div className={styles.card}>
-            {props.bonus}
-            <img
-              src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png"
-            />
+            <p>{props.bonus}</p>
+            <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1630857308/diamond_1_1_r6etkk.png" />
           </div>
         }
-        position='top center'
-        on='click'
+        position="top center"
+        on="click"
         hideOnScroll={true}
         className={styles.popup}
       >
         <Popup.Content className="iceWearableBonusTooltip">
-          <img className="info" src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg" />
-          <p>This is your wearable ICE bonus.<br />Ranges vary between rank levels.</p>
+          <img
+            className="info"
+            src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631640045/ICE_Info_bbiag6.svg"
+          />
+          <p>
+            This is your wearable ICE bonus.
+            <br />
+            Ranges vary between rank levels.
+          </p>
           <div className="row">
             <div className="col-6 itemDiv">
               <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1631126880/Group_199_kx1det.png" />
