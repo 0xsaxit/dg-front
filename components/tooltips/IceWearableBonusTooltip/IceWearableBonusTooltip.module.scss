@@ -10,12 +10,16 @@
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 
-  font-family: Larsseit-Regular;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 16px;
-  color: #ffffff;
-  cursor: pointer;
+  
+  p {
+    font-family: Larsseit-Regular;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    margin: 0;
+  }
 
   img {
     margin-left: 3px;
@@ -28,6 +32,10 @@
   margin-right: -5px !important;
   margin-bottom: 11px !important;
   height: auto !important;
+
+  p {
+    font-weight: 700;
+  }
 
   &::before {
     background-color: #1f1f1f !important;
