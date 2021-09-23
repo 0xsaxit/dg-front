@@ -21,7 +21,7 @@ function ICEAttributes() {
   // const [ICEMaticContract, setICEMaticContract] = useState({});
   const [instances, setInstances] = useState(false);
 
-  const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  // const [collectionV2Contract, setCollectionV2Contract] = useState({});
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -52,8 +52,8 @@ function ICEAttributes() {
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
-        setCollectionV2Contract(CollectionV2Contract);
-        
+        // setCollectionV2Contract(CollectionV2Contract);        
+        fetchTokenOfOwnerByIndex(CollectionV2Contract);
 
         // const ICEMaticContract = new maticWeb3.eth.Contract(
         //   ABI_CHILD_TOKEN_ICE,
@@ -64,7 +64,7 @@ function ICEAttributes() {
         setInstances(true); // contract instantiation complete
       }
 
-      async function fetchTokenOfOwnerByIndex(){
+      async function fetchTokenOfOwnerByIndex(collectionV2Contract){      
         const nLen = Object.keys(collectionV2Contract).length;
         const tokenURIs = [];
 
@@ -95,16 +95,17 @@ function ICEAttributes() {
             }
           }))
 
-          // console.log("ice_meta_data: =>", iceWearableItems);
+          console.log("ice_meta_data: =>", iceWearableItems);
           dispatch({
             type: 'ice_wearable_items',
             data: iceWearableItems,
           });
+          
         }
       }
 
       fetchData();
-      fetchTokenOfOwnerByIndex();
+      // fetchTokenOfOwnerByIndex();
     }
   }, [state.userStatus]);
 
