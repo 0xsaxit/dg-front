@@ -108,7 +108,7 @@ function ICEAttributes() {
             type: 'ice_wearable_items',
             data: iceWearableItems,
           });
-          
+
         }
       }
 
