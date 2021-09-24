@@ -63,7 +63,7 @@ function blogCategory() {
                   <div className="post-info">
                     <span
                       className="bottom-info"
-                      style={{ display: 'flex' }}
+                      style={{ display: 'flex', justifyContent: 'center' }}
                     >
                       <div
                         className="post-category"
@@ -74,7 +74,7 @@ function blogCategory() {
                             page.categories[0].name}
                         </span>
                       </div>
-                      <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }}>  • </span>
+                      <span style={{ paddingRight: '10px', marginLeft: '-12px', color: 'hsla(0, 0%, 100%, .75)', marginTop: '-1px' }} />
                       <div className="post-date">
                         <span>
                           {new Date(page.created).toLocaleDateString(
@@ -92,8 +92,10 @@ function blogCategory() {
                       <div className="blog-title">
                           <h4
                             style={{
-                              fontSize: '24px',
+                              fontSize: '20px',
                               fontfamily: 'LarsseitBold',
+                              marginTop: '10px',
+                              textAlign: 'center'
                             }}
                           >
                             {page.title}
@@ -101,8 +103,9 @@ function blogCategory() {
                           <p
                             style={{
                               fontFamily: 'Larsseit-Regular',
-                              fontSize: '18px',
-                              paddingTop: '8px',
+                              fontSize: '15px',
+                              paddingTop: '15px',
+                              textAlign: 'center'
                             }}
                           >
                           {page.summary.split('.', 1)[0]}

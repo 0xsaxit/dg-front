@@ -85,7 +85,7 @@ const ModalEthAuth = props => {
     const canPurchase = state.canPurchase;
 
     if (canPurchase) {
-      setButtonMessage('Proceed to Mint');
+      setButtonMessage('Confirm Purchase');
     } else {
       setButtonMessage('Cooldown Period');
     }
@@ -100,17 +100,34 @@ const ModalEthAuth = props => {
     return (
       <Aux>
         <div className={styles.header}>
-          <MetamaskLogo />
-
-          <p className={styles.header_text}>Mint ICE Wearable</p>
+          <p className={styles.header_text}>Mint Wearable</p>
         </div>
 
         <p className={styles.description}>
-          To mint your new ICE wearable, you'll have to complete 2 transactions
-          in metamask.
+          To mint your wearable, confirm your purchase and sign the metamask transaction. We’ll cover the gas.
         </p>
 
         <div className={styles.upgrade_inner_container}>
+
+          <div className={styles.eth_container}>
+            <span style={{ display: 'flex', flexDirection: 'row' }}>
+              <p className={styles.eth_amount}> 0.1 ETH </p>
+              <img 
+                className={styles.eth_img}
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1625014714/ETH_kzfhxr.png"
+              />
+            </span>
+          </div>
+
+          <div className={styles.eth_description}>
+            {state.userBalances[2][3]} ETH Available
+          </div>
+
+          <div className={styles.eth_description_two}>
+            (On Polygon)
+          </div>
+
+
           <MetamaskAction
             actionState={
               authStatus
@@ -125,20 +142,6 @@ const ModalEthAuth = props => {
             primaryText="Authorize ETH"
             secondaryText="Enables ETH Transaction"
           />
-
-          <div className={styles.steps_line}>
-            {/** if previous step state is done, then fill the line, if not it stays gray */}
-            <svg
-              className={authStatus ? styles.line_done : styles.line_initial}
-              width="4"
-              height="22"
-              viewBox="0 0 4 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="4" height="22" rx="2" />
-            </svg>
-          </div>
 
           {/** TODO: add correct on click action here */}
           {/* <MetamaskAction
@@ -311,11 +314,11 @@ const ModalEthAuth = props => {
                     className={styles.proceed_button}
                     onClick={() => mintToken(props.itemID)}
                   >
-                    {buttonMessage} ID: {props.itemID}
+                    {buttonMessage}
                   </Button>
                 ) : (
                   <Button disabled className={styles.proceed_button}>
-                    {buttonMessage} ID: {props.itemID}
+                    {buttonMessage}
                   </Button>
                 )
               ) : (
@@ -325,7 +328,7 @@ const ModalEthAuth = props => {
               )
             ) : (
               <Button disabled className={styles.proceed_button}>
-                {buttonMessage} ID: {props.itemID}
+                {buttonMessage}
               </Button>
             )}
           </div>

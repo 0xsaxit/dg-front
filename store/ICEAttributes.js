@@ -21,7 +21,6 @@ function ICEAttributes() {
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [instances, setInstances] = useState(false);
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
-
   const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +67,7 @@ function ICEAttributes() {
     }
   }, [state.userStatus]);
 
+
   useEffect(() => {
     if (instances) {
       async function fetchData() {
@@ -108,6 +108,7 @@ function ICEAttributes() {
             type: 'ice_wearable_items',
             data: iceWearableItems,
           });
+          
         }
       }
 
@@ -128,7 +129,9 @@ function ICEAttributes() {
         });
 
         // get the user's one-hour cool-down status
+        console.log("================== <Before getCoolDownStatus> =================== ");
         const canPurchase = await getCoolDownStatus();
+        console.log("================== <After canPurchase> =================== ", canPurchase);
 
         dispatch({
           type: 'can_purchase',
@@ -137,11 +140,14 @@ function ICEAttributes() {
 
         // update global state token amounts/authorization status
         const tokenAmounts = await getTokenAmounts();
+        console.log("================== <tokenAmounts> ==================== ", tokenAmounts);
 
         dispatch({
           type: 'token_amounts',
           data: tokenAmounts,
         });
+        console.log("instances completed!");
+
       })();
     }
   }, [instances, state.refreshTokenAuth]);

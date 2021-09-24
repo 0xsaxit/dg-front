@@ -212,8 +212,7 @@ function Test({ state }) {
                   </div>
                 </Grid.Column>
               );
-            })}
-            }
+            })}            
           </Grid>
         )}
       </div>

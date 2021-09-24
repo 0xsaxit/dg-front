@@ -12,6 +12,8 @@ import { ItemExtra } from 'semantic-ui-react';
 function WearableBody({ state }) {
   // define local variables
 
+  console.log("state.DGBalances.BALANCE_CHILD_DG ============================= ", state.DGBalances.BALANCE_CHILD_DG);
+
   return (
     <Aux>
       <div className={styles.wearable}>
@@ -31,6 +33,10 @@ function WearableBody({ state }) {
                   desc={item.meta_data.description}
                   text={item.meta_data.name}
                   state={index + 1}
+                  rank="Rank x"
+                  bonus="+15%"
+                  balance={state.DGBalances.BALANCE_CHILD_DG}
+                  state={index+1}
                 />
               </div>
             ))}
@@ -54,6 +60,7 @@ function WearableBody({ state }) {
                 rank="Rank 1"
                 bonus="1 - 7%"
                 text="Suit & Tie"
+                balance={state.DGBalances.BALANCE_CHILD_DG}
                 state="2"
               />
             </div>

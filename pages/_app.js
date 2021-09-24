@@ -30,10 +30,10 @@ import Spinner from 'components/Spinner';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
-function Application ({Component, pageProps, store}) {
+function Application({ Component, pageProps, store }) {
 
   const router = useRouter();
-  const [pageLoading, setPageLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
     setPageLoading(true);
@@ -44,20 +44,20 @@ function Application ({Component, pageProps, store}) {
     return () => clearTimeout(timer);
   }, []);
 
-  // useEffect(() => {
-  //   const handleStart = () => { 
-  //     console.log("1. Page Loading is started.");
-  //     setPageLoading(true); 
-  //   };
-  //   const handleComplete = () => { 
-  //     console.log("2. Page Loading is completed.");
-  //     setPageLoading(false); 
-  //   };
+  useEffect(() => {
+    const handleStart = () => {
+      console.log("1. Page Loading is started.");
+      setPageLoading(true);
+    };
+    const handleComplete = () => {
+      console.log("2. Page Loading is completed.");
+      setPageLoading(false);
+    };
 
-  //   router.events.on('routeChangeStart', handleStart);
-  //   router.events.on('routeChangeComplete', handleComplete);
-  //   router.events.on('routeChangeError', handleComplete);
-  // }, [router]);
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+  }, [router]);
 
   return (
     <Provider store={store}>
@@ -66,34 +66,35 @@ function Application ({Component, pageProps, store}) {
           background: black;
         }
       `}</style>
-      {pageLoading? (
-        <Spinner background={1} />
-      ) : (
-        <div>
-          <Segment />
-          <UserStatus />
-          <UserBalances />
-          <Transactions />
-          <TreasuryNumbers />
-          <GameRecords />
-          <ActiveStatus />
-          <UserInfo />
-          <AdminBalances />
-          <UsersList />
-          <DGBalances />
-          <PricesBreakdown />
-          <NFTSPOAPS />
-          <EventsData />
-          <SubgraphQuery />
-          <ICEAttributes />
 
-          <Component {...pageProps} />
-        </div>
-      )}
-      
+      {pageLoading ? (
+        <Spinner background={1} />
+      ) : null}
+
+      <div>
+        <Segment />
+        <UserStatus />
+        <UserBalances />
+        <Transactions />
+        <TreasuryNumbers />
+        <GameRecords />
+        <ActiveStatus />
+        <UserInfo />
+        <AdminBalances />
+        <UsersList />
+        <DGBalances />
+        <PricesBreakdown />
+        <NFTSPOAPS />
+        <EventsData />
+        <SubgraphQuery />
+        <ICEAttributes />
+
+        <Component {...pageProps} />
+      </div>
+
     </Provider>
   );
-// }
+  // }
 }
 
 export default Application;

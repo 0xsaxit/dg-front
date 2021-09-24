@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import ModalETHAuth from 'components/modal/ModalEthAuth';
+import IceMintETHTooltip from 'components/tooltips/IceMintETHTooltip'
 import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip';
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
@@ -131,18 +132,23 @@ const ModalMint = props => {
             </div>
 
             <div className={styles.price_area}>
-              Price <span>($521.21)</span>
+              Price <span>${(state.DGPrices.eth / 10).toFixed(2)}</span>
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
-                  {state.ethereumBal < 0.1 && <span>Not Enough</span>}
+                  {state.userBalances[2][3] < 0.1 ?
+                    <span>
+                      Not Enough
+                      <IceMintETHTooltip />
+                    </span>
+                    : null}
                   <div className={styles.card}>
                     0.1 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
                   </div>
                   <div className={styles.description}>
-                    {state.ethereumBal.toFixed(2)} ETH Available
+                    {state.userBalances[2][3]} ETH Available
                   </div>
-                  <div className={styles.network}>(On Mainnet)</div>
+                  <div className={styles.network}>(On Polygon)</div>
                 </div>
                 &nbsp;+&nbsp;
                 <div className={styles.card_area_body}>
@@ -170,10 +176,10 @@ const ModalMint = props => {
             </div>
             <div className={styles.button_area}>
               {itemLimitsArray[props.index][0] ? (
-                state.ethereumBal < 0.1 ||
-                state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
+                state.userBalances[2][3] < 0.1 ||
+                  state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
                   <Button className={styles.button_upgrade} disabled={true}>
-                    Mint Wearable ID: {itemLimitsArray[props.index][1]}
+                    Mint Wearable
                   </Button>
                 ) : (
                   <Button
@@ -183,12 +189,12 @@ const ModalMint = props => {
                       setOpenETHAuth(true);
                     }}
                   >
-                    Mint Wearable ID: {itemLimitsArray[props.index][1]}
+                    Mint Wearable
                   </Button>
                 )
               ) : (
                 <Button disabled className={styles.open_button}>
-                  Sold Out! ID: {itemLimitsArray[props.index][1]}
+                  Sold Out!
                 </Button>
               )}
 

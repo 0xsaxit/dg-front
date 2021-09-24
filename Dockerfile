@@ -50,4 +50,6 @@ COPY --from=build --chown=node:node /app .
 
 USER node
 
+EXPOSE 3000
+
 CMD ["next", "start", "-p", "3000"]

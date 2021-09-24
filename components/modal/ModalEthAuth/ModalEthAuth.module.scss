@@ -15,7 +15,7 @@
 
 .withdraw_modal {
   width: 480px !important;
-  height: 359px;
+  height: 500px;
   background: black !important;
   border-radius: 24px !important;
   padding: 40px;
@@ -86,7 +86,6 @@
       .header_text {
         font-size: 32px;
         font-family: Larsseit-ExtraBold;
-        margin-left: 21px;
       }
     }
 
@@ -101,20 +100,46 @@
     .upgrade_inner_container {
       display: flex;
       flex-direction: column;
+      margin-bottom: 4px;
 
-      .steps_line {
+      .eth_container {
         display: flex;
-        padding-left: 14px;
-        margin: 0px 0px 0px -42px;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px !important;
+        height: 48px;
+        width: 148px;
+        border-radius: 18px;
+        background: #090909;
+        border: 1px #2a2a2a solid;
+        margin-left: 30px;
 
-        .line_initial {
-          fill: white;
-          opacity: 0.25;
+
+        .eth_amount {
+          font-size: 20px;
+          font-family: Larsseit-Bold;
         }
 
-        .line_done {
-          fill: #35AB3A;
+        .eth_img {
+          margin-top: 2px;
+          margin-left: 5px;
+          height: 22px;
+          width: 22px;
         }
+      }
+
+      .eth_description {
+        font-size: 13px;
+        font-family: Larsseit-Regular;
+        color: rgba(255, 255, 255, 0.5) !important;
+        padding-top: 10px;
+      }
+
+      .eth_description_two {
+        font-size: 13px;
+        font-family: Larsseit-Regular;
+        color: rgba(255, 255, 255, 0.5) !important;
+        padding-top: 4px;
       }
     }
 
@@ -122,11 +147,11 @@
       width: 100%;
       background: #006eff !important;
       color: white !important;
-      border-radius: 10px !important;
-      height: 64px;
-      line-height: 18px;
+      border-radius: 16px !important;
+      height: 91px;
+      line-height: 32px;
       font-family: Larsseit-Bold;
-      font-size: 22px;
+      font-size: 24px;
       width: 100%;
       margin-top: 24px;
     }
@@ -137,10 +162,10 @@
   display: flex;
   align-items: center;
   margin-left: -42px;
+  margin-top: 24px;
 
   .upgrade_right {
     margin-left: 26px;
-    // margin-top: -14px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
