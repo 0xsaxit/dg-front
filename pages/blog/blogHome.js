@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../store';
-import { Menu, Image, Divider, Grid, Icon, Button } from 'semantic-ui-react';
+import { Image, Button } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';
 import Aux from '../../components/_Aux';
