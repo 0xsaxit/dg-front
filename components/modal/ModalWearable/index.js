@@ -5,12 +5,12 @@ import { Modal, Icon, Button, Header, Grid, Popup } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import Global from 'components/Constants';
 import styles from './ModalWearable.module.scss';
-import IceUpgradeWearableTooltip from 'components/tooltips/IceUpgradeWearableTooltip'
+import IceUpgradeWearableTooltip from 'components/tooltips/IceUpgradeWearableTooltip';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 import ModalUpgradeSuccess from 'components/modal/ModalUpgradeSuccess';
 import ModalUpgradePending from 'components/modal/ModalUpgradePending';
 
-const ModalWearable = (props) => {
+const ModalWearable = props => {
   // get user's unclaimed DG balance from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
   const [open, setOpen] = useState(false);
@@ -73,7 +73,10 @@ const ModalWearable = (props) => {
             </div>
 
             <div className={styles.upgrade_arrow}>
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632104564/blue-arrow_Traced_oy95nf.svg" alt="Upgrade" />
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632104564/blue-arrow_Traced_oy95nf.svg"
+                alt="Upgrade"
+              />
             </div>
 
             <div className={styles.wear_box}>
@@ -231,7 +234,9 @@ const ModalWearable = (props) => {
         <NeedMoreUpgrade setUpgrade={setUpgrade} setPropsOpen={setOpen} />
       )}
 
-      {upgrade == 2 && <ModalUpgradePending setUpgrade={setUpgrade} />}
+      {upgrade == 2 && (
+        <ModalUpgradePending setUpgrade={setUpgrade} tokenID={props.tokenID} />
+      )}
 
       {upgrade == 3 && <ModalUpgradeSuccess setUpgrade={setUpgrade} />}
     </>

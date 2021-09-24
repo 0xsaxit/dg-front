@@ -104,7 +104,8 @@ const initialState = {
     [0, 15],
     [0, 20],
   ],
-  iceWearableItems: [], 
+  iceWearableItems: [],
+  nftAuthorizations: [],
   canPurchase: true,
   tokenAmounts: {
     WETH_COST_AMOUNT: 0,
@@ -119,6 +120,7 @@ const initialState = {
   refreshTokens: 'Initial',
   refreshBalances: true,
   refreshTokenAuth: true,
+  refreshNFTAuth: true,
   updateInfo: true,
   affiliateAddress: '',
   stakeTime: 0,
@@ -261,11 +263,17 @@ const reducer = (state, action) => {
         ...state,
         itemLimits: action.data,
       };
-    
+
     case 'ice_wearable_items':
       return {
         ...state,
         iceWearableItems: action.data,
+      };
+
+    case 'nft_authorizations':
+      return {
+        ...state,
+        nftAuthorizations: action.data,
       };
 
     case 'can_purchase':
@@ -326,6 +334,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         refreshTokenAuth: action.data,
+      };
+
+    case 'refresh_nft_auth':
+      return {
+        ...state,
+        refreshNFTAuth: action.data,
       };
 
     case 'update_info':

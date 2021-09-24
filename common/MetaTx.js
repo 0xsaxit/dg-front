@@ -10,6 +10,10 @@ let childTokenAddressUSDT = '';
 let childTokenAddressATRI = '';
 let childTokenAddressWETH = '';
 let childTokenAddressICE = '';
+let childTokenAddressDG = '';
+
+let accessoriesContract = '';
+
 let treasuryAddress = '';
 let dgPointerAddress = '';
 let dgPointerAddressNew = '';
@@ -23,6 +27,10 @@ childTokenAddressUSDT = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_USDT;
 childTokenAddressATRI = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ATRI;
 childTokenAddressWETH = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_WETH;
 childTokenAddressICE = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_ICE;
+childTokenAddressDG = Global.ADDRESSES.CHILD_TOKEN_ADDRESS_DG;
+
+accessoriesContract = Global.ADDRESSES.COLLECTION_V2_ADDRESS;
+
 treasuryAddress = Global.ADDRESSES.TREASURY_CONTRACT_ADDRESS;
 dgPointerAddress = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS;
 dgPointerAddressNew = Global.ADDRESSES.DG_POINTER_CONTRACT_ADDRESS_NEW;
@@ -34,7 +42,7 @@ const domainTypeToken = [
   { name: 'salt', type: 'bytes32' },
 ];
 
-const domeinTypeTreasury = [
+const domainTypeTreasury = [
   { name: 'name', type: 'string' },
   { name: 'version', type: 'string' },
   { name: 'chainId', type: 'uint256' },
@@ -42,14 +50,16 @@ const domeinTypeTreasury = [
 ];
 
 arrayDomainType.push(domainTypeToken);
-arrayDomainType.push(domeinTypeTreasury);
-arrayDomainType.push(domeinTypeTreasury);
+arrayDomainType.push(domainTypeTreasury);
+arrayDomainType.push(domainTypeTreasury);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
-arrayDomainType.push(domeinTypeTreasury);
+arrayDomainType.push(domainTypeTreasury);
 arrayDomainType.push(domainTypeToken);
+arrayDomainType.push(domainTypeToken);
+arrayDomainType.push(domainTypeTreasury);
 
 metaTransactionType.push(
   { name: 'nonce', type: 'uint256' },
@@ -120,6 +130,27 @@ const domainDataTokenICE = {
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
+const domainDataTokenDG = {
+  name: 'decentral.games (PoS)',
+  version: '1',
+  verifyingContract: childTokenAddressDG,
+  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+};
+
+// const domainDataTokenNFT = {
+//   name: 'Decentraland Rarities',
+//   version: '1',
+//   verifyingContract: childTokenAddressNFT,
+//   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+// };
+
+const domainDataAccessories = {
+  name: 'Decentraland Rarities',
+  version: '1',
+  chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
+  verifyingContract: accessoriesContract,
+};
+
 arrayDomainData.push(domainDataTokenMANA);
 arrayDomainData.push(domainDataTreasury);
 arrayDomainData.push(domainDataDGPointer);
@@ -129,6 +160,8 @@ arrayDomainData.push(domainDataTokenATRI);
 arrayDomainData.push(domainDataTokenWETH);
 arrayDomainData.push(domainDataDGPointerNew);
 arrayDomainData.push(domainDataTokenICE);
+arrayDomainData.push(domainDataTokenDG);
+arrayDomainData.push(domainDataAccessories);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -147,6 +180,9 @@ function executeMetaTransaction(
     console.log('Verify contract: ' + arrayDomainData[i].verifyingContract);
 
     try {
+      console.log('contract instance...');
+      console.log(contractInstance);
+
       let nonce = await contractInstance.methods.getNonce(userAddress).call();
 
       let message = {};

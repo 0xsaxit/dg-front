@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Modal, Icon, Button, Header, Grid, Popup } from 'semantic-ui-react';
 import styles from './ICEDWearableCard.module.scss';
-import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip'
-import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip'
-import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip'
+import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
+import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
+import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
 import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
@@ -19,20 +19,21 @@ const ICEDWearableCard = props => {
           <div className={styles.wear_box_purple}>
             <div className={styles.delegatebtn}>
               Delegated To {props.address ? props.address : 'You'}
-              <img src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632105564/next_i5mqo5.svg" alt="icon" />
+              <img
+                src="https://res.cloudinary.com/dnzambf4m/image/upload/v1632105564/next_i5mqo5.svg"
+                alt="icon"
+              />
             </div>
-            {props.state == 2 ?
+            {props.state == 2 ? (
               <IceNeedToActivateTooltip />
-              :
+            ) : (
               <IceP2EEnabledTooltip />
-            }
+            )}
             <img src={props.url} />
           </div>
           <div className={styles.card_body}>
             <div className={styles.card}>{props.rank}</div>
-            <IceWearableBonusTooltip
-              bonus={props.bonus}
-            />
+            <IceWearableBonusTooltip bonus={props.bonus} />
             <div className={styles.card}>1 of 100</div>
           </div>
           <div className={styles.card_meta}>DG Suit</div>
@@ -48,7 +49,8 @@ const ICEDWearableCard = props => {
                   rank={props.rank}
                   bonus={props.bonus}
                 />
-                <ModalWearable />
+
+                <ModalWearable tokenID={props.tokenID} />
               </span>
             ) : props.state == 2 ? (
               <NeedMoreDGActivateModal />
