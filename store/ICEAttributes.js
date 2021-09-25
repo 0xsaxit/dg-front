@@ -78,12 +78,12 @@ function ICEAttributes() {
 
         if (nLen > 0) {
           try {
-            for (let nIndex = 1; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
+            for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
               const tokenID = await collectionV2Contract.methods
                 .tokenOfOwnerByIndex(state.userAddress, nIndex)
                 .call();
 
-              if (parseInt(tokenID) > 100) {
+              if (parseInt(tokenID) > 0) {
                 tokenIDs.push({ index: nIndex, tokenID: tokenID });
               }
             }
@@ -105,6 +105,8 @@ function ICEAttributes() {
               };
             })
           );
+
+          console.log("iceWearableItems: ", iceWearableItems);
 
           dispatch({
             type: 'ice_wearable_items',
