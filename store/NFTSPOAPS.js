@@ -13,7 +13,7 @@ function NFTSPOAPS() {
         let json = await Fetch.NFTS_1(state.userAddress);
         let json_2 = await Fetch.NFTS_2(state.userAddress);
 
-        if(json && json_2) {
+        if (json && json_2) {
           let wearables = [];
           let i;
           for (i = 0; i < json.assets.length; i++) {
@@ -42,7 +42,7 @@ function NFTSPOAPS() {
         let poaps = [];
         let k;
         for (k = 0; k < json_1.length; k++) {
-          if (json_1[k].event.name.includes('Decentral Games') 
+          if (json_1[k].event.name.includes('Decentral Games')
             || json_1[k].event.name.includes('BAYC')) {
             poaps.push(json_1[k].event);
           }

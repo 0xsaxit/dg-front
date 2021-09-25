@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../../../../store';
-import { Divider } from 'semantic-ui-react';
 import _ from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -30,8 +29,8 @@ function blogCategory() {
         <div style={{ marginLeft: '0px' }}>
           <span className="account-other-p" style={{ display: 'flex' }}>
             <span style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-              <span 
-                style={{ 
+              <span
+                style={{
                   margin: '100px 0px 0px 0px',
                   fontSize: '24px',
                   fontFamily: 'Larsseit-ExtraBold',
@@ -90,24 +89,24 @@ function blogCategory() {
                     </span>
                     <div className="bottom">
                       <div className="blog-title">
-                          <h4
-                            style={{
-                              fontSize: '20px',
-                              fontfamily: 'LarsseitBold',
-                              marginTop: '10px',
-                              textAlign: 'center'
-                            }}
-                          >
-                            {page.title}
-                          </h4>
-                          <p
-                            style={{
-                              fontFamily: 'Larsseit-Regular',
-                              fontSize: '15px',
-                              paddingTop: '15px',
-                              textAlign: 'center'
-                            }}
-                          >
+                        <h4
+                          style={{
+                            fontSize: '20px',
+                            fontfamily: 'LarsseitBold',
+                            marginTop: '10px',
+                            textAlign: 'center'
+                          }}
+                        >
+                          {page.title}
+                        </h4>
+                        <p
+                          style={{
+                            fontFamily: 'Larsseit-Regular',
+                            fontSize: '15px',
+                            paddingTop: '15px',
+                            textAlign: 'center'
+                          }}
+                        >
                           {page.summary.split('.', 1)[0]}
                         </p>
                       </div>
