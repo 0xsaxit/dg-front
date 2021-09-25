@@ -381,7 +381,7 @@ const AccountData = (props) => {
                 )}
 
 
-              {dataType === 'ICE_2' ? (
+              {/*{dataType === 'ICE_2' ? (
                 <span className={cn("account-hover", "active", styles.account_hover)}>
                   ICE_2
                 </span>
@@ -399,7 +399,7 @@ const AccountData = (props) => {
                     ICE_2
                   </span>
                 </Link>)
-                )}
+                )}*/}
 
             </span>
           </div>

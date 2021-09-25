@@ -147,20 +147,3 @@
 	}
 }
 
-.account_other_tabs {
-	@include mq($until: medium) {
-		.account_hover {
-			font-size: 18px !important;
-			margin-left: 6px !important;
-			margin-right: 12px !important;
-		}
-	}
-	
-	@include mq($until: small) {
-		.account_hover {
-			font-size: 13px !important;
-			margin-left: 3px !important;
-			margin-right: 3px !important;
-		}
-	}
-}

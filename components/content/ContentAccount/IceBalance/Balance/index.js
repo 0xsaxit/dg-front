@@ -23,14 +23,14 @@ const Balance = () => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name: 'ICE',
       type: 'ICE',
-      model: '122,0123 ICE',
-      price: '1220.00',
+      model: '0.00 ICE',
+      price: '0.00',
     },
     {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_XP_ICN_f9w2se.svg',
       name: 'Gameplay XP',
       type: 'XP',
-      model: '14 XP',
+      model: '0 XP',
       price: '0.00',
     },
     {
@@ -65,14 +65,12 @@ const Balance = () => {
                   <p className={styles.bold_text}>${item.price}</p>
                 </div>
                 {index === 1 ?
-                  <Button
+                  <div
                     className={styles.newLink_gamePlay}
-                    href="http://defi.atarichain.com/"
-                    target="_blank"
                   >
                     <h3>ONLY THROUGH</h3>
                     <h1>Gameplay</h1>
-                  </Button>
+                  </div>
                 :
                   <Button
                     className={styles.newLink}
