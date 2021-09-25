@@ -168,6 +168,8 @@ async function tokenAuthorization(tokenContract, userAddress, spenderAddress) {
       .allowance(userAddress, spenderAddress)
       .call();
 
+    console.log('token allowance: ' + tokenAllowance);
+
     let tokenAuthorizationStatus = false;
     if (tokenAllowance > 0) {
       tokenAuthorizationStatus = true;

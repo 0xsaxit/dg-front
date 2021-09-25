@@ -67,7 +67,6 @@ function ICEAttributes() {
     }
   }, [state.userStatus]);
 
-
   useEffect(() => {
     if (instances) {
       async function fetchData() {
@@ -108,7 +107,6 @@ function ICEAttributes() {
             type: 'ice_wearable_items',
             data: iceWearableItems,
           });
-          
         }
       }
 
@@ -129,9 +127,14 @@ function ICEAttributes() {
         });
 
         // get the user's one-hour cool-down status
-        console.log("================== <Before getCoolDownStatus> =================== ");
+        console.log(
+          '================== <Before getCoolDownStatus> =================== '
+        );
         const canPurchase = await getCoolDownStatus();
-        console.log("================== <After canPurchase> =================== ", canPurchase);
+        console.log(
+          '================== <After canPurchase> =================== ',
+          canPurchase
+        );
 
         dispatch({
           type: 'can_purchase',
@@ -140,14 +143,16 @@ function ICEAttributes() {
 
         // update global state token amounts/authorization status
         const tokenAmounts = await getTokenAmounts();
-        console.log("================== <tokenAmounts> ==================== ", tokenAmounts);
+        console.log(
+          '================== <tokenAmounts> ==================== ',
+          tokenAmounts
+        );
 
         dispatch({
           type: 'token_amounts',
           data: tokenAmounts,
         });
-        console.log("instances completed!");
-
+        console.log('instances completed!');
       })();
     }
   }, [instances, state.refreshTokenAuth]);
@@ -180,7 +185,7 @@ function ICEAttributes() {
         });
       })();
     }
-  }, [state.iceWearableItems, state.refreshTokenAuth]);
+  }, [state.iceWearableItems, state.refreshNFTAuth]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -258,21 +263,25 @@ function ICEAttributes() {
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
 
-      const WETH_AUTHORIZATION = await Transactions.tokenAuthorization(
-        WETHMaticContract,
-        state.userAddress,
-        Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
-      );
-
       const ICE_AUTHORIZATION = await Transactions.tokenAuthorization(
         ICEMaticContract,
         state.userAddress,
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
 
+      const WETH_AUTHORIZATION = await Transactions.tokenAuthorization(
+        WETHMaticContract,
+        state.userAddress,
+        Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      );
+
+      console.log('User address: ' + state.userAddress);
+      console.log(
+        'Spender address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      );
       console.log('Get token authorization: DG: ' + DG_AUTHORIZATION);
       console.log('Get token authorization: WETH: ' + WETH_AUTHORIZATION);
-      // console.log('Get token authorization: ICE: ' + ICE_AUTHORIZATION);
+      console.log('Get token authorization: ICE: ' + ICE_AUTHORIZATION);
 
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
@@ -281,9 +290,8 @@ function ICEAttributes() {
         // ICE_COST_AMOUNT: ICE_COST_AMOUNT,
         // ICE_MOVE_AMOUNT: ICE_MOVE_AMOUNT,
         DG_AUTHORIZATION: DG_AUTHORIZATION,
-        WETH_AUTHORIZATION: WETH_AUTHORIZATION,
         ICE_AUTHORIZATION: ICE_AUTHORIZATION,
-        // NFT_AUTHORIZATION: NFT_AUTHORIZATION,
+        WETH_AUTHORIZATION: WETH_AUTHORIZATION,
       };
     } catch (error) {
       console.log('Get token amounts error: ' + error);
