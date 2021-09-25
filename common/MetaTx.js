@@ -125,7 +125,7 @@ const domainDataDGPointerNew = {
 
 const domainDataTokenICE = {
   name: 'IceToken',
-  version: 'v1.0',
+  version: 'v1.2',
   verifyingContract: childTokenAddressICE,
   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };

@@ -256,13 +256,13 @@ const ModalUpgradePending = props => {
       MetaTxNumber = 8;
       setClickedICE(true);
 
-      console.log('authorize amount (ICE): ' + Global.CONSTANTS.MAX_AMOUNT);
+      // console.log('authorize amount (ICE): ' + Global.CONSTANTS.MAX_AMOUNT);
     } else if (token === 'DG') {
       tokenContract = tokenContractDG;
       MetaTxNumber = 9;
       setClickedDG(true);
 
-      console.log('authorize amount (DG): ' + Global.CONSTANTS.MAX_AMOUNT);
+      // console.log('authorize amount (DG): ' + Global.CONSTANTS.MAX_AMOUNT);
     }
 
     try {
