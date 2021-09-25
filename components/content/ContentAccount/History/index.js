@@ -30,6 +30,9 @@ function History({ state }) {
     )
   );
 
+  console.log("->Data History: ", dataHistory);
+  console.log("->Transactions: ", transactions);
+
   const newPokerData = dataPoker.map(poker => {
     const userInfoPlayIDs = map(
       poker.tableData,
@@ -53,6 +56,8 @@ function History({ state }) {
     };
   });
 
+  console.log("->NewPokerData: ", newPokerData);
+
   const playData = [
     ...(dataPlay === 'false'
       ? []
@@ -62,9 +67,12 @@ function History({ state }) {
     ...newPokerData,
   ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  console.log("->PlayData: ", playData);
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
+    console.log("->State.transactions[0]: ", state.transactions[0]);
     if (state.transactions[0].length && state.transactions[1]) {
       setIsLoading(false);
     }
