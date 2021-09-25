@@ -10,7 +10,7 @@ import Images from '../../common/Images';
 const Account = () => {
   // get user status from the Context API store
   const [state, dispatch] = useContext(GlobalContext);
-  
+
   return (
     <Layout>
       <Header

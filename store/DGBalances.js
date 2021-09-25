@@ -137,7 +137,7 @@ function DGBalances() {
   // anytime user updates values on /dg pages this code will execute
   useEffect(() => {
     if (instances) {
-      (async function() {
+      (async function () {
         // update global state unclaimed DG points balances
         const tokenBalances = await getTokenBalances();
 

@@ -19,20 +19,20 @@ function UserInfo() {
     (async function () {
       // get coin prices
       let json = await Fetch.MANA_PRICE();
-      if(json && json.market_data) {
+      if (json && json.market_data) {
         setManaPrice(json.market_data.current_price.usd);
       }
 
       let json2 = await Fetch.ETH_PRICE();
-      if(json2 && json2.market_data) {
+      if (json2 && json2.market_data) {
         setEthPrice(json2.market_data.current_price.usd);
       }
 
       let json3 = await Fetch.ATRI_PRICE();
-      if(json3 && json3.market_data) {
+      if (json3 && json3.market_data) {
         setAtriPrice(json3.market_data.current_price.usd);
       }
-      
+
 
     })();
   }, [manaPrice, ethPrice, atriPrice]);
