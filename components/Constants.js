@@ -25,6 +25,7 @@ const CONSTANTS = {
   DESCRIPTION: 'The first community-owned, Metaverse casino. Provably fair game logic, non-custodial accounts, immediate payouts.',
   DISCORD_URL: 'https://discord.gg/cvbSNzY',
   SOCIAL_HANDLE: 'decentralgames',
+  MAX_ITEM_COUNT: 10,
 };
 
 // wallet and contract addresses

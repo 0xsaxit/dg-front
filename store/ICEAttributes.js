@@ -15,13 +15,15 @@ function ICEAttributes() {
   const [state, dispatch] = useContext(GlobalContext);
 
   // define local variables
+  const [instances, setInstances] = useState(false);
+
   const [ICERegistrantContract, setICERegistrantContract] = useState({});
   const [DGMaticContract, setDGMaticContract] = useState({});
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   const [ICEMaticContract, setICEMaticContract] = useState({});
-  const [instances, setInstances] = useState(false);
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
-  const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
+
+  // const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -76,9 +78,9 @@ function ICEAttributes() {
 
         if (nLen > 0) {
           try {
-            for (let nIndex = 1; nIndex < 10; nIndex++) {
+            for (let nIndex = 1; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
               const tokenID = await collectionV2Contract.methods
-                .tokenOfOwnerByIndex(userWalletAddress, nIndex)
+                .tokenOfOwnerByIndex(state.userAddress, nIndex)
                 .call();
 
               if (parseInt(tokenID) > 100) {
