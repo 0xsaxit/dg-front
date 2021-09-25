@@ -1,6 +1,7 @@
 import call from 'common/API';
 // https://api.decentral.games, http://localhost:5000
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const TEST_API_BASE_URL = 'https://api.testing.decentral.games';
 
 const apiCall = {
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -32,6 +33,13 @@ const apiCall = {
 
   MINT_TOKEN: tokenID => {
     return call(`${API_BASE_URL}/ice/mintToken/${tokenID}`, 'GET');
+  },
+
+  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {
+    return call(
+      `${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenID}`,
+      'GET'
+    );
   },
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -175,11 +183,6 @@ const apiCall = {
 
   POAPS: address => {
     return call(`https://api.poap.xyz/actions/scan/${address}`, 'GET', false);
-  },
-  
-  GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenURI) => {
-    const TEST_API_BASE_URL = 'https://api.testing.decentral.games';
-    return call(`${TEST_API_BASE_URL}/ice/getMetadata/${contractAddr}/${tokenURI}`, 'GET');
   },
 };
 

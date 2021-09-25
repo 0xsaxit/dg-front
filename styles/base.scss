@@ -1,4 +1,4 @@
-@import '~sass-mq/mq';
+@import "~sass-mq/mq";
 
 $spacer: 1rem;
 $color-blue: #006eff;
@@ -45,11 +45,3 @@ $mq-breakpoints: (
     -webkit-transform: scale(1);
   }
 }
-
-// .ui.popup.visible.account-popup {
-//   animation: showing 300ms ease-in-out;
-// }
-
-// .ui.visible.modal {
-//   animation: showing 300ms ease-in-out;
-// }

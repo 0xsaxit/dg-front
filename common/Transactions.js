@@ -179,6 +179,24 @@ async function tokenAuthorization(tokenContract, userAddress, spenderAddress) {
   }
 }
 
+// get NFT approval address/status for from token contract
+async function NFTApproved(tokenContract, tokenID) {
+  try {
+    const tokenAddress = await tokenContract.methods
+      .getApproved(tokenID)
+      .call();
+
+    let tokenApproved = false;
+    if (tokenAddress === Global.ADDRESSES.ICE_REGISTRANT_ADDRESS) {
+      tokenApproved = true;
+    }
+
+    return tokenApproved;
+  } catch (error) {
+    console.log('Get NFT approval address/status failed', error);
+  }
+}
+
 // amount user has earned from smart contract
 async function balanceEarned(tokenContract, userAddress, units) {
   try {
@@ -221,6 +239,7 @@ export default {
   keeperContract,
   balanceOfToken,
   tokenAuthorization,
+  NFTApproved,
   balanceEarned,
   getTotalSupply,
 };

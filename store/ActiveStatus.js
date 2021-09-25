@@ -7,7 +7,6 @@ import Fetch from '../common/Fetch';
 import MetaTx from '../common/MetaTx';
 import Transactions from '../common/Transactions';
 
-
 function ActiveStatus() {
   // dispatch user's treasury contract active status to the Context API store
   const [state, dispatch] = useContext(GlobalContext);
