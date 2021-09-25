@@ -30,6 +30,9 @@ const ModalUpgradePending = props => {
   const [tokenContractDG, setTokenContractDG] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
 
+  // let tokenContract = {};
+  // let MetaTxNumber = 0;
+
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
   // initialize Web3 providers and create token contract instance
@@ -82,16 +85,7 @@ const ModalUpgradePending = props => {
     const authStatusICE = state.tokenAmounts.ICE_AUTHORIZATION;
     const authStatusDG = state.tokenAmounts.DG_AUTHORIZATION;
 
-    // get NFT authorization sate based on props.tokenID or index??? *******************************
-    // const authStatusNFT = state.tokenAmounts.DG_AUTHORIZATION;
-    // const authStatusNFT = getNFTAuthorization(props.index);
-
-    // console.log('props token ID: ' + props.tokenID);
-    // console.log('props index: ' + props.index);
-
-    // console.log('nft authorizations...');
-    // console.log(state.nftAuthorizations);
-
+    // get NFT authorization state based on props.tokenID
     const result = state.nftAuthorizations.find(
       item => item.tokenID === props.tokenID
     );
@@ -111,7 +105,7 @@ const ModalUpgradePending = props => {
         <MetamaskAction
           primaryText="Authorize ICE"
           secondaryText="Enables ICE Transaction"
-          onClick={() => metaTransactionToken('ICE')}
+          onClick={() => (!authStatusICE ? metaTransactionToken('ICE') : null)}
           actionState={
             authStatusICE
               ? 'done'
@@ -128,7 +122,7 @@ const ModalUpgradePending = props => {
         <MetamaskAction
           primaryText="Authorize DG"
           secondaryText="Enables DG Transaction"
-          onClick={() => metaTransactionToken('DG')}
+          onClick={() => (!authStatusDG ? metaTransactionToken('DG') : null)}
           actionState={
             authStatusDG
               ? 'done'
@@ -146,7 +140,7 @@ const ModalUpgradePending = props => {
         <MetamaskAction
           primaryText="Authorize NFT"
           secondaryText="Enables NFT Transaction"
-          onClick={() => metaTransactionNFT()}
+          onClick={() => (!authStatusNFT ? metaTransactionNFT() : null)}
           actionState={
             authStatusNFT
               ? 'done'
@@ -244,39 +238,25 @@ const ModalUpgradePending = props => {
   // }
 
   async function metaTransactionToken(token) {
-    console.log('meta transaction: ' + token);
-
+    console.log('Meta-transaction: ' + token);
     let tokenContract = {};
     let MetaTxNumber = 0;
-
-    // console.log('token: ' + token);
 
     if (token === 'ICE') {
       tokenContract = tokenContractICE;
       MetaTxNumber = 8;
       setClickedICE(true);
-
-      // console.log('authorize amount (ICE): ' + Global.CONSTANTS.MAX_AMOUNT);
     } else if (token === 'DG') {
       tokenContract = tokenContractDG;
       MetaTxNumber = 9;
       setClickedDG(true);
-
-      // console.log('authorize amount (DG): ' + Global.CONSTANTS.MAX_AMOUNT);
     }
 
     try {
-      if (token === 'ICE') {
-        setClickedICE(true);
-      } else if (token === 'DG') {
-        setClickedDG(true);
-      }
       console.log(
-        'authorize ' + token + ' amount: ' + Global.CONSTANTS.MAX_AMOUNT
+        'Authorize ' + token + ' amount: ' + Global.CONSTANTS.MAX_AMOUNT
       );
-
-      // console.log('token contract...');
-      // console.log(tokenContract);
+      console.log('Spender address: ' + spenderAddress);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = tokenContract.methods
@@ -311,18 +291,19 @@ const ModalUpgradePending = props => {
       setClickedICE(false);
       setClickedDG(false);
 
-      console.log(token + ' authorization error: ' + error);
+      console.log(token + ' Authorization error: ' + error);
     }
   }
 
   async function metaTransactionNFT() {
-    console.log('meta transaction NFT: ' + props.tokenID);
+    console.log('Meta-transaction NFT: ' + props.tokenID);
     setClickedNFT(true);
 
     try {
       console.log(
-        'authorize NFT for address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+        'Authorize NFT for address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
+      console.log('Spender address: ' + spenderAddress);
 
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = collectionV2Contract.methods
@@ -344,7 +325,7 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        // update global state token authorizations
+        // update global state NFT authorizations
         const refresh = !state.refreshNFTAuth;
 
         dispatch({
