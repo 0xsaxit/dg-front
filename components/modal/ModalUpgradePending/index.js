@@ -89,11 +89,11 @@ const ModalUpgradePending = props => {
     const result = state.nftAuthorizations.find(
       item => item.tokenID === props.tokenID
     );
-    console.log('nft auth status: ' + result.authStatus);
+    // console.log('nft auth status: ' + result.authStatus);
 
     setAuthStatusICE(authStatusICE);
     setAuthStatusDG(authStatusDG);
-    setAuthStatusNFT(result.authStatus);
+    // setAuthStatusNFT(result.authStatus);
   }, [state.tokenAmounts]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -279,13 +279,19 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        // update global state token authorizations
-        const refresh = !state.refreshTokenAuth;
+        if (token === 'ICE') {
+          setAuthStatusICE(true);
+        } else if (token === 'DG') {
+          setAuthStatusDG(true);
+        }
 
-        dispatch({
-          type: 'refresh_token_auth',
-          data: refresh,
-        });
+        // update global state token authorizations
+        // const refresh = !state.refreshTokenAuth;
+
+        // dispatch({
+        //   type: 'refresh_token_auth',
+        //   data: refresh,
+        // });
       }
     } catch (error) {
       setClickedICE(false);
