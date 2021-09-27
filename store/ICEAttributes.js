@@ -168,7 +168,9 @@ function ICEAttributes() {
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
     if (state.iceWearableItems.length) {
-      console.log('wearables 1...')(async function () {
+      console.log('wearables 1...');
+
+      (async function () {
         let authArray = [];
 
         console.log('wearables 2...');
