@@ -77,7 +77,11 @@ function ICEAttributes() {
 
         if (nLen > 0) {
           try {
-            for (let nIndex = 0; nIndex < Global.CONSTANTS.MAX_ITEM_COUNT; nIndex++) {
+            for (
+              let nIndex = 0;
+              nIndex < Global.CONSTANTS.MAX_ITEM_COUNT;
+              nIndex++
+            ) {
               const tokenID = await collectionV2Contract.methods
                 .tokenOfOwnerByIndex(state.userAddress, nIndex)
                 .call();
@@ -105,7 +109,7 @@ function ICEAttributes() {
             })
           );
 
-          console.log("iceWearableItems: ", iceWearableItems);
+          console.log('iceWearableItems: ', iceWearableItems);
 
           dispatch({
             type: 'ice_wearable_items',
@@ -279,10 +283,10 @@ function ICEAttributes() {
         Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       );
 
-      console.log('User address: ' + state.userAddress);
-      console.log(
-        'Spender address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
-      );
+      // console.log('User address: ' + state.userAddress);
+      // console.log(
+      //   'Spender address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
+      // );
       console.log('Get token authorization: DG: ' + DG_AUTHORIZATION);
       console.log('Get token authorization: WETH: ' + WETH_AUTHORIZATION);
       console.log('Get token authorization: ICE: ' + ICE_AUTHORIZATION);
