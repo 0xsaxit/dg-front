@@ -59,7 +59,7 @@ function ICEAttributes() {
         const collectionV2Contract = new maticWeb3.eth.Contract(
           ABI_COLLECTION_V2,
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
-        );
+        );       
         setCollectionV2Contract(collectionV2Contract);
 
         setInstances(true); // contract instantiation complete
@@ -94,7 +94,7 @@ function ICEAttributes() {
             console.log('stack error: =>', error.message);
           }
 
-          const iceWearableItems = await Promise.all(
+          let iceWearableItems = await Promise.all(
             tokenIDs.map(async item => {
               const meta_json = await Fetch.GET_METADATA_FROM_TOKEN_URI(
                 Global.ADDRESSES.COLLECTION_V2_ADDRESS,
@@ -104,13 +104,14 @@ function ICEAttributes() {
               return {
                 index: item.index,
                 tokenID: item.tokenID,
-                meta_data: meta_json,
+                meta_data: Object.keys(meta_json).length === 0? null : meta_json,
               };
             })
           );
 
+          iceWearableItems = iceWearableItems.filter(item => item.meta_data!=null);
           console.log('iceWearableItems: ', iceWearableItems);
-
+          
           dispatch({
             type: 'ice_wearable_items',
             data: iceWearableItems,
