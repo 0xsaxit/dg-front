@@ -57,7 +57,7 @@ arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeTreasury);
-arrayDomainType.push(domainTypeToken);
+arrayDomainType.push(domainTypeTreasury);
 arrayDomainType.push(domainTypeToken);
 arrayDomainType.push(domainTypeTreasury);
 
@@ -123,11 +123,18 @@ const domainDataDGPointerNew = {
   verifyingContract: dgPointerAddressNew,
 };
 
+// const domainDataTokenICE = {
+//   name: 'IceToken',
+//   version: 'v1.2',
+//   verifyingContract: childTokenAddressICE,
+//   salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
+// };
+
 const domainDataTokenICE = {
   name: 'IceToken',
-  version: 'v1.0',
+  version: 'v1.2',
+  chainId: Global.CONSTANTS.PARENT_NETWORK_ID,
   verifyingContract: childTokenAddressICE,
-  salt: '0x' + Global.CONSTANTS.MATIC_NETWORK_ID.toString(16).padStart(64, '0'),
 };
 
 const domainDataTokenDG = {
