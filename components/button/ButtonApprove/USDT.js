@@ -67,11 +67,6 @@ function USDT({ passed = false }) {
       data: true,
     });
 
-    // dispatch({
-    //   type: 'update_status',
-    //   data: value,
-    // });
-
     // update user's token array in database
     console.log("Updating user's token array in database: USDT");
 
