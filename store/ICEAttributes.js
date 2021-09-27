@@ -168,8 +168,10 @@ function ICEAttributes() {
   // anytime user authorizes NFTs on /ice pages this code will execute
   useEffect(() => {
     if (state.iceWearableItems.length) {
-      (async function () {
+      console.log('wearables 1...')(async function () {
         let authArray = [];
+
+        console.log('wearables 2...');
 
         state.iceWearableItems.map(async (item, i) => {
           try {
@@ -177,6 +179,8 @@ function ICEAttributes() {
               collectionV2Contract,
               item.tokenID
             );
+
+            console.log('wearables 3...');
 
             authArray.push({
               tokenID: item.tokenID,
@@ -186,6 +190,8 @@ function ICEAttributes() {
             console.log('Get NFT approved error: ' + error);
           }
         });
+
+        console.log(authArray);
 
         dispatch({
           type: 'nft_authorizations',
@@ -288,8 +294,8 @@ function ICEAttributes() {
       //   'Spender address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
       // );
       console.log('Get token authorization: DG: ' + DG_AUTHORIZATION);
-      console.log('Get token authorization: WETH: ' + WETH_AUTHORIZATION);
       console.log('Get token authorization: ICE: ' + ICE_AUTHORIZATION);
+      console.log('Get token authorization: WETH: ' + WETH_AUTHORIZATION);
 
       return {
         WETH_COST_AMOUNT: WETH_COST_AMOUNT,
