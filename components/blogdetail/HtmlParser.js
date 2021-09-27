@@ -15,13 +15,13 @@ const HtmlParser = (content) => {
         replaceChildren: true,
         shouldProcessNode: (node) => node.name && node.name === 'pre',
         processNode: (node, children) => (
-            <div className='code-block'>
-              <Highlight {...node.attribs}>
-                {children[0].props.children}
-              </Highlight>
-              <CopyButton data={children[0].props.children} />
-            </div>
-          ),
+          <div className='code-block'>
+            <Highlight {...node.attribs}>
+              {children[0].props.children}
+            </Highlight>
+            <CopyButton data={children[0].props.children} />
+          </div>
+        ),
       },
       {
         shouldProcessNode: () => true,
