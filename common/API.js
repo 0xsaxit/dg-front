@@ -36,7 +36,7 @@ const call = (url, method, withToken = true, data = {}) => {
 
   return axios.request(options)
     .then(res => res.data)
-    .catch(error=>{
+    .catch(error => {
       console.log("Error:", error);
     });
 };
