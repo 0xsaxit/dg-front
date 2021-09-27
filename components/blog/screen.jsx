@@ -11,10 +11,10 @@ const Screen = ({ pages, category, handleClickButton, match, history }) => {
     category === 'All'
       ? pages
       : pages.filter((page) =>
-          page.categories.length > 0
-            ? page.categories[0].name === category
-            : false
-        );
+        page.categories.length > 0
+          ? page.categories[0].name === category
+          : false
+      );
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [value, setValue] = useState('');

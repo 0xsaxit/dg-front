@@ -2,11 +2,9 @@ import IceP2EEnabledTooltip from 'components/tooltips/IceP2EEnabledTooltip';
 import IceNeedToActivateTooltip from 'components/tooltips/IceNeedToActivateTooltip';
 import IceWearableBonusTooltip from 'components/tooltips/IceWearableBonusTooltip';
 import ModalDelegate from 'components/modal/ModalDelegate';
-import ModalWithdrawDelegation from 'components/modal/ModalWithdrawDelegation';
 import NeedMoreDGActivateModal from 'components/modal/NeedMoreDGActivateModal';
 import ModalWearable from 'components/modal/ModalWearable';
 import styles from './ICEWearableCard.module.scss';
-import NeedMoreUpgrade from 'components/modal/NeedMoreUpgrade';
 
 const getRank = bonus => {
   if (bonus === 0) {

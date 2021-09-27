@@ -70,11 +70,11 @@ const Images = {
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1625837406/Full_Screen_Background_Animation_uo9h6b_tgv9jq.gif',
   HASHKEY:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1626533037/image_55_Traced_p39kac.svg',
-  VEGAS: 
+  VEGAS:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1627992075/image_oxwbsc.png',
-  BAYC: 
+  BAYC:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1628251329/download_bzvaxj.png',
-  BINANCE: 
+  BINANCE:
     'https://res.cloudinary.com/dnzambf4m/image/upload/v1629728293/image_56_Traced_ywmz23.png',
 };
 

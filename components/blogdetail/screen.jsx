@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import PostPreview from '../blog/PostPreview';
 import { Divider, Icon, Button } from 'semantic-ui-react';
-// import { Menu, Navbar } from 'semantic-ui-react';
 import HtmlParser from './HtmlParser';
-// import Link from 'next/link';
-// import Global from '../Constants';
 import Images from '../../common/Images';
 
 const Screen = ({
@@ -46,7 +42,6 @@ const Screen = ({
         if (count >= 2) {
           count = filteredPages.length - 2;
           array.splice(0, count);
-          // console.log(array);
           return array;
         }
       }
@@ -112,7 +107,7 @@ const Screen = ({
             />
           </a>
           <a href={`http://www.linkedin.com/shareArticle?mini=true&amp;url=https://decentral.games/blog/${slug}`}>
-            <Icon className="share-icon"style={{ fontSize: '34px' }} name="linkedin" />
+            <Icon className="share-icon" style={{ fontSize: '34px' }} name="linkedin" />
           </a>
         </span>
       </div>
