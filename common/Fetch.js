@@ -31,8 +31,11 @@ const apiCall = {
     return call(`${API_BASE_URL}/admin/getUsersList`, 'GET');
   },
 
-  MINT_TOKEN: tokenID => {
-    return call(`${API_BASE_URL}/ice/mintToken/${tokenID}`, 'GET');
+  MINT_TOKEN: (tokenID, collectionAddr) => {
+    return call(
+      `${API_BASE_URL}/ice/mintToken/${tokenID}/${collectionAddr}`,
+      'GET'
+    );
   },
 
   GET_METADATA_FROM_TOKEN_URI: (contractAddr, tokenID) => {

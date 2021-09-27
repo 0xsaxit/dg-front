@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from 'react';
 import { Modal, Button } from 'semantic-ui-react';
 import { GlobalContext } from 'store';
 import ModalETHAuth from 'components/modal/ModalEthAuth';
-import IceMintETHTooltip from 'components/tooltips/IceMintETHTooltip'
+import IceMintETHTooltip from 'components/tooltips/IceMintETHTooltip';
 import IceMintDGStackedTooltip from 'components/tooltips/IceMintDGStackedTooltip';
 import styles from './ModalMintWearable.module.scss';
 import Images from 'common/Images';
@@ -135,12 +135,12 @@ const ModalMint = props => {
               Price <span>${(state.DGPrices.eth / 10).toFixed(2)}</span>
               <div className={styles.card_area}>
                 <div className={styles.card_area_body}>
-                  {state.userBalances[2][3] < 0.1 ?
+                  {state.userBalances[2][3] < 0.1 ? (
                     <span>
                       Not Enough
                       <IceMintETHTooltip />
                     </span>
-                    : null}
+                  ) : null}
                   <div className={styles.card}>
                     0.1 ETH
                     <img src={Images.ETH_CIRCLE} className={styles.img_card2} />
@@ -177,7 +177,7 @@ const ModalMint = props => {
             <div className={styles.button_area}>
               {itemLimitsArray[props.index][0] ? (
                 state.userBalances[2][3] < 0.1 ||
-                  state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
+                state.stakingBalances.BALANCE_USER_GOVERNANCE < 1 ? (
                   <Button className={styles.button_upgrade} disabled={true}>
                     Mint Wearable
                   </Button>
