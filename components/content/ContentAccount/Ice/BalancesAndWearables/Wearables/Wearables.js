@@ -4,7 +4,7 @@ import styles from './Wearables.module.scss';
 
 const Wearables = ({ state }) => {
   const activeWearables = state.iceWearableItems.filter(
-    item => item.meta_data.attributes.at(-1).value > 0
+    item => item.meta_data && item.meta_data.attributes.at(-1).value > 0
   );
 
   const maxICEBonus = activeWearables.reduce((prev, current) => {
