@@ -1,8 +1,6 @@
 @import "styles/base.scss";
 
 .card_container {
-  width: 288px;
-  height: 508px;
   margin: 0 auto;
 }
 
@@ -86,7 +84,8 @@
     }
 
     @include mq($until: medium) {
-      border: 2px solid #2a2a2a;
+      border: 1px solid #2a2a2a;
+      padding-top: 36px;
     }
   }
 
@@ -161,7 +160,7 @@
 
       .card_body {
         .card {
-          padding: 5px;
+          padding: 5px 10px;
           font-size: 11px;
         }
       }
