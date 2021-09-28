@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Modal, Button } from 'semantic-ui-react';
 import styles from './ModalMintSuccess.module.scss';
 
 const ModalMintSuccess = props => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     setOpen(props.show);
-  }, [props.show])
+  }, [props.show]);
 
   return (
     <Modal
@@ -85,15 +86,14 @@ const ModalMintSuccess = props => {
           <div className={styles.toppercent}>
             1-7%
             <img
-              src={"https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png"}
+              src={
+                'https://res.cloudinary.com/dnzambf4m/image/upload/v1631105861/diamond_1_1_mvgaa8.png'
+              }
               style={{ width: '20px' }}
             />
           </div>
           <div className={styles.image}>
-            <img
-              src={props.wearableImg}
-              className={styles.logo}
-            />
+            <img src={props.wearableImg} className={styles.logo} />
           </div>
           <div className={styles.properties}>
             <div className={styles.round}>Rank 1</div>
@@ -109,8 +109,12 @@ const ModalMintSuccess = props => {
         </div>
 
         <div className={styles.buttons}>
-          <Button className={styles.primary}>View in My Account</Button>
-          <Button className={styles.none}>Not Now</Button>
+          <Link href="/account/ice">
+            <Button className={styles.primary}>View in My Account</Button>
+          </Link>
+          <Button className={styles.none} onClick={() => setOpen(false)}>
+            Not Now
+          </Button>
         </div>
       </div>
     </Modal>

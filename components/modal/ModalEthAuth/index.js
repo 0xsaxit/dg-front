@@ -173,6 +173,8 @@ const ModalEthAuth = props => {
       });
 
       setOpenMintSuccess(true);
+      setOpen(false);
+      props.close();
     } else if (!json.status) {
       setButtonMessage('Token Minting Error');
       console.log(json.result);
