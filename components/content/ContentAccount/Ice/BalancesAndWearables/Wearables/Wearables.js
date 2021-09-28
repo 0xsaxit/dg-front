@@ -23,12 +23,7 @@ const Wearables = ({ state }) => {
   }, 0);
 
   return (
-    <section
-      style={{
-        maxWidth: '980px',
-        margin: '0 auto',
-      }}
-    >
+    <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
         <div>
           <h2>ICED Wearables</h2>
