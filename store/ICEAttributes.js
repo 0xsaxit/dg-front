@@ -1,11 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from './index';
 import Web3 from 'web3';
+import BigNumber from 'bignumber.js'
+
 import ABI_ICE_REGISTRANT from '../components/ABI/ABIICERegistrant.json';
 import ABI_DG_TOKEN from '../components/ABI/ABIDGToken';
 import ABI_CHILD_TOKEN_WETH from '../components/ABI/ABIChildTokenWETH';
 import ABI_CHILD_TOKEN_ICE from '../components/ABI/ABIChildTokenICE';
 import ABI_COLLECTION_V2 from '../components/ABI/ABICollectionV2';
+import ABI_ICEToken from '../components/ABI/ABIICEToken';
 import Global from '../components/Constants';
 import Transactions from '../common/Transactions';
 import Fetch from '../common/Fetch';
@@ -22,6 +25,8 @@ function ICEAttributes() {
   const [WETHMaticContract, setWETHMaticContract] = useState({});
   const [ICEMaticContract, setICEMaticContract] = useState({});
   const [collectionV2Contract, setCollectionV2Contract] = useState({});
+  const [iceTokenContract, setIceTokenContract] = useState({});
+
 
   // const userWalletAddress = '0x7146cae915f1Cd90871ecc69999BEfFdcaf38ff9'; // temporary
 
@@ -61,6 +66,12 @@ function ICEAttributes() {
           Global.ADDRESSES.COLLECTION_V2_ADDRESS
         );
         setCollectionV2Contract(collectionV2Contract);
+
+        const IceTokenContract = new maticWeb3.eth.Contract(
+          ABI_ICEToken,
+          Global.ADDRESSES.ICE_TOKEN_ADDRESS
+        );
+        setIceTokenContract(IceTokenContract);
 
         setInstances(true); // contract instantiation complete
       }
@@ -119,6 +130,16 @@ function ICEAttributes() {
             type: 'ice_wearable_items',
             data: iceWearableItems,
           });
+
+          const ice_amount = await iceTokenContract.methods
+            .balanceOf(state.userAddress)
+            .call();
+
+          const actual_amount = new BigNumber(ice_amount).div(new BigNumber(10).pow(18)).toString(10);          
+          dispatch({
+            type: 'set_IceAmount',
+            data: actual_amount,
+          });
         }
       }
 
@@ -140,11 +161,11 @@ function ICEAttributes() {
 
         // get the user's one-hour cool-down status
         console.log(
-          '================== <Before getCoolDownStatus> =================== '
+          ' ==== <Before getCoolDownStatus> ===='
         );
         const canPurchase = await getCoolDownStatus();
         console.log(
-          '================== <After canPurchase> =================== ',
+          '==== <After canPurchase> ==== ',
           canPurchase
         );
 
@@ -156,7 +177,7 @@ function ICEAttributes() {
         // update global state token amounts/authorization status
         const tokenAmounts = await getTokenAmounts();
         console.log(
-          '================== <tokenAmounts> ==================== ',
+          '==== <tokenAmounts> ==== ',
           tokenAmounts
         );
 

@@ -17,7 +17,7 @@ const Balances = ({ state }) => {
       icon: 'https://res.cloudinary.com/dnzambf4m/image/upload/v1631324990/ICE_Diamond_ICN_kxkaqj.svg',
       name: 'ICE',
       type: 'ICE',
-      model: '0.00 ICE',
+      model: state.iceAmount,
       price: '0.00',
     },
     {
