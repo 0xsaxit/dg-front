@@ -12,7 +12,7 @@
     color: white;
     margin-left: 10px;
 
-    @include mq($until: medium) {
+    @media screen and (max-width: 600px) {
       font-size: 20px;
       padding-top: 0px;
       padding-left: 0px;
@@ -88,8 +88,8 @@
             text-align: left;
 
             @include mq($until: medium) {
-              text-align: left;
-              font-size: 20px;
+              text-align: left !important;
+              font-size: 18px !important;
             }
           }
 
@@ -102,12 +102,12 @@
             margin-bottom: 0;
 
             @include mq($until: medium) {
-              text-align: left;
-              font-size: 16px;
+              text-align: left !important;
+              font-size: 15px !important;
             }
           }
 
-          @include mq($until: medium) {
+          @media screen and (max-width: 600px) {
             margin: 1px;
           }
         }
@@ -163,9 +163,9 @@
               line-height: 24px;
             }
 
-            @include mq($until: medium) {
+            @media screen and (max-width: 600px) {
               position: absolute;
-              top: 10px;
+              top: 0px;
               right: -10px;
               min-width: 200px;
             }
@@ -175,7 +175,7 @@
             width: 310px;
             margin-right: 0;
 
-            @include mq($until: medium) {
+            @media screen and (max-width: 600px) {
               width: 260px;
             }
           }
@@ -206,9 +206,9 @@
             height: 16px;
           }
 
-          @include mq($until: medium) {
+          @media screen and (max-width: 600px) {
             position: absolute;
-            top: 50px;
+            top: 45px;
             right: 0px;
           }
         }
@@ -243,9 +243,9 @@
             color: white;
           }
 
-          @include mq($until: medium) {
+          @media screen and (max-width: 600px) {
             position: absolute;
-            top: 50px;
+            top: 45px;
             right: 0px;
           }
         }
@@ -254,28 +254,21 @@
           height: 32px;
         }
 
-        @media screen and (max-width: 900px) {
-          padding: 30px 20px 30px 20px;
+        @include mq($until: medium) {
+          padding: 15px 25px;
 
           .float_left {
-            .img_left {
-              img {
-                width: 32px;
-                height: 32px;
-              }
-            }
-
             .balance_column_header {
-              margin-left: 10px;
+              margin-left: 15px;
+              margin-top: 0px;
 
               p:first-child {
-                font-size: 20px;
+                font-size: 20px !important;
                 line-height: 24px;
               }
 
               p:last-child {
-                font-size: 14px;
-                line-height: 17px;
+                font-size: 15px !important;
               }
             }
           }
@@ -284,22 +277,22 @@
             position: relative;
 
             .text_wrapper {
+              margin-top: -3px;
+
               p:first-child {
                 font-size: 20px;
-                line-height: 24px;
+                line-height: 32px;
               }
 
               p:last-child {
-                font-size: 14px;
-                line-height: 17px;
+                font-size: 15px;
+                line-height: 15px;
               }
             }
           }
         }
-
-        @include mq($until: medium) {
+        @media screen and (max-width: 600px) {
           height: 120px;
-          padding: 15px;
 
           .float_left {
             .img_left {
@@ -310,11 +303,9 @@
             }
 
             .balance_column_header {
-              margin-left: 10px;
-
               p:first-child {
                 font-size: 18px;
-                line-height: 21px;
+                line-height: 32px;
               }
 
               p:last-child {
@@ -345,8 +336,7 @@
 
     .reward {
       height: 94%;
-      margin-left: 10px;
-      width: calc(100% - 10px);
+      width: 100%;
       padding: 28px;
       border: 1px solid #2a2a2a;
       border-radius: 16px;
@@ -397,7 +387,8 @@
 
       .claim_button {
         margin: 0px 0px 15px 0px;
-        width: 100%;
+        margin-left: 10%;
+        width: 80%;
         background: #1f1f1f;
         color: white;
         border-radius: 10px;
@@ -405,39 +396,6 @@
         font-family: Larsseit-Medium;
         font-weight: 700;
         font-size: 14px;
-
-        @include mq($until: medium) {
-          width: 80%;
-          margin: 20px 10%;
-        }
-      }
-
-      @media screen and (max-width: 900px) {
-        height: 306px;
-
-        &_header {
-          font-size: 15px;
-          margin-top: 20px;
-        }
-
-        &_value {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          .DG_value {
-            font-family: Larsseit-Bold;
-            font-size: 36px;
-            margin-left: 12px;
-            margin-right: 12px;
-            margin-bottom: 0;
-          }
-
-          img {
-            width: 40px;
-            height: 40px;
-          }
-        }
       }
     }
     // @include mq($until: large) {
@@ -446,7 +404,7 @@
   }
 }
 
-@include mq($until: medium) {
+@media screen and (max-width: 600px) {
   .balance {
     .content_container {
       padding: 0px;
