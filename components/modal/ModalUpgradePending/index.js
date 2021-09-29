@@ -81,20 +81,26 @@ const ModalUpgradePending = props => {
     }
   }, [state.userStatus]);
 
+  // get ICE and DG authorization status based on tokenAmounts state object
   useEffect(() => {
     const authStatusICE = state.tokenAmounts.ICE_AUTHORIZATION;
     const authStatusDG = state.tokenAmounts.DG_AUTHORIZATION;
 
-    // get NFT authorization state based on props.tokenID
-    const result = state.nftAuthorizations.find(
-      item => item.tokenID === props.tokenID
-    );
-    // console.log('nft auth status: ' + result.authStatus);
-
     setAuthStatusICE(authStatusICE);
     setAuthStatusDG(authStatusDG);
-    // setAuthStatusNFT(result.authStatus);
   }, [state.tokenAmounts]);
+
+  // get NFT authorization state based on props.tokenID
+  useEffect(() => {
+    if (state.nftAuthorizations.length) {
+      const result = state.nftAuthorizations.find(
+        item => item.tokenID === props.tokenID
+      );
+      console.log('NFT auth status: ' + result.authStatus);
+
+      setAuthStatusNFT(result.authStatus);
+    }
+  }, [state.nftAuthorizations]);
 
   /////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +138,7 @@ const ModalUpgradePending = props => {
               ? 'clicked'
               : null
           }
-          // disabled={!authStatusICE}
+          disabled={!authStatusICE}
         />
 
         <ActionLine previousAction={authStatusDG ? 'done' : 'initial'} />
@@ -150,7 +156,7 @@ const ModalUpgradePending = props => {
               ? 'clicked'
               : null
           }
-          // disabled={!authStatusNFT}
+          disabled={!authStatusDG}
         />
 
         <ActionLine previousAction={authStatusNFT ? 'done' : 'initial'} />
@@ -279,19 +285,19 @@ const ModalUpgradePending = props => {
       } else {
         console.log('Biconomy meta-transaction hash: ' + txHash);
 
-        if (token === 'ICE') {
-          setAuthStatusICE(true);
-        } else if (token === 'DG') {
-          setAuthStatusDG(true);
-        }
+        // if (token === 'ICE') {
+        //   setAuthStatusICE(true);
+        // } else if (token === 'DG') {
+        //   setAuthStatusDG(true);
+        // }
 
         // update global state token authorizations
-        // const refresh = !state.refreshTokenAuth;
+        const refresh = !state.refreshTokenAuth;
 
-        // dispatch({
-        //   type: 'refresh_token_auth',
-        //   data: refresh,
-        // });
+        dispatch({
+          type: 'refresh_token_auth',
+          data: refresh,
+        });
       }
     } catch (error) {
       setClickedICE(false);
@@ -303,14 +309,10 @@ const ModalUpgradePending = props => {
 
   async function metaTransactionNFT() {
     console.log('Meta-transaction NFT: ' + props.tokenID);
+    console.log('Spender address: ' + spenderAddress);
     setClickedNFT(true);
 
     try {
-      console.log(
-        'Authorize NFT for address: ' + Global.ADDRESSES.ICE_REGISTRANT_ADDRESS
-      );
-      console.log('Spender address: ' + spenderAddress);
-
       // get function signature and send Biconomy API meta-transaction
       let functionSignature = collectionV2Contract.methods
         .approve(Global.ADDRESSES.ICE_REGISTRANT_ADDRESS, props.tokenID)
