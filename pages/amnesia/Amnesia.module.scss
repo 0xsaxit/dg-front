@@ -1,0 +1,238 @@
+.container {
+  // height: 2810px;
+  // background: gray;
+  background: black;
+
+  .top_section {
+    height: 1080px;
+    background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632927780/amnesia/Amnesia-Background_1_nzqzri.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 160px 0 0;
+
+    .central_container {
+      margin: 0 auto;
+      width: 338px;
+
+      img {
+        height: 392px;
+        width: 338px;
+      }
+
+      .buttons_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: -15px;
+        padding: 0 20px;
+
+        button {
+          margin: 0;
+        }
+
+        .black_button {
+          width: 140px;
+          height: 48px;
+          color: white;
+          font-family: Larsseit-Regular;
+          font-weight: 700;
+          font-size: 17px;
+          background: #181818;
+        }
+
+        .blue_button {
+          width: 140px;
+          height: 48px;
+          color: white;
+          font-family: Larsseit-Regular;
+          font-weight: 700;
+          font-size: 17px;
+          background: #9e1869;
+        }
+      }
+    }
+  }
+
+  .bottom_section {
+    height: 1807px;
+    position: relative;
+    background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632927968/amnesia/amnesia_stars_background.png');
+    background-size: 100% 100%;
+    overflow: hidden;
+    padding: 170px 54px 237px;
+
+    .clouds_top {
+      position: absolute;
+      top: -81px;
+      left: 54px;
+      height: 836px;
+      width: 1114px;
+      // background-color: tomato;
+      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632928095/amnesia/amnesia_clouds_1_nvigwg.png');
+    }
+
+    .clouds_bottom {
+      position: absolute;
+      transform: matrix(-0.92, 0.4, 0.4, 0.92, 0, 0);
+      left: 225px;
+      top: 600px;
+      height: 1125px;
+      width: 1500px;
+      // background-color: tomato;
+      background-image: url('https://res.cloudinary.com/dnzambf4m/image/upload/v1632928095/amnesia/amnesia_clouds_2_umlwrv.png');
+    }
+
+    .content_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .artists_container {
+        display: flex;
+        justify-content: space-between;
+        height: 364px;
+        width: 1064px;
+
+        .artists_text {
+          margin-top: 108px;
+          color: white;
+          font-family: Larsseit-Regular;
+          font-size: 36px;
+          font-weight: 700;
+          line-height: 46px;
+          text-align: left;
+        }
+
+        .artists {
+          width: 490px;
+          .background_asset_1 {
+          }
+
+          .background_asset_2 {
+          }
+
+          img {
+            width: 132px;
+            height: 166px;
+            filter: drop-shadow(0px 3.35506px 5.87136px rgba(0, 0, 0, 0.4));
+            border-radius: 20px;
+          }
+
+          .artists_top {
+            padding: 0 89px;
+            display: flex;
+            justify-content: space-between;
+
+            img {
+              &:nth-of-type(1) {
+                z-index: 3;
+              }
+
+              &:nth-of-type(2) {
+                z-index: 1;
+              }
+            }
+          }
+
+          .artists_bottom {
+            margin-top: -50px;
+            display: flex;
+            justify-content: space-between;
+
+            img {
+              &:nth-of-type(1) {
+                z-index: 4;
+              }
+
+              &:nth-of-type(2) {
+                z-index: 2;
+              }
+            }
+          }
+        }
+      }
+
+      .partners_container {
+        width: 100%;
+        margin-top: 128px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+          font-family: Larsseit-Regular;
+          font-size: 36px;
+          font-weight: 700;
+          line-height: 49px;
+          letter-spacing: 0em;
+          text-align: center;
+          margin: 0;
+
+          &:nth-of-type(2) {
+            margin: 186px 0 0;
+          }
+        }
+
+        img {
+          margin-top: 47px;
+
+          &:nth-of-type(2) {
+            height: 217px;
+            width: 564px;
+          }
+        }
+      }
+
+      .dates_container {
+        z-index: 1;
+        width: 100%;
+        margin-top: 217px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .phase_1 {
+          height: 46px;
+          width: 348px;
+        }
+
+        .dates {
+          height: 69px;
+          width: 614px;
+        }
+
+        .buttons_container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 24px 0 237px;
+          width: 295px;
+
+          button {
+            margin: 0;
+          }
+
+          .black_button {
+            width: 140px;
+            height: 48px;
+            color: white;
+            font-family: Larsseit-Regular;
+            font-weight: 700;
+            font-size: 17px;
+            background: #181818;
+          }
+
+          .blue_button {
+            width: 140px;
+            height: 48px;
+            color: white;
+            font-family: Larsseit-Regular;
+            font-weight: 700;
+            font-size: 17px;
+            background: #9e1869;
+          }
+        }
+      }
+    }
+  }
+}
