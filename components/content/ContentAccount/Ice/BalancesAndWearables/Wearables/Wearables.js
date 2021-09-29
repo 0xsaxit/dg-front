@@ -22,10 +22,6 @@ const Wearables = ({ state }) => {
     }
   }, 0);
 
-  let wearables = [].concat(state.iceWearableItems);
-  wearables = wearables.concat(state.iceWearableItems[0]);
-  wearables = wearables.concat(state.iceWearableItems[0]);
-
   return (
     <section className={styles.wearableSection}>
       <div className={styles.wearableHeader}>
@@ -56,7 +52,7 @@ const Wearables = ({ state }) => {
 
       <section className={styles.grid_container}>
         <div className={styles.wearables_grid}>
-          {wearables.map((item, index) => (
+          {state.iceWearableItems.map((item, index) => (
             <ICEWearableCard data={item.meta_data} key={index} />
           ))}
         </div>
